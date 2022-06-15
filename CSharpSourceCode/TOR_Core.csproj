@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{80942161-02FB-4024-A1C2-22EF33DC8D1A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TOR_Core</RootNamespace>
+    <AssemblyName>TOR_Core</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Win64_Shipping_Client\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GameDir>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord</GameDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(GameDir)\bin\Win64_Shipping_Client\Bannerlord.exe</StartProgram>
+    <StartArguments>/singleplayer _MODULES_%2aNative%2aSandBoxCore%2aSandBox%2aStoryMode%2aCustomBattle%2aTOR_Armory%2aTOR_Environment%2aTOR_Core%2a_MODULES_</StartArguments>
+    <StartWorkingDirectory>$(GameDir)\bin\Win64_Shipping_Client</StartWorkingDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="TaleWorlds.ScreenSystem">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.ScreenSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.AchievementSystem.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.AchievementSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.BattlEye.Client.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.BattlEye.Client.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.CampaignSystem.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.CampaignSystem.ViewModelCollection.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.ViewModelCollection.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Core.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Core.ViewModelCollection.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.Core.ViewModelCollection.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Diamond.AccessProvider.Epic.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.Diamond.AccessProvider.Epic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Diamond.AccessProvider.GDK.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.Diamond.AccessProvider.GDK.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Diamond.AccessProvider.GOG.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.Diamond.AccessProvider.GOG.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Diamond.AccessProvider.Steam.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.Diamond.AccessProvider.Steam.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Diamond.AccessProvider.Test.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.Diamond.AccessProvider.Test.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Diamond.ChatSystem.Library.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.Diamond.ChatSystem.Library.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Diamond.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.Diamond.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.DotNet.AutoGenerated.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.DotNet.AutoGenerated.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.DotNet.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.DotNet.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Engine.AutoGenerated.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.Engine.AutoGenerated.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Engine.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.Engine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Engine.GauntletUI.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.Engine.GauntletUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.GauntletUI.Data.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.GauntletUI.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.GauntletUI.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.GauntletUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.GauntletUI.ExtraWidgets.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.GauntletUI.ExtraWidgets.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.GauntletUI.PrefabSystem.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.GauntletUI.PrefabSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.GauntletUI.TooltipExtensions.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.GauntletUI.TooltipExtensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.InputSystem.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.InputSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Library.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.Library.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.LinQuick.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.LinQuick.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Localization.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.Localization.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.ModuleManager.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.ModuleManager.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.AutoGenerated.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.AutoGenerated.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.Diamond.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.Diamond.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.GauntletUI.Widgets.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.GauntletUI.Widgets.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.Helpers.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.Helpers.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.Launcher.Steam.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.Launcher.Steam.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.ViewModelCollection.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.ViewModelCollection.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.NavigationSystem.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.NavigationSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Network.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.Network.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.ObjectSystem.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.ObjectSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.PlatformService.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.PlatformService.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.PlatformService.Epic.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.PlatformService.Epic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.PlatformService.GOG.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.PlatformService.GOG.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.PlatformService.Steam.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.PlatformService.Steam.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.PlayerServices.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.PlayerServices.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.PSAI.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.PSAI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.SaveSystem.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.SaveSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Starter.DotNetCore.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.Starter.DotNetCore.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Starter.Library.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.Starter.Library.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.TwoDimension.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.TwoDimension.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.TwoDimension.Standalone.dll">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.TwoDimension.Standalone.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Native\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.GauntletUI.AutoGenerated.dll">
+      <HintPath>C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Native\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.GauntletUI.AutoGenerated.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Native\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.GauntletUI.dll">
+      <HintPath>C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Native\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.GauntletUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Native\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.Platform.PC.dll">
+      <HintPath>C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Native\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.Platform.PC.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Native\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.View.dll">
+      <HintPath>C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Native\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.View.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.dll">
+      <HintPath>C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.GauntletUI.AutoGenerated.dll">
+      <HintPath>C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.GauntletUI.AutoGenerated.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.GauntletUI.dll">
+      <HintPath>C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.GauntletUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.View.dll">
+      <HintPath>C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.View.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.ViewModelCollection.dll">
+      <HintPath>C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.ViewModelCollection.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\StoryMode\bin\Win64_Shipping_Client\StoryMode.dll">
+      <HintPath>C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\StoryMode\bin\Win64_Shipping_Client\StoryMode.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\StoryMode\bin\Win64_Shipping_Client\StoryMode.GauntletUI.AutoGenerated.dll">
+      <HintPath>C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\StoryMode\bin\Win64_Shipping_Client\StoryMode.GauntletUI.AutoGenerated.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\StoryMode\bin\Win64_Shipping_Client\StoryMode.GauntletUI.dll">
+      <HintPath>C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\StoryMode\bin\Win64_Shipping_Client\StoryMode.GauntletUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\StoryMode\bin\Win64_Shipping_Client\StoryMode.View.dll">
+      <HintPath>C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\StoryMode\bin\Win64_Shipping_Client\StoryMode.View.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\StoryMode\bin\Win64_Shipping_Client\StoryMode.ViewModelCollection.dll">
+      <HintPath>C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\StoryMode\bin\Win64_Shipping_Client\StoryMode.ViewModelCollection.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\CustomBattle\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.CustomBattle.dll">
+      <HintPath>C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\CustomBattle\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.CustomBattle.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="0Harmony, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Lib.Harmony.2.2.1\lib\net472\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>packages\NLog.5.0.1\lib\net46\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbilitySystem\Ability.cs" />
+    <Compile Include="AbilitySystem\AbilityComponent.cs" />
+    <Compile Include="AbilitySystem\AbilityFactory.cs" />
+    <Compile Include="AbilitySystem\AbilityHUDMissionView.cs" />
+    <Compile Include="AbilitySystem\AbilityHUD_VM.cs" />
+    <Compile Include="AbilitySystem\AbilityManagerMissionLogic.cs" />
+    <Compile Include="AbilitySystem\AbilityTemplate.cs" />
+    <Compile Include="AbilitySystem\AbilityType.cs" />
+    <Compile Include="AbilitySystem\CrossHairs\AbilityCrosshair.cs" />
+    <Compile Include="AbilitySystem\CrossHairs\Crosshair.cs" />
+    <Compile Include="AbilitySystem\CrossHairs\CrosshairType.cs" />
+    <Compile Include="AbilitySystem\CrossHairs\ICrosshair.cs" />
+    <Compile Include="AbilitySystem\CrossHairs\MissileCrosshair.cs" />
+    <Compile Include="AbilitySystem\CrossHairs\Pointer.cs" />
+    <Compile Include="AbilitySystem\CrossHairs\ProjectileCrosshair_VM.cs" />
+    <Compile Include="AbilitySystem\CrossHairs\SelfCrosshair.cs" />
+    <Compile Include="AbilitySystem\CrossHairs\SingleTargetCrosshair.cs" />
+    <Compile Include="AbilitySystem\CrossHairs\TargetedAOECrosshair.cs" />
+    <Compile Include="AbilitySystem\CrossHairs\WindCrosshair.cs" />
+    <Compile Include="AbilitySystem\ItemBoundAbility.cs" />
+    <Compile Include="AbilitySystem\Prayer.cs" />
+    <Compile Include="AbilitySystem\Scripts\AbilityScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\ArtilleryPlacementScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\AugmentScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\BlastScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\BombardmentScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\HealScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\HexScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\MissileScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\ShadowStepScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\SummoningScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\VortexScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\WindScript.cs" />
+    <Compile Include="AbilitySystem\SeekerController.cs" />
+    <Compile Include="AbilitySystem\SeekerParameters.cs" />
+    <Compile Include="AbilitySystem\SpecialMove.cs" />
+    <Compile Include="AbilitySystem\SpecialMoveHUD_VM.cs" />
+    <Compile Include="AbilitySystem\Spells\Spell.cs" />
+    <Compile Include="AbilitySystem\Spells\LoreObject.cs" />
+    <Compile Include="AbilitySystem\Spells\SpellBook\LoreObjectVM.cs" />
+    <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookMapIconCampaignBehaviour.cs" />
+    <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookMapIconVM.cs" />
+    <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookScreen.cs" />
+    <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookState.cs" />
+    <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookVM.cs" />
+    <Compile Include="AbilitySystem\Spells\SpellBook\SpellItemVM.cs" />
+    <Compile Include="AbilitySystem\Spells\SpellBook\StatItemVM.cs" />
+    <Compile Include="AbilitySystem\Spells\SpellCastingLevel.cs" />
+    <Compile Include="AbilitySystem\SummonedAgentOrigin.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehaviorConfiguration.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehavior\AbstractAgentCastingBehavior.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehavior\AoEAdjacentCastingBehavior.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehavior\AoEDirectionalCastingBehavior.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehavior\AoETargetedCastingBehavior.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehavior\ArtilleryPlacementCastingBehavior.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehavior\MissileCastingBehavior.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehavior\PreserveWindsCastingBehavior.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehavior\SelectMultiTargetCastingBehavior.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehavior\SelectSingleTargetCastingBehavior.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehavior\SummoningCastingBehavior.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\AgentTacticalBehavior\AbstractAgentTacticalBehavior.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\AgentTacticalBehavior\AoEAdjacentTacticalBehavior.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\AgentTacticalBehavior\AoEDirectionalTacticalBehavior.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\AgentTacticalBehavior\KeepSafeTacticalBehavior.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\Components\ArtilleryAI.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\Components\WizardAIComponent.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\SupportMissionLogic\QuerySystemExtensions.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\SupportMissionLogic\QuerySystemExtensionsMissionLogic.cs" />
+    <Compile Include="BattleMechanics\AI\Decision\Axis.cs" />
+    <Compile Include="BattleMechanics\AI\Decision\BehaviorOption.cs" />
+    <Compile Include="BattleMechanics\AI\Decision\CommonAIFunctions.cs" />
+    <Compile Include="BattleMechanics\AI\Decision\DecisionManager.cs" />
+    <Compile Include="BattleMechanics\AI\Decision\IAgentBehavior.cs" />
+    <Compile Include="BattleMechanics\AI\Decision\ScoringFunctions.cs" />
+    <Compile Include="BattleMechanics\AI\Decision\Target.cs" />
+    <Compile Include="BattleMechanics\Artillery\ArtilleryRangedSiegeWeapon.cs" />
+    <Compile Include="BattleMechanics\Artillery\ArtilleryStandingPoint.cs" />
+    <Compile Include="BattleMechanics\Artillery\CannonBallPile.cs" />
+    <Compile Include="BattleMechanics\CustomCrosshairMissionBehavior.cs" />
+    <Compile Include="BattleMechanics\DamageSystem\DamageType.cs" />
+    <Compile Include="BattleMechanics\SniperScope\SniperScope.cs" />
+    <Compile Include="BattleMechanics\StatusEffect\StatusEffect.cs" />
+    <Compile Include="BattleMechanics\StatusEffect\StatusEffectComponent.cs" />
+    <Compile Include="BattleMechanics\StatusEffect\StatusEffectManager.cs" />
+    <Compile Include="BattleMechanics\StatusEffect\StatusEffectMissionLogic.cs" />
+    <Compile Include="BattleMechanics\StatusEffect\StatusEffectTemplate.cs" />
+    <Compile Include="BattleMechanics\TriggeredEffect\Scripts\CannonBallScript.cs" />
+    <Compile Include="BattleMechanics\TriggeredEffect\Scripts\DynamicItemTraitScripts.cs" />
+    <Compile Include="BattleMechanics\TriggeredEffect\Scripts\ITriggeredScript.cs" />
+    <Compile Include="BattleMechanics\TriggeredEffect\Scripts\KnockDownScript.cs" />
+    <Compile Include="BattleMechanics\TriggeredEffect\Scripts\PrefabSpawnerScript.cs" />
+    <Compile Include="BattleMechanics\TriggeredEffect\Scripts\SummonScript.cs" />
+    <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffect.cs" />
+    <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectManager.cs" />
+    <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectTemplate.cs" />
+    <Compile Include="CampaignMechanics\SkillBooks\TORSkillBookCampaignBehavior.cs" />
+    <Compile Include="Extensions\AgentExtensions.cs" />
+    <Compile Include="Extensions\CharacterObjectExtensions.cs" />
+    <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Extensions\ExtendedInfoSystem\CharacterExtendedInfo.cs" />
+    <Compile Include="Extensions\ExtendedInfoSystem\ExtendedInfoManager.cs" />
+    <Compile Include="Extensions\ExtendedInfoSystem\ExtendedInfoMissionLogic.cs" />
+    <Compile Include="Extensions\ExtendedInfoSystem\HeroExtendedInfo.cs" />
+    <Compile Include="Extensions\HeroExtensions.cs" />
+    <Compile Include="Extensions\ItemObjectExtensions.cs" />
+    <Compile Include="Extensions\MissionExtensions.cs" />
+    <Compile Include="Extensions\MobilePartyExtensions.cs" />
+    <Compile Include="HarmonyPatches\CustomBattlePatches.cs" />
+    <Compile Include="HarmonyPatches\LoadingScreenPatches.cs" />
+    <Compile Include="HarmonyPatches\RotatingMainMenuScenePatch.cs" />
+    <Compile Include="Items\ExtendedItemObjectManager.cs" />
+    <Compile Include="Items\ExtendedItemObjectProperties.cs" />
+    <Compile Include="Items\ItemTrait.cs" />
+    <Compile Include="Items\ItemTraitAgentComponent.cs" />
+    <Compile Include="Items\IWeaponHitEffect.cs" />
+    <Compile Include="Items\TorItemMenuVM.cs" />
+    <Compile Include="Items\TorItemTraitVM.cs" />
+    <Compile Include="Items\WeaponEffectMissionLogic.cs" />
+    <Compile Include="SubModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\TORCommon.cs" />
+    <Compile Include="Utilities\TORConstants.cs" />
+    <Compile Include="Utilities\TORMissionHelper.cs" />
+    <Compile Include="Utilities\TORParticleSystem.cs" />
+    <Compile Include="Utilities\TORPaths.cs" />
+    <Compile Include="Utilities\TORSpellBlowHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
