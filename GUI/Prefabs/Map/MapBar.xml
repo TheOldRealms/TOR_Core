@@ -89,10 +89,13 @@
     <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" IsVisible="@IsEnabled">
       <Children>
 
+        <NavigationScopeTargeter DataSource="{MapTimeControl}" ScopeID="MapBarScreenCenterScope" ScopeParent="..\MapBarScreenCenterScopeTarget" IsScopeEnabled="@IsCenterPanelEnabled" ExtendDiscoveryAreaLeft="550" ExtendDiscoveryAreaRight="550" ExtendDiscoveryAreaTop="200" ExtendDiscoveryAreaBottom="200"/>
+        <Widget DoNotAcceptEvents="true" Id="MapBarScreenCenterScopeTarget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="1" SuggestedHeight="1" HorizontalAlignment="Center" VerticalAlignment="Center" GamepadNavigationIndex="0" />
+
         <!--Tutorial Notification Frame-->
         <ElementNotificationWidget DataSource="{TutorialNotification}" ElementID="@ElementID" TutorialFrameWidget="TutorialFrameWidget">
           <Children>
-            <TutorialHighlightItemWidget Id="TutorialFrameWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="TutorialHighlightBrush" IsDisabled="true" IsVisible="false" />
+            <TutorialHighlightItemBrushWidget Id="TutorialFrameWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="TutorialHighlightBrush" IsDisabled="true" IsVisible="false" />
           </Children>
         </ElementNotificationWidget>
 
@@ -103,7 +106,8 @@
         </Widget>
 
         <!--_____Left Side Panel_______-->
-        <Widget DataSource="{MapNavigation}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Bottom" Sprite="MapBar\mapbar_left_canvas">
+        <NavigationScopeTargeter ScopeID="MapBarScope" ScopeParent="..\MapBar" ScopeMovements="Horizontal" ForceGainNavigationOnClosestChild="true" />
+        <Widget Id="MapBar" DataSource="{MapNavigation}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Bottom" Sprite="MapBar\mapbar_left_canvas">
           <Children>
 
             <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" Sprite="mapbar_left_canvas">
@@ -112,12 +116,12 @@
                 <!--Escape Menu Button-->
                 <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!LeftBar.Button1.Width" SuggestedHeight="!LeftBar.Button1.Height" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginRight="!MapBar.Buttons.HorizonalSpacing" UpdateChildrenStates="true">
                   <Children>
-                    <ButtonIconOffsetWidget Id="EscapeMenuButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="MapBar.Left.Button1" ButtonIcon="CharacterIcon" Command.Click="ExecuteOpenEscapeMenu" PressedXOffset="!MapBar.ButtonIcon.XOffset" PressedYOffset="!MapBar.ButtonIcon.YOffset" IsEnabled="@IsEscapeMenuEnabled" IsSelected="@IsEscapeMenuActive" UpdateChildrenStates="true" GamepadNavigationIndex="0">
+                    <IconOffsetButtonWidget Id="EscapeMenuButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="MapBar.Left.Button1" ButtonIcon="CharacterIcon" Command.Click="ExecuteOpenEscapeMenu" PressedXOffset="!MapBar.ButtonIcon.XOffset" PressedYOffset="!MapBar.ButtonIcon.YOffset" IsEnabled="@IsEscapeMenuEnabled" IsSelected="@IsEscapeMenuActive" UpdateChildrenStates="true" GamepadNavigationIndex="0">
                       <Children>
                         <BrushWidget Id="MainMenuIcon" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!LeftBar.Icon1.Width" SuggestedHeight="!LeftBar.Icon1.Height" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="MapBar.Left.Icon1" />
                         <HintWidget DataSource="{EscapeMenuHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
                       </Children>
-                    </ButtonIconOffsetWidget>
+                    </IconOffsetButtonWidget>
                     <HintWidget DataSource="{EscapeMenuHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
                   </Children>
                 </Widget>
@@ -125,12 +129,12 @@
                 <!--Character Button-->
                 <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!LeftBar.Button2.Width" SuggestedHeight="!LeftBar.Button2.Height" HorizontalAlignment="Center" VerticalAlignment="Bottom" UpdateChildrenStates="true" MarginRight="!MapBar.Buttons.HorizonalSpacing">
                   <Children>
-                    <ButtonIconOffsetWidget Id="CharacterButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="MapBar.Left.Button2" ButtonIcon="CharacterIcon" Command.AlternateClick="ExecuteOpenMainHeroEncyclopedia" Command.Click="ExecuteOpenCharacterDeveloper" IsEnabled="@IsCharacterDeveloperEnabled" IsSelected="@IsCharacterDeveloperActive" PressedXOffset="!MapBar.ButtonIcon.XOffset" PressedYOffset="!MapBar.ButtonIcon.YOffset" UpdateChildrenStates="true" HoveredCursorState="RightClickLink" GamepadNavigationIndex="1">
+                    <IconOffsetButtonWidget Id="CharacterButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="MapBar.Left.Button2" ButtonIcon="CharacterIcon" Command.AlternateClick="ExecuteOpenMainHeroEncyclopedia" Command.Click="ExecuteOpenCharacterDeveloper" IsEnabled="@IsCharacterDeveloperEnabled" IsSelected="@IsCharacterDeveloperActive" PressedXOffset="!MapBar.ButtonIcon.XOffset" PressedYOffset="!MapBar.ButtonIcon.YOffset" UpdateChildrenStates="true" HoveredCursorState="RightClickLink" GamepadNavigationIndex="1">
                       <Children>
                         <BrushWidget Id="CharacterIcon" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!LeftBar.Icon2.Width" SuggestedHeight="!LeftBar.Icon2.Height" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="MapBar.Left.Icon2"/>
                         <HintWidget DataSource="{SkillsHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
                       </Children>
-                    </ButtonIconOffsetWidget>
+                    </IconOffsetButtonWidget>
                     <HintWidget DataSource="{SkillsHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
                   </Children>
                 </Widget>
@@ -138,12 +142,12 @@
                 <!--Inventory Button-->
                 <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!LeftBar.Button3.Width" SuggestedHeight="!LeftBar.Button3.Height" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginRight="!MapBar.Buttons.HorizonalSpacing" UpdateChildrenStates="true">
                   <Children>
-                    <ButtonIconOffsetWidget Id="InventoryButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="MapBar.Left.Button3" ButtonIcon="InventoryIcon" Command.Click="ExecuteOpenInventory" IsEnabled="@IsInventoryEnabled" IsSelected="@IsInventoryActive" PressedXOffset="!MapBar.ButtonIcon.XOffset" PressedYOffset="!MapBar.ButtonIcon.YOffset" UpdateChildrenStates="true" GamepadNavigationIndex="2">
+                    <IconOffsetButtonWidget Id="InventoryButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="MapBar.Left.Button3" ButtonIcon="InventoryIcon" Command.Click="ExecuteOpenInventory" IsEnabled="@IsInventoryEnabled" IsSelected="@IsInventoryActive" PressedXOffset="!MapBar.ButtonIcon.XOffset" PressedYOffset="!MapBar.ButtonIcon.YOffset" UpdateChildrenStates="true" GamepadNavigationIndex="2">
                       <Children>
                         <BrushWidget Id="InventoryIcon" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!LeftBar.Icon3.Width" SuggestedHeight="!LeftBar.Icon3.Height" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="MapBar.Left.Icon3"/>
                         <HintWidget DataSource="{InventoryHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
                       </Children>
-                    </ButtonIconOffsetWidget>
+                    </IconOffsetButtonWidget>
                     <HintWidget DataSource="{InventoryHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
                   </Children>
                 </Widget>
@@ -151,12 +155,12 @@
                 <!--Party Button-->
                 <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!LeftBar.Button4.Width" SuggestedHeight="!LeftBar.Button4.Height" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginRight="!MapBar.Buttons.HorizonalSpacing" UpdateChildrenStates="true">
                   <Children>
-                    <ButtonIconOffsetWidget Id="PartyButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="MapBar.Left.Button4" ButtonIcon="PartyIcon" Command.Click="ExecuteOpenParty" IsEnabled="@IsPartyEnabled" IsSelected="@IsPartyActive" PressedXOffset="!MapBar.ButtonIcon.XOffset" PressedYOffset="!MapBar.ButtonIcon.YOffset" UpdateChildrenStates="true" GamepadNavigationIndex="3">
+                    <IconOffsetButtonWidget Id="PartyButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="MapBar.Left.Button4" ButtonIcon="PartyIcon" Command.Click="ExecuteOpenParty" IsEnabled="@IsPartyEnabled" IsSelected="@IsPartyActive" PressedXOffset="!MapBar.ButtonIcon.XOffset" PressedYOffset="!MapBar.ButtonIcon.YOffset" UpdateChildrenStates="true" GamepadNavigationIndex="3">
                       <Children>
                         <BrushWidget Id="PartyIcon" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!LeftBar.Icon4.Width" SuggestedHeight="!LeftBar.Icon4.Height" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="MapBar.Left.Icon4"/>
                         <HintWidget DataSource="{PartyHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
                       </Children>
-                    </ButtonIconOffsetWidget>
+                    </IconOffsetButtonWidget>
                     <HintWidget DataSource="{PartyHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
                   </Children>
                 </Widget>
@@ -164,12 +168,12 @@
                 <!--Quests Button-->
                 <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!LeftBar.Button5.Width" SuggestedHeight="!LeftBar.Button5.Height" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginRight="!MapBar.Buttons.HorizonalSpacing" UpdateChildrenStates="true">
                   <Children>
-                    <ButtonIconOffsetWidget Id="QuestsButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="MapBar.Left.Button5" ButtonIcon="QuestsIcon" Command.Click="ExecuteOpenQuests" IsEnabled="@IsQuestsEnabled" IsSelected="@IsQuestsActive" PressedXOffset="!MapBar.ButtonIcon.XOffset" PressedYOffset="!MapBar.ButtonIcon.YOffset" UpdateChildrenStates="true" GamepadNavigationIndex="4" GamepadNavigationDefaultOnGain="true">
+                    <IconOffsetButtonWidget Id="QuestsButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="MapBar.Left.Button5" ButtonIcon="QuestsIcon" Command.Click="ExecuteOpenQuests" IsEnabled="@IsQuestsEnabled" IsSelected="@IsQuestsActive" PressedXOffset="!MapBar.ButtonIcon.XOffset" PressedYOffset="!MapBar.ButtonIcon.YOffset" UpdateChildrenStates="true" GamepadNavigationIndex="4">
                       <Children>
                         <BrushWidget Id="QuestsIcon" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!LeftBar.Icon5.Width" SuggestedHeight="!LeftBar.Icon5.Height" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="MapBar.Left.Icon5"/>
                         <HintWidget DataSource="{QuestsHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
                       </Children>
-                    </ButtonIconOffsetWidget>
+                    </IconOffsetButtonWidget>
                     <HintWidget DataSource="{QuestsHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
                   </Children>
                 </Widget>
@@ -177,12 +181,12 @@
                 <!--Clan Button-->
                 <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!LeftBar.Button6.Width" SuggestedHeight="!LeftBar.Button6.Height" HorizontalAlignment="Right" VerticalAlignment="Bottom" UpdateChildrenStates="true" >
                   <Children>
-                    <ButtonIconOffsetWidget Id="ClanButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="MapBar.Left.Button6" ButtonIcon="ClanIcon" Command.AlternateClick="ExecuteOpenMainHeroClanEncyclopedia" Command.Click="ExecuteOpenClan" IsEnabled="@IsClanEnabled" IsSelected="@IsClanActive" PressedXOffset="!MapBar.ButtonIcon.XOffset" PressedYOffset="!MapBar.ButtonIcon.YOffset" UpdateChildrenStates="true" HoveredCursorState="RightClickLink" GamepadNavigationIndex="5">
+                    <IconOffsetButtonWidget Id="ClanButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="MapBar.Left.Button6" ButtonIcon="ClanIcon" Command.AlternateClick="ExecuteOpenMainHeroClanEncyclopedia" Command.Click="ExecuteOpenClan" IsEnabled="@IsClanEnabled" IsSelected="@IsClanActive" PressedXOffset="!MapBar.ButtonIcon.XOffset" PressedYOffset="!MapBar.ButtonIcon.YOffset" UpdateChildrenStates="true" HoveredCursorState="RightClickLink" GamepadNavigationIndex="5">
                       <Children>
                         <BrushWidget Id="ClanIcon" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!LeftBar.Icon7.Width" SuggestedHeight="!LeftBar.Icon7.Height" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="MapBar.Left.Icon7"/>
                         <HintWidget DataSource="{ClanHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
                       </Children>
-                    </ButtonIconOffsetWidget>
+                    </IconOffsetButtonWidget>
                     <HintWidget DataSource="{ClanHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
                   </Children>
                 </Widget>
@@ -190,12 +194,12 @@
                 <!--Kingdom Button-->
                 <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!LeftBar.Button7.Width" SuggestedHeight="!LeftBar.Button7.Height" HorizontalAlignment="Left" VerticalAlignment="Bottom" UpdateChildrenStates="true">
                   <Children>
-                    <ButtonIconOffsetWidget Id="KingdomButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="MapBar.Left.Button7" ButtonIcon="KingdomIcon" Command.AlternateClick="ExecuteOpenMainHeroKingdomEncyclopedia" Command.Click="ExecuteOpenKingdom" IsEnabled="@IsKingdomEnabled" IsSelected="@IsKingdomActive" PressedXOffset="!MapBar.ButtonIcon.XOffset" PressedYOffset="!MapBar.ButtonIcon.YOffset" NormalXOffset="-5" NormalYOffset="1" UpdateChildrenStates="true" HoveredCursorState="RightClickLink" GamepadNavigationIndex="6">
+                    <IconOffsetButtonWidget Id="KingdomButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="MapBar.Left.Button7" ButtonIcon="KingdomIcon" Command.AlternateClick="ExecuteOpenMainHeroKingdomEncyclopedia" Command.Click="ExecuteOpenKingdom" IsEnabled="@IsKingdomEnabled" IsSelected="@IsKingdomActive" PressedXOffset="!MapBar.ButtonIcon.XOffset" PressedYOffset="!MapBar.ButtonIcon.YOffset" NormalXOffset="-5" NormalYOffset="1" UpdateChildrenStates="true" HoveredCursorState="RightClickLink" GamepadNavigationIndex="6">
                       <Children>
                         <BrushWidget Id="KingdomIcon" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!LeftBar.Icon6.Width" SuggestedHeight="!LeftBar.Icon6.Height" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="MapBar.Left.Icon6"/>
                         <HintWidget DataSource="{KingdomHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
                       </Children>
-                    </ButtonIconOffsetWidget>
+                    </IconOffsetButtonWidget>
                     <HintWidget DataSource="{KingdomHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
                   </Children>
                 </Widget>
@@ -210,49 +214,49 @@
           <Children>
 
             <!--Character Unread-->
-            <MapBarUnreadWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!MapBar.Notification.Size" SuggestedHeight="!MapBar.Notification.Size" HorizontalAlignment="Left" VerticalAlignment="Top" PositionXOffset="73" Brush="MapUnreadBrushWithAnim" UnreadTextWidget="CharacterUnreadText" DoNotPassEventsToChildren="true">
+            <MapBarUnreadBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!MapBar.Notification.Size" SuggestedHeight="!MapBar.Notification.Size" HorizontalAlignment="Left" VerticalAlignment="Top" PositionXOffset="73" Brush="MapUnreadBrushWithAnim" UnreadTextWidget="CharacterUnreadText" DoNotPassEventsToChildren="true">
               <Children>
                 <TextWidget Id="CharacterUnreadText" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="28" SuggestedHeight="28" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="SettlementValuesTextBrush" Brush.FontSize="15" Brush.TextHorizontalAlignment="Center" IsVisible="@SkillAlert" Text="@AlertText" />
                 <HintWidget DataSource="{CharacterAlertHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
               </Children>
-            </MapBarUnreadWidget>
+            </MapBarUnreadBrushWidget>
 
             <!--Inventory Unread-->
-            <MapBarUnreadWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!MapBar.Notification.Size" SuggestedHeight="!MapBar.Notification.Size" HorizontalAlignment="Left" VerticalAlignment="Top" PositionXOffset="153" Brush="MapUnreadBrushWithAnim" UnreadTextWidget="InventoryUnreadText">
+            <MapBarUnreadBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!MapBar.Notification.Size" SuggestedHeight="!MapBar.Notification.Size" HorizontalAlignment="Left" VerticalAlignment="Top" PositionXOffset="153" Brush="MapUnreadBrushWithAnim" UnreadTextWidget="InventoryUnreadText">
               <Children>
                 <TextWidget Id="InventoryUnreadText" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="28" SuggestedHeight="28" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="SettlementValuesTextBrush" Brush.FontSize="15" Brush.TextHorizontalAlignment="Center" IsVisible="@InventoryAlert" Text="@AlertText" />
               </Children>
-            </MapBarUnreadWidget>
+            </MapBarUnreadBrushWidget>
 
             <!--Party Unread-->
-            <MapBarUnreadWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!MapBar.Notification.Size" SuggestedHeight="!MapBar.Notification.Size" HorizontalAlignment="Left" VerticalAlignment="Top" PositionXOffset="230" Brush="MapUnreadBrushWithAnim" UnreadTextWidget="PartyUnreadText" DoNotPassEventsToChildren="true">
+            <MapBarUnreadBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!MapBar.Notification.Size" SuggestedHeight="!MapBar.Notification.Size" HorizontalAlignment="Left" VerticalAlignment="Top" PositionXOffset="230" Brush="MapUnreadBrushWithAnim" UnreadTextWidget="PartyUnreadText" DoNotPassEventsToChildren="true">
               <Children>
                 <TextWidget Id="PartyUnreadText" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="28" SuggestedHeight="28" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="SettlementValuesTextBrush" Brush.FontSize="15" Brush.TextHorizontalAlignment="Center" IsVisible="@PartyAlert" Text="@AlertText"/>
                 <HintWidget DataSource="{PartyAlertHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
               </Children>
-            </MapBarUnreadWidget>
+            </MapBarUnreadBrushWidget>
 
             <!--Quests Unread-->
-            <MapBarUnreadWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!MapBar.Notification.Size" SuggestedHeight="!MapBar.Notification.Size" HorizontalAlignment="Left" VerticalAlignment="Top" PositionXOffset="310" Brush="MapUnreadBrushWithAnim" UnreadTextWidget="QuestsUnreadText" DoNotPassEventsToChildren="true">
+            <MapBarUnreadBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!MapBar.Notification.Size" SuggestedHeight="!MapBar.Notification.Size" HorizontalAlignment="Left" VerticalAlignment="Top" PositionXOffset="310" Brush="MapUnreadBrushWithAnim" UnreadTextWidget="QuestsUnreadText" DoNotPassEventsToChildren="true">
               <Children>
                 <TextWidget Id="QuestsUnreadText" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="28" SuggestedHeight="28" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="SettlementValuesTextBrush" Brush.FontSize="15" Brush.TextHorizontalAlignment="Center" IsVisible="@QuestsAlert" Text="@AlertText" />
                 <HintWidget DataSource="{QuestAlertHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
               </Children>
-            </MapBarUnreadWidget>
+            </MapBarUnreadBrushWidget>
 
             <!--Clan Unread-->
-            <MapBarUnreadWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!MapBar.Notification.Size" SuggestedHeight="!MapBar.Notification.Size" HorizontalAlignment="Left" VerticalAlignment="Top" PositionXOffset="385" Brush="MapUnreadBrushWithAnim" UnreadTextWidget="ClanUnreadText">
+            <MapBarUnreadBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!MapBar.Notification.Size" SuggestedHeight="!MapBar.Notification.Size" HorizontalAlignment="Left" VerticalAlignment="Top" PositionXOffset="385" Brush="MapUnreadBrushWithAnim" UnreadTextWidget="ClanUnreadText">
               <Children>
                 <TextWidget Id="ClanUnreadText" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="28" SuggestedHeight="28" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="SettlementValuesTextBrush" Brush.FontSize="15" Brush.TextHorizontalAlignment="Center" IsVisible="@ClanAlert" Text="@AlertText"/>
               </Children>
-            </MapBarUnreadWidget>
+            </MapBarUnreadBrushWidget>
 
             <!--Kingdom Unread-->
-            <MapBarUnreadWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!MapBar.Notification.Size" SuggestedHeight="!MapBar.Notification.Size" HorizontalAlignment="Left" VerticalAlignment="Top" PositionXOffset="467" Brush="MapUnreadBrushWithAnim" UnreadTextWidget="KingdomUnreadText">
+            <MapBarUnreadBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!MapBar.Notification.Size" SuggestedHeight="!MapBar.Notification.Size" HorizontalAlignment="Left" VerticalAlignment="Top" PositionXOffset="467" Brush="MapUnreadBrushWithAnim" UnreadTextWidget="KingdomUnreadText">
               <Children>
                 <TextWidget Id="KingdomUnreadText" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="28" SuggestedHeight="28" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="SettlementValuesTextBrush" Brush.FontSize="15" Brush.TextHorizontalAlignment="Center" IsVisible="@KingdomAlert" Text="@AlertText"/>
               </Children>
-            </MapBarUnreadWidget>
+            </MapBarUnreadBrushWidget>
 
             <MapInfoSilhouetteWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="MapBar.Silhouette.Left" CurrentScreen="@CurrentScreen" IsEnabled="false" />
 
@@ -260,32 +264,33 @@
         </Widget>
 
         <!--_____Center Panel_______-->
-        <MapCurrentTimeVisualWidget DataSource="{MapTimeControl}" Id="CenterPanel" VisualDefinition="CenterPanel" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="430" SuggestedHeight="59" HorizontalAlignment="Center" VerticalAlignment="Bottom" Sprite="MapBar\mapbar_center_frame" CurrentTimeState="@TimeFlowState" FastForwardButton="FastForwardButton" IsEnabled="@IsCenterPanelEnabled" PauseButton="PauseButton" PlayButton="PlayButton">
-          <Children>
+				<MapCurrentTimeVisualWidget DataSource="{MapTimeControl}" Id="CenterPanel" VisualDefinition="CenterPanel" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="430" SuggestedHeight="59" HorizontalAlignment="Center" VerticalAlignment="Bottom" Sprite="MapBar\mapbar_center_frame" CurrentTimeState="@TimeFlowState" FastForwardButton="FastForwardButton" IsEnabled="@IsCenterPanelEnabled" PauseButton="PauseButton" PlayButton="PlayButton">
+					<Children>
+						<NavigationScopeTargeter ScopeID="MapBarCenterPanelScope" ScopeParent="..\." ScopeMovements="Horizontal" IsScopeEnabled="@IsCenterPanelEnabled" />
 
             <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="140" SuggestedHeight="40" PositionXOffset="42" VerticalAlignment="Bottom" PositionYOffset="-4" Brush="MapTextBrushGal" Brush.FontSize="20" Text="@Date" />
 
-            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="78" SuggestedHeight="79" HorizontalAlignment="Center" PositionYOffset="-8" VerticalAlignment="Center" Command.Click="ExecuteResetCamera" UpdateChildrenStates="true">
+            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="78" SuggestedHeight="79" HorizontalAlignment="Center" PositionYOffset="-8" VerticalAlignment="Center" Command.Click="ExecuteResetCamera" UpdateChildrenStates="true" GamepadNavigationIndex="0">
               <Children>
-                <MapTimeImage WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="78" SuggestedHeight="50" HorizontalAlignment="Left" VerticalAlignment="Center" Brush="MapTimeImage" CircularClipEnabled="true" CircularClipRadius="29" DayTime="@Time" />
+                <MapTimeImageBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="78" SuggestedHeight="50" HorizontalAlignment="Left" VerticalAlignment="Center" Brush="MapTimeImage" CircularClipEnabled="true" CircularClipRadius="29" DayTime="@Time" />
                 <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="75" SuggestedHeight="75" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="MapBar.Center.Button" />
                 <HintWidget DataSource="{TimeOfDayHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
               </Children>
             </ButtonWidget>
 
-            <ButtonWidget Id="FastForwardButton" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="24" HorizontalAlignment="Right" VerticalAlignment="Bottom" PositionXOffset="-58" PositionYOffset="-13" Brush="MapBarFastForwardButton" Command.Click="ExecuteTimeControlChange" CommandParameter.Click="2">
+            <ButtonWidget Id="FastForwardButton" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="24" HorizontalAlignment="Right" VerticalAlignment="Bottom" PositionXOffset="-58" PositionYOffset="-13" Brush="MapBarFastForwardButton" Command.Click="ExecuteTimeControlChange" CommandParameter.Click="2" GamepadNavigationIndex="3">
               <Children>
                 <HintWidget DataSource="{FastForwardHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
               </Children>
             </ButtonWidget>
 
-            <ButtonWidget Id="PlayButton" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="24" HorizontalAlignment="Right" VerticalAlignment="Bottom" PositionXOffset="-97" PositionYOffset="-13" Brush="MapBarPlayButton" Command.Click="ExecuteTimeControlChange" CommandParameter.Click="1">
+            <ButtonWidget Id="PlayButton" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="24" HorizontalAlignment="Right" VerticalAlignment="Bottom" PositionXOffset="-97" PositionYOffset="-13" Brush="MapBarPlayButton" Command.Click="ExecuteTimeControlChange" CommandParameter.Click="1" GamepadNavigationIndex="2">
               <Children>
                 <HintWidget DataSource="{PlayHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
               </Children>
             </ButtonWidget>
 
-            <ButtonWidget Id="PauseButton" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="18" SuggestedHeight="23" HorizontalAlignment="Right" VerticalAlignment="Bottom" PositionXOffset="-137" PositionYOffset="-13" Brush="MapBarPauseButton" Command.Click="ExecuteTimeControlChange" CommandParameter.Click="0">
+            <ButtonWidget Id="PauseButton" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="18" SuggestedHeight="23" HorizontalAlignment="Right" VerticalAlignment="Bottom" PositionXOffset="-137" PositionYOffset="-13" Brush="MapBarPauseButton" Command.Click="ExecuteTimeControlChange" CommandParameter.Click="0" GamepadNavigationIndex="1">
               <Children>
                 <HintWidget DataSource="{PauseHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
               </Children>
@@ -297,10 +302,11 @@
         </MapCurrentTimeVisualWidget>
         <!--___________________________-->
 
-        <MapBarGatherArmyWidget InfoBarWidget="..\InfoBarWidget" VisualDefinition="GatherArmyButton" Id="MapGatherArmyButton" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!MapBar.GatherArmy.Background.Width" SuggestedHeight="!MapBar.GatherArmy.Background.Height" Brush="MapBar.GatherArmy.Background" HorizontalAlignment="Right" VerticalAlignment="Bottom" IsGatherArmyEnabled="@CanGatherArmy" IsGatherArmyVisible="@IsGatherArmyVisible" GamepadNavigationIndex="7" >
+		    <NavigationScopeTargeter ScopeID="MapBarArmyButtonScope" ScopeParent="..\MapGatherArmyButton" ScopeMovements="Horizontal" LeftNavigationScope="None" DownNavigationScope="MapBarExtendButtonScope" IsScopeEnabled="@IsGatherArmyVisible"/>
+        <MapBarGatherArmyBrushWidget Id="MapGatherArmyButton" InfoBarWidget="..\InfoBarWidget" VisualDefinition="GatherArmyButton" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!MapBar.GatherArmy.Background.Width" SuggestedHeight="!MapBar.GatherArmy.Background.Height" Brush="MapBar.GatherArmy.Background" HorizontalAlignment="Right" VerticalAlignment="Bottom" IsGatherArmyEnabled="@CanGatherArmy" IsGatherArmyVisible="@IsGatherArmyVisible">
           <Children>
 
-            <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!MapBar.GatherArmy.Button.Width" SuggestedHeight="!MapBar.GatherArmy.Button.Height" Brush="MapBar.GatherArmy.Button" Command.Click="ExecuteArmyManagement" PositionXOffset="2" PositionYOffset="2" DoNotPassEventsToChildren="true" HorizontalAlignment="Right" VerticalAlignment="Bottom" UpdateChildrenStates="true" IsEnabled="@CanGatherArmy">
+            <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!MapBar.GatherArmy.Button.Width" SuggestedHeight="!MapBar.GatherArmy.Button.Height" Brush="MapBar.GatherArmy.Button" Command.Click="ExecuteArmyManagement" PositionXOffset="2" PositionYOffset="2" DoNotPassEventsToChildren="true" HorizontalAlignment="Right" VerticalAlignment="Bottom" UpdateChildrenStates="true" IsEnabled="@CanGatherArmy" GamepadNavigationIndex="1" >
               <Children>
                 <BrushWidget Id="ArmyIcon" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="37" SuggestedHeight="33" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="MapBar.GatherArmy.Icon" MarginLeft="15" MarginTop="3" />
                 <HintWidget DataSource="{GatherArmyHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
@@ -309,16 +315,17 @@
 
             <HintWidget DataSource="{GatherArmyHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
           </Children>
-        </MapBarGatherArmyWidget>
+        </MapBarGatherArmyBrushWidget>
 
         <!--_____Right Panel_______-->
         <MapInfoBarWidget VisualDefinition="InfoBar" DataSource="{MapInfo}" Id="InfoBarWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="541" SuggestedHeight="99" HorizontalAlignment="Right" VerticalAlignment="Bottom" PositionYOffset="49" Sprite="MapBar\mapbar_right_frame" ExtendButtonWidget="ExtendButtonWidget" IsInfoBarExtended="@IsInfoBarExtended" IsVisible="@IsInfoBarEnabled">
           <Children>
 
+						<NavigationScopeTargeter ScopeID="MapBarRightPanelTopInfoBarScope" ScopeParent="..\TopInfoBar" ScopeMovements="Horizontal" ExtendDiscoveryAreaRight="-60" NavigateFromScopeEdges="true" />
             <ListPanel Id="TopInfoBar" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="510" SuggestedHeight="40" HorizontalAlignment="Right" VerticalAlignment="Top" MarginTop="21" >
               <Children>
 
-                <HintWidget DataSource="{DenarHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="15" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint">
+                <HintWidget DataSource="{DenarHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="15" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" GamepadNavigationIndex="0">
                   <Children>
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="false">
                       <Children>
@@ -329,7 +336,7 @@
                   </Children>
                 </HintWidget>
 
-                <HintWidget DataSource="{InfluenceHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint">
+                <HintWidget DataSource="{InfluenceHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" GamepadNavigationIndex="1">
                   <Children>
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="false">
                       <Children>
@@ -344,7 +351,7 @@
                   </Children>
                 </HintWidget>
 
-                <HintWidget DataSource="{HealthHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint">
+                <HintWidget DataSource="{HealthHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" GamepadNavigationIndex="2">
                   <Children>
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="false">
                       <Children>
@@ -356,7 +363,7 @@
                   </Children>
                 </HintWidget>
                 
-                <HintWidget DataSource="{AvailableTroopsHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="4" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint">
+                <HintWidget DataSource="{AvailableTroopsHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="4" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" GamepadNavigationIndex="3">
                   <Children>
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="false">
                       <Children>
@@ -371,7 +378,7 @@
                   </Children>
                 </HintWidget>
 
-                <HintWidget DataSource="{DailyConsumptionHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="4" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint">
+                <HintWidget DataSource="{DailyConsumptionHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="4" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" GamepadNavigationIndex="4">
                   <Children>
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="false">
                       <Children>
@@ -386,7 +393,7 @@
                   </Children>
                 </HintWidget>
 
-                <HintWidget DataSource="{MoraleHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="4" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint">
+                <HintWidget DataSource="{MoraleHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="4" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" GamepadNavigationIndex="5">
                   <Children>
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="false">
                       <Children>
@@ -400,12 +407,14 @@
               </Children>
             </ListPanel>
 
-            <ButtonWidget Id="ExtendButtonWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="41" SuggestedHeight="34" HorizontalAlignment="Right" MarginTop="22"  Brush="MapInfoBarExtendButtonBrush">
+						<NavigationScopeTargeter ScopeID="MapBarExtendButtonScope" ScopeParent="..\ExtendButtonWidget" ScopeMovements="Horizontal" FollowMobileTargets="true" LeftNavigationScope="MapBarRightPanelTopInfoBarScope" />
+            <ButtonWidget Id="ExtendButtonWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="41" SuggestedHeight="34" HorizontalAlignment="Right" MarginTop="22" Brush="MapInfoBarExtendButtonBrush" GamepadNavigationIndex="0">
               <Children>
                 <HintWidget DataSource="{ExtendHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
               </Children>
             </ButtonWidget>
 
+						<NavigationScopeTargeter ScopeID="MapBarRightPanelBottomInfoBarScope" ScopeParent="..\BottomInfoBar" ScopeMovements="Horizontal" IsScopeEnabled="@IsInfoBarExtended" />
             <ListPanel Id="BottomInfoBar" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="40" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginTop="10">
               <Children>
 
@@ -420,7 +429,7 @@
                   </Children>
                 </HintWidget>
 
-                <HintWidget Id="PartySpeedLabel" DataSource="{SpeedHint}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="40" SuggestedWidth="70" MarginLeft="15" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint">
+                <HintWidget Id="PartySpeedLabel" DataSource="{SpeedHint}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="40" SuggestedWidth="70" MarginLeft="15" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" GamepadNavigationIndex="0">
                   <Children>
                     <ListPanel WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="40" SuggestedWidth="70" IsEnabled="false">
                       <Children>
@@ -431,7 +440,7 @@
                   </Children>
                 </HintWidget>
 
-                <HintWidget DataSource="{ViewDistanceHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="15" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint">
+                <HintWidget DataSource="{ViewDistanceHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="15" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" GamepadNavigationIndex="1">
                   <Children>
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="false">
                       <Children>
@@ -442,7 +451,7 @@
                   </Children>
                 </HintWidget>
 
-                <HintWidget DataSource="{TroopWageHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="15" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint">
+                <HintWidget DataSource="{TroopWageHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="15" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" GamepadNavigationIndex="2">
                   <Children>
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="false">
                       <Children>

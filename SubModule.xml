@@ -27,8 +27,6 @@
 		<XmlNode>
 			<XmlName id="NPCCharacters" path="tor_pre_npccharacters" />
 			<IncludedGameTypes>
-				<GameType value="Campaign" />
-				<GameType value="CampaignStoryMode" />
 				<GameType value="CustomGame" />
 			</IncludedGameTypes>
 		</XmlNode>

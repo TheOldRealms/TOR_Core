@@ -27,7 +27,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\bin\Win64_Shipping_Client\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -435,6 +435,7 @@
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectManager.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectTemplate.cs" />
     <Compile Include="CampaignMechanics\SkillBooks\TORSkillBookCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\TorMapInfoVM.cs" />
     <Compile Include="Extensions\AgentExtensions.cs" />
     <Compile Include="Extensions\CharacterObjectExtensions.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
@@ -446,8 +447,12 @@
     <Compile Include="Extensions\ItemObjectExtensions.cs" />
     <Compile Include="Extensions\MissionExtensions.cs" />
     <Compile Include="Extensions\MobilePartyExtensions.cs" />
+    <Compile Include="GameManagers\ShaderGameManager.cs" />
     <Compile Include="HarmonyPatches\CustomBattlePatches.cs" />
+    <Compile Include="HarmonyPatches\InventoryPatches.cs" />
     <Compile Include="HarmonyPatches\LoadingScreenPatches.cs" />
+    <Compile Include="HarmonyPatches\MainMenuOptionsPatches.cs" />
+    <Compile Include="HarmonyPatches\MapBarPatches.cs" />
     <Compile Include="HarmonyPatches\RotatingMainMenuScenePatch.cs" />
     <Compile Include="Items\ExtendedItemObjectManager.cs" />
     <Compile Include="Items\ExtendedItemObjectProperties.cs" />

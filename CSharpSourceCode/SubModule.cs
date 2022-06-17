@@ -7,11 +7,10 @@ using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.MountAndBlade.GauntletUI.Mission;
 using TOR_Core.AbilitySystem;
-using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
+using TOR_Core.CampaignMechanics.SkillBooks;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
@@ -41,15 +40,27 @@ namespace TOR_Core
             ExtendedItemObjectManager.LoadXML();
         }
 
+        protected override void InitializeGameStarter(Game game, IGameStarter starterObject)
+        {
+            //this needs to be loaded early
+            if(starterObject is CampaignGameStarter)
+            {
+                var starter = starterObject as CampaignGameStarter;
+                starter.AddBehavior(new ExtendedInfoManager());
+                starter.AddBehavior(new TORSkillBookCampaignBehavior());
+            }
+            else if (starterObject is BasicGameStarter)
+            {
+                ExtendedInfoManager.CreateDefaultInstanceAndLoad();
+            }
+        }
+
         protected override void OnGameStart(Game game, IGameStarter gameStarterObject)
         {
-            if(gameStarterObject is CampaignGameStarter)
+            if (gameStarterObject is CampaignGameStarter)
             {
-
-            }
-            else if( gameStarterObject is BasicGameStarter)
-            {
-                //ExtendedInfoManager.CreateDefaultInstanceAndLoad();
+                var starter = gameStarterObject as CampaignGameStarter;
+                //starter.AddBehavior(new TORSkillBookCampaignBehavior());
             }
         }
 
@@ -84,7 +95,6 @@ namespace TOR_Core
 
         protected override void OnApplicationTick(float dt)
         {
-            /*
             _tick += dt;
             if (_tick > 1)
             {
@@ -99,7 +109,6 @@ namespace TOR_Core
                     }
                 }
             }
-            */
         }
     }
 }
