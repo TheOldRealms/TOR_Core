@@ -7,12 +7,20 @@ using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.MountAndBlade.CustomBattle;
+using TaleWorlds.MountAndBlade.GauntletUI.Mission;
 using TOR_Core.AbilitySystem;
+using TOR_Core.Battle.CrosshairMissionBehavior;
+using TOR_Core.BattleMechanics.Banners;
+using TOR_Core.BattleMechanics.Dismemberment;
+using TOR_Core.BattleMechanics.Firearms;
+using TOR_Core.BattleMechanics.Morale;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.SkillBooks;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
+using TOR_Core.Models;
 using TOR_Core.Utilities;
 
 namespace TOR_Core
@@ -38,18 +46,18 @@ namespace TOR_Core
             TriggeredEffectManager.LoadTemplates();
             AbilityFactory.LoadTemplates();
             ExtendedItemObjectManager.LoadXML();
+            CustomBannerManager.LoadXML();
         }
 
         protected override void InitializeGameStarter(Game game, IGameStarter starterObject)
         {
-            //this needs to be loaded early
-            if(starterObject is CampaignGameStarter)
+            if(Game.Current.GameType is Campaign && starterObject is CampaignGameStarter)
             {
                 var starter = starterObject as CampaignGameStarter;
                 starter.AddBehavior(new ExtendedInfoManager());
                 starter.AddBehavior(new TORSkillBookCampaignBehavior());
             }
-            else if (starterObject is BasicGameStarter)
+            else if (Game.Current.GameType is CustomGame && starterObject is BasicGameStarter)
             {
                 ExtendedInfoManager.CreateDefaultInstanceAndLoad();
             }
@@ -57,16 +65,19 @@ namespace TOR_Core
 
         protected override void OnGameStart(Game game, IGameStarter gameStarterObject)
         {
-            if (gameStarterObject is CampaignGameStarter)
+            if (Game.Current.GameType is Campaign && gameStarterObject is CampaignGameStarter)
             {
-                var starter = gameStarterObject as CampaignGameStarter;
-                //starter.AddBehavior(new TORSkillBookCampaignBehavior());
+                gameStarterObject.AddModel(new TORBattleMoraleModel());
+            }
+            else if (Game.Current.GameType is CustomGame && gameStarterObject is BasicGameStarter)
+            {
+                gameStarterObject.AddModel(new TORCustomBattleMoraleModel());
             }
         }
 
         public override void OnMissionBehaviorInitialize(Mission mission)
         {
-            /*
+
             mission.RemoveMissionBehavior(mission.GetMissionBehavior<MissionGauntletCrosshair>());
 
             mission.AddMissionBehavior(new StatusEffectMissionLogic());
@@ -75,7 +86,10 @@ namespace TOR_Core
             mission.AddMissionBehavior(new AbilityHUDMissionView());
             mission.AddMissionBehavior(new CustomCrosshairMissionBehavior());
             mission.AddMissionBehavior(new WeaponEffectMissionLogic());
-            */
+            mission.AddMissionBehavior(new CustomBannerMissionLogic());
+            mission.AddMissionBehavior(new DismembermentMissionLogic());
+            mission.AddMissionBehavior(new UndeadMoraleMissionLogic());
+            mission.AddMissionBehavior(new FirearmsMissionLogic());
         }
 
         private static void ConfigureLogging()

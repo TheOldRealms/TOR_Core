@@ -417,8 +417,14 @@
     <Compile Include="BattleMechanics\Artillery\ArtilleryRangedSiegeWeapon.cs" />
     <Compile Include="BattleMechanics\Artillery\ArtilleryStandingPoint.cs" />
     <Compile Include="BattleMechanics\Artillery\CannonBallPile.cs" />
+    <Compile Include="BattleMechanics\Banners\CustomBannerManager.cs" />
+    <Compile Include="BattleMechanics\Banners\CustomBannerMissionLogic.cs" />
     <Compile Include="BattleMechanics\CustomCrosshairMissionBehavior.cs" />
     <Compile Include="BattleMechanics\DamageSystem\DamageType.cs" />
+    <Compile Include="BattleMechanics\Dismemberment\DismembermentMissionLogic.cs" />
+    <Compile Include="BattleMechanics\Firearms\FirearmsMissionLogic.cs" />
+    <Compile Include="BattleMechanics\Morale\UndeadMoraleAgentComponent.cs" />
+    <Compile Include="BattleMechanics\Morale\UndeadMoraleMissionLogic.cs" />
     <Compile Include="BattleMechanics\SniperScope\SniperScope.cs" />
     <Compile Include="BattleMechanics\StatusEffect\StatusEffect.cs" />
     <Compile Include="BattleMechanics\StatusEffect\StatusEffectComponent.cs" />
@@ -449,6 +455,7 @@
     <Compile Include="Extensions\MobilePartyExtensions.cs" />
     <Compile Include="GameManagers\ShaderGameManager.cs" />
     <Compile Include="HarmonyPatches\CustomBattlePatches.cs" />
+    <Compile Include="HarmonyPatches\CustomWorldMapPatch.cs" />
     <Compile Include="HarmonyPatches\InventoryPatches.cs" />
     <Compile Include="HarmonyPatches\LoadingScreenPatches.cs" />
     <Compile Include="HarmonyPatches\MainMenuOptionsPatches.cs" />
@@ -462,6 +469,7 @@
     <Compile Include="Items\TorItemMenuVM.cs" />
     <Compile Include="Items\TorItemTraitVM.cs" />
     <Compile Include="Items\WeaponEffectMissionLogic.cs" />
+    <Compile Include="Models\TORBattleMoraleModel.cs" />
     <Compile Include="SubModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\TORCommon.cs" />
