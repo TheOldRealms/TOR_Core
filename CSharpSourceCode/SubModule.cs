@@ -55,9 +55,9 @@ namespace TOR_Core
             if(Game.Current.GameType is Campaign && starterObject is CampaignGameStarter)
             {
                 var starter = starterObject as CampaignGameStarter;
+                TORGameStarterHelper.CleanCampaignStarter(starter);
                 starter.AddBehavior(new ExtendedInfoManager());
                 starter.AddBehavior(new TORSkillBookCampaignBehavior());
-                starter.AddBehavior(new TORIssuesCampaignBehaviour());
             }
             else if (Game.Current.GameType is CustomGame && starterObject is BasicGameStarter)
             {

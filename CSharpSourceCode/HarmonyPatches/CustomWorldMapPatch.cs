@@ -2,9 +2,12 @@
 using SandBox;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection.Emit;
 using System.Xml;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Library;
 using TOR_Core.Utilities;
 
@@ -61,6 +64,18 @@ namespace TOR_Core.HarmonyPatches
             minimumPosition = new Vec2(1200, 600);
             maximumPosition = new Vec2(1750, 1500);
             maximumHeight = 350;
+        }
+        
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(MobileParty), "RecoverPositionsForNavMeshUpdate")]
+        public static bool WorldMapNavMeshDebugPatch(ref MobileParty __instance)
+        {
+            if (!__instance.Position2D.IsNonZero() || !PartyBase.IsPositionOkForTraveling(__instance.Position2D))
+            {
+                //teleport party to a valid navmesh position.
+                __instance.Position2D = Settlement.All.First().GatePosition;
+            }
+            return true;
         }
     }
 }
