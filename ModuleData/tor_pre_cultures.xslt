@@ -5,8 +5,5 @@
 			<xsl:apply-templates select="@*|node()"/>
 		</xsl:copy>
 	</xsl:template>
-	<xsl:template match="NPCCharacter[@occupation='Soldier']"/>
-	<xsl:template match="NPCCharacter[@occupation='CaravanGuard']"/>
-	<xsl:template match="NPCCharacter[@occupation='Bandit']"/>
-	<xsl:template match="NPCCharacter[@occupation='Mercenary']"/>
+	<xsl:template match="Culture"/>
 </xsl:stylesheet>

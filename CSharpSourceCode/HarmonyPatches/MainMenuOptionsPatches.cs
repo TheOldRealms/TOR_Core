@@ -17,11 +17,10 @@ namespace TOR_Core.HarmonyPatches
         public static void MainMenuSkipStoryMode(ref IEnumerable<InitialStateOption> __result)
         {
             List<InitialStateOption> newlist = new List<InitialStateOption>();
-            //newlist = __result.Where(x => x.Id != "StoryModeNewGame" && x.Id != "SandBoxNewGame").ToList();
-            newlist = __result.Where(x => x.Id != "StoryModeNewGame").ToList();
-            //var torOption = new InitialStateOption("TORNewgame", new TextObject("Enter the Old World"), 3, OnCLick, IsDisabledAndReason);
+            newlist = __result.Where(x => x.Id != "StoryModeNewGame" && x.Id != "SandBoxNewGame").ToList();
+            var torOption = new InitialStateOption("TORNewgame", new TextObject("Enter the Old World"), 3, OnCLick, IsDisabledAndReason);
             var torOption2 = new InitialStateOption("TORForceLoad", new TextObject("Build Shader Cache"), 4, OnForceClick, IsDisabledAndReason);
-            //newlist.Add(torOption);
+            newlist.Add(torOption);
             newlist.Add(torOption2);
             newlist.Sort((x, y) => x.OrderIndex.CompareTo(y.OrderIndex));
             __result = newlist;
@@ -58,12 +57,12 @@ namespace TOR_Core.HarmonyPatches
 
         private static void BuildShaderCache()
         {
-            MBGameManager.StartNewGame(new ShaderGameManager());
+            MBGameManager.StartNewGame(new TORShaderGameManager());
         }
 
         private static void OnCLick()
         {
-            //MBGameManager.StartNewGame(new TORCampaignGameManager());
+            MBGameManager.StartNewGame(new TORCampaignGameManager());
         }
 
         private static (bool, TextObject) IsDisabledAndReason()

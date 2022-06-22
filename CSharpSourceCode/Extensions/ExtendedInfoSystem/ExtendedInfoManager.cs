@@ -93,7 +93,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
         public static void CreateDefaultInstanceAndLoad()
         {
-            if (_instance == null) _ = new ExtendedInfoManager();
+            _ = new ExtendedInfoManager();
             if (_characterInfos.Count > 0) _characterInfos.Clear();
             TryLoadCharacters(out _characterInfos);
         }

@@ -440,7 +440,10 @@
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffect.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectManager.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectTemplate.cs" />
+    <Compile Include="CampaignMechanics\CharacterCreation\CharacterCreationOption.cs" />
+    <Compile Include="CampaignMechanics\CharacterCreation\TORCharacterCreationContent.cs" />
     <Compile Include="CampaignMechanics\SkillBooks\TORSkillBookCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\TORIssuesCampaignBehaviour.cs" />
     <Compile Include="CampaignMechanics\TorMapInfoVM.cs" />
     <Compile Include="Extensions\AgentExtensions.cs" />
     <Compile Include="Extensions\CharacterObjectExtensions.cs" />
@@ -453,7 +456,8 @@
     <Compile Include="Extensions\ItemObjectExtensions.cs" />
     <Compile Include="Extensions\MissionExtensions.cs" />
     <Compile Include="Extensions\MobilePartyExtensions.cs" />
-    <Compile Include="GameManagers\ShaderGameManager.cs" />
+    <Compile Include="GameManagers\TORShaderGameManager.cs" />
+    <Compile Include="GameManagers\TORCampaignGameManager.cs" />
     <Compile Include="HarmonyPatches\CustomBattlePatches.cs" />
     <Compile Include="HarmonyPatches\CustomWorldMapPatch.cs" />
     <Compile Include="HarmonyPatches\InventoryPatches.cs" />
@@ -478,10 +482,14 @@
     <Compile Include="Utilities\TORParticleSystem.cs" />
     <Compile Include="Utilities\TORPaths.cs" />
     <Compile Include="Utilities\TORSpellBlowHelper.cs" />
+    <Compile Include="Utilities\TORWorldMapScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>XCOPY "$(TargetDir)*" "C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\TOR_Core\bin\Win64_Shipping_wEditor\" /S /Y /I</PostBuildEvent>
+  </PropertyGroup>
 </Project>

@@ -9,7 +9,7 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.GameManagers
 {
-    public class ShaderGameManager : CustomGameManager
+    public class TORShaderGameManager : CustomGameManager
     {
         public override void OnLoadFinished()
         {

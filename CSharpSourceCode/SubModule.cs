@@ -17,6 +17,7 @@ using TOR_Core.BattleMechanics.Firearms;
 using TOR_Core.BattleMechanics.Morale;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
+using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.SkillBooks;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
@@ -56,6 +57,7 @@ namespace TOR_Core
                 var starter = starterObject as CampaignGameStarter;
                 starter.AddBehavior(new ExtendedInfoManager());
                 starter.AddBehavior(new TORSkillBookCampaignBehavior());
+                starter.AddBehavior(new TORIssuesCampaignBehaviour());
             }
             else if (Game.Current.GameType is CustomGame && starterObject is BasicGameStarter)
             {
