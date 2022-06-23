@@ -462,6 +462,7 @@
     <Compile Include="HarmonyPatches\CustomBattlePatches.cs" />
     <Compile Include="HarmonyPatches\CustomWorldMapPatch.cs" />
     <Compile Include="HarmonyPatches\FactionBannerPatches.cs" />
+    <Compile Include="HarmonyPatches\GameTextPatches.cs" />
     <Compile Include="HarmonyPatches\InventoryPatches.cs" />
     <Compile Include="HarmonyPatches\LoadingScreenPatches.cs" />
     <Compile Include="HarmonyPatches\MainMenuOptionsPatches.cs" />
@@ -490,7 +491,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="CampaignMechanics\QuestBattleLocationSystem\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>XCOPY "$(TargetDir)*" "C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\TOR_Core\bin\Win64_Shipping_wEditor\" /S /Y /I</PostBuildEvent>
