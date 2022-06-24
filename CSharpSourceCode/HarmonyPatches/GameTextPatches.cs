@@ -11,7 +11,7 @@ namespace TOR_Core.HarmonyPatches
     {
         [HarmonyPrefix]
         [HarmonyPatch(typeof(GameText), "AddVariationWithId")]
-        public static void LoadXmlWithOverride(List<GameText.GameTextVariation> ____variationList, string variationId, TextObject text, List<GameTextManager.ChoiceTag> choiceTags)
+        public static void LoadXmlWithOverride(List<GameText.GameTextVariation> ____variationList, string variationId)
         {
             var list = ____variationList.Where(x => x.Id == variationId).ToList();
             if(list.Count() > 0)

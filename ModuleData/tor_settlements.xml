@@ -1,16 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Settlements>
-  <!--Quest Battle Site "Settlements"-->
-  <!--
+  <!--Custom Settlements-->
   <Settlement id="chaos_portal_01" name="{=!}Chaos Portal" owner="Faction.chaos_clan_1" posX="1421.222" posY="900.709" culture="Culture.chaos_culture" prosperity="500" text="{=!}Chaos Portal">
     <Components>
-      <QuestBattleComponent id="chaos_portal_01" map_icon="chaos_portal" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <TORCustomSettlementComponent id="chaos_portal_01" settlement_type="ChaosPortal" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
-    <Locations complex_template="LocationComplexTemplate.questbattle_template">
-      <Location id="questbattle_location" scene_name="training_field_2" max_prosperity="70" />
-    </Locations>
   </Settlement>
-  -->
   <!-- Averland 2 Towns 11 villages 2 castles -->
   <Settlement id="town_AV1" name="{=Settlements.Settlement.name.town_AV1}Averheim" owner="Faction.averland_clan_1" posX="1438.185" posY="923.072" culture="Culture.empire" prosperity="4000" gate_posX="1438.694" gate_posY="921.8076" text="{=!}Averheim, the capital of the Grand Province of Averland, is one of the oldest cities in the Empire. The site upon which the modern city now lies has been occupied since before the time of Sigmar when the Averlanders were still called Brigrundians. The dockyards here are particularly bustling due to the Aver serving as the primary trade route for the Halfling goods from the Moot into the wider empire. The bluff that the city sits upon protects the inhabitants from occasional flooding and has always served as an ideal crossing point across the Aver River; making the Griffin bridge one of the only places for many miles which provides access across the river for merchants and travellers heading north into Stirland or south into Averland. The skyline of the city is dominated by the Averburg Palace, a formidable fortress originally built around the founding of the Empire; views of the surrounding lands from the palace go for several miles all around the city. The city is famous for its cattle stockyards, the final destination of thousands of Averland cattle, the Plenzerplatz and of course its lord; Marious Lietdorf, the mad count of Averland.">
     <Components>

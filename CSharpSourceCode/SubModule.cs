@@ -17,8 +17,11 @@ using TOR_Core.BattleMechanics.Firearms;
 using TOR_Core.BattleMechanics.Morale;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
-using TOR_Core.CampaignMechanics;
+using TOR_Core.CampaignMechanics.Chaos;
+using TOR_Core.CampaignMechanics.CustomEncounterDialogs;
+using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.SkillBooks;
+using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Models;
@@ -57,7 +60,12 @@ namespace TOR_Core
                 var starter = starterObject as CampaignGameStarter;
                 TORGameStarterHelper.CleanCampaignStarter(starter);
                 starter.AddBehavior(new ExtendedInfoManager());
+                starter.AddBehavior(new ChaosCampaignBehavior());
                 starter.AddBehavior(new TORSkillBookCampaignBehavior());
+                starter.AddBehavior(new TORCustomSettlementCampaignBehavior());
+                starter.AddBehavior(new RaidingPartyCampaignBehavior());
+                starter.AddBehavior(new CustomDialogCampaignBehavior());
+
             }
             else if (Game.Current.GameType is CustomGame && starterObject is BasicGameStarter)
             {
@@ -70,6 +78,7 @@ namespace TOR_Core
             if (Game.Current.GameType is Campaign && gameStarterObject is CampaignGameStarter)
             {
                 gameStarterObject.AddModel(new TORBattleMoraleModel());
+                gameStarterObject.AddModel(new TOREncounterGameMenuModel());
             }
             else if (Game.Current.GameType is CustomGame && gameStarterObject is BasicGameStarter)
             {
@@ -92,6 +101,11 @@ namespace TOR_Core
             mission.AddMissionBehavior(new DismembermentMissionLogic());
             mission.AddMissionBehavior(new UndeadMoraleMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
+        }
+
+        public override void BeginGameStart(Game game)
+        {
+            game.ObjectManager.RegisterType<TORCustomSettlementComponent>("TORCustomSettlementComponent", "TORCustomSettlementComponents", 99U, true);
         }
 
         private static void ConfigureLogging()

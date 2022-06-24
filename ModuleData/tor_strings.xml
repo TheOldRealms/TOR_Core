@@ -31,6 +31,10 @@
     <string id="str_weapon_usage.TorLance" text="{=!}Lance" />
     <string id="str_weapon_usage.TorLance_Couchable" text="{=!}Couche Lance" />
 
+	<string id="customsettlement_intro.chaos_portal_01" text="{=!}You arrive at an active chaos portal. The vile thing pulses with arcane magic, chaos forces are invading in minor numbers from their realm." />
+	<string id="customsettlement_disabled.chaos_portal_01" text="{=!}The portal lies dormant. Come back at a later time." />
+	<string id="customsettlement_battle.chaos_portal_01" text="{=!}Attempt to defeat the chaos forces present and close the portal." />
+
 	<string id="prebackstory.tor_wanderer_empire_0" text="{=!}My story? Sure, I can share it." />
 	<string id="backstory_a.tor_wanderer_empire_0" text="{=!}As a boy I discovered I was not like most children, it was not long before the colleges realised this as well." />
 	<string id="backstory_b.tor_wanderer_empire_0" text="{=!}Once my affinity for Aqshy was known, I was ripped from my peasant life and become an initiate within the Colleges in Altdorf." />
