@@ -14,14 +14,14 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(MapBarVM), MethodType.Constructor, typeof(INavigationHandler), typeof(IMapStateHandler), typeof(Func<MapBarShortcuts>), typeof(Action))]
         public static void ReplaceMapVM(MapBarVM __instance)
         {
-            __instance.MapInfo = new TorMapInfoVM();
+            __instance.MapInfo = new TORMapInfoVM();
         }
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(MapBarVM), "OnRefresh")]
         public static void RefreshExtraProperties(MapBarVM __instance)
         {
-            var info = __instance.MapInfo as TorMapInfoVM;
+            var info = __instance.MapInfo as TORMapInfoVM;
             if (info != null) info.RefreshExtraProperties();
         }
     }

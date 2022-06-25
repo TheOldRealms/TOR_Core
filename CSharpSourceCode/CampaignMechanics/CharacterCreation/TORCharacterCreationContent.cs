@@ -121,7 +121,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         },
                         delegate (TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation charInfo)
                         {
-                            OnOptionFinalize(option.Id);
+                            OnOptionFinalize(charInfo, option.Id);
                         },
                         new TextObject("{=!}" + option.OptionFlavourText));
                     }
@@ -143,6 +143,27 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private void OnOptionSelected(TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation charInfo, string optionId)
         {
             var selectedOption = _options.Find(x => x.Id == optionId);
+            charInfo.ClearFaceGenPrefab();
+            int race = 0;
+            if (selectedOption.OptionText == "Vampiric Nobility")
+            {
+                race = FaceGen.GetRaceOrDefault("vampire");
+            }
+            UpdateRace(race, charInfo);
+            UpdateEquipment(selectedOption, charInfo);
+            
+        }
+
+        private void UpdateRace(int race, TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation charInfo)
+        {
+            List<FaceGenChar> list = new List<FaceGenChar>();
+            BodyProperties bodyProperties = CharacterObject.PlayerCharacter.GetBodyProperties(CharacterObject.PlayerCharacter.Equipment, -1);
+            list.Add(new FaceGenChar(bodyProperties, race, new Equipment(), CharacterObject.PlayerCharacter.IsFemale));
+            charInfo.ChangeFaceGenChars(list);
+            CharacterObject.PlayerCharacter.Race = race;
+        }
+        private void UpdateEquipment(CharacterCreationOption selectedOption, TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation charInfo)
+        {
             List<Equipment> list = new List<Equipment>();
             Equipment equipment = null;
             try
@@ -167,7 +188,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
         }
 
-        private void OnOptionFinalize(string id)
+        private void OnOptionFinalize(TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation charInfo, string id)
         {
             var selectedOption = _options.Find(x => x.Id == id);
             if (selectedOption.OptionText == "Bright Order Initiate")
@@ -198,7 +219,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
             else if (selectedOption.OptionText == "Vampiric Nobility")
             {
-                Hero.MainHero.AddAttribute("VampireBodyOverride");
+                Hero.MainHero.AddAttribute("Vampire");
                 Hero.MainHero.AddAttribute("Necromancer");
                 Hero.MainHero.AddAttribute("AbilityUser");
                 Hero.MainHero.AddAttribute("SpellCaster");

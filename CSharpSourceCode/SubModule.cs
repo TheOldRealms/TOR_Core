@@ -2,6 +2,7 @@
 using NLog;
 using NLog.Config;
 using NLog.Targets;
+using SandBox.Missions.MissionLogics;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
@@ -10,6 +11,7 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.CustomBattle;
 using TaleWorlds.MountAndBlade.GauntletUI.Mission;
 using TOR_Core.AbilitySystem;
+using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics.Banners;
 using TOR_Core.BattleMechanics.Dismemberment;
@@ -17,6 +19,7 @@ using TOR_Core.BattleMechanics.Firearms;
 using TOR_Core.BattleMechanics.Morale;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
+using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.Chaos;
 using TOR_Core.CampaignMechanics.CustomEncounterDialogs;
 using TOR_Core.CampaignMechanics.RaidingParties;
@@ -65,6 +68,7 @@ namespace TOR_Core
                 starter.AddBehavior(new TORCustomSettlementCampaignBehavior());
                 starter.AddBehavior(new RaidingPartyCampaignBehavior());
                 starter.AddBehavior(new CustomDialogCampaignBehavior());
+                starter.AddBehavior(new SpellBookMapIconCampaignBehavior());
 
             }
             else if (Game.Current.GameType is CustomGame && starterObject is BasicGameStarter)
@@ -79,10 +83,12 @@ namespace TOR_Core
             {
                 gameStarterObject.AddModel(new TORBattleMoraleModel());
                 gameStarterObject.AddModel(new TOREncounterGameMenuModel());
+                gameStarterObject.AddModel(new TORAgentStatCalculateModel());
             }
             else if (Game.Current.GameType is CustomGame && gameStarterObject is BasicGameStarter)
             {
                 gameStarterObject.AddModel(new TORCustomBattleMoraleModel());
+                gameStarterObject.AddModel(new TORCustomBattleAgentStatCalculateModel());
             }
         }
 
@@ -101,6 +107,15 @@ namespace TOR_Core
             mission.AddMissionBehavior(new DismembermentMissionLogic());
             mission.AddMissionBehavior(new UndeadMoraleMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
+
+            if (Game.Current.GameType is Campaign)
+            {
+                if (mission.GetMissionBehavior<BattleAgentLogic>() != null)
+                {
+                    mission.RemoveMissionBehavior(mission.GetMissionBehavior<BattleAgentLogic>());
+                    mission.AddMissionBehavior(new TORBattleAgentLogic());
+                }
+            }
         }
 
         public override void BeginGameStart(Game game)

@@ -8,7 +8,7 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics
 {
-    public class TorMapInfoVM : MapInfoVM
+    public class TORMapInfoVM : MapInfoVM
 	{
 		private string _windsOfMagic = "0";
 		private string _artilleryText = "0";
@@ -20,7 +20,7 @@ namespace TOR_Core.CampaignMechanics
 		private int _maxArtillery = 0;
 		private int _currentArtilleryItems = 0;
 
-		public TorMapInfoVM() : base()
+		public TORMapInfoVM() : base()
 		{
 			this._windsHint = new BasicTooltipViewModel(GetWindsHintText);
 			this._artilleryHint = new BasicTooltipViewModel(GetArtilleryHintText);

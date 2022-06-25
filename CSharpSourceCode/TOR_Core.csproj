@@ -379,7 +379,7 @@
     <Compile Include="AbilitySystem\Spells\Spell.cs" />
     <Compile Include="AbilitySystem\Spells\LoreObject.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\LoreObjectVM.cs" />
-    <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookMapIconCampaignBehaviour.cs" />
+    <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookMapIconCampaignBehavior.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookMapIconVM.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookScreen.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookState.cs" />
@@ -448,11 +448,12 @@
     <Compile Include="CampaignMechanics\RaidingParties\IRaidingParty.cs" />
     <Compile Include="CampaignMechanics\RaidingParties\RaidingPartyCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\SkillBooks\TORSkillBookCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\TORBattleAgentLogic.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\ChaosPortal.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\ISettlementType.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementComponent.cs" />
-    <Compile Include="CampaignMechanics\TorMapInfoVM.cs" />
+    <Compile Include="CampaignMechanics\TORMapInfoVM.cs" />
     <Compile Include="Extensions\AgentExtensions.cs" />
     <Compile Include="Extensions\CharacterObjectExtensions.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
@@ -468,6 +469,7 @@
     <Compile Include="GameManagers\TORCampaignGameManager.cs" />
     <Compile Include="HarmonyPatches\CaravanMasterPatch.cs" />
     <Compile Include="HarmonyPatches\CharacterCreationPatch.cs" />
+    <Compile Include="HarmonyPatches\CharacterObjectPatches.cs" />
     <Compile Include="HarmonyPatches\CustomBattlePatches.cs" />
     <Compile Include="HarmonyPatches\CustomWorldMapPatch.cs" />
     <Compile Include="HarmonyPatches\FactionBannerPatches.cs" />
@@ -476,6 +478,7 @@
     <Compile Include="HarmonyPatches\LoadingScreenPatches.cs" />
     <Compile Include="HarmonyPatches\MainMenuOptionsPatches.cs" />
     <Compile Include="HarmonyPatches\MapBarPatches.cs" />
+    <Compile Include="HarmonyPatches\MissionPatches.cs" />
     <Compile Include="HarmonyPatches\ObjectManagerPatches.cs" />
     <Compile Include="HarmonyPatches\RotatingMainMenuScenePatch.cs" />
     <Compile Include="HarmonyPatches\SettlementPatches.cs" />
@@ -487,7 +490,9 @@
     <Compile Include="Items\TorItemMenuVM.cs" />
     <Compile Include="Items\TorItemTraitVM.cs" />
     <Compile Include="Items\WeaponEffectMissionLogic.cs" />
+    <Compile Include="Models\TORAgentStatCalculateModel.cs" />
     <Compile Include="Models\TORBattleMoraleModel.cs" />
+    <Compile Include="Models\TORCustomBattleAgentStatCalculateModel.cs" />
     <Compile Include="Models\TOREncounterGameMenuModel.cs" />
     <Compile Include="SubModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
