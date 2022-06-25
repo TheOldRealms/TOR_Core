@@ -15,18 +15,16 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
         public override void RegisterEvents()
         {
             CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, DailyTickSettlement);
-            CampaignEvents.AiHourlyTickEvent.AddNonSerializedListener(this, HourlyTickPartyAI);
             CampaignEvents.TickEvent.AddNonSerializedListener(this, Tick);
             CampaignEvents.HourlyTickPartyEvent.AddNonSerializedListener(this, HourlyPartyTick);
         }
 
-        //newly created parties within the same game session only recieve this event, not HourlyTickPartyAI
         private void HourlyPartyTick(MobileParty party)
         {
             if (party.IsRaidingParty())
             {
                 var component = (IRaidingParty)party.PartyComponent;
-                component.SetBehavior(party, new PartyThinkParams(party));
+                component.HourlyTick();
                 party.Ai.SetDoNotMakeNewDecisions(false);
             }
         }
@@ -47,16 +45,6 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
             {
                 var component = settlement.SettlementComponent as TORCustomSettlementComponent;
                 if (component.SettlementType.IsRaidingPartySpawner && component.RaidingPartyCount < 5) component.SettlementType.SpawnNewParty();
-            }
-        }
-        //parties only recieve this tick after loading a savegame...
-        private void HourlyTickPartyAI(MobileParty party, PartyThinkParams partyThinkParams)
-        {
-            if(party.IsRaidingParty())
-            {
-                var component = (IRaidingParty)party.PartyComponent;
-                component.SetBehavior(party, partyThinkParams);
-                party.Ai.SetDoNotMakeNewDecisions(false);
             }
         }
 

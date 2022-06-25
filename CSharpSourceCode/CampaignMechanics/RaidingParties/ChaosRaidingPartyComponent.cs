@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
@@ -72,30 +73,19 @@ namespace TOR_Core.CampaignMechanics.ChaosRaiding
             }
         }
 
-        public void SetBehavior(MobileParty party, PartyThinkParams partyThinkParams)
+        public void HourlyTick()
         {
-            if (Target == null || Target.IsRaided || Target == Portal || Target.IsUnderRaid)
+            if(Target == null || Target.IsRaided || Target.IsUnderRaid || Target == HomeSettlement)
             {
-                var find = Settlement.FindSettlementsAroundPosition(party.Position2D, 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage);
-                if (find.Count() != 0)
-                {
-                    Target = find.GetRandomElementInefficiently();
-                }
-                else
-                {
-                    Target = Portal;
-                }
+                FindNewTarget();
             }
+        }
 
-            if (Target.IsVillage && !Target.IsRaided && !Target.IsUnderRaid && Target != Portal)
-            {
-                partyThinkParams.AIBehaviorScores[new AIBehaviorTuple(Target, AiBehavior.RaidSettlement)] = 10f;
-            }
-
-            if (Target == Portal)
-            {
-                partyThinkParams.AIBehaviorScores[new AIBehaviorTuple(Portal, AiBehavior.GoToSettlement)] = 8f;
-            }
+        private void FindNewTarget()
+        {
+            Target = Settlement.FindSettlementsAroundPosition(Party.Position2D, 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
+            Party.MobileParty.Ai.SetAIState(AIState.Raiding);
+            Party.MobileParty.SetMoveRaidSettlement(Target);
         }
     }
 

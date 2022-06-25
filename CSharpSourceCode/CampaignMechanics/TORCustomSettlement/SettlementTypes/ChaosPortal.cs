@@ -50,6 +50,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes
 
         private bool BattleCondition(MenuCallbackArgs args)
         {
+            args.optionLeaveType = GameMenuOption.LeaveType.HostileAction;
             var text = GameTexts.FindText("customsettlement_battle", _settlement.StringId);
             MBTextManager.SetTextVariable("BATTLE_OPTION_TEXT", text);
             return IsActive;
