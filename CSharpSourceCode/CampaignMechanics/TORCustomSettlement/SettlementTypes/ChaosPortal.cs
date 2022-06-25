@@ -70,8 +70,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes
 
         public void SpawnNewParty()
         {
-            var find = Settlement.FindSettlementsAroundPosition(_settlement.Position2D, 100, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
-            var chaosRaidingParty = ChaosRaidingPartyComponent.CreateChaosRaidingParty("chaos_clan_1_party_" + _component.RaidingParties.Count + 1, _settlement, _component, MBRandom.RandomInt(75, 99));
+            var find = Settlement.FindSettlementsAroundPosition(_settlement.Position2D, 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
+            var chaosRaidingParty = ChaosRaidingPartyComponent.CreateChaosRaidingParty("chaos_clan_1_party_" + _component.RaidingPartyCount + 1, _settlement, _component, MBRandom.RandomInt(75, 99));
             chaosRaidingParty.Ai.SetAIState(AIState.Raiding);
             chaosRaidingParty.SetMoveRaidSettlement(find);
             ((ChaosRaidingPartyComponent)chaosRaidingParty.PartyComponent).Target = find;

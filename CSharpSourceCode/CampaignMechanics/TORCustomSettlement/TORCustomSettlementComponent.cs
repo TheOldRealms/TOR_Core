@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement
 {
@@ -16,7 +19,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         public Clan OwnerClan => _ownerClan;
         private ISettlementType _settlementType;
         public ISettlementType SettlementType => _settlementType;
-        public List<MobileParty> RaidingParties { get; private set; } = new List<MobileParty>();
+        public int RaidingPartyCount => MobileParty.All.Where(x => x.IsRaidingParty() && x.HomeSettlement == Settlement).Count();
         public void SetClan(Clan clan) => _ownerClan = clan;
         protected override void OnInventoryUpdated(ItemRosterElement item, int count) { }
 

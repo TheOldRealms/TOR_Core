@@ -45,7 +45,7 @@ namespace TOR_Core.CampaignMechanics.ChaosRaiding
                 mobileParty.Aggressiveness = 2.0f;
                 mobileParty.Party.Visuals.SetMapIconAsDirty();
                 mobileParty.ItemRoster.Add(new ItemRosterElement(DefaultItems.Meat, MBRandom.RandomInt(partySize, partySize * 2)));
-                //mobileParty.SetPartyUsedByQuest(true);
+                mobileParty.SetPartyUsedByQuest(true);
             }
             else
             {
@@ -72,21 +72,11 @@ namespace TOR_Core.CampaignMechanics.ChaosRaiding
             }
         }
 
-        protected override void OnInitialize()
-        {
-            ((TORCustomSettlementComponent)Portal.SettlementComponent).RaidingParties.Add(MobileParty);
-        }
-
-        protected override void OnFinalize()
-        {
-            ((TORCustomSettlementComponent)Portal.SettlementComponent).RaidingParties.Remove(MobileParty);
-        }
-
         public void SetBehavior(MobileParty party, PartyThinkParams partyThinkParams)
         {
             if (Target == null || Target.IsRaided || Target == Portal || Target.IsUnderRaid)
             {
-                var find = Settlement.FindSettlementsAroundPosition(party.Position2D, 100, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage);
+                var find = Settlement.FindSettlementsAroundPosition(party.Position2D, 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage);
                 if (find.Count() != 0)
                 {
                     Target = find.GetRandomElementInefficiently();
