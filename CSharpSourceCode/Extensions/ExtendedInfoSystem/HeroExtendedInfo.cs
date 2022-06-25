@@ -12,7 +12,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 {
     public class HeroExtendedInfo
     {
-        [SaveableField(0)] public List<string> AcquiredAbilitySystem = new List<string>();
+        [SaveableField(0)] public List<string> AcquiredAbilities = new List<string>();
         [SaveableField(1)] public List<string> AcquiredAttributes = new List<string>();
         [SaveableField(2)] public float CurrentWindsOfMagic = 0;
         [SaveableField(3)] public int Corruption = 0; //between 0 and 100, 0 = pure af, 100 = fallen to chaos
@@ -70,7 +70,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             {
                 var list = new List<string>();
                 if (_baseCharacter != null) list.AddRange(_baseCharacter.GetAbilities());
-                list.AddRange(AcquiredAbilitySystem);
+                list.AddRange(AcquiredAbilities);
                 return list;
             }
         }

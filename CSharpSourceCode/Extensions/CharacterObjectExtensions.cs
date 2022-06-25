@@ -100,7 +100,7 @@ namespace TOR_Core.Extensions
             {
                 return characterObject.HeroObject.IsVampire();
             }
-            return characterObject.GetAttributes().Contains("VampireBodyOverride");
+            return characterObject.Race == FaceGen.GetRaceOrDefault("vampire");
         }
 
         public static bool IsUndead(this BasicCharacterObject characterObject)

@@ -23,6 +23,7 @@ using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.Chaos;
 using TOR_Core.CampaignMechanics.CustomEncounterDialogs;
 using TOR_Core.CampaignMechanics.RaidingParties;
+using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.SkillBooks;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -69,6 +70,7 @@ namespace TOR_Core
                 starter.AddBehavior(new RaidingPartyCampaignBehavior());
                 starter.AddBehavior(new CustomDialogCampaignBehavior());
                 starter.AddBehavior(new SpellBookMapIconCampaignBehavior());
+                starter.AddBehavior(new PostBattleCampaignBehavior());
 
             }
             else if (Game.Current.GameType is CustomGame && starterObject is BasicGameStarter)

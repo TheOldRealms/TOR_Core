@@ -53,7 +53,7 @@ namespace TOR_Core.Extensions
             var info = hero.GetExtendedInfo();
             if (info != null && !info.AllAbilites.Contains(ability))
             {
-                info.AcquiredAbilitySystem.Add(ability);
+                info.AcquiredAbilities.Add(ability);
             }
         }
 
