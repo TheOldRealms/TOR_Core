@@ -9,11 +9,11 @@ namespace TOR_Core.GameManagers
     {
         public override void OnLoadFinished()
         {
-            LaunchStoryModeCharacterCreation();
-            base.IsLoaded = true;
+            LaunchCharacterCreation();
+            IsLoaded = true;
         }
 
-        private void LaunchStoryModeCharacterCreation()
+        private void LaunchCharacterCreation()
         {
             CharacterCreationState gameState = Game.Current.GameStateManager.CreateState<CharacterCreationState>(new object[]
             {

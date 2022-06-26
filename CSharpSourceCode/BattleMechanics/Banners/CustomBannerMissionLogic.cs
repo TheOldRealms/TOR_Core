@@ -93,7 +93,7 @@ namespace TOR_Core.BattleMechanics.Banners
                         var itemId = GetBannerNameForAgent(agent);
                         bool withBanner = itemId == "tor_empire_faction_banner_001" ? true : false;
                         var bannerWeapon = new MissionWeapon(MBObjectManager.Instance.GetObject<ItemObject>(itemId), null, withBanner ? banner : null);
-                        agent.EquipWeaponWithNewEntity(EquipmentIndex.Weapon3, ref bannerWeapon);
+                        agent.EquipWeaponWithNewEntity(EquipmentIndex.Weapon4, ref bannerWeapon);
                     }
                 }
             }

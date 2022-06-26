@@ -1,9 +1,6 @@
 ﻿using NLog;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -45,7 +42,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsVampire(this Agent agent)
         {
-            return agent.Character.IsVampire();
+            return agent.Character != null ? agent.Character.IsVampire() : false;
         }
 
         public static bool IsAbilityUser(this Agent agent)
@@ -401,39 +398,28 @@ namespace TOR_Core.Extensions
                     if (agent.IsFadingOut())
                         return;
 
-                    var blow = new Blow(-1);
-                    blow.DamageCalculated = true;
+                    var damagerAgent = damager != null ? damager : agent;
+
+                    var blow = new Blow(damagerAgent.Index);
+                    blow.DamageType = DamageTypes.Blunt;
+                    blow.BoneIndex = agent.Monster.HeadLookDirectionBoneIndex;
+                    blow.Position = agent.GetChestGlobalPosition();
+                    blow.BaseMagnitude = damageAmount;
+                    blow.WeaponRecord.FillAsMeleeBlow(null, null, -1, -1);
                     blow.InflictedDamage = damageAmount;
+                    var direction = agent.Position == impactPosition ? agent.LookDirection : agent.Position - impactPosition;
+                    direction.Normalize();
+                    blow.Direction = direction;
+                    blow.SwingDirection = direction;
+                    blow.DamageCalculated = true;
                     blow.AttackType = AgentAttackType.Kick;
                     blow.BlowFlag = BlowFlags.NoSound;
-                    blow.BaseMagnitude = damageAmount;
-                    blow.DamageType = DamageTypes.Invalid;
                     blow.VictimBodyPart = BoneBodyPartType.Chest;
-                    blow.StrikeType = StrikeType.Invalid;
-                    blow.WeaponRecord.FillAsMeleeBlow(null, null, -1, -1);
-                    blow.Position = impactPosition;
-                    blow.Direction = agent.Position - impactPosition;
-                    blow.Direction.Normalize();
-                    blow.SwingDirection = blow.Direction;
+                    blow.StrikeType = StrikeType.Thrust;
                     if (hasShockWave)
                     {
                         if (agent.HasMount) blow.BlowFlag |= BlowFlags.CanDismount;
                         else blow.BlowFlag |= BlowFlags.KnockDown;
-                    }
-                    if (damager != null)
-                    {
-                        var checkAgent = Mission.Current.FindAgentWithIndex(damager.Index);
-                        if (checkAgent != null && checkAgent.Equals(damager))
-                        {
-                            blow.OwnerId = damager.Index;
-                        }
-                    }
-                    else
-                    {
-                        blow.InflictedDamage = 0;
-                        blow.BaseMagnitude = 0;
-                        blow.SelfInflictedDamage = damageAmount;
-                        blow.OwnerId = agent.Index;
                     }
 
                     if (agent.Health <= damageAmount && !doBlow)
@@ -441,7 +427,39 @@ namespace TOR_Core.Extensions
                         agent.Die(blow);
                         return;
                     }
-                    agent.RegisterBlow(blow, new AttackCollisionData());
+                    sbyte mainHandItemBoneIndex = damagerAgent.Monster.MainHandItemBoneIndex;
+                    AttackCollisionData attackCollisionData = AttackCollisionData.GetAttackCollisionDataForDebugPurpose(
+                        false, 
+                        false, 
+                        false, 
+                        true, 
+                        false, 
+                        false, 
+                        false, 
+                        false, 
+                        false, 
+                        false, 
+                        false, 
+                        false, 
+                        CombatCollisionResult.StrikeAgent, 
+                        -1,
+                        1,
+                        2,
+                        blow.BoneIndex, 
+                        blow.VictimBodyPart, 
+                        mainHandItemBoneIndex, 
+                        Agent.UsageDirection.AttackUp, 
+                        -1, 
+                        CombatHitResultFlags.NormalHit, 
+                        0.5f, 1f, 0f, 0f, 0f, 0f, 0f, 0f, 
+                        Vec3.Up, 
+                        blow.Direction, 
+                        blow.Position, 
+                        Vec3.Zero, 
+                        Vec3.Zero, 
+                        agent.Velocity, 
+                        Vec3.Up);
+                    agent.RegisterBlow(blow, attackCollisionData);
                 }
             }
             catch (Exception e)

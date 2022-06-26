@@ -3,7 +3,7 @@ using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 
-namespace TOR_Core.CampaignMechanics
+namespace TOR_Core.BattleMechanics
 {
     public class TORBattleAgentLogic : BattleAgentLogic
     {

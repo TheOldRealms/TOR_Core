@@ -1,16 +1,41 @@
 ﻿using HarmonyLib;
 using Helpers;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.HarmonyPatches
 {
     [HarmonyPatch]
     public static class CharacterObjectPatches
     {
+		[HarmonyPrefix]
+		[HarmonyPatch(typeof(CharacterObject), "TroopWage", MethodType.Getter)]
+		public static bool TroopWagePrefix(ref int __result, CharacterObject __instance)
+		{
+			if (__instance.IsUndead())
+			{
+				__result = 0;
+				return false;
+			}
+			return true;
+		}
+
+		[HarmonyPostfix]
+		[HarmonyPatch(typeof(CharacterHelper), "GetTroopTree")]
+		public static void TroopTreePatch(ref IEnumerable<CharacterObject> __result, CharacterObject baseTroop)
+		{
+			if (!__result.ToList().Any())
+			{
+				__result = CharacterHelper.GetTroopTree(baseTroop);
+			}
+		}
+
 		//Copied and modified from DesertionCampaignBehaviour.PartiesCheckDesertionDueToPartySizeExceedsPaymentRatio
 		//reason is to support tier 9 troops. Game is crashing when T9 troops are trying to desert.
 		//Must be reviewed if TW changes underlying code signature
