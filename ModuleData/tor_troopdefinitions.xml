@@ -318,7 +318,7 @@
       <EquipmentSet id="tor_empire_reiksguard_innercircle_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_demigryph_knight" default_group="cavalry" level="36" name="{=str_tor_demigryph_knight}Empire Demigryph Knight" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tow_skills_leve36">
+  <NPCCharacter id="tor_demigryph_knight" default_group="cavalry" level="36" name="{=str_tor_demigryph_knight}Empire Demigryph Knight" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tow_skills_level36">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -731,7 +731,7 @@
       <EquipmentSet id="tor_vc_grave_guard_seneschal_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_cairn_wraith" default_group="infantry" level="31" name="{=str_tor_vc_cairn_wraith}Cairn Wraith" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tow_skills_level31" race="skeleton">
+  <NPCCharacter id="tor_vc_cairn_wraith" default_group="infantry" level="31" name="{=str_tor_vc_cairn_wraith}Cairn Wraith" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tow_skills_level31" race="wraith">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -743,7 +743,7 @@
       <EquipmentSet id="tor_vc_cairn_wraith_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_crypt_wraith" default_group="infantry" level="36" name="{=str_tor_vc_crypt_wraith}Crypt Wraith" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tow_skills_level36" race="skeleton">
+  <NPCCharacter id="tor_vc_crypt_wraith" default_group="infantry" level="36" name="{=str_tor_vc_crypt_wraith}Crypt Wraith" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tow_skills_level36" race="wraith">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -763,7 +763,7 @@
       <EquipmentSet id="tor_vc_drakenhof_guard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_hex_wraith" default_group="cavalry" level="31" name="{=str_tor_vc_hex_wraith}Hex Wraith" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tow_skills_level31" race="skeleton">
+  <NPCCharacter id="tor_vc_hex_wraith" default_group="cavalry" level="31" name="{=str_tor_vc_hex_wraith}Hex Wraith" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tow_skills_level31" race="wraith">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -787,7 +787,7 @@
       <EquipmentSet id="tor_vc_black_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_hell_knight" default_group="cavalry" level="36" name="{=str_tor_vc_hell_knight}Hell Knight" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tow_skills_leve36" race="skeleton">
+  <NPCCharacter id="tor_vc_hell_knight" default_group="cavalry" level="36" name="{=str_tor_vc_hell_knight}Hell Knight" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tow_skills_level36" race="skeleton">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -797,7 +797,7 @@
       <EquipmentSet id="tor_vc_hell_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_hell_wraith" default_group="cavalry" level="36" name="{=str_tor_vc_hell_wraith}Hell Wraith" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tow_skills_level36" race="skeleton">
+  <NPCCharacter id="tor_vc_hell_wraith" default_group="cavalry" level="36" name="{=str_tor_vc_hell_wraith}Hell Wraith" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tow_skills_level36" race="wraith">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -916,8 +916,8 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_empire_noble_cavalry_template" />
-      <EquipmentSet id="tor_empire_noble_cavalry_template" civilian="true" />
+      <EquipmentSet id="tor_empire_caravan_guard_template" />
+      <EquipmentSet id="tor_empire_caravan_guard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_vc_caravan_ranged" default_group="ranged" level="21" name="{=str_tor_vc_caravan_ranged}Sylvanian Crossbowman" occupation="CaravanGuard" culture="Culture.khuzait" skill_template="SkillSet.tow_skills_level21">
@@ -926,8 +926,8 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_empire_noble_cavalry_template" />
-      <EquipmentSet id="tor_empire_noble_cavalry_template" civilian="true" />
+      <EquipmentSet id="tor_empire_caravan_ranged_template" />
+      <EquipmentSet id="tor_empire_caravan_ranged_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_nurgle_warrior" default_group="infantry" level="21" name="{=str_tor_chaos_nurgle_warrior}Putrid Blightking" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tow_skills_level21">
