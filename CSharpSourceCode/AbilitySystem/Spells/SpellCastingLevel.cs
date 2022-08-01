@@ -25,7 +25,6 @@ namespace TOR_Core.AbilitySystem.Spells
         public SpellCastingTypeDefiner() : base(1_143_199) { }
         protected override void DefineEnumTypes()
         {
-            base.DefineEnumTypes();
             AddEnumDefinition(typeof(SpellCastingLevel), 1);
         }
     }

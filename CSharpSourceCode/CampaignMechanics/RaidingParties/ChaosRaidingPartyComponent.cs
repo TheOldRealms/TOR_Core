@@ -97,13 +97,11 @@ namespace TOR_Core.CampaignMechanics.ChaosRaiding
 
         protected override void DefineClassTypes()
         {
-            base.DefineClassTypes();
             AddClassDefinition(typeof(ChaosRaidingPartyComponent), 1);
         }
 
         protected override void DefineContainerDefinitions()
         {
-            base.DefineContainerDefinitions();
             ConstructContainerDefinition(typeof(List<ChaosRaidingPartyComponent>));
         }
     }
