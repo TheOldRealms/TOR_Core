@@ -74,19 +74,6 @@ namespace TOR_Core.HarmonyPatches
         }
 
         [HarmonyPrefix]
-        [HarmonyPatch(typeof(CustomGame), "LoadCustomBattleScenes")]
-        public static void Postfix5(ref CustomGame __instance, ref XmlDocument doc)
-        {
-            var path = TORPaths.TOREnvironmentModuleDataPath + "tor_custombattlescenes.xml";
-            if (File.Exists(path))
-            {
-                XmlDocument moredoc = new XmlDocument();
-                moredoc.Load(path);
-                doc = MBObjectManager.MergeTwoXmls(doc, moredoc);
-            }
-        }
-
-        [HarmonyPrefix]
         [HarmonyPatch(typeof(ArmyCompositionItemVM), "IsValidUnitItem")]
         public static bool Prefix(ref ArmyCompositionItemVM __instance, BasicCharacterObject o, ref bool __result, BasicCultureObject ____culture, ArmyCompositionItemVM.CompositionType ____type)
         {

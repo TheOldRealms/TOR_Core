@@ -106,13 +106,11 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         public HeroExtendedInfoInfoDefiner() : base(1_543_132) { }
         protected override void DefineClassTypes()
         {
-            base.DefineClassTypes();
             AddClassDefinition(typeof(HeroExtendedInfo), 1);
         }
 
         protected override void DefineContainerDefinitions()
         {
-            base.DefineContainerDefinitions();
             ConstructContainerDefinition(typeof(Dictionary<string, HeroExtendedInfo>));
         }
     }

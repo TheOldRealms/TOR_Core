@@ -285,7 +285,6 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
 
         protected override void DefineContainerDefinitions()
         {
-            base.DefineContainerDefinitions();
             ConstructContainerDefinition(typeof(Dictionary<Settlement, Dictionary<CharacterObject, int>>));
         }
     }
