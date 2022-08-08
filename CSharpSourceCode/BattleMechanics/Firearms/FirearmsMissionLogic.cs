@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
@@ -27,16 +28,146 @@ namespace TOR_Core.BattleMechanics.Firearms
             {
                 var frame = new MatrixFrame(orientation, position);
                 // run particles of smoke
-                var offset = (shooterAgent.WieldedWeapon.CurrentUsageItem.WeaponLength + 30) / 100;
-                frame.Advance(offset);
-                Mission.AddParticleSystemBurstByName("handgun_shoot_2", frame, false);
-                // play sound of shot
-                if (_soundIndex.Length > 0)
+                
+
+                bool succesfulShot;
+
+                if (shooterAgent.WieldedWeapon.Item.StringId.Contains("blunderbuss"))
                 {
-                    int selected = _random.Next(0, _soundIndex.Length - 1);
-                    Mission.MakeSound(_soundIndex[selected], position, false, true, -1, -1);
+                    //test if a shot is possible
+                    succesfulShot = TryShotgunShot(shooterAgent, weaponIndex, position, orientation, 6, 4);
                 }
+                else
+                {
+                    succesfulShot = true;
+                }
+
+                if (succesfulShot)
+                {
+                    // play sound of shot and create shot effects
+                    var offset = (shooterAgent.WieldedWeapon.CurrentUsageItem.WeaponLength + 30) / 100;
+                    frame.Advance(offset);
+                    Mission.AddParticleSystemBurstByName("handgun_shoot_2", frame, false);
+                    CreateMuzzleFireSound(position);
+                }
+                else
+                {
+                    //shot was aborted
+                    SkipReloadPhase(shooterAgent,weaponIndex);
+                }
+                
+               
+                
+            }
+            
+            
+        }
+        
+        private void CreateMuzzleFireSound(Vec3 position)
+        {
+            if (this._soundIndex.Length > 0)
+            {
+                int selected = this._random.Next(0, this._soundIndex.Length - 1);
+                Mission.MakeSound(this._soundIndex[selected], position, false, true, -1, -1);
             }
         }
+        
+        private void SkipReloadPhase(Agent agent, EquipmentIndex index)
+        {
+            // TODO this script seem not work as intended the reload phase is not automatically finalized.
+            MissionEquipment equipment = agent.Equipment;
+            equipment.SetReloadPhaseOfSlot(index, agent.WieldedWeapon.ReloadPhaseCount);
+        }
+        
+        private void RemoveLastProjectile(Agent shooterAgent)
+        {
+            var falseMissle = Mission.Missiles.FirstOrDefault(missle => missle.ShooterAgent == shooterAgent);
+            if (falseMissle != null) Mission.RemoveMissileAsClient(falseMissle.Index);
+        }
+        
+        private void RestoreAmmo(Agent agent, WeaponClass ammoType)
+        {
+            MissionEquipment equipment = agent.Equipment;
+            EquipmentIndex equipmentIndex = (EquipmentIndex)equipment.GetAmmoSlotIndexOfWeapon(ammoType);
+            short restoredAmmo = (short)(equipment.GetAmmoAmount(ammoType) + 1);
+            agent.SetWeaponAmountInSlot(equipmentIndex, restoredAmmo, false);
+        }
+        
+        private bool TryShotgunShot(Agent shooterAgent, EquipmentIndex weaponIndex, Vec3 shotPosition,
+            Mat3 shotOrientation, short scatterShots, short requiredAmmoAmount)
+        {
+            MissionWeapon weaponAtIndex = shooterAgent.Equipment[weaponIndex];
+            var weaponData = weaponAtIndex.CurrentUsageItem;
+            if (weaponData != null && weaponAtIndex.CurrentUsageItem.IsRangedWeapon)
+            {
+                RemoveLastProjectile(shooterAgent);
+                RestoreAmmo(shooterAgent, weaponData.AmmoClass);
+                if (!weaponAtIndex.AmmoWeapon.IsEmpty)
+                {
+                    var accuracy = 1f / (weaponData.Accuracy * 1.2f); //this should be definable via XML or other data format.
+                    if (CanConsumeAmmoOfAgent(requiredAmmoAmount, shooterAgent, weaponData.AmmoClass))
+                    {
+                        ScatterShot(shooterAgent, accuracy, weaponAtIndex.AmmoWeapon, shotPosition, shotOrientation, weaponData.MissileSpeed, scatterShots);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        
+        public void ScatterShot(Agent shooterAgent, float accuracy, MissionWeapon projectileType, Vec3 shotPosition,
+            Mat3 shotOrientation, float missleSpeed,short scatterShotAmount)
+        {
+            for (int i = 0; i < scatterShotAmount; i++)
+            {
+                var deviation = GetRandomOrientation(shotOrientation, accuracy);
+                Mission.AddCustomMissile(shooterAgent, projectileType, shotPosition, deviation.f, deviation,
+                    missleSpeed, missleSpeed, false, null);
+            }
+        }
+        
+        private Mat3 GetRandomOrientation(Mat3 orientation, float scattering)
+        {
+            float rand1 = MBRandom.RandomFloatRanged(-scattering, scattering);
+            orientation.f.RotateAboutX(rand1);
+            float rand2 = MBRandom.RandomFloatRanged(-scattering, scattering);
+            orientation.f.RotateAboutY(rand2);
+            float rand3 = MBRandom.RandomFloatRanged(-scattering, scattering);
+            orientation.f.RotateAboutZ(rand3);
+            return orientation;
+        }
+        
+        private bool CanConsumeAmmoOfAgent(int amount, Agent agent, WeaponClass ammoType)
+        {
+            MissionEquipment equipment = agent.Equipment;
+            var d = agent.WieldedWeapon.CurrentUsageIndex;
+            EquipmentIndex equipmentIndex = (EquipmentIndex)equipment.GetAmmoSlotIndexOfWeapon(ammoType);
+            var currentAmmo = equipment.GetAmmoAmount(ammoType);
+            if (currentAmmo >= amount)
+            {
+                short newAmount = (short)(currentAmmo - amount);
+                agent.SetWeaponAmountInSlot(equipmentIndex, newAmount, false);
+                return true;
+            }
+
+            return false;
+        }
+        
+        public override void OnMissileCollisionReaction(Mission.MissileCollisionReaction collisionReaction, Agent attackerAgent, Agent attachedAgent,
+            sbyte attachedBoneIndex)
+        {
+            base.OnMissileCollisionReaction(collisionReaction, attackerAgent, attachedAgent, attachedBoneIndex);
+
+            if (collisionReaction != Mission.MissileCollisionReaction.BecomeInvisible) return;
+            var missileObj = Mission.Missiles.FirstOrDefault(missile => missile.ShooterAgent == attackerAgent);
+                
+            if (missileObj != null&&missileObj.Weapon.Item.StringId.Contains("grenade"))
+            {
+                var frame = missileObj.Entity.GetFrame();
+                Mission.AddParticleSystemBurstByName("handgun_shoot_2", frame, false);
+            }
+        }
+        
+
     }
 }
