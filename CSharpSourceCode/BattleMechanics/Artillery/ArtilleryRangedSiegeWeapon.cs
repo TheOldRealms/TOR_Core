@@ -136,11 +136,11 @@ namespace TOR_Core.BattleMechanics.Artillery
             _verticalOffsetAngle = Vec3.AngleBetweenTwoVectors(v, Vec3.Forward);
             _lastCurrentDirection = currentDirection;
             ApplyAimChange();
+            ForcedUse = false;
         }
 
         protected override void OnTick(float dt)
         {
-            CheckNullReloaderOriginalPoint();
             base.OnTick(dt);
             HandleAnimations();
             HandleAmmoPickup();
@@ -149,14 +149,22 @@ namespace TOR_Core.BattleMechanics.Artillery
             HandleWaitingTimer();
             UpdateRecoilEffect(dt);
             UpdateWheelRotation(dt);
+            HandleAITeamUsage();
         }
 
-        private void CheckNullReloaderOriginalPoint()
+        private void HandleAITeamUsage()
         {
-            if (ReloaderAgentOriginalPoint == null && ReloaderAgent != null)
+            if (!Team?.IsPlayerTeam ?? false)
             {
-                ReloaderAgent.StopUsingGameObject(true, true);
-                ReloaderAgent = null;
+                if (UserFormations.Count > 0 && UserFormations.All(formation => formation.PrimaryClass != FormationClass.Ranged))
+                {
+                    UserFormations[0]?.StopUsingMachine(this);
+                }
+
+                if (UserFormations.Count == 0)
+                {
+                    Team.Formations.ToList().FirstOrDefault(form => form.PrimaryClass == FormationClass.Ranged)?.StartUsingMachine(this);
+                }
             }
         }
 

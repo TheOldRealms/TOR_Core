@@ -62,7 +62,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
             return target;
         }
 
-        protected virtual bool HaveLineOfSightToTarget(Target targetAgent)
+        protected virtual bool HaveLineOfSightToTarget(Target target)
         {
             return true;
         }
@@ -118,7 +118,8 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
 
         protected virtual float CalculateUtility(Target target)
         {
-            if (Agent.GetAbility(AbilityIndex).IsOnCooldown() || target.Formation == null)
+            var ability = Agent.GetAbility(AbilityIndex);
+            if (ability.IsOnCooldown() || !ability.CanCast(Agent) || target.Formation == null && target.TacticalPosition == null)
             {
                 return 0.0f;
             }

@@ -9,6 +9,7 @@ namespace TOR_Core.BattleMechanics.AI.Decision
     public class Target : Threat
     {
         public Vec3 SelectedWorldPosition = Vec3.Zero;
+        public TacticalPosition TacticalPosition;
 
         public float UtilityValue
         {
@@ -20,6 +21,8 @@ namespace TOR_Core.BattleMechanics.AI.Decision
         {
             if (SelectedWorldPosition != Vec3.Zero)
                 return SelectedWorldPosition;
+            if (TacticalPosition != null)
+                return TacticalPosition.Position.GetGroundVec3();
             return Position;
         }
 

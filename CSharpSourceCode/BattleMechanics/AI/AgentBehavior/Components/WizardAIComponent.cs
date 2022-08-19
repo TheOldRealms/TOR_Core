@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior;
 using TOR_Core.BattleMechanics.AI.Decision;
@@ -9,8 +9,9 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
 {
     public class WizardAIComponent : HumanAIComponent
     {
+        private static readonly Random Rand = new();
         private static readonly float EvalInterval = 3;
-        private float _dtSinceLastOccasional = MBRandom.RandomFloatRanged(0, EvalInterval); //Randomly distribute ticks
+        private float _dtSinceLastOccasional = (float) Rand.NextDouble() * EvalInterval; //Randomly distribute ticks
 
         public AbstractAgentCastingBehavior CurrentCastingBehavior;
 
@@ -29,7 +30,6 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
         {
             _dtSinceLastOccasional += dt;
             if (_dtSinceLastOccasional >= EvalInterval) TickOccasionally();
-
             if (Agent?.Formation?.FiringOrder.OrderType != OrderType.HoldFire)
             {
                 CurrentCastingBehavior?.TacticalBehavior?.Execute();
