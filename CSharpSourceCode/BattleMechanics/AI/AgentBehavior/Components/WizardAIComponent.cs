@@ -9,7 +9,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
 {
     public class WizardAIComponent : HumanAIComponent
     {
-        private static readonly Random Rand = new();
+        private static readonly Random Rand = new Random();
         private static readonly float EvalInterval = 3;
         private float _dtSinceLastOccasional = (float) Rand.NextDouble() * EvalInterval; //Randomly distribute ticks
 
