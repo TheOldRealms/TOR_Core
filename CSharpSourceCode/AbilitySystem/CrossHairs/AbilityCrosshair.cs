@@ -167,9 +167,9 @@ namespace TOR_Core.AbilitySystem.Crosshairs
             }
             protected set
             {
-                MatrixFrame frame = this._crosshair.GetFrame();
+                MatrixFrame frame = _crosshair.GetFrame();
                 frame.origin = value;
-                this._crosshair.SetFrame(ref frame);
+                _crosshair.SetFrame(ref frame);
             }
         }
 
@@ -180,6 +180,7 @@ namespace TOR_Core.AbilitySystem.Crosshairs
             {
                 MatrixFrame frame = _crosshair.GetFrame();
                 frame.rotation = value;
+                frame.Scale(new Vec3(_template.TargetCapturingRadius * 2, _template.TargetCapturingRadius * 2, 1, -1));
                 _crosshair.SetFrame(ref frame);
             }
         }
