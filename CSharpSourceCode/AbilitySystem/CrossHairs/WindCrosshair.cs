@@ -10,11 +10,10 @@ namespace TOR_Core.AbilitySystem.Crosshairs
         public WindCrosshair(AbilityTemplate template) : base(template)
         {
             _crosshair = GameEntity.CreateEmpty(_mission.Scene, false);
-            GameEntity decal = GameEntity.Instantiate(_mission.Scene, "ground_empire_wind_decal", false);
+            GameEntity decal = GameEntity.Instantiate(_mission.Scene, "linear_targeting_rune", false);
 
             MatrixFrame frame = decal.GetFrame();
-            frame.rotation.RotateAboutUp(180f.ToRadians());
-            frame.Scale(new Vec3(template.Radius * 5, template.Radius * 5, 1, -1));
+            frame.Scale(new Vec3(template.Radius, template.Radius, 1, -1));
             frame.Advance(-0.8f);
             frame.Strafe(0.025f);
             decal.SetFrame(ref frame);
@@ -53,6 +52,10 @@ namespace TOR_Core.AbilitySystem.Crosshairs
                 }
 
                 _frame.origin = _position;
+                var _rotation = Mat3.CreateMat3WithForward(in _normal);
+                _frame.rotation.u = _rotation.f;
+                _frame.rotation.RotateAboutSide(5f.ToRadians());
+                _frame.rotation.Orthonormalize();
                 _crosshair.SetGlobalFrame(_frame);
             }
         }
