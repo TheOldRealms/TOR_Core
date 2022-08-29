@@ -31,6 +31,9 @@
     <string id="str_weapon_usage.TorLance" text="{=!}Lance" />
     <string id="str_weapon_usage.TorLance_Couchable" text="{=!}Couche Lance" />
 
+	<string id="str_inventory_weapon.22" text="{=!}Pistol" />
+	<string id="str_inventory_weapon.23" text="{=!}Handgun" />
+
 	<string id="customsettlement_intro.chaos_portal_01" text="{=!}You arrive at an active chaos portal. The vile thing pulses with arcane magic, chaos forces are invading in minor numbers from their realm." />
 	<string id="customsettlement_disabled.chaos_portal_01" text="{=!}The portal lies dormant. Come back at a later time." />
 	<string id="customsettlement_battle.chaos_portal_01" text="{=!}Attempt to defeat the chaos forces present and close the portal." />

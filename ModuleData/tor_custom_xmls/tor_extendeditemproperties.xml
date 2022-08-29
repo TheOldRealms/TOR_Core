@@ -2217,6 +2217,24 @@
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_warrior_priest_005">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_reiksguard_knight_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_reiksguard_knight_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_reiksguard_knight_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_reiksguard_circle_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_reiksguard_circle_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_reiksguard_circle_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_weapon_shield_skeleton_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -2479,5 +2497,14 @@
       </ItemTrait>
     </ItemTraits>
     <Description>"There were countless disasters at the prototype stage and the whole project became known as the 'coffin filler' by the young apprentices attached to it in dread. Steam boilers such as they could construct couldn't be made small enough and retain the necessary power without becoming dangerously unstable, hull mounted ordinance proved just as likely to smash the machine to pieces when fired, and the whole thing had a tendency to fall apart when the smallest change in direction was attempted. It was then that one of the more unstable of the Gunnery School Engineers, a man named Hezekiah Guttmann (known less than affectionately as the 'burnt scarecrow' to his fellows), had an epiphany. If they could not construct a small, powerful boiler such as the Steam Tank had, why bother? Why not use a larger, cruder one instead and the machine could be scaled up accordingly, and conversely the cannon could be made smaller…"</Description>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_books_gunpowder_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Gunpowder Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 5000 gunpowder skill expierence points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Gunpowder" SkillExp="5000" LearningTime="12" />
+      </ItemTrait>
+    </ItemTraits>
+    <Description>Gunpowder lorem ipsum...</Description>
   </ExtendedItemObjectProperties>
 </ArrayOfExtendedItemObjectProperties>

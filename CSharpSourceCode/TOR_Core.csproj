@@ -467,6 +467,9 @@
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementComponent.cs" />
     <Compile Include="CampaignMechanics\TORMapInfoVM.cs" />
     <Compile Include="CampaignMechanics\TORPartyHealCampaignBehavior.cs" />
+    <Compile Include="CharacterDevelopment\TORAttributes.cs" />
+    <Compile Include="CharacterDevelopment\TORSkillEffects.cs" />
+    <Compile Include="CharacterDevelopment\TORSkills.cs" />
     <Compile Include="Extensions\AgentExtensions.cs" />
     <Compile Include="Extensions\CharacterObjectExtensions.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
@@ -494,6 +497,7 @@
     <Compile Include="HarmonyPatches\FactionBannerPatches.cs" />
     <Compile Include="HarmonyPatches\GameTextPatches.cs" />
     <Compile Include="HarmonyPatches\InventoryPatches.cs" />
+    <Compile Include="HarmonyPatches\ItemPatches.cs" />
     <Compile Include="HarmonyPatches\LoadingScreenPatches.cs" />
     <Compile Include="HarmonyPatches\MainMenuOptionsPatches.cs" />
     <Compile Include="HarmonyPatches\MapBarPatches.cs" />

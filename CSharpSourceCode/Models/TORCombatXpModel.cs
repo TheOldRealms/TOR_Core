@@ -8,17 +8,8 @@ namespace TOR_Core.Models
         public override SkillObject GetSkillForWeapon(WeaponComponentData weapon, bool isSiegeWeaponHit)
         {
             SkillObject result = DefaultSkills.Athletics;
-            if (weapon != null)
-            {
-                if (weapon.WeaponClass == WeaponClass.Cartridge)
-                {
-                    result = DefaultSkills.Crossbow;
-                }
-                else
-                {
-                    result = base.GetSkillForWeapon(weapon, isSiegeWeaponHit);
-                }
-            }
+            var baseResult = base.GetSkillForWeapon(weapon, isSiegeWeaponHit);
+            if (baseResult != null) result = baseResult;
             return result;
         }
     }

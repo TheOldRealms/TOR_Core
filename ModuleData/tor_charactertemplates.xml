@@ -183,7 +183,7 @@
       <EquipmentSet id="tor_necromancer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_vampire_1" default_group="cavalry" name="{=str_ tor_wanderer_vampire_1}{HERO.FIRSTNAME} Vampire" occupation="Wanderer" culture="Culture.khuzait" voice="ironic" age="19" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_vampire_1" default_group="cavalry" name="{=str_ tor_wanderer_vampire_1}{HERO.FIRSTNAME} Vampire" occupation="Wanderer" culture="Culture.khuzait" voice="ironic" age="19" race="vampire" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.vampire" />
       <hair_tags>
@@ -206,7 +206,7 @@
       <EquipmentSet id="tor_generic_vampire_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_vampire_2" default_group="infantry" name="{=str_ tor_wanderer_vampire_2}{HERO.FIRSTNAME} Wight King" occupation="Wanderer" culture="Culture.khuzait" voice="curt" age="30" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_vampire_2" default_group="infantry" name="{=str_ tor_wanderer_vampire_2}{HERO.FIRSTNAME} Wight King" occupation="Wanderer" culture="Culture.khuzait" voice="curt" age="30" race="skeleton" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -350,7 +350,7 @@
       <EquipmentSet id="dog_braganza_hero_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog2_lord_0" default_group="infantry" name="{=str_ tor_empire_dog2_lord_0}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog2_lord_0" default_group="infantry" name="{=str_ tor_empire_dog2_lord_0}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" race="skeleton" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -366,7 +366,7 @@
       <EquipmentSet id="dog_cursed_hero_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog2_lord_1" default_group="infantry" name="{=str_ tor_empire_dog2_lord_1}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog2_lord_1" default_group="infantry" name="{=str_ tor_empire_dog2_lord_1}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" race="skeleton" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -382,7 +382,7 @@
       <EquipmentSet id="dog_cursed_hero_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog2_lord_2" default_group="infantry" name="{=str_ tor_empire_dog2_lord_2}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog2_lord_2" default_group="infantry" name="{=str_ tor_empire_dog2_lord_2}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" race="skeleton" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -398,7 +398,7 @@
       <EquipmentSet id="dog_cursed_hero_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog2_lord_3" default_group="infantry" name="{=str_ tor_empire_dog2_lord_3}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog2_lord_3" default_group="infantry" name="{=str_ tor_empire_dog2_lord_3}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" race="skeleton" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
