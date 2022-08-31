@@ -1880,7 +1880,7 @@
       <Hideout id="hideout_mountain_12" map_icon="bandit_hideout_d" scene_name="forest_hideout_003" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="hideout_mountain_13" name="{=Settlements.Settlement.name.hideout_mountain_13}Deserter Hideout" type="Hideout" posX="1359.985" posY="918.129" culture="Culture.mountain_bandits">
+  <Settlement id="hideout_mountain_13" name="{=Settlements.Settlement.name.hideout_mountain_13}Deserter Hideout" type="Hideout" posX="1359.964" posY="918.129" culture="Culture.mountain_bandits">
     <Components>
       <Hideout id="hideout_mountain_13" map_icon="bandit_hideout_d" scene_name="forest_hideout_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>

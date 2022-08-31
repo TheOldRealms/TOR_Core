@@ -1,7 +1,11 @@
 ﻿using HarmonyLib;
+using System;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
@@ -52,8 +56,18 @@ namespace TOR_Core.HarmonyPatches
                 damagePercentages[damageType] -= resistancePercentages[damageType];
                 damageCategories[damageType] *= 1 + damagePercentages[damageType];
                 b.InflictedDamage = (int)damageCategories[damageType];
+                if(Game.Current.GameType is Campaign)
+                {
+                    var abilityTemplate = AbilityFactory.GetTemplate(spellInfo.SpellID);
+                    if (attacker.IsHero)
+                    {
+                        var hero = attacker.GetHero();
+                        RewardHeroForAbilityDamage(hero, b.InflictedDamage, abilityTemplate);
+                    }
+                }
+                
                 if (attacker == Agent.Main || victim == Agent.Main)
-                    TORDamageDisplay.DisplaySpellDamageResult(spellInfo.SpellID, spellInfo.DamageType, b.InflictedDamage, damagePercentages[damageType]);
+                    TORDamageDisplay.DisplaySpellDamageResult(spellInfo.SpellID, spellInfo.DamageType, b.InflictedDamage, damagePercentages[damageType]);                
                 return true;
             }
 
@@ -87,6 +101,20 @@ namespace TOR_Core.HarmonyPatches
                     TORDamageDisplay.DisplayDamageResult(resultDamage, damageCategories);
             }
             return true;
+        }
+
+        private static void RewardHeroForAbilityDamage(Hero hero, int inflictedDamage, AbilityTemplate template)
+        {
+            var model = Campaign.Current.Models.GetSpellcraftSkillModel();
+            if (model != null)
+            {
+                if(template != null)
+                {
+                    var skill = model.GetRelevantSkillForAbility(template);
+                    var amount = model.GetSkillXpForAbilityDamage(template, inflictedDamage);
+                    hero.AddSkillXp(skill, amount);
+                }
+            }
         }
     }
 }

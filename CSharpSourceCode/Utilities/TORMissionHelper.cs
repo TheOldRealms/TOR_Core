@@ -49,13 +49,13 @@ namespace TOR_Core.Utilities
             }
         }
 
-        public static void ApplyStatusEffectToAgents(IEnumerable<Agent> agents, string effectId, Agent applierAgent, TargetType targetType = TargetType.All)
+        public static void ApplyStatusEffectToAgents(IEnumerable<Agent> agents, string effectId, Agent applierAgent, float multiplier = 1f, TargetType targetType = TargetType.All)
         {
             if (agents != null)
             {
                 foreach (var agent in agents)
                 {
-                    agent.ApplyStatusEffect(effectId, applierAgent);
+                    agent.ApplyStatusEffect(effectId, applierAgent, multiplier);
                 }
             }
         }

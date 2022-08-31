@@ -24,6 +24,10 @@
 			   value="260" />
 		<skill id="Tactics"
 			   value="280" />
+		<skill id="Faith"
+			   value="200" />
+		<skill id="Spellcraft"
+			   value="10" />
 	</SkillSet>
 	<!--Caster Lords-->
 	<SkillSet id="tor_skills_caster_lord">
@@ -53,6 +57,10 @@
 			   value="260" />
 		<skill id="Tactics"
 			   value="280" />
+		<skill id="Faith"
+			   value="200" />
+		<skill id="Spellcraft"
+			   value="200" />
 	</SkillSet>
 	<!--Vampire Lords-->
 	<SkillSet id="tor_skills_vampire_lord">
@@ -82,6 +90,10 @@
 			   value="260" />
 		<skill id="Tactics"
 			   value="280" />
+		<skill id="Faith"
+			   value="200" />
+		<skill id="Spellcraft"
+			   value="200" />
 	</SkillSet>
 	<!--Custom Battle Generic Lords-->
 	<SkillSet id="tor_custombattle_generic">
@@ -111,6 +123,10 @@
 			   value="260" />
 		<skill id="Tactics"
 			   value="280" />
+		<skill id="Faith"
+			   value="200" />
+		<skill id="Spellcraft"
+			   value="200" />
 	</SkillSet>
 	<!--Tier 0-->
 	<SkillSet id="tor_skills_level1">
