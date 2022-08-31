@@ -169,7 +169,6 @@
 			<particle_system_instanced_component>
 				<effect_ref base_effect="{A28F2228-CFF3-4AF0-9E33-C4D3A982A229}"/>
 			</particle_system_instanced_component>
-			<decal_component material="circle_decal_mat" _index_="1"/>
 		</components>
 		<children>
 			<game_entity name="empty_object" old_prefab_name="">

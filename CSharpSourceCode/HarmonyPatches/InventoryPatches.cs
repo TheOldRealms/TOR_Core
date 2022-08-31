@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using SandBox.GauntletUI;
 using System;
+using System.Collections.Generic;
 using TaleWorlds.CampaignSystem.Inventory;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Inventory;
 using TaleWorlds.Core;
@@ -36,6 +37,25 @@ namespace TOR_Core.HarmonyPatches
             {
                 __instance.ItemMenu = new TorItemMenuVM((Action<ItemVM, int>)reset, ____inventoryLogic, ____getItemUsageSetFlags, (Func<EquipmentIndex, SPItemVM>)itemindex);
             }
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(SPInventoryVM), "UpdateFilteredStatusOfItem")]
+        public static bool SearchByStringId(SPItemVM item, SPInventoryVM __instance, Dictionary<SPInventoryVM.Filters, List<int>> ____filters, SPInventoryVM.Filters ____activeFilterIndex)
+        {
+            bool isFilteredByCategory = !____filters[____activeFilterIndex].Contains(item.TypeId);
+            bool isFilteredBySearchString = false;
+            if (__instance.IsSearchAvailable && (item.InventorySide == InventoryLogic.InventorySide.OtherInventory || item.InventorySide == InventoryLogic.InventorySide.PlayerInventory))
+            {
+                string text = (item.InventorySide == InventoryLogic.InventorySide.OtherInventory) ? __instance.LeftSearchText : __instance.RightSearchText;
+                if (text.Length > 1)
+                {
+                    text = text.ToLower();
+                    isFilteredBySearchString = !item.StringId.ToLower().Contains(text) || !item.ItemDescription.ToLower().Contains(text);
+                }
+            }
+            item.IsFiltered = (isFilteredByCategory || isFilteredBySearchString);
+            return false;
         }
 
         [HarmonyPostfix]
