@@ -446,6 +446,7 @@
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffect.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectManager.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectTemplate.cs" />
+    <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomEncounterDialogs\CustomDialogCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\RaidingParties\ChaosRaidingPartyComponent.cs" />
@@ -468,7 +469,9 @@
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementComponent.cs" />
     <Compile Include="CampaignMechanics\TORMapInfoVM.cs" />
     <Compile Include="CampaignMechanics\TORPartyHealCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\TORWanderersCampaignBehavior.cs" />
     <Compile Include="CharacterDevelopment\TORAttributes.cs" />
+    <Compile Include="CharacterDevelopment\TORCharacterTraits.cs" />
     <Compile Include="CharacterDevelopment\TORSkillEffects.cs" />
     <Compile Include="CharacterDevelopment\TORSkills.cs" />
     <Compile Include="Extensions\AgentExtensions.cs" />
@@ -478,6 +481,7 @@
     <Compile Include="Extensions\ExtendedInfoSystem\ExtendedInfoManager.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\ExtendedInfoMissionLogic.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\HeroExtendedInfo.cs" />
+    <Compile Include="Extensions\GameModelsExtensions.cs" />
     <Compile Include="Extensions\HeroExtensions.cs" />
     <Compile Include="Extensions\ItemObjectExtensions.cs" />
     <Compile Include="Extensions\MissionExtensions.cs" />
@@ -518,6 +522,7 @@
     <Compile Include="Models\TORAgentStatCalculateModel.cs" />
     <Compile Include="Models\TORBanditDensityModel.cs" />
     <Compile Include="Models\TORBattleMoraleModel.cs" />
+    <Compile Include="Models\TORCharacterDevelopmentModel.cs" />
     <Compile Include="Models\TORCharacterStatsModel.cs" />
     <Compile Include="Models\TORClanFinanceModel.cs" />
     <Compile Include="Models\TORClanTierModel.cs" />
@@ -536,6 +541,7 @@
     <Compile Include="Models\TORPartyWageModel.cs" />
     <Compile Include="Models\TORPrisonerRecruitmentCalculationModel.cs" />
     <Compile Include="Models\TORSettlementMilitiaModel.cs" />
+    <Compile Include="Models\TORSpellcraftSkillModel.cs" />
     <Compile Include="SubModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\TORCommon.cs" />

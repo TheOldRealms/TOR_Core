@@ -14,6 +14,8 @@ using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
 using TOR_Core.Items;
 using TOR_Core.BattleMechanics.Crosshairs;
 using TOR_Core.Battle.CrosshairMissionBehavior;
+using TaleWorlds.CampaignSystem;
+using TOR_Core.CharacterDevelopment;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -153,16 +155,18 @@ namespace TOR_Core.AbilitySystem
             if(agent == Agent.Main)
             {
                 if (CurrentState == AbilityModeState.Casting) _currentState = AbilityModeState.Idle;
-                /*
-                if (Game.Current.GameType is Campaign)
+            }
+
+            if (agent.IsHero && Game.Current.GameType is Campaign)
+            {
+                var hero = agent.GetHero();
+                var model = Campaign.Current.Models.GetSpellcraftSkillModel();
+                if (model != null && hero != null)
                 {
-                    var quest = AdvanceSpellCastingLevelQuest.GetCurrentActiveIfExists();
-                    if (quest != null)
-                    {
-                        quest.IncrementCast();
-                    }
+                    var skill = model.GetRelevantSkillForAbility(ability.Template);
+                    var amount = model.GetSkillXpForCastingAbility(ability.Template);
+                    hero.AddSkillXp(skill, amount);
                 }
-                */
             }
         }
 
