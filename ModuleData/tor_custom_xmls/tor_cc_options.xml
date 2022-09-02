@@ -127,10 +127,10 @@
 	<CharacterCreationOption Id="option9" Culture="empire" StageNumber="2" EquipmentSetId="tor_cc_acolyte_sigmar_2">
 		<SkillsToIncrease>
 			<string>Medicine</string>
-			<string>Charm</string>
+			<string>Faith</string>
 			<string>Steward</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Social</AttributeToIncrease>
+		<AttributeToIncrease>Wisdom</AttributeToIncrease>
 		<OptionText>Acolyte of Sigmar</OptionText>
 		<OptionFlavourText>You felt a calling deep within yourself, a need to serve something greater. Donning the cloth of an acolyte, your life became one of constant prayer and learning so that you could better serve Sigmar. </OptionFlavourText>
 	</CharacterCreationOption>

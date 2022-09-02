@@ -22,6 +22,7 @@ using TOR_Core.BattleMechanics.Morale;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics;
+using TOR_Core.CampaignMechanics.Assimilation;
 using TOR_Core.CampaignMechanics.Chaos;
 using TOR_Core.CampaignMechanics.CustomEncounterDialogs;
 using TOR_Core.CampaignMechanics.RaidingParties;
@@ -80,6 +81,8 @@ namespace TOR_Core
                 starter.AddBehavior(new RORCampaignBehavior());
                 starter.AddBehavior(new TORCaptivityCampaignBehavior());
                 starter.AddBehavior(new TORPartyHealCampaignBehavior());
+                starter.AddBehavior(new AssimilationCampaignBehavior());
+                starter.AddBehavior(new TORWanderersCampaignBehavior());
 
             }
             else if (Game.Current.GameType is CustomGame && starterObject is BasicGameStarter)
@@ -112,6 +115,8 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORPartyWageModel());
                 gameStarterObject.AddModel(new TORPrisonerRecruitmentCalculationModel());
                 gameStarterObject.AddModel(new TORSettlementMilitiaModel());
+                gameStarterObject.AddModel(new TORSpellcraftSkillModel());
+                gameStarterObject.AddModel(new TORCharacterDevelopmentModel());
             }
             else if (Game.Current.GameType is CustomGame && gameStarterObject is BasicGameStarter)
             {

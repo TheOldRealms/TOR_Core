@@ -1,5 +1,8 @@
 ﻿using HarmonyLib;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.CharacterDevelopment;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -15,6 +18,22 @@ namespace TOR_Core.HarmonyPatches
                 skipValidation = true;
             }
             return true;
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(Game), "InitializeDefaultGameObjects")]
+        public static void LoadAdditionalSkillsAndAttributes()
+        {
+            _ = new TORAttributes();
+            _ = new TORSkills();
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(Campaign), "InitializeDefaultCampaignObjects")]
+        public static void LoadAdditionalCampaignObjects()
+        {
+            _ = new TORSkillEffects();
+            _ = new TORCharacterTraits();
         }
     }
 }

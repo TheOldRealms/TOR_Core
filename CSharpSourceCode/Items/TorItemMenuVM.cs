@@ -1,11 +1,14 @@
-﻿using System;
+﻿using Helpers;
+using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem.Inventory;
+using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Inventory;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.CampaignMechanics.SkillBooks;
 using TOR_Core.Extensions;
@@ -18,6 +21,11 @@ namespace TOR_Core.Items
 		private ItemObject _lastSetItem;
 		private bool _isMagicItem = false;
 		private MBBindingList<TorItemTraitVM> _itemTraitList;
+		private TextObject speedText = new TextObject("{=74dc1908cb0b990e80fb977b5a0ef10d}Speed: ", null);
+		private TextObject damageText = new TextObject("{=c9c5dfed2ca6bcb7a73d905004c97b23}Damage: ", null);
+		private TextObject accuracyText = new TextObject("{=5dec16fa0be433ade3c4cb0074ef366d}Accuracy: ", null);
+		private TextObject missileSpeedText = GameTexts.FindText("str_missile_speed", null);
+		private TextObject ammoLimitText = new TextObject("{=6adabc1f82216992571c3e22abc164d7}Ammo Limit: ", null);
 
 		// Description Text
 		private string _itemDescription = "";
@@ -35,6 +43,7 @@ namespace TOR_Core.Items
 
         public void SetItemExtra(SPItemVM item, ItemVM comparedItem = null, BasicCharacterObject character = null, int alternativeUsageIndex = 0)
         {
+			AddTooltipForGunpowderWeapons(item, comparedItem);
 			ItemTraitList.Clear();
 			IsMagicItem = false;
 			_lastSetItem = item.ItemRosterElement.EquipmentElement.Item;
@@ -90,6 +99,24 @@ namespace TOR_Core.Items
             }
         }
 
+        private void AddTooltipForGunpowderWeapons(SPItemVM item, ItemVM comparedItem)
+        {
+			var equipmentElement = item.ItemRosterElement.EquipmentElement;
+			if (!equipmentElement.Item.HasWeaponComponent) return;
+			var comparedEquipmentElement = comparedItem == null ? EquipmentElement.Invalid : comparedItem.ItemRosterElement.EquipmentElement;
+			var weaponData = equipmentElement.Item.GetWeaponWithUsageIndex(AlternativeUsageIndex);
+			var comparedWeaponData = comparedEquipmentElement.Item == null ? null : comparedEquipmentElement.Item.GetWeaponWithUsageIndex(AlternativeUsageIndex);
+			var weaponClass = weaponData.WeaponClass;
+			if (weaponClass != WeaponClass.Musket && weaponClass != WeaponClass.Pistol) return;
+
+			this.AddIntProperty(speedText, equipmentElement.GetModifiedSwingSpeedForUsage(AlternativeUsageIndex), comparedEquipmentElement.IsEmpty ? null : new int?(comparedEquipmentElement.GetModifiedSwingSpeedForUsage(AlternativeUsageIndex)));
+			this.AddThrustDamageProperty(damageText, equipmentElement, AlternativeUsageIndex, comparedEquipmentElement, AlternativeUsageIndex);
+			this.AddIntProperty(accuracyText, weaponData.Accuracy, (comparedWeaponData != null) ? new int?(comparedWeaponData.Accuracy) : null);
+			this.AddIntProperty(missileSpeedText, equipmentElement.GetModifiedMissileSpeedForUsage(AlternativeUsageIndex), comparedEquipmentElement.IsEmpty ? null : new int?(comparedEquipmentElement.GetModifiedMissileSpeedForUsage(AlternativeUsageIndex)));
+			short? num = (comparedWeaponData != null) ? new short?(comparedWeaponData.MaxDataValue) : null;
+			this.AddIntProperty(ammoLimitText, weaponData.MaxDataValue, (num != null) ? new int?((int)num.GetValueOrDefault()) : null);
+		}
+
 		private void UpdateReadButton(ItemObject selectedItem)
         {
 			IsSkillBook = TORSkillBookCampaignBehavior.Instance.IsSkillBook(selectedItem) 
@@ -114,6 +141,102 @@ namespace TOR_Core.Items
 			UpdateReadButton(_lastSetItem);
 			TORCommon.Say(String.Format("Selected {0} for reading!", _lastSetItem?.Name));
 			return;
+		}
+
+		private void AddThrustDamageProperty(TextObject description, in EquipmentElement targetWeapon, int targetWeaponUsageIndex, in EquipmentElement comparedWeapon, int comparedWeaponUsageIndex)
+		{
+			EquipmentElement equipmentElement = targetWeapon;
+			int modifiedThrustDamageForUsage = equipmentElement.GetModifiedThrustDamageForUsage(targetWeaponUsageIndex);
+			equipmentElement = targetWeapon;
+			WeaponComponentData weaponWithUsageIndex = equipmentElement.Item.GetWeaponWithUsageIndex(targetWeaponUsageIndex);
+			equipmentElement = targetWeapon;
+			string value = ItemHelper.GetThrustDamageText(weaponWithUsageIndex, equipmentElement.ItemModifier).ToString();
+			if (this.IsComparing)
+			{
+				equipmentElement = comparedWeapon;
+				if (!equipmentElement.IsEmpty)
+				{
+					equipmentElement = comparedWeapon;
+					int modifiedThrustDamageForUsage2 = equipmentElement.GetModifiedThrustDamageForUsage(comparedWeaponUsageIndex);
+					equipmentElement = comparedWeapon;
+					WeaponComponentData weaponWithUsageIndex2 = equipmentElement.Item.GetWeaponWithUsageIndex(comparedWeaponUsageIndex);
+					equipmentElement = comparedWeapon;
+					string value2 = ItemHelper.GetThrustDamageText(weaponWithUsageIndex2, equipmentElement.ItemModifier).ToString();
+					int result = this.CompareValues(modifiedThrustDamageForUsage, modifiedThrustDamageForUsage2);
+					this.CreateColoredProperty(this.TargetItemProperties, description.ToString(), value, this.GetColorFromComparison(result, false), 0, null, TooltipProperty.TooltipPropertyFlags.None);
+					this.CreateColoredProperty(this.ComparedItemProperties, " ", value2, this.GetColorFromComparison(result, true), 0, null, TooltipProperty.TooltipPropertyFlags.None);
+					return;
+				}
+			}
+			this.CreateColoredProperty(this.TargetItemProperties, description.ToString(), value, this.GetColorFromComparison(0, true), 0, null, TooltipProperty.TooltipPropertyFlags.None);
+		}
+
+		private void AddIntProperty(TextObject description, int targetValue, int? comparedValue)
+		{
+			string value = targetValue.ToString();
+			if (this.IsComparing && comparedValue != null)
+			{
+				string value2 = comparedValue.Value.ToString();
+				int result = this.CompareValues(targetValue, comparedValue.Value);
+				this.CreateColoredProperty(this.TargetItemProperties, description.ToString(), value, this.GetColorFromComparison(result, false), 0, null, TooltipProperty.TooltipPropertyFlags.None);
+				this.CreateColoredProperty(this.ComparedItemProperties, " ", value2, this.GetColorFromComparison(result, true), 0, null, TooltipProperty.TooltipPropertyFlags.None);
+				return;
+			}
+			this.CreateColoredProperty(this.TargetItemProperties, description.ToString(), value, this.GetColorFromComparison(0, false), 0, null, TooltipProperty.TooltipPropertyFlags.None);
+		}
+
+		private ItemMenuTooltipPropertyVM CreateColoredProperty(MBBindingList<ItemMenuTooltipPropertyVM> targetList, string definition, string value, Color color, int textHeight = 0, HintViewModel hint = null, TooltipProperty.TooltipPropertyFlags propertyFlags = TooltipProperty.TooltipPropertyFlags.None)
+		{
+			if (color == Colors.Black)
+			{
+				this.CreateProperty(targetList, definition, value, textHeight, hint);
+				return null;
+			}
+			ItemMenuTooltipPropertyVM itemMenuTooltipPropertyVM = new ItemMenuTooltipPropertyVM(definition, value, textHeight, color, false, hint, propertyFlags);
+			targetList.Add(itemMenuTooltipPropertyVM);
+			return itemMenuTooltipPropertyVM;
+		}
+
+		private ItemMenuTooltipPropertyVM CreateProperty(MBBindingList<ItemMenuTooltipPropertyVM> targetList, string definition, string value, int textHeight = 0, HintViewModel hint = null)
+		{
+			ItemMenuTooltipPropertyVM itemMenuTooltipPropertyVM = new ItemMenuTooltipPropertyVM(definition, value, textHeight, false, hint);
+			targetList.Add(itemMenuTooltipPropertyVM);
+			return itemMenuTooltipPropertyVM;
+		}
+
+		private int CompareValues(float currentValue, float comparedValue)
+		{
+			int num = (int)(currentValue * 10000f);
+			int num2 = (int)(comparedValue * 10000f);
+			if ((num != 0 && (float)MathF.Abs(num) <= MathF.Abs(currentValue)) || (num2 != 0 && (float)MathF.Abs(num2) <= MathF.Abs(currentValue)))
+			{
+				return 0;
+			}
+			return this.CompareValues(num, num2);
+		}
+
+		private Color GetColorFromComparison(int result, bool isCompared)
+		{
+			if (result != -1)
+			{
+				if (result != 1)
+				{
+					return Colors.Black;
+				}
+				if (!isCompared)
+				{
+					return UIColors.PositiveIndicator;
+				}
+				return UIColors.NegativeIndicator;
+			}
+			else
+			{
+				if (!isCompared)
+				{
+					return UIColors.NegativeIndicator;
+				}
+				return UIColors.PositiveIndicator;
+			}
 		}
 
 		[DataSourceProperty]

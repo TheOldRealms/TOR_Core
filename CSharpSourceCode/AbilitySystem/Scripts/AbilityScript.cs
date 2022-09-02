@@ -210,13 +210,13 @@ namespace TOR_Core.AbilitySystem.Scripts
             {
                 if(_ability.Template.AbilityTargetType == AbilityTargetType.Self)
                 {
-                    effect.Trigger(position, normal, _casterAgent, new List<Agent>(1) { _casterAgent });
+                    effect.Trigger(position, normal, _casterAgent, _ability.Template, new List<Agent>(1) { _casterAgent });
                 }
                 else if(IsSingleTarget() && _targetAgent != null)
                 {
-                    effect.Trigger(position, normal, _casterAgent, new List<Agent>(1) { _targetAgent });
+                    effect.Trigger(position, normal, _casterAgent, _ability.Template, new List<Agent>(1) { _targetAgent });
                 }
-                else effect.Trigger(position, normal, _casterAgent);
+                else effect.Trigger(position, normal, _casterAgent, _ability.Template);
             }
         }
 

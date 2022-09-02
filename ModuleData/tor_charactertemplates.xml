@@ -17,6 +17,7 @@
       <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="1" />
       <Trait id="Valor" value="1" />
+      <Trait id="SpellCasterSkills" value="7" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_bright_wizard_template" />
@@ -86,6 +87,7 @@
       <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="1" />
       <Trait id="Valor" value="1" />
+      <Trait id="SpellCasterSkills" value="7" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_light_wizard_template" />
@@ -109,6 +111,7 @@
       <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="1" />
       <Trait id="Valor" value="1" />
+      <Trait id="SpellCasterSkills" value="7" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_celestial_wizard_template" />
@@ -177,13 +180,14 @@
       <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="-1" />
       <Trait id="Valor" value="-1" />
+      <Trait id="SpellCasterSkills" value="7" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_necromancer_template" />
       <EquipmentSet id="tor_necromancer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_vampire_1" default_group="cavalry" name="{=str_ tor_wanderer_vampire_1}{HERO.FIRSTNAME} Vampire" occupation="Wanderer" culture="Culture.khuzait" voice="ironic" age="19" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_vampire_1" default_group="cavalry" name="{=str_ tor_wanderer_vampire_1}{HERO.FIRSTNAME} Vampire" occupation="Wanderer" culture="Culture.khuzait" voice="ironic" age="19" race="vampire" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.vampire" />
       <hair_tags>
@@ -200,13 +204,14 @@
       <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="-1" />
       <Trait id="Valor" value="-1" />
+      <Trait id="SpellCasterSkills" value="5" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_generic_vampire_template" />
       <EquipmentSet id="tor_generic_vampire_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_vampire_2" default_group="infantry" name="{=str_ tor_wanderer_vampire_2}{HERO.FIRSTNAME} Wight King" occupation="Wanderer" culture="Culture.khuzait" voice="curt" age="30" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_vampire_2" default_group="infantry" name="{=str_ tor_wanderer_vampire_2}{HERO.FIRSTNAME} Wight King" occupation="Wanderer" culture="Culture.khuzait" voice="curt" age="30" race="skeleton" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -350,7 +355,7 @@
       <EquipmentSet id="dog_braganza_hero_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog2_lord_0" default_group="infantry" name="{=str_ tor_empire_dog2_lord_0}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog2_lord_0" default_group="infantry" name="{=str_ tor_empire_dog2_lord_0}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" race="skeleton" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -366,7 +371,7 @@
       <EquipmentSet id="dog_cursed_hero_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog2_lord_1" default_group="infantry" name="{=str_ tor_empire_dog2_lord_1}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog2_lord_1" default_group="infantry" name="{=str_ tor_empire_dog2_lord_1}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" race="skeleton" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -382,7 +387,7 @@
       <EquipmentSet id="dog_cursed_hero_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog2_lord_2" default_group="infantry" name="{=str_ tor_empire_dog2_lord_2}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog2_lord_2" default_group="infantry" name="{=str_ tor_empire_dog2_lord_2}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" race="skeleton" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -398,7 +403,7 @@
       <EquipmentSet id="dog_cursed_hero_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog2_lord_3" default_group="infantry" name="{=str_ tor_empire_dog2_lord_3}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog2_lord_3" default_group="infantry" name="{=str_ tor_empire_dog2_lord_3}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" race="skeleton" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -745,6 +750,7 @@
       <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="-1" />
       <Trait id="Valor" value="-1" />
+      <Trait id="SpellCasterSkills" value="3" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_bw_grand_magister_template" />
@@ -761,7 +767,8 @@
       <Trait id="Surgeon" value="3" />
       <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-2" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="SpellCasterSkills" value="3" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_bw_grand_magister_template" />
@@ -778,7 +785,8 @@
       <Trait id="Surgeon" value="3" />
       <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-3" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="SpellCasterSkills" value="3" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_bw_grand_magister_template" />
@@ -795,7 +803,8 @@
       <Trait id="Surgeon" value="3" />
       <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-4" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="SpellCasterSkills" value="3" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_bw_grand_magister_template" />
@@ -812,7 +821,8 @@
       <Trait id="Surgeon" value="3" />
       <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-5" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="SpellCasterSkills" value="3" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_coi_grand_master_template" />
@@ -829,7 +839,8 @@
       <Trait id="Surgeon" value="3" />
       <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-6" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="SpellCasterSkills" value="3" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_coi_grand_master_template" />
@@ -846,7 +857,8 @@
       <Trait id="Surgeon" value="3" />
       <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-7" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="SpellCasterSkills" value="3" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_coi_grand_master_template" />
@@ -863,7 +875,8 @@
       <Trait id="Surgeon" value="3" />
       <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-8" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="SpellCasterSkills" value="3" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_coi_grand_master_template" />
@@ -880,7 +893,8 @@
       <Trait id="Surgeon" value="3" />
       <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-9" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="SpellCasterSkills" value="3" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_fsf_archbacillus_template" />
@@ -897,7 +911,8 @@
       <Trait id="Surgeon" value="3" />
       <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-10" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="SpellCasterSkills" value="3" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_fsf_archbacillus_template" />
@@ -914,7 +929,8 @@
       <Trait id="Surgeon" value="3" />
       <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-11" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="SpellCasterSkills" value="3" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_fsf_archbacillus_template" />
@@ -931,7 +947,8 @@
       <Trait id="Surgeon" value="3" />
       <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-12" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="SpellCasterSkills" value="3" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_fsf_archbacillus_template" />

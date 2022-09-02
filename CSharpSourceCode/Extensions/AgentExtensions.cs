@@ -305,7 +305,8 @@ namespace TOR_Core.Extensions
             Hero hero = null;
             if (Game.Current.GameType is Campaign)
             {
-                hero = Hero.FindFirst(x => x.StringId == agent.Character.StringId);
+                var character = agent.Character as CharacterObject;
+                if (character != null && character.IsHero) hero = character.HeroObject;
             }
             return hero;
         }
@@ -479,10 +480,10 @@ namespace TOR_Core.Extensions
             agent.Health = Math.Min(agent.Health + healingAmount, agent.HealthLimit);
         }
 
-        public static void ApplyStatusEffect(this Agent agent, string effectId, Agent applierAgent)
+        public static void ApplyStatusEffect(this Agent agent, string effectId, Agent applierAgent, float multiplier = 1f)
         {
             var comp = agent.GetComponent<StatusEffectComponent>();
-            if (comp != null) comp.RunStatusEffect(effectId, applierAgent);
+            if (comp != null) comp.RunStatusEffect(effectId, applierAgent, multiplier);
         }
 
         public static void FallDown(this Agent agent)

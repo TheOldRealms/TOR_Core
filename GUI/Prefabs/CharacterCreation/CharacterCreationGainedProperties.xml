@@ -1,0 +1,74 @@
+<Window>
+  <!--Left Panel Gained Properties-->
+  <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="20" DoNotUseCustomScaleAndChildren="true" StackLayout.LayoutMethod="VerticalBottomToTop">
+    <Children>
+
+      <NavigationScopeTargeter ScopeID="GainedPropertiesScope" ScopeParent="..\GainedProperties" ScopeMovements="Horizontal" AlternateScopeMovements="Vertical" AlternateMovementStepSize="3" />
+      <NavigatableListPanel Id="GainedProperties" DataSource="{GainGroups}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" StepSize="100">
+        <ItemTemplate>
+          <!--Gain Group-->
+          <ListPanel Id="GainGroupParent" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" MarginTop="5" MarginBottom="2" DoNotUseCustomScaleAndChildren="true">
+            <Children>
+              <SiblingIndexVisibilityWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="290" SuggestedHeight="2" Sprite="GradientDivider_9" Color="#CDA970FF" IndexToBeVisible="0" WatchType="BiggerThan" WidgetToWatch="..\." MarginBottom="5" />
+
+              <!--Attribute Name Text-->
+              <Widget DataSource="{Attribute}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" DoNotPassEventsToChildren="true">
+                <Children>
+                  <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsHidden="@HasIncreasedInCurrentStage" Brush.FontSize = "24" Text="@NameText" ClipContents="false" >
+                    <Children>
+                    </Children>
+                  </TextWidget>
+                  <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsVisible="@HasIncreasedInCurrentStage" DoNotPassEventsToChildren="true">
+                    <Children>
+                      <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontColor="#E3E172FF" Brush.FontSize = "24" Text="@NameText" ClipContents="false">
+                        <Children>
+                          <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="9" SuggestedHeight="13" PositionXOffset="15" VerticalAlignment="Center" HorizontalAlignment="Right" Sprite="General\CharacterCreation\increasing_icon" Color="#ACAC48FF" />
+                        </Children>
+                      </TextWidget>
+                    </Children>
+                  </ListPanel>
+                  <HintWidget DataSource="{Hint}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint"/>
+                </Children>
+              </Widget>
+
+              <!--Skills-->
+              <NavigationTargetSwitcher FromTarget="..\." ToTarget="..\Skills" />
+              <NavigatableListPanel Id="Skills" DataSource="{Skills}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginTop="5" UseSelfIndexForMinimum="true">
+                <ItemTemplate>
+                  <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="13" MarginRight="13" StackLayout.LayoutMethod="VerticalBottomToTop" DoNotUseCustomScaleAndChildren="true">
+                    <Children>
+                      <SkillIconVisualWidget DataSource="{Skill}" WidthSizePolicy = "Fixed" HeightSizePolicy = "Fixed" SuggestedWidth="61" SuggestedHeight="61" SkillId="@SkillId" UseSmallVariation="true">
+                        <Children>
+                          <HintWidget DataSource="{Hint}" HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint"/>
+                        </Children>
+                      </SkillIconVisualWidget>
+
+                      <ListPanel WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="63" SuggestedHeight="33" MarginTop="5">
+                        <Children>
+                          <ListPanel DataSource="{FocusPointGainList}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="63" SuggestedHeight="33" Sprite="General\CharacterCreation\focus_amount_frame" Color="#6E5324FF" ForcePixelPerfectPlacement="true">
+                            <ItemTemplate>
+                              <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="6" SuggestedHeight="20" MarginLeft="5" MarginRight="1" VerticalAlignment="Center" DoNotUseCustomScaleAndChildren="true">
+                                <Children>
+                                  <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare" Color="#99DC30FF" IsVisible="@IsActive" />
+                                  <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare" Color="#99DC30FF" ColorFactor="0.5" IsHidden="@IsActive" />
+                                </Children>
+                              </Widget>
+                            </ItemTemplate>
+                          </ListPanel>
+                          <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="9" SuggestedHeight="13" Sprite="General\CharacterCreation\increasing_icon" Color="#99DC30FF" MarginLeft="5" IsVisible="@HasIncreasedInCurrentStage" VerticalAlignment="Center" />
+                        </Children>
+                      </ListPanel>
+                    </Children>
+                  </ListPanel>
+                </ItemTemplate>
+              </NavigatableListPanel>
+
+            </Children>
+          </ListPanel>
+
+        </ItemTemplate>
+      </NavigatableListPanel>
+
+    </Children>
+  </ListPanel>
+</Window>
