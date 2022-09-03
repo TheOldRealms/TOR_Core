@@ -514,6 +514,7 @@
     <Compile Include="Items\ExtendedItemObjectProperties.cs" />
     <Compile Include="Items\ItemTrait.cs" />
     <Compile Include="Items\ItemTraitAgentComponent.cs" />
+    <Compile Include="Items\ItemUtilities.cs" />
     <Compile Include="Items\IWeaponHitEffect.cs" />
     <Compile Include="Items\TorItemMenuVM.cs" />
     <Compile Include="Items\TorItemTraitVM.cs" />

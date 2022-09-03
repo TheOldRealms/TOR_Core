@@ -29,6 +29,7 @@ public static class ItemUtilities
 
     public static bool IsAmmunitionItem(ItemObject itemObject)
     {
+        if (itemObject.WeaponComponent == null) return false;
         if ( itemObject.WeaponComponent.PrimaryWeapon == null) return false;
         
         return itemObject.WeaponComponent.PrimaryWeapon.IsRangedWeapon ||

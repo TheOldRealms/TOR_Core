@@ -10,12 +10,19 @@ namespace TOR_Core.BattleMechanics.Firearms
 {
     public class FirearmsMissionLogic : MissionLogic
     {
+        private int[] _grenadeSoundIndex = new int[1];
         private int[] _soundIndex = new int[5];
         private Random _random;
 
         public FirearmsMissionLogic()
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < _grenadeSoundIndex.Length; i++)
+            {
+                _grenadeSoundIndex[i] = SoundEvent.GetEventIdFromString("grenadelauncher_muzzle_" + (i + 1));
+            }
+            
+            
+            for (int i = 0; i < _soundIndex.Length; i++)
             {
                 _soundIndex[i] = SoundEvent.GetEventIdFromString("musket_fire_sound_" + (i + 1));
             }
@@ -39,23 +46,49 @@ namespace TOR_Core.BattleMechanics.Firearms
                     short amount = 6; // hardcoded for now
                     ScatterShot(shooterAgent, accuracy,shooterAgent.WieldedWeapon.AmmoWeapon, position, orientation, weaponData.MissileSpeed, amount);
                 }
-                // play sound of shot and create shot effects
+             
                 var offset = (shooterAgent.WieldedWeapon.CurrentUsageItem.WeaponLength + 30) / 100;
                 frame.Advance(offset);
-                Mission.AddParticleSystemBurstByName("handgun_shoot_2", frame, false);
-                CreateMuzzleFireSound(position);
+                
+                // play sound of shot and create shot effects
+                if (!shooterAgent.WieldedWeapon.AmmoWeapon.Item.StringId.Contains("grenade"))
+                {
+                    Mission.AddParticleSystemBurstByName("handgun_shoot_2", frame, false);
+                    CreateMuzzleFireSound(position);
+                }
+                else
+                {
+                    CreateMuzzleFireSound(position, MuzzleFireSoundType.Grenadelauncher);
+                }
+                
             }
             
             
         }
         
-        private void CreateMuzzleFireSound(Vec3 position)
+        private void CreateMuzzleFireSound(Vec3 position, MuzzleFireSoundType soundTypetype = MuzzleFireSoundType.Musket)
         {
-            if (this._soundIndex.Length > 0)
+            int selected = 0;
+            switch (soundTypetype)
             {
-                int selected = this._random.Next(0, this._soundIndex.Length - 1);
-                Mission.MakeSound(this._soundIndex[selected], position, false, true, -1, -1);
+                case MuzzleFireSoundType.Musket:
+                if (this._soundIndex.Length > 0)
+                {
+                    selected = this._random.Next(0, this._soundIndex.Length - 1);
+                    Mission.MakeSound(this._soundIndex[selected], position, false, true, -1, -1);
+                }
+                break;
+                case MuzzleFireSoundType.Grenadelauncher:
+                if (this._grenadeSoundIndex.Length > 0)
+                {
+                    selected = this._random.Next(0, this._grenadeSoundIndex.Length - 1);
+                    Mission.MakeSound(_grenadeSoundIndex[selected], position, false, true, -1, -1);
+                }
+                break;
+                case MuzzleFireSoundType.Pistol:
+                    break;
             }
+           
         }
         
         
@@ -144,10 +177,22 @@ namespace TOR_Core.BattleMechanics.Firearms
             if (missileObj != null&&missileObj.Weapon.Item.StringId.Contains("grenade"))
             {
                 var frame = missileObj.Entity.GetFrame();
-                Mission.AddParticleSystemBurstByName("handgun_shoot_2", frame, false);
+                int soundIndex = SoundEvent.GetEventIdFromString("mortar_explosion_1");
+                
+                var _sound = SoundEvent.CreateEvent(soundIndex, Mission.Current.Scene);
+                _sound.PlayInPosition(missileObj.GetPosition());
+                Mission.AddParticleSystemBurstByName("cannonball_explosion_7", frame, false);
             }
         }
         
 
+    }
+
+
+    public enum MuzzleFireSoundType
+    {
+        Musket,
+        Pistol,
+        Grenadelauncher
     }
 }

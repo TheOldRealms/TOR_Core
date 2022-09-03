@@ -10,12 +10,20 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Inventory;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 
 namespace TOR_Core.Utilities
 {
     public static class TORCommon
     {
         private static Random _random = new Random();
+
+
+
+        public static void Say(TextObject text)
+        {
+            Say(text.ToString());
+        }
         
         /// <summary>
         /// Print a message to the MB2 message window.
