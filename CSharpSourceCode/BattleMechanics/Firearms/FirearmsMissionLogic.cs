@@ -4,6 +4,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.Firearms
 {
@@ -23,41 +24,26 @@ namespace TOR_Core.BattleMechanics.Firearms
 
         public override void OnAgentShootMissile(Agent shooterAgent, EquipmentIndex weaponIndex, Vec3 position, Vec3 velocity, Mat3 orientation, bool hasRigidBody, int forcedMissileIndex)
         {
-            var itemUsage = shooterAgent.WieldedWeapon.CurrentUsageItem.ItemUsage;
-            if (itemUsage.Contains("handgun") || itemUsage.Contains("pistol"))
+            var weaponData = shooterAgent.WieldedWeapon.CurrentUsageItem;
+            if (weaponData.ItemUsage.Contains("handgun") || weaponData.ItemUsage.Contains("pistol"))
             {
                 var frame = new MatrixFrame(orientation, position);
                 // run particles of smoke
-                
 
-                bool succesfulShot;
 
-                if (shooterAgent.WieldedWeapon.Item.StringId.Contains("blunderbuss"))
+                TORCommon.Say(shooterAgent.WieldedWeapon.AmmoWeapon.Item.StringId);
+                if (shooterAgent.WieldedWeapon.AmmoWeapon.Item.StringId.Contains("scatter"))
                 {
-                    //test if a shot is possible
-                    succesfulShot = TryShotgunShot(shooterAgent, weaponIndex, position, orientation, 6, 4);
+                    RemoveLastProjectile(shooterAgent);
+                    float accuracy = 1/ (weaponData.Accuracy * 1.2f); //this is currently arbitrary
+                    short amount = 6; // hardcoded for now
+                    ScatterShot(shooterAgent, accuracy,shooterAgent.WieldedWeapon.AmmoWeapon, position, orientation, weaponData.MissileSpeed, amount);
                 }
-                else
-                {
-                    succesfulShot = true;
-                }
-
-                if (succesfulShot)
-                {
-                    // play sound of shot and create shot effects
-                    var offset = (shooterAgent.WieldedWeapon.CurrentUsageItem.WeaponLength + 30) / 100;
-                    frame.Advance(offset);
-                    Mission.AddParticleSystemBurstByName("handgun_shoot_2", frame, false);
-                    CreateMuzzleFireSound(position);
-                }
-                else
-                {
-                    //shot was aborted
-                    SkipReloadPhase(shooterAgent,weaponIndex);
-                }
-                
-               
-                
+                // play sound of shot and create shot effects
+                var offset = (shooterAgent.WieldedWeapon.CurrentUsageItem.WeaponLength + 30) / 100;
+                frame.Advance(offset);
+                Mission.AddParticleSystemBurstByName("handgun_shoot_2", frame, false);
+                CreateMuzzleFireSound(position);
             }
             
             
@@ -72,12 +58,6 @@ namespace TOR_Core.BattleMechanics.Firearms
             }
         }
         
-        private void SkipReloadPhase(Agent agent, EquipmentIndex index)
-        {
-            // TODO this script seem not work as intended the reload phase is not automatically finalized.
-            MissionEquipment equipment = agent.Equipment;
-            equipment.SetReloadPhaseOfSlot(index, agent.WieldedWeapon.ReloadPhaseCount);
-        }
         
         private void RemoveLastProjectile(Agent shooterAgent)
         {
