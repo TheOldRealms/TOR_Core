@@ -13,7 +13,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
     public abstract class AbstractAgentCastingBehavior : IAgentBehavior
     {
         private WizardAIComponent _component;
-        public readonly Agent Agent;
+        public Agent Agent;
         protected float Hysteresis = 0.20f;
         private readonly int _abilityRange;
         public readonly AbilityTemplate AbilityTemplate;

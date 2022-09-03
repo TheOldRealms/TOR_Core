@@ -7,8 +7,8 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentTacticalBehavior
 {
     public abstract class AbstractAgentTacticalBehavior : IAgentBehavior
     {
-        protected readonly HumanAIComponent AIComponent;
-        protected readonly Agent Agent;
+        protected HumanAIComponent AIComponent;
+        protected Agent Agent;
 
         protected AbstractAgentTacticalBehavior(Agent agent, HumanAIComponent aiComponent)
         {

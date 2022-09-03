@@ -8542,8 +8542,8 @@
       <Equipment slot="Cape" id="Item.wolf_shoulder" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_general_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_general_001" />
-      <Equipment slot="Horse" id="Item.tor_empire_mount_demigryph_002" />
-      <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_004" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_royal_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_001" />
@@ -8554,8 +8554,8 @@
       <Equipment slot="Cape" id="Item.wolf_shoulder" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_general_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_general_001" />
-      <Equipment slot="Horse" id="Item.tor_empire_mount_demigryph_002" />
-      <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_004" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_royal_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_generic_empire_lord_heavy_demi_template" culture="Culture.empire">
@@ -8567,8 +8567,8 @@
       <Equipment slot="Cape" id="Item.rough_bearskin" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_greatsword_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_003" />
-      <Equipment slot="Horse" id="Item.tor_empire_mount_demigryph_004" />
-      <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_004" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_royal_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_005" />
@@ -8578,8 +8578,8 @@
       <Equipment slot="Cape" id="Item.rough_bearskin" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_greatsword_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_003" />
-      <Equipment slot="Horse" id="Item.tor_empire_mount_demigryph_004" />
-      <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_004" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_royal_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_generic_empire_lord_heavy_template" culture="Culture.empire">
