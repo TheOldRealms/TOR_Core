@@ -418,6 +418,9 @@
     <Compile Include="BattleMechanics\AI\Decision\IAgentBehavior.cs" />
     <Compile Include="BattleMechanics\AI\Decision\ScoringFunctions.cs" />
     <Compile Include="BattleMechanics\AI\Decision\Target.cs" />
+    <Compile Include="BattleMechanics\AI\FormationBehavior\BehaviorProtectArtillery.cs" />
+    <Compile Include="BattleMechanics\AI\TeamBehavior\TorMissionCombatantsLogic.cs" />
+    <Compile Include="BattleMechanics\AI\TeamBehavior\TORTeamAIGeneral.cs" />
     <Compile Include="BattleMechanics\Artillery\ArtilleryRangedSiegeWeapon.cs" />
     <Compile Include="BattleMechanics\Artillery\ArtilleryStandingPoint.cs" />
     <Compile Include="BattleMechanics\Artillery\CannonBallPile.cs" />
@@ -558,7 +561,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>XCOPY "$(TargetDir)*" "C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\TOR_Core\bin\Win64_Shipping_wEditor\" /S /Y /I</PostBuildEvent>

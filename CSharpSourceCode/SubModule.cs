@@ -1,4 +1,6 @@
-﻿using HarmonyLib;
+﻿using System.Collections.Generic;
+using System.Linq;
+using HarmonyLib;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
@@ -10,10 +12,12 @@ using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.CustomBattle;
 using TaleWorlds.MountAndBlade.GauntletUI.Mission;
+using TaleWorlds.MountAndBlade.Source.Missions;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics;
+using TOR_Core.BattleMechanics.AI.TeamBehavior;
 using TOR_Core.BattleMechanics.Atmosphere;
 using TOR_Core.BattleMechanics.Banners;
 using TOR_Core.BattleMechanics.Dismemberment;
@@ -30,6 +34,7 @@ using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
 using TOR_Core.CampaignMechanics.SkillBooks;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
+using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Models;
@@ -65,7 +70,7 @@ namespace TOR_Core
 
         protected override void InitializeGameStarter(Game game, IGameStarter starterObject)
         {
-            if(Game.Current.GameType is Campaign && starterObject is CampaignGameStarter)
+            if (Game.Current.GameType is Campaign && starterObject is CampaignGameStarter)
             {
                 var starter = starterObject as CampaignGameStarter;
                 TORGameStarterHelper.CleanCampaignStarter(starter);
@@ -83,7 +88,6 @@ namespace TOR_Core
                 starter.AddBehavior(new TORPartyHealCampaignBehavior());
                 starter.AddBehavior(new AssimilationCampaignBehavior());
                 starter.AddBehavior(new TORWanderersCampaignBehavior());
-
             }
             else if (Game.Current.GameType is CustomGame && starterObject is BasicGameStarter)
             {
@@ -127,7 +131,6 @@ namespace TOR_Core
 
         public override void OnMissionBehaviorInitialize(Mission mission)
         {
-
             mission.RemoveMissionBehavior(mission.GetMissionBehavior<MissionGauntletCrosshair>());
 
             mission.AddMissionBehavior(new StatusEffectMissionLogic());
@@ -142,6 +145,10 @@ namespace TOR_Core
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new ForceAtmosphereMissionLogic());
 
+            var missionCombatantsLogic = mission.GetMissionBehavior<MissionCombatantsLogic>();
+            mission.AddMissionLogicAtIndexOf(missionCombatantsLogic, TorMissionCombatantsLogic.CreateFromInstanace(missionCombatantsLogic));
+
+
             if (Game.Current.GameType is Campaign)
             {
                 if (mission.GetMissionBehavior<BattleAgentLogic>() != null)
@@ -151,6 +158,7 @@ namespace TOR_Core
                 }
             }
         }
+
 
         public override void BeginGameStart(Game game)
         {
@@ -162,7 +170,7 @@ namespace TOR_Core
             var config = new LoggingConfiguration();
 
             // Log debug/exception info to the log file
-            var logfile = new FileTarget("logfile") { FileName = TORPaths.TORLogPath };
+            var logfile = new FileTarget("logfile") {FileName = TORPaths.TORLogPath};
             config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
 
             // Log info and higher to the VS debugger
