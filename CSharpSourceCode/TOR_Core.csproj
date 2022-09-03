@@ -419,6 +419,7 @@
     <Compile Include="BattleMechanics\AI\Decision\ScoringFunctions.cs" />
     <Compile Include="BattleMechanics\AI\Decision\Target.cs" />
     <Compile Include="BattleMechanics\AI\FormationBehavior\BehaviorProtectArtillery.cs" />
+    <Compile Include="BattleMechanics\AI\TeamBehavior\TacticArtilleryBombardment.cs" />
     <Compile Include="BattleMechanics\AI\TeamBehavior\TorMissionCombatantsLogic.cs" />
     <Compile Include="BattleMechanics\AI\TeamBehavior\TORTeamAIGeneral.cs" />
     <Compile Include="BattleMechanics\Artillery\ArtilleryRangedSiegeWeapon.cs" />
