@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Linq;
-using TaleWorlds.Engine;
-using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
-using TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior;
 using TOR_Core.BattleMechanics.AI.AgentBehavior.AgentTacticalBehavior;
 using TOR_Core.BattleMechanics.AI.Decision;
 using TOR_Core.BattleMechanics.Artillery;
-using TOR_Core.Utilities;
 
-namespace TOR_Core.Battle.AI.AgentBehavior.AgentCastingBehavior
+namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
 {
     public class ArtilleryPlacementCastingBehavior : AbstractAgentCastingBehavior
     {

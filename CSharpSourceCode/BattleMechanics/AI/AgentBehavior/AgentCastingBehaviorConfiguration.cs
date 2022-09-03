@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
-using TOR_Core.Battle.AI.AgentBehavior.AgentCastingBehavior;
 using TOR_Core.Extensions;
 using TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior;
 using TOR_Core.BattleMechanics.AI.Decision;
