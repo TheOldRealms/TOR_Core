@@ -52,7 +52,9 @@ namespace TOR_Core.Items
 				
 				var movedItem = result.EffectedItemRosterElement.EquipmentElement.Item;
 				
-				if(!ItemUtilities.IsAmmunitionItem(movedItem))
+				
+				
+				if(movedItem.IsSpecialAmmunitionItem())
 					continue;
 				
 				var targetEquipment = result.TransferCharacter.GetCharacterEquipment(EquipmentIndex.Weapon0,
@@ -60,16 +62,14 @@ namespace TOR_Core.Items
 				
 				foreach (var equipmentItem in targetEquipment.Where(x => x.ToString() !=result.EffectedItemRosterElement.EquipmentElement.Item.ToString()))
 				{
-					if(!ItemUtilities.IsAmmunitionItem(equipmentItem))
+					if(!equipmentItem.IsAmmunitionItem())
 						continue; //we are only interested for now in ranged and ammo items
 
-					if(ItemUtilities.IsSpecialAmmunitionItem(movedItem))
-						if(ItemUtilities.IsSpecialAmmunitionItem(equipmentItem))
-							continue;
+					if(movedItem.IsSpecialAmmunitionItem()&&equipmentItem.IsSpecialAmmunitionItem())
+						continue;
 
-					if (!ItemUtilities.IsSpecialAmmunitionItem(movedItem))
-						if(!ItemUtilities.IsSpecialAmmunitionItem(equipmentItem))
-							continue;
+					if (!movedItem.IsSpecialAmmunitionItem()&& !equipmentItem.IsSpecialAmmunitionItem())
+						continue;
 
 					//no you don't... items were not compatible return to sender
 					var command = TransferCommand.Transfer(1,

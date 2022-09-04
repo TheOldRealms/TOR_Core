@@ -68,5 +68,39 @@ namespace TOR_Core.Extensions
         {
             return item.StringId.StartsWith("tor_");
         }
+        
+        /// <summary>
+        /// Checks if the current weapon is shooting scatter shots or grenades, or is scatter/grenade ammunition
+        /// </summary>
+        /// <param name="itemObject"></param>
+        /// <returns></returns>
+        public static bool IsSpecialAmmunitionItem(this ItemObject itemObject)
+        {
+            if (!IsAmmunitionItem(itemObject))
+                return false;
+        
+            if (itemObject.ToString().Contains("blunderbuss"))
+            {
+                return true;
+            }
+        
+            if (itemObject.ToString().Contains("grenade") || itemObject.ToString().Contains("scatter"))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static bool IsAmmunitionItem(this ItemObject itemObject)
+        {
+            if (itemObject.WeaponComponent == null) return false;
+            if ( itemObject.WeaponComponent.PrimaryWeapon == null) return false;
+        
+            return itemObject.WeaponComponent.PrimaryWeapon.IsRangedWeapon ||
+                   itemObject.WeaponComponent.PrimaryWeapon.IsAmmo;
+        }
+        
+        
     }
 }
