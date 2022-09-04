@@ -3,18 +3,13 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 
-namespace TOR_Core.BattleMechanics.AI
-{
-    public class HideOutAlertMissionLogic
+
+    public class HideoutAlertMissionLogic : MissionLogic
     {
-        public class HideoutAlertMissionLogic : MissionLogic
+        private bool _enemiesAreAlarmed;
+        public override void OnAgentShootMissile(Agent shooterAgent, EquipmentIndex weaponIndex, Vec3 position, Vec3 velocity, Mat3 orientation,
+                bool hasRigidBody, int forcedMissileIndex) 
         {
-
-            private bool _enemiesAreAlarmed = true;
-
-            public override void OnAgentShootMissile(Agent shooterAgent, EquipmentIndex weaponIndex, Vec3 position, Vec3 velocity, Mat3 orientation,
-                bool hasRigidBody, int forcedMissileIndex)
-            {
                 base.OnAgentShootMissile(shooterAgent, weaponIndex, position, velocity, orientation, hasRigidBody, forcedMissileIndex);
                 if (_enemiesAreAlarmed) return;
                 var itemUsage = shooterAgent.WieldedWeapon.CurrentUsageItem.ItemUsage;
@@ -26,8 +21,6 @@ namespace TOR_Core.BattleMechanics.AI
                     hideoutMissionController.OnAgentAlarmedStateChanged(agent, Agent.AIStateFlag.Alarmed);
                     agent.SetWatchState(Agent.WatchState.Alarmed);
                 }
-                _enemiesAreAlarmed=true;
-            }
+                _enemiesAreAlarmed=true; 
         }
     }
-}
