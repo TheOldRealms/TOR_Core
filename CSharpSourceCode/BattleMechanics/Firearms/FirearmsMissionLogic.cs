@@ -35,10 +35,7 @@ namespace TOR_Core.BattleMechanics.Firearms
             if (weaponData.ItemUsage.Contains("handgun") || weaponData.ItemUsage.Contains("pistol"))
             {
                 var frame = new MatrixFrame(orientation, position);
-                // run particles of smoke
-
-
-                TORCommon.Say(shooterAgent.WieldedWeapon.AmmoWeapon.Item.StringId);
+                
                 if (shooterAgent.WieldedWeapon.AmmoWeapon.Item.StringId.Contains("scatter"))
                 {
                     RemoveLastProjectile(shooterAgent);
@@ -53,6 +50,7 @@ namespace TOR_Core.BattleMechanics.Firearms
                 // play sound of shot and create shot effects
                 if (!shooterAgent.WieldedWeapon.AmmoWeapon.Item.StringId.Contains("grenade"))
                 {
+                    // run particles of smoke
                     Mission.AddParticleSystemBurstByName("handgun_shoot_2", frame, false);
                     CreateMuzzleFireSound(position);
                 }
