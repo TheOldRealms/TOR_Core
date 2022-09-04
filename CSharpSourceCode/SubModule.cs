@@ -129,6 +129,12 @@ namespace TOR_Core
             }
         }
 
+        public override void OnBeforeMissionBehaviorInitialize(Mission mission)
+        {
+            var missionCombatantsLogic = mission.GetMissionBehavior<MissionCombatantsLogic>();
+            mission.AddMissionLogicAtIndexOf(missionCombatantsLogic, TorMissionCombatantsLogic.CreateFromInstanace(missionCombatantsLogic));
+        }
+
         public override void OnMissionBehaviorInitialize(Mission mission)
         {
             mission.RemoveMissionBehavior(mission.GetMissionBehavior<MissionGauntletCrosshair>());
@@ -144,10 +150,6 @@ namespace TOR_Core
             mission.AddMissionBehavior(new UndeadMoraleMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new ForceAtmosphereMissionLogic());
-
-            var missionCombatantsLogic = mission.GetMissionBehavior<MissionCombatantsLogic>();
-            mission.AddMissionLogicAtIndexOf(missionCombatantsLogic, TorMissionCombatantsLogic.CreateFromInstanace(missionCombatantsLogic));
-
 
             if (Game.Current.GameType is Campaign)
             {

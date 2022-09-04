@@ -3,6 +3,7 @@ using System.Linq;
 using HarmonyLib;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 {
@@ -30,6 +31,14 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             _attackerLeaderBattleCombatant = attackerLeaderBattleCombatant;
             _teamAIType = teamAIType;
             _isPlayerSergeant = isPlayerSergeant;
+        }
+
+        public override void OnBehaviorInitialize()
+        {
+            base.OnBehaviorInitialize();
+            var team = Mission.Teams[0];
+
+            var teamFormations = Traverse.Create(team).Field("_formations").GetValue() as List<Formation>;
         }
 
         //Copy-paste of parent to avoid complications.
@@ -109,6 +118,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                                 {
                                     team.AddTacticOption(new TacticDefensiveEngagement(team));
                                     team.AddTacticOption(new TacticDefensiveLine(team));
+                                    team.AddTacticOption(new TacticArtilleryBombardment(team)); 
                                 }
 
                                 if (team.Side == BattleSideEnum.Attacker)

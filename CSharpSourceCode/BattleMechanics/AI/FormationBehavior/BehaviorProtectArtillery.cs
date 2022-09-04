@@ -6,14 +6,14 @@ namespace TOR_Core.BattleMechanics.AI.FormationBehavior
     {
         public BehaviorProtectArtillery(Formation formation) : base(formation)
         {
-            //CurrentOrder = MovementOrder.MovementOrderFollow(DetermineArtilleryFormation().GetFirstUnit());
+            CurrentOrder = MovementOrder.MovementOrderFollow(DetermineArtilleryFormation().GetFirstUnit());
         }
 
         private Formation DetermineArtilleryFormation()
         {
-            return Formation.Team.GeneralsFormation; //TODO 
+            return Formation.Team.FormationsIncludingSpecialAndEmpty[11];
         }
-        protected override float GetAiWeight() => 0f; //TODO: If artillery operational 1 else 0
 
+        protected override float GetAiWeight() => 0f; //TODO: If artillery operational 1 else 0
     }
 }
