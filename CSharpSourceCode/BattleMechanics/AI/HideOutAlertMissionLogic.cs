@@ -13,8 +13,8 @@ public class HideoutAlertMissionLogic : MissionLogic
         bool hasRigidBody, int forcedMissileIndex)
     {
         if (_enemiesAreAlarmed) return;
-        var itemUsage = shooterAgent.WieldedWeapon.CurrentUsageItem.ItemUsage;
-        if (!itemUsage.Contains("handgun") && !itemUsage.Contains("pistol")) return;
+        var weaponClass = shooterAgent.WieldedWeapon.CurrentUsageItem.WeaponClass;
+        if (weaponClass != WeaponClass.Musket && weaponClass != WeaponClass.Pistol) return;
         var hideoutMissionController = Mission.Current.GetMissionBehavior<HideoutMissionController>();
         if (hideoutMissionController == null) return;
         foreach (var agent in base.Mission.PlayerEnemyTeam.TeamAgents)
