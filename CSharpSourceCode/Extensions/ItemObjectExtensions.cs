@@ -86,12 +86,7 @@ namespace TOR_Core.Extensions
                 return true;
             }
 
-            if (itemObject.ToString().Contains("grenade") || itemObject.ToString().Contains("scatter"))
-            {
-                return true;
-            }
-
-            return false;
+            return itemObject.ToString().Contains("grenade") || itemObject.ToString().Contains("scatter");
         }
 
         public static bool IsAmmunitionItem(this ItemObject itemObject)
