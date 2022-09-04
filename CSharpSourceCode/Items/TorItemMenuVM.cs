@@ -1,5 +1,6 @@
-﻿using Helpers;
+using Helpers;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem.Inventory;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
@@ -39,6 +40,51 @@ namespace TOR_Core.Items
         {
 			_itemTraitList = new MBBindingList<TorItemTraitVM>();
 			_readHint = new HintViewModel(new TaleWorlds.Localization.TextObject("Read scroll"));
+			inventoryLogic.AfterTransfer += CheckItem;
+        }
+
+		private void CheckItem(InventoryLogic inventoryLogic, List<TransferCommandResult> results)
+		{
+			foreach (var result in results)
+			{
+				if(result.ResultSide != InventoryLogic.InventorySide.Equipment)
+					continue;
+				
+				var movedItem = result.EffectedItemRosterElement.EquipmentElement.Item;
+				
+				
+				
+				if(!movedItem.IsAmmunitionItem()) //skip  check if no ammunition item is involved.
+					continue;
+				
+				var targetEquipment = result.TransferCharacter.GetCharacterEquipment(EquipmentIndex.Weapon0,
+					EquipmentIndex.NumAllWeaponSlots);
+				
+				foreach (var equipmentItem in targetEquipment.Where(x => x.ToString() !=result.EffectedItemRosterElement.EquipmentElement.Item.ToString()))
+				{
+					if(!equipmentItem.IsAmmunitionItem())
+						continue; //we are only interested for now in ranged and ammo items
+
+					if(movedItem.IsSpecialAmmunitionItem()&&equipmentItem.IsSpecialAmmunitionItem())
+						continue;
+
+					if (!movedItem.IsSpecialAmmunitionItem()&& !equipmentItem.IsSpecialAmmunitionItem())
+						continue;
+
+					//no you don't... items were not compatible return to sender
+					var command = TransferCommand.Transfer(1,
+						InventoryLogic.InventorySide.Equipment,
+						InventoryLogic.InventorySide.PlayerInventory,
+						result.EffectedItemRosterElement,
+						result.EffectedEquipmentIndex,
+						EquipmentIndex.None,
+						result.TransferCharacter, result.IsCivilianEquipment);
+
+					inventoryLogic.AddTransferCommand(command);
+					
+					break;
+				}
+			}
 		}
 
         public void SetItemExtra(SPItemVM item, ItemVM comparedItem = null, BasicCharacterObject character = null, int alternativeUsageIndex = 0)

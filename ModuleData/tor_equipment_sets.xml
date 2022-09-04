@@ -2950,8 +2950,8 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_empire_weapon_rapier_001" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_gun_blunderbuss_002" />
-      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
-      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball_scatter" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball_scatter" />
       <Equipment slot="Head" id="Item.tor_empire_head_hat_sergeant_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_cannon_crew_002" />
       <Equipment slot="Cape" id="Item.southern_shawl" />
@@ -2961,8 +2961,8 @@
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_rapier_001" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_gun_blunderbuss_002" />
-      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
-      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball_scatter" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball_scatter" />
       <Equipment slot="Head" id="Item.tor_empire_head_hat_sergeant_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_cannon_crew_002" />
       <Equipment slot="Cape" id="Item.southern_shawl" />
@@ -3088,8 +3088,8 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_empire_weapon_rapier_002" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_gun_blunderbuss_001" />
-      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
-      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball_scatter" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball_scatter" />
       <Equipment slot="Head" id="Item.tor_empire_head_hat_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_cannon_crew_002" />
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_cape_generic_lord" />
@@ -3099,8 +3099,8 @@
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_rapier_002" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_gun_blunderbuss_001" />
-      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
-      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball_scatter" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball_scatter" />
       <Equipment slot="Head" id="Item.tor_empire_head_hat_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_cannon_crew_002" />
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_cape_generic_lord" />
