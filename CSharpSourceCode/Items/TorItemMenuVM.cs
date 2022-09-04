@@ -54,7 +54,7 @@ namespace TOR_Core.Items
 				
 				
 				
-				if(movedItem.IsSpecialAmmunitionItem())
+				if(!movedItem.IsAmmunitionItem()) //skip  check if no ammunition item is involved.
 					continue;
 				
 				var targetEquipment = result.TransferCharacter.GetCharacterEquipment(EquipmentIndex.Weapon0,
