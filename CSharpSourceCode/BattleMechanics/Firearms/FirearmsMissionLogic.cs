@@ -4,8 +4,6 @@ using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
-using TOR_Core.Utilities;
-
 namespace TOR_Core.BattleMechanics.Firearms
 {
     public class FirearmsMissionLogic : MissionLogic
@@ -96,36 +94,6 @@ namespace TOR_Core.BattleMechanics.Firearms
             if (falseMissle != null) Mission.RemoveMissileAsClient(falseMissle.Index);
         }
         
-        private void RestoreAmmo(Agent agent, WeaponClass ammoType)
-        {
-            MissionEquipment equipment = agent.Equipment;
-            EquipmentIndex equipmentIndex = (EquipmentIndex)equipment.GetAmmoSlotIndexOfWeapon(ammoType);
-            short restoredAmmo = (short)(equipment.GetAmmoAmount(ammoType) + 1);
-            agent.SetWeaponAmountInSlot(equipmentIndex, restoredAmmo, false);
-        }
-        
-        private bool TryShotgunShot(Agent shooterAgent, EquipmentIndex weaponIndex, Vec3 shotPosition,
-            Mat3 shotOrientation, short scatterShots, short requiredAmmoAmount)
-        {
-            MissionWeapon weaponAtIndex = shooterAgent.Equipment[weaponIndex];
-            var weaponData = weaponAtIndex.CurrentUsageItem;
-            if (weaponData != null && weaponAtIndex.CurrentUsageItem.IsRangedWeapon)
-            {
-                RemoveLastProjectile(shooterAgent);
-                RestoreAmmo(shooterAgent, weaponData.AmmoClass);
-                if (!weaponAtIndex.AmmoWeapon.IsEmpty)
-                {
-                    var accuracy = 1f / (weaponData.Accuracy * 1.2f); //this should be definable via XML or other data format.
-                    if (CanConsumeAmmoOfAgent(requiredAmmoAmount, shooterAgent, weaponData.AmmoClass))
-                    {
-                        ScatterShot(shooterAgent, accuracy, weaponAtIndex.AmmoWeapon, shotPosition, shotOrientation, weaponData.MissileSpeed, scatterShots);
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-        
         public void ScatterShot(Agent shooterAgent, float accuracy, MissionWeapon projectileType, Vec3 shotPosition,
             Mat3 shotOrientation, float missleSpeed,short scatterShotAmount)
         {
@@ -147,23 +115,7 @@ namespace TOR_Core.BattleMechanics.Firearms
             orientation.f.RotateAboutZ(rand3);
             return orientation;
         }
-        
-        private bool CanConsumeAmmoOfAgent(int amount, Agent agent, WeaponClass ammoType)
-        {
-            MissionEquipment equipment = agent.Equipment;
-            var d = agent.WieldedWeapon.CurrentUsageIndex;
-            EquipmentIndex equipmentIndex = (EquipmentIndex)equipment.GetAmmoSlotIndexOfWeapon(ammoType);
-            var currentAmmo = equipment.GetAmmoAmount(ammoType);
-            if (currentAmmo >= amount)
-            {
-                short newAmount = (short)(currentAmmo - amount);
-                agent.SetWeaponAmountInSlot(equipmentIndex, newAmount, false);
-                return true;
-            }
 
-            return false;
-        }
-        
         public override void OnMissileCollisionReaction(Mission.MissileCollisionReaction collisionReaction, Agent attackerAgent, Agent attachedAgent,
             sbyte attachedBoneIndex)
         {
@@ -182,8 +134,6 @@ namespace TOR_Core.BattleMechanics.Firearms
                 Mission.AddParticleSystemBurstByName("cannonball_explosion_7", frame, false);
             }
         }
-        
-
     }
 
 
