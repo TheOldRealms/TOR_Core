@@ -4,16 +4,24 @@ namespace TOR_Core.BattleMechanics.AI.FormationBehavior
 {
     public class BehaviorProtectArtillery : BehaviorComponent
     {
-        public BehaviorProtectArtillery(Formation formation) : base(formation)
+        private readonly TacticComponent _relatedTactic;
+        public Formation TargetFormation { get; set; }
+
+
+        public BehaviorProtectArtillery(Formation formation, Formation targetFormation, TacticComponent relatedTactic) : base(formation)
         {
-            CurrentOrder = MovementOrder.MovementOrderFollow(DetermineArtilleryFormation().GetFirstUnit());
+        
+            _relatedTactic = relatedTactic;
+            TargetFormation = targetFormation;
         }
 
-        private Formation DetermineArtilleryFormation()
+        public override void TickOccasionally()
         {
-            return Formation.Team.FormationsIncludingSpecialAndEmpty[11];
+            // MovementOrder.MovementOrderFollowEntity() //TODO: Follow artillery entity instead?
+            var targetAgent = TargetFormation.GetFirstUnit();
+            MovementOrder.MovementOrderFollow(targetAgent);
         }
 
-        protected override float GetAiWeight() => 0f; //TODO: If artillery operational 1 else 0
+        protected override float GetAiWeight() => Formation.Team.TeamAI.IsCurrentTactic(_relatedTactic) ? 1.0f : 0.0f;
     }
 }

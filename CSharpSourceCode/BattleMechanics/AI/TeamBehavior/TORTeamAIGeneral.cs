@@ -9,18 +9,6 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         {
         }
 
-        public override void OnUnitAddedToFormationForTheFirstTime(Formation formation)
-        {
-            base.OnUnitAddedToFormationForTheFirstTime(formation);
-
-            if (formation.Index == 12)
-            {
-                formation.AI.AddAiBehavior(new BehaviorProtectArtillery(formation));
-            }
-            
-            //TODO: Need to create separate formation for engineers if artillery is available.
-        }
-
         protected override void Tick(float dt)
         {
             base.Tick(dt);

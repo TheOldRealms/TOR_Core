@@ -3,11 +3,14 @@ using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
+using TOR_Core.BattleMechanics.AI.FormationBehavior;
 
 namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 {
     public class TacticArtilleryBombardment : TacticDefensiveLine
     {
+        private bool _usingMachines = true;
+
         public TacticArtilleryBombardment(Team team) : base(team)
         {
             // TODO
@@ -34,27 +37,31 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 
                 team.TriggerOnFormationsChanged(rangedFormations[0]);
                 team.TriggerOnFormationsChanged(rangedFormations[rangedFormations.Count - 1]);
-            }
 
-            if (infantryFormations.Count == 2)
-            {
-                var count = 50;
-
-                foreach (var agent in infantryFormations.SelectMany(form => form.Arrangement.GetAllUnits()).ToList().Select(unit => (Agent) unit))
+                if (infantryFormations.Count == 2)
                 {
-                    count += -1;
-                    if (count >= 0)
-                    {
-                        agent.Formation = infantryFormations[infantryFormations.Count - 1];
-                    }
-                    else
-                    {
-                        agent.Formation = infantryFormations[0];
-                    }
-                }
+                    var count = 50;
 
-                team.TriggerOnFormationsChanged(infantryFormations[0]);
-                team.TriggerOnFormationsChanged(infantryFormations[infantryFormations.Count - 1]);
+                    foreach (var agent in infantryFormations.SelectMany(form => form.Arrangement.GetAllUnits()).ToList().Select(unit => (Agent) unit))
+                    {
+                        count += -1;
+                        if (count >= 0)
+                        {
+                            agent.Formation = infantryFormations[infantryFormations.Count - 1];
+                        }
+                        else
+                        {
+                            agent.Formation = infantryFormations[0];
+                        }
+                    }
+
+                    team.TriggerOnFormationsChanged(infantryFormations[0]);
+                    team.TriggerOnFormationsChanged(infantryFormations[infantryFormations.Count - 1]);
+
+                    var formationAI = infantryFormations[rangedFormations.Count - 1].AI;
+                    if (formationAI.GetBehavior<BehaviorProtectArtillery>() == null)
+                        formationAI.AddAiBehavior(new BehaviorProtectArtillery(infantryFormations[rangedFormations.Count - 1],rangedFormations[rangedFormations.Count - 1],  this));
+                }
             }
         }
 
@@ -63,25 +70,16 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             base.TickOccasionally();
         }
 
-        protected override bool CheckAndSetAvailableFormationsChanged()
+        protected override void OnCancel()
         {
-            return base.CheckAndSetAvailableFormationsChanged();
+            _usingMachines = false;
+            StopUsingAllMachines();
         }
 
         protected override void StopUsingAllMachines()
         {
-            if (false)
-            {
-                foreach (Formation formation in this.Formations)
-                {
-                    foreach (UsableMachine usable in formation.GetUsedMachines().ToList<UsableMachine>())
-                    {
-                        formation.StopUsingMachine(usable);
-                        if (usable is SiegeWeapon siegeWeapon)
-                            siegeWeapon.ForcedUse = false;
-                    }
-                }
-            }
+            if (_usingMachines) return; // A way to cancel out a call in the tick() method that we dont otherwise want to modify.
+            base.StopUsingAllMachines();
         }
 
         protected void ResumeUsingMachines()
@@ -99,7 +97,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         {
             return team.GeneralAgent.GetComponent<AbilityComponent>().GetKnownAbilityTemplates().Exists(item => item.AbilityEffectType == AbilityEffectType.ArtilleryPlacement)
                    && team.GeneralAgent.Controller != Agent.ControllerType.Player
-                ? 100f
+                ? 10000f
                 : 0f;
         }
     }
