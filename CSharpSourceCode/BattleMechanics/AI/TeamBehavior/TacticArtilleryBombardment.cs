@@ -67,7 +67,8 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 
         protected override void TickOccasionally()
         {
-            base.TickOccasionally();
+           base.TickOccasionally();
+           ManageFormationCounts();
         }
 
         protected override void OnCancel()

@@ -21,7 +21,7 @@ namespace TOR_Core.BattleMechanics.AI.FormationBehavior
             var targetAgent = TargetFormation.GetFirstUnit();
             MovementOrder.MovementOrderFollow(targetAgent);
         }
-
-        protected override float GetAiWeight() => Formation.Team.TeamAI.IsCurrentTactic(_relatedTactic) ? 1.0f : 0.0f;
+        public float GetAIWeight() => Formation.Team.TeamAI.IsCurrentTactic(_relatedTactic) ? 100f : 0.0f;
+        protected override float GetAiWeight() => Formation.Team.TeamAI.IsCurrentTactic(_relatedTactic) ? 100f : 0.0f;
     }
 }
