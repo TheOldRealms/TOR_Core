@@ -10,6 +10,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Inventory;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 
 namespace TOR_Core.Utilities
 {
@@ -17,6 +18,11 @@ namespace TOR_Core.Utilities
     {
         private static Random _random = new Random();
         
+        public static void Say(TextObject text)
+        {
+            Say(text.ToString());
+        }
+
         /// <summary>
         /// Print a message to the MB2 message window.
         /// </summary>
@@ -89,14 +95,15 @@ namespace TOR_Core.Utilities
                     else return false;
                 }).ToList();
             }
+
             if (filterednames.Count > 0)
             {
                 var index = _random.Next(0, filterednames.Count);
                 pickedname = filterednames[index];
                 string[] s = pickedname.Split('/');
                 pickedname = s[s.Length - 1];
-
             }
+
             return pickedname;
         }
 

@@ -24,6 +24,7 @@ namespace TOR_Core.Extensions
                 if (result == null) result = new List<ItemTrait>();
                 result.AddRange(comp.GetDynamicTraits(item));
             }
+
             return result;
         }
 
@@ -43,6 +44,7 @@ namespace TOR_Core.Extensions
             {
                 result.ItemTraits.AddRange(comp.GetDynamicTraits(item));
             }
+
             return result;
         }
 
@@ -67,6 +69,33 @@ namespace TOR_Core.Extensions
         public static bool IsTorItem(this ItemObject item)
         {
             return item.StringId.StartsWith("tor_");
+        }
+
+        /// <summary>
+        /// Checks if the current weapon is shooting scatter shots or grenades, or is scatter/grenade ammunition
+        /// </summary>
+        /// <param name="itemObject"></param>
+        /// <returns></returns>
+        public static bool IsSpecialAmmunitionItem(this ItemObject itemObject)
+        {
+            if (!IsAmmunitionItem(itemObject))
+                return false;
+
+            if (itemObject.ToString().Contains("blunderbuss"))
+            {
+                return true;
+            }
+
+            return itemObject.ToString().Contains("grenade") || itemObject.ToString().Contains("scatter");
+        }
+
+        public static bool IsAmmunitionItem(this ItemObject itemObject)
+        {
+            if (itemObject.WeaponComponent == null) return false;
+            if (itemObject.WeaponComponent.PrimaryWeapon == null) return false;
+
+            return itemObject.WeaponComponent.PrimaryWeapon.IsRangedWeapon ||
+                   itemObject.WeaponComponent.PrimaryWeapon.IsAmmo;
         }
     }
 }

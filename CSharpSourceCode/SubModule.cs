@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
 using NLog;
@@ -17,6 +17,7 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics;
+using TOR_Core.BattleMechanics.AI;
 using TOR_Core.BattleMechanics.AI.TeamBehavior;
 using TOR_Core.BattleMechanics.Atmosphere;
 using TOR_Core.BattleMechanics.Banners;
@@ -70,7 +71,7 @@ namespace TOR_Core
 
         protected override void InitializeGameStarter(Game game, IGameStarter starterObject)
         {
-            if (Game.Current.GameType is Campaign && starterObject is CampaignGameStarter)
+            if(Game.Current.GameType is Campaign && starterObject is CampaignGameStarter)
             {
                 var starter = starterObject as CampaignGameStarter;
                 TORGameStarterHelper.CleanCampaignStarter(starter);
@@ -88,6 +89,7 @@ namespace TOR_Core
                 starter.AddBehavior(new TORPartyHealCampaignBehavior());
                 starter.AddBehavior(new AssimilationCampaignBehavior());
                 starter.AddBehavior(new TORWanderersCampaignBehavior());
+
             }
             else if (Game.Current.GameType is CustomGame && starterObject is BasicGameStarter)
             {
@@ -137,6 +139,7 @@ namespace TOR_Core
 
         public override void OnMissionBehaviorInitialize(Mission mission)
         {
+
             mission.RemoveMissionBehavior(mission.GetMissionBehavior<MissionGauntletCrosshair>());
 
             mission.AddMissionBehavior(new StatusEffectMissionLogic());
@@ -148,6 +151,7 @@ namespace TOR_Core
             mission.AddMissionBehavior(new CustomBannerMissionLogic());
             mission.AddMissionBehavior(new DismembermentMissionLogic());
             mission.AddMissionBehavior(new UndeadMoraleMissionLogic());
+            mission.AddMissionBehavior(new HideoutAlertMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new ForceAtmosphereMissionLogic());
 
@@ -172,7 +176,7 @@ namespace TOR_Core
             var config = new LoggingConfiguration();
 
             // Log debug/exception info to the log file
-            var logfile = new FileTarget("logfile") {FileName = TORPaths.TORLogPath};
+            var logfile = new FileTarget("logfile") { FileName = TORPaths.TORLogPath };
             config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
 
             // Log info and higher to the VS debugger
