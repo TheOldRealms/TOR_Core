@@ -39,7 +39,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
 
         protected override void OnRemoved(int removeReason)
         {
-            RunVisualEffects();
+            /*RunVisualEffects();
             RunSoundEffects();
 
             var nearbyAgents = Mission.Current.GetNearbyAgents(GameEntity.GlobalPosition.AsVec2, _explosionRadius).ToArray();
@@ -67,7 +67,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
-            base.OnRemoved(removeReason);
+            base.OnRemoved(removeReason);*/
         }
 
         private void RunVisualEffects()
