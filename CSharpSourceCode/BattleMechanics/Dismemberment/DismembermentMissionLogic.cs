@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
@@ -6,6 +6,7 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.Dismemberment
 {
@@ -35,23 +36,23 @@ namespace TOR_Core.BattleMechanics.Dismemberment
 
         public override void OnRegisterBlow(Agent attacker, Agent victim, GameEntity realHitEntity, Blow blow, ref AttackCollisionData collisionData, in MissionWeapon attackerWeapon)
         {
-            bool canBeDismembered = victim != null &&
-                                    victim.IsHuman &&
-                                    victim != Agent.Main &&
-                                    victim.Health <= 0 &&
-                                    victim.State == AgentState.Killed &&
-                                    attacker != null &&
-                                    (collisionData.VictimHitBodyPart == BoneBodyPartType.Neck ||
-                                    collisionData.VictimHitBodyPart == BoneBodyPartType.Head) &&
+            if (victim == null || attacker == null) return;
+            if(!victim.IsHuman) return;
+            if(victim.IsMainAgent) return;
+            if(victim.Health >= 0&& victim.State!=AgentState.Killed) return;
+
+
+            bool blowCanDecapitate = (collisionData.VictimHitBodyPart == BoneBodyPartType.Neck ||
+                                     collisionData.VictimHitBodyPart == BoneBodyPartType.Head) &&
                                     blow.DamageType == DamageTypes.Cut &&
                                     (blow.WeaponRecord.WeaponClass == WeaponClass.OneHandedAxe ||
-                                    blow.WeaponRecord.WeaponClass == WeaponClass.OneHandedSword ||
-                                    blow.WeaponRecord.WeaponClass == WeaponClass.TwoHandedAxe ||
-                                    blow.WeaponRecord.WeaponClass == WeaponClass.TwoHandedSword) &&
+                                     blow.WeaponRecord.WeaponClass == WeaponClass.OneHandedSword ||
+                                     blow.WeaponRecord.WeaponClass == WeaponClass.TwoHandedAxe ||
+                                     blow.WeaponRecord.WeaponClass == WeaponClass.TwoHandedSword) &&
                                     (attacker.AttackDirection == Agent.UsageDirection.AttackLeft ||
-                                    attacker.AttackDirection == Agent.UsageDirection.AttackRight);
+                                     attacker.AttackDirection == Agent.UsageDirection.AttackRight);
 
-            if (canBeDismembered)
+            if (blowCanDecapitate)
             {
                 if (attacker == Agent.Main)
                 {
@@ -73,7 +74,72 @@ namespace TOR_Core.BattleMechanics.Dismemberment
                     DismemberHead(victim, collisionData);
                 }
             }
+
+            
+            if (attackerWeapon.Item != null&&attackerWeapon.Item.IsExplosiveAmmunition())
+            {
+                InitializeBodyExplosion(victim,blow.Position);
+            }
+                
+            
         }
+        
+
+        private void InitializeBodyExplosion(Agent agent, Vec3 position)
+        {
+            var distance = agent.Position.Distance(position);
+
+            if (distance > 2) return;
+            agent.Disappear();
+            var frame = agent.Frame.Elevate(1);
+            if (distance <= 1.5f)
+            {
+                ExplosionNearVictim(frame);
+            }
+            
+            ExplosionFarVictim(frame);
+
+
+        }
+        
+        private void ExplosionNearVictim(MatrixFrame frame)
+        {
+            LaunchLimb(frame, "exploded_head_001"); 
+            LaunchLimb(frame, "exploded_arms_001");
+            LaunchLimb(frame, "exploded_arms_002");
+            LaunchLimb(frame, "exploded_legs_002");
+            LaunchLimb(frame, "exploded_legs_003");
+
+            LaunchLimb(frame, "exploded_flesh_pieces_001");
+            LaunchLimb(frame, "exploded_flesh_pieces_002");
+            LaunchLimb(frame, "exploded_flesh_pieces_003");
+
+            LaunchLimb(frame, "exploded_limb_pieces_001");
+            LaunchLimb(frame, "exploded_limb_pieces_002");
+            LaunchLimb(frame, "exploded_limb_pieces_003");
+        }
+        
+        private void ExplosionFarVictim(MatrixFrame frame)
+        {
+            LaunchLimb(frame, "exploded_torso_001");
+          //  LaunchLimb(frame, "exploded_legs_001");
+
+            LaunchLimb(frame, "exploded_flesh_pieces_001");
+            LaunchLimb(frame, "exploded_flesh_pieces_002");
+            LaunchLimb(frame, "exploded_limb_pieces_001");
+            LaunchLimb(frame, "exploded_limb_pieces_002");
+        }
+        
+        
+        private void LaunchLimb(MatrixFrame frame, string name)
+        {
+            var limb = GameEntity.Instantiate(Mission.Current.Scene, name, false);
+            limb.SetGlobalFrame(frame);
+            var dir = TORCommon.GetRandomDirection(3);
+            var multiplier = 50/ limb.Mass;
+            limb.AddPhysics(limb.Mass, limb.CenterOfMass, limb.GetBodyShape(), dir * multiplier, dir * 2, PhysicsMaterial.GetFromName("flesh"), false, -1);
+        }
+                       
 
         private void EnableSlowMotion()
         {

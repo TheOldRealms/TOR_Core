@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
@@ -11,7 +11,7 @@ namespace TOR_Core.BattleMechanics.Firearms
 {
     public class FirearmsMissionLogic : MissionLogic
     {
-        private int[] _grenadeSoundIndex = new int[1];
+        private int[] _grenadeSoundIndex = new int[5];
         private int[] _soundIndex = new int[5];
         private Random _random;
         
@@ -129,7 +129,7 @@ namespace TOR_Core.BattleMechanics.Firearms
             if (missileObj.Weapon.Item.StringId.Contains("grenade"))
             {
                 RunExplosionSoundEffects(pos,"mortar_explosion_1");
-                RunExplosionVisualEffects(pos,"cannonball_explosion_7");
+                RunExplosionVisualEffects(pos,"cannonball_explosion_8");
             }
             
             if (missileObj.Weapon.Item.StringId.Contains("cannonball"))
