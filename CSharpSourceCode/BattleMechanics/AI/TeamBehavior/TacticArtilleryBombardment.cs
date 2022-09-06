@@ -98,6 +98,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                     return target;
                 }).ToList();
             var candidate = _latestScoredPositions.MaxBy(target => target.UtilityValue);
+            _chosenPosition = candidate;
         }
 
         private void SetGuardFormationBehaviorWeights()
