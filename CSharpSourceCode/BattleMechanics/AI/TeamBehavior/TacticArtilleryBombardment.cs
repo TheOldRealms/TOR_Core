@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
-using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
-using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
+using TOR_Core.BattleMechanics.AI.Decision;
 using TOR_Core.BattleMechanics.AI.FormationBehavior;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 {
@@ -17,17 +14,24 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         private readonly Formation _artilleryFormation;
         private readonly Formation _guardFormation;
 
+        private List<Axis> _positionScoring;
+
         public TacticArtilleryBombardment(Team team) : base(team)
         {
             _artilleryFormation = new Formation(this.team, this.team.FormationsIncludingSpecialAndEmpty.Count);
             this.team.FormationsIncludingSpecialAndEmpty.Add(_artilleryFormation);
             _guardFormation = new Formation(this.team, this.team.FormationsIncludingSpecialAndEmpty.Count);
             this.team.FormationsIncludingSpecialAndEmpty.Add(_guardFormation);
-            var method = Traverse.Create(this.team).Method("FormationAI_OnActiveBehaviorChanged").GetValue();
-            //_artilleryFormation.AI.OnActiveBehaviorChanged += new Action<Formation>(this.team.FormationAI_OnActiveBehaviorChanged);
-            //_guardFormation.AI.OnActiveBehaviorChanged += new Action<Formation>(this.team.FormationAI_OnActiveBehaviorChanged);
+
+            _positionScoring = CreateArtilleryPositionAssessment();
+            
+            //TODO: Reminder, might need this if certain updates dont work.
+            // var method = Traverse.Create(this.team).Method("FormationAI_OnActiveBehaviorChanged").GetValue();
+            // _artilleryFormation.AI.OnActiveBehaviorChanged += new Action<Formation>(this.team.FormationAI_OnActiveBehaviorChanged);
+            // _guardFormation.AI.OnActiveBehaviorChanged += new Action<Formation>(this.team.FormationAI_OnActiveBehaviorChanged);
         }
 
+       
         protected override void ManageFormationCounts()
         {
             base.ManageFormationCounts();
@@ -68,14 +72,38 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             if (formationAI.GetBehavior<BehaviorProtectArtillery>() == null)
             {
                 formationAI.AddAiBehavior(new BehaviorProtectArtillery(_guardFormation, _artilleryFormation, this));
-                _guardFormation.AI.SetBehaviorWeight<BehaviorProtectArtillery>(15.0f);
             }
         }
 
         protected override void TickOccasionally()
         {
             base.TickOccasionally();
-            //    ManageFormationCounts();
+            
+            team.TeamAI.TacticalPositions
+                .Select(pos => new Target {TacticalPosition = pos})
+                .ToList();
+            
+            SetGuardFormationBehaviorWeights();
+            SetArtilleryFormationBehaviorWeights();
+        }
+
+        private void SetGuardFormationBehaviorWeights()
+        {
+            _guardFormation.AI.ResetBehaviorWeights();
+            SetDefaultBehaviorWeights(_guardFormation);
+            _guardFormation.AI.SetBehaviorWeight<BehaviorTacticalCharge>(1f);
+            _guardFormation.AI.SetBehaviorWeight<BehaviorProtectArtillery>(15.0f);
+        }
+
+        private void SetArtilleryFormationBehaviorWeights()
+        {
+            _artilleryFormation.AI.ResetBehaviorWeights();
+            SetDefaultBehaviorWeights(_artilleryFormation);
+            _artilleryFormation.AI.SetBehaviorWeight<BehaviorDefend>(15f).TacticalDefendPosition = null;
+            _artilleryFormation.AI.SetBehaviorWeight<BehaviorSkirmishLine>(1f);
+            _artilleryFormation.AI.SetBehaviorWeight<BehaviorScreenedSkirmish>(1f);
+            // if (this._linkedRangedDefensivePosition != null)
+            //     this._archers.AI.SetBehaviorWeight<BehaviorDefend>(10f).TacticalDefendPosition = this._linkedRangedDefensivePosition;
         }
 
         protected override void OnCancel()
@@ -108,5 +136,14 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                 ? 10000f
                 : 0f;
         }
+        
+        private List<Axis> CreateArtilleryPositionAssessment()
+        {
+            var function = new List<Axis>();
+            function.Add(new Axis(0, 70f, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles(this.team)));
+            function.Add(new Axis(0, 1, x => x, CommonAIDecisionFunctions.AssessPositionForArtillery()));
+            return function;
+        }
+
     }
 }
