@@ -81,8 +81,9 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         protected override void TickOccasionally()
         {
             base.TickOccasionally();
-
-            AssessArtilleryPositions();
+            
+            if (team.FormationsIncludingSpecial.Any())
+                AssessArtilleryPositions();
 
             SetGuardFormationBehaviorWeights();
             SetArtilleryFormationBehaviorWeights();

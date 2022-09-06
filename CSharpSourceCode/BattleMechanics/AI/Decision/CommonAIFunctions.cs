@@ -24,9 +24,9 @@ namespace TOR_Core.BattleMechanics.AI.Decision
                 if (target.TacticalPosition != null && team != null)
                 {
                     var position = target.TacticalPosition.Position.GetGroundVec3();
-                    return team.Formations.ToList()
-                        .Select(formation => position.Distance(formation.QuerySystem.MedianPosition.Normal))
-                        .Min();
+                    var enumerable = team.FormationsIncludingSpecial.ToList()
+                        .Select(formation => position.Distance(formation.QuerySystem.MedianPosition.Normal)).ToList();
+                    return enumerable.Count > 0 ? enumerable.Min() : 300.0f;
                 }
 
                 if (target.Formation != null)
