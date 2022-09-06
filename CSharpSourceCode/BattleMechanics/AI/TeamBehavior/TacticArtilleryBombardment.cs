@@ -1,74 +1,81 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using HarmonyLib;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
 using TOR_Core.BattleMechanics.AI.FormationBehavior;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 {
     public class TacticArtilleryBombardment : TacticDefensiveLine
     {
         private bool _usingMachines = true;
+        private readonly Formation _artilleryFormation;
+        private readonly Formation _guardFormation;
 
         public TacticArtilleryBombardment(Team team) : base(team)
         {
-            // TODO
+            _artilleryFormation = new Formation(this.team, this.team.FormationsIncludingSpecialAndEmpty.Count);
+            this.team.FormationsIncludingSpecialAndEmpty.Add(_artilleryFormation);
+            _guardFormation = new Formation(this.team, this.team.FormationsIncludingSpecialAndEmpty.Count);
+            this.team.FormationsIncludingSpecialAndEmpty.Add(_guardFormation);
+            var method = Traverse.Create(this.team).Method("FormationAI_OnActiveBehaviorChanged").GetValue();
+            //_artilleryFormation.AI.OnActiveBehaviorChanged += new Action<Formation>(this.team.FormationAI_OnActiveBehaviorChanged);
+            //_guardFormation.AI.OnActiveBehaviorChanged += new Action<Formation>(this.team.FormationAI_OnActiveBehaviorChanged);
         }
 
         protected override void ManageFormationCounts()
         {
-            ManageFormationCounts(2, 2, 1, 1);
-            var rangedFormations = team.Formations.ToList().FindAll(formation => formation.QuerySystem.IsRangedFormation);
+            base.ManageFormationCounts();
+            var formationAI = _guardFormation.AI;
+            var allFormations = team.Formations.ToList();
             var infantryFormations = team.Formations.ToList().FindAll(formation => formation.QuerySystem.IsInfantryFormation);
-            if (rangedFormations.Count == 2)
+            var updatedFormations = new List<Formation>();
+            foreach (var agent in allFormations.SelectMany(form => form.Arrangement.GetAllUnits()).ToList().Select(unit => (Agent) unit))
             {
-                foreach (var agent in rangedFormations.SelectMany(form => form.Arrangement.GetAllUnits()).ToList().Select(unit => (Agent) unit))
+                if (agent.Name.Contains("Engineer"))
                 {
-                    if (agent.Name.Contains("Engineer"))
+                    if (!updatedFormations.Contains(agent.Formation))
+                        updatedFormations.Add(agent.Formation);
+                    agent.Formation = _artilleryFormation;
+                }
+            }
+
+            if (infantryFormations.Count > 0 && _guardFormation.Arrangement.UnitCount <= 0)
+            {
+                var count = 50;
+
+                foreach (var agent in infantryFormations.SelectMany(form => form.Arrangement.GetAllUnits()).ToList().Select(unit => (Agent) unit))
+                {
+                    count += -1;
+                    if (count >= 0)
                     {
-                        agent.Formation = rangedFormations[rangedFormations.Count - 1];
-                    }
-                    else
-                    {
-                        agent.Formation = rangedFormations[0];
+                        if (!updatedFormations.Contains(agent.Formation))
+                            updatedFormations.Add(agent.Formation);
+                        agent.Formation = _guardFormation;
                     }
                 }
+            }
 
-                team.TriggerOnFormationsChanged(rangedFormations[0]);
-                team.TriggerOnFormationsChanged(rangedFormations[rangedFormations.Count - 1]);
+            team.TriggerOnFormationsChanged(_artilleryFormation);
+            team.TriggerOnFormationsChanged(_guardFormation);
+            updatedFormations.ForEach(formation => team.TriggerOnFormationsChanged(formation));
 
-                if (infantryFormations.Count == 2)
-                {
-                    var count = 50;
-
-                    foreach (var agent in infantryFormations.SelectMany(form => form.Arrangement.GetAllUnits()).ToList().Select(unit => (Agent) unit))
-                    {
-                        count += -1;
-                        if (count >= 0)
-                        {
-                            agent.Formation = infantryFormations[infantryFormations.Count - 1];
-                        }
-                        else
-                        {
-                            agent.Formation = infantryFormations[0];
-                        }
-                    }
-
-                    team.TriggerOnFormationsChanged(infantryFormations[0]);
-                    team.TriggerOnFormationsChanged(infantryFormations[infantryFormations.Count - 1]);
-
-                    var formationAI = infantryFormations[rangedFormations.Count - 1].AI;
-                    if (formationAI.GetBehavior<BehaviorProtectArtillery>() == null)
-                        formationAI.AddAiBehavior(new BehaviorProtectArtillery(infantryFormations[rangedFormations.Count - 1],rangedFormations[rangedFormations.Count - 1],  this));
-                }
+            if (formationAI.GetBehavior<BehaviorProtectArtillery>() == null)
+            {
+                formationAI.AddAiBehavior(new BehaviorProtectArtillery(_guardFormation, _artilleryFormation, this));
+                _guardFormation.AI.SetBehaviorWeight<BehaviorProtectArtillery>(15.0f);
             }
         }
 
         protected override void TickOccasionally()
         {
-           base.TickOccasionally();
-           ManageFormationCounts();
+            base.TickOccasionally();
+            //    ManageFormationCounts();
         }
 
         protected override void OnCancel()

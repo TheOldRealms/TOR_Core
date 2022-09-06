@@ -10,18 +10,18 @@ namespace TOR_Core.BattleMechanics.AI.FormationBehavior
 
         public BehaviorProtectArtillery(Formation formation, Formation targetFormation, TacticComponent relatedTactic) : base(formation)
         {
-        
             _relatedTactic = relatedTactic;
             TargetFormation = targetFormation;
         }
 
         public override void TickOccasionally()
         {
-            // MovementOrder.MovementOrderFollowEntity() //TODO: Follow artillery entity instead?
-            var targetAgent = TargetFormation.GetFirstUnit();
-            MovementOrder.MovementOrderFollow(targetAgent);
+            var targetAgent = TargetFormation.GetMedianAgent(false , true, TargetFormation.GetAveragePositionOfUnits(true, true));
+            CurrentOrder = MovementOrder.MovementOrderFollow(targetAgent);
+            Formation.SetMovementOrder(CurrentOrder);
         }
-        public float GetAIWeight() => Formation.Team.TeamAI.IsCurrentTactic(_relatedTactic) ? 100f : 0.0f;
+
+        public new float GetAIWeight() => Formation.Team.TeamAI.IsCurrentTactic(_relatedTactic) ? 100f : 0.0f;
         protected override float GetAiWeight() => Formation.Team.TeamAI.IsCurrentTactic(_relatedTactic) ? 100f : 0.0f;
     }
 }
