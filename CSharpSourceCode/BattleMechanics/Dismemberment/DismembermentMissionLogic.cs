@@ -1,4 +1,5 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
@@ -26,6 +27,108 @@ namespace TOR_Core.BattleMechanics.Dismemberment
 
         private readonly string[] headMeshes = { "head", "hair", "beard", "eyebrow" };
 
+        private const int poolSize=50;
+
+
+        private  GameEntity[] headObjects = new GameEntity[poolSize];
+        private  GameEntity[] armObjects1 = new GameEntity[poolSize];
+        private  GameEntity[] armObjects2 = new GameEntity[poolSize];
+        private  GameEntity[] legObjects1 = new GameEntity[poolSize];
+        private  GameEntity[] legObjects2 = new GameEntity[poolSize];
+        private GameEntity[] fleshpieces1 = new GameEntity[poolSize];
+        private GameEntity[] fleshpieces2 = new GameEntity[poolSize];
+        private GameEntity[] fleshpieces3 = new GameEntity[poolSize];
+        private GameEntity[] limbpieces1 = new GameEntity[poolSize];
+        private GameEntity[] limbpieces2 = new GameEntity[poolSize];
+        private GameEntity[] limbpieces3 = new GameEntity[poolSize];
+        private List<GameEntity[]> _pooledItemList;
+        private int _index;
+
+
+        public override void AfterStart()
+        {
+
+            base.AfterStart();
+
+            for (int i = 0; i < poolSize; i++)
+            {
+                headObjects[i] =  GameEntity.Instantiate(Mission.Current.Scene, "exploded_head_001", false);
+                headObjects[i].AddPhysics(headObjects[i].Mass, headObjects[i].CenterOfMass, headObjects[i].GetBodyShape(), Vec3.Zero, Vec3.Zero, PhysicsMaterial.GetFromName("flesh"), false, -1);
+                headObjects[i].SetPhysicsState(false,true);
+                headObjects[i].SetAlpha(0);
+                
+                armObjects1[i] =  GameEntity.Instantiate(Mission.Current.Scene, "exploded_arms_001", false);
+                armObjects1[i].AddPhysics(armObjects1[i].Mass, armObjects1[i].CenterOfMass, armObjects1[i].GetBodyShape(), Vec3.Zero, Vec3.Zero, PhysicsMaterial.GetFromName("flesh"), false, -1);
+                armObjects1[i].SetPhysicsState(false,true);
+                armObjects1[i].SetAlpha(0);
+                
+                armObjects2[i] = GameEntity.Instantiate(Mission.Current.Scene, "exploded_arms_002", false);
+                armObjects2[i].AddPhysics(armObjects2[i].Mass, armObjects2[i].CenterOfMass, armObjects2[i].GetBodyShape(), Vec3.Zero, Vec3.Zero, PhysicsMaterial.GetFromName("flesh"), false, -1);
+                armObjects2[i].SetPhysicsState(false,true);
+                armObjects2[i].SetAlpha(0);
+                
+                legObjects1[i] = GameEntity.Instantiate(Mission.Current.Scene, "exploded_legs_002", false);
+                legObjects1[i].AddPhysics(legObjects1[i].Mass, legObjects1[i].CenterOfMass, legObjects1[i].GetBodyShape(), Vec3.Zero, Vec3.Zero, PhysicsMaterial.GetFromName("flesh"), false, -1);
+                legObjects1[i].SetPhysicsState(false,true);
+                legObjects1[i].SetAlpha(0);
+                
+                legObjects2[i] = GameEntity.Instantiate(Mission.Current.Scene, "exploded_legs_003", false);
+                legObjects2[i].AddPhysics(legObjects2[i].Mass, legObjects2[i].CenterOfMass, legObjects2[i].GetBodyShape(), Vec3.Zero, Vec3.Zero, PhysicsMaterial.GetFromName("flesh"), false, -1);
+                legObjects2[i].SetPhysicsState(false,true);
+                legObjects2[i].SetAlpha(0);
+                
+                fleshpieces1[i] = GameEntity.Instantiate(Mission.Current.Scene, "exploded_flesh_pieces_001", false);
+                fleshpieces1[i].AddPhysics(fleshpieces1[i].Mass, fleshpieces1[i].CenterOfMass, fleshpieces1[i].GetBodyShape(), Vec3.Zero, Vec3.Zero, PhysicsMaterial.GetFromName("flesh"), false, -1);
+                fleshpieces1[i].SetPhysicsState(false,true);
+                fleshpieces1[i].SetAlpha(0);
+                
+                fleshpieces2[i] = GameEntity.Instantiate(Mission.Current.Scene, "exploded_flesh_pieces_002", false);
+                fleshpieces2[i].AddPhysics(fleshpieces2[i].Mass, fleshpieces2[i].CenterOfMass, fleshpieces2[i].GetBodyShape(), Vec3.Zero, Vec3.Zero, PhysicsMaterial.GetFromName("flesh"), false, -1);
+                fleshpieces2[i].SetPhysicsState(false,true);
+                fleshpieces2[i].SetAlpha(0);
+                
+                fleshpieces3[i] = GameEntity.Instantiate(Mission.Current.Scene, "exploded_flesh_pieces_003", false);
+                fleshpieces3[i].AddPhysics(fleshpieces3[i].Mass, fleshpieces3[i].CenterOfMass, fleshpieces3[i].GetBodyShape(), Vec3.Zero, Vec3.Zero, PhysicsMaterial.GetFromName("flesh"), false, -1);
+                fleshpieces3[i].SetPhysicsState(false,true);
+                fleshpieces3[i].SetAlpha(0);
+                
+                limbpieces1[i] = GameEntity.Instantiate(Mission.Current.Scene, "exploded_limb_pieces_001", false);
+                limbpieces1[i].AddPhysics(limbpieces1[i].Mass, limbpieces1[i].CenterOfMass, limbpieces1[i].GetBodyShape(), Vec3.Zero, Vec3.Zero, PhysicsMaterial.GetFromName("flesh"), false, -1);
+                limbpieces1[i].SetPhysicsState(false,true);
+                limbpieces1[i].SetAlpha(0);
+                
+                limbpieces2[i] = GameEntity.Instantiate(Mission.Current.Scene, "exploded_limb_pieces_002", false);
+                limbpieces2[i].AddPhysics(limbpieces2[i].Mass, limbpieces2[i].CenterOfMass, limbpieces2[i].GetBodyShape(), Vec3.Zero, Vec3.Zero, PhysicsMaterial.GetFromName("flesh"), false, -1);
+                limbpieces2[i].SetPhysicsState(false,true);
+                limbpieces2[i].SetAlpha(0);
+                limbpieces3[i] = GameEntity.Instantiate(Mission.Current.Scene, "exploded_limb_pieces_003", false);
+                limbpieces3[i].AddPhysics(limbpieces3[i].Mass, limbpieces3[i].CenterOfMass, limbpieces3[i].GetBodyShape(), Vec3.Zero, Vec3.Zero, PhysicsMaterial.GetFromName("flesh"), false, -1);
+                limbpieces3[i].SetPhysicsState(false,true);
+                limbpieces3[i].SetAlpha(0);
+            }
+
+            _pooledItemList = new List<GameEntity[]>();
+            
+            _pooledItemList.Add(headObjects);
+            _pooledItemList.Add(armObjects1);
+            _pooledItemList.Add(legObjects1);
+            _pooledItemList.Add(legObjects2);
+
+            _pooledItemList.Add(fleshpieces3);
+
+            _pooledItemList.Add(fleshpieces1);
+            _pooledItemList.Add(fleshpieces2);
+            _pooledItemList.Add(fleshpieces3);
+            _pooledItemList.Add(limbpieces1);
+            _pooledItemList.Add(limbpieces2);
+            _pooledItemList.Add(limbpieces3);
+
+
+
+
+        }
+
+
         public override void OnMissionTick(float dt)
         {
             if (slowMotionEndTime > 0 && Mission.CurrentTime >= slowMotionEndTime)
@@ -42,7 +145,7 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             if(victim.Health >= 0&& victim.State!=AgentState.Killed) return;
 
 
-            bool blowCanDecapitate = (collisionData.VictimHitBodyPart == BoneBodyPartType.Neck ||
+            /*bool blowCanDecapitate = (collisionData.VictimHitBodyPart == BoneBodyPartType.Neck ||
                                      collisionData.VictimHitBodyPart == BoneBodyPartType.Head) &&
                                     blow.DamageType == DamageTypes.Cut &&
                                     (blow.WeaponRecord.WeaponClass == WeaponClass.OneHandedAxe ||
@@ -73,15 +176,15 @@ namespace TOR_Core.BattleMechanics.Dismemberment
                 {
                     DismemberHead(victim, collisionData);
                 }
-            }
-
+            }*/
+            
+            
+            if(victim.IsUndead())
             
             if (attackerWeapon.Item != null&&attackerWeapon.Item.IsExplosiveAmmunition())
             {
                 InitializeBodyExplosion(victim,blow.Position);
             }
-                
-            
         }
         
 
@@ -94,40 +197,74 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             var frame = agent.Frame.Elevate(1);
             if (distance <= 1.5f)
             {
-                ExplosionNearVictim(frame);
+                
             }
-            
-            ExplosionFarVictim(frame);
+            ExplosionNearVictim(frame);
+            // ExplosionFarVictim(frame);
 
 
         }
         
         private void ExplosionNearVictim(MatrixFrame frame)
         {
-            LaunchLimb(frame, "exploded_head_001"); 
-            LaunchLimb(frame, "exploded_arms_001");
-            LaunchLimb(frame, "exploded_arms_002");
-            LaunchLimb(frame, "exploded_legs_002");
-            LaunchLimb(frame, "exploded_legs_003");
+            if (_index >= poolSize)
+                _index = 0;
 
-            LaunchLimb(frame, "exploded_flesh_pieces_001");
-            LaunchLimb(frame, "exploded_flesh_pieces_002");
-            LaunchLimb(frame, "exploded_flesh_pieces_003");
 
-            LaunchLimb(frame, "exploded_limb_pieces_001");
-            LaunchLimb(frame, "exploded_limb_pieces_002");
-            LaunchLimb(frame, "exploded_limb_pieces_003");
+
+            foreach (var go in _pooledItemList.Select(item => item[_index]))
+            {
+                go.SetGlobalFrame(frame);
+                go.SetAlpha(1);
+                go.SetPhysicsState(true,true);
+                var dir = TORCommon.GetRandomDirection(3);
+                var multiplier = 50/ go.Mass;
+
+                go.ApplyLocalImpulseToDynamicBody(Vec3.Up*-1, dir * multiplier*5);
+            }
+            /*
+            ObjectPooling(headObjects[_index], frame);
+            ObjectPooling(armObjects1[_index], frame);
+            ObjectPooling(armObjects2[_index], frame);
+            
+            ObjectPooling(legObjects1[_index], frame);
+            ObjectPooling(legObjects2[_index], frame);
+            ObjectPooling(fleshpieces1[_index], frame);
+            ObjectPooling(fleshpieces2[_index], frame);
+            ObjectPooling(fleshpieces3[_index], frame);
+            
+            ObjectPooling(limbpieces1[_index], frame);
+            ObjectPooling(limbpieces2[_index], frame);
+            ObjectPooling(limbpieces3[_index], frame);
+            */
+            
+
+            _index++;
         }
         
         private void ExplosionFarVictim(MatrixFrame frame)
         {
-            LaunchLimb(frame, "exploded_torso_001");
-          //  LaunchLimb(frame, "exploded_legs_001");
+            LaunchLimb(frame, "exploded_torso_001"); 
+            LaunchLimb(frame, "exploded_legs_001");
 
             LaunchLimb(frame, "exploded_flesh_pieces_001");
             LaunchLimb(frame, "exploded_flesh_pieces_002");
             LaunchLimb(frame, "exploded_limb_pieces_001");
             LaunchLimb(frame, "exploded_limb_pieces_002");
+        }
+
+        private void ObjectPooling(GameEntity go, MatrixFrame frame)
+        {
+            go.SetGlobalFrame(frame);
+            go.SetAlpha(1);
+            go.SetPhysicsState(true,true);
+            var dir = TORCommon.GetRandomDirection(3);
+            var multiplier = 50/ go.Mass;
+
+            go.ApplyLocalImpulseToDynamicBody(Vec3.Zero, dir * multiplier*5);
+            
+            //limbpieces1[i].
+           // limb.AddPhysics(limb.Mass, limb.CenterOfMass, limb.GetBodyShape(), dir * multiplier, dir * 2, PhysicsMaterial.GetFromName("flesh"), false, -1);
         }
         
         
@@ -137,7 +274,7 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             limb.SetGlobalFrame(frame);
             var dir = TORCommon.GetRandomDirection(3);
             var multiplier = 50/ limb.Mass;
-            limb.AddPhysics(limb.Mass, limb.CenterOfMass, limb.GetBodyShape(), dir * multiplier, dir * 2, PhysicsMaterial.GetFromName("flesh"), false, -1);
+            limb.ApplyLocalImpulseToDynamicBody(Vec3.Up, dir * multiplier*2);
         }
                        
 
