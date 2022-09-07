@@ -43,7 +43,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         {
             base.ManageFormationCounts();
             var formationAI = _guardFormation.AI;
-            var allFormations = team.Formations.ToList();
+            var allFormations = team.FormationsIncludingSpecialAndEmpty.ToList();
             var infantryFormations = team.Formations.ToList().FindAll(formation => formation.QuerySystem.IsInfantryFormation);
             var updatedFormations = new List<Formation>();
             foreach (var agent in allFormations.SelectMany(form => form.Arrangement.GetAllUnits()).ToList().Select(unit => (Agent) unit))

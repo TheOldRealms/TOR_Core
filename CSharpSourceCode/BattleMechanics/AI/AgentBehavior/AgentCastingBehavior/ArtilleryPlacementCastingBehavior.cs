@@ -21,6 +21,8 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
 
         public override void Execute()
         {
+            if (CurrentTarget.TacticalPosition == null) return;
+
             var castingPosition = ((AdjacentAoETacticalBehavior) TacticalBehavior)?.CastingPosition;
             if (castingPosition.HasValue && Agent.Position.AsVec2.Distance(castingPosition.Value.AsVec2) > 5) return;
 
