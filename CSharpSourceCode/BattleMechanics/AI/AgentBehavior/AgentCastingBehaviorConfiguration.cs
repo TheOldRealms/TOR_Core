@@ -64,7 +64,6 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior
 
         public static List<Target> FindTargets(Agent agent, AbilityTemplate abilityTemplate)
         {
-
             if (abilityTemplate.AbilityTargetType == AbilityTargetType.AlliesInAOE ||
                 abilityTemplate.AbilityEffectType == AbilityEffectType.Heal ||
                 abilityTemplate.AbilityTargetType == AbilityTargetType.SingleAlly)

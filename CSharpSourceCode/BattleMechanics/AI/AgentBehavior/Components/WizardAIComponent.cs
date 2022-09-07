@@ -71,7 +71,8 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
 
         public void UpdateArtilleryTargetPosition(Target chosenPosition)
         {
-            _availableCastingBehaviors.FindAll(behavior => behavior.GetType() == typeof(ArtilleryPlacementCastingBehavior)).ForEach(behavior => behavior.SetCurrentTarget(chosenPosition));
+            var agentBehaviors = AvailableCastingBehaviors.FindAll(behavior => behavior.GetType() == typeof(ArtilleryPlacementCastingBehavior));
+            agentBehaviors.ForEach(behavior => behavior.SetCurrentTarget(chosenPosition));
         }
     }
 }

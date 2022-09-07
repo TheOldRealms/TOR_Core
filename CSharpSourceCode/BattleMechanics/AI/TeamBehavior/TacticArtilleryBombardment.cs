@@ -62,9 +62,6 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                 }
             }
 
-            AssessArtilleryPositions();
-            UpdatePlacerTargets();
-
             if (infantryFormations.Count > 0 && _guardFormation.Arrangement.UnitCount <= 0)
             {
                 var count = 50;
@@ -99,6 +96,8 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             {
                 AssessArtilleryPositions();
                 UpdatePlacerTargets();
+                if (!_usingMachines)
+                    ResumeUsingMachines();
             }
 
 
@@ -158,13 +157,12 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 
         protected void ResumeUsingMachines()
         {
-            foreach (Formation formation in this.Formations)
+            foreach (UsableMachine usable in _artilleryFormation.GetUsedMachines().ToList<UsableMachine>())
             {
-                foreach (UsableMachine usable in formation.GetUsedMachines().ToList<UsableMachine>())
-                {
-                    formation.StartUsingMachine(usable);
-                }
+                _artilleryFormation.StartUsingMachine(usable);
             }
+
+            _usingMachines = true;
         }
 
         protected override float GetTacticWeight()

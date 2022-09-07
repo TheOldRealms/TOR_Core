@@ -47,7 +47,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
         public override List<BehaviorOption> CalculateUtility()
         {
             var behaviorOptions = new List<BehaviorOption>();
-            CurrentTarget.UtilityValue = 1.0f;
+            CurrentTarget.UtilityValue = CurrentTarget.TacticalPosition == null ? 0.0f : 1.0f;
             behaviorOptions.Add(new BehaviorOption {Target = CurrentTarget, Behavior = this});
             return behaviorOptions;
         }
