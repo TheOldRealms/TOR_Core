@@ -28,7 +28,7 @@ namespace TOR_Core.BattleMechanics.Dismemberment
         private readonly string[] headMeshes = { "head", "hair", "beard", "eyebrow" };
 
         private const int poolSize=20; // the higher this number, the longer body parts stay, the more Objects are "kept" in memory.
-        //13*20 = 260 Game Entities are spawned. keep the pool size as reasonable small as possible.
+        //14*20 = 280 Game Entities are spawned. keep the pool size as reasonable small as possible.
 
         private  GameEntity[] _headObjects = new GameEntity[poolSize];
         private  GameEntity[] armObjects1 = new GameEntity[poolSize];
@@ -51,25 +51,27 @@ namespace TOR_Core.BattleMechanics.Dismemberment
 
         public override void AfterStart()
         {
+            _pooledItemList = new GameEntity[poolSize][];
             for (int i = 0; i < poolSize; i++)
             {
-                _headObjects[i] = InstantiateObjectAtPoolIndex("exploded_head_001", "exploded_torso_001", i);
-                armObjects1[i] = InstantiateObjectAtPoolIndex("exploded_arms_001");
-                armObjects2[i] = InstantiateObjectAtPoolIndex("exploded_arms_002");
-                legObjects1[i] = InstantiateObjectAtPoolIndex("exploded_legs_002");
-                legObjects2[i] = InstantiateObjectAtPoolIndex("exploded_legs_003");
-                fleshpieces1[i] = InstantiateObjectAtPoolIndex("exploded_flesh_pieces_001");
-                fleshpieces2[i] = InstantiateObjectAtPoolIndex("exploded_flesh_pieces_002");
-                fleshpieces3[i] = InstantiateObjectAtPoolIndex("exploded_flesh_pieces_003");
-                limbpieces1[i] = InstantiateObjectAtPoolIndex("exploded_limb_pieces_001");
-                limbpieces2[i] = InstantiateObjectAtPoolIndex("exploded_limb_pieces_002");
-                limbpieces3[i] = InstantiateObjectAtPoolIndex("exploded_limb_pieces_003");
-                limbpieces4[i] = InstantiateObjectAtPoolIndex("exploded_limb_pieces_001");
-                limbpieces5[i] = InstantiateObjectAtPoolIndex("exploded_limb_pieces_002");
-                limbpieces6[i] = InstantiateObjectAtPoolIndex("exploded_limb_pieces_003");
+                _pooledItemList[i]= new GameEntity[14];
+                _pooledItemList[i][0]= InstantiateObjectAtPoolIndex("exploded_head_001", "exploded_torso_001", i);
+                _pooledItemList[i][1] = InstantiateObjectAtPoolIndex("exploded_arms_001");
+                _pooledItemList[i][2] = InstantiateObjectAtPoolIndex("exploded_arms_002");
+                _pooledItemList[i][3]= InstantiateObjectAtPoolIndex("exploded_legs_002");
+                _pooledItemList[i][4] = InstantiateObjectAtPoolIndex("exploded_legs_003");
+                _pooledItemList[i][5] = InstantiateObjectAtPoolIndex("exploded_flesh_pieces_001");
+                _pooledItemList[i][6] = InstantiateObjectAtPoolIndex("exploded_flesh_pieces_002");
+                _pooledItemList[i][7] = InstantiateObjectAtPoolIndex("exploded_flesh_pieces_003");
+                _pooledItemList[i][8] = InstantiateObjectAtPoolIndex("exploded_limb_pieces_001");
+                _pooledItemList[i][9] = InstantiateObjectAtPoolIndex("exploded_limb_pieces_002");
+                _pooledItemList[i][10]= InstantiateObjectAtPoolIndex("exploded_limb_pieces_003");
+                _pooledItemList[i][11]= InstantiateObjectAtPoolIndex("exploded_limb_pieces_001");
+                _pooledItemList[i][12] = InstantiateObjectAtPoolIndex("exploded_limb_pieces_002");
+                _pooledItemList[i][13] = InstantiateObjectAtPoolIndex("exploded_limb_pieces_003");
             }
 
-            _pooledItemList = new GameEntity[13][];
+            /*_pooledItemList = new GameEntity[13][];
             _pooledItemList[0] = _headObjects;
             _pooledItemList[1] = armObjects1;
             _pooledItemList[2] = _headObjects;
@@ -95,7 +97,7 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             _pooledItemList.Add(limbpieces3);
             _pooledItemList.Add(limbpieces4);
             _pooledItemList.Add(limbpieces5);
-            _pooledItemList.Add(limbpieces6);
+            _pooledItemList.Add(limbpieces6);*/
             
         }
 
@@ -107,10 +109,9 @@ namespace TOR_Core.BattleMechanics.Dismemberment
 
         private void Clear()
         {
-            int t = 0;
             foreach( var container in _pooledItemList)
             {
-                for (int i = 0; i < poolSize; i++)
+                for (int i = 0; i < container.Length; i++)
                 {
                     container[i].Remove(0);
                     container[i] = null;
@@ -226,8 +227,21 @@ namespace TOR_Core.BattleMechanics.Dismemberment
                 _index = 0;
                 _fullyInstantiated = true;
             }
+
+            for (var i = 0; i < _pooledItemList[_index].Length;i++)
+            {
+                if (!_fullyInstantiated)
+                {
+                    _pooledItemList[_index][i].SetAlpha(1);
+                    _pooledItemList[_index][i].SetPhysicsState(true,true);
+                }
+                _pooledItemList[_index][i].SetGlobalFrame(frame);
+                var dir = TORCommon.GetRandomDirection(3);
+                _pooledItemList[_index][i].ApplyLocalImpulseToDynamicBody(Vec3.Up*-1, dir * 25);
+            }
             
-            foreach (var go in _pooledItemList.Select(item => item[_index]))
+            
+            /*foreach (var go in _pooledItemList.Select(item => item[][_index]))
             {
                 if (!_fullyInstantiated)
                 {
@@ -238,7 +252,7 @@ namespace TOR_Core.BattleMechanics.Dismemberment
                 var dir = TORCommon.GetRandomDirection(3);
                 go.ApplyLocalImpulseToDynamicBody(Vec3.Up*-1, dir * 25);
             }
-            _index++;
+            _index++;*/
         }
 
         private void LaunchLimb(MatrixFrame frame, string name)
