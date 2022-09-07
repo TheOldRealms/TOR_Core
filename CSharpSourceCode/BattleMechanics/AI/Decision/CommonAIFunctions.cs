@@ -21,13 +21,8 @@ namespace TOR_Core.BattleMechanics.AI.Decision
         {
             return target =>
             {
-                if (target.TacticalPosition != null && team != null)
-                {
-                    var position = target.TacticalPosition.Position.GetGroundVec3();
-                    var enumerable = team.FormationsIncludingSpecial.ToList()
-                        .Select(formation => position.Distance(formation.QuerySystem.MedianPosition.Normal)).ToList();
-                    return enumerable.Count > 0 ? enumerable.Min() : 300.0f;
-                }
+                if (team != null)
+                    return target.TacticalPosition.Position.AsVec2.Distance(team.QuerySystem.AverageEnemyPosition);
 
                 if (target.Formation != null)
                 {
@@ -39,6 +34,17 @@ namespace TOR_Core.BattleMechanics.AI.Decision
 
                     return target.GetPosition().AsVec2.Distance(querySystemClosestEnemyFormation.AveragePosition);
                 }
+
+                return 0f;
+            };
+        }
+
+        public static Func<Target, float> TargetDistanceToOwnArmy(Team team = null)
+        {
+            return target =>
+            {
+                if (team != null)
+                    return target.TacticalPosition.Position.AsVec2.Distance(team.QuerySystem.AveragePosition);
 
                 return 0f;
             };

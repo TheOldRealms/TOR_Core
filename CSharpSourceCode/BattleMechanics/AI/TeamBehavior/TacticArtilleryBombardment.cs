@@ -81,7 +81,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         protected override void TickOccasionally()
         {
             base.TickOccasionally();
-            
+
             if (team.FormationsIncludingSpecial.Any())
                 AssessArtilleryPositions();
 
@@ -154,7 +154,9 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         private List<Axis> CreateArtilleryPositionAssessment()
         {
             var function = new List<Axis>();
-            function.Add(new Axis(0, 70f, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles(team)));
+            var distance = team.QuerySystem.AveragePosition.Distance(team.QuerySystem.AverageEnemyPosition);
+            function.Add(new Axis(0, distance / 2, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles(this.team)));
+            function.Add(new Axis(0, distance / 3, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToOwnArmy(this.team)));
             function.Add(new Axis(0, 1, x => x, CommonAIDecisionFunctions.AssessPositionForArtillery()));
             return function;
         }
