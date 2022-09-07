@@ -39,6 +39,11 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentTacticalBehavior
             CalculateCastingTarget(CastingBehavior.CurrentTarget);
         }
 
+        public override void SetCurrentTarget(Target target)
+        {
+            CastingBehavior.SetCurrentTarget(target);
+        }
+        
         public override void Terminate()
         {
             Agent.DisableScriptedMovement();

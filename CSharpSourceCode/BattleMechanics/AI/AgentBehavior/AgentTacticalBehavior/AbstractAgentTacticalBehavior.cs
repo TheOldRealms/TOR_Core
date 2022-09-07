@@ -42,6 +42,9 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentTacticalBehavior
             throw new NotImplementedException();
         }
 
+        public abstract void SetCurrentTarget(Target target);
+
+
         public bool IsPositional()
         {
             return false;

@@ -102,7 +102,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
             return Mat3.CreateMat3WithForward(targetPosition - originaPosition);
         }
 
-        public List<BehaviorOption> CalculateUtility()
+        public virtual List<BehaviorOption> CalculateUtility()
         {
             LatestScores = AgentCastingBehaviorConfiguration.FindTargets(Agent, AbilityTemplate)
                 .Select(target =>
@@ -126,6 +126,11 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
 
             var hysteresis = Component.CurrentCastingBehavior == this && target.Formation == CurrentTarget.Formation ? Hysteresis : 0.0f;
             return _axisList.GeometricMean(target) + hysteresis;
+        }
+
+        public void SetCurrentTarget(Target target)
+        {
+            CurrentTarget = target;
         }
     }
 }

@@ -68,5 +68,10 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
 
             return returnBehavior;
         }
+
+        public void UpdateArtilleryTargetPosition(Target chosenPosition)
+        {
+            _availableCastingBehaviors.Find(behavior => behavior.GetType() == typeof(ArtilleryPlacementCastingBehavior))?.SetCurrentTarget(chosenPosition);
+        }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using HarmonyLib;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
 using TOR_Core.BattleMechanics.AI.Decision;
 using TOR_Core.BattleMechanics.AI.FormationBehavior;
 
@@ -18,6 +20,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         private List<Axis> _positionScoring;
         private List<Target> _latestScoredPositions;
         private Target _chosenPosition;
+        private readonly List<WizardAIComponent> _artilleryPlacerComponents;
 
         public TacticArtilleryBombardment(Team team) : base(team)
         {
@@ -27,6 +30,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             this.team.FormationsIncludingSpecialAndEmpty.Add(_guardFormation);
 
             _positionScoring = CreateArtilleryPositionAssessment();
+            _artilleryPlacerComponents = new List<WizardAIComponent>();
 
             //TODO: Reminder, might need this if certain updates dont work.
             // var method = Traverse.Create(this.team).Method("FormationAI_OnActiveBehaviorChanged").GetValue();
@@ -50,7 +54,16 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                         updatedFormations.Add(agent.Formation);
                     agent.Formation = _artilleryFormation;
                 }
+
+                var wizardAIComponent = agent.GetComponent<WizardAIComponent>();
+                if (wizardAIComponent != null)
+                {
+                    _artilleryPlacerComponents.Add(wizardAIComponent);
+                }
             }
+
+            AssessArtilleryPositions();
+            UpdatePlacerTargets();
 
             if (infantryFormations.Count > 0 && _guardFormation.Arrangement.UnitCount <= 0)
             {
@@ -83,11 +96,16 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             base.TickOccasionally();
 
             if (team.FormationsIncludingSpecial.Any())
+            {
                 AssessArtilleryPositions();
+                UpdatePlacerTargets();
+            }
+
 
             SetGuardFormationBehaviorWeights();
             SetArtilleryFormationBehaviorWeights();
         }
+
 
         private void AssessArtilleryPositions()
         {
@@ -100,6 +118,12 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                 }).ToList();
             var candidate = _latestScoredPositions.MaxBy(target => target.UtilityValue);
             _chosenPosition = candidate;
+        }
+
+
+        private void UpdatePlacerTargets()
+        {
+            _artilleryPlacerComponents.ForEach(component => component.UpdateArtilleryTargetPosition(_chosenPosition));
         }
 
         private void SetGuardFormationBehaviorWeights()

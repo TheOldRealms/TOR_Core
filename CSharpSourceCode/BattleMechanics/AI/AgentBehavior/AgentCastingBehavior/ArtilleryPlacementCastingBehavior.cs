@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
@@ -39,6 +40,14 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
         {
             var activeEntitiesWithScriptComponentOfType = Mission.Current.GetActiveEntitiesWithScriptComponentOfType<ArtilleryRangedSiegeWeapon>();
             return !activeEntitiesWithScriptComponentOfType.Any(entity => entity.GlobalPosition.Distance(target.SelectedWorldPosition) < 3.5);
+        }
+
+        public override List<BehaviorOption> CalculateUtility()
+        {
+            var behaviorOptions = new List<BehaviorOption>();
+            CurrentTarget.UtilityValue = 1.0f;
+            behaviorOptions.Add(new BehaviorOption {Target = CurrentTarget, Behavior = this});
+            return behaviorOptions;
         }
     }
 }

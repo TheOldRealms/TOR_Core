@@ -64,10 +64,6 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior
 
         public static List<Target> FindTargets(Agent agent, AbilityTemplate abilityTemplate)
         {
-            if (abilityTemplate.AbilityEffectType == AbilityEffectType.ArtilleryPlacement && agent.Team.HasTeamAi)
-                return agent.Team.TeamAI.TacticalPositions
-                    .Select(pos => new Target {TacticalPosition = pos})
-                    .ToList();
 
             if (abilityTemplate.AbilityTargetType == AbilityTargetType.AlliesInAOE ||
                 abilityTemplate.AbilityEffectType == AbilityEffectType.Heal ||
@@ -108,7 +104,6 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior
 
                 {typeof(SummoningCastingBehavior), CreateSummoningAxis()},
                 {typeof(ArtilleryPlacementCastingBehavior), CreateArtilleryPlacementAxis()},
-                
             };
 
         public static List<AbstractAgentCastingBehavior> PrepareCastingBehaviors(Agent agent)
@@ -138,8 +133,8 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior
                 return axes;
             };
         }
-        
-     private static Func<AbstractAgentCastingBehavior, List<Axis>> CreateArtilleryPlacementAxis()
+
+        private static Func<AbstractAgentCastingBehavior, List<Axis>> CreateArtilleryPlacementAxis()
         {
             return behavior =>
             {
@@ -148,7 +143,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior
                 axes.Add(new Axis(0, 100f, x => 1 - x, CommonAIDecisionFunctions.DistanceToTarget(() => behavior.Agent.Team.QuerySystem.MedianPosition.GetGroundVec3())));
                 axes.Add(new Axis(0, 70f, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles(behavior.Agent.Team)));
                 axes.Add(new Axis(0, 1, x => x, CommonAIDecisionFunctions.AssessPositionForArtillery()));
-                
+
                 return axes;
             };
         }
