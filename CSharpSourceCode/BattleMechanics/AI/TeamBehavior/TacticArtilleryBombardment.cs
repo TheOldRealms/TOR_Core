@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using HarmonyLib;
 using TaleWorlds.Core;
+using TaleWorlds.Engine;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
@@ -81,9 +84,9 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             team.TriggerOnFormationsChanged(_guardFormation);
             updatedFormations.ForEach(formation => team.TriggerOnFormationsChanged(formation));
 
-            if (formationAI.GetBehavior<BehaviorProtectArtillery>() == null)
+            if (formationAI.GetBehavior<BehaviorProtectArtilleryCrew>() == null)
             {
-                formationAI.AddAiBehavior(new BehaviorProtectArtillery(_guardFormation, _artilleryFormation, this));
+                formationAI.AddAiBehavior(new BehaviorProtectArtilleryCrew(_guardFormation, _artilleryFormation, this));
             }
         }
 
@@ -129,7 +132,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             _guardFormation.AI.ResetBehaviorWeights();
             SetDefaultBehaviorWeights(_guardFormation);
             _guardFormation.AI.SetBehaviorWeight<BehaviorTacticalCharge>(1f);
-            _guardFormation.AI.SetBehaviorWeight<BehaviorProtectArtillery>(15.0f);
+            _guardFormation.AI.SetBehaviorWeight<BehaviorProtectArtilleryCrew>(15.0f);
             _guardFormation.AI.SetBehaviorWeight<BehaviorDefend>(10).TacticalDefendPosition = _chosenPosition.TacticalPosition;
         }
 
@@ -137,7 +140,8 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         {
             _artilleryFormation.AI.ResetBehaviorWeights();
             SetDefaultBehaviorWeights(_artilleryFormation);
-            _artilleryFormation.AI.SetBehaviorWeight<BehaviorDefend>(15f).TacticalDefendPosition = _chosenPosition.TacticalPosition;
+            var enemyDirection = (_chosenPosition.TacticalPosition.Position.AsVec2 - team.QuerySystem.AverageEnemyPosition).Normalized();
+            _artilleryFormation.AI.SetBehaviorWeight<BehaviorDefend>(15f).DefensePosition = new WorldPosition(Mission.Current.Scene, _chosenPosition.TacticalPosition.Position.GetGroundVec3() + enemyDirection.ToVec3(0) * 12);
             _artilleryFormation.AI.SetBehaviorWeight<BehaviorSkirmishLine>(1f);
             _artilleryFormation.AI.SetBehaviorWeight<BehaviorScreenedSkirmish>(1f);
         }
@@ -156,7 +160,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 
         protected void ResumeUsingMachines()
         {
-            foreach (UsableMachine usable in _artilleryFormation.GetUsedMachines().ToList())
+            foreach (UsableMachine usable in _artilleryFormation.GetUsedMachines().ToList<UsableMachine>())
             {
                 _artilleryFormation.StartUsingMachine(usable);
             }
@@ -176,8 +180,8 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         {
             var function = new List<Axis>();
             var distance = team.QuerySystem.AveragePosition.Distance(team.QuerySystem.AverageEnemyPosition);
-            function.Add(new Axis(0, distance / 2, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles(team)));
-            function.Add(new Axis(0, distance / 2, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToOwnArmy(team)));
+            function.Add(new Axis(0, distance / 5, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles(team)));
+            function.Add(new Axis(0, distance / 4, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToOwnArmy(team)));
             function.Add(new Axis(0, 1, x => x, CommonAIDecisionFunctions.AssessPositionForArtillery()));
             return function;
         }

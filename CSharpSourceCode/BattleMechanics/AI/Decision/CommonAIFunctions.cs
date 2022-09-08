@@ -118,11 +118,13 @@ namespace TOR_Core.BattleMechanics.AI.Decision
                 var value = 0.0f;
                 if (target.TacticalPosition.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround)
                     value += 0.9f;
+                if (target.TacticalPosition.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround)
+                    value += 0.9f;
                 if (target.TacticalPosition.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.ChokePoint)
                     value += 0.7f;
 
                 if (target.TacticalPosition.TacticalRegionMembership == TacticalRegion.TacticalRegionTypeEnum.Opening)
-                    value += 0.1f;
+                    value += 0.5f;
                 if (target.TacticalPosition.TacticalRegionMembership == TacticalRegion.TacticalRegionTypeEnum.Forest)
                     value -= 0.1f;
                 if (target.TacticalPosition.TacticalRegionMembership == TacticalRegion.TacticalRegionTypeEnum.DifficultTerrain)

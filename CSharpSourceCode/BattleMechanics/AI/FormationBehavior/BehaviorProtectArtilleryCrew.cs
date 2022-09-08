@@ -2,13 +2,13 @@
 
 namespace TOR_Core.BattleMechanics.AI.FormationBehavior
 {
-    public class BehaviorProtectArtillery : BehaviorComponent
+    public class BehaviorProtectArtilleryCrew : BehaviorComponent
     {
         private readonly TacticComponent _relatedTactic;
         public Formation TargetFormation { get; set; }
 
 
-        public BehaviorProtectArtillery(Formation formation, Formation targetFormation, TacticComponent relatedTactic) : base(formation)
+        public BehaviorProtectArtilleryCrew(Formation formation, Formation targetFormation, TacticComponent relatedTactic) : base(formation)
         {
             _relatedTactic = relatedTactic;
             TargetFormation = targetFormation;

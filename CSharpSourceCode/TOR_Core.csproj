@@ -418,7 +418,7 @@
     <Compile Include="BattleMechanics\AI\Decision\IAgentBehavior.cs" />
     <Compile Include="BattleMechanics\AI\Decision\ScoringFunctions.cs" />
     <Compile Include="BattleMechanics\AI\Decision\Target.cs" />
-    <Compile Include="BattleMechanics\AI\FormationBehavior\BehaviorProtectArtillery.cs" />
+    <Compile Include="BattleMechanics\AI\FormationBehavior\BehaviorProtectArtilleryCrew.cs" />
     <Compile Include="BattleMechanics\AI\TeamBehavior\TacticArtilleryBombardment.cs" />
     <Compile Include="BattleMechanics\AI\TeamBehavior\TORFormationClass.cs" />
     <Compile Include="BattleMechanics\AI\TeamBehavior\TorMissionCombatantsLogic.cs" />
