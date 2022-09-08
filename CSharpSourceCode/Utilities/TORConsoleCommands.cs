@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 using TOR_Core.AbilitySystem;
 using TOR_Core.Extensions;
 
-namespace TOW_Core.Spells.ConsoleComands
+namespace TOR_Core.Utilities
 {
     public class TORConsoleCommands
     {
@@ -73,7 +72,7 @@ namespace TOW_Core.Spells.ConsoleComands
         }
 
         private static string FormatAddedSpellsOutput(List<string> matchedArguments, List<string> knownSpells,
-        List<string> newSpells) =>
+            List<string> newSpells) =>
             AggregateOutput("Matched spells:", matchedArguments) +
             AggregateOutput("Already known spells in request:", knownSpells) +
             AggregateOutput("Added spells :", newSpells

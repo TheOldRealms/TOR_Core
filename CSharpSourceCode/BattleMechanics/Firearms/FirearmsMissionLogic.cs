@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
@@ -157,7 +157,6 @@ namespace TOR_Core.BattleMechanics.Firearms
             }
             
             var distanceFromPlayer = position.Distance(Mission.Current.GetCameraFrame().origin);
-            // var t = SoundEvent.CreateEventFromString(2);
             int soundIndex = distanceFromPlayer < 30 ? SoundEvent.GetEventIdFromString(soundID) : SoundEvent.GetEventIdFromString(farAwaySoundID);
             var sound = SoundEvent.CreateEvent(soundIndex, Mission.Current.Scene);
             if (sound != null)
@@ -179,20 +178,6 @@ namespace TOR_Core.BattleMechanics.Firearms
                     var baseDamage = explosionDamage * MBRandom.RandomFloatRanged(1 - damageVariance, 1 + damageVariance);
                     var damage = (explosionRadius - distance) / explosionRadius * baseDamage;
                     agent.ApplyDamage((int)damage, position, affector, doBlow: true, hasShockWave: true);
-                    
-                    /*if (distance < 3 && agent.State == AgentState.Killed && agent.IsHuman && !agent.IsUndead() && !agent.IsVampire())
-                    {
-                        agent.Disappear();
-                        var frame = agent.Frame.Elevate(1);
-                        if (distance <= 1.5f)
-                        {
-                            ExplodeNearVictim(frame);
-                        }
-                        else
-                        {
-                            ExplodeFarVictim(frame);
-                        }
-                    }*/
                 }
             }
         }
