@@ -17,8 +17,12 @@ namespace TOR_Core.BattleMechanics.AI.FormationBehavior
         public override void TickOccasionally()
         {
             var targetAgent = TargetFormation.GetMedianAgent(false , true, TargetFormation.GetAveragePositionOfUnits(true, true));
-            CurrentOrder = MovementOrder.MovementOrderFollow(targetAgent);
-            Formation.SetMovementOrder(CurrentOrder);
+            if (targetAgent != null)
+            {
+                CurrentOrder = MovementOrder.MovementOrderFollow(targetAgent);
+                Formation.SetMovementOrder(CurrentOrder);
+            }
+           
         }
 
         public new float GetAIWeight() => Formation.Team.TeamAI.IsCurrentTactic(_relatedTactic) ? 100f : 0.0f;

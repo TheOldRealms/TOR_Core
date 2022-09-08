@@ -66,7 +66,6 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
             float time = (UsableMachine as ArtilleryRangedSiegeWeapon).GetEstimatedCurrentFlightTime();
 
             target.SelectedWorldPosition = target.Position + velocity * time;
-
             return target.SelectedWorldPosition;
         }
 

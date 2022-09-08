@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using HarmonyLib;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
 using TOR_Core.BattleMechanics.AI.Decision;
 using TOR_Core.BattleMechanics.AI.FormationBehavior;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 {
@@ -48,7 +47,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             var updatedFormations = new List<Formation>();
             foreach (var agent in allFormations.SelectMany(form => form.Arrangement.GetAllUnits()).ToList().Select(unit => (Agent) unit))
             {
-                if (agent.Name.Contains("Engineer"))
+                if (agent.HasAttribute("ArtilleryCrew"))
                 {
                     if (!updatedFormations.Contains(agent.Formation))
                         updatedFormations.Add(agent.Formation);
@@ -157,7 +156,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 
         protected void ResumeUsingMachines()
         {
-            foreach (UsableMachine usable in _artilleryFormation.GetUsedMachines().ToList<UsableMachine>())
+            foreach (UsableMachine usable in _artilleryFormation.GetUsedMachines().ToList())
             {
                 _artilleryFormation.StartUsingMachine(usable);
             }
@@ -177,8 +176,8 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         {
             var function = new List<Axis>();
             var distance = team.QuerySystem.AveragePosition.Distance(team.QuerySystem.AverageEnemyPosition);
-            function.Add(new Axis(0, distance / 2, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles(this.team)));
-            function.Add(new Axis(0, distance / 3, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToOwnArmy(this.team)));
+            function.Add(new Axis(0, distance / 2, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles(team)));
+            function.Add(new Axis(0, distance / 2, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToOwnArmy(team)));
             function.Add(new Axis(0, 1, x => x, CommonAIDecisionFunctions.AssessPositionForArtillery()));
             return function;
         }

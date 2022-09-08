@@ -6,6 +6,7 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.AI.AgentBehavior.AgentTacticalBehavior;
 using TOR_Core.BattleMechanics.AI.Decision;
 using TOR_Core.BattleMechanics.Artillery;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
 {
@@ -47,7 +48,11 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
         public override List<BehaviorOption> CalculateUtility()
         {
             var behaviorOptions = new List<BehaviorOption>();
-            CurrentTarget.UtilityValue = CurrentTarget.TacticalPosition == null ? 0.0f : 1.0f;
+            CurrentTarget.UtilityValue = CurrentTarget.TacticalPosition != null &&
+                                         Mission.Current.GetArtillerySlotsLeftForTeam(Agent.Team) > 0 &&
+                                         ((ItemBoundAbility) Agent.GetAbility(AbilityIndex)).GetRemainingCharges() > 0
+                ? 1.0f
+                : 0.0f;
             behaviorOptions.Add(new BehaviorOption {Target = CurrentTarget, Behavior = this});
             return behaviorOptions;
         }
