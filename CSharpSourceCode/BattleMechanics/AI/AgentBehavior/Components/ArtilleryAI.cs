@@ -38,6 +38,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
                         }
 
                         var adjustedTargetPosition = GetAdjustedTargetPosition(_artillery.Target);
+                        adjustedTargetPosition.z += 3;
                         if (adjustedTargetPosition != Vec3.Zero && _artillery.AimAtTarget(adjustedTargetPosition) && _artillery.PilotAgent.Formation.FiringOrder.OrderType != OrderType.HoldFire)
                         {
                             _artillery.Shoot();
@@ -64,7 +65,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
 
             Vec3 velocity = target.Formation.QuerySystem.CurrentVelocity.ToVec3();
             float time = (UsableMachine as ArtilleryRangedSiegeWeapon).GetEstimatedCurrentFlightTime();
-            
+
             target.SelectedWorldPosition = target.Position + velocity * time;
             return target.SelectedWorldPosition;
         }

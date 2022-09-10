@@ -22,7 +22,10 @@ namespace TOR_Core.BattleMechanics.AI.Decision
             return target =>
             {
                 if (team != null)
-                    return target.TacticalPosition.Position.AsVec2.Distance(team.QuerySystem.AverageEnemyPosition);
+                {
+                    var distance = target.TacticalPosition.Position.AsVec2.Distance(team.QuerySystem.AverageEnemyPosition);
+                    return distance;
+                }
 
                 if (target.Formation != null)
                 {
@@ -44,7 +47,10 @@ namespace TOR_Core.BattleMechanics.AI.Decision
             return target =>
             {
                 if (team != null)
-                    return target.TacticalPosition.Position.AsVec2.Distance(team.QuerySystem.AveragePosition);
+                {
+                    var distance = target.TacticalPosition.Position.AsVec2.Distance(team.QuerySystem.AveragePosition);
+                    return distance;
+                }
 
                 return 0f;
             };
@@ -118,7 +124,7 @@ namespace TOR_Core.BattleMechanics.AI.Decision
                 var value = 0.0f;
                 if (target.TacticalPosition.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround)
                     value += 0.9f;
-                if (target.TacticalPosition.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround)
+                if (target.TacticalPosition.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.Cliff)
                     value += 0.9f;
                 if (target.TacticalPosition.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.ChokePoint)
                     value += 0.7f;

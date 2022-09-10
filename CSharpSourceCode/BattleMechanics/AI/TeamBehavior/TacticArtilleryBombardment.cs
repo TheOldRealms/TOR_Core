@@ -10,6 +10,7 @@ using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
 using TOR_Core.BattleMechanics.AI.Decision;
 using TOR_Core.BattleMechanics.AI.FormationBehavior;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 {
@@ -19,7 +20,9 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         private readonly Formation _artilleryFormation;
         private readonly Formation _guardFormation;
 
-        private List<Axis> _positionScoring;
+        private List<Axis> _positionScoring; //Do not access this directly. Use the generator function public method below.
+        public List<Axis> PositionScoring => _positionScoring ?? (_positionScoring = CreateArtilleryPositionAssessment());
+
         private List<Target> _latestScoredPositions;
         private Target _chosenPosition;
         private readonly List<WizardAIComponent> _artilleryPlacerComponents;
@@ -31,7 +34,6 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             _guardFormation = new Formation(this.team, (int) TORFormationClass.ArtilleryGuard);
             this.team.FormationsIncludingSpecialAndEmpty.Add(_guardFormation);
 
-            _positionScoring = CreateArtilleryPositionAssessment();
             _artilleryPlacerComponents = new List<WizardAIComponent>();
 
             //TODO: Reminder, might need this if certain updates dont work.
@@ -114,7 +116,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                 .Select(pos => new Target {TacticalPosition = pos})
                 .Select(target =>
                 {
-                    target.UtilityValue = _positionScoring.GeometricMean(target);
+                    target.UtilityValue = PositionScoring.GeometricMean(target);
                     return target;
                 }).ToList();
             var candidate = _latestScoredPositions.MaxBy(target => target.UtilityValue);
@@ -180,8 +182,8 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         {
             var function = new List<Axis>();
             var distance = team.QuerySystem.AveragePosition.Distance(team.QuerySystem.AverageEnemyPosition);
-            function.Add(new Axis(0, distance / 5, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles(team)));
-            function.Add(new Axis(0, distance / 4, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToOwnArmy(team)));
+            function.Add(new Axis(0, distance, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles(team)));
+            function.Add(new Axis(0, distance, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToOwnArmy(team)));
             function.Add(new Axis(0, 1, x => x, CommonAIDecisionFunctions.AssessPositionForArtillery()));
             return function;
         }
