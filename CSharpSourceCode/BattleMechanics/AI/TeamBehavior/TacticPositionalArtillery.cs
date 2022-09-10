@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using HarmonyLib;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
@@ -13,15 +14,13 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 {
-    public class TacticArtilleryBombardment : TacticDefensiveLine
+    public class TacticPositionalArtillery : TacticDefensiveLine
     {
-        private bool _usingMachines = true;
         private readonly Formation _artilleryFormation;
         private readonly Formation _guardFormation;
 
         private List<Axis> _positionScoring; //Do not access this directly. Use the generator function public method below.
         public List<Axis> PositionScoring => _positionScoring ?? (_positionScoring = CreateArtilleryPositionAssessment());
-
         private List<Target> _latestScoredPositions;
         private readonly List<WizardAIComponent> _artilleryPlacerComponents;
 
@@ -29,9 +28,11 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         private TacticalPosition _mainDefensiveLinePosition;
         private TacticalPosition _linkedRangedDefensivePosition;
 
+        private bool _usingMachines = true;
         private bool _hasBattleBeenJoined;
 
-        public TacticArtilleryBombardment(Team team) : base(team)
+
+        public TacticPositionalArtillery(Team team) : base(team)
         {
             _artilleryFormation = new Formation(this.team, (int) TORFormationClass.Artillery);
             this.team.FormationsIncludingSpecialAndEmpty.Add(_artilleryFormation);
@@ -65,46 +66,20 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 
         protected override void ManageFormationCounts()
         {
-            ManageFormationCounts(1, 1, 2, 1);
-            _mainInfantry = ChooseAndSortByPriority(Formations, f => f.QuerySystem.IsInfantryFormation, f => f.IsAIControlled, f => f.QuerySystem.FormationPower).FirstOrDefault();
-            if (_mainInfantry != null)
-            {
-                _mainInfantry.AI.IsMainFormation = true;
-                _mainInfantry.AI.Side = FormationAI.BehaviorSide.Middle;
-            }
+            AssignTacticFormations1121();
 
-            _archers = ChooseAndSortByPriority(Formations, f => f.QuerySystem.IsRangedFormation, f => f.IsAIControlled, f => f.QuerySystem.FormationPower).FirstOrDefault();
-            List<Formation> formationList = ChooseAndSortByPriority(Formations, f => f.QuerySystem.IsCavalryFormation, f => f.IsAIControlled, f => f.QuerySystem.FormationPower);
-            if (formationList.Count > 0)
-            {
-                _leftCavalry = formationList[0];
-                _leftCavalry.AI.Side = FormationAI.BehaviorSide.Left;
-                if (formationList.Count > 1)
-                {
-                    _rightCavalry = formationList[1];
-                    _rightCavalry.AI.Side = FormationAI.BehaviorSide.Right;
-                }
-                else
-                    _rightCavalry = null;
-            }
-            else
-            {
-                _leftCavalry = null;
-                _rightCavalry = null;
-            }
-
-            _rangedCavalry = ChooseAndSortByPriority(Formations, f => f.QuerySystem.IsRangedCavalryFormation, f => f.IsAIControlled, f => f.QuerySystem.FormationPower).FirstOrDefault();
-
-            var formationAI = _guardFormation.AI;
             var allFormations = team.FormationsIncludingSpecialAndEmpty.ToList();
             var infantryFormations = team.Formations.ToList().FindAll(formation => formation.QuerySystem.IsInfantryFormation);
             var updatedFormations = new List<Formation>();
-            foreach (var agent in allFormations.SelectMany(form => form.Arrangement.GetAllUnits()).ToList().Select(unit => (Agent) unit))
+
+            allFormations.SelectMany(form => form.Arrangement.GetAllUnits()).ToList().Select(unit => (Agent) unit).ToList().ForEach(agent =>
             {
                 if (agent.HasAttribute("ArtilleryCrew"))
                 {
                     if (!updatedFormations.Contains(agent.Formation))
                         updatedFormations.Add(agent.Formation);
+                    if (!updatedFormations.Contains(_artilleryFormation))
+                        updatedFormations.Add(_artilleryFormation);
                     agent.Formation = _artilleryFormation;
                 }
 
@@ -113,28 +88,33 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                 {
                     _artilleryPlacerComponents.Add(wizardAIComponent);
                 }
-            }
+            });
 
-            if (infantryFormations.Count > 0 && _guardFormation.Arrangement.UnitCount <= 0)
+            if (infantryFormations.Count > 0)
             {
-                var count = 50;
+                var count = infantryFormations.Sum(form => form.Arrangement.UnitCount) * 0.1;
+                {
+                    count += count < _artilleryFormation.Arrangement.UnitCount ? 10 : 0;
+                }
+                count -= _guardFormation.Arrangement.UnitCount;
 
-                foreach (var agent in infantryFormations.SelectMany(form => form.Arrangement.GetAllUnits()).ToList().Select(unit => (Agent) unit))
+
+                infantryFormations.SelectMany(form => form.Arrangement.GetAllUnits()).ToList().Select(unit => (Agent) unit).ToList().ForEach(agent =>
                 {
                     count += -1;
                     if (count >= 0)
                     {
                         if (!updatedFormations.Contains(agent.Formation))
                             updatedFormations.Add(agent.Formation);
+                        if (!updatedFormations.Contains(_artilleryFormation))
+                            updatedFormations.Add(_guardFormation);
                         agent.Formation = _guardFormation;
                     }
-                }
+                });
             }
 
-            team.TriggerOnFormationsChanged(_artilleryFormation);
-            team.TriggerOnFormationsChanged(_guardFormation);
             updatedFormations.ForEach(formation => team.TriggerOnFormationsChanged(formation));
-
+            var formationAI = _guardFormation.AI;
             if (formationAI.GetBehavior<BehaviorProtectArtilleryCrew>() == null)
             {
                 formationAI.AddAiBehavior(new BehaviorProtectArtilleryCrew(_guardFormation, _artilleryFormation, this));
@@ -266,7 +246,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                 _linkedRangedDefensivePosition = null;
             }
         }
-        
+
         private bool IsTacticalPositionEligible(TacticalPosition tacticalPosition)
         {
             if (tacticalPosition.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.SpecialMissionPosition)
@@ -470,7 +450,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             _rangedCavalry.AI.SetBehaviorWeight<BehaviorMountedSkirmish>(1f);
             _rangedCavalry.AI.SetBehaviorWeight<BehaviorHorseArcherSkirmish>(1f);
         }
-        
+
         protected override void OnCancel()
         {
             _usingMachines = false;

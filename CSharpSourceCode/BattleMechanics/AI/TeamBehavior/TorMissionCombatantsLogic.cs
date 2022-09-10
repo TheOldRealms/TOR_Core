@@ -10,12 +10,8 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
     public class TorMissionCombatantsLogic : MissionCombatantsLogic
     {
         private readonly IEnumerable<IBattleCombatant> _battleCombatants;
-        private readonly IBattleCombatant _playerBattleCombatant;
-        private readonly IBattleCombatant _defenderLeaderBattleCombatant;
-        private readonly IBattleCombatant _attackerLeaderBattleCombatant;
         private readonly Mission.MissionTeamAITypeEnum _teamAIType;
-        private readonly bool _isPlayerSergeant;
-
+        
         public TorMissionCombatantsLogic(IEnumerable<IBattleCombatant> battleCombatants, IBattleCombatant playerBattleCombatant, IBattleCombatant defenderLeaderBattleCombatant, IBattleCombatant attackerLeaderBattleCombatant, Mission.MissionTeamAITypeEnum teamAIType, bool isPlayerSergeant) :
             base(battleCombatants, playerBattleCombatant, defenderLeaderBattleCombatant, attackerLeaderBattleCombatant, teamAIType, isPlayerSergeant)
         {
@@ -26,11 +22,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                     attackerLeaderBattleCombatant
                 };
             _battleCombatants = battleCombatants;
-            _playerBattleCombatant = playerBattleCombatant;
-            _defenderLeaderBattleCombatant = defenderLeaderBattleCombatant;
-            _attackerLeaderBattleCombatant = attackerLeaderBattleCombatant;
             _teamAIType = teamAIType;
-            _isPlayerSergeant = isPlayerSergeant;
         }
 
         public override void OnBehaviorInitialize()
@@ -118,13 +110,13 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                                 {
                                     team.AddTacticOption(new TacticDefensiveEngagement(team));
                                     team.AddTacticOption(new TacticDefensiveLine(team));
-                                    team.AddTacticOption(new TacticArtilleryBombardment(team)); 
+                                    team.AddTacticOption(new TacticPositionalArtillery(team)); 
                                 }
 
                                 if (team.Side == BattleSideEnum.Attacker)
                                 {
                                     team.AddTacticOption(new TacticRangedHarrassmentOffensive(team));
-                                    team.AddTacticOption(new TacticArtilleryBombardment(team)); 
+                                    team.AddTacticOption(new TacticPositionalArtillery(team)); //TODO: 
                                 }
                                
                             }

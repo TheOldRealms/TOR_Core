@@ -419,7 +419,7 @@
     <Compile Include="BattleMechanics\AI\Decision\ScoringFunctions.cs" />
     <Compile Include="BattleMechanics\AI\Decision\Target.cs" />
     <Compile Include="BattleMechanics\AI\FormationBehavior\BehaviorProtectArtilleryCrew.cs" />
-    <Compile Include="BattleMechanics\AI\TeamBehavior\TacticArtilleryBombardment.cs" />
+    <Compile Include="BattleMechanics\AI\TeamBehavior\TacticPositionalArtillery.cs" />
     <Compile Include="BattleMechanics\AI\TeamBehavior\TORFormationClass.cs" />
     <Compile Include="BattleMechanics\AI\TeamBehavior\TorMissionCombatantsLogic.cs" />
     <Compile Include="BattleMechanics\AI\TeamBehavior\TORTeamAIGeneral.cs" />
