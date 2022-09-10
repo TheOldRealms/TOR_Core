@@ -192,10 +192,10 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 
             if (list.Count > 0)
             {
-                TacticalPosition tacticalPosition1 = list.MaxBy(pst => pst.Item2).Item1;
-                if (tacticalPosition1 != _mainDefensiveLinePosition)
+                TacticalPosition primaryDefensivePosition = list.MaxBy(pst => pst.Item2).Item1;
+                if (primaryDefensivePosition != _mainDefensiveLinePosition)
                 {
-                    _mainDefensiveLinePosition = tacticalPosition1;
+                    _mainDefensiveLinePosition = primaryDefensivePosition;
                     IsTacticReapplyNeeded = true;
                 }
 
@@ -277,10 +277,10 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                 TacticalPosition tacticalPosition1 = new TacticalPosition(tacticalRegion.Position, direction, tacticalRegion.radius, tacticalRegionMembership: TacticalRegion.TacticalRegionTypeEnum.Forest);
                 fromTacticalRegion.Add(tacticalPosition1);
                 float num = tacticalRegion.radius * 0.87f;
-                TacticalPosition tacticalPosition2 = new TacticalPosition(new WorldPosition(Mission.Current.Scene, UIntPtr.Zero, tacticalRegion.Position.GetNavMeshVec3() + new Vec3(num * direction), false), direction, tacticalRegion.radius,
+                TacticalPosition tacticalPosition2 = new TacticalPosition(new WorldPosition(Mission.Current.Scene, UIntPtr.Zero, tacticalRegion.Position.GetNavMeshVec3() + (num * direction).ToVec3(), false), direction, tacticalRegion.radius,
                     tacticalRegionMembership: TacticalRegion.TacticalRegionTypeEnum.Forest);
                 fromTacticalRegion.Add(tacticalPosition2);
-                TacticalPosition tacticalPosition3 = new TacticalPosition(new WorldPosition(Mission.Current.Scene, UIntPtr.Zero, tacticalRegion.Position.GetNavMeshVec3() - new Vec3(num * direction), false), direction, tacticalRegion.radius,
+                TacticalPosition tacticalPosition3 = new TacticalPosition(new WorldPosition(Mission.Current.Scene, UIntPtr.Zero, tacticalRegion.Position.GetNavMeshVec3() - (num * direction).ToVec3(), false), direction, tacticalRegion.radius,
                     tacticalRegionMembership: TacticalRegion.TacticalRegionTypeEnum.Forest);
                 fromTacticalRegion.Add(tacticalPosition3);
             }
