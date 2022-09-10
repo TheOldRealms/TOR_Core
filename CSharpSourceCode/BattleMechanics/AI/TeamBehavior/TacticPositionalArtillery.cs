@@ -169,14 +169,27 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             UpdateArtilleryPlacementTargets();
         }
 
+        private List<TacticalPosition> GatherCandidatePositions()
+        {
+            var teamAiAPositions = team.TeamAI.TacticalPositions
+                .Where(position => (position.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.SpecialMissionPosition ||
+                                    position.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround));
+
+            var extractedPositions = team.TeamAI.TacticalRegions
+                .SelectMany(region => ExtractPossibleTacticalPositionsFromTacticalRegion(region))
+                .Where(position => (position.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.Regional ||
+                                    position.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround) && IsTacticalPositionEligible(position));
+
+            return teamAiAPositions.Concat(extractedPositions).ToList();
+        }
+
         private void DetermineMainDefensiveLine()
         {
-            List<(TacticalPosition, float)> list = team.TeamAI.TacticalPositions
-                .Where(tp => (tp.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.SpecialMissionPosition || tp.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround) && IsTacticalPositionEligible(tp))
-                .Select((Func<TacticalPosition, (TacticalPosition, float)>) (tp => (tp, GetTacticalPositionScore(tp)))).Concat(team.TeamAI.TacticalRegions
-                    .SelectMany(r => ExtractPossibleTacticalPositionsFromTacticalRegion(r))
-                    .Where(tpftr => (tpftr.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.Regional || tpftr.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround) && IsTacticalPositionEligible(tpftr))
-                    .Select((Func<TacticalPosition, (TacticalPosition, float)>) (tp => (tp, GetTacticalPositionScore(tp))))).ToList();
+            List<(TacticalPosition, float)> list = GatherCandidatePositions()
+                .Where(IsTacticalPositionEligible)
+                .Select((Func<TacticalPosition, (TacticalPosition, float)>) (tp => (tp, GetTacticalPositionScore(tp))))
+                .ToList();
+
             if (list.Count > 0)
             {
                 TacticalPosition tacticalPosition1 = list.MaxBy(pst => pst.Item2).Item1;
@@ -275,13 +288,13 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             return fromTacticalRegion;
         }
 
-        
+
         private void UpdateArtilleryPlacementTargets()
         {
             _artilleryPlacerComponents.ForEach(component => component.UpdateArtilleryTargetPosition(_chosenArtilleryPosition));
         }
 
-  
+
         private bool HasBattleBeenJoined() => _mainInfantry?.QuerySystem.ClosestEnemyFormation == null || _mainInfantry.AI.ActiveBehavior is BehaviorCharge || _mainInfantry.AI.ActiveBehavior is BehaviorTacticalCharge ||
                                               _mainInfantry.QuerySystem.MedianPosition.AsVec2.Distance(_mainInfantry.QuerySystem.ClosestEnemyFormation.MedianPosition.AsVec2) / (double) _mainInfantry.QuerySystem.ClosestEnemyFormation.MovementSpeedMaximum <=
                                               5.0 + (_hasBattleBeenJoined ? 5.0 : 0.0); //TODO: Need to improve logic for detecting that battle has started.
@@ -311,7 +324,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             return true;
         }
 
-       
+
         private float GetCavalryFactor(TacticalPosition tacticalPosition)
         {
             if (tacticalPosition.TacticalRegionMembership != TacticalRegion.TacticalRegionTypeEnum.Forest)
