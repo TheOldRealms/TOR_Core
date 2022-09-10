@@ -166,51 +166,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             var candidate = _latestScoredPositions.MaxBy(target => target.UtilityValue);
             _chosenArtilleryPosition = candidate;
 
-            UpdatePlacerTargets();
-        }
-
-        private void UpdatePlacerTargets()
-        {
-            _artilleryPlacerComponents.ForEach(component => component.UpdateArtilleryTargetPosition(_chosenArtilleryPosition));
-        }
-
-        private List<Axis> CreateArtilleryPositionAssessment()
-        {
-            var function = new List<Axis>();
-            var distance = team.QuerySystem.AveragePosition.Distance(team.QuerySystem.AverageEnemyPosition);
-            function.Add(new Axis(0, distance, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles(team)));
-            function.Add(new Axis(0, distance, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToOwnArmy(team)));
-            //     function.Add(new Axis(0, 1, x => x, CommonAIDecisionFunctions.AssessPositionForArtillery()));
-            return function;
-        }
-
-        private bool HasBattleBeenJoined() => _mainInfantry?.QuerySystem.ClosestEnemyFormation == null || _mainInfantry.AI.ActiveBehavior is BehaviorCharge || _mainInfantry.AI.ActiveBehavior is BehaviorTacticalCharge ||
-                                              _mainInfantry.QuerySystem.MedianPosition.AsVec2.Distance(_mainInfantry.QuerySystem.ClosestEnemyFormation.MedianPosition.AsVec2) / (double) _mainInfantry.QuerySystem.ClosestEnemyFormation.MovementSpeedMaximum <=
-                                              5.0 + (_hasBattleBeenJoined ? 5.0 : 0.0); //TODO: Need to improve logic for detecting that battle has started.
-
-        protected override bool CheckAndSetAvailableFormationsChanged()
-        {
-            var aiControlledFormationCount = Formations.Count(f => f.IsAIControlled);
-            if (aiControlledFormationCount != _AIControlledFormationCount)
-            {
-                _AIControlledFormationCount = aiControlledFormationCount;
-                IsTacticReapplyNeeded = true;
-                return true;
-            }
-
-            if (_mainInfantry != null && (_mainInfantry.CountOfUnits == 0 || !_mainInfantry.QuerySystem.IsInfantryFormation) ||
-                _archers != null && (_archers.CountOfUnits == 0 || !_archers.QuerySystem.IsRangedFormation) ||
-                _leftCavalry != null && (_leftCavalry.CountOfUnits == 0 || !_leftCavalry.QuerySystem.IsCavalryFormation) ||
-                _rightCavalry != null && (_rightCavalry.CountOfUnits == 0 || !_rightCavalry.QuerySystem.IsCavalryFormation))
-                return true;
-
-            return _rangedCavalry != null && (_rangedCavalry.CountOfUnits == 0 || !_rangedCavalry.QuerySystem.IsRangedCavalryFormation);
-        }
-
-        protected override bool ResetTacticalPositions()
-        {
-            DeterminePositions();
-            return true;
+            UpdateArtilleryPlacementTargets();
         }
 
         private void DetermineMainDefensiveLine()
@@ -246,6 +202,16 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                 _mainDefensiveLinePosition = null;
                 _linkedRangedDefensivePosition = null;
             }
+        }
+
+        private List<Axis> CreateArtilleryPositionAssessment()
+        {
+            var function = new List<Axis>();
+            var distance = team.QuerySystem.AveragePosition.Distance(team.QuerySystem.AverageEnemyPosition);
+            function.Add(new Axis(0, distance, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles(team)));
+            function.Add(new Axis(0, distance, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToOwnArmy(team)));
+            //     function.Add(new Axis(0, 1, x => x, CommonAIDecisionFunctions.AssessPositionForArtillery()));
+            return function;
         }
 
         private bool IsTacticalPositionEligible(TacticalPosition tacticalPosition)
@@ -309,6 +275,43 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             return fromTacticalRegion;
         }
 
+        
+        private void UpdateArtilleryPlacementTargets()
+        {
+            _artilleryPlacerComponents.ForEach(component => component.UpdateArtilleryTargetPosition(_chosenArtilleryPosition));
+        }
+
+  
+        private bool HasBattleBeenJoined() => _mainInfantry?.QuerySystem.ClosestEnemyFormation == null || _mainInfantry.AI.ActiveBehavior is BehaviorCharge || _mainInfantry.AI.ActiveBehavior is BehaviorTacticalCharge ||
+                                              _mainInfantry.QuerySystem.MedianPosition.AsVec2.Distance(_mainInfantry.QuerySystem.ClosestEnemyFormation.MedianPosition.AsVec2) / (double) _mainInfantry.QuerySystem.ClosestEnemyFormation.MovementSpeedMaximum <=
+                                              5.0 + (_hasBattleBeenJoined ? 5.0 : 0.0); //TODO: Need to improve logic for detecting that battle has started.
+
+        protected override bool CheckAndSetAvailableFormationsChanged()
+        {
+            var aiControlledFormationCount = Formations.Count(f => f.IsAIControlled);
+            if (aiControlledFormationCount != _AIControlledFormationCount)
+            {
+                _AIControlledFormationCount = aiControlledFormationCount;
+                IsTacticReapplyNeeded = true;
+                return true;
+            }
+
+            if (_mainInfantry != null && (_mainInfantry.CountOfUnits == 0 || !_mainInfantry.QuerySystem.IsInfantryFormation) ||
+                _archers != null && (_archers.CountOfUnits == 0 || !_archers.QuerySystem.IsRangedFormation) ||
+                _leftCavalry != null && (_leftCavalry.CountOfUnits == 0 || !_leftCavalry.QuerySystem.IsCavalryFormation) ||
+                _rightCavalry != null && (_rightCavalry.CountOfUnits == 0 || !_rightCavalry.QuerySystem.IsCavalryFormation))
+                return true;
+
+            return _rangedCavalry != null && (_rangedCavalry.CountOfUnits == 0 || !_rangedCavalry.QuerySystem.IsRangedCavalryFormation);
+        }
+
+        protected override bool ResetTacticalPositions()
+        {
+            DeterminePositions();
+            return true;
+        }
+
+       
         private float GetCavalryFactor(TacticalPosition tacticalPosition)
         {
             if (tacticalPosition.TacticalRegionMembership != TacticalRegion.TacticalRegionTypeEnum.Forest)
