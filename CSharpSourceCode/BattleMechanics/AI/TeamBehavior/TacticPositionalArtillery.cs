@@ -126,13 +126,13 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             if (!AreFormationsCreated)
                 return;
 
-            bool flag = HasBattleBeenJoined();
+            bool battleJoinedNew = HasBattleBeenJoined();
             var checkAndSetAvailableFormationsChanged = CheckAndSetAvailableFormationsChanged();
-            if (checkAndSetAvailableFormationsChanged || flag != _hasBattleBeenJoined || IsTacticReapplyNeeded)
+            if (checkAndSetAvailableFormationsChanged || battleJoinedNew != _hasBattleBeenJoined || IsTacticReapplyNeeded)
             {
-                DeterminePositions();
-                _hasBattleBeenJoined = flag;
                 if (checkAndSetAvailableFormationsChanged) ManageFormationCounts();
+                DeterminePositions();
+                _hasBattleBeenJoined = battleJoinedNew;
                 if (_hasBattleBeenJoined)
                 {
                     Engage();
@@ -190,20 +190,21 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 
         protected override bool CheckAndSetAvailableFormationsChanged()
         {
-            int num1 = Formations.Count(f => f.IsAIControlled);
-            int num2 = num1 != _AIControlledFormationCount ? 1 : 0;
-            if (num2 != 0)
+            var aiControlledFormationCount = Formations.Count(f => f.IsAIControlled);
+            if (aiControlledFormationCount != _AIControlledFormationCount)
             {
-                _AIControlledFormationCount = num1;
+                _AIControlledFormationCount = aiControlledFormationCount;
                 IsTacticReapplyNeeded = true;
+                return true;
             }
 
-            if (num2 != 0 || _mainInfantry != null && (_mainInfantry.CountOfUnits == 0 || !_mainInfantry.QuerySystem.IsInfantryFormation) || _archers != null && (_archers.CountOfUnits == 0 || !_archers.QuerySystem.IsRangedFormation) ||
-                _leftCavalry != null && (_leftCavalry.CountOfUnits == 0 || !_leftCavalry.QuerySystem.IsCavalryFormation) || _rightCavalry != null && (_rightCavalry.CountOfUnits == 0 || !_rightCavalry.QuerySystem.IsCavalryFormation))
+            if (_mainInfantry != null && (_mainInfantry.CountOfUnits == 0 || !_mainInfantry.QuerySystem.IsInfantryFormation) ||
+                _archers != null && (_archers.CountOfUnits == 0 || !_archers.QuerySystem.IsRangedFormation) ||
+                _leftCavalry != null && (_leftCavalry.CountOfUnits == 0 || !_leftCavalry.QuerySystem.IsCavalryFormation) ||
+                _rightCavalry != null && (_rightCavalry.CountOfUnits == 0 || !_rightCavalry.QuerySystem.IsCavalryFormation))
                 return true;
-            if (_rangedCavalry == null)
-                return false;
-            return _rangedCavalry.CountOfUnits == 0 || !_rangedCavalry.QuerySystem.IsRangedCavalryFormation;
+
+            return _rangedCavalry != null && (_rangedCavalry.CountOfUnits == 0 || !_rangedCavalry.QuerySystem.IsRangedCavalryFormation);
         }
 
         protected override bool ResetTacticalPositions()
