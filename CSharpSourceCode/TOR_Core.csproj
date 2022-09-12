@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -487,6 +487,8 @@
     <Compile Include="Extensions\MissionExtensions.cs" />
     <Compile Include="Extensions\MobilePartyExtensions.cs" />
     <Compile Include="Extensions\SettlementExtensions.cs" />
+    <Compile Include="GameManagers\InputGameManager.cs" />
+    <Compile Include="GameManagers\TORGameKeyContext.cs" />
     <Compile Include="GameManagers\TORShaderGameManager.cs" />
     <Compile Include="GameManagers\TORCampaignGameManager.cs" />
     <Compile Include="HarmonyPatches\AgentPatches.cs" />
