@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -437,7 +437,6 @@
     <Compile Include="BattleMechanics\StatusEffect\StatusEffectManager.cs" />
     <Compile Include="BattleMechanics\StatusEffect\StatusEffectMissionLogic.cs" />
     <Compile Include="BattleMechanics\StatusEffect\StatusEffectTemplate.cs" />
-    <Compile Include="BattleMechanics\TriggeredEffect\Scripts\CannonBallScript.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\DynamicItemTraitScripts.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\ITriggeredScript.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\KnockDownScript.cs" />
@@ -545,6 +544,7 @@
     <Compile Include="SubModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\TORCommon.cs" />
+    <Compile Include="Utilities\TORConsoleCommands.cs" />
     <Compile Include="Utilities\TORConstants.cs" />
     <Compile Include="Utilities\TORDamageDisplay.cs" />
     <Compile Include="Utilities\TORGameMenuBackgroundSwitcher.cs" />
