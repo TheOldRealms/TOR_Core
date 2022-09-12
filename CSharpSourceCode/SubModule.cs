@@ -32,6 +32,7 @@ using TOR_Core.CampaignMechanics.RegimentsOfRenown;
 using TOR_Core.CampaignMechanics.SkillBooks;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.GameManagers;
 using TOR_Core.Items;
 using TOR_Core.Models;
 using TOR_Core.Models.CustomBattleModels;
@@ -62,6 +63,7 @@ namespace TOR_Core
             ExtendedItemObjectManager.LoadXML();
             CustomBannerManager.LoadXML();
             RORManager.LoadTemplates();
+            InputGameManager.RegisterCustomKeys();
         }
 
         protected override void InitializeGameStarter(Game game, IGameStarter starterObject)
