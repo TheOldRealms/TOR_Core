@@ -38,6 +38,11 @@ namespace TOR_Core.AbilitySystem
         private Dictionary<Team, int> _artillerySlots = new Dictionary<Team, int>();
 
         private GameKey _spellcastingModeKey;
+        private GameKey _nextAbilitySelection;
+        private GameKey _previousAbilitySelection;
+        private GameKey _quickCast;
+        
+        private TORGameKeyContext _torContext;
 
         public AbilityModeState CurrentState => _currentState;
 
@@ -214,10 +219,40 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
+        private void RunQuickCast()
+        {
+            var ability = Agent.Main.GetCurrentAbility();
+            
+            if(ability.AbilityEffectType == AbilityEffectType.SeekerMissile)
+                return;
+
+            if (ability.AbilityEffectType == AbilityEffectType.Augment)
+            {
+                //TODO floor position
+            }
+                
+            Agent.Main.CastCurrentAbility();
+
+                /*if (abilitycomponent != null)
+            {
+                if (abilitycomponent.CurrentAbility != null) abilitycomponent.CurrentAbility.TryCast(agent);
+            }
+            if()*/
+
+        }
+
         private void HandleInput()
         {
             //Turning ability mode on/off
             
+            if(Input.IsKeyPressed(_nextAbilitySelection.KeyboardKey.InputKey))
+                Agent.Main.SelectNextAbility();
+            
+            if(Input.IsKeyPressed(_previousAbilitySelection.KeyboardKey.InputKey))
+                Agent.Main.SelectPreviousAbility();
+            
+            if(Input.IsKeyPressed(_quickCast.KeyboardKey.InputKey))
+                RunQuickCast();
             
             if (Input.IsKeyPressed(_spellcastingModeKey.KeyboardKey.InputKey)||Input.IsKeyPressed(_spellcastingModeKey.ControllerKey.InputKey))
             {
@@ -297,6 +332,11 @@ namespace TOR_Core.AbilitySystem
         {
             base.EarlyStart();
             _spellcastingModeKey=  HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("Spellcasting");
+            
+            _nextAbilitySelection = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("NextAbility");
+            _previousAbilitySelection =
+                HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("PreviousAbility");
+            _quickCast = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("QuickCast");
         }
 
         public bool IsCastingMission()
