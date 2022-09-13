@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using HarmonyLib;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
@@ -155,12 +154,12 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         {
             DetermineMainDefensiveLine();
 
-            _latestScoredPositions = team.TeamAI.TacticalPositions
-                .FindAll(IsTacticalPositionEligible)
+            _latestScoredPositions = GatherCandidatePositions()
+                //.FindAll(IsTacticalPositionEligible)
                 .Select(pos => new Target {TacticalPosition = pos})
                 .Select(target =>
                 {
-                    target.UtilityValue = PositionScoring.GeometricMean(target);
+                    target.UtilityValue = GetTacticalPositionScore(target.TacticalPosition); //PositionScoring.GeometricMean(target);
                     return target;
                 }).ToList();
             var candidate = _latestScoredPositions.MaxBy(target => target.UtilityValue);
@@ -223,6 +222,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             var distance = team.QuerySystem.AveragePosition.Distance(team.QuerySystem.AverageEnemyPosition);
             function.Add(new Axis(0, distance, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles(team)));
             function.Add(new Axis(0, distance, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToOwnArmy(team)));
+            function.Add(new Axis(0, distance, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToPosition(_mainDefensiveLinePosition)));
             //     function.Add(new Axis(0, 1, x => x, CommonAIDecisionFunctions.AssessPositionForArtillery()));
             return function;
         }

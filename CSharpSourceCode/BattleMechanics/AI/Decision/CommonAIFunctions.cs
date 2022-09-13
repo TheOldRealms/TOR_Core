@@ -144,6 +144,11 @@ namespace TOR_Core.BattleMechanics.AI.Decision
         {
             return target => target.Formation?.CountOfUnits ?? 1;
         }
+
+        public static Func<Target, float> TargetDistanceToPosition(TacticalPosition position)
+        {
+            return target => position == null ? 1.0f : target.TacticalPosition.Position.AsVec2.Distance(position.Position.AsVec2);
+        }
     }
 
     public static class CommonAIStateFunctions

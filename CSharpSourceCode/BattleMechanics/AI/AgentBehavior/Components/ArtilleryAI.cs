@@ -38,7 +38,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
                         }
 
                         var adjustedTargetPosition = GetAdjustedTargetPosition(_artillery.Target);
-                        adjustedTargetPosition.z += 3;
+                        adjustedTargetPosition.z += 2.5f;
                         if (adjustedTargetPosition != Vec3.Zero && _artillery.AimAtTarget(adjustedTargetPosition) && _artillery.PilotAgent.Formation.FiringOrder.OrderType != OrderType.HoldFire)
                         {
                             _artillery.Shoot();
