@@ -15,7 +15,7 @@ using TOR_Core.Items;
 using TOR_Core.BattleMechanics.Crosshairs;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TaleWorlds.CampaignSystem;
-using TOR_Core.CharacterDevelopment;
+using TOR_Core.GameManagers;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -36,6 +36,8 @@ namespace TOR_Core.AbilitySystem
         private SummonedCombatant _attackerSummoningCombatant;
         private readonly float DamagePortionForChargingSpecialMove = 0.25f;
         private Dictionary<Team, int> _artillerySlots = new Dictionary<Team, int>();
+
+        private GameKey _spellcastingModeKey;
 
         public AbilityModeState CurrentState => _currentState;
 
@@ -215,7 +217,9 @@ namespace TOR_Core.AbilitySystem
         private void HandleInput()
         {
             //Turning ability mode on/off
-            if (Input.IsKeyPressed(InputKey.Q))
+            
+            
+            if (Input.IsKeyPressed(_spellcastingModeKey.KeyboardKey.InputKey)||Input.IsKeyPressed(_spellcastingModeKey.ControllerKey.InputKey))
             {
                 switch (_currentState)
                 {
@@ -287,6 +291,12 @@ namespace TOR_Core.AbilitySystem
                     }
                 }
             }
+        }
+
+        public override void EarlyStart()
+        {
+            base.EarlyStart();
+            _spellcastingModeKey=  HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("Spellcasting");
         }
 
         public bool IsCastingMission()
