@@ -11,6 +11,7 @@ using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.Engine.InputSystem;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
+using TaleWorlds.ModuleManager;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.CustomBattle;
 using TaleWorlds.MountAndBlade.GameKeyCategory;
@@ -71,6 +72,7 @@ namespace TOR_Core
             ExtendedItemObjectManager.LoadXML();
             CustomBannerManager.LoadXML();
             RORManager.LoadTemplates();
+            
             //InputGameManager.RegisterCustomKeys();
         }
         private void InitializeHotKeyManager()
@@ -78,7 +80,38 @@ namespace TOR_Core
             HotKeyManager.RegisterInitialContexts((IEnumerable<GameKeyContext>) new List<GameKeyContext>()
             {
                 (GameKeyContext) new TORGameKeyContext(),
-            }, false);
+            }, true);
+
+            var context = nameof(TORGameKeyContext);
+            var ContextTitleElement = Module.CurrentModule.GlobalTextManager.GetGameText("str_key_category_name");
+            ContextTitleElement.AddVariationWithId(context, new TaleWorlds.Localization.TextObject("The Old Realms"), new List<GameTextManager.ChoiceTag>());
+            
+            
+            
+            
+            var KeyElementBindings = Module.CurrentModule.GlobalTextManager.GetGameText("str_key_name");
+            var keyname = context + "_109";
+            KeyElementBindings.AddVariationWithId(keyname, new TaleWorlds.Localization.TextObject("Spell Casting Mode"), new List<GameTextManager.ChoiceTag>());
+            
+            var KeyDescriptionElement = Module.CurrentModule.GlobalTextManager.GetGameText("str_key_description");
+            var keyDescription = context + "_109";
+            KeyDescriptionElement.AddVariationWithId(keyname, new TaleWorlds.Localization.TextObject(
+                "1) During battle pressing Q puts you into aiming mode, a reticule will appear and you will be able to target your spells. Aiming mode is accompanied by a visual animation on your character."+"\n"+
+                "2) Using the mouse wheel will switch between your spells (if you have learned multiple)"+"\n"+
+                "3) New UI elements will appear on the bottom left of your screen, with an image representing your selected spell and a cooldown times "+"\n"+
+                "4) Spells are reliant on the user's Winds of Magic (mana), this is fairly self-explanatory. It is regained over time on the campaign map."), new List<GameTextManager.ChoiceTag>());
+            
+            
+            
+
+
+          //  var t = Module.CurrentModule.GlobalTextManager.FindText("str_key_name."+context + "_Spellcasting");
+            
+            TORCommon.Say("yey");
+
+            //var gameText = Module.CurrentModule.GlobalTextManager.GetGameText("str_key_category_name");
+            //gameText.AddVariationWithId("TORGameKeyContext", new TaleWorlds.Localization.TextObject("The Old Realms"), new List<GameTextManager.ChoiceTag>());
+
         }
 
 
