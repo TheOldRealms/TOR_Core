@@ -1,23 +1,38 @@
-﻿using TaleWorlds.InputSystem;
+﻿using System.Collections.Generic;
+using TaleWorlds.InputSystem;
+using TaleWorlds.MountAndBlade;
+using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.GameManagers
 {
-    public class TORGameKeyContext : GameKeyContext
+    public class TORGameKeyContext : GenericPanelGameKeyCategory
     {
         public const string SpellCasterModeVariable = "SpellCastingMode";
+        
+        
+        
 
-        public TORGameKeyContext() :  base("TOR", 0, GameKeyContext.GameKeyContextType.AuxiliarySerializedAndShownInOptions)
+        public TORGameKeyContext() :  base("TOR")
         {
-            this.RegisterTorHotKey(nameof (SpellCasterModeVariable), InputKey.Q, HotKey.Modifiers.None);
+            //this.RegisterGameKey(new GameKey(9, "Attack", nameof (CombatHotKeyCategory), InputKey.Q, TorKeyCateogries.SpellcastingCategory));
+            this.RegisterGameKey(new GameKey(57, "Spellcasting", TorKeyCateogries.SpellcastingCategory, InputKey.Q, nameof(TORGameKeyContext)));
+
+            if (this.RegisteredGameKeys.Count > 0)
+            {
+                TORCommon.Say("hello");
+            }
+
         }
         
-        private void RegisterTorHotKey(
-            string id,
-            InputKey hotkeyKey,
-            HotKey.Modifiers modifiers,
-            HotKey.Modifiers negativeModifiers = HotKey.Modifiers.None)
-        {
-            this.RegisterHotKey(new HotKey(id, "TOR", hotkeyKey, modifiers, negativeModifiers));
-        }
+        
+        
+        
+    }
+    
+    public static class TorKeyCateogries
+    {
+        public static string SpellcastingCategory = nameof (SpellcastingCategory);
+  
     }
 }

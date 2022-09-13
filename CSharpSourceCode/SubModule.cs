@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using HarmonyLib;
 using NLog;
 using NLog.Config;
@@ -7,9 +8,14 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Engine.GauntletUI;
+using TaleWorlds.Engine.InputSystem;
+using TaleWorlds.InputSystem;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.CustomBattle;
+using TaleWorlds.MountAndBlade.GameKeyCategory;
 using TaleWorlds.MountAndBlade.GauntletUI.Mission;
+using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.Battle.CrosshairMissionBehavior;
@@ -56,6 +62,8 @@ namespace TOR_Core
             harmony.PatchAll();
             ConfigureLogging();
             UIConfig.DoNotUseGeneratedPrefabs = true;
+            
+            this.InitializeHotKeyManager();
 
             StatusEffectManager.LoadStatusEffects();
             TriggeredEffectManager.LoadTemplates();
@@ -63,8 +71,16 @@ namespace TOR_Core
             ExtendedItemObjectManager.LoadXML();
             CustomBannerManager.LoadXML();
             RORManager.LoadTemplates();
-            InputGameManager.RegisterCustomKeys();
+            //InputGameManager.RegisterCustomKeys();
         }
+        private void InitializeHotKeyManager()
+        {
+            HotKeyManager.RegisterInitialContexts((IEnumerable<GameKeyContext>) new List<GameKeyContext>()
+            {
+                (GameKeyContext) new TORGameKeyContext(),
+            }, false);
+        }
+
 
         protected override void InitializeGameStarter(Game game, IGameStarter starterObject)
         {
