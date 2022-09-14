@@ -33,7 +33,9 @@ namespace TOR_Core.BattleMechanics.Dismemberment
         private int _index;
         private bool _fullyInstantiated;
 
-
+        private Vec3 objectPos;
+        
+        private Vec3 lastPos = new Vec3();
         public override void AfterStart()
         {
             _pooledDismemberedLimbs = new GameEntity[poolSize][];
@@ -91,9 +93,14 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             {
                 throw new Exception("Pooled object was not found return");
             }
-                
+
+            Vec3 upPos = Mission.Current.GetBattleSideInitialSpawnPathFrame(BattleSideEnum.Defender).Origin.Normal;
+            upPos += Vec3.Up * 50;
+            var frame = new MatrixFrame(Mat3.Identity, upPos); 
+            item.SetGlobalFrame(frame);
+            //item.FadeOut(0,false);
             item.AddPhysics(item.Mass, item.CenterOfMass, item.GetBodyShape(), Vec3.Zero, Vec3.Zero, PhysicsMaterial.GetFromName("flesh"), false, -1);
-            item.SetPhysicsState(false,true);
+            //item.SetPhysicsState(false,true);
             item.SetAlpha(0);
             
             return item;
@@ -105,6 +112,19 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             {
                 Mission.Current.Scene.TimeSpeed *= 2;
             }
+
+            /*objectPos = _pooledDismemberedLimbs[0][0].GlobalPosition;
+
+            if (lastPos != objectPos)
+            {
+                TORCommon.Say("object is moving");
+            }
+            else
+            {
+             //   TORCommon.Say(lastPos+" " + objectPos);
+            }
+
+            lastPos = objectPos;*/
         }
 
         public override void OnRegisterBlow(Agent attacker, Agent victim, GameEntity realHitEntity, Blow blow, ref AttackCollisionData collisionData, in MissionWeapon attackerWeapon)
@@ -192,7 +212,8 @@ namespace TOR_Core.BattleMechanics.Dismemberment
                 if (!_fullyInstantiated)    
                 {
                     _pooledDismemberedLimbs[_index][i].SetAlpha(1);
-                    _pooledDismemberedLimbs[_index][i].SetPhysicsState(true,true);
+                   // _pooledDismemberedLimbs[_index][i].SetAlpha(1);
+                    //_pooledDismemberedLimbs[_index][i].SetPhysicsState(true,true);
                 }
                 _pooledDismemberedLimbs[_index][i].SetGlobalFrame(frame);
                 var dir = GetRandomDirection(3);
