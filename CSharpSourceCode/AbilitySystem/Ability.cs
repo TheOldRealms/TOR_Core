@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using TaleWorlds.MountAndBlade;
 using System.Timers;
 using TaleWorlds.Library;
@@ -100,7 +100,7 @@ namespace TOR_Core.AbilitySystem
                 timer.Start();
             }
         }
-
+        
         public virtual void ActivateAbility(Agent casterAgent)
         {
             IsActivationPending = false;
@@ -108,8 +108,23 @@ namespace TOR_Core.AbilitySystem
             _coolDownLeft = Template.CoolDown;
             _cooldown_end_time = Mission.Current.CurrentTime + _coolDownLeft + 0.8f; //Adjustment was needed for natural tick on UI
             _timer.Start();
+            var frame = GetSpawnFrame(casterAgent); 
+            
+            if (casterAgent == Agent.Main && !Mission.Current.IsPlayerInSpellCasterMode())
+            {
+                // Quick cast setup
+                if (this.AbilityEffectType == AbilityEffectType.Augment||(this.AbilityEffectType == AbilityEffectType.Heal&&this.IsGroundAbility()))
+                {
+                    frame.origin = Agent.Main.GetWorldPosition().GetGroundVec3();
+                    //frame.rotation = Mat3.CreateMat3WithForward(Vec3.Up);
+                }
 
-            var frame = GetSpawnFrame(casterAgent);
+                if (this.AbilityEffectType == AbilityEffectType.Summoning)
+                {
+                    frame.origin =
+                        Mission.Current.GetRandomPositionAroundPoint(Agent.Main.GetWorldPosition().GetGroundVec3(), 3, 6, false);
+                }
+            }
 
             GameEntity parentEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
             parentEntity.SetGlobalFrame(frame);

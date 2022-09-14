@@ -226,11 +226,6 @@ namespace TOR_Core.AbilitySystem
             if(ability.AbilityEffectType == AbilityEffectType.SeekerMissile)
                 return;
 
-            if (ability.AbilityEffectType == AbilityEffectType.Augment)
-            {
-                //TODO floor position
-            }
-                
             Agent.Main.CastCurrentAbility();
 
                 /*if (abilitycomponent != null)
