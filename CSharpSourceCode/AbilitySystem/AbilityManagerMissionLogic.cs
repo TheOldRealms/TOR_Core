@@ -16,6 +16,7 @@ using TOR_Core.BattleMechanics.Crosshairs;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TaleWorlds.CampaignSystem;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.Quests;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -155,6 +156,14 @@ namespace TOR_Core.AbilitySystem
             if(agent == Agent.Main)
             {
                 if (CurrentState == AbilityModeState.Casting) _currentState = AbilityModeState.Idle;
+                if (Game.Current.GameType is Campaign)
+                {
+                    var quest = TORQuestHelper.GetCurrentActiveIfExists<SpecializeLoreQuest>();
+                    if (quest != null)
+                    {
+                        quest.IncrementCast();
+                    }
+                }
             }
 
             if (agent.IsHero && Game.Current.GameType is Campaign)
