@@ -134,6 +134,11 @@ namespace TOR_Core.Extensions
             return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("vampire");
         }
 
+        public static bool IsSpellTrainer(this Hero hero)
+        {
+            return hero.Occupation == Occupation.Special && hero.Name.Contains("Magister");
+        }
+
         public static string GetInfoKey(this Hero hero)
         {
             return hero.StringId;

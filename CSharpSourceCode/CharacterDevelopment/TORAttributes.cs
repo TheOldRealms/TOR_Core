@@ -10,17 +10,17 @@ namespace TOR_Core.CharacterDevelopment
 {
     public class TORAttributes
     {
-        private CharacterAttribute _wisdom;
+        private CharacterAttribute _discipline;
 
         public static TORAttributes Instance { get; private set; }
 
-        public static CharacterAttribute Wisdom => Instance._wisdom;
+        public static CharacterAttribute Discipline => Instance._discipline;
 
         public TORAttributes()
         {
             Instance = this;
-            _wisdom = Game.Current.ObjectManager.RegisterPresumedObject(new CharacterAttribute("wisdom"));
-            _wisdom.Initialize(new TextObject("{=!}Wisdom", null), new TextObject("{=!}Wisdom represents lorem ipsum...", null), new TextObject("{=!}WIS", null));
+            _discipline = Game.Current.ObjectManager.RegisterPresumedObject(new CharacterAttribute("discipline"));
+            _discipline.Initialize(new TextObject("{=!}Discipline", null), new TextObject("{=!}Discipline is the ability to refine your skill in certain skills which require practice or focus.", null), new TextObject("{=!}DIS", null));
         }
     }
 }

@@ -13,6 +13,7 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
@@ -199,7 +200,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddAbility("BoltOfAqshy");
                 Hero.MainHero.AddKnownLore("MinorMagic");
                 Hero.MainHero.AddKnownLore("LoreOfFire");
-                Hero.MainHero.SetSpellCastingLevel(SpellCastingLevel.Entry);
+                var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
+                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
+                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.EntrySpells);
             }
             if (selectedOption.OptionText == "Warrior Priest Acolyte")
             {
@@ -215,7 +218,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddAbility("SummonSkeleton");
                 Hero.MainHero.AddKnownLore("MinorMagic");
                 Hero.MainHero.AddKnownLore("Necromancy");
-                Hero.MainHero.SetSpellCastingLevel(SpellCastingLevel.Entry);
+                var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
+                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
+                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.EntrySpells);
             }
             else if (selectedOption.OptionText == "Vampiric Nobility")
             {
@@ -226,7 +231,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddAbility("NagashGaze");
                 Hero.MainHero.AddKnownLore("MinorMagic");
                 Hero.MainHero.AddKnownLore("Necromancy");
-                Hero.MainHero.SetSpellCastingLevel(SpellCastingLevel.Entry);
+                var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
+                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
+                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.EntrySpells);
             }
         }
 
