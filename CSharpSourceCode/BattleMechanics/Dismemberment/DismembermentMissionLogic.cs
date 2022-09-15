@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using NLog.Fluent;
+using TaleWorlds.CampaignSystem.LogEntries;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
@@ -8,6 +11,7 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using LogLevel = NLog.LogLevel;
 
 namespace TOR_Core.BattleMechanics.Dismemberment
 {
@@ -134,44 +138,52 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             if(victim.IsMainAgent) return;
             if(victim.Health >= 0&& victim.State!=AgentState.Killed) return;
 
-            if (!blow.IsMissile)
+            try
             {
-                bool blowCanDecapitate = (collisionData.VictimHitBodyPart == BoneBodyPartType.Neck ||
-                                          collisionData.VictimHitBodyPart == BoneBodyPartType.Head) &&
-                                         blow.DamageType == DamageTypes.Cut &&
-                                         (blow.WeaponRecord.WeaponClass == WeaponClass.OneHandedAxe ||
-                                          blow.WeaponRecord.WeaponClass == WeaponClass.OneHandedSword ||
-                                          blow.WeaponRecord.WeaponClass == WeaponClass.TwoHandedAxe ||
-                                          blow.WeaponRecord.WeaponClass == WeaponClass.TwoHandedSword) &&
-                                         (attacker.AttackDirection == Agent.UsageDirection.AttackLeft ||
-                                          attacker.AttackDirection == Agent.UsageDirection.AttackRight);
-                if (!blowCanDecapitate) return;
+                if (!blow.IsMissile)
+                {
+                    bool blowCanDecapitate = (collisionData.VictimHitBodyPart == BoneBodyPartType.Neck ||
+                                              collisionData.VictimHitBodyPart == BoneBodyPartType.Head) &&
+                                             blow.DamageType == DamageTypes.Cut &&
+                                             (blow.WeaponRecord.WeaponClass == WeaponClass.OneHandedAxe ||
+                                              blow.WeaponRecord.WeaponClass == WeaponClass.OneHandedSword ||
+                                              blow.WeaponRecord.WeaponClass == WeaponClass.TwoHandedAxe ||
+                                              blow.WeaponRecord.WeaponClass == WeaponClass.TwoHandedSword) &&
+                                             (attacker.AttackDirection == Agent.UsageDirection.AttackLeft ||
+                                              attacker.AttackDirection == Agent.UsageDirection.AttackRight);
+                    if (!blowCanDecapitate) return;
                 
-                if (attacker == Agent.Main)
-                {
-                    if (!ShouldBeDismembered(attacker, victim, blow)) return;
-                    DismemberHead(victim, collisionData);
-                    if (slowMotionFrequency == Probability.Always)
+                    if (attacker == Agent.Main)
                     {
-                        EnableSlowMotion();
+                        if (!ShouldBeDismembered(attacker, victim, blow)) return;
+                        DismemberHead(victim, collisionData);
+                        if (slowMotionFrequency == Probability.Always)
+                        {
+                            EnableSlowMotion();
+                        }
+                        else if (slowMotionFrequency == Probability.Probably && MBRandom.RandomFloatRanged(0, 1) > 0.75f)
+                        {
+                            EnableSlowMotion();
+                        }
                     }
-                    else if (slowMotionFrequency == Probability.Probably && MBRandom.RandomFloatRanged(0, 1) > 0.75f)
+                    else if (canTroopDismember)
                     {
-                        EnableSlowMotion();
+                        DismemberHead(victim, collisionData);
                     }
+                    return;
                 }
-                else if (canTroopDismember)
-                {
-                    DismemberHead(victim, collisionData);
+
+                if (victim.IsUndead()) return;
+
+                if (blow.InflictedDamage>80&&(attackerWeapon.Item != null&&attackerWeapon.Item.IsExplosiveAmmunition()))
+                { 
+                    InitializeBodyExplosion(victim,blow.Position);
                 }
-                return;
             }
-
-            if (victim.IsUndead()) return;
-
-            if (blow.InflictedDamage>80&&(attackerWeapon.Item != null&&attackerWeapon.Item.IsExplosiveAmmunition()))
-            { 
-                InitializeBodyExplosion(victim,blow.Position);
+            catch(Exception exception)
+            {
+                TORCommon.Log("crashed inside Dismemberment interaction "+exception.Message,LogLevel.Error);
+                throw;
             }
         }
         
