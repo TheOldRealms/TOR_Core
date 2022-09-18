@@ -16,6 +16,7 @@ using TOR_Core.BattleMechanics.Crosshairs;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TaleWorlds.CampaignSystem;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.GameManagers;
 using TOR_Core.Quests;
 
 namespace TOR_Core.AbilitySystem
