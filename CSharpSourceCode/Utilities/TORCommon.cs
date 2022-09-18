@@ -74,6 +74,24 @@ namespace TOR_Core.Utilities
             if (slot.StringId != "" && slot.StringId != null) return "Item." + slot.StringId;
             else return "none";
         }
+        
+        public static Vec3 GetRandomDirection(float deviation, bool fixZ=true)
+        {
+            float x = MBRandom.RandomFloatRanged(-deviation, deviation);
+            var y = MBRandom.RandomFloatRanged(-deviation, deviation);
+            var z = fixZ? 1: MBRandom.RandomFloatRanged(-deviation, deviation);
+            return new Vec3(x, y, z);
+        }
+        public static Mat3 GetRandomOrientation(Mat3 orientation, float deviation)
+        {
+            float rand1 = MBRandom.RandomFloatRanged(-deviation, deviation);
+            orientation.f.RotateAboutX(rand1);
+            float rand2 = MBRandom.RandomFloatRanged(-deviation, deviation);
+            orientation.f.RotateAboutY(rand2);
+            float rand3 = MBRandom.RandomFloatRanged(-deviation, deviation);
+            orientation.f.RotateAboutZ(rand3);
+            return orientation;
+        }
 
         /// <summary>
         /// Picks a random scene for the main menu based on the naming convenction of towmm_menuscene_XX where XX are sequential numbers.

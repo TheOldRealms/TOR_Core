@@ -437,7 +437,6 @@
     <Compile Include="BattleMechanics\StatusEffect\StatusEffectManager.cs" />
     <Compile Include="BattleMechanics\StatusEffect\StatusEffectMissionLogic.cs" />
     <Compile Include="BattleMechanics\StatusEffect\StatusEffectTemplate.cs" />
-    <Compile Include="BattleMechanics\TriggeredEffect\Scripts\CannonBallScript.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\DynamicItemTraitScripts.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\ITriggeredScript.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\KnockDownScript.cs" />
@@ -462,6 +461,7 @@
     <Compile Include="CampaignMechanics\RegimentsOfRenown\RORSettlementTemplate.cs" />
     <Compile Include="CampaignMechanics\SkillBooks\TORSkillBookCampaignBehavior.cs" />
     <Compile Include="BattleMechanics\TORBattleAgentLogic.cs" />
+    <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCaptivityCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\ChaosPortal.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\ISettlementType.cs" />
@@ -472,6 +472,7 @@
     <Compile Include="CampaignMechanics\TORWanderersCampaignBehavior.cs" />
     <Compile Include="CharacterDevelopment\TORAttributes.cs" />
     <Compile Include="CharacterDevelopment\TORCharacterTraits.cs" />
+    <Compile Include="CharacterDevelopment\TORPerks.cs" />
     <Compile Include="CharacterDevelopment\TORSkillEffects.cs" />
     <Compile Include="CharacterDevelopment\TORSkills.cs" />
     <Compile Include="Extensions\AgentExtensions.cs" />
@@ -545,9 +546,12 @@
     <Compile Include="Models\TORPrisonerRecruitmentCalculationModel.cs" />
     <Compile Include="Models\TORSettlementMilitiaModel.cs" />
     <Compile Include="Models\TORSpellcraftSkillModel.cs" />
+    <Compile Include="Quests\SpecializeLoreQuest.cs" />
+    <Compile Include="Quests\TORQuestHelper.cs" />
     <Compile Include="SubModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\TORCommon.cs" />
+    <Compile Include="Utilities\TORConsoleCommands.cs" />
     <Compile Include="Utilities\TORConstants.cs" />
     <Compile Include="Utilities\TORDamageDisplay.cs" />
     <Compile Include="Utilities\TORGameMenuBackgroundSwitcher.cs" />

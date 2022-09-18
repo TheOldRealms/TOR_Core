@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
@@ -71,6 +71,13 @@ namespace TOR_Core.Extensions
             return item.StringId.StartsWith("tor_");
         }
 
+
+        public static bool IsExplosiveAmmunition(this ItemObject itemObject)
+        {
+            return IsAmmunitionItem(itemObject) && itemObject.ToString().Contains("grenade") ||
+                itemObject.ToString().Contains("cannon") ;
+        }
+
         /// <summary>
         /// Checks if the current weapon is shooting scatter shots or grenades, or is scatter/grenade ammunition
         /// </summary>
@@ -91,8 +98,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsAmmunitionItem(this ItemObject itemObject)
         {
-            if (itemObject.WeaponComponent == null) return false;
-            if (itemObject.WeaponComponent.PrimaryWeapon == null) return false;
+            if (itemObject?.WeaponComponent?.PrimaryWeapon == null) return false;
 
             return itemObject.WeaponComponent.PrimaryWeapon.IsRangedWeapon ||
                    itemObject.WeaponComponent.PrimaryWeapon.IsAmmo;

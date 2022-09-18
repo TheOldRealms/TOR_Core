@@ -3730,6 +3730,86 @@
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_empire_valiant_outrider_grenade_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_blunderbuss_002" />
+      <Equipment slot="Item1" id="tor_empire_weapon_ammo_grenade" />
+      <Equipment slot="Item2" id="tor_empire_weapon_ammo_grenade" />
+      <Equipment slot="Item3" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_sergeant_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_002" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_blunderbuss_002" />
+      <Equipment slot="Item1" id="tor_empire_weapon_ammo_grenade" />
+      <Equipment slot="Item2" id="tor_empire_weapon_ammo_grenade" />
+      <Equipment slot="Item3" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_sergeant_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_002" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_blunderbuss_001" />
+      <Equipment slot="Item1" id="tor_empire_weapon_ammo_grenade" />
+      <Equipment slot="Item2" id="tor_empire_weapon_ammo_grenade" />
+      <Equipment slot="Item3" id="Item.broad_arming_sword_t4" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_tracker_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_002" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_blunderbuss_001" />
+      <Equipment slot="Item1" id="tor_empire_weapon_ammo_grenade" />
+      <Equipment slot="Item2" id="tor_empire_weapon_ammo_grenade" />
+      <Equipment slot="Item3" id="Item.broad_arming_sword_t4" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_tracker_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_002" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_blunderbuss_002" />
+      <Equipment slot="Item1" id="tor_empire_weapon_ammo_grenade" />
+      <Equipment slot="Item2" id="tor_empire_weapon_ammo_grenade" />
+      <Equipment slot="Item3" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_greatsword_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_greatsword_001" />
+      <Equipment slot="Cape" id="Item.a_battania_cloak_a" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_blunderbuss_002" />
+      <Equipment slot="Item1" id="tor_empire_weapon_ammo_grenade" />
+      <Equipment slot="Item2" id="tor_empire_weapon_ammo_grenade" />
+      <Equipment slot="Item3" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_greatsword_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_greatsword_001" />
+      <Equipment slot="Cape" id="Item.a_battania_cloak_a" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_empire_reiksguard_preceptor_innercircle_template" culture="Culture.empire">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_006" />

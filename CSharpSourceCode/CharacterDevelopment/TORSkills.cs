@@ -25,9 +25,9 @@ namespace TOR_Core.CharacterDevelopment
             _faith = Game.Current.ObjectManager.RegisterPresumedObject(new SkillObject("Faith"));
             _gunPowder = Game.Current.ObjectManager.RegisterPresumedObject(new SkillObject("Gunpowder"));
             _spellCraft = Game.Current.ObjectManager.RegisterPresumedObject(new SkillObject("Spellcraft"));
-            _faith.Initialize(new TextObject("{=!}Faith", null), new TextObject("{=!}Faith is lorem ipsum...", null), SkillObject.SkillTypeEnum.Personal).SetAttribute(TORAttributes.Wisdom);
-            _gunPowder.Initialize(new TextObject("{=!}Gunpowder", null), new TextObject("{=!}Gunpowder is lorem ipsum...", null), SkillObject.SkillTypeEnum.Personal).SetAttribute(TORAttributes.Wisdom);
-            _spellCraft.Initialize(new TextObject("{=!}Spellcraft", null), new TextObject("{=!}Spellcraft is lorem ipsum...", null), SkillObject.SkillTypeEnum.Personal).SetAttribute(TORAttributes.Wisdom);
+            _faith.Initialize(new TextObject("{=!}Faith", null), new TextObject("{=!}Faith is lorem ipsum...", null), SkillObject.SkillTypeEnum.Personal).SetAttribute(TORAttributes.Discipline);
+            _gunPowder.Initialize(new TextObject("{=!}Gunpowder", null), new TextObject("{=!}Gunpowder is lorem ipsum...", null), SkillObject.SkillTypeEnum.Personal).SetAttribute(TORAttributes.Discipline);
+            _spellCraft.Initialize(new TextObject("{=!}Spellcraft", null), new TextObject("{=!}Spellcraft is lorem ipsum...", null), SkillObject.SkillTypeEnum.Personal).SetAttribute(TORAttributes.Discipline);
         }
     }
 }

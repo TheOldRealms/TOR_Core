@@ -288,6 +288,7 @@
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_valiant_outrider" />
+      <upgrade_target id="NPCCharacter.tor_valiant_outrider_grenade" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_empire_outrider_template" />
@@ -338,6 +339,16 @@
     <Equipments>
       <EquipmentSet id="tor_empire_valiant_outrider_template" />
       <EquipmentSet id="tor_empire_valiant_outrider_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_valiant_outrider_grenade" default_group="horsearcher" level="46" name="{=str_tor_valiant_outrider_grenade}Empire Valiant Grenadelauncher Outrider" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level46">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_empire_valiant_outrider_grenade_template" />
+      <EquipmentSet id="tor_empire_valiant_outrider_grenade_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_reiksguard_preceptor_innercircle" default_group="cavalry" level="46" name="{=str_tor_reiksguard_preceptor_innercircle}Empire Reiksguard Preceptor Knight of the Inner Circle" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level46">
@@ -1895,7 +1906,7 @@
       <EquipmentSet id="tor_empire_deserter_sergeant_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_deserter_scout" default_group="ranged" level="16" name="{=str_tor_empire_deserter_scout}Deserter Scout" occupation="Bandit" culture="Culture.mountain_bandits" skill_template="SkillSet.tor_skills_level16">
+  <NPCCharacter id="tor_empire_deserter_scout" default_group="ranged" level="16" name="{=}Deserter Scout" occupation="Bandit" culture="Culture.mountain_bandits" skill_template="SkillSet.tor_skills_level16">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>

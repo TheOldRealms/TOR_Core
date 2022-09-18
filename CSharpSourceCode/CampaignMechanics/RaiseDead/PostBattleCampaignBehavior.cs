@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.MapEvents;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.Extensions;
@@ -18,7 +19,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
 
         public override void RegisterEvents()
         {
-            CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, InitializeRaiseableCharacters);
+            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, InitializeRaiseableCharacters);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, RaiseDead);
         }
 
@@ -37,7 +38,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         private void InitializeRaiseableCharacters(CampaignGameStarter starter)
         {
             var characters = MBObjectManager.Instance.GetObjectTypeList<CharacterObject>();
-            _raiseableCharacters = characters.Where(character => character.IsUndead() && character.IsBasicTroop && character.Culture.ToString().Equals(Hero.MainHero.Culture.ToString())).ToList();
+            _raiseableCharacters = characters.Where(character => character.IsUndead() && character.IsBasicTroop).ToList();
         }
 
         private List<CharacterObject> CalculateTroops(MapEvent mapEvent)
