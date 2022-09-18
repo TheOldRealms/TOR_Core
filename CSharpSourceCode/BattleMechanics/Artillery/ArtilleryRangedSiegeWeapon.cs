@@ -290,7 +290,6 @@ namespace TOR_Core.BattleMechanics.Artillery
                 case WeaponState.Shooting:
                     {
                         PlayFireProjectileEffects();
-                        AddCannonballScript();
                         State = WeaponState.WaitingAfterShooting;
                         return;
                     }
@@ -460,19 +459,7 @@ namespace TOR_Core.BattleMechanics.Artillery
         }
         internal void SetTarget(Target target) => _target = target;
         internal void ClearTarget() => _target = null;
-
-        private void AddCannonballScript()
-        {
-            var cannonball = Mission.Current.Missiles.FirstOrDefault(missile => missile.ShooterAgent == PilotAgent);
-            if (cannonball != null)
-            {
-                GameEntity entity = cannonball.Entity;
-                entity.CreateAndAddScriptComponent("CannonBallScript");
-                CannonBallScript cannonBallScript = entity.GetFirstScriptOfType<CannonBallScript>();
-                cannonBallScript.SetShooterAgent(PilotAgent);
-                entity.CallScriptCallbacks();
-            }
-        }
+        
 
         private void PlayFireProjectileEffects()
         {

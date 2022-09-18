@@ -1,11 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using NLog.Fluent;
+using TaleWorlds.CampaignSystem.LogEntries;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
+using LogLevel = NLog.LogLevel;
 
 namespace TOR_Core.BattleMechanics.Dismemberment
 {
@@ -25,38 +31,131 @@ namespace TOR_Core.BattleMechanics.Dismemberment
 
         private readonly string[] headMeshes = { "head", "hair", "beard", "eyebrow" };
 
+        private const int poolSize=20; // the higher this number, the longer body parts stay, the more Objects are "kept" in memory.
+        //14*20 = 280 Game Entities are spawned. keep the pool size as reasonable small as possible.
+        private GameEntity[][] _pooledDismemberedLimbs;
+        private int _index;
+        private bool _fullyInstantiated;
+
+        private Vec3 objectPos;
+        
+        private Vec3 lastPos = new Vec3();
+        public override void AfterStart()
+        {
+            _pooledDismemberedLimbs = new GameEntity[poolSize][];
+            for (int i = 0; i < poolSize; i++)
+            {
+                _pooledDismemberedLimbs[i]= new GameEntity[14];
+                _pooledDismemberedLimbs[i][0]= InstantiateObjectAtPoolIndex("exploded_head_001", "exploded_torso_001", i);
+                _pooledDismemberedLimbs[i][1] = InstantiateObjectAtPoolIndex("exploded_arms_001");
+                _pooledDismemberedLimbs[i][2] = InstantiateObjectAtPoolIndex("exploded_arms_002");
+                _pooledDismemberedLimbs[i][3]= InstantiateObjectAtPoolIndex("exploded_legs_002");
+                _pooledDismemberedLimbs[i][4] = InstantiateObjectAtPoolIndex("exploded_legs_003");
+                _pooledDismemberedLimbs[i][5] = InstantiateObjectAtPoolIndex("exploded_flesh_pieces_001");
+                _pooledDismemberedLimbs[i][6] = InstantiateObjectAtPoolIndex("exploded_flesh_pieces_002");
+                _pooledDismemberedLimbs[i][7] = InstantiateObjectAtPoolIndex("exploded_flesh_pieces_003");
+                _pooledDismemberedLimbs[i][8] = InstantiateObjectAtPoolIndex("exploded_limb_pieces_001");
+                _pooledDismemberedLimbs[i][9] = InstantiateObjectAtPoolIndex("exploded_limb_pieces_002");
+                _pooledDismemberedLimbs[i][10]= InstantiateObjectAtPoolIndex("exploded_limb_pieces_003");
+                _pooledDismemberedLimbs[i][11]= InstantiateObjectAtPoolIndex("exploded_limb_pieces_001");
+                _pooledDismemberedLimbs[i][12] = InstantiateObjectAtPoolIndex("exploded_limb_pieces_002");
+                _pooledDismemberedLimbs[i][13] = InstantiateObjectAtPoolIndex("exploded_limb_pieces_003");
+            }
+        }
+
+        public override void HandleOnCloseMission()
+        {
+            Clear();
+        }
+        
+        private void Clear()
+        {
+            // just to make sure that all references are cleared
+            foreach( var container in _pooledDismemberedLimbs)
+            {
+                for (int i = 0; i < container.Length; i++)
+                {
+                    container[i].Remove(0);
+                    container[i] = null;
+                }
+            }
+
+            _pooledDismemberedLimbs = null;
+            
+        }
+        
+        private GameEntity InstantiateObjectAtPoolIndex(string prefabName, string secondPrefabVariantName="", int index=0)
+        {
+            string resultString = prefabName;
+            if (index % 2!=0&&secondPrefabVariantName!="")
+            {
+                resultString = secondPrefabVariantName;
+            }
+
+            GameEntity item = GameEntity.Instantiate(Mission.Current.Scene, resultString, false);
+            if (item == null)
+            {
+                throw new Exception("Pooled object was not found return");
+            }
+
+            Vec3 upPos = Mission.Current.GetBattleSideInitialSpawnPathFrame(BattleSideEnum.Defender).Origin.Normal;
+            upPos += Vec3.Up * 50;
+            var frame = new MatrixFrame(Mat3.Identity, upPos); 
+            item.SetGlobalFrame(frame);
+            //item.FadeOut(0,false);
+            item.AddPhysics(item.Mass, item.CenterOfMass, item.GetBodyShape(), Vec3.Zero, Vec3.Zero, PhysicsMaterial.GetFromName("flesh"), false, -1);
+            //item.SetPhysicsState(false,true);
+            item.SetAlpha(0);
+            
+            return item;
+        }
+        
         public override void OnMissionTick(float dt)
         {
             if (slowMotionEndTime > 0 && Mission.CurrentTime >= slowMotionEndTime)
             {
                 Mission.Current.Scene.TimeSpeed *= 2;
             }
+
+            /*objectPos = _pooledDismemberedLimbs[0][0].GlobalPosition;
+
+            if (lastPos != objectPos)
+            {
+                TORCommon.Say("object is moving");
+            }
+            else
+            {
+             //   TORCommon.Say(lastPos+" " + objectPos);
+            }
+
+            lastPos = objectPos;*/
         }
 
         public override void OnRegisterBlow(Agent attacker, Agent victim, GameEntity realHitEntity, Blow blow, ref AttackCollisionData collisionData, in MissionWeapon attackerWeapon)
         {
-            bool canBeDismembered = victim != null &&
-                                    victim.IsHuman &&
-                                    victim != Agent.Main &&
-                                    victim.Health <= 0 &&
-                                    victim.State == AgentState.Killed &&
-                                    attacker != null &&
-                                    (collisionData.VictimHitBodyPart == BoneBodyPartType.Neck ||
-                                    collisionData.VictimHitBodyPart == BoneBodyPartType.Head) &&
-                                    blow.DamageType == DamageTypes.Cut &&
-                                    (blow.WeaponRecord.WeaponClass == WeaponClass.OneHandedAxe ||
-                                    blow.WeaponRecord.WeaponClass == WeaponClass.OneHandedSword ||
-                                    blow.WeaponRecord.WeaponClass == WeaponClass.TwoHandedAxe ||
-                                    blow.WeaponRecord.WeaponClass == WeaponClass.TwoHandedSword) &&
-                                    (attacker.AttackDirection == Agent.UsageDirection.AttackLeft ||
-                                    attacker.AttackDirection == Agent.UsageDirection.AttackRight);
+            if (victim == null || attacker == null) return;
+            if(!victim.IsHuman) return;
+            if(victim.IsMainAgent) return;
+            if(victim.Health >= 0&& victim.State!=AgentState.Killed) return;
 
-            if (canBeDismembered)
+            try
             {
-                if (attacker == Agent.Main)
+                if (!blow.IsMissile)
                 {
-                    if (ShouldBeDismembered(attacker, victim, blow))
+                    bool blowCanDecapitate = (collisionData.VictimHitBodyPart == BoneBodyPartType.Neck ||
+                                              collisionData.VictimHitBodyPart == BoneBodyPartType.Head) &&
+                                             blow.DamageType == DamageTypes.Cut &&
+                                             (blow.WeaponRecord.WeaponClass == WeaponClass.OneHandedAxe ||
+                                              blow.WeaponRecord.WeaponClass == WeaponClass.OneHandedSword ||
+                                              blow.WeaponRecord.WeaponClass == WeaponClass.TwoHandedAxe ||
+                                              blow.WeaponRecord.WeaponClass == WeaponClass.TwoHandedSword) &&
+                                             (attacker.AttackDirection == Agent.UsageDirection.AttackLeft ||
+                                              attacker.AttackDirection == Agent.UsageDirection.AttackRight);
+                    if (!blowCanDecapitate) return;
+                
+                    if (attacker == Agent.Main)
                     {
+                        if (!ShouldBeDismembered(attacker, victim, blow)) return;
                         DismemberHead(victim, collisionData);
                         if (slowMotionFrequency == Probability.Always)
                         {
@@ -67,13 +166,75 @@ namespace TOR_Core.BattleMechanics.Dismemberment
                             EnableSlowMotion();
                         }
                     }
+                    else if (canTroopDismember)
+                    {
+                        DismemberHead(victim, collisionData);
+                    }
+                    return;
                 }
-                else if (attacker.IsHuman && canTroopDismember)
-                {
-                    DismemberHead(victim, collisionData);
+
+                if (victim.IsUndead()) return;
+
+                if (blow.InflictedDamage>80&&(attackerWeapon.Item != null&&attackerWeapon.Item.IsExplosiveAmmunition()))
+                { 
+                    InitializeBodyExplosion(victim,blow.Position);
                 }
             }
+            catch(Exception exception)
+            {
+                TORCommon.Log("crashed inside Dismemberment interaction "+exception.Message,LogLevel.Error);
+                throw;
+            }
         }
+        
+        private void InitializeBodyExplosion(Agent agent, Vec3 position)
+        {
+            if (agent == null) return;
+            
+            var distance = agent.Position.Distance(position);
+            
+            if (distance > 2) return;
+
+            RunParticleEffect(position, "blood_explosion");
+            agent.Disappear();
+            var frame = agent.Frame.Elevate(1);
+            
+            MoveCorpseParts(frame);
+        }
+        
+        private  Vec3 GetRandomDirection(float deviation, bool fixZ=true)
+        {
+            float x = MBRandom.RandomFloatRanged(-deviation, deviation);
+            var y = MBRandom.RandomFloatRanged(-deviation, deviation);
+            var z = fixZ? 1: MBRandom.RandomFloatRanged(-deviation, deviation);
+            return new Vec3(x, y, z);
+        }
+        private void MoveCorpseParts(MatrixFrame frame)
+        {
+            if (_index >= poolSize)
+            {
+                _index = 0;
+                _fullyInstantiated = true;
+            }
+
+            for (var i = 0; i < _pooledDismemberedLimbs[_index].Length;i++)
+            {
+                if(_pooledDismemberedLimbs[_index][i]==null) continue; //that shouldn't be... but maybe?
+                
+                if (!_fullyInstantiated)    
+                {
+                    _pooledDismemberedLimbs[_index][i].SetAlpha(1);
+                   // _pooledDismemberedLimbs[_index][i].SetAlpha(1);
+                    //_pooledDismemberedLimbs[_index][i].SetPhysicsState(true,true);
+                }
+                _pooledDismemberedLimbs[_index][i].SetGlobalFrame(frame);
+                var dir = GetRandomDirection(3);
+                _pooledDismemberedLimbs[_index][i].ApplyLocalImpulseToDynamicBody(Vec3.Up*-1, dir * 25);
+            }
+
+            _index++;
+        }
+
 
         private void EnableSlowMotion()
         {
@@ -202,11 +363,20 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             victim.AgentVisuals.GetSkeleton().AddMesh(neckMesh);
         }
 
-        private void CreateBloodBurst(Agent victim)
+        private void CreateBloodBurst(Agent victim, HumanBone bone = HumanBone.Head)
         {
-            MatrixFrame boneEntitialFrameWithIndex = victim.AgentVisuals.GetSkeleton().GetBoneEntitialFrameWithIndex(victim.BoneMappingArray[HumanBone.Head]);
+            MatrixFrame boneEntitialFrameWithIndex = victim.AgentVisuals.GetSkeleton().GetBoneEntitialFrameWithIndex(victim.BoneMappingArray[bone]);
             Vec3 vec = victim.AgentVisuals.GetGlobalFrame().TransformToParent(boneEntitialFrameWithIndex.origin);
             victim.CreateBloodBurstAtLimb(13, ref vec, 0.5f + MBRandom.RandomFloat * 0.5f);
+        }
+        
+        private void RunParticleEffect(Vec3 position, string particleEffectID)
+        {
+            var effect = GameEntity.CreateEmpty(Mission.Current.Scene);
+            MatrixFrame frame = MatrixFrame.Identity;
+            ParticleSystem.CreateParticleSystemAttachedToEntity(particleEffectID, effect, ref frame);
+            var globalFrame = new MatrixFrame(Mat3.CreateMat3WithForward(in Vec3.Zero), position);
+            effect.SetGlobalFrame(globalFrame);
         }
 
         public enum Probability
