@@ -488,7 +488,7 @@
     <Compile Include="Extensions\MissionExtensions.cs" />
     <Compile Include="Extensions\MobilePartyExtensions.cs" />
     <Compile Include="Extensions\SettlementExtensions.cs" />
-    <Compile Include="GameManagers\InputGameManager.cs" />
+    <Compile Include="GameManagers\TORKeyInputManager.cs" />
     <Compile Include="GameManagers\TORGameKeyContext.cs" />
     <Compile Include="GameManagers\TORShaderGameManager.cs" />
     <Compile Include="GameManagers\TORCampaignGameManager.cs" />
