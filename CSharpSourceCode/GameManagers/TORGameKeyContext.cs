@@ -15,12 +15,14 @@ namespace TOR_Core.GameManagers
         public const int SelectNextAbility = (int) TorKeyMap.SelectNextAbility;
         public const int SelectPreviousAbility = (int)TorKeyMap.SelectPreviousAbility;
         public const int QuickCast = (int)TorKeyMap.QuickCast;
+        public const int SpecialMove = (int)TorKeyMap.SpecialMove;
         public TORGameKeyContext() :  base(nameof(TORGameKeyContext),120)
         {
             this.RegisterGameKey(new GameKey(Spellcasting, "Spellcasting", nameof(TORGameKeyContext), InputKey.Q,nameof(TORGameKeyContext)));
             this.RegisterGameKey(new GameKey(SelectPreviousAbility, "PreviousAbility", nameof(TORGameKeyContext), InputKey.X2MouseButton,nameof(TORGameKeyContext)));
             this.RegisterGameKey(new GameKey(SelectNextAbility, "NextAbility", nameof(TORGameKeyContext), InputKey.X1MouseButton,nameof(TORGameKeyContext)));
-            this.RegisterGameKey(new GameKey(QuickCast, "QuickCast", nameof(TORGameKeyContext), InputKey.H,nameof(TORGameKeyContext)));
+            this.RegisterGameKey(new GameKey(QuickCast, "QuickCast", nameof(TORGameKeyContext), InputKey.MiddleMouseButton,nameof(TORGameKeyContext)));
+            this.RegisterGameKey(new GameKey(SpecialMove, "SpecialMove", nameof(TORGameKeyContext), InputKey.H,nameof(TORGameKeyContext)));
         }
         
         
@@ -34,6 +36,7 @@ namespace TOR_Core.GameManagers
         SpellcastingMode = 109,
         SelectNextAbility =110,
         SelectPreviousAbility =111,
-        QuickCast=112
+        QuickCast=112,
+        SpecialMove=113
     }
 }

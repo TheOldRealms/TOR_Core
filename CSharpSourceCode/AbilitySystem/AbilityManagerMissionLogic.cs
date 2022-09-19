@@ -43,6 +43,7 @@ namespace TOR_Core.AbilitySystem
         private GameKey _nextAbilitySelection;
         private GameKey _previousAbilitySelection;
         private GameKey _quickCast;
+        private GameKey _specialMoveKey;
         
         private TORGameKeyContext _torContext;
 
@@ -229,35 +230,29 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-        private void RunQuickCast()
-        {
-            var ability = Agent.Main.GetCurrentAbility();
-            
-            if(ability.AbilityEffectType == AbilityEffectType.SeekerMissile)
-                return;
-
-            Agent.Main.CastCurrentAbility();
-
-                /*if (abilitycomponent != null)
-            {
-                if (abilitycomponent.CurrentAbility != null) abilitycomponent.CurrentAbility.TryCast(agent);
-            }
-            if()*/
-
-        }
-
         private void HandleInput()
         {
             //Turning ability mode on/off
+
+            if (Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) ||
+                Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey))
+            {
+                if( _abilityComponent != null && _abilityComponent.SpecialMove != null)
+                    if (_currentState == AbilityModeState.Off  &&
+                        IsCurrentCrossHairCompatible())
+                    {
+                        _abilityComponent.SpecialMove.TryCast(Agent.Main);
+                    }
+            }
             
-            if(Input.IsKeyPressed(_nextAbilitySelection.KeyboardKey.InputKey))
+            if(Input.IsKeyPressed(_nextAbilitySelection.KeyboardKey.InputKey)||Input.IsKeyPressed(_nextAbilitySelection.ControllerKey.InputKey))
                 Agent.Main.SelectNextAbility();
             
-            if(Input.IsKeyPressed(_previousAbilitySelection.KeyboardKey.InputKey))
+            if(Input.IsKeyPressed(_previousAbilitySelection.KeyboardKey.InputKey)||Input.IsKeyPressed(_previousAbilitySelection.ControllerKey.InputKey))
                 Agent.Main.SelectPreviousAbility();
             
-            if(Input.IsKeyPressed(_quickCast.KeyboardKey.InputKey))
-                RunQuickCast();
+            if(Input.IsKeyPressed(_quickCast.KeyboardKey.InputKey)||Input.IsKeyPressed(_quickCast.ControllerKey.InputKey))
+                Agent.Main.CastCurrentAbility();
             
             if (Input.IsKeyPressed(_spellcastingModeKey.KeyboardKey.InputKey)||Input.IsKeyPressed(_spellcastingModeKey.ControllerKey.InputKey))
             {
@@ -298,13 +293,6 @@ namespace TOR_Core.AbilitySystem
             {
                 Agent.Main.SelectPreviousAbility();
             }
-            else if (Input.IsKeyPressed(InputKey.LeftControl) && _abilityComponent != null && _abilityComponent.SpecialMove != null)
-            {
-                if (_currentState == AbilityModeState.Off && _abilityComponent.SpecialMove.IsCharged && IsCurrentCrossHairCompatible())
-                {
-                    _abilityComponent.SpecialMove.TryCast(Agent.Main);
-                }
-            }
         }
 
         private bool IsCurrentCrossHairCompatible()
@@ -337,11 +325,10 @@ namespace TOR_Core.AbilitySystem
         {
             base.EarlyStart();
             _spellcastingModeKey=  HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("Spellcasting");
-            
             _nextAbilitySelection = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("NextAbility");
-            _previousAbilitySelection =
-                HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("PreviousAbility");
+            _previousAbilitySelection = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("PreviousAbility");
             _quickCast = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("QuickCast");
+            _specialMoveKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("SpecialMove");
         }
 
         public bool IsCastingMission()

@@ -88,8 +88,6 @@ namespace TOR_Core
             ContextTitleElement.AddVariationWithId(context, new TaleWorlds.Localization.TextObject("The Old Realms"), new List<GameTextManager.ChoiceTag>());
             
             
-            
-            
             var KeyElementBindings = Module.CurrentModule.GlobalTextManager.GetGameText("str_key_name");
             var spellcastingModeKey = context + "_"+(int)TorKeyMap.SpellcastingMode;
             KeyElementBindings.AddVariationWithId(spellcastingModeKey, new TaleWorlds.Localization.TextObject("Spell Casting Mode"), new List<GameTextManager.ChoiceTag>());
@@ -102,6 +100,9 @@ namespace TOR_Core
             
             var quickCast = context + "_"+(int)TorKeyMap.QuickCast;
             KeyElementBindings.AddVariationWithId(quickCast, new TaleWorlds.Localization.TextObject("Quick Cast"), new List<GameTextManager.ChoiceTag>());
+            
+            var specialMove = context+ "_"+(int)TorKeyMap.SpecialMove;
+            KeyElementBindings.AddVariationWithId(specialMove, new TaleWorlds.Localization.TextObject("Special Move"), new List<GameTextManager.ChoiceTag>());
             
             var KeyDescriptionElement = Module.CurrentModule.GlobalTextManager.GetGameText("str_key_description");
             var keyDescription = context +"_"+(int)TorKeyMap.SpellcastingMode;
