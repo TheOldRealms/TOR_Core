@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using TaleWorlds.MountAndBlade;
 using System.Timers;
 using TaleWorlds.Library;
@@ -112,18 +113,66 @@ namespace TOR_Core.AbilitySystem
             
             if (casterAgent == Agent.Main && !Mission.Current.IsPlayerInSpellCasterMode())
             {
-                // Quick cast setup
-                if (this.AbilityEffectType == AbilityEffectType.Augment||(this.AbilityEffectType == AbilityEffectType.Heal&&this.IsGroundAbility()))
+                switch (this.AbilityEffectType)
                 {
-                    frame.origin = Agent.Main.GetWorldPosition().GetGroundVec3();
-                    //frame.rotation = Mat3.CreateMat3WithForward(Vec3.Up);
+                    // Quick cast setup
+                    case AbilityEffectType.Augment:
+                        frame.origin = Agent.Main.GetWorldPosition().GetGroundVec3();
+                        break;
+                    case AbilityEffectType.Summoning:
+                        frame.origin =
+                            Mission.Current.GetRandomPositionAroundPoint(Agent.Main.GetWorldPosition().GetGroundVec3(), 3, 6, false);
+                        break;
+                    case AbilityEffectType.Heal when this.IsGroundAbility():
+                        frame.origin = Agent.Main.GetWorldPosition().GetGroundVec3();
+                        break;
+                    case AbilityEffectType.Heal:
+                    {
+                        float height = 0.0f;
+                        var pos = Agent.Main.Frame.Advance(15).origin;
+                        Mission.Current.Scene.GetHeightAtPoint(pos.AsVec2, BodyFlags.CommonCollisionExcludeFlagsForCombat, ref height);
+                        pos.z = height;
+
+                        var targetAgent = Mission.Current.GetClosestAllyAgent(Agent.Main.Team, pos, 5);
+
+                        if (targetAgent != null)
+                        {
+                            frame.origin = targetAgent.Frame.origin;
+                        }
+                        else
+                        {
+                            targetAgent=Agent.Main;
+                            frame.origin = targetAgent.Frame.origin;
+                        }
+                        break;
+                    }
+                    case AbilityEffectType.Bombardment:
+                    case AbilityEffectType.Vortex:
+                    {
+                        float height = 0.0f;
+                        var pos = Agent.Main.LookFrame.Advance(15).origin;
+                        Mission.Current.Scene.GetHeightAtPoint(pos.AsVec2, BodyFlags.CommonCollisionExcludeFlagsForCombat, ref height);
+                        pos.z = height;
+
+                        if (pos!=Vec3.Zero)
+                        {
+                            frame.origin = pos;
+                            frame.rotation = Agent.Main.LookFrame.rotation;
+                        }
+
+                        break;
+                    }
+                    case AbilityEffectType.Blast:
+                    case AbilityEffectType.Wind:
+                    {
+                        frame.origin = Agent.Main.LookFrame.Advance(3).origin;
+                        frame.rotation =  Agent.Main.LookFrame.rotation;
+                        break;
+                    }
+                       
                 }
 
-                if (this.AbilityEffectType == AbilityEffectType.Summoning)
-                {
-                    frame.origin =
-                        Mission.Current.GetRandomPositionAroundPoint(Agent.Main.GetWorldPosition().GetGroundVec3(), 3, 6, false);
-                }
+               
             }
 
             GameEntity parentEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
