@@ -163,6 +163,7 @@ namespace TOR_Core.AbilitySystem
                     case AbilityEffectType.Augment:
                         frame.origin = Agent.Main.GetWorldPosition().GetGroundVec3();
                         break;
+                    case AbilityEffectType.ArtilleryPlacement:
                     case AbilityEffectType.Summoning:
                         frame.origin =
                             Mission.Current.GetRandomPositionAroundPoint(Agent.Main.GetWorldPosition().GetGroundVec3(), 3, 6, false);
@@ -173,7 +174,7 @@ namespace TOR_Core.AbilitySystem
                     case AbilityEffectType.Heal:
                     {
                         float height = 0.0f;
-                        var pos = Agent.Main.Frame.Advance(15).origin;
+                        var pos = Agent.Main.LookFrame.Advance(15).origin;
                         Mission.Current.Scene.GetHeightAtPoint(pos.AsVec2, BodyFlags.CommonCollisionExcludeFlagsForCombat, ref height);
                         pos.z = height;
 
@@ -190,30 +191,62 @@ namespace TOR_Core.AbilitySystem
                         }
                         break;
                     }
+                    case AbilityEffectType.Hex:
+                    {
+                        var height = 0.0f;
+                        var pos = Agent.Main.LookFrame.Advance(15).origin;
+                        Mission.Current.Scene.GetHeightAtPoint(pos.AsVec2, BodyFlags.CommonCollisionExcludeFlagsForCombat, ref height);
+                        pos.z = height;
+
+
+                        var target= Mission.Current.GetAgentsInRange(pos.AsVec2,5);
+
+                        foreach (var agent in target)
+                        {
+                            if (agent.Team != Mission.Current.Teams.PlayerEnemy) continue;
+                            frame.origin = agent.Frame.origin;
+                            break;
+                        }
+                        
+                        break;
+                    }
                     case AbilityEffectType.Bombardment:
                     case AbilityEffectType.Vortex:
                     {
                         float height = 0.0f;
                         var pos = Agent.Main.LookFrame.Advance(15).origin;
                         Mission.Current.Scene.GetHeightAtPoint(pos.AsVec2, BodyFlags.CommonCollisionExcludeFlagsForCombat, ref height);
-                        pos.z = height;
 
-                        if (pos!=Vec3.Zero)
-                        {
-                            frame.origin = pos;
-                            frame.rotation = Agent.Main.LookFrame.rotation;
-                        }
+                        if (this.AbilityEffectType == AbilityEffectType.Bombardment)
+                            pos.z = height + this.Template.Offset;
+                        else
+                            pos.z = height;
+                        
+                        frame.origin = pos;
+                        frame.rotation = Agent.Main.LookFrame.rotation;
 
                         break;
                     }
                     case AbilityEffectType.Blast:
                     case AbilityEffectType.Wind:
                     {
-                        frame.origin = Agent.Main.LookFrame.Advance(3).origin;
+                        var height = 0.0f;
+                        Vec3 pos;
+                        pos = this.AbilityEffectType == AbilityEffectType.Wind ? Agent.Main.LookFrame.Advance(5).origin : Agent.Main.LookFrame.Advance(3).origin;
+                        
+                        Mission.Current.Scene.GetHeightAtPoint(pos.AsVec2, BodyFlags.CommonCollisionExcludeFlagsForCombat, ref height);
+                        if (this.AbilityEffectType == AbilityEffectType.Blast)
+                            pos.z = height + 1;
+                        else
+                            pos.z = height;
+                        frame.origin = pos;
                         frame.rotation =  Agent.Main.LookFrame.rotation;
                         break;
                     }
-                       
+                    case AbilityEffectType.AgentMoving:
+                        break;
+                    default: 
+                        break;
                 }
 
              return frame;
