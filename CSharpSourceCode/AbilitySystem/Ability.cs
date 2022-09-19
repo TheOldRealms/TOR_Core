@@ -111,10 +111,54 @@ namespace TOR_Core.AbilitySystem
             _timer.Start();
             var frame = GetSpawnFrame(casterAgent); 
             
-            if (casterAgent == Agent.Main && !Mission.Current.IsPlayerInSpellCasterMode())
+            GameEntity parentEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
+            parentEntity.SetGlobalFrame(frame);
+
+            AddLight(ref parentEntity);
+
+            if (ShouldAddPhyics())
+                AddPhysics(ref parentEntity);
+
+            AddBehaviour(ref parentEntity, casterAgent);
+            OnCastComplete?.Invoke(this);
+        }
+
+        private bool IsGroundAbility()
+        {
+            return Template.AbilityTargetType == AbilityTargetType.GroundAtPosition;
+        }
+
+        private bool IsMissileAbility()
+        {
+            return Template.AbilityEffectType == AbilityEffectType.SeekerMissile ||
+                   Template.AbilityEffectType == AbilityEffectType.Missile;
+        }
+
+        private bool ShouldAddPhyics()
+        {
+            return Template.TriggerType == TriggerType.OnCollision;
+        }
+
+        protected MatrixFrame GetSpawnFrame(Agent casterAgent)
+        {
+            if (casterAgent.IsMainAgent)
             {
-                switch (this.AbilityEffectType)
+                return Mission.Current.IsPlayerInSpellCasterMode() ? CalculatePlayerCastMatrixFrame(casterAgent): CalculateQuickCastMatrixFrame(casterAgent);
+            }
+            return casterAgent.IsAIControlled ? CalculateAICastMatrixFrame(casterAgent) : CalculatePlayerCastMatrixFrame(casterAgent);
+        }
+
+        private MatrixFrame CalculateQuickCastMatrixFrame(Agent casterAgent)
+        {
+            var frame = casterAgent.LookFrame;
+             switch (this.AbilityEffectType)
                 {
+                    case AbilityEffectType.Missile:
+                    case AbilityEffectType.SeekerMissile:
+                    {
+                        frame.origin = casterAgent.GetEyeGlobalPosition();
+                        break;
+                    }
                     // Quick cast setup
                     case AbilityEffectType.Augment:
                         frame.origin = Agent.Main.GetWorldPosition().GetGroundVec3();
@@ -172,40 +216,7 @@ namespace TOR_Core.AbilitySystem
                        
                 }
 
-               
-            }
-
-            GameEntity parentEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
-            parentEntity.SetGlobalFrame(frame);
-
-            AddLight(ref parentEntity);
-
-            if (ShouldAddPhyics())
-                AddPhysics(ref parentEntity);
-
-            AddBehaviour(ref parentEntity, casterAgent);
-            OnCastComplete?.Invoke(this);
-        }
-
-        private bool IsGroundAbility()
-        {
-            return Template.AbilityTargetType == AbilityTargetType.GroundAtPosition;
-        }
-
-        private bool IsMissileAbility()
-        {
-            return Template.AbilityEffectType == AbilityEffectType.SeekerMissile ||
-                   Template.AbilityEffectType == AbilityEffectType.Missile;
-        }
-
-        private bool ShouldAddPhyics()
-        {
-            return Template.TriggerType == TriggerType.OnCollision;
-        }
-
-        protected MatrixFrame GetSpawnFrame(Agent casterAgent)
-        {
-            return casterAgent.IsAIControlled ? CalculateAICastMatrixFrame(casterAgent) : CalculatePlayerCastMatrixFrame(casterAgent);
+             return frame;
         }
 
         private MatrixFrame CalculatePlayerCastMatrixFrame(Agent casterAgent)
