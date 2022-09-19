@@ -76,12 +76,12 @@ namespace TOR_Core.Extensions
         }
 
         /// <summary>
-        /// Get Extented Character properties, based on dynamic properties like temporary weapon enhancements
+        /// Get Extended Character properties based on dynamic properties like temporary weapon enhancements
         /// and status effects and static properties  like equipment and unit information.
         /// 
         /// </summary>
-        /// <param name="agent">The agent we are accessing. Note that Units are handled differently from Heroes.
-        /// Hero equipment information and gets read out for Heroes specifically resides in the 'tor_extendeditemproperties.xml'
+        /// <param name="agent">The agent are accessing. Note that Units are handled differently from Heroes.
+        /// Hero equipment information that gets read out for Heroes specifically resides in the 'tor_extendeditemproperties.xml'
         /// Unit information gets read out from the tor_extendedunitproperties.xml
         /// </param>
         /// <paramref name="agent"/>
@@ -160,7 +160,7 @@ namespace TOR_Core.Extensions
                         }
                     }
 
-                    //statuseffects
+                    //status effects
                     var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances();
 
                     for (int i = 0; i < damageResistances.Length; i++)
