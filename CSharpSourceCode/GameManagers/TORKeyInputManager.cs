@@ -11,10 +11,10 @@ namespace TOR_Core.GameManagers
     {
         public static void Initialize()
         {
-            InitializeTorSpecificKeys();
+            InitializeHotKeyManager();
         }
         
-        private static void InitializeTorSpecificKeys()
+        private static void InitializeHotKeyManager()
         {
             HotKeyManager.RegisterInitialContexts((IEnumerable<GameKeyContext>) new List<GameKeyContext>()
             {
@@ -43,14 +43,21 @@ namespace TOR_Core.GameManagers
             KeyElementBindings.AddVariationWithId(specialMove, new TaleWorlds.Localization.TextObject("Special Move"), new List<GameTextManager.ChoiceTag>());
             
             var KeyDescriptionElement = Module.CurrentModule.GlobalTextManager.GetGameText("str_key_description");
-            var keyDescription = context +"_"+(int)TorKeyMap.SpellcastingMode;
             KeyDescriptionElement.AddVariationWithId(spellcastingModeKey, new TaleWorlds.Localization.TextObject(
                 "1) During battle pressing Q puts you into aiming mode, a reticule will appear and you will be able to target your spells. Aiming mode is accompanied by a visual animation on your character."+"\n"+
                 "2) Using the mouse wheel will switch between your spells (if you have learned multiple)"+"\n"+
                 "3) New UI elements will appear on the bottom left of your screen, with an image representing your selected spell and a cooldown times "+"\n"+
                 "4) Spells are reliant on the user's Winds of Magic (mana), this is fairly self-explanatory. It is regained over time on the campaign map."), new List<GameTextManager.ChoiceTag>());
-            
-            
+            KeyDescriptionElement.AddVariationWithId(nextSpellKey, new TaleWorlds.Localization.TextObject(
+                "Select next Spell without need to switch to spell cast mode"), new List<GameTextManager.ChoiceTag>());
+            KeyDescriptionElement.AddVariationWithId(previousSpellKey, new TaleWorlds.Localization.TextObject(
+                "Select previous Spell without need to switch to spell cast mode"), new List<GameTextManager.ChoiceTag>());
+            KeyDescriptionElement.AddVariationWithId(quickCast, new TaleWorlds.Localization.TextObject(
+                "Cast spells or prayers without needing to switch to spell cast mode. Warning: There is no target indication and the Spells follow predefined casting order. For targeted casting, always use the Spellcaster mode"), new List<GameTextManager.ChoiceTag>());
+            KeyDescriptionElement.AddVariationWithId(specialMove, new TaleWorlds.Localization.TextObject(
+                "Starting Special move abilities, like the shadow step for the Vampire Counts"), new List<GameTextManager.ChoiceTag>());
+
+
 
         }
     }
