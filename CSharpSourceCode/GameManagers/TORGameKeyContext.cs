@@ -24,11 +24,6 @@ namespace TOR_Core.GameManagers
             this.RegisterGameKey(new GameKey(QuickCast, "QuickCast", nameof(TORGameKeyContext), InputKey.MiddleMouseButton,nameof(TORGameKeyContext)));
             this.RegisterGameKey(new GameKey(SpecialMove, "SpecialMove", nameof(TORGameKeyContext), InputKey.H,nameof(TORGameKeyContext)));
         }
-        
-        
-        
-        
-        
     }
 
     public enum TorKeyMap

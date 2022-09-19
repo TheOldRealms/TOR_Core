@@ -25,7 +25,6 @@ namespace TOR_Core.GameManagers
             var ContextTitleElement = Module.CurrentModule.GlobalTextManager.GetGameText("str_key_category_name");
             ContextTitleElement.AddVariationWithId(context, new TaleWorlds.Localization.TextObject("The Old Realms"), new List<GameTextManager.ChoiceTag>());
             
-            
             var KeyElementBindings = Module.CurrentModule.GlobalTextManager.GetGameText("str_key_name");
             var spellcastingModeKey = context + "_"+(int)TorKeyMap.SpellcastingMode;
             KeyElementBindings.AddVariationWithId(spellcastingModeKey, new TaleWorlds.Localization.TextObject("Spell Casting Mode"), new List<GameTextManager.ChoiceTag>());
@@ -56,9 +55,6 @@ namespace TOR_Core.GameManagers
                 "Cast spells or prayers without needing to switch to spell cast mode. Warning: There is no target indication and the Spells follow predefined casting order. For targeted casting, always use the Spellcaster mode"), new List<GameTextManager.ChoiceTag>());
             KeyDescriptionElement.AddVariationWithId(specialMove, new TaleWorlds.Localization.TextObject(
                 "Starting Special move abilities, like the shadow step for the Vampire Counts"), new List<GameTextManager.ChoiceTag>());
-
-
-
         }
     }
     
