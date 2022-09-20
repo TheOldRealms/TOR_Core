@@ -448,6 +448,7 @@
     <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomEncounterDialogs\CustomDialogCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\MasterEngineer\MasterEngineerTownBehavior.cs" />
     <Compile Include="CampaignMechanics\RaidingParties\ChaosRaidingPartyComponent.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\CharacterCreationOption.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\TORCharacterCreationContent.cs" />
@@ -543,6 +544,8 @@
     <Compile Include="Models\TORPrisonerRecruitmentCalculationModel.cs" />
     <Compile Include="Models\TORSettlementMilitiaModel.cs" />
     <Compile Include="Models\TORSpellcraftSkillModel.cs" />
+    <Compile Include="Quests\EngineerQuest.cs" />
+    <Compile Include="Quests\QuestPartyComponent.cs" />
     <Compile Include="Quests\SpecializeLoreQuest.cs" />
     <Compile Include="Quests\TORQuestHelper.cs" />
     <Compile Include="SubModule.cs" />
@@ -563,7 +566,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>XCOPY "$(TargetDir)*" "C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\TOR_Core\bin\Win64_Shipping_wEditor\" /S /Y /I</PostBuildEvent>

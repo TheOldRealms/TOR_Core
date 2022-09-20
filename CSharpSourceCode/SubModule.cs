@@ -32,6 +32,7 @@ using TOR_Core.CampaignMechanics.RegimentsOfRenown;
 using TOR_Core.CampaignMechanics.SkillBooks;
 using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
+using TOR_Core.CampaignSupport.TownBehaviours;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Models;
@@ -86,6 +87,7 @@ namespace TOR_Core
                 starter.AddBehavior(new AssimilationCampaignBehavior());
                 starter.AddBehavior(new TORWanderersCampaignBehavior());
                 starter.AddBehavior(new SpellTrainerInTownBehavior());
+                starter.AddBehavior(new MasterEngineerTownBehaviour());
 
             }
             else if (Game.Current.GameType is CustomGame && starterObject is BasicGameStarter)

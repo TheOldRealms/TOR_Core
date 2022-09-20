@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Extensions;
+using TaleWorlds.Core;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.Quests
@@ -23,6 +26,40 @@ namespace TOR_Core.Quests
         public static bool IsQuestActive<T>() where T : QuestBase
         {
             return Campaign.Current.QuestManager.Quests.Any(x => x is T && x.IsOngoing);
+        }
+
+        public static EngineerQuest GetNewEngineerQuest(bool checkForExisting)
+        {
+            if (checkForExisting)
+            {
+                var quest = GetCurrentActiveIfExists<EngineerQuest>();
+                if (quest != null) return quest;
+            }
+            var hero = Hero.OneToOneConversationHero;
+            if(hero == null || !hero.IsMasterEngineer())
+            {
+                hero = Hero.AllAliveHeroes.Where(x => x.IsMasterEngineer()).TakeRandom(1).FirstOrDefault();
+            }
+
+            string questName = "Runaway Parts";
+            string DisplayNameForCultistParty = "Runaway thiefs";
+            string nameOfCultistLeader ="Part Thief Leader";
+            string cultistPartyTemplate = "..."; //TODO
+            string cultistFaction="...";
+            string nameOfRogueEngineer = "Goswin";
+            string RogueEngineerPartyTemplate = "Goswin";
+            string rogueEngineerFaction = "..."; //TODO
+
+            return new EngineerQuest("engineerQust", hero, CampaignTime.DaysFromNow(1000),
+                100,
+                questName,
+                DisplayNameForCultistParty,
+                nameOfCultistLeader,
+                cultistPartyTemplate,
+                cultistFaction,
+                nameOfCultistLeader,
+                RogueEngineerPartyTemplate,
+                rogueEngineerFaction);
         }
 
         public static SpecializeLoreQuest GetNewSpecializeLoreQuest(bool checkForExisting)
