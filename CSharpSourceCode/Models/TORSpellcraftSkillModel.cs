@@ -54,7 +54,7 @@ namespace TOR_Core.Models
 
         public int GetSkillXpForCastingAbility(AbilityTemplate ability)
         {
-            return 100;
+            return ability.WindsOfMagicCost * 20;
         }
 
         public int GetSkillXpForAbilityDamage(AbilityTemplate ability, int damageAmount)

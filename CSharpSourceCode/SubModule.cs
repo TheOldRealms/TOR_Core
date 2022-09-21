@@ -32,6 +32,7 @@ using TOR_Core.CampaignMechanics.RegimentsOfRenown;
 using TOR_Core.CampaignMechanics.SkillBooks;
 using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Models;
@@ -86,6 +87,7 @@ namespace TOR_Core
                 starter.AddBehavior(new AssimilationCampaignBehavior());
                 starter.AddBehavior(new TORWanderersCampaignBehavior());
                 starter.AddBehavior(new SpellTrainerInTownBehavior());
+                starter.AddBehavior(new TORPerkHandlerCampaignBehavior());
 
             }
             else if (Game.Current.GameType is CustomGame && starterObject is BasicGameStarter)
@@ -120,6 +122,10 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORSettlementMilitiaModel());
                 gameStarterObject.AddModel(new TORSpellcraftSkillModel());
                 gameStarterObject.AddModel(new TORCharacterDevelopmentModel());
+                gameStarterObject.AddModel(new TORPartyTrainingModel());
+                gameStarterObject.AddModel(new TORInventoryCapacityModel());
+                gameStarterObject.AddModel(new TORAgentApplyDamageModel());
+                gameStarterObject.AddModel(new TORStrikeMagnitudeModel());
             }
             else if (Game.Current.GameType is CustomGame && gameStarterObject is BasicGameStarter)
             {

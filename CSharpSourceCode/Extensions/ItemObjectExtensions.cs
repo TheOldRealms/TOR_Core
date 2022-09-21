@@ -74,8 +74,39 @@ namespace TOR_Core.Extensions
 
         public static bool IsExplosiveAmmunition(this ItemObject itemObject)
         {
-            return IsAmmunitionItem(itemObject) && itemObject.ToString().Contains("grenade") ||
-                itemObject.ToString().Contains("cannon") ;
+            return IsAmmunitionItem(itemObject) && itemObject.StringId.Contains("grenade") ||
+                itemObject.WeaponComponent?.PrimaryWeapon.WeaponClass == WeaponClass.Boulder;
+        }
+
+        public static bool IsSmallArmsAmmunition(this ItemObject itemObject)
+        {
+            return itemObject.WeaponComponent.PrimaryWeapon.IsSmallArmsAmmunition() && !itemObject.IsExplosiveAmmunition();
+        }
+
+        private static bool IsSmallArmsAmmunition(this WeaponComponentData weapon)
+        {
+            bool result = false;
+            switch (weapon.WeaponClass)
+            {
+                case WeaponClass.Arrow:
+                case WeaponClass.Bolt:
+                case WeaponClass.Cartridge:
+                    result = true;
+                    break;
+                default:
+                    break;
+            }
+            return result;
+        }
+
+        public static bool IsGunPowderWeapon(this ItemObject itemObject)
+        {
+            return (bool)(itemObject.WeaponComponent?.PrimaryWeapon?.IsGunPowderWeapon());
+        }
+
+        public static bool IsGunPowderWeapon(this WeaponComponentData weapon)
+        {
+            return weapon.AmmoClass == WeaponClass.Cartridge || weapon.WeaponClass == WeaponClass.Cartridge;
         }
 
         /// <summary>

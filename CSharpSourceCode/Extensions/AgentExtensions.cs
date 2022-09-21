@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -17,9 +18,50 @@ namespace TOR_Core.Extensions
 {
     public static class AgentExtensions
     {
-        /// <summary>
-        /// Maps all character IDs to a list of attributes for that character. For example, <"skeleton_warrior" <=> {"Expendable", "Undead"}>
-        /// </summary>
+        public static CharacterObject GetCaptainCharacter(this Agent agent)
+        {
+            if(agent.Formation != null && agent.Formation.Captain != null && agent.Formation.Captain.Character != null)
+            {
+                var character = agent.Formation.Captain.Character as CharacterObject;
+                if (character != null) return character;
+            }
+            return null;
+        }
+
+        public static CharacterObject GetPartyLeaderCharacter(this Agent agent)
+        {
+            if(agent.Origin?.BattleCombatant is PartyBase)
+            {
+                var party = (PartyBase)agent.Origin.BattleCombatant;
+                return party.LeaderHero?.CharacterObject;
+            }
+            return null;
+        }
+
+        public static CharacterObject GetArmyCommanderCharacter(this Agent agent)
+        {
+            if (agent.Origin?.BattleCombatant is PartyBase)
+            {
+                var party = (PartyBase)agent.Origin.BattleCombatant;
+                var character = party.General as CharacterObject;
+                return character;
+            }
+            return null;
+        }
+
+        public static MobileParty GetOriginMobileParty(this Agent agent)
+        {
+            var party = agent.GetOriginPartyBase();
+            if(party == null) return null;
+            return party.MobileParty;
+        }
+
+        public static PartyBase GetOriginPartyBase(this Agent agent)
+        {
+            if (agent.Origin?.BattleCombatant is PartyBase) return agent.Origin.BattleCombatant as PartyBase;
+            return null;
+        }
+
         public static bool IsExpendable(this Agent agent)
         {
             return agent.GetAttributes().Contains("Expendable");
