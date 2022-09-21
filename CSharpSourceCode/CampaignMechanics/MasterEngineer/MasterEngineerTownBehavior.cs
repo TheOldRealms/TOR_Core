@@ -282,7 +282,8 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
                 _cultistKillQuest = null;
             }
 
-            TORQuestHelper.GetNewEngineerQuest(true);
+            _rogueEngineerQuest = TORQuestHelper.GetNewEngineerQuest(true);
+            _rogueEngineerQuest.StartQuest();
         }
         
 

@@ -44,20 +44,21 @@ namespace TOR_Core.Quests
             string questName = "Runaway Parts";
             string DisplayNameForCultistParty = "Runaway thiefs";
             string nameOfCultistLeader ="Part Thief Leader";
-            string cultistPartyTemplate = "..."; //TODO
-            string cultistFaction="...";
+            string cultistLeaderTemplate = "tor_bw_cultist_lord_0";
+            string cultistPartyTemplate = "broken_wheel";
+            string cultistFaction="forest_bandits";
             string nameOfRogueEngineer = "Goswin";
-            string RogueEngineerPartyTemplate = "Goswin";
+            string RogueEngineerPartyTemplate = "tor_engineerquesthero";
             string rogueEngineerFaction = "..."; //TODO
 
             return new EngineerQuest("engineerQust", hero, CampaignTime.DaysFromNow(1000),
                 100,
                 questName,
                 DisplayNameForCultistParty,
-                nameOfCultistLeader,
+                cultistLeaderTemplate,
                 cultistPartyTemplate,
                 cultistFaction,
-                nameOfCultistLeader,
+                RogueEngineerPartyTemplate,
                 RogueEngineerPartyTemplate,
                 rogueEngineerFaction);
         }

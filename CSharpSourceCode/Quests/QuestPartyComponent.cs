@@ -1,15 +1,17 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using System;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Party.PartyComponents;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 
 namespace TOR_Core.Quests
 {
-    public class QuestPartyComponent : WarPartyComponent
+    public class QuestPartyComponent : WarPartyComponent, ITrackableCampaignObject
     {
         [SaveableField(10)]
         private TextObject _name;
@@ -52,13 +54,33 @@ namespace TOR_Core.Quests
             mobileParty.AddElementToMemberRoster(leader.CharacterObject, 1, true);
             if (partyTemplate == null) 
                 partyTemplate = clan.DefaultPartyTemplate;
-            mobileParty.InitializeMobilePartyAroundPosition(partyTemplate, settlement.Position2D, 10, 0f, 30);
+            mobileParty.InitializeMobilePartyAroundPosition(partyTemplate, settlement.Position2D, 30, 15, 30);
             mobileParty.ItemRoster.Add(new ItemRosterElement(DefaultItems.Grain, 50));
             mobileParty.Ai.SetAIState(AIState.PatrollingAroundLocation);
             mobileParty.SetMovePatrolAroundSettlement(settlement);
             mobileParty.Ai.SetDoNotMakeNewDecisions(true);
             mobileParty.IgnoreByOtherPartiesTill(CampaignTime.Never);
-            mobileParty.Party.Visuals.SetMapIconAsDirty();
+          // mobileParty.Party.Visuals.SetMapIconAsDirty();
+        }
+
+        public TextObject GetName()
+        {
+            return new TextObject(MobileParty.Name.ToString());
+        }
+
+        public Vec3 GetPosition()
+        { 
+            return MobileParty.GetPosition();
+        }
+
+        public float GetTrackDistanceToMainAgent()
+        {
+            return MobileParty.GetTrackDistanceToMainAgent();
+        }
+
+        public bool CheckTracked(BasicCharacterObject basicCharacter)
+        {
+            return MobileParty.IsCurrentlyUsedByAQuest;
         }
     }
 
