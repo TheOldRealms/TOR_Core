@@ -55,7 +55,6 @@ namespace TOR_Core.Models
 
                 }
             }
-            
             return accuracy.ResultNumber;
         }
 
