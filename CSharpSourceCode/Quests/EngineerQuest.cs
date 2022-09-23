@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
@@ -22,20 +22,20 @@ namespace TOR_Core.Quests
         [SaveableField(5)] private TextObject _cultistPartyDisplayName = null;
         [SaveableField(6)] private TextObject _cultistPartyLeaderName;
         [SaveableField(7)] private string _cultistPartyTemplateId = "";
-        private string _cultistLeaderTemplateId = "";
-        [SaveableField(8)] private TextObject _rogueEngineerDisplayName = null;
-        [SaveableField(9)] private string _rogueEngineerLeaderName = "";
-        [SaveableField(10)] private string _rogueEngineerPartyTemplateId  = "";
+        [SaveableField(8)] private string _cultistLeaderTemplateId = "";
+        [SaveableField(9)] private TextObject _rogueEngineerDisplayName = null;
+        [SaveableField(10)] private string _rogueEngineerLeaderName = "";
+        [SaveableField(11)] private string _rogueEngineerPartyTemplateId  = "";
         private string _rogueEngineerLeaderTemplateId = "";
         
-        [SaveableField(11)] private string _cultistfactionID = "";
-        [SaveableField(12)] private readonly TextObject _title=null;
-        [SaveableField(13)] private TextObject _missionLogText1=null;
-        [SaveableField(14)] private TextObject _missionLogTextShort1=null;
-        [SaveableField(15)] private TextObject _missionLogText2=null;
-        [SaveableField(16)] private TextObject _missionLogTextShort2=null;
-        [SaveableField(17)] private TextObject _defeatDialogLine = null;
-        [SaveableField(18)] private bool _failstate;
+        [SaveableField(12)] private string _cultistfactionID = "";
+        [SaveableField(13)] private readonly TextObject _title=null;
+        [SaveableField(14)] private TextObject _missionLogText1=null;
+        [SaveableField(15)] private TextObject _missionLogTextShort1=null;
+        [SaveableField(16)] private TextObject _missionLogText2=null;
+        [SaveableField(17)] private TextObject _missionLogTextShort2=null;
+        [SaveableField(18)] private TextObject _defeatDialogLine = null;
+        [SaveableField(19)] private bool _failstate;
         private bool _initAfterReload;
         private bool _skipImprisonment;
         
