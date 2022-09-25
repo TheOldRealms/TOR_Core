@@ -57,10 +57,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             if (!team.TeamAI.IsCurrentTactic(this) || _mainDefensiveLinePosition == null || !IsTacticalPositionEligible(_mainDefensiveLinePosition))
                 DeterminePositions();
 
-            return _mainDefensiveLinePosition == null
-                ? 0.0f
-                : (float) ((team.QuerySystem.InfantryRatio + (double) team.QuerySystem.RangedRatio) * 1.20000004768372) * GetTacticalPositionScore(_mainDefensiveLinePosition) * CalculateNotEngagingTacticalAdvantage(team.QuerySystem) /
-                  MathF.Sqrt(team.QuerySystem.RemainingPowerRatio);
+            return 0.0f;
         }
 
         protected override void ManageFormationCounts()
@@ -214,42 +211,6 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             return teamAiAPositions.Concat(extractedPositions).ToList();
         }
 
-        private void DetermineMainDefensiveLine()
-        {
-            var gatherCandidatePositions = GatherCandidatePositions();
-
-            List<(TacticalPosition, float)> list = gatherCandidatePositions
-                .Where(IsTacticalPositionEligible)
-                .Select((Func<TacticalPosition, (TacticalPosition, float)>) (tp => (tp, GetTacticalPositionScore(tp))))
-                .ToList();
-
-            if (list.Count > 0)
-            {
-                TacticalPosition primaryDefensivePosition = list.MaxBy(pst => pst.Item2).Item1;
-                if (primaryDefensivePosition != _mainDefensiveLinePosition)
-                {
-                    _mainDefensiveLinePosition = primaryDefensivePosition;
-                    IsTacticReapplyNeeded = true;
-                }
-
-                if (_mainDefensiveLinePosition.LinkedTacticalPositions.Count > 0)
-                {
-                    TacticalPosition tacticalPosition2 = _mainDefensiveLinePosition.LinkedTacticalPositions.FirstOrDefault();
-                    if (tacticalPosition2 == _linkedRangedDefensivePosition)
-                        return;
-                    _linkedRangedDefensivePosition = tacticalPosition2;
-                    IsTacticReapplyNeeded = true;
-                }
-                else
-                    _linkedRangedDefensivePosition = null;
-            }
-            else
-            {
-                _mainDefensiveLinePosition = null;
-                _linkedRangedDefensivePosition = null;
-            }
-        }
-
         private List<Axis> CreateArtilleryPositionAssessment()
         {
             var function = new List<Axis>();
@@ -279,26 +240,6 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 
             Vec2 vec2 = (team.QuerySystem.AverageEnemyPosition - tacticalPosition.Position.AsVec2).Normalized();
             return vec2.DotProduct(tacticalPosition.Direction) > 0.5;
-        }
-
-        private float GetTacticalPositionScore(TacticalPosition tacticalPosition)
-        {
-            if (tacticalPosition.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.SpecialMissionPosition)
-                return 100f;
-            if (!CheckAndDetermineFormation(ref _mainInfantry, f => f.QuerySystem.IsInfantryFormation))
-                return 0.0f;
-            double num1 = MBMath.Lerp(1f, 1.5f, MBMath.ClampFloat(tacticalPosition.Slope, 0.0f, 60f) / 60f);
-            int countOfUnits = _mainInfantry.CountOfUnits;
-            float num2 = MBMath.Lerp(0.67f, 1f, (float) ((6.0 - MBMath.ClampFloat((float) (_mainInfantry.MaximumInterval * (double) (countOfUnits - 1) + _mainInfantry.UnitDiameter * (double) countOfUnits) / tacticalPosition.Width, 3f, 6f)) / 3.0));
-            float num3 = tacticalPosition.IsInsurmountable ? 1.3f : 1f;
-            float num4 = 1f;
-            if (_archers != null && tacticalPosition.LinkedTacticalPositions.Where(lcp => lcp.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.Cliff).ToList().Any())
-                num4 = MBMath.Lerp(1f, 1.5f, (float) ((MBMath.ClampFloat(team.QuerySystem.RangedRatio, 0.05f, 0.25f) - 0.0500000007450581) * 5.0));
-            float rangedFactor = GetRangedFactor(tacticalPosition);
-            float cavalryFactor = GetCavalryFactor(tacticalPosition);
-            float num5 = MBMath.Lerp(0.7f, 1f, (float) ((150.0 - MBMath.ClampFloat(_mainInfantry.QuerySystem.AveragePosition.Distance(tacticalPosition.Position.AsVec2), 50f, 150f)) / 100.0));
-            double num6 = num2;
-            return (float) (num1 * num6) * num4 * rangedFactor * cavalryFactor * num5 * num3;
         }
 
         private List<TacticalPosition> ExtractPossibleTacticalPositionsFromTacticalRegion(
