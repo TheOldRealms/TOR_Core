@@ -152,18 +152,49 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 
         public void DeterminePositions()
         {
-            DetermineMainDefensiveLine();
+            // DetermineMainDefensiveLine();
 
             _latestScoredPositions = GatherCandidatePositions()
                 //.FindAll(IsTacticalPositionEligible)
                 .Select(pos => new Target {TacticalPosition = pos})
                 .Select(target =>
                 {
-                    target.UtilityValue = GetTacticalPositionScore(target.TacticalPosition); //PositionScoring.GeometricMean(target);
+                    target.UtilityValue = PositionScoring.GeometricMean(target);
                     return target;
                 }).ToList();
             var candidate = _latestScoredPositions.MaxBy(target => target.UtilityValue);
             _chosenArtilleryPosition = candidate;
+
+            if (_chosenArtilleryPosition != null && candidate != null && candidate.UtilityValue != 0.0)
+            {
+                var tp = _chosenArtilleryPosition.TacticalPosition;
+                var direction = (team.QuerySystem.AverageEnemyPosition - tp.Position.AsVec2).Normalized();
+                TacticalPosition primaryDefensivePosition = new TacticalPosition(
+                    new WorldPosition(Mission.Current.Scene, tp.Position.GetGroundVec3() + direction.ToVec3() * 30),
+                    direction, tp.Width, tp.Slope, tp.IsInsurmountable, tp.TacticalPositionType, tp.TacticalRegionMembership);
+
+                if (primaryDefensivePosition != _mainDefensiveLinePosition)
+                {
+                    _mainDefensiveLinePosition = primaryDefensivePosition;
+                    IsTacticReapplyNeeded = true;
+                }
+
+                if (_mainDefensiveLinePosition.LinkedTacticalPositions.Count > 0)
+                {
+                    TacticalPosition tacticalPosition2 = _mainDefensiveLinePosition.LinkedTacticalPositions.FirstOrDefault();
+                    if (tacticalPosition2 == _linkedRangedDefensivePosition)
+                        return;
+                    _linkedRangedDefensivePosition = tacticalPosition2;
+                    IsTacticReapplyNeeded = true;
+                }
+                else
+                    _linkedRangedDefensivePosition = null;
+            }
+            else
+            {
+                _mainDefensiveLinePosition = null;
+                _linkedRangedDefensivePosition = null;
+            }
 
             UpdateArtilleryPlacementTargets();
         }
@@ -171,20 +202,23 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         private List<TacticalPosition> GatherCandidatePositions()
         {
             var teamAiAPositions = team.TeamAI.TacticalPositions
-                .Where(position => (position.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.SpecialMissionPosition ||
-                                    position.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround));
+                .Where(position => position.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.SpecialMissionPosition ||
+                                   position.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround);
 
             var extractedPositions = team.TeamAI.TacticalRegions
                 .SelectMany(region => ExtractPossibleTacticalPositionsFromTacticalRegion(region))
                 .Where(position => (position.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.Regional ||
-                                    position.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround) && IsTacticalPositionEligible(position));
+                                    position.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround)
+                                   && IsTacticalPositionEligible(position));
 
             return teamAiAPositions.Concat(extractedPositions).ToList();
         }
 
         private void DetermineMainDefensiveLine()
         {
-            List<(TacticalPosition, float)> list = GatherCandidatePositions()
+            var gatherCandidatePositions = GatherCandidatePositions();
+
+            List<(TacticalPosition, float)> list = gatherCandidatePositions
                 .Where(IsTacticalPositionEligible)
                 .Select((Func<TacticalPosition, (TacticalPosition, float)>) (tp => (tp, GetTacticalPositionScore(tp))))
                 .ToList();
@@ -223,7 +257,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             function.Add(new Axis(0, distance, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles(team)));
             function.Add(new Axis(0, distance, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToOwnArmy(team)));
             function.Add(new Axis(0, distance, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToPosition(_mainDefensiveLinePosition)));
-            //     function.Add(new Axis(0, 1, x => x, CommonAIDecisionFunctions.AssessPositionForArtillery()));
+            function.Add(new Axis(0, 1, x => x, CommonAIDecisionFunctions.AssessPositionForArtillery()));
             return function;
         }
 
@@ -239,6 +273,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 
             if (distanceToPosition > 20.0 && distanceToPosition > enemyDistanceToPosition * 0.5) //TODO: Remove this check? Maybe?
                 return false;
+
             if (tacticalPosition.IsInsurmountable)
                 return true;
 
