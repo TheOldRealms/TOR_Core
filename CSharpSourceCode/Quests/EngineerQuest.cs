@@ -189,6 +189,7 @@ namespace TOR_Core.Quests
         {
             return _task3 != null && _task3.CurrentProgress == 0;
         }
+        
 
         public void UpdateProgressOnQuest()
         {
@@ -222,6 +223,10 @@ namespace TOR_Core.Quests
                     new TextObject("Return to the Master Engineer in Nuln"), 0, 1);
                     return;
             }
+            
+            _task4.UpdateCurrentProgress(1); 
+            CompleteQuestWithSuccess();
+            
 
         }
         

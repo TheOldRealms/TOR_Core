@@ -60,8 +60,8 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         private void AddEngineerDialogLines(CampaignGameStarter obj)
         {
             //conversation start
+            obj.AddDialogLine("engineer_start1", "start", "rogueengineerquestcomplete", "Did you find "+_rogueEngineerName+"?", () => engineerdialogstartcondition() && _knowsPlayer && (rogueengineerquestinprogress() || quest2failed()), null, 200, null);
             obj.AddDialogLine("engineer_start0", "start", "cultistdone", "Ah, you have returned. What news do you bring?", () => engineerdialogstartcondition() && _knowsPlayer && (cultistquestinprogress() || quest1failed()), null, 200, null);
-            obj.AddDialogLine("engineer_start1", "start", "rogueengineerquestcomplete", "Did you find "+_rogueEngineerName+"?", () => engineerdialogstartcondition() && _knowsPlayer && ReturnSucessfullCultistQuest() && (rogueengineerquestinprogress() || quest2failed()), null, 200, null);
             obj.AddDialogLine("engineer_start2", "start", "questcheckrogueengineer", "Have you changed your mind and want to help hunt down "+_rogueEngineerName+"?", () => engineerdialogstartcondition() && _knowsPlayer && ReturnSucessfullCultistQuest() && !engineerquestcompletecondition(), null, 200, null);
             
             obj.AddDialogLine("engineer_start3", "start", "close_window", "Come back to me when you have news.", () => engineerdialogstartcondition() && cultistquestinprogress() && _knowsPlayer, null, 200, null);
@@ -177,10 +177,24 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             AddRogueEngineerDialogLines(obj);
         }
 
-        private bool rogueengineerquestinprogress() =>
-            RunawayPartsQuest != null && !RunawayPartsQuest.JournalEntries[3].HasBeenCompleted();
+        private bool rogueengineerquestinprogress()
+        {
+            if( RunawayPartsQuest == null) return false;
 
-        private bool cultistquestinprogress() => RunawayPartsQuest != null && RunawayPartsQuest.JournalEntries[0].HasBeenCompleted();
+            if (RunawayPartsQuest.IsFinalized) return false;
+                
+            return RunawayPartsQuest.JournalEntries[2].CurrentProgress==0 || RunawayPartsQuest.JournalEntries[2].HasBeenCompleted();
+        }
+            
+
+        private bool cultistquestinprogress()
+        {
+            if( RunawayPartsQuest == null) return false;
+
+            if (RunawayPartsQuest.IsFinalized) return false;
+                
+            return RunawayPartsQuest.JournalEntries[0].CurrentProgress==0 || RunawayPartsQuest.JournalEntries[0].HasBeenCompleted();
+        }
 
 
         private bool quest1failed()
@@ -197,9 +211,11 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
         private bool engineerquestcompletecondition()
         {
+
             if (RunawayPartsQuest == null)
                 return false;
-            return RunawayPartsQuest.IsFinalized;
+            
+            return RunawayPartsQuest.JournalEntries[2].HasBeenCompleted();
         }
 
         private bool cultisthuntcompletecondition()
@@ -216,7 +232,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
         private void handing_in_rogueengineer_quest()
         {
-            //_rogueEngineerQuest.HandInQuest();
+            RunawayPartsQuest.UpdateProgressOnQuest();
             var xp = (float)250f;
             SkillObject skill = DefaultSkills.Engineering;
             Hero.MainHero.AddSkillXp(skill, xp);
