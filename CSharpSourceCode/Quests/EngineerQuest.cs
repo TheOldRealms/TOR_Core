@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
@@ -6,6 +6,7 @@ using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
@@ -18,24 +19,26 @@ namespace TOR_Core.Quests
         [SaveableField(1)] private int _destroyedParty = 0;
         [SaveableField(2)] private JournalLog _task1 = null;
         [SaveableField(3)] private JournalLog _task2 = null;
-        [SaveableField(4)] private MobileParty _targetParty = null;
-        [SaveableField(5)] private TextObject _cultistPartyDisplayName = null;
-        [SaveableField(6)] private TextObject _cultistPartyLeaderName;
-        [SaveableField(7)] private string _cultistPartyTemplateId = "";
-        [SaveableField(8)] private string _cultistLeaderTemplateId = "";
-        [SaveableField(9)] private TextObject _rogueEngineerDisplayName = null;
-        [SaveableField(10)] private string _rogueEngineerLeaderName = "";
-        [SaveableField(11)] private string _rogueEngineerPartyTemplateId  = "";
+        [SaveableField(4)] private JournalLog _task3 = null;
+        [SaveableField(5)] private JournalLog _task4 = null;
+        [SaveableField(6)] private MobileParty _targetParty = null;
+        [SaveableField(7)] private TextObject _cultistPartyDisplayName = null;
+        [SaveableField(8)] private TextObject _cultistPartyLeaderName;
+        [SaveableField(9)] private string _cultistPartyTemplateId = "";
+        [SaveableField(10)] private string _cultistLeaderTemplateId = "";
+        [SaveableField(11)] private TextObject _rogueEngineerDisplayName = null;
+        [SaveableField(12)] private string _rogueEngineerLeaderName = "";
+        [SaveableField(13)] private string _rogueEngineerPartyTemplateId  = "";
         private string _rogueEngineerLeaderTemplateId = "";
         
-        [SaveableField(12)] private string _cultistfactionID = "";
-        [SaveableField(13)] private readonly TextObject _title=null;
-        [SaveableField(14)] private TextObject _missionLogText1=null;
-        [SaveableField(15)] private TextObject _missionLogTextShort1=null;
-        [SaveableField(16)] private TextObject _missionLogText2=null;
-        [SaveableField(17)] private TextObject _missionLogTextShort2=null;
-        [SaveableField(18)] private TextObject _defeatDialogLine = null;
-        [SaveableField(19)] private bool _failstate;
+        [SaveableField(14)] private string _cultistfactionID = "";
+        [SaveableField(15)] private readonly TextObject _title=null;
+        [SaveableField(16)] private TextObject _missionLogText1=null;
+        [SaveableField(17)] private TextObject _missionLogTextShort1=null;
+        [SaveableField(18)] private TextObject _missionLogText2=null;
+        [SaveableField(19)] private TextObject _missionLogTextShort2=null;
+        [SaveableField(20)] private TextObject _defeatDialogLine = null;
+        [SaveableField(21)] private bool _failstate;
         private bool _initAfterReload;
         private bool _skipImprisonment;
         
@@ -86,13 +89,16 @@ namespace TOR_Core.Quests
 
         private void SetLogs()
         {
-            _task1 = AddDiscreteLog(new TextObject("Catch the runaway thiefs"), new TextObject("Catched Thiefs"), 0, 1);
-            QuestTaskBase task = new QuestTaskBase();
+            //_task1 = AddLog(new TextObject("Track down runaway thieves"));
+            
+            
+
+            _task1 = AddDiscreteLog(new TextObject("Catch the runaway thieves"), new TextObject(""), 0, 1);
 
             //var t = (QuestPartyComponent)_targetParty.PartyComponent; 
             //_task1
-         
-            
+
+
 
             //   _task1 = AddDiscreteLog(new TextObject("Catch the runaway thiefs"), new TextObject("Number of casts"), 0, 1);
             //  _task2 = AddDiscreteLog(new TextObject("Catch the runaway thiefs"), new TextObject("Number of casts"), 0, 1);
@@ -118,7 +124,7 @@ namespace TOR_Core.Quests
             if (mapEvent.PartiesOnSide(mapEvent.PlayerSide.GetOppositeSide()).Any(party => party.Party.MobileParty == _targetParty))
             {
                 _skipImprisonment = true;
-                TaskSuccessful();
+                UpdateProgressOnQuest();
             }
         }
         
@@ -128,19 +134,26 @@ namespace TOR_Core.Quests
             if (!mapEvent.IsPlayerMapEvent|| mapEvent.InvolvedParties.All(party => party.MobileParty != _targetParty)) return;
             if (mapEvent.Winner.MissionSide == mapEvent.PlayerSide) return;
             CompleteQuestWithFail();
-            AddDiscreteLog( new TextObject("I failed... I was beaten. I need to return to the Master Engineer with the news."),
+            _task1= AddDiscreteLog( new TextObject("I failed... I was beaten. I need to return to the Master Engineer with the news."),
                 new TextObject("Return to the Master Engineer in Nuln"), 
                 _destroyedParty, 1); 
+            
             _targetParty.RemoveParty();
         }
         
         private void SkipDialog()
         {
-            if (!_targetParty.IsActive) return;
+            if(_targetParty==null) return;
+            if (! _targetParty.IsActive) return;
             if (!_skipImprisonment) return;
             if (Current.CurrentConversationContext != ConversationContext.CapturedLord) return;
             Current.ConversationManager.EndConversation();
-            Current.ConversationManager.AddDialogLineMultiAgent("start", "start", "rogueengineer_playerafterbattle", new TextObject("Your victory here is meaningless...you will never find what we took..."), ()=> _skipImprisonment, RemoveSkip, 0,1, 200, null);
+            
+            
+            
+            Current.ConversationManager.AddDialogLineMultiAgent("start", "start", "close_window", new TextObject("Your victory here is meaningless...you will never find what we took..."), ()=> _skipImprisonment&& _targetParty.LeaderHero.Template.StringId != _rogueEngineerLeaderTemplateId, RemoveSkip, 0,1, 200, null);
+            Current.ConversationManager.AddDialogLineMultiAgent("start", "start", "rogueengineer_playerafterbattle", new TextObject("You have no idea what you are interfering with..."), ()=> _skipImprisonment&& _targetParty.LeaderHero.Template.StringId == _rogueEngineerLeaderTemplateId, RemoveSkip, 0,1, 200, null);
+            
             Current.ConversationManager.ClearCurrentOptions();
         }
         
@@ -161,22 +174,55 @@ namespace TOR_Core.Quests
         {
             Settlement targetSettlement=null;
 
-            var closest =Settlement.All.Where(x => x.IsHideout).MinBy(x => x.GetTrackDistanceToMainAgent());
+            //var closest =Settlement.All.Where(x => x.IsHideout).MinBy(x => x.GetTrackDistanceToMainAgent());
             
-            
-            SpawnQuestParty(_cultistPartyLeaderName,_cultistPartyDisplayName,closest);
+            //Spawn cultist party
+            SpawnQuestParty(_cultistLeaderTemplateId,_cultistPartyTemplateId,_cultistfactionID,_cultistPartyLeaderName,_cultistPartyDisplayName);
         }
 
-        public void TaskSuccessful()
+        public bool CultistQuestIsActive()
         {
-            /*_task1.UpdateCurrentProgress(1);
+            return _task1 != null&& _task1.CurrentProgress==0;
+        }
+
+        public bool RogueEngineerQuestPartIsActive()
+        {
+            return _task3 != null && _task3.CurrentProgress == 0;
+        }
+
+        public void UpdateProgressOnQuest()
+        {
+            _task1.UpdateCurrentProgress(1);
 
             if (_task1.HasBeenCompleted() && _task2 == null)
+                
             {
-                _task2 = _missionLogTextShort2!=null ? 
-                    AddDiscreteLog(_missionLogText2, _missionLogTextShort2, _destroyedParty, 1) : 
-                    AddLog(_missionLogText2);
-            }*/
+                _task2 = AddDiscreteLog(new TextObject("I found the thieves, but they did not have the stolen components. I should return to the Master Engineer with the news."),new TextObject("Return to the Master Engineer in Nuln"),0,1);
+                return;
+            }
+            
+            _task2.UpdateCurrentProgress(1);
+
+            if (_task2.HasBeenCompleted() && _task3 == null)
+            {
+                SpawnQuestParty(_rogueEngineerLeaderTemplateId,_rogueEngineerPartyTemplateId,_engineerfactionID, new TextObject(" Rogue Engineer Goswin"),new TextObject("Goswins Part Thieves"));
+                _task3 = AddDiscreteLog(
+                    new TextObject(
+                        "It would appear a traitorous Engineer has the stolen parts, the Master Engineer has asked for my help in finding him."),
+                    new TextObject("Track down Goswin and retrieve the stolen components."), 0, 1);
+                    return;
+            }
+            
+            _task3.UpdateCurrentProgress(1);
+            if (_task3.HasBeenCompleted() && _task4 == null)
+            {
+                _task4 = AddDiscreteLog(
+                    new TextObject(
+                        "I have slain Oswin and retrieved the stolen components, I should return to the Master Engineer and let him know."),
+                    new TextObject("Return to the Master Engineer in Nuln"), 0, 1);
+                    return;
+            }
+
         }
         
         public void HandInQuest()
@@ -265,23 +311,40 @@ namespace TOR_Core.Quests
         
         
         
-        private void SpawnQuestParty(TextObject heroNameOverride=null, TextObject partyNameOverride=null, Settlement spawnLocationOverride=null)
+        private void SpawnQuestParty(string partyLeaderTemplate, string partyTemplate, string factionID, TextObject heroNameOverride=null, TextObject partyNameOverride=null, Settlement spawnLocationOverride=null)
         {
             
-            var leaderTemplate = MBObjectManager.Instance.GetObject<CharacterObject>(_cultistLeaderTemplateId);
+            var leaderTemplate = MBObjectManager.Instance.GetObject<CharacterObject>(partyLeaderTemplate);
             
-            var faction =  Current.Factions.FirstOrDefault(x => x.StringId.ToString() == _cultistfactionID);
+            var faction =  Current.Factions.FirstOrDefault(x => x.StringId.ToString() == factionID);
             var factionClan = (Clan)faction;
             //this is intended as a quick fix, if we dont  want a full random spawning
-            var settlement = spawnLocationOverride == null ? 
-                Settlement.All.FirstOrDefault(x => x.IsHideout && x.Culture.StringId == leaderTemplate.Culture.StringId) : 
-                Settlement.All.FirstOrDefault(x => x.Name ==spawnLocationOverride.Name);
+
+            Settlement settlement = null;
+            if (spawnLocationOverride == null)
+            {
+                if (factionClan.IsBanditFaction)
+                {
+                   settlement=  Settlement.All.FirstOrDefault(x =>
+                        x.IsHideout && x.Culture.StringId == faction.Culture.StringId);
+                }
+                else
+                { 
+                    settlement = Settlement.All.Where(x => x.IsHideout).MinBy(x => x.GetTrackDistanceToMainAgent());;
+                }
+            }
+            else
+            {
+                settlement = Settlement.All.FirstOrDefault(x => x.Name ==spawnLocationOverride.Name);
+            }
             
             
             
+
+
             var hero = HeroCreator.CreateSpecialHero(leaderTemplate, settlement, factionClan , null, 45);
             if(heroNameOverride!=null)hero.SetName(heroNameOverride, heroNameOverride);
-            var party = QuestPartyComponent.CreateParty(settlement, hero, factionClan, _cultistPartyTemplateId);
+            var party = QuestPartyComponent.CreateParty(settlement, hero, factionClan, partyTemplate);
             if(partyNameOverride!=null)party.SetCustomName(partyNameOverride);
             party.Aggressiveness = 0f;
             party.IgnoreByOtherPartiesTill(CampaignTime.Never);

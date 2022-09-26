@@ -1,4 +1,4 @@
-﻿using Helpers;
+using Helpers;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -25,9 +25,8 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         private Hero _masterEngineerHero = null;
         private Settlement _nuln;
         private bool _playerIsSkilledEnough;
-
-        private EngineerQuest _rogueEngineerQuest;
-        private EngineerQuest _cultistKillQuest;
+        
+        private EngineerQuest RunawayPartsQuest;
 
         public override void RegisterEvents()
         {
@@ -61,9 +60,10 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         private void AddEngineerDialogLines(CampaignGameStarter obj)
         {
             //conversation start
-            obj.AddDialogLine("engineer_start0", "start", "rogueengineerquestcomplete", "Did you find "+_rogueEngineerName+"?", () => engineerdialogstartcondition() && _knowsPlayer && CultistQuestIsDone() && (rogueengineerquestinprogress() || quest2failed()), null, 200, null);
-            obj.AddDialogLine("engineer_start1", "start", "questcheckrogueengineer", "Have you changed your mind and want to help hunt down "+_rogueEngineerName+"?", () => engineerdialogstartcondition() && _knowsPlayer && CultistQuestIsDone() && !engineerquestcompletecondition(), null, 200, null);
-            obj.AddDialogLine("engineer_start2", "start", "questcomplete", "Ah, you have returned. What news do you bring?", () => engineerdialogstartcondition() && _knowsPlayer && (cultistquestinprogress() || quest1failed()), null, 200, null);
+            obj.AddDialogLine("engineer_start0", "start", "cultistdone", "Ah, you have returned. What news do you bring?", () => engineerdialogstartcondition() && _knowsPlayer && (cultistquestinprogress() || quest1failed()), null, 200, null);
+            obj.AddDialogLine("engineer_start1", "start", "rogueengineerquestcomplete", "Did you find "+_rogueEngineerName+"?", () => engineerdialogstartcondition() && _knowsPlayer && ReturnSucessfullCultistQuest() && (rogueengineerquestinprogress() || quest2failed()), null, 200, null);
+            obj.AddDialogLine("engineer_start2", "start", "questcheckrogueengineer", "Have you changed your mind and want to help hunt down "+_rogueEngineerName+"?", () => engineerdialogstartcondition() && _knowsPlayer && ReturnSucessfullCultistQuest() && !engineerquestcompletecondition(), null, 200, null);
+            
             obj.AddDialogLine("engineer_start3", "start", "close_window", "Come back to me when you have news.", () => engineerdialogstartcondition() && cultistquestinprogress() && _knowsPlayer, null, 200, null);
             obj.AddDialogLine("engineer_start4", "start", "hub", "You again, what do you want?", () => engineerdialogstartcondition() && _knowsPlayer && QuestLineDone(), null, 200, null);
             obj.AddDialogLine("engineer_start5", "start", "playergreet", "You have the look of someone who's never seen a spec of black powder nor grease. Are you in the right place?", engineerdialogstartcondition, knowledgeoverplayer, 200, null);
@@ -90,8 +90,8 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             obj.AddDialogLine("startrogueengineerquest", "startrogueengineerquest", "close_window", "We have an agreement then, I believe I may know his whereabouts. I will mark it on your map for you, may Sigmar guide you stranger. ", null, QuestBeginRogueEngineer, 200, null);
 
             //quest start player reaction
-            obj.AddPlayerLine("questcheck1", "questcheck", "engineeracceptquest", "I understand, I will return the moment I have news.", null, QuestBeginCultist, 200, null);
-            obj.AddPlayerLine("questcheck2", "questcheck", "engineeracceptquest", "That is all it will take? Sounds easy enough.", null, QuestBeginCultist, 200, null);
+            obj.AddPlayerLine("questcheck1", "questcheck", "engineeracceptquest", "I understand, I will return the moment I have news.", null, QuestBegin, 200, null);
+            obj.AddPlayerLine("questcheck2", "questcheck", "engineeracceptquest", "That is all it will take? Sounds easy enough.", null, QuestBegin, 200, null);
             obj.AddPlayerLine("questcheck3", "questcheck", "engineerdeclinequest", "I do not have time for this.", null, null, 200, null);
             obj.AddDialogLine("engineeracceptquest", "engineeracceptquest", "close_window", "Good, I expect positive results and your hasty return.", null, null, 200);
             obj.AddDialogLine("engineerdeclinequest", "engineerdeclinequest", "close_window", "A shame, think on it and return if you change your mind.", null, null, 200, null);
@@ -99,19 +99,19 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             //quests failed -both
             obj.AddPlayerLine("engineer_questcomplete1", "questcomplete", "engineerquestfailed", "I am afraid I have failed to bring what you ask.", () =>engineerdialogstartcondition()&& (quest1failed() || quest2failed()), null, 200, null);
             obj.AddDialogLine("engineer_questfailed", "engineerquestfailed", "playerfailedquest", "Tsk, I expected better. There may still be time, you can still track them if you are swift", () => quest1failed() || quest2failed(), null, 200, null);
-            obj.AddPlayerLine("playerfailedquest1", "playerfailedquest", "engineeracceptquest", "I won't let you down a second time.", quest1failed, QuestBeginCultist, 200, null);
+            obj.AddPlayerLine("playerfailedquest1", "playerfailedquest", "engineeracceptquest", "I won't let you down a second time.", quest1failed, QuestBegin, 200, null);
             obj.AddPlayerLine("playerfailedquest2", "playerfailedquest", "engineeracceptquest", "I won't let you down a second time.", quest2failed, QuestBeginRogueEngineer, 200, null);
             obj.AddPlayerLine("playerfailedquest3", "playerfailedquest", "engineerdeclinequest", "I don't think I can do it at this time.", null, null, 200, null);
 
             //CULTIST quest
             //done
-            obj.AddPlayerLine("engineer_questcomplete2", "questcomplete", "cultistengineerdebrief", "I have returned but without the stolen components, I am afraid to say they are still missing.", () => engineerdialogstartcondition() && cultisthuntcompletecondition() && !CultistQuestIsDone(), handing_in_cultist_quest, 200, null);
+            obj.AddPlayerLine("engineer_questcomplete3", "cultistdone", "cultistengineerdebrief", "I have returned but without the stolen components, I am afraid to say they are still missing.", () => engineerdialogstartcondition() && ReturnSucessfullCultistQuest(), handing_in_cultist_quest, 200, null);
             obj.AddDialogLine("cultistengineerdebrief", "cultistengineerdebrief", "cultistengineerdebrief2", "I see, this is not what I had hoped for. Were there any further clues, did you interrogate these scoundrels? ", null, null, 200, null);
             obj.AddPlayerLine("cultistengineerdebrief2", "cultistengineerdebrief2", "cultistengineerdebrief3", "One of the bandits did mention a name, "+_rogueEngineerName+" I think?", null, null, 200, null);
             obj.AddDialogLine("cultistengineerdebrief3", "cultistengineerdebrief3", "questrogueengineer", "Blast! I should have known. If you are willing, I would ask for your assistance once more. This matter may be more dire than I originally imagined. Goswin is an Engineer, a good one at that, but his works always seemed...wrong. ", null, null, 200, null);
             obj.AddDialogLine("questrogueengineer", "questrogueengineer", "questcheckrogueengineer", "If he has stolen these parts, it can only be for something heinous. I must ask that you track him down, and put an end to whatever madness he is trying to concoct. Will you do this?", null, null, 200, null);
             // in progress
-            obj.AddPlayerLine("engineer_questcomplete3", "questcomplete", "cultistquestinprogress", "I have yet to track down the runaways.", null, null, 200, null);
+            obj.AddPlayerLine("engineer_questcomplete3", "cultistdone", "cultistquestinprogress", "I have yet to track down the runaways.", null, null, 200, null);
             obj.AddDialogLine("cultistquestinprogress", "cultistquestinprogress", "close_window", "I see, return to me when you have something useful.", null, null, 200, null);
 
             //GOSWIN quest
@@ -166,7 +166,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             obj.AddDialogLine("rogueengineer_start", "start", "rogueengineer_answerplayer", "So the old fool sent you to find me? How did he figure me out? It matters not, you will stand in the way of my creations. You will die here!", rogueengineerdialogstartcondition, null, 200);
 
             //requires dying dialog of the engineer, here is a player response
-            obj.AddPlayerLine("rogueengineer_playerafterbattle", "rogueengineer_playerafterbattle", "close_window", "Your schemes end here", rogueengineerquestinprogress, null, 200);
+            obj.AddPlayerLine("rogueengineer_playerafterbattle", "rogueengineer_playerafterbattle", "close_window", "Your schemes end here", null, null, 200);
         }
 
         private void OnSessionLaunched(CampaignGameStarter obj)
@@ -177,40 +177,36 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             AddRogueEngineerDialogLines(obj);
         }
 
-        private bool rogueengineerquestinprogress() => _rogueEngineerQuest != null && _rogueEngineerQuest.IsOngoing;
+        private bool rogueengineerquestinprogress() =>
+            RunawayPartsQuest != null && !RunawayPartsQuest.JournalEntries[3].HasBeenCompleted();
 
-        private bool cultistquestinprogress() => _cultistKillQuest != null && _cultistKillQuest.IsOngoing;
+        private bool cultistquestinprogress() => RunawayPartsQuest != null && RunawayPartsQuest.JournalEntries[0].HasBeenCompleted();
 
 
         private bool quest1failed()
         {
-            if (_cultistKillQuest == null) return false;
-            return _cultistKillQuest.FailState;
+            if (RunawayPartsQuest == null) return false;
+            return RunawayPartsQuest.FailState;
         }
 
         private bool quest2failed()
         {
-            if (_rogueEngineerQuest == null) return false;
-            return _rogueEngineerQuest.FailState;
+            if (RunawayPartsQuest == null) return false;
+            return RunawayPartsQuest.FailState;
         }
 
         private bool engineerquestcompletecondition()
         {
-            if (_rogueEngineerQuest == null)
+            if (RunawayPartsQuest == null)
                 return false;
-            if (_rogueEngineerQuest.JournalEntries[0].HasBeenCompleted())
-            {
-                return true;
-            }
-
-            return false;
+            return RunawayPartsQuest.IsFinalized;
         }
 
         private bool cultisthuntcompletecondition()
         {
-            if (_cultistKillQuest == null)
+            if (RunawayPartsQuest == null)
                 return false;
-            if (_cultistKillQuest.JournalEntries[0].HasBeenCompleted())
+            if (RunawayPartsQuest.JournalEntries[0].HasBeenCompleted())
             {
                 return true;
             }
@@ -220,7 +216,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
         private void handing_in_rogueengineer_quest()
         {
-            _rogueEngineerQuest.HandInQuest();
+            //_rogueEngineerQuest.HandInQuest();
             var xp = (float)250f;
             SkillObject skill = DefaultSkills.Engineering;
             Hero.MainHero.AddSkillXp(skill, xp);
@@ -230,25 +226,40 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
         private void handing_in_cultist_quest()
         {
-            _cultistKillQuest.HandInQuest();
-            var xp = 250f;
-            SkillObject skill = DefaultSkills.Charm;
-            Hero.MainHero.AddSkillXp(skill, xp);
+            RunawayPartsQuest.UpdateProgressOnQuest();
+           // RunawayPartsQuest.HandInQuest();
+            //var xp = 250f;
+           // SkillObject skill = DefaultSkills.Charm;
+           // Hero.MainHero.AddSkillXp(skill, xp);
         }
 
-        private bool CultistQuestIsDone()
+        private bool ReturnSucessfullCultistQuest()
         {
-            if (_cultistKillQuest == null) return false;
-            return _cultistKillQuest.IsFinalized;
+            if (RunawayPartsQuest == null) return false;
+            
+            if (RunawayPartsQuest == null)
+                return false;
+            
+            
+            if (RunawayPartsQuest.JournalEntries[0].HasBeenCompleted())
+            {
+                return true;
+            }
+
+   
+            
+            
+            if (RunawayPartsQuest.JournalEntries[1] == null) return false;
+
+            return RunawayPartsQuest.JournalEntries[1].CurrentProgress == 0;
+            
+            
+            
+            
+            return false;
         }
 
-        private bool RogueEngineerQuestIsDone()
-        {
-            if (_rogueEngineerQuest == null) return false;
-            return _rogueEngineerQuest.IsFinalized;
-        }
-
-        private bool QuestLineDone() => RogueEngineerQuestIsDone() && CultistQuestIsDone();
+        private bool QuestLineDone() => RunawayPartsQuest!=null &&RunawayPartsQuest.IsFinalized;
 
         private void givequestoffer() => _gaveQuestOffer = true;
 
@@ -275,15 +286,15 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             MobileParty.MainParty.MemberRoster.AddToCounts(noviceengineer, 2);
         }
 
-        private void QuestBeginCultist()
+        private void QuestBegin()
         {
-            if (_cultistKillQuest != null)
+            if (RunawayPartsQuest != null)
             {
-                _cultistKillQuest = null;
+                RunawayPartsQuest = null;
             }
 
-            _rogueEngineerQuest = TORQuestHelper.GetNewEngineerQuest(true);
-            _rogueEngineerQuest.StartQuest();
+            RunawayPartsQuest = TORQuestHelper.GetNewEngineerQuest(true);
+            RunawayPartsQuest.StartQuest();
         }
         
 
@@ -297,35 +308,42 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         private bool engineerdialogstartcondition()
         {
             var partner = CharacterObject.OneToOneConversationCharacter;
-            if (partner != null && partner.Occupation == Occupation.Special && partner.HeroObject.Name.Contains("Engineer")) return true;
-            else return false;
+            if(partner!=null)
+                return partner.HeroObject.IsMasterEngineer();
+
+            return false;
         }
 
         private bool cultiststartcondition()
         {
-            if (_cultistKillQuest == null) return false;
+            if (RunawayPartsQuest == null) return false;
 
-            if (!_cultistKillQuest.IsOngoing) return false;
+            if (!RunawayPartsQuest.IsOngoing) return false;
+            
+            
+            if (Campaign.Current.CurrentConversationContext != ConversationContext.PartyEncounter) return false;
+            
+            if(RunawayPartsQuest.CultistQuestIsActive())
+                return Campaign.Current.ConversationManager.ConversationParty == RunawayPartsQuest.TargetParty;
 
-
-            if (Campaign.Current.ConversationManager.ConversationParty == _cultistKillQuest.TargetParty)
-                return true;
+            //return partner. == _cultistKillQuest.GetTargetParty();
 
             return false;
-            //return partner. == _cultistKillQuest.GetTargetParty();
         }
 
         private bool rogueengineerdialogstartcondition()
         {
-            if (_rogueEngineerQuest == null) return false;
+            if (RunawayPartsQuest == null) return false;
 
-            if (!_rogueEngineerQuest.IsOngoing) return false;
+            if (!RunawayPartsQuest.IsOngoing) return false;
 
             if (Campaign.Current.CurrentConversationContext != ConversationContext.PartyEncounter) return false;
 
+            if (!RunawayPartsQuest.RogueEngineerQuestPartIsActive()) return false;
+            
             var partner = CharacterObject.OneToOneConversationCharacter;
             return partner != null && partner.Occupation == Occupation.Lord &&
-                   partner.HeroObject.Name.Contains(_rogueEngineerQuest.QuestEnemyLeaderName);
+                   partner.HeroObject.Name.Contains(_rogueEngineerName);
         }
 
         private void checkplayerengineerskillrequirements()
@@ -381,8 +399,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             dataStore.SyncData<bool>("_gaveQuestOffer", ref _gaveQuestOffer);
             dataStore.SyncData<bool>("_knowsPlayer", ref _knowsPlayer);
             dataStore.SyncData<Hero>("_masterEngineerHero", ref _masterEngineerHero);
-            dataStore.SyncData<EngineerQuest>("_cultistKillQuest", ref _cultistKillQuest);
-            dataStore.SyncData<EngineerQuest>("_rogueEngineerQuest", ref _rogueEngineerQuest);
+            dataStore.SyncData<EngineerQuest>("Engineerquest", ref RunawayPartsQuest);
         }
     }
 }

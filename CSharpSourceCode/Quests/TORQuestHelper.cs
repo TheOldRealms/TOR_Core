@@ -49,7 +49,7 @@ namespace TOR_Core.Quests
             string cultistFaction="forest_bandits";
             string nameOfRogueEngineer = "Goswin";
             string RogueEngineerPartyTemplate = "tor_engineerquesthero";
-            string rogueEngineerFaction = "..."; //TODO
+            string rogueEngineerFaction = "mountain_bandits"; 
 
             return new EngineerQuest("engineerQust", hero, CampaignTime.DaysFromNow(1000),
                 100,
