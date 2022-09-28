@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Inventory;
+using TaleWorlds.CampaignSystem.LogEntries;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
@@ -27,6 +28,10 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         private bool _playerIsSkilledEnough;
         
         private EngineerQuest RunawayPartsQuest;
+
+
+
+       
 
         public override void RegisterEvents()
         {
@@ -82,7 +87,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             obj.AddDialogLine("playerpassskillcheck2", "playerpassedskillcheck2", "playerstartquestcheck", "We may however be able to come to an agreement, there is an internal matter that needs urgent attention and I am unable to act. If you help, as a personal favour, I will see what I can do for you. What say you?", null, givequestoffer, 200);
             obj.AddPlayerLine("playerstartquestcheck1", "playerstartquestcheck", "explainquest", "What would you have me do?", null, null, 200, null);
             obj.AddPlayerLine("playerstartquestcheck2", "playerstartquestcheck", "engineerdeclinequest", " I don't have time for this.", null, null, 200, null);
-            obj.AddDialogLine("explainquest", "explainquest", "questcheck", "Usually we don’t resort to outside assistance but we are short handed, we have had some important components stolen from the Colleges of Nuln by " + _rogueEngineerName + " and they must be returned. Immediately. If you can track down these runaways and find these parts then we can talk further.", null, null, 200);
+            obj.AddDialogLine("explainquest", "explainquest", "questcheck", "Usually we don’t resort to outside assistance but we are short handed, we have had some important components stolen from the Forges of Nuln and they must be returned. Immediately. If you can track down these runaways and find these parts then we can talk further.", null, null, 200);
             //alternative quest start
             obj.AddPlayerLine("questcheckrogueengineer1", "questcheckrogueengineer", "startrogueengineerquest", "I can, as long as our bargain remains the same. I will find him for you, and in return, you will allow me access to the Forges of Nuln.", null, null, 200, null);
             obj.AddPlayerLine("questcheckrogueengineer2", "questcheckrogueengineer", "startrogueengineerquest", "If this is the only way you will allow me access to the forges, then so be it. I will bring you his head.", null, null, 200, null);
@@ -97,7 +102,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             obj.AddDialogLine("engineerdeclinequest", "engineerdeclinequest", "close_window", "A shame, think on it and return if you change your mind.", null, null, 200, null);
 
             //quests failed -both
-            obj.AddPlayerLine("engineer_questcomplete1", "questcomplete", "engineerquestfailed", "I am afraid I have failed to bring what you ask.", () =>engineerdialogstartcondition()&& (quest1failed() || quest2failed()), null, 200, null);
+            obj.AddPlayerLine("engineer_questcomplete1", "cultistdone", "engineerquestfailed", "I am afraid I have failed to bring what you ask.", () =>engineerdialogstartcondition()&& (quest1failed() || quest2failed()), null, 200, null);
             obj.AddDialogLine("engineer_questfailed", "engineerquestfailed", "playerfailedquest", "Tsk, I expected better. There may still be time, you can still track them if you are swift", () => quest1failed() || quest2failed(), null, 200, null);
             obj.AddPlayerLine("playerfailedquest1", "playerfailedquest", "engineeracceptquest", "I won't let you down a second time.", quest1failed, QuestBegin, 200, null);
             obj.AddPlayerLine("playerfailedquest2", "playerfailedquest", "engineeracceptquest", "I won't let you down a second time.", quest2failed, QuestBeginRogueEngineer, 200, null);
@@ -182,8 +187,12 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             if( RunawayPartsQuest == null) return false;
 
             if (RunawayPartsQuest.IsFinalized) return false;
-                
-            return RunawayPartsQuest.JournalEntries[2].CurrentProgress==0 || RunawayPartsQuest.JournalEntries[2].HasBeenCompleted();
+
+
+            if(RunawayPartsQuest.GetCurrentProgress()<2) return false;
+            
+            return true;
+            //return RunawayPartsQuest.JournalEntries[2].CurrentProgress==0 || RunawayPartsQuest.JournalEntries[2].HasBeenCompleted();
         }
             
 
@@ -192,8 +201,12 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             if( RunawayPartsQuest == null) return false;
 
             if (RunawayPartsQuest.IsFinalized) return false;
-                
-            return RunawayPartsQuest.JournalEntries[0].CurrentProgress==0 || RunawayPartsQuest.JournalEntries[0].HasBeenCompleted();
+
+            if (RunawayPartsQuest.GetCurrentProgress() == 1) return true;
+            
+            return false;
+
+            //return RunawayPartsQuest.JournalEntries[0].CurrentProgress==0 || RunawayPartsQuest.JournalEntries[0].HasBeenCompleted();
         }
 
 
@@ -214,6 +227,8 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
             if (RunawayPartsQuest == null)
                 return false;
+
+            if (RunawayPartsQuest.JournalEntries.Count< 3) return false;
             
             return RunawayPartsQuest.JournalEntries[2].HasBeenCompleted();
         }
@@ -242,7 +257,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
         private void handing_in_cultist_quest()
         {
-            RunawayPartsQuest.UpdateProgressOnQuest();
+            RunawayPartsQuest.UpdateProgressOnQuest(1, false);
            // RunawayPartsQuest.HandInQuest();
             //var xp = 250f;
            // SkillObject skill = DefaultSkills.Charm;
@@ -302,6 +317,15 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             MobileParty.MainParty.MemberRoster.AddToCounts(noviceengineer, 2);
         }
 
+
+        private void RestartCurrentQuestTarget()
+        {
+            if (RunawayPartsQuest == null) return;
+            
+          //  RunawayPartsQuest.JournalEntries.
+            
+        }
+        
         private void QuestBegin()
         {
             if (RunawayPartsQuest != null)
@@ -316,7 +340,8 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
         private void QuestBeginRogueEngineer()
         {
-            TORQuestHelper.GetNewEngineerQuest(true);
+            RunawayPartsQuest.UpdateProgressOnQuest();
+           // TORQuestHelper.GetNewEngineerQuest(true);
         }
 
         private void knowledgeoverplayer() => _knowsPlayer = true;

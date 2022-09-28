@@ -17,32 +17,37 @@ namespace TOR_Core.Quests
     public class EngineerQuest : QuestBase
     {
         [SaveableField(1)] private int _destroyedParty = 0;
-        [SaveableField(2)] private JournalLog _task1 = null;
-        [SaveableField(3)] private JournalLog _task2 = null;
-        [SaveableField(4)] private JournalLog _task3 = null;
-        [SaveableField(5)] private JournalLog _task4 = null;
-        [SaveableField(6)] private MobileParty _targetParty = null;
-        [SaveableField(7)] private TextObject _cultistPartyDisplayName = null;
-        [SaveableField(8)] private TextObject _cultistPartyLeaderName;
-        [SaveableField(9)] private string _cultistPartyTemplateId = "";
-        [SaveableField(10)] private string _cultistLeaderTemplateId = "";
-        [SaveableField(11)] private TextObject _rogueEngineerDisplayName = null;
-        [SaveableField(12)] private string _rogueEngineerLeaderName = "";
-        [SaveableField(13)] private string _rogueEngineerPartyTemplateId  = "";
-        private string _rogueEngineerLeaderTemplateId = "";
+        [SaveableField(2)] private int _currentActiveLog = 0;
         
-        [SaveableField(14)] private string _cultistfactionID = "";
-        [SaveableField(15)] private readonly TextObject _title=null;
-        [SaveableField(16)] private TextObject _missionLogText1=null;
-        [SaveableField(17)] private TextObject _missionLogTextShort1=null;
-        [SaveableField(18)] private TextObject _missionLogText2=null;
-        [SaveableField(19)] private TextObject _missionLogTextShort2=null;
-        [SaveableField(20)] private TextObject _defeatDialogLine = null;
-        [SaveableField(21)] private bool _failstate;
+        [SaveableField(3)] private JournalLog _task1 = null;
+        [SaveableField(4)] private JournalLog _task2 = null;
+        [SaveableField(5)] private JournalLog _task3 = null;
+        [SaveableField(6)] private JournalLog _task4 = null;
+        [SaveableField(7)] private MobileParty _targetParty = null;
+        [SaveableField(8)] private TextObject _cultistPartyDisplayName = null;
+        [SaveableField(9)] private TextObject _cultistPartyLeaderName;
+        [SaveableField(10)] private string _cultistPartyTemplateId = "";
+        [SaveableField(11)] private string _cultistLeaderTemplateId = "";
+        [SaveableField(12)] private TextObject _rogueEngineerDisplayName = null;
+        [SaveableField(13)] private string _rogueEngineerLeaderName = "";
+        [SaveableField(14)] private string _rogueEngineerPartyTemplateId  = "";
+        [SaveableField(15)]private string _rogueEngineerLeaderTemplateId = "";
+        
+        [SaveableField(16)] private string _cultistfactionID = "";
+        [SaveableField(17)] private readonly TextObject _title=null;
+        [SaveableField(18)] private TextObject _missionLogText1=null;
+        [SaveableField(19)] private TextObject _missionLogTextShort1=null;
+        [SaveableField(20)] private TextObject _missionLogText2=null;
+        [SaveableField(21)] private TextObject _missionLogTextShort2=null;
+        [SaveableField(22)] private TextObject _defeatDialogLine = null;
+        [SaveableField(23)] private bool _failstate;
         private bool _initAfterReload;
         private bool _skipImprisonment;
         
         private string _engineerfactionID;
+        
+
+        private List<JournalLog> _logs;
 
         private CharacterObject _cultistLeader;
 
@@ -85,16 +90,31 @@ namespace TOR_Core.Quests
         public override bool IsSpecialQuest => true;
         public override TextObject Title => _title;
         public override bool IsRemainingTimeHidden => false;
-       
 
+
+        private void LoadAllLogs()
+        {
+            
+            _logs = new List<JournalLog>();
+            var log0 = new JournalLog(CampaignTime.Now, new TextObject("The Master Engineer has tasked me with hunting down thieving runaways, I should find them and bring back what they stole."), new TextObject("Track down runaway thieves"), 0, 1,LogType.Discreate);
+            var log1 = new JournalLog(CampaignTime.Now, new TextObject("I found the thieves, but they did not have the stolen components. I should return to the Master Engineer with the news."), new TextObject("Return to the Master Engineer in Nuln"), 0, 0, LogType.Discreate);
+            var log2 = new JournalLog(CampaignTime.Now, new TextObject("It would appear a traitorous Engineer has the stolen parts, the Master Engineer has asked for my help in finding him."), new TextObject("Track down Goswin and retrieve the stolen components."), 0, 1,LogType.Discreate);
+            var log3 = new JournalLog(CampaignTime.Now, new TextObject("I have slain Oswin and retrieved the stolen components, I should return to the Master Engineer and let him know."), new TextObject("Return to the Master Engineer in Nuln"), 0, 1, LogType.Discreate);
+            _logs.Add(log0);
+            _logs.Add(log1);
+            _logs.Add(log2);
+            _logs.Add(log3);
+        }
+        
         private void SetLogs()
         {
             //_task1 = AddLog(new TextObject("Track down runaway thieves"));
-            
-            
 
-            _task1 = AddDiscreteLog(new TextObject("Catch the runaway thieves"), new TextObject(""), 0, 1);
+            LoadAllLogs();
 
+
+            _task1 = AddDiscreteLog(_logs[0].LogText,_logs[0].TaskName,0,1);
+            _currentActiveLog = 0;
             //var t = (QuestPartyComponent)_targetParty.PartyComponent; 
             //_task1
 
@@ -109,6 +129,20 @@ namespace TOR_Core.Quests
                 AddLog(_missionLogText1);*/
         }
         
+        
+        public void ResetQuestToState(JournalLog entry)
+        {
+            //_currentActiveLog.CurrentProgress = 0;
+            _task1 = null;
+        }
+
+
+        public override int GetCurrentProgress()
+        {
+            return _currentActiveLog;
+
+        }
+
         protected override void RegisterEvents()
         {
             base.RegisterEvents();
@@ -150,9 +184,9 @@ namespace TOR_Core.Quests
             Current.ConversationManager.EndConversation();
             
             
-            
-            Current.ConversationManager.AddDialogLineMultiAgent("start", "start", "close_window", new TextObject("Your victory here is meaningless...you will never find what we took..."), ()=> _skipImprisonment&& _targetParty.LeaderHero.Template.StringId != _rogueEngineerLeaderTemplateId, RemoveSkip, 0,1, 200, null);
-            Current.ConversationManager.AddDialogLineMultiAgent("start", "start", "rogueengineer_playerafterbattle", new TextObject("You have no idea what you are interfering with..."), ()=> _skipImprisonment&& _targetParty.LeaderHero.Template.StringId == _rogueEngineerLeaderTemplateId, RemoveSkip, 0,1, 200, null);
+            Current.ConversationManager.AddDialogLineMultiAgent("start", "start", "close_window", new TextObject("Your victory here is meaningless...you will never find what we took..."), ()=>_skipImprisonment&& _currentActiveLog<2, RemoveSkip, 0,1, 200, null);
+            //Current.ConversationManager.AddDialogLineMultiAgent("start", "start", "close_window", new TextObject("Your victory here is meaningless...you will never find what we took..."), ()=> _skipImprisonment&& _targetParty.LeaderHero.Template.StringId != _rogueEngineerLeaderTemplateId, RemoveSkip, 0,1, 200, null);
+            Current.ConversationManager.AddDialogLineMultiAgent("start", "start", "rogueengineer_playerafterbattle", new TextObject("You have no idea what you are interfering with..."), ()=>_skipImprisonment&& _currentActiveLog>=2, RemoveSkip, 0,1, 200, null);
             
             Current.ConversationManager.ClearCurrentOptions();
         }
@@ -182,23 +216,55 @@ namespace TOR_Core.Quests
 
         public bool CultistQuestIsActive()
         {
+            return _currentActiveLog == 0;
             return _task1 != null&& _task1.CurrentProgress==0;
         }
 
         public bool RogueEngineerQuestPartIsActive()
         {
+            return _currentActiveLog == 2;
             return _task3 != null && _task3.CurrentProgress == 0;
         }
         
 
-        public void UpdateProgressOnQuest()
+        public void UpdateProgressOnQuest(int? step= null, bool WithProgress=true)
         {
-            _task1.UpdateCurrentProgress(1);
+            if (step != null) _currentActiveLog = step.Value;
+            switch (_currentActiveLog)
+            {
+                case 0: //Cultist hunt
+                    _task1.UpdateCurrentProgress(1);
+                    if(WithProgress)_task2 = AddDiscreteLog(_logs[1].LogText, _logs[1].TaskName, 0, 1);
+                    break;
+                case 1://hand in cultist
+                    _task2.UpdateCurrentProgress(1);
+                    if (WithProgress)
+                    {
+                        SpawnQuestParty(_rogueEngineerLeaderTemplateId,_rogueEngineerPartyTemplateId,_engineerfactionID, new TextObject(" Rogue Engineer Goswin"),new TextObject("Goswins Part Thieves"));
+                        _task3 = AddDiscreteLog(_logs[2].LogText, _logs[2].TaskName, 0, 1);
+                    }
+                    break;
+                case 2: //rogue engineer hunt
+                    _task3.UpdateCurrentProgress(1);
+                    if (WithProgress)
+                    {
+                        _task4 = AddDiscreteLog(_logs[3].LogText, _logs[3].TaskName, 0, 1);
+                    }
+                    break;
+                case 3: //hand in quest
+                    _task4.UpdateCurrentProgress(1);
+                    CompleteQuestWithSuccess();
+                    break;
+            }
 
-            if (_task1.HasBeenCompleted() && _task2 == null)
+            if(WithProgress)_currentActiveLog++;
+
+
+            /*if (_task1.HasBeenCompleted() && _task2 == null)
                 
             {
-                _task2 = AddDiscreteLog(new TextObject("I found the thieves, but they did not have the stolen components. I should return to the Master Engineer with the news."),new TextObject("Return to the Master Engineer in Nuln"),0,1);
+                _task2 = AddDiscreteLog(_logs[1].LogText,_logs[1].TaskName,0,1);
+                _currentActiveLog = 1;
                 return;
             }
             
@@ -206,11 +272,13 @@ namespace TOR_Core.Quests
 
             if (_task2.HasBeenCompleted() && _task3 == null)
             {
+                
                 SpawnQuestParty(_rogueEngineerLeaderTemplateId,_rogueEngineerPartyTemplateId,_engineerfactionID, new TextObject(" Rogue Engineer Goswin"),new TextObject("Goswins Part Thieves"));
                 _task3 = AddDiscreteLog(
                     new TextObject(
                         "It would appear a traitorous Engineer has the stolen parts, the Master Engineer has asked for my help in finding him."),
                     new TextObject("Track down Goswin and retrieve the stolen components."), 0, 1);
+                _currentActiveLog = _task3;
                     return;
             }
             
@@ -221,11 +289,12 @@ namespace TOR_Core.Quests
                     new TextObject(
                         "I have slain Oswin and retrieved the stolen components, I should return to the Master Engineer and let him know."),
                     new TextObject("Return to the Master Engineer in Nuln"), 0, 1);
+                _currentActiveLog = _task4;
                     return;
-            }
+            }*/
             
-            _task4.UpdateCurrentProgress(1); 
-            CompleteQuestWithSuccess();
+            //_task4.UpdateCurrentProgress(1); 
+            //CompleteQuestWithSuccess();
             
 
         }
@@ -242,7 +311,7 @@ namespace TOR_Core.Quests
 
         protected override void InitializeQuestOnGameLoad()
         {
-          
+            LoadAllLogs();
             
             
             //base.AddTrackedObject(_targetParty);
@@ -285,8 +354,10 @@ namespace TOR_Core.Quests
 
         public override void OnFailed()
         {
-            base.OnFailed();
+           // base.OnFailed();
             _failstate = true;
+            
+
         }
 
         public static EngineerQuest GetCurrentActiveIfExists()
