@@ -17,7 +17,7 @@ namespace TOR_Core.Quests
     public class EngineerQuest : QuestBase
     {
         [SaveableField(1)] private int _destroyedParty = 0;
-        [SaveableField(2)] private int _currentActiveLog = 0;
+        [SaveableField(2)] private EngineerQuestStates _currentActiveLog = EngineerQuestStates.Cultisthunt;
         
         [SaveableField(3)] private JournalLog _task1 = null;
         [SaveableField(4)] private JournalLog _task2 = null;
@@ -44,10 +44,13 @@ namespace TOR_Core.Quests
         [SaveableField(24)] private bool _failstate;
         private bool _initAfterReload;
         private bool _skipImprisonment;
-        
-        
-        
 
+
+
+
+
+        public EngineerQuestStates CurrentActiveLog => (EngineerQuestStates)_currentActiveLog;
+    
         private List<JournalLog> _logs;
 
         private CharacterObject _cultistLeader;
@@ -133,26 +136,26 @@ namespace TOR_Core.Quests
         
         public void ResetQuestinCurrentState()
         {
-            if (_currentActiveLog == 0)
+            if (_currentActiveLog == EngineerQuestStates.Cultisthunt)
             {
                 RemoveLog(_task1);
-                _task1 = AddDiscreteLog(_logs[0].LogText,_logs[0].TaskName,0,1);
                 SpawnQuestParty(_cultistLeaderTemplateId,_cultistPartyTemplateId,_cultistfactionID,_cultistPartyLeaderName,_cultistPartyDisplayName);
+                _task1 = AddDiscreteLog(_logs[(int)EngineerQuestStates.Cultisthunt].LogText,_logs[(int)EngineerQuestStates.Cultisthunt].TaskName,0,1);
+     
             }
 
-            if (_currentActiveLog == 2)
+            if (_currentActiveLog == EngineerQuestStates.RogueEngineerhunt)
             {
                 RemoveLog(_task3);
                 SpawnQuestParty(_rogueEngineerLeaderTemplateId,_rogueEngineerPartyTemplateId,_engineerfactionID, new TextObject(" Rogue Engineer Goswin"),new TextObject("Goswins Part Thieves"));
-                _task3 = AddDiscreteLog(_logs[2].LogText,_logs[2].TaskName,0,1);
+                _task3 = AddDiscreteLog(_logs[(int)EngineerQuestStates.RogueEngineerhunt].LogText,_logs[(int)EngineerQuestStates.RogueEngineerhunt].TaskName,0,1);
             }
-            //_currentActiveLog.CurrentProgress = 0;
         }
 
 
         public override int GetCurrentProgress()
         {
-            return _currentActiveLog;
+            return (int) _currentActiveLog;
 
         }
 
@@ -181,15 +184,18 @@ namespace TOR_Core.Quests
             if (!mapEvent.IsPlayerMapEvent|| mapEvent.InvolvedParties.All(party => party.MobileParty != _targetParty)) return;
             if (mapEvent.Winner.MissionSide == mapEvent.PlayerSide) return;
             //CompleteQuestWithFail();
+            
+            
+            if(_failstate) return;
 
-            if (_currentActiveLog == 0)
+                if (_currentActiveLog == EngineerQuestStates.Cultisthunt)
             {
                 RemoveLog(_task1);
                 _task1= AddDiscreteLog( new TextObject("I failed... I was beaten. I need to return to the Master Engineer with the news."), new TextObject("Return to the Master Engineer in Nuln"), 0, 1);
             }
                
 
-            if (_currentActiveLog == 2)
+            if (_currentActiveLog == EngineerQuestStates.RogueEngineerhunt)
             {
                 RemoveLog(_task3);
                 _task3= AddDiscreteLog( new TextObject("I failed... I was beaten. I need to return to the Master Engineer with the news."), new TextObject("Return to the Master Engineer in Nuln"), 0, 1);
@@ -209,9 +215,9 @@ namespace TOR_Core.Quests
             Current.ConversationManager.EndConversation();
             
             
-            Current.ConversationManager.AddDialogLineMultiAgent("start", "start", "close_window", new TextObject("Your victory here is meaningless...you will never find what we took..."), ()=>_skipImprisonment&& _currentActiveLog<2, RemoveSkip, 0,1, 200, null);
+            Current.ConversationManager.AddDialogLineMultiAgent("start", "start", "close_window", new TextObject("Your victory here is meaningless...you will never find what we took..."), ()=>_skipImprisonment&& _currentActiveLog==EngineerQuestStates.HandInCultisthunt, RemoveSkip, 0,1, 200, null);
             //Current.ConversationManager.AddDialogLineMultiAgent("start", "start", "close_window", new TextObject("Your victory here is meaningless...you will never find what we took..."), ()=> _skipImprisonment&& _targetParty.LeaderHero.Template.StringId != _rogueEngineerLeaderTemplateId, RemoveSkip, 0,1, 200, null);
-            Current.ConversationManager.AddDialogLineMultiAgent("start", "start", "rogueengineer_playerafterbattle", new TextObject("You have no idea what you are interfering with..."), ()=>_skipImprisonment&& _currentActiveLog>=2, RemoveSkip, 0,1, 200, null);
+            Current.ConversationManager.AddDialogLineMultiAgent("start", "start", "rogueengineer_playerafterbattle", new TextObject("You have no idea what you are interfering with..."), ()=>_skipImprisonment&& _currentActiveLog==EngineerQuestStates.HandInRogueEngineerHunt, RemoveSkip, 0,1, 200, null);
             
             Current.ConversationManager.ClearCurrentOptions();
         }
@@ -241,25 +247,25 @@ namespace TOR_Core.Quests
 
         public bool CultistQuestIsActive()
         {
-            return _currentActiveLog == 0;
+            return _currentActiveLog == EngineerQuestStates.Cultisthunt;
         }
 
         public bool RogueEngineerQuestPartIsActive()
         {
-            return _currentActiveLog == 2;
+            return _currentActiveLog == EngineerQuestStates.RogueEngineerhunt;
         }
         
 
-        public void UpdateProgressOnQuest(int? step= null, bool WithProgress=true)
+        public void UpdateProgressOnQuest(EngineerQuestStates state = EngineerQuestStates.None, bool WithProgress=true)
         {
-            if (step != null) _currentActiveLog = step.Value;
+            if (state != EngineerQuestStates.None) _currentActiveLog = state;
             switch (_currentActiveLog)
             {
-                case 0: //Cultist hunt
+                case EngineerQuestStates.Cultisthunt:
                     _task1.UpdateCurrentProgress(1);
                     if(WithProgress)_task2 = AddDiscreteLog(_logs[1].LogText, _logs[1].TaskName, 0, 1);
                     break;
-                case 1://hand in cultist
+                case EngineerQuestStates.HandInCultisthunt:
                     _task2.UpdateCurrentProgress(1);
                     if (WithProgress)
                     {
@@ -267,14 +273,14 @@ namespace TOR_Core.Quests
                         _task3 = AddDiscreteLog(_logs[2].LogText, _logs[2].TaskName, 0, 1);
                     }
                     break;
-                case 2: //rogue engineer hunt
+                case EngineerQuestStates.RogueEngineerhunt: 
                     _task3.UpdateCurrentProgress(1);
                     if (WithProgress)
                     {
                         _task4 = AddDiscreteLog(_logs[3].LogText, _logs[3].TaskName, 0, 1);
                     }
                     break;
-                case 3: //hand in quest
+                case EngineerQuestStates.HandInRogueEngineerHunt: 
                     _task4.UpdateCurrentProgress(1);
                     CompleteQuestWithSuccess();
                     break;
@@ -458,6 +464,15 @@ namespace TOR_Core.Quests
         }
         
     }
+
+    public enum EngineerQuestStates
+    {
+        None = -1,
+        Cultisthunt = 0,
+        HandInCultisthunt=1,
+        RogueEngineerhunt=2,
+        HandInRogueEngineerHunt=3
+    }
     
     
     
@@ -471,6 +486,7 @@ namespace TOR_Core.Quests
         protected override void DefineClassTypes()
         {
             AddClassDefinition(typeof(EngineerQuest), 1);
+            AddEnumDefinition(typeof(EngineerQuestStates),2);
         }
     }
 }

@@ -111,7 +111,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
             //CULTIST quest
             //done
-            obj.AddPlayerLine("engineer_questcomplete3", "cultistdone", "cultistengineerdebrief", "I have returned but without the stolen components, I am afraid to say they are still missing.", () => engineerdialogstartcondition() && ReturnSucessfullCultistQuest(), handing_in_cultist_quest, 200, null);
+            obj.AddPlayerLine("engineer_questcomplete3", "cultistdone", "cultistengineerdebrief", "I have returned but without the stolen components, I am afraid to say they are still missing.", () => engineerdialogstartcondition() && ReturnSucessfullCultistQuest(), null, 200, null);
             obj.AddDialogLine("cultistengineerdebrief", "cultistengineerdebrief", "cultistengineerdebrief2", "I see, this is not what I had hoped for. Were there any further clues, did you interrogate these scoundrels? ", null, null, 200, null);
             obj.AddPlayerLine("cultistengineerdebrief2", "cultistengineerdebrief2", "cultistengineerdebrief3", "One of the bandits did mention a name, "+_rogueEngineerName+" I think?", null, null, 200, null);
             obj.AddDialogLine("cultistengineerdebrief3", "cultistengineerdebrief3", "questrogueengineer", "Blast! I should have known. If you are willing, I would ask for your assistance once more. This matter may be more dire than I originally imagined. Goswin is an Engineer, a good one at that, but his works always seemed...wrong. ", null, null, 200, null);
@@ -190,7 +190,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             if (RunawayPartsQuest.IsFinalized) return false;
 
 
-            if(RunawayPartsQuest.GetCurrentProgress()<2) return false;
+            if(RunawayPartsQuest.GetCurrentProgress()!=(int) EngineerQuestStates.RogueEngineerhunt) return false;
             
             return true;
             //return RunawayPartsQuest.JournalEntries[2].CurrentProgress==0 || RunawayPartsQuest.JournalEntries[2].HasBeenCompleted();
@@ -203,7 +203,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
             if (RunawayPartsQuest.IsFinalized) return false;
 
-            if (RunawayPartsQuest.GetCurrentProgress() == 1) return true;
+            if (RunawayPartsQuest.GetCurrentProgress() !=(int) EngineerQuestStates.Cultisthunt) return true;
             
             return false;
 
@@ -214,7 +214,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         private bool quest1failed()
         {
             if (RunawayPartsQuest == null) return false;
-            if(RunawayPartsQuest.GetCurrentProgress()==0)
+            if(RunawayPartsQuest.GetCurrentProgress()==(int) EngineerQuestStates.Cultisthunt)
                 return RunawayPartsQuest.FailState;
             return false;
         }
@@ -222,7 +222,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         private bool quest2failed()
         {
             if (RunawayPartsQuest == null) return false;
-            if (RunawayPartsQuest.GetCurrentProgress() == 2)
+            if (RunawayPartsQuest.GetCurrentProgress() ==(int) EngineerQuestStates.RogueEngineerhunt)
             {
                 return RunawayPartsQuest.FailState;
             }
@@ -263,15 +263,6 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             if (!Hero.MainHero.HasAttribute("CanPlaceArtillery")) Hero.MainHero.AddAttribute("CanPlaceArtillery");
         }
 
-        private void handing_in_cultist_quest()
-        {
-            RunawayPartsQuest.UpdateProgressOnQuest(1, false);
-           // RunawayPartsQuest.HandInQuest();
-            //var xp = 250f;
-           // SkillObject skill = DefaultSkills.Charm;
-           // Hero.MainHero.AddSkillXp(skill, xp);
-        }
-
         private bool ReturnSucessfullCultistQuest()
         {
             if (RunawayPartsQuest == null) return false;
@@ -280,6 +271,10 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
             return RunawayPartsQuest.JournalEntries[1].CurrentProgress == 0;
         }
+
+        public bool QuestIsInProgress() => RunawayPartsQuest != null &&
+                                           RunawayPartsQuest.GetCurrentProgress() <
+                                           (int)EngineerQuestStates.HandInRogueEngineerHunt;
 
         private bool QuestLineDone() => RunawayPartsQuest!=null &&RunawayPartsQuest.IsFinalized;
 
