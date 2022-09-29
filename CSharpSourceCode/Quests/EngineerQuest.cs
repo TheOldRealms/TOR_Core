@@ -34,17 +34,18 @@ namespace TOR_Core.Quests
         [SaveableField(15)]private string _rogueEngineerLeaderTemplateId = "";
         
         [SaveableField(16)] private string _cultistfactionID = "";
-        [SaveableField(17)] private readonly TextObject _title=null;
-        [SaveableField(18)] private TextObject _missionLogText1=null;
-        [SaveableField(19)] private TextObject _missionLogTextShort1=null;
-        [SaveableField(20)] private TextObject _missionLogText2=null;
-        [SaveableField(21)] private TextObject _missionLogTextShort2=null;
-        [SaveableField(22)] private TextObject _defeatDialogLine = null;
-        [SaveableField(23)] private bool _failstate;
+        [SaveableField(17)] private string _engineerfactionID = "";
+        [SaveableField(18)] private readonly TextObject _title=null;
+        [SaveableField(19)] private TextObject _missionLogText1=null;
+        [SaveableField(20)] private TextObject _missionLogTextShort1=null;
+        [SaveableField(21)] private TextObject _missionLogText2=null;
+        [SaveableField(22)] private TextObject _missionLogTextShort2=null;
+        [SaveableField(23)] private TextObject _defeatDialogLine = null;
+        [SaveableField(24)] private bool _failstate;
         private bool _initAfterReload;
         private bool _skipImprisonment;
         
-        private string _engineerfactionID;
+        
         
 
         private List<JournalLog> _logs;
@@ -130,10 +131,22 @@ namespace TOR_Core.Quests
         }
         
         
-        public void ResetQuestToState(JournalLog entry)
+        public void ResetQuestinCurrentState()
         {
+            if (_currentActiveLog == 0)
+            {
+                RemoveLog(_task1);
+                _task1 = AddDiscreteLog(_logs[0].LogText,_logs[0].TaskName,0,1);
+                SpawnQuestParty(_cultistLeaderTemplateId,_cultistPartyTemplateId,_cultistfactionID,_cultistPartyLeaderName,_cultistPartyDisplayName);
+            }
+
+            if (_currentActiveLog == 2)
+            {
+                RemoveLog(_task3);
+                SpawnQuestParty(_rogueEngineerLeaderTemplateId,_rogueEngineerPartyTemplateId,_engineerfactionID, new TextObject(" Rogue Engineer Goswin"),new TextObject("Goswins Part Thieves"));
+                _task3 = AddDiscreteLog(_logs[2].LogText,_logs[2].TaskName,0,1);
+            }
             //_currentActiveLog.CurrentProgress = 0;
-            _task1 = null;
         }
 
 
@@ -167,10 +180,22 @@ namespace TOR_Core.Quests
             if (mapEvent.Winner == null) return;
             if (!mapEvent.IsPlayerMapEvent|| mapEvent.InvolvedParties.All(party => party.MobileParty != _targetParty)) return;
             if (mapEvent.Winner.MissionSide == mapEvent.PlayerSide) return;
-            CompleteQuestWithFail();
-            _task1= AddDiscreteLog( new TextObject("I failed... I was beaten. I need to return to the Master Engineer with the news."),
-                new TextObject("Return to the Master Engineer in Nuln"), 
-                _destroyedParty, 1); 
+            //CompleteQuestWithFail();
+
+            if (_currentActiveLog == 0)
+            {
+                RemoveLog(_task1);
+                _task1= AddDiscreteLog( new TextObject("I failed... I was beaten. I need to return to the Master Engineer with the news."), new TextObject("Return to the Master Engineer in Nuln"), 0, 1);
+            }
+               
+
+            if (_currentActiveLog == 2)
+            {
+                RemoveLog(_task3);
+                _task3= AddDiscreteLog( new TextObject("I failed... I was beaten. I need to return to the Master Engineer with the news."), new TextObject("Return to the Master Engineer in Nuln"), 0, 1);
+            }
+
+            _failstate = true;
             
             _targetParty.RemoveParty();
         }
@@ -217,13 +242,11 @@ namespace TOR_Core.Quests
         public bool CultistQuestIsActive()
         {
             return _currentActiveLog == 0;
-            return _task1 != null&& _task1.CurrentProgress==0;
         }
 
         public bool RogueEngineerQuestPartIsActive()
         {
             return _currentActiveLog == 2;
-            return _task3 != null && _task3.CurrentProgress == 0;
         }
         
 
@@ -352,13 +375,13 @@ namespace TOR_Core.Quests
         }
         
 
-        public override void OnFailed()
+        /*public override void OnFailed()
         {
            // base.OnFailed();
             _failstate = true;
             
 
-        }
+        }*/
 
         public static EngineerQuest GetCurrentActiveIfExists()
         {

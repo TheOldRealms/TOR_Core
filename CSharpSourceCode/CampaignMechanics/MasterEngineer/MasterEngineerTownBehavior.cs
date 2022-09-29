@@ -102,10 +102,11 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             obj.AddDialogLine("engineerdeclinequest", "engineerdeclinequest", "close_window", "A shame, think on it and return if you change your mind.", null, null, 200, null);
 
             //quests failed -both
+            obj.AddPlayerLine("engineer_questcomplete1", "rogueengineerquestcomplete", "engineerquestfailed", "I am afraid I have failed to bring what you ask.", () =>engineerdialogstartcondition()&& (quest1failed() || quest2failed()), null, 200, null);
             obj.AddPlayerLine("engineer_questcomplete1", "cultistdone", "engineerquestfailed", "I am afraid I have failed to bring what you ask.", () =>engineerdialogstartcondition()&& (quest1failed() || quest2failed()), null, 200, null);
             obj.AddDialogLine("engineer_questfailed", "engineerquestfailed", "playerfailedquest", "Tsk, I expected better. There may still be time, you can still track them if you are swift", () => quest1failed() || quest2failed(), null, 200, null);
-            obj.AddPlayerLine("playerfailedquest1", "playerfailedquest", "engineeracceptquest", "I won't let you down a second time.", quest1failed, QuestBegin, 200, null);
-            obj.AddPlayerLine("playerfailedquest2", "playerfailedquest", "engineeracceptquest", "I won't let you down a second time.", quest2failed, QuestBeginRogueEngineer, 200, null);
+            obj.AddPlayerLine("playerfailedquest1", "playerfailedquest", "engineeracceptquest", "I won't let you down a second time.", quest1failed, ResetQuest, 200, null);
+            obj.AddPlayerLine("playerfailedquest2", "playerfailedquest", "engineeracceptquest", "I won't let you down a second time.", quest2failed, ResetQuest, 200, null);
             obj.AddPlayerLine("playerfailedquest3", "playerfailedquest", "engineerdeclinequest", "I don't think I can do it at this time.", null, null, 200, null);
 
             //CULTIST quest
@@ -213,13 +214,20 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         private bool quest1failed()
         {
             if (RunawayPartsQuest == null) return false;
-            return RunawayPartsQuest.FailState;
+            if(RunawayPartsQuest.GetCurrentProgress()==0)
+                return RunawayPartsQuest.FailState;
+            return false;
         }
 
         private bool quest2failed()
         {
             if (RunawayPartsQuest == null) return false;
-            return RunawayPartsQuest.FailState;
+            if (RunawayPartsQuest.GetCurrentProgress() == 2)
+            {
+                return RunawayPartsQuest.FailState;
+            }
+
+            return false;
         }
 
         private bool engineerquestcompletecondition()
@@ -267,27 +275,10 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         private bool ReturnSucessfullCultistQuest()
         {
             if (RunawayPartsQuest == null) return false;
-            
-            if (RunawayPartsQuest == null)
-                return false;
-            
-            
-            if (RunawayPartsQuest.JournalEntries[0].HasBeenCompleted())
-            {
-                return true;
-            }
 
-   
-            
-            
-            if (RunawayPartsQuest.JournalEntries[1] == null) return false;
+            if (RunawayPartsQuest.GetCurrentProgress() != 1) return false;
 
             return RunawayPartsQuest.JournalEntries[1].CurrentProgress == 0;
-            
-            
-            
-            
-            return false;
         }
 
         private bool QuestLineDone() => RunawayPartsQuest!=null &&RunawayPartsQuest.IsFinalized;
@@ -324,6 +315,12 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             
           //  RunawayPartsQuest.JournalEntries.
             
+        }
+
+
+        private void ResetQuest()
+        {
+            RunawayPartsQuest.ResetQuestinCurrentState();
         }
         
         private void QuestBegin()
