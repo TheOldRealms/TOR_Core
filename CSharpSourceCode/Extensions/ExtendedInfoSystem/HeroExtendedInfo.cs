@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +8,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.SaveSystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CharacterDevelopment;
 
 namespace TOR_Core.Extensions.ExtendedInfoSystem
 {
@@ -29,11 +31,10 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 if (!(Game.Current.GameType is Campaign)) return 50;
                 else
                 {
-                    var hero = _baseCharacter.HeroObject;
-                    var intelligence = hero.GetAttributeValue(DefaultCharacterAttributes.Intelligence);
-                    var retval = Math.Min(intelligence * 10, 99);
-                    if (hero.Occupation == Occupation.Lord && hero != Hero.MainHero) retval += 20;
-                    return retval;
+                    if (BaseCharacter.HeroObject != null && BaseCharacter.HeroObject != Hero.MainHero && BaseCharacter.HeroObject.Occupation == Occupation.Lord && BaseCharacter.HeroObject.IsSpellCaster()) return 100f;
+                    ExplainedNumber explainedNumber = new ExplainedNumber(10f, false, null);
+                    SkillHelper.AddSkillBonusForCharacter(TORSkills.SpellCraft, TORSkillEffects.MaxWinds, BaseCharacter, ref explainedNumber);
+                    return explainedNumber.ResultNumber;
                 }
             }
         }
@@ -44,9 +45,10 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 if (!(Game.Current.GameType is Campaign)) return 0.2f;
                 else
                 {
-                    var hero = _baseCharacter.HeroObject;
-                    var intelligence = hero.GetAttributeValue(DefaultCharacterAttributes.Intelligence);
-                    return intelligence * 0.5f;
+                    if (BaseCharacter.HeroObject != null && BaseCharacter.HeroObject != Hero.MainHero && BaseCharacter.HeroObject.Occupation == Occupation.Lord && BaseCharacter.HeroObject.IsSpellCaster()) return 2f;
+                    ExplainedNumber explainedNumber = new ExplainedNumber(1f, false, null);
+                    SkillHelper.AddSkillBonusForCharacter(TORSkills.SpellCraft, TORSkillEffects.WindsRechargeRate, BaseCharacter, ref explainedNumber);
+                    return explainedNumber.ResultNumber;
                 }
             }
         }
