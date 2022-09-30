@@ -202,7 +202,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddKnownLore("LoreOfFire");
                 var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
-                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.EntrySpells);
+                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
             }
             if (selectedOption.OptionText == "Warrior Priest Acolyte")
             {
@@ -220,7 +220,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddKnownLore("Necromancy");
                 var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
-                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.EntrySpells);
+                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
             }
             else if (selectedOption.OptionText == "Vampiric Nobility")
             {
@@ -233,7 +233,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddKnownLore("Necromancy");
                 var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
-                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.EntrySpells);
+                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
             }
         }
 

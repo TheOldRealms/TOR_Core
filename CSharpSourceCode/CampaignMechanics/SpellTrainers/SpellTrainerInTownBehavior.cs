@@ -147,17 +147,17 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             var info = hero.GetExtendedInfo();
             if (hero.IsSpellCaster() && info != null)
             {
-                if(perk == TORPerks.EntrySpells)
+                if(perk == TORPerks.SpellCraft.EntrySpells)
                 {
                     if (info.SpellCastingLevel < SpellCastingLevel.Entry)
                         hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
                 }
-                else if (perk == TORPerks.AdeptSpells)
+                else if (perk == TORPerks.SpellCraft.AdeptSpells)
                 {
                     if (info.SpellCastingLevel < SpellCastingLevel.Adept)
                         hero.SetSpellCastingLevel(SpellCastingLevel.Adept);
                 }
-                else if (perk == TORPerks.MasterSpells)
+                else if (perk == TORPerks.SpellCraft.MasterSpells)
                 {
                     if (info.SpellCastingLevel < SpellCastingLevel.Master)
                         hero.SetSpellCastingLevel(SpellCastingLevel.Master);

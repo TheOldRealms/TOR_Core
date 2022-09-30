@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Helpers;
+using System;
 using System.Linq;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -48,6 +51,13 @@ namespace TOR_Core.BattleMechanics.Firearms
                 RemoveLastProjectile(shooterAgent);
                 float accuracy = 1 / (weaponData.Accuracy * 1.2f); //this is currently arbitrary
                 short amount = 6; // hardcoded for now
+                var character = shooterAgent.Character as CharacterObject;
+                if(character != null && character.GetPerkValue(TORPerks.GunPowder.PackItIn))
+                {
+                    ExplainedNumber num = new ExplainedNumber(amount);
+                    PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.PackItIn, character, true, ref num);
+                    amount = (short)num.ResultNumber;
+                }
                 ScatterShot(shooterAgent, accuracy, shooterAgent.WieldedWeapon.AmmoWeapon, position, orientation,
                     weaponData.MissileSpeed, amount);
             }

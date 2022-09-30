@@ -1045,7 +1045,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_SY7_1" name="{=Settlements.Settlement.name.castle_village_SY7_1}Zherden" posX="1688.236" posY="999.933" culture="Culture.khuzait" text="{=Settlements.Settlement.text.castle_village_SY7_1}">
+  <Settlement id="castle_village_SY7_1" name="{=Settlements.Settlement.name.castle_village_SY7_1}Zherden" posX="1688.24" posY="999.934" culture="Culture.khuzait" text="{=Settlements.Settlement.text.castle_village_SY7_1}">
     <Components>
       <Village id="castle_village_comp_SY7_1" village_type="VillageType.clay_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_SY2" bound="Settlement.castle_SY7" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
