@@ -5,6 +5,14 @@ namespace TOR_Core.Extensions
 {
     public static class MissionExtensions
     {
+        
+        public static bool IsPlayerInSpellCasterMode(this Mission mission)
+        {
+            var abilityManagerMissionLogic = mission.GetMissionBehavior<AbilityManagerMissionLogic>();
+            return abilityManagerMissionLogic.CurrentState == AbilityModeState.Casting ||
+                   abilityManagerMissionLogic.CurrentState == AbilityModeState.Casting;
+        }
+        
         public static void RemoveMissionBehaviourIfNotNull(this Mission mission, MissionBehavior behavior)
         {
             if (behavior != null)
