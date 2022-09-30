@@ -189,11 +189,10 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
             if (RunawayPartsQuest.IsFinalized) return false;
 
-
-            if(RunawayPartsQuest.GetCurrentProgress()!=(int) EngineerQuestStates.RogueEngineerhunt) return false;
+            var currentprogress =(EngineerQuestStates) RunawayPartsQuest.GetCurrentProgress();
+            if(currentprogress== EngineerQuestStates.RogueEngineerhunt||currentprogress== EngineerQuestStates.HandInRogueEngineerHunt) return true;
             
-            return true;
-            //return RunawayPartsQuest.JournalEntries[2].CurrentProgress==0 || RunawayPartsQuest.JournalEntries[2].HasBeenCompleted();
+            return false;
         }
             
 
@@ -236,9 +235,16 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             if (RunawayPartsQuest == null)
                 return false;
 
-            if (RunawayPartsQuest.JournalEntries.Count< 3) return false;
-            
-            return RunawayPartsQuest.JournalEntries[2].HasBeenCompleted();
+            if (RunawayPartsQuest.IsFinalized)
+                return false;
+
+
+            var progress = (EngineerQuestStates)RunawayPartsQuest.GetCurrentProgress();
+
+            if (progress!= EngineerQuestStates.HandInRogueEngineerHunt) return false;
+
+
+            return true;
         }
 
         private bool cultisthuntcompletecondition()

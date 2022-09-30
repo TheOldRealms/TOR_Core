@@ -41,26 +41,10 @@ namespace TOR_Core.Quests
                 hero = Hero.AllAliveHeroes.Where(x => x.IsMasterEngineer()).TakeRandom(1).FirstOrDefault();
             }
 
-            string questName = "Runaway Parts";
-            string DisplayNameForCultistParty = "Runaway thiefs";
-            string nameOfCultistLeader ="Part Thief Leader";
-            string cultistLeaderTemplate = "tor_bw_cultist_lord_0";
-            string cultistPartyTemplate = "broken_wheel";
-            string cultistFaction="forest_bandits";
-            string nameOfRogueEngineer = "Goswin";
-            string RogueEngineerPartyTemplate = "tor_engineerquesthero";
-            string rogueEngineerFaction = "mountain_bandits"; 
 
-            return new EngineerQuest("engineerQust", hero, CampaignTime.DaysFromNow(1000),
-                100,
-                questName,
-                DisplayNameForCultistParty,
-                cultistLeaderTemplate,
-                cultistPartyTemplate,
-                cultistFaction,
-                RogueEngineerPartyTemplate,
-                RogueEngineerPartyTemplate,
-                rogueEngineerFaction);
+            return new EngineerQuest("engineerQuest", hero, CampaignTime.DaysFromNow(1000),
+                100
+            );
         }
 
         public static SpecializeLoreQuest GetNewSpecializeLoreQuest(bool checkForExisting)
