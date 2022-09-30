@@ -49,8 +49,6 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             if (currentloc != office) _nuln.LocationComplex.ChangeLocation(locationchar, currentloc, office);
         }
 
-        public bool isMasterEngineerQuestCharacter(Hero character) => character == _masterEngineerHero;
-
         private void AddEngineerDialogLines(CampaignGameStarter obj)
         {
             //conversation start
@@ -184,8 +182,6 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             if (RunawayPartsQuest.IsFinalized) return false;
             if (RunawayPartsQuest.GetCurrentProgress() != (int)EngineerQuestStates.Cultisthunt) return true;
             return false;
-
-            //return RunawayPartsQuest.JournalEntries[0].CurrentProgress==0 || RunawayPartsQuest.JournalEntries[0].HasBeenCompleted();
         }
 
         private bool quest1failed()
@@ -271,13 +267,6 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             MobileParty.MainParty.MemberRoster.AddToCounts(noviceengineer, 2);
         }
 
-        private void RestartCurrentQuestTarget()
-        {
-            if (RunawayPartsQuest == null) return;
-
-            //  RunawayPartsQuest.JournalEntries.
-        }
-
         private void ResetQuest()
         {
             RunawayPartsQuest.ResetQuestinCurrentState();
@@ -297,7 +286,6 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         private void QuestBeginRogueEngineer()
         {
             RunawayPartsQuest.UpdateProgressOnQuest();
-            // TORQuestHelper.GetNewEngineerQuest(true);
         }
 
         private void knowledgeoverplayer() => _knowsPlayer = true;
@@ -315,8 +303,6 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             if (!RunawayPartsQuest.IsOngoing) return false;
             if (Campaign.Current.CurrentConversationContext != ConversationContext.PartyEncounter) return false;
             if (RunawayPartsQuest.CultistQuestIsActive()) return Campaign.Current.ConversationManager.ConversationParty == RunawayPartsQuest.TargetParty;
-
-            //return partner. == _cultistKillQuest.GetTargetParty();
             return false;
         }
 
