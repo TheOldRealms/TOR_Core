@@ -21,7 +21,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
         public SpellBookScreen(SpellBookState state)
         {
             _state = state;
-            _state.Listener = this;
+            _state.RegisterListener(this);
         }
         protected override void OnFrameTick(float dt)
         {

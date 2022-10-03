@@ -490,6 +490,8 @@
     <Compile Include="Extensions\MissionExtensions.cs" />
     <Compile Include="Extensions\MobilePartyExtensions.cs" />
     <Compile Include="Extensions\SettlementExtensions.cs" />
+    <Compile Include="GameManagers\TORKeyInputManager.cs" />
+    <Compile Include="GameManagers\TORGameKeyContext.cs" />
     <Compile Include="GameManagers\TORShaderGameManager.cs" />
     <Compile Include="GameManagers\TORCampaignGameManager.cs" />
     <Compile Include="HarmonyPatches\AgentPatches.cs" />
@@ -503,12 +505,14 @@
     <Compile Include="HarmonyPatches\DamagePatch.cs" />
     <Compile Include="HarmonyPatches\EncounterPatches.cs" />
     <Compile Include="HarmonyPatches\FactionBannerPatches.cs" />
+    <Compile Include="HarmonyPatches\GameKeyOptionsCategoryPatch.cs" />
     <Compile Include="HarmonyPatches\GameTextPatches.cs" />
     <Compile Include="HarmonyPatches\InventoryPatches.cs" />
     <Compile Include="HarmonyPatches\ItemPatches.cs" />
     <Compile Include="HarmonyPatches\LoadingScreenPatches.cs" />
     <Compile Include="HarmonyPatches\MainMenuOptionsPatches.cs" />
     <Compile Include="HarmonyPatches\MapBarPatches.cs" />
+    <Compile Include="HarmonyPatches\MBMusicManagerPatches.cs" />
     <Compile Include="HarmonyPatches\MissionPatches.cs" />
     <Compile Include="HarmonyPatches\ObjectManagerPatches.cs" />
     <Compile Include="HarmonyPatches\PerkResetRelatedPatch.cs" />

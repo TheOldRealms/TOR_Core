@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using HarmonyLib;
 using NLog;
 using NLog.Config;
@@ -7,9 +8,15 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Engine.GauntletUI;
+using TaleWorlds.Engine.InputSystem;
+using TaleWorlds.InputSystem;
+using TaleWorlds.Library;
+using TaleWorlds.ModuleManager;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.CustomBattle;
+using TaleWorlds.MountAndBlade.GameKeyCategory;
 using TaleWorlds.MountAndBlade.GauntletUI.Mission;
+using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.Battle.CrosshairMissionBehavior;
@@ -35,6 +42,7 @@ using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignSupport.TownBehaviours;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.GameManagers;
 using TOR_Core.Items;
 using TOR_Core.Models;
 using TOR_Core.Models.CustomBattleModels;
@@ -58,6 +66,8 @@ namespace TOR_Core
             harmony.PatchAll();
             ConfigureLogging();
             UIConfig.DoNotUseGeneratedPrefabs = true;
+            
+            TORKeyInputManager.Initialize();
 
             StatusEffectManager.LoadStatusEffects();
             TriggeredEffectManager.LoadTemplates();
