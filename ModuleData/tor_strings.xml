@@ -1,6 +1,94 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <strings>
-	<string id="str_culture_rich_name.khuzait" text="{=!}Vampire Counts" />
+
+  <!--Rogue Engineer Quest-->
+  <string id="str_quest_tor_engineer.rogueEngineerFirstTime" text= "{=!}You have the look of someone who's never seen a spec of black powder nor grease. Are you in the right place?"/>
+  <string id="str_quest_tor_engineer.cultistDone" text= " {=!}Ah, you have returned. What news do you bring?"/>
+  <string id="str_quest_tor_engineer.cultistInProgress" text= "{=!}Come back to me when you have news."/>
+  <string id="str_quest_tor_engineer.rogueEngineerFound" text= "{=!}Did you find {ROGUE_ENGINEER_NAME}?"/>
+  <string id="str_quest_tor_engineer.startRogueEngineerHunt" text= "{= !}Have you changed your mind and want to help hunt down {ROGUE_ENGINEER_NAME}?"/>
+  
+  
+  <string id="str_quest_tor_engineer.hubGreet" text= "{=!}You again, what do you want?"/>
+  <string id="str_quest_tor_engineer.hubPlayerCannons" text="I would like to buy some cannons."/>
+  <string id="str_quest_tor_engineer.hubPlayerEngineers" text="I would like to recruit some engineers."/>
+  <string id="str_quest_tor_engineer.hubPlayerCannonsInstruction" text="How can I use cannons?"/>
+  <string id="str_quest_tor_engineer.hubPlayerCannonsLimitInstruction" text="How can I buy more cannons?"/>
+  <string id="str_quest_tor_engineer.hubPlayerLeave" text="Nothing at the moment, I must leave."/>
+
+  <string id="str_quest_tor_engineer.playerReconsider" text= "{=!}I have reconsidered your offer, I would like to help."/>
+  <string id="str_quest_tor_engineer.playerGreet0" text= "{=!}Greetings Master Engineer, I am {PlAYERNAME}. I have come seeking access to the Forges of Nuln. Can you help?"/>
+  <string id="str_quest_tor_engineer.playerGreet1" text= "{=!}I am, I have come seeking access to black powder weapons."/>
+
+  <string id="str_quest_tor_engineer.engineerSkillCheck" text= "{=!}Hah!, you don’t look like you would even know what to do with them. What could you possibly need with our crafts?"/>
+  <string id="str_quest_tor_engineer.engineerSkillCheckFailed" text= "{=!}I am far too busy for this, leave my sight."/>
+  <string id="str_quest_tor_engineer.engineerSkillCheckPassed" text= "{=!}These are the mightiest weapons of the Empire, they hold back the tide of darkness time and again. We do not hand out our crafts to any who waltz in, I do not know you. Nor have you earned our trust."/>
+
+  <string id="str_quest_tor_engineer.cultistBriefing0" text= "{=!}We may however be able to come to an agreement, there is an internal matter that needs urgent attention and I am unable to act. If you help, as a personal favour, I will see what I can do for you. What say you?"/>
+  <string id="str_quest_tor_engineer.cultistBriefingPlayer" text= "{=!}What would you have me do?"/>
+  <string id="str_quest_tor_engineer.cultistBriefingDecline" text= "{=!}I don't have time for this."/>
+  <string id="str_quest_tor_engineer.cultistBriefing1" text= "{=!}Usually we don’t resort to outside assistance but we are short handed, we have had some important components stolen from the Forges of Nuln and they must be returned. Immediately. If you can track down these runaways and find these parts then we can talk further."/>
+
+  <string id="str_quest_tor_engineer.rogueEngineerBriefingPlayerAccept0" text= "{=!}I can, as long as our bargain remains the same. I will find him for you, and in return, you will allow me access to the Forges of Nuln."/>
+  <string id="str_quest_tor_engineer.rogueEngineerBriefingPlayerAccept1" text= "{=!}If this is the only way you will allow me access to the forges, then so be it. I will bring you his head."/>
+  <string id="str_quest_tor_engineer.rogueEngineerBriefingPlayerDecline0" text= "{=!}I’m afraid not, I have other tasks to attend to."/>
+  <string id="str_quest_tor_engineer.rogueEngineerBriefingEnd" text= "{=!}We have an agreement then, I believe I may know his whereabouts. I will mark it on your map for you, may Sigmar guide you stranger."/>
+
+  <string id="str_quest_tor_engineer.cultistPlayerAccept0" text= "{=!}I understand, I will return the moment I have news."/>
+  <string id="str_quest_tor_engineer.cultistPlayerAccept1" text= "{=!}That is all it will take? Sounds easy enough."/>
+  <string id="str_quest_tor_engineer.cultistPlayerDecline" text= "{=!}I do not have time for this."/>
+  <string id="str_quest_tor_engineer.cultistReactionPositive" text= "Good, I expect positive results and your hasty return."/>
+  <string id="str_quest_tor_engineer.cultistReactionNegatíve" text= "A shame, think on it and return if you change your mind."/>
+
+  <string id="str_quest_tor_engineer.questFail" text= "{=!}I am afraid I have failed to bring what you ask."/>
+  <string id="str_quest_tor_engineer.questFailAnswer" text= "{=!}Tsk, I expected better. There may still be time, you can still track them if you are swift"/>
+  <string id="str_quest_tor_engineer.questRepeat" text= "{=!}I won't let you down a second time."/>
+  <string id="str_quest_tor_engineer.questGiveup" text= "{=!}I don't think I can do it at this time."/>
+  
+  <string id="str_quest_tor_engineer.cultistReturn0" text= "{=!}I have returned but without the stolen components, I am afraid to say they are still missing."/>
+  <string id="str_quest_tor_engineer.cultistReturn1" text= "{=!}I see, this is not what I had hoped for. Were there any further clues, did you interrogate these scoundrels?"/>
+  <string id="str_quest_tor_engineer.cultistReturn2" text= "{=!}One of the bandits did mention a name, {ROGUE_ENGINEER_NAME} I think?"/>
+  <string id="str_quest_tor_engineer.cultistReturn3" text="{=!}Blast! I should have known. If you are willing, I would ask for your assistance once more. This matter may be more dire than I originally imagined. Goswin is an Engineer, a good one at that, but his works always seemed...wrong."/>
+  <string id="str_quest_tor_engineer.rogueEngineerQuestStart" text="{=!}If he has stolen these parts, it can only be for something heinous. I must ask that you track him down, and put an end to whatever madness he is trying to concoct. Will you do this?"/>
+
+  <string id="str_quest_tor_engineer.cultistInProgressPlayer" text= "I have yet to track down the runaways."/>
+  <string id="str_quest_tor_engineer.cultistInProgressAnswer" text= "I see, return to me when you have something useful."/>
+  
+  <string id="str_quest_tor_engineer.rogueEngineerHandIn" text= "{ROGUE_ENGINEER_NAME} will no longer be a problem and I have retrieved what he stole from you. I’m unsure what he was trying to do with them."/>
+  <string id="str_quest_tor_engineer.rogueEngineerDebrief" text= "It matters not, it would have been something warped no doubt. I must thank you for your efforts, and your discretion. As agreed upon, you may now access our foundries and purchase from us as you please."/>
+  <string id="str_quest_tor_engineer.hubEntry" text="Now, how can I help?"/>
+
+  <string id="str_quest_tor_engineer.rogueEngineerInProgressPlayer" text="I have yet to track him down"/>
+  <string id="str_quest_tor_engineer.rogueEngineerInProgressAnswer" text="I see, return to me when you have better news."/>
+
+  <string id="str_quest_tor_engineer.openShop" text="Of course, you'll find only the best from the Forges of Nuln!"/>
+  <string id="str_quest_tor_engineer.closeShop" text="What else can I do for you?"/>
+
+  <string id="str_quest_tor_engineer.hireEngineers" text="A pair of our novice engineers are eagier to join you for the right price ({RECRUITMENT_PRICE})."/>
+  <string id="str_quest_tor_engineer.hireEngineersAccept" text="Welcome on board."/>
+  <string id="str_quest_tor_engineer.hireEngineersNotEnoughMoney" text="I don't have the funds for them right now."/>
+  <string id="str_quest_tor_engineer.hireEngineersDecline" text="On a second thought, maybe later."/>
+
+  <string id="str_quest_tor_engineer.CannonsLimitInstruction0" text="To buy cannons you must be in the service of an Imperial Elector Count"/>
+  <string id="str_quest_tor_engineer.CannonsLimitInstruction1" text="The amount of cannons you can field in your army increases every 50 levels in Engineering skill."/>
+  <string id="str_quest_tor_engineer.CannonsLimitInstruction2" text="If you have met these requirements, simply speak to me and I'll show you what we have."/>
+
+  <string id="str_quest_tor_engineer.CannonsUse0" text="Cannons are placed using the spellcasting Mode, but to fire the cannons you will need to hire at least two Cannon Crew"/>
+  <string id="str_quest_tor_engineer.CannonsUse1" text="You will also need to ensure that the cannon is in your party inventory"/>
+  <string id="str_quest_tor_engineer.CannonsUse2" text="Engineers and Cannon Crew can both fire cannons."/>
+
+  <string id="str_quest_tor_engineer.cultistEncounter" text="{ROGUE_ENGINEER_NAME} was right, they sent someone after us! Grab your weapons quickly!"/>
+  <string id="str_quest_tor_engineer.cultistEncounterPlayer0" text= "Woah hold there, I have merely come for the stolen parts, there is no need to shed blood here. Perhaps an arrangement can be made?"/>
+  <string id="str_quest_tor_engineer.cultistEncounterPlayer1" text="Lay down your weapons and I may spare your lives."/>
+  <string id="str_quest_tor_engineer.cultistEncounterPlayer2" text="Weapons or no, we will slay you all and take back what you stole!"/>
+  <string id="str_quest_tor_engineer.cultistEncounterAnswer" text="You will not trick us!  They will serve a greater purpose! You will not take them!"/>
+  
+  <string id="str_quest_tor_engineer.rogueEngineerEncounter" text="So the old fool sent you to find me? How did he figure me out? It matters not, you will stand in the way of my creations. You will die here!"/>
+  <string id="str_quest_tor_engineer.rogueEngineerEncounterPlayerAfterBattleAnswer" text="Your schemes end here"/>
+
+
+
+  <string id="str_culture_rich_name.khuzait" text="{=!}Vampire Counts" />
 	<string id="str_culture_rich_name.empire" text="{=!}Empire of Men" />
 	<string id="str_culture_description.khuzait" text="{=!}The Vampire Counts are fiends without equal. They seek to topple the civilisations of the living and supplant them with an Undead empire. Each Vampire is a unique and majestic figure with his own personality, drive and ambition. In contrast, their minions are mindlessly obedient - rank after rank of ragged and dirt-encrusted cadavers forced back to life by their masters' necromantic power." />
 	<string id="str_culture_description.empire" text="{=!}The empire is a vast nation of Men that fights for its survival with each passing day. Ruled over by the Emperor, Karl Franz, the discipline and martial skill of its armies is renowned throughout the Old World. The backbone of the Empire’s military might, and the reason it has endured in a world filled with both brutal savages and bloodthirsty monsters, is its armies of professional soldiers." />
