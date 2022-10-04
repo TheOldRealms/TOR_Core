@@ -38,7 +38,7 @@
   <string id="str_quest_tor_engineer.cultistPlayerAccept1" text= "{=!}That is all it will take? Sounds easy enough."/>
   <string id="str_quest_tor_engineer.cultistPlayerDecline" text= "{=!}I do not have time for this."/>
   <string id="str_quest_tor_engineer.cultistReactionPositive" text= "Good, I expect positive results and your hasty return."/>
-  <string id="str_quest_tor_engineer.cultistReactionNegatíve" text= "A shame, think on it and return if you change your mind."/>
+  <string id="str_quest_tor_engineer.cultistReactionNegative" text= "A shame, think on it and return if you change your mind."/>
 
   <string id="str_quest_tor_engineer.questFail" text= "{=!}I am afraid I have failed to bring what you ask."/>
   <string id="str_quest_tor_engineer.questFailAnswer" text= "{=!}Tsk, I expected better. There may still be time, you can still track them if you are swift"/>

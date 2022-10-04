@@ -64,9 +64,9 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             obj.AddDialogLine("engineer_start5", "start", "playergreet", GameTexts.FindText(questDialogId,"rogueEngineerFirstTime").ToString(), engineerdialogstartcondition, knowledgeoverplayer, 200, null);
 
             //player greet
-            obj.AddPlayerLine("engineer_playergreet1", "playergreet", "playerstartquestcheck", GameTexts.FindText(questDialogId,"playerReconsider").ToString(), () => _gaveQuestOffer && !QuestLineDone(), null, 200, null);
-            obj.AddPlayerLine("engineer_playergreet2", "playergreet", "opengunshopcheck", GameTexts.FindText(questDialogId,"playerGreet0").ToString(), null, null, 200, null);
-            obj.AddPlayerLine("engineer_playergreet3", "playergreet", "opengunshopcheck", GameTexts.FindText(questDialogId,"playerGreet1").ToString(), null, null, 200, null);
+            obj.AddPlayerLine("engineer_playergreet1", "playergreet", "playerstartquestcheck", GameTexts.FindText(questDialogId,"playerReconsider").ToString(), () => _gaveQuestOffer && !QuestLineDone()&&!QuestIsInProgress(), null, 200, null);
+            obj.AddPlayerLine("engineer_playergreet2", "playergreet", "opengunshopcheck", GameTexts.FindText(questDialogId,"playerGreet0").ToString(),() => !_gaveQuestOffer, null, 200, null);
+            obj.AddPlayerLine("engineer_playergreet3", "playergreet", "opengunshopcheck", GameTexts.FindText(questDialogId,"playerGreet1").ToString(),() => !_gaveQuestOffer, null, 200, null);
 
             //skill check
             obj.AddDialogLine("opengunshopcheck", "opengunshopcheck", "skillcheck", GameTexts.FindText(questDialogId,"engineerSkillCheck").ToString(), null, checkplayerengineerskillrequirements, 200, null);
@@ -147,7 +147,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             obj.AddDialogLine("tutorialcannonuse3", "tutorialcannonuse3", "hub", GameTexts.FindText(questDialogId,"CannonsUse2").ToString(), null, null, 200);
             
             MBTextManager.SetTextVariable("ROGUE_ENGINEER_NAME", _rogueEngineerName);
-            MBTextManager.SetTextVariable("PLAYER_NAME", Hero.MainHero.Name);
+            MBTextManager.SetTextVariable("PLAYERNAME", Hero.MainHero.Name);
         }
 
         private void AddCultistDialogLines(CampaignGameStarter obj)
@@ -188,7 +188,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         {
             if (RunawayPartsQuest == null) return false;
             if (RunawayPartsQuest.IsFinalized) return false;
-            if (RunawayPartsQuest.GetCurrentProgress() != (int)EngineerQuestStates.Cultisthunt) return true;
+            if (RunawayPartsQuest.GetCurrentProgress() == (int)EngineerQuestStates.Cultisthunt) return true;
             return false;
         }
 
@@ -284,7 +284,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         {
             if (RunawayPartsQuest != null)
             {
-                RunawayPartsQuest = null;
+                return;
             }
 
             RunawayPartsQuest = TORQuestHelper.GetNewEngineerQuest(true);
