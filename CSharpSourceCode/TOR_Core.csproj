@@ -534,11 +534,13 @@
     <Compile Include="Models\TORCharacterStatsModel.cs" />
     <Compile Include="Models\TORClanFinanceModel.cs" />
     <Compile Include="Models\TORClanTierModel.cs" />
+    <Compile Include="Models\TORCombatSimulationModel.cs" />
     <Compile Include="Models\TORCombatXpModel.cs" />
     <Compile Include="Models\TORCompanionHiringPriceCalculationModel.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleAgentStatCalculateModel.cs" />
     <Compile Include="Models\TORDamageParticleModel.cs" />
     <Compile Include="Models\TORInventoryCapacityModel.cs" />
+    <Compile Include="Models\TORPartyMoraleModel.cs" />
     <Compile Include="Models\TORPartySpeedCalculatingModel.cs" />
     <Compile Include="Models\TOREncounterGameMenuModel.cs" />
     <Compile Include="Models\TORMapWeatherModel.cs" />
@@ -549,9 +551,10 @@
     <Compile Include="Models\TORPartyTrainingModel.cs" />
     <Compile Include="Models\TORPartyTroopUpgradeModel.cs" />
     <Compile Include="Models\TORPartyWageModel.cs" />
+    <Compile Include="Models\TORPersuasionModel.cs" />
     <Compile Include="Models\TORPrisonerRecruitmentCalculationModel.cs" />
     <Compile Include="Models\TORSettlementMilitiaModel.cs" />
-    <Compile Include="Models\TORSpellcraftSkillModel.cs" />
+    <Compile Include="Models\TORSpellcraftModel.cs" />
     <Compile Include="Models\TORStrikeMagnitudeModel.cs" />
     <Compile Include="Quests\SpecializeLoreQuest.cs" />
     <Compile Include="Quests\TORQuestHelper.cs" />

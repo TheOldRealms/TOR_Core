@@ -18,12 +18,12 @@ namespace TOR_Core.Models
         {
             var result = base.GetEffectiveDailyExperience(mobileParty, troop);
 
-            if(mobileParty != null && 
-                mobileParty.IsActive && 
-                mobileParty.HasPerk(TORPerks.GunPowder.FiringDrills, true) && 
-                troop.Character.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
+            if(mobileParty != null && mobileParty.IsActive)
             {
-                result.Add(TORPerks.GunPowder.FiringDrills.SecondaryBonus);
+                if(mobileParty.HasPerk(TORPerks.GunPowder.FiringDrills, true) && troop.Character.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
+                {
+                    result.Add(TORPerks.GunPowder.FiringDrills.SecondaryBonus);
+                }
             }
             return result;
         }

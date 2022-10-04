@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.Items;
 
 namespace TOR_Core.Extensions
@@ -71,6 +72,15 @@ namespace TOR_Core.Extensions
             return item.StringId.StartsWith("tor_");
         }
 
+        public static bool IsMagicalItem(this ItemObject item)
+        {
+            var info = item.GetTorSpecificData();
+            if(info != null)
+            {
+                return info.DamageProportions.Any(x => x.DamageType != DamageType.Physical) || info.ItemTraits.Count > 0;
+            }
+            return false;
+        }
 
         public static bool IsExplosiveAmmunition(this ItemObject itemObject)
         {

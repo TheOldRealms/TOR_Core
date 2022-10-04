@@ -9,19 +9,34 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.CharacterDevelopment;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics
 {
     public class TORWanderersCampaignBehavior : CampaignBehaviorBase
     {
-        public override void SyncData(IDataStore dataStore)
-        {
-        }
+        public override void SyncData(IDataStore dataStore) { }
 
         public override void RegisterEvents()
         {
             CampaignEvents.AfterSettlementEntered.AddNonSerializedListener(this, OnAfterSettlementEntered);
             CampaignEvents.OnGameLoadFinishedEvent.AddNonSerializedListener(this, CheckPlayerCurrentSettlement);
+            CampaignEvents.DailyTickHeroEvent.AddNonSerializedListener(this, AddDailySkillXpToCompanions);
+        }
+
+        private void AddDailySkillXpToCompanions(Hero hero)
+        {
+            if(hero.IsPartyLeader && !hero.IsPrisoner && hero.PartyBelongedTo != null && hero.CompanionsInParty.Count() > 0 && hero.GetPerkValue(TORPerks.SpellCraft.StoryTeller))
+            {
+                foreach(var companion in hero.CompanionsInParty)
+                {
+                    var skills = MBObjectManager.Instance.GetObjectTypeList<SkillObject>();
+                    var randomskill = skills.TakeRandom(1).FirstOrDefault();
+                    var amount = TORPerks.SpellCraft.StoryTeller.PrimaryBonus;
+                    companion.AddSkillXp(randomskill, amount);
+                }
+            }
         }
 
         private void CheckPlayerCurrentSettlement()

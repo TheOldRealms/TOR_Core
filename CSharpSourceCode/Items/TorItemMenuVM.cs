@@ -100,7 +100,7 @@ namespace TOR_Core.Items
 			if (_lastSetItem != null && _lastSetItem.GetTorSpecificData() != null)
             {
 				var info = _lastSetItem.GetTorSpecificData();
-				if(info != null && (info.DamageProportions.Any(x=>x.DamageType != DamageType.Physical) || info.ItemTraits.Count > 0))
+				if(_lastSetItem.IsMagicalItem())
 				{
 					IsMagicItem = true;
 					if(info.ItemTraits.Count > 0)

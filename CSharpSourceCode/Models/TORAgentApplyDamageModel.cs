@@ -74,5 +74,19 @@ namespace TOR_Core.Models
             }
             return resultDamage.ResultNumber;
         }
+
+        public float CalculateWardSaveFactor(Agent victim)
+        {
+            float result = 1f;
+            var victimCharacter = victim.Character as CharacterObject;
+            if(victimCharacter != null)
+            {
+                if (victimCharacter.GetPerkValue(TORPerks.SpellCraft.Dampener))
+                {
+                    result += TORPerks.SpellCraft.Dampener.SecondaryBonus * 0.01f;
+                }
+            }
+            return result;
+        }
     }
 }

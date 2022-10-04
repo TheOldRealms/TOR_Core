@@ -130,12 +130,15 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORPartyWageModel());
                 gameStarterObject.AddModel(new TORPrisonerRecruitmentCalculationModel());
                 gameStarterObject.AddModel(new TORSettlementMilitiaModel());
-                gameStarterObject.AddModel(new TORSpellcraftSkillModel());
+                gameStarterObject.AddModel(new TORSpellcraftModel());
                 gameStarterObject.AddModel(new TORCharacterDevelopmentModel());
                 gameStarterObject.AddModel(new TORPartyTrainingModel());
                 gameStarterObject.AddModel(new TORInventoryCapacityModel());
                 gameStarterObject.AddModel(new TORAgentApplyDamageModel());
                 gameStarterObject.AddModel(new TORStrikeMagnitudeModel());
+                gameStarterObject.AddModel(new TORCombatSimulationModel());
+                gameStarterObject.AddModel(new TORPartyMoraleModel());
+                gameStarterObject.AddModel(new TORPersuasionModel());
             }
             else if (Game.Current.GameType is CustomGame && gameStarterObject is BasicGameStarter)
             {

@@ -9,8 +9,10 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics.Crosshairs;
+using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.Models
 {
@@ -205,6 +207,44 @@ namespace TOR_Core.Models
                 return 3;
             }
             return base.GetMaxCameraZoom(agent);
+        }
+
+        public AgentPropertyContainer AddPerkEffectsToAgentPropertyContainer(Agent agent, PropertyMask mask, AgentPropertyContainer container)
+        {
+            var proportions = container.DamageProportions;
+            var damageamps = container.DamagePercentages;
+            var damagebonuses = container.AdditionalDamagePercentages;
+            var resistances = container.ResistancePercentages;
+
+            var agentCharacter = agent.Character as CharacterObject;
+            var agentCaptain = agent.GetCaptainCharacter();
+
+            var wieldedItem = agent.WieldedWeapon.Item;
+
+            if(agentCharacter != null)
+            {
+                if(mask == PropertyMask.Attack || mask == PropertyMask.All)
+                {
+                    if (agentCharacter.GetPerkValue(TORPerks.SpellCraft.Exchange))
+                    {
+                        damagebonuses[(int)DamageType.Magical] += proportions[(int)DamageType.Physical];
+                    }
+                    if (agentCaptain != null && agentCaptain.GetPerkValue(TORPerks.SpellCraft.ArcaneLink))
+                    {
+                        damagebonuses[(int)DamageType.Magical] += (TORPerks.SpellCraft.ArcaneLink.SecondaryBonus / 100f);
+                    }
+                    if(wieldedItem != null && wieldedItem.HasWeaponComponent && wieldedItem.IsSpecialAmmunitionItem())
+                    {
+                        if(agentCaptain != null && agentCaptain.GetPerkValue(TORPerks.GunPowder.PackItIn))
+                        {
+                            proportions[(int)DamageType.Fire] = proportions[(int)DamageType.Physical];
+                            proportions[(int)DamageType.Physical] = 0;
+                        }
+                    }
+                }
+            }
+
+            return new AgentPropertyContainer(proportions, damageamps, damagebonuses, resistances);
         }
     }
 }
