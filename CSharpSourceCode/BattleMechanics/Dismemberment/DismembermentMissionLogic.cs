@@ -365,9 +365,7 @@ namespace TOR_Core.BattleMechanics.Dismemberment
 
         private void CreateBloodBurst(Agent victim, HumanBone bone = HumanBone.Head)
         {
-            MatrixFrame boneEntitialFrameWithIndex = victim.AgentVisuals.GetSkeleton().GetBoneEntitialFrameWithIndex(victim.BoneMappingArray[bone]);
-            Vec3 vec = victim.AgentVisuals.GetGlobalFrame().TransformToParent(boneEntitialFrameWithIndex.origin);
-            victim.CreateBloodBurstAtLimb(13, ref vec, 0.5f + MBRandom.RandomFloat * 0.5f);
+            victim.CreateBloodBurstAtLimb(victim.AgentVisuals.GetRealBoneIndex(bone), 0.5f + MBRandom.RandomFloat * 0.5f);
         }
         
         private void RunParticleEffect(Vec3 position, string particleEffectID)

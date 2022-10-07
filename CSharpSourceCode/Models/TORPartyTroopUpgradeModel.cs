@@ -9,6 +9,6 @@ namespace TOR_Core.Models
 {
     public class TORPartyTroopUpgradeModel : DefaultPartyTroopUpgradeModel
     {
-        public override int MaxCharacterTier => 9;
+        //public override int MaxCharacterTier => 9;
     }
 }
