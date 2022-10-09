@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <strings>
 
   <!--Rogue Engineer Quest-->
@@ -48,7 +48,7 @@
   <string id="str_quest_tor_engineer.cultistReturn0" text= "{=!}I have returned but without the stolen components, I am afraid to say they are still missing."/>
   <string id="str_quest_tor_engineer.cultistReturn1" text= "{=!}I see, this is not what I had hoped for. Were there any further clues, did you interrogate these scoundrels?"/>
   <string id="str_quest_tor_engineer.cultistReturn2" text= "{=!}One of the bandits did mention a name, {ROGUE_ENGINEER_NAME} I think?"/>
-  <string id="str_quest_tor_engineer.cultistReturn3" text="{=!}Blast! I should have known. If you are willing, I would ask for your assistance once more. This matter may be more dire than I originally imagined. Goswin is an Engineer, a good one at that, but his works always seemed...wrong."/>
+  <string id="str_quest_tor_engineer.cultistReturn3" text="{=!}Blast! I should have known. If you are willing, I would ask for your assistance once more. This matter may be more dire than I originally imagined. {ROGUE_ENGINEER_NAME} is an Engineer, a good one at that, but his works always seemed...wrong."/>
   <string id="str_quest_tor_engineer.rogueEngineerQuestStart" text="{=!}If he has stolen these parts, it can only be for something heinous. I must ask that you track him down, and put an end to whatever madness he is trying to concoct. Will you do this?"/>
 
   <string id="str_quest_tor_engineer.cultistInProgressPlayer" text= "I have yet to track down the runaways."/>

@@ -132,7 +132,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             obj.AddDialogLine("opengunshop", "opengunshop", "opengunshopandclosedialog", GameTexts.FindText(questDialogId,"openShop").ToString(), null, opengunshopconsequence, 200);
             obj.AddDialogLine("opengunshopandclosedialog", "opengunshopandclosedialog", "hub", GameTexts.FindText(questDialogId,"closeShop").ToString(), null, null, 200);
             //recruitment
-            obj.AddDialogLine("recruitengineer", "recruitengineer", "recruitmentoptions", GameTexts.FindText(questDialogId,"hireEngineers").ToString(), setrecruitmentprice, null, 200);
+            obj.AddDialogLine("recruitengineer", "recruitengineer", "recruitmentoptions", TORCommon.GetCompleteStringValue(GameTexts.FindText(questDialogId,"hireEngineers")), UpdateRecruitmentPrices, null, 200);
             obj.AddPlayerLine("recruitengineer_option1", "recruitmentoptions", "opengunshopandclosedialog", GameTexts.FindText(questDialogId,"hireEngineersAccept").ToString(), () => playerhasenoughmoney(), cannoncrewrecruitmentconsequence, 200);
             obj.AddPlayerLine("recruitengineer_option1", "recruitmentoptions", "opengunshopandclosedialog", GameTexts.FindText(questDialogId,"hireEngineersNotEnoughMoney").ToString(), () => !playerhasenoughmoney(), null, 200);
             obj.AddPlayerLine("recruitengineer_option1", "recruitmentoptions", "opengunshopandclosedialog", GameTexts.FindText(questDialogId,"hireEngineersDecline").ToString(), null, null, 200);
@@ -145,9 +145,6 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             obj.AddDialogLine("tutorialcannonuse", "tutorialcannonuse", "tutorialcannonuse2", GameTexts.FindText(questDialogId,"CannonsUse0").ToString(), null, null, 200);
             obj.AddDialogLine("tutorialcannonuse2", "tutorialcannonuse2", "tutorialcannonuse3", GameTexts.FindText(questDialogId,"CannonsUse1").ToString(), null, null, 200);
             obj.AddDialogLine("tutorialcannonuse3", "tutorialcannonuse3", "hub", GameTexts.FindText(questDialogId,"CannonsUse2").ToString(), null, null, 200);
-            
-            MBTextManager.SetTextVariable("ROGUE_ENGINEER_NAME", _rogueEngineerName);
-            MBTextManager.SetTextVariable("PLAYERNAME", Hero.MainHero.Name);
         }
 
         private void AddCultistDialogLines(CampaignGameStarter obj)
@@ -166,9 +163,13 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             //requires dying dialog of the engineer, here is a player response
             obj.AddPlayerLine("rogueengineer_playerafterbattle", "rogueengineer_playerafterbattle", "close_window", GameTexts.FindText(questDialogId,"rogueEngineerEncounterPlayerAfterBattleAnswer").ToString(), null, null, 200);
         }
+        
+        
 
         private void OnSessionLaunched(CampaignGameStarter obj)
         {
+            MBTextManager.SetTextVariable("ROGUE_ENGINEER_NAME", _rogueEngineerName);
+            MBTextManager.SetTextVariable("PLAYERNAME", Hero.MainHero.Name);
             _nuln = Settlement.All.FirstOrDefault(x => x.StringId == "town_WI1");
             AddEngineerDialogLines(obj);
             AddCultistDialogLines(obj);
@@ -180,16 +181,14 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             if (RunawayPartsQuest == null) return false;
             if (RunawayPartsQuest.IsFinalized) return false;
             var currentprogress = (EngineerQuestStates)RunawayPartsQuest.GetCurrentProgress();
-            if (currentprogress == EngineerQuestStates.RogueEngineerhunt || currentprogress == EngineerQuestStates.HandInRogueEngineerHunt) return true;
-            return false;
+            return currentprogress == EngineerQuestStates.RogueEngineerhunt || currentprogress == EngineerQuestStates.HandInRogueEngineerHunt;
         }
 
         private bool cultistquestinprogress()
         {
             if (RunawayPartsQuest == null) return false;
             if (RunawayPartsQuest.IsFinalized) return false;
-            if (RunawayPartsQuest.GetCurrentProgress() == (int)EngineerQuestStates.Cultisthunt) return true;
-            return false;
+            return RunawayPartsQuest.GetCurrentProgress() == (int)EngineerQuestStates.Cultisthunt||RunawayPartsQuest.GetCurrentProgress() == (int)EngineerQuestStates.HandInCultisthunt;
         }
 
         private bool quest1failed()
@@ -300,8 +299,16 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
         private bool engineerdialogstartcondition()
         {
+            
             var partner = CharacterObject.OneToOneConversationCharacter;
-            if (partner != null) return partner.HeroObject.IsMasterEngineer();
+
+
+
+            if (partner != null)
+            {
+                return partner.HeroObject.IsMasterEngineer();
+            } 
+                
             return false;
         }
 
@@ -333,12 +340,19 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             }
         }
 
-        private bool setrecruitmentprice()
+        private bool UpdateRecruitmentPrices()
+        {
+            setrecruitmentprice();
+            return true;
+        }
+        
+        private void setrecruitmentprice()
         {
             var noviceengineer = MBObjectManager.Instance.GetObject<CharacterObject>("tor_empire_novice_engineer");
             var price = Campaign.Current.Models.PartyWageModel.GetTroopRecruitmentCost(noviceengineer, Hero.MainHero, false) * 2 * 10;
             MBTextManager.SetTextVariable("RECRUITMENT_PRICE", price.ToString() + "{GOLD_ICON}");
-            return true;
+
+
         }
 
         private bool playerhasenoughmoney()

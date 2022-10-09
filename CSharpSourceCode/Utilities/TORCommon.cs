@@ -32,6 +32,16 @@ namespace TOR_Core.Utilities
             InformationManager.DisplayMessage(new InformationMessage(text, new Color(134, 114, 250)));
         }
 
+
+        public static string GetCompleteStringValue(TextObject textObject)
+        {
+            if (textObject == null) return null;
+            List < TextObject > a= new List<TextObject>();
+            a.Add(textObject);
+            List<string> b = TextObject.ConvertToStringList(a);
+
+            return b[0];
+        }
         /// <summary>
         /// Gets the winds of magic icon as an inline string.
         /// </summary>
