@@ -64,7 +64,7 @@
   <string id="str_quest_tor_engineer.openShop" text="Of course, you'll find only the best from the Forges of Nuln!"/>
   <string id="str_quest_tor_engineer.closeShop" text="What else can I do for you?"/>
 
-  <string id="str_quest_tor_engineer.hireEngineers" text="A pair of our novice engineers are eagier to join you for the right price ({RECRUITMENT_PRICE})."/>
+  <string id="str_quest_tor_engineer.hireEngineers" text="{=!}A pair of our novice engineers are eagier to join you for the right price ({RECRUITMENT_PRICE})."/>
   <string id="str_quest_tor_engineer.hireEngineersAccept" text="Welcome on board."/>
   <string id="str_quest_tor_engineer.hireEngineersNotEnoughMoney" text="I don't have the funds for them right now."/>
   <string id="str_quest_tor_engineer.hireEngineersDecline" text="On a second thought, maybe later."/>
