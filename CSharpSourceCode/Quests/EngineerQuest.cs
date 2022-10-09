@@ -2,6 +2,7 @@
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.Conversation;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
@@ -160,6 +161,7 @@ namespace TOR_Core.Quests
                 new TextObject("Your victory here is meaningless...you will never find what we took..."),
                 () => _skipImprisonment && _currentActiveLog == EngineerQuestStates.HandInCultisthunt, RemoveSkip, 0, 1,
                 200, null);
+            
             Current.ConversationManager.AddDialogLineMultiAgent("start", "start", "rogueengineer_playerafterbattle",
                 new TextObject("You have no idea what you are interfering with..."),
                 () => _skipImprisonment && _currentActiveLog == EngineerQuestStates.HandInRogueEngineerHunt, RemoveSkip,
@@ -295,7 +297,7 @@ namespace TOR_Core.Quests
             }
 
             var partyTextObject = new TextObject(partyNameOverride);
-            var heroTextObject = new TextObject(partyNameOverride);
+            var heroTextObject = new TextObject(heroNameOverride);
             var hero = HeroCreator.CreateSpecialHero(leaderTemplate, settlement, factionClan, null, 45);
             if (heroNameOverride != null) hero.SetName(heroTextObject, heroTextObject);
             var party = QuestPartyComponent.CreateParty(settlement, hero, factionClan, partyTemplate);

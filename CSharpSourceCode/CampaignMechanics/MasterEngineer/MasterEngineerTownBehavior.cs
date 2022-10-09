@@ -5,15 +5,16 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Inventory;
-using TaleWorlds.CampaignSystem.LogEntries;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Quests;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignSupport.TownBehaviours
 {
@@ -218,22 +219,11 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             return true;
         }
 
-        private bool cultisthuntcompletecondition()
-        {
-            if (RunawayPartsQuest == null) return false;
-            if (RunawayPartsQuest.JournalEntries[0].HasBeenCompleted())
-            {
-                return true;
-            }
-
-            return false;
-        }
-
         private void handing_in_rogueengineer_quest()
         {
             RunawayPartsQuest.UpdateProgressOnQuest();
             var xp = (float)250f;
-            SkillObject skill = DefaultSkills.Engineering;
+            SkillObject skill = TORSkills.GunPowder;
             Hero.MainHero.AddSkillXp(skill, xp);
             if (!Hero.MainHero.HasAttribute("AbilityUser")) Hero.MainHero.AddAttribute("AbilityUser");
             if (!Hero.MainHero.HasAttribute("CanPlaceArtillery")) Hero.MainHero.AddAttribute("CanPlaceArtillery");

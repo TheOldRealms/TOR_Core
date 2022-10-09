@@ -36,8 +36,7 @@ namespace TOR_Core.Utilities
         public static string GetCompleteStringValue(TextObject textObject)
         {
             if (textObject == null) return null;
-            List < TextObject > a= new List<TextObject>();
-            a.Add(textObject);
+            List < TextObject > a= new List<TextObject> { textObject };
             List<string> b = TextObject.ConvertToStringList(a);
 
             return b[0];
