@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.Models
 {
@@ -73,6 +75,27 @@ namespace TOR_Core.Models
                 }
             }
             return resultDamage.ResultNumber;
+        }
+
+        public float CalculateWardSaveFactor(Agent victim)
+        {
+            float result = 1f;
+            var victimCharacter = victim.Character as CharacterObject;
+            if(victimCharacter != null)
+            {
+                var container = victim.GetProperties(PropertyMask.Defense);
+
+                if (container.ResistancePercentages[(int)DamageType.All] > 0)
+                {
+                    result -= container.ResistancePercentages[(int)DamageType.All] / 100;
+                }
+
+                if (victimCharacter.GetPerkValue(TORPerks.SpellCraft.Dampener))
+                {
+                    result += TORPerks.SpellCraft.Dampener.SecondaryBonus * 0.01f;
+                }
+            }
+            return result;
         }
     }
 }

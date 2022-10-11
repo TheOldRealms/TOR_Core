@@ -35,7 +35,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
             else
             {
-                effect = StatusEffectManager.GetStatusEffect(id);
+                effect = StatusEffectManager.CreateNewStatusEffect(id);
                 effect.CurrentDuration = (int)(effect.Template.BaseDuration * multiplier);
                 AddEffect(effect, applierAgent);
             }

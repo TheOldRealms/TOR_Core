@@ -37,9 +37,6 @@ namespace TOR_Core.BattleMechanics.Dismemberment
         private int _index;
         private bool _fullyInstantiated;
 
-        private Vec3 objectPos;
-        
-        private Vec3 lastPos = new Vec3();
         public override void AfterStart()
         {
             _pooledDismemberedLimbs = new GameEntity[poolSize][];

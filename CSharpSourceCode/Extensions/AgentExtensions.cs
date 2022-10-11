@@ -12,6 +12,7 @@ using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
+using TOR_Core.Models;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions
@@ -181,7 +182,7 @@ namespace TOR_Core.Extensions
                 }
                 if (mask == PropertyMask.Defense || mask == PropertyMask.All)
                 {
-                    //add all offense properties of the Unit
+                    //add all defense properties of the Unit
                     var defenseProperties = agent.Character.GetDefenseProperties();
 
                     foreach (var property in defenseProperties)
@@ -299,9 +300,18 @@ namespace TOR_Core.Extensions
             }
             #endregion
 
-            return new AgentPropertyContainer(damageProportions, damageAmplifications, damageResistances, additionalDamagePercentages);
+            var result = new AgentPropertyContainer(damageProportions, damageAmplifications, damageResistances, additionalDamagePercentages);
 
+            if (Game.Current.GameType is Campaign)
+            {
+                var model = MissionGameModels.Current.AgentStatCalculateModel as TORAgentStatCalculateModel;
+                if(model != null)
+                {
+                    result = model.AddPerkEffectsToAgentPropertyContainer(agent, mask, result);
+                }
+            }
 
+            return result;
         }
 
         public static Ability GetCurrentAbility(this Agent agent)

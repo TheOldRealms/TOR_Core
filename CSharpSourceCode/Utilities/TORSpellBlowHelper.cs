@@ -1,46 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
 using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
+using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 
 namespace TOR_Core.Utilities
 {
     public static class TORSpellBlowHelper
     {
-        private static Dictionary<Tuple<int, int>, Queue<SpellInfo>> SpellIDs = new Dictionary<Tuple<int, int>, Queue<SpellInfo>>();
-        public static void EnqueueSpellInfo(int victimAgentIndex, int attackAgentIndex, string spellName, DamageType damageType)
+        private static Dictionary<Tuple<int, int>, Queue<SpellBlowInfo>> TriggeredEffects = new Dictionary<Tuple<int, int>, Queue<SpellBlowInfo>>();
+        public static void EnqueueSpellBlowInfo(int victimAgentIndex, int attackAgentIndex, string triggeredEffectId, DamageType damageType, string originSpellTemplateId)
         {
             if (victimAgentIndex == -1 || attackAgentIndex == -1)
                 return;
 
             var coord = new Tuple<int, int>(victimAgentIndex, attackAgentIndex);
 
-            if (SpellIDs.ContainsKey(coord))
+            if (TriggeredEffects.ContainsKey(coord))
             {
-                SpellInfo info = new SpellInfo();
-                info.SpellID = spellName;
+                SpellBlowInfo info = new SpellBlowInfo();
+                info.TriggeredEffectId = triggeredEffectId;
                 info.DamageType = damageType;
                 info.DamagerIndex = attackAgentIndex;
-                SpellIDs[coord].Enqueue(info);
+                info.OriginAbilityTemplateId = originSpellTemplateId;
+                TriggeredEffects[coord].Enqueue(info);
                 return;
             }
 
-            var spellItem = new SpellInfo();
-            spellItem.SpellID = spellName;
+            var spellItem = new SpellBlowInfo();
+            spellItem.TriggeredEffectId = triggeredEffectId;
             spellItem.DamageType = damageType;
-            Queue<SpellInfo> queue = new Queue<SpellInfo>();
+            spellItem.OriginAbilityTemplateId = originSpellTemplateId;
+            spellItem.DamagerIndex = attackAgentIndex;
+            Queue<SpellBlowInfo> queue = new Queue<SpellBlowInfo>();
             queue.Enqueue(spellItem);
-            SpellIDs.Add(coord, queue);
+            TriggeredEffects.Add(coord, queue);
         }
 
-        public static SpellInfo GetSpellInfo(int victimAgentIndex, int attackAgentIndex)
+        public static SpellBlowInfo GetSpellBlowInfo(int victimAgentIndex, int attackAgentIndex)
         {
             var coord = new Tuple<int, int>(victimAgentIndex, attackAgentIndex);
-            if (!SpellIDs.ContainsKey(coord)) return new SpellInfo();
+            if (!TriggeredEffects.ContainsKey(coord)) return new SpellBlowInfo();
 
-            var item = SpellIDs[coord].Dequeue();
+            var item = TriggeredEffects[coord].Dequeue();
 
-            if (!SpellIDs[coord].IsEmpty())
+            if (!TriggeredEffects[coord].IsEmpty())
             {
                 return item;
             }
@@ -50,13 +55,19 @@ namespace TOR_Core.Utilities
 
         public static void Clear()
         {
-            SpellIDs.Clear();
+            TriggeredEffects.Clear();
+        }
+
+        public static bool IsSpellBlow(Blow b)
+        {
+            return b.StrikeType == StrikeType.Thrust && b.AttackType == AgentAttackType.Kick && b.DamageCalculated && b.BlowFlag.HasFlag(BlowFlags.NoSound) && b.VictimBodyPart == BoneBodyPartType.Chest;
         }
     }
-    public struct SpellInfo
+    public struct SpellBlowInfo
     {
         public int DamagerIndex;
-        public string SpellID;
+        public string TriggeredEffectId;
         public DamageType DamageType;
+        public string OriginAbilityTemplateId;
     }
 }

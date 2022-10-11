@@ -1,13 +1,12 @@
 ﻿using HarmonyLib;
-using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
-using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Models;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
@@ -27,12 +26,6 @@ namespace TOR_Core.HarmonyPatches
                 return true;
             }
 
-            if (attacker == victim)
-            {
-                return true;
-            }
-
-            bool isSpell = false;
             float[] damageCategories = new float[(int)DamageType.All + 1];
             var attackerPropertyContainer = attacker.GetProperties(PropertyMask.Attack);
             var victimPropertyContainer = victim.GetProperties(PropertyMask.Defense);
@@ -42,38 +35,52 @@ namespace TOR_Core.HarmonyPatches
             var additionalDamagePercentages = attackerPropertyContainer.AdditionalDamagePercentages;
             //defense properties
             var resistancePercentages = victimPropertyContainer.ResistancePercentages;
-
-            if (b.StrikeType == StrikeType.Thrust && b.AttackType == AgentAttackType.Kick && b.DamageCalculated && b.BlowFlag.HasFlag(BlowFlags.NoSound) && b.VictimBodyPart == BoneBodyPartType.Chest)
+            var resultDamage = b.InflictedDamage;
+            var wardSaveFactor = 1f;
+            if (Game.Current.GameType is Campaign)
             {
-                isSpell = true;
+                var model = MissionGameModels.Current.AgentApplyDamageModel;
+                if(model != null && model is TORAgentApplyDamageModel)
+                {
+                    var torModel = model as TORAgentApplyDamageModel;
+                    wardSaveFactor = torModel.CalculateWardSaveFactor(victim);
+                }
             }
 
-            if (isSpell)
+            //calculating spell damage
+            if (TORSpellBlowHelper.IsSpellBlow(b))
             {
-                var spellInfo = TORSpellBlowHelper.GetSpellInfo(victim.Index, attacker.Index);
+                var spellInfo = TORSpellBlowHelper.GetSpellBlowInfo(victim.Index, attacker.Index);
                 int damageType = (int)spellInfo.DamageType;
                 damageCategories[damageType] = b.InflictedDamage;
                 damagePercentages[damageType] -= resistancePercentages[damageType];
                 damageCategories[damageType] *= 1 + damagePercentages[damageType];
-                b.InflictedDamage = (int)damageCategories[damageType];
+                resultDamage = (int)damageCategories[damageType];
                 if(Game.Current.GameType is Campaign)
                 {
-                    var abilityTemplate = AbilityFactory.GetTemplate(spellInfo.SpellID);
-                    if (attacker.IsHero)
+                    var abilityTemplate = AbilityFactory.GetTemplate(spellInfo.OriginAbilityTemplateId);
+                    if (attacker.IsHero && abilityTemplate != null)
                     {
                         var hero = attacker.GetHero();
-                        RewardHeroForAbilityDamage(hero, b.InflictedDamage, abilityTemplate);
+                        var model = Campaign.Current.Models.GetSpellcraftModel();
+                        if (model != null)
+                        {
+                            resultDamage *= model.GetPerkEffectsOnAbilityDamage(hero.CharacterObject, victim, abilityTemplate);
+                            var skill = model.GetRelevantSkillForAbility(abilityTemplate);
+                            var amount = model.GetSkillXpForAbilityDamage(abilityTemplate, resultDamage);
+                            hero.AddSkillXp(skill, amount);
+                        }
                     }
                 }
-                
+                resultDamage = (int)(resultDamage * wardSaveFactor);
+                b.InflictedDamage = resultDamage;
+                b.BaseMagnitude = resultDamage;
                 if (attacker == Agent.Main || victim == Agent.Main)
-                    TORDamageDisplay.DisplaySpellDamageResult(spellInfo.SpellID, spellInfo.DamageType, b.InflictedDamage, damagePercentages[damageType]);                
+                    TORDamageDisplay.DisplaySpellDamageResult(spellInfo.TriggeredEffectId, spellInfo.DamageType, resultDamage, damagePercentages[damageType]);                
                 return true;
             }
 
-            var resultDamage = 0;
-            var highestDamageValue = 0f;
-            var highestNonPhysicalDamageType = DamageType.Physical;
+            //calculating non-spell damage
             for (int i = 0; i < damageCategories.Length - 1; i++)
             {
                 damageProportions[i] += additionalDamagePercentages[i];
@@ -81,17 +88,12 @@ namespace TOR_Core.HarmonyPatches
                 damageCategories[i] += damageCategories[(int)DamageType.All] / (int)DamageType.All;
                 if (damageCategories[i] > 0)
                 {
-                    if (damageCategories[i] > highestDamageValue && i != (int)DamageType.Physical)
-                    {
-                        highestDamageValue = damageCategories[i];
-                        highestNonPhysicalDamageType = (DamageType)i;
-                    }
                     damagePercentages[i] -= resistancePercentages[i];
                     damageCategories[i] *= 1 + damagePercentages[i];
                     resultDamage += (int)damageCategories[i];
                 }
             }
-
+            resultDamage = (int)(resultDamage * wardSaveFactor);
             b.InflictedDamage = resultDamage;
             b.BaseMagnitude = resultDamage;
 
@@ -101,20 +103,6 @@ namespace TOR_Core.HarmonyPatches
                     TORDamageDisplay.DisplayDamageResult(resultDamage, damageCategories);
             }
             return true;
-        }
-
-        private static void RewardHeroForAbilityDamage(Hero hero, int inflictedDamage, AbilityTemplate template)
-        {
-            var model = Campaign.Current.Models.GetSpellcraftSkillModel();
-            if (model != null)
-            {
-                if(template != null)
-                {
-                    var skill = model.GetRelevantSkillForAbility(template);
-                    var amount = model.GetSkillXpForAbilityDamage(template, inflictedDamage);
-                    hero.AddSkillXp(skill, amount);
-                }
-            }
         }
     }
 }

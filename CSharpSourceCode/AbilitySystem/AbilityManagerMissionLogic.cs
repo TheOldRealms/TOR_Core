@@ -44,8 +44,6 @@ namespace TOR_Core.AbilitySystem
         private GameKey _previousAbilitySelection;
         private GameKey _quickCast;
         private GameKey _specialMoveKey;
-        
-        private TORGameKeyContext _torContext;
 
         public AbilityModeState CurrentState => _currentState;
 
@@ -120,6 +118,7 @@ namespace TOR_Core.AbilitySystem
                 if(Agent.Main != null)
                 {
                     SetUpCastStanceParticles();
+                    AddPerkEffectsToStartingWindsOfMagic();
                     _hasInitializedForMainAgent = true;
                 }
             }
@@ -178,7 +177,7 @@ namespace TOR_Core.AbilitySystem
             if (agent.IsHero && Game.Current.GameType is Campaign)
             {
                 var hero = agent.GetHero();
-                var model = Campaign.Current.Models.GetSpellcraftSkillModel();
+                var model = Campaign.Current.Models.GetSpellcraftModel();
                 if (model != null && hero != null)
                 {
                     var skill = model.GetRelevantSkillForAbility(ability.Template);
@@ -487,6 +486,37 @@ namespace TOR_Core.AbilitySystem
                 _psys[0] = TORParticleSystem.ApplyParticleToAgentBone(Agent.Main, _castingStanceParticleName, Game.Current.DefaultMonster.MainHandItemBoneIndex, out entity);
                 _psys[1] = TORParticleSystem.ApplyParticleToAgentBone(Agent.Main, _castingStanceParticleName, Game.Current.DefaultMonster.OffHandItemBoneIndex, out entity);
                 EnableCastStanceParticles(false);
+            }
+        }
+
+        private void AddPerkEffectsToStartingWindsOfMagic()
+        {
+            var hero = Agent.Main?.GetHero();
+            if(hero != null)
+            {
+                var info = hero.GetExtendedInfo();
+                if(info != null)
+                {
+                    if (hero.GetPerkValue(TORPerks.SpellCraft.Improvision) && info.CurrentWindsOfMagic < TORPerks.SpellCraft.Improvision.PrimaryBonus)
+                    {
+                        info.CurrentWindsOfMagic = TORPerks.SpellCraft.Improvision.PrimaryBonus;
+                    }
+                    if (hero.GetPerkValue(TORPerks.SpellCraft.Catalyst))
+                    {
+                        int magicItemCount = 0;
+                        for(int i = 0; i >= (int)EquipmentIndex.NumEquipmentSetSlots; i++)
+                        {
+                            var equipmentElement = hero.BattleEquipment.GetEquipmentFromSlot((EquipmentIndex)i);
+                            var equippedItem = equipmentElement.Item;
+                            if (equippedItem.IsMagicalItem()) magicItemCount++;
+                        }
+                        if(magicItemCount > 0)
+                        {
+                            info.CurrentWindsOfMagic += magicItemCount * TORPerks.SpellCraft.Catalyst.PrimaryBonus;
+                            if (info.CurrentWindsOfMagic > info.MaxWindsOfMagic) info.CurrentWindsOfMagic = info.MaxWindsOfMagic;
+                        }
+                    }
+                }
             }
         }
     }

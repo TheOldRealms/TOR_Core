@@ -7,6 +7,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions.ExtendedInfoSystem
@@ -67,7 +68,13 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             {
                 if (entry.Value.AllAttributes.Contains("SpellCaster"))
                 {
-                    entry.Value.CurrentWindsOfMagic += entry.Value.WindsOfMagicRechargeRate;
+                    var hero = Hero.FindFirst(x => x.StringId == entry.Key);
+                    float bonusRegen = 1f;
+                    if(hero != null && hero.GetPerkValue(TORPerks.SpellCraft.Catalyst) && hero.CurrentSettlement != null && hero.CurrentSettlement.IsTown)
+                    {
+                        bonusRegen += TORPerks.SpellCraft.Catalyst.SecondaryBonus * 0.01f;
+                    }
+                    entry.Value.CurrentWindsOfMagic += entry.Value.WindsOfMagicRechargeRate * bonusRegen;
                     entry.Value.CurrentWindsOfMagic = Math.Min(entry.Value.CurrentWindsOfMagic, entry.Value.MaxWindsOfMagic);
                 }
             }

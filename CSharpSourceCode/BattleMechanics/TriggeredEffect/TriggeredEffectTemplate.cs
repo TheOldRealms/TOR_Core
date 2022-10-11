@@ -2,6 +2,7 @@
 using System.Xml.Serialization;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.BattleMechanics.StatusEffect;
 
 namespace TOR_Core.BattleMechanics.TriggeredEffect
 {
@@ -40,5 +41,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         public string TroopIdToSummon = "none";
         [XmlAttribute]
         public int NumberToSummon = 0;
+
+        public StatusEffectTemplate AssociatedStatusEffect => StatusEffectManager.GetStatusEffectTemplateWithId(ImbuedStatusEffectID);
     }
 }

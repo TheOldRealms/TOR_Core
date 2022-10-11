@@ -10,6 +10,8 @@ using TOR_Core.Extensions;
 using TaleWorlds.Core;
 using TaleWorlds.CampaignSystem;
 using Timer = System.Timers.Timer;
+using TOR_Core.CharacterDevelopment;
+using System.Linq;
 
 namespace TOR_Core.BattleMechanics.TriggeredEffect
 {
@@ -26,7 +28,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             _template = template;
         }
         
-        public void Trigger(Vec3 position, Vec3 normal, Agent triggererAgent, AbilityTemplate template = null, IEnumerable<Agent> targets = null)
+        public void Trigger(Vec3 position, Vec3 normal, Agent triggererAgent, AbilityTemplate originAbilityTemplate = null, IEnumerable<Agent> targets = null)
         {
             if (_template == null) return;
             _timer = new Timer(2000);
@@ -47,14 +49,15 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
 
             float damageMultiplier = 1f;
             float durationMultiplier = 1f;
-            if(Game.Current.GameType is Campaign && template != null)
+            if(Game.Current.GameType is Campaign && originAbilityTemplate != null)
             {
-                var model = Campaign.Current.Models.GetSpellcraftSkillModel();
+                var model = Campaign.Current.Models.GetSpellcraftModel();
                 var character = triggererAgent.Character as CharacterObject;
                 if(model != null && character != null)
                 {
-                    damageMultiplier = model.GetSkillEffectivenessForAbilityDamage(character, template);
-                    durationMultiplier = model.GetSkillEffectivenessForAbilityDuration(character, template);
+                    damageMultiplier = model.GetSkillEffectivenessForAbilityDamage(character, originAbilityTemplate);
+                    durationMultiplier = model.GetSkillEffectivenessForAbilityDuration(character, originAbilityTemplate);
+                    if(character.IsHero) durationMultiplier *= model.GetPerkEffectsOnAbilityDuration(character, originAbilityTemplate);
                 }
             }
             //Cause Damage
@@ -75,15 +78,20 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             }
             if (_template.DamageAmount > 0)
             {
-                TORMissionHelper.DamageAgents(targets, (int)(_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType,_template.StringID,_template.DamageType, _template.HasShockWave, position);
+                TORMissionHelper.DamageAgents(targets, (int)(_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType, _template, _template.DamageType, _template.HasShockWave, position, originAbilityTemplate);
             }
             else if (_template.DamageAmount < 0)
             {
-                TORMissionHelper.HealAgents(targets, (int)(-_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(-_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType);
+                TORMissionHelper.HealAgents(targets, (int)(-_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(-_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType, originAbilityTemplate);
             }
             //Apply status effects
-            if (_template.ImbuedStatusEffectID != "none")
+            if (_template.ImbuedStatusEffectID != "none" && _template.AssociatedStatusEffect != null)
             {
+                var triggererCharacter = triggererAgent.Character as CharacterObject;
+                if(triggererCharacter != null && triggererCharacter.GetPerkValue(TORPerks.SpellCraft.ArcaneLink) && _template.AssociatedStatusEffect.IsBuffEffect)
+                {
+                    if(!targets.Contains(triggererAgent)) targets.Append(triggererAgent);
+                }
                 TORMissionHelper.ApplyStatusEffectToAgents(targets, _template.ImbuedStatusEffectID, triggererAgent, durationMultiplier, _template.TargetType);
             }
             SpawnVisuals(position, normal);
@@ -144,7 +152,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 }
                 catch (Exception)
                 {
-                    TOR_Core.Utilities.TORCommon.Log("Tried to spawn TriggeredScript: " + _template.ScriptNameToTrigger + ", but failed.", NLog.LogLevel.Error);
+                    TORCommon.Log("Tried to spawn TriggeredScript: " + _template.ScriptNameToTrigger + ", but failed.", NLog.LogLevel.Error);
                 }
             }
         }
