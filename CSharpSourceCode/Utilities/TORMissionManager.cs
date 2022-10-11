@@ -11,6 +11,7 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.Missions.Handlers;
 using TaleWorlds.MountAndBlade.Source.Missions;
 using TaleWorlds.MountAndBlade.Source.Missions.Handlers.Logic;
+using static TaleWorlds.MountAndBlade.Mission;
 using static TaleWorlds.MountAndBlade.MissionAgentSpawnLogic;
 
 namespace TOR_Core.Utilities
@@ -81,7 +82,7 @@ namespace TOR_Core.Utilities
 			Mission.DoesMissionRequireCivilianEquipment = false;
 			_missionAgentSpawnLogic.SetSpawnHorses(BattleSideEnum.Defender, false);
 			_missionAgentSpawnLogic.SetSpawnHorses(BattleSideEnum.Attacker, false);
-			_missionAgentSpawnLogic.InitWithSinglePhase(numDefender, numAttacker, defenderInitialSpawn, attackerInitialSpawn, true, true, MissionSpawnSettings.CreateDefaultSettings());
+			_missionAgentSpawnLogic.InitWithSinglePhase(numDefender, numAttacker, defenderInitialSpawn, attackerInitialSpawn, true, true, MissionSpawnSettings.CreateDefaultSpawnSettings());
 		}
 
 		private MissionAgentSpawnLogic _missionAgentSpawnLogic;

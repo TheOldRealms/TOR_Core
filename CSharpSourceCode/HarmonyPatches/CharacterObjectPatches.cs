@@ -14,18 +14,6 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class CharacterObjectPatches
     {
-		[HarmonyPrefix]
-		[HarmonyPatch(typeof(CharacterObject), "TroopWage", MethodType.Getter)]
-		public static bool TroopWagePrefix(ref int __result, CharacterObject __instance)
-		{
-			if (__instance.IsUndead())
-			{
-				__result = 0;
-				return false;
-			}
-			return true;
-		}
-
 		[HarmonyPostfix]
 		[HarmonyPatch(typeof(CharacterHelper), "GetTroopTree")]
 		public static void TroopTreePatch(ref IEnumerable<CharacterObject> __result, CharacterObject baseTroop)
