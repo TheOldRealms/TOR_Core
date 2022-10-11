@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 using TOR_Core.AbilitySystem;
 using TOR_Core.Extensions;
+using TOR_Core.Quests;
 
 namespace TOR_Core.Utilities
 {
@@ -14,7 +16,7 @@ namespace TOR_Core.Utilities
 
         
         //TODO currently disabled due to missing Engineer Quest
-        /*[CommandLineFunctionality.CommandLineArgumentFunction("whereisgoswin", "tow")]
+        [CommandLineFunctionality.CommandLineArgumentFunction("whereisgoswin", "tor")]
         public static string TeleportPlayerToQuestParty(List<string> arguments)
         {
             if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
@@ -22,12 +24,12 @@ namespace TOR_Core.Utilities
             var engineerquest = EngineerQuest.GetCurrentActiveIfExists();
             if (engineerquest != null)
             {
-                Campaign.Current.MainParty.Position2D =MobilePartyHelper.FindReachablePointAroundPosition(Campaign.Current.MainParty.Party,engineerquest.TargetParty.Position2D,7,5);
+                Campaign.Current.MainParty.Position2D =MobilePartyHelper.FindReachablePointAroundPosition(engineerquest.TargetParty.Position2D,0f);
 
                 return " *puff*... there he is!";
             }
             return "Engineer Quest is not active \n";
-        }*/
+        }
         
         
         [CommandLineFunctionality.CommandLineArgumentFunction("list_spells", "tor")]

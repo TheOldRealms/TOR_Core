@@ -139,6 +139,13 @@ namespace TOR_Core.Extensions
             return hero.Occupation == Occupation.Special && hero.Name.Contains("Magister");
         }
 
+        public static bool IsMasterEngineer(this Hero hero)
+        {
+            if(hero!=null)
+                return hero.Occupation == Occupation.Special&& hero.Name.Contains("Master Engineer");
+            return false;
+        }
+
         public static string GetInfoKey(this Hero hero)
         {
             return hero.StringId;
