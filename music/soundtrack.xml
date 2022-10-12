@@ -24982,5 +24982,67 @@
         </Group>
       </Groups>
     </Theme>
+    <Theme>
+      <Name>Our Banner</Name>
+      <Id>402</Id>
+      <ThemeTypeInt>7</ThemeTypeInt>
+      <Serialization_ManuallyBlockedThemeIds />
+      <IntensityAfterRest>0.5</IntensityAfterRest>
+      <MusicPhaseSecondsAfterRest>60</MusicPhaseSecondsAfterRest>
+      <MusicPhaseSecondsGeneral>0</MusicPhaseSecondsGeneral>
+      <RestSecondsMin>30</RestSecondsMin>
+      <RestSecondsMax>60</RestSecondsMax>
+      <FadeoutMs>20</FadeoutMs>
+      <Priority>1</Priority>
+      <WeightingSwitchGroups>0</WeightingSwitchGroups>
+      <WeightingIntensityVsVariance>1</WeightingIntensityVsVariance>
+      <WeightingLowPlaycountVsRandom>0.3</WeightingLowPlaycountVsRandom>
+      <Groups>
+        <Group>
+          <Name>default group</Name>
+          <Segments>
+            <Segment>
+              <Name>our banner</Name>
+              <Id>418</Id>
+              <IsAutomaticBridgeSegment>false</IsAutomaticBridgeSegment>
+              <Intensity>0.5</Intensity>
+              <IsUsableAtStart>true</IsUsableAtStart>
+              <IsUsableInMiddle>true</IsUsableInMiddle>
+              <IsUsableAtEnd>true</IsUsableAtEnd>
+              <AudioData>
+                <_prebeatLengthInSamplesEnteredManually>1750</_prebeatLengthInSamplesEnteredManually>
+                <_postbeatLengthInSamplesEnteredManually>127834</_postbeatLengthInSamplesEnteredManually>
+                <Path>our_banner.wav</Path>
+                <Bpm>100</Bpm>
+                <PreBeats>1</PreBeats>
+                <PostBeats>4</PostBeats>
+                <CalculatePostAndPrebeatLengthBasedOnBeats>false</CalculatePostAndPrebeatLengthBasedOnBeats>
+                <PreBeatLengthInSamples>1750</PreBeatLengthInSamples>
+                <PostBeatLengthInSamples>127834</PostBeatLengthInSamples>
+                <TotalLengthInSamples>5316588</TotalLengthInSamples>
+                <SampleRate>44100</SampleRate>
+              </AudioData>
+              <CalculatePostAndPrebeatLengthBasedOnBeats>false</CalculatePostAndPrebeatLengthBasedOnBeats>
+              <PreBeatLengthInSamples>1750</PreBeatLengthInSamples>
+              <PostBeatLengthInSamples>127834</PostBeatLengthInSamples>
+              <PreBeats>1</PreBeats>
+              <PostBeats>4</PostBeats>
+              <Bpm>100</Bpm>
+              <SampleRate>44100</SampleRate>
+              <BitsPerSample>16</BitsPerSample>
+              <ThemeId>402</ThemeId>
+              <Serialization_ManuallyBlockedSegmentIds />
+              <Serialization_ManuallyLinkedSegmentIds />
+              <DefaultCompatibiltyAsFollower>allowed_implicitly</DefaultCompatibiltyAsFollower>
+            </Segment>
+          </Segments>
+          <Description />
+          <Serialization_Id>10</Serialization_Id>
+          <Serialization_ManuallyBlockedGroupIds />
+          <Serialization_ManuallyLinkedGroupIds />
+          <Serialization_ManualBridgeSegmentIds />
+        </Group>
+      </Groups>
+    </Theme>
   </Themes>
 </PsaiProject>
