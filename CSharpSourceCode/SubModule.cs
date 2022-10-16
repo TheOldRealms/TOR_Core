@@ -141,6 +141,8 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORCombatSimulationModel());
                 gameStarterObject.AddModel(new TORPartyMoraleModel());
                 gameStarterObject.AddModel(new TORPersuasionModel());
+
+                CampaignOptions.IsLifeDeathCycleDisabled = true;
             }
             else if (Game.Current.GameType is CustomGame && gameStarterObject is BasicGameStarter)
             {

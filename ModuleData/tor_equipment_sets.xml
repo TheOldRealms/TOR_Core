@@ -1640,37 +1640,43 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_001" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_cairn_wraith_006" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_002" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_001" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_001" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_001" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_cairn_wraith_006" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_002" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_001" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_001" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_001" />
       <Equipment slot="Head" id="Item.tor_vc_head_hat_cairn_wraith_004" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_001" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_002" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_002" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_001" />
       <Equipment slot="Head" id="Item.tor_vc_head_hat_cairn_wraith_004" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_001" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_002" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_002" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_003" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_cairn_wraith_001" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_004" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_003" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_003" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_003" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_cairn_wraith_001" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_004" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_003" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_003" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -1678,37 +1684,43 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_002" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_cairn_wraith_005" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_004" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_001" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_001" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_002" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_cairn_wraith_005" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_004" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_001" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_001" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_002" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_cairn_wraith_002" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_002" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_002" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_002" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_002" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_cairn_wraith_002" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_002" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_002" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_002" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_002" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_cairn_wraith_003" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_003" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_003" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_003" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_002" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_cairn_wraith_003" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_003" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_003" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_003" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -4212,7 +4224,8 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_001" />
       <Equipment slot="Head" id="Item.tor_vc_head_hat_cairn_wraith_004" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_004" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_001" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_001" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_ghost_horse_001" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_ghost_001" />
@@ -4220,7 +4233,8 @@
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_001" />
       <Equipment slot="Head" id="Item.tor_vc_head_hat_cairn_wraith_004" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_004" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_001" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_001" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_ghost_horse_001" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_ghost_001" />
@@ -4228,7 +4242,8 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_001" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_cairn_wraith_001" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_001" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_002" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_002" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_ghost_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_ghost_001" />
@@ -4236,7 +4251,8 @@
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_001" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_cairn_wraith_001" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_001" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_002" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_002" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_ghost_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_ghost_001" />
@@ -4244,7 +4260,8 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_003" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_cairn_wraith_006" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_002" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_003" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_003" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_ghost_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_ghost_001" />
@@ -4252,7 +4269,8 @@
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_003" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_cairn_wraith_006" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_002" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_003" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_003" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_ghost_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_ghost_001" />
@@ -4330,7 +4348,8 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_002" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_cairn_wraith_002" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_004" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_001" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_003" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_ghost_horse_001" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_ghost_001" />
@@ -4338,7 +4357,8 @@
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_002" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_cairn_wraith_002" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_004" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_001" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_003" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_ghost_horse_001" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_ghost_001" />
@@ -4346,7 +4366,8 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_001" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_cairn_wraith_003" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_004" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_002" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_003" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_ghost_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_ghost_001" />
@@ -4354,7 +4375,8 @@
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_001" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_cairn_wraith_003" />
-      <Equipment slot="Cape" id="Item.tor_vc_body_breastplate_cairn_wraith_004" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_cairn_wraith_002" />
+      <Equipment slot="Cape" id="Item.tor_vc_body_armor_cairn_wraith_003" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_cairn_wraith_003" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_ghost_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_ghost_001" />
@@ -8432,6 +8454,28 @@
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_plate_001" />
       <Equipment slot="Horse" id="Item.noble_horse" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_002" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_karl_franz_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_ghal_maraz" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_karl_franz" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_karl_franz" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_karl_franz" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_karl_franz" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_karl_franz" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_demigryph_001" />
+      <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_ghal_maraz" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_karl_franz" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_karl_franz" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_karl_franz" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_karl_franz" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_karl_franz" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_demigryph_001" />
+      <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_002" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_hisme_stoutheart_template" culture="Culture.empire">

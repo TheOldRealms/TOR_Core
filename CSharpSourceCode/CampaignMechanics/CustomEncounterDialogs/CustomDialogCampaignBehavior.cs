@@ -46,7 +46,6 @@ namespace TOR_Core.CampaignMechanics.CustomEncounterDialogs
             return false;
         }
 
-
         private bool HeroIsWounded()
         {
             var hero = CharacterObject.OneToOneConversationCharacter.HeroObject;

@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <strings>
-
   <!--Rogue Engineer Quest-->
   <string id="str_quest_tor_engineer.rogueEngineerFirstTime" text= "{=!}You have the look of someone who's never seen a spec of black powder nor grease. Are you in the right place?"/>
   <string id="str_quest_tor_engineer.cultistDone" text= " {=!}Ah, you have returned. What news do you bring?"/>
   <string id="str_quest_tor_engineer.cultistInProgress" text= "{=!}Come back to me when you have news."/>
   <string id="str_quest_tor_engineer.rogueEngineerFound" text= "{=!}Did you find {ROGUE_ENGINEER_NAME}?"/>
   <string id="str_quest_tor_engineer.startRogueEngineerHunt" text= "{= !}Have you changed your mind and want to help hunt down {ROGUE_ENGINEER_NAME}?"/>
-  
-  
+
   <string id="str_quest_tor_engineer.hubGreet" text= "{=!}You again, what do you want?"/>
   <string id="str_quest_tor_engineer.hubPlayerCannons" text="I would like to buy some cannons."/>
   <string id="str_quest_tor_engineer.hubPlayerEngineers" text="I would like to recruit some engineers."/>
@@ -44,7 +42,7 @@
   <string id="str_quest_tor_engineer.questFailAnswer" text= "{=!}Tsk, I expected better. There may still be time, you can still track them if you are swift"/>
   <string id="str_quest_tor_engineer.questRepeat" text= "{=!}I won't let you down a second time."/>
   <string id="str_quest_tor_engineer.questGiveup" text= "{=!}I don't think I can do it at this time."/>
-  
+
   <string id="str_quest_tor_engineer.cultistReturn0" text= "{=!}I have returned but without the stolen components, I am afraid to say they are still missing."/>
   <string id="str_quest_tor_engineer.cultistReturn1" text= "{=!}I see, this is not what I had hoped for. Were there any further clues, did you interrogate these scoundrels?"/>
   <string id="str_quest_tor_engineer.cultistReturn2" text= "{=!}One of the bandits did mention a name, {ROGUE_ENGINEER_NAME} I think?"/>
@@ -53,7 +51,7 @@
 
   <string id="str_quest_tor_engineer.cultistInProgressPlayer" text= "I have yet to track down the runaways."/>
   <string id="str_quest_tor_engineer.cultistInProgressAnswer" text= "I see, return to me when you have something useful."/>
-  
+
   <string id="str_quest_tor_engineer.rogueEngineerHandIn" text= "{ROGUE_ENGINEER_NAME} will no longer be a problem and I have retrieved what he stole from you. I’m unsure what he was trying to do with them."/>
   <string id="str_quest_tor_engineer.rogueEngineerDebrief" text= "It matters not, it would have been something warped no doubt. I must thank you for your efforts, and your discretion. As agreed upon, you may now access our foundries and purchase from us as you please."/>
   <string id="str_quest_tor_engineer.hubEntry" text="Now, how can I help?"/>
@@ -82,138 +80,237 @@
   <string id="str_quest_tor_engineer.cultistEncounterPlayer1" text="Lay down your weapons and I may spare your lives."/>
   <string id="str_quest_tor_engineer.cultistEncounterPlayer2" text="Weapons or no, we will slay you all and take back what you stole!"/>
   <string id="str_quest_tor_engineer.cultistEncounterAnswer" text="You will not trick us!  They will serve a greater purpose! You will not take them!"/>
-  
+
   <string id="str_quest_tor_engineer.rogueEngineerEncounter" text="So the old fool sent you to find me? How did he figure me out? It matters not, you will stand in the way of my creations. You will die here!"/>
   <string id="str_quest_tor_engineer.rogueEngineerEncounterPlayerAfterBattleAnswer" text="Your schemes end here"/>
 
-
-
+  <!--culture related-->
   <string id="str_culture_rich_name.khuzait" text="{=!}Vampire Counts" />
-	<string id="str_culture_rich_name.empire" text="{=!}Empire of Men" />
-	<string id="str_culture_description.khuzait" text="{=!}The Vampire Counts are fiends without equal. They seek to topple the civilisations of the living and supplant them with an Undead empire. Each Vampire is a unique and majestic figure with his own personality, drive and ambition. In contrast, their minions are mindlessly obedient - rank after rank of ragged and dirt-encrusted cadavers forced back to life by their masters' necromantic power." />
-	<string id="str_culture_description.empire" text="{=!}The empire is a vast nation of Men that fights for its survival with each passing day. Ruled over by the Emperor, Karl Franz, the discipline and martial skill of its armies is renowned throughout the Old World. The backbone of the Empire’s military might, and the reason it has endured in a world filled with both brutal savages and bloodthirsty monsters, is its armies of professional soldiers." />
+  <string id="str_culture_rich_name.empire" text="{=!}Empire of Men" />
+  <string id="str_culture_description.khuzait" text="{=!}The Vampire Counts are fiends without equal. They seek to topple the civilisations of the living and supplant them with an Undead empire. Each Vampire is a unique and majestic figure with his own personality, drive and ambition. In contrast, their minions are mindlessly obedient - rank after rank of ragged and dirt-encrusted cadavers forced back to life by their masters' necromantic power." />
+  <string id="str_culture_description.empire" text="{=!}The empire is a vast nation of Men that fights for its survival with each passing day. Ruled over by the Emperor, Karl Franz, the discipline and martial skill of its armies is renowned throughout the Old World. The backbone of the Empire’s military might, and the reason it has endured in a world filled with both brutal savages and bloodthirsty monsters, is its armies of professional soldiers." />
 
-	<string id="str_crafting_template.tor_twohandedswords_template" text="{=smgrs}TOR-Greatswords" />
-    <string id="str_crafting_template.tor_sword_template" text="{=sms}TOR-Swords" />
-    <string id="str_crafting_template.tor_rapier_template" text="{=smr}TOR-Rapiers" />
-    <string id="str_crafting_template.tor_scythe_template" text="{=smsc}TOR-Scythes" />
-    <string id="str_crafting_template.tor_staff_template" text="{=smst}TOR-Staffs" />
-    <string id="str_crafting_template.tor_polearm_template" text="{=smpol}TOR-Polearms" />
-    <string id="str_crafting_template.tor_axe_template" text="{=sma}TOR-Axes" />
-    <string id="str_crafting_template.tor_twohandedaxe" text="{=smgra}TOR-Greataxes" />
-    <string id="str_crafting_template.tor_mace_template" text="{=smma}TOR-Maces" />
-    <string id="str_crafting_template.tor_twohandedmace" text="{=smthma}TOR-Two-Handed Mace" />
-    <string id="str_crafting_template.tor_lance_template" text="{=smla}TOR-Lances" />
-    <string id="str_weapon_usage.TorOneHandedSword" text="{=!}One Handed Sword" />
-    <string id="str_weapon_usage.TorTwoHandedSword" text="{=!}Two Handed Sword" />
-    <string id="str_weapon_usage.TorRapier" text="{=!}Rapier" />
-    <string id="str_weapon_usage.TorOneHandedAxe" text="{=!}One Handed Axe" />
-    <string id="str_weapon_usage.TorTwoHandedAxe" text="{=!}Two Handed Axe" />
-    <string id="str_weapon_usage.TorMace" text="{=!}Mace" />
-    <string id="str_weapon_usage.TorTwoHandedMace" text="{=!}Two Handed Mace" />
-    <string id="str_weapon_usage.TorOneHandedPolearm" text="{=!}One Handed Polearm" />
-    <string id="str_weapon_usage.TorTwoHandedPolearm" text="{=!}Two Handed Polearm" />
-    <string id="str_weapon_usage.TorTwoHandedPolearm_Bracing" text="{=!}Bracing" />
-    <string id="str_weapon_usage.TorStaves" text="{=!}Staff" />
-    <string id="str_weapon_usage.TorScythe" text="{=!}Scythe" />
-    <string id="str_weapon_usage.TorLance" text="{=!}Lance" />
-    <string id="str_weapon_usage.TorLance_Couchable" text="{=!}Couche Lance" />
+  <string id="str_faction_official.empire" text="{=!}a count" />
+  <string id="str_faction_official.empire_f" text="{=!}a countess" />
+  <string id="str_faction_ruler.empire" text="{=!}elector count" />
+  <string id="str_faction_ruler.empire_f" text="{=!}elector countess" />
+  <string id="str_faction_ruler_term_in_speech.empire" text="{=!}{?RULER.GENDER}the Elector Countess{?}the Elector Count{\?} {RULER.NAME}" />
+  <string id="str_faction_ruler_name_with_title.empire" text="{=!}{?RULER.GENDER}Elector Countess{?}Elector Count{\?} {RULER.NAME}" />
+  <string id="str_faction_noble_name_with_title.empire" text="{=!}{?RULER.GENDER}Countess{?}Count{\?} {RULER.NAME}" />
+  <string id="str_faction_ruler_name_with_title.khuzait" text="{=!}{RULER.NAME} Vampire {?RULER.GENDER}Lord{?}Lady{\?}" />
+  <string id="str_faction_noble_name_with_title.khuzait" text="{=!}{RULER.NAME} {?RULER.GENDER}Lady{?}Lord{\?}" />
+  <string id="str_faction_official.khuzait" text="{=!}a lord" />
+  <string id="str_faction_official.khuzait_f" text="{=!}a lady" />
+  <string id="str_faction_ruler.khuzait" text="{=!}Vampire Lord" />
+  <string id="str_faction_ruler.khuzait_f" text="{=!}Vampire Lady" />
+  <string id="str_faction_ruler_term_in_speech.khuzait" text="{=!}{RULER.NAME} Vampire {?RULER.GENDER}Lord{?}Lady{\?}" />
 
-	<string id="str_inventory_weapon.22" text="{=!}Pistol" />
-	<string id="str_inventory_weapon.23" text="{=!}Handgun" />
+  <string id="str_liege_title.empire" text="{=!}Elector Count of one of the Provinces of the Empire">
+    <tags>
+      <tag tag_name="EmpireTag" />
+    </tags>
+  </string>
+  <string id="str_liege_title_female.empire" text="{=!}Elector Countess of one of the Provinces of the Empire">
+    <tags>
+      <tag tag_name="EmpireTag" />
+    </tags>
+  </string>
+  <string id="str_liege_title.khuzait" text="{=!}Ruler of the province of Sylvania">
+    <tags>
+      <tag tag_name="KhuzaitTag" />
+    </tags>
+  </string>
+  <string id="str_liege_title_female.khuzait" text="{=!}Vampire Lady of Sylvania">
+    <tags>
+      <tag tag_name="KhuzaitTag" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self.empire" text="{=!}I am {CONVERSATION_CHARACTER.LINK} of the house of {CLAN_NAME}.">
+    <tags>
+      <tag tag_name="EmpireTag" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self_and_clan.empire" text="{=!}I am {CONVERSATION_CHARACTER.LINK}, of the house of {CLAN_NAME}. Our family has served the Empire for generations.">
+    <tags>
+      <tag tag_name="EmpireTag" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self_and_clan.empire_honor" text="{=!}I am {CONVERSATION_CHARACTER.LINK}, of the house of {CLAN_NAME}. Our family has discharged its duties honorably since the days of Sigmar himself.">
+    <tags>
+      <tag tag_name="EmpireTag" />
+      <tag tag_name="HonorTag" weight="1" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self_and_clan.empire_mercy" text="{=!}I am {CONVERSATION_CHARACTER.LINK}, of the house of {CLAN_NAME}. Though one should not be too proud of one's lineage, I am glad to say that we have always taken seriously our duty to protect the common folk of the Empire.">
+    <tags>
+      <tag tag_name="EmpireTag" />
+      <tag tag_name="MercyTag" weight="1" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self_and_clan.empire_boasting" text="{=!}I am {CONVERSATION_CHARACTER.LINK}, of the house of {CLAN_NAME}, one of the most illustrious families in the annals of the Empire.">
+    <tags>
+      <tag tag_name="EmpireTag" />
+      <tag tag_name="UncharitableTag" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self_and_clan.empire_boasting_cruel" text="{=!}I am {CONVERSATION_CHARACTER.LINK}, of the house of {CLAN_NAME}, one of the most illustrious families in the annals of the Empire. What is best in life? To crush your enemies. See them driven before you. And to hear the lamentations of their women.">
+    <tags>
+      <tag tag_name="EmpireTag" />
+      <tag tag_name="UncharitableTag" />
+      <tag tag_name="CruelTag" weight="1" />
+    </tags>
+  </string>
+  <string id="str_comment_intro.cruel_khuzait" text="{=!}Know that if you ever cross me, you'll wind up as undead fodder in our armies.">
+    <tags>
+      <tag tag_name="CruelTag" weight="1" />
+      <tag tag_name="CombatantTag" />
+      <tag tag_name="NonviolentProfessionTag" weight="-1" />
+      <tag tag_name="KhuzaitTag" />
+      <tag tag_name="AttackingTag" weight="-1" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self.khuzait" text="{=!}I am {CONVERSATION_CHARACTER.LINK} of the {CLAN_NAME}.">
+    <tags>
+      <tag tag_name="KhuzaitTag" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self_and_clan.khuzait_boasting" text="{=!}I am {CONVERSATION_CHARACTER.LINK}, of the {CLAN_NAME}. I am sure you have heard the name of our clan whispered in fear among the soldiers of the Empire.">
+    <tags>
+      <tag tag_name="UncharitableTag" />
+      <tag tag_name="KhuzaitTag" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self_and_clan.khuzait" text="{=!}I am {CONVERSATION_CHARACTER.LINK}, of the {CLAN_NAME}. Our clan has loyally served the von Carsteins for generations.">
+    <tags>
+      <tag tag_name="KhuzaitTag" />
+    </tags>
+  </string>
 
-	<string id="customsettlement_intro.chaos_portal_01" text="{=!}You arrive at an active chaos portal. The vile thing pulses with arcane magic, chaos forces are invading in minor numbers from their realm." />
-	<string id="customsettlement_disabled.chaos_portal_01" text="{=!}The portal lies dormant. Come back at a later time." />
-	<string id="customsettlement_battle.chaos_portal_01" text="{=!}Attempt to defeat the chaos forces present and close the portal." />
+  <!--crafting-->
+  <string id="str_crafting_template.tor_twohandedswords_template" text="{=smgrs}TOR-Greatswords" />
+  <string id="str_crafting_template.tor_sword_template" text="{=sms}TOR-Swords" />
+  <string id="str_crafting_template.tor_rapier_template" text="{=smr}TOR-Rapiers" />
+  <string id="str_crafting_template.tor_scythe_template" text="{=smsc}TOR-Scythes" />
+  <string id="str_crafting_template.tor_staff_template" text="{=smst}TOR-Staffs" />
+  <string id="str_crafting_template.tor_polearm_template" text="{=smpol}TOR-Polearms" />
+  <string id="str_crafting_template.tor_axe_template" text="{=sma}TOR-Axes" />
+  <string id="str_crafting_template.tor_twohandedaxe" text="{=smgra}TOR-Greataxes" />
+  <string id="str_crafting_template.tor_mace_template" text="{=smma}TOR-Maces" />
+  <string id="str_crafting_template.tor_twohandedmace" text="{=smthma}TOR-Two-Handed Mace" />
+  <string id="str_crafting_template.tor_lance_template" text="{=smla}TOR-Lances" />
+  <string id="str_weapon_usage.TorOneHandedSword" text="{=!}One Handed Sword" />
+  <string id="str_weapon_usage.TorTwoHandedSword" text="{=!}Two Handed Sword" />
+  <string id="str_weapon_usage.TorRapier" text="{=!}Rapier" />
+  <string id="str_weapon_usage.TorOneHandedAxe" text="{=!}One Handed Axe" />
+  <string id="str_weapon_usage.TorTwoHandedAxe" text="{=!}Two Handed Axe" />
+  <string id="str_weapon_usage.TorMace" text="{=!}Mace" />
+  <string id="str_weapon_usage.TorTwoHandedMace" text="{=!}Two Handed Mace" />
+  <string id="str_weapon_usage.TorOneHandedPolearm" text="{=!}One Handed Polearm" />
+  <string id="str_weapon_usage.TorTwoHandedPolearm" text="{=!}Two Handed Polearm" />
+  <string id="str_weapon_usage.TorTwoHandedPolearm_Bracing" text="{=!}Bracing" />
+  <string id="str_weapon_usage.TorStaves" text="{=!}Staff" />
+  <string id="str_weapon_usage.TorScythe" text="{=!}Scythe" />
+  <string id="str_weapon_usage.TorLance" text="{=!}Lance" />
+  <string id="str_weapon_usage.TorLance_Couchable" text="{=!}Couche Lance" />
 
-	<string id="prebackstory.tor_wanderer_empire_0" text="{=!}My story? Sure, I can share it." />
-	<string id="backstory_a.tor_wanderer_empire_0" text="{=!}As a boy I discovered I was not like most children, it was not long before the colleges realised this as well." />
-	<string id="backstory_b.tor_wanderer_empire_0" text="{=!}Once my affinity for Aqshy was known, I was ripped from my peasant life and become an initiate within the Colleges in Altdorf." />
-	<string id="backstory_c.tor_wanderer_empire_0" text="{=!}That fire in Altdorf a few years back that started in a tavern? Definitely wasn't me!." />
-	<string id="response_1.tor_wanderer_empire_0" text="{=!}Most interesting." />
-	<string id="response_2.tor_wanderer_empire_0" text="{=!}Pff." />
-	<string id="backstory_d.tor_wanderer_empire_0" text="{=!}Right." />
-	<string id="generic_backstory.tor_wanderer_empire_0" text="{=!}I am a licensed Bright Wizard from the Colleges in Altdorf. I'm sure by now you have met a few of us and may know how powerful we can be." />
+  <!--inventory-->
+  <string id="str_inventory_weapon.22" text="{=!}Pistol" />
+  <string id="str_inventory_weapon.23" text="{=!}Handgun" />
 
-	<string id="prebackstory.tor_wanderer_empire_1" text="{=!}The story of my life is insignificant, but I will speak." />
-	<string id="backstory_a.tor_wanderer_empire_1" text="{=!}I was an Orphan left at the doors of the Church, the Cult of Sigmar took me in and raised me." />
-	<string id="backstory_b.tor_wanderer_empire_1" text="{=!}I have studied many holy scriptures and dedicated my life to the never-ending battle against the filth of Chaos." />
-	<string id="backstory_c.tor_wanderer_empire_1" text="{=!}I roam the countryside and purge heresy with unwavering determination." />
-	<string id="response_1.tor_wanderer_empire_1" text="{=!}This has my consent." />
-	<string id="response_2.tor_wanderer_empire_1" text="{=!}Have you finished?" />
-	<string id="backstory_d.tor_wanderer_empire_1" text="{=!}Right." />
-	<string id="generic_backstory.tor_wanderer_empire_1" text="{=!}I'm a warrior priest of Sigmar and no corruption will escape my wrath." />
+  <!--chaos portal-->
+  <string id="customsettlement_intro.chaos_portal_01" text="{=!}You arrive at an active chaos portal. The vile thing pulses with arcane magic, chaos forces are invading in minor numbers from their realm." />
+  <string id="customsettlement_disabled.chaos_portal_01" text="{=!}The portal lies dormant. Come back at a later time." />
+  <string id="customsettlement_battle.chaos_portal_01" text="{=!}Attempt to defeat the chaos forces present and close the portal." />
 
-	<string id="prebackstory.tor_wanderer_empire_2" text="{=!}It is not much of a tale, but I will speak of my life." />
-	<string id="backstory_a.tor_wanderer_empire_2" text="{=!}My mother worked in a brothel, we barely had enough to eat. Never knew my father." />
-	<string id="backstory_b.tor_wanderer_empire_2" text="{=!}I had to learn to defend myself from drunken clients at a very young age. My mother wouldn't leave no matter how much I begged her." />
-	<string id="backstory_c.tor_wanderer_empire_2" text="{=!}One day things went too far, one of her clients was trying to take her life in some kind of strange ritual. I stole his knife and ended it, soon after I left and joined the Templars." />
-	<string id="response_1.tor_wanderer_empire_2" text="{=!}You are doing Sigmar's work!" />
-	<string id="response_2.tor_wanderer_empire_2" text="{=!}That is downright pitiful." />
-	<string id="backstory_d.tor_wanderer_empire_2" text="{=!}Right." />
-	<string id="generic_backstory.tor_wanderer_empire_2" text="{=!}I am a Witch Hunter, a Templar of Sigmar. The guilty cannot escape me. " />
+  <!--wanderer stories-->
+  <string id="prebackstory.tor_wanderer_empire_0" text="{=!}My story? Sure, I can share it." />
+  <string id="backstory_a.tor_wanderer_empire_0" text="{=!}As a boy I discovered I was not like most children, it was not long before the colleges realised this as well." />
+  <string id="backstory_b.tor_wanderer_empire_0" text="{=!}Once my affinity for Aqshy was known, I was ripped from my peasant life and become an initiate within the Colleges in Altdorf." />
+  <string id="backstory_c.tor_wanderer_empire_0" text="{=!}That fire in Altdorf a few years back that started in a tavern? Definitely wasn't me!." />
+  <string id="response_1.tor_wanderer_empire_0" text="{=!}Most interesting." />
+  <string id="response_2.tor_wanderer_empire_0" text="{=!}Pff." />
+  <string id="backstory_d.tor_wanderer_empire_0" text="{=!}Right." />
+  <string id="generic_backstory.tor_wanderer_empire_0" text="{=!}I am a licensed Bright Wizard from the Colleges in Altdorf. I'm sure by now you have met a few of us and may know how powerful we can be." />
 
-	<string id="prebackstory.tor_wanderer_empire_3" text="{=!}My story isn't that unique, but I don't mind talking about it." />
-	<string id="backstory_a.tor_wanderer_empire_3" text="{=!}I was born the child of a hedge wizard, when I too showed magical affinity I was sent to the Colleges." />
-	<string id="backstory_b.tor_wanderer_empire_3" text="{=!}I was always top of my classes. The others accused me of hubris, but they were merely blinded by their mediocrity." />
-	<string id="backstory_c.tor_wanderer_empire_3" text="{=!}You cannot find a more promising wizard in the realms of the Empire. I am on the path to surpass Balthazar Gelt himself!" />
-	<string id="response_1.tor_wanderer_empire_3" text="{=!}I see." />
-	<string id="response_2.tor_wanderer_empire_3" text="{=!}Pff, how ridiculous." />
-	<string id="backstory_d.tor_wanderer_empire_3" text="{=!}Right." />
-	<string id="generic_backstory.tor_wanderer_empire_3" text="{=!}I am a Light Wizard from the Imperial Colleges. I have no doubts that you have heard of our immense skill. " />
+  <string id="prebackstory.tor_wanderer_empire_1" text="{=!}The story of my life is insignificant, but I will speak." />
+  <string id="backstory_a.tor_wanderer_empire_1" text="{=!}I was an Orphan left at the doors of the Church, the Cult of Sigmar took me in and raised me." />
+  <string id="backstory_b.tor_wanderer_empire_1" text="{=!}I have studied many holy scriptures and dedicated my life to the never-ending battle against the filth of Chaos." />
+  <string id="backstory_c.tor_wanderer_empire_1" text="{=!}I roam the countryside and purge heresy with unwavering determination." />
+  <string id="response_1.tor_wanderer_empire_1" text="{=!}This has my consent." />
+  <string id="response_2.tor_wanderer_empire_1" text="{=!}Have you finished?" />
+  <string id="backstory_d.tor_wanderer_empire_1" text="{=!}Right." />
+  <string id="generic_backstory.tor_wanderer_empire_1" text="{=!}I'm a warrior priest of Sigmar and no corruption will escape my wrath." />
 
-	<string id="prebackstory.tor_wanderer_empire_4" text="{=!}My story isn't that unique, but I don't mind talking about it." />
-	<string id="backstory_a.tor_wanderer_empire_4" text="{=!}I was born the child of a hedge wizard, when I too showed magical affinity I was sent to the Colleges." />
-	<string id="backstory_b.tor_wanderer_empire_4" text="{=!}I was always top of my classes. The others accused me of hubris, but they were merely blinded by their mediocrity." />
-	<string id="backstory_c.tor_wanderer_empire_4" text="{=!}You cannot find a more promising wizard in the realms of the Empire. I am on the path to surpass Balthazar Gelt himself!" />
-	<string id="response_1.tor_wanderer_empire_4" text="{=!}I see." />
-	<string id="response_2.tor_wanderer_empire_4" text="{=!}Pff, how ridiculous." />
-	<string id="backstory_d.tor_wanderer_empire_4" text="{=!}Right." />
-	<string id="generic_backstory.tor_wanderer_empire_4" text="{=!}I am a Celestial Wizard from the Imperial Colleges. I have no doubts that you have heard of our immense skill. " />
+  <string id="prebackstory.tor_wanderer_empire_2" text="{=!}It is not much of a tale, but I will speak of my life." />
+  <string id="backstory_a.tor_wanderer_empire_2" text="{=!}My mother worked in a brothel, we barely had enough to eat. Never knew my father." />
+  <string id="backstory_b.tor_wanderer_empire_2" text="{=!}I had to learn to defend myself from drunken clients at a very young age. My mother wouldn't leave no matter how much I begged her." />
+  <string id="backstory_c.tor_wanderer_empire_2" text="{=!}One day things went too far, one of her clients was trying to take her life in some kind of strange ritual. I stole his knife and ended it, soon after I left and joined the Templars." />
+  <string id="response_1.tor_wanderer_empire_2" text="{=!}You are doing Sigmar's work!" />
+  <string id="response_2.tor_wanderer_empire_2" text="{=!}That is downright pitiful." />
+  <string id="backstory_d.tor_wanderer_empire_2" text="{=!}Right." />
+  <string id="generic_backstory.tor_wanderer_empire_2" text="{=!}I am a Witch Hunter, a Templar of Sigmar. The guilty cannot escape me. " />
 
-	<string id="prebackstory.tor_wanderer_empire_5" text="{=!Gladly." />
-	<string id="backstory_a.tor_wanderer_empire_5" text="{=!}I was born into a family of serfs, but working the fields was no life for me!" />
-	<string id="backstory_b.tor_wanderer_empire_5" text="{=!}I became the apprentice of a master alchemist, but the bastard taught me nothing yet worked me to death for years." />
-	<string id="backstory_c.tor_wanderer_empire_5" text="{=!}I left him on the side of the road when his wagon broke down one day and joined the army where I learned to maintain equipment. Explosives are my newly found passion." />
-	<string id="response_1.tor_wanderer_empire_5" text="{=!}Most interesting." />
-	<string id="response_2.tor_wanderer_empire_5" text="{=!}Have you finished?" />
-	<string id="backstory_d.tor_wanderer_empire_5" text="{=!}Right." />
-	<string id="generic_backstory.tor_wanderer_empire_5" text="{=!}I am an Engineer experienced in the operation and maintenance of gunpowder weapons." />
+  <string id="prebackstory.tor_wanderer_empire_3" text="{=!}My story isn't that unique, but I don't mind talking about it." />
+  <string id="backstory_a.tor_wanderer_empire_3" text="{=!}I was born the child of a hedge wizard, when I too showed magical affinity I was sent to the Colleges." />
+  <string id="backstory_b.tor_wanderer_empire_3" text="{=!}I was always top of my classes. The others accused me of hubris, but they were merely blinded by their mediocrity." />
+  <string id="backstory_c.tor_wanderer_empire_3" text="{=!}You cannot find a more promising wizard in the realms of the Empire. I am on the path to surpass Balthazar Gelt himself!" />
+  <string id="response_1.tor_wanderer_empire_3" text="{=!}I see." />
+  <string id="response_2.tor_wanderer_empire_3" text="{=!}Pff, how ridiculous." />
+  <string id="backstory_d.tor_wanderer_empire_3" text="{=!}Right." />
+  <string id="generic_backstory.tor_wanderer_empire_3" text="{=!}I am a Light Wizard from the Imperial Colleges. I have no doubts that you have heard of our immense skill. " />
 
-	<string id="prebackstory.tor_wanderer_empire_6" text="{=!}I have no qualms speaking of my life stranger." />
-	<string id="backstory_a.tor_wanderer_empire_6" text="{=!}I was born into a noble family from Carcassonne, my father was a Knight before me." />
-	<string id="backstory_b.tor_wanderer_empire_6" text="{=!}It is my duty to become a Knight and I am currently on my quest to gain the favour of the Lady." />
-	<string id="backstory_c.tor_wanderer_empire_6" text="{=!}I have only just set out on my journey, I have much to learn." />
-	<string id="response_1.tor_wanderer_empire_6" text="{=!}I hope you will achieve what you set out to do." />
-	<string id="response_2.tor_wanderer_empire_6" text="{=!}You shouldn't have wandered so far from home." />
-	<string id="backstory_d.tor_wanderer_empire_6" text="{=!}Right." />
-	<string id="generic_backstory.tor_wanderer_empire_6" text="{=!}I am a questing Knight, devoted in life to the Lady and Bretonnia. " />
+  <string id="prebackstory.tor_wanderer_empire_4" text="{=!}My story isn't that unique, but I don't mind talking about it." />
+  <string id="backstory_a.tor_wanderer_empire_4" text="{=!}I was born the child of a hedge wizard, when I too showed magical affinity I was sent to the Colleges." />
+  <string id="backstory_b.tor_wanderer_empire_4" text="{=!}I was always top of my classes. The others accused me of hubris, but they were merely blinded by their mediocrity." />
+  <string id="backstory_c.tor_wanderer_empire_4" text="{=!}You cannot find a more promising wizard in the realms of the Empire. I am on the path to surpass Balthazar Gelt himself!" />
+  <string id="response_1.tor_wanderer_empire_4" text="{=!}I see." />
+  <string id="response_2.tor_wanderer_empire_4" text="{=!}Pff, how ridiculous." />
+  <string id="backstory_d.tor_wanderer_empire_4" text="{=!}Right." />
+  <string id="generic_backstory.tor_wanderer_empire_4" text="{=!}I am a Celestial Wizard from the Imperial Colleges. I have no doubts that you have heard of our immense skill. " />
 
-	<string id="prebackstory.tor_wanderer_vampire_0" text="{=!}Hm, you wish to know of my life? It is a tale I can share." />
-	<string id="backstory_a.tor_wanderer_vampire_0" text="{=!}I have always been surrounded by death, death is everything in Sylvania." />
-	<string id="backstory_b.tor_wanderer_vampire_0" text="{=!}My fate was never to join the undead roaming the land, but to control them. To raise them and bend them to my will." />
-	<string id="backstory_c.tor_wanderer_vampire_0" text="{=!}It has taken time but the dead do my bidding and my powers are ever growing." />
-	<string id="response_1.tor_wanderer_vampire_0" text="{=!}Intriguing." />
-	<string id="response_2.tor_wanderer_vampire_0" text="{=!}I couldn't really care less about your wretched origin." />
-	<string id="backstory_d.tor_wanderer_vampire_0" text="{=!}Right." />
-	<string id="generic_backstory.tor_wanderer_vampire_0" text="{=!}I am a master of death and undeath, many fear me. Do you? " />
+  <string id="prebackstory.tor_wanderer_empire_5" text="{=!Gladly." />
+  <string id="backstory_a.tor_wanderer_empire_5" text="{=!}I was born into a family of serfs, but working the fields was no life for me!" />
+  <string id="backstory_b.tor_wanderer_empire_5" text="{=!}I became the apprentice of a master alchemist, but the bastard taught me nothing yet worked me to death for years." />
+  <string id="backstory_c.tor_wanderer_empire_5" text="{=!}I left him on the side of the road when his wagon broke down one day and joined the army where I learned to maintain equipment. Explosives are my newly found passion." />
+  <string id="response_1.tor_wanderer_empire_5" text="{=!}Most interesting." />
+  <string id="response_2.tor_wanderer_empire_5" text="{=!}Have you finished?" />
+  <string id="backstory_d.tor_wanderer_empire_5" text="{=!}Right." />
+  <string id="generic_backstory.tor_wanderer_empire_5" text="{=!}I am an Engineer experienced in the operation and maintenance of gunpowder weapons." />
 
-	<string id="prebackstory.tor_wanderer_vampire_1" text="{=!}I do not remember much of my past life, there is only the now and the thirst." />
-	<string id="backstory_a.tor_wanderer_vampire_1" text="{=!}Being human feels like a dream, a dream I was happily liberated from." />
-	<string id="backstory_b.tor_wanderer_vampire_1" text="{=!}I was taken from my village for the blood tax, but instead I became the desire of my vampire master. I was blessed with the gift of Nagash" />
-	<string id="backstory_c.tor_wanderer_vampire_1" text="{=!}My master however perished during the vampire wars, with no one else I have been left to wander the night since." />
-	<string id="response_1.tor_wanderer_vampire_1" text="{=!}Intriguing." />
-	<string id="response_2.tor_wanderer_vampire_1" text="{=!}I couldn't really care less about your wretched origin." />
-	<string id="backstory_d.tor_wanderer_vampire_1" text="{=!}Right." />
-	<string id="generic_backstory.tor_wanderer_vampire_1" text="{=!}I'm a fledgeling Vampire, powerful and undying." />
+  <string id="prebackstory.tor_wanderer_empire_6" text="{=!}I have no qualms speaking of my life stranger." />
+  <string id="backstory_a.tor_wanderer_empire_6" text="{=!}I was born into a noble family from Carcassonne, my father was a Knight before me." />
+  <string id="backstory_b.tor_wanderer_empire_6" text="{=!}It is my duty to become a Knight and I am currently on my quest to gain the favour of the Lady." />
+  <string id="backstory_c.tor_wanderer_empire_6" text="{=!}I have only just set out on my journey, I have much to learn." />
+  <string id="response_1.tor_wanderer_empire_6" text="{=!}I hope you will achieve what you set out to do." />
+  <string id="response_2.tor_wanderer_empire_6" text="{=!}You shouldn't have wandered so far from home." />
+  <string id="backstory_d.tor_wanderer_empire_6" text="{=!}Right." />
+  <string id="generic_backstory.tor_wanderer_empire_6" text="{=!}I am a questing Knight, devoted in life to the Lady and Bretonnia. " />
 
-	<string id="prebackstory.tor_wanderer_vampire_2" text="{=!}Hmm." />
-	<string id="backstory_a.tor_wanderer_vampire_2" text="{=!}Shattered memories, warrior, soldier? So long ago." />
-	<string id="backstory_b.tor_wanderer_vampire_2" text="{=!}Much is lost, bloodshed, battle, death." />
-	<string id="backstory_c.tor_wanderer_vampire_2" text="{=!}I serve, I fight, I destroy." />
-	<string id="response_1.tor_wanderer_vampire_2" text="{=!}I see." />
-	<string id="response_2.tor_wanderer_vampire_2" text="{=!}Riiight..." />
-	<string id="backstory_d.tor_wanderer_vampire_2" text="{=!}Mmm." />
-	<string id="generic_backstory.tor_wanderer_vampire_2" text="{=!}I am a Wight King, servant in death." />
+  <string id="prebackstory.tor_wanderer_vampire_0" text="{=!}Hm, you wish to know of my life? It is a tale I can share." />
+  <string id="backstory_a.tor_wanderer_vampire_0" text="{=!}I have always been surrounded by death, death is everything in Sylvania." />
+  <string id="backstory_b.tor_wanderer_vampire_0" text="{=!}My fate was never to join the undead roaming the land, but to control them. To raise them and bend them to my will." />
+  <string id="backstory_c.tor_wanderer_vampire_0" text="{=!}It has taken time but the dead do my bidding and my powers are ever growing." />
+  <string id="response_1.tor_wanderer_vampire_0" text="{=!}Intriguing." />
+  <string id="response_2.tor_wanderer_vampire_0" text="{=!}I couldn't really care less about your wretched origin." />
+  <string id="backstory_d.tor_wanderer_vampire_0" text="{=!}Right." />
+  <string id="generic_backstory.tor_wanderer_vampire_0" text="{=!}I am a master of death and undeath, many fear me. Do you? " />
+
+  <string id="prebackstory.tor_wanderer_vampire_1" text="{=!}I do not remember much of my past life, there is only the now and the thirst." />
+  <string id="backstory_a.tor_wanderer_vampire_1" text="{=!}Being human feels like a dream, a dream I was happily liberated from." />
+  <string id="backstory_b.tor_wanderer_vampire_1" text="{=!}I was taken from my village for the blood tax, but instead I became the desire of my vampire master. I was blessed with the gift of Nagash" />
+  <string id="backstory_c.tor_wanderer_vampire_1" text="{=!}My master however perished during the vampire wars, with no one else I have been left to wander the night since." />
+  <string id="response_1.tor_wanderer_vampire_1" text="{=!}Intriguing." />
+  <string id="response_2.tor_wanderer_vampire_1" text="{=!}I couldn't really care less about your wretched origin." />
+  <string id="backstory_d.tor_wanderer_vampire_1" text="{=!}Right." />
+  <string id="generic_backstory.tor_wanderer_vampire_1" text="{=!}I'm a fledgeling Vampire, powerful and undying." />
+
+  <string id="prebackstory.tor_wanderer_vampire_2" text="{=!}Hmm." />
+  <string id="backstory_a.tor_wanderer_vampire_2" text="{=!}Shattered memories, warrior, soldier? So long ago." />
+  <string id="backstory_b.tor_wanderer_vampire_2" text="{=!}Much is lost, bloodshed, battle, death." />
+  <string id="backstory_c.tor_wanderer_vampire_2" text="{=!}I serve, I fight, I destroy." />
+  <string id="response_1.tor_wanderer_vampire_2" text="{=!}I see." />
+  <string id="response_2.tor_wanderer_vampire_2" text="{=!}Riiight..." />
+  <string id="backstory_d.tor_wanderer_vampire_2" text="{=!}Mmm." />
+  <string id="generic_backstory.tor_wanderer_vampire_2" text="{=!}I am a Wight King, servant in death." />
 
 </strings>
