@@ -38,7 +38,7 @@
                 <EventSound EventName="Click" Audio="checkbox" />
             </EventSounds>
         </SoundProperties>
-  </Brush>
+    </Brush>
     <Brush Name="TorSpecialMoveBrush">
         <Layers>
             <BrushLayer Name="EmptyFill" Sprite="BlankWhiteSquare_9" ColorFactor="1" Color="#404040FF" />
@@ -47,6 +47,25 @@
         </Layers>
         <Styles>
             <Style Name="Default" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorInventoryMagicItemTupleBrush">
+        <Layers>
+            <BrushLayer Name="Default" Sprite="Inventory\tuple_right" ExtendTop="2" ExtendBottom="2" Color="#FF39FFEB"/>
+        </Layers>
+        <Styles>
+            <Style Name="Default">
+                <BrushLayer Name="Default" Sprite="Inventory\tuple_right" ExtendTop="2" ExtendBottom="2" />
+            </Style>
+            <Style Name="Hovered">
+                <BrushLayer Name="Default" Sprite="Inventory\tuple_right" ExtendTop="2" ExtendBottom="2" ColorFactor="1.2"/>
+            </Style>
+            <Style Name="Pressed">
+                <BrushLayer Name="Default" Sprite="Inventory\tuple_right_pressed" ExtendTop="2" ExtendBottom="2" ExtendLeft="2" ExtendRight="2" />
+            </Style>
+            <Style Name="Selected">
+                <BrushLayer Name="Default" Sprite="Inventory\tuple_right" ExtendTop="2" ExtendBottom="2" SaturationFactor="15" ValueFactor="5" />
+            </Style>
         </Styles>
     </Brush>
 </Brushes>

@@ -1023,7 +1023,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_generic_empire_femlord_medium_template" />
-      <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" civilian="true" />
+      <EquipmentSet id="tor_generic_empire_femlord_medium_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_emp_lord_wissenland_third_5" default_group="cavalry" name="{=str_ tor_emp_lord_wissenland_third_5}Viscount Herbort Unruh" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
@@ -1060,6 +1060,114 @@
     <Equipments>
       <EquipmentSet id="tor_generic_empire_lord_huntsman_template" />
       <EquipmentSet id="tor_generic_empire_lord_huntsman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_talabecland_factionleader" default_group="cavalry" name="{=str_ tor_emp_lord_talabecland_factionleader}Elector Count Helmut Feuerbach" occupation="Lord" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="35" weight="0.5046" build="0.6698" key="0002AC04D344144DFC765877989855866B7C866384C696003D7B43A479D4742C028A862408F85C1943100000000000000000000000000010000000003B143084" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_albeich_haupt-anderssen_template" />
+      <EquipmentSet id="tor_albeich_haupt-anderssen_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_talabecland_second_1" default_group="cavalry" name="{=str_ tor_emp_lord_talabecland_second_1}Count Josef von Behring" occupation="Lord" culture="Culture.empire" voice="curt" age="61" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="61" weight="0.7115" build="0.4709" key="0008540F1670070E8A8B3AB814B9DA4979B37989916FB99C438C2B977154385A96A7B6670A836CA1479A868897ABE66200000000000000A50000000023549104" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_talabecland_third_1" default_group="cavalry" name="{=str_ tor_emp_lord_talabecland_third_1}Count Manfred von Schirach" occupation="Lord" culture="Culture.empire" voice="curt" age="45" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="45" weight="0.3687" build="0.9042" key="0000D40E57CC310D38767976529BB74BA78AB8A8789A795C53A5D51BC69A895573CE66350C9D17674241687AD3B72A5600000000000000AB0000000043942044" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_reikland_factionleader" default_group="cavalry" name="{=str_ tor_emp_lord_reikland_factionleader}Emperor Karl Franz von Holswig-Schliestein" occupation="Lord" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="35" weight="0.5046" build="0.6698" key="0002AC04D344144DFC765877989855866B7C866384C696003D7B43A479D4742C028A862408F85C1943100000000000000000000000000010000000003B143084" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_reikland_second_1" default_group="cavalry" name="{=str_ tor_emp_lord_reikland_second_1}Count Ferdinand von Wallenstein" occupation="Lord" culture="Culture.empire" voice="curt" age="61" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="61" weight="0.7115" build="0.4709" key="0008540F1670070E8A8B3AB814B9DA4979B37989916FB99C438C2B977154385A96A7B6670A836CA1479A868897ABE66200000000000000A50000000023549104" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_reikland_third_1" default_group="cavalry" name="{=str_ tor_emp_lord_reikland_third_1}Margrave Reinhart von Mackensen" occupation="Lord" culture="Culture.empire" voice="curt" age="45" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="45" weight="0.3687" build="0.9042" key="0000D40E57CC310D38767976529BB74BA78AB8A8789A795C53A5D51BC69A895573CE66350C9D17674241687AD3B72A5600000000000000AB0000000043942044" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_sylvania_factionleader" default_group="cavalry" name="{=str_ tor_vc_lord_sylvania_factionleader}Mannfred von Carstein" occupation="Lord" culture="Culture.khuzait" voice="curt" age="51" skill_template="SkillSet.tor_skills_vampire_lord" race="vampire" is_hero="true">

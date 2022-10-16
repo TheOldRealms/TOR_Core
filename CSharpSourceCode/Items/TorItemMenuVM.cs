@@ -39,7 +39,7 @@ namespace TOR_Core.Items
 		public TorItemMenuVM(Action<ItemVM, int> resetComparedItems, InventoryLogic inventoryLogic, Func<WeaponComponentData, ItemObject.ItemUsageSetFlags> getItemUsageSetFlags, Func<EquipmentIndex, SPItemVM> getEquipmentAtIndex) : base(resetComparedItems, inventoryLogic, getItemUsageSetFlags, getEquipmentAtIndex)
         {
 			_itemTraitList = new MBBindingList<TorItemTraitVM>();
-			_readHint = new HintViewModel(new TaleWorlds.Localization.TextObject("Read scroll"));
+			_readHint = new HintViewModel(new TextObject("Read scroll"));
 			inventoryLogic.AfterTransfer += CheckItem;
         }
 
