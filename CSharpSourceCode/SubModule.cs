@@ -19,6 +19,7 @@ using TaleWorlds.MountAndBlade.GauntletUI.Mission;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.SpellBook;
+using TOR_Core.BaseGameDebug;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.AI;
@@ -100,6 +101,7 @@ namespace TOR_Core
                 starter.AddBehavior(new SpellTrainerInTownBehavior());
                 starter.AddBehavior(new MasterEngineerTownBehaviour());
                 starter.AddBehavior(new TORPerkHandlerCampaignBehavior());
+                starter.AddBehavior(new RestoreRaceCampaignBehavior());
 
             }
             else if (Game.Current.GameType is CustomGame && starterObject is BasicGameStarter)
