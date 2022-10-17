@@ -7,6 +7,8 @@ namespace TOR_Core.Models
 {
     public class TORCharacterStatsModel : DefaultCharacterStatsModel
     {
+        public override int MaxCharacterTier => 9;
+
         public override ExplainedNumber MaxHitpoints(CharacterObject character, bool includeDescriptions = false)
         {
             var number = base.MaxHitpoints(character, includeDescriptions);
