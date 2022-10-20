@@ -77,9 +77,13 @@ namespace TOR_Core.BattleMechanics.Banners
                         if (equipment.Item.Type == ItemObject.ItemTypeEnum.Shield)
                         {
                             string stringId = equipment.Item.StringId;
-                            agent.RemoveEquippedWeapon((EquipmentIndex)i);
-                            var missionWeapon = new MissionWeapon(MBObjectManager.Instance.GetObject<ItemObject>(stringId), equipment.ItemModifier, banner);
-                            agent.EquipWeaponWithNewEntity((EquipmentIndex)i, ref missionWeapon);
+                            var item = MBObjectManager.Instance.GetObject<ItemObject>(stringId);
+                            if(item != null && item.IsUsingTableau)
+                            {
+                                agent.RemoveEquippedWeapon((EquipmentIndex)i);
+                                var missionWeapon = new MissionWeapon(MBObjectManager.Instance.GetObject<ItemObject>(stringId), equipment.ItemModifier, banner);
+                                agent.EquipWeaponWithNewEntity((EquipmentIndex)i, ref missionWeapon);
+                            }
                         }
                     }
                 }

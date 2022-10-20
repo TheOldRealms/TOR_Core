@@ -19,7 +19,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
 
         public override void RegisterEvents()
         {
-            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, InitializeRaiseableCharacters);
+            CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, InitializeRaiseableCharacters);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, RaiseDead);
         }
 
@@ -38,6 +38,11 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         private void InitializeRaiseableCharacters(CampaignGameStarter starter)
         {
             var characters = MBObjectManager.Instance.GetObjectTypeList<CharacterObject>();
+            var basic = characters.Where(character => character.IsBasicTroop).ToList();
+            foreach(var c in basic)
+            {
+                var info = c.GetAttributes();
+            }
             _raiseableCharacters = characters.Where(character => character.IsUndead() && character.IsBasicTroop).ToList();
         }
 
