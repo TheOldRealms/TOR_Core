@@ -24,6 +24,13 @@ namespace TOR_Core.HarmonyPatches
 			}
 		}
 
+		[HarmonyPostfix]
+		[HarmonyPatch(typeof(CharacterObject), "CreateFrom")]
+		public static void TroopTreePatch(ref CharacterObject __result, CharacterObject character)
+		{
+			__result.Race = character.Race;
+		}
+
 		//Copied and modified from DesertionCampaignBehaviour.PartiesCheckDesertionDueToPartySizeExceedsPaymentRatio
 		//reason is to support tier 9 troops. Game is crashing when T9 troops are trying to desert.
 		//Must be reviewed if TW changes underlying code signature

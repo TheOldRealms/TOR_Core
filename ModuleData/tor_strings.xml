@@ -97,7 +97,7 @@
   <string id="str_faction_ruler_term_in_speech.empire" text="{=!}{?RULER.GENDER}the Elector Countess{?}the Elector Count{\?} {RULER.NAME}" />
   <string id="str_faction_ruler_name_with_title.empire" text="{=!}{?RULER.GENDER}Elector Countess{?}Elector Count{\?} {RULER.NAME}" />
   <string id="str_faction_noble_name_with_title.empire" text="{=!}{?RULER.GENDER}Countess{?}Count{\?} {RULER.NAME}" />
-  <string id="str_faction_ruler_name_with_title.khuzait" text="{=!}{RULER.NAME} Vampire {?RULER.GENDER}Lord{?}Lady{\?}" />
+  <string id="str_faction_ruler_name_with_title.khuzait" text="{=!}{RULER.NAME} Vampire {?RULER.GENDER}Lady{?}Lord{\?}" />
   <string id="str_faction_noble_name_with_title.khuzait" text="{=!}{RULER.NAME} {?RULER.GENDER}Lady{?}Lord{\?}" />
   <string id="str_faction_official.khuzait" text="{=!}a lord" />
   <string id="str_faction_official.khuzait_f" text="{=!}a lady" />
