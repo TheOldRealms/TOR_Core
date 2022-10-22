@@ -101,7 +101,7 @@ namespace TOR_Core
                 starter.AddBehavior(new SpellTrainerInTownBehavior());
                 starter.AddBehavior(new MasterEngineerTownBehaviour());
                 starter.AddBehavior(new TORPerkHandlerCampaignBehavior());
-                starter.AddBehavior(new RestoreRaceCampaignBehavior());
+                starter.AddBehavior(new BaseGameDebugCampaignBehavior());
 
             }
             else if (Game.Current.GameType is CustomGame && starterObject is BasicGameStarter)

@@ -24,9 +24,9 @@ namespace TOR_Core.Models
             }
         }
 
-        public override int NumberOfMaximumBanditPartiesAroundEachHideout => 5;
+        public override int NumberOfMaximumBanditPartiesAroundEachHideout => 6;
         public override int NumberOfMaximumBanditPartiesInEachHideout => 3;
-        public override int NumberOfInitialHideoutsAtEachBanditFaction => 10;
-        public override int NumberOfMaximumHideoutsAtEachBanditFaction => 19;
+        public override int NumberOfInitialHideoutsAtEachBanditFaction => 20;
+        public override int NumberOfMaximumHideoutsAtEachBanditFaction => 30;
     }
 }

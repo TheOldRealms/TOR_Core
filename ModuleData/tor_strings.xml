@@ -105,6 +105,41 @@
   <string id="str_faction_ruler.khuzait_f" text="{=!}Vampire Lady" />
   <string id="str_faction_ruler_term_in_speech.khuzait" text="{=!}{RULER.NAME} Vampire {?RULER.GENDER}Lord{?}Lady{\?}" />
 
+  <string id="tor_feudal_oath_line1.averland" text="{=!}I hereby swear to serve the Grand County of Averland." />
+  <string id="tor_feudal_oath_line2.averland" text="{=!}I proclaim the Elector Count, Marius Leitdorf as my rightful lord and better looking than Kurt Helboring." />
+  <string id="tor_feudal_oath_line3.averland" text="{=!}I uphold my sword to protect the sun-kissed lands of Averland, its people, its cattle and above all: the sweet wines." />
+  <string id="tor_feudal_oath_line4.averland" text="{=!}I recognise you as My lord and Saviour, and will follow you to the depths of hell and back and back to hell and... - ahem - back." />
+
+  <string id="tor_feudal_oath_line1.stirland" text="{=!}I hereby swear to serve the Grand County of Averland." />
+  <string id="tor_feudal_oath_line2.stirland" text="{=!}I proclaim the Elector Count, Marius Leitdorf as my rightful lord and better looking than Kurt Helboring." />
+  <string id="tor_feudal_oath_line3.stirland" text="{=!}I uphold my sword to protect the sun-kissed lands of Averland, its people, its cattle and above all: the sweet wines." />
+  <string id="tor_feudal_oath_line4.stirland" text="{=!}I recognise you as My lord and Saviour, and will follow you to the depths of hell and back and back to hell and... - ahem - back." />
+
+  <string id="tor_feudal_oath_line1.wissenland" text="{=!}I hereby swear to serve the Grand County of Averland." />
+  <string id="tor_feudal_oath_line2.wissenland" text="{=!}I proclaim the Elector Count, Marius Leitdorf as my rightful lord and better looking than Kurt Helboring." />
+  <string id="tor_feudal_oath_line3.wissenland" text="{=!}I uphold my sword to protect the sun-kissed lands of Averland, its people, its cattle and above all: the sweet wines." />
+  <string id="tor_feudal_oath_line4.wissenland" text="{=!}I recognise you as My lord and Saviour, and will follow you to the depths of hell and back and back to hell and... - ahem - back." />
+
+  <string id="tor_feudal_oath_line1.talabecland" text="{=!}I hereby swear to serve the Grand County of Averland." />
+  <string id="tor_feudal_oath_line2.talabecland" text="{=!}I proclaim the Elector Count, Marius Leitdorf as my rightful lord and better looking than Kurt Helboring." />
+  <string id="tor_feudal_oath_line3.talabecland" text="{=!}I uphold my sword to protect the sun-kissed lands of Averland, its people, its cattle and above all: the sweet wines." />
+  <string id="tor_feudal_oath_line4.talabecland" text="{=!}I recognise you as My lord and Saviour, and will follow you to the depths of hell and back and back to hell and... - ahem - back." />
+
+  <string id="tor_feudal_oath_line1.reikland" text="{=!}I hereby swear to serve the Grand County of Averland." />
+  <string id="tor_feudal_oath_line2.reikland" text="{=!}I proclaim the Elector Count, Marius Leitdorf as my rightful lord and better looking than Kurt Helboring." />
+  <string id="tor_feudal_oath_line3.reikland" text="{=!}I uphold my sword to protect the sun-kissed lands of Averland, its people, its cattle and above all: the sweet wines." />
+  <string id="tor_feudal_oath_line4.reikland" text="{=!}I recognise you as My lord and Saviour, and will follow you to the depths of hell and back and back to hell and... - ahem - back." />
+
+  <string id="tor_feudal_oath_line1.moot" text="{=!}I hereby swear to serve the Grand County of Averland." />
+  <string id="tor_feudal_oath_line2.moot" text="{=!}I proclaim the Elector Count, Marius Leitdorf as my rightful lord and better looking than Kurt Helboring." />
+  <string id="tor_feudal_oath_line3.moot" text="{=!}I uphold my sword to protect the sun-kissed lands of Averland, its people, its cattle and above all: the sweet wines." />
+  <string id="tor_feudal_oath_line4.moot" text="{=!}I recognise you as My lord and Saviour, and will follow you to the depths of hell and back and back to hell and... - ahem - back." />
+
+  <string id="tor_feudal_oath_line1.sylvania" text="{=!}I hereby swear to serve the Grand County of Averland." />
+  <string id="tor_feudal_oath_line2.sylvania" text="{=!}I proclaim the Elector Count, Marius Leitdorf as my rightful lord and better looking than Kurt Helboring." />
+  <string id="tor_feudal_oath_line3.sylvania" text="{=!}I uphold my sword to protect the sun-kissed lands of Averland, its people, its cattle and above all: the sweet wines." />
+  <string id="tor_feudal_oath_line4.sylvania" text="{=!}I recognise you as My lord and Saviour, and will follow you to the depths of hell and back and back to hell and... - ahem - back." />
+
   <string id="str_liege_title.empire" text="{=!}Elector Count of one of the Provinces of the Empire">
     <tags>
       <tag tag_name="EmpireTag" />

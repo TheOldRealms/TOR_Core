@@ -4,6 +4,7 @@ using SandBox.CampaignBehaviors;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.ViewModelCollection.GameMenu.Overlay;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
@@ -54,6 +55,28 @@ namespace TOR_Core.HarmonyPatches
 		{
 			var itemToRemove = __instance.ContextList.FirstOrDefault(x => x.ActionText == GameTexts.FindText("str_menu_overlay_context_list", "QuickConversation").ToString());
 			if (itemToRemove != null) __instance.ContextList.Remove(itemToRemove);
+		}
+
+		//This doesnt get executed by Harmony like this. Presumably, because it is a delegate that ends up with a different method name at runtime.
+		[HarmonyPostfix]
+		[HarmonyPatch(typeof(VassalAndMercenaryOfferCampaignBehavior), "conversation_set_oath_phrases_on_condition")]
+		public static void OverrideOathText()
+		{
+			var faction = Hero.OneToOneConversationHero.MapFaction;
+			if(faction is Kingdom)
+            {
+				var line1 = GameTexts.FindText("tor_feudal_oath_line1", faction.StringId).ToString();
+				if(line1 != null && !string.IsNullOrEmpty(line1)) MBTextManager.SetTextVariable("OATH_LINE_1", line1, false);
+
+				var line2 = GameTexts.FindText("tor_feudal_oath_line2", faction.StringId).ToString();
+				if (line2 != null && !string.IsNullOrEmpty(line2)) MBTextManager.SetTextVariable("OATH_LINE_2", line2, false);
+
+				var line3 = GameTexts.FindText("tor_feudal_oath_line3", faction.StringId).ToString();
+				if (line3 != null && !string.IsNullOrEmpty(line3)) MBTextManager.SetTextVariable("OATH_LINE_3", line3, false);
+
+				var line4 = GameTexts.FindText("tor_feudal_oath_line4", faction.StringId).ToString();
+				if (line4 != null && !string.IsNullOrEmpty(line4)) MBTextManager.SetTextVariable("OATH_LINE_4", line4, false);
+			}		
 		}
 	}
 }
