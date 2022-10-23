@@ -110,35 +110,35 @@
   <string id="tor_feudal_oath_line3.averland" text="{=!}I uphold my sword to protect the sun-kissed lands of Averland, its people, its cattle and above all: the sweet wines." />
   <string id="tor_feudal_oath_line4.averland" text="{=!}I recognise you as My lord and Saviour, and will follow you to the depths of hell and back and back to hell and... - ahem - back." />
 
-  <string id="tor_feudal_oath_line1.stirland" text="{=!}I hereby swear to serve the Grand County of Averland." />
-  <string id="tor_feudal_oath_line2.stirland" text="{=!}I proclaim the Elector Count, Marius Leitdorf as my rightful lord and better looking than Kurt Helboring." />
-  <string id="tor_feudal_oath_line3.stirland" text="{=!}I uphold my sword to protect the sun-kissed lands of Averland, its people, its cattle and above all: the sweet wines." />
-  <string id="tor_feudal_oath_line4.stirland" text="{=!}I recognise you as My lord and Saviour, and will follow you to the depths of hell and back and back to hell and... - ahem - back." />
+  <string id="tor_feudal_oath_line1.stirland" text="{=!}I hereby swear loyalty to the Grand County of Stirland." />
+  <string id="tor_feudal_oath_line2.stirland" text="{=!}I acknowledge Alberich Haupt-Anderssen, Grand Count of Stirland, Prince of Wurtbad and Overlord of Sylvania as my lord and liege until my dying day." />
+  <string id="tor_feudal_oath_line3.stirland" text="{=!}May my body be Stirland’s shield in defence of the undead threat." />
+  <string id="tor_feudal_oath_line4.stirland" text="{=!}I will follow you to the deepest parts of the dead lands." />
 
-  <string id="tor_feudal_oath_line1.wissenland" text="{=!}I hereby swear to serve the Grand County of Averland." />
-  <string id="tor_feudal_oath_line2.wissenland" text="{=!}I proclaim the Elector Count, Marius Leitdorf as my rightful lord and better looking than Kurt Helboring." />
-  <string id="tor_feudal_oath_line3.wissenland" text="{=!}I uphold my sword to protect the sun-kissed lands of Averland, its people, its cattle and above all: the sweet wines." />
-  <string id="tor_feudal_oath_line4.wissenland" text="{=!}I recognise you as My lord and Saviour, and will follow you to the depths of hell and back and back to hell and... - ahem - back." />
+  <string id="tor_feudal_oath_line1.wissenland" text="{=!}I hereby swear my loyalty to Nuln, Bastion of the South and the Jewel of the Empire and the lesser surrounding villages, castles and towns of Wissenland." />
+  <string id="tor_feudal_oath_line2.wissenland" text="{=!}I recognise Emmanuelle von Liebwitz, Grand Countess of Wissenland, Countess of Nuln and Duchess of Meissen as my eternal lady." />
+  <string id="tor_feudal_oath_line3.wissenland" text="{=!}In times of dire need, i will defend Nuln to the best of ability." />
+  <string id="tor_feudal_oath_line4.wissenland" text="{=!}I pledge to follow you wherever you lead and will defend you till my dying day." />
 
-  <string id="tor_feudal_oath_line1.talabecland" text="{=!}I hereby swear to serve the Grand County of Averland." />
-  <string id="tor_feudal_oath_line2.talabecland" text="{=!}I proclaim the Elector Count, Marius Leitdorf as my rightful lord and better looking than Kurt Helboring." />
-  <string id="tor_feudal_oath_line3.talabecland" text="{=!}I uphold my sword to protect the sun-kissed lands of Averland, its people, its cattle and above all: the sweet wines." />
-  <string id="tor_feudal_oath_line4.talabecland" text="{=!}I recognise you as My lord and Saviour, and will follow you to the depths of hell and back and back to hell and... - ahem - back." />
+  <string id="tor_feudal_oath_line1.talabecland" text="{=!}I hereby swear undying loyalty to the Grand Duchy of Talabecland." />
+  <string id="tor_feudal_oath_line2.talabecland" text="{=!}I recognise Helmut Feuerbach, Grand Duke of Talabecland, Margrave of the East March and Beloved of Taal as my eternal lord." />
+  <string id="tor_feudal_oath_line3.talabecland" text="{=!}In times of need, I will defend the Taalbaston until my dying breath." />
+  <string id="tor_feudal_oath_line4.talabecland" text="{=!}I shall aid you in defence of Taal’s holy ground until the end of days." />
 
-  <string id="tor_feudal_oath_line1.reikland" text="{=!}I hereby swear to serve the Grand County of Averland." />
-  <string id="tor_feudal_oath_line2.reikland" text="{=!}I proclaim the Elector Count, Marius Leitdorf as my rightful lord and better looking than Kurt Helboring." />
-  <string id="tor_feudal_oath_line3.reikland" text="{=!}I uphold my sword to protect the sun-kissed lands of Averland, its people, its cattle and above all: the sweet wines." />
-  <string id="tor_feudal_oath_line4.reikland" text="{=!}I recognise you as My lord and Saviour, and will follow you to the depths of hell and back and back to hell and... - ahem - back." />
+  <string id="tor_feudal_oath_line1.reikland" text="{=!}I hereby swear eternal servitude to Reikland and its sovereign, Karl Franz Holswig-Schliestein, Protector of the Empire, Defier of the Dark, Sigmar's Heir, Emperor of the South, and Son of Emperors." />
+  <string id="tor_feudal_oath_line2.reikland" text="{=!}I pledge my soul to the warrior god Sigmar, his foes will know my wrath." />
+  <string id="tor_feudal_oath_line3.reikland" text="{=!}May your foes recognise me as their eternal enemy, for as long as there is breath within my body I will not rest." />
+  <string id="tor_feudal_oath_line4.reikland" text="{=!}All hail to Karl Franz, whom I will follow into the depths of the abyss." />
 
-  <string id="tor_feudal_oath_line1.moot" text="{=!}I hereby swear to serve the Grand County of Averland." />
-  <string id="tor_feudal_oath_line2.moot" text="{=!}I proclaim the Elector Count, Marius Leitdorf as my rightful lord and better looking than Kurt Helboring." />
-  <string id="tor_feudal_oath_line3.moot" text="{=!}I uphold my sword to protect the sun-kissed lands of Averland, its people, its cattle and above all: the sweet wines." />
-  <string id="tor_feudal_oath_line4.moot" text="{=!}I recognise you as My lord and Saviour, and will follow you to the depths of hell and back and back to hell and... - ahem - back." />
+  <string id="tor_feudal_oath_line1.moot" text="{=!}I hereby swear to serve the Grand County of the Mootland." />
+  <string id="tor_feudal_oath_line2.moot" text="{=!}I proclaim the elder Hisme Stoutheart as my rightful liege." />
+  <string id="tor_feudal_oath_line3.moot" text="{=!}I uphold my sword to protect the people against the undead menace." />
+  <string id="tor_feudal_oath_line4.moot" text="{=!}I pledge to aid you in peace and in times of war alike." />
 
-  <string id="tor_feudal_oath_line1.sylvania" text="{=!}I hereby swear to serve the Grand County of Averland." />
-  <string id="tor_feudal_oath_line2.sylvania" text="{=!}I proclaim the Elector Count, Marius Leitdorf as my rightful lord and better looking than Kurt Helboring." />
-  <string id="tor_feudal_oath_line3.sylvania" text="{=!}I uphold my sword to protect the sun-kissed lands of Averland, its people, its cattle and above all: the sweet wines." />
-  <string id="tor_feudal_oath_line4.sylvania" text="{=!}I recognise you as My lord and Saviour, and will follow you to the depths of hell and back and back to hell and... - ahem - back." />
+  <string id="tor_feudal_oath_line1.sylvania" text="{=!}I Pledge mine soul to the eternal servitude of the lands of Sylvania." />
+  <string id="tor_feudal_oath_line2.sylvania" text="{=!}I hereby sweareth mine undying loyalty to Mannfred von Carstein, Count of Sylvania, the most cunning and magically gifted vampire of all of the von Carstein bloodlines." />
+  <string id="tor_feudal_oath_line3.sylvania" text="{=!}May thine enemies tremble at the sight of me and mine undead legions." />
+  <string id="tor_feudal_oath_line4.sylvania" text="{=!}I shall join thine court and follow thee deep into the lands of the empire." />
 
   <string id="str_liege_title.empire" text="{=!}Elector Count of one of the Provinces of the Empire">
     <tags>
