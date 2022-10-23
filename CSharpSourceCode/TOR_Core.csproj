@@ -448,7 +448,8 @@
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectTemplate.cs" />
     <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
-    <Compile Include="CampaignMechanics\CustomEncounterDialogs\CustomDialogCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\CustomDialogs\BloodKissCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\CustomDialogs\CustomDialogCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\MasterEngineer\MasterEngineerTownBehavior.cs" />
     <Compile Include="CampaignMechanics\RaidingParties\ChaosRaidingPartyComponent.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\CharacterCreationOption.cs" />

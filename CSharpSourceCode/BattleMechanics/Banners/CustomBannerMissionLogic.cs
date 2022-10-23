@@ -51,6 +51,7 @@ namespace TOR_Core.BattleMechanics.Banners
 
         private void SwitchShieldPattern(Agent agent)
         {
+            if (agent.State != AgentState.Active) return;
             string factionId = "";
             if (Game.Current.GameType is Campaign)
             {

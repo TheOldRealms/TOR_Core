@@ -57,9 +57,8 @@ namespace TOR_Core.HarmonyPatches
 			if (itemToRemove != null) __instance.ContextList.Remove(itemToRemove);
 		}
 
-		//This doesnt get executed by Harmony like this. Presumably, because it is a delegate that ends up with a different method name at runtime.
 		[HarmonyPostfix]
-		[HarmonyPatch(typeof(VassalAndMercenaryOfferCampaignBehavior), "conversation_set_oath_phrases_on_condition")]
+		[HarmonyPatch(typeof(LordConversationsCampaignBehavior), "conversation_set_oath_phrases_on_condition")]
 		public static void OverrideOathText()
 		{
 			var faction = Hero.OneToOneConversationHero.MapFaction;
