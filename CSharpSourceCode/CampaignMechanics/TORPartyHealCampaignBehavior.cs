@@ -22,7 +22,7 @@ namespace TOR_Core.CampaignMechanics
                 {
                     if (troopRoster.Character.IsHero && troopRoster.Character.HeroObject.IsVampire())
                     {
-                        troopRoster.Character.HeroObject.Heal(party.Party, troopRoster.Character.HeroObject.HitPoints / 10, false);
+                        troopRoster.Character.HeroObject.Heal(troopRoster.Character.HeroObject.HitPoints / 10,false);
                     }
                 }
             }
