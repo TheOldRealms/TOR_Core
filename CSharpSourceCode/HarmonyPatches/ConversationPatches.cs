@@ -77,5 +77,14 @@ namespace TOR_Core.HarmonyPatches
 				if (line4 != null && !string.IsNullOrEmpty(line4)) MBTextManager.SetTextVariable("OATH_LINE_4", line4, false);
 			}		
 		}
+
+		[HarmonyPostfix]
+		[HarmonyPatch(typeof(LordConversationsCampaignBehavior), "conversation_liege_states_obligations_to_vassal_on_condition")]
+		public static void OverridePlayerFactionJoinText()
+		{
+			var culture = Hero.OneToOneConversationHero.Culture;
+			var text = GameTexts.FindText("tor_player_accept_vassalage", culture.StringId);
+			MBTextManager.SetTextVariable("PLAYER_ACCEPTED_AS_VASSAL", text, false);
+		}
 	}
 }

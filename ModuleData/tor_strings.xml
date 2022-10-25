@@ -104,6 +104,29 @@
   <string id="str_faction_ruler.khuzait" text="{=!}Vampire Lord" />
   <string id="str_faction_ruler.khuzait_f" text="{=!}Vampire Lady" />
   <string id="str_faction_ruler_term_in_speech.khuzait" text="{=!}{RULER.NAME} Vampire {?RULER.GENDER}Lord{?}Lady{\?}" />
+  <string id="str_adjective_for_faction.averland" text="{=!}Averland" />
+  <string id="str_adjective_for_faction.stirland" text="{=!}Stirland" />
+  <string id="str_adjective_for_faction.wissenland" text="{=!}Wissenland" />
+  <string id="str_adjective_for_faction.talabecland" text="{=!}Talabecland" />
+  <string id="str_adjective_for_faction.reikland" text="{=!}Reikland" />
+  <string id="str_adjective_for_faction.moot" text="{=!}halfling" />
+  <string id="str_adjective_for_faction.sylvania" text="{=!}vampire" />
+  <string id="str_short_term_for_faction.averland" text="{=!}Averland" />
+  <string id="str_short_term_for_faction.stirland" text="{=!}Stirland" />
+  <string id="str_short_term_for_faction.wissenland" text="{=!}Wissenland" />
+  <string id="str_short_term_for_faction.talabecland" text="{=!}Talabecland" />
+  <string id="str_short_term_for_faction.reikland" text="{=!}Reikland" />
+  <string id="str_short_term_for_faction.moot" text="{=!}halflings" />
+  <string id="str_short_term_for_faction.sylvania" text="{=!}vampires" />
+  <string id="str_faction_formal_name_for_culture.khuzait" text="{=!}Sylvania" />
+  <string id="str_faction_formal_name_for_culture.empire" text="{=!}Empire" />
+  <string id="str_faction_informal_name_for_culture.khuzait" text="{=!}Sylvania" />
+  <string id="str_faction_informal_name_for_culture.empire" text="{=!}the Empire" />
+  <string id="str_adjective_for_culture.khuzait" text="{=!}vampire" />
+  <string id="str_adjective_for_culture.empire" text="{=!}imperial" />
+  <string id="str_neutral_term_for_culture.khuzait" text="{=!}sylvanians" />
+  <string id="str_neutral_term_for_culture.empire" text="{=!}imperials" />
+
 
   <string id="tor_feudal_oath_line1.averland" text="{=!}I hereby swear to serve the Grand County of Averland." />
   <string id="tor_feudal_oath_line2.averland" text="{=!}I proclaim the Elector Count, Marius Leitdorf as my rightful lord and better looking than Kurt Helboring." />
@@ -139,6 +162,9 @@
   <string id="tor_feudal_oath_line2.sylvania" text="{=!}I hereby sweareth mine undying loyalty to Mannfred von Carstein, Count of Sylvania, the most cunning and magically gifted vampire of all of the von Carstein bloodlines." />
   <string id="tor_feudal_oath_line3.sylvania" text="{=!}May thine enemies tremble at the sight of me and mine undead legions." />
   <string id="tor_feudal_oath_line4.sylvania" text="{=!}I shall join thine court and follow thee deep into the lands of the empire." />
+
+  <string id="tor_player_accept_vassalage.empire" text="{=!}I proclaim you a noble of the Empire. Your life and property shall be protected by our laws, and shall not be taken from you except by law. You may serve as an official over towns and villages and as a general over armies, if we call upon you to do so." />
+  <string id="tor_player_accept_vassalage.khuzait" text="{=!}I proclaim you a noble of the Sylvania and a servant of the von Carsteins. You are expected to carry out our bidding and bear arms in times of war. " />
 
   <string id="str_liege_title.empire" text="{=!}Elector Count of one of the Provinces of the Empire">
     <tags>
