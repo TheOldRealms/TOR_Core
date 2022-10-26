@@ -247,6 +247,11 @@
     </tags>
   </string>
 
+  <!--skills-->
+  <string id="str_how_to_learn_skill.Faith" text="{=!}Use combat prayers." />
+  <string id="str_how_to_learn_skill.Gunpowder" text="{=!}Fight with a firearm." />
+  <string id="str_how_to_learn_skill.Spellcraft" text="{=!}Cast spells, do damage with magic." />
+
   <!--crafting-->
   <string id="str_crafting_template.tor_twohandedswords_template" text="{=smgrs}TOR-Greatswords" />
   <string id="str_crafting_template.tor_sword_template" text="{=sms}TOR-Swords" />

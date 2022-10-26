@@ -252,6 +252,18 @@
   <ExtendedItemObjectProperties ItemStringId="tor_vc_head_helm_cairn_wraith_006">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_head_helm_hell_knight_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_head_helm_hell_knight_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_head_helm_hell_knight_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_head_helm_dh_templar_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_head_invisible_skull_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -489,6 +501,12 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_body_breastplate_cairn_wraith_004">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_shoulder_pauldron_hell_knight_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_shoulder_pauldron_dh_templar_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_shoulder_pauldron_nurgle_001">
@@ -730,13 +748,19 @@
   <ExtendedItemObjectProperties ItemStringId="tor_vc_body_breastplate_wight_king_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_armor_cairn_wraith_001_hideskin">
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_armor_cairn_wraith_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_armor_cairn_wraith_002_hideskin">
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_armor_cairn_wraith_002">
     <ItemTraits />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_armor_cairn_wraith_003_hideskin">
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_armor_cairn_wraith_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_breastplate_hell_knight_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_breastplate_dh_templar_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_body_armor_chaos_knight_001">
@@ -925,6 +949,12 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_arm_bracers_wight_king_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_arm_gauntlet_hell_knight_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_arm_gauntlet_dh_templar_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_arm_gauntlet_chaos_knight_001">
@@ -1140,6 +1170,12 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_leg_boots_cairn_wraith_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_leg_boots_vc_hell_knight_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_leg_boots_vc_dh_templar_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_leg_boots_chaos_knight_001">
