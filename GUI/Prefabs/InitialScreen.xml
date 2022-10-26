@@ -22,7 +22,7 @@
                           <Children>
                             <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Button.SuggestedWidth" SuggestedHeight="!Button.SuggestedHeight" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="InitialMenuButtonBrush" Command.Click="ExecuteAction" IsDisabled="@IsDisabled" UpdateChildrenStates="true">
                               <Children>
-                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" Brush="InitialMenuButtonBrush" ClipContents="false" Text="@NameText" UpdateChildrenStates="true">
+                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" Brush="TorInitialMenuButtonBrush" ClipContents="false" Text="@NameText" UpdateChildrenStates="true">
                                   <Children>
                                     <ImageWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="46" SuggestedHeight="20" HorizontalAlignment="Left" VerticalAlignment="Center" PositionXOffset="-55" MarginBottom="2" Brush="HoverIndicatorBrush" />
                                     <ImageWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="46" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="55" MarginBottom="2" Brush="HoverIndicatorBrushFlipped" />

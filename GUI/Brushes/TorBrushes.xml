@@ -1,4 +1,30 @@
 <Brushes>
+    <Brush Name="TorInitialMenuButtonBrush" FontColor="#F4E1C4FF" Font="CasablancaAntique" TransitionDuration="0.2">
+        <Layers>
+            <BrushLayer Name="Default" Color="#FFFFFFFF" />
+        </Layers>
+        <Styles>
+            <Style Name="Default" FontColor="#F4E1C4FF" TextGlowColor="#FFFFFF11" TextGlowRadius="0.1" FontSize="32">
+                <BrushLayer Name="Default" FontColor="#F4E1C4FF" />
+            </Style>
+            <Style Name="Hovered" FontColor="#F3C697FF" TextGlowColor="#F3C69711">
+                <BrushLayer Name="Default" FontColor="#F3C697FF" />
+            </Style>
+            <Style Name="Pressed" FontColor="#B57F5CFF" TextGlowColor="#B57F5C11">
+                <BrushLayer Name="Default" />
+            </Style>
+            <Style Name="Disabled" TextGlowColor="#00000000" TextAlphaFactor="0.35">
+                <BrushLayer Name="Default" />
+            </Style>
+        </Styles>
+        <SoundProperties>
+            <StateSounds>
+            </StateSounds>
+            <EventSounds>
+                <EventSound EventName="Click" Audio="default" />
+            </EventSounds>
+        </SoundProperties>
+    </Brush>
     <Brush Name="TorInventoryMagicItemBrush" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Center">
         <Styles>
             <Style Name="Default" FontColor="#0095A4FF" TextBlur="0" TextOutlineAmount="0" TextGlowRadius="0" FontSize="16" />
