@@ -2089,7 +2089,7 @@
     </CommonAreas>
   </Settlement>
   <!--Reikland-->
-  <Settlement id="town_RL1" name="{=Settlements.Settlement.name.town_RL1}Altdorf" owner="Faction.reikland_clan_1" posX="1278.192" posY="1076.414" culture="Culture.empire" prosperity="4500" gate_posX="1274.894" gate_posY="1072.329" text="{=!}">
+  <Settlement id="town_RL1" name="{=Settlements.Settlement.name.town_RL1}Altdorf" owner="Faction.reikland_clan_1" posX="1278.192" posY="1076.414" culture="Culture.empire" prosperity="4500" gate_posX="1274.894" gate_posY="1072.329" text="{=!}Altdorf is at once perhaps the greatest city of the Empire and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the Reikland and the Empire of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the Empire; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
     <Components>
       <Town id="town_comp_RL1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -2148,7 +2148,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_RL2" name="{=Settlements.Settlement.name.town_RL2}Schilderheim" owner="Faction.reikland_clan_1" posX="1191.087" posY="1078.689" culture="Culture.empire" prosperity="4500" gate_posX="1190.67" gate_posY="1079.899" text="{=!}">
+  <Settlement id="town_RL2" name="{=Settlements.Settlement.name.town_RL2}Schilderheim" owner="Faction.reikland_clan_3" posX="1191.087" posY="1078.689" culture="Culture.empire" prosperity="4500" gate_posX="1190.67" gate_posY="1079.899" text="{=!}">
     <Components>
       <Town id="town_comp_RL2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -2194,7 +2194,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_RL3" name="{=Settlements.Settlement.name.town_RL3}Helmgart" owner="Faction.reikland_clan_1" posX="1198.868" posY="1034.959" culture="Culture.empire" prosperity="4500" gate_posX="1198.108" gate_posY="1033.921" text="{=!}">
+  <Settlement id="town_RL3" name="{=Settlements.Settlement.name.town_RL3}Helmgart" owner="Faction.reikland_clan_3" posX="1198.868" posY="1034.959" culture="Culture.empire" prosperity="4500" gate_posX="1198.108" gate_posY="1033.921" text="{=!}At the head of the Axe Bite pass sits the town of Helmgart. Ruled by Margrave Reinhardt von Mackensen, the fortress town serves as both the economic and military border between Bretonnia and the Empire. Axe Bite is one of three mountain passes through the Grey mountains; as such the safety of passage through it is a primary concern. Helmgart itself is a market town, surrounded by several curtain walls. One of these walls traverses the entire width of the pass itself, meaning all travel must pass through its single gate or be stuck on either the Bretonnian or Imperial side of the border.">
     <Components>
       <Town id="town_comp_RL3" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -2240,7 +2240,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_RL4" name="{=Settlements.Settlement.name.town_RL4}Bögenhafen" owner="Faction.reikland_clan_1" posX="1238.612" posY="1041.357" culture="Culture.empire" prosperity="4500" gate_posX="1239.778" gate_posY="1041.903" text="{=!}">
+  <Settlement id="town_RL4" name="{=Settlements.Settlement.name.town_RL4}Bögenhafen" owner="Faction.reikland_clan_4" posX="1238.612" posY="1041.357" culture="Culture.empire" prosperity="4500" gate_posX="1239.778" gate_posY="1041.903" text="{=!}Bögenhafen is a prominent market town that sits on either side of the River Bögen. It is midway between Altdorf and Montfort allowing the town to maintain its economic importance through nearly any hardship. The northside of the town, known as the Pit, is the smallest and poorest section of Bögenhafen. The Southside of the town is where most of the wealth and all of the town’s important institutions reside, including its religious temples and town hall. A town council rules in the name of Graf Wilhelm von Saponatheim.">
     <Components>
       <Town id="town_comp_RL4" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -2286,7 +2286,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_RL5" name="{=Settlements.Settlement.name.town_RL5}Ubersreik" owner="Faction.reikland_clan_1" posX="1268.837" posY="998.256" culture="Culture.empire" prosperity="4500" gate_posX="1268.471" gate_posY="997.0253" text="{=!}">
+  <Settlement id="town_RL5" name="{=Settlements.Settlement.name.town_RL5}Ubersreik" owner="Faction.reikland_clan_2" posX="1268.837" posY="998.256" culture="Culture.empire" prosperity="4500" gate_posX="1268.471" gate_posY="997.0253" text="{=!}Ubersreik is one of the most important trade centers in Reikland. It sits astride and important bridge on the road from from Bögenhafen to Dunkelburg. Trade flows along the road as well as downriver to Auerswald, Grünburg, Kemperbad, and Altdorf. In addition, because it is located near Grey Lady Pass, Ubersreik is the ideal location for merchants travelling over the Grey Mountains to move their wares from the river to overland transportation, and vice versa.">
     <Components>
       <Town id="town_comp_RL5" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -2345,7 +2345,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_RL6" name="{=Settlements.Settlement.name.town_RL6}Dunkelberg" owner="Faction.reikland_clan_1" posX="1305.575" posY="960.061" culture="Culture.empire" prosperity="4500" gate_posX="1306.372" gate_posY="959.0239" text="{=!}">
+  <Settlement id="town_RL6" name="{=Settlements.Settlement.name.town_RL6}Dunkelberg" owner="Faction.reikland_clan_1" posX="1305.575" posY="960.061" culture="Culture.empire" prosperity="4500" gate_posX="1306.372" gate_posY="959.0239" text="{=!}On the northern bank of the River Grissen is the market town of Dunkelburg. Dunkelburg benefits from being along the Stimmigen canal, which allows access to many of the market towns in Reikland’s southern region. The town is known for its rustic feel which seems to be preserved in the town despite its continued increase in size. Unfortunately, Dunkelburg’s proximity to the Grey Mountains has doomed it to be plagued by Goblins, who regularly raid the town. One of the results of these raids is that the town has a much higher population of Orphans than many other parts of the Empire. These orphans are provided for by the von Wallensteins however, as long as they work in the town’s several Bleachfields that is.">
     <Components>
       <Town id="town_comp_RL6" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -2391,7 +2391,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_RL1" name="{=Settlements.Settlement.name.castle_RL1}Stimmigen" owner="Faction.reikland_clan_1" posX="1291.684" posY="980.917" prosperity="800" culture="Culture.empire" gate_posX="1290.492" gate_posY="980.3779" text="">
+  <Settlement id="castle_RL1" name="{=Settlements.Settlement.name.castle_RL1}Stimmigen" owner="Faction.reikland_clan_2" posX="1291.684" posY="980.917" prosperity="800" culture="Culture.empire" gate_posX="1290.492" gate_posY="980.3779" text="">
     <Components>
       <Town id="castle_comp_RL1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -2427,7 +2427,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_RL2" name="{=Settlements.Settlement.name.castle_RL2}Kemperbad" owner="Faction.reikland_clan_1" posX="1323.062" posY="1008.906" prosperity="800" culture="Culture.empire" gate_posX="1324.203" gate_posY="1009.562" text="">
+  <Settlement id="castle_RL2" name="{=Settlements.Settlement.name.castle_RL2}Kemperbad" owner="Faction.reikland_clan_5" posX="1323.062" posY="1008.906" prosperity="800" culture="Culture.empire" gate_posX="1324.203" gate_posY="1009.562" text="{=!}The Grand Freistadt of Kemperbad is a settlement within the province of Reikland, said to make the finest brandy in the Empire, while holding Freistadt status.">
     <Components>
       <Town id="castle_comp_RL2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -2463,7 +2463,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_RL3" name="{=Settlements.Settlement.name.castle_RL3}Castle Reik" owner="Faction.reikland_clan_1" posX="1302.871" posY="1050.253" prosperity="800" culture="Culture.empire" gate_posX="1303.586" gate_posY="1051.358" text="">
+  <Settlement id="castle_RL3" name="{=Settlements.Settlement.name.castle_RL3}Castle Reik" owner="Faction.reikland_clan_1" posX="1302.871" posY="1050.253" prosperity="800" culture="Culture.empire" gate_posX="1303.586" gate_posY="1051.358" text="{=!}Castle Reik is the fortress and headquarters of the Grand Order of the Reiksguard Knights. It is located south-east of the grand city of Altdorf, along the confluence of the Reik River.">
     <Components>
       <Town id="castle_comp_RL3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -2499,7 +2499,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_RL4" name="{=Settlements.Settlement.name.castle_RL4}Castle Gauenburg" owner="Faction.reikland_clan_1" posX="1241.518" posY="1059.337" prosperity="800" culture="Culture.empire" gate_posX="1242.374" gate_posY="1058.338" text="">
+  <Settlement id="castle_RL4" name="{=Settlements.Settlement.name.castle_RL4}Castle Gauenburg" owner="Faction.reikland_clan_4" posX="1241.518" posY="1059.337" prosperity="800" culture="Culture.empire" gate_posX="1242.374" gate_posY="1058.338" text="">
     <Components>
       <Town id="castle_comp_RL4" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -2535,7 +2535,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_RL5" name="{=Settlements.Settlement.name.castle_RL5}Merxheim" owner="Faction.reikland_clan_1" posX="1167.787" posY="1116.888" prosperity="800" culture="Culture.empire" gate_posX="1168.937" gate_posY="1117.529" text="">
+  <Settlement id="castle_RL5" name="{=Settlements.Settlement.name.castle_RL5}Merxheim" owner="Faction.reikland_clan_3" posX="1167.787" posY="1116.888" prosperity="800" culture="Culture.empire" gate_posX="1168.937" gate_posY="1117.529" text="">
     <Components>
       <Town id="castle_comp_RL5" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>

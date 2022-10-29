@@ -22,6 +22,7 @@ namespace TOR_Core.AbilitySystem
         {
             return !IsCasting &&
                    !IsOnCooldown() &&
+                   IsCharged &&
                    (casterAgent.IsPlayerControlled || (casterAgent.IsActive() && casterAgent.Health > 0 && casterAgent.GetMorale() > 1 && casterAgent.IsAbilityUser())) &&
                    !casterAgent.HasMount;
         }

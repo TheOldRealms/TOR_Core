@@ -94,16 +94,16 @@
   <string id="str_faction_official.empire_f" text="{=!}a countess" />
   <string id="str_faction_ruler.empire" text="{=!}elector count" />
   <string id="str_faction_ruler.empire_f" text="{=!}elector countess" />
-  <string id="str_faction_ruler_term_in_speech.empire" text="{=!}{?RULER.GENDER}the Elector Countess{?}the Elector Count{\?} {RULER.NAME}" />
-  <string id="str_faction_ruler_name_with_title.empire" text="{=!}{?RULER.GENDER}Elector Countess{?}Elector Count{\?} {RULER.NAME}" />
-  <string id="str_faction_noble_name_with_title.empire" text="{=!}{?RULER.GENDER}Countess{?}Count{\?} {RULER.NAME}" />
-  <string id="str_faction_ruler_name_with_title.khuzait" text="{=!}{RULER.NAME} Vampire {?RULER.GENDER}Lady{?}Lord{\?}" />
-  <string id="str_faction_noble_name_with_title.khuzait" text="{=!}{RULER.NAME} {?RULER.GENDER}Lady{?}Lord{\?}" />
+  <string id="str_faction_ruler_term_in_speech.empire" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_ruler_name_with_title.empire" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_noble_name_with_title.empire" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_ruler_name_with_title.khuzait" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_noble_name_with_title.khuzait" text="{=!}{RULER.NAME}" />
   <string id="str_faction_official.khuzait" text="{=!}a lord" />
   <string id="str_faction_official.khuzait_f" text="{=!}a lady" />
   <string id="str_faction_ruler.khuzait" text="{=!}Vampire Lord" />
   <string id="str_faction_ruler.khuzait_f" text="{=!}Vampire Lady" />
-  <string id="str_faction_ruler_term_in_speech.khuzait" text="{=!}{RULER.NAME} Vampire {?RULER.GENDER}Lord{?}Lady{\?}" />
+  <string id="str_faction_ruler_term_in_speech.khuzait" text="{=!}{RULER.NAME}" />
   <string id="str_adjective_for_faction.averland" text="{=!}Averland" />
   <string id="str_adjective_for_faction.stirland" text="{=!}Stirland" />
   <string id="str_adjective_for_faction.wissenland" text="{=!}Wissenland" />

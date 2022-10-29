@@ -196,7 +196,7 @@ namespace TOR_Core.CharacterDevelopment
             _arcaneLink.InitializeNew("{=!}Arcane Link", TORSkills.SpellCraft, 250, _dampener,
                 "{=!}Any buffs you cast on a friendly unit will now also apply to you even if you are not in range.",
                 SkillEffect.PerkRole.Personal, 1f, SkillEffect.EffectIncrementType.Add,
-                "{=!As formation Captain, all troops in your formation deal additonal 10% magic damage.",
+                "{=!}As formation Captain, all troops in your formation deal additonal 10% magic damage.",
                 SkillEffect.PerkRole.Captain, 10f, SkillEffect.EffectIncrementType.AddFactor, TroopClassFlag.None, TroopClassFlag.None);
 
             _exchange.Initialize("{=!}Exchange", "{=!}All physical damage done by your weapons is doubled and dealt again as magical damage.", TORSkills.SpellCraft, 300, null, SkillEffect.PerkRole.Personal, 100f);

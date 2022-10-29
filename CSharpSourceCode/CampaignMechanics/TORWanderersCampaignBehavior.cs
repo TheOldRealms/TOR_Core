@@ -23,6 +23,15 @@ namespace TOR_Core.CampaignMechanics
             CampaignEvents.AfterSettlementEntered.AddNonSerializedListener(this, OnAfterSettlementEntered);
             CampaignEvents.OnGameLoadFinishedEvent.AddNonSerializedListener(this, CheckPlayerCurrentSettlement);
             CampaignEvents.DailyTickHeroEvent.AddNonSerializedListener(this, AddDailySkillXpToCompanions);
+            CampaignEvents.CanHeroDieEvent.AddNonSerializedListener(this, CanHeroDie);
+        }
+
+        private void CanHeroDie(Hero hero, KillCharacterAction.KillCharacterActionDetail detail, ref bool result)
+        {
+            if((hero.IsLord || hero.IsPlayerCompanion || hero.IsWanderer) && detail != KillCharacterAction.KillCharacterActionDetail.Executed)
+            {
+                result = false;
+            }
         }
 
         private void AddDailySkillXpToCompanions(Hero hero)
