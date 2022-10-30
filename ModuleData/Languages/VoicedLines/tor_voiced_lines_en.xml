@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <VoiceOvers>
+    <VoiceOver id="v_annoyed_first_meeting">
+      <Voice path="VoicedLines/EN/$PLATFORM/vampire_annoyed_greeting" />
+    </VoiceOver>
+    <VoiceOver id="ccultist_robbery">
+      <Voice path="VoicedLines/EN/$PLATFORM/cultist_forfeit" />
+    </VoiceOver>
+  </VoiceOvers>
+</Base>

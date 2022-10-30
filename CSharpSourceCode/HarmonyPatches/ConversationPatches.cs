@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.ViewModelCollection.GameMenu.Overlay;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -85,6 +86,34 @@ namespace TOR_Core.HarmonyPatches
 			var culture = Hero.OneToOneConversationHero.Culture;
 			var text = GameTexts.FindText("tor_player_accept_vassalage", culture.StringId);
 			MBTextManager.SetTextVariable("PLAYER_ACCEPTED_AS_VASSAL", text, false);
+		}
+
+		[HarmonyPrefix]
+		[HarmonyPatch(typeof(LordConversationsCampaignBehavior), "conversations_set_voiced_line")]
+		public static bool OverrideVampireVoicedLines()
+		{
+			var hero = Hero.OneToOneConversationHero;
+			if(hero != null && hero.IsVampire())
+            {
+				StringHelpers.SetCharacterProperties("PLAYER", Hero.MainHero.CharacterObject, null, false);
+				MBTextManager.SetTextVariable("STR_SALUTATION", Campaign.Current.ConversationManager.FindMatchingTextOrNull("str_salutation", Hero.OneToOneConversationHero.CharacterObject), false);
+				TextObject textObject = Campaign.Current.ConversationManager.FindMatchingTextOrNull("str_context_line_vampire", CharacterObject.OneToOneConversationCharacter);
+				MBTextManager.SetTextVariable("VOICED_LINE", textObject ?? TextObject.Empty, false);
+				return false;
+            }
+			return true;
+		}
+
+		[HarmonyPostfix]
+		[HarmonyPatch(typeof(BanditsCampaignBehavior), "bandit_start_defender_condition")]
+		public static void ChaosCultistBanditTextAndVoiceOverride()
+		{
+			var culture = CharacterObject.OneToOneConversationCharacter.Culture;
+			if(culture.StringId == "forest_bandits")
+            {
+				var text = GameTexts.FindText("ccultist_robbery");
+				MBTextManager.SetTextVariable("ROBBERY_THREAT", text, false);
+			}
 		}
 	}
 }

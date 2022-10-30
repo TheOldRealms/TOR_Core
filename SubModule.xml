@@ -181,5 +181,12 @@
 		<XmlNode>
 			<XmlName id="GameText" path="tor_strings" />
 		</XmlNode>
+		<XmlNode>
+			<XmlName id="GameText" path="tor_voiced_strings" />
+			<IncludedGameTypes>
+				<GameType value="Campaign" />
+				<GameType value="CampaignStoryMode" />
+			</IncludedGameTypes>
+		</XmlNode>
 	</Xmls>
 </Module>
