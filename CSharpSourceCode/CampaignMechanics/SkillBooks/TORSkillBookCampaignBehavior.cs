@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -7,6 +8,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
@@ -164,9 +166,20 @@ namespace TOR_Core.CampaignMechanics.SkillBooks
             float startGrantedExp = (skillTuple.SkillExp * currentRatio);
             float endGrantedExp = (skillTuple.SkillExp * progressedRatio);
             float expGained = endGrantedExp - startGrantedExp;
+            expGained = AddPerkEffectsToExpGained(expGained);
 
             SkillObject skillObject = GetSkillObject(skillTuple.SkillId);
             Hero.MainHero.AddSkillXp(skillObject, expGained);
+        }
+
+        private float AddPerkEffectsToExpGained(float expGained)
+        {
+            ExplainedNumber xpGained = new ExplainedNumber(expGained);
+            if (CharacterObject.PlayerCharacter.GetPerkValue(TORPerks.SpellCraft.Librarian))
+            {
+                PerkHelper.AddPerkBonusForCharacter(TORPerks.SpellCraft.Librarian, CharacterObject.PlayerCharacter, true, ref xpGained);
+            }
+            return xpGained.ResultNumber;
         }
 
         private void ClearCurrentlyReading()

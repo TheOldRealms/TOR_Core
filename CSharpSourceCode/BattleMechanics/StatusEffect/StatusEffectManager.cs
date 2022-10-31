@@ -30,7 +30,14 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
         }
 
-        public static StatusEffect GetStatusEffect(string effectId)
+        public static StatusEffectTemplate GetStatusEffectTemplateWithId(string effectId)
+        {
+            StatusEffectTemplate result = null;
+            _idToStatusEffect.TryGetValue(effectId, out result);
+            return result;
+        }
+
+        public static StatusEffect CreateNewStatusEffect(string effectId)
         {
             return new StatusEffect(_idToStatusEffect[effectId]);
         }

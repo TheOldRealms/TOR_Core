@@ -34,6 +34,7 @@ namespace TOR_Core.HarmonyPatches
         {
             _ = new TORSkillEffects();
             _ = new TORCharacterTraits();
+            _ = new TORPerks();
         }
     }
 }

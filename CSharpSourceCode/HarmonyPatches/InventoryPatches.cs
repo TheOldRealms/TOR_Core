@@ -51,7 +51,7 @@ namespace TOR_Core.HarmonyPatches
                 if (text.Length > 1)
                 {
                     text = text.ToLower();
-                    isFilteredBySearchString = !item.StringId.ToLower().Contains(text) || !item.ItemDescription.ToLower().Contains(text);
+                    isFilteredBySearchString = !item.StringId.ToLower().Contains(text) && !item.ItemDescription.ToLower().Contains(text);
                 }
             }
             item.IsFiltered = (isFilteredByCategory || isFilteredBySearchString);

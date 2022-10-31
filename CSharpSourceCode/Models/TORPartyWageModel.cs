@@ -1,12 +1,17 @@
-﻿using TaleWorlds.CampaignSystem.GameComponents;
+﻿using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.GameComponents;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
 {
     public class TORPartyWageModel : DefaultPartyWageModel
     {
-        public override int GetCharacterWage(int tier)
+
+        public override int GetCharacterWage(CharacterObject character)
         {
-            switch (tier)
+            if (character.IsUndead()) return 0;
+
+            switch (character.Tier)
             {
                 case 0:
                     return 1;

@@ -39,7 +39,7 @@ namespace TOR_Core.Items
 		public TorItemMenuVM(Action<ItemVM, int> resetComparedItems, InventoryLogic inventoryLogic, Func<WeaponComponentData, ItemObject.ItemUsageSetFlags> getItemUsageSetFlags, Func<EquipmentIndex, SPItemVM> getEquipmentAtIndex) : base(resetComparedItems, inventoryLogic, getItemUsageSetFlags, getEquipmentAtIndex)
         {
 			_itemTraitList = new MBBindingList<TorItemTraitVM>();
-			_readHint = new HintViewModel(new TaleWorlds.Localization.TextObject("Read scroll"));
+			_readHint = new HintViewModel(new TextObject("Read scroll"));
 			inventoryLogic.AfterTransfer += CheckItem;
         }
 
@@ -100,7 +100,7 @@ namespace TOR_Core.Items
 			if (_lastSetItem != null && _lastSetItem.GetTorSpecificData() != null)
             {
 				var info = _lastSetItem.GetTorSpecificData();
-				if(info != null && (info.DamageProportions.Any(x=>x.DamageType != DamageType.Physical) || info.ItemTraits.Count > 0))
+				if(_lastSetItem.IsMagicalItem())
 				{
 					IsMagicItem = true;
 					if(info.ItemTraits.Count > 0)

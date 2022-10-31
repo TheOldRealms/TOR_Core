@@ -288,6 +288,7 @@
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_valiant_outrider" />
+      <upgrade_target id="NPCCharacter.tor_valiant_outrider_grenade" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_empire_outrider_template" />
@@ -338,6 +339,16 @@
     <Equipments>
       <EquipmentSet id="tor_empire_valiant_outrider_template" />
       <EquipmentSet id="tor_empire_valiant_outrider_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_valiant_outrider_grenade" default_group="horsearcher" level="46" name="{=str_tor_valiant_outrider_grenade}Empire Valiant Outrider (Grenade Launcher)" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level46">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_empire_valiant_outrider_grenade_template" />
+      <EquipmentSet id="tor_empire_valiant_outrider_grenade_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_reiksguard_preceptor_innercircle" default_group="cavalry" level="46" name="{=str_tor_reiksguard_preceptor_innercircle}Empire Reiksguard Preceptor Knight of the Inner Circle" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level46">
@@ -694,7 +705,7 @@
       <EquipmentSet id="tor_vc_crypt_guard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_spirit_host" default_group="infantry" level="21" name="{=str_tor_vc_spirit_host}Spirit Host" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level21" race="skeleton">
+  <NPCCharacter id="tor_vc_spirit_host" default_group="infantry" level="21" name="{=str_tor_vc_spirit_host}Spirit Host" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level21" race="wraith">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -990,7 +1001,7 @@
       <EquipmentSet id="tor_chaos_chaos_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beast_ungor" default_group="infantry" level="11" name="{=str_tor_beast_ungor}Ungor" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true">
+  <NPCCharacter id="tor_beast_ungor" default_group="infantry" level="11" name="{=str_tor_beast_ungor}Ungor" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="ungor">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1003,7 +1014,7 @@
       <EquipmentSet id="tor_beast_ungor_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beast_shielded_ungor" default_group="infantry" level="16" name="{=str_tor_beast_shielded_ungor}Shielded Ungor" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level16">
+  <NPCCharacter id="tor_beast_shielded_ungor" default_group="infantry" level="16" name="{=str_tor_beast_shielded_ungor}Shielded Ungor" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level16" race="ungor">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1015,7 +1026,7 @@
       <EquipmentSet id="tor_beast_shielded_ungor_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beast_ungor_raider" default_group="ranged" level="16" name="{=str_tor_beast_ungor_raider}Ungor Raider" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level16">
+  <NPCCharacter id="tor_beast_ungor_raider" default_group="ranged" level="16" name="{=str_tor_beast_ungor_raider}Ungor Raider" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level16" race="ungor">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1025,7 +1036,7 @@
       <EquipmentSet id="tor_beast_ungor_raider_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beast_ungor_chief" default_group="infantry" level="21" name="{=str_tor_beast_ungor_chief}Ungor Chief" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level21">
+  <NPCCharacter id="tor_beast_ungor_chief" default_group="infantry" level="21" name="{=str_tor_beast_ungor_chief}Ungor Chief" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level21" race="ungor">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1895,7 +1906,7 @@
       <EquipmentSet id="tor_empire_deserter_sergeant_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_deserter_scout" default_group="ranged" level="16" name="{=str_tor_empire_deserter_scout}Deserter Scout" occupation="Bandit" culture="Culture.mountain_bandits" skill_template="SkillSet.tor_skills_level16">
+  <NPCCharacter id="tor_empire_deserter_scout" default_group="ranged" level="16" name="{=}Deserter Scout" occupation="Bandit" culture="Culture.mountain_bandits" skill_template="SkillSet.tor_skills_level16">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>

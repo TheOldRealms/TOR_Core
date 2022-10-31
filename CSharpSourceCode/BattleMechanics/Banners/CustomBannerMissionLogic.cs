@@ -51,6 +51,7 @@ namespace TOR_Core.BattleMechanics.Banners
 
         private void SwitchShieldPattern(Agent agent)
         {
+            if (agent.State != AgentState.Active) return;
             string factionId = "";
             if (Game.Current.GameType is Campaign)
             {
@@ -77,9 +78,13 @@ namespace TOR_Core.BattleMechanics.Banners
                         if (equipment.Item.Type == ItemObject.ItemTypeEnum.Shield)
                         {
                             string stringId = equipment.Item.StringId;
-                            agent.RemoveEquippedWeapon((EquipmentIndex)i);
-                            var missionWeapon = new MissionWeapon(MBObjectManager.Instance.GetObject<ItemObject>(stringId), equipment.ItemModifier, banner);
-                            agent.EquipWeaponWithNewEntity((EquipmentIndex)i, ref missionWeapon);
+                            var item = MBObjectManager.Instance.GetObject<ItemObject>(stringId);
+                            if(item != null && item.IsUsingTableau)
+                            {
+                                agent.RemoveEquippedWeapon((EquipmentIndex)i);
+                                var missionWeapon = new MissionWeapon(MBObjectManager.Instance.GetObject<ItemObject>(stringId), equipment.ItemModifier, banner);
+                                agent.EquipWeaponWithNewEntity((EquipmentIndex)i, ref missionWeapon);
+                            }
                         }
                     }
                 }
@@ -93,7 +98,7 @@ namespace TOR_Core.BattleMechanics.Banners
                         var itemId = GetBannerNameForAgent(agent);
                         bool withBanner = itemId == "tor_empire_faction_banner_001" ? true : false;
                         var bannerWeapon = new MissionWeapon(MBObjectManager.Instance.GetObject<ItemObject>(itemId), null, withBanner ? banner : null);
-                        agent.EquipWeaponWithNewEntity(EquipmentIndex.Weapon4, ref bannerWeapon);
+                        agent.EquipWeaponWithNewEntity(EquipmentIndex.ExtraWeaponSlot, ref bannerWeapon);
                     }
                 }
             }

@@ -16,6 +16,8 @@ using TOR_Core.BattleMechanics.Crosshairs;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TaleWorlds.CampaignSystem;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.GameManagers;
+using TOR_Core.Quests;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -36,6 +38,12 @@ namespace TOR_Core.AbilitySystem
         private SummonedCombatant _attackerSummoningCombatant;
         private readonly float DamagePortionForChargingSpecialMove = 0.25f;
         private Dictionary<Team, int> _artillerySlots = new Dictionary<Team, int>();
+
+        private GameKey _spellcastingModeKey;
+        private GameKey _nextAbilitySelection;
+        private GameKey _previousAbilitySelection;
+        private GameKey _quickCast;
+        private GameKey _specialMoveKey;
 
         public AbilityModeState CurrentState => _currentState;
 
@@ -110,6 +118,7 @@ namespace TOR_Core.AbilitySystem
                 if(Agent.Main != null)
                 {
                     SetUpCastStanceParticles();
+                    AddPerkEffectsToStartingWindsOfMagic();
                     _hasInitializedForMainAgent = true;
                 }
             }
@@ -155,12 +164,20 @@ namespace TOR_Core.AbilitySystem
             if(agent == Agent.Main)
             {
                 if (CurrentState == AbilityModeState.Casting) _currentState = AbilityModeState.Idle;
+                if (Game.Current.GameType is Campaign)
+                {
+                    var quest = TORQuestHelper.GetCurrentActiveIfExists<SpecializeLoreQuest>();
+                    if (quest != null)
+                    {
+                        quest.IncrementCast();
+                    }
+                }
             }
 
             if (agent.IsHero && Game.Current.GameType is Campaign)
             {
                 var hero = agent.GetHero();
-                var model = Campaign.Current.Models.GetSpellcraftSkillModel();
+                var model = Campaign.Current.Models.GetSpellcraftModel();
                 if (model != null && hero != null)
                 {
                     var skill = model.GetRelevantSkillForAbility(ability.Template);
@@ -215,7 +232,28 @@ namespace TOR_Core.AbilitySystem
         private void HandleInput()
         {
             //Turning ability mode on/off
-            if (Input.IsKeyPressed(InputKey.Q))
+
+            if (Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) ||
+                Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey))
+            {
+                if( _abilityComponent != null && _abilityComponent.SpecialMove != null)
+                    if (_currentState == AbilityModeState.Off  &&
+                        IsCurrentCrossHairCompatible())
+                    {
+                        _abilityComponent.SpecialMove.TryCast(Agent.Main);
+                    }
+            }
+            
+            if(Input.IsKeyPressed(_nextAbilitySelection.KeyboardKey.InputKey)||Input.IsKeyPressed(_nextAbilitySelection.ControllerKey.InputKey))
+                Agent.Main.SelectNextAbility();
+            
+            if(Input.IsKeyPressed(_previousAbilitySelection.KeyboardKey.InputKey)||Input.IsKeyPressed(_previousAbilitySelection.ControllerKey.InputKey))
+                Agent.Main.SelectPreviousAbility();
+            
+            if(Input.IsKeyPressed(_quickCast.KeyboardKey.InputKey)||Input.IsKeyPressed(_quickCast.ControllerKey.InputKey))
+                Agent.Main.CastCurrentAbility();
+            
+            if (Input.IsKeyPressed(_spellcastingModeKey.KeyboardKey.InputKey)||Input.IsKeyPressed(_spellcastingModeKey.ControllerKey.InputKey))
             {
                 switch (_currentState)
                 {
@@ -254,13 +292,6 @@ namespace TOR_Core.AbilitySystem
             {
                 Agent.Main.SelectPreviousAbility();
             }
-            else if (Input.IsKeyPressed(InputKey.LeftControl) && _abilityComponent != null && _abilityComponent.SpecialMove != null)
-            {
-                if (_currentState == AbilityModeState.Off && _abilityComponent.SpecialMove.IsCharged && IsCurrentCrossHairCompatible())
-                {
-                    _abilityComponent.SpecialMove.TryCast(Agent.Main);
-                }
-            }
         }
 
         private bool IsCurrentCrossHairCompatible()
@@ -287,6 +318,16 @@ namespace TOR_Core.AbilitySystem
                     }
                 }
             }
+        }
+
+        public override void EarlyStart()
+        {
+            base.EarlyStart();
+            _spellcastingModeKey=  HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("Spellcasting");
+            _nextAbilitySelection = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("NextAbility");
+            _previousAbilitySelection = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("PreviousAbility");
+            _quickCast = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("QuickCast");
+            _specialMoveKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("SpecialMove");
         }
 
         public bool IsCastingMission()
@@ -445,6 +486,37 @@ namespace TOR_Core.AbilitySystem
                 _psys[0] = TORParticleSystem.ApplyParticleToAgentBone(Agent.Main, _castingStanceParticleName, Game.Current.DefaultMonster.MainHandItemBoneIndex, out entity);
                 _psys[1] = TORParticleSystem.ApplyParticleToAgentBone(Agent.Main, _castingStanceParticleName, Game.Current.DefaultMonster.OffHandItemBoneIndex, out entity);
                 EnableCastStanceParticles(false);
+            }
+        }
+
+        private void AddPerkEffectsToStartingWindsOfMagic()
+        {
+            var hero = Agent.Main?.GetHero();
+            if(hero != null)
+            {
+                var info = hero.GetExtendedInfo();
+                if(info != null)
+                {
+                    if (hero.GetPerkValue(TORPerks.SpellCraft.Improvision) && info.CurrentWindsOfMagic < TORPerks.SpellCraft.Improvision.PrimaryBonus)
+                    {
+                        info.CurrentWindsOfMagic = TORPerks.SpellCraft.Improvision.PrimaryBonus;
+                    }
+                    if (hero.GetPerkValue(TORPerks.SpellCraft.Catalyst))
+                    {
+                        int magicItemCount = 0;
+                        for(int i = 0; i >= (int)EquipmentIndex.NumEquipmentSetSlots; i++)
+                        {
+                            var equipmentElement = hero.BattleEquipment.GetEquipmentFromSlot((EquipmentIndex)i);
+                            var equippedItem = equipmentElement.Item;
+                            if (equippedItem.IsMagicalItem()) magicItemCount++;
+                        }
+                        if(magicItemCount > 0)
+                        {
+                            info.CurrentWindsOfMagic += magicItemCount * TORPerks.SpellCraft.Catalyst.PrimaryBonus;
+                            if (info.CurrentWindsOfMagic > info.MaxWindsOfMagic) info.CurrentWindsOfMagic = info.MaxWindsOfMagic;
+                        }
+                    }
+                }
             }
         }
     }

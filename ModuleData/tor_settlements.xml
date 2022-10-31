@@ -722,9 +722,9 @@
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
       <Location id="arena" scene_name="TOR_Arena_Vampire_a_forceatmo" />
       <Location id="tavern" scene_name="TOW_Vampire_Tavern_01" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
+      <Location id="house_1" scene_name="TOR_vampire_magister_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
     </Locations>
@@ -749,7 +749,7 @@
   </Settlement>
   <Settlement id="village_SY1_2" name="{=Settlements.Settlement.name.village_SY1_2}Nachthafen" posX="1632.187" posY="942.906" culture="Culture.khuzait" text="{=Settlements.Settlement.text.village_SY1_2}Nachthafen is a very uninteresting place. Which is just as it’s ruler Countess Gabriella von Bundebad prefers. Nachthafen does not get involved in the petty squabbles of vampiric intrigue. Nor does it seek war with the Empire. It exists purely as a quiet, normal village. With nothing to see here. Just tasty villagers minding their business until it is time for the masters to feed.">
     <Components>
-      <Village id="village_comp_SY1_2" village_type="VillageType.cattle_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_SY1" bound="Settlement.castle_SY4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_SY1_2" village_type="VillageType.cattle_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_SY1" bound="Settlement.town_SY1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_vampire_village_001" />
@@ -792,7 +792,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -830,9 +830,9 @@
       <Location id="center" scene_name="vlandia_town_f" scene_name_1="vlandia_town_f" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_f" />
       <Location id="arena" scene_name="TOR_Arena_Vampire_a_forceatmo" />
       <Location id="tavern" scene_name="TOW_Vampire_Tavern_01" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
+      <Location id="house_1" scene_name="TOR_vampire_magister_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
     </Locations>
@@ -900,7 +900,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -923,7 +923,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -959,13 +959,13 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
   <Settlement id="castle_village_SY4_1" name="{=Settlements.Settlement.name.castle_village_SY4_1}Gallhof" posX="1684.438" posY="951.062" culture="Culture.khuzait" text="{=Settlements.Settlement.text.castle_village_SY4_1}Gallhof is often a favourite haunt of Brettonian Blood Knights. Used as a training camp and feasting hall for these bloodthirsty creatures.">
     <Components>
-      <Village id="castle_village_comp_SY4_1" village_type="VillageType.flax_plant" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_SY2" bound="Settlement.castle_SY5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_SY4_1" village_type="VillageType.flax_plant" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_SY2" bound="Settlement.castle_SY4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_vampire_village_001" />
@@ -982,7 +982,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -1005,7 +1005,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -1041,11 +1041,11 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_SY7_1" name="{=Settlements.Settlement.name.castle_village_SY7_1}Zherden" posX="1688.236" posY="999.933" culture="Culture.khuzait" text="{=Settlements.Settlement.text.castle_village_SY7_1}">
+  <Settlement id="castle_village_SY7_1" name="{=Settlements.Settlement.name.castle_village_SY7_1}Zherden" posX="1688.24" posY="999.934" culture="Culture.khuzait" text="{=Settlements.Settlement.text.castle_village_SY7_1}">
     <Components>
       <Village id="castle_village_comp_SY7_1" village_type="VillageType.clay_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_SY2" bound="Settlement.castle_SY7" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -1707,6 +1707,870 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
+  <!--Talabecland-->
+  <Settlement id="town_TB1" name="{=Settlements.Settlement.name.town_TB1}Talabheim" owner="Faction.talabecland_clan_1" posX="1441.88" posY="1127.833" culture="Culture.empire" prosperity="4000" gate_posX="1439.711" gate_posY="1127.586" text="{=!}Talabheim, known in ancient times as Taalheim, which means Taal's Victory, is the capital city of the Grand Duchy of Talabecland. Talabheim lies deep within the Great Forest of the Empire, and as such earned its name as the Eye of the Forest, like the eye of a mighty storm, the crater being an island of calm amidst the surrounding danger. The city itself is built within a huge shallow crater called the Taalbaston, which is many miles across, whose outer edge formed a large rocky rim and a natural wall. This wall has been built up and fortified with many tall gun towers and effectively marks the boundary of the city itself. The land inside is extensive and includes fertile farmlands, a lake filled with fresh water as well as the grand city itself, ensuring that should a mighty enemy be able to breach through Talabecland's armies, so long as the enemy is held back by the great crater walls, the city and its proud people can withstand the onslaught of siege almost indefinitely. The River Talabec flows around the outside of the crater, and where it flows past the north-eastern edge of the wall, there is a fortified Imperial town known as Taalagrad and a deep harbour from which lies the river fleets. The largest of Talabheim’s temples is dedicated to Taal and to a lesser extent Rhya. Even though the primary place of Taal’s worship continues to be the Sacred Forest, worshippers who live within the confines of the city value an opportunity to seek spiritual enlightenment without making a trip to the other end of the crater.">
+    <Components>
+      <Town id="town_comp_TB1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.town_complex">
+      <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
+      <Location id="arena" scene_name="TOW_arena_empire_a" />
+      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="vlandia_dungeon_a" />
+      <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
+      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_3" scene_name="empire_house_d_interior_house" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
+      <Area type="Clearing" name="{=LWHIVshb}Clearing" />
+      <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_TB1_1" name="{=Settlements.Settlement.name.village_TB1_1}Talagraad" posX="1433.226" posY="1134.306" culture="Culture.empire" text="{=Settlements.Settlement.text.village_TB1_1}A run-down pest hole inhabited by the poorest of the poor, alcoholism and crime are rampant here. The population has around 1200 kislevite immigrants who live in their own slice of heaven called little kislev. The kislevites and the local talabeclanders don’t really interact much.">
+    <Components>
+      <Village id="village_comp_TB1_1" village_type="VillageType.fisherman" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_TB1" bound="Settlement.town_TB1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_TB1_2" name="{=Settlements.Settlement.name.village_TB1_2}Teupitz" posX="1425.659" posY="1120.834" culture="Culture.empire" text="{=Settlements.Settlement.text.village_TB1_2}Upstream of the river Uckro, The villagers of Teupitz are a tight knit community, where everyone adds to the needs of each other. They don’t get many visitors and those that do visit often come to trade for wood from the local lumber mill.">
+    <Components>
+      <Village id="village_comp_TB1_2" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_TB1" bound="Settlement.town_TB1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_TB1_3" name="{=Settlements.Settlement.name.village_TB1_3}Dreetz" posX="1453.563" posY="1103.484" culture="Culture.empire" text="{=Settlements.Settlement.text.village_TB1_3}Close to the treeline of the forest that touches talabheim’s crater wall. The villagers of Dreetz keep cows, many shepherds and some veterinarians take care of the great herd of cattle that graze in and around the fields of Dreetz.">
+    <Components>
+      <Village id="village_comp_TB1_3" village_type="VillageType.cattle_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_TB1" bound="Settlement.town_TB1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_TB1_4" name="{=Settlements.Settlement.name.village_TB1_4}Lochrafurt" posX="1484.819" posY="1134.834" culture="Culture.empire" text="{=Settlements.Settlement.text.village_TB1_4}Near the mouth of the river Lochra, hence the name, the villagers of Lochrafurt are farmers and pig herders. Water is often carried through the village from the river to provide for the fields and the many pigs that bathe in the mud pits around the village.">
+    <Components>
+      <Village id="village_comp_TB1_4" village_type="VillageType.swine_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_TB1" bound="Settlement.town_TB1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="town_TB2" name="{=Settlements.Settlement.name.town_TB2}Bek" owner="Faction.talabecland_clan_2" posX="1506.99" posY="1143.218" culture="Culture.empire" prosperity="4000" gate_posX="1507.808" gate_posY="1142.709" text="{=!}Chief town of the province ruled by Count Josef von Behring, Bek is normally a quiet trading town that exports lumber from the Great Forest and dried fish, and collects tolls for the use of its quays. Since the war began, the town and surrounding area has been flooded with over a thousand immigrants from Ostland, so many that they outnumber the townsfolk themselves. This has greatly strained resources and fights between locals and refugees are common and increasing in size. Count von Behring was an early supporter of Elector Count Feuerbach, and now he expects help in return. Feuerbach has sent a troop of his personal guard to Bek to maintain order, but rumours say that there will soon be a larger force arriving with instructions to invade Ostland “to restore order and allow the refugees to return home.” Order under whose rule is the open question.">
+    <Components>
+      <Town id="town_comp_TB2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.town_complex">
+      <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
+      <Location id="arena" scene_name="TOW_arena_empire_a" />
+      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="vlandia_dungeon_a" />
+      <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
+      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_3" scene_name="empire_house_d_interior_house" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
+      <Area type="Clearing" name="{=LWHIVshb}Clearing" />
+      <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_TB2_1" name="{=Settlements.Settlement.name.village_TB2_1}Viernau" posX="1525.921" posY="1156.44" culture="Culture.empire" text="{=Settlements.Settlement.text.village_TB2_1}A fishing village that borders the river Talabec. Vienau is surrounded by tents that bear the colours of Ostland. However the village of Vienau doesn’t give the ostlanders the treatment that Bek gives them. Even though they outnumber the locals, the village elder has put the immigrants to work, either aiding in the fishing, forming hunter groups, with the local priest’s blessing of course, or farmers.">
+    <Components>
+      <Village id="village_comp_TB2_1" village_type="VillageType.fisherman" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_TB2" bound="Settlement.town_TB2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_TB2_2" name="{=Settlements.Settlement.name.village_TB2_2}Freital" posX="1535.595" posY="1155.702" culture="Culture.empire" text="{=Settlements.Settlement.text.village_TB2_2}A small village with a stretch of the great forest to the east and a few hills to the south. Its villagers are mainly woodcutters and eke out a decent existence trading said timber.">
+    <Components>
+      <Village id="village_comp_TB2_2" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_TB2" bound="Settlement.town_TB2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_TB2_3" name="{=Settlements.Settlement.name.village_TB2_3}Ertburg" posX="1522.686" posY="1127.511" culture="Culture.empire" text="{=Settlements.Settlement.text.village_TB2_3}Bordering the river Lochra on two sides, Ertburg enjoys the natural protection the river offers from the west and the south. Ertburg is a diverse village, with some hunters, some farmers, some fishermen and a few priests who tend to a small chapel of Taal.">
+    <Components>
+      <Village id="village_comp_TB2_3" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_TB2" bound="Settlement.town_TB2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="town_TB3" name="{=Settlements.Settlement.name.town_TB3}Krugenheim" owner="Faction.talabecland_clan_3" posX="1528.484" posY="1060.711" culture="Culture.empire" prosperity="4000" gate_posX="1527.456" gate_posY="1061.24" text="{=!}Along the river stir lies Krugenheim, a town that has bred many decent generals of the empire here today. The peasantry of Krugenheim provide the town with fish and crops while the barracks house many regiments of well trained state troops.">
+    <Components>
+      <Town id="town_comp_TB3" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.town_complex">
+      <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
+      <Location id="arena" scene_name="TOW_arena_empire_a" />
+      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="vlandia_dungeon_a" />
+      <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
+      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_3" scene_name="empire_house_d_interior_house" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
+      <Area type="Clearing" name="{=LWHIVshb}Clearing" />
+      <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_TB3_1" name="{=Settlements.Settlement.name.village_TB3_1}Gersdorf" posX="1496.478" posY="1060.229" culture="Culture.empire" text="{=Settlements.Settlement.text.village_TB3_1}A bustling town along the river Stir and the river kölpin with many of the local populace consisting of woodcutters. There’s alot of taverns for the woodcutters to take a load off after work and all of them are named after the job their patrons have. They have Mourner’s guild, which is dedicated to the Cult of Morr, and is responsible for organising funerals and seeing to the upkeep of the local graveyard.">
+    <Components>
+      <Village id="village_comp_TB3_1" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_TB3" bound="Settlement.town_TB3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_TB3_2" name="{=Settlements.Settlement.name.village_TB3_2}Sabritz" posX="1504.889" posY="1069.499" culture="Culture.empire" text="{=Settlements.Settlement.text.village_TB3_2}An unassuming farming village east of the river kölpin, no road leads to Sabritz, instead farmers follow the river south to reach Gersdorf. They don’t care much about this, for they prefer solitude and are quite suspicious of strangers.">
+    <Components>
+      <Village id="village_comp_TB3_2" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_TB3" bound="Settlement.town_TB3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="town_TB4" name="{=Settlements.Settlement.name.town_TB4}Volgen" owner="Faction.talabecland_clan_1" posX="1350.943" posY="1106.651" culture="Culture.empire" prosperity="4000" gate_posX="1352.091" gate_posY="1106.371" text="{=!}A moderately wealthy town south of the river Talabec, its villages don’t suffer too much from poverty and it collects healthy taxes from them. Its inhabitants are well fed and work hard to keep it that way.">
+    <Components>
+      <Town id="town_comp_TB4" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.town_complex">
+      <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
+      <Location id="arena" scene_name="TOW_arena_empire_a" />
+      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="vlandia_dungeon_a" />
+      <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
+      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_3" scene_name="empire_house_d_interior_house" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
+      <Area type="Clearing" name="{=LWHIVshb}Clearing" />
+      <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_TB4_1" name="{=Settlements.Settlement.name.village_TB4_1}Priestlicheim" posX="1337.454" posY="1101.275" culture="Culture.empire" text="{=Settlements.Settlement.text.village_TB4_1}Separated from the Barren Hills by a stretch of the Great Forest, Priestlicheim is home to a large Sigmarite monastery, the Temple of Leopold “the Hammer of Faith.” The brothers here are dedicated to the study and eventual eradication of whatever curses the Barren Hills. Although they will explore the hills themselves, they also hire adventurers if other matters demand their attention. The monastery also hunts down any Mutants that wander north out of the hills.">
+    <Components>
+      <Village id="village_comp_TB4_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_TB4" bound="Settlement.town_TB4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_TB4_2" name="{=Settlements.Settlement.name.village_TB4_2}Garndorf" posX="1320.701" posY="1082.774" culture="Culture.empire" text="{=Settlements.Settlement.text.village_TB4_2}Garndorf is a fortified village with its back to the river Talabec and one side bordering the River Karwe. Garndorf enjoys its natural protection, its land borders protected by a stone wall, Garndorf has a solid strategic position. One can enter Garndorf through a portcullis in the wall or through a ferry across the river Talabec.">
+    <Components>
+      <Village id="village_comp_TB4_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_TB4" bound="Settlement.town_TB4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_TB4_3" name="{=Settlements.Settlement.name.village_TB4_3}Guttow" posX="1349.947" posY="1090.476" culture="Culture.empire" text="{=Settlements.Settlement.text.village_TB4_3}The southernmost village of Volgen. Its villagers maintain a big herd of sheep that graze near the barren hills. Despite Priestlicheim’s efforts to stop the supposed hauntings from the barren hills, the odd sheep still goes missing now and again. Despite this the herd remains quite large.">
+    <Components>
+      <Village id="village_comp_TB4_3" village_type="VillageType.sheep_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_TB4" bound="Settlement.town_TB4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_TB1" name="{=Settlements.Settlement.name.castle_TB1}Gostahof" owner="Faction.talabecland_clan_3" posX="1409.373" posY="1027.743" prosperity="800" culture="Culture.empire" gate_posX="1409.615" gate_posY="1026.6" text="{=!}Between the River Stir and a part of the Great forest lies the minor fortification of Gostahof. Gostahof processes most of the timber that gets chopped from the great forest and that comes in from the east due to its fancy watermill of dwarfen make.">
+    <Components>
+      <Town id="castle_comp_TB1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.castle_complex">
+      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="empire_dungeon_a" />
+    </Locations>
+  </Settlement>
+  <Settlement id="castle_village_TB1_1" name="{=Settlements.Settlement.name.castle_village_TB1_1}Missen" posX="1400.026" posY="1032.097" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_TB2_1}Bordering the river Stir and being at the centre of a crossroads, Missen sees alot of traffic from the surrounding villages. Missen has bits of forest a few ways away and the local populace earns a decent living trading timber.">
+    <Components>
+      <Village id="castle_village_comp_TB1_1" village_type="VillageType.lumberjack" hearth="180" trade_bound="Settlement.town_TB4" bound="Settlement.castle_TB1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_village_TB1_2" name="{=Settlements.Settlement.name.castle_village_TB1_2}Sydow" posX="1387.378" posY="1028.303" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_TB1_2}A community of tree lovers as they’re often described, they give praise to Taal and only use the wood of dead trees, they get by on their meagre farms and foraging in the great forest.">
+    <Components>
+      <Village id="castle_village_comp_TB1_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_TB4" bound="Settlement.castle_TB1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_TB2" name="{=Settlements.Settlement.name.castle_TB2}Hermsdorf" owner="Faction.talabecland_clan_3" posX="1445.09" posY="1035.964" prosperity="800" culture="Culture.empire" gate_posX="1444.37" gate_posY="1035.044" text="{=!}The southernmost settlement on the Old Forest Road is a small logging town with nearly 400 inhabitants. Hermsdorf is built near the crest of a low hill, overlooking the Wurtbad valley that extends 15 miles to the south. The local ruler, Baron Waldemar von Züten, spends most of his time carousing in Wurtbad and leaves routine administrative duties to his bailiff. Hermsdorf is situated at the junction of two major roads along the River Stir and receives a great deal of traffic.">
+    <Components>
+      <Town id="castle_comp_TB2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.castle_complex">
+      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="empire_dungeon_a" />
+    </Locations>
+  </Settlement>
+  <Settlement id="castle_village_TB2_1" name="{=Settlements.Settlement.name.castle_village_TB2_1}Radische" posX="1451.844" posY="1042.117" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_TB2_1}A village deep in the great forest. A dirt road leads to Radische from Hermsdorf. Despite having made a decent copper trading timber in the old days but out of respect for the woods the inhabitants of Radische have now changed their craft to equestrianism.">
+    <Components>
+      <Village id="castle_village_comp_TB2_1" village_type="VillageType.europe_horse_ranch" hearth="180" trade_bound="Settlement.town_TB3" bound="Settlement.castle_TB2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_village_TB2_2" name="{=Settlements.Settlement.name.castle_village_TB2_2}Ossino" posX="1478.412" posY="1040.815" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_TB2_2}A long way from other towns and villages the village of Ossino is quite poor, despite its decent food stocks. It sees a decent amount of traffic from anyone that comes and goes from Ostermark and sometimes people that travel down the river Stir, but not many wish to stay long in such a desolate looking place. Many requests have been sent to Hermsdorf for tools and supplies to fix the village but not much has been set in motion as of yet.">
+    <Components>
+      <Village id="castle_village_comp_TB2_2" village_type="VillageType.fisherman" hearth="200" trade_bound="Settlement.town_TB3" bound="Settlement.castle_TB2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_TB3" name="{=Settlements.Settlement.name.castle_TB3}Obelheim" owner="Faction.talabecland_clan_2" posX="1450.676" posY="1081.248" prosperity="800" culture="Culture.empire" gate_posX="1451.838" gate_posY="1081.373" text="{=!}One of the few stops along the Old Forest Road, Obelhem relies on its surrounding villages to provide it food. Most of the imported wheat and barley gets turned into beer for its inn.">
+    <Components>
+      <Town id="castle_comp_TB3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.castle_complex">
+      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="empire_dungeon_a" />
+    </Locations>
+  </Settlement>
+  <Settlement id="castle_village_TB3_1" name="{=Settlements.Settlement.name.castle_village_TB3_1}Badau" posX="1453.995" posY="1089.875" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_TB3_1}A village close to a small bit of forest and surrounded by small hills. The villagers of Badau have many farms close to the base of the hills to utilize rainwater flowing down the hills for irrigation.">
+    <Components>
+      <Village id="castle_village_comp_TB3_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_TB2" bound="Settlement.castle_TB3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_village_TB3_2" name="{=Settlements.Settlement.name.castle_village_TB3_2}Horno" posX="1472.764" posY="1081.7" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_TB3_2}Bordering a great swathe of the great forest the villagers of Horno are mainly hunters and woodsmen. Horno earns a decent amount of money from the meat and hides they sell and give praise to taal for it.">
+    <Components>
+      <Village id="castle_village_comp_TB3_2" village_type="VillageType.trapper" hearth="200" trade_bound="Settlement.town_TB2" bound="Settlement.castle_TB3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_TB4" name="{=Settlements.Settlement.name.castle_TB4}Ravenstein" owner="Faction.talabecland_clan_1" posX="1384.99" posY="1109.68" prosperity="800" culture="Culture.empire" gate_posX="1383.053" gate_posY="1109.851" text="{=!}Castle Ravenstein stands a proud vigil looking over its northern neighbours. Surrounded by the river Talabec and the River Lug the Castle is well defended. Combined with its walls it is indeed a tough place to siege. Its inhabitants work hard to provide food for the castle.">
+    <Components>
+      <Town id="castle_comp_TB4" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.castle_complex">
+      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="empire_dungeon_a" />
+    </Locations>
+  </Settlement>
+  <Settlement id="castle_village_TB4_1" name="{=Settlements.Settlement.name.castle_village_TB4_1}Klepzig" posX="1365.505" posY="1118.513" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_TB4_1}Slightly wealthier in terms of food and coin than most villages in Talabecland. Klepzig enjoys the protection Castle Ravenstein provides.">
+    <Components>
+      <Village id="castle_village_comp_TB4_1" village_type="VillageType.iron_mine" hearth="200" trade_bound="Settlement.town_TB1" bound="Settlement.castle_TB4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_village_TB4_2" name="{=Settlements.Settlement.name.castle_village_TB4_2}Zurin" posX="1414.154" posY="1110.599" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_TB4_2}Tucked in between two parts of the Great forest, Zurin houses a decent amount of Taal worshippers, often going on pilgrimage to Talabheim or answering Taal’s call. The Fishermen of Zurin often walk north towards the river Uckro to fish, enjoying the walk in the great forest as they do so. Those that remain keep themselves busy with the worship of Taal and tending the farms.">
+    <Components>
+      <Village id="castle_village_comp_TB4_2" village_type="VillageType.fisherman" hearth="200" trade_bound="Settlement.town_TB1" bound="Settlement.castle_TB4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <!--Reikland-->
+  <Settlement id="town_RL1" name="{=Settlements.Settlement.name.town_RL1}Altdorf" owner="Faction.reikland_clan_1" posX="1278.192" posY="1076.414" culture="Culture.empire" prosperity="4500" gate_posX="1274.894" gate_posY="1072.329" text="{=!}Altdorf is at once perhaps the greatest city of the Empire and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the Reikland and the Empire of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the Empire; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
+    <Components>
+      <Town id="town_comp_RL1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.town_complex">
+      <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
+      <Location id="arena" scene_name="TOW_arena_empire_a" />
+      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="vlandia_dungeon_a" />
+      <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
+      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_3" scene_name="empire_house_d_interior_house" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
+      <Area type="Clearing" name="{=LWHIVshb}Clearing" />
+      <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_RL1_1" name="{=Settlements.Settlement.name.village_RL1_1}Frederheim" posX="1249.612" posY="1084.818" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL1_1}">
+    <Components>
+      <Village id="village_comp_RL1_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL1" bound="Settlement.town_RL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_RL1_2" name="{=Settlements.Settlement.name.village_RL1_2}Kaldach" posX="1274.112" posY="1055.412" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL1_2}">
+    <Components>
+      <Village id="village_comp_RL1_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL1" bound="Settlement.town_RL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_RL1_3" name="{=Settlements.Settlement.name.village_RL1_3}Hochloff" posX="1291.759" posY="1054.569" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL1_3}">
+    <Components>
+      <Village id="village_comp_RL1_3" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL1" bound="Settlement.town_RL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="town_RL2" name="{=Settlements.Settlement.name.town_RL2}Schilderheim" owner="Faction.reikland_clan_3" posX="1191.087" posY="1078.689" culture="Culture.empire" prosperity="4500" gate_posX="1190.67" gate_posY="1079.899" text="{=!}">
+    <Components>
+      <Town id="town_comp_RL2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.town_complex">
+      <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
+      <Location id="arena" scene_name="TOW_arena_empire_a" />
+      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="vlandia_dungeon_a" />
+      <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
+      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_3" scene_name="empire_house_d_interior_house" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
+      <Area type="Clearing" name="{=LWHIVshb}Clearing" />
+      <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_RL2_1" name="{=Settlements.Settlement.name.village_RL2_1}Holthusen" posX="1200.37" posY="1068.356" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL2_1}">
+    <Components>
+      <Village id="village_comp_RL2_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL2" bound="Settlement.town_RL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_RL2_2" name="{=Settlements.Settlement.name.village_RL2_2}Eilhart" posX="1201.432" posY="1060.383" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL2_2}">
+    <Components>
+      <Village id="village_comp_RL2_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL2" bound="Settlement.town_RL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="town_RL3" name="{=Settlements.Settlement.name.town_RL3}Helmgart" owner="Faction.reikland_clan_3" posX="1198.868" posY="1034.959" culture="Culture.empire" prosperity="4500" gate_posX="1198.108" gate_posY="1033.921" text="{=!}At the head of the Axe Bite pass sits the town of Helmgart. Ruled by Margrave Reinhardt von Mackensen, the fortress town serves as both the economic and military border between Bretonnia and the Empire. Axe Bite is one of three mountain passes through the Grey mountains; as such the safety of passage through it is a primary concern. Helmgart itself is a market town, surrounded by several curtain walls. One of these walls traverses the entire width of the pass itself, meaning all travel must pass through its single gate or be stuck on either the Bretonnian or Imperial side of the border.">
+    <Components>
+      <Town id="town_comp_RL3" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.town_complex">
+      <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
+      <Location id="arena" scene_name="TOW_arena_empire_a" />
+      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="vlandia_dungeon_a" />
+      <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
+      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_3" scene_name="empire_house_d_interior_house" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
+      <Area type="Clearing" name="{=LWHIVshb}Clearing" />
+      <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_RL3_1" name="{=Settlements.Settlement.name.village_RL3_1}Ussingen" posX="1210.412" posY="1053.094" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL3_1}">
+    <Components>
+      <Village id="village_comp_RL3_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL3" bound="Settlement.town_RL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_RL3_2" name="{=Settlements.Settlement.name.village_RL3_2}Morlenfurt" posX="1226.971" posY="1025.689" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL3_2}">
+    <Components>
+      <Village id="village_comp_RL3_2" village_type="VillageType.clay_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL3" bound="Settlement.town_RL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="town_RL4" name="{=Settlements.Settlement.name.town_RL4}Bögenhafen" owner="Faction.reikland_clan_4" posX="1238.612" posY="1041.357" culture="Culture.empire" prosperity="4500" gate_posX="1239.778" gate_posY="1041.903" text="{=!}Bögenhafen is a prominent market town that sits on either side of the River Bögen. It is midway between Altdorf and Montfort allowing the town to maintain its economic importance through nearly any hardship. The northside of the town, known as the Pit, is the smallest and poorest section of Bögenhafen. The Southside of the town is where most of the wealth and all of the town’s important institutions reside, including its religious temples and town hall. A town council rules in the name of Graf Wilhelm von Saponatheim.">
+    <Components>
+      <Town id="town_comp_RL4" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.town_complex">
+      <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
+      <Location id="arena" scene_name="TOW_arena_empire_a" />
+      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="vlandia_dungeon_a" />
+      <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
+      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_3" scene_name="empire_house_d_interior_house" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
+      <Area type="Clearing" name="{=LWHIVshb}Clearing" />
+      <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_RL4_1" name="{=Settlements.Settlement.name.village_RL4_1}Osburg" posX="1216.879" posY="1038.57" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL4_1}">
+    <Components>
+      <Village id="village_comp_RL4_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL4" bound="Settlement.town_RL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_RL4_2" name="{=Settlements.Settlement.name.village_RL4_2}Herzhald " posX="1258.085" posY="1025.51" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL4_2}">
+    <Components>
+      <Village id="village_comp_RL4_2" village_type="VillageType.sheep_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL4" bound="Settlement.town_RL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="town_RL5" name="{=Settlements.Settlement.name.town_RL5}Ubersreik" owner="Faction.reikland_clan_2" posX="1268.837" posY="998.256" culture="Culture.empire" prosperity="4500" gate_posX="1268.471" gate_posY="997.0253" text="{=!}Ubersreik is one of the most important trade centers in Reikland. It sits astride and important bridge on the road from from Bögenhafen to Dunkelburg. Trade flows along the road as well as downriver to Auerswald, Grünburg, Kemperbad, and Altdorf. In addition, because it is located near Grey Lady Pass, Ubersreik is the ideal location for merchants travelling over the Grey Mountains to move their wares from the river to overland transportation, and vice versa.">
+    <Components>
+      <Town id="town_comp_RL5" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.town_complex">
+      <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
+      <Location id="arena" scene_name="TOW_arena_empire_a" />
+      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="vlandia_dungeon_a" />
+      <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
+      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_3" scene_name="empire_house_d_interior_house" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
+      <Area type="Clearing" name="{=LWHIVshb}Clearing" />
+      <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_RL5_1" name="{=Settlements.Settlement.name.village_RL5_1}Greissbach " posX="1260.401" posY="1005.038" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL5_1}">
+    <Components>
+      <Village id="village_comp_RL5_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL5" bound="Settlement.town_RL5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_RL5_2" name="{=Settlements.Settlement.name.village_RL5_2}Tallerhof" posX="1253.312" posY="996.028" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL1_2}">
+    <Components>
+      <Village id="village_comp_RL5_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL5" bound="Settlement.town_RL5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_RL5_3" name="{=Settlements.Settlement.name.village_RL5_3}Hugeldal" posX="1276.306" posY="988.509" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL5_3}">
+    <Components>
+      <Village id="village_comp_RL5_3" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL5" bound="Settlement.town_RL5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="town_RL6" name="{=Settlements.Settlement.name.town_RL6}Dunkelberg" owner="Faction.reikland_clan_1" posX="1305.575" posY="960.061" culture="Culture.empire" prosperity="4500" gate_posX="1306.372" gate_posY="959.0239" text="{=!}On the northern bank of the River Grissen is the market town of Dunkelburg. Dunkelburg benefits from being along the Stimmigen canal, which allows access to many of the market towns in Reikland’s southern region. The town is known for its rustic feel which seems to be preserved in the town despite its continued increase in size. Unfortunately, Dunkelburg’s proximity to the Grey Mountains has doomed it to be plagued by Goblins, who regularly raid the town. One of the results of these raids is that the town has a much higher population of Orphans than many other parts of the Empire. These orphans are provided for by the von Wallensteins however, as long as they work in the town’s several Bleachfields that is.">
+    <Components>
+      <Town id="town_comp_RL6" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.town_complex">
+      <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
+      <Location id="arena" scene_name="TOW_arena_empire_a" />
+      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="vlandia_dungeon_a" />
+      <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
+      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_3" scene_name="empire_house_d_interior_house" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
+      <Area type="Clearing" name="{=LWHIVshb}Clearing" />
+      <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_RL6_1" name="{=Settlements.Settlement.name.village_RL6_1}Barfsheim" posX="1293.931" posY="959.604" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL6_1}">
+    <Components>
+      <Village id="village_comp_RL6_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL6" bound="Settlement.town_RL6" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_RL6_2" name="{=Settlements.Settlement.name.village_RL6_2}Steindorf" posX="1309.852" posY="977.429" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL6_2}">
+    <Components>
+      <Village id="village_comp_RL6_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL6" bound="Settlement.town_RL6" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_RL1" name="{=Settlements.Settlement.name.castle_RL1}Stimmigen" owner="Faction.reikland_clan_2" posX="1291.684" posY="980.917" prosperity="800" culture="Culture.empire" gate_posX="1290.492" gate_posY="980.3779" text="">
+    <Components>
+      <Town id="castle_comp_RL1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.castle_complex">
+      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="empire_dungeon_a" />
+    </Locations>
+  </Settlement>
+  <Settlement id="castle_village_RL1_1" name="{=Settlements.Settlement.name.castle_village_RL1_1}Naffdorf" posX="1292.379" posY="996.332" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL1_1}">
+    <Components>
+      <Village id="castle_village_comp_RL1_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_RL6" bound="Settlement.castle_RL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_village_RL1_2" name="{=Settlements.Settlement.name.castle_village_RL1_2}Lachenbad" posX="1307.066" posY="988.116" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL1_2}">
+    <Components>
+      <Village id="castle_village_comp_RL1_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_RL6" bound="Settlement.castle_RL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_RL2" name="{=Settlements.Settlement.name.castle_RL2}Kemperbad" owner="Faction.reikland_clan_5" posX="1323.062" posY="1008.906" prosperity="800" culture="Culture.empire" gate_posX="1324.203" gate_posY="1009.562" text="{=!}The Grand Freistadt of Kemperbad is a settlement within the province of Reikland, said to make the finest brandy in the Empire, while holding Freistadt status.">
+    <Components>
+      <Town id="castle_comp_RL2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.castle_complex">
+      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="empire_dungeon_a" />
+    </Locations>
+  </Settlement>
+  <Settlement id="castle_village_RL2_1" name="{=Settlements.Settlement.name.castle_village_RL2_1}Diesdorf" posX="1317.257" posY="1019.406" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL2_1}">
+    <Components>
+      <Village id="castle_village_comp_RL2_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_RL5" bound="Settlement.castle_RL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_village_RL2_2" name="{=Settlements.Settlement.name.castle_village_RL2_2}Lachenbad" posX="1331.87" posY="996.181" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL2_2}">
+    <Components>
+      <Village id="castle_village_comp_RL2_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_RL5" bound="Settlement.castle_RL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_RL3" name="{=Settlements.Settlement.name.castle_RL3}Castle Reik" owner="Faction.reikland_clan_1" posX="1302.871" posY="1050.253" prosperity="800" culture="Culture.empire" gate_posX="1303.586" gate_posY="1051.358" text="{=!}Castle Reik is the fortress and headquarters of the Grand Order of the Reiksguard Knights. It is located south-east of the grand city of Altdorf, along the confluence of the Reik River.">
+    <Components>
+      <Town id="castle_comp_RL3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.castle_complex">
+      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="empire_dungeon_a" />
+    </Locations>
+  </Settlement>
+  <Settlement id="castle_village_RL3_1" name="{=Settlements.Settlement.name.castle_village_RL3_1}Worlitz" posX="1315.466" posY="1043.359" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL3_1}">
+    <Components>
+      <Village id="castle_village_comp_RL3_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_RL1" bound="Settlement.castle_RL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_village_RL3_2" name="{=Settlements.Settlement.name.castle_village_RL3_2}Grunburg" posX="1305.495" posY="1030.855" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL3_2}">
+    <Components>
+      <Village id="castle_village_comp_RL3_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_RL1" bound="Settlement.castle_RL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_RL4" name="{=Settlements.Settlement.name.castle_RL4}Castle Gauenburg" owner="Faction.reikland_clan_4" posX="1241.518" posY="1059.337" prosperity="800" culture="Culture.empire" gate_posX="1242.374" gate_posY="1058.338" text="">
+    <Components>
+      <Town id="castle_comp_RL4" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.castle_complex">
+      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="empire_dungeon_a" />
+    </Locations>
+  </Settlement>
+  <Settlement id="castle_village_RL4_1" name="{=Settlements.Settlement.name.castle_village_RL4_1}Weissbruck" posX="1259.172" posY="1066.273" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL4_1}">
+    <Components>
+      <Village id="castle_village_comp_RL4_1" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.town_RL1" bound="Settlement.castle_RL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_village_RL4_2" name="{=Settlements.Settlement.name.castle_village_RL4_2}Heiligen" posX="1232.292" posY="1066.186" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL4_2}">
+    <Components>
+      <Village id="castle_village_comp_RL4_2" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.town_RL1" bound="Settlement.castle_RL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_RL5" name="{=Settlements.Settlement.name.castle_RL5}Merxheim" owner="Faction.reikland_clan_3" posX="1167.787" posY="1116.888" prosperity="800" culture="Culture.empire" gate_posX="1168.937" gate_posY="1117.529" text="">
+    <Components>
+      <Town id="castle_comp_RL5" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.castle_complex">
+      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="empire_dungeon_a" />
+    </Locations>
+  </Settlement>
+  <Settlement id="castle_village_RL5_1" name="{=Settlements.Settlement.name.castle_village_RL5_1}Reinsfeld" posX="1164.732" posY="1096.432" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL5_1}">
+    <Components>
+      <Village id="castle_village_comp_RL5_1" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.town_RL2" bound="Settlement.castle_RL5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_village_RL5_2" name="{=Settlements.Settlement.name.castle_village_RL4_2}Ruhfurt" posX="1144.86" posY="1101.761" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL5_2}">
+    <Components>
+      <Village id="castle_village_comp_RL5_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_RL2" bound="Settlement.castle_RL5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
   <!-- Hideouts -->
   <!-- hideout forest -->
   <Settlement id="hideout_forest_1" name="{=Settlements.Settlement.name.hideout_forest_1}Cultist Hideout" type="Hideout" posX="1393.676" posY="935.815" culture="Culture.forest_bandits">
@@ -1817,6 +2681,46 @@
   <Settlement id="hideout_forest_22" name="{=Settlements.Settlement.name.hideout_forest_22}Cultist Hideout" type="Hideout" posX="1685.059" posY="1018.483" culture="Culture.forest_bandits">
     <Components>
       <Hideout id="hideout_forest_22" map_icon="bandit_hideout_b" scene_name="mountain_hideout_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_forest_23" name="{=Settlements.Settlement.name.hideout_forest_23}Cultist Hideout" type="Hideout" posX="1526.917" posY="1090.241" culture="Culture.forest_bandits">
+    <Components>
+      <Hideout id="hideout_forest_23" map_icon="bandit_hideout_b" scene_name="bandit_forest" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_forest_24" name="{=Settlements.Settlement.name.hideout_forest_24}Cultist Hideout" type="Hideout" posX="1491.846" posY="1094.962" culture="Culture.forest_bandits">
+    <Components>
+      <Hideout id="hideout_forest_24" map_icon="bandit_hideout_b" scene_name="mountain_hideout_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_forest_25" name="{=Settlements.Settlement.name.hideout_forest_25}Cultist Hideout" type="Hideout" posX="1466.063" posY="1060.023" culture="Culture.forest_bandits">
+    <Components>
+      <Hideout id="hideout_forest_25" map_icon="bandit_hideout_b" scene_name="bandit_forest" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_forest_26" name="{=Settlements.Settlement.name.hideout_forest_26}Cultist Hideout" type="Hideout" posX="1477.589" posY="1114.442" culture="Culture.forest_bandits">
+    <Components>
+      <Hideout id="hideout_forest_26" map_icon="bandit_hideout_b" scene_name="mountain_hideout_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_forest_27" name="{=Settlements.Settlement.name.hideout_forest_27}Cultist Hideout" type="Hideout" posX="1399.556" posY="1102.258" culture="Culture.forest_bandits">
+    <Components>
+      <Hideout id="hideout_forest_27" map_icon="bandit_hideout_b" scene_name="bandit_forest" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_forest_28" name="{=Settlements.Settlement.name.hideout_forest_28}Cultist Hideout" type="Hideout" posX="1346.212" posY="1034.363" culture="Culture.forest_bandits">
+    <Components>
+      <Hideout id="hideout_forest_28" map_icon="bandit_hideout_b" scene_name="mountain_hideout_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_forest_29" name="{=Settlements.Settlement.name.hideout_forest_29}Cultist Hideout" type="Hideout" posX="1308.458" posY="1011.541" culture="Culture.forest_bandits">
+    <Components>
+      <Hideout id="hideout_forest_29" map_icon="bandit_hideout_b" scene_name="bandit_forest" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_forest_30" name="{=Settlements.Settlement.name.hideout_forest_30}Cultist Hideout" type="Hideout" posX="1250.813" posY="1034.252" culture="Culture.forest_bandits">
+    <Components>
+      <Hideout id="hideout_forest_30" map_icon="bandit_hideout_b" scene_name="mountain_hideout_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <!-- Mountain Bandit  Hideouts -->
@@ -1930,6 +2834,46 @@
       <Hideout id="hideout_mountain_22" map_icon="bandit_hideout_d" scene_name="forest_hideout_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
   </Settlement>
+  <Settlement id="hideout_mountain_23" name="{=Settlements.Settlement.name.hideout_mountain_23}Deserter Hideout" type="Hideout" posX="1241.876" posY="1004.814" culture="Culture.mountain_bandits">
+    <Components>
+      <Hideout id="hideout_mountain_23" map_icon="bandit_hideout_d" scene_name="forest_hideout_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_mountain_24" name="{=Settlements.Settlement.name.hideout_mountain_24}Deserter Hideout" type="Hideout" posX="1271.058" posY="1029.559" culture="Culture.mountain_bandits">
+    <Components>
+      <Hideout id="hideout_mountain_24" map_icon="bandit_hideout_d" scene_name="forest_hideout_003" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_mountain_25" name="{=Settlements.Settlement.name.hideout_mountain_25}Deserter Hideout" type="Hideout" posX="1195.002" posY="1053.175" culture="Culture.mountain_bandits">
+    <Components>
+      <Hideout id="hideout_mountain_25" map_icon="bandit_hideout_d" scene_name="forest_hideout_003" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_mountain_26" name="{=Settlements.Settlement.name.hideout_mountain_26}Deserter Hideout" type="Hideout" posX="1168.2" posY="1077.503" culture="Culture.mountain_bandits">
+    <Components>
+      <Hideout id="hideout_mountain_26" map_icon="bandit_hideout_d" scene_name="forest_hideout_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_mountain_27" name="{=Settlements.Settlement.name.hideout_mountain_27}Deserter Hideout" type="Hideout" posX="1312.453" posY="1069.747" culture="Culture.mountain_bandits">
+    <Components>
+      <Hideout id="hideout_mountain_27" map_icon="bandit_hideout_d" scene_name="forest_hideout_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_mountain_28" name="{=Settlements.Settlement.name.hideout_mountain_28}Deserter Hideout" type="Hideout" posX="1372.57" posY="1076.066" culture="Culture.mountain_bandits">
+    <Components>
+      <Hideout id="hideout_mountain_28" map_icon="bandit_hideout_d" scene_name="forest_hideout_003" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_mountain_29" name="{=Settlements.Settlement.name.hideout_mountain_29}Deserter Hideout" type="Hideout" posX="1430.87" posY="1057.427" culture="Culture.mountain_bandits">
+    <Components>
+      <Hideout id="hideout_mountain_29" map_icon="bandit_hideout_d" scene_name="forest_hideout_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_mountain_30" name="{=Settlements.Settlement.name.hideout_mountain_30}Deserter Hideout" type="Hideout" posX="1502.158" posY="1123.182" culture="Culture.mountain_bandits">
+    <Components>
+      <Hideout id="hideout_mountain_30" map_icon="bandit_hideout_d" scene_name="forest_hideout_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
   <!-- Beastmen  Hideouts -->
   <Settlement id="hideout_beastmen_1" name="{=Settlements.Settlement.name.hideout_beastmen_1}Ungor Camp" type="Hideout" posX="1382.387" posY="821.837" culture="Culture.steppe_bandits">
     <Components>
@@ -2024,6 +2968,61 @@
   <Settlement id="hideout_beastmen_19" name="{=Settlements.Settlement.name.hideout_beastmen_19}Ungor Camp" type="Hideout" posX="1677.092" posY="934.922" culture="Culture.steppe_bandits">
     <Components>
       <Hideout id="hideout_beastmen_19" map_icon="bandit_hideout_a" scene_name="hideout_steppe_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_beastmen_20" name="{=Settlements.Settlement.name.hideout_beastmen_20}Ungor Camp" type="Hideout" posX="1484.662" posY="1054.845" culture="Culture.steppe_bandits">
+    <Components>
+      <Hideout id="hideout_beastmen_20" map_icon="bandit_hideout_a" scene_name="hideout_steppe_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_beastmen_21" name="{=Settlements.Settlement.name.hideout_beastmen_21}Ungor Camp" type="Hideout" posX="1524.558" posY="1075.544" culture="Culture.steppe_bandits">
+    <Components>
+      <Hideout id="hideout_beastmen_21" map_icon="bandit_hideout_a" scene_name="hideout_steppe_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_beastmen_22" name="{=Settlements.Settlement.name.hideout_beastmen_22}Ungor Camp" type="Hideout" posX="1539.076" posY="1129.308" culture="Culture.steppe_bandits">
+    <Components>
+      <Hideout id="hideout_beastmen_22" map_icon="bandit_hideout_a" scene_name="hideout_steppe_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_beastmen_23" name="{=Settlements.Settlement.name.hideout_beastmen_23}Ungor Camp" type="Hideout" posX="1561.071" posY="1074.196" culture="Culture.steppe_bandits">
+    <Components>
+      <Hideout id="hideout_beastmen_23" map_icon="bandit_hideout_a" scene_name="hideout_steppe_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_beastmen_24" name="{=Settlements.Settlement.name.hideout_beastmen_24}Ungor Camp" type="Hideout" posX="1420.664" posY="1043.1" culture="Culture.steppe_bandits">
+    <Components>
+      <Hideout id="hideout_beastmen_24" map_icon="bandit_hideout_a" scene_name="hideout_steppe_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_beastmen_25" name="{=Settlements.Settlement.name.hideout_beastmen_25}Ungor Camp" type="Hideout" posX="1382.303" posY="1049.081" culture="Culture.steppe_bandits">
+    <Components>
+      <Hideout id="hideout_beastmen_25" map_icon="bandit_hideout_a" scene_name="hideout_steppe_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_beastmen_26" name="{=Settlements.Settlement.name.hideout_beastmen_26}Ungor Camp" type="Hideout" posX="1402.349" posY="1083.975" culture="Culture.steppe_bandits">
+    <Components>
+      <Hideout id="hideout_beastmen_26" map_icon="bandit_hideout_a" scene_name="hideout_steppe_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_beastmen_27" name="{=Settlements.Settlement.name.hideout_beastmen_27}Ungor Camp" type="Hideout" posX="1332.366" posY="1054.146" culture="Culture.steppe_bandits">
+    <Components>
+      <Hideout id="hideout_beastmen_27" map_icon="bandit_hideout_a" scene_name="hideout_steppe_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_beastmen_28" name="{=Settlements.Settlement.name.hideout_beastmen_28}Ungor Camp" type="Hideout" posX="1315.22" posY="991.0353" culture="Culture.steppe_bandits">
+    <Components>
+      <Hideout id="hideout_beastmen_28" map_icon="bandit_hideout_a" scene_name="hideout_steppe_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_beastmen_29" name="{=Settlements.Settlement.name.hideout_beastmen_29}Ungor Camp" type="Hideout" posX="1259.165" posY="1085.281" culture="Culture.steppe_bandits">
+    <Components>
+      <Hideout id="hideout_beastmen_29" map_icon="bandit_hideout_a" scene_name="hideout_steppe_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_beastmen_30" name="{=Settlements.Settlement.name.hideout_beastmen_30}Ungor Camp" type="Hideout" posX="1208.113" posY="1071.24" culture="Culture.steppe_bandits">
+    <Components>
+      <Hideout id="hideout_beastmen_30" map_icon="bandit_hideout_a" scene_name="hideout_steppe_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
   </Settlement>
 </Settlements>

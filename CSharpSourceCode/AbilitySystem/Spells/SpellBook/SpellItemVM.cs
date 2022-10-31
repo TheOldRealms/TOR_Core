@@ -27,6 +27,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
         private bool _isTrainerMode;
         private bool _canLearn = false;
         private string _learnText;
+        private int _goldCost;
 
         public SpellItemVM(AbilityTemplate template, Hero currentHero, bool isTrainerMode = false)
         {
@@ -35,9 +36,8 @@ namespace TOR_Core.AbilitySystem.SpellBook
             _isTrainerMode = isTrainerMode;
             SpellName = template.Name;
             SpellSpriteName = template.SpriteName;
-            SpellStatItems = template.GetStats();
+            SpellStatItems = template.GetStats(_hero, _spellTemplate);
             SpellHint = new BasicTooltipViewModel(GetHintText);
-            LearnText = "Learn " + _spellTemplate.GoldCost + "<img src=\"General\\Icons\\Coin@2x\"/>";
             RefreshValues();
         }
 
@@ -53,9 +53,9 @@ namespace TOR_Core.AbilitySystem.SpellBook
             var sugarDaddy = _hero.IsPartyLeader ? _hero
                 : _hero.PartyBelongedTo != null ? _hero.PartyBelongedTo.Owner
                     : _hero;
-            if(sugarDaddy.Gold >= _spellTemplate.GoldCost)
+            if(sugarDaddy.Gold >= _goldCost)
             {
-                sugarDaddy.ChangeHeroGold(-_spellTemplate.GoldCost);
+                sugarDaddy.ChangeHeroGold(-_goldCost);
                 _hero.AddAbility(_spellTemplate.StringID);
                 MBInformationManager.AddQuickInformation(new TextObject("Successfully learned spell: " + _spellTemplate.Name));
             }
@@ -68,6 +68,13 @@ namespace TOR_Core.AbilitySystem.SpellBook
 
         public override void RefreshValues()
         {
+            _goldCost = _spellTemplate.GoldCost;
+            var model = Campaign.Current.Models.GetSpellcraftModel();
+            if(model != null)
+            {
+                _goldCost = model.GetSpellGoldCostForHero(_hero, _spellTemplate);
+            }
+            LearnText = "Learn " + _goldCost + "<img src=\"General\\Icons\\Coin@2x\"/>";
             IsKnown = _hero.HasAbility(_spellTemplate.StringID);
             IsDisabled = !IsKnown;
             if (IsDisabled)

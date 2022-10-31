@@ -31,7 +31,6 @@
 			 armed_trader="NPCCharacter.tor_empire_caravan_ranged"
 			 caravan_guard="NPCCharacter.tor_empire_caravan_guard"
 			 veteran_caravan_guard="NPCCharacter.tor_empire_caravan_vetguard"
-			 basic_mercenary_troop="NPCCharacter.tor_merc_free_company_volunteer"
 			 duel_preset="NPCCharacter.empire_duel_preset"
 			 prison_guard="NPCCharacter.prison_guard_empire"
 			 guard="NPCCharacter.tor_empire_halberdier"
@@ -1409,6 +1408,9 @@
 		<tournament_team_templates_four_participant>
 			<template name="NPCCharacter.tournament_template_emp_four_participant_set_v1" />
 		</tournament_team_templates_four_participant>
+		<basic_mercenary_troops>
+      		<template name="NPCCharacter.tor_merc_free_company_volunteer" />
+    	</basic_mercenary_troops>
 	</Culture>
 	<Culture id="khuzait"
 			 name="{=sZLd6VHi}Vampire Counts"
@@ -1440,7 +1442,6 @@
 			 armed_trader="NPCCharacter.tor_vc_caravan_ranged"
 			 caravan_guard="NPCCharacter.tor_vc_caravan_guard"
 			 veteran_caravan_guard="NPCCharacter.tor_vc_caravan_guard"
-			 basic_mercenary_troop="NPCCharacter.tor_merc_free_company_volunteer"
 			 duel_preset="NPCCharacter.empire_duel_preset"
 			 prison_guard="NPCCharacter.prison_guard_empire"
 			 guard="NPCCharacter.tor_vc_grave_guard"
@@ -2785,6 +2786,9 @@
 		<tournament_team_templates_four_participant>
 			<template name="NPCCharacter.tournament_template_vampire_four_participant_set_v1" />
 		</tournament_team_templates_four_participant>
+		<basic_mercenary_troops>
+      		<template name="NPCCharacter.tor_merc_free_company_volunteer" />
+    	</basic_mercenary_troops>
 	</Culture>
 	<Culture id="looters"
 			 name="{=!}Outlaws"

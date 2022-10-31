@@ -33,5 +33,12 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 }
             }
         }
+
+        public static TriggeredEffectTemplate GetTemplateWithId(string id)
+        {
+            TriggeredEffectTemplate result = null;
+            _dictionary.TryGetValue(id, out result);
+            return result;
+        }
     }
 }

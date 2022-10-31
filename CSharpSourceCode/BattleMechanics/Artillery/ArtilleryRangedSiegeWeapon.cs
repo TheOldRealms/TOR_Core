@@ -18,7 +18,6 @@ namespace TOR_Core.BattleMechanics.Artillery
     public class ArtilleryRangedSiegeWeapon : RangedSiegeWeapon
     {
         #region animations
-
         private ActionIndexCache _idleAnimationActionIndex;
         private ActionIndexCache _shootAnimationActionIndex;
         private ActionIndexCache _reload1AnimationActionIndex;
@@ -40,7 +39,6 @@ namespace TOR_Core.BattleMechanics.Artillery
         public string LoadAmmoBeginActionName;
         public string LoadAmmoEndActionName;
         public string Reload2IdleActionName;
-
         #endregion
 
         private readonly string _barrelTag = "Barrel";
@@ -89,14 +87,12 @@ namespace TOR_Core.BattleMechanics.Artillery
                 else return BaseMuzzleVelocity;
             }
         }
-
         protected override Vec3 ShootingDirection => Projectile.GameEntity.GetGlobalFrame().rotation.f;
         protected override Vec3 VisualizationShootingDirection => ShootingDirection;
         public override BattleSideEnum Side => _side;
         public void SetSide(BattleSideEnum side) => _side = side;
         public Team Team { get; internal set; }
         protected override float MaximumBallisticError => 0.2f;
-
         private float TargetDistance
         {
             get
@@ -113,20 +109,18 @@ namespace TOR_Core.BattleMechanics.Artillery
         {
             return new ArtilleryAI(this);
         }
-
         protected override void OnInit()
         {
             CollectEntities();
             base.OnInit();
             Projectile.SetVisibleSynched(false);
-            if (MissileStartingPositionEntityForSimulation == null)
+            if(MissileStartingPositionEntityForSimulation == null)
             {
                 List<GameEntity> entities = new List<GameEntity>();
                 GameEntity.GetChildrenRecursive(ref entities);
                 MissileStartingPositionEntityForSimulation = Enumerable.FirstOrDefault(entities, x => x.Name == "projectile_leaving_position");
             }
-
-            foreach (var sp in StandingPoints)
+            foreach(var sp in StandingPoints)
             {
                 if (sp.GameEntity.HasTag(WaitStandingPointTag))
                 {
@@ -134,7 +128,6 @@ namespace TOR_Core.BattleMechanics.Artillery
                     break;
                 }
             }
-
             timeGapBetweenShootActionAndProjectileLeaving = 0f;
             timeGapBetweenShootingEndAndReloadingStart = 0f;
             EnemyRangeToStopUsing = 5f;
@@ -144,11 +137,11 @@ namespace TOR_Core.BattleMechanics.Artillery
             _verticalOffsetAngle = Vec3.AngleBetweenTwoVectors(v, Vec3.Forward);
             _lastCurrentDirection = currentDirection;
             ApplyAimChange();
-            ForcedUse = false;
         }
 
         protected override void OnTick(float dt)
         {
+            CheckNullReloaderOriginalPoint();
             base.OnTick(dt);
             HandleAnimations();
             HandleAmmoPickup();
@@ -159,7 +152,7 @@ namespace TOR_Core.BattleMechanics.Artillery
             UpdateWheelRotation(dt);
             HandleAITeamUsage();
         }
-
+        
         private void HandleAITeamUsage()
         {
             if (!Team?.IsPlayerTeam ?? false)
@@ -176,11 +169,20 @@ namespace TOR_Core.BattleMechanics.Artillery
             }
         }
 
+        private void CheckNullReloaderOriginalPoint()
+        {
+            if (ReloaderAgentOriginalPoint == null && ReloaderAgent != null)
+            {
+                ReloaderAgent.StopUsingGameObject(true, true);
+                ReloaderAgent = null;
+            }
+        }
+
         private void HandleWaitingTimer()
         {
-            if (State == WeaponState.WaitingBeforeIdle)
+            if(State == WeaponState.WaitingBeforeIdle)
             {
-                if (_timer != null && _timer.Check(Mission.Current.CurrentTime))
+                if(_timer != null && _timer.Check(Mission.Current.CurrentTime))
                 {
                     _timer = null;
                     State = WeaponState.Idle;
@@ -208,7 +210,6 @@ namespace TOR_Core.BattleMechanics.Artillery
                         user.StopUsingGameObject(true, false);
                         State = WeaponState.WaitingBeforeIdle;
                     }
-
                     user.StopUsingGameObject(true, true);
                 }
                 else
@@ -222,7 +223,6 @@ namespace TOR_Core.BattleMechanics.Artillery
                                 user.RemoveEquippedWeapon(equipmentIndex);
                             }
                         }
-
                         user.StopUsingGameObject(true, true);
                     }
                 }
@@ -268,7 +268,6 @@ namespace TOR_Core.BattleMechanics.Artillery
                                                 formation.AttachUnit(ReloaderAgent);
                                             }
                                         }
-
                                         ReloaderAgent = null;
                                     }
                                 }
@@ -285,7 +284,7 @@ namespace TOR_Core.BattleMechanics.Artillery
 
         private void ForceAmmoPointUsage()
         {
-            if (State == WeaponState.LoadingAmmo && !LoadAmmoStandingPoint.HasUser && !LoadAmmoStandingPoint.HasAIMovingTo)
+            if(State == WeaponState.LoadingAmmo && !LoadAmmoStandingPoint.HasUser && !LoadAmmoStandingPoint.HasAIMovingTo)
             {
                 foreach (var sp in AmmoPickUpStandingPoints)
                 {
@@ -307,34 +306,33 @@ namespace TOR_Core.BattleMechanics.Artillery
             switch (State)
             {
                 case WeaponState.Shooting:
-                {
-                    PlayFireProjectileEffects();
-                    AddCannonballScript();
-                    State = WeaponState.WaitingAfterShooting;
-                    return;
-                }
+                    {
+                        PlayFireProjectileEffects();
+                        State = WeaponState.WaitingAfterShooting;
+                        return;
+                    }
                 case WeaponState.WaitingAfterShooting:
-                {
-                    DoSlideBack();
-                    return;
-                }
+                    {
+                        DoSlideBack();
+                        return;
+                    }
                 case WeaponState.WaitingBeforeIdle:
-                {
-                    SendLoaderAgentToWaitingPoint();
-                    SetWaitingTimer();
-                    return;
-                }
+                    {
+                        SendLoaderAgentToWaitingPoint();
+                        SetWaitingTimer();
+                        return;
+                    }
                 case WeaponState.LoadingAmmo:
-                {
-                    SetActivationWaitingPoint(false);
-                    return;
-                }
+                    {
+                        SetActivationWaitingPoint(false);
+                        return;
+                    }
             }
         }
 
         private void SendLoaderAgentToWaitingPoint()
         {
-            if (_lastLoaderAgent != null && _waitStandingPoint != null)
+            if(_lastLoaderAgent != null && _waitStandingPoint != null)
             {
                 SetActivationWaitingPoint(true);
                 _lastLoaderAgent.AIMoveToGameObjectEnable(_waitStandingPoint, this, Agent.AIScriptedFrameFlags.NoAttack);
@@ -351,11 +349,11 @@ namespace TOR_Core.BattleMechanics.Artillery
 
         protected override void ApplyCurrentDirectionToEntity()
         {
-            if (_lastCurrentDirection != currentDirection)
+            if(_lastCurrentDirection != currentDirection)
             {
                 _isRotating = true;
                 if (currentDirection - _lastCurrentDirection > 0) _rotationDirection = 1;
-                else if (currentDirection - _lastCurrentDirection < 0) _rotationDirection = -1;
+                else if(currentDirection - _lastCurrentDirection < 0) _rotationDirection = -1;
                 else _rotationDirection = 0;
             }
             else
@@ -363,7 +361,6 @@ namespace TOR_Core.BattleMechanics.Artillery
                 _isRotating = false;
                 _rotationDirection = 0;
             }
-
             base.ApplyCurrentDirectionToEntity();
             _lastCurrentDirection = currentDirection;
         }
@@ -397,7 +394,6 @@ namespace TOR_Core.BattleMechanics.Artillery
             {
                 textObject = new TextObject("{=fEQAPJ2e}{KEY} Use");
             }
-
             textObject.SetTextVariable("KEY", HyperlinkTexts.GetKeyHyperlinkText(HotKeyManager.GetHotKeyId("CombatHotKeyCategory", 13)));
             return textObject;
         }
@@ -411,7 +407,7 @@ namespace TOR_Core.BattleMechanics.Artillery
 
         public override TargetFlags GetTargetFlags()
         {
-            TargetFlags targetFlags = (TargetFlags) (0 | 2 | 8 | 16);
+            TargetFlags targetFlags = (TargetFlags)(0 | 2 | 8 | 16);
             if (IsDestroyed || IsDeactivated)
                 targetFlags |= TargetFlags.NotAThreat;
             if (Side == BattleSideEnum.Attacker && DebugSiegeBehavior.DebugDefendState == DebugSiegeBehavior.DebugStateDefender.DebugDefendersToMangonels)
@@ -429,22 +425,18 @@ namespace TOR_Core.BattleMechanics.Artillery
             {
                 return -1000f;
             }
-
             if (flags.HasAnyFlag(TargetFlags.IsSiegeEngine))
             {
                 baseValue *= 0.2f;
             }
-
             if (flags.HasAnyFlag(TargetFlags.IsStructure))
             {
                 baseValue *= 0.05f;
             }
-
             if (flags.HasAnyFlag(TargetFlags.DebugThreat))
             {
                 baseValue *= 10000f;
             }
-
             return baseValue;
         }
 
@@ -483,22 +475,9 @@ namespace TOR_Core.BattleMechanics.Artillery
             _loadAmmoEndAnimationActionIndex = ActionIndexCache.Create(LoadAmmoEndActionName);
             _reload2IdleActionIndex = ActionIndexCache.Create(Reload2IdleActionName);
         }
-
         internal void SetTarget(Target target) => _target = target;
         internal void ClearTarget() => _target = null;
-
-        private void AddCannonballScript()
-        {
-            var cannonball = Mission.Current.Missiles.FirstOrDefault(missile => missile.ShooterAgent == PilotAgent);
-            if (cannonball != null)
-            {
-                GameEntity entity = cannonball.Entity;
-                entity.CreateAndAddScriptComponent("CannonBallScript");
-                CannonBallScript cannonBallScript = entity.GetFirstScriptOfType<CannonBallScript>();
-                cannonBallScript.SetShooterAgent(PilotAgent);
-                entity.CallScriptCallbacks();
-            }
-        }
+        
 
         private void PlayFireProjectileEffects()
         {
@@ -541,7 +520,6 @@ namespace TOR_Core.BattleMechanics.Artillery
                     _fireSound.Release();
                     _fireSound = null;
                 }
-
                 return;
             }
 
@@ -584,7 +562,7 @@ namespace TOR_Core.BattleMechanics.Artillery
 
         private void UpdateWheelRotation(float dt)
         {
-            if (!CanRotate()) _isRotating = false;
+            if(!CanRotate()) _isRotating = false;
             if (_isRotating)
             {
                 DoWheelRotation(dt, _rotationDirection, _rotationDirection);
@@ -613,8 +591,7 @@ namespace TOR_Core.BattleMechanics.Artillery
             //calculate from the maximum height down to the end height
             var maximumRelativeToEnd = traveledHeight - heightEnd;
 
-            var term = (velocity * Mathf.Sin(0) + (float) Math.Pow((velocity * Mathf.Sin(0)), 2) + 2 * MBGlobals.Gravity * maximumRelativeToEnd) / MBGlobals.Gravity;
-            ;
+            var term = (velocity * Mathf.Sin(0) + (float)Math.Pow((velocity * Mathf.Sin(0)), 2) + 2 * MBGlobals.Gravity * maximumRelativeToEnd) / MBGlobals.Gravity; ;
             var timeTravelFromMiddleToEnd = velocity * Mathf.Sin(0);
 
             return timeTraveledToMaximumHeight + timeTravelFromMiddleToEnd;

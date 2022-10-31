@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 
@@ -30,6 +31,25 @@ namespace TOR_Core.Extensions
         public static HeroExtendedInfo GetExtendedInfo(this Hero hero)
         {
             return ExtendedInfoManager.Instance.GetHeroInfoFor(hero.GetInfoKey());
+        }
+
+        public static int GetEffectiveWindsCostForSpell(this Hero hero, Spell spell)
+        {
+            return hero.GetEffectiveWindsCostForSpell(spell.Template);
+        }
+
+        public static int GetEffectiveWindsCostForSpell(this Hero hero, AbilityTemplate spell)
+        {
+            int result = spell.WindsOfMagicCost;
+            if (Game.Current.GameType is Campaign)
+            {
+                var model = Campaign.Current.Models.GetSpellcraftModel();
+                if (model != null)
+                {
+                    result = model.GetEffectiveWindsCost(hero.CharacterObject, spell);
+                }
+            }
+            return result;
         }
 
         public static int GetPlaceableArtilleryCount(this Hero hero)
@@ -132,6 +152,18 @@ namespace TOR_Core.Extensions
         public static bool IsVampire(this Hero hero)
         {
             return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("vampire");
+        }
+
+        public static bool IsSpellTrainer(this Hero hero)
+        {
+            return hero.Occupation == Occupation.Special && hero.Name.Contains("Magister");
+        }
+
+        public static bool IsMasterEngineer(this Hero hero)
+        {
+            if(hero!=null)
+                return hero.Occupation == Occupation.Special&& hero.Name.Contains("Master Engineer");
+            return false;
         }
 
         public static string GetInfoKey(this Hero hero)

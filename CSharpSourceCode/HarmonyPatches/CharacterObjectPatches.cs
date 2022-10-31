@@ -14,18 +14,6 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class CharacterObjectPatches
     {
-		[HarmonyPrefix]
-		[HarmonyPatch(typeof(CharacterObject), "TroopWage", MethodType.Getter)]
-		public static bool TroopWagePrefix(ref int __result, CharacterObject __instance)
-		{
-			if (__instance.IsUndead())
-			{
-				__result = 0;
-				return false;
-			}
-			return true;
-		}
-
 		[HarmonyPostfix]
 		[HarmonyPatch(typeof(CharacterHelper), "GetTroopTree")]
 		public static void TroopTreePatch(ref IEnumerable<CharacterObject> __result, CharacterObject baseTroop)
@@ -34,6 +22,13 @@ namespace TOR_Core.HarmonyPatches
 			{
 				__result = CharacterHelper.GetTroopTree(baseTroop);
 			}
+		}
+
+		[HarmonyPostfix]
+		[HarmonyPatch(typeof(CharacterObject), "CreateFrom")]
+		public static void TroopTreePatch(ref CharacterObject __result, CharacterObject character)
+		{
+			__result.Race = character.Race;
 		}
 
 		//Copied and modified from DesertionCampaignBehaviour.PartiesCheckDesertionDueToPartySizeExceedsPaymentRatio

@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Xml.Serialization;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.Utilities;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -97,7 +101,8 @@ namespace TOR_Core.AbilitySystem
         public AbilityTemplate(string id) => StringID = id;
 
         public bool IsSpell => AbilityType == AbilityType.Spell;
-
+        public TriggeredEffectTemplate AssociatedTriggeredEffectTemplate => TriggeredEffectManager.GetTemplateWithId(TriggeredEffectID);
+        public bool DoesDamage => AssociatedTriggeredEffectTemplate?.DamageType != DamageType.Invalid && AssociatedTriggeredEffectTemplate?.DamageAmount > 0;
         public int GoldCost
         {
             get
@@ -113,13 +118,13 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-        public MBBindingList<StatItemVM> GetStats()
+        public MBBindingList<StatItemVM> GetStats(Hero hero, AbilityTemplate spellTemplate)
         {
             MBBindingList<StatItemVM> list = new MBBindingList<StatItemVM>();
             if (IsSpell)
             {
                 list.Add(new StatItemVM("Spell Name: ", Name));
-                list.Add(new StatItemVM("Winds of Magic cost: ", WindsOfMagicCost.ToString() + TORCommon.GetWindsIconAsText()));
+                list.Add(new StatItemVM("Winds of Magic cost: ", hero.GetEffectiveWindsCostForSpell(spellTemplate) + TORCommon.GetWindsIconAsText()));
                 list.Add(new StatItemVM("Spell Tier: ", ((SpellCastingLevel)SpellTier).ToString()));
                 list.Add(new StatItemVM("Spell Type: ", AbilityEffectType.ToString()));
                 list.Add(new StatItemVM("Cooldown: ", CoolDown.ToString()+" seconds"));

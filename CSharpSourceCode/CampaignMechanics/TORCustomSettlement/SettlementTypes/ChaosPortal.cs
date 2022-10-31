@@ -53,6 +53,11 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes
             args.optionLeaveType = GameMenuOption.LeaveType.HostileAction;
             var text = GameTexts.FindText("customsettlement_battle", _settlement.StringId);
             MBTextManager.SetTextVariable("BATTLE_OPTION_TEXT", text);
+            if (Hero.MainHero.IsWounded)
+            {
+                args.Tooltip = new TextObject("{=UL8za0AO}You are wounded.", null);
+                args.IsEnabled = false;
+            }
             return IsActive;
         }
 

@@ -9,12 +9,19 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Engine.GauntletUI;
+using TaleWorlds.Engine.InputSystem;
+using TaleWorlds.InputSystem;
+using TaleWorlds.Library;
+using TaleWorlds.ModuleManager;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.CustomBattle;
+using TaleWorlds.MountAndBlade.GameKeyCategory;
 using TaleWorlds.MountAndBlade.GauntletUI.Mission;
 using TaleWorlds.MountAndBlade.Source.Missions;
+using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.SpellBook;
+using TOR_Core.BaseGameDebug;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.AI;
@@ -29,14 +36,19 @@ using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.Assimilation;
 using TOR_Core.CampaignMechanics.Chaos;
+using TOR_Core.CampaignMechanics.CustomDialogs;
 using TOR_Core.CampaignMechanics.CustomEncounterDialogs;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
 using TOR_Core.CampaignMechanics.SkillBooks;
+using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
+using TOR_Core.CampaignSupport.TownBehaviours;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.GameManagers;
 using TOR_Core.Items;
 using TOR_Core.Models;
 using TOR_Core.Models.CustomBattleModels;
@@ -60,6 +72,8 @@ namespace TOR_Core
             harmony.PatchAll();
             ConfigureLogging();
             UIConfig.DoNotUseGeneratedPrefabs = true;
+            
+            TORKeyInputManager.Initialize();
 
             StatusEffectManager.LoadStatusEffects();
             TriggeredEffectManager.LoadTemplates();
@@ -89,6 +103,11 @@ namespace TOR_Core
                 starter.AddBehavior(new TORPartyHealCampaignBehavior());
                 starter.AddBehavior(new AssimilationCampaignBehavior());
                 starter.AddBehavior(new TORWanderersCampaignBehavior());
+                starter.AddBehavior(new SpellTrainerInTownBehavior());
+                starter.AddBehavior(new MasterEngineerTownBehaviour());
+                starter.AddBehavior(new TORPerkHandlerCampaignBehavior());
+                starter.AddBehavior(new BaseGameDebugCampaignBehavior());
+                starter.AddBehavior(new BloodKissCampaignBehavior());
 
             }
             else if (Game.Current.GameType is CustomGame && starterObject is BasicGameStarter)
@@ -121,8 +140,18 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORPartyWageModel());
                 gameStarterObject.AddModel(new TORPrisonerRecruitmentCalculationModel());
                 gameStarterObject.AddModel(new TORSettlementMilitiaModel());
-                gameStarterObject.AddModel(new TORSpellcraftSkillModel());
+        //        gameStarterObject.AddModel(new TORSpellcraftSkillModel());
                 gameStarterObject.AddModel(new TORCharacterDevelopmentModel());
+                gameStarterObject.AddModel(new TORPartyTrainingModel());
+                gameStarterObject.AddModel(new TORInventoryCapacityModel());
+                gameStarterObject.AddModel(new TORAgentApplyDamageModel());
+                gameStarterObject.AddModel(new TORStrikeMagnitudeModel());
+                gameStarterObject.AddModel(new TORCombatSimulationModel());
+                gameStarterObject.AddModel(new TORPartyMoraleModel());
+                gameStarterObject.AddModel(new TORPersuasionModel());
+                gameStarterObject.AddModel(new TORVoiceOverModel());
+
+                CampaignOptions.IsLifeDeathCycleDisabled = true;
             }
             else if (Game.Current.GameType is CustomGame && gameStarterObject is BasicGameStarter)
             {

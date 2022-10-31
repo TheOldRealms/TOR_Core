@@ -1,4 +1,5 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using System;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -37,8 +38,9 @@ namespace TOR_Core.AbilitySystem
                 if (Game.Current.GameType is Campaign && _ability is Spell)
                 {
                     SetWindsOfMagicValue((float)(Agent.Main?.GetHero()?.GetExtendedInfo()?.CurrentWindsOfMagic));
-
-                    if (_windsOfMagicValue < _ability.Template.WindsOfMagicCost)
+                    var windsCost = AddPerkEffectsToWindsCost(Agent.Main?.GetHero(), _ability.Template);
+                    WindsCost = windsCost.ToString();
+                    if (_windsOfMagicValue < windsCost)
                     {
                         if (!IsOnCoolDown)
                         {
@@ -48,6 +50,17 @@ namespace TOR_Core.AbilitySystem
                     }
                 }
             }
+        }
+
+        private int AddPerkEffectsToWindsCost(Hero hero, AbilityTemplate template)
+        {
+            int result = template.WindsOfMagicCost;
+            var model = Campaign.Current.Models.GetSpellcraftModel();
+            if(model != null && hero != null)
+            {
+                result = model.GetEffectiveWindsCost(hero.CharacterObject, template);
+            }
+            return result;
         }
 
         private void SetWindsOfMagicValue(float value)

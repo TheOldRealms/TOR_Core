@@ -1,5 +1,7 @@
 ﻿using HarmonyLib;
 using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.Core;
+using TaleWorlds.ModuleManager;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -21,6 +23,14 @@ namespace TOR_Core.HarmonyPatches
             }
             return false;
         }
-        
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(Game), "InitializeParameters")]
+        public static bool LoadTORManagedParameters(Game __instance)
+        {
+            ManagedParameters.Instance.Initialize(ModuleHelper.GetXmlPath("TOR_Core", "tor_managed_core_parameters"));
+            __instance.GameType.InitializeParameters();
+            return false;
+        }
     }
 }

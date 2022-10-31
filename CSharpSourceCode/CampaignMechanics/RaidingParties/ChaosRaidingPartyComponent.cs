@@ -79,11 +79,21 @@ namespace TOR_Core.CampaignMechanics.ChaosRaiding
             {
                 FindNewTarget();
             }
+            else if(Party.MobileParty.ShortTermBehavior != AiBehavior.RaidSettlement)
+            {
+                ResumeRaiding();
+            }
         }
 
         private void FindNewTarget()
         {
             Target = Settlement.FindSettlementsAroundPosition(Party.Position2D, 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
+            Party.MobileParty.Ai.SetAIState(AIState.Raiding);
+            Party.MobileParty.SetMoveRaidSettlement(Target);
+        }
+
+        private void ResumeRaiding()
+        {
             Party.MobileParty.Ai.SetAIState(AIState.Raiding);
             Party.MobileParty.SetMoveRaidSettlement(Target);
         }

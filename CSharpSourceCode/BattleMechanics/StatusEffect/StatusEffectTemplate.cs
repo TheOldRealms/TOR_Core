@@ -1,11 +1,12 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Xml.Serialization;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using static TOR_Core.Utilities.TORParticleSystem;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
 {
-    public class StatusEffectTemplate
+    public class StatusEffectTemplate : IEquatable<StatusEffectTemplate>
     {
         [XmlAttribute("id")]
         public string Id { get; set; }
@@ -29,6 +30,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         public AmplifierTuple DamageAmplifier { get; set; } = new AmplifierTuple();
         [XmlElement]
         public ResistanceTuple Resistance { get; set; } = new ResistanceTuple();
+
         public enum EffectType
         {
             HealthOverTime,
@@ -37,6 +39,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             Resistance,
             Invalid
         };
+
+        public bool IsBuffEffect => Type != EffectType.Invalid && Type != EffectType.DamageOverTime;
 
         public override int GetHashCode()
         {
@@ -50,6 +54,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 return false;
             }
             return GetHashCode() == ((StatusEffect)obj).GetHashCode();
+        }
+
+        public bool Equals(StatusEffectTemplate other)
+        {
+            return GetHashCode() == other.GetHashCode();
         }
     }
 }
