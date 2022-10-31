@@ -19,7 +19,11 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentTacticalBehavior
 
         private void CalculateCastingTarget(Target target)
         {
-            CastingPosition = target.Formation != null ? CalculateCastingPosition(target.Formation) : Agent.Position;
+            CastingPosition = 
+                target.Formation != null ? CalculateCastingPosition(target.Formation) :
+                target.SelectedWorldPosition != null && target.SelectedWorldPosition != Vec3.Zero ? target.SelectedWorldPosition :
+                target.TacticalPosition != null ? target.TacticalPosition.Position.GetGroundVec3():
+                Agent.Position;
             var worldPosition = new WorldPosition(Mission.Current.Scene, CastingPosition);
             Agent.SetScriptedPosition(ref worldPosition, false);
         }
@@ -43,7 +47,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentTacticalBehavior
         {
             CastingBehavior.SetCurrentTarget(target);
         }
-        
+
         public override void Terminate()
         {
             Agent.DisableScriptedMovement();

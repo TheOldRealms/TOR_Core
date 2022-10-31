@@ -5,6 +5,7 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.AI.AgentBehavior.AgentTacticalBehavior;
 using TOR_Core.BattleMechanics.AI.Decision;
+using TOR_Core.BattleMechanics.AI.TeamBehavior;
 using TOR_Core.BattleMechanics.Artillery;
 using TOR_Core.Extensions;
 
@@ -25,7 +26,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
             if (CurrentTarget.TacticalPosition == null) return;
 
             var castingPosition = ((AdjacentAoETacticalBehavior) TacticalBehavior)?.CastingPosition;
-            if (castingPosition.HasValue && Agent.Position.AsVec2.Distance(castingPosition.Value.AsVec2) > 5) return;
+            if (castingPosition.HasValue && Agent.Position.AsVec2.Distance(castingPosition.Value.AsVec2) > 10) return;
 
             base.Execute();
         }
@@ -47,12 +48,15 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
 
         public override List<BehaviorOption> CalculateUtility()
         {
+            var artilleryFormation = Agent.Team.FormationsIncludingSpecial.ToList().Find(formation => formation.Index == (int) TORFormationClass.Artillery);
             var behaviorOptions = new List<BehaviorOption>();
+            var artilleryPosition = CurrentTarget.TacticalPosition.Position.GetGroundVec3();
             CurrentTarget.UtilityValue = CurrentTarget.TacticalPosition != null &&
                                          Mission.Current.GetArtillerySlotsLeftForTeam(Agent.Team) > 0 &&
-                                         ((ItemBoundAbility) Agent.GetAbility(AbilityIndex)).GetRemainingCharges() > 0
-                ? 1.0f
-                : 0.0f;
+                                         ((ItemBoundAbility) Agent.GetAbility(AbilityIndex)).GetRemainingCharges() > 0 &&
+                                         (Agent.Position.Distance(artilleryPosition) < 25 || artilleryFormation != null && artilleryFormation.CurrentPosition.Distance(artilleryPosition.AsVec2) < 20)
+                                                 ? 1.0f
+                                                 : 0.0f;
             behaviorOptions.Add(new BehaviorOption {Target = CurrentTarget, Behavior = this});
             return behaviorOptions;
         }

@@ -31,7 +31,6 @@ namespace TOR_Core.BattleMechanics.AI.FormationBehavior
             }
         }
 
-        public new float GetAIWeight() => Formation.Team.TeamAI.IsCurrentTactic(_relatedTactic) ? 100f : 0.0f;
         protected override float GetAiWeight() => Formation.Team.TeamAI.IsCurrentTactic(_relatedTactic) ? 100f : 0.0f;
     }
 }

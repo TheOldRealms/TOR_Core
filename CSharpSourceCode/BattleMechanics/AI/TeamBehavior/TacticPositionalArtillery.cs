@@ -150,7 +150,6 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         public void DeterminePositions()
         {
             _latestScoredPositions = GatherCandidatePositions()
-                //.FindAll(IsTacticalPositionEligible)
                 .Select(pos => new Target {TacticalPosition = pos})
                 .Select(target =>
                 {
