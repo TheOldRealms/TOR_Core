@@ -2427,7 +2427,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_RL2" name="{=Settlements.Settlement.name.castle_RL2}Kemperbad" owner="Faction.reikland_clan_5" posX="1323.062" posY="1008.906" prosperity="800" culture="Culture.empire" gate_posX="1324.203" gate_posY="1009.562" text="{=!}The Grand Freistadt of Kemperbad is a settlement within the province of Reikland, said to make the finest brandy in the Empire, while holding Freistadt status.">
+  <Settlement id="castle_RL2" name="{=Settlements.Settlement.name.castle_RL2}Kemperbad" owner="Faction.reikland_clan_1" posX="1323.062" posY="1008.906" prosperity="800" culture="Culture.empire" gate_posX="1324.203" gate_posY="1009.562" text="{=!}The Grand Freistadt of Kemperbad is a settlement within the province of Reikland, said to make the finest brandy in the Empire, while holding Freistadt status.">
     <Components>
       <Town id="castle_comp_RL2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>

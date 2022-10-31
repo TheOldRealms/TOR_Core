@@ -16,8 +16,7 @@ namespace TOR_Core.Models
         public override string GetSoundPathForCharacter(CharacterObject character, VoiceObject voiceObject)
         {
             var result = base.GetSoundPathForCharacter(character, voiceObject);
-            if(character.IsFemale && character.IsVampire()) return "";
-            if (voiceObject != null && voiceObject.VoicePaths.Count > 0)
+            if (voiceObject != null && voiceObject.VoicePaths.Count > 0 && ShouldOverrideBaseVoice(character))
             {
                 var path = voiceObject.VoicePaths[0];
                 path = path.Replace("$PLATFORM", "PC");
@@ -28,6 +27,11 @@ namespace TOR_Core.Models
                 }
             }
             return result;
+        }
+
+        private bool ShouldOverrideBaseVoice(CharacterObject character)
+        {
+            return (character.IsVampire() && !character.IsFemale) || character.Culture.StringId == "forest_bandits";
         }
     }
 }
