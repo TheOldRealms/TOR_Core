@@ -17,7 +17,7 @@ namespace TOR_Core.BattleMechanics.AI.FormationBehavior
         public override void TickOccasionally()
         {
             var closestEnemyFormation = TargetFormation.QuerySystem.ClosestEnemyFormation;
-            if (closestEnemyFormation.AveragePosition.Distance(TargetFormation.QuerySystem.AveragePosition) < 10)
+            if (closestEnemyFormation != null && closestEnemyFormation.AveragePosition.Distance(TargetFormation.QuerySystem.AveragePosition) < 10)
             {
                 CurrentOrder = MovementOrder.MovementOrderChargeToTarget(closestEnemyFormation.Formation);
                 Formation.SetMovementOrder(CurrentOrder);
