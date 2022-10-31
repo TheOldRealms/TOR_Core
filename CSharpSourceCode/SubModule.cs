@@ -140,7 +140,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORPartyWageModel());
                 gameStarterObject.AddModel(new TORPrisonerRecruitmentCalculationModel());
                 gameStarterObject.AddModel(new TORSettlementMilitiaModel());
-        //        gameStarterObject.AddModel(new TORSpellcraftSkillModel());
+                gameStarterObject.AddModel(new TORSpellcraftModel());
                 gameStarterObject.AddModel(new TORCharacterDevelopmentModel());
                 gameStarterObject.AddModel(new TORPartyTrainingModel());
                 gameStarterObject.AddModel(new TORInventoryCapacityModel());
