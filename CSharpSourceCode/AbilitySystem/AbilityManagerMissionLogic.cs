@@ -249,9 +249,13 @@ namespace TOR_Core.AbilitySystem
             
             if(Input.IsKeyPressed(_previousAbilitySelection.KeyboardKey.InputKey)||Input.IsKeyPressed(_previousAbilitySelection.ControllerKey.InputKey))
                 Agent.Main.SelectPreviousAbility();
-            
-            if(Input.IsKeyPressed(_quickCast.KeyboardKey.InputKey)||Input.IsKeyPressed(_quickCast.ControllerKey.InputKey))
-                Agent.Main.CastCurrentAbility();
+
+            if (Input.IsKeyPressed(_quickCast.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCast.ControllerKey.InputKey))
+            {
+                if(_abilityComponent != null && _abilityComponent.CurrentAbility.AbilityEffectType != AbilityEffectType.SeekerMissile)
+                    Agent.Main.CastCurrentAbility();
+            }
+               
             
             if (Input.IsKeyPressed(_spellcastingModeKey.KeyboardKey.InputKey)||Input.IsKeyPressed(_spellcastingModeKey.ControllerKey.InputKey))
             {
