@@ -577,7 +577,12 @@ namespace TOR_Core.BattleMechanics.Artillery
         public float GetEstimatedCurrentFlightTime()
         {
             if (Target == null) return 0;
-            return GetTimeOfProjectileFlight(ShootingSpeed, targetReleaseAngle, MissleStartingPositionForSimulation.Z, Target.GetPosition().Z);
+            return GetTimeOfProjectileFlight(ShootingSpeed, targetReleaseAngle, MissleStartingPositionForSimulation.Z, Target.GetPositionPrioritizeCalculated().Z);
+        }
+        
+        public float GetEstimatedCurrentFlightTime(Target target)
+        {
+            return GetTimeOfProjectileFlight(ShootingSpeed, targetReleaseAngle, MissleStartingPositionForSimulation.Z, target.GetPositionPrioritizeCalculated().Z);
         }
 
         public static float GetTimeOfProjectileFlight(float velocity, float angle, float heightBegin, float heightEnd)

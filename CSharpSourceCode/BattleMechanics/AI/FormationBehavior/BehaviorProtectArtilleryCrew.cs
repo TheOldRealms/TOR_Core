@@ -1,29 +1,26 @@
-﻿using TaleWorlds.MountAndBlade;
+﻿using System.Linq;
+using TaleWorlds.MountAndBlade;
+using TOR_Core.BattleMechanics.AI.TeamBehavior;
 
 namespace TOR_Core.BattleMechanics.AI.FormationBehavior
 {
     public class BehaviorProtectArtilleryCrew : BehaviorComponent
     {
-        private readonly TacticComponent _relatedTactic;
-        public Formation TargetFormation { get; set; }
-
-
-        public BehaviorProtectArtilleryCrew(Formation formation, Formation targetFormation, TacticComponent relatedTactic) : base(formation)
+        public BehaviorProtectArtilleryCrew(Formation formation) : base(formation)
         {
-            _relatedTactic = relatedTactic;
-            TargetFormation = targetFormation;
         }
 
         public override void TickOccasionally()
         {
-            var closestEnemyFormation = TargetFormation.QuerySystem.ClosestEnemyFormation;
-            if (closestEnemyFormation != null && closestEnemyFormation.AveragePosition.Distance(TargetFormation.QuerySystem.AveragePosition) < 10)
+            var artillery = Formation.Team.FormationsIncludingSpecial.ToList().Find(formation => formation.Index == (int) TORFormationClass.Artillery);
+            var closestEnemyFormation = artillery.QuerySystem.ClosestEnemyFormation;
+            if (closestEnemyFormation != null && closestEnemyFormation.AveragePosition.Distance(artillery.QuerySystem.AveragePosition) < 10)
             {
                 CurrentOrder = MovementOrder.MovementOrderChargeToTarget(closestEnemyFormation.Formation);
                 Formation.SetMovementOrder(CurrentOrder);
             }
 
-            var targetAgent = TargetFormation.GetMedianAgent(false, true, TargetFormation.GetAveragePositionOfUnits(true, true));
+            var targetAgent = artillery.GetMedianAgent(false, true, artillery.GetAveragePositionOfUnits(true, true));
             if (targetAgent != null)
             {
                 CurrentOrder = MovementOrder.MovementOrderFollow(targetAgent);
@@ -31,6 +28,6 @@ namespace TOR_Core.BattleMechanics.AI.FormationBehavior
             }
         }
 
-        protected override float GetAiWeight() => Formation.Team.TeamAI.IsCurrentTactic(_relatedTactic) ? 100f : 0.0f;
+        protected override float GetAiWeight() => Formation.Index == (int) TORFormationClass.ArtilleryGuard ? 100f : 0.0f;
     }
 }

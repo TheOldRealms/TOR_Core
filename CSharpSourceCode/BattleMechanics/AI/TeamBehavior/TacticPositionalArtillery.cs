@@ -110,11 +110,6 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             }
 
             updatedFormations.ForEach(formation => team.TriggerOnFormationsChanged(formation));
-            var formationAI = _guardFormation.AI;
-            if (formationAI.GetBehavior<BehaviorProtectArtilleryCrew>() == null)
-            {
-                formationAI.AddAiBehavior(new BehaviorProtectArtilleryCrew(_guardFormation, _artilleryFormation, this));
-            }
         }
 
         protected override void TickOccasionally()

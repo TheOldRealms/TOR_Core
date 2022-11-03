@@ -63,7 +63,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
             target.Agent = targetAgent;
 
             Vec3 velocity = target.Formation.QuerySystem.CurrentVelocity.ToVec3();
-            float time = (UsableMachine as ArtilleryRangedSiegeWeapon).GetEstimatedCurrentFlightTime();
+            float time = (UsableMachine as ArtilleryRangedSiegeWeapon).GetEstimatedCurrentFlightTime(target);
 
             target.SelectedWorldPosition = target.Position + velocity * time;
             return target.SelectedWorldPosition;
