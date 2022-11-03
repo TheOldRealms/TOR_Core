@@ -37,6 +37,7 @@ namespace TOR_Core.BattleMechanics.AI.FormationBehavior
             else
             {
                 Formation.ArrangementOrder = ArrangementOrder.ArrangementOrderLine;
+                Formation.FormOrder = FormOrder.FormOrderWide;
             }
         }
     }

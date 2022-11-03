@@ -159,7 +159,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                 var tp = _chosenArtilleryPosition.TacticalPosition;
                 var direction = (team.QuerySystem.AverageEnemyPosition - tp.Position.AsVec2).Normalized();
                 TacticalPosition primaryDefensivePosition = new TacticalPosition(
-                    new WorldPosition(Mission.Current.Scene, tp.Position.GetGroundVec3() + direction.ToVec3() * 30),
+                    new WorldPosition(Mission.Current.Scene, tp.Position.GetGroundVec3() + direction.ToVec3() * 50),
                     direction, tp.Width, tp.Slope, tp.IsInsurmountable, tp.TacticalPositionType, tp.TacticalRegionMembership);
 
                 if (primaryDefensivePosition != _mainDefensiveLinePosition)
@@ -332,7 +332,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             {
                 _mainInfantry.AI.ResetBehaviorWeights();
                 SetDefaultBehaviorWeights(_mainInfantry);
-                _mainInfantry.AI.SetBehaviorWeight<BehaviorDefend>(1f).TacticalDefendPosition = _mainDefensiveLinePosition;
+                _mainInfantry.AI.SetBehaviorWeight<BehaviorDefend>(5f).TacticalDefendPosition = _mainDefensiveLinePosition;
                 _mainInfantry.AI.SetBehaviorWeight<BehaviorTacticalCharge>(1f);
             }
 

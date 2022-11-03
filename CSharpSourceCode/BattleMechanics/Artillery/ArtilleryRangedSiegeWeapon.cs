@@ -577,12 +577,12 @@ namespace TOR_Core.BattleMechanics.Artillery
         public float GetEstimatedCurrentFlightTime()
         {
             if (Target == null) return 0;
-            return GetTimeOfProjectileFlight(ShootingSpeed, targetReleaseAngle, MissleStartingPositionForSimulation.Z, Target.GetPositionPrioritizeCalculated().Z);
+            return GetTimeOfProjectileFlight(ShootingSpeed, targetReleaseAngle, MissleStartingPositionForSimulation.Z, Target.GetPosition().Z);
         }
         
         public float GetEstimatedCurrentFlightTime(Target target)
         {
-            return GetTimeOfProjectileFlight(ShootingSpeed, targetReleaseAngle, MissleStartingPositionForSimulation.Z, target.GetPositionPrioritizeCalculated().Z);
+            return GetTimeOfProjectileFlight(ShootingSpeed, targetReleaseAngle, MissleStartingPositionForSimulation.Z, target.GetPosition().Z);
         }
 
         public static float GetTimeOfProjectileFlight(float velocity, float angle, float heightBegin, float heightEnd)
@@ -594,7 +594,7 @@ namespace TOR_Core.BattleMechanics.Artillery
             var timeTraveledToMaximumHeight = Mathf.Abs((2 * velocity * Mathf.Sin(angle)) / MBGlobals.Gravity) / 2;
 
             //calculate from the maximum height down to the end height
-            var maximumRelativeToEnd = maximumHeight - heightEnd;
+            var maximumRelativeToEnd = traveledHeight - heightEnd;
 
             var term = (velocity * Mathf.Sin(0) + (float)Math.Pow((velocity * Mathf.Sin(0)), 2) + 2 * MBGlobals.Gravity * maximumRelativeToEnd) / MBGlobals.Gravity; ;
             var timeTravelFromMiddleToEnd = velocity * Mathf.Sin(0);
