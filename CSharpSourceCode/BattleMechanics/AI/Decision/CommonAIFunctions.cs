@@ -35,7 +35,7 @@ namespace TOR_Core.BattleMechanics.AI.Decision
                         return float.MaxValue;
                     }
 
-                    return target.GetPosition().AsVec2.Distance(querySystemClosestEnemyFormation.AveragePosition);
+                    return target.GetPositionPrioritizeCalculated().AsVec2.Distance(querySystemClosestEnemyFormation.AveragePosition);
                 }
 
                 return 0f;

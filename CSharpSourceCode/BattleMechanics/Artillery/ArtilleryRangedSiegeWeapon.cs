@@ -589,7 +589,7 @@ namespace TOR_Core.BattleMechanics.Artillery
             var timeTraveledToMaximumHeight = Mathf.Abs((2 * velocity * Mathf.Sin(angle)) / MBGlobals.Gravity) / 2;
 
             //calculate from the maximum height down to the end height
-            var maximumRelativeToEnd = traveledHeight - heightEnd;
+            var maximumRelativeToEnd = maximumHeight - heightEnd;
 
             var term = (velocity * Mathf.Sin(0) + (float)Math.Pow((velocity * Mathf.Sin(0)), 2) + 2 * MBGlobals.Gravity * maximumRelativeToEnd) / MBGlobals.Gravity; ;
             var timeTravelFromMiddleToEnd = velocity * Mathf.Sin(0);

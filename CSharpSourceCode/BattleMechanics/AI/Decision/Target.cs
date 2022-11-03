@@ -19,6 +19,21 @@ namespace TOR_Core.BattleMechanics.AI.Decision
 
         public Vec3 GetPosition()
         {
+            if (WeaponEntity != null)
+                return (WeaponEntity.GetTargetEntity().GlobalBoxMax + WeaponEntity.GetTargetEntity().GlobalBoxMin) * 0.5f;
+            if (Agent != null)
+                return Agent.CollisionCapsuleCenter;
+            if (Formation != null)
+                return Formation.GetMedianAgent(false, false, Formation.GetAveragePositionOfUnits(false, false)).Position;
+            if (SelectedWorldPosition != Vec3.Zero)
+                return SelectedWorldPosition;
+            if (TacticalPosition != null)
+                return TacticalPosition.Position.GetGroundVec3();
+            return Position;
+        }
+        
+        public Vec3 GetPositionPrioritizeCalculated()
+        {
             if (SelectedWorldPosition != Vec3.Zero)
                 return SelectedWorldPosition;
             if (TacticalPosition != null)

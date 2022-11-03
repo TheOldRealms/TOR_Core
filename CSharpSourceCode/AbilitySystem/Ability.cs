@@ -318,18 +318,18 @@ namespace TOR_Core.AbilitySystem
                 case AbilityEffectType.SeekerMissile:
                 {
                     frame = frame.Elevate(casterAgent.GetEyeGlobalHeight()).Advance(Template.Offset);
-                    frame.rotation = wizardAIComponent.CurrentCastingBehavior.CalculateSpellRotation(target.GetPosition(), frame.origin);
+                    frame.rotation = wizardAIComponent.CurrentCastingBehavior.CalculateSpellRotation(target.GetPositionPrioritizeCalculated(), frame.origin);
                     break;
                 }
                 case AbilityEffectType.Blast:
                 {
-                    frame = new MatrixFrame(frame.rotation, target.GetPosition()).Advance(-Template.Offset).Elevate(1);
+                    frame = new MatrixFrame(frame.rotation, target.GetPositionPrioritizeCalculated()).Advance(-Template.Offset).Elevate(1);
                     break;
                 }
                 case AbilityEffectType.Wind:
                 case AbilityEffectType.Vortex:
                 {
-                    frame = new MatrixFrame(Mat3.Identity, target.GetPosition());
+                    frame = new MatrixFrame(Mat3.Identity, target.GetPositionPrioritizeCalculated());
                     frame.rotation = casterAgent.Frame.rotation;
                     break;
                 }
@@ -340,7 +340,7 @@ namespace TOR_Core.AbilitySystem
                 }
                 case AbilityEffectType.ArtilleryPlacement:
                 {
-                    frame = new MatrixFrame(Mat3.Identity, target.GetPosition());
+                    frame = new MatrixFrame(Mat3.Identity, target.GetPositionPrioritizeCalculated());
                     target.SelectedWorldPosition = Vec3.Zero;
                     break;  
                 }
@@ -350,7 +350,7 @@ namespace TOR_Core.AbilitySystem
                 case AbilityEffectType.Summoning:
                 case AbilityEffectType.Bombardment:
                 {
-                    frame = new MatrixFrame(Mat3.Identity, target.GetPosition());
+                    frame = new MatrixFrame(Mat3.Identity, target.GetPositionPrioritizeCalculated());
                     break;
                 }
                 default:

@@ -40,7 +40,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
 
         protected override bool HaveLineOfSightToTarget(Target target)
         {
-            var targetPoint = target.GetPosition();
+            var targetPoint = target.GetPositionPrioritizeCalculated();
             targetPoint.z += 0.75f;
             Agent collidedAgent = Mission.Current.RayCastForClosestAgent(Agent.Position + new Vec3(z: Agent.GetEyeGlobalHeight()), targetPoint, out float _, Agent.Index, 0.4f);
             Mission.Current.Scene.RayCastForClosestEntityOrTerrain(Agent.Position + new Vec3(z: Agent.GetEyeGlobalHeight()), targetPoint, out float distance, out GameEntity _, 0.4f);
