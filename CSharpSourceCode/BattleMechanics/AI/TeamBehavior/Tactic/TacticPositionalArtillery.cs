@@ -148,6 +148,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                 .Select(pos => new Target {TacticalPosition = pos})
                 .Select(target =>
                 {
+                    MBDebug.RenderDebugSphere(target.TacticalPosition.Position.GetGroundVec3(), 2, 4294967295, false, 10);
                     target.UtilityValue = PositionScoring.GeometricMean(target);
                     return target;
                 }).ToList();
@@ -195,10 +196,8 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                                    position.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround);
 
             var extractedPositions = team.TeamAI.TacticalRegions
-                .SelectMany(region => ExtractPossibleTacticalPositionsFromTacticalRegion(region))
-                .Where(position => (position.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.Regional ||
-                                    position.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround)
-                                   && IsTacticalPositionEligible(position));
+                .SelectMany(region => ExtractPossibleTacticalPositionsFromTacticalRegion(region));
+            //                    && IsTacticalPositionEligible(position));
 
             return teamAiAPositions.Concat(extractedPositions).ToList();
         }
@@ -238,7 +237,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             TacticalRegion tacticalRegion)
         {
             List<TacticalPosition> fromTacticalRegion = new List<TacticalPosition>();
-            tacticalRegion.LinkedTacticalPositions.Where(ltp => ltp.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround);
+            fromTacticalRegion.AddRange(tacticalRegion.LinkedTacticalPositions);//.Where(ltp => ltp.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround);
             if (tacticalRegion.tacticalRegionType == TacticalRegion.TacticalRegionTypeEnum.Forest)
             {
                 Vec2 direction = (team.QuerySystem.AverageEnemyPosition - tacticalRegion.Position.AsVec2).Normalized();

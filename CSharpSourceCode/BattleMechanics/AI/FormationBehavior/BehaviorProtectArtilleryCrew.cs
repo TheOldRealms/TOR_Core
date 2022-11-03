@@ -12,7 +12,9 @@ namespace TOR_Core.BattleMechanics.AI.FormationBehavior
 
         public override void TickOccasionally()
         {
-            var artillery = Formation.Team.FormationsIncludingSpecial.ToList().Find(formation => formation.Index == (int) TORFormationClass.Artillery);
+            var artillery = FindArtilleryFormation();
+            if (artillery == null) return;
+            
             var closestEnemyFormation = artillery.QuerySystem.ClosestEnemyFormation;
             if (closestEnemyFormation != null && closestEnemyFormation.AveragePosition.Distance(artillery.QuerySystem.AveragePosition) < 10)
             {
@@ -28,6 +30,11 @@ namespace TOR_Core.BattleMechanics.AI.FormationBehavior
             }
         }
 
-        protected override float GetAiWeight() => Formation.Index == (int) TORFormationClass.ArtilleryGuard ? 100f : 0.0f;
+        private Formation FindArtilleryFormation()
+        {
+            return Formation.Team.FormationsIncludingSpecial.ToList().Find(formation => formation.Index == (int) TORFormationClass.Artillery);
+        }
+
+        protected override float GetAiWeight() => Formation.Index == (int) TORFormationClass.ArtilleryGuard && FindArtilleryFormation() != null ? 100f : 0.0f;
     }
 }
