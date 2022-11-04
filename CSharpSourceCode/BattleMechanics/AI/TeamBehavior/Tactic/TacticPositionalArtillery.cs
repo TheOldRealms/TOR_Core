@@ -9,7 +9,9 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
 using TOR_Core.BattleMechanics.AI.Decision;
 using TOR_Core.BattleMechanics.AI.FormationBehavior;
+using TOR_Core.BattleMechanics.Artillery;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 {
@@ -54,8 +56,8 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 
             if (!team.TeamAI.IsDefenseApplicable || !CheckAndDetermineFormation(ref _mainInfantry, f => f.QuerySystem.IsInfantryFormation))
                 return 0.0f;
-            if (!team.TeamAI.IsCurrentTactic(this) || _mainDefensiveLinePosition == null || !IsTacticalPositionEligible(_mainDefensiveLinePosition))
-                DeterminePositions();
+            // if (!team.TeamAI.IsCurrentTactic(this) || _mainDefensiveLinePosition == null || !IsTacticalPositionEligible(_mainDefensiveLinePosition))
+            //     DeterminePositions();
 
             return 0.0f;
         }
@@ -121,10 +123,11 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 
             bool battleJoinedNew = HasBattleBeenJoined();
             var checkAndSetAvailableFormationsChanged = CheckAndSetAvailableFormationsChanged();
-            if (checkAndSetAvailableFormationsChanged || battleJoinedNew != _hasBattleBeenJoined || IsTacticReapplyNeeded)
+            if (_chosenArtilleryPosition == null || checkAndSetAvailableFormationsChanged || battleJoinedNew != _hasBattleBeenJoined || IsTacticReapplyNeeded)
             {
                 if (checkAndSetAvailableFormationsChanged) ManageFormationCounts();
                 DeterminePositions();
+
                 _hasBattleBeenJoined = battleJoinedNew;
                 if (_hasBattleBeenJoined)
                 {
@@ -144,21 +147,32 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             }
         }
 
+        public bool IsArtilleryAtPosition(TacticalPosition position)
+        {
+            return Mission.Current.GetActiveEntitiesWithScriptComponentOfType<ArtilleryRangedSiegeWeapon>()
+                .Any(entity => entity.GlobalPosition.Distance(position.Position.GetGroundVec3()) < 30);
+        }
+
         public void DeterminePositions()
         {
+            if (_chosenArtilleryPosition != null && IsArtilleryAtPosition(_chosenArtilleryPosition.TacticalPosition)) return;
+            
+            MBDebug.ClearRenderObjects();
             _latestScoredPositions = GatherCandidatePositions()
                 .Select(pos => new Target {TacticalPosition = pos})
                 .Select(target =>
                 {
-                    MBDebug.RenderDebugSphere(target.TacticalPosition.Position.GetGroundVec3(), 2, 4294967295, false, 10);
                     target.UtilityValue = PositionScoring.GeometricMean(target);
+                    MBDebug.RenderDebugText3D(target.TacticalPosition.Position.GetGroundVec3(), target.UtilityValue.ToString(), 4294967295U, 0, 0, 30);
+                    MBDebug.RenderDebugSphere(target.TacticalPosition.Position.GetGroundVec3(), 2, 4294967295, false, 30);
                     return target;
                 }).ToList();
             var candidate = _latestScoredPositions.MaxBy(target => target.UtilityValue);
-            _chosenArtilleryPosition = candidate;
+            if (float.IsNaN(candidate.UtilityValue)) _positionScoring = null;
 
-            if (_chosenArtilleryPosition != null && candidate != null && candidate.UtilityValue != 0.0)
+            if (candidate != null && candidate.UtilityValue != 0.0 && !float.IsNaN(candidate.UtilityValue))
             {
+                _chosenArtilleryPosition = candidate;
                 var tp = _chosenArtilleryPosition.TacticalPosition;
                 var direction = (team.QuerySystem.AverageEnemyPosition - tp.Position.AsVec2).Normalized();
                 TacticalPosition primaryDefensivePosition = new TacticalPosition(
@@ -181,28 +195,23 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                 }
                 else
                     _linkedRangedDefensivePosition = null;
+
+
+                UpdateArtilleryPlacementTargets();
             }
             else
             {
                 _mainDefensiveLinePosition = null;
                 _linkedRangedDefensivePosition = null;
             }
-
-            UpdateArtilleryPlacementTargets();
         }
 
         private List<TacticalPosition> GatherCandidatePositions()
         {
             var teamAiAPositions = team.TeamAI.TacticalPositions;
-            // .Where(position => position.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.SpecialMissionPosition ||
-            //                    position.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround);
+         
 
             var extractedPositions = team.TeamAI.TacticalRegions
-                .Select(region =>
-                {
-                    MBDebug.RenderDebugSphere(region.Position.GetGroundVec3(), region.radius, 4294967295, false, 10);
-                    return region;
-                })
                 .SelectMany(region => ExtractPossibleTacticalPositionsFromTacticalRegion(region));
 
             return teamAiAPositions.Concat(extractedPositions).ToList();
@@ -212,9 +221,9 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         {
             var function = new List<Axis>();
             var distance = team.QuerySystem.AveragePosition.Distance(team.QuerySystem.AverageEnemyPosition);
+
             function.Add(new Axis(0, distance, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles(team)));
             function.Add(new Axis(0, distance, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToOwnArmy(team)));
-            function.Add(new Axis(0, distance, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToPosition(_mainDefensiveLinePosition)));
             function.Add(new Axis(0, 1, x => x, CommonAIDecisionFunctions.AssessPositionForArtillery()));
             return function;
         }
@@ -341,7 +350,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                 _mainInfantry.AI.SetBehaviorWeight<BehaviorTacticalCharge>(1f);
             }
 
-            if (_artilleryFormation != null)
+            if (_artilleryFormation != null && _chosenArtilleryPosition != null)
             {
                 _artilleryFormation.AI.ResetBehaviorWeights();
                 SetDefaultBehaviorWeights(_artilleryFormation);
@@ -351,7 +360,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                 _artilleryFormation.AI.SetBehaviorWeight<BehaviorScreenedSkirmish>(1f);
             }
 
-            if (_guardFormation != null)
+            if (_guardFormation != null && _chosenArtilleryPosition != null)
             {
                 _guardFormation.AI.ResetBehaviorWeights();
                 SetDefaultBehaviorWeights(_guardFormation);

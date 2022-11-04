@@ -14,7 +14,6 @@ namespace TOR_Core.BattleMechanics.AI.FormationBehavior
         {
             CalculateCurrentOrder();
             Formation.SetMovementOrder(CurrentOrder);
-            Formation.FacingOrder = CurrentFacingOrder;
             if (Formation.QuerySystem.AveragePosition.DistanceSquared(CurrentOrder.GetPosition(Formation)) < 100.0)
             {
                 if (Formation.QuerySystem.HasShield)
@@ -39,6 +38,7 @@ namespace TOR_Core.BattleMechanics.AI.FormationBehavior
             {
                 Formation.ArrangementOrder = ArrangementOrder.ArrangementOrderLine;
                 Formation.FormOrder = FormOrder.FormOrderWide;
+                Formation.FacingOrder = FacingOrder.FacingOrderLookAtEnemy; //TODO Use position facing in some cases?
             }
         }
     }

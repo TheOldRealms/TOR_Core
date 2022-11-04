@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.Engine;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.AI.AgentBehavior.AgentTacticalBehavior;
@@ -33,7 +34,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
 
         protected override Target UpdateTarget(Target target)
         {
-            var width = target.TacticalPosition.Width;
+            var width = Math.Max(target.TacticalPosition.Width, 35);
             var direction = target.TacticalPosition.Position.GetGroundVec3() - Agent.Team.QuerySystem.AverageEnemyPosition.ToVec3();
             direction /= direction.Length;
             target.SelectedWorldPosition = target.TacticalPosition.Position.GetGroundVec3() + direction.AsVec2.RightVec().ToVec3() * (float) (_random.NextDouble() * width - width / 2);
@@ -46,13 +47,25 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
             return !activeEntitiesWithScriptComponentOfType.Any(entity => entity.GlobalPosition.Distance(target.SelectedWorldPosition) < 5);
         }
 
+        public override void Terminate()
+        {
+            base.Terminate();
+            MBDebug.ClearRenderObjects();
+        }
+
         public override List<BehaviorOption> CalculateUtility()
         {
-            var artilleryFormation = Agent.Team.FormationsIncludingSpecial.ToList().Find(formation => formation.Index == (int) TORFormationClass.Artillery);
             var behaviorOptions = new List<BehaviorOption>();
+            if (CurrentTarget.TacticalPosition == null)
+            {
+                CurrentTarget.UtilityValue = 0.0f;
+                return behaviorOptions;
+            }
+            
+            var artilleryFormation = Agent.Team.FormationsIncludingSpecial.ToList().Find(formation => formation.Index == (int) TORFormationClass.Artillery);
+           
             var artilleryPosition = CurrentTarget.TacticalPosition.Position.GetGroundVec3();
-            CurrentTarget.UtilityValue = CurrentTarget.TacticalPosition != null &&
-                                         Mission.Current.GetArtillerySlotsLeftForTeam(Agent.Team) > 0 &&
+            CurrentTarget.UtilityValue = Mission.Current.GetArtillerySlotsLeftForTeam(Agent.Team) > 0 &&
                                          ((ItemBoundAbility) Agent.GetAbility(AbilityIndex)).GetRemainingCharges() > 0 &&
                                          (Agent.Position.Distance(artilleryPosition) < 25 || artilleryFormation != null && artilleryFormation.CurrentPosition.Distance(artilleryPosition.AsVec2) < 20)
                                                  ? 1.0f
