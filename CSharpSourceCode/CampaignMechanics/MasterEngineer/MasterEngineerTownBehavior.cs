@@ -86,8 +86,8 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             obj.AddDialogLine("startrogueengineerquest", "startrogueengineerquest", "close_window", GameTexts.FindText(questDialogId,"rogueEngineerBriefingEnd").ToString(), null, QuestBeginRogueEngineer, 200, null);
 
             //quest start player reaction
-            obj.AddPlayerLine("questcheck1", "questcheck", "engineeracceptquest",GameTexts.FindText(questDialogId,"rogueEngineerBriefingPlayerAccept0").ToString() , null, QuestBegin, 200, null);
-            obj.AddPlayerLine("questcheck2", "questcheck", "engineeracceptquest", GameTexts.FindText(questDialogId,"rogueEngineerBriefingPlayerAccept1").ToString(), null, QuestBegin, 200, null);
+            obj.AddPlayerLine("questcheck1", "questcheck", "engineeracceptquest",GameTexts.FindText(questDialogId,"cultistPlayerAccept0").ToString() , null, QuestBegin, 200, null);
+            obj.AddPlayerLine("questcheck2", "questcheck", "engineeracceptquest", GameTexts.FindText(questDialogId,"cultistPlayerAccept1").ToString(), null, QuestBegin, 200, null);
             obj.AddPlayerLine("questcheck3", "questcheck", "engineerdeclinequest", GameTexts.FindText(questDialogId,"cultistPlayerDecline").ToString(), null, null, 200, null);
             obj.AddDialogLine("engineeracceptquest", "engineeracceptquest", "close_window", GameTexts.FindText(questDialogId,"cultistReactionPositive").ToString(), null, null, 200);
             obj.AddDialogLine("engineerdeclinequest", "engineerdeclinequest", "close_window", GameTexts.FindText(questDialogId,"cultistReactionNegative").ToString(), null, null, 200, null);
