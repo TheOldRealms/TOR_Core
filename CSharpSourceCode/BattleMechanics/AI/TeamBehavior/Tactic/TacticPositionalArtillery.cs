@@ -306,39 +306,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             DeterminePositions();
             return true;
         }
-
-
-        private float GetCavalryFactor(TacticalPosition tacticalPosition)
-        {
-            if (tacticalPosition.TacticalRegionMembership != TacticalRegion.TacticalRegionTypeEnum.Forest)
-                return 1f;
-            double remainingPowerRatio = team.QuerySystem.RemainingPowerRatio;
-            double teamPower = team.QuerySystem.TeamPower;
-            float num1 = team.QuerySystem.EnemyTeams.Sum(et => et.TeamPower);
-            double num2 = teamPower - teamPower * (team.QuerySystem.CavalryRatio + (double) team.QuerySystem.RangedCavalryRatio) * 0.5;
-            float num3 = num1 - (float) (num1 * (team.QuerySystem.EnemyCavalryRatio + (double) team.QuerySystem.EnemyRangedCavalryRatio) * 0.5);
-            if (num3 == 0.0)
-                num3 = 0.01f;
-            double num4 = num3;
-            return (float) (num2 / num4) / team.QuerySystem.RemainingPowerRatio;
-        }
-
-        private float GetRangedFactor(TacticalPosition tacticalPosition)
-        {
-            bool isOuterEdge = tacticalPosition.IsOuterEdge;
-            if (tacticalPosition.TacticalRegionMembership != TacticalRegion.TacticalRegionTypeEnum.Forest)
-                return 1f;
-            double remainingPowerRatio = team.QuerySystem.RemainingPowerRatio;
-            float teamPower = team.QuerySystem.TeamPower;
-            float enemyTotalPower = team.QuerySystem.EnemyTeams.Sum(et => et.TeamPower);
-            float enemyRangedPower = enemyTotalPower - (float) (enemyTotalPower * (team.QuerySystem.EnemyRangedRatio + (double) team.QuerySystem.EnemyRangedCavalryRatio) * 0.5);
-            if (enemyRangedPower == 0.0)
-                enemyRangedPower = 0.01f;
-            if (!isOuterEdge)
-                teamPower -= (float) (teamPower * (team.QuerySystem.RangedRatio + (double) team.QuerySystem.RangedCavalryRatio) * 0.5);
-            return teamPower / enemyRangedPower / team.QuerySystem.RemainingPowerRatio;
-        }
-
+        
         private void Defend()
         {
             if (team.IsPlayerTeam && !team.IsPlayerGeneral && team.IsPlayerSergeant)
