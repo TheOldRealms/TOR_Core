@@ -54,16 +54,17 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                 team.GeneralAgent.Controller == Agent.ControllerType.Player || team.ActiveAgents.Select(agent => agent.HasAttribute("ArtilleryCrew")).Count() < 2)
                 return 0.0f;
 
-            if (!team.TeamAI.IsDefenseApplicable || !CheckAndDetermineFormation(ref _mainInfantry, f => f.QuerySystem.IsInfantryFormation))
-                return 0.0f;
+            // if (!team.TeamAI.IsDefenseApplicable || !CheckAndDetermineFormation(ref _mainInfantry, f => f.QuerySystem.IsInfantryFormation))
+            //     return 0.0f;
             
             if (!team.TeamAI.IsCurrentTactic(this) || _mainDefensiveLinePosition == null)
                 DeterminePositions();
-  
-            return _chosenArtilleryPosition != null && !float.IsNaN(_chosenArtilleryPosition.UtilityValue) ? 
-                ( team.QuerySystem.InfantryRatio + team.QuerySystem.RangedRatio + 2) * 1.2f * _chosenArtilleryPosition.UtilityValue// * CalculateNotEngagingTacticalAdvantage(team.QuerySystem) 
+
+            var querySystemInfantryRatio = _chosenArtilleryPosition != null && !float.IsNaN(_chosenArtilleryPosition.UtilityValue) ? 
+                ( team.QuerySystem.InfantryRatio + team.QuerySystem.RangedRatio*10) * 1.2f * _chosenArtilleryPosition.UtilityValue// * CalculateNotEngagingTacticalAdvantage(team.QuerySystem) 
                 / MathF.Sqrt(team.QuerySystem.RemainingPowerRatio)
                 : 0.0f;
+            return querySystemInfantryRatio;
         }
 
         protected override void ManageFormationCounts()
