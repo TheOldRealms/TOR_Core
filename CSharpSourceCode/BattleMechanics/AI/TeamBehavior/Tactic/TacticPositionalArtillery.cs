@@ -110,6 +110,8 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             }
 
             updatedFormations.ForEach(formation => team.TriggerOnFormationsChanged(formation));
+            team.TeamAI.OnUnitAddedToFormationForTheFirstTime(_artilleryFormation);
+            team.TeamAI.OnUnitAddedToFormationForTheFirstTime(_guardFormation);
         }
 
         protected override void TickOccasionally()
@@ -191,11 +193,16 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 
         private List<TacticalPosition> GatherCandidatePositions()
         {
-            var teamAiAPositions = team.TeamAI.TacticalPositions
-                .Where(position => position.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.SpecialMissionPosition ||
-                                   position.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround);
+            var teamAiAPositions = team.TeamAI.TacticalPositions;
+            // .Where(position => position.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.SpecialMissionPosition ||
+            //                    position.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround);
 
             var extractedPositions = team.TeamAI.TacticalRegions
+                .Select(region =>
+                {
+                    MBDebug.RenderDebugSphere(region.Position.GetGroundVec3(), region.radius, 4294967295, false, 10);
+                    return region;
+                })
                 .SelectMany(region => ExtractPossibleTacticalPositionsFromTacticalRegion(region));
 
             return teamAiAPositions.Concat(extractedPositions).ToList();
@@ -236,7 +243,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             TacticalRegion tacticalRegion)
         {
             List<TacticalPosition> fromTacticalRegion = new List<TacticalPosition>();
-            fromTacticalRegion.AddRange(tacticalRegion.LinkedTacticalPositions);//.Where(ltp => ltp.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround);
+            fromTacticalRegion.AddRange(tacticalRegion.LinkedTacticalPositions); //.Where(ltp => ltp.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround);
             if (tacticalRegion.tacticalRegionType == TacticalRegion.TacticalRegionTypeEnum.Forest)
             {
                 Vec2 direction = (team.QuerySystem.AverageEnemyPosition - tacticalRegion.Position.AsVec2).Normalized();

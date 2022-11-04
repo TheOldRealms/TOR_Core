@@ -33,7 +33,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
 
         protected override Target UpdateTarget(Target target)
         {
-            var width = target.TacticalPosition.Width / 1.5f;
+            var width = target.TacticalPosition.Width;
             var direction = target.TacticalPosition.Position.GetGroundVec3() - Agent.Team.QuerySystem.AverageEnemyPosition.ToVec3();
             direction /= direction.Length;
             target.SelectedWorldPosition = target.TacticalPosition.Position.GetGroundVec3() + direction.AsVec2.RightVec().ToVec3() * (float) (_random.NextDouble() * width - width / 2);
@@ -43,7 +43,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
         protected override bool HaveLineOfSightToTarget(Target target)
         {
             var activeEntitiesWithScriptComponentOfType = Mission.Current.GetActiveEntitiesWithScriptComponentOfType<ArtilleryRangedSiegeWeapon>();
-            return !activeEntitiesWithScriptComponentOfType.Any(entity => entity.GlobalPosition.Distance(target.SelectedWorldPosition) < 3.5);
+            return !activeEntitiesWithScriptComponentOfType.Any(entity => entity.GlobalPosition.Distance(target.SelectedWorldPosition) < 5);
         }
 
         public override List<BehaviorOption> CalculateUtility()
