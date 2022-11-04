@@ -175,15 +175,11 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         {
             if (_chosenArtilleryPosition == null || IsArtilleryAtPosition(_chosenArtilleryPosition.TacticalPosition))
             {
-                MBDebug.ClearRenderObjects();
                 _latestScoredPositions = GatherCandidatePositions()
                     .Select(pos => new Target {TacticalPosition = pos})
                     .Select(target =>
                     {
                         target.UtilityValue = PositionScoring.GeometricMean(target);
-                        MBDebug.RenderDebugText3D(target.TacticalPosition.Position.GetGroundVec3(), target.UtilityValue.ToString(), 4294967295U, 0, 0, 30);
-                        MBDebug.RenderDebugSphere(target.TacticalPosition.Position.GetGroundVec3(), 2, 4294967295, false, 30);
-                        MBDebug.RenderDebugDirectionArrow(target.TacticalPosition.Position.GetGroundVec3(), target.TacticalPosition.Direction.ToVec3());
                         return target;
                     }).ToList();
                 var candidate = _latestScoredPositions.MaxBy(target => target.UtilityValue);

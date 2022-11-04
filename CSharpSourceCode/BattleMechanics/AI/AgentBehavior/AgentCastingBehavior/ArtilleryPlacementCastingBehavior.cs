@@ -47,12 +47,6 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
             return !activeEntitiesWithScriptComponentOfType.Any(entity => entity.GlobalPosition.Distance(target.SelectedWorldPosition) < 5);
         }
 
-        public override void Terminate()
-        {
-            base.Terminate();
-            MBDebug.ClearRenderObjects();
-        }
-
         public override List<BehaviorOption> CalculateUtility()
         {
             var behaviorOptions = new List<BehaviorOption>();
@@ -61,15 +55,15 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
                 CurrentTarget.UtilityValue = 0.0f;
                 return behaviorOptions;
             }
-            
+
             var artilleryFormation = Agent.Team.FormationsIncludingSpecial.ToList().Find(formation => formation.Index == (int) TORFormationClass.Artillery);
-           
+
             var artilleryPosition = CurrentTarget.TacticalPosition.Position.GetGroundVec3();
             CurrentTarget.UtilityValue = Mission.Current.GetArtillerySlotsLeftForTeam(Agent.Team) > 0 &&
                                          ((ItemBoundAbility) Agent.GetAbility(AbilityIndex)).GetRemainingCharges() > 0 &&
                                          (Agent.Position.Distance(artilleryPosition) < 25 || artilleryFormation != null && artilleryFormation.CurrentPosition.Distance(artilleryPosition.AsVec2) < 20)
-                                                 ? 1.0f
-                                                 : 0.0f;
+                ? 1.0f
+                : 0.0f;
             behaviorOptions.Add(new BehaviorOption {Target = CurrentTarget, Behavior = this});
             return behaviorOptions;
         }
