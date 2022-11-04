@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using HarmonyLib;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
@@ -145,6 +146,19 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 
                 IsTacticReapplyNeeded = false;
             }
+
+            if (_chosenArtilleryPosition != null)
+            {
+                if (!IsArtilleryAtPosition(_chosenArtilleryPosition.TacticalPosition))
+                {
+                    var groundVec3 = _artilleryFormation.QuerySystem.MedianPosition;
+                    team.GeneralAgent.SetScriptedPosition(ref groundVec3, true);
+                }
+                else
+                {
+                    team.GeneralAgent.DisableScriptedMovement();
+                }
+            }
         }
 
         public bool IsArtilleryAtPosition(TacticalPosition position)
@@ -155,24 +169,26 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 
         public void DeterminePositions()
         {
-            if (_chosenArtilleryPosition != null && IsArtilleryAtPosition(_chosenArtilleryPosition.TacticalPosition)) return;
-            
-            MBDebug.ClearRenderObjects();
-            _latestScoredPositions = GatherCandidatePositions()
-                .Select(pos => new Target {TacticalPosition = pos})
-                .Select(target =>
-                {
-                    target.UtilityValue = PositionScoring.GeometricMean(target);
-                    MBDebug.RenderDebugText3D(target.TacticalPosition.Position.GetGroundVec3(), target.UtilityValue.ToString(), 4294967295U, 0, 0, 30);
-                    MBDebug.RenderDebugSphere(target.TacticalPosition.Position.GetGroundVec3(), 2, 4294967295, false, 30);
-                    return target;
-                }).ToList();
-            var candidate = _latestScoredPositions.MaxBy(target => target.UtilityValue);
-            if (float.IsNaN(candidate.UtilityValue)) _positionScoring = null;
-
-            if (candidate != null && candidate.UtilityValue != 0.0 && !float.IsNaN(candidate.UtilityValue))
+            if (_chosenArtilleryPosition == null || IsArtilleryAtPosition(_chosenArtilleryPosition.TacticalPosition))
             {
-                _chosenArtilleryPosition = candidate;
+                MBDebug.ClearRenderObjects();
+                _latestScoredPositions = GatherCandidatePositions()
+                    .Select(pos => new Target {TacticalPosition = pos})
+                    .Select(target =>
+                    {
+                        target.UtilityValue = PositionScoring.GeometricMean(target);
+                        MBDebug.RenderDebugText3D(target.TacticalPosition.Position.GetGroundVec3(), target.UtilityValue.ToString(), 4294967295U, 0, 0, 30);
+                        MBDebug.RenderDebugSphere(target.TacticalPosition.Position.GetGroundVec3(), 2, 4294967295, false, 30);
+                        MBDebug.RenderDebugDirectionArrow(target.TacticalPosition.Position.GetGroundVec3(), target.TacticalPosition.Direction.ToVec3());
+                        return target;
+                    }).ToList();
+                var candidate = _latestScoredPositions.MaxBy(target => target.UtilityValue);
+                if (float.IsNaN(candidate.UtilityValue)) _positionScoring = null;
+                if (candidate != null && candidate.UtilityValue != 0.0 && !float.IsNaN(candidate.UtilityValue)) _chosenArtilleryPosition = candidate;
+            }
+
+            if (_chosenArtilleryPosition != null)
+            {
                 var tp = _chosenArtilleryPosition.TacticalPosition;
                 var direction = (team.QuerySystem.AverageEnemyPosition - tp.Position.AsVec2).Normalized();
                 TacticalPosition primaryDefensivePosition = new TacticalPosition(
@@ -209,45 +225,26 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         private List<TacticalPosition> GatherCandidatePositions()
         {
             var teamAiAPositions = team.TeamAI.TacticalPositions;
-         
 
             var extractedPositions = team.TeamAI.TacticalRegions
                 .SelectMany(region => ExtractPossibleTacticalPositionsFromTacticalRegion(region));
 
-            return teamAiAPositions.Concat(extractedPositions).ToList();
+            TacticalPosition tacticalPosition1 = new TacticalPosition(team.QuerySystem.MedianPosition, (team.QuerySystem.AverageEnemyPosition - team.QuerySystem.MedianPosition.AsVec2).Normalized(), 50);
+            return teamAiAPositions.Concat(extractedPositions).AddItem(tacticalPosition1).ToList();
         }
 
         private List<Axis> CreateArtilleryPositionAssessment()
         {
             var function = new List<Axis>();
             var distance = team.QuerySystem.AveragePosition.Distance(team.QuerySystem.AverageEnemyPosition);
-
+            Mission.Current.Scene.GetTerrainMinMaxHeight(out float minHeight, out float maxHeight);
             function.Add(new Axis(0, distance, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles(team)));
             function.Add(new Axis(0, distance, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToOwnArmy(team)));
             function.Add(new Axis(0, 1, x => x, CommonAIDecisionFunctions.AssessPositionForArtillery()));
+            function.Add(new Axis(minHeight, maxHeight, x => x, CommonAIDecisionFunctions.PositionHeight()));
             return function;
         }
-
-        private bool IsTacticalPositionEligible(TacticalPosition tacticalPosition)
-        {
-            if (tacticalPosition.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.SpecialMissionPosition)
-                return true;
-
-            Vec2 avgPosition = _mainInfantry != null ? _mainInfantry.QuerySystem.AveragePosition : team.QuerySystem.AveragePosition;
-
-            float distanceToPosition = avgPosition.Distance(tacticalPosition.Position.AsVec2);
-            float enemyDistanceToPosition = team.QuerySystem.AverageEnemyPosition.Distance(avgPosition);
-
-            if (distanceToPosition > 20.0 && distanceToPosition > enemyDistanceToPosition * 0.5) //TODO: Remove this check? Maybe?
-                return false;
-
-            if (tacticalPosition.IsInsurmountable)
-                return true;
-
-            Vec2 vec2 = (team.QuerySystem.AverageEnemyPosition - tacticalPosition.Position.AsVec2).Normalized();
-            return vec2.DotProduct(tacticalPosition.Direction) > 0.5;
-        }
-
+        
         private List<TacticalPosition> ExtractPossibleTacticalPositionsFromTacticalRegion(
             TacticalRegion tacticalRegion)
         {
@@ -342,6 +339,9 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         {
             if (team.IsPlayerTeam && !team.IsPlayerGeneral && team.IsPlayerSergeant)
                 SoundTacticalHorn(MoveHornSoundIndex);
+            
+         
+            
             if (_mainInfantry != null)
             {
                 _mainInfantry.AI.ResetBehaviorWeights();

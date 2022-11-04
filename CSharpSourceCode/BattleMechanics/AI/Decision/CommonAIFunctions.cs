@@ -139,6 +139,14 @@ namespace TOR_Core.BattleMechanics.AI.Decision
                 return value;
             };
         }
+        
+        public static Func<Target, float> PositionHeight()
+        {
+            return target =>
+            {
+                return target.TacticalPosition.Position.GetGroundZ();
+            };
+        }
 
         public static Func<Target, float> UnitCount()
         {
