@@ -25,14 +25,6 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             _teamAIType = teamAIType;
         }
 
-        public override void OnBehaviorInitialize()
-        {
-            base.OnBehaviorInitialize();
-            var team = Mission.Teams[0];
-
-            var teamFormations = Traverse.Create(team).Field("_formations").GetValue() as List<Formation>;
-        }
-
         //Copy-paste of parent to avoid complications.
         public override void EarlyStart()
         {

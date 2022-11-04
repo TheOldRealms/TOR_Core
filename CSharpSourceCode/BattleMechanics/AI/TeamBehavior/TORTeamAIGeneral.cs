@@ -10,11 +10,6 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         {
         }
 
-        protected override void Tick(float dt)
-        {
-            base.Tick(dt);
-        }
-
         public override void OnUnitAddedToFormationForTheFirstTime(Formation formation)
         {
             if (GameNetwork.IsServer)
