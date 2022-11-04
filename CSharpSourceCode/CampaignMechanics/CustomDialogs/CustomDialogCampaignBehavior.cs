@@ -18,19 +18,19 @@ namespace TOR_Core.CampaignMechanics.CustomEncounterDialogs
 
         private void Start(CampaignGameStarter obj)
         {
-            obj.AddDialogLine("chaos_greeting", "start", "close_window", "Asinine mortal. Prepare to die!", () => EncounteredPartyMatch("chaos_clan_1") && !HeroIsWounded(), null, 199);
+            obj.AddDialogLine("chaos_greeting", "start", "close_window", "{=ccultist_drowninblood}You will die drowning in a pool of your own blood!", () => EncounteredPartyMatch("chaos_clan_1") && !HeroIsWounded(), null, 199);
             obj.AddDialogLine("chaos_die", "start", "close_window", "I will return!", () => EncounteredPartyMatch("chaos_clan_1") && HeroIsWounded(), null, 199);
 
             obj.AddDialogLine("beastmen_greeting", "start", "close_window", "We will trample your puny body beneath our hooves!", () => EncounteredPartyMatch("steppe_bandits") && !HeroIsWounded(), null, 199);
-            obj.AddDialogLine("beastmen_die", "start", "close_window", "The dark gods have abandon us!", () => EncounteredPartyMatch("steppe_bandits") && HeroIsWounded(), null, 199);
+            obj.AddDialogLine("beastmen_die", "start", "close_window", "The dark gods have abandoned us!", () => EncounteredPartyMatch("steppe_bandits") && HeroIsWounded(), null, 199);
 
-            obj.AddDialogLine("brokenwheel_greeting", "start", "close_window", "We will break your mind for the glory of Tzeentch", () => EncounteredPartyMatch("chs_cult_1") && !HeroIsWounded(), null, 199);
-            obj.AddDialogLine("brokenwheel_die", "start", "close_window", "the schemes of Tzeentch are endless, you have accomplished nothing!", () => EncounteredPartyMatch("chs_cult_1") && HeroIsWounded(), null, 199);
+            obj.AddDialogLine("brokenwheel_greeting", "start", "close_window", "{=ccultist_flames}You will be bathed in flames of Chaos and you will be happy!", () => EncounteredPartyMatch("chs_cult_1") && !HeroIsWounded(), null, 199);
+            obj.AddDialogLine("brokenwheel_die", "start", "close_window", "The schemes of Tzeentch are endless, you have accomplished nothing!", () => EncounteredPartyMatch("chs_cult_1") && HeroIsWounded(), null, 199);
 
-            obj.AddDialogLine("illumination_greeting", "start", "close_window", "Ascend in death!", () => EncounteredPartyMatch("chs_cult_2") && !HeroIsWounded(), null, 199);
+            obj.AddDialogLine("illumination_greeting", "start", "close_window", "{=ccultist_thirdeye}Come open the third eye, let me show you brother!", () => EncounteredPartyMatch("chs_cult_2") && !HeroIsWounded(), null, 199);
             obj.AddDialogLine("illumination_die", "start", "close_window", "You may have won the battle, but my life has been more successful than yours will ever be!", () => EncounteredPartyMatch("chs_cult_2") && HeroIsWounded(), null, 199);
 
-            obj.AddDialogLine("secondflesh_greeting", "start", "close_window", "Pox consume you!", () => EncounteredPartyMatch("chs_cult_3") && !HeroIsWounded(), null, 199);
+            obj.AddDialogLine("secondflesh_greeting", "start", "close_window", "{=ccultist_spreadpox}I will spread my pox on your flesh!", () => EncounteredPartyMatch("chs_cult_3") && !HeroIsWounded(), null, 199);
             obj.AddDialogLine("secondflesh_die", "start", "close_window", "Today, death. Tomorrow, rebirth. The cycle cannot be stopped!", () => EncounteredPartyMatch("chs_cult_3") && HeroIsWounded(), null, 199);
 
             obj.AddDialogLine("undead_notalk", "start", "close_window", "...", () => CharacterObject.OneToOneConversationCharacter.IsUndead() && CharacterObject.OneToOneConversationCharacter.HeroObject == null, null, 199);
