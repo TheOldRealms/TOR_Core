@@ -197,7 +197,6 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 
             var extractedPositions = team.TeamAI.TacticalRegions
                 .SelectMany(region => ExtractPossibleTacticalPositionsFromTacticalRegion(region));
-            //                    && IsTacticalPositionEligible(position));
 
             return teamAiAPositions.Concat(extractedPositions).ToList();
         }
