@@ -12,7 +12,6 @@ using TOR_Core.BattleMechanics.AI.Decision;
 using TOR_Core.BattleMechanics.AI.FormationBehavior;
 using TOR_Core.BattleMechanics.Artillery;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 {
@@ -51,16 +50,20 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
 
         protected override float GetTacticWeight()
         {
-            if (team.GeneralAgent.GetComponent<AbilityComponent>().GetKnownAbilityTemplates().Exists(item => item.AbilityEffectType == AbilityEffectType.ArtilleryPlacement)
-                && team.GeneralAgent.Controller != Agent.ControllerType.Player)
-                return 10000f; //TODO Improve
+            if (!team.GeneralAgent.GetComponent<AbilityComponent>().GetKnownAbilityTemplates().Exists(item => item.AbilityEffectType == AbilityEffectType.ArtilleryPlacement) ||
+                team.GeneralAgent.Controller == Agent.ControllerType.Player || team.ActiveAgents.Select(agent => agent.HasAttribute("ArtilleryCrew")).Count() < 2)
+                return 0.0f;
 
             if (!team.TeamAI.IsDefenseApplicable || !CheckAndDetermineFormation(ref _mainInfantry, f => f.QuerySystem.IsInfantryFormation))
                 return 0.0f;
-            // if (!team.TeamAI.IsCurrentTactic(this) || _mainDefensiveLinePosition == null || !IsTacticalPositionEligible(_mainDefensiveLinePosition))
-            //     DeterminePositions();
-
-            return 0.0f;
+            
+            if (!team.TeamAI.IsCurrentTactic(this) || _mainDefensiveLinePosition == null)
+                DeterminePositions();
+  
+            return _chosenArtilleryPosition != null && !float.IsNaN(_chosenArtilleryPosition.UtilityValue) ? 
+                ( team.QuerySystem.InfantryRatio + team.QuerySystem.RangedRatio + 2) * 1.2f * _chosenArtilleryPosition.UtilityValue// * CalculateNotEngagingTacticalAdvantage(team.QuerySystem) 
+                / MathF.Sqrt(team.QuerySystem.RemainingPowerRatio)
+                : 0.0f;
         }
 
         protected override void ManageFormationCounts()
@@ -244,7 +247,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             function.Add(new Axis(minHeight, maxHeight, x => x, CommonAIDecisionFunctions.PositionHeight()));
             return function;
         }
-        
+
         private List<TacticalPosition> ExtractPossibleTacticalPositionsFromTacticalRegion(
             TacticalRegion tacticalRegion)
         {
@@ -339,9 +342,8 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
         {
             if (team.IsPlayerTeam && !team.IsPlayerGeneral && team.IsPlayerSergeant)
                 SoundTacticalHorn(MoveHornSoundIndex);
-            
-         
-            
+
+
             if (_mainInfantry != null)
             {
                 _mainInfantry.AI.ResetBehaviorWeights();
