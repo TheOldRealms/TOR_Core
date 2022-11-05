@@ -222,7 +222,10 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
             float height = 0.0f;
             Mission.Current.Scene.GetHeightAtPoint(averageEnemyPosition, BodyFlags.CommonCollisionExcludeFlagsForCombat, ref height);
             var enemyPosition = averageEnemyPosition.ToVec3(height);
-            var gatherCandidatePositions = teamAiAPositions.Concat(extractedPositions).AddItem(tacticalPosition1).Where(position => CommonAIFunctions.HasLineOfSight(position.Position.GetGroundVec3(), enemyPosition)).ToList();
+            var gatherCandidatePositions = teamAiAPositions
+                .Concat(extractedPositions)
+                .AddItem(tacticalPosition1)
+                .Where(position => CommonAIFunctions.HasLineOfSight(position.Position.GetGroundVec3(), enemyPosition,  team.TeamAI.IsDefenseApplicable ? 70.0f : position.Position.GetGroundVec3().Distance(enemyPosition)*0.8f)).ToList();
             return gatherCandidatePositions;
         }
 
