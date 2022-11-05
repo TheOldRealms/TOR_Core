@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.Core;
+using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.AI.Decision;
@@ -37,10 +38,14 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
                             _artillery.SetTarget(_target);
                         }
 
-                        if (_artillery.Target != null && _artillery.AimAtTarget(GetAdjustedTargetPosition(_artillery.Target)) && _artillery.PilotAgent.Formation.FiringOrder.OrderType != OrderType.HoldFire)
+                        if (_artillery.Target != null && _artillery.PilotAgent.Formation.FiringOrder.OrderType != OrderType.HoldFire)
                         {
-                            _artillery.Shoot();
-                            _artillery.Target.SelectedWorldPosition = Vec3.Zero;
+                            var position = GetAdjustedTargetPosition(_artillery.Target);
+                            if(position != Vec3.Zero && _artillery.AimAtTarget(position) && IsTargetInRange(position))
+                            {
+                                _artillery.AiRequestsShoot();
+                                _artillery.Target.Agent = null;
+                            }
                         }
                     }
                     else
@@ -56,16 +61,23 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
         private Vec3 GetAdjustedTargetPosition(Target target)
         {
             if (target == null || target.Formation == null) return Vec3.Zero;
-
-            var targetAgent = target.SelectedWorldPosition == Vec3.Zero ? CommonAIFunctions.GetRandomAgent(target.Formation) : target.Agent;
+            var targetAgent = target.Agent != null ? target.Agent : CommonAIFunctions.GetRandomAgent(target.Formation);
             target.Agent = targetAgent;
-
             float speed = target.Formation.GetMovementSpeedOfUnits();
             float time = (UsableMachine as ArtilleryRangedSiegeWeapon).GetEstimatedCurrentFlightTime();
-
-            target.SelectedWorldPosition = targetAgent.Frame.Advance(speed * time).origin;
-
+            var frame = targetAgent.GetWorldFrame().ToGroundMatrixFrame();
+            target.SelectedWorldPosition = frame.Advance(speed * time).origin;
+            //MBDebug.RenderDebugSphere(target.SelectedWorldPosition, 1f, 4294967295, false, 5);
             return target.SelectedWorldPosition;
+        }
+
+        private bool IsTargetInRange(Vec3 position)
+        {
+            var startPos = _artillery.ProjectileEntityCurrentGlobalPosition;
+            var diff = position - startPos;
+            var maxrange = Ballistics.GetMaximumRange(_artillery.BaseMuzzleVelocity, diff.z);
+            diff.z = 0;
+            return diff.Length < maxrange;
         }
 
         private void FindNewTarget()
