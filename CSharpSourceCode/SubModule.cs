@@ -164,6 +164,10 @@ namespace TOR_Core
         public override void OnBeforeMissionBehaviorInitialize(Mission mission)
         {
             var missionCombatantsLogic = mission.GetMissionBehavior<MissionCombatantsLogic>();
+            
+            if (missionCombatantsLogic == null)
+                return;
+            
             mission.AddMissionLogicAtIndexOf(missionCombatantsLogic, TorMissionCombatantsLogic.CreateFromInstanace(missionCombatantsLogic));
         }
 
