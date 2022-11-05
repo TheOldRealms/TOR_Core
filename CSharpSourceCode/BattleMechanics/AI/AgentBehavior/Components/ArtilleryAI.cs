@@ -67,7 +67,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
             float time = (UsableMachine as ArtilleryRangedSiegeWeapon).GetEstimatedCurrentFlightTime();
             var frame = targetAgent.GetWorldFrame().ToGroundMatrixFrame();
             target.SelectedWorldPosition = frame.Advance(speed * time).origin;
-            MBDebug.RenderDebugSphere(target.SelectedWorldPosition, 1f, 4294967295, false, 5);
+            //MBDebug.RenderDebugSphere(target.SelectedWorldPosition, 1f, 4294967295, false, 5);
             return target.SelectedWorldPosition;
         }
 
