@@ -41,9 +41,14 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
                         if (_artillery.Target != null && _artillery.PilotAgent.Formation.FiringOrder.OrderType != OrderType.HoldFire)
                         {
                             var position = GetAdjustedTargetPosition(_artillery.Target);
-                            if(position != Vec3.Zero && _artillery.AimAtTarget(position) && _artillery.IsTargetInRange(position))
+                            if(position != Vec3.Zero && _artillery.AimAtTarget(position) && _artillery.IsTargetInRange(position) && _artillery.IsSafeToFire())
                             {
                                 _artillery.AiRequestsShoot();
+                                _target = null;
+                            } 
+
+                            if (!_artillery.IsSafeToFire()) //Since safe to fi
+                            {
                                 _target = null;
                             }
                         }

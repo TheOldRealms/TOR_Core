@@ -600,5 +600,12 @@ namespace TOR_Core.BattleMechanics.Artillery
             diff.z = 0;
             return diff.Length < maxrange;
         }
+
+        public bool IsSafeToFire()
+        {
+            Agent agent = Mission.Current.RayCastForClosestAgent(MissleStartingPositionForSimulation, MissleStartingPositionForSimulation + ShootingDirection.NormalizedCopy() * 50, out float distanceA, -1, 0.4f);
+            Mission.Current.Scene.RayCastForClosestEntityOrTerrain(MissleStartingPositionForSimulation, MissleStartingPositionForSimulation + ShootingDirection.NormalizedCopy() * 15, out float distanceE, out GameEntity entity, 0.4f);
+            return !(distanceA < 50 && agent != null && !agent.IsEnemyOf(PilotAgent) || distanceE < 15);
+        }
     }
 }
