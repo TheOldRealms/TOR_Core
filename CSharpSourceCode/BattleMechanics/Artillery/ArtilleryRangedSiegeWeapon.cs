@@ -591,5 +591,14 @@ namespace TOR_Core.BattleMechanics.Artillery
             var diff = Target.SelectedWorldPosition - MissleStartingPositionForSimulation;
             return Ballistics.GetTimeOfProjectileFlight(ShootingSpeed, currentReleaseAngle, diff.Length);
         }
+        
+        public bool IsTargetInRange(Vec3 position)
+        {
+            var startPos = ProjectileEntityCurrentGlobalPosition;
+            var diff = position - startPos;
+            var maxrange = Ballistics.GetMaximumRange(BaseMuzzleVelocity, diff.z);
+            diff.z = 0;
+            return diff.Length < maxrange;
+        }
     }
 }

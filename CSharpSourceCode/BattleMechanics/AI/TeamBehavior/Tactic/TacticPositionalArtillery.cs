@@ -150,19 +150,6 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
 
                 IsTacticReapplyNeeded = false;
             }
-
-            if (_chosenArtilleryPosition != null)
-            {
-                if (!IsArtilleryAtPosition(_chosenArtilleryPosition.TacticalPosition))
-                {
-                    var groundVec3 = _artilleryFormation.QuerySystem.MedianPosition;
-                    team.GeneralAgent.SetScriptedPosition(ref groundVec3, true);
-                }
-                else
-                {
-                    team.GeneralAgent.DisableScriptedMovement();
-                }
-            }
         }
 
         public bool IsArtilleryAtPosition(TacticalPosition position)
