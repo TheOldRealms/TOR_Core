@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 
@@ -140,6 +141,7 @@ namespace TOR_Core.BattleMechanics.AI.Decision
             };
         }
         
+        
         public static Func<Target, float> PositionHeight()
         {
             return target =>
@@ -188,6 +190,12 @@ namespace TOR_Core.BattleMechanics.AI.Decision
             adjustedPosition += rightVec.ToVec3() * (float) (_random.NextDouble() * widthToTarget - widthToTarget / 2);
 
             return targetFormation.GetMedianAgent(true, false, adjustedPosition.AsVec2);
+        }
+
+        public static bool HasLineOfSight(Vec3 from, Vec3 to, float atLeast = 70)
+        {
+            Mission.Current.Scene.RayCastForClosestEntityOrTerrain(from, to, out float distanceE, out GameEntity entity);
+            return distanceE > atLeast;
         }
     }
 }

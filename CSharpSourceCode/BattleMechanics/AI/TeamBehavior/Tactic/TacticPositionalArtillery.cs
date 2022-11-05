@@ -56,13 +56,13 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
 
             // if (!team.TeamAI.IsDefenseApplicable || !CheckAndDetermineFormation(ref _mainInfantry, f => f.QuerySystem.IsInfantryFormation))
             //     return 0.0f;
-            
+
             if (!team.TeamAI.IsCurrentTactic(this) || _mainDefensiveLinePosition == null)
                 DeterminePositions();
 
-            var querySystemInfantryRatio = _chosenArtilleryPosition != null && !float.IsNaN(_chosenArtilleryPosition.UtilityValue) ? 
-                ( team.QuerySystem.InfantryRatio + team.QuerySystem.RangedRatio*10) * 1.2f * _chosenArtilleryPosition.UtilityValue// * CalculateNotEngagingTacticalAdvantage(team.QuerySystem) 
-                / MathF.Sqrt(team.QuerySystem.RemainingPowerRatio)
+            var querySystemInfantryRatio = _chosenArtilleryPosition != null && !float.IsNaN(_chosenArtilleryPosition.UtilityValue)
+                ? (team.QuerySystem.InfantryRatio + team.QuerySystem.RangedRatio * 10) * 1.2f * _chosenArtilleryPosition.UtilityValue // * CalculateNotEngagingTacticalAdvantage(team.QuerySystem) 
+                  / MathF.Sqrt(team.QuerySystem.RemainingPowerRatio)
                 : 0.0f;
             return querySystemInfantryRatio;
         }
@@ -217,7 +217,13 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
                 .SelectMany(region => ExtractPossibleTacticalPositionsFromTacticalRegion(region));
 
             TacticalPosition tacticalPosition1 = new TacticalPosition(team.QuerySystem.MedianPosition, (team.QuerySystem.AverageEnemyPosition - team.QuerySystem.MedianPosition.AsVec2).Normalized(), 50);
-            return teamAiAPositions.Concat(extractedPositions).AddItem(tacticalPosition1).ToList();
+            var averageEnemyPosition = team.QuerySystem.AverageEnemyPosition;
+            
+            float height = 0.0f;
+            Mission.Current.Scene.GetHeightAtPoint(averageEnemyPosition, BodyFlags.CommonCollisionExcludeFlagsForCombat, ref height);
+            var enemyPosition = averageEnemyPosition.ToVec3(height);
+            var gatherCandidatePositions = teamAiAPositions.Concat(extractedPositions).AddItem(tacticalPosition1).Where(position => CommonAIFunctions.HasLineOfSight(position.Position.GetGroundVec3(), enemyPosition)).ToList();
+            return gatherCandidatePositions;
         }
 
         private List<Axis> CreateArtilleryPositionAssessment()
@@ -289,7 +295,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
             DeterminePositions();
             return true;
         }
-        
+
         private void Defend()
         {
             if (team.IsPlayerTeam && !team.IsPlayerGeneral && team.IsPlayerSergeant)
