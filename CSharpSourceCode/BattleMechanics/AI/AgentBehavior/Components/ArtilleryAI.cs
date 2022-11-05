@@ -31,7 +31,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
             {
                 if (_artillery.State == RangedSiegeWeapon.WeaponState.Idle)
                 {
-                    if (_target != null && _target.Formation != null && _target.Formation.GetCountOfUnitsWithCondition(x => x.IsActive()) > 0)
+                    if (_target != null)
                     {
                         if (_artillery.Target != _target)
                         {
@@ -41,18 +41,22 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
                         if (_artillery.Target != null && _artillery.PilotAgent.Formation.FiringOrder.OrderType != OrderType.HoldFire)
                         {
                             var position = GetAdjustedTargetPosition(_artillery.Target);
-                            if(position != Vec3.Zero && _artillery.AimAtTarget(position) && IsTargetInRange(position))
+                            if(position != Vec3.Zero && _artillery.AimAtTarget(position) && _artillery.IsTargetInRange(position) && _artillery.IsSafeToFire())
                             {
                                 _artillery.AiRequestsShoot();
-                                _artillery.Target.Agent = null;
+                                _target = null;
+                            } 
+
+                            if (!_artillery.IsSafeToFire()) //Since safe to fi
+                            {
+                                _target = null;
                             }
                         }
                     }
                     else
                     {
-                        _target = null;
                         _artillery.ClearTarget();
-                        FindNewTarget();
+                        _target = FindNewTarget();
                     }
                 }
             }
@@ -60,29 +64,28 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
 
         private Vec3 GetAdjustedTargetPosition(Target target)
         {
-            if (target == null || target.Formation == null) return Vec3.Zero;
-            var targetAgent = target.Agent != null ? target.Agent : CommonAIFunctions.GetRandomAgent(target.Formation);
+            if (target?.Formation == null) return Vec3.Zero;
+
+            var targetAgent = target.SelectedWorldPosition == Vec3.Zero ? CommonAIFunctions.GetRandomAgent(target.Formation) : target.Agent;
+
+            if (targetAgent == null) return Vec3.Zero;
             target.Agent = targetAgent;
-            float speed = target.Formation.GetMovementSpeedOfUnits();
+
+            Vec3 velocity = target.Formation.QuerySystem.CurrentVelocity.ToVec3();
             float time = (UsableMachine as ArtilleryRangedSiegeWeapon).GetEstimatedCurrentFlightTime();
-            var frame = targetAgent.GetWorldFrame().ToGroundMatrixFrame();
-            target.SelectedWorldPosition = frame.Advance(speed * time).origin;
-            //MBDebug.RenderDebugSphere(target.SelectedWorldPosition, 1f, 4294967295, false, 5);
+
+            target.SelectedWorldPosition = target.Position + velocity * time;
             return target.SelectedWorldPosition;
         }
 
-        private bool IsTargetInRange(Vec3 position)
-        {
-            var startPos = _artillery.ProjectileEntityCurrentGlobalPosition;
-            var diff = position - startPos;
-            var maxrange = Ballistics.GetMaximumRange(_artillery.BaseMuzzleVelocity, diff.z);
-            diff.z = 0;
-            return diff.Length < maxrange;
-        }
+     
 
-        private void FindNewTarget()
+        private Target FindNewTarget()
         {
-            _target = GetAllThreats().Count > 0 ? GetAllThreats().MaxBy(x => x.Formation.CountOfUnits) : null;
+            var findNewTarget = GetAllThreats()
+                .FindAll(target => target.Formation == null || target.Formation.GetCountOfUnitsWithCondition(x => x.IsActive()) > 0)
+                .ToList();
+            return findNewTarget.Count > 0 ? findNewTarget.MaxBy(target => target.UtilityValue) : null;
         }
 
         private List<Target> GetAllThreats()
@@ -100,7 +103,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
             foreach (Formation formation in GetUnemployedEnemyFormations())
             {
                 Target targetFormation = GetTargetValueOfFormation(formation);
-                if (targetFormation.UtilityValue != -1f)
+                if (targetFormation.UtilityValue != -1f && _artillery.IsTargetInRange(targetFormation.GetPosition()))
                 {
                     list.Add(targetFormation);
                 }
@@ -112,15 +115,14 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
         private Target GetTargetValueOfFormation(Formation formation)
         {
             var target = new Target {Formation = formation};
-            target.UtilityValue = ProcessTargetValue(targetDecisionFunctions.GeometricMean(target), RangedSiegeWeaponAi.ThreatSeeker.GetTargetFlagsOfFormation());
+            target.UtilityValue = targetDecisionFunctions.GeometricMean(target); //ProcessTargetValue(, RangedSiegeWeaponAi.ThreatSeeker.GetTargetFlagsOfFormation());
             return target;
         }
 
         private IEnumerable<Formation> GetUnemployedEnemyFormations()
         {
-            return from f in (from t in Mission.Current.Teams
-                    where t.Side.GetOppositeSide() == _artillery.Side
-                    select t).SelectMany((Team t) => t.FormationsIncludingSpecial)
+            return from f in (from t in Mission.Current.Teams where t.Side.GetOppositeSide() == _artillery.Side select t)
+                    .SelectMany((Team t) => t.FormationsIncludingSpecial)
                 where f.CountOfUnits > 0
                 select f;
         }
@@ -128,49 +130,12 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
         private List<Axis> CreateTargetingFunctions()
         {
             var targetingFunctions = new List<Axis>();
-            //  targetingFunctions.Add(new Axis(0, 120, x => 1 - x, CommonDecisionFunctions.DistanceToTarget(() => _artillery.Position)));
-            targetingFunctions.Add(new Axis(0, CommonAIDecisionFunctions.CalculateEnemyTotalPower(_artillery.Team) / 4, x => x, CommonAIDecisionFunctions.FormationPower()));
+            targetingFunctions.Add(new Axis(0, 300, x => 0.7f - 3 * (float) Math.Pow(x - 0.3f, 3) + (float) Math.Pow(x, 2), CommonAIDecisionFunctions.DistanceToTarget(() => _artillery.GameEntity.GlobalPosition))); // 0.7 - 3(x-0.3)^3 + x^2
+            targetingFunctions.Add(new Axis(0, CommonAIDecisionFunctions.CalculateEnemyTotalPower(_artillery.Team), x => x, CommonAIDecisionFunctions.FormationPower()));
+            targetingFunctions.Add(new Axis(0, 70, x => x, CommonAIDecisionFunctions.UnitCount()));
+            targetingFunctions.Add(new Axis(0, 10, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles()));
             return targetingFunctions;
         }
 
-        public float ProcessTargetValue(float baseValue, TargetFlags flags) //TODO: This is probably not necessary, we can represent it better with the axis. Normalized values are better in these scenarios.
-        {
-            if (flags.HasAnyFlag(TargetFlags.NotAThreat))
-            {
-                return -1000f;
-            }
-
-            if (flags.HasAnyFlag(TargetFlags.None))
-            {
-                baseValue *= 1.5f;
-            }
-
-            if (flags.HasAnyFlag(TargetFlags.IsSiegeEngine))
-            {
-                baseValue *= 2f;
-            }
-
-            if (flags.HasAnyFlag(TargetFlags.IsStructure))
-            {
-                baseValue *= 1.5f;
-            }
-
-            if (flags.HasAnyFlag(TargetFlags.IsSmall))
-            {
-                baseValue *= 0.5f;
-            }
-
-            if (flags.HasAnyFlag(TargetFlags.IsMoving))
-            {
-                baseValue *= 0.8f;
-            }
-
-            if (flags.HasAnyFlag(TargetFlags.DebugThreat))
-            {
-                baseValue *= 10000f;
-            }
-
-            return baseValue;
-        }
     }
 }

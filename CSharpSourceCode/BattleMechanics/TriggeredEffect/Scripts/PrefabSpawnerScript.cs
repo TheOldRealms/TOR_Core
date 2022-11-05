@@ -34,6 +34,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             {
                 artillery.SetSide(triggeredByAgent.Team.Side);
                 artillery.Team = triggeredByAgent.Team;
+                artillery.ForcedUse = !triggeredByAgent.Team.IsPlayerTeam;
             }
         }
 

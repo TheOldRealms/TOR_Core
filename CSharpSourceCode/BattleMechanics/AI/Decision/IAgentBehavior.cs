@@ -7,5 +7,6 @@ namespace TOR_Core.BattleMechanics.AI.Decision
         void Execute();
         void Terminate();
         List<BehaviorOption> CalculateUtility();
+        void SetCurrentTarget(Target target);
     }
 }

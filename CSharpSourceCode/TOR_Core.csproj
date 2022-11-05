@@ -419,6 +419,12 @@
     <Compile Include="BattleMechanics\AI\Decision\IAgentBehavior.cs" />
     <Compile Include="BattleMechanics\AI\Decision\ScoringFunctions.cs" />
     <Compile Include="BattleMechanics\AI\Decision\Target.cs" />
+    <Compile Include="BattleMechanics\AI\FormationBehavior\BehaviorProtectArtilleryCrew.cs" />
+    <Compile Include="BattleMechanics\AI\FormationBehavior\TORBehaviorDefend.cs" />
+    <Compile Include="BattleMechanics\AI\TeamBehavior\Tactic\TacticPositionalArtillery.cs" />
+    <Compile Include="BattleMechanics\AI\TeamBehavior\TORFormationClass.cs" />
+    <Compile Include="BattleMechanics\AI\TeamBehavior\TorMissionCombatantsLogic.cs" />
+    <Compile Include="BattleMechanics\AI\TeamBehavior\TORTeamAIGeneral.cs" />
     <Compile Include="BattleMechanics\AI\HideOutAlertMissionLogic.cs" />
     <Compile Include="BattleMechanics\Artillery\ArtilleryRangedSiegeWeapon.cs" />
     <Compile Include="BattleMechanics\Artillery\ArtilleryStandingPoint.cs" />
@@ -484,6 +490,7 @@
     <Compile Include="Extensions\AgentExtensions.cs" />
     <Compile Include="Extensions\CharacterObjectExtensions.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Extensions\DebugMethods.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\CharacterExtendedInfo.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\ExtendedInfoManager.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\ExtendedInfoMissionLogic.cs" />

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using HarmonyLib;
 using NLog;
 using NLog.Config;
@@ -16,6 +17,7 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.CustomBattle;
 using TaleWorlds.MountAndBlade.GameKeyCategory;
 using TaleWorlds.MountAndBlade.GauntletUI.Mission;
+using TaleWorlds.MountAndBlade.Source.Missions;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.SpellBook;
@@ -23,6 +25,7 @@ using TOR_Core.BaseGameDebug;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.AI;
+using TOR_Core.BattleMechanics.AI.TeamBehavior;
 using TOR_Core.BattleMechanics.Atmosphere;
 using TOR_Core.BattleMechanics.Banners;
 using TOR_Core.BattleMechanics.Dismemberment;
@@ -43,6 +46,7 @@ using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignSupport.TownBehaviours;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.GameManagers;
 using TOR_Core.Items;
@@ -157,6 +161,12 @@ namespace TOR_Core
             }
         }
 
+        public override void OnBeforeMissionBehaviorInitialize(Mission mission)
+        {
+            var missionCombatantsLogic = mission.GetMissionBehavior<MissionCombatantsLogic>();
+            mission.AddMissionLogicAtIndexOf(missionCombatantsLogic, TorMissionCombatantsLogic.CreateFromInstanace(missionCombatantsLogic));
+        }
+
         public override void OnMissionBehaviorInitialize(Mission mission)
         {
 
@@ -184,6 +194,7 @@ namespace TOR_Core
                 }
             }
         }
+
 
         public override void BeginGameStart(Game game)
         {

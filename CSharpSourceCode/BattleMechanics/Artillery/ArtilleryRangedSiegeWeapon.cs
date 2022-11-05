@@ -10,6 +10,7 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
 using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
 using TOR_Core.BattleMechanics.AI.Decision;
+using TOR_Core.BattleMechanics.AI.TeamBehavior;
 using TOR_Core.BattleMechanics.TriggeredEffect.Scripts;
 
 namespace TOR_Core.BattleMechanics.Artillery
@@ -119,7 +120,11 @@ namespace TOR_Core.BattleMechanics.Artillery
         protected override void OnTick(float dt)
         {
             CheckNullReloaderOriginalPoint();
-            base.OnTick(dt);
+            if (_target != null)
+            {
+                base.OnTick(dt);
+            }
+
             HandleAnimations();
             HandleAmmoPickup();
             HandleAmmoLoad();
@@ -127,6 +132,23 @@ namespace TOR_Core.BattleMechanics.Artillery
             HandleWaitingTimer();
             UpdateRecoilEffect(dt);
             UpdateWheelRotation(dt);
+            HandleAITeamUsage();
+        }
+        
+        private void HandleAITeamUsage()
+        {
+            if (!Team?.IsPlayerTeam ?? false)
+            {
+                if (UserFormations.Count > 0 && UserFormations.All(formation => formation.Index != (int) TORFormationClass.Artillery))
+                {
+                    UserFormations[0]?.StopUsingMachine(this);
+                }
+
+                if (UserFormations.Count == 0)
+                {
+                    Team.FormationsIncludingSpecialAndEmpty.ToList().FirstOrDefault(form => form.Index == (int) TORFormationClass.Artillery)?.StartUsingMachine(this);
+                }
+            }
         }
 
         private void CheckNullReloaderOriginalPoint()
@@ -572,6 +594,22 @@ namespace TOR_Core.BattleMechanics.Artillery
             if (Target == null) return 0;
             var diff = Target.SelectedWorldPosition - MissleStartingPositionForSimulation;
             return Ballistics.GetTimeOfProjectileFlight(ShootingSpeed, currentReleaseAngle, diff.Length);
+        }
+        
+        public bool IsTargetInRange(Vec3 position)
+        {
+            var startPos = ProjectileEntityCurrentGlobalPosition;
+            var diff = position - startPos;
+            var maxrange = Ballistics.GetMaximumRange(BaseMuzzleVelocity, diff.z);
+            diff.z = 0;
+            return diff.Length < maxrange;
+        }
+
+        public bool IsSafeToFire()
+        {
+            Agent agent = Mission.Current.RayCastForClosestAgent(MissleStartingPositionForSimulation, MissleStartingPositionForSimulation + ShootingDirection.NormalizedCopy() * 50, out float distanceA, -1, 0.4f);
+            Mission.Current.Scene.RayCastForClosestEntityOrTerrain(MissleStartingPositionForSimulation, MissleStartingPositionForSimulation + ShootingDirection.NormalizedCopy() * 15, out float distanceE, out GameEntity entity, 0.4f);
+            return !(distanceA < 50 && agent != null && !agent.IsEnemyOf(PilotAgent) || distanceE < 15);
         }
     }
 }
