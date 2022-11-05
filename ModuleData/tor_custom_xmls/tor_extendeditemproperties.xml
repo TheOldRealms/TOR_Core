@@ -2414,7 +2414,7 @@
   <ExtendedItemObjectProperties ItemStringId="tor_book_rougery_001">
     <ItemTraits>
       <ItemTrait ItemTraitName="Roguery Knowledge" IconName="xp_icon">
-        <ItemTraitDescription>This book provides 5000 roguery skill expierence points upon reading</ItemTraitDescription>
+        <ItemTraitDescription>This book provides 5000 roguery skill experience points upon reading</ItemTraitDescription>
         <SkillTuple SkillId="Roguery" SkillExp="5000" LearningTime="15" />
       </ItemTrait>
       <ItemTrait ItemTraitName="Small Crossbow Instruction" IconName="xp_icon">
@@ -2456,13 +2456,17 @@
         <ItemTraitDescription>This book provides 5000 crossbow skill experience points upon reading.</ItemTraitDescription>
         <SkillTuple SkillId="Crossbow" SkillExp="5000" LearningTime="10" />
       </ItemTrait>
+      <ItemTrait ItemTraitName="Gunpowder Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 5000 gunpowder skill experience points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Gunpowder" SkillExp="5000" LearningTime="12" />
+      </ItemTrait>
     </ItemTraits>
     <Description>"… Kroxigors are roughly 9 feet high, and weigh around as much as two Reikland cows, they have sharp teeth and a yaw with at least one hundred teeth. Their footprint is roughly 6-8 times bigger than that of a grown man. Their skin is thick and it’s near-impossible to cut through with most common weapons. A wise Hunter would always keep their distance from these beasts. Hunt them in pairs, try to use traps and use Steel Arrowheads or Crossbow Bolts. Better yet a Handgun, despite the noise it will create, should be able to pierce a Kroxigor’s hide. [Below a sketch of a Kroxigore]"</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_crafting_001">
     <ItemTraits>
       <ItemTrait ItemTraitName="Smithing Knowledge" IconName="xp_icon">
-        <ItemTraitDescription>This book provides 5000 smithing skill expierence points upon reading</ItemTraitDescription>
+        <ItemTraitDescription>This book provides 5000 smithing skill experience points upon reading</ItemTraitDescription>
         <SkillTuple SkillId="Crafting" SkillExp="5000" LearningTime="12" />
       </ItemTrait>
     </ItemTraits>
@@ -2471,7 +2475,7 @@
   <ExtendedItemObjectProperties ItemStringId="tor_book_riding_001">
     <ItemTraits>
       <ItemTrait ItemTraitName="Riding Knowledge" IconName="xp_icon">
-        <ItemTraitDescription>This book provides 5000 riding skill expierence points upon reading</ItemTraitDescription>
+        <ItemTraitDescription>This book provides 5000 riding skill experience points upon reading</ItemTraitDescription>
         <SkillTuple SkillId="Riding" SkillExp="5000" LearningTime="12" />
       </ItemTrait>
     </ItemTraits>
@@ -2591,10 +2595,76 @@
   <ExtendedItemObjectProperties ItemStringId="tor_books_gunpowder_001">
     <ItemTraits>
       <ItemTrait ItemTraitName="Gunpowder Knowledge" IconName="xp_icon">
-        <ItemTraitDescription>This book provides 5000 gunpowder skill expierence points upon reading</ItemTraitDescription>
+        <ItemTraitDescription>This book provides 5000 gunpowder skill experience points upon reading</ItemTraitDescription>
         <SkillTuple SkillId="Gunpowder" SkillExp="5000" LearningTime="12" />
       </ItemTrait>
     </ItemTraits>
-    <Description>Gunpowder lorem ipsum...</Description>
+    <Description>"The handgunn is a truly devastating weapon, able to kill some of the most well armoured foes in one well aimed shot. Despite this, these weapons require the care and respect that such power implies. A Handgunner must keep his powder supply and the inside of his arm dry, wet powder does not ignite. Past this, the barrel of the handgunn must be regularly cleaned; dirt and powder can build up and create misfires, inaccuracy or failures for the lead ball to leave the barrel upon ignition of the powder. Finally, the lock on the rear of the barrel must be maintained; after some use the hammer can deform and no longer align with its flashpan. Keep this maintenance in mind and practise your marksmanship, and one will be well on their way to proficiency."</Description>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_books_gunpowder_002">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Gunpowder Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 5000 gunpowder skill experience points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Gunpowder" SkillExp="5000" LearningTime="12" />
+      </ItemTrait>
+    </ItemTraits>
+    <Description>"As the handgun fires, the force of the lead ball leaving the end of the barrel causes the rotation witnessed by the observer. The rotation is halted by the gearlock on the rear of the handgun, which does not activate until the next barrel has aligned with the striking mechanism. What is this force and how do we describe the lock’s ability to halt it? The force is clearly caused by the ignition of the black powder in the rear of the barrel, which both propels the ball forward while undoing the hold of the lock on the Cavalcade. Is it also the same force which brings the lock’s hold back around the Cavalcade, stopping it from spinning endlessly and allowing the user to take aim again? In my experiments..."</Description>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_book_spellcraft_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Spellcraft Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 5000 spellcraft skill experience points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Spellcraft" SkillExp="5000" LearningTime="12" />
+      </ItemTrait>
+    </ItemTraits>
+    <Description>"Most believe the Cult of the Mother died out long ago. They are wrong. Not only do the Great Families of my Order continue Her traditions, but the sickle is born by others, which most of whom hide far from prying eyes. Before he formed our Order, Teclis came to our great groves. By channelling Ghyran he activated the Waystones we believed had been raised by our ancestors, and showed us what our ""Oghams"" truly were: a creation of the Elder Race, the Asur, the Elves. We watched wide-eyed as Teclis explained the nature of belief, magic, and of Hoeth, the god he especially revered. Not all of us accepted his foreign ways. Indeed, a full third of the Druidic Families stubbornly spurned Teclis, refusing to believe his ""truth,"" and fled into the dark forests, just like the prehistoric tribes of old. But those who remained, listened, and then eventually understood…"</Description>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_book_spellcraft_002">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Spellcraft Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 5000 spellcraft skill experience points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Spellcraft" SkillExp="5000" LearningTime="12" />
+      </ItemTrait>
+    </ItemTraits>
+    <Description>"…Even though this might be true, I do not believe that we, the Magisters of the Imperial Colleges of Magic, should follow their example and choose for ourselves Gods to wholly dedicate ourselves to and beg favours from, to use in conjunction with our own arcane spellcraft. Nothing in this life or the next is free, and whilst I am willing to trust in my own abilities and limitations, and accept any errors I make while weaving my spells, I do not wish to trust the continued benevolence of a deity whose need for my faith and dedication might far outweigh my own need for His or Her aid..."</Description>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_book_spellcraft_003">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Spellcraft Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 5000 spellcraft skill experience points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Spellcraft" SkillExp="5000" LearningTime="12" />
+      </ItemTrait>
+    </ItemTraits>
+    <Description>"The seventh wind of the Aethyr. Wherever there is passion, argument, or excitement, there is Ashqy. While the devastating power of this wind resides in the control over fire and flames: Fireballs, Flame storms or the Carnage of a burning head are only depicting a fraction of its might. But fire is not only for destruction. Purification of wounds, or even our everyday meal is better served cooked and therefore requires a flame. Fire is what allows for human inspiration, boldness and heroism. Whether it be brashness or courage, fire is the everpresent companion of mankind. All of these aspects are incorporated in the wind, and are studied by the bright wizard order. The magisters of the first magic order ever found by Teclis, use their knowledge over the flaming spells for protection of the empire."</Description>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_book_hybrid_002">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Spellcraft Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 5000 spellcraft skill experience points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Spellcraft" SkillExp="5000" LearningTime="12" />
+      </ItemTrait>
+      <ItemTrait ItemTraitName="Smithing Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 2000 smithing skill experience points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Crafting" SkillExp="5001" LearningTime="13" />
+      </ItemTrait>
+    </ItemTraits>
+    <Description>When asked: What is the name of the stone that burns? Thou shalt respond: Sulphur to be mixed with mercury. When asked: What is the name of the universal solvent? Thou shalt respond: Al-kahest.  When asked: What is the name of the remedy for all maladies Thou shalt respond: Panacea Universalis.  When asked: What is the name of the acme of the Art? Thou shalt respond: The Elixir of Life. When asked: What is the name of the noblest of metals? Thou shalt respond: Gold</Description>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_book_hybrid_003">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Small Spellcraft Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 2000 spellcraft skill experience points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Spellcraft" SkillExp="2000" LearningTime="10" />
+      </ItemTrait>
+      <ItemTrait ItemTraitName="Gunpowder Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 5000 gunpowder skill experience points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Gunpowder" SkillExp="5000" LearningTime="12" />
+      </ItemTrait>
+      <ItemTrait ItemTraitName="Small Roguery Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 2000 roguery skill experience points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Roguery" SkillExp="2000" LearningTime="10" />
+      </ItemTrait>
+    </ItemTraits>
+    <Description>"Even the far coasts of Lustria seem not to be spared of the taint of vampires. Legends say, a single mad Vampire, Luthor Harkon, established his own Colony. Legends say his mind is shattered since plundering a temple of the lizardmen that cursed him and his body. Many different personalities are fighting in his soul for control, some might call a curse or blessing. Crazy or not, he managed to conquer, and recruit many of the pirates in his undead army. Vampires, either looking for adventure or hunted in  Sylvania, search for a new life far from their former habitat, and they become captains and his first mates, to haunt the shores. May Sigmar protect any living sailor that has the misfortune to come across them."</Description>
   </ExtendedItemObjectProperties>
 </ArrayOfExtendedItemObjectProperties>
