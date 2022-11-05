@@ -120,7 +120,11 @@ namespace TOR_Core.BattleMechanics.Artillery
         protected override void OnTick(float dt)
         {
             CheckNullReloaderOriginalPoint();
-            base.OnTick(dt);
+            if (_target != null)
+            {
+                base.OnTick(dt);
+            }
+
             HandleAnimations();
             HandleAmmoPickup();
             HandleAmmoLoad();
