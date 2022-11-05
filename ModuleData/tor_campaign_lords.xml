@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <NPCCharacters>
-  <NPCCharacter id="tor_emp_lord_averland_factionleader" default_group="cavalry" name="{=str_ tor_emp_lord_averland_factionleader}Elector Count Marius Leitdorf" occupation="Lord" culture="Culture.empire" voice="curt" age="54" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_averland_factionleader" default_group="cavalry" name="{=str_ tor_emp_lord_averland_factionleader}Elector Count Marius Leitdorf" occupation="Lord" culture="Culture.empire" voice="earnest" age="54" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="50" weight="0.55" build="0.5" key="0002B800000020024593822D11278FBA558386625A767744C4B65F498C95A4940077860307503203000000000000000000000000000000000000000040EC7000" />
     </face>
@@ -18,7 +18,7 @@
       <EquipmentSet id="tor_marius_leitdorf_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_moot_factionleader" default_group="cavalry" name="{=str_ tor_emp_lord_moot_factionleader}Elder Hisme Stoutheart" occupation="Lord" culture="Culture.empire" voice="curt" age="62" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_moot_factionleader" default_group="cavalry" name="{=str_ tor_emp_lord_moot_factionleader}Elder Hisme Stoutheart" occupation="Lord" culture="Culture.empire" voice="earnest" age="62" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="1" build="1" key="0020740780002308107FF0F0FF0F00F07BD850635067FF07F1600F6F8008CC8F000FF603F0FF7FFF00000000000000000000000000000000000000007E043002" />
     </face>
@@ -72,7 +72,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_averland_golden_3" default_group="cavalry" name="{=str_ tor_emp_lord_averland_golden_3}Haqiqah Al-Hikmah" occupation="Lord" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_averland_golden_3" default_group="cavalry" name="{=str_ tor_emp_lord_averland_golden_3}Haqiqah Al-Hikmah" occupation="Lord" culture="Culture.empire" voice="ironic" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="0.4" build="0.4" key="0034F00FCE2C3849AC7664876753888A7654995054C07648C4230AC98C9BA077005776030597B15600000000000000000000000000000000000000003ABC9002" />
     </face>
@@ -108,7 +108,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavyblack_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_averland_first_2" default_group="cavalry" name="{=str_ tor_emp_lord_averland_first_2}Filibert Leitdorf" occupation="Lord" culture="Culture.empire" voice="curt" age="26" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_averland_first_2" default_group="cavalry" name="{=str_ tor_emp_lord_averland_first_2}Filibert Leitdorf" occupation="Lord" culture="Culture.empire" voice="ironic" age="26" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="26" weight="0.3" build="0.4" key="0008140C4044200F84A66FE0C5160011796A2A6860940F01C4687846453C868E0006560200BC899B00000000000000000000000000000000000000004A044042" />
     </face>
@@ -126,7 +126,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_averland_first_3" default_group="cavalry" name="{=str_ tor_emp_lord_averland_first_3}Kastor Leitdorf" occupation="Lord" culture="Culture.empire" voice="curt" age="36" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_averland_first_3" default_group="cavalry" name="{=str_ tor_emp_lord_averland_first_3}Kastor Leitdorf" occupation="Lord" culture="Culture.empire" voice="ironic" age="36" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="36" weight="0.4" build="0.65" key="0002C001400031CD4594858D655987949C8676686496AA54C7B6577985374136009A6603094674980000000000000000000000000000000000000000413C7000" />
     </face>
@@ -144,7 +144,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_averland_first_4" default_group="cavalry" name="{=str_ tor_emp_lord_averland_first_4}Countess Camilla von Sachs" occupation="Lord" culture="Culture.empire" voice="curt" age="39" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_averland_first_4" default_group="cavalry" name="{=str_ tor_emp_lord_averland_first_4}Countess Camilla von Sachs" occupation="Lord" culture="Culture.empire" voice="softspoken" age="39" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
     <face>
       <BodyProperties version="4" age="39" weight="0.3" build="0.5" key="0000D40000003005758858887788A56A589386BB54C85643739648378829A267006846030673787300000000000000000000000000000000000000003AD41004" />
     </face>
@@ -162,7 +162,7 @@
       <EquipmentSet id="tor_generic_empire_femlord_medium_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_averland_first_5" default_group="cavalry" name="{=str_ tor_emp_lord_averland_first_5}Baron Boris Ulbricht" occupation="Lord" culture="Culture.empire" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_averland_first_5" default_group="cavalry" name="{=str_ tor_emp_lord_averland_first_5}Baron Boris Ulbricht" occupation="Lord" culture="Culture.empire" voice="ironic" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="0.9" build="0.1" key="0002440996A010C173E67DA0524700EA2C8CE765ADE87323A44675FF753A8A880990E69A0985C6D300000000000000000000000000000000000000007B2C5046" />
     </face>
@@ -180,7 +180,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_averland_first_6" default_group="cavalry" name="{=str_ tor_emp_lord_averland_first_6}Count Dieter von Heine" occupation="Lord" culture="Culture.empire" voice="curt" age="47" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_averland_first_6" default_group="cavalry" name="{=str_ tor_emp_lord_averland_first_6}Count Dieter von Heine" occupation="Lord" culture="Culture.empire" voice="ironic" age="47" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="47" weight="0.625" build="0.88" key="0000B809970033407C8858887786DB6A7583866254C696437A584739F895A2A7007D96030749BB7700000000000000000000000000000000000000003AF47000" />
     </face>
@@ -198,7 +198,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_averland_first_7" default_group="cavalry" name="{=str_ tor_emp_lord_averland_first_7}Ferdinand Leitdorf" occupation="Lord" culture="Culture.empire" voice="curt" age="32" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_averland_first_7" default_group="cavalry" name="{=str_ tor_emp_lord_averland_first_7}Ferdinand Leitdorf" occupation="Lord" culture="Culture.empire" voice="ironic" age="32" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="32" weight="0.3" build="0.46" key="0005C00D0000318F4A9788884584CAB468B277986896CB5477666B79858226380077460307586743000000000000000000000000000000000000000040E47000" />
     </face>
@@ -234,7 +234,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_averland_second_2" default_group="cavalry" name="{=str_ tor_emp_lord_averland_second_2}Countess Marlene Alptraum" occupation="Lord" culture="Culture.empire" voice="curt" age="48" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_averland_second_2" default_group="cavalry" name="{=str_ tor_emp_lord_averland_second_2}Countess Marlene Alptraum" occupation="Lord" culture="Culture.empire" voice="softspoken" age="48" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
     <face>
       <BodyProperties version="4" age="48" weight="0.3" build="0.75" key="0020B80E400020107C7864396C9139823885866254C69647C46231188CC92833007C460307653A3A00000000000000000000000000000000000000003AF40043" />
     </face>
@@ -270,7 +270,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_averland_second_4" default_group="cavalry" name="{=str_ tor_emp_lord_averland_second_4}Mathias Alptraum" occupation="Lord" culture="Culture.empire" voice="curt" age="45" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_averland_second_4" default_group="cavalry" name="{=str_ tor_emp_lord_averland_second_4}Mathias Alptraum" occupation="Lord" culture="Culture.empire" voice="softspoken" age="45" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="0.9" build="0.4" key="0008000FCE001144E7F66F8A7758D0F5A35E8F6201D0060401FF00FD8C8336860497E645096DFAB800000000000000000000000000000000000000003D2C9102" />
     </face>
@@ -324,7 +324,7 @@
       <EquipmentSet id="tor_generic_empire_femlord_medium_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_averland_third_2" default_group="cavalry" name="{=str_ tor_emp_lord_averland_third_2}Baron Sigmund Hindenberg" occupation="Lord" culture="Culture.empire" voice="curt" age="33" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_averland_third_2" default_group="cavalry" name="{=str_ tor_emp_lord_averland_third_2}Baron Sigmund Hindenberg" occupation="Lord" culture="Culture.empire" voice="ironic" age="33" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="38" weight="0.1" build="0.9" key="0005F40FD2881100AB5007CF5885F0E8499BF04055711F4ABB7AB48967A258C6027E0625075E8C7500000000000000000000000000000000000000003EF49042" />
     </face>
@@ -378,7 +378,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_averland_third_5" default_group="cavalry" name="{=str_ tor_emp_lord_averland_third_5}Gottfried Von Grünwald" occupation="Lord" culture="Culture.empire" voice="curt" age="26" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_averland_third_5" default_group="cavalry" name="{=str_ tor_emp_lord_averland_third_5}Gottfried Von Grünwald" occupation="Lord" culture="Culture.empire" voice="earnest" age="26" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="26" weight="0.3" build="0.3" key="000A380FCFB412CE46846E755B76248930F078CCB5A30979AF980867876A256905DFE6560D6E5CA900000000000000000000000000000000000000003DAC4106" />
     </face>
@@ -432,7 +432,7 @@
       <EquipmentSet id="tor_luthor_huss_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_stirland_sigmarcult_2" default_group="cavalry" name="{=str_ tor_emp_lord_stirland_sigmarcult_2}Grand Theogonist Volkmar the Grim" occupation="Lord" culture="Culture.empire" voice="curt" age="68" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_stirland_sigmarcult_2" default_group="cavalry" name="{=str_ tor_emp_lord_stirland_sigmarcult_2}Grand Theogonist Volkmar the Grim" occupation="Lord" culture="Culture.empire" voice="ironic" age="68" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="62" weight="0.5" build="0.5" key="0002D80A50003140FB1D3398D010703F963B079168E3120454BB48208BECA93500A776030AC78738000000000000000000000000000000000000000019543102" />
     </face>
@@ -468,7 +468,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_stirland_factionleader" default_group="cavalry" name="{=str_ tor_emp_lord_stirland_factionleader}Elector Count Alberich Haupt-Anderssen" occupation="Lord" culture="Culture.empire" voice="curt" age="55" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_stirland_factionleader" default_group="cavalry" name="{=str_ tor_emp_lord_stirland_factionleader}Elector Count Alberich Haupt-Anderssen" occupation="Lord" culture="Culture.empire" voice="softspoken" age="55" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="1" build="0.75" key="000500001700038378053E5F73FCF868917A97C001E9093F965D1D76AB76AC85008BF60308A4658A000000000000000000000000000000000000000041042042" />
     </face>
@@ -504,7 +504,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_stirland_first_3" default_group="cavalry" name="{=str_ tor_emp_lord_stirland_first_3}Baron Anton Kiesinger" occupation="Lord" culture="Culture.empire" voice="curt" age="62" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_stirland_first_3" default_group="cavalry" name="{=str_ tor_emp_lord_stirland_first_3}Baron Anton Kiesinger" occupation="Lord" culture="Culture.empire" voice="ironic" age="62" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="32" weight="1" build="0.2114" key="0002840D000038054A7664B3675388AEA5774A6214837D83C6B99A978C9AA57A0073F60307AB82F600000000000000000000000000000000000000003AF47000" />
     </face>
@@ -576,7 +576,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_stirland_first_7" default_group="cavalry" name="{=str_ tor_emp_lord_stirland_first_7}Erich von Halstedt" occupation="Lord" culture="Culture.empire" voice="curt" age="60" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_stirland_first_7" default_group="cavalry" name="{=str_ tor_emp_lord_stirland_first_7}Erich von Halstedt" occupation="Lord" culture="Culture.empire" voice="ironic" age="60" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="60" weight="0.875" build="0.6343" key="0005B80E4000134D7C8868836BDE5BEA5577866324C66EF3C4B64E398C95A933007AD60307A7497300000000000000000000000000000000000000003AF47000" />
     </face>
@@ -666,7 +666,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_stirland_third_1" default_group="cavalry" name="{=str_ tor_emp_lord_stirland_third_1}Alexandra von Münsterberg" occupation="Lord" culture="Culture.empire" voice="curt" age="42" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_stirland_third_1" default_group="cavalry" name="{=str_ tor_emp_lord_stirland_third_1}Alexandra von Münsterberg" occupation="Lord" culture="Culture.empire" voice="earnest" age="42" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="0.4033" build="0.3453" key="000DB800000030107C7677CA1DB88DBA7392866758A4D553CAB6477C8C95A1B700456603043BB9C10000000000000000000000000000000000000000547C2003" />
     </face>
@@ -738,7 +738,7 @@
       <EquipmentSet id="tor_countess_emmanuelle_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_wissenland_first_2" default_group="cavalry" name="{=str_ tor_emp_lord_wissenland_first_2}Viscount Leos von Liebwitz" occupation="Lord" culture="Culture.empire" voice="curt" age="26" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_wissenland_first_2" default_group="cavalry" name="{=str_ tor_emp_lord_wissenland_first_2}Viscount Leos von Liebwitz" occupation="Lord" culture="Culture.empire" voice="ironic" age="26" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="29" weight="1.574" build="6.019" key="001B0C00800030047CAF3F376BB5018A6FFC9715B266C663C8664F0F9EE5A0F7007776030707E55700000000000000000000000000000000000000003AF47000" />
     </face>
@@ -774,7 +774,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_wissenland_first_4" default_group="cavalry" name="{=str_ tor_emp_lord_wissenland_first_4}Elspeth Von Draken" occupation="Lord" culture="Culture.empire" voice="curt" age="40" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_wissenland_first_4" default_group="cavalry" name="{=str_ tor_emp_lord_wissenland_first_4}Elspeth Von Draken" occupation="Lord" culture="Culture.empire" voice="ironic" age="40" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" is_hero="true">
     <face>
       <BodyProperties version="4" age="40" weight="0.5" build="0.5" key="0000000FD1FC1015FF7014F76EF510670FE186EAFF78D000EF06F1198E05FFF7037776350701F00300000000000000000000000000000000000000003AF43003" />
     </face>
@@ -846,7 +846,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavyblack_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_wissenland_second_1" default_group="cavalry" name="{=str_ tor_emp_lord_wissenland_second_1}Countess Molly Toppenheimer" occupation="Lord" culture="Culture.empire" voice="curt" age="42" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_wissenland_second_1" default_group="cavalry" name="{=str_ tor_emp_lord_wissenland_second_1}Countess Molly Toppenheimer" occupation="Lord" culture="Culture.empire" voice="softspoken" age="42" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
     <face>
       <BodyProperties version="4" age="40" weight="0.5648" build="0.5586" key="001B74061000300B017664876F06FF0FEBFF85E10F49FEFEFFEEF730B717616E0368863506E009F000000000000000000000000000000000000000003ABC3003" />
     </face>
@@ -918,7 +918,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_wissenland_second_5" default_group="cavalry" name="{=str_ tor_emp_lord_wissenland_second_5}Baron Frederich Herbart" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_wissenland_second_5" default_group="cavalry" name="{=str_ tor_emp_lord_wissenland_second_5}Baron Frederich Herbart" occupation="Lord" culture="Culture.empire" voice="ironic" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="30" weight="0.6265" build="0.7654" key="001EB00AD50038C0FD9F04EE0110F0111110466250480F43C4B6473981F010F0046B964606A7497300000000000000000000000000000000000000003ADC7002" />
     </face>
@@ -990,7 +990,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavyblack_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_wissenland_third_3" default_group="cavalry" name="{=str_ tor_emp_lord_wissenland_third_3}Baron Vincentus Preiss" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_wissenland_third_3" default_group="cavalry" name="{=str_ tor_emp_lord_wissenland_third_3}Baron Vincentus Preiss" occupation="Lord" culture="Culture.empire" voice="earnest" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="30" weight="0.588" build="1" key="000000AC0003384797F643E475CDCBEC34E866155A0F6777441DA4F838BF6AF04BF96460BFFB7A100000000000000000000000000000000000000003D740002" />
     </face>
@@ -1026,7 +1026,7 @@
       <EquipmentSet id="tor_generic_empire_femlord_medium_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_wissenland_third_5" default_group="cavalry" name="{=str_ tor_emp_lord_wissenland_third_5}Viscount Herbort Unruh" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_wissenland_third_5" default_group="cavalry" name="{=str_ tor_emp_lord_wissenland_third_5}Viscount Herbort Unruh" occupation="Lord" culture="Culture.empire" voice="earnest" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="52" weight="0.9434" build="0.7894" key="0000740C5CB4330066A84332487E768DBD21562754A71B569B706BD267AB7A6B003CE6030323B9AA0000000000000000000000000000000000000000286C2080" />
     </face>
@@ -1062,7 +1062,7 @@
       <EquipmentSet id="tor_generic_empire_lord_huntsman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_talabecland_factionleader" default_group="cavalry" name="{=str_ tor_emp_lord_talabecland_factionleader}Elector Count Helmut Feuerbach" occupation="Lord" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_talabecland_factionleader" default_group="cavalry" name="{=str_ tor_emp_lord_talabecland_factionleader}Elector Count Helmut Feuerbach" occupation="Lord" culture="Culture.empire" voice="earnest" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="35" weight="0.5046" build="0.6698" key="0002AC04D344144DFC765877989855866B7C866384C696003D7B43A479D4742C028A862408F85C1943100000000000000000000000000010000000003B143084" />
     </face>
@@ -1152,7 +1152,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_talabecland_first_6" default_group="cavalry" name="{=str_ tor_emp_lord_talabecland_first_6}Commander Detlef Kienholtz" occupation="Lord" culture="Culture.empire" voice="curt" age="34" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_talabecland_first_6" default_group="cavalry" name="{=str_ tor_emp_lord_talabecland_first_6}Commander Detlef Kienholtz" occupation="Lord" culture="Culture.empire" voice="ironic" age="34" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="34" weight="0.5705" build="0.4553" key="0002500D8044218C2B6B9175747679278A79A169762D85C5B9A84ABAA999A95D72C796240C39928C869149794559464D00000000000000C1000000003D947104" />
     </face>
@@ -1206,7 +1206,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_talabecland_second_1" default_group="cavalry" name="{=str_ tor_emp_lord_talabecland_second_1}Count Josef von Behring" occupation="Lord" culture="Culture.empire" voice="curt" age="61" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_talabecland_second_1" default_group="cavalry" name="{=str_ tor_emp_lord_talabecland_second_1}Count Josef von Behring" occupation="Lord" culture="Culture.empire" voice="softspoken" age="61" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="61" weight="0.7115" build="0.4709" key="0008540F1670070E8A8B3AB814B9DA4979B37989916FB99C438C2B977154385A96A7B6670A836CA1479A868897ABE66200000000000000A50000000023549104" />
     </face>
@@ -1296,7 +1296,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_gsword_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_talabecland_third_1" default_group="cavalry" name="{=str_ tor_emp_lord_talabecland_third_1}Count Manfred von Schirach" occupation="Lord" culture="Culture.empire" voice="curt" age="45" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_talabecland_third_1" default_group="cavalry" name="{=str_ tor_emp_lord_talabecland_third_1}Count Manfred von Schirach" occupation="Lord" culture="Culture.empire" voice="ironic" age="45" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="0.3687" build="0.9042" key="0000D40E57CC310D38767976529BB74BA78AB8A8789A795C53A5D51BC69A895573CE66350C9D17674241687AD3B72A5600000000000000AB0000000043942044" />
     </face>
@@ -1386,7 +1386,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_talabecland_third_6" default_group="cavalry" name="{=str_ tor_emp_lord_talabecland_third_6}Baron Dieter Bollen" occupation="Lord" culture="Culture.empire" voice="curt" age="28" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_talabecland_third_6" default_group="cavalry" name="{=str_ tor_emp_lord_talabecland_third_6}Baron Dieter Bollen" occupation="Lord" culture="Culture.empire" voice="ironic" age="28" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="28" weight="0.8041" build="0.1559" key="0000C80F00E4000655896267B7A7B78995578087C9589146B74A754383549A8C5182C61308A734A556667664655646620000000000000066000000003EFC70C4" />
     </face>
@@ -1458,7 +1458,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_reikland_first_4" default_group="cavalry" name="{=str_ tor_emp_lord_reikland_first_4}Margravine Isabella von Holswig-Schliestein" occupation="Lord" culture="Culture.empire" voice="curt" age="32" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_reikland_first_4" default_group="cavalry" name="{=str_ tor_emp_lord_reikland_first_4}Margravine Isabella von Holswig-Schliestein" occupation="Lord" culture="Culture.empire" voice="softspoken" age="32" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
     <face>
       <BodyProperties version="4" age="32" weight="0.1929" build="0.2346" key="000A5409802C300454636A75C744793375B4ABA281C82A85D667B6A98C37485B0064360306497597000000000000000000000000000000000000000026D42083" />
     </face>
@@ -1476,7 +1476,7 @@
       <EquipmentSet id="tor_generic_empire_femlord_medium_pistol_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_reikland_first_5" default_group="cavalry" name="{=str_ tor_emp_lord_reikland_first_5}Empress Maria-Luise von Walfen" occupation="Lord" culture="Culture.empire" voice="curt" age="28" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_reikland_first_5" default_group="cavalry" name="{=str_ tor_emp_lord_reikland_first_5}Empress Maria-Luise von Walfen" occupation="Lord" culture="Culture.empire" voice="earnest" age="28" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
     <face>
       <BodyProperties version="4" age="28" weight="0.3966" build="0.5494" key="00025002802C100B54636A7AA7C4443145B9ABA9535A2256376B49AC3C3A235B0068660306497599000000000000000000000000000000000000000026D41083" />
     </face>
@@ -1530,7 +1530,7 @@
       <EquipmentSet id="tor_generic_empire_lord_huntsman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_reikland_second_1" default_group="cavalry" name="{=str_ tor_emp_lord_reikland_second_1}Ferdinand von Wallenstein" occupation="Lord" culture="Culture.empire" voice="curt" age="61" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_reikland_second_1" default_group="cavalry" name="{=str_ tor_emp_lord_reikland_second_1}Graf Ferdinand von Wallenstein" occupation="Lord" culture="Culture.empire" voice="ironic" age="61" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="61" weight="0.7115" build="0.4709" key="0008540F1670070E8A8B3AB814B9DA4979B37989916FB99C438C2B977154385A96A7B6670A836CA1479A868897ABE66200000000000000A50000000023549104" />
     </face>
@@ -1584,6 +1584,42 @@
       <EquipmentSet id="tor_generic_empire_femlord_medium_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_reikland_second_4" default_group="cavalry" name="{=str_ tor_emp_lord_reikland_second_4}Graf Heinrich von Falkenhayn" occupation="Lord" culture="Culture.empire" voice="softspoken" age="39" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="39" weight="0.1497" build="0.5478" key="001368099A8811CF4783752BCB3C6877556DBD1961697925B4DAA5A9A99B976700882603086393A40000000000000000000000000000000000000000430C3082" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_reikland_second_5" default_group="cavalry" name="{=str_ tor_emp_lord_reikland_second_5}Graf Sigismund von Jungfreud" occupation="Lord" culture="Culture.empire" voice="ironic" age="42" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="42" weight="0.341" build="0.3627" key="0013580C4088238EB259A3593A799B85C1723EB7AAD67D65B4DAA5A96787255900755603076393A4000000000000000000000000000000000000000042DC5082" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_emp_lord_reikland_third_1" default_group="cavalry" name="{=str_ tor_emp_lord_reikland_third_1}Margrave Reinhart von Mackensen" occupation="Lord" culture="Culture.empire" voice="curt" age="45" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="0.3687" build="0.9042" key="0000D40E57CC310D38767976529BB74BA78AB8A8789A795C53A5D51BC69A895573CE66350C9D17674241687AD3B72A5600000000000000AB0000000043942044" />
@@ -1620,7 +1656,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_reikland_third_3" default_group="cavalry" name="{=str_ tor_emp_lord_reikland_third_3}Graf Robert von Uhland" occupation="Lord" culture="Culture.empire" voice="curt" age="38" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_reikland_third_3" default_group="cavalry" name="{=str_ tor_emp_lord_reikland_third_3}Graf Robert von Uhland" occupation="Lord" culture="Culture.empire" voice="softspoken" age="38" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="38" weight="0.2145" build="0.4583" key="0000A4098000200256855241612114699754D86644979653BB18174479A286B600573603053B8354000000000000000000000000000000000000000022B46142" />
     </face>
@@ -1638,7 +1674,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_reikland_forth_1" default_group="cavalry" name="{=str_ tor_emp_lord_reikland_forth_1}Graf Wilhelm I von Saponatheim" occupation="Lord" culture="Culture.empire" voice="curt" age="52" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_reikland_forth_1" default_group="cavalry" name="{=str_ tor_emp_lord_reikland_forth_1}Graf Wilhelm I von Saponatheim" occupation="Lord" culture="Culture.empire" voice="ironic" age="52" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="52" weight="0.7701" build="0.1651" key="000A200140E432DA84B6D58C9A6B55C96C39C7192959AC4877976479567A65980072C603072A97D400000000000000000000000000000000000000001EFC5142" />
     </face>
@@ -1690,78 +1726,6 @@
     <Equipments>
       <EquipmentSet id="tor_generic_empire_lord_medium_gsword_template" />
       <EquipmentSet id="tor_generic_empire_lord_medium_gsword_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_reikland_fifth_1" default_group="cavalry" name="{=str_ tor_emp_lord_reikland_fifth_1}Baroness Agetta von Böhrn" occupation="Lord" culture="Culture.empire" voice="curt" age="38" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
-    <face>
-      <BodyProperties version="4" age="38" weight="0.5892" build="0.3419" key="0013BC0A50FC10038C88D66A53833A9299A474A8785D78798399881A7B21657A008596030881776B0000000000000000000000000000000000000000350C0003" />
-    </face>
-    <Traits>
-      <Trait id="BalancedFightingSkills" value="5" />
-      <Trait id="Commander" value="7" />
-      <Trait id="Politician" value="5" />
-      <Trait id="Manager" value="6" />
-      <Trait id="Honor" value="0" />
-      <Trait id="Mercy" value="1" />
-      <Trait id="Generosity" value="1" />
-    </Traits>
-    <Equipments>
-      <EquipmentSet id="tor_generic_empire_femlord_medium_bow_template" />
-      <EquipmentSet id="tor_generic_empire_femlord_medium_bow_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_reikland_fifth_2" default_group="cavalry" name="{=str_ tor_emp_lord_reikland_fifth_2}Lector Agatha von Böhrn" occupation="Lord" culture="Culture.empire" voice="curt" age="32" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
-    <face>
-      <BodyProperties version="4" age="32" weight="0.3237" build="0.6135" key="0005380B94FC30065A694228B879296736A69786C25484968648A26C159AC5B70089B60308A6CA990000000000000000000000000000000000000000611440C3" />
-    </face>
-    <Traits>
-      <Trait id="BalancedFightingSkills" value="5" />
-      <Trait id="Commander" value="7" />
-      <Trait id="Politician" value="5" />
-      <Trait id="Manager" value="6" />
-      <Trait id="Honor" value="1" />
-      <Trait id="Mercy" value="0" />
-      <Trait id="Generosity" value="1" />
-    </Traits>
-    <Equipments>
-      <EquipmentSet id="tor_generic_empire_femlord_medium_pistol_template" />
-      <EquipmentSet id="tor_generic_empire_femlord_medium_pistol_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_reikland_fifth_3" default_group="cavalry" name="{=str_ tor_emp_lord_reikland_fifth_3}Castellan Fronika of Neumarkt" occupation="Lord" culture="Culture.empire" voice="curt" age="43" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
-    <face>
-      <BodyProperties version="4" age="43" weight="0.4233" build="0.4506" key="0018DC0000B43005D637A457369A785689D98BD97586B7718C88808D74448A7C0097660309488B9C00000000000000000000000000000000000000003D241003" />
-    </face>
-    <Traits>
-      <Trait id="BalancedFightingSkills" value="5" />
-      <Trait id="Commander" value="7" />
-      <Trait id="Politician" value="5" />
-      <Trait id="Manager" value="6" />
-      <Trait id="Honor" value="1" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Generosity" value="0" />
-    </Traits>
-    <Equipments>
-      <EquipmentSet id="tor_generic_empire_femlord_medium_template" />
-      <EquipmentSet id="tor_generic_empire_femlord_medium_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_reikland_fifth_4" default_group="cavalry" name="{=str_ tor_emp_lord_reikland_fifth_4}Baron Markham of Siebbach" occupation="Lord" culture="Culture.empire" voice="curt" age="51" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
-    <face>
-      <BodyProperties version="4" age="51" weight="0.4233" build="0.4506" key="0000DC0AC0001712D637A457369A785689D98BD97586B7718C88808D74448A7C0097660309488B9C00000000000000000000000000000000000000003D244102" />
-    </face>
-    <Traits>
-      <Trait id="BalancedFightingSkills" value="5" />
-      <Trait id="Commander" value="7" />
-      <Trait id="Politician" value="5" />
-      <Trait id="Manager" value="6" />
-      <Trait id="Honor" value="1" />
-      <Trait id="Mercy" value="1" />
-      <Trait id="Generosity" value="1" />
-    </Traits>
-    <Equipments>
-      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
-      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_sylvania_factionleader" default_group="cavalry" name="{=str_ tor_vc_lord_sylvania_factionleader}Mannfred von Carstein" occupation="Lord" culture="Culture.khuzait" voice="curt" age="51" skill_template="SkillSet.tor_skills_vampire_lord" race="vampire" is_hero="true">

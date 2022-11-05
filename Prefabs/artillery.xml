@@ -27,8 +27,8 @@
 							<variable name="FireSoundID2" value="mortar_shot_2"/>
 							<variable name="RecoilDuration" value="0.100"/>
 							<variable name="Recoil2Duration" value="0.800"/>
-							<variable name="BaseMuzzleVelocity" value="50"/>
-							<variable name="UsesCalculatedMuzzleVelocity" value="true"/>
+							<variable name="BaseMuzzleVelocity" value="40"/>
+							<variable name="PreferHighAngle" value="true"/>
 							<variable name="DisplayName" value="{=!}Mortar"/>
 							<variable name="IdleActionName" value="act_usage_mangonel_big_idle"/>
 							<variable name="ShootActionName" value="act_usage_mangonel_big_shoot"/>
@@ -411,7 +411,7 @@
 							<variable name="Recoil2Duration" value="0.800"/>
 							<variable name="DisplayName" value="{=!}Great Cannon"/>
 							<variable name="BaseMuzzleVelocity" value="120.000"/>
-							<variable name="UsesCalculatedMuzzleVelocity" value="false"/>
+							<variable name="PreferHighAngle" value="false"/>
 							<variable name="MissileItemID" value="tor_neutral_weapon_ammo_cannonball"/>
 							<variable name="Focus" value="Troops"/>
 							<variable name="startingAmmoCount" value="20"/>

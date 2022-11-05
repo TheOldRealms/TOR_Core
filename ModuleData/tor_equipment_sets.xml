@@ -4285,7 +4285,7 @@
       <Equipment slot="Item0" id="Item.tor_vc_weapon_lance_black_knight_001" />
       <Equipment slot="Item1" id="Item.tor_vc_weapon_sword_grave_guard_001" />
       <Equipment slot="Item2" id="Item.tor_vc_weapon_shield_grave_guard_001" />
-      <Equipment slot="Head" id="Item.tor_vc_head_helm_hell_knight_003" />
+      <Equipment slot="Head" id="Item.tor_vc_head_helm_hell_knight_001" />
       <Equipment slot="Body" id="Item.tor_vc_body_breastplate_hell_knight_001" />
       <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_hell_knight_001" />
       <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_hell_knight_001" />
@@ -4297,6 +4297,42 @@
       <Equipment slot="Item0" id="Item.tor_vc_weapon_lance_black_knight_001" />
       <Equipment slot="Item1" id="Item.tor_vc_weapon_sword_grave_guard_001" />
       <Equipment slot="Item2" id="Item.tor_vc_weapon_shield_grave_guard_001" />
+      <Equipment slot="Head" id="Item.tor_vc_head_helm_hell_knight_001" />
+      <Equipment slot="Body" id="Item.tor_vc_body_breastplate_hell_knight_001" />
+      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_hell_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_hell_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_vc_leg_boots_vc_hell_knight_001" />
+      <Equipment slot="Horse" id="Item.tor_vc_mount_horse_skeleton_horse_001" />
+      <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_lance_black_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_sword_vampire_008" />
+      <Equipment slot="Item2" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+      <Equipment slot="Head" id="Item.tor_vc_head_helm_hell_knight_002" />
+      <Equipment slot="Body" id="Item.tor_vc_body_breastplate_hell_knight_001" />
+      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_hell_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_hell_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_vc_leg_boots_vc_hell_knight_001" />
+      <Equipment slot="Horse" id="Item.tor_vc_mount_horse_skeleton_horse_002" />
+      <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_lance_black_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_sword_vampire_008" />
+      <Equipment slot="Item2" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+      <Equipment slot="Head" id="Item.tor_vc_head_helm_hell_knight_002" />
+      <Equipment slot="Body" id="Item.tor_vc_body_breastplate_hell_knight_001" />
+      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_hell_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_hell_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_vc_leg_boots_vc_hell_knight_001" />
+      <Equipment slot="Horse" id="Item.tor_vc_mount_horse_skeleton_horse_002" />
+      <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_lance_black_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_sword_vampire_005" />
+      <Equipment slot="Item2" id="Item.tor_vc_weapon_shield_grave_guard_001" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_hell_knight_003" />
       <Equipment slot="Body" id="Item.tor_vc_body_breastplate_hell_knight_001" />
       <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_hell_knight_001" />
@@ -4305,47 +4341,11 @@
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_skeleton_horse_001" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
     </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_vc_weapon_lance_black_knight_001" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_sword_vampire_008" />
-      <Equipment slot="Item2" id="Item.tor_vc_weapon_shield_grave_guard_002" />
-      <Equipment slot="Head" id="Item.tor_vc_head_helm_hell_knight_002" />
-      <Equipment slot="Body" id="Item.tor_vc_body_breastplate_hell_knight_001" />
-      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_hell_knight_001" />
-      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_hell_knight_001" />
-      <Equipment slot="Leg" id="Item.tor_vc_leg_boots_vc_hell_knight_001" />
-      <Equipment slot="Horse" id="Item.tor_vc_mount_horse_skeleton_horse_002" />
-      <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_vc_weapon_lance_black_knight_001" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_sword_vampire_008" />
-      <Equipment slot="Item2" id="Item.tor_vc_weapon_shield_grave_guard_002" />
-      <Equipment slot="Head" id="Item.tor_vc_head_helm_hell_knight_002" />
-      <Equipment slot="Body" id="Item.tor_vc_body_breastplate_hell_knight_001" />
-      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_hell_knight_001" />
-      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_hell_knight_001" />
-      <Equipment slot="Leg" id="Item.tor_vc_leg_boots_vc_hell_knight_001" />
-      <Equipment slot="Horse" id="Item.tor_vc_mount_horse_skeleton_horse_002" />
-      <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_vc_weapon_lance_black_knight_001" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_sword_vampire_005" />
-      <Equipment slot="Item2" id="Item.tor_vc_weapon_shield_grave_guard_001" />
-      <Equipment slot="Head" id="Item.tor_vc_head_helm_hell_knight_001" />
-      <Equipment slot="Body" id="Item.tor_vc_body_breastplate_hell_knight_001" />
-      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_hell_knight_001" />
-      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_hell_knight_001" />
-      <Equipment slot="Leg" id="Item.tor_vc_leg_boots_vc_hell_knight_001" />
-      <Equipment slot="Horse" id="Item.tor_vc_mount_horse_skeleton_horse_001" />
-      <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
-    </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_vc_weapon_lance_black_knight_001" />
       <Equipment slot="Item1" id="Item.tor_vc_weapon_sword_vampire_005" />
       <Equipment slot="Item2" id="Item.tor_vc_weapon_shield_grave_guard_001" />
-      <Equipment slot="Head" id="Item.tor_vc_head_helm_hell_knight_001" />
+      <Equipment slot="Head" id="Item.tor_vc_head_helm_hell_knight_003" />
       <Equipment slot="Body" id="Item.tor_vc_body_breastplate_hell_knight_001" />
       <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_hell_knight_001" />
       <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_hell_knight_001" />

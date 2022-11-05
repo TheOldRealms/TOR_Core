@@ -428,6 +428,7 @@
     <Compile Include="BattleMechanics\AI\HideOutAlertMissionLogic.cs" />
     <Compile Include="BattleMechanics\Artillery\ArtilleryRangedSiegeWeapon.cs" />
     <Compile Include="BattleMechanics\Artillery\ArtilleryStandingPoint.cs" />
+    <Compile Include="BattleMechanics\Artillery\Ballistics.cs" />
     <Compile Include="BattleMechanics\Artillery\CannonBallPile.cs" />
     <Compile Include="BattleMechanics\Atmosphere\ForceAtmosphereMissionLogic.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerManager.cs" />
@@ -505,6 +506,7 @@
     <Compile Include="GameManagers\TORShaderGameManager.cs" />
     <Compile Include="GameManagers\TORCampaignGameManager.cs" />
     <Compile Include="HarmonyPatches\AgentPatches.cs" />
+    <Compile Include="HarmonyPatches\ArtilleryPatches.cs" />
     <Compile Include="HarmonyPatches\BaseGameDebugPatches.cs" />
     <Compile Include="HarmonyPatches\CaravanMasterPatch.cs" />
     <Compile Include="HarmonyPatches\CharacterCreationPatch.cs" />

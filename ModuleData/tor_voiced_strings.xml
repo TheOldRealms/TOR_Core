@@ -3,7 +3,7 @@
   <!-- CULTIST CLASS -->
   <string id="ccultist_robbery" text="{=ccultist_robbery}Another fool enters our domain. Surrender your gold or forfeit your life!" />
   <!-- VAMPIRE CLASS -->
-  <string id="str_context_line_vampire.first_meeting_cu" text="{=!}What do you want of me?">
+  <string id="str_context_line_vampire.first_meeting_cu" text="{=v_first_meeting}What do you want of me?">
     <tags>
       <tag tag_name="FirstMeetingTag" />
       <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
@@ -16,40 +16,34 @@
       <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
     </tags>
   </string>
-  <string id="str_context_line_vampire.first_meeting_under_command_cu" text="{=!}{STR_SALUTATION}... May I introduce myself...">
+  <string id="str_context_line_vampire.first_meeting_under_command_cu" text="{=v_fealty}{STR_SALUTATION}... I offer you my fealty.">
     <tags>
       <tag tag_name="UnderCommandTag" weight="15" />
       <tag tag_name="FirstMeetingTag" />
       <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
     </tags>
   </string>
-  <string id="str_context_line_vampire.first_meeting_attacking_cu" text="{=!}Who are you? Answer quickly, before I give the order to attack.">
+  <string id="str_context_line_vampire.first_meeting_attacking_cu" text="{=v_whoislay}Halt there! Who are you? I would know whom I slay.">
     <tags>
       <tag tag_name="FirstMeetingTag" />
       <tag tag_name="AttackingTag" weight="+4" />
       <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
     </tags>
   </string>
-  <string id="str_context_line_vampire.metbefore_cu" text="{=!}{STR_SALUTATION}. It's been a while.">
+  <string id="str_context_line_vampire.metbefore_cu" text="{=v_beensometime}{STR_SALUTATION}. It has been some time.">
     <tags>
       <tag tag_name="MetBeforeTag" />
       <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
     </tags>
   </string>
-  <string id="str_context_line_vampire.friends_cu" text="{=!}{STR_SALUTATION}. It's good to see you.">
-    <tags>
-      <tag tag_name="FriendlyRelationshipTag" />
-      <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
-    </tags>
-  </string>
-  <string id="str_context_line_vampire.under_command_cu" text="{=!}{STR_SALUTATION}... I'm at your command.">
+  <string id="str_context_line_vampire.under_command_cu" text="{=v_yourstocommand}{STR_SALUTATION}... I am yours to command.">
     <tags>
       <tag tag_name="UnderCommandTag" weight="+2" />
       <tag tag_name="MetBeforeTag" />
       <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
     </tags>
   </string>
-  <string id="str_context_line_vampire.under_command_notable_cu" text="{=!}{STR_SALUTATION}... I'm at your service.">
+  <string id="str_context_line_vampire.under_command_notable_cu" text="{=v_atyourservice}I am at your beckon call. How may I serve?">
     <tags>
       <tag tag_name="UnderCommandTag" weight="+2" />
       <tag tag_name="MetBeforeTag" />
@@ -57,86 +51,26 @@
       <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
     </tags>
   </string>
-  <string id="str_context_line_vampire.flirtatious_cu" text="{=!}{STR_SALUTATION}... You are lovely as ever.">
-    <tags>
-      <tag tag_name="RomanticallyInvolvedTag" weight="+5" />
-      <tag tag_name="PlayerIsFemaleTag" weight="+1" />
-      <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
-    </tags>
-  </string>
-  <string id="str_context_line_vampire.flirtatious_female_cu" text="{=!}{STR_SALUTATION}... Such a delight to see you.">
-    <tags>
-      <tag tag_name="RomanticallyInvolvedTag" weight="+5" />
-      <tag tag_name="PlayerIsMaleTag" weight="1" />
-      <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
-    </tags>
-  </string>
-  <string id="str_context_line_vampire.impolite_cu" text="{=!}Please be brief. I am pressed for time.">
-    <tags>
-      <tag tag_name="MetBeforeTag" />
-      <tag tag_name="ImpoliteTag" />
-      <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
-    </tags>
-  </string>
-  <string id="str_context_line_vampire.dislike_cu" text="{=!}You know what I think of you. This better be important.">
-    <tags>
-      <tag tag_name="MetBeforeTag" />
-      <tag tag_name="HostileRelationshipTag" />
-      <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
-    </tags>
-  </string>
-  <string id="str_context_line_vampire.dislike_nasty_cu" text="{=!}{STR_SALUTATION}... You still live, I see. Pity.">
+  <string id="str_context_line_vampire.dislike_nasty_cu" text="{=v_unburied}{STR_SALUTATION}... I will make sure you remain unburied after you fall.">
     <tags>
       <tag tag_name="HostileRelationshipTag" />
       <tag tag_name="CruelTag" weight="1" />
       <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
     </tags>
   </string>
-  <string id="str_context_line_vampire.dislike_threatening_cu" text="{=!}{STR_SALUTATION}... Try my patience, and you'll regret it.">
+  <string id="str_context_line_vampire.attacking_firstmeeting_cu" text="{=v_perish}Say what you will, afterwards you will perish.">
+    <tags>
+      <tag tag_name="AttackingTag" />
+      <tag tag_name="MetBeforeTag" />
+      <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_vampire.dislike_threatening_cu" text="{=v_diejoinarmy}If you die well today, you will join my armies in death.">
     <tags>
       <tag tag_name="ImpoliteTag" />
       <tag tag_name="MetBeforeTag" />
       <tag tag_name="FriendlyRelationshipTag" weight="-1" />
       <tag tag_name="CruelTag" weight="1" />
-      <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
-    </tags>
-  </string>
-  <string id="str_context_line_vampire.old_friends_fighting_cu" text="{=!}{STR_SALUTATION}... I know your tricks, and you know mine. So, fight or parley, let's just get to it...">
-    <tags>
-      <tag tag_name="CombatantTag" />
-      <tag tag_name="PlayerIsEnemyTag" />
-      <tag tag_name="FriendlyRelationshipTag" />
-      <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
-    </tags>
-  </string>
-  <string id="str_context_line_vampire.attacking_cu" text="{=!}Don't know you. Want to tell me your name, before we fight?">
-    <tags>
-      <tag tag_name="AttackingTag" />
-      <tag tag_name="FirstMeetingTag" />
-      <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
-    </tags>
-  </string>
-  <string id="str_context_line_vampire.attacking_firstmeeting_cu" text="{=!}I've caught you. Don't try any tricks. Anything to say?">
-    <tags>
-      <tag tag_name="AttackingTag" />
-      <tag tag_name="MetBeforeTag" />
-      <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
-    </tags>
-  </string>
-  <string id="str_context_line_vampire.attacking_friends_cu" text="{=!}Well. So I guess you and me are fighting. That's how fate goes. Anything to say?">
-    <tags>
-      <tag tag_name="AttackingTag" />
-      <tag tag_name="MetBeforeTag" />
-      <tag tag_name="FriendlyRelationshipTag" />
-      <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
-    </tags>
-  </string>
-  <string id="str_context_line_vampire.attacking_v1_gloat_cu" text="{=!}Looks like you're caught, and I'm glad I'm the one who caught you.">
-    <tags>
-      <tag tag_name="AttackingTag" />
-      <tag tag_name="MetBeforeTag" />
-      <tag tag_name="HostileRelationshipTag" />
-      <tag tag_name="HonorTag" weight="1" />
       <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
     </tags>
   </string>

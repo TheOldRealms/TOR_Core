@@ -2165,6 +2165,14 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_reikland_second_4">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_reikland_second_5">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_third_1">
     <Abilities />
     <Attributes />
@@ -2186,22 +2194,6 @@
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_forth_3">
-    <Abilities />
-    <Attributes />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_emp_lord_reikland_fifth_1">
-    <Abilities />
-    <Attributes />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_emp_lord_reikland_fifth_2">
-    <Abilities />
-    <Attributes />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_emp_lord_reikland_fifth_3">
-    <Abilities />
-    <Attributes />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_emp_lord_reikland_fifth_4">
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>

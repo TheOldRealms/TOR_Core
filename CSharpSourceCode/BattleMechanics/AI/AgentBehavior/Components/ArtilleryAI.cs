@@ -38,11 +38,14 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
                             _artillery.SetTarget(_target);
                         }
 
-                        var adjustedTargetPosition = GetAdjustedTargetPosition(_artillery.Target);
-                        if (adjustedTargetPosition != Vec3.Zero && _artillery.AimAtTarget(adjustedTargetPosition) && _artillery.PilotAgent.Formation.FiringOrder.OrderType != OrderType.HoldFire)
+                        if (_artillery.Target != null && _artillery.PilotAgent.Formation.FiringOrder.OrderType != OrderType.HoldFire)
                         {
-                            _artillery.Shoot();
-                            _artillery.Target.SelectedWorldPosition = Vec3.Zero;
+                            var position = GetAdjustedTargetPosition(_artillery.Target);
+                            if(position != Vec3.Zero && _artillery.AimAtTarget(position) && IsTargetInRange(position))
+                            {
+                                _artillery.AiRequestsShoot();
+                                _artillery.Target.Agent = null;
+                            }
                         }
                     }
                     else
@@ -64,10 +67,19 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
             target.Agent = targetAgent;
 
             Vec3 velocity = target.Formation.QuerySystem.CurrentVelocity.ToVec3();
-            float time = (UsableMachine as ArtilleryRangedSiegeWeapon).GetEstimatedCurrentFlightTime(target);
+            float time = (UsableMachine as ArtilleryRangedSiegeWeapon).GetEstimatedCurrentFlightTime();
 
             target.SelectedWorldPosition = target.Position + velocity * time;
             return target.SelectedWorldPosition;
+        }
+
+        private bool IsTargetInRange(Vec3 position)
+        {
+            var startPos = _artillery.ProjectileEntityCurrentGlobalPosition;
+            var diff = position - startPos;
+            var maxrange = Ballistics.GetMaximumRange(_artillery.BaseMuzzleVelocity, diff.z);
+            diff.z = 0;
+            return diff.Length < maxrange;
         }
 
         private Target FindNewTarget()
@@ -123,6 +135,46 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
             targetingFunctions.Add(new Axis(0, 70, x => x, CommonAIDecisionFunctions.UnitCount()));
             targetingFunctions.Add(new Axis(0, 7, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles()));
             return targetingFunctions;
+        }
+
+        public float ProcessTargetValue(float baseValue, TargetFlags flags) //TODO: This is probably not necessary, we can represent it better with the axis. Normalized values are better in these scenarios.
+        {
+            if (flags.HasAnyFlag(TargetFlags.NotAThreat))
+            {
+                return -1000f;
+            }
+
+            if (flags.HasAnyFlag(TargetFlags.None))
+            {
+                baseValue *= 1.5f;
+            }
+
+            if (flags.HasAnyFlag(TargetFlags.IsSiegeEngine))
+            {
+                baseValue *= 2f;
+            }
+
+            if (flags.HasAnyFlag(TargetFlags.IsStructure))
+            {
+                baseValue *= 1.5f;
+            }
+
+            if (flags.HasAnyFlag(TargetFlags.IsSmall))
+            {
+                baseValue *= 0.5f;
+            }
+
+            if (flags.HasAnyFlag(TargetFlags.IsMoving))
+            {
+                baseValue *= 0.8f;
+            }
+
+            if (flags.HasAnyFlag(TargetFlags.DebugThreat))
+            {
+                baseValue *= 10000f;
+            }
+
+            return baseValue;
         }
     }
 }
