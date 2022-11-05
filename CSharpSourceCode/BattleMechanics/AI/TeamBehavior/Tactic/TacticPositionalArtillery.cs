@@ -13,7 +13,7 @@ using TOR_Core.BattleMechanics.AI.FormationBehavior;
 using TOR_Core.BattleMechanics.Artillery;
 using TOR_Core.Extensions;
 
-namespace TOR_Core.BattleMechanics.AI.TeamBehavior
+namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
 {
     public class TacticPositionalArtillery : TacticDefensiveLine
     {

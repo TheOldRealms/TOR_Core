@@ -3,6 +3,7 @@ using System.Linq;
 using HarmonyLib;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.AI.TeamBehavior
