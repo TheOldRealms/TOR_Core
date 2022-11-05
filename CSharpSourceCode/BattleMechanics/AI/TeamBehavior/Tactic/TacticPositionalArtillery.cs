@@ -225,7 +225,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
             var gatherCandidatePositions = teamAiAPositions
                 .Concat(extractedPositions)
                 .AddItem(tacticalPosition1)
-                .Where(position => CommonAIFunctions.HasLineOfSight(position.Position.GetGroundVec3(), enemyPosition,  team.TeamAI.IsDefenseApplicable ? 70.0f : position.Position.GetGroundVec3().Distance(enemyPosition)*0.8f)).ToList();
+                .Where(position => CommonAIFunctions.HasLineOfSight(position.Position.GetGroundVec3(), enemyPosition,  team.TeamAI.IsDefenseApplicable ? 70.0f : position.Position.GetGroundVec3().Distance(enemyPosition)*0.7f)).ToList();
             return gatherCandidatePositions;
         }
 
