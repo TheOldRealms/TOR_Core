@@ -6406,6 +6406,86 @@
       <Equipment slot="Leg" id="Item.battania_fur_boots" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_ror_griffon_initiate_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_003" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_sallet_002" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_swadian_cuirass_001" />
+      <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_lord_002" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_lord_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_003" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_sallet_002" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_swadian_cuirass_001" />
+      <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_lord_002" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_lord_002" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_ror_son_of_altdorf_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_reiksguard_knight_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_burgonet_002" />
+      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_004" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_003" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_pistolier_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_reiksguard_knight_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_burgonet_002" />
+      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_004" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_003" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_pistolier_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_ror_altdorf_companyman_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_reiksguard_knight_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_burgonet_002" />
+      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_004" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_pistolier_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_master_engineer_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_reiksguard_knight_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_burgonet_002" />
+      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_004" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_pistolier_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_master_engineer_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_ror_altdorf_company_sergeant_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_reiksguard_knight_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_lion_003" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_greatsword_001" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_greatsword_002" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_pistolier_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_master_engineer_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_reiksguard_knight_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_lion_003" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_greatsword_001" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_greatsword_002" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_pistolier_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_master_engineer_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_sternieste_skeleton_template" culture="Culture.khuzait">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_mace_skeleton_004" />
@@ -7540,6 +7620,136 @@
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_kobs_001" />
       <Equipment slot="Horse" id="Item.tor_empire_mount_demigryph_001" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_002" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_ror_griffon_knight_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_005" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_003" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_sallet_002" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_swadian_cuirass_001" />
+      <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_lord_002" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_lord_002" />
+      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_005" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_003" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_sallet_002" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_swadian_cuirass_001" />
+      <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_lord_002" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_lord_002" />
+      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_ror_griffon_preceptor_knight_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_005" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_circle_003" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_knight_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_pigface_bascinet_003" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_swadian_cuirass_001" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_lord_001" />
+      <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_002" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_lord_002" />
+      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_005" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_circle_003" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_knight_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_pigface_bascinet_003" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_swadian_cuirass_001" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_lord_001" />
+      <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_002" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_lord_002" />
+      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_ror_griffon_innercircle_knight_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_005" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_circle_003" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_circle_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_pigface_bascinet_003" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_swadian_cuirass_002" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_pistolier_001" />
+      <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_002" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_lord_002" />
+      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_royal_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_005" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_circle_003" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_circle_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_pigface_bascinet_003" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_swadian_cuirass_002" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_pistolier_001" />
+      <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_002" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_lord_002" />
+      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_royal_002" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_ror_griffon_demi_knight_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_005" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_circle_003" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_003" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_pigface_bascinet_003" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_swadian_cuirass_002" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_lord_002" />
+      <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_002" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_lord_002" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_demigryph_005" />
+      <Equipment slot="HorseHarness" id="tor_empire_mountarmor_ror_demigryph_armor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_005" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_circle_003" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_003" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_pigface_bascinet_003" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_swadian_cuirass_002" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_lord_002" />
+      <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_002" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_lord_002" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_demigryph_005" />
+      <Equipment slot="HorseHarness" id="tor_empire_mountarmor_ror_demigryph_armor_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_ror_griffon_demi_preceptor_knight_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_005" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_circle_003" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_circle_002" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_pigface_bascinet_003" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_swadian_cuirass_002" />
+      <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_lord_002" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_demigryph_005" />
+      <Equipment slot="HorseHarness" id="tor_empire_mountarmor_ror_demigryph_armor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_005" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_circle_003" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_circle_002" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_pigface_bascinet_003" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_swadian_cuirass_002" />
+      <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_lord_002" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_demigryph_005" />
+      <Equipment slot="HorseHarness" id="tor_empire_mountarmor_ror_demigryph_armor_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_chaos_cult_acolyte_template" culture="Culture.chaos_culture">
@@ -9298,6 +9508,42 @@
       <Equipment slot="Cape" id="Item.wrapped_scarf" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_cannon_crew_003" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_cannon_crew_002" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_priestess_of_shallya_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.empire_mace_1_t2" />
+      <Equipment slot="Head" id="Item.headscarf_c" />
+      <Equipment slot="Body" id="Item.long_desert_robe" />
+      <Equipment slot="Cape" id="Item.wrapped_scarf" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.empire_mace_1_t2" />
+      <Equipment slot="Head" id="Item.headscarf_c" />
+      <Equipment slot="Body" id="Item.long_desert_robe" />
+      <Equipment slot="Cape" id="Item.wrapped_scarf" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_huntsman_wanderer_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.highland_ranger_bow" />
+      <Equipment slot="Item2" id="Item.woodland_axe_t3" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
+      <Equipment slot="Head" id="Item.thinhide_coif" />
+      <Equipment slot="Body" id="Item.highland_cloth" />
+      <Equipment slot="Cape" id="Item.battania_civil_cape" />
+      <Equipment slot="Gloves" id="Item.leather_gloves" />
+      <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.highland_ranger_bow" />
+      <Equipment slot="Item2" id="Item.woodland_axe_t3" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
+      <Equipment slot="Head" id="Item.thinhide_coif" />
+      <Equipment slot="Body" id="Item.highland_cloth" />
+      <Equipment slot="Cape" id="Item.battania_civil_cape" />
+      <Equipment slot="Gloves" id="Item.leather_gloves" />
+      <Equipment slot="Leg" id="Item.steppe_leather_boots" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_mannfred_template" culture="Culture.khuzait">

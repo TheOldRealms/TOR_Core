@@ -1874,7 +1874,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_sylvania_first_9" default_group="cavalry" name="{=str_ tor_vc_lord_sylvania_first_9}Gabriella von Bundebad" occupation="Lord" culture="Culture.khuzait" voice="curt" age="49" skill_template="SkillSet.tor_skills_vampire_lord" is_female="true" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="19" weight="0.3183" build="0.2558" key="00005C0080B4000FB8692567495CA882E5D71799247422AA64A5B3634A8965BB00645603F6CD698A00000000000000000000000000000000000000002ECC00C3" />
+      <BodyProperties version="4" age="19" weight="0.3183" build="0.2558" key="0000340F00E41017349862AE5A94375627AA45554946576638B72357972E98960079A60307967337000000000000000000000000000000000000000038F44043" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />

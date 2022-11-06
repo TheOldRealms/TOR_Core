@@ -1659,6 +1659,109 @@
       <EquipmentSet id="tor_longshank_ranger_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_ror_griffon_initiate" default_group="infantry" level="31" name="{=str_tor_ror_griffon_initiate}Griffon Initiate" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level31" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_griffon_knight" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_ror_griffon_initiate_template" />
+      <EquipmentSet id="tor_ror_griffon_initiate_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_griffon_knight" default_group="cavalry" level="36" name="{=str_tor_ror_griffon_knight}Griffon Knight" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level36">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_griffon_preceptor_knight" />
+      <upgrade_target id="NPCCharacter.tor_ror_griffon_demi_knight" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_ror_griffon_knight_template" />
+      <EquipmentSet id="tor_ror_griffon_knight_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_griffon_preceptor_knight" default_group="cavalry" level="41" name="{=str_tor_ror_griffon_preceptor_knight}Griffon Preceptor Knight" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level41">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_griffon_innercircle_knight" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_ror_griffon_preceptor_knight_template" />
+      <EquipmentSet id="tor_ror_griffon_preceptor_knight_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_griffon_innercircle_knight" default_group="cavalry" level="46" name="{=str_tor_ror_griffon_innercircle_knight}Inner Circle Griffon Knight" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level46">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_ror_griffon_innercircle_knight_template" />
+      <EquipmentSet id="tor_ror_griffon_innercircle_knight_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_griffon_demi_knight" default_group="cavalry" level="41" name="{=str_tor_ror_griffon_demi_knight}Demigryph Griffon Knight" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level41">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_griffon_demi_preceptor_knight" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_ror_griffon_demi_knight_template" />
+      <EquipmentSet id="tor_ror_griffon_demi_knight_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_griffon_demi_preceptor_knight" default_group="cavalry" level="46" name="{=str_tor_ror_griffon_demi_preceptor_knight}Demigryph Preceptor Griffon Knight" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level46">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_ror_griffon_demi_preceptor_knight_template" />
+      <EquipmentSet id="tor_ror_griffon_demi_preceptor_knight_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_son_of_altdorf" default_group="cavalry" level="21" name="{=str_tor_ror_son_of_altdorf}Son of Altdorf" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_altdorf_companyman" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_ror_son_of_altdorf_template" />
+      <EquipmentSet id="tor_ror_son_of_altdorf_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_altdorf_companyman" default_group="cavalry" level="26" name="{=str_tor_ror_altdorf_companyman}Altdorf Companyman" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_altdorf_company_sergeant" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_ror_altdorf_companyman_template" />
+      <EquipmentSet id="tor_ror_altdorf_companyman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_altdorf_company_sergeant" default_group="cavalry" level="31" name="{=str_tor_ror_altdorf_company_sergeant}Altdorf Company Sergeant" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level31">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_ror_altdorf_company_sergeant_template" />
+      <EquipmentSet id="tor_ror_altdorf_company_sergeant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_ror_sternieste_skeleton" default_group="infantry" level="16" name="{=str_tor_ror_sternieste_skeleton}Castle Sternieste Skeleton" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true" race="skeleton">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
@@ -1783,9 +1886,9 @@
       <EquipmentSet id="tor_konigstein_spear_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_cult_acolyte" default_group="infantry" level="11" name="{=str_tor_chaos_cult_acolyte}Cultist of Chaos" occupation="Bandit" culture="Culture.forest_bandits" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true">
+  <NPCCharacter id="tor_chaos_cult_acolyte" default_group="infantry" level="11" name="{=str_tor_chaos_cult_acolyte}Cultist of Chaos" occupation="Bandit" culture="Culture.forest_bandits" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="chaos_ud_cultist">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_chaos_cult_darksoul" />
@@ -1795,9 +1898,9 @@
       <EquipmentSet id="tor_chaos_cult_acolyte_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_cult_darksoul" default_group="infantry" level="16" name="{=str_tor_chaos_cult_darksoul}Darksoul of Chaos" occupation="Bandit" culture="Culture.forest_bandits" skill_template="SkillSet.tor_skills_level16">
+  <NPCCharacter id="tor_chaos_cult_darksoul" default_group="infantry" level="16" name="{=str_tor_chaos_cult_darksoul}Darksoul of Chaos" occupation="Bandit" culture="Culture.forest_bandits" skill_template="SkillSet.tor_skills_level16" race="chaos_ud_cultist">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_chaos_cult_magister" />
@@ -1807,9 +1910,9 @@
       <EquipmentSet id="tor_chaos_cult_darksoul_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_cult_magister" default_group="infantry" level="21" name="{=str_tor_chaos_cult_magister}Fallen Magister" occupation="Bandit" culture="Culture.forest_bandits" skill_template="SkillSet.tor_skills_level21">
+  <NPCCharacter id="tor_chaos_cult_magister" default_group="infantry" level="21" name="{=str_tor_chaos_cult_magister}Fallen Magister" occupation="Bandit" culture="Culture.forest_bandits" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
     <face>
-      <face_key_template value="BodyProperty.brute" />
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets />
     <Equipments>
@@ -1817,9 +1920,9 @@
       <EquipmentSet id="tor_chaos_cult_magister_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_cult_bw_expelled_magister" default_group="infantry" level="11" name="{=str_tor_cult_bw_expelled_magister}Expelled Magister" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true">
+  <NPCCharacter id="tor_cult_bw_expelled_magister" default_group="infantry" level="11" name="{=str_tor_cult_bw_expelled_magister}Expelled Magister" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="chaos_ud_cultist">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_cult_bw_vengeful_cultist" />
@@ -1829,9 +1932,9 @@
       <EquipmentSet id="tor_cult_bw_expelled_magister_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_cult_bw_vengeful_cultist" default_group="infantry" level="16" name="{=str_tor_cult_bw_vengeful_cultist}Vengeful Cultist" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level16">
+  <NPCCharacter id="tor_cult_bw_vengeful_cultist" default_group="infantry" level="16" name="{=str_tor_cult_bw_vengeful_cultist}Vengeful Cultist" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level16" race="chaos_ud_cultist">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_cult_bw_sorcerer_broken_wheel" />
@@ -1841,9 +1944,9 @@
       <EquipmentSet id="tor_cult_bw_vengeful_cultist_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_cult_bw_sorcerer_broken_wheel" default_group="infantry" level="21" name="{=str_tor_cult_bw_sorcerer_broken_wheel}Sorcerer of the Broken Wheel" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21">
+  <NPCCharacter id="tor_cult_bw_sorcerer_broken_wheel" default_group="infantry" level="21" name="{=str_tor_cult_bw_sorcerer_broken_wheel}Sorcerer of the Broken Wheel" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets />
     <Equipments>
@@ -1851,9 +1954,9 @@
       <EquipmentSet id="tor_cult_bw_sorcerer_broken_wheel_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_cult_coi_unlit_candle" default_group="infantry" level="11" name="{=str_tor_cult_coi_unlit_candle}Unlit Candle" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true">
+  <NPCCharacter id="tor_cult_coi_unlit_candle" default_group="infantry" level="11" name="{=str_tor_cult_coi_unlit_candle}Unlit Candle" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="chaos_ud_cultist">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_cult_coi_beacon" />
@@ -1863,9 +1966,9 @@
       <EquipmentSet id="tor_cult_coi_unlit_candle_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_cult_coi_beacon" default_group="infantry" level="16" name="{=str_tor_cult_coi_beacon}Beacon" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level16">
+  <NPCCharacter id="tor_cult_coi_beacon" default_group="infantry" level="16" name="{=str_tor_cult_coi_beacon}Beacon" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level16" race="chaos_ud_cultist">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_cult_coi_order_of_star_acolyte" />
@@ -1875,9 +1978,9 @@
       <EquipmentSet id="tor_cult_coi_beacon_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_cult_coi_order_of_star_acolyte" default_group="infantry" level="21" name="{=str_tor_cult_coi_order_of_star_acolyte}Order of the Star Acolyte" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21">
+  <NPCCharacter id="tor_cult_coi_order_of_star_acolyte" default_group="infantry" level="21" name="{=str_tor_cult_coi_order_of_star_acolyte}Order of the Star Acolyte" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets />
     <Equipments>
@@ -1885,9 +1988,9 @@
       <EquipmentSet id="tor_cult_coi_order_of_star_acolyte_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_cult_fsf_puer_ulceris" default_group="infantry" level="11" name="{=str_tor_cult_fsf_puer_ulceris}Puer Ulceris" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true">
+  <NPCCharacter id="tor_cult_fsf_puer_ulceris" default_group="infantry" level="11" name="{=str_tor_cult_fsf_puer_ulceris}Puer Ulceris" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="chaos_ud_cultist">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_cult_fsf_ulcus_frater" />
@@ -1897,9 +2000,9 @@
       <EquipmentSet id="tor_cult_fsf_puer_ulceris_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_cult_fsf_ulcus_frater" default_group="infantry" level="16" name="{=str_tor_cult_fsf_ulcus_frater}Ulcus Frater" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level16">
+  <NPCCharacter id="tor_cult_fsf_ulcus_frater" default_group="infantry" level="16" name="{=str_tor_cult_fsf_ulcus_frater}Ulcus Frater" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level16" race="chaos_ud_cultist">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_cult_fsf_ulcerator" />
@@ -1909,9 +2012,9 @@
       <EquipmentSet id="tor_cult_fsf_ulcus_frater_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_cult_fsf_ulcerator" default_group="infantry" level="21" name="{=str_tor_cult_fsf_ulcerator}Ulcerator" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21">
+  <NPCCharacter id="tor_cult_fsf_ulcerator" default_group="infantry" level="21" name="{=str_tor_cult_fsf_ulcerator}Ulcerator" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets />
     <Equipments>

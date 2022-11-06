@@ -88,4 +88,20 @@
         RegimentName="Horned Hunters of Taal"
         RegimentHQName="Horned Hunter Encampment"
     />
+    <RORSettlementTemplate
+        SettlementId="castle_RL3"
+        BaseTroopId="tor_ror_son_of_altdorf"
+        MenuHeaderText="Home to the renowned and loved 'Sons of the Reik', only the best Altdorf has to offer may fight alongside these venerable warriors."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Altdorf Company of Honour"
+        RegimentHQName="Company Barracks"
+    />
+    <RORSettlementTemplate
+        SettlementId="town_RL1"
+        BaseTroopId="tor_ror_griffon_initiate"
+        MenuHeaderText="Within the great Cathedral of Sigmar, resides the barracks of the Knights Griffon. The deadliest knights within the Empire."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Knights Griffon"
+        RegimentHQName="Cathedral of Sigmar"
+    />
 </ArrayOfRORSettlementTemplate>

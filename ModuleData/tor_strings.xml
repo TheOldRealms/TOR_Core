@@ -352,6 +352,24 @@
   <string id="backstory_d.tor_wanderer_empire_6" text="{=!}Right." />
   <string id="generic_backstory.tor_wanderer_empire_6" text="{=!}I am a questing Knight, devoted in life to the Lady and Bretonnia. " />
 
+  <string id="prebackstory.tor_wanderer_empire_7" text="{=!}Who I am is second to what I do, I tend to those in need." />
+  <string id="backstory_a.tor_wanderer_empire_7" text="{=!}It has always been my calling to help the sick and wounded, my parents died when I was young and I do not wish for others to experience such pain." />
+  <string id="backstory_b.tor_wanderer_empire_7" text="{=!}I dedicated my life to Shallya, in return I have been given a gift for healing others." />
+  <string id="backstory_c.tor_wanderer_empire_7" text="{=!}Since I have been travelling the Empire, looking to where my skills are needed most. Tending to peasant and soldier alike." />
+  <string id="response_1.tor_wanderer_empire_7" text="{=!}I see." />
+  <string id="response_2.tor_wanderer_empire_7" text="{=!}I understant." />
+  <string id="backstory_d.tor_wanderer_empire_7" text="{=!}Right." />
+  <string id="generic_backstory.tor_wanderer_empire_7" text="{=!}I am a Priestess of the Goddess Shallya, dedicated to the arts of healing." />
+
+  <string id="prebackstory.tor_wanderer_empire_8" text="{=!}You don't need to know my story stranger, just my skills." />
+  <string id="backstory_a.tor_wanderer_empire_8" text="{=!}I'm a Court Huntsman, well. I was. Lets just say I missed my mark by the rump of a noble." />
+  <string id="backstory_b.tor_wanderer_empire_8" text="{=!}Now I track, hunt and do mercenary work for coin." />
+  <string id="backstory_c.tor_wanderer_empire_8" text="{=!}I have hunted all manner of beast and beastmen, even the occasional orc. My skills go to the highest bidder." />
+  <string id="response_1.tor_wanderer_empire_8" text="{=!}Mhm." />
+  <string id="response_2.tor_wanderer_empire_8" text="{=!}Mhmm..." />
+  <string id="backstory_d.tor_wanderer_empire_8" text="{=!}Right." />
+  <string id="generic_backstory.tor_wanderer_empire_8" text="{=!}I am a Huntsman, many monsters have been slain by my hand in service of the Empire." />
+
   <string id="prebackstory.tor_wanderer_vampire_0" text="{=!}Hm, you wish to know of my life? It is a tale I can share." />
   <string id="backstory_a.tor_wanderer_vampire_0" text="{=!}I have always been surrounded by death, death is everything in Sylvania." />
   <string id="backstory_b.tor_wanderer_vampire_0" text="{=!}My fate was never to join the undead roaming the land, but to control them. To raise them and bend them to my will." />
