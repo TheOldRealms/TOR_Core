@@ -50,7 +50,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
 
         protected override float GetTacticWeight()
         {
-            if (!team.GeneralAgent.IsAbilityUser() || !team.GeneralAgent.GetComponent<AbilityComponent>().GetKnownAbilityTemplates().Exists(item => item.AbilityEffectType == AbilityEffectType.ArtilleryPlacement) ||
+            if ((team.GeneralAgent.IsAbilityUser() && !team.GeneralAgent.GetComponent<AbilityComponent>().GetKnownAbilityTemplates().Exists(item => item.AbilityEffectType == AbilityEffectType.ArtilleryPlacement)) ||
                 team.GeneralAgent.Controller == Agent.ControllerType.Player || team.ActiveAgents.Select(agent => agent.HasAttribute("ArtilleryCrew")).Count() < 2)
                 return 0.0f;
 
