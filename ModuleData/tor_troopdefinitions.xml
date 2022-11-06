@@ -1728,7 +1728,7 @@
       <EquipmentSet id="tor_ror_griffon_demi_preceptor_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ror_son_of_altdorf" default_group="cavalry" level="21" name="{=str_tor_ror_son_of_altdorf}Son of Altdorf" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true">
+  <NPCCharacter id="tor_ror_son_of_altdorf" default_group="infantry" level="21" name="{=str_tor_ror_son_of_altdorf}Son of Altdorf" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1740,7 +1740,7 @@
       <EquipmentSet id="tor_ror_son_of_altdorf_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ror_altdorf_companyman" default_group="cavalry" level="26" name="{=str_tor_ror_altdorf_companyman}Altdorf Companyman" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26">
+  <NPCCharacter id="tor_ror_altdorf_companyman" default_group="infantry" level="26" name="{=str_tor_ror_altdorf_companyman}Altdorf Companyman" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1752,7 +1752,7 @@
       <EquipmentSet id="tor_ror_altdorf_companyman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ror_altdorf_company_sergeant" default_group="cavalry" level="31" name="{=str_tor_ror_altdorf_company_sergeant}Altdorf Company Sergeant" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level31">
+  <NPCCharacter id="tor_ror_altdorf_company_sergeant" default_group="infantry" level="31" name="{=str_tor_ror_altdorf_company_sergeant}Altdorf Company Sergeant" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level31">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
