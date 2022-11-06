@@ -34,18 +34,27 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                 delegate (MenuCallbackArgs args)
                 {
                     args.optionLeaveType = GameMenuOption.LeaveType.Submenu;
+                    if (Clan.PlayerClan.Tier < 3)
+                    {
+                        args.IsEnabled = false;
+                        args.Tooltip = new TextObject("Your clan needs to be at least Tier 3 in order to recruit Regiments of Renown.");
+                    }
                     return Settlement.CurrentSettlement.IsRoRSettlement();
                 },
                 delegate (MenuCallbackArgs args)
                 {
                     GameMenu.SwitchToMenu("ror_center");
-                }
-                , false, 4, false);
+                }, false, 4, false);
 
             obj.AddGameMenuOption("village", "ror_enter", "Regiments of Renown Recruitment",
                 delegate (MenuCallbackArgs args)
                 {
                     args.optionLeaveType = GameMenuOption.LeaveType.Submenu;
+                    if (Clan.PlayerClan.Tier < 3)
+                    {
+                        args.IsEnabled = false;
+                        args.Tooltip = new TextObject("Your clan needs to be at least Tier 3 in order to recruit Regiments of Renown.");
+                    }
                     return Settlement.CurrentSettlement.IsRoRSettlement() && !Settlement.CurrentSettlement.IsRaided && !Settlement.CurrentSettlement.IsUnderRaid;
                 },
                 delegate (MenuCallbackArgs args)
@@ -105,7 +114,6 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
         private bool IsRecruitmentOptionValid(MenuCallbackArgs args, int index)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Recruit;
-            if (Clan.PlayerClan.Tier < 3) return false;
             var kvp = _rorSettlementDetails[Settlement.CurrentSettlement].ElementAtOrDefault(index);
             if (kvp.Value > 0)
             {
@@ -124,11 +132,9 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
         {
             var template = Settlement.CurrentSettlement.GetRoRTemplate();
             args.MenuTitle = new TextObject(template.RegimentHQName);
-            var intro = new TextObject("You have arrived at the {HQ_NAME}. {NEWLINE} {NEWLINE} {BLURB} {NEWLINE} {NEWLINE} {REFUSE} {NEWLINE} {NEWLINE} {EMPTY}");
+            var intro = new TextObject("You have arrived at the {HQ_NAME}. {NEWLINE} {BLURB} {NEWLINE} {EMPTY}");
             MBTextManager.SetTextVariable("HQ_NAME", template.RegimentHQName);
             MBTextManager.SetTextVariable("BLURB", template.MenuHeaderText);
-            if(Clan.PlayerClan.Tier < 3) MBTextManager.SetTextVariable("REFUSE", "They refuse to deal with an unknown clan like yours. Come back when you have some renown.");
-            else MBTextManager.SetTextVariable("REFUSE", " ");
             if (!HasAvailableRoRUnits(Settlement.CurrentSettlement)) MBTextManager.SetTextVariable("EMPTY", "Currently there are no available Regiments of Renown to recruit. Check back in a week.");
             else MBTextManager.SetTextVariable("EMPTY", " ");
             MBTextManager.SetTextVariable("ROR_HEADER", intro);
