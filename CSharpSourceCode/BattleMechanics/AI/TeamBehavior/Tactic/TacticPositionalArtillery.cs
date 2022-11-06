@@ -177,7 +177,6 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
                     .Select(target =>
                     {
                         target.UtilityValue = PositionScoring.GeometricMean(target);
-                        target.DebugRender(5, 2);
                         return target;
                     }).ToList();
                 if (_latestScoredPositions.Count > 0)
