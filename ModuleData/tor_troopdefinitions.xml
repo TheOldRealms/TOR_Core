@@ -1579,6 +1579,86 @@
       <EquipmentSet id="tor_deathjack_toxophilite_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_ror_ward_of_taal" default_group="infantry" level="16" name="{=str_tor_ror_ward_of_taal}Ward of Taal" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.hornedhunter" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_hunter_of_taal" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_wardoftaal_template" />
+      <EquipmentSet id="tor_wardoftaal_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_hunter_of_taal" default_group="infantry" level="21" name="{=str_tor_ror_hunter_of_taal}Hunter of Taal" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level21">
+    <face>
+      <face_key_template value="BodyProperty.hornedhunter" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_horned_hunter" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_hunteroftaal_template" />
+      <EquipmentSet id="tor_hunteroftaal_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_horned_hunter" default_group="infantry" level="26" name="{=str_tor_ror_horned_hunter}Horned Hunter" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26">
+    <face>
+      <face_key_template value="BodyProperty.hornedhunter" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_hornedhunter_template" />
+      <EquipmentSet id="tor_hornedhunter_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_longshank_initiate" default_group="ranged" level="11" name="{=str_tor_ror_longshank_initiate}Longshank Initiate" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_longshank_strider" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_longshank_initiate_template" />
+      <EquipmentSet id="tor_longshank_initiate_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_longshank_strider" default_group="ranged" level="16" name="{=str_tor_ror_longshank_strider}Longshank Strider" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_longshank_warden" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_longshank_strider_template" />
+      <EquipmentSet id="tor_longshank_strider_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_longshank_warden" default_group="ranged" level="21" name="{=str_tor_ror_longshank_warden}Longshank Warden" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level21">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_longshank_ranger" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_longshank_warden_template" />
+      <EquipmentSet id="tor_longshank_warden_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_longshank_ranger" default_group="ranged" level="26" name="{=str_tor_ror_longshank_ranger}Longshank Ranger" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_longshank_ranger_template" />
+      <EquipmentSet id="tor_longshank_ranger_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_ror_sternieste_skeleton" default_group="infantry" level="16" name="{=str_tor_ror_sternieste_skeleton}Castle Sternieste Skeleton" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true" race="skeleton">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
@@ -1906,7 +1986,7 @@
       <EquipmentSet id="tor_empire_deserter_sergeant_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_deserter_scout" default_group="ranged" level="16" name="{=}Deserter Scout" occupation="Bandit" culture="Culture.mountain_bandits" skill_template="SkillSet.tor_skills_level16">
+  <NPCCharacter id="tor_empire_deserter_scout" default_group="ranged" level="16" name="{=str_tor_empire_deserter_scout}Deserter Scout" occupation="Bandit" culture="Culture.mountain_bandits" skill_template="SkillSet.tor_skills_level16">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>

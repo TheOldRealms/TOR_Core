@@ -59,6 +59,7 @@ namespace TOR_Core.Extensions
             {
                 var engineering = hero.GetSkillValue(DefaultSkills.Engineering);
                 count = (int)Math.Truncate((decimal)engineering / 50);
+                if (hero != Hero.MainHero && count == 0) count = 1; //Ensure AI lords can place at least 1 piece.
             }
             return count;
         }
