@@ -169,9 +169,13 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
                         target.UtilityValue = PositionScoring.GeometricMean(target);
                         return target;
                     }).ToList();
-                var candidate = _latestScoredPositions.MaxBy(target => target.UtilityValue);
-                if (float.IsNaN(candidate.UtilityValue)) _positionScoring = null;
-                if (candidate != null && candidate.UtilityValue != 0.0 && !float.IsNaN(candidate.UtilityValue)) _chosenArtilleryPosition = candidate;
+                if (_latestScoredPositions.Count > 0)
+                {
+                    var candidate = _latestScoredPositions.MaxBy(target => target.UtilityValue);
+                    if (float.IsNaN(candidate.UtilityValue)) _positionScoring = null;
+                    if (candidate != null && candidate.UtilityValue != 0.0 && !float.IsNaN(candidate.UtilityValue)) _chosenArtilleryPosition = candidate;
+                }
+                else _chosenArtilleryPosition = null;
             }
 
             if (_chosenArtilleryPosition != null)

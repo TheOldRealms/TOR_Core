@@ -18,6 +18,9 @@
 			<PartyTemplateStack min_value="2" max_value="6" troop="NPCCharacter.tor_empire_pikeman" />
 			<PartyTemplateStack min_value="2" max_value="6" troop="NPCCharacter.tor_empire_sergeant" />
 			<PartyTemplateStack min_value="6" max_value="12" troop="NPCCharacter.tor_empire_scout" />
+			<PartyTemplateStack min_value="6" max_value="12" troop="NPCCharacter.tor_empire_trainee_artillery_crew" />
+			<PartyTemplateStack min_value="6" max_value="12" troop="NPCCharacter.tor_empire_experienced_artillery_crew" />
+			<PartyTemplateStack min_value="4" max_value="8" troop="NPCCharacter.tor_empire_veteran_artillery_crew" />
 			<PartyTemplateStack min_value="3" max_value="6" troop="NPCCharacter.tor_empire_archer" />
 			<PartyTemplateStack min_value="3" max_value="6" troop="NPCCharacter.tor_empire_skirmisher" />
 			<PartyTemplateStack min_value="1" max_value="6" troop="NPCCharacter.tor_empire_crossbowman" />
