@@ -117,8 +117,8 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
             }
 
             updatedFormations.ForEach(formation => team.TriggerOnFormationsChanged(formation));
-            team.TeamAI.OnUnitAddedToFormationForTheFirstTime(_artilleryFormation);
-            team.TeamAI.OnUnitAddedToFormationForTheFirstTime(_guardFormation);
+            if (_artilleryFormation.CountOfUnits > 0) team.TeamAI.OnUnitAddedToFormationForTheFirstTime(_artilleryFormation);
+            if (_guardFormation.CountOfUnits > 0) team.TeamAI.OnUnitAddedToFormationForTheFirstTime(_guardFormation);
         }
 
         protected override void TickOccasionally()
@@ -218,14 +218,14 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
 
             TacticalPosition tacticalPosition1 = new TacticalPosition(team.QuerySystem.MedianPosition, (team.QuerySystem.AverageEnemyPosition - team.QuerySystem.MedianPosition.AsVec2).Normalized(), 50);
             var averageEnemyPosition = team.QuerySystem.AverageEnemyPosition;
-            
+
             float height = 0.0f;
             Mission.Current.Scene.GetHeightAtPoint(averageEnemyPosition, BodyFlags.CommonCollisionExcludeFlagsForCombat, ref height);
             var enemyPosition = averageEnemyPosition.ToVec3(height);
             var gatherCandidatePositions = teamAiAPositions
                 .Concat(extractedPositions)
                 .AddItem(tacticalPosition1)
-                .Where(position => CommonAIFunctions.HasLineOfSight(position.Position.GetGroundVec3(), enemyPosition,  team.TeamAI.IsDefenseApplicable ? 70.0f : position.Position.GetGroundVec3().Distance(enemyPosition)*0.7f)).ToList();
+                .Where(position => CommonAIFunctions.HasLineOfSight(position.Position.GetGroundVec3(), enemyPosition, team.TeamAI.IsDefenseApplicable ? 70.0f : position.Position.GetGroundVec3().Distance(enemyPosition) * 0.7f)).ToList();
             return gatherCandidatePositions;
         }
 
@@ -313,7 +313,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
                 _mainInfantry.AI.SetBehaviorWeight<BehaviorTacticalCharge>(1f);
             }
 
-            if (_artilleryFormation != null && _chosenArtilleryPosition != null)
+            if (_artilleryFormation != null && _artilleryFormation.CountOfUnits > 0 && _chosenArtilleryPosition != null)
             {
                 _artilleryFormation.AI.ResetBehaviorWeights();
                 SetDefaultBehaviorWeights(_artilleryFormation);
@@ -323,7 +323,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
                 _artilleryFormation.AI.SetBehaviorWeight<BehaviorScreenedSkirmish>(1f);
             }
 
-            if (_guardFormation != null && _chosenArtilleryPosition != null)
+            if (_guardFormation != null && _guardFormation.CountOfUnits > 0 && _chosenArtilleryPosition != null)
             {
                 _guardFormation.AI.ResetBehaviorWeights();
                 SetDefaultBehaviorWeights(_guardFormation);
