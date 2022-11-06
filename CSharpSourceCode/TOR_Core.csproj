@@ -60,6 +60,9 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="0Harmony, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Lib.Harmony.2.2.2\lib\net472\0Harmony.dll</HintPath>
+    </Reference>
     <Reference Include="TaleWorlds.ScreenSystem">
       <HintPath>$(GameDir)\bin\Win64_Shipping_Client\TaleWorlds.ScreenSystem.dll</HintPath>
       <Private>False</Private>
@@ -323,9 +326,6 @@
     <Reference Include="TaleWorlds.MountAndBlade.CustomBattle.dll">
       <HintPath>$(GameDir)\Modules\CustomBattle\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.CustomBattle.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="0Harmony, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Lib.Harmony.2.2.1\lib\net472\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>packages\NLog.5.0.1\lib\net46\NLog.dll</HintPath>
