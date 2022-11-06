@@ -245,7 +245,6 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
 
         private bool LineOfSightAllowsArtillery(TacticalPosition position, Vec3 enemyPosition)
         {
-            return true; //TODO:Temp
             var posCorrected = position.Position.GetGroundVec3();
             posCorrected.z += 1.5f;
             var enemyCorrected = enemyPosition;
