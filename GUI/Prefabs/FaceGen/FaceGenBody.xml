@@ -1,0 +1,144 @@
+<Window>
+  <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+    <Children>
+
+      <ScrollablePanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" AutoHideScrollBars="true" ClipRect="ClipRect" InnerPanel="ClipRect\VerticalList" VerticalScrollbar="..\VerticalScrollbar">
+        <Children>
+
+          <Widget Id="ClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true">
+            <Children>
+
+              <ListPanel Id="VerticalList" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                <Children>
+
+                  <!--Gender Selection Buttons-->
+                  <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop" MarginTop="25" IsVisible="@CanChangeGender">
+                    <Children>
+
+                      <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="FaceGen.Property.Text" Text="@GenderLbl" ClipContents="false"/>
+
+											<NavigationScopeTargeter ScopeID="GenderButtonsScope" ScopeParent="..\GenderButtons" ScopeMovements="Horizontal" HasCircularMovement="false" RightNavigationScope="None" />
+                      <ListPanel Id="GenderButtons" WidthSizePolicy="Fixed" SuggestedWidth="260" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" IntValue="@SelectedGender" StackLayout.LayoutMethod="HorizontalSpaced" MarginTop="15">
+                        <Children>
+
+                          <!--Male Gender Button-->
+                          <ButtonWidget Id="MaleGenderButton" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="100" SuggestedHeight="100"  Brush="FaceGen.Card" ButtonType="Radio" UpdateChildrenStates="true" IsVisible="@CanChangeGender" GamepadNavigationIndex="0">
+                            <Children>
+                              <NavigationAutoScrollWidget TrackedWidget="..\."/>
+                              <ImageWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="65" SuggestedHeight="89" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="FaceGenMaleButtonBrush" />
+                            </Children>
+                          </ButtonWidget>
+
+                          <!--Female Gender Button-->
+                          <ButtonWidget Id="FemaleGenderButton" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="100" SuggestedHeight="100"  Brush="FaceGen.Card" ButtonType="Radio" UpdateChildrenStates="true" IsVisible="@CanChangeGender" GamepadNavigationIndex="1">
+                            <Children>
+                              <NavigationAutoScrollWidget TrackedWidget="..\."/>
+                              <ImageWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="65" SuggestedHeight="89" PositionYOffset="6" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="FaceGenFemaleButtonBrush" />
+                            </Children>
+                          </ButtonWidget>
+
+                        </Children>
+                      </ListPanel>
+                    </Children>
+                  </ListPanel>
+
+                  <!--Skin Color Selection-->
+                  <NavigationAutoScrollWidget TrackedWidget="..\SkinColorSelection" />
+                  <ListPanel Id="SkinColorSelection" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop" MarginTop="35">
+                    <Children>
+
+                      <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="FaceGen.Property.Text" Text="@SkinColorLbl" ClipContents="false"/>
+
+											<NavigationScopeTargeter ScopeID="ColorSelectorScope" ScopeParent="..\ColorSelector" ScopeMovements="Horizontal" AlternateScopeMovements="Vertical" AlternateMovementStepSize="12" HasCircularMovement="false" />
+											<FaceGenColorSelector Id="ColorSelector" DataSource="{SkinColorSelector}" MarginTop="15" Parameter.NavigationMinIndex="1003" Parameter.NavigationMaxIndex="1100"/>
+
+                    </Children>
+                  </ListPanel>
+
+                  <!--Voice type selection-->
+									<NavigationScopeTargeter ScopeID="VoiceTypeSelectionScope" ScopeParent="..\VoiceTypeSelection" ScopeMovements="Horizontal" />
+                  <NavigationAutoScrollWidget TrackedWidget="..\VoiceTypeSelection" IncludeChildren="true" ScrollYOffset="50" />
+                  <NumericUpDownWidget Id="VoiceTypeSelection" DataSource="{SoundPreset}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="90" SuggestedHeight="60" PositionXOffset="5" MarginTop="60" DownButton="NumericDown" IsFlipUpButtonHorizontal="true" MaxValue="@Max" MinValue="@Min" ShowOneAdded="true" TextWidget="TextContainer\NumericText" UpButton="NumericUp" Value="@Value">
+                    <Children>
+
+                      <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" PositionYOffset="-30" Brush="FaceGen.Property.Text" Text="@Name" ClipContents="false"/>
+
+                      <ButtonWidget Id="NumericDown" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="24" SuggestedHeight="24" HorizontalAlignment="Left" VerticalAlignment="Center" Brush="Creation.NumericLeftArrow" GamepadNavigationIndex="0" />
+
+                      <Widget Id="TextContainer" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="34" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="switcher_9" GamepadNavigationIndex="1">
+                        <Children>
+                          <TextWidget Id="NumericText" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" PositionYOffset="2" HorizontalAlignment="Center" Brush="FaceGen.Property.Text" ClipContents="false" />
+                        </Children>
+                      </Widget>
+
+                      <ButtonWidget Id="NumericUp" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="24" SuggestedHeight="24" HorizontalAlignment="Right" VerticalAlignment="Center" Brush="Creation.NumericRightArrow" GamepadNavigationIndex="2" />
+
+                    </Children>
+                  </NumericUpDownWidget>
+
+                  <!--Voice test button-->
+									<NavigationScopeTargeter ScopeID="VoiceTestButtonScope" ScopeParent="..\VoiceTestButton" />
+                  <ButtonWidget Id="VoiceTestButton" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="48" SuggestedHeight="48" HorizontalAlignment="Right" PositionXOffset="-30" PositionYOffset="-55" Brush="FaceGen.VoiceSample.Button" Command.Click="ExecuteHearCurrentVoiceSample" GamepadNavigationIndex="0"/>
+
+									<NavigationScopeTargeter ScopeID="PropertiesScope" ScopeParent="..\BodyProperties" ScopeMovements="Vertical" />
+                  <NavigatableListPanel Id="BodyProperties" DataSource="{BodyProperties}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" PositionXOffset="10" PositionYOffset="-128" StackLayout.LayoutMethod="VerticalBottomToTop" UpdateChildrenStates="true" ChildTarget="SliderHandle" MinIndex="5" MaxIndex="50">
+                    <ItemTemplate>
+
+                      <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" FromTarget=".\" ToTarget="List\ScrollBar\SliderHandle">
+                        <Children>
+                          <NavigationTargetSwitcher WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" FromTarget="..\." ToTarget="..\List\ScrollBar\SliderHandle" />
+                          <ListPanel Id="List" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="@IsEnabled" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop" >
+                            <Children>
+
+                              <!--Property Name-->
+                              <RichTextWidget DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="FaceGen.Property.Text" Text="@Name" IsEnabled="false" />
+
+                              <!--Slider-->
+                              <SliderWidget Id="ScrollBar" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="338" SuggestedHeight="42" VerticalAlignment="Center" Filler="Filler" Handle="SliderHandle" MaxValueFloat="@Max" MinValueFloat="@Min" ValueFloat="@Value" MarginBottom="15" IsDiscrete="@IsDiscrete" DoNotUpdateHandleSize="true" UpdateValueOnScroll="False">
+                                <Children>
+                                  <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="362" SuggestedHeight="38" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="SPGeneral\SPOptions\standart_slider_canvas" IsEnabled="false" />
+                                  <Widget Id="Filler" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="345" SuggestedHeight="35" VerticalAlignment="Center" Sprite="SPGeneral\SPOptions\standart_slider_fill" ClipContents="true">
+                                    <Children>
+                                      <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="345" SuggestedHeight="35" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SPGeneral\SPOptions\standart_slider_fill" />
+                                    </Children>
+                                  </Widget>
+                                  <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="400" SuggestedHeight="65" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="SPGeneral\SPOptions\standart_slider_frame" IsEnabled="false" />
+                                  <ImageWidget Id="SliderHandle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="14" SuggestedHeight="38" HorizontalAlignment="Left" VerticalAlignment="Center" Brush="SPOptions.Slider.Handle" DoNotAcceptEvents="true"/>
+                                </Children>
+                              </SliderWidget>
+
+                              <!--<SliderWidget  WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="3" MarginRight="3" Filler="Filler" Handle="Handle" MaxValueFloat="@Max" MinValueFloat="@Min" ValueFloat="@">
+                                    <Children>
+                                      <Widget Id="Filler" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="11" SuggestedHeight="21" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="property_slider_fill_9" />
+                                      <BrushWidget Id="Handle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="5" SuggestedHeight="21" HorizontalAlignment="Left" VerticalAlignment="Center" Brush="FaceGen.Property.Slider.Handle" />
+                                    </Children>
+                                  </SliderWidget>-->
+
+                            </Children>
+                          </ListPanel>
+                        </Children>
+                      </Widget>
+
+                    </ItemTemplate>
+                  </NavigatableListPanel>
+                </Children>
+              </ListPanel>
+              <!--Scroll Gradient-->
+              <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="576" SuggestedHeight="57" HorizontalAlignment="Right" PositionXOffset="0" VerticalAlignment="Bottom" Sprite="General\CharacterCreation\character_creation_scroll_gradient" />
+
+            </Children>
+          </Widget>
+
+        </Children>
+      </ScrollablePanel>
+
+      <ScrollbarWidget Id="VerticalScrollbar" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="8" HorizontalAlignment="Right" VerticalAlignment="Center" MarginTop="15" MarginBottom="15" AlignmentAxis="Vertical" Handle="VerticalScrollbarHandle" MaxValue="100" MinValue="0" >
+        <Children>
+          <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="4" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" Color="#5A4033FF" AlphaFactor="0.2" />
+          <ImageWidget Id="VerticalScrollbarHandle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="10" SuggestedWidth="8" HorizontalAlignment="Center" Brush="FaceGen.Scrollbar.Handle" />
+        </Children>
+      </ScrollbarWidget>
+
+    </Children>
+  </Widget>
+</Window>
