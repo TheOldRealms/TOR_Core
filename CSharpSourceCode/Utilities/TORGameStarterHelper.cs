@@ -16,6 +16,7 @@ namespace TOR_Core.Utilities
         {
             starter.RemoveBehaviors<BackstoryCampaignBehavior>();
             starter.RemoveBehaviors<InitialChildGenerationCampaignBehavior>();
+            starter.RemoveBehaviors<PartyUpgraderCampaignBehavior>();
             var issues = starter.CampaignBehaviors.Where(x => x.GetType().FullName.Contains("Issue")).ToList();
             foreach(var issue in issues)
             {

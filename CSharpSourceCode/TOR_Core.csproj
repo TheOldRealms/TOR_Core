@@ -481,6 +481,7 @@
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementComponent.cs" />
     <Compile Include="CampaignMechanics\TORMapInfoVM.cs" />
     <Compile Include="CampaignMechanics\TORPartyHealCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\TORPartyUpgraderCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORWanderersCampaignBehavior.cs" />
     <Compile Include="CharacterDevelopment\TORAttributes.cs" />
     <Compile Include="CharacterDevelopment\TORCharacterTraits.cs" />

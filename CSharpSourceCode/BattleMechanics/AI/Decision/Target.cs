@@ -1,5 +1,7 @@
-﻿using TaleWorlds.Library;
+﻿using System;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.AI.Decision
 {
@@ -29,7 +31,15 @@ namespace TOR_Core.BattleMechanics.AI.Decision
                 return SelectedWorldPosition;
             if (TacticalPosition != null)
                 return TacticalPosition.Position.GetGroundVec3();
-            return Position;
+            try
+            {
+                return Position;
+            }
+            catch(NullReferenceException)
+            {
+                TORCommon.Log("Null error in TOR_Core.BattleMechanics.AI.Decision.Target.GetPosition(). Suppressed.", NLog.LogLevel.Error);
+                return Vec3.Invalid;
+            }
         }
         
         public Vec3 GetPositionPrioritizeCalculated()
@@ -38,7 +48,15 @@ namespace TOR_Core.BattleMechanics.AI.Decision
                 return SelectedWorldPosition;
             if (TacticalPosition != null)
                 return TacticalPosition.Position.GetGroundVec3();
-            return Position;
+            try
+            {
+                return Position;
+            }
+            catch (NullReferenceException)
+            {
+                TORCommon.Log("Null error in TOR_Core.BattleMechanics.AI.Decision.Target.GetPositionPrioritizeCalculated(). Suppressed.", NLog.LogLevel.Error);
+                return Vec3.Invalid;
+            }
         }
 
         public new Agent Agent

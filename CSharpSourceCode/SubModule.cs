@@ -108,6 +108,7 @@ namespace TOR_Core
                 starter.AddBehavior(new TORPerkHandlerCampaignBehavior());
                 starter.AddBehavior(new BaseGameDebugCampaignBehavior());
                 starter.AddBehavior(new BloodKissCampaignBehavior());
+                starter.AddBehavior(new TORPartyUpgraderCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
