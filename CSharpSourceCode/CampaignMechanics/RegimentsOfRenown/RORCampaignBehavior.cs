@@ -175,6 +175,34 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                     }
                 }
             }
+
+            if (mobileParty != null &&
+                mobileParty.IsLordParty &&
+                mobileParty != MobileParty.MainParty &&
+                !mobileParty.IsDisbanding &&
+                mobileParty.LeaderHero != null &&
+                mobileParty.LeaderHero.CanPlaceArtillery() &&
+                !mobileParty.Party.IsStarving &&
+                mobileParty.MapFaction.IsKingdomFaction &&
+                mobileParty.Party.NumberOfAllMembers < mobileParty.LimitedPartySize &&
+                (mobileParty.UnlimitedWage || mobileParty.PaymentLimit >= mobileParty.TotalWage) &&
+                mobileParty.LeaderHero.Gold > HeroHelper.StartRecruitingMoneyLimit(mobileParty.LeaderHero) &&
+                (mobileParty.LeaderHero == mobileParty.LeaderHero.Clan.Leader || mobileParty.LeaderHero.Clan.Gold > HeroHelper.StartRecruitingMoneyLimitForClanLeader(mobileParty.LeaderHero)))
+            {
+                var troop = MBObjectManager.Instance.GetObject<CharacterObject>("tor_empire_veteran_artillery_crew");
+                var targetNumTroop = MBRandom.RandomInt(2, 4);
+                var crewInParty = mobileParty.MemberRoster.GetTroopRoster().Where(x => x.Character.GetAttributes().Contains("ArtilleryCrew"));
+                if (mobileParty.Party.NumberOfAllMembers + targetNumTroop <= mobileParty.LimitedPartySize && troop != null && crewInParty.Count() < targetNumTroop)
+                {
+                    var cost = Campaign.Current.Models.PartyWageModel.GetTroopRecruitmentCost(troop, mobileParty.LeaderHero, false) * targetNumTroop;
+                    if (mobileParty.LeaderHero.Gold > cost)
+                    {
+                        GiveGoldAction.ApplyBetweenCharacters(mobileParty.LeaderHero, null, cost);
+                        mobileParty.AddElementToMemberRoster(troop, targetNumTroop);
+                        CampaignEventDispatcher.Instance.OnTroopRecruited(mobileParty.LeaderHero, settlement, settlement.Notables.FirstOrDefault(), troop, targetNumTroop);
+                    }
+                }
+            }
         }
 
         private void OnNewGame(CampaignGameStarter arg1, int arg2)
