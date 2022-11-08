@@ -353,6 +353,8 @@ namespace TOR_Core.Extensions
 
         public static Hero GetHero(this Agent agent)
         {
+            if (agent == null) return null;
+            
             if (agent.Character == null) return null;
             Hero hero = null;
             if (Game.Current.GameType is Campaign)
