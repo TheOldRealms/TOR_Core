@@ -17,7 +17,7 @@ namespace TOR_Core.AbilitySystem
     {
         public AbilityComponent(Agent agent) : base(agent)
         {
-            var abilities = agent.GetAbilities();
+            var abilities = agent.GetSelectedAbilities();
             if (abilities.Count > 0)
             {
                 foreach (var item in abilities)

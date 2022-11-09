@@ -21,6 +21,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         [SaveableField(4)] public SpellCastingLevel SpellCastingLevel = SpellCastingLevel.None;
         [SaveableField(5)] private CharacterObject _baseCharacter;
         [SaveableField(6)] private List<string> _knownLores = new List<string>();
+        [SaveableField(7)] private List<string> _selectedAbilities = new List<string>();
 
         public CharacterObject BaseCharacter => _baseCharacter;
 
@@ -86,6 +87,36 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 list.AddRange(AcquiredAttributes);
                 return list;
             }
+        }
+
+        public List<string> SelectedAbilities
+        {
+            get
+            {
+                if (_selectedAbilities.Count > 0) return _selectedAbilities;
+                else return AllAbilites;
+            }
+        }
+
+        public void AddSelectedAbility(string abilityId)
+        {
+            if(!_selectedAbilities.Contains(abilityId)) _selectedAbilities.Add(abilityId);
+        }
+
+        public void RemoveSelectedAbility(string abilityId)
+        {
+            if (_selectedAbilities.Contains(abilityId)) _selectedAbilities.Remove(abilityId);
+        }
+
+        public void ToggleSelectedAbility(string abilityId)
+        {
+            if (IsAbilitySelected(abilityId)) RemoveSelectedAbility(abilityId);
+            else if(AllAbilites.Contains(abilityId)) AddSelectedAbility(abilityId);
+        }
+
+        public bool IsAbilitySelected(string abilityId)
+        {
+            return _selectedAbilities.Contains(abilityId);
         }
 
         public HeroExtendedInfo(CharacterObject character)

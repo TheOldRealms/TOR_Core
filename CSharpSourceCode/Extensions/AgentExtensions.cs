@@ -397,6 +397,21 @@ namespace TOR_Core.Extensions
             else return new List<string>();
         }
 
+        public static List<string> GetSelectedAbilities(this Agent agent)
+        {
+            var hero = agent.GetHero();
+            var character = agent.Character;
+            if (hero != null)
+            {
+                return hero.GetExtendedInfo().SelectedAbilities;
+            }
+            else if (character != null)
+            {
+                return agent.Character.GetAbilities();
+            }
+            else return new List<string>();
+        }
+
         public static Ability GetAbility(this Agent agent, int abilityindex)
         {
             var abilitycomponent = agent.GetComponent<AbilityComponent>();

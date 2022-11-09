@@ -28,6 +28,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
         private bool _canLearn = false;
         private string _learnText;
         private int _goldCost;
+        private bool _isSelected;
 
         public SpellItemVM(AbilityTemplate template, Hero currentHero, bool isTrainerMode = false)
         {
@@ -66,20 +67,27 @@ namespace TOR_Core.AbilitySystem.SpellBook
             RefreshValues();
         }
 
+        private void ExecuteSelectSpell()
+        {
+            if(!_isTrainerMode) _hero.GetExtendedInfo().ToggleSelectedAbility(_spellTemplate.StringID);
+            RefreshValues();
+        }
+
         public override void RefreshValues()
         {
             _goldCost = _spellTemplate.GoldCost;
             var model = Campaign.Current.Models.GetSpellcraftModel();
-            if(model != null)
+            var info = _hero.GetExtendedInfo();
+            if (model != null)
             {
                 _goldCost = model.GetSpellGoldCostForHero(_hero, _spellTemplate);
             }
             LearnText = "Learn " + _goldCost + "<img src=\"General\\Icons\\Coin@2x\"/>";
             IsKnown = _hero.HasAbility(_spellTemplate.StringID);
+            IsSelected = !_isTrainerMode && info.IsAbilitySelected(_spellTemplate.StringID);
             IsDisabled = !IsKnown;
             if (IsDisabled)
             {
-                var info = _hero.GetExtendedInfo();
                 CanLearn = _isTrainerMode && _spellTemplate.SpellTier <= (int)info.SpellCastingLevel && _hero.HasKnownLore(_spellTemplate.BelongsToLoreID);
                 if (!info.KnownLores.Any(x=>x.ID == _spellTemplate.BelongsToLoreID))
                 {
@@ -247,6 +255,23 @@ namespace TOR_Core.AbilitySystem.SpellBook
                 {
                     this._learnText = value;
                     base.OnPropertyChangedWithValue(value, "LearnText");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public bool IsSelected
+        {
+            get
+            {
+                return this._isSelected;
+            }
+            set
+            {
+                if (value != this._isSelected)
+                {
+                    this._isSelected = value;
+                    base.OnPropertyChangedWithValue(value, "IsSelected");
                 }
             }
         }
