@@ -2,6 +2,7 @@
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.ModuleManager;
+using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -30,6 +31,13 @@ namespace TOR_Core.HarmonyPatches
         {
             ManagedParameters.Instance.Initialize(ModuleHelper.GetXmlPath("TOR_Core", "tor_managed_core_parameters"));
             __instance.GameType.InitializeParameters();
+            return false;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(BannerBearerLogic), "SetFormationBanner")]
+        public static bool PreventCrashForWhateverReason(Formation formation, ItemObject newBanner)
+        {
             return false;
         }
     }

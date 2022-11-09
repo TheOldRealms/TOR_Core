@@ -1952,10 +1952,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_averland_first_2">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_averland_first_3">
     <Abilities />
@@ -1966,31 +1963,19 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_averland_first_4">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_averland_first_5">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_averland_first_6">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_averland_first_7">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_averland_second_1">
     <Abilities />
@@ -2001,31 +1986,19 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_averland_second_2">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_averland_second_3">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_averland_second_4">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_averland_second_5">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_averland_third_1">
     <Abilities />
@@ -2036,17 +2009,11 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_averland_third_2">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_averland_third_3">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_averland_third_4">
     <Abilities />
@@ -2057,10 +2024,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_averland_third_5">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_averland_kobs_1">
     <Abilities />
@@ -2109,38 +2073,23 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_stirland_first_3">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_stirland_first_4">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_stirland_first_5">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_stirland_first_6">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_stirland_first_7">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_stirland_second_1">
     <Abilities />
@@ -2151,24 +2100,15 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_stirland_second_2">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_stirland_second_3">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_stirland_second_4">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_stirland_third_1">
     <Abilities />
@@ -2179,17 +2119,11 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_stirland_third_2">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_stirland_third_3">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_wissenland_factionleader">
     <Abilities />
@@ -2200,17 +2134,11 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_wissenland_first_2">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_wissenland_first_3">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_wissenland_first_4">
     <Abilities>
@@ -2231,17 +2159,11 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_wissenland_first_5">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_wissenland_first_6">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_wissenland_first_7">
     <Abilities />
@@ -2252,10 +2174,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_wissenland_second_1">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_wissenland_second_2">
     <Abilities />
@@ -2266,31 +2185,19 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_wissenland_second_3">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_wissenland_second_4">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_wissenland_second_5">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_wissenland_second_6">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_wissenland_third_1">
     <Abilities />
@@ -2301,38 +2208,23 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_wissenland_third_2">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_wissenland_third_3">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_wissenland_third_4">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_wissenland_third_5">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_wissenland_third_6">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_talabecland_factionleader">
     <Abilities />
@@ -2343,17 +2235,11 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_talabecland_first_2">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_talabecland_first_3">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_talabecland_first_4">
     <Abilities />
@@ -2364,31 +2250,19 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_talabecland_first_5">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_talabecland_first_6">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_talabecland_first_7">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_talabecland_first_8">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_talabecland_second_1">
     <Abilities />
@@ -2399,31 +2273,19 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_talabecland_second_2">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_talabecland_second_3">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_talabecland_second_4">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_talabecland_second_5">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_talabecland_third_1">
     <Abilities />
@@ -2434,38 +2296,23 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_talabecland_third_2">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_talabecland_third_3">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_talabecland_third_4">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_talabecland_third_5">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_talabecland_third_6">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_factionleader">
     <Abilities />
@@ -2483,24 +2330,15 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_first_3">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_first_4">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_first_5">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_first_6">
     <Abilities>
@@ -2510,10 +2348,7 @@
       <string>PowerOfDarkness</string>
       <string>SoulStealer</string>
     </Abilities>
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>SpellCaster</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_first_7">
     <Abilities />
@@ -2531,31 +2366,19 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_second_2">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_second_3">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_second_4">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_second_5">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_third_1">
     <Abilities />
@@ -2566,38 +2389,23 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_third_2">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_third_3">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_forth_1">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_forth_2">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_forth_3">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_sylvania_factionleader">
     <Abilities>

@@ -46,5 +46,8 @@
     <VoiceOver id="ccultist_spreadpox">
       <Voice path="VoicedLines/EN/$PLATFORM/cultist_spreadpox" />
     </VoiceOver>
+    <VoiceOver id="beastmen_trample">
+      <Voice path="VoicedLines/EN/$PLATFORM/beastmen_trample" />
+    </VoiceOver>
   </VoiceOvers>
 </Base>
