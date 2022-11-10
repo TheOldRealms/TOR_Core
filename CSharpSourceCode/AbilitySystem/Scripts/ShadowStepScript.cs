@@ -107,6 +107,6 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         private float _speed = 10f;
         private InputKey[] _axisKeys = new InputKey[4];
-        private GameKeyContext _keyContext = HotKeyManager.GetCategory("CombatHotKeyCategory");
+        private GameKeyContext _keyContext = HotKeyManager.GetCategory("Generic");
     }
 }
