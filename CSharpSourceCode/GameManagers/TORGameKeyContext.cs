@@ -22,7 +22,7 @@ namespace TOR_Core.GameManagers
             this.RegisterGameKey(new GameKey(SelectPreviousAbility, "PreviousAbility", nameof(TORGameKeyContext), InputKey.X2MouseButton,nameof(TORGameKeyContext)));
             this.RegisterGameKey(new GameKey(SelectNextAbility, "NextAbility", nameof(TORGameKeyContext), InputKey.X1MouseButton,nameof(TORGameKeyContext)));
             this.RegisterGameKey(new GameKey(QuickCast, "QuickCast", nameof(TORGameKeyContext), InputKey.MiddleMouseButton,nameof(TORGameKeyContext)));
-            this.RegisterGameKey(new GameKey(SpecialMove, "SpecialMove", nameof(TORGameKeyContext), InputKey.H,nameof(TORGameKeyContext)));
+            this.RegisterGameKey(new GameKey(SpecialMove, "SpecialMove", nameof(TORGameKeyContext), InputKey.LeftAlt,nameof(TORGameKeyContext)));
         }
     }
 
