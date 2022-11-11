@@ -31,7 +31,6 @@ namespace TOR_Core.Utilities
             starter.AddBehavior(new ArtisanCantSellProductsAtAFairPriceIssueBehavior());
             starter.AddBehavior(new ArtisanOverpricedGoodsIssueBehavior());
             starter.AddBehavior(new BettingFraudIssueBehavior());
-            starter.AddBehavior(new EscortMerchantCaravanIssueBehavior());
             starter.AddBehavior(new ExtortionByDesertersIssueBehavior());
             starter.AddBehavior(new FamilyFeudIssueBehavior());
             starter.AddBehavior(new GangLeaderNeedsToOffloadStolenGoodsIssueBehavior());
