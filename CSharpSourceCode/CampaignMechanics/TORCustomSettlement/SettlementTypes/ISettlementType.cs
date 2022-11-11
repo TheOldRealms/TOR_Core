@@ -13,7 +13,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes
         string GameMenuName { get; }
         bool IsRaidingPartySpawner { get; }
         bool IsActive { get; set; }
-        bool IsBattleUnderway { get; }
+        bool IsBattleUnderway { get; set; }
         string RewardItemId { get; }
         void AddGameMenus(CampaignGameStarter starter);
         void SpawnNewParty();

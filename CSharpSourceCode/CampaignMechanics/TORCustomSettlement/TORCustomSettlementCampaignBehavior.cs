@@ -40,10 +40,11 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             });
             if(battleSettlement != null)
             {
+                var settlementType = ((TORCustomSettlementComponent)battleSettlement.SettlementComponent).SettlementType;
+                settlementType.IsBattleUnderway = false;
                 var mission = obj as Mission;
                 if (mission.MissionResult != null && mission.MissionResult.BattleResolved && mission.MissionResult.PlayerVictory)
                 {
-                    var settlementType = ((TORCustomSettlementComponent)battleSettlement.SettlementComponent).SettlementType;
                     settlementType.IsActive = false;
                     var list = new List<InquiryElement>();
                     var item = MBObjectManager.Instance.GetObject<ItemObject>(settlementType.RewardItemId);

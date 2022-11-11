@@ -65,7 +65,7 @@ namespace TOR_Core.HarmonyPatches
                         var model = Campaign.Current.Models.GetSpellcraftModel();
                         if (model != null)
                         {
-                            resultDamage *= model.GetPerkEffectsOnAbilityDamage(hero.CharacterObject, victim, abilityTemplate);
+                            resultDamage = (int)(resultDamage * model.GetPerkEffectsOnAbilityDamage(hero.CharacterObject, victim, abilityTemplate));
                             var skill = model.GetRelevantSkillForAbility(abilityTemplate);
                             var amount = model.GetSkillXpForAbilityDamage(abilityTemplate, resultDamage);
                             hero.AddSkillXp(skill, amount);

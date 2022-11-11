@@ -20,7 +20,10 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes
         public string GameMenuName => _gameMenuName;
         public bool IsRaidingPartySpawner => true;
         private bool _isBattleUnderway;
-        public bool IsBattleUnderway => _isBattleUnderway;
+        public bool IsBattleUnderway
+        {
+            get => _isBattleUnderway; set => _isBattleUnderway = value; 
+        }
         public string RewardItemId => "tor_empire_weapon_sword_runefang_001";
 
         public void SetSettlement(Settlement settlement)

@@ -100,7 +100,7 @@ namespace TOR_Core.Models
             return explainedNumber.ResultNumber;
         }
 
-        public int GetPerkEffectsOnAbilityDamage(CharacterObject character, Agent victim, AbilityTemplate abilityTemplate)
+        public float GetPerkEffectsOnAbilityDamage(CharacterObject character, Agent victim, AbilityTemplate abilityTemplate)
         {
             ExplainedNumber explainedNumber = new ExplainedNumber(1f, false, null);
             var victimCharacter = victim.Character as CharacterObject;
@@ -141,7 +141,7 @@ namespace TOR_Core.Models
                 }
                 
             }
-            return (int)explainedNumber.ResultNumber;
+            return explainedNumber.ResultNumber;
         }
 
         public int GetSpellGoldCostForHero(Hero hero, AbilityTemplate spellTemplate)
