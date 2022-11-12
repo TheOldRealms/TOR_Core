@@ -31,7 +31,7 @@ namespace TOR_Core.Models
 
         private bool ShouldOverrideBaseVoice(CharacterObject character)
         {
-            return (character.IsVampire() && !character.IsFemale) || character.Culture.StringId == "forest_bandits";
+            return (character.IsVampire() && !character.IsFemale) || character.Culture.StringId == "forest_bandits" || character.Culture.StringId == "steppe_bandits";
         }
     }
 }

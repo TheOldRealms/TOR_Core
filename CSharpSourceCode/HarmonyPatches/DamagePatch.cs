@@ -35,7 +35,7 @@ namespace TOR_Core.HarmonyPatches
             var additionalDamagePercentages = attackerPropertyContainer.AdditionalDamagePercentages;
             //defense properties
             var resistancePercentages = victimPropertyContainer.ResistancePercentages;
-            var resultDamage = b.InflictedDamage;
+            var resultDamage = 0;
             var wardSaveFactor = 1f;
             if (Game.Current.GameType is Campaign)
             {
