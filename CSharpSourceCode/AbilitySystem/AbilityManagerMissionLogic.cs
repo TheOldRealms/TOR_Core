@@ -508,11 +508,11 @@ namespace TOR_Core.AbilitySystem
                     if (hero.GetPerkValue(TORPerks.SpellCraft.Catalyst))
                     {
                         int magicItemCount = 0;
-                        for(int i = 0; i >= (int)EquipmentIndex.NumEquipmentSetSlots; i++)
+                        for(int i = 0; i < (int)EquipmentIndex.NumEquipmentSetSlots; i++)
                         {
                             var equipmentElement = hero.BattleEquipment.GetEquipmentFromSlot((EquipmentIndex)i);
                             var equippedItem = equipmentElement.Item;
-                            if (equippedItem.IsMagicalItem()) magicItemCount++;
+                            if (equippedItem != null && equippedItem.IsMagicalItem()) magicItemCount++;
                         }
                         if(magicItemCount > 0)
                         {
