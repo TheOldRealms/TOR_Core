@@ -150,7 +150,7 @@ namespace TOR_Core.BattleMechanics.Artillery
                     Team.FormationsIncludingSpecialAndEmpty.ToList().FirstOrDefault(form => form.Index == (int) TORFormationClass.Artillery)?.StartUsingMachine(this);
                 }
             }
-            else
+            else if(Team?.IsPlayerTeam ?? false)
             {
                 if (UserFormations.Count == 0)
                 {
