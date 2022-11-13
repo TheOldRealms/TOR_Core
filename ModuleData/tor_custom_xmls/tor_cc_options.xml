@@ -50,6 +50,7 @@
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>TwoHanded</string>
+			<string>Gunpowder</string>
 			<string>Athletics</string>
 			<string>Tactics</string>
 		</SkillsToIncrease>
@@ -100,6 +101,7 @@
 			<string>Athletics</string>
 			<string>TwoHanded</string>
 			<string>Polearm</string>
+			<string>Gunpowder</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Endurance</AttributeToIncrease>
 		<OptionText>Enlisted in the Militia</OptionText>
@@ -144,6 +146,7 @@
 			<string>Medicine</string>
 			<string>Charm</string>
 			<string>Steward</string>
+			<string>Gunpowder</string>
 			<string>Engineering</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Control</AttributeToIncrease>
