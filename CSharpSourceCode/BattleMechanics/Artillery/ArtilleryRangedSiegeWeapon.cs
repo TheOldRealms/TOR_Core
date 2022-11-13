@@ -12,6 +12,7 @@ using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
 using TOR_Core.BattleMechanics.AI.Decision;
 using TOR_Core.BattleMechanics.AI.TeamBehavior;
 using TOR_Core.BattleMechanics.TriggeredEffect.Scripts;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.Artillery
 {
@@ -147,6 +148,14 @@ namespace TOR_Core.BattleMechanics.Artillery
                 if (UserFormations.Count == 0)
                 {
                     Team.FormationsIncludingSpecialAndEmpty.ToList().FirstOrDefault(form => form.Index == (int) TORFormationClass.Artillery)?.StartUsingMachine(this);
+                }
+            }
+            else
+            {
+                if (UserFormations.Count == 0)
+                {
+                    var form = Team.Formations.ToList().FirstOrDefault(formation => formation.Arrangement.GetAllUnits().FindAll(unit => ((Agent)unit).HasAttribute("ArtilleryCrew")).Count() > 2);
+                    if (form != null) form.StartUsingMachine(this, true);
                 }
             }
         }

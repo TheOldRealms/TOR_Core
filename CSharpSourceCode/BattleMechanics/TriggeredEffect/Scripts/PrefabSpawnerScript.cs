@@ -35,15 +35,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             {
                 artillery.SetSide(triggeredByAgent.Team.Side);
                 artillery.Team = triggeredByAgent.Team;
-                artillery.ForcedUse = false; //!triggeredByAgent.Team.IsPlayerTeam;
-                if (triggeredByAgent.Controller == Agent.ControllerType.Player)
-                {
-                    var found = triggeredByAgent.Team.Formations.ToList().Find(formation => formation.Arrangement.GetAllUnits().FindAll(unit => ((Agent) unit).HasAttribute("ArtilleryCrew")).Count() > 1);
-                    if (found != null)
-                    {
-                        found.StartUsingMachine(artillery);
-                    }
-                }
+                artillery.ForcedUse = !triggeredByAgent.Team.IsPlayerTeam;
             }
         }
 

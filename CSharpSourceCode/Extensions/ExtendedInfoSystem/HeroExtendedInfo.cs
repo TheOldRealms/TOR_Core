@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.SaveSystem;
+using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CharacterDevelopment;
 
@@ -59,6 +60,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             get
             {
                 List<LoreObject> list = new List<LoreObject>();
+                EnsureKnownLores();
                 foreach (var item in _knownLores)
                 {
                     list.Add(LoreObject.GetLore(item));
@@ -72,7 +74,14 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             get
             {
                 var list = new List<string>();
-                if (_baseCharacter != null) list.AddRange(_baseCharacter.GetAbilities());
+                if (_baseCharacter != null)
+                {
+                    list.AddRange(_baseCharacter.GetAbilities());
+                    if (list.Count <= 0 && _baseCharacter.OriginalCharacter != null && _baseCharacter.OriginalCharacter.IsTemplate)
+                    {
+                        list.AddRange(_baseCharacter.OriginalCharacter.GetAbilities());
+                    }
+                }
                 list.AddRange(AcquiredAbilities);
                 return list;
             }
@@ -83,7 +92,14 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             get
             {
                 var list = new List<string>();
-                if (_baseCharacter != null) list.AddRange(_baseCharacter.GetAttributes());
+                if (_baseCharacter != null)
+                {
+                    list.AddRange(_baseCharacter.GetAttributes());
+                    if (list.Count <= 0 && _baseCharacter.OriginalCharacter != null && _baseCharacter.OriginalCharacter.IsTemplate)
+                    {
+                        list.AddRange(_baseCharacter.OriginalCharacter.GetAttributes());
+                    }
+                }
                 list.AddRange(AcquiredAttributes);
                 return list;
             }
@@ -132,6 +148,20 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         public bool HasKnownLore(string loreId)
         {
             return _knownLores.Contains(loreId);
+        }
+
+        private void EnsureKnownLores()
+        {
+            List<AbilityTemplate> list = new List<AbilityTemplate>();
+            foreach(var abilityId in AllAbilites)
+            {
+                var ability = AbilityFactory.GetTemplate(abilityId);
+                if (ability != null && ability.IsSpell) list.Add(ability);
+            }
+            foreach(var item in list)
+            {
+                if (!HasKnownLore(item.BelongsToLoreID)) AddKnownLore(item.BelongsToLoreID);
+            }
         }
     }
     public class HeroExtendedInfoInfoDefiner : SaveableTypeDefiner

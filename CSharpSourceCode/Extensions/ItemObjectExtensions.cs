@@ -116,7 +116,8 @@ namespace TOR_Core.Extensions
 
         public static bool IsGunPowderWeapon(this WeaponComponentData weapon)
         {
-            return weapon.AmmoClass == WeaponClass.Cartridge || weapon.WeaponClass == WeaponClass.Cartridge;
+            if (weapon == null || !weapon.IsRangedWeapon) return false;
+            return weapon.WeaponClass == WeaponClass.Cartridge || weapon.AmmoClass == WeaponClass.Cartridge;
         }
 
         /// <summary>

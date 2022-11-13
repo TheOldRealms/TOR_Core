@@ -15,7 +15,7 @@ namespace TOR_Core.BattleMechanics.Banners
     {
         private Queue<Agent> _unprocessedAgents = new Queue<Agent>();
         private bool _hasUnprocessedAgents;
-        private int counter = 0;
+        private int _counter = 0;
         private readonly int NthAgentToAddBannerTo = 15;
 
         public override void OnAgentBuild(Agent agent, Banner banner)
@@ -36,38 +36,29 @@ namespace TOR_Core.BattleMechanics.Banners
                 while (_unprocessedAgents.Count > 0)
                 {
                     var agent = _unprocessedAgents.Dequeue();
+                    var banner = DetermineBanner(agent);
                     try
                     {
-                        SwitchShieldPattern(agent);
+                        SwitchShieldPattern(agent, banner);
+                        if(_counter > NthAgentToAddBannerTo)
+                        {
+                            _counter = 0;
+                            AssignBanner(agent, banner);
+                        }
                     }
                     catch
                     {
                         TORCommon.Log("Tried to assign shield pattern to agent but failed.", NLog.LogLevel.Error);
                     }
+                    _counter++;
                 }
                 _hasUnprocessedAgents = false;
             }
         }
 
-        private void SwitchShieldPattern(Agent agent)
+        private void SwitchShieldPattern(Agent agent, Banner banner)
         {
             if (agent.State != AgentState.Active) return;
-            string factionId = "";
-            if (Game.Current.GameType is Campaign)
-            {
-                if (agent.Origin is PartyAgentOrigin)
-                {
-                    var origin = agent.Origin as PartyAgentOrigin;
-                    factionId = origin.Party.MapFaction.StringId;
-                }
-                if (agent.Origin is PartyGroupAgentOrigin)
-                {
-                    var origin = agent.Origin as PartyGroupAgentOrigin;
-                    factionId = origin.Party.MapFaction.StringId;
-                }
-            }
-
-            var banner = CustomBannerManager.GetRandomBannerFor(agent.Character.Culture.StringId, factionId);
             if (banner != null)
             {
                 for (int i = 0; i < 5; i++)
@@ -88,20 +79,53 @@ namespace TOR_Core.BattleMechanics.Banners
                         }
                     }
                 }
-                counter++;
-                if (counter > NthAgentToAddBannerTo)
+                
+            }
+        }
+
+        private void AssignBanner(Agent agent, Banner banner)
+        {
+            if (agent.State != AgentState.Active) return;
+            if (_counter > NthAgentToAddBannerTo)
+            {
+                var equipment = agent.Equipment[EquipmentIndex.Weapon3];
+                if (equipment.IsEmpty)
                 {
-                    var equipment = agent.Equipment[EquipmentIndex.Weapon3];
-                    if (equipment.IsEmpty)
+                    _counter = 0;
+                    var itemId = GetBannerNameForAgent(agent);
+                    bool withBanner = itemId == "tor_empire_faction_banner_001" ? true : false;
+                    var bannerWeapon = new MissionWeapon(MBObjectManager.Instance.GetObject<ItemObject>(itemId), null, withBanner ? banner : null);
+                    agent.EquipWeaponWithNewEntity(EquipmentIndex.ExtraWeaponSlot, ref bannerWeapon);
+                }
+            }
+            _counter++;
+        }
+
+        private Banner DetermineBanner(Agent agent)
+        {
+            string factionId = "";
+            if (Game.Current.GameType is Campaign)
+            {
+                if (agent.Origin is PartyAgentOrigin)
+                {
+                    var origin = agent.Origin as PartyAgentOrigin;
+                    factionId = origin.Party.MapFaction.StringId;
+                    if(origin.Party.MapFaction.Leader == Hero.MainHero)
                     {
-                        counter = 0;
-                        var itemId = GetBannerNameForAgent(agent);
-                        bool withBanner = itemId == "tor_empire_faction_banner_001" ? true : false;
-                        var bannerWeapon = new MissionWeapon(MBObjectManager.Instance.GetObject<ItemObject>(itemId), null, withBanner ? banner : null);
-                        agent.EquipWeaponWithNewEntity(EquipmentIndex.ExtraWeaponSlot, ref bannerWeapon);
+                        return Hero.MainHero.ClanBanner;
+                    }
+                }
+                if (agent.Origin is PartyGroupAgentOrigin)
+                {
+                    var origin = agent.Origin as PartyGroupAgentOrigin;
+                    factionId = origin.Party.MapFaction.StringId;
+                    if (origin.Party.MapFaction.Leader == Hero.MainHero)
+                    {
+                        return Hero.MainHero.ClanBanner;
                     }
                 }
             }
+            return CustomBannerManager.GetRandomBannerFor(agent.Character.Culture.StringId, factionId);
         }
 
         private string GetBannerNameForAgent(Agent agent)
