@@ -86,19 +86,15 @@ namespace TOR_Core.BattleMechanics.Banners
         private void AssignBanner(Agent agent, Banner banner)
         {
             if (agent.State != AgentState.Active) return;
-            if (_counter > NthAgentToAddBannerTo)
+            var equipment = agent.Equipment[EquipmentIndex.Weapon3];
+            if (equipment.IsEmpty)
             {
-                var equipment = agent.Equipment[EquipmentIndex.Weapon3];
-                if (equipment.IsEmpty)
-                {
-                    _counter = 0;
-                    var itemId = GetBannerNameForAgent(agent);
-                    bool withBanner = itemId == "tor_empire_faction_banner_001" ? true : false;
-                    var bannerWeapon = new MissionWeapon(MBObjectManager.Instance.GetObject<ItemObject>(itemId), null, withBanner ? banner : null);
-                    agent.EquipWeaponWithNewEntity(EquipmentIndex.ExtraWeaponSlot, ref bannerWeapon);
-                }
+                _counter = 0;
+                var itemId = GetBannerNameForAgent(agent);
+                bool withBanner = itemId == "tor_empire_faction_banner_001" ? true : false;
+                var bannerWeapon = new MissionWeapon(MBObjectManager.Instance.GetObject<ItemObject>(itemId), null, withBanner ? banner : null);
+                agent.EquipWeaponWithNewEntity(EquipmentIndex.ExtraWeaponSlot, ref bannerWeapon);
             }
-            _counter++;
         }
 
         private Banner DetermineBanner(Agent agent)
