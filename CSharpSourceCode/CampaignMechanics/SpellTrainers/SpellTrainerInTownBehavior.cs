@@ -385,6 +385,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 Hero.MainHero.AddKnownLore(choice.ID);
                 if (info.SpellCastingLevel < SpellCastingLevel.Entry) Hero.MainHero.SetSpellCastingLevel(SpellCastingLevel.Entry);
                 MBInformationManager.AddQuickInformation(new TextObject("Successfully learned lore: " + choice.Name));
+                TORQuestHelper.GetCurrentActiveIfExists<SpecializeLoreQuest>()?.CompleteQuestWithSuccess();
             }
             InformationManager.HideInquiry();
         }
