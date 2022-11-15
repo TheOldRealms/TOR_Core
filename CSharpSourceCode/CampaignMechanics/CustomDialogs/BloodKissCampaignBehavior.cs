@@ -42,7 +42,7 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
                 partner.MapFaction.StringId == "sylvania" && 
                 Clan.PlayerClan.Kingdom == partner.MapFaction && 
                 !Clan.PlayerClan.IsUnderMercenaryService &&
-                Clan.PlayerClan.Tier > Campaign.Current.Models.KingdomCreationModel.MinimumClanTierToCreateKingdom)
+                Clan.PlayerClan.Tier >= 4)
             {
                 return !Hero.MainHero.IsVampire();
             }

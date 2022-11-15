@@ -425,7 +425,6 @@
     <Compile Include="BattleMechanics\AI\TeamBehavior\TORFormationClass.cs" />
     <Compile Include="BattleMechanics\AI\TeamBehavior\TorMissionCombatantsLogic.cs" />
     <Compile Include="BattleMechanics\AI\TeamBehavior\TORTeamAIGeneral.cs" />
-    <Compile Include="BattleMechanics\AI\HideOutAlertMissionLogic.cs" />
     <Compile Include="BattleMechanics\Artillery\ArtilleryRangedSiegeWeapon.cs" />
     <Compile Include="BattleMechanics\Artillery\ArtilleryStandingPoint.cs" />
     <Compile Include="BattleMechanics\Artillery\Ballistics.cs" />

@@ -186,7 +186,6 @@ namespace TOR_Core
             mission.AddMissionBehavior(new CustomBannerMissionLogic());
             mission.AddMissionBehavior(new DismembermentMissionLogic());
             mission.AddMissionBehavior(new UndeadMoraleMissionLogic());
-            mission.AddMissionBehavior(new HideoutAlertMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new ForceAtmosphereMissionLogic());
 

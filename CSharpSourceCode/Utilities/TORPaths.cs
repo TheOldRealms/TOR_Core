@@ -45,6 +45,10 @@ namespace TOR_Core.Utilities
             get { return TORCoreModuleRootPath + "Logs/${LogHome}${date:format=yyyy}/${date:format=MMMM}/${date:format=dd}/TOR_log${shortdate}.txt"; }
         }
 
+        public static bool IsPlatformSteamWorkshop()
+        {
+            return TORCoreModuleRootPath.Contains("workshop");
+        }
         public static string TOREnvironmentModuleRootPath
         {
             get { return ModuleHelper.GetModuleFullPath("TOR_Environment"); }

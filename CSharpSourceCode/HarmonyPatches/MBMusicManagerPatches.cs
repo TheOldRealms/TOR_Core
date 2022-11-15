@@ -4,6 +4,7 @@ using System;
 using TaleWorlds.Engine;
 using TaleWorlds.ModuleManager;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -16,7 +17,11 @@ namespace TOR_Core.HarmonyPatches
         {
             if (!NativeConfig.DisableSound)
             {
-                string corePath = ModuleHelper.GetModuleFullPath("TOR_Core") + "music/soundtrack.xml";
+                string corePath = TORPaths.TORCoreModuleRootPath + "music/soundtrack.xml";
+                if (TORPaths.IsPlatformSteamWorkshop())
+                {
+                    corePath = TORPaths.TORCoreModuleRootPath + "music/soundtrack_steam.xml";
+                }
                 PsaiCore.Instance.LoadSoundtrackFromProjectFile(corePath);
             }
         }
