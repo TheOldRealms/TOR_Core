@@ -4,8 +4,7 @@
 		id="crumble" 
 		particle_id="undead_crumbling"
 		particle_intensity="High"
-		health_over_time="0"
-		damage_over_time="5"
+		change_per_tick="5"
 		duration="3"
 		type="DamageOverTime"
 		damage_type="Holy"/>
@@ -13,7 +12,7 @@
 		id="regeneration" 
 		particle_id="undead_crumbling"
 		particle_intensity="Low"
-		health_over_time="3"
+		change_per_tick="3"
 		duration="3"
 		type="HealthOverTime"
 		damage_type="Holy"/>
@@ -21,7 +20,7 @@
 		id="healing_regeneration" 
 		particle_id="healing_regeneration"
 		particle_intensity="High"
-		health_over_time="20"
+		change_per_tick="20"
 		duration="5"
 		type="HealthOverTime"
 		damage_type="Holy"/>
@@ -29,7 +28,7 @@
 		id="red_regeneration" 
 		particle_id="red_regeneration"
 		particle_intensity="High"
-		health_over_time="20"
+		change_per_tick="20"
 		duration="5"
 		type="HealthOverTime"
 		damage_type="Holy"/>
@@ -37,8 +36,7 @@
 		id="fireball_dot" 
 		particle_id="torch_fire_sparks"
 		particle_intensity="High"
-		health_over_time="0"
-		damage_over_time="10"
+		change_per_tick="10"
 		duration="12"
 		type="DamageOverTime"
 		damage_type="Fire">
@@ -47,16 +45,14 @@
 		id="word_of_pain"
 		particle_id="psys_game_step_dust_on_default"
 		particle_intensity="High"
-    	health_over_time="0"
-    	damage_over_time="10"
+    	change_per_tick="10"
 		duration="10"
 		type="DamageOverTime"/>
  	<StatusEffectTemplate
 		id="soulstealer"
 		particle_id="soulstealer"
 		particle_intensity="High"
-    	health_over_time="0"
-    	damage_over_time="12"
+    	change_per_tick="12"
 		duration="10"
 		type="DamageOverTime">
   	</StatusEffectTemplate>
@@ -65,8 +61,7 @@
 		particle_id="psys_energy_sphere"
 		particle_intensity="High"
 		apply_particle_to_root_bone_only="true"
-    	health_over_time="0"
-    	damage_over_time="0"
+    	change_per_tick="0"
 		duration="15"
 		type="Resistance">
     	<Resistance ResistedDamageType="Physical" ReductionPercent="0.2" />
@@ -76,8 +71,7 @@
 		particle_id="harmonic_convergence"
 		particle_intensity="High"
 		apply_particle_to_root_bone_only="true"
-    	health_over_time="0"
-    	damage_over_time="0"
+    	change_per_tick="0"
 		duration="15"
 		type="Resistance">
     	<Resistance ResistedDamageType="Physical" ReductionPercent="0.5" />
@@ -87,8 +81,7 @@
 		particle_id="berzerk_effect"
 		particle_intensity="High"
 		apply_particle_to_root_bone_only="true"
-    	health_over_time="0"
-    	damage_over_time="0"
+    	change_per_tick="0"
 		duration="15"
 		type="DamageAmplification">
     	<DamageAmplifier AmplifiedDamageType="Physical" DamageAmplifier="0.2" />
@@ -97,8 +90,8 @@
 		id="womregeneration" 
 		particle_id="harmonic_convergence"
 		particle_intensity="Low"
-		health_over_time="5"
+		change_per_tick="5"
 		duration="3"
-		type="WindsOfMagicRegeneration">
+		type="WindsRegeneration">
 	</StatusEffectTemplate>
 </StatusEffects>
