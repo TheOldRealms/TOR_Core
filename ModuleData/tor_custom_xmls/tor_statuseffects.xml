@@ -93,4 +93,12 @@
 		type="DamageAmplification">
     	<DamageAmplifier AmplifiedDamageType="Physical" DamageAmplifier="0.2" />
   	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="womregeneration" 
+		particle_id="harmonic_convergence"
+		particle_intensity="Low"
+		health_over_time="5"
+		duration="3"
+		type="WindsOfMagicRegeneration">
+	</StatusEffectTemplate>
 </StatusEffects>

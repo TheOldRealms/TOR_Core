@@ -333,6 +333,14 @@ namespace TOR_Core.Extensions
             }
         }
 
+        public static void ChangeCurrentWind(this Agent agent, float value)
+        {
+            var hero = agent.GetHero();
+            if(hero!=null)
+                ExtendedInfoManager.Instance.ChangeWindsOfMagic(hero, value);
+        }
+
+
         public static void SelectPreviousAbility(this Agent agent)
         {
             var abilitycomponent = agent.GetComponent<AbilityComponent>();

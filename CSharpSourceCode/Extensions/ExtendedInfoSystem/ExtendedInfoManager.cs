@@ -1,10 +1,11 @@
-﻿using NLog;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CharacterDevelopment;
@@ -34,6 +35,17 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         public static CharacterExtendedInfo GetCharacterInfoFor(string id)
         {
             return _characterInfos.ContainsKey(id) ? _characterInfos[id] : null;
+        }
+        
+        public void ChangeWindsOfMagic(Hero hero, float change)
+        {
+            var key = hero.GetInfoKey();
+            HeroExtendedInfo heroInfo;
+            if(_heroInfos.TryGetValue(key, out heroInfo))
+            {
+                var value = heroInfo.CurrentWindsOfMagic + change;
+                heroInfo.CurrentWindsOfMagic = Mathf.Clamp(value, 0f, heroInfo.MaxWindsOfMagic);
+            }
         }
 
         public HeroExtendedInfo GetHeroInfoFor(string id)

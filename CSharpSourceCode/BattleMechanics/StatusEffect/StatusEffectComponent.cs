@@ -73,6 +73,12 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 {
                     Agent.Heal((int)_effectAggregate.HealthOverTime);
                 }
+
+                if (_effectAggregate.WindsofMagicOverTime > 0)
+                {
+                    Agent.ChangeCurrentWind(_effectAggregate.WindsofMagicOverTime);
+                }
+                
             }
         }
 
@@ -145,6 +151,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         private class EffectAggregate
         {
+            public float WindsofMagicOverTime { get; set; } = 0;
             public float HealthOverTime { get; set; } = 0;
             public float DamageOverTime { get; set; } = 0;
             public readonly float[] DamageAmplification = new float[(int)DamageType.All + 1];
@@ -166,6 +173,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                         break;
                     case StatusEffectTemplate.EffectType.Resistance:
                         Resistance[(int)template.Resistance.ResistedDamageType] = template.Resistance.ReductionPercent;
+                        break;
+                    case StatusEffectTemplate.EffectType.WindsOfMagicRegeneration:
+                        WindsofMagicOverTime += template.HealthOverTime;
                         break;
                 }
             }

@@ -37,6 +37,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             DamageOverTime,
             DamageAmplification,
             Resistance,
+            WindsOfMagicRegeneration,
             Invalid
         };
 

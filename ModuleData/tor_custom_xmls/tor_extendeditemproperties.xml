@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfExtendedItemObjectProperties>
-
+<ExtendedItemObjectProperties ItemStringId="trinket_magical">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Magic Trinket" IconName="winds_icon_45" ImbuedStatusEffectId="womregeneration">
+        <ItemTraitDescription>Regenerates Winds of Magic on Use</ItemTraitDescription>
+      </ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
  <ExtendedItemObjectProperties ItemStringId="trinket_holy">
     <ItemTraits>
       <ItemTrait ItemTraitName="Holy Trinket" IconName="winds_icon_45" ImbuedStatusEffectId="healing_regeneration">
