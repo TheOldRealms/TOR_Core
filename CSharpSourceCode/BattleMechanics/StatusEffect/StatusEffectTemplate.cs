@@ -16,14 +16,12 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         public ParticleIntensity ParticleIntensity { get; set; }
         [XmlAttribute("apply_particle_to_root_bone_only")]
         public bool ApplyToRootBoneOnly { get; set; } = false;
-        [XmlAttribute("health_over_time")]
-        public float HealthOverTime { get; set; } = 0;
+        [XmlAttribute("change_per_tick")]
+        public float ChangePerTick { get; set; } = 0;
         [XmlAttribute("duration")]
         public int BaseDuration { get; set; } = 0;
         [XmlAttribute("type")]
         public EffectType Type { get; set; } = EffectType.Invalid;
-        [XmlAttribute("damage_over_time")]
-        public float DamageOverTime { get; set; } = 0;
         [XmlAttribute("damage_type")]
         public DamageType DamageType { get; set; } = DamageType.Physical;
         [XmlElement]
@@ -37,7 +35,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             DamageOverTime,
             DamageAmplification,
             Resistance,
-            WindsOfMagicRegeneration,
+            WindsRegeneration,
             Invalid
         };
 

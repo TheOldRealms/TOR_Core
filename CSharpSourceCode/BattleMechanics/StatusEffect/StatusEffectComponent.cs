@@ -163,10 +163,10 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 switch (template.Type)
                 {
                     case StatusEffectTemplate.EffectType.DamageOverTime:
-                        DamageOverTime += template.DamageOverTime;
+                        DamageOverTime += template.ChangePerTick;
                         break;
                     case StatusEffectTemplate.EffectType.HealthOverTime:
-                        HealthOverTime += template.HealthOverTime;
+                        HealthOverTime += template.ChangePerTick;
                         break;
                     case StatusEffectTemplate.EffectType.DamageAmplification :
                         DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType] = template.DamageAmplifier.DamageAmplifier;
@@ -174,8 +174,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     case StatusEffectTemplate.EffectType.Resistance:
                         Resistance[(int)template.Resistance.ResistedDamageType] = template.Resistance.ReductionPercent;
                         break;
-                    case StatusEffectTemplate.EffectType.WindsOfMagicRegeneration:
-                        WindsofMagicOverTime += template.HealthOverTime;
+                    case StatusEffectTemplate.EffectType.WindsRegeneration:
+                        WindsofMagicOverTime += template.ChangePerTick;
                         break;
                 }
             }
