@@ -33,6 +33,7 @@ using TOR_Core.BattleMechanics.Firearms;
 using TOR_Core.BattleMechanics.Morale;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
+using TOR_Core.BattleMechanics.Trinket;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.Assimilation;
 using TOR_Core.CampaignMechanics.Chaos;
@@ -187,6 +188,7 @@ namespace TOR_Core
             mission.AddMissionBehavior(new DismembermentMissionLogic());
             mission.AddMissionBehavior(new UndeadMoraleMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
+            mission.AddMissionBehavior(new TrinketMissionLogic());
             mission.AddMissionBehavior(new ForceAtmosphereMissionLogic());
 
             if (Game.Current.GameType is Campaign)

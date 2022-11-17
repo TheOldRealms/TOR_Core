@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfExtendedItemObjectProperties>
+
+ <ExtendedItemObjectProperties ItemStringId="trinket_holy">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Holy Trinket" IconName="winds_icon_45" ImbuedStatusEffectId="healing_regeneration">
+        <ItemTraitDescription>Applies a healing effect on use</ItemTraitDescription>
+      </ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_head_helm_militia_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -2666,5 +2674,8 @@
       </ItemTrait>
     </ItemTraits>
     <Description>"Even the far coasts of Lustria seem not to be spared of the taint of vampires. Legends say, a single mad Vampire, Luthor Harkon, established his own Colony. Legends say his mind is shattered since plundering a temple of the lizardmen that cursed him and his body. Many different personalities are fighting in his soul for control, some might call a curse or blessing. Crazy or not, he managed to conquer, and recruit many of the pirates in his undead army. Vampires, either looking for adventure or hunted in  Sylvania, search for a new life far from their former habitat, and they become captains and his first mates, to haunt the shores. May Sigmar protect any living sailor that has the misfortune to come across them."</Description>
-  </ExtendedItemObjectProperties>
+
+
+
+</ExtendedItemObjectProperties>
 </ArrayOfExtendedItemObjectProperties>
