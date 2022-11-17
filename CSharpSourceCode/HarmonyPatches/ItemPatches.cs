@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
@@ -19,7 +19,14 @@ namespace TOR_Core.HarmonyPatches
                 __result = TORSkills.GunPowder;
                 return false;
             }
-            else return true;
+            
+            if (weaponClass == WeaponClass.Stone)
+            {
+                __result = TORSkills.Faith;
+                return false;
+            }
+            
+            return true;
         }
 
         [HarmonyPostfix]
