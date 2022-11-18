@@ -339,6 +339,21 @@ namespace TOR_Core.Extensions
             if(hero!=null)
                 ExtendedInfoManager.Instance.ChangeWindsOfMagic(hero, value);
         }
+        
+        public static void ReduceCoolDowns(this Agent agent, float value)
+        {
+
+            var abilities = agent.GetAbilities();
+
+            foreach (var VARIABLE in abilities)
+            {
+                
+            }
+            var hero = agent.GetHero();
+            if(hero!=null)
+                ExtendedInfoManager.Instance.ChangeWindsOfMagic(hero, value);
+        }
+
 
 
         public static void SelectPreviousAbility(this Agent agent)
@@ -429,6 +444,19 @@ namespace TOR_Core.Extensions
             }
 
             return null;
+        }
+
+        public static List<Ability> GetAllSelectedAbilities(this Agent agent)
+        {
+            var list = new List<Ability>();
+            var numberOfSpells = GetSelectedAbilities(agent).Count;
+
+            for (int i = 0; i < numberOfSpells; i++)
+            {
+                list.Add(agent.GetAbility(i));
+            }
+
+            return list;
         }
 
         public static List<string> GetAttributes(this Agent agent)

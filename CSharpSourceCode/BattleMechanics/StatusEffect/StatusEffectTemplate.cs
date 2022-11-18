@@ -36,6 +36,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             DamageAmplification,
             Resistance,
             WindsRegeneration,
+            CoolDownReduction,
             Invalid
         };
 

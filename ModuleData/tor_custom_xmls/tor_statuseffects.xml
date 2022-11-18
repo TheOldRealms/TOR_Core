@@ -87,11 +87,19 @@
     	<DamageAmplifier AmplifiedDamageType="Physical" DamageAmplifier="0.2" />
   	</StatusEffectTemplate>
 	<StatusEffectTemplate 
-		id="womregeneration" 
+		id="wom_regeneration" 
 		particle_id="harmonic_convergence"
 		particle_intensity="Low"
 		change_per_tick="5"
 		duration="3"
 		type="WindsRegeneration">
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="cooldown_reduction" 
+		particle_id="harmonic_convergence"
+		particle_intensity="Low"
+		change_per_tick="10"
+		duration="2"
+		type="CoolDownReduction">
 	</StatusEffectTemplate>
 </StatusEffects>

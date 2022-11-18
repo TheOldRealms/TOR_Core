@@ -46,6 +46,11 @@ namespace TOR_Core.AbilitySystem
             _timer.Elapsed += TimerElapsed;
             _timer.Enabled = false;
         }
+        
+        public void ReduceCoolDown(float delta)
+        {
+            _cooldown_end_time -= delta;
+        }
 
         private void TimerElapsed(object sender, ElapsedEventArgs e)
         {

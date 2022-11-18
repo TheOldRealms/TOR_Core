@@ -2,7 +2,7 @@
 <ArrayOfExtendedItemObjectProperties>
 <ExtendedItemObjectProperties ItemStringId="trinket_magical">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Magic Trinket" IconName="winds_icon_45" ImbuedStatusEffectId="womregeneration">
+      <ItemTrait ItemTraitName="Magic Trinket" IconName="winds_icon_45" ImbuedStatusEffectId="wom_regeneration">
         <ItemTraitDescription>Regenerates Winds of Magic on Use</ItemTraitDescription>
       </ItemTrait>
     </ItemTraits>
@@ -11,6 +11,9 @@
     <ItemTraits>
       <ItemTrait ItemTraitName="Holy Trinket" IconName="winds_icon_45" ImbuedStatusEffectId="healing_regeneration">
         <ItemTraitDescription>Applies a healing effect on use</ItemTraitDescription>
+      </ItemTrait>
+	<ItemTrait ItemTraitName="Holy Trinket" IconName="winds_icon_45" ImbuedStatusEffectId="cooldown_reduction">
+	<ItemTraitDescription>Reduces cooldown by 10 seconds</ItemTraitDescription>
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>

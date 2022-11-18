@@ -79,6 +79,18 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     Agent.ChangeCurrentWind(_effectAggregate.WindsofMagicOverTime);
                 }
                 
+                if (_effectAggregate.CooldownReduction > 0)
+                {
+                    var list = Agent.GetAllSelectedAbilities();
+                    foreach (var ability in list)
+                    {
+                        if (ability.IsOnCooldown())
+                        {
+                            ability.ReduceCoolDown(_effectAggregate.CooldownReduction);
+                        }
+                    }
+                }
+                
             }
         }
 
@@ -151,9 +163,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         private class EffectAggregate
         {
+            public float CooldownReduction { get; set; } = 0;
             public float WindsofMagicOverTime { get; set; } = 0;
             public float HealthOverTime { get; set; } = 0;
             public float DamageOverTime { get; set; } = 0;
+            
             public readonly float[] DamageAmplification = new float[(int)DamageType.All + 1];
             public readonly float[] Resistance = new float[(int)DamageType.All + 1];
 
@@ -176,6 +190,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                         break;
                     case StatusEffectTemplate.EffectType.WindsRegeneration:
                         WindsofMagicOverTime += template.ChangePerTick;
+                        break;
+                    case StatusEffectTemplate.EffectType.CoolDownReduction:
+                        CooldownReduction += template.ChangePerTick;
                         break;
                 }
             }
