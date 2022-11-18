@@ -79,7 +79,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     Agent.ChangeCurrentWind(_effectAggregate.WindsofMagicOverTime);
                 }
                 
-                if (_effectAggregate.CooldownReduction > 0)
+                if (_effectAggregate.CooldownReduction > 0)     //Cooldown reduction atleast 2 seconds duration for ticking once
                 {
                     var list = Agent.GetAllSelectedAbilities();
                     foreach (var ability in list)
