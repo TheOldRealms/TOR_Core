@@ -129,11 +129,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         public float[] GetAmplifiers(AttackType mask)
         {
-            return Enumerable.Range(0,(int) DamageType.All+1).Select(x => _effectAggregate.DamageAmplification[x,(int)mask]).ToArray();
+            var array= Enumerable.Range(0,(int) DamageType.All+1).Select(x => _effectAggregate.DamageAmplification[x,(int)mask - 1]).ToArray();
+            return array;
+            // _effectAggregate.DamageAmplification[]
 
-           // _effectAggregate.DamageAmplification[]
-            
-          //  return _effectAggregate.DamageAmplification;
+            //  return _effectAggregate.DamageAmplification;
         }
 
         public float[] GetResistances(AttackType mask)

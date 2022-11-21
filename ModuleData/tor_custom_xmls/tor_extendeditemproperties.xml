@@ -1,5 +1,12 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfExtendedItemObjectProperties>
+<ExtendedItemObjectProperties ItemStringId="potion_strength">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Strength Buff" IconName="winds_icon_45" ImbuedStatusEffectId="melee_bonus_50">
+        <ItemTraitDescription>The user deals 50% more melee damage</ItemTraitDescription>
+      </ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
 <ExtendedItemObjectProperties ItemStringId="trinket_magical">
     <ItemTraits>
       <ItemTrait ItemTraitName="Magic Trinket" IconName="winds_icon_45" ImbuedStatusEffectId="wom_regeneration">

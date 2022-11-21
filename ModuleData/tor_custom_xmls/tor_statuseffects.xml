@@ -112,4 +112,12 @@
 		duration="2"
 		type="CoolDownReduction">
 	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="melee_bonus_50" 
+		particle_id="berzerk_effect"
+		particle_intensity="Low"
+		duration="15"
+		type="DamageAmplification">
+	<DamageAmplifier AmplifiedDamageType="Physical" AttackType="Melee" DamageAmplifier="0.5" />
+	</StatusEffectTemplate>
 </StatusEffects>
