@@ -69,7 +69,7 @@
       CastType="Instant" 
       CastTime="0" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="physical_resistance_20"
+      TriggeredEffectID="arrow_resistance_50"
       Offset="0"
       AbilityTargetType="Self"
       CrosshairType="Self"

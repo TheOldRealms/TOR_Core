@@ -27,21 +27,21 @@ namespace TOR_Core.HarmonyPatches
             }
 
          
-            AttackTypeMask attackTypeMask = AttackTypeMask.None;
+            AttackType attackType = AttackType.None;
             bool isSpellBlow =TORSpellBlowHelper.IsSpellBlow(b);
 
 
           
 
 
-            if (b.IsMissile) attackTypeMask = AttackTypeMask.Range; 
-            else attackTypeMask = AttackTypeMask.Melee;
+            if (b.IsMissile) attackType = AttackType.Range; 
+            else attackType = AttackType.Melee;
             
-            if (isSpellBlow) attackTypeMask = AttackTypeMask.Spell;
+            if (isSpellBlow) attackType = AttackType.Spell;
             
             float[] damageCategories = new float[(int)DamageType.All + 1];
-            var attackerPropertyContainer = attacker.GetProperties(PropertyMask.Attack, attackTypeMask);
-            var victimPropertyContainer = victim.GetProperties(PropertyMask.Defense, attackTypeMask);
+            var attackerPropertyContainer = attacker.GetProperties(PropertyMask.Attack, attackType);
+            var victimPropertyContainer = victim.GetProperties(PropertyMask.Defense, attackType);
             //attack properties;
             var damageProportions = attackerPropertyContainer.DamageProportions;
             var damagePercentages = attackerPropertyContainer.DamagePercentages;

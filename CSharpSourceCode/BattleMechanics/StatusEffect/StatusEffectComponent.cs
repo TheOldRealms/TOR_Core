@@ -127,7 +127,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             _currentEffects.Remove(effect);
         }
 
-        public float[] GetAmplifiers(AttackTypeMask mask)
+        public float[] GetAmplifiers(AttackType mask)
         {
             return Enumerable.Range(0,(int) DamageType.All+1).Select(x => _effectAggregate.DamageAmplification[x,(int)mask]).ToArray();
 
@@ -136,9 +136,10 @@ namespace TOR_Core.BattleMechanics.StatusEffect
           //  return _effectAggregate.DamageAmplification;
         }
 
-        public float[] GetResistances(AttackTypeMask mask)
+        public float[] GetResistances(AttackType mask)
         {
-            return Enumerable.Range(0,(int) DamageType.All+1).Select(x => _effectAggregate.Resistance[x,(int)mask]).ToArray();
+            var array = Enumerable.Range(0, (int)DamageType.All + 1).Select(x => _effectAggregate.Resistance[x, (int)mask - 1]).ToArray();
+            return array;
            // return _effectAggregate.Resistance;
         }
 
@@ -174,8 +175,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             public float HealthOverTime { get; set; } = 0;
             public float DamageOverTime { get; set; } = 0;
             
-            public readonly float[,] DamageAmplification = new float[(int)DamageType.All + 1, (int) AttackTypeMask.All+1];
-            public readonly float[,] Resistance = new float[(int)DamageType.All + 1,(int) AttackTypeMask.All+1];
+            public readonly float[,] DamageAmplification = new float[(int)DamageType.All + 1, 3];
+            public readonly float[,] Resistance = new float[(int)DamageType.All + 1,3];
 
             public void AddEffect(StatusEffect effect)
             {
@@ -189,25 +190,25 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                         HealthOverTime += template.ChangePerTick;
                         break;
                     case StatusEffectTemplate.EffectType.DamageAmplification :
-                        var dmgMask = template.DamageAmplifier.AttackTypeMask;
+                        var dmgMask = template.DamageAmplifier.AttackType;
 
                         switch (dmgMask)
                         {
-                            case AttackTypeMask.Melee:
+                            case AttackType.Melee:
                                 DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 0] += template.DamageAmplifier.DamageAmplifier;
                                 break;
-                            case AttackTypeMask.Range:
+                            case AttackType.Range:
                                 DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 1] += template.DamageAmplifier.DamageAmplifier;
                                 break;
-                            case AttackTypeMask.Spell:
+                            case AttackType.Spell:
                                 DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 2] += template.DamageAmplifier.DamageAmplifier;
                                 break;
-                            case AttackTypeMask.All:
+                            case AttackType.All:
                                 DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 0] += template.DamageAmplifier.DamageAmplifier;
                                 DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 1] += template.DamageAmplifier.DamageAmplifier;
                                 DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 2] += template.DamageAmplifier.DamageAmplifier;
                                 break;
-                            case AttackTypeMask.None:
+                            case AttackType.None:
                                 break;
                             default:
                                 throw new ArgumentOutOfRangeException();
@@ -215,25 +216,25 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
                         break;
                     case StatusEffectTemplate.EffectType.Resistance:
-                        var resMask = template.Resistance.AttackTypeMask;
+                        var resMask = template.Resistance.AttackType;
                         
                         switch (resMask)
                         {
-                            case AttackTypeMask.Melee:
-                                DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 0] += template.Resistance.ReductionPercent;
+                            case AttackType.Melee:
+                                Resistance[(int)template.Resistance.ResistedDamageType, 0] += template.Resistance.ReductionPercent;
                                 break;
-                            case AttackTypeMask.Range:
-                                DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 1] += template.Resistance.ReductionPercent;
+                            case AttackType.Range:
+                                Resistance[(int)template.Resistance.ResistedDamageType, 1] += template.Resistance.ReductionPercent;
                                 break;
-                            case AttackTypeMask.Spell:
-                                DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 2] += template.Resistance.ReductionPercent;
+                            case AttackType.Spell:
+                                Resistance[(int)template.Resistance.ResistedDamageType, 2] += template.Resistance.ReductionPercent;
                                 break;
-                            case AttackTypeMask.All:
-                                DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 0] += template.Resistance.ReductionPercent;
-                                DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 1] += template.Resistance.ReductionPercent;
-                                DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 2] += template.Resistance.ReductionPercent;
+                            case AttackType.All:
+                                Resistance[(int)template.Resistance.ResistedDamageType, 0] += template.Resistance.ReductionPercent;
+                                Resistance[(int)template.Resistance.ResistedDamageType, 1] += template.Resistance.ReductionPercent;
+                                Resistance[(int)template.Resistance.ResistedDamageType, 2] += template.Resistance.ReductionPercent;
                                 break;
-                            case AttackTypeMask.None:
+                            case AttackType.None:
                                 break;
                             default:
                                 throw new ArgumentOutOfRangeException();

@@ -32,7 +32,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
     public class ResistanceTuple
     {
         [XmlAttribute]
-        public AttackTypeMask AttackTypeMask = AttackTypeMask.All;
+        public AttackType AttackType = AttackType.All;
         [XmlAttribute]
         public DamageType ResistedDamageType = DamageType.Invalid;
         [XmlAttribute]
@@ -43,7 +43,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
     public class AmplifierTuple
     {
         [XmlAttribute]
-        public AttackTypeMask AttackTypeMask = AttackTypeMask.All;
+        public AttackType AttackType = AttackType.All;
         [XmlAttribute]
         public DamageType AmplifiedDamageType = DamageType.Invalid;
         [XmlAttribute]
@@ -91,7 +91,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         Defense = 1,
         All = 2
     }
-    public enum  AttackTypeMask
+    public enum  AttackType
     {
         None = 0,
         Melee = 1,

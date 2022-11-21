@@ -130,7 +130,7 @@ namespace TOR_Core.Extensions
         /// <paramref name="agent"/>
         /// <param name="mask">Which properties needs to be accessed? be mindful about which information is really required for your specific situation. Not used properties are returned as empty arrays</param>
         ///<returns>A struct containing 3 arrays, each containing the  properties:  proportions, damage amplifications and resistances.</returns>
-        public static AgentPropertyContainer GetProperties(this Agent agent, PropertyMask mask = PropertyMask.All, AttackTypeMask attackTypeMask = AttackTypeMask.Melee)
+        public static AgentPropertyContainer GetProperties(this Agent agent, PropertyMask mask = PropertyMask.All, AttackType attackType = AttackType.Melee)
         {
             if (agent.IsMount)
                 return new AgentPropertyContainer();
@@ -155,7 +155,7 @@ namespace TOR_Core.Extensions
                     //add all offense properties of the Unit
                     foreach (var property in offenseProperties)
                     {
-                        if(property.AttackTypeMask== attackTypeMask||property.AttackTypeMask== AttackTypeMask.All)
+                        if(property.AttackType== attackType||property.AttackType== AttackType.All)
                             damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
                     }
                     //add temporary effects like buffs to attack bonuses on items
@@ -167,7 +167,7 @@ namespace TOR_Core.Extensions
 
                         if (attackProperty != null)
                         {
-                            if(attackProperty.AttackTypeMask== attackTypeMask||attackProperty.AttackTypeMask== AttackTypeMask.All)
+                            if(attackProperty.AttackType== attackType||attackProperty.AttackType== AttackType.All)
                                 damageAmplifications[(int)attackProperty.AmplifiedDamageType] += attackProperty.DamageAmplifier;
                         }
                         var additionalDamageProperty = dynamicTrait.AdditionalDamageTuple;
@@ -177,7 +177,7 @@ namespace TOR_Core.Extensions
                         }
                     }
                     
-                    var statusEffectAmplifiers = agent.GetComponent<StatusEffectComponent>().GetAmplifiers(attackTypeMask);
+                    var statusEffectAmplifiers = agent.GetComponent<StatusEffectComponent>().GetAmplifiers(attackType);
                     for (int i = 0; i < damageAmplifications.Length; i++)
                     {
                         
@@ -191,7 +191,7 @@ namespace TOR_Core.Extensions
 
                     foreach (var property in defenseProperties)
                     {
-                        if(property.AttackTypeMask== attackTypeMask||property.AttackTypeMask== AttackTypeMask.All)
+                        if(property.AttackType== attackType||property.AttackType== AttackType.All)
                             damageResistances[(int)property.ResistedDamageType] += property.ReductionPercent;
                     }
 
@@ -204,13 +204,13 @@ namespace TOR_Core.Extensions
                         var defenseProperty = dynamicTrait.ResistanceTuple;
                         if (defenseProperty != null)
                         {
-                            if(defenseProperty.AttackTypeMask==attackTypeMask||defenseProperty.AttackTypeMask==AttackTypeMask.All);
+                            if(defenseProperty.AttackType==attackType||defenseProperty.AttackType==AttackType.All);
                                 damageResistances[(int)defenseProperty.ResistedDamageType] += defenseProperty.ReductionPercent;
                         }
                     }
 
                     //status effects
-                    var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances(attackTypeMask);
+                    var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances(attackType);
 
                     for (int i = 0; i < damageResistances.Length; i++)
                     {
@@ -241,7 +241,7 @@ namespace TOR_Core.Extensions
                     {
                         var property = itemTrait.AmplifierTuple;
                         if (property != null)
-                            if(property.AttackTypeMask==attackTypeMask||property.AttackTypeMask==AttackTypeMask.All)
+                            if(property.AttackType==attackType||property.AttackType==AttackType.All)
                                 damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
 
                         var additionalDamageProperty = itemTrait.AdditionalDamageTuple;
@@ -252,7 +252,7 @@ namespace TOR_Core.Extensions
 
                     }
 
-                    var statusEffectAmplifiers = agent.GetComponent<StatusEffectComponent>().GetAmplifiers(attackTypeMask);
+                    var statusEffectAmplifiers = agent.GetComponent<StatusEffectComponent>().GetAmplifiers(attackType);
 
                     for (int i = 0; i < damageAmplifications.Length; i++)
                     {
@@ -293,12 +293,12 @@ namespace TOR_Core.Extensions
                         var defenseProperty = itemTrait.ResistanceTuple;
                         if (defenseProperty == null)
                             continue;
-                        if(defenseProperty.AttackTypeMask==attackTypeMask||defenseProperty.AttackTypeMask==AttackTypeMask.All)
+                        if(defenseProperty.AttackType==attackType||defenseProperty.AttackType==AttackType.All)
                             damageResistances[(int)defenseProperty.ResistedDamageType] += defenseProperty.ReductionPercent;
                     }
 
                     //statuseffects
-                    var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances(attackTypeMask);
+                    var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances(attackType);
 
                     for (int i = 0; i < damageResistances.Length; i++)
                     {

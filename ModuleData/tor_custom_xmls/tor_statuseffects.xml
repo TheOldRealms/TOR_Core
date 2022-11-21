@@ -57,6 +57,16 @@
 		type="DamageOverTime">
   	</StatusEffectTemplate>
 	<StatusEffectTemplate
+		id="arrow_resistance_50"
+		particle_id="psys_energy_sphere"
+		particle_intensity="High"
+		apply_particle_to_root_bone_only="true"
+    	change_per_tick="0"
+		duration="15"
+		type="Resistance">
+    	<Resistance ResistedDamageType="Physical" AttackType="Range" ReductionPercent="0.5" />
+	</StatusEffectTemplate>
+	<StatusEffectTemplate
 		id="physical_resistance_20"
 		particle_id="psys_energy_sphere"
 		particle_intensity="High"
