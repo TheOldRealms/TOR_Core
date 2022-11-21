@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using Mono.CompilerServices.SymbolWriter;
 using TOR_Core.BattleMechanics.DamageSystem;
 
 namespace TOR_Core.Extensions.ExtendedInfoSystem
@@ -31,6 +32,8 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
     public class ResistanceTuple
     {
         [XmlAttribute]
+        public AttackTypeMask AttackTypeMask = AttackTypeMask.All;
+        [XmlAttribute]
         public DamageType ResistedDamageType = DamageType.Invalid;
         [XmlAttribute]
         public float ReductionPercent = 0;
@@ -39,6 +42,8 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
     [Serializable]
     public class AmplifierTuple
     {
+        [XmlAttribute]
+        public AttackTypeMask AttackTypeMask = AttackTypeMask.All;
         [XmlAttribute]
         public DamageType AmplifiedDamageType = DamageType.Invalid;
         [XmlAttribute]
@@ -85,5 +90,13 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         Attack = 0,
         Defense = 1,
         All = 2
+    }
+    public enum  AttackTypeMask
+    {
+        None = 0,
+        Melee = 1,
+        Range = 2,
+        Spell = 3,
+        All=4
     }
 }

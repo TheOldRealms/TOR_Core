@@ -130,7 +130,7 @@ namespace TOR_Core.Extensions
         /// <paramref name="agent"/>
         /// <param name="mask">Which properties needs to be accessed? be mindful about which information is really required for your specific situation. Not used properties are returned as empty arrays</param>
         ///<returns>A struct containing 3 arrays, each containing the  properties:  proportions, damage amplifications and resistances.</returns>
-        public static AgentPropertyContainer GetProperties(this Agent agent, PropertyMask mask = PropertyMask.All)
+        public static AgentPropertyContainer GetProperties(this Agent agent, PropertyMask mask = PropertyMask.All, AttackTypeMask attackTypeMask = AttackTypeMask.Melee)
         {
             if (agent.IsMount)
                 return new AgentPropertyContainer();
@@ -150,12 +150,13 @@ namespace TOR_Core.Extensions
                     {
                         damageProportions[(int)proportionTuple.DamageType] = proportionTuple.Percent;
                     }
+                    
                     var offenseProperties = agent.Character.GetAttackProperties();
-
                     //add all offense properties of the Unit
                     foreach (var property in offenseProperties)
                     {
-                        damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
+                        if(property.AttackTypeMask== attackTypeMask||property.AttackTypeMask== AttackTypeMask.All)
+                            damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
                     }
                     //add temporary effects like buffs to attack bonuses on items
                     List<ItemTrait> dynamicTraits = agent.GetComponent<ItemTraitAgentComponent>()
@@ -166,7 +167,8 @@ namespace TOR_Core.Extensions
 
                         if (attackProperty != null)
                         {
-                            damageAmplifications[(int)attackProperty.AmplifiedDamageType] += attackProperty.DamageAmplifier;
+                            if(attackProperty.AttackTypeMask== attackTypeMask||attackProperty.AttackTypeMask== AttackTypeMask.All)
+                                damageAmplifications[(int)attackProperty.AmplifiedDamageType] += attackProperty.DamageAmplifier;
                         }
                         var additionalDamageProperty = dynamicTrait.AdditionalDamageTuple;
                         if (additionalDamageProperty != null)
@@ -174,9 +176,11 @@ namespace TOR_Core.Extensions
                             additionalDamagePercentages[(int)additionalDamageProperty.DamageType] += additionalDamageProperty.Percent;
                         }
                     }
-                    var statusEffectAmplifiers = agent.GetComponent<StatusEffectComponent>().GetAmplifiers();
+                    
+                    var statusEffectAmplifiers = agent.GetComponent<StatusEffectComponent>().GetAmplifiers(attackTypeMask);
                     for (int i = 0; i < damageAmplifications.Length; i++)
                     {
+                        
                         damageAmplifications[i] += statusEffectAmplifiers[i];
                     }
                 }
@@ -187,7 +191,8 @@ namespace TOR_Core.Extensions
 
                     foreach (var property in defenseProperties)
                     {
-                        damageResistances[(int)property.ResistedDamageType] += property.ReductionPercent;
+                        if(property.AttackTypeMask== attackTypeMask||property.AttackTypeMask== AttackTypeMask.All)
+                            damageResistances[(int)property.ResistedDamageType] += property.ReductionPercent;
                     }
 
                     //add temporary effects like buffs to defense bonuses
@@ -199,12 +204,13 @@ namespace TOR_Core.Extensions
                         var defenseProperty = dynamicTrait.ResistanceTuple;
                         if (defenseProperty != null)
                         {
-                            damageResistances[(int)defenseProperty.ResistedDamageType] += defenseProperty.ReductionPercent;
+                            if(defenseProperty.AttackTypeMask==attackTypeMask||defenseProperty.AttackTypeMask==AttackTypeMask.All);
+                                damageResistances[(int)defenseProperty.ResistedDamageType] += defenseProperty.ReductionPercent;
                         }
                     }
 
                     //status effects
-                    var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances();
+                    var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances(attackTypeMask);
 
                     for (int i = 0; i < damageResistances.Length; i++)
                     {
@@ -235,7 +241,8 @@ namespace TOR_Core.Extensions
                     {
                         var property = itemTrait.AmplifierTuple;
                         if (property != null)
-                            damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
+                            if(property.AttackTypeMask==attackTypeMask||property.AttackTypeMask==AttackTypeMask.All)
+                                damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
 
                         var additionalDamageProperty = itemTrait.AdditionalDamageTuple;
                         if (additionalDamageProperty != null)
@@ -245,7 +252,7 @@ namespace TOR_Core.Extensions
 
                     }
 
-                    var statusEffectAmplifiers = agent.GetComponent<StatusEffectComponent>().GetAmplifiers();
+                    var statusEffectAmplifiers = agent.GetComponent<StatusEffectComponent>().GetAmplifiers(attackTypeMask);
 
                     for (int i = 0; i < damageAmplifications.Length; i++)
                     {
@@ -286,11 +293,12 @@ namespace TOR_Core.Extensions
                         var defenseProperty = itemTrait.ResistanceTuple;
                         if (defenseProperty == null)
                             continue;
-                        damageResistances[(int)defenseProperty.ResistedDamageType] += defenseProperty.ReductionPercent;
+                        if(defenseProperty.AttackTypeMask==attackTypeMask||defenseProperty.AttackTypeMask==AttackTypeMask.All)
+                            damageResistances[(int)defenseProperty.ResistedDamageType] += defenseProperty.ReductionPercent;
                     }
 
                     //statuseffects
-                    var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances();
+                    var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances(attackTypeMask);
 
                     for (int i = 0; i < damageResistances.Length; i++)
                     {

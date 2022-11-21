@@ -26,9 +26,22 @@ namespace TOR_Core.HarmonyPatches
                 return true;
             }
 
+         
+            AttackTypeMask attackTypeMask = AttackTypeMask.None;
+            bool isSpellBlow =TORSpellBlowHelper.IsSpellBlow(b);
+
+
+          
+
+
+            if (b.IsMissile) attackTypeMask = AttackTypeMask.Range; 
+            else attackTypeMask = AttackTypeMask.Melee;
+            
+            if (isSpellBlow) attackTypeMask = AttackTypeMask.Spell;
+            
             float[] damageCategories = new float[(int)DamageType.All + 1];
-            var attackerPropertyContainer = attacker.GetProperties(PropertyMask.Attack);
-            var victimPropertyContainer = victim.GetProperties(PropertyMask.Defense);
+            var attackerPropertyContainer = attacker.GetProperties(PropertyMask.Attack, attackTypeMask);
+            var victimPropertyContainer = victim.GetProperties(PropertyMask.Defense, attackTypeMask);
             //attack properties;
             var damageProportions = attackerPropertyContainer.DamageProportions;
             var damagePercentages = attackerPropertyContainer.DamagePercentages;
@@ -48,7 +61,7 @@ namespace TOR_Core.HarmonyPatches
             }
 
             //calculating spell damage
-            if (TORSpellBlowHelper.IsSpellBlow(b))
+            if (isSpellBlow)
             {
                 var spellInfo = TORSpellBlowHelper.GetSpellBlowInfo(victim.Index, attacker.Index);
                 int damageType = (int)spellInfo.DamageType;

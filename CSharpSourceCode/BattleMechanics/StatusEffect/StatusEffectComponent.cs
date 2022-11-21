@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
@@ -5,8 +6,8 @@ using TaleWorlds.Engine;
 using System.Linq;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.Utilities;
-using TaleWorlds.Library;
 using TaleWorlds.Core;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
 {
@@ -126,14 +127,19 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             _currentEffects.Remove(effect);
         }
 
-        public float[] GetAmplifiers()
+        public float[] GetAmplifiers(AttackTypeMask mask)
         {
-            return _effectAggregate.DamageAmplification;
+            return Enumerable.Range(0,(int) DamageType.All+1).Select(x => _effectAggregate.DamageAmplification[x,(int)mask]).ToArray();
+
+           // _effectAggregate.DamageAmplification[]
+            
+          //  return _effectAggregate.DamageAmplification;
         }
 
-        public float[] GetResistances()
+        public float[] GetResistances(AttackTypeMask mask)
         {
-            return _effectAggregate.Resistance;
+            return Enumerable.Range(0,(int) DamageType.All+1).Select(x => _effectAggregate.Resistance[x,(int)mask]).ToArray();
+           // return _effectAggregate.Resistance;
         }
 
         private void AddEffect(StatusEffect effect, Agent applierAgent)
@@ -168,8 +174,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             public float HealthOverTime { get; set; } = 0;
             public float DamageOverTime { get; set; } = 0;
             
-            public readonly float[] DamageAmplification = new float[(int)DamageType.All + 1];
-            public readonly float[] Resistance = new float[(int)DamageType.All + 1];
+            public readonly float[,] DamageAmplification = new float[(int)DamageType.All + 1, (int) AttackTypeMask.All+1];
+            public readonly float[,] Resistance = new float[(int)DamageType.All + 1,(int) AttackTypeMask.All+1];
 
             public void AddEffect(StatusEffect effect)
             {
@@ -183,10 +189,55 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                         HealthOverTime += template.ChangePerTick;
                         break;
                     case StatusEffectTemplate.EffectType.DamageAmplification :
-                        DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType] = template.DamageAmplifier.DamageAmplifier;
+                        var dmgMask = template.DamageAmplifier.AttackTypeMask;
+
+                        switch (dmgMask)
+                        {
+                            case AttackTypeMask.Melee:
+                                DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 0] += template.DamageAmplifier.DamageAmplifier;
+                                break;
+                            case AttackTypeMask.Range:
+                                DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 1] += template.DamageAmplifier.DamageAmplifier;
+                                break;
+                            case AttackTypeMask.Spell:
+                                DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 2] += template.DamageAmplifier.DamageAmplifier;
+                                break;
+                            case AttackTypeMask.All:
+                                DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 0] += template.DamageAmplifier.DamageAmplifier;
+                                DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 1] += template.DamageAmplifier.DamageAmplifier;
+                                DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 2] += template.DamageAmplifier.DamageAmplifier;
+                                break;
+                            case AttackTypeMask.None:
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
+
                         break;
                     case StatusEffectTemplate.EffectType.Resistance:
-                        Resistance[(int)template.Resistance.ResistedDamageType] = template.Resistance.ReductionPercent;
+                        var resMask = template.Resistance.AttackTypeMask;
+                        
+                        switch (resMask)
+                        {
+                            case AttackTypeMask.Melee:
+                                DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 0] += template.Resistance.ReductionPercent;
+                                break;
+                            case AttackTypeMask.Range:
+                                DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 1] += template.Resistance.ReductionPercent;
+                                break;
+                            case AttackTypeMask.Spell:
+                                DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 2] += template.Resistance.ReductionPercent;
+                                break;
+                            case AttackTypeMask.All:
+                                DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 0] += template.Resistance.ReductionPercent;
+                                DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 1] += template.Resistance.ReductionPercent;
+                                DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType, 2] += template.Resistance.ReductionPercent;
+                                break;
+                            case AttackTypeMask.None:
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
                         break;
                     case StatusEffectTemplate.EffectType.WindsRegeneration:
                         WindsofMagicOverTime += template.ChangePerTick;
