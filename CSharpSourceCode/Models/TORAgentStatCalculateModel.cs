@@ -244,7 +244,7 @@ namespace TOR_Core.Models
                 }
             }
 
-            return new AgentPropertyContainer(proportions, damageamps, damagebonuses, resistances);
+            return new AgentPropertyContainer(proportions, damageamps, resistances, damagebonuses);
         }
     }
 }
