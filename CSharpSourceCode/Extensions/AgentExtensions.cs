@@ -272,6 +272,10 @@ namespace TOR_Core.Extensions
                         }
 
                     }
+                    else
+                    {
+                        damageProportions[(int)DamageType.Physical] = 1f; //memo , this is for siege weapons, in principle a wielded Item shouldn't be found either in case of spell casting - yet it is found.
+                    }
                 }
                 if (mask == PropertyMask.Defense || mask == PropertyMask.All)
                 {
