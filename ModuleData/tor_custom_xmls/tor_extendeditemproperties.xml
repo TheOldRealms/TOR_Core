@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="taal_bow">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Taal blessed" IconName="winds_icon_45">
+        <ItemTraitDescription>"A taal blessed weapon"</ItemTraitDescription>
+        <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.25" />
+        <WeaponParticlePreset ParticlePrefab="magic_sparks" IsUniqueSingleCopy="true" />
+      </ItemTrait>
+    </ItemTraits>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="0.80" />
+      <DamageProportionTuple DamageType="Holy" Percent="0.20" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+<ExtendedItemObjectProperties ItemStringId="taal_arrows">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Taals blessing" IconName="winds_icon_45">
+        <ItemTraitDescription>Blessed arrows of Taal</ItemTraitDescription>
+		<AdditionalDamageTuple DamageType="Holy" Percent="0.10" />
+		<AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.25" />
+      </ItemTrait>
+    </ItemTraits>
+ </ExtendedItemObjectProperties>
 <ExtendedItemObjectProperties ItemStringId="potion_strength">
     <ItemTraits>
       <ItemTrait ItemTraitName="Strength Buff" IconName="winds_icon_45" ImbuedStatusEffectId="melee_bonus_50">
@@ -2690,8 +2712,5 @@
       </ItemTrait>
     </ItemTraits>
     <Description>"Even the far coasts of Lustria seem not to be spared of the taint of vampires. Legends say, a single mad Vampire, Luthor Harkon, established his own Colony. Legends say his mind is shattered since plundering a temple of the lizardmen that cursed him and his body. Many different personalities are fighting in his soul for control, some might call a curse or blessing. Crazy or not, he managed to conquer, and recruit many of the pirates in his undead army. Vampires, either looking for adventure or hunted in  Sylvania, search for a new life far from their former habitat, and they become captains and his first mates, to haunt the shores. May Sigmar protect any living sailor that has the misfortune to come across them."</Description>
-
-
-
 </ExtendedItemObjectProperties>
 </ArrayOfExtendedItemObjectProperties>

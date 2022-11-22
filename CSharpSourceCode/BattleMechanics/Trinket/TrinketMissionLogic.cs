@@ -18,7 +18,7 @@ namespace TOR_Core.BattleMechanics.Trinket
             base.OnAgentShootMissile(shooterAgent, weaponIndex, position, velocity, orientation, hasRigidBody, forcedMissileIndex);
             
             var weaponData = shooterAgent.WieldedWeapon.CurrentUsageItem;
-            if(!weaponData.IsRangedWeapon&& weaponData.WeaponClass == WeaponClass.Stone) return;
+            if(weaponData.WeaponClass != WeaponClass.Stone) return;
 
             if (!shooterAgent.WieldedWeapon.Item.IsMagicalItem()) return;
             
