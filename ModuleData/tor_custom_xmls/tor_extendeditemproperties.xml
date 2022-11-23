@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfExtendedItemObjectProperties>
+<ExtendedItemObjectProperties ItemStringId="tor_neutral_weapon_ammo_musket_ball_silver">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Silver bullets" IconName="winds_icon_45">
+        <ItemTraitDescription>"A taal blessed weapon"</ItemTraitDescription>
+        <AdditionalDamageTuple DamageType="Magical" Percent="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="taal_bow">
     <ItemTraits>
       <ItemTrait ItemTraitName="Taal blessed" IconName="winds_icon_45">
