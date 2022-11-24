@@ -3,7 +3,7 @@
 	</Constants>
 
 	<Window>
-		<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="132" SuggestedHeight="220" VerticalAlignment="Bottom" HorizontalAlignment="Left" MarginBottom="125" MarginLeft="15" IsVisible="@IsVisible">
+		<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="132" SuggestedHeight="220" VerticalAlignment="Bottom" HorizontalAlignment="Left" MarginBottom="15" MarginLeft="15" IsVisible="@IsVisible">
 			<Children>
 				<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="100" SuggestedHeight="100" Sprite="@SpriteName" HorizontalAlignment="Center" VerticalAlignment="Top" PositionYOffset="96">
 					<Children>

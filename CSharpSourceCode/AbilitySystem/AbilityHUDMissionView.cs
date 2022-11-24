@@ -14,9 +14,11 @@ namespace TOR_Core.AbilitySystem
         private bool _hasSpecialMove;
         private bool _isInitialized;
         private AbilityHUD_VM _abilityHUD_VM;
+        private CareerAbilityHUD_VM _careerabilityHUD_VM;
         private SpecialMoveHUD_VM _specialMoveHUD_VM;
         private GauntletLayer _abilityLayer;
         private GauntletLayer _specialMoveLayer;
+        private GauntletLayer _careerAbilityLayer;
 
         public override void OnBehaviorInitialize()
         {
@@ -24,10 +26,16 @@ namespace TOR_Core.AbilitySystem
             Mission.Current.OnMainAgentChanged += (o, s) => CheckMainAgent();
 
             _abilityHUD_VM = new AbilityHUD_VM();
+           
             _abilityLayer = new GauntletLayer(100);
             _abilityLayer.LoadMovie("AbilityHUD", _abilityHUD_VM);
             MissionScreen.AddLayer(_abilityLayer);
 
+            _careerAbilityLayer = new GauntletLayer(98);
+            _careerabilityHUD_VM = new CareerAbilityHUD_VM();
+            _careerAbilityLayer.LoadMovie("CareerAbilityHUD", _careerabilityHUD_VM);
+            MissionScreen.AddLayer(_careerAbilityLayer);
+            
             _specialMoveHUD_VM = new SpecialMoveHUD_VM();
             _specialMoveLayer = new GauntletLayer(99);
             _specialMoveLayer.LoadMovie("SpecialMoveHUD", _specialMoveHUD_VM);
@@ -71,6 +79,7 @@ namespace TOR_Core.AbilitySystem
                     if (_hasAbility)
                     {
                         _abilityHUD_VM.UpdateProperties();
+                        _careerabilityHUD_VM.UpdateProperties();
                     }
                     if (_hasSpecialMove)
                     {

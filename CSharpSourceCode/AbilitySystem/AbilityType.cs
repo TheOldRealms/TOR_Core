@@ -22,7 +22,7 @@
         Bombardment,
         Blast,
         ArtilleryPlacement,
-        AgentMoving,
+        AgentMoving
     }
 
     public enum AbilityTargetType

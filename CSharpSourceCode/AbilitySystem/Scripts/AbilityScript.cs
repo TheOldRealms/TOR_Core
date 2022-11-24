@@ -100,7 +100,18 @@ namespace TOR_Core.AbilitySystem.Scripts
                 var normal = frame.origin.NormalizedCopy();
                 if(_ability.Template.AbilityEffectType == AbilityEffectType.Blast)
                 {
-                    position = frame.Advance(_ability.Template.Offset).origin;
+                    var distance = 0f;
+                    var hit = Mission.Current.Scene.RayCastForClosestEntityOrTerrainMT(frame.origin, frame.Advance(_ability.Template.Offset).origin, out distance, 0.01f);
+                    if (hit)
+                    {
+                        position = frame.Advance(distance).origin;
+                    }
+                    else
+                    {
+                        position = frame.Advance(_ability.Template.Offset).origin;
+                    }
+                    
+                    
                     normal = frame.rotation.f.NormalizedCopy();
                 }
                 TriggerEffect(position, normal);
@@ -218,6 +229,15 @@ namespace TOR_Core.AbilitySystem.Scripts
                 }
                 else effect.Trigger(position, normal, _casterAgent, _ability.Template);
             }
+            
+
+            if (_ability != null) MBDebug.RenderDebugSphere(position, _ability.Template.Radius, 4294967295, true, 5f);
+        }
+
+
+        protected void TriggerEffect(Vec3 position, Vec3 normal, float extend)
+        {
+            
         }
 
         protected override void OnRemoved(int removeReason)

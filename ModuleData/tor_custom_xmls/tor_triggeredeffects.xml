@@ -527,5 +527,22 @@
             ImbuedStatusEffectDuration="0" 
             DamageVariance="0" 
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.KnockDownScript"/>
+			
+			
+			
+		<TriggeredEffectTemplate StringID="knightlyStrike" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+            DamageAmount="25" 
+            Radius="4" 
+            TargetType="Enemy" 
+            ImbuedStatusEffectID="none" 
+            ImbuedStatusEffectDuration="5" 
+            DamageVariance="0.1" 
+            ScriptNameToTrigger="none" 
+			
+            HasShockWave="true" />
 
 </ArrayOfTriggeredEffectTemplate>
