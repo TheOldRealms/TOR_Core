@@ -36,6 +36,7 @@ using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.BattleMechanics.Trinket;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.Assimilation;
+using TOR_Core.CampaignMechanics.Career;
 using TOR_Core.CampaignMechanics.Chaos;
 using TOR_Core.CampaignMechanics.CustomDialogs;
 using TOR_Core.CampaignMechanics.CustomEncounterDialogs;
@@ -110,6 +111,7 @@ namespace TOR_Core
                 starter.AddBehavior(new BaseGameDebugCampaignBehavior());
                 starter.AddBehavior(new BloodKissCampaignBehavior());
                 starter.AddBehavior(new TORPartyUpgraderCampaignBehavior());
+                starter.AddBehavior(new CareerCampaignBase());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
@@ -153,6 +155,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORPartyMoraleModel());
                 gameStarterObject.AddModel(new TORPersuasionModel());
                 gameStarterObject.AddModel(new TORVoiceOverModel());
+                
 
                 CampaignOptions.IsLifeDeathCycleDisabled = true;
             }
@@ -177,7 +180,7 @@ namespace TOR_Core
         {
 
             mission.RemoveMissionBehavior(mission.GetMissionBehavior<MissionGauntletCrosshair>());
-
+            mission.AddMissionBehavior(new CareerMissionLogic());
             mission.AddMissionBehavior(new StatusEffectMissionLogic());
             mission.AddMissionBehavior(new ExtendedInfoMissionLogic());
             mission.AddMissionBehavior(new AbilityManagerMissionLogic());

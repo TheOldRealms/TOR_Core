@@ -4,9 +4,9 @@ namespace TOR_Core.CampaignMechanics.Career
 {
     public class CareerCampaignBase:CampaignBehaviorBase
     {
-        private int ExtraHealthPoints;
-        private int ExtraAmmo;
-        private int ExtraWind;
+        private int _extraHealthPoints;
+        private int _extraAmmo;
+        private int _extraWind;
 
 
         public int GetMaximumHealthPoints()
@@ -15,7 +15,7 @@ namespace TOR_Core.CampaignMechanics.Career
         }
         public int GetExtraAmmoPoints()
         {
-            return 2;
+            return 5;
         }
 
         
