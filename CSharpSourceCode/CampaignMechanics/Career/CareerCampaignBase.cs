@@ -27,7 +27,7 @@ namespace TOR_Core.CampaignMechanics.Career
             //return _bonusMeleeDamage
             float[] damage = new float[(int)DamageType.All + 1];
 
-            damage[(int)DamageType.Magical] = 0.25f;
+            damage[(int)DamageType.Fire] = 0.25f;
             return damage;
         }
 

@@ -1,9 +1,10 @@
-using HarmonyLib;
+﻿using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.CampaignMechanics.Career;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Models;
@@ -68,22 +69,18 @@ namespace TOR_Core.HarmonyPatches
             if (isSpellBlow)
             {
                 var spellInfo = TORSpellBlowHelper.GetSpellBlowInfo(victim.Index, attacker.Index);
+                int damageType = (int)spellInfo.DamageType;
                 if (attacker == Agent.Main)
                 {
                     if (isCampaign)
                     {
                         var career =Campaign.Current.GetCampaignBehavior<CareerCampaignBase>();
                         var bonusDamage=career.GetCareerBonusSpellDamage();
-                        
-                        for (var i = 0; i < damageProportions.Length; i++)
-                        {
-                            damageProportions[i]+= bonusDamage[i];
-                        }
-                        
+                        damagePercentages[damageType]+= bonusDamage[damageType];
                     }
                 }
 
-                int damageType = (int)spellInfo.DamageType;
+                
                 damageCategories[damageType] = b.InflictedDamage;
                 damagePercentages[damageType] -= resistancePercentages[damageType];
                 damageCategories[damageType] *= 1 + damagePercentages[damageType];
@@ -91,7 +88,8 @@ namespace TOR_Core.HarmonyPatches
                
                 
                 resultDamage = (int)damageCategories[damageType];
-                if(Game.Current.GameType is Campaign)
+                
+                if(isCampaign)
                 {
                     var abilityTemplate = AbilityFactory.GetTemplate(spellInfo.OriginAbilityTemplateId);
                     if (attacker.IsHero && abilityTemplate != null)
@@ -107,6 +105,7 @@ namespace TOR_Core.HarmonyPatches
                         }
                     }
                 }
+                
                 resultDamage = (int)(resultDamage * wardSaveFactor);
                 b.InflictedDamage = resultDamage;
                 b.BaseMagnitude = resultDamage;
@@ -148,6 +147,11 @@ namespace TOR_Core.HarmonyPatches
                     resultDamage += (int)damageCategories[i];
                 }
             }
+
+           
+            
+            
+            
             resultDamage = (int)(resultDamage * wardSaveFactor);
             b.InflictedDamage = resultDamage;
             b.BaseMagnitude = resultDamage;
