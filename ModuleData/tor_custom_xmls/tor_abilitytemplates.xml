@@ -2145,7 +2145,7 @@
       ShouldSoundLoopOverDuration="false"
       CastType="Instant" 
       CastTime="0" 
-      AnimationActionName="act_release_heavy_thrown" 
+      AnimationActionName="act_quick_release_thrust_2h" 
       TriggeredEffectID="knightlyStrike"
       Offset="0"
       AbilityTargetType="WorldPosition"

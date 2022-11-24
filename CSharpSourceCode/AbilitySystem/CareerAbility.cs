@@ -21,8 +21,8 @@ namespace TOR_Core.AbilitySystem.Spells
                 var career =Campaign.Current.GetCampaignBehavior<CareerCampaignBase>();
             }
 
-            Template.AssociatedTriggeredEffectTemplate.ImbuedStatusEffectID = "fireball_dot";
-            Template.AssociatedTriggeredEffectTemplate.DamageType = DamageType.Holy;
+        //   Template.AssociatedTriggeredEffectTemplate.ImbuedStatusEffectID = "fireball_dot";
+         //   Template.AssociatedTriggeredEffectTemplate.DamageType = DamageType.Holy;
             
             base.ActivateAbility(casterAgent);
         }

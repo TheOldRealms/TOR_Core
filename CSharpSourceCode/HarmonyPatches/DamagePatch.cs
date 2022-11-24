@@ -101,7 +101,8 @@ namespace TOR_Core.HarmonyPatches
                             resultDamage = (int)(resultDamage * model.GetPerkEffectsOnAbilityDamage(hero.CharacterObject, victim, abilityTemplate));
                             var skill = model.GetRelevantSkillForAbility(abilityTemplate);
                             var amount = model.GetSkillXpForAbilityDamage(abilityTemplate, resultDamage);
-                            hero.AddSkillXp(skill, amount);
+                            if(skill!=null)
+                                hero.AddSkillXp(skill, amount);
                         }
                     }
                 }

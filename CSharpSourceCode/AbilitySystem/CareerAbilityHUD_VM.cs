@@ -28,27 +28,15 @@ namespace TOR_Core.AbilitySystem
 
         public void UpdateProperties()
         {
-            _ability = Agent.Main.GetCurrentAbility();
+            _ability = Agent.Main.GetCareerAbility();
             IsVisible = _ability != null && (Mission.Current.Mode == MissionMode.Battle || Mission.Current.Mode == MissionMode.Stealth);
             if (IsVisible)
             {
                 SpriteName = _ability.Template.SpriteName;
                 Name = _ability.Template.Name;
-                WindsCost = _ability.Template.WindsOfMagicCost.ToString();
                 CoolDownLeft = _ability.GetCoolDownLeft().ToString();
                 IsOnCoolDown = _ability.IsOnCooldown();
             }
-        }
-
-        private int AddPerkEffectsToWindsCost(Hero hero, AbilityTemplate template)
-        {
-            int result = template.WindsOfMagicCost;
-            var model = Campaign.Current.Models.GetSpellcraftModel();
-            if(model != null && hero != null)
-            {
-                result = model.GetEffectiveWindsCost(hero.CharacterObject, template);
-            }
-            return result;
         }
 
 

@@ -236,11 +236,12 @@ namespace TOR_Core.AbilitySystem
             if (Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) ||
                 Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey))
             {
-                if( _abilityComponent != null && _abilityComponent.SpecialMove != null)
+                if( _abilityComponent != null && _abilityComponent.CareerAbility != null)
                     if (_currentState == AbilityModeState.Off  &&
-                        IsCurrentCrossHairCompatible())
+                        true)//IsCurrentCrossHairCompatible())
                     {
-                        _abilityComponent.SpecialMove.TryCast(Agent.Main);
+                        _abilityComponent.CareerAbility.TryCast(Agent.Main);
+                        //_abilityComponent.SpecialMove.TryCast(Agent.Main);
                     }
             }
             

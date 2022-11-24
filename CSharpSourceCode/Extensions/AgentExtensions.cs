@@ -391,6 +391,17 @@ namespace TOR_Core.Extensions
             else return null;
         }
 
+        public static Ability GetCareerAbility(this Agent agent)
+        {
+            var abilitycomponent = agent.GetComponent<AbilityComponent>();
+            if (abilitycomponent != null)
+            {
+                return abilitycomponent.CareerAbility;
+            }
+            else return null;
+        }
+        
+
         public static void SelectNextAbility(this Agent agent)
         {
             var abilitycomponent = agent.GetComponent<AbilityComponent>();
