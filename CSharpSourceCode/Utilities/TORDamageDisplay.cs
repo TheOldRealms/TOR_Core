@@ -39,7 +39,7 @@ namespace TOR_Core.Utilities
             InformationManager.DisplayMessage(new InformationMessage(resultDamage + "cast damage consisting of  " + " (" + displayDamageType + ") was applied " + "which was modified by " + (1 + damageAmplifier).ToString("##%", CultureInfo.InvariantCulture), displayColor));
         }
 
-        public static void DisplayDamageResult(int resultDamage, float[] categories)
+        public static void DisplayDamageResult(int resultDamage, float[] categories, float[] percentages)
         {
             var displaycolor = Color.White;
             var dominantAdditionalEffect = DamageType.Physical;
@@ -57,11 +57,11 @@ namespace TOR_Core.Utilities
                 if (categories[i] > 0)
                 {
                     DamageType t = (DamageType)i;
-                    string s = ", " + (int)categories[i] + " was dealt in " + t;
+                    string s = ", " + (int)categories[i] +"("+(percentages[i]*100f)+"%)"+" was dealt in " + t;
                     if (additionalDamageTypeText == "")
                         additionalDamageTypeText = s;
                     else
-                        additionalDamageTypeText.Add(s, false);
+                        additionalDamageTypeText= additionalDamageTypeText.Add(s, false);
                 }
             }
 
@@ -81,7 +81,7 @@ namespace TOR_Core.Utilities
                     break;
             }
 
-            var resultText = (int)resultDamage + " damage was dealt of which was " + (int)categories[1] + " " + nameof(DamageType.Physical) + additionalDamageTypeText;
+            var resultText = (int)resultDamage + " damage was dealt of which was " + (int)categories[1] +"("+(percentages[1]*100f)+"%)" +" " + nameof(DamageType.Physical) + additionalDamageTypeText;
             InformationManager.DisplayMessage(new InformationMessage(resultText, displaycolor));
 
         }

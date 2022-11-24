@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
@@ -30,6 +30,8 @@ namespace TOR_Core.HarmonyPatches
             AttackType attackType = AttackType.None;
             bool isSpellBlow =TORSpellBlowHelper.IsSpellBlow(b);
 
+            bool isCampaign=false;
+
 
           
 
@@ -58,16 +60,36 @@ namespace TOR_Core.HarmonyPatches
                     var torModel = model as TORAgentApplyDamageModel;
                     wardSaveFactor = torModel.CalculateWardSaveFactor(victim);
                 }
+
+                isCampaign = true;
             }
 
             //calculating spell damage
             if (isSpellBlow)
             {
                 var spellInfo = TORSpellBlowHelper.GetSpellBlowInfo(victim.Index, attacker.Index);
+                if (attacker == Agent.Main)
+                {
+                    if (isCampaign)
+                    {
+                        var career =Campaign.Current.GetCampaignBehavior<CareerCampaignBase>();
+                        var bonusDamage=career.GetCareerBonusSpellDamage();
+                        
+                        for (var i = 0; i < damageProportions.Length; i++)
+                        {
+                            damageProportions[i]+= bonusDamage[i];
+                        }
+                        
+                    }
+                }
+
                 int damageType = (int)spellInfo.DamageType;
                 damageCategories[damageType] = b.InflictedDamage;
                 damagePercentages[damageType] -= resistancePercentages[damageType];
                 damageCategories[damageType] *= 1 + damagePercentages[damageType];
+                
+               
+                
                 resultDamage = (int)damageCategories[damageType];
                 if(Game.Current.GameType is Campaign)
                 {
@@ -94,6 +116,26 @@ namespace TOR_Core.HarmonyPatches
             }
 
             //calculating non-spell damage
+
+            if (attacker == Agent.Main)
+            {
+                if (isCampaign)
+                {
+                    var career =Campaign.Current.GetCampaignBehavior<CareerCampaignBase>();
+                    float[] bonusDamage = new float[damageProportions.Length];//TODO -1 ?
+                    if(attackType == AttackType.Melee) 
+                        bonusDamage=career.GetCareerBonusMeleeDamage();
+                    else
+                    {
+                        bonusDamage= career.GetCareerBonusRangeDamage();
+                    }
+                    for (var i = 0; i < damageProportions.Length; i++)
+                    {
+                        damageProportions[i]+= bonusDamage[i];
+                    }
+                }
+            }
+            
             for (int i = 0; i < damageCategories.Length - 1; i++)
             {
                 damageProportions[i] += additionalDamagePercentages[i];
@@ -113,7 +155,7 @@ namespace TOR_Core.HarmonyPatches
             if (b.InflictedDamage > 0)
             {
                 if (attacker == Agent.Main || victim == Agent.Main)
-                    TORDamageDisplay.DisplayDamageResult(resultDamage, damageCategories);
+                    TORDamageDisplay.DisplayDamageResult(resultDamage, damageCategories, damageProportions);
             }
             return true;
         }

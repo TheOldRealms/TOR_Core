@@ -11,17 +11,21 @@ namespace TOR_Core.CampaignMechanics.Career
     {
 
         private CareerCampaignBase _careerCampaignBase;
+        private bool offline;
         public override void EarlyStart()
         {
             base.EarlyStart();
-            _careerCampaignBase= Campaign.Current.GetCampaignBehavior<CareerCampaignBase>();
-            
+            if (Game.Current.GameType is Campaign)
+            {
+                _careerCampaignBase = Campaign.Current.GetCampaignBehavior<CareerCampaignBase>();
+            }
+            else
+                offline = true;
         }
 
         public override void OnAgentCreated(Agent agent)
         {
-            base.OnAgentCreated(agent);
-            
+            if(offline) return;
             if (agent.Character==Campaign.Current.MainParty.LeaderHero.CharacterObject)
             {
                 ModifyHealth(agent);
@@ -30,6 +34,7 @@ namespace TOR_Core.CampaignMechanics.Career
 
         private void ModifyHealth(Agent agent)
         {
+    
             var ratio =agent.Health /agent.HealthLimit ;
             agent.HealthLimit+= _careerCampaignBase.GetMaximumHealthPoints();
             agent.Health = ratio*agent.HealthLimit;
@@ -59,7 +64,7 @@ namespace TOR_Core.CampaignMechanics.Career
 
         public override void OnAgentBuild(Agent agent, Banner banner)
         {
-            base.OnAgentBuild(agent, banner);
+            if (offline) return;
             if (agent.Character == Campaign.Current.MainParty.LeaderHero.CharacterObject)
             {
                 ModifyAmmo(agent);
@@ -70,9 +75,7 @@ namespace TOR_Core.CampaignMechanics.Career
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
-            base.OnAgentHit(affectedAgent, affectorAgent, in affectorWeapon, in blow, in attackCollisionData);
-            
-            
+            if (offline) return;
             if (affectedAgent.Character==Campaign.Current.MainParty.LeaderHero.CharacterObject)
             {
                 TORCommon.Say(""+affectedAgent.Health);
