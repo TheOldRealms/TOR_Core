@@ -18,7 +18,6 @@
 					</Children>
 				</Widget>
 				<Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="165" Sprite="abilityframe" VerticalAlignment="Top" PositionYOffset="36" IsVisible="true"/>
-				<TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="50" HorizontalAlignment="Center" VerticalAlignment="Top" PositionYOffset="36" Text="@WindsOfMagicLeft" Brush.FontSize="30" Brush.FontColor="#00c5dce3" Brush.TextOutlineAmount="0.1" Brush.TextOutlineColor="#0020aad4"/>
 				<TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="32" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="@Name" Brush.FontSize="14"/>
 			</Children>
 		</Widget>

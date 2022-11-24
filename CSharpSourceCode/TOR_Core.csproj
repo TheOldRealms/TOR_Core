@@ -351,6 +351,8 @@
     <Compile Include="AbilitySystem\AbilityManagerMissionLogic.cs" />
     <Compile Include="AbilitySystem\AbilityTemplate.cs" />
     <Compile Include="AbilitySystem\AbilityType.cs" />
+    <Compile Include="AbilitySystem\CareerAbility.cs" />
+    <Compile Include="AbilitySystem\CareerAbilityHUD_VM.cs" />
     <Compile Include="AbilitySystem\CrossHairs\AbilityCrosshair.cs" />
     <Compile Include="AbilitySystem\CrossHairs\Crosshair.cs" />
     <Compile Include="AbilitySystem\CrossHairs\CrosshairType.cs" />

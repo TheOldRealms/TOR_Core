@@ -81,6 +81,10 @@ namespace TOR_Core.AbilitySystem
             {
                 ability = new ItemBoundAbility(template);
             }
+            else if(template.AbilityType == AbilityType.CareerAbility)
+            {
+                ability = new CareerAbility(template);
+            }
             return ability;
         }
 

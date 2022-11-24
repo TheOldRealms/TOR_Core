@@ -10,6 +10,7 @@ namespace TOR_Core.AbilitySystem
     [DefaultView]
     class AbilityHUDMissionView : MissionView
     {
+        private bool _hasCareerAbility;
         private bool _hasAbility;
         private bool _hasSpecialMove;
         private bool _isInitialized;
@@ -78,8 +79,12 @@ namespace TOR_Core.AbilitySystem
                 {
                     if (_hasAbility)
                     {
-                        _abilityHUD_VM.UpdateProperties();
                         _careerabilityHUD_VM.UpdateProperties();
+                    }
+                    if (_hasAbility)
+                    {
+                        _abilityHUD_VM.UpdateProperties();
+                      
                     }
                     if (_hasSpecialMove)
                     {
@@ -87,6 +92,7 @@ namespace TOR_Core.AbilitySystem
                     }
                     return;
                 }
+                _careerabilityHUD_VM.IsVisible = false;
                 _abilityHUD_VM.IsVisible = false;
                 _specialMoveHUD_VM.IsVisible = false;
             }

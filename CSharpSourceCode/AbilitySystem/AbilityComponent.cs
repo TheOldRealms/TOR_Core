@@ -10,6 +10,7 @@ using TOR_Core.AbilitySystem.Scripts;
 using TOR_Core.Utilities;
 using TOR_Core.Extensions;
 using TaleWorlds.CampaignSystem;
+using TOR_Core.AbilitySystem.Spells;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -29,13 +30,20 @@ namespace TOR_Core.AbilitySystem
                         {
                             ability.OnCastStart += OnCastStart;
                             ability.OnCastComplete += OnCastComplete;
-                            if (ability is SpecialMove)
+
+                            switch (ability)
                             {
-                                _specialMove = (SpecialMove)ability;
-                            }
-                            else
-                            {
-                                if(ability.Template.AbilityType != AbilityType.ItemBound) _knownAbilitySystem.Add(ability);
+                                case CareerAbility careerAbility:
+                                    _careerAbility = careerAbility;
+                                    break;
+                                case SpecialMove move:
+                                    _specialMove = move;
+                                    break;
+                                default:
+                                {
+                                    if(ability.Template.AbilityType != AbilityType.ItemBound) _knownAbilitySystem.Add(ability);
+                                    break;
+                                }
                             }
                         }
                         else
@@ -121,6 +129,8 @@ namespace TOR_Core.AbilitySystem
             {
                 SelectAbility(0);
             }
+
+           
         }
 
         private void OnCastStart(Ability ability)
@@ -216,6 +226,7 @@ namespace TOR_Core.AbilitySystem
 
         private Ability _currentAbility = null;
         private SpecialMove _specialMove = null;
+        private CareerAbility _careerAbility = null;
         private readonly List<Ability> _knownAbilitySystem = new List<Ability>();
         private int _currentAbilityIndex;
         public Ability CurrentAbility
@@ -227,6 +238,8 @@ namespace TOR_Core.AbilitySystem
                 CurrentAbilityChanged?.Invoke(_currentAbility.Crosshair);
             }
         }
+        
+        public CareerAbility CareerAbility { get => _careerAbility; private set => _careerAbility = value; }
         public SpecialMove SpecialMove { get => _specialMove; private set => _specialMove = value; }
         public List<Ability> KnownAbilitySystem { get => _knownAbilitySystem; }
         public delegate void CurrentAbilityChangedHandler(AbilityCrosshair crosshair);

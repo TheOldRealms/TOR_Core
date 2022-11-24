@@ -21,7 +21,10 @@ namespace TOR_Core.AbilitySystem
         private float _windsOfMagicValue;
         private string _windsCost = "";
 
-        public CareerAbilityHUD_VM() : base() { }
+        public CareerAbilityHUD_VM() : base()
+        {
+            
+        }
 
         public void UpdateProperties()
         {
@@ -29,26 +32,11 @@ namespace TOR_Core.AbilitySystem
             IsVisible = _ability != null && (Mission.Current.Mode == MissionMode.Battle || Mission.Current.Mode == MissionMode.Stealth);
             if (IsVisible)
             {
-                IsSpell = _ability is Spell;
                 SpriteName = _ability.Template.SpriteName;
                 Name = _ability.Template.Name;
                 WindsCost = _ability.Template.WindsOfMagicCost.ToString();
                 CoolDownLeft = _ability.GetCoolDownLeft().ToString();
                 IsOnCoolDown = _ability.IsOnCooldown();
-                if (Game.Current.GameType is Campaign && _ability is Spell)
-                {
-                    SetWindsOfMagicValue((float)(Agent.Main?.GetHero()?.GetExtendedInfo()?.CurrentWindsOfMagic));
-                    var windsCost = AddPerkEffectsToWindsCost(Agent.Main?.GetHero(), _ability.Template);
-                    WindsCost = windsCost.ToString();
-                    if (_windsOfMagicValue < windsCost)
-                    {
-                        if (!IsOnCoolDown)
-                        {
-                            CoolDownLeft = "";
-                        }
-                        IsOnCoolDown = true;
-                    }
-                }
             }
         }
 
@@ -61,13 +49,6 @@ namespace TOR_Core.AbilitySystem
                 result = model.GetEffectiveWindsCost(hero.CharacterObject, template);
             }
             return result;
-        }
-
-        private void SetWindsOfMagicValue(float value)
-        {
-            _windsOfMagicValue = value;
-            _WindsOfMagicLeft = ((int)_windsOfMagicValue).ToString();
-            WindsOfMagicLeft = _WindsOfMagicLeft;
         }
 
 

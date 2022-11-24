@@ -2127,8 +2127,8 @@
       WindsOfMagicCost="0" 
       BaseMisCastChance="0.05" 
       Duration="2" 
-      Radius="3" 
-      AbilityType="Spell" 
+      Radius="2" 
+      AbilityType="CareerAbility" 
       AbilityEffectType="Blast" 
       BaseMovementSpeed="0" 
       TickInterval="-1" 
@@ -2154,7 +2154,7 @@
       MaxDistance="0.8"
       TargetCapturingRadius="2"
       SpellTier="2"
-      BelongsToLoreID="LoreOfFire"
+      BelongsToLoreID="career_grailKnight"
       TooltipDescription="Allies in the area of effect regenerate health over time.">
     <LightColorRGB x="255" y="170" z="0" w="-1">
       <AsVec2>
