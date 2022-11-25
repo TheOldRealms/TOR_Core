@@ -1,6 +1,8 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.Career;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
@@ -12,6 +14,20 @@ namespace TOR_Core.Models
         public override ExplainedNumber MaxHitpoints(CharacterObject character, bool includeDescriptions = false)
         {
             var number = base.MaxHitpoints(character, includeDescriptions);
+            
+            if (Game.Current.GameType is Campaign)
+            {
+                if(Campaign.Current.MainParty.LeaderHero!=null)
+                    if (Campaign.Current.MainParty.LeaderHero.CharacterObject== character)
+                    {
+                        var extraHP = Campaign.Current.GetCampaignBehavior<CareerCampaignBase>().GetExtraHealthPoints();
+                        if (extraHP > 0)
+                        {
+                            number.Add(extraHP,new TextObject("Career Perks"));
+                        }
+                    }
+            }
+            
             number = CalculateHitPoints(number, character);
             return number;
         }
@@ -56,6 +72,7 @@ namespace TOR_Core.Models
         private ExplainedNumber CalaculateHeroHealth(ExplainedNumber number, Hero hero)
         {
             var info = hero.GetExtendedInfo();
+            
             if (info != null)
             {
                 if (info.AcquiredAttributes.Contains("Tier1"))

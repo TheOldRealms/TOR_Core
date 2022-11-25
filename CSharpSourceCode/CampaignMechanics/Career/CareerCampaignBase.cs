@@ -13,13 +13,18 @@ namespace TOR_Core.CampaignMechanics.Career
         private float[] _bonusSpellDamge;
 
 
-        public int GetMaximumHealthPoints()
+        public int GetExtraHealthPoints()
         {
             return 10;
         }
         public int GetExtraAmmoPoints()
         {
-            return 5;
+            return 0;
+        }
+        
+        public int GetExtraWindPoints()
+        {
+            return 10;
         }
         
         public float[] GetCareerBonusSpellDamage()

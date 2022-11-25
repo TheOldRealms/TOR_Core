@@ -23,54 +23,8 @@ namespace TOR_Core.CampaignMechanics.Career
                 offline = true;
         }
 
-        public override void OnAgentCreated(Agent agent)
-        {
-            if(offline) return;
-            if (agent.Character==Campaign.Current.MainParty.LeaderHero.CharacterObject)
-            {
-                ModifyHealth(agent);
-            }
-        }
-
-        private void ModifyHealth(Agent agent)
-        {
-    
-            var ratio =agent.Health /agent.HealthLimit ;
-            agent.HealthLimit+= _careerCampaignBase.GetMaximumHealthPoints();
-            agent.Health = ratio*agent.HealthLimit;
-        }
-
-        private void ModifyAmmo(Agent agent)
-        {
-            int careerAmmo = _careerCampaignBase.GetExtraAmmoPoints();
-            for (int i = 0; i < (int)EquipmentIndex.NumAllWeaponSlots; i++)
-            {
-                if(agent.Equipment[i].IsEmpty) continue;
-                    
-                MissionWeapon weapon = agent.Equipment[i];
-                if (weapon.CurrentUsageItem.IsAmmo)
-                {
-                    if(weapon.CurrentUsageItem.WeaponClass == WeaponClass.Cartridge)
-                        if (agent.GetOriginMobileParty().HasPerk(TORPerks.GunPowder.AmmoWagons))
-                        {
-                            careerAmmo = (int)(careerAmmo * 1.5);
-                        }
-                    weapon.AddExtraModifiedMaxValue((short)careerAmmo);
-                    agent.SetWeaponAmountInSlot((EquipmentIndex) i ,weapon.ModifiedMaxHitPoints,false);
-                }
-            }
-        }
 
 
-        public override void OnAgentBuild(Agent agent, Banner banner)
-        {
-            if (offline) return;
-            if (agent.Character == Campaign.Current.MainParty.LeaderHero.CharacterObject)
-            {
-                ModifyAmmo(agent);
-            }
-        }
-        
         
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)

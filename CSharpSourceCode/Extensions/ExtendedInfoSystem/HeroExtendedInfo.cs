@@ -6,9 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics.Career;
 using TOR_Core.CharacterDevelopment;
 
 namespace TOR_Core.Extensions.ExtendedInfoSystem
@@ -35,7 +37,22 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 {
                     if (BaseCharacter.HeroObject != null && BaseCharacter.HeroObject != Hero.MainHero && BaseCharacter.HeroObject.Occupation == Occupation.Lord && BaseCharacter.HeroObject.IsSpellCaster()) return 100f;
                     ExplainedNumber explainedNumber = new ExplainedNumber(10f, false, null);
+                    
+                    
+                    
+                    //TODO is not shown in the GUI
+                    if (BaseCharacter.HeroObject != null && BaseCharacter.HeroObject == Campaign.Current.MainParty.LeaderHero)
+                    {
+                        var extraWind = Campaign.Current.GetCampaignBehavior<CareerCampaignBase>().GetExtraWindPoints();
+
+                        if (extraWind > 0)
+                        {
+                            explainedNumber.Add(extraWind,new TextObject("Career Perks"));
+                        }
+                    }
+                    
                     SkillHelper.AddSkillBonusForCharacter(TORSkills.SpellCraft, TORSkillEffects.MaxWinds, BaseCharacter, ref explainedNumber);
+                  
                     return explainedNumber.ResultNumber;
                 }
             }
