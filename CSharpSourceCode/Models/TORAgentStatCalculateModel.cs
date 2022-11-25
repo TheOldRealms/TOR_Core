@@ -10,6 +10,7 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics.Crosshairs;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.CampaignMechanics.Career;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -63,6 +64,8 @@ namespace TOR_Core.Models
         public override void InitializeMissionEquipment(Agent agent)
         {
             if (agent.Origin is SummonedAgentOrigin) return;
+            
+            
             base.InitializeMissionEquipment(agent);
             if (agent.IsHuman)
             {
@@ -81,8 +84,26 @@ namespace TOR_Core.Models
                             if (currentUsageItem != null && currentUsageItem.IsAmmo && currentUsageItem.RelevantSkill != null)
                             {
                                 ExplainedNumber ammoCount = new ExplainedNumber(missionWeapon.Amount);
+                                
+                                if (Game.Current.GameType is Campaign)
+                                {
+                                    if (Agent.Main == agent)
+                                    {
+                                        var careerExtraAmmo = Campaign.Current.GetCampaignBehavior<CareerCampaignBase>().GetExtraAmmoPoints();
+
+                                        if (careerExtraAmmo > 0)
+                                        {
+                                            ammoCount.Add(careerExtraAmmo);
+                                        }
+                                       
+                                      
+                                        
+                                        //TODO Ammo perks for bows and crossbows need potentially be reapplied. Need testing
+                                    }
+                                }
                                 if (currentUsageItem.RelevantSkill == TORSkills.GunPowder && currentUsageItem.WeaponClass == WeaponClass.Cartridge)
                                 {
+                                    
                                     PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.AmmoWagons, mobileParty, true, ref ammoCount);
                                 }
                                 var result = MathF.Round(ammoCount.ResultNumber);
