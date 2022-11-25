@@ -28,8 +28,9 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             _template = template;
         }
         
-        public void Trigger(Vec3 position, Vec3 normal, Agent triggererAgent, AbilityTemplate originAbilityTemplate = null, IEnumerable<Agent> targets = null)
+        public void Trigger(Vec3 position, Vec3 normal, Agent triggererAgent, out IEnumerable<Agent> hitTargets, AbilityTemplate originAbilityTemplate = null, IEnumerable<Agent> targets = null)
         {
+            hitTargets = null;
             if (_template == null) return;
             _timer = new Timer(2000);
             _timer.AutoReset = false;
@@ -63,17 +64,21 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             //Cause Damage
             if (targets == null && triggererAgent != null)
             {
+                
                 if (_template.TargetType == TargetType.Enemy)
                 {
                     targets = Mission.Current.GetNearbyEnemyAgents(position.AsVec2, _template.Radius, triggererAgent.Team);
+                    hitTargets=targets;
                 }
                 else if (_template.TargetType == TargetType.Friendly)
                 {
                     targets = Mission.Current.GetNearbyAllyAgents(position.AsVec2, _template.Radius, triggererAgent.Team);
+                    hitTargets=targets;
                 }
                 else if (_template.TargetType == TargetType.All)
                 {
                     targets = Mission.Current.GetNearbyAgents(position.AsVec2, _template.Radius);
+                    hitTargets=targets;
                 }
             }
             if (_template.DamageAmount > 0)

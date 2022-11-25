@@ -28,6 +28,9 @@ namespace TOR_Core.AbilitySystem.Scripts
         private SeekerController _controller;
         private bool _soundStarted;
         private Agent _targetAgent = null;
+        
+        public delegate void OnEffectTriggeredOnAgentsHandler(IEnumerable<Agent> script, Agent caster);
+        public event OnEffectTriggeredOnAgentsHandler OnEffectTriggeredSucessfull;
 
         public void SetTargetSeeking(Target target, SeekerParameters parameters)
         {
@@ -219,19 +222,31 @@ namespace TOR_Core.AbilitySystem.Scripts
             var effect = TriggeredEffectManager.CreateNew(_ability?.Template.TriggeredEffectID);
             if (effect != null)
             {
+                IEnumerable<Agent> affectedAgents=null;
                 if(_ability.Template.AbilityTargetType == AbilityTargetType.Self)
                 {
-                    effect.Trigger(position, normal, _casterAgent, _ability.Template, new List<Agent>(1) { _casterAgent });
+                    effect.Trigger(position, normal, _casterAgent, out affectedAgents, _ability.Template, new List<Agent>(1) { _casterAgent });
                 }
                 else if(IsSingleTarget() && _targetAgent != null)
                 {
-                    effect.Trigger(position, normal, _casterAgent, _ability.Template, new List<Agent>(1) { _targetAgent });
+                    effect.Trigger(position, normal, _casterAgent, out affectedAgents, _ability.Template, new List<Agent>(1) { _targetAgent });
                 }
-                else effect.Trigger(position, normal, _casterAgent, _ability.Template);
+                else effect.Trigger(position, normal, _casterAgent,out affectedAgents, _ability.Template);
+
+                if (affectedAgents != null)
+                {
+                    if (affectedAgents.Any())
+                    {
+                        OnEffectTriggeredSucessfull?.Invoke(affectedAgents,_casterAgent);
+                        //_ability.SucessfulHitAgents(sucessfulAffectedAgents);
+                    }
+                }
+              
+                
+                MBDebug.RenderDebugSphere(position, _ability.Template.Radius, 4294967295, true, 5f);
             }
             
-
-            if (_ability != null) MBDebug.RenderDebugSphere(position, _ability.Template.Radius, 4294967295, true, 5f);
+            
         }
 
 
