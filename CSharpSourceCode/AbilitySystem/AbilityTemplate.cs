@@ -22,6 +22,8 @@ namespace TOR_Core.AbilitySystem
         [XmlAttribute]
         public string SpriteName  = "";
         [XmlAttribute]
+        public bool StartsOnCoolDown = false;
+        [XmlAttribute]
         public int CoolDown = 10;
         [XmlAttribute]
         public int WindsOfMagicCost = 0; //spell only

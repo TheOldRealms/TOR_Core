@@ -2123,6 +2123,7 @@
    <AbilityTemplate StringID="KnightlyStrike"
       Name="Knightly Strike" 
       SpriteName="healinglight_icon" 
+	  StartsOnCoolDown = "true"
       CoolDown="5" 
       WindsOfMagicCost="0" 
       BaseMisCastChance="0.05" 

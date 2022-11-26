@@ -15,9 +15,9 @@ namespace TOR_Core.AbilitySystem
 {
     public abstract class Ability : IDisposable
     {
-        private int _coolDownLeft = 0;
-        private Timer _timer = null;
-        private float _cooldown_end_time;
+        protected int _coolDownLeft = 0;
+        protected Timer _timer = null;
+        protected float _cooldown_end_time;
 
         public bool IsCasting { get; private set; }
         public string StringID { get; }

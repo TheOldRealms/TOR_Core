@@ -17,6 +17,14 @@ namespace TOR_Core.AbilitySystem.Spells
         public CareerAbility(AbilityTemplate template, Agent owner) : base(template)
         {
             this.Owner = owner;
+
+            if (template.StartsOnCoolDown)
+            {
+                this.IsOnCooldown();
+                _coolDownLeft = Template.CoolDown;
+                _cooldown_end_time = Mission.Current.CurrentTime + _coolDownLeft + 0.8f; //Adjustment was needed for natural tick on UI
+                _timer.Start();
+            }
         }
         
         public override void ActivateAbility(Agent casterAgent)
@@ -27,13 +35,31 @@ namespace TOR_Core.AbilitySystem.Spells
                 var career =Campaign.Current.GetCampaignBehavior<CareerCampaignBase>();
             }
             
-            Template.AssociatedTriggeredEffectTemplate.ImbuedStatusEffectID = "fireball_dot";
+           // Template.AssociatedTriggeredEffectTemplate.ImbuedStatusEffectID = "fireball_dot";
 
             base.ActivateAbility(casterAgent);
 
          this.AbilityScript.OnEffectTriggeredSucessfull += PostTriggeredSucessfullEffect;
         }
-        
+
+        public override bool CanCast(Agent casterAgent)
+        {
+            bool canCast;
+            if (casterAgent.WieldedWeapon.IsEmpty) return false;
+            
+            var weapondata = casterAgent.WieldedWeapon.CurrentUsageItem;
+
+            if (weapondata.WeaponClass == WeaponClass.OneHandedSword || weapondata.WeaponClass == WeaponClass.OneHandedPolearm|| weapondata.WeaponClass == WeaponClass.TwoHandedSword||weapondata.WeaponClass==WeaponClass.TwoHandedPolearm )// Required weapon class
+            {
+                canCast= true;
+            }
+            else
+            {
+                canCast= false;
+            }
+
+            return canCast && base.CanCast(casterAgent);
+        }
 
 
         private void PostTriggeredSucessfullEffect(IEnumerable<Agent> affectedAgents, Agent caster)
