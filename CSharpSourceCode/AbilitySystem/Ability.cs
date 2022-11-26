@@ -85,8 +85,9 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-        public virtual bool ReachedAdditionalCoolDownRequirements()
+        public virtual bool ReachedAdditionalCoolDownRequirements(out float percentage)
         {
+            percentage = 1f;
             return true;
         }
 

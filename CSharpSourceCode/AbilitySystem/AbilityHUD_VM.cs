@@ -1,10 +1,12 @@
 ﻿using System;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -20,9 +22,12 @@ namespace TOR_Core.AbilitySystem
         private bool _onCoolDown;
         private bool _isSpell;
         private bool _hasCharges;
+        private bool _hasAlternativeCoolDown;
         
         private float _windsOfMagicValue;
         private string _windsCost = "";
+        
+        private int _alternativeCooldown=0;
         
 
         public AbilityHUD_VM() : base() { }
@@ -46,13 +51,32 @@ namespace TOR_Core.AbilitySystem
                 Name = _ability.Template.Name;
                 WindsCost = _ability.Template.WindsOfMagicCost.ToString();
                 CoolDownLeft = _ability.GetCoolDownLeft().ToString();
-                IsOnCoolDown = _ability.IsOnCooldown();
-
+                
                 HasCharges = _ability.HasCharges();
 
-                if (HasCharges)
-                    Charges= _ability.GetCurrentCharges().ToString();
                 
+                IsOnCoolDown = _ability.IsOnCooldown();
+
+                if (!_ability.ReachedAdditionalCoolDownRequirements(out float value) && IsOnCoolDown == false)
+                {
+                    if (value < 1)
+                    {
+                        HasAlternativeCoolDown = true;
+                        AlternativeCoolDown = (int)(value*100);
+                    }
+                    IsOnCoolDown = true;
+                  
+                    CoolDownLeft = AlternativeCoolDown +" %";
+                }
+                
+                
+                if (HasCharges&&IsOnCoolDown==false)
+                    Charges= _ability.GetCurrentCharges().ToString();
+                else
+                {
+                    Charges = "";
+                }
+
                 
                 
                 if (Game.Current.GameType is Campaign && _ability is Spell)
@@ -172,6 +196,24 @@ namespace TOR_Core.AbilitySystem
                 }
             }
         }
+        
+        [DataSourceProperty]
+        public int AlternativeCoolDown
+        {
+            get
+            {
+                return _alternativeCooldown;
+            }
+            set
+            {
+                if (value != _alternativeCooldown)
+                {
+                    _alternativeCooldown = value;
+                    base.OnPropertyChangedWithValue(value, "AlternativeCoolDown");
+                }
+            }
+        }
+
 
         [DataSourceProperty]
         public bool IsOnCoolDown
@@ -240,8 +282,22 @@ namespace TOR_Core.AbilitySystem
                 }
             }
         }
-        
-        
+        [DataSourceProperty]
+        public bool HasAlternativeCoolDown
+        {
+            get
+            {
+                return _hasAlternativeCoolDown;
+            }
+            set
+            {
+                if (value != _hasAlternativeCoolDown)
+                {
+                    _hasAlternativeCoolDown = value;
+                    base.OnPropertyChangedWithValue(value, "HasAlternativeCoolDown");
+                }
+            }
+        }
         
         [DataSourceProperty]
         public bool HasCharges

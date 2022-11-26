@@ -4,6 +4,7 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem.Scripts;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.CampaignMechanics.Career;
@@ -78,8 +79,10 @@ namespace TOR_Core.AbilitySystem.Spells
             
         }
 
-        public override bool ReachedAdditionalCoolDownRequirements()
+        public override bool ReachedAdditionalCoolDownRequirements(out float percentage)
         {
+            percentage = Mathf.Clamp((float)_currentCoolDownCharge /(float) _maximumCoolDownCharge,0,1);
+         
             return _currentCoolDownCharge >= _maximumCoolDownCharge;
         }
 
@@ -98,7 +101,7 @@ namespace TOR_Core.AbilitySystem.Spells
 
             if (Template.CoolDownType != CoolDownType.Time)
             {
-                if (!ReachedAdditionalCoolDownRequirements()) return false;
+                if (!ReachedAdditionalCoolDownRequirements(out float t)) return false;
             }
             
             var weapondata = casterAgent.WieldedWeapon.CurrentUsageItem;
