@@ -15,6 +15,11 @@
 								<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" VerticalAlignment="Center" Sprite="winds_icon_45" MarginLeft="2" />
 							</Children>
 						</ListPanel>
+						<ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="true" HorizontalAlignment="Left" MarginLeft="12" MarginTop="5" VerticalAlignment="Top"  IsVisible="@HasCharges">
+							<Children>
+								<TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="33" HorizontalAlignment="Center" VerticalAlignment="Center" Text="@Charges" Brush.FontSize="15" IsVisible="true"/>
+							</Children>
+						</ListPanel>
 					</Children>
 				</Widget>
 				<Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="165" Sprite="abilityframe" VerticalAlignment="Top" PositionYOffset="36" IsVisible="true"/>

@@ -15,11 +15,17 @@
 								<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" VerticalAlignment="Center" Sprite="winds_icon_45" MarginLeft="2" />
 							</Children>
 						</ListPanel>
+						<ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="true" HorizontalAlignment="Left" MarginLeft="12" MarginTop="5" VerticalAlignment="Top"  IsVisible="@HasCharges">
+							<Children>
+								<TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="33" HorizontalAlignment="Center" VerticalAlignment="Center" Text="@Charges" Brush.FontSize="15" IsVisible="true"/>
+							</Children>
+						</ListPanel>
 					</Children>
 				</Widget>
 				<Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="165" Sprite="abilityframe" VerticalAlignment="Top" PositionYOffset="36" IsVisible="true"/>
+				<TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="50" HorizontalAlignment="Center" VerticalAlignment="Top" PositionYOffset="36" Text="@WindsOfMagicLeft" Brush.FontSize="30" Brush.FontColor="#00c5dce3" Brush.TextOutlineAmount="0.1" Brush.TextOutlineColor="#0020aad4"/>
 				<TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="32" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="@Name" Brush.FontSize="14"/>
 			</Children>
-		</Widget>
+		</Widget>^
 	</Window>
 </Prefab>

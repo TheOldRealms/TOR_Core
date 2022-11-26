@@ -15,18 +15,30 @@ namespace TOR_Core.AbilitySystem
         private string _spriteName = "";
         private string _coolDownLeft = "";
         private string _WindsOfMagicLeft = "-";
+        private string _charges="";
         private bool _isVisible;
         private bool _onCoolDown;
         private bool _isSpell;
+        private bool _hasCharges;
+        
         private float _windsOfMagicValue;
         private string _windsCost = "";
+        
 
         public AbilityHUD_VM() : base() { }
 
+
+        protected virtual Ability SelectAbility()
+        {
+            var ability = Agent.Main.GetCurrentAbility();
+            IsVisible = ability != null && (Mission.Current.Mode == MissionMode.Battle || Mission.Current.Mode == MissionMode.Stealth);
+            return ability;
+        }
+
         public void UpdateProperties()
         {
-            _ability = Agent.Main.GetCurrentAbility();
-            IsVisible = _ability != null && (Mission.Current.Mode == MissionMode.Battle || Mission.Current.Mode == MissionMode.Stealth);
+            _ability = SelectAbility();
+            SelectAbility();
             if (IsVisible)
             {
                 IsSpell = _ability is Spell;
@@ -35,6 +47,14 @@ namespace TOR_Core.AbilitySystem
                 WindsCost = _ability.Template.WindsOfMagicCost.ToString();
                 CoolDownLeft = _ability.GetCoolDownLeft().ToString();
                 IsOnCoolDown = _ability.IsOnCooldown();
+
+                HasCharges = _ability.HasCharges();
+
+                if (HasCharges)
+                    Charges= _ability.GetCurrentCharges().ToString();
+                
+                
+                
                 if (Game.Current.GameType is Campaign && _ability is Spell)
                 {
                     SetWindsOfMagicValue((float)(Agent.Main?.GetHero()?.GetExtendedInfo()?.CurrentWindsOfMagic));
@@ -169,6 +189,23 @@ namespace TOR_Core.AbilitySystem
                 }
             }
         }
+        
+        [DataSourceProperty]
+        public string Charges
+        {
+            get
+            {
+                return _charges;
+            }
+            set
+            {
+                if (value != _charges)
+                {
+                    _charges = value;
+                    base.OnPropertyChangedWithValue(value, "Charges");
+                }
+            }
+        }
 
         [DataSourceProperty]
         public string WindsCost
@@ -200,6 +237,25 @@ namespace TOR_Core.AbilitySystem
                 {
                     _isSpell = value;
                     base.OnPropertyChangedWithValue(value, "IsSpell");
+                }
+            }
+        }
+        
+        
+        
+        [DataSourceProperty]
+        public bool HasCharges
+        {
+            get
+            {
+                return _hasCharges;
+            }
+            set
+            {
+                if (value != _hasCharges)
+                {
+                    _hasCharges = value;
+                    base.OnPropertyChangedWithValue(value, "HasCharges");
                 }
             }
         }
