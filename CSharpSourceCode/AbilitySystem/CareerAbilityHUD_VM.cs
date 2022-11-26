@@ -10,7 +10,7 @@ namespace TOR_Core.AbilitySystem
 {
     public class CareerAbilityHUD_VM : ViewModel
     {
-        private Ability _ability = null;
+        private CareerAbility _ability = null;
         private string _name = "";
         private string _spriteName = "";
         private string _coolDownLeft = "";
@@ -35,7 +35,15 @@ namespace TOR_Core.AbilitySystem
                 SpriteName = _ability.Template.SpriteName;
                 Name = _ability.Template.Name;
                 CoolDownLeft = _ability.GetCoolDownLeft().ToString();
-                IsOnCoolDown = _ability.IsOnCooldown();
+                if (_ability.Template.CoolDownType != CoolDownType.Time)
+                {
+                    IsOnCoolDown = _ability.IsOnCooldown()&&_ability.ReachedCoolDownLoad();
+                }
+                else
+                {
+                    IsOnCoolDown = _ability.IsOnCooldown();
+                }
+                
             }
         }
 

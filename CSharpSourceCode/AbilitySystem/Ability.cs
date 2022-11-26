@@ -15,7 +15,7 @@ namespace TOR_Core.AbilitySystem
 {
     public abstract class Ability : IDisposable
     {
-        protected int _currentCharges;
+        protected int _currentCharges;      //TODO this might be confusing with charges for Artillery Abilities. Maybe merge. 
         protected int _coolDownLeft = 0;
         protected Timer _timer = null;
         protected float _cooldown_end_time;
@@ -113,7 +113,7 @@ namespace TOR_Core.AbilitySystem
         {
             IsActivationPending = false;
             IsCasting = false;
-           SetOnCooldown();
+           InitCoolDown();
             var frame = GetSpawnFrame(casterAgent); 
             
             GameEntity parentEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
@@ -128,7 +128,7 @@ namespace TOR_Core.AbilitySystem
             OnCastComplete?.Invoke(this);
         }
 
-        protected void SetOnCooldown()
+        protected virtual void InitCoolDown()
         {
             _currentCharges--;
             if (_currentCharges > 0)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
@@ -15,32 +16,73 @@ namespace TOR_Core.AbilitySystem.Spells
     {
         private Agent Owner;
         private CareerCampaignBase _career;
+        private AbilityTemplate _ability;
+        
+        //None Timer based Cooldown
+        private int _maximumCoolDownCharge;
+        private int _currentCoolDownCharge;
+
         public CareerAbility(AbilityTemplate template, Agent owner) : base(template)
         {
             this.Owner = owner;
-
+            _maximumCoolDownCharge = template.CoolDownRequirement;
             if (template.StartsOnCoolDown)
             {
                 _coolDownLeft = Template.CoolDown;
                 _cooldown_end_time = Mission.Current.CurrentTime + _coolDownLeft + 0.8f; //Adjustment was needed for natural tick on UI
                 _timer.Start();
-                _currentCharges = Template.Charges;
-                
+                _currentCoolDownCharge = 0;
+
+            }
+            else
+            {
+                _currentCoolDownCharge = template.CoolDownRequirement;
             }
             
             if (Game.Current.GameType is Campaign)
             {
                 _career=Campaign.Current.GetCampaignBehavior<CareerCampaignBase>();
             }
+            Template.AssociatedTriggeredEffectTemplate.ImbuedStatusEffectID = "fireball_dot";
+            //Set here career ability overrides
             
         }
         
+        
+
+        protected override void InitCoolDown()
+        {
+            if (Template.CoolDownType != CoolDownType.Time)
+            {
+                var charges = _currentCharges;
+                charges--;
+                if (charges > 0)
+                {
+                    base.InitCoolDown();
+                }
+                else
+                {
+                    _currentCoolDownCharge = 0;
+                    //Cooldown Timer set insible
+                    //
+                }
+                
+            }
+            else
+            {
+                base.InitCoolDown();
+            }
+           
+            
+        }
+
+        public bool ReachedCoolDownLoad()
+        {
+            return _currentCoolDownCharge >= _maximumCoolDownCharge;
+        }
+
         public override void ActivateAbility(Agent casterAgent)
         {
-
-         
-            
-           // Template.AssociatedTriggeredEffectTemplate.ImbuedStatusEffectID = "fireball_dot";
 
             base.ActivateAbility(casterAgent);
 
@@ -51,6 +93,11 @@ namespace TOR_Core.AbilitySystem.Spells
         {
             bool canCast;
             if (casterAgent.WieldedWeapon.IsEmpty) return false;
+
+            if (Template.CoolDownType != CoolDownType.Time)
+            {
+                if (!ReachedCoolDownLoad()) return false;
+            }
             
             var weapondata = casterAgent.WieldedWeapon.CurrentUsageItem;
 
@@ -64,6 +111,12 @@ namespace TOR_Core.AbilitySystem.Spells
             }
 
             return canCast && base.CanCast(casterAgent);
+        }
+        
+        public void AddCharge(int amount)
+        {
+            _currentCoolDownCharge += amount;
+            _currentCoolDownCharge = Math.Min(_maximumCoolDownCharge, _currentCoolDownCharge);
         }
 
 

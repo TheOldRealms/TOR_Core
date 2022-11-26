@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
 
@@ -6,7 +7,7 @@ namespace TOR_Core.CampaignMechanics.Career
 {
     public class CareerSkillTreeTemplate        //The Serializable Component that stores all passive nodes and key stones, and is load into the game on start up
     {
-        public CareerType CareerType = CareerType.None;     //might also be just a string ensures, that no typos are made and the right Career template
+        public CareerClass CareerClass = CareerClass.None;     //might also be just a string ensures, that no typos are made and the right Career template
         public List<WeaponClass> CareerAbilityWeaponRequirement; 
         public Dictionary<string, CareerSkillTreeNode> _nodes;
         // Optional, if the said type is not wield, the ability can't be performed.
@@ -37,11 +38,14 @@ namespace TOR_Core.CampaignMechanics.Career
         public string UnlockConditionText;
    
     }
+
+    
     
     //OnAbilityAttackScript
-    public enum CareerType
+    public enum CareerClass
     {
         None,
+        MinorVampire,
         GrailKnight,
         WarriorPriest
     }

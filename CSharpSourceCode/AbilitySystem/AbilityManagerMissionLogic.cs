@@ -105,9 +105,29 @@ namespace TOR_Core.AbilitySystem
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
             var comp = affectorAgent.GetComponent<AbilityComponent>();
-            if (comp != null)
+            if (comp == null) return;
+
+            if (comp.CareerAbility == null) return;
+            
+
+            if (comp.CareerAbility.Template.CoolDownType == CoolDownType.Damage)
             {
-                if (comp.SpecialMove != null) comp.SpecialMove.AddCharge(blow.InflictedDamage * DamagePortionForChargingSpecialMove);
+                comp.CareerAbility.AddCharge(blow.InflictedDamage);
+            }
+
+        }
+
+        public override void OnRegisterBlow(Agent attacker, Agent victim, GameEntity realHitEntity, Blow b, ref AttackCollisionData collisionData, in MissionWeapon attackerWeapon)
+        {
+            var comp = attacker.GetComponent<AbilityComponent>();
+            if (comp == null) return;
+
+            if (comp.CareerAbility == null) return;
+            
+            if (comp.CareerAbility.Template.CoolDownType == CoolDownType.Kills)
+            {
+                if(victim.Health <= 0)
+                    comp.CareerAbility.AddCharge(1 );
             }
         }
 

@@ -9,6 +9,7 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.CustomBattle;
 using TOR_Core.AbilitySystem;
+using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -391,7 +392,7 @@ namespace TOR_Core.Extensions
             else return null;
         }
 
-        public static Ability GetCareerAbility(this Agent agent)
+        public static CareerAbility GetCareerAbility(this Agent agent)
         {
             var abilitycomponent = agent.GetComponent<AbilityComponent>();
             if (abilitycomponent != null)

@@ -56,7 +56,7 @@ namespace TOR_Core.AbilitySystem
                         TORCommon.Log("Failed instantiating ability class: " + item, LogLevel.Error);
                     }
                 }
-                if (Agent.IsVampire() && _specialMove == null) _specialMove = (SpecialMove)AbilityFactory.CreateNew("ShadowStep", Agent);
+               // if (Agent.IsVampire() && _specialMove == null) _specialMove = (CareerAbility)AbilityFactory.CreateNew("ShadowStep", Agent);
             }
             if (Agent.CanPlaceArtillery())
             {

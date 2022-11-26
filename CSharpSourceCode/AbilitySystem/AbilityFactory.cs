@@ -24,6 +24,17 @@ namespace TOR_Core.AbilitySystem
             }
             return list;
         }
+        
+        public static List<string> GetAllCareerAbilityNamesAsList()
+        {
+            List<string> list = new List<string>();
+            var q = _templates.Distinct().Where(x => x.Value.AbilityType == AbilityType.CareerAbility);
+            foreach (var template in q)
+            {
+                list.Add(template.Value.StringID);
+            }
+            return list;
+        }
 
         public static List<AbilityTemplate> GetAllTemplates()
         {

@@ -13,7 +13,7 @@ namespace TOR_Core.Utilities
     public class TORConsoleCommands
     {
         private static List<string> torSpellNames = AbilityFactory.GetAllSpellNamesAsList();
-
+        private static List<string> torCareerNames = AbilityFactory.GetAllCareerAbilityNamesAsList();
         
         //TODO currently disabled due to missing Engineer Quest
         [CommandLineFunctionality.CommandLineArgumentFunction("whereisgoswin", "tor")]
@@ -32,7 +32,12 @@ namespace TOR_Core.Utilities
         }
         
         
-        [CommandLineFunctionality.CommandLineArgumentFunction("list_spells", "tor")]
+        [CommandLineFunctionality.CommandLineArgumentFunction("list_careerAbilities", "tor")]
+        public static string ListCareers(List<string> argumentNames) =>
+            AggregateOutput("Available careerSkills:", torCareerNames);
+        
+        
+        
         public static string ListSpells(List<string> argumentNames) =>
             AggregateOutput("Available spells are:", torSpellNames);
 
@@ -53,19 +58,35 @@ namespace TOR_Core.Utilities
             var knownSpells = new List<string>();
 
             foreach (var argument in arguments)
-            foreach (var torSpell in torSpellNames)
-                if (string.Equals(torSpell, argument, StringComparison.CurrentCultureIgnoreCase))
-                {
-                    matchedArguments.Add(torSpell);
-
-                    if (Hero.MainHero.HasAbility(torSpell))
-                        knownSpells.Add(torSpell);
-                    else
+            {
+                foreach (var torSpell in torSpellNames)
+                    if (string.Equals(torSpell, argument, StringComparison.CurrentCultureIgnoreCase))
                     {
-                        Hero.MainHero.AddAbility(torSpell);
-                        newSpells.Add(torSpell);
+                        matchedArguments.Add(torSpell);
+
+                        if (Hero.MainHero.HasAbility(torSpell))
+                            knownSpells.Add(torSpell);
+                        else
+                        {
+                            Hero.MainHero.AddAbility(torSpell);
+                            newSpells.Add(torSpell);
+                        }
                     }
-                }
+                foreach (var torSpell in torCareerNames)            //TODO RESTRICT THIS TO ONE! REMOVE ANY OTHER 
+                    if (string.Equals(torSpell, argument, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        matchedArguments.Add(torSpell);
+
+                        if (Hero.MainHero.HasAbility(torSpell))
+                            knownSpells.Add(torSpell);
+                        else
+                        {
+                            Hero.MainHero.AddAbility(torSpell);
+                            newSpells.Add(torSpell);
+                        }
+                    }
+            }
+            
 
             if (newSpells.Count > 0)
                 MakePlayerSpellCaster(null);

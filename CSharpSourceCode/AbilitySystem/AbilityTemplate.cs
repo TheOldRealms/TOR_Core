@@ -24,6 +24,10 @@ namespace TOR_Core.AbilitySystem
         [XmlAttribute]
         public bool StartsOnCoolDown = false;
         [XmlAttribute]
+        public CoolDownType CoolDownType = CoolDownType.Time; //this works currently only for Career Abilities. Would otherwise require massive rework of the SpellInfoSystem.
+        [XmlAttribute]
+        public int CoolDownRequirement = 10; // Same as above, either kills or inflicted damage
+        [XmlAttribute]
         public int CoolDown = 10;
         [XmlAttribute]
         public int Charges = 1;

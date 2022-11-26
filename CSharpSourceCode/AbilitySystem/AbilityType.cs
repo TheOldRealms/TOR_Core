@@ -50,6 +50,13 @@
         OnCollision,
         TickOnce
     }
+    
+    public enum CoolDownType
+    {
+        Time,
+        Kills,
+        Damage,
+    }
 
     //This is for triggeredeffects.
     public enum TargetType
