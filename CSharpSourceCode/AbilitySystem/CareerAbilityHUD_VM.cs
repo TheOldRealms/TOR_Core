@@ -10,20 +10,11 @@ namespace TOR_Core.AbilitySystem
 {
     public class CareerAbilityHUD_VM : AbilityHUD_VM
     {
-        private Ability _ability = null;
-
-        public CareerAbilityHUD_VM() : base()
-        {
-            
-        }
-
         protected override Ability SelectAbility()
         {
             var ability = Agent.Main.GetCareerAbility();
             IsVisible = ability != null && (Mission.Current.Mode == MissionMode.Battle || Mission.Current.Mode == MissionMode.Stealth);
             return ability;
         }
-        
-        
     }
 }

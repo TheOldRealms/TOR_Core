@@ -29,6 +29,8 @@ namespace TOR_Core.AbilitySystem
         public virtual AbilityEffectType AbilityEffectType => Template.AbilityEffectType;
         public bool IsOnCooldown() => _timer.Enabled;
         public int GetCoolDownLeft() => _coolDownLeft;
+
+        public bool HasCharges() => Template.Charges > 1;
         private bool IsSingleTarget() => Template.AbilityTargetType == AbilityTargetType.SingleAlly || Template.AbilityTargetType == AbilityTargetType.SingleEnemy;
 
         public delegate void OnCastCompleteHandler(Ability ability);
@@ -81,6 +83,11 @@ namespace TOR_Core.AbilitySystem
             {
                 DoCast(casterAgent);
             }
+        }
+
+        public virtual bool ReachedAdditionalCoolDownRequirements()
+        {
+            return true;
         }
 
         public virtual bool CanCast(Agent casterAgent)
@@ -170,6 +177,11 @@ namespace TOR_Core.AbilitySystem
                 return Mission.Current.IsPlayerInSpellCasterMode() ? CalculatePlayerCastMatrixFrame(casterAgent): CalculateQuickCastMatrixFrame(casterAgent);
             }
             return casterAgent.IsAIControlled ? CalculateAICastMatrixFrame(casterAgent) : CalculatePlayerCastMatrixFrame(casterAgent);
+        }
+
+        public int GetCurrentCharges()
+        {
+            return _currentCharges;
         }
 
         private MatrixFrame CalculateQuickCastMatrixFrame(Agent casterAgent)

@@ -44,6 +44,8 @@ namespace TOR_Core.AbilitySystem.Spells
                 _career=Campaign.Current.GetCampaignBehavior<CareerCampaignBase>();
             }
             Template.AssociatedTriggeredEffectTemplate.ImbuedStatusEffectID = "fireball_dot";
+            
+            
             //Set here career ability overrides
             
         }
@@ -76,7 +78,7 @@ namespace TOR_Core.AbilitySystem.Spells
             
         }
 
-        public bool ReachedCoolDownLoad()
+        public override bool ReachedAdditionalCoolDownRequirements()
         {
             return _currentCoolDownCharge >= _maximumCoolDownCharge;
         }
@@ -96,7 +98,7 @@ namespace TOR_Core.AbilitySystem.Spells
 
             if (Template.CoolDownType != CoolDownType.Time)
             {
-                if (!ReachedCoolDownLoad()) return false;
+                if (!ReachedAdditionalCoolDownRequirements()) return false;
             }
             
             var weapondata = casterAgent.WieldedWeapon.CurrentUsageItem;
