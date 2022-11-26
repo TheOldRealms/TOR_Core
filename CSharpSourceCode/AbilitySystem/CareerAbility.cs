@@ -14,26 +14,31 @@ namespace TOR_Core.AbilitySystem.Spells
     public class CareerAbility: Ability
     {
         private Agent Owner;
+        private CareerCampaignBase _career;
         public CareerAbility(AbilityTemplate template, Agent owner) : base(template)
         {
             this.Owner = owner;
 
             if (template.StartsOnCoolDown)
             {
-                this.IsOnCooldown();
                 _coolDownLeft = Template.CoolDown;
                 _cooldown_end_time = Mission.Current.CurrentTime + _coolDownLeft + 0.8f; //Adjustment was needed for natural tick on UI
                 _timer.Start();
+                _currentCharges = Template.Charges;
+                
             }
+            
+            if (Game.Current.GameType is Campaign)
+            {
+                _career=Campaign.Current.GetCampaignBehavior<CareerCampaignBase>();
+            }
+            
         }
         
         public override void ActivateAbility(Agent casterAgent)
         {
 
-            if (Game.Current.GameType is Campaign)
-            {
-                var career =Campaign.Current.GetCampaignBehavior<CareerCampaignBase>();
-            }
+         
             
            // Template.AssociatedTriggeredEffectTemplate.ImbuedStatusEffectID = "fireball_dot";
 
@@ -49,9 +54,9 @@ namespace TOR_Core.AbilitySystem.Spells
             
             var weapondata = casterAgent.WieldedWeapon.CurrentUsageItem;
 
-            if (weapondata.WeaponClass == WeaponClass.OneHandedSword || weapondata.WeaponClass == WeaponClass.OneHandedPolearm|| weapondata.WeaponClass == WeaponClass.TwoHandedSword||weapondata.WeaponClass==WeaponClass.TwoHandedPolearm )// Required weapon class
+            if (_career.HasRequiredWeaponFlags(weapondata.WeaponClass))
             {
-                canCast= true;
+                canCast = !casterAgent.HasMount || _career.CanBeUsedWhileMounted();
             }
             else
             {

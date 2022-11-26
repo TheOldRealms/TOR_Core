@@ -15,6 +15,7 @@ namespace TOR_Core.AbilitySystem
 {
     public abstract class Ability : IDisposable
     {
+        protected int _currentCharges;
         protected int _coolDownLeft = 0;
         protected Timer _timer = null;
         protected float _cooldown_end_time;
@@ -45,6 +46,7 @@ namespace TOR_Core.AbilitySystem
             _timer = new Timer(1000);
             _timer.Elapsed += TimerElapsed;
             _timer.Enabled = false;
+            _currentCharges = template.Charges;
         }
         
         public void ReduceCoolDown(float delta)
@@ -111,9 +113,7 @@ namespace TOR_Core.AbilitySystem
         {
             IsActivationPending = false;
             IsCasting = false;
-            _coolDownLeft = Template.CoolDown;
-            _cooldown_end_time = Mission.Current.CurrentTime + _coolDownLeft + 0.8f; //Adjustment was needed for natural tick on UI
-            _timer.Start();
+           SetOnCooldown();
             var frame = GetSpawnFrame(casterAgent); 
             
             GameEntity parentEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
@@ -126,6 +126,25 @@ namespace TOR_Core.AbilitySystem
 
             AddBehaviour(ref parentEntity, casterAgent);
             OnCastComplete?.Invoke(this);
+        }
+
+        protected void SetOnCooldown()
+        {
+            _currentCharges--;
+            if (_currentCharges > 0)
+            {
+                _coolDownLeft = 1;
+                _cooldown_end_time = Mission.Current.CurrentTime + _coolDownLeft+ 0.8f;
+                _timer.Start();
+            }
+            else
+            {
+                _coolDownLeft = Template.CoolDown;
+                _cooldown_end_time = Mission.Current.CurrentTime + _coolDownLeft + 0.8f; //Adjustment was needed for natural tick on UI
+                _timer.Start();
+                _currentCharges = Template.Charges;
+            }
+            
         }
 
         private bool IsGroundAbility()

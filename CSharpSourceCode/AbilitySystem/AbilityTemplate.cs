@@ -26,6 +26,8 @@ namespace TOR_Core.AbilitySystem
         [XmlAttribute]
         public int CoolDown = 10;
         [XmlAttribute]
+        public int Charges = 1;
+        [XmlAttribute]
         public int WindsOfMagicCost = 0; //spell only
         [XmlAttribute]
         public float BaseMisCastChance = 0.3f; //spell only
