@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<ArrayOfCareerTemplate xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	  <CareerTemplate CareerId="GrailKnight"
+	  AbilityTemplateId="KnightlyStrike">
+		<CareerAbilityWeaponRequirements>
+					<WeaponClass>OneHandedSword</WeaponClass>
+					<WeaponClass>TwoHandedSword</WeaponClass>
+		</CareerAbilityWeaponRequirements>
+		<KeyStones>
+		<KeyStoneNode NodeId="a" CharacterAttribute ="" AttributeValue="0">
+			<Modifier>
+							
+			</Modifier>
+		</KeyStoneNode>
+		</KeyStones>
+	</CareerTemplate>	
+</ArrayOfCareerTemplate>

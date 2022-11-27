@@ -5,6 +5,7 @@ using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 using TOR_Core.AbilitySystem;
+using TOR_Core.CampaignMechanics.Career;
 using TOR_Core.Extensions;
 using TOR_Core.Quests;
 
@@ -13,7 +14,7 @@ namespace TOR_Core.Utilities
     public class TORConsoleCommands
     {
         private static List<string> torSpellNames = AbilityFactory.GetAllSpellNamesAsList();
-        private static List<string> torCareerNames = AbilityFactory.GetAllCareerAbilityNamesAsList();
+        private static List<string> torCareerAbilities = AbilityFactory.GetAllCareerAbilityNamesAsList();
         
         //TODO currently disabled due to missing Engineer Quest
         [CommandLineFunctionality.CommandLineArgumentFunction("whereisgoswin", "tor")]
@@ -33,8 +34,8 @@ namespace TOR_Core.Utilities
         
         
         [CommandLineFunctionality.CommandLineArgumentFunction("list_careerAbilities", "tor")]
-        public static string ListCareers(List<string> argumentNames) =>
-            AggregateOutput("Available careerSkills:", torCareerNames);
+        public static string ListCareerAbilities(List<string> argumentNames) =>
+            AggregateOutput("Available careerSkills:", torCareerAbilities);
         
         
         
@@ -72,7 +73,7 @@ namespace TOR_Core.Utilities
                             newSpells.Add(torSpell);
                         }
                     }
-                foreach (var torSpell in torCareerNames)            //TODO RESTRICT THIS TO ONE! REMOVE ANY OTHER 
+                foreach (var torSpell in torCareerAbilities)            //TODO RESTRICT THIS TO ONE! REMOVE ANY OTHER 
                     if (string.Equals(torSpell, argument, StringComparison.CurrentCultureIgnoreCase))
                     {
                         matchedArguments.Add(torSpell);
@@ -100,6 +101,28 @@ namespace TOR_Core.Utilities
             AggregateOutput("Already known spells in request:", knownSpells) +
             AggregateOutput("Added spells :", newSpells
             );
+
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("chooseCareer", "tor")]
+        public static string ChooseCareer(List<string>  arguments)
+        {
+            if (arguments.Count > 1)
+            {
+                return "Only One Career is valid";
+            }
+
+            var argument = arguments[0];
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+
+            foreach (var career in CareerFactory.ListAvailableCareers().Where(career => career == argument))
+            {
+                return "Changed to "+career;
+            }
+
+            return "Could not found career";
+        }
+
 
         [CommandLineFunctionality.CommandLineArgumentFunction("make_player_necromancer", "tor")]
         public static string MakePlayerNecromancer(List<string> arguments)

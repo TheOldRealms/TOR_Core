@@ -28,6 +28,7 @@
 
     public enum AbilityTargetType
     {
+        Invalid,
         Self,
         SingleEnemy,
         SingleAlly,
@@ -39,6 +40,7 @@
 
     public enum CastType
     {
+        Invalid,
         Instant,
         WindUp,
         Channel
@@ -56,6 +58,7 @@
         Time,
         Kills,
         Damage,
+        Invalid,
     }
 
     //This is for triggeredeffects.
@@ -65,6 +68,7 @@
         Enemy,
         All,
         FriendlyHero,
-        EnemyHero
+        EnemyHero,
+        Invalid
     }
 }
