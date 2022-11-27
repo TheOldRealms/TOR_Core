@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Settlements;
@@ -15,6 +16,7 @@ namespace TOR_Core.CampaignMechanics.Assimilation
             CampaignEvents.OnSettlementOwnerChangedEvent.AddNonSerializedListener(this, SettlementOwnerChanged);
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
             CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, OnNewGameStart);
+            CampaignEvents.OnBeforeSaveEvent.AddNonSerializedListener(this, BeforeSave);
         }
 
         private void OnNewGameStart(CampaignGameStarter arg1, int arg2)
@@ -28,12 +30,34 @@ namespace TOR_Core.CampaignMechanics.Assimilation
             }
         }
 
+        private void BeforeSave()
+        {
+            foreach(var settlement in Settlement.All)
+            {
+                if (_settlementCulturePairs.ContainsKey(settlement))
+                {
+                    _settlementCulturePairs[settlement] = settlement.Culture;
+                }
+                else
+                {
+                    _settlementCulturePairs.Add(settlement, settlement.Culture);
+                }
+            }
+        }
+
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
             foreach(var settlement in _settlementCulturePairs.Keys)
             {
                 CultureObject settlementCulture = _settlementCulturePairs[settlement];
-                if (settlement.Culture != settlementCulture) settlement.Culture = settlementCulture;
+                if (settlement.Culture != settlementCulture)
+                {
+                    settlement.Culture = settlementCulture;
+                    foreach(var notable in settlement.Notables)
+                    {
+                        if (notable.Culture != settlement.Culture) notable.Culture = settlement.Culture;
+                    }
+                }
             }
         }
 
@@ -48,14 +72,17 @@ namespace TOR_Core.CampaignMechanics.Assimilation
                     {
                         if (notable.Culture != settlement.Culture) notable.Culture = settlement.Culture;
                     }
-                }
-                if (_settlementCulturePairs.ContainsKey(settlement))
-                {
-                    _settlementCulturePairs[settlement] = settlement.Culture;
-                }
-                else
-                {
-                    _settlementCulturePairs.Add(settlement, settlement.Culture);
+                    if(settlement.BoundVillages != null && settlement.BoundVillages.Count > 0)
+                    {
+                        foreach(var village in settlement.BoundVillages)
+                        {
+                            village.Settlement.Culture = settlement.Culture;
+                            foreach(var villageNotable in village.Settlement.Notables)
+                            {
+                                if (villageNotable.Culture != settlement.Culture) villageNotable.Culture = settlement.Culture;
+                            }
+                        }
+                    }
                 }
             }
         }
