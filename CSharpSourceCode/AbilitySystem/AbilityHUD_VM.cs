@@ -67,7 +67,7 @@ namespace TOR_Core.AbilitySystem
                 
                 IsOnCoolDown = _ability.IsOnCooldown();
 
-                if (!_ability.ReachedAdditionalCoolDownRequirements(out float value) && IsOnCoolDown == false)
+                if (!_ability.ReachedChargeRequirement(out float value) && IsOnCoolDown == false)
                 {
                     if (value < 1)
                     {

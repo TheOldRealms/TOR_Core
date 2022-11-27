@@ -4,6 +4,7 @@ using TaleWorlds.MountAndBlade;
 using System.Timers;
 using TaleWorlds.Library;
 using TaleWorlds.Engine;
+using TaleWorlds.TwoDimension;
 using Timer = System.Timers.Timer;
 using TOR_Core.AbilitySystem.Scripts;
 using TOR_Core.AbilitySystem.Crosshairs;
@@ -15,10 +16,16 @@ namespace TOR_Core.AbilitySystem
 {
     public abstract class Ability : IDisposable
     {
-        protected int _currentCharges;      //TODO this might be confusing with charges for Artillery Abilities. Maybe merge. 
+        protected int _leftUsages;      //TODO this might be confusing with charges for Artillery Abilities. Maybe merge. 
         protected int _coolDownLeft = 0;
         protected Timer _timer = null;
         protected float _cooldown_end_time;
+        
+        protected readonly bool _hasChargeRequirement;
+
+
+        protected int _currentCharge;
+        protected int _maximumCharge;
 
         public bool IsCasting { get; private set; }
         public string StringID { get; }
@@ -30,7 +37,7 @@ namespace TOR_Core.AbilitySystem
         public bool IsOnCooldown() => _timer.Enabled;
         public int GetCoolDownLeft() => _coolDownLeft;
 
-        public bool HasCharges() => Template.Charges > 1;
+        public bool HasCharges() => Template.Usages > 1;
         private bool IsSingleTarget() => Template.AbilityTargetType == AbilityTargetType.SingleAlly || Template.AbilityTargetType == AbilityTargetType.SingleEnemy;
 
         public delegate void OnCastCompleteHandler(Ability ability);
@@ -48,7 +55,12 @@ namespace TOR_Core.AbilitySystem
             _timer = new Timer(1000);
             _timer.Elapsed += TimerElapsed;
             _timer.Enabled = false;
-            _currentCharges = template.Charges;
+            _leftUsages = template.Usages;
+            
+            if (template.ChargeType != ChargeType.Time)
+            {
+                _hasChargeRequirement = true;
+            }
         }
         
         public void ReduceCoolDown(float delta)
@@ -84,11 +96,26 @@ namespace TOR_Core.AbilitySystem
                 DoCast(casterAgent);
             }
         }
-
-        public virtual bool ReachedAdditionalCoolDownRequirements(out float percentage)
+        
+        public void AddCharge(int amount)
         {
-            percentage = 1f;
-            return true;
+            _currentCharge += amount;
+            _currentCharge = Math.Min(_maximumCharge, _currentCharge);
+        }
+
+        public virtual bool ReachedChargeRequirement(out float percentage)
+        {
+            if (!_hasChargeRequirement)
+            {
+                percentage = 1f;
+                return true;
+            }
+            else
+            { 
+                percentage = Mathf.Clamp((float) _currentCharge /(float) _maximumCharge,0,1);
+                return percentage >= 1;
+            }
+            
         }
 
         public virtual bool CanCast(Agent casterAgent)
@@ -138,8 +165,8 @@ namespace TOR_Core.AbilitySystem
 
         protected virtual void InitCoolDown()
         {
-            _currentCharges--;
-            if (_currentCharges > 0)
+            _leftUsages--;
+            if (_leftUsages > 0)
             {
                 _coolDownLeft = 1;
                 _cooldown_end_time = Mission.Current.CurrentTime + _coolDownLeft+ 0.8f;
@@ -150,7 +177,7 @@ namespace TOR_Core.AbilitySystem
                 _coolDownLeft = Template.CoolDown;
                 _cooldown_end_time = Mission.Current.CurrentTime + _coolDownLeft + 0.8f; //Adjustment was needed for natural tick on UI
                 _timer.Start();
-                _currentCharges = Template.Charges;
+                _leftUsages = Template.Usages;
             }
             
         }
@@ -182,7 +209,7 @@ namespace TOR_Core.AbilitySystem
 
         public int GetCurrentCharges()
         {
-            return _currentCharges;
+            return _leftUsages;
         }
 
         private MatrixFrame CalculateQuickCastMatrixFrame(Agent casterAgent)

@@ -20,26 +20,26 @@ namespace TOR_Core.AbilitySystem.Spells
         private AbilityTemplate _ability;
         
         //None Timer based Cooldown
-        private int _maximumCoolDownCharge;
-        private int _currentCoolDownCharge;
+
+
 
         public CareerAbility(AbilityTemplate template, Agent owner) : base(template)
         {
             this.Owner = owner;
-            _maximumCoolDownCharge = template.CoolDownRequirement;
+           // _maximumCoolDownCharge = template.ChargeRequirement;
             if (template.StartsOnCoolDown)
             {
                 _coolDownLeft = Template.CoolDown;
                 _cooldown_end_time = Mission.Current.CurrentTime + _coolDownLeft + 0.8f; //Adjustment was needed for natural tick on UI
                 _timer.Start();
-                _currentCoolDownCharge = 0;
+                _currentCharge = 0;
 
             }
-            else
-            {
-                _currentCoolDownCharge = template.CoolDownRequirement;
-            }
-            
+
+            _currentCharge = Template.Charge;
+
+           // _currentCharge = Math.Min(_maximumCoolDownCharge, _currentCharge);
+
             if (Game.Current.GameType is Campaign)
             {
                 _career=Campaign.Current.GetCampaignBehavior<CareerCampaignBase>();
@@ -53,11 +53,11 @@ namespace TOR_Core.AbilitySystem.Spells
         
         
 
-        protected override void InitCoolDown()
+        /*protected override void InitCoolDown()
         {
-            if (Template.CoolDownType != CoolDownType.Time)
+            if (Template.ChargeType != ChargeType.Time)
             {
-                var charges = _currentCharges;
+                var charges = _leftUsages;
                 charges--;
                 if (charges > 0)
                 {
@@ -65,7 +65,7 @@ namespace TOR_Core.AbilitySystem.Spells
                 }
                 else
                 {
-                    _currentCoolDownCharge = 0;
+                    _currentCharge = 0;
                     //Cooldown Timer set insible
                     //
                 }
@@ -77,14 +77,14 @@ namespace TOR_Core.AbilitySystem.Spells
             }
            
             
-        }
+        }*/
 
-        public override bool ReachedAdditionalCoolDownRequirements(out float percentage)
+        /*public override bool ReachedChargeRequirement(out float percentage)
         {
-            percentage = Mathf.Clamp((float)_currentCoolDownCharge /(float) _maximumCoolDownCharge,0,1);
+            percentage = Mathf.Clamp((float)_currentCharge /(float) _maximumCoolDownCharge,0,1);
          
-            return _currentCoolDownCharge >= _maximumCoolDownCharge;
-        }
+            return _currentCharge >= _maximumCoolDownCharge;
+        }*/
 
         public override void ActivateAbility(Agent casterAgent)
         {
@@ -99,9 +99,9 @@ namespace TOR_Core.AbilitySystem.Spells
             bool canCast;
             if (casterAgent.WieldedWeapon.IsEmpty) return false;
 
-            if (Template.CoolDownType != CoolDownType.Time)
+            if (Template.ChargeType != ChargeType.Time)
             {
-                if (!ReachedAdditionalCoolDownRequirements(out float t)) return false;
+                if (!ReachedChargeRequirement(out float t)) return false;
             }
             
             var weapondata = casterAgent.WieldedWeapon.CurrentUsageItem;
@@ -118,11 +118,7 @@ namespace TOR_Core.AbilitySystem.Spells
             return canCast && base.CanCast(casterAgent);
         }
         
-        public void AddCharge(int amount)
-        {
-            _currentCoolDownCharge += amount;
-            _currentCoolDownCharge = Math.Min(_maximumCoolDownCharge, _currentCoolDownCharge);
-        }
+        
 
 
         private void PostTriggeredSucessfullEffect(IEnumerable<Agent> affectedAgents, Agent caster)

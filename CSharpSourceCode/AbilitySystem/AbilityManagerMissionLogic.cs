@@ -110,7 +110,7 @@ namespace TOR_Core.AbilitySystem
             if (comp.CareerAbility == null) return;
             
 
-            if (comp.CareerAbility.Template.CoolDownType == CoolDownType.Damage)
+            if (comp.CareerAbility.Template.ChargeType == ChargeType.Damage)
             {
                 comp.CareerAbility.AddCharge(blow.InflictedDamage);
             }
@@ -124,7 +124,7 @@ namespace TOR_Core.AbilitySystem
 
             if (comp.CareerAbility == null) return;
             
-            if (comp.CareerAbility.Template.CoolDownType == CoolDownType.Kills)
+            if (comp.CareerAbility.Template.ChargeType == ChargeType.Kills)
             {
                 if(victim.Health <= 0)
                     comp.CareerAbility.AddCharge(1 );

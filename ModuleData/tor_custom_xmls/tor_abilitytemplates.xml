@@ -2126,7 +2126,7 @@
       SpriteName="healinglight_icon" 
 	  StartsOnCoolDown = "true"
       CoolDown="5" 
-	  Charges ="2"
+	  Usages ="2"
       WindsOfMagicCost="0" 
 	  CoolDownType="Kills"
 	  CoolDownRequirement="2"

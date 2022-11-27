@@ -105,6 +105,16 @@ namespace TOR_Core.Extensions
             else return false;
         }
 
+
+        public static bool HasCareerAbility(this Hero hero)
+        {
+            if (hero.GetExtendedInfo() == null) return false;
+            
+            var knownAblitlities = hero.GetExtendedInfo().AllAbilites;
+            var careerAbilities= AbilityFactory.GetAllCareerAbilityNamesAsList();
+            return knownAblitlities.Any(ability => careerAbilities.Contains(ability));
+        }
+
         public static void SetSpellCastingLevel(this Hero hero, SpellCastingLevel level)
         {
             if (hero.GetExtendedInfo() != null)

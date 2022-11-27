@@ -24,13 +24,16 @@ namespace TOR_Core.AbilitySystem
         [XmlAttribute]
         public bool StartsOnCoolDown = false;
         [XmlAttribute]
-        public CoolDownType CoolDownType = CoolDownType.Time; //this works currently only for Career Abilities. Would otherwise require massive rework of the SpellInfoSystem.
+        public ChargeType ChargeType = ChargeType.Time;
         [XmlAttribute]
-        public int CoolDownRequirement = 10; // Same as above, either kills or inflicted damage
+        public int Charge = 0;
+        [XmlAttribute]
+        public int ChargeRequirement = 100;
+        
         [XmlAttribute]
         public int CoolDown = 10;
         [XmlAttribute]
-        public int Charges = 1;
+        public int Usages = 1;
         [XmlAttribute]
         public int WindsOfMagicCost = 0; //spell only
         [XmlAttribute]

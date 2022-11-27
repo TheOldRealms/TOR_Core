@@ -31,7 +31,7 @@ namespace TOR_Core.AbilitySystem
 
             if (Campaign.Current != null)
             {
-                if (Campaign.Current.MainParty.LeaderHero.HasCareerAbility())
+                if (Campaign.Current.MainParty.LeaderHero.HasCareerAbility())//Campaign.Current.MainParty.LeaderHero.HasCareerAbility())
                 {
                     _abilityHUD_VM = new AbilityHUD_VM(true);
                     _abilityLayer = new GauntletLayer(100);
@@ -50,9 +50,14 @@ namespace TOR_Core.AbilitySystem
                     _abilityLayer.LoadMovie("AbilityHUD", _abilityHUD_VM);
                     MissionScreen.AddLayer(_abilityLayer);
                 }
-                
+                _isInitialized = true;
+                return;
             }
-
+            
+            _abilityHUD_VM = new AbilityHUD_VM();
+            _abilityLayer = new GauntletLayer(100);
+            _abilityLayer.LoadMovie("AbilityHUD", _abilityHUD_VM);
+            MissionScreen.AddLayer(_abilityLayer);
            
 
           
@@ -73,12 +78,7 @@ namespace TOR_Core.AbilitySystem
                 if (component != null)
                 {
                     _hasAbility = component.CurrentAbility != null;
-                    var specialMove = component.SpecialMove;
-                    if (specialMove != null)
-                    {
-                        _specialMoveHUD_VM.SpecialMove = specialMove;
-                        _hasSpecialMove = true;
-                    }
+                    _hasCareerAbility = component.CareerAbility != null;
                 }
             }
         }
@@ -97,7 +97,7 @@ namespace TOR_Core.AbilitySystem
                                        !ScreenManager.GetMouseVisibility();
                 if (canHudBeVisible)
                 {
-                    if (_hasAbility)
+                    if (_hasCareerAbility)
                     {
                         _careerabilityHUD_VM.UpdateProperties();
                     }

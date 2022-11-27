@@ -51,7 +51,7 @@
         TickOnce
     }
     
-    public enum CoolDownType
+    public enum ChargeType
     {
         Time,
         Kills,
