@@ -34,13 +34,76 @@ namespace TOR_Core.CampaignMechanics.Career
         [XmlAttribute] public string NodeId = "a";
         [XmlElement] 
         public AbilityTemplateModifier Modifier;
+        [XmlElement] 
+        public AbilityTemplateOverrides Overrides;
         [XmlAttribute]
         public string CharacterAttribute=""; // Attributes can serve to add new benefits for campaign via models : Example : grailknight: Requires attribute "QuestingKnight" to recruit Questing Knights 
         [XmlAttribute]
         public float AttributeValue; // Not mandatory but potential either a scale factor or addition 
         
     }
-    
+
+    [Serializable]
+    public class AbilityTemplateOverrides
+    {
+        [XmlElement(IsNullable = true)]
+        public string NameOverride = "";         //Override
+        [XmlElement(IsNullable = true)] 
+        public string SpriteOverride = "";   //Override
+        [XmlElement(IsNullable = true)]  
+        public bool? StartsOnCoolDownOverride;    //Override
+        [XmlAttribute]  
+        public ChargeType ChargeType = ChargeType.Invalid;  //Override
+        [XmlElement(IsNullable = true)]  
+        public string TriggeredEffectID = "";        //Override
+        [XmlElement(IsNullable = true)]  
+        public bool? HasLight = null;                //Override
+        [XmlElement(IsNullable = true)]  
+        public float? LightIntensity = null;           //Override
+        [XmlElement(IsNullable = true)]  
+        public float? LightRadius = null;              //Override
+        [XmlElement(IsNullable = true)]  
+        public Vec3? LightColorRGB = null;  //Override
+        [XmlElement(IsNullable = true)] 
+        public float? LightFlickeringMagnitude = null;  //Override
+        [XmlElement(IsNullable = true)] 
+        public float? LightFlickeringInterval = null;    //Override
+        [XmlElement(IsNullable = true)] 
+        public bool? ShadowCastEnabled = true;       //Override
+        [XmlElement(IsNullable = true)] 
+        public string ParticleEffectPrefab = "";     //Override
+        [XmlElement(IsNullable = true)] 
+        public string SoundEffectToPlay = "";        //Override
+        [XmlElement(IsNullable = true)] 
+        public bool? ShouldSoundLoopOverDuration = null; //Override
+        [XmlAttribute] 
+        public CastType CastType = AbilitySystem.CastType.Invalid;   //Override
+        [XmlElement(IsNullable = true)] 
+        public string ScriptNameToTrigger = "none";                 //Override
+        [XmlElement(IsNullable = true)] 
+        public string TroopIdToSummon = "none";                     //override
+        [XmlElement(IsNullable = true)] 
+        public string BurstParticleEffectPrefab = "none";           //Override
+        [XmlElement(IsNullable = true)] 
+        public string SoundEffectId = "none";                       //Override
+        [XmlElement(IsNullable = true)] 
+        public float? SoundEffectLength = null;                      //Override
+        [XmlElement(IsNullable = true)]
+        public float? ImpactRadius = null;                           //Modifier
+        [XmlElement(IsNullable = true)] 
+        public bool? HasShockWave = null;                            //Override
+        [XmlAttribute] 
+        public TargetType TargetType = TargetType.Invalid;          //Override  
+        [XmlElement(IsNullable = true)] 
+        public string ImbuedStatusEffectID = "none";                //Override
+        [XmlAttribute]  
+        public DamageType DamageType = DamageType.Invalid;          //Override
+        [XmlAttribute] 
+        public AbilityTargetType AbilityTargetType = AbilityTargetType.Invalid; //Override
+        [XmlAttribute] 
+        public string TooltipDescription = "";       //Override, Stack?
+    }
+
     [Serializable]
     public class AbilityTemplateModifier
     {
@@ -50,10 +113,8 @@ namespace TOR_Core.CampaignMechanics.Career
         
         //modify : More or less, we are going with addition for easier handling.
         
-        [XmlAttribute] public string NameOverride = "";         //Override
-        [XmlAttribute] public string SpriteOverride = "";   //Override
-        [XmlAttribute] public bool StartsOnCoolDownOverride;    //Override
-        [XmlAttribute] public ChargeType ChargeType = ChargeType.Invalid;  //Override
+        
+        
         [XmlAttribute] public int Charge = 0;                   //Modifier
         [XmlAttribute] public int ChargeRequirement = 0;        //Modifier
         [XmlAttribute] public int CoolDown = 0;                 //Modifier
@@ -63,37 +124,23 @@ namespace TOR_Core.CampaignMechanics.Career
         [XmlAttribute] public float Duration = 0;               //Modifier
         [XmlAttribute] public float Radius = 0;                 //Modifier
         [XmlAttribute] public float BaseMovementSpeed = 0;      //Modifier
-        //[XmlAttribute] public string TriggeredEffectID = "";        //Override
-        //[XmlAttribute] public bool? HasLight = null;                //Override
-        //[XmlAttribute] public float? LightIntensity = null;           //Override
-        //[XmlAttribute] public float? LightRadius = null;              //Override
-        //[XmlAttribute] public Vec3? LightColorRGB = null;  //Override
-        //[XmlAttribute] public float? LightFlickeringMagnitude = null;  //Override
-        //[XmlAttribute] public float? LightFlickeringInterval = null;    //Override
-        //[XmlAttribute] public bool? ShadowCastEnabled = true;       //Override
-        //[XmlAttribute] public string ParticleEffectPrefab = "";     //Override
-        //[XmlAttribute] public string SoundEffectToPlay = "";        //Override
-        //[XmlAttribute] public bool? ShouldSoundLoopOverDuration = null; //Override
-        //[XmlAttribute] public CastType CastType = AbilitySystem.CastType.Invalid;   //Override
+        
+        
+        
+        
+        
         [XmlAttribute] public float CastTime = 0;               //Modifier
-        [XmlAttribute] public AbilityTargetType AbilityTargetType = AbilityTargetType.Invalid; //Override
+        
         [XmlAttribute] public float Offset = 0;                 //Modifier
         [XmlAttribute] public float MinDistance = 0;            //Modifier
         [XmlAttribute] public float MaxDistance = 0;            //Modifier
-        [XmlAttribute] public string TooltipDescription = "";       //Override, Stack?
+        
 
-        //[XmlAttribute] public DamageType DamageType = DamageType.Invalid;          //Override
+        
         [XmlAttribute] public int Damage;                        //Modifier
-        //[XmlAttribute] public string BurstParticleEffectPrefab = "none";           //Override
-        //[XmlAttribute] public string SoundEffectId = "none";                       //Override
-        //[XmlAttribute] public float? SoundEffectLength = null;                      //Override
-        //[XmlAttribute] public float? ImpactRadius = null;                           //Modifier
-        //[XmlAttribute] public bool? HasShockWave = null;                            //Override
-        //[XmlAttribute] public TargetType TargetType = TargetType.Invalid;          //Override  
-        //[XmlAttribute] public string ImbuedStatusEffectID = "none";                //Override
+        
         [XmlAttribute] public float ImbuedStatusEffectDuration = 0;               //Modifier
-        //[XmlAttribute] public string ScriptNameToTrigger = "none";                 //Override
-        //[XmlAttribute] public string TroopIdToSummon = "none";                     //override
+        
         [XmlAttribute] public int NumberToSummon = 0;                               //modifier
         public AbilityTemplateModifier() { }
     }

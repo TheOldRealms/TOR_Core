@@ -11,7 +11,6 @@ namespace TOR_Core.CampaignMechanics.Career
 {
     public class CareerFactory
     {
-        private static Dictionary<string, KeyStoneNode> _keystones = new Dictionary<string, KeyStoneNode>();
         private static Dictionary<string, CareerTemplate> _templates = new Dictionary<string, CareerTemplate>();
         
         private static string _filename = "tor_careertemplates.xml";
