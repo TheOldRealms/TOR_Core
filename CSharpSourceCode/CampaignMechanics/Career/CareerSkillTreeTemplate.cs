@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
@@ -31,15 +31,20 @@ namespace TOR_Core.CampaignMechanics.Career
     {
         public int order; // nodes with higher order have preference over other nodes in case of a conflict.
         public string id;
-        public CareerSkillTreeNode Parent;
+        public List<CareerSkillTreeNode> Parent;    // The node can have 1 or many parents. If parents are empty it's the root node. The parents only account for setting the "unlockable" state if other conditions are met.
         public TreeNodeState state;
         public string DescriptionText;
         public string AttributeCondition; // The Node requires the character to posses a certain attribute, like beeing a Questing Knight, to unlock Node
         public string UnlockConditionText;
-   
+        public List<CareerSkillTreeNode> LockNodes; // On investing into this talentnode, the list of  nodes that get blocked
+
     }
 
-    
+    public enum StackingBehavior
+    {
+        Add,
+        Override
+    }
     
     //OnAbilityAttackScript
     public enum CareerClass

@@ -3,7 +3,7 @@
 	</Constants>
 
 	<Window>
-		<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="132" SuggestedHeight="220" VerticalAlignment="Bottom" HorizontalAlignment="Left" MarginBottom="15" MarginLeft="15" IsVisible="@IsVisible">
+		<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="132" SuggestedHeight="220" VerticalAlignment="Bottom" HorizontalAlignment="Left" MarginBottom="@Offset" MarginLeft="15" IsVisible="@IsVisible">
 			<Children>
 				<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="100" SuggestedHeight="100" Sprite="@SpriteName" HorizontalAlignment="Center" VerticalAlignment="Top" PositionYOffset="96">
 					<Children>
@@ -26,6 +26,6 @@
 				<TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="50" HorizontalAlignment="Center" VerticalAlignment="Top" PositionYOffset="36" Text="@WindsOfMagicLeft" Brush.FontSize="30" Brush.FontColor="#00c5dce3" Brush.TextOutlineAmount="0.1" Brush.TextOutlineColor="#0020aad4"/>
 				<TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="32" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="@Name" Brush.FontSize="14"/>
 			</Children>
-		</Widget>^
+		</Widget>
 	</Window>
 </Prefab>

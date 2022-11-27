@@ -28,9 +28,18 @@ namespace TOR_Core.AbilitySystem
         private string _windsCost = "";
         
         private int _alternativeCooldown=0;
-        
 
-        public AbilityHUD_VM() : base() { }
+        private int _offset;
+        
+        public AbilityHUD_VM(bool isLifted) : base()
+        {
+            Offset = isLifted ? 125 : 15;
+        }
+
+        public AbilityHUD_VM()
+        {
+            Offset = 15;
+        }
 
 
         protected virtual Ability SelectAbility()
@@ -42,6 +51,7 @@ namespace TOR_Core.AbilitySystem
 
         public void UpdateProperties()
         {
+            
             _ability = SelectAbility();
             SelectAbility();
             if (IsVisible)
@@ -65,7 +75,6 @@ namespace TOR_Core.AbilitySystem
                         AlternativeCoolDown = (int)(value*100);
                     }
                     IsOnCoolDown = true;
-                  
                     CoolDownLeft = AlternativeCoolDown +" %";
                 }
                 
@@ -113,6 +122,21 @@ namespace TOR_Core.AbilitySystem
             _WindsOfMagicLeft = ((int)_windsOfMagicValue).ToString();
             WindsOfMagicLeft = _WindsOfMagicLeft;
         }
+        
+        [DataSourceProperty]
+        public int Offset
+        {
+            get
+            {
+                return _offset;
+            }
+            set
+            {
+                _offset = value;
+                base.OnPropertyChangedWithValue(value, "Offset");
+            }
+        }
+
 
 
         [DataSourceProperty]
@@ -145,6 +169,8 @@ namespace TOR_Core.AbilitySystem
                 base.OnPropertyChangedWithValue(value, "WindsOfMagicLeft");
             }
         }
+        
+        
 
         [DataSourceProperty]
         public string Name
