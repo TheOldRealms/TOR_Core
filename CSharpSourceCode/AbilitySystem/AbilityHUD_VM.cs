@@ -17,11 +17,11 @@ namespace TOR_Core.AbilitySystem
         private string _spriteName = "";
         private string _coolDownLeft = "";
         private string _WindsOfMagicLeft = "-";
-        private string _charges="";
+        private string _usages="";
         private bool _isVisible;
         private bool _onCoolDown;
         private bool _isSpell;
-        private bool _hasCharges;
+        private bool _hasUsages;
         private bool _hasAlternativeCoolDown;
         
         private float _windsOfMagicValue;
@@ -62,7 +62,7 @@ namespace TOR_Core.AbilitySystem
                 WindsCost = _ability.Template.WindsOfMagicCost.ToString();
                 CoolDownLeft = _ability.GetCoolDownLeft().ToString();
                 
-                HasCharges = _ability.HasCharges();
+                HasUsages = _ability.HasUsages();
 
                 
                 IsOnCoolDown = _ability.IsOnCooldown();
@@ -77,14 +77,33 @@ namespace TOR_Core.AbilitySystem
                     IsOnCoolDown = true;
                     CoolDownLeft = AlternativeCoolDown +" %";
                 }
-                
-                
-                if (HasCharges&&IsOnCoolDown==false)
-                    Charges= _ability.GetCurrentCharges().ToString();
-                else
+
+
+                if (HasUsages)
                 {
-                    Charges = "";
+                    var usages = _ability.GetCurrentLeftUsages();
+                    if (_onCoolDown)
+                    {
+                        if (usages > 0&&usages!=_ability.Template.Usages)    
+                        {
+                            Usages= _ability.GetCurrentLeftUsages().ToString();
+                        }
+                        else
+                        {
+                            Usages = "";
+                        }
+
+                        
+                    }
+                    else
+                    {
+                        Usages= _ability.GetCurrentLeftUsages().ToString();
+                    }
+                    
+
                 }
+                   
+                
 
                 
                 
@@ -259,18 +278,18 @@ namespace TOR_Core.AbilitySystem
         }
         
         [DataSourceProperty]
-        public string Charges
+        public string Usages
         {
             get
             {
-                return _charges;
+                return _usages;
             }
             set
             {
-                if (value != _charges)
+                if (value != _usages)
                 {
-                    _charges = value;
-                    base.OnPropertyChangedWithValue(value, "Charges");
+                    _usages = value;
+                    base.OnPropertyChangedWithValue(value, "Usages");
                 }
             }
         }
@@ -326,18 +345,18 @@ namespace TOR_Core.AbilitySystem
         }
         
         [DataSourceProperty]
-        public bool HasCharges
+        public bool HasUsages
         {
             get
             {
-                return _hasCharges;
+                return _hasUsages;
             }
             set
             {
-                if (value != _hasCharges)
+                if (value != _hasUsages)
                 {
-                    _hasCharges = value;
-                    base.OnPropertyChangedWithValue(value, "HasCharges");
+                    _hasUsages = value;
+                    base.OnPropertyChangedWithValue(value, "HasUsages");
                 }
             }
         }

@@ -37,7 +37,7 @@ namespace TOR_Core.AbilitySystem
         public bool IsOnCooldown() => _timer.Enabled;
         public int GetCoolDownLeft() => _coolDownLeft;
 
-        public bool HasCharges() => Template.Usages > 1;
+        public bool HasUsages() => Template.Usages > 1;
         private bool IsSingleTarget() => Template.AbilityTargetType == AbilityTargetType.SingleAlly || Template.AbilityTargetType == AbilityTargetType.SingleEnemy;
 
         public delegate void OnCastCompleteHandler(Ability ability);
@@ -207,7 +207,7 @@ namespace TOR_Core.AbilitySystem
             return casterAgent.IsAIControlled ? CalculateAICastMatrixFrame(casterAgent) : CalculatePlayerCastMatrixFrame(casterAgent);
         }
 
-        public int GetCurrentCharges()
+        public int GetCurrentLeftUsages()
         {
             return _leftUsages;
         }

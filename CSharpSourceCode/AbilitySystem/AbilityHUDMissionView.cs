@@ -49,6 +49,12 @@ namespace TOR_Core.AbilitySystem
                     _abilityLayer = new GauntletLayer(100);
                     _abilityLayer.LoadMovie("AbilityHUD", _abilityHUD_VM);
                     MissionScreen.AddLayer(_abilityLayer);
+                    
+                    _careerabilityHUD_VM = new CareerAbilityHUD_VM();
+                    _careerAbilityLayer = new GauntletLayer(98);
+                    _careerAbilityLayer.LoadMovie("CareerAbilityHUD", _careerabilityHUD_VM);
+                    MissionScreen.AddLayer(_careerAbilityLayer);
+
                 }
                 _isInitialized = true;
                 return;
@@ -59,6 +65,10 @@ namespace TOR_Core.AbilitySystem
             _abilityLayer.LoadMovie("AbilityHUD", _abilityHUD_VM);
             MissionScreen.AddLayer(_abilityLayer);
            
+            _careerabilityHUD_VM = new CareerAbilityHUD_VM();
+            _careerAbilityLayer = new GauntletLayer(98);
+            _careerAbilityLayer.LoadMovie("CareerAbilityHUD", _careerabilityHUD_VM);
+            MissionScreen.AddLayer(_careerAbilityLayer);
 
           
             
@@ -85,37 +95,38 @@ namespace TOR_Core.AbilitySystem
 
         public override void OnMissionTick(float dt)
         {
-            if (_isInitialized)
+            if (!_isInitialized) return;
+            
+            bool canHudBeVisible = Agent.Main != null &&
+                                   Agent.Main.State == AgentState.Active &&
+                                   (Mission.Current.Mode == MissionMode.Battle || 
+                                    Mission.Current.Mode == MissionMode.Stealth) &&
+                                   MissionScreen.CustomCamera == null &&
+                                   !MissionScreen.IsViewingCharacter() &&
+                                   !MissionScreen.IsPhotoModeEnabled &&
+                                   !ScreenManager.GetMouseVisibility();
+            if (canHudBeVisible)
             {
-                bool canHudBeVisible = Agent.Main != null &&
-                                       Agent.Main.State == AgentState.Active &&
-                                       (Mission.Current.Mode == MissionMode.Battle || 
-                                       Mission.Current.Mode == MissionMode.Stealth) &&
-                                       MissionScreen.CustomCamera == null &&
-                                       !MissionScreen.IsViewingCharacter() &&
-                                       !MissionScreen.IsPhotoModeEnabled &&
-                                       !ScreenManager.GetMouseVisibility();
-                if (canHudBeVisible)
+                if (_hasCareerAbility)
                 {
-                    if (_hasCareerAbility)
-                    {
-                        _careerabilityHUD_VM.UpdateProperties();
-                    }
-                    if (_hasAbility)
-                    {
-                        _abilityHUD_VM.UpdateProperties();
-                      
-                    }
-                    if (_hasSpecialMove)
-                    {
-                        _specialMoveHUD_VM.UpdateProperties();
-                    }
-                    return;
+                    _careerabilityHUD_VM.UpdateProperties();
                 }
-                _careerabilityHUD_VM.IsVisible = false;
-                _abilityHUD_VM.IsVisible = false;
-               //_specialMoveHUD_VM.IsVisible = false;
+                if (_hasAbility)
+                {
+                    _abilityHUD_VM.UpdateProperties();
+                      
+                }
+                if (_hasSpecialMove)
+                {
+                    _specialMoveHUD_VM.UpdateProperties();
+                }
+                return;
             }
+            
+            _abilityHUD_VM.IsVisible = false; 
+            _careerabilityHUD_VM.IsVisible = false;
+            
+            //_specialMoveHUD_VM.IsVisible = false;
         }
     }
 }
