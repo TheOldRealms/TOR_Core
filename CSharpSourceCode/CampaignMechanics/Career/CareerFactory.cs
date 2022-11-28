@@ -37,9 +37,11 @@ namespace TOR_Core.CampaignMechanics.Career
                     //validate career node entries
                     var treeElements = career.PassiveNodes.Cast<CareerTreeNode>().ToList();
                     treeElements.AddRange(career.KeyStoneNodes.Cast<CareerTreeNode>());
-                    var subTrees = career.Structure.ToList();
+                    var structure = career.Structure.ToList();
+                    
+                    
 
-                    IsValidTreeStructure(career.ToString(),treeElements, career.Structure.ToList());
+                    IsValidTreeStructure(career.ToString(),treeElements, ref structure);
                     
 
                     
@@ -61,18 +63,15 @@ namespace TOR_Core.CampaignMechanics.Career
 
 
 
-        private  static bool IsValidTreeStructure(string CareerId, List<CareerTreeNode> nodes, List<SubTree> structure)
+        private  static bool IsValidTreeStructure(string CareerId, List<CareerTreeNode> nodes, ref List<SubTree> structure)
         {
             var exceptionbase = $"Error: {CareerId} CareerTree structure is invalid.";
-            var warningbase = $"Warning:{CareerId}  CareerTree structure needs revision.";
             if (nodes.Any(x=>x.Id==rootNodeID))        //The Root node is always the Ability, or empty, but is not part of key stones or Passive nodes
             {
                 throw new Exception($"{exceptionbase} Tree contained invalid id ( {rootNodeID} ) ");
             }
 
-            structure = RemoveDuplicates(structure);        //Maybe a warning message. This should not happen, but lets just ensure the tree structure is handled probably
-            
-            
+            structure = SimplfyTreeStructure(structure);        //Maybe a warning message. This should not happen, but lets just ensure the tree structure is handled probably
             
             foreach (var subtree in structure)
             {
@@ -83,17 +82,60 @@ namespace TOR_Core.CampaignMechanics.Career
                 }
             }
             
+            var nodeIds = nodes.Select(x => x.Id).ToList();
+            var leafs = new List<string>();
+            foreach (var nodeId in nodeIds)
+            {
+                if (structure.All(x => x.Parent != nodeId))
+                {
+                    leafs.Add(nodeId);
+                }
+            }
+
+            List<string> path =new List<string>();
             
+            foreach (var leaf in leafs)
+            {
+                var parent = leaf;
+                path.Add(leaf);
+                while (parent != null && parent != rootNodeID)
+                {
+                    var level= structure.FirstOrDefault(x => x.Children.Contains(parent));
+
+                    if (level != null)
+                    {
+                        path.Add(level.Parent);
+                        parent = level.Parent;
+                    }
+                    else
+                    {
+                        foreach (var item in path)
+                        {
+                            nodes.RemoveAll(x => x.Id == item);
+                            structure.RemoveAll(x => x.Parent == item);
+                        }
+                        break;
+                    }
+                }
+
+                path = new List<string>();
+            }
             
-            
-            
+
+           
+
 
             return false;
 
         }
+        
+        
 
 
-        private static List<SubTree> RemoveDuplicates(List<SubTree> structure)
+
+
+
+        private static List<SubTree> SimplfyTreeStructure(List<SubTree> structure)
         {
             var parents = structure.Select(subtree => subtree.Parent).ToList();
             var unique = structure.Select(subtree => subtree.Parent).Distinct().ToList();
