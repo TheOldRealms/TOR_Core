@@ -91,17 +91,15 @@ namespace TOR_Core.CampaignMechanics.Career
                     leafs.Add(nodeId);
                 }
             }
-
-            List<string> path =new List<string>();
             
             foreach (var leaf in leafs)
             {
+                var path = new List<string>();
                 var parent = leaf;
                 path.Add(leaf);
                 while (parent != null && parent != rootNodeID)
                 {
                     var level= structure.FirstOrDefault(x => x.Children.Contains(parent));
-
                     if (level != null)
                     {
                         path.Add(level.Parent);
@@ -118,7 +116,9 @@ namespace TOR_Core.CampaignMechanics.Career
                     }
                 }
 
-                path = new List<string>();
+                var treeElement = structure.FirstOrDefault(x => x.Children.Contains(leaf));
+                if(treeElement!=null)
+                    treeElement.level=path.Count-1;//we dont count the first
             }
             
 
