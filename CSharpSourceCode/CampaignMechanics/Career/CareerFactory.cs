@@ -15,13 +15,25 @@ namespace TOR_Core.CampaignMechanics.Career
     public class CareerFactory
     {
         private static Dictionary<string, CareerTemplate> _templates = new Dictionary<string, CareerTemplate>();
-        private static string rootNodeID="0";
-        
-        
+        private const string RootNodeId = "0";
+
+
         private static string _filename = "tor_careertemplates.xml";
         public static IEnumerable<string> ListAvailableCareers()
         {
             return (from object career in Enum.GetValues(typeof(CareerId)) select career.ToString()).ToList();
+        }
+
+        public static List<CareerTemplate> GetAllTemplates()
+        {
+            var list = new List<CareerTemplate>();
+            foreach(var template in _templates.Values) list.Add(template);
+            return list;
+        }
+
+        public static CareerTemplate GetTemplate(string id)
+        {
+            return _templates.ContainsKey(id) ? _templates[id] : null;
         }
         
         public static void LoadTemplates()
@@ -38,13 +50,7 @@ namespace TOR_Core.CampaignMechanics.Career
                     var treeElements = career.PassiveNodes.Cast<CareerTreeNode>().ToList();
                     treeElements.AddRange(career.KeyStoneNodes.Cast<CareerTreeNode>());
                     var structure = career.Structure.ToList();
-                    
-                    
-
                     ValidateTreeStructure(career.ToString(),ref treeElements, ref structure);
-                    
-
-                    TORCommon.Say(structure.Count+"");
 
                     if (structure.Count == 0)
                     {
@@ -62,15 +68,13 @@ namespace TOR_Core.CampaignMechanics.Career
                 
             }
         }
-
-
-
+        
         private  static void ValidateTreeStructure(string CareerId, ref List<CareerTreeNode> nodes, ref List<SubTree> structure)
         {
             var exceptionbase = $"Error: {CareerId} CareerTree structure is invalid.";
-            if (nodes.Any(x=>x.Id==rootNodeID))        //The Root node is always the Ability, or empty, but is not part of key stones or Passive nodes
+            if (nodes.Any(x=>x.Id==RootNodeId))        //The Root node is always the Ability, or empty, but is not part of key stones or Passive nodes
             {
-                throw new Exception($"{exceptionbase} Tree contained invalid id ( {rootNodeID} ) ");
+                throw new Exception($"{exceptionbase} Tree contained invalid id ( {RootNodeId} ) ");
             }
 
             structure = SimplfyTreeStructure(structure);        //Maybe a warning message. This should not happen, but lets just ensure the tree structure is handled probably
@@ -99,7 +103,7 @@ namespace TOR_Core.CampaignMechanics.Career
                 var path = new List<string>();
                 var parent = leaf;
                 path.Add(leaf);
-                while (parent != null && parent != rootNodeID)
+                while (parent != null && parent != RootNodeId)
                 {
                     var level= structure.FirstOrDefault(x => x.Children.Contains(parent));
                     if (level != null)
