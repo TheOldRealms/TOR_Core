@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Xml.Serialization;
@@ -34,6 +35,11 @@ namespace TOR_Core.CampaignMechanics.Career
             
         }
         public CareerTemplate(CareerId id) => CareerId = id;
+
+        public bool ContainsNode(string element)
+        {
+            return Structure.Any(subtree => subtree.Contains(element));
+        }
         
     }
     
@@ -169,10 +175,19 @@ namespace TOR_Core.CampaignMechanics.Career
     [Serializable]
     public class SubTree
     {
+        public int Level;
         [XmlAttribute] 
         public string Parent= "";
         [XmlArray("Children")] 
         public List<string> Children=new List<string>();
+
+        public bool Contains(string element)
+        {
+            if (Parent == element || Children.Contains(element))
+                return true;
+            else
+                return false;
+        }
     }
     
 

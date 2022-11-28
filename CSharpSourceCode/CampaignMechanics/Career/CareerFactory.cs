@@ -41,29 +41,31 @@ namespace TOR_Core.CampaignMechanics.Career
                     
                     
 
-                    IsValidTreeStructure(career.ToString(),treeElements, ref structure);
+                    ValidateTreeStructure(career.ToString(),ref treeElements, ref structure);
                     
 
-                    
-                    
-                    
+                    TORCommon.Say(structure.Count+"");
 
+                    if (structure.Count == 0)
+                    {
+                        continue;
+                    }
+
+                    career.Structure = structure;
+
+                    career.KeyStoneNodes = career.KeyStoneNodes.Where(x => career.ContainsNode(x.Id)).ToList();
+                    career.PassiveNodes = career.PassiveNodes.Where(x => career.ContainsNode(x.Id)).ToList();
+                    
+                    
                     _templates.Add(career.CareerId.ToString(), career);
                 }
-
-              
-                foreach (var template in _templates)
-                {
-                    
-                }
-
-                TORCommon.Say(_templates.Count.ToString());
+                
             }
         }
 
 
 
-        private  static bool IsValidTreeStructure(string CareerId, List<CareerTreeNode> nodes, ref List<SubTree> structure)
+        private  static void ValidateTreeStructure(string CareerId, ref List<CareerTreeNode> nodes, ref List<SubTree> structure)
         {
             var exceptionbase = $"Error: {CareerId} CareerTree structure is invalid.";
             if (nodes.Any(x=>x.Id==rootNodeID))        //The Root node is always the Ability, or empty, but is not part of key stones or Passive nodes
@@ -118,15 +120,8 @@ namespace TOR_Core.CampaignMechanics.Career
 
                 var treeElement = structure.FirstOrDefault(x => x.Children.Contains(leaf));
                 if(treeElement!=null)
-                    treeElement.level=path.Count-1;//we dont count the first
+                    treeElement.Level=path.Count-1;//we dont count the first
             }
-            
-
-           
-
-
-            return false;
-
         }
         
         
