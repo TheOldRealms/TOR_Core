@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Windows.Forms;
 using System.Xml.Serialization;
 using HarmonyLib;
 using NLog.Layouts;
@@ -22,16 +24,51 @@ namespace TOR_Core.CampaignMechanics.Career
         public List<WeaponClass> CareerAbilityWeaponRequirements = new List<WeaponClass>(); 
         [XmlArray("KeyStones")] 
         public List<KeyStoneNode> KeyStoneNodes= new List<KeyStoneNode>();
+        [XmlArray("PassiveNodes")]
+        public List<PassiveNode> PassiveNodes = new List<PassiveNode>();
+        [XmlArray("Structure")]
+        public List<SubTree> Structure= new List<SubTree>();
         
-        //[XmlAttribute] public List<PassiveNode> PassiveNodes;
+        public CareerTemplate()
+        {
+            
+        }
+        public CareerTemplate(CareerId id) => CareerId = id;
+        
     }
     
-  
-    // Optional, if the said type is not wield, the ability can't be performed.
-    [Serializable]
-    public class KeyStoneNode
+    public class CareerTreeNode 
     {
-        [XmlAttribute] public string NodeId = "a";
+        [XmlAttribute] 
+        public string Id="";
+        [XmlAttribute]
+        public List<string> ParentIDs=new List<string>();
+        [XmlAttribute]// The node can have 1 or many parents. If parents are empty it's the root node. The parents only account for setting the "unlockable" state if other conditions are met.
+        public TreeNodeState State=TreeNodeState.Locked;
+        [XmlAttribute]
+        public string DescriptionText="";
+        [XmlAttribute]
+        public string AttributeCondition=""; // The Node requires the character to posses a certain attribute, like beeing a Questing Knight, to unlock Node
+        [XmlAttribute]
+        public string UnlockConditionText="";
+        [XmlAttribute]
+        public List<string> LockNodes=new List<string>(); // On investing into this talent node, the list of  nodes that get blocked
+    }
+
+
+
+    [Serializable]
+    public class PassiveNode : CareerTreeNode
+    {
+        [XmlAttribute]
+        public float Amount=0;
+        [XmlAttribute]
+        public PassiveEffect EffectType=PassiveEffect.None;
+    }
+    
+    [Serializable]
+    public class KeyStoneNode : CareerTreeNode
+    {
         [XmlElement] 
         public AbilityTemplateModifier Modifier;
         [XmlElement] 
@@ -46,6 +83,8 @@ namespace TOR_Core.CampaignMechanics.Career
     [Serializable]
     public class AbilityTemplateOverrides
     {
+        //Override : Based on Hierachical structure, the former effect, is overriden by the new effect. Game Design needs to consider to lock abilities that could be conflicting.
+        //null, '""',"none" or Invalid will be ignored upon application of the Modifier 
         [XmlElement(IsNullable = true)]
         public string NameOverride = "";         //Override
         [XmlElement(IsNullable = true)] 
@@ -107,14 +146,7 @@ namespace TOR_Core.CampaignMechanics.Career
     [Serializable]
     public class AbilityTemplateModifier
     {
-        
-        //Override : Based on Hierachical structure, the former effect, is overriden by the new effect. Game Design needs to consider to lock abilities that could be conflicting.
-        //null, '""',"none" or Invalid will be ignored upon application of the Modifier 
-        
         //modify : More or less, we are going with addition for easier handling.
-        
-        
-        
         [XmlAttribute] public int Charge = 0;                   //Modifier
         [XmlAttribute] public int ChargeRequirement = 0;        //Modifier
         [XmlAttribute] public int CoolDown = 0;                 //Modifier
@@ -124,58 +156,26 @@ namespace TOR_Core.CampaignMechanics.Career
         [XmlAttribute] public float Duration = 0;               //Modifier
         [XmlAttribute] public float Radius = 0;                 //Modifier
         [XmlAttribute] public float BaseMovementSpeed = 0;      //Modifier
-        
-        
-        
-        
-        
         [XmlAttribute] public float CastTime = 0;               //Modifier
-        
         [XmlAttribute] public float Offset = 0;                 //Modifier
         [XmlAttribute] public float MinDistance = 0;            //Modifier
         [XmlAttribute] public float MaxDistance = 0;            //Modifier
-        
-
-        
         [XmlAttribute] public int Damage;                        //Modifier
-        
         [XmlAttribute] public float ImbuedStatusEffectDuration = 0;               //Modifier
-        
         [XmlAttribute] public int NumberToSummon = 0;                               //modifier
         public AbilityTemplateModifier() { }
     }
     
+    [Serializable]
+    public class SubTree
+    {
+        [XmlAttribute] 
+        public string Parent= "";
+        [XmlArray("Children")] 
+        public List<string> Children=new List<string>();
+    }
     
 
-
-
-    public class PassiveNode : CareerTreeNode
-    { 
-        [XmlAttribute]
-        public float Current=0;
-        [XmlAttribute]
-        public PassiveNodeEffect EffectType=PassiveNodeEffect.None;
-    }
-    [Serializable]
-    public class CareerTreeNode    //needs to be serializable
-    {
-        [XmlAttribute]
-        public int Order=0; // nodes with higher order have preference over other nodes in case of a conflict.
-        [XmlAttribute]
-        public string Id="";
-        [XmlAttribute]
-        public List<string> ParentIDs=new List<string>();
-        [XmlAttribute]// The node can have 1 or many parents. If parents are empty it's the root node. The parents only account for setting the "unlockable" state if other conditions are met.
-        public TreeNodeState State=TreeNodeState.Locked;
-        [XmlAttribute]
-        public string DescriptionText="";
-        [XmlAttribute]
-        public string AttributeCondition=""; // The Node requires the character to posses a certain attribute, like beeing a Questing Knight, to unlock Node
-        [XmlAttribute]
-        public string UnlockConditionText="";
-        [XmlAttribute]
-        public List<string> LockNodes=new List<string>(); // On investing into this talent node, the list of  nodes that get blocked
-    }
 
     public enum ModificationType
     {
@@ -200,12 +200,12 @@ namespace TOR_Core.CampaignMechanics.Career
         Unlocked
     }
 
-    public enum PassiveNodeEffect
+    public enum PassiveEffect
     {
         None,
-        HealthPoint,
-        Ammunition,
-        WindsOfMagic
+        HP,         //Health Points
+        AP,         //Ammunition Points
+        WP,         //Winds of Magic Points
     }
 
  

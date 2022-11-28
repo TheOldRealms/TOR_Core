@@ -7,11 +7,27 @@
 					<WeaponClass>TwoHandedSword</WeaponClass>
 		</CareerAbilityWeaponRequirements>
 		<KeyStones>
-		<KeyStoneNode NodeId="a" CharacterAttribute ="" AttributeValue="0">
-			<Modifier>
-							
-			</Modifier>
-		</KeyStoneNode>
+			<KeyStoneNode Id="1" CharacterAttribute ="" AttributeValue="0">
+				<Modifier Charge="5">
+				</Modifier>
+				<Overrides DamageType="Holy">
+				</Overrides>
+			</KeyStoneNode>
 		</KeyStones>
+		<PassiveNodes >
+			<PassiveNode Id="2" EffectType="HP" Amount ="5">
+			</PassiveNode>
+			<PassiveNode  Id="3" EffectType="HP" Amount ="5">
+			</PassiveNode>
+		</PassiveNodes>
+		<Structure>
+			<SubTree Parent="0">
+				<Children>
+					<string>1</string>
+					<string>2</string>
+					<string>3</string>
+				</Children>
+			</SubTree>
+		</Structure>
 	</CareerTemplate>	
 </ArrayOfCareerTemplate>
