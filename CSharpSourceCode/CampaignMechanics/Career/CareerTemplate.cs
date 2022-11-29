@@ -38,7 +38,7 @@ namespace TOR_Core.CampaignMechanics.Career
 
     public class CareerTreeNode
     {
-        [XmlAttribute] public string AttributeCondition = ""; // The Node requires the character to posses a certain attribute, like beeing a Questing Knight, to unlock Node
+        [XmlAttribute] public string AttributeCondition = ""; // The Node requires the character to posses a certain attribute, like being a Questing Knight, to unlock Node
 
         [XmlAttribute] public string DescriptionText = "";
 
@@ -53,166 +53,130 @@ namespace TOR_Core.CampaignMechanics.Career
 
         [XmlAttribute] public string UnlockConditionText = "";
     }
-    
+
     [Serializable]
     public class PassiveNode : CareerTreeNode
     {
-        [XmlAttribute] 
-        public float Amount;
+        [XmlAttribute] public float Amount;
 
-        [XmlAttribute] 
-        public DamageType DanageType = DamageType.Physical;
+        [XmlAttribute] public DamageType DamageType = DamageType.Physical;
 
-        [XmlAttribute] 
-        public PassiveEffect EffectType = PassiveEffect.None;
+        [XmlAttribute] public PassiveEffect EffectType = PassiveEffect.None;
     }
 
     [Serializable]
     public class KeyStoneNode : CareerTreeNode
     {
-        [XmlAttribute] 
-        public float AttributeValue; // Not mandatory but potential either a scale factor or addition 
+        [XmlAttribute] public float AttributeValue; // Not mandatory but potential either a scale factor or addition 
 
-        [XmlAttribute] 
-        public string CharacterAttribute = ""; // Attributes can serve to add new benefits for campaign via models : Example : grailknight: Requires attribute "QuestingKnight" to recruit Questing Knights 
+        [XmlAttribute] public string CharacterAttribute = ""; // Attributes can serve to add new benefits for campaign via models : Example : grailknight: Requires attribute "QuestingKnight" to recruit Questing Knights 
 
-        [XmlElement]
-        public AbilityTemplateModifier Modifier;
+        [XmlElement] public AbilityTemplateModifier Modifier;
 
-        [XmlElement] 
-        public AbilityTemplateOverrides Overrides;
+        [XmlElement] public AbilityTemplateOverrides Overrides;
     }
 
     [Serializable]
     public class AbilityTemplateOverrides
     {
-        
         //Override : Based on Hierachical structure, the former effect, is overriden by the new effect. Game Design needs to consider to lock abilities that could be conflicting.
         //null, '""',"none" or Invalid will be ignored upon application of the Modifier 
-        [XmlAttribute] 
-        public AbilityTargetType AbilityTargetType = AbilityTargetType.Invalid;
+        [XmlAttribute] public AbilityTargetType AbilityTargetType = AbilityTargetType.Invalid;
 
-        [XmlElement(IsNullable = true)]
-        public string ScriptNameToTrigger = "none";
+        [XmlElement(IsNullable = true)] public string ScriptNameToTrigger = "none";
 
-        [XmlElement(IsNullable = true)]
-        public string TroopIdToSummon = "none";
+        [XmlElement(IsNullable = true)] public string TroopIdToSummon = "none";
 
-        [XmlElement(IsNullable = true)] 
-        public string BurstParticleEffectPrefab = "none";
+        [XmlElement(IsNullable = true)] public string BurstParticleEffectPrefab = "none";
 
-        [XmlAttribute] 
-        public CastType CastType = CastType.Invalid;
+        [XmlAttribute] public CastType CastType = CastType.Invalid;
 
-        [XmlAttribute] 
-        public ChargeType ChargeType = ChargeType.Invalid;
+        [XmlAttribute] public ChargeType ChargeType = ChargeType.Invalid;
 
-        [XmlAttribute] 
-        public DamageType DamageType = DamageType.Invalid;
+        [XmlAttribute] public DamageType DamageType = DamageType.Invalid;
 
-        [XmlElement(IsNullable = true)] 
-        public bool? StartsOnCoolDownOverride;
+        [XmlElement(IsNullable = true)] public bool? StartsOnCoolDownOverride;
 
-        [XmlElement(IsNullable = true)] 
-        public string TriggeredEffectID = "";
+        [XmlElement(IsNullable = true)] public string TriggeredEffectId = "";
 
-        [XmlElement(IsNullable = true)] 
-        public bool? HasLight;
+        [XmlElement(IsNullable = true)] public bool? HasLight;
 
-        [XmlElement(IsNullable = true)] 
-        public string SoundEffectId = "none";
+        [XmlElement(IsNullable = true)] public string SoundEffectId = "none";
 
-        [XmlElement(IsNullable = true)] 
-        public float? SoundEffectLength;
-        
-        [XmlElement(IsNullable = true)]
-        public bool? HasShockWave;
+        [XmlElement(IsNullable = true)] public float? SoundEffectLength;
 
-        [XmlElement(IsNullable = true)] 
-        public string ImbuedStatusEffectID = "none";
+        [XmlElement(IsNullable = true)] public bool? HasShockWave;
 
-        [XmlElement(IsNullable = true)]
-        public float? LightIntensity;
+        [XmlElement(IsNullable = true)] public string ImbuedStatusEffectId = "none";
 
-        [XmlElement(IsNullable = true)]
-        public float? LightRadius;
+        [XmlElement(IsNullable = true)] public float? LightIntensity;
 
-        [XmlElement(IsNullable = true)]
-        public Vec3? LightColorRGB;
+        [XmlElement(IsNullable = true)] public float? LightRadius;
 
-        [XmlElement(IsNullable = true)] 
-        public float? LightFlickeringMagnitude;
+        [XmlElement(IsNullable = true)] public Vec3? LightColorRgb;
 
-        [XmlElement(IsNullable = true)] 
-        public float? LightFlickeringInterval;
+        [XmlElement(IsNullable = true)] public float? LightFlickeringMagnitude;
+
+        [XmlElement(IsNullable = true)] public float? LightFlickeringInterval;
 
 
-        [XmlElement(IsNullable = true)]
-        public string NameOverride = "";
+        [XmlElement(IsNullable = true)] public string NameOverride = "";
 
-        [XmlElement(IsNullable = true)] 
-        public bool? ShadowCastEnabled = true;
+        [XmlElement(IsNullable = true)] public bool? ShadowCastEnabled = true;
 
-        [XmlElement(IsNullable = true)] 
-        public string ParticleEffectPrefab = "";
-
-        [XmlElement(IsNullable = true)] 
-        public string SoundEffectToPlay = "";
-
-        [XmlElement(IsNullable = true)] 
-        public bool? ShouldSoundLoopOverDuration;
+        [XmlElement(IsNullable = true)] public string ParticleEffectPrefab = "";
 
 
-        [XmlElement(IsNullable = true)] 
-        public string SpriteOverride = "";
+        [XmlElement(IsNullable = true)] public string SoundEffectToPlay = "";
 
-        [XmlAttribute] 
-        public TargetType TargetType = TargetType.Invalid;
+        [XmlElement(IsNullable = true)] public bool? ShouldSoundLoopOverDuration;
 
-        [XmlAttribute] 
-        public string TooltipDescription = "";
+
+        [XmlElement(IsNullable = true)] public string SpriteOverride = "";
+
+
+        [XmlAttribute] public TargetType TargetType = TargetType.Invalid;
+
+        [XmlAttribute] public string TooltipDescription = "";
     }
 
     [Serializable]
     public class AbilityTemplateModifier
     {
-        [XmlAttribute] 
-        public float BaseMisCastChance;
-        [XmlAttribute] 
-        public float BaseMovementSpeed;
+        [XmlAttribute] public float BaseMisCastChance;
 
-        [XmlAttribute] 
-        public float CastTime;
+        [XmlAttribute] public float BaseMovementSpeed;
+
+        [XmlAttribute] public float CastTime;
 
         //modify : More or less, we are going with addition for easier handling.
-        [XmlAttribute] 
-        public int Charge;
-        [XmlAttribute] 
-        public int ChargeRequirement;
-        [XmlAttribute] 
-        public int CoolDown;
-        [XmlAttribute]
-        public int Damage;
-        [XmlAttribute] 
-        public float Duration;
-        [XmlAttribute] 
-        public float ImbuedStatusEffectDuration;
-        [XmlAttribute] 
-        public float ImpactRadius;
-        [XmlAttribute] 
-        public float MaxDistance;
-        [XmlAttribute] 
-        public float MinDistance;
-        [XmlAttribute] 
-        public int NumberToSummon;
-        [XmlAttribute] 
-        public float Offset;
-        [XmlAttribute] 
-        public float Radius;
-        [XmlAttribute] 
-        public int Usages;
-        [XmlAttribute] 
-        public int WindsOfMagicCost;
+        [XmlAttribute] public int Charge;
+
+        [XmlAttribute] public int ChargeRequirement;
+
+        [XmlAttribute] public int CoolDown;
+
+        [XmlAttribute] public int Damage;
+
+        [XmlAttribute] public float Duration;
+
+        [XmlAttribute] public float ImbuedStatusEffectDuration;
+
+        [XmlAttribute] public float ImpactRadius;
+
+        [XmlAttribute] public float MaxDistance;
+
+        [XmlAttribute] public float MinDistance;
+
+        [XmlAttribute] public int NumberToSummon;
+
+        [XmlAttribute] public float Offset;
+
+        [XmlAttribute] public float Radius;
+
+        [XmlAttribute] public int Usages;
+
+        [XmlAttribute] public int WindsOfMagicCost;
     }
 
 
@@ -260,7 +224,7 @@ namespace TOR_Core.CampaignMechanics.Career
         RD, //Range Damage
         SD //Spell Damage
     }
-    
+
     public static class TreeStructureExtension
     {
         public const string RootNode = "0";

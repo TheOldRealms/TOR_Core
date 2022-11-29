@@ -190,13 +190,13 @@ namespace TOR_Core.CampaignMechanics.Career
                         _extraWind += (int)node.Amount;
                         break;
                     case PassiveEffect.MD:
-                        _bonusMeleeDamage[(int) node.DanageType] += (int)node.Amount;
+                        _bonusMeleeDamage[(int) node.DamageType] += (int)node.Amount;
                         break;
                     case PassiveEffect.RD:
-                        _bonusRangeDamage[(int) node.DanageType] += (int)node.Amount;
+                        _bonusRangeDamage[(int) node.DamageType] += (int)node.Amount;
                         break;
                     case PassiveEffect.SD:
-                        _bonusSpellDamge[(int) node.DanageType] += (int)node.Amount;
+                        _bonusSpellDamge[(int) node.DamageType] += (int)node.Amount;
                         break;
                     case PassiveEffect.None:
                         break;
