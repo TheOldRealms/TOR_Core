@@ -177,22 +177,23 @@ namespace TOR_Core.CampaignMechanics.Career
             
             foreach (var node in _currentSelectedCareerTemplate.PassiveNodes)
             {
+                //if (node.State != TreeNodeState.Unlocked) continue;
                 switch (node.EffectType)
                 {
-                    case PassiveEffect.HP when node.State == TreeNodeState.Unlocked:
-                        _extraHealthPoints = (int)node.Amount;
+                    case PassiveEffect.HP:
+                        _extraHealthPoints += (int)node.Amount;
                         break;
-                    case PassiveEffect.AP when node.State == TreeNodeState.Unlocked:
-                        _extraAmmo = (int)node.Amount;
+                    case PassiveEffect.AP: 
+                        _extraAmmo += (int)node.Amount;
                         break;
-                    case PassiveEffect.MD when node.State == TreeNodeState.Unlocked:
-                        _bonusMeleeDamage[(int) node.DanageType] = (int)node.Amount;
+                    case PassiveEffect.MD:
+                        _bonusMeleeDamage[(int) node.DanageType] += (int)node.Amount;
                         break;
-                    case PassiveEffect.RD when node.State == TreeNodeState.Unlocked:
-                        _bonusRangeDamage[(int) node.DanageType] = (int)node.Amount;
+                    case PassiveEffect.RD:
+                        _bonusRangeDamage[(int) node.DanageType] += (int)node.Amount;
                         break;
-                    case PassiveEffect.SD when node.State == TreeNodeState.Unlocked:
-                        _bonusSpellDamge[(int) node.DanageType] = (int)node.Amount;
+                    case PassiveEffect.SD:
+                        _bonusSpellDamge[(int) node.DanageType] += (int)node.Amount;
                         break;
                     case PassiveEffect.None:
                         break;
