@@ -181,7 +181,6 @@ namespace TOR_Core
         {
 
             mission.RemoveMissionBehavior(mission.GetMissionBehavior<MissionGauntletCrosshair>());
-            mission.AddMissionBehavior(new CareerMissionLogic());
             mission.AddMissionBehavior(new StatusEffectMissionLogic());
             mission.AddMissionBehavior(new ExtendedInfoMissionLogic());
             mission.AddMissionBehavior(new AbilityManagerMissionLogic());
