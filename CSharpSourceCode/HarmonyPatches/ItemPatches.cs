@@ -20,11 +20,14 @@ namespace TOR_Core.HarmonyPatches
                 return false;
             }
             
-            if (weaponClass == WeaponClass.Stone)
+            //This might be too much, Throwing stones are confirmed not a big thing in warhammer lore (beside maybe fanatical rats, so faith?
+            // The point is, it feels better in the menu when the new magical trinkets are shown as a generic weapon instead of throwing items. 
+            // The effect of the stone so in this case it would be Faith, will never been triggered since the projectile is always removed
+            /*if (weaponClass == WeaponClass.Stone)     
             {
                 __result = TORSkills.Faith;
                 return false;
-            }
+            }*/
             
             return true;
         }

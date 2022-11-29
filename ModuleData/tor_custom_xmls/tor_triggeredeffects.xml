@@ -513,7 +513,6 @@
             ImbuedStatusEffectDuration="0" 
             DamageVariance="0.1" 
             ScriptNameToTrigger="none"/>
-      
       <TriggeredEffectTemplate StringID="shadow_step" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
@@ -527,9 +526,6 @@
             ImbuedStatusEffectDuration="0" 
             DamageVariance="0" 
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.KnockDownScript"/>
-			
-			
-			
 		<TriggeredEffectTemplate StringID="knightlyStrike" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
@@ -542,7 +538,5 @@
             ImbuedStatusEffectDuration="5" 
             DamageVariance="0.1" 
             ScriptNameToTrigger="none" 
-			
             HasShockWave="true" />
-
 </ArrayOfTriggeredEffectTemplate>
