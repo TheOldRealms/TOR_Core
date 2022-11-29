@@ -457,8 +457,8 @@
     <Compile Include="BattleMechanics\Trinket\TrinketMissionLogic.cs" />
     <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Career\CareerCampaignBase.cs" />
-    <Compile Include="CampaignMechanics\Career\CareerMissionLogic.cs" />
-    <Compile Include="CampaignMechanics\Career\CareerSkillTreeTemplate.cs" />
+    <Compile Include="CampaignMechanics\Career\CareerFactory.cs" />
+    <Compile Include="CampaignMechanics\Career\CareerTemplate.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissSceneNotificationItem.cs" />
