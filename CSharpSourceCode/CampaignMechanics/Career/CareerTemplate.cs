@@ -5,9 +5,11 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using HarmonyLib;
+using NLog.Filters;
 using NLog.Layouts;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.LinQuick;
 using TaleWorlds.SaveSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Crosshairs;
@@ -172,6 +174,9 @@ namespace TOR_Core.CampaignMechanics.Career
         [XmlAttribute] public int NumberToSummon = 0;                               //modifier
         public AbilityTemplateModifier() { }
     }
+
+
+    
     
     [Serializable]
     public class SubTree
@@ -189,14 +194,11 @@ namespace TOR_Core.CampaignMechanics.Career
             else
                 return false;
         }
+        
+        
+
     }
-
-
-
- 
     
-
-
     public enum ModificationType
     {
         Add,
@@ -236,60 +238,135 @@ namespace TOR_Core.CampaignMechanics.Career
     
     public static class TreeStructureExtension
     {
+        public const string RootNode = "0";
+
+        public static string GetRootNodeId(this List<SubTree> TreeStructure)
+        {
+            return RootNode;
+        }
         public static bool ContainsNode(this List<SubTree> TreeStructure, string element)
         {
              return TreeStructure.Any(subtree => subtree.Contains(element));
         }
 
-        /*public static List<string> GetShortestPathToRoot(this List<SubTree> TreeStructure, string Node, string root)
+        public static void AddChild(this List<SubTree> treeStructure,string parent, string element)
         {
-            List<string> path;
-            var parent="";
-            if (!TreeStructure.ContainsNode(Node)) return new List<string>();
-
-
-            var begins = new List<string>();
-
-            foreach (var tree in TreeStructure.Where(tree => tree.Children.Contains(Node)))
-            {
-                begins.Add(parent);
-            }
-
-            foreach (var begin in begins)
-            {
-                
-            }
-        }*/
-        
-
-
-        public static bool HasHigherLevel(this List<SubTree> TreeStructure, string NodeInQuestion)
-        {
-            return false;
+            
         }
 
-        private static List<string> GetAllChildren(this List<SubTree> TreeStructure)
+        public static List<SubTree> GetAllParents(this List<SubTree> TreeStructure, string element)
+        {
+            return TreeStructure.Where(x=> x.Children.Contains(element)).ToList();
+        }
+        
+        /*public static List<SubTree> GetAllChildren(this List<SubTree> TreeStructure, string element)
+        {
+            return TreeStructure.Where(x=> x.Parent==(element)).ToList();
+        }*/
+
+
+        public static bool IsChildOfAny(this List<SubTree> TreeStructure, string element)
+        {
+            return TreeStructure.Any(subtree => subtree.Children.Contains(element));
+        }
+
+        public static SubTree GetSubTreeWithNode(this List<SubTree> TreeStructre, string element)
+        {
+            if (element == RootNode) return null;
+            
+            return TreeStructre.FirstOrDefault(x => x.Parent.Contains(element));
+        }
+        
+
+        public static string HigherNode(this List<SubTree> TreeStructure, string node , string node2)
+        {
+            if (!TreeStructure.ContainsNode(node) || !TreeStructure.ContainsNode(node2)) return null;
+            
+            
+            var element = TreeStructure.GetSubTreeWithNode(node);
+            var element2 = TreeStructure.GetSubTreeWithNode(node2);
+            if (element.Level > element2.Level)
+            {
+                    
+            }
+            return null;
+        }
+
+        public static List<string> GetAllChildren(this List<SubTree> treeStructure)
         {
             List<string> elements=new List<string>();
-            foreach (var tree in TreeStructure)
+            foreach (var tree in treeStructure)
             { 
                 elements.AddRange(tree.Children);
             }
 
-            return elements;
+            return elements.Distinct().ToList();
         }
 
-        public static List<string> GetAllLeaves(this List<SubTree> TreeStructure)
+        public static List<SubTree> GetAllLeaves(this List<SubTree> treeStructure)
         {
-            var children = TreeStructure.GetAllChildren();
-
-            var leaves = children.Where(child => TreeStructure.All(x => x.Parent != child)).ToList();
-
+            var leaves = treeStructure.Where(subtree => subtree.Children.Count == 0).ToList();
             return leaves;
+        }
+
+
+        public static List<SubTree> GetSubTree(this List<SubTree> treeStructure, SubTree subTree, int index)
+        {
+            subTree.Level = index;
+
+            
+            foreach (var id in subTree.Children)
+            {
+                if (treeStructure.ContainsNode(id))
+                {
+                    return treeStructure.GetSubTree(GetSubTreeWithNode(treeStructure, id), index++).ToList();
+                }
+            }
+            
+            return new List<SubTree>();
+
+
+        }
+        
+        public static List<string> GetAllLeaveIDs(this List<SubTree> treeStructure)
+        {
+            var leaves = treeStructure.Where(subtree => subtree.Children.Count == 0).ToList();
+            return leaves.Select(tree => tree.Parent).ToList();
+
+        }
+        
+        public static List<SubTree> GetParents(this List<SubTree> treeStructure)
+        {
+            var leaves = treeStructure.Where(subtree => subtree.Children.Count > 0).ToList();
+            return leaves;
+        }
+
+       private static  List<SubTree> FinalizeTreeStructure(this List<SubTree> treeStructure)
+       {
+
+           
+
+           //treeStructure.Insert(0,rootnode);
+
+            var children = treeStructure.GetAllChildren();
+            var leaves = children.Where(child => treeStructure.All(x => x.Parent != child)).ToList();
+
+            foreach (var leaf in leaves)
+            {
+                SubTree newElement = new SubTree();
+                newElement.Parent = leaf;
+                treeStructure.Add(newElement);
+            }
+            return treeStructure;
         }
         
         public  static List<SubTree> SimplifyTreeStructure(this List<SubTree> structure)
         {
+            structure= FinalizeTreeStructure(structure);
+            
+            //var leaves =  structure.GetAllLeaves();
+            
+            
             var parents = structure.Select(subtree => subtree.Parent).ToList();
             var unique = structure.Select(subtree => subtree.Parent).Distinct().ToList();
             if (unique.Count() == parents.Count)
@@ -308,6 +385,12 @@ namespace TOR_Core.CampaignMechanics.Career
                 structure.RemoveAll(x => x.Parent == item);
                 structure.Add(reduced);
             }
+            
+            
+            
+            
+            
+            
             return structure;
         }
 
