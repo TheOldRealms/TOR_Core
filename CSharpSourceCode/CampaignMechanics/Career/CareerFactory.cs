@@ -66,7 +66,8 @@ namespace TOR_Core.CampaignMechanics.Career
             foreach (var subtree in structure)
             {
                 var exception = $"Career {CareerId} subtree with parent node {subtree.Parent}";
-                if (subtree.Children.Contains(subtree.Parent)) throw new Exception(exception + " was part of his own leafs");
+                if (subtree.Children.Contains(subtree.Parent)) 
+                    throw new Exception(exception + " was part of his own leafs");
             }
 
             var children = structure.GetAllChildren();
@@ -95,10 +96,7 @@ namespace TOR_Core.CampaignMechanics.Career
                         foreach (var item in path)
                         {
                             var parents = structure.GetAllParents(item);
-
-                            //if item is child of any
                             structure.RemoveAll(x => x.Parent == item);
-
                             if (parents.Count > 1) parents.FirstOrDefault().Children.Add(item);
                         }
 
@@ -106,7 +104,7 @@ namespace TOR_Core.CampaignMechanics.Career
                     }
                 }
 
-                if (leaf == root) structure.FirstOrDefault(x => x.Parent.Contains(leaf)).Level = 0;
+                if (leaf == root) structure.FirstOrDefault(x => leaf.Contains(x.Parent)).Level = 0;
             }
         }
     }
