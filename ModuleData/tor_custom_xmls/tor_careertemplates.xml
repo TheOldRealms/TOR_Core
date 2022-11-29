@@ -13,6 +13,18 @@
 				<Overrides DamageType="Holy">
 				</Overrides>
 			</KeyStoneNode>
+				<KeyStoneNode Id="5" CharacterAttribute ="" AttributeValue="0">
+				<Modifier Charge="5">
+				</Modifier>
+				<Overrides DamageType="Physical">
+				</Overrides>
+			</KeyStoneNode>
+				<KeyStoneNode Id="6" CharacterAttribute ="" AttributeValue="0">
+				<Modifier Charge="5">
+				</Modifier>
+				<Overrides DamageType="Fire">
+				</Overrides>
+			</KeyStoneNode>
 		</KeyStones>
 		<PassiveNodes >
 			<PassiveNode Id="2" EffectType="HP" Amount ="5">
@@ -20,10 +32,6 @@
 			<PassiveNode  Id="3" EffectType="HP" Amount ="5">
 			</PassiveNode>
 			<PassiveNode  Id="8" EffectType="HP" Amount ="5">
-			</PassiveNode>
-			<PassiveNode  Id="5" EffectType="HP" Amount ="5">
-			</PassiveNode>
-			<PassiveNode  Id="6" EffectType="HP" Amount ="1">
 			</PassiveNode>
 			<PassiveNode  Id="7" EffectType="HP" Amount ="1">
 			</PassiveNode>
@@ -55,7 +63,7 @@
 			</SubTree>
 			<SubTree Parent="2">
 				<Children>
-					<string>7</string>
+					<string>5</string>
 					<string>1</string>
 				</Children>
 			</SubTree>
