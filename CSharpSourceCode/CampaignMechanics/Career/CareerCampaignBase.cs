@@ -72,7 +72,7 @@ namespace TOR_Core.CampaignMechanics.Career
         }
         public int GetExtraHealthPoints()
         {
-            return 10;
+            return _extraHealthPoints;
         }
         public int GetExtraAmmoPoints()
         {

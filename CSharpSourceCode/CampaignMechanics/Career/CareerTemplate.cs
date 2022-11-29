@@ -8,8 +8,10 @@ using HarmonyLib;
 using NLog.Layouts;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.SaveSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Crosshairs;
+using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.DamageSystem;
 
 namespace TOR_Core.CampaignMechanics.Career
@@ -36,10 +38,7 @@ namespace TOR_Core.CampaignMechanics.Career
         }
         public CareerTemplate(CareerId id) => CareerId = id;
 
-        public bool ContainsNode(string element)
-        {
-            return Structure.Any(subtree => subtree.Contains(element));
-        }
+        
         
     }
     
@@ -70,6 +69,8 @@ namespace TOR_Core.CampaignMechanics.Career
         public float Amount=0;
         [XmlAttribute]
         public PassiveEffect EffectType=PassiveEffect.None;
+        [XmlAttribute]
+        public DamageType DanageType = DamageType.Physical;
     }
     
     [Serializable]
@@ -133,8 +134,7 @@ namespace TOR_Core.CampaignMechanics.Career
         public string SoundEffectId = "none";                       //Override
         [XmlElement(IsNullable = true)] 
         public float? SoundEffectLength = null;                      //Override
-        [XmlElement(IsNullable = true)]
-        public float? ImpactRadius = null;                           //Modifier
+       
         [XmlElement(IsNullable = true)] 
         public bool? HasShockWave = null;                            //Override
         [XmlAttribute] 
@@ -166,7 +166,8 @@ namespace TOR_Core.CampaignMechanics.Career
         [XmlAttribute] public float Offset = 0;                 //Modifier
         [XmlAttribute] public float MinDistance = 0;            //Modifier
         [XmlAttribute] public float MaxDistance = 0;            //Modifier
-        [XmlAttribute] public int Damage;                        //Modifier
+        [XmlAttribute] public int Damage = 0;                       //Modifier
+        [XmlAttribute] public float ImpactRadius = 0;             //Modifier
         [XmlAttribute] public float ImbuedStatusEffectDuration = 0;               //Modifier
         [XmlAttribute] public int NumberToSummon = 0;                               //modifier
         public AbilityTemplateModifier() { }
@@ -189,6 +190,10 @@ namespace TOR_Core.CampaignMechanics.Career
                 return false;
         }
     }
+
+
+
+ 
     
 
 
@@ -207,6 +212,8 @@ namespace TOR_Core.CampaignMechanics.Career
         GrailKnight,
         WarriorPriest
     }
+    
+   
 
     public enum TreeNodeState
     {
@@ -221,6 +228,98 @@ namespace TOR_Core.CampaignMechanics.Career
         HP,         //Health Points
         AP,         //Ammunition Points
         WP,         //Winds of Magic Points
+        MD,         //Melee Damage
+        RD,         //Range Damage
+        SD,         //Spell Damage
+    }
+    
+    
+    public static class TreeStructureExtension
+    {
+        public static bool ContainsNode(this List<SubTree> TreeStructure, string element)
+        {
+             return TreeStructure.Any(subtree => subtree.Contains(element));
+        }
+
+        /*public static List<string> GetShortestPathToRoot(this List<SubTree> TreeStructure, string Node, string root)
+        {
+            List<string> path;
+            var parent="";
+            if (!TreeStructure.ContainsNode(Node)) return new List<string>();
+
+
+            var begins = new List<string>();
+
+            foreach (var tree in TreeStructure.Where(tree => tree.Children.Contains(Node)))
+            {
+                begins.Add(parent);
+            }
+
+            foreach (var begin in begins)
+            {
+                
+            }
+        }*/
+        
+
+
+        public static bool HasHigherLevel(this List<SubTree> TreeStructure, string NodeInQuestion)
+        {
+            return false;
+        }
+
+        private static List<string> GetAllChildren(this List<SubTree> TreeStructure)
+        {
+            List<string> elements=new List<string>();
+            foreach (var tree in TreeStructure)
+            { 
+                elements.AddRange(tree.Children);
+            }
+
+            return elements;
+        }
+
+        public static List<string> GetAllLeaves(this List<SubTree> TreeStructure)
+        {
+            var children = TreeStructure.GetAllChildren();
+
+            var leaves = children.Where(child => TreeStructure.All(x => x.Parent != child)).ToList();
+
+            return leaves;
+        }
+        
+        public  static List<SubTree> SimplifyTreeStructure(this List<SubTree> structure)
+        {
+            var parents = structure.Select(subtree => subtree.Parent).ToList();
+            var unique = structure.Select(subtree => subtree.Parent).Distinct().ToList();
+            if (unique.Count() == parents.Count)
+            {
+                return structure;
+            }
+            foreach (var item in unique)
+            {
+                var list = structure.Where(x => x.Parent == item).ToList();
+                var reduced = new SubTree();
+                reduced.Parent = item;
+                reduced.Children=list[0].Children;
+                for (int i = 1; i < list.Count; i++)
+                    reduced.Children.AddRange(list[i].Children);
+                reduced.Children = reduced.Children.Distinct().ToList(); //Remove Duplicate children
+                structure.RemoveAll(x => x.Parent == item);
+                structure.Add(reduced);
+            }
+            return structure;
+        }
+
+    }
+    
+    public class SpellCastingTypeDefiner : SaveableTypeDefiner
+    {
+        public SpellCastingTypeDefiner() : base(1_456_199) { }
+        protected override void DefineEnumTypes()
+        {
+            AddEnumDefinition(typeof(CareerId), 1);
+        }
     }
 
  

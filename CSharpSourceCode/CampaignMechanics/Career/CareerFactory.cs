@@ -31,9 +31,10 @@ namespace TOR_Core.CampaignMechanics.Career
             return list;
         }
 
-        public static CareerTemplate GetTemplate(string id)
+        public static CareerTemplate GetTemplate(CareerId id)
         {
-            return _templates.ContainsKey(id) ? _templates[id] : null;
+            if (id == CareerId.None) return null;
+            return _templates.ContainsKey(id.ToString()) ? _templates[id.ToString()] : null;
         }
         
         public static void LoadTemplates()
@@ -52,15 +53,12 @@ namespace TOR_Core.CampaignMechanics.Career
                     var structure = career.Structure.ToList();
                     ValidateTreeStructure(career.ToString(),ref treeElements, ref structure);
 
-                    if (structure.Count == 0)
-                    {
-                        continue;
-                    }
+                    if (structure.Count == 0)  continue;
 
                     career.Structure = structure;
 
-                    career.KeyStoneNodes = career.KeyStoneNodes.Where(x => career.ContainsNode(x.Id)).ToList();
-                    career.PassiveNodes = career.PassiveNodes.Where(x => career.ContainsNode(x.Id)).ToList();
+                    career.KeyStoneNodes = career.KeyStoneNodes.Where(x => structure.ContainsNode(x.Id)).ToList();
+                    career.PassiveNodes = career.PassiveNodes.Where(x => structure.ContainsNode(x.Id)).ToList();
                     
                     
                     _templates.Add(career.CareerId.ToString(), career);
@@ -77,7 +75,7 @@ namespace TOR_Core.CampaignMechanics.Career
                 throw new Exception($"{exceptionbase} Tree contained invalid id ( {RootNodeId} ) ");
             }
 
-            structure = SimplfyTreeStructure(structure);        //Maybe a warning message. This should not happen, but lets just ensure the tree structure is handled probably
+            structure= structure.SimplifyTreeStructure();        //Maybe a warning message. This should not happen, but lets just ensure the tree structure is handled probably
             
             foreach (var subtree in structure)
             {
@@ -88,17 +86,10 @@ namespace TOR_Core.CampaignMechanics.Career
                 }
             }
             
-            var nodeIds = nodes.Select(x => x.Id).ToList();
-            var leafs = new List<string>();
-            foreach (var nodeId in nodeIds)
-            {
-                if (structure.All(x => x.Parent != nodeId))
-                {
-                    leafs.Add(nodeId);
-                }
-            }
-            
-            foreach (var leaf in leafs)
+            //var nodeIds = nodes.Select(x => x.Id).ToList();
+            var leaves = structure.GetAllLeaves();
+
+            foreach (var leaf in leaves)
             {
                 var path = new List<string>();
                 var parent = leaf;
@@ -115,7 +106,6 @@ namespace TOR_Core.CampaignMechanics.Career
                     {
                         foreach (var item in path)
                         {
-                            nodes.RemoveAll(x => x.Id == item);
                             structure.RemoveAll(x => x.Parent == item);
                         }
                         break;
@@ -134,28 +124,7 @@ namespace TOR_Core.CampaignMechanics.Career
 
 
 
-        private static List<SubTree> SimplfyTreeStructure(List<SubTree> structure)
-        {
-            var parents = structure.Select(subtree => subtree.Parent).ToList();
-            var unique = structure.Select(subtree => subtree.Parent).Distinct().ToList();
-            if (unique.Count() == parents.Count)
-            {
-                return structure;
-            }
-            foreach (var item in unique)
-            {
-                var list = structure.Where(x => x.Parent == item).ToList();
-                var reduced = new SubTree();
-                reduced.Parent = item;
-                reduced.Children=list[0].Children;
-                for (int i = 1; i < list.Count; i++)
-                    reduced.Children.AddRange(list[i].Children);
-                reduced.Children = reduced.Children.Distinct().ToList(); //Remove Duplicate children
-                structure.RemoveAll(x => x.Parent == item);
-                structure.Add(reduced);
-            }
-            return structure;
-        }
+        
 
 
 

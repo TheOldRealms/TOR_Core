@@ -25,7 +25,9 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         [SaveableField(5)] private CharacterObject _baseCharacter;
         [SaveableField(6)] private List<string> _knownLores = new List<string>();
         [SaveableField(7)] private List<string> _selectedAbilities = new List<string>();
-
+        [SaveableField(8)] public CareerId _AcquiredCareer = CareerId.None;
+        [SaveableField(9)] public List<string> AcquiredAbilitiesTORSkillPoints = new List<string>();
+        [SaveableField(10)] public int AvailableTorSkillPoints;         //might not be completely important. Could be deducted from Player Level.
         public CharacterObject BaseCharacter => _baseCharacter;
 
         public float MaxWindsOfMagic
@@ -118,6 +120,24 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                     }
                 }
                 list.AddRange(AcquiredAttributes);
+                return list;
+            }
+        }
+        
+        public List<string> AllCareerSkillPoints
+        {
+            get
+            {
+                var list = new List<string>();
+                if (_baseCharacter != null)
+                {
+                    list.AddRange(_baseCharacter.GetAttributes());
+                    if (list.Count <= 0 && _baseCharacter.OriginalCharacter != null && _baseCharacter.OriginalCharacter.IsTemplate)
+                    {
+                        list.AddRange(_baseCharacter.OriginalCharacter.GetAttributes());
+                    }
+                }
+                list.AddRange(AcquiredAbilitiesTORSkillPoints);
                 return list;
             }
         }
