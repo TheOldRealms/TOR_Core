@@ -59,7 +59,7 @@ namespace TOR_Core.CampaignMechanics.Career
         private float _windsOfMagicCost;
         
         //overrides
-
+        private DamageType _damageTypeOverride;
 
 
         public bool HasRequiredWeaponFlags(WeaponClass weaponClass)
@@ -186,6 +186,9 @@ namespace TOR_Core.CampaignMechanics.Career
                     case PassiveEffect.AP: 
                         _extraAmmo += (int)node.Amount;
                         break;
+                    case PassiveEffect.WP:
+                        _extraWind += (int)node.Amount;
+                        break;
                     case PassiveEffect.MD:
                         _bonusMeleeDamage[(int) node.DanageType] += (int)node.Amount;
                         break;
@@ -197,8 +200,6 @@ namespace TOR_Core.CampaignMechanics.Career
                         break;
                     case PassiveEffect.None:
                         break;
-                    case PassiveEffect.WP:
-                        break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -206,7 +207,7 @@ namespace TOR_Core.CampaignMechanics.Career
             
             foreach (var node in _currentSelectedCareerTemplate.KeyStoneNodes)
             {
-                if(node.State != TreeNodeState.Unlocked) return;
+               // if(node.State != TreeNodeState.Unlocked) continue;
                 
                 _chargeModfier+= node.Modifier.Charge;
                 _damageModifer += node.Modifier.Damage;
@@ -222,10 +223,21 @@ namespace TOR_Core.CampaignMechanics.Career
                 _imbuedStatusEffectDuration += node.Modifier.ImbuedStatusEffectDuration;
                 _windsOfMagicCost += node.Modifier.WindsOfMagicCost;
             }
-            
+
+            var structure = _currentSelectedCareerTemplate.Structure;
+
+            var level = 0;
+
+            var SortedKeyStones = _currentSelectedCareerTemplate.KeyStoneNodes.OrderBy(x => structure.GetNodeLevel(x.Id));
+
+            foreach (var node in _currentSelectedCareerTemplate.KeyStoneNodes)
+            {
+                //if(node.State != TreeNodeState.Unlocked) continue;
+
+                _damageTypeOverride = node.Overrides.DamageType;
 
 
-
+            }
         }
         
         
