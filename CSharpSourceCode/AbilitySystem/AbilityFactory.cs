@@ -76,25 +76,20 @@ namespace TOR_Core.AbilitySystem
         {
             Ability ability = null;
 
-            if (template.AbilityType == AbilityType.Spell)
+            switch (template.AbilityType)
             {
-                ability = new Spell(template);
-            }
-            else if (template.AbilityType == AbilityType.Prayer)
-            {
-                ability = new Prayer(template);
-            }
-            else if (template.AbilityType == AbilityType.SpecialMove)
-            {
-                ability = new SpecialMove(template);
-            }
-            else if(template.AbilityType == AbilityType.ItemBound)
-            {
-                ability = new ItemBoundAbility(template);
-            }
-            else if(template.AbilityType == AbilityType.CareerAbility)
-            {
-                ability = new CareerAbility(template,caster);
+                case AbilityType.Spell:
+                    ability = new Spell(template);
+                    break;
+                case AbilityType.Prayer:
+                    ability = new Prayer(template);
+                    break;
+                case AbilityType.ItemBound:
+                    ability = new ItemBoundAbility(template);
+                    break;
+                case AbilityType.CareerAbility:
+                    ability = new CareerAbility(template,caster);
+                    break;
             }
             return ability;
         }

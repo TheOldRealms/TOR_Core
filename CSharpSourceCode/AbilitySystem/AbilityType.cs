@@ -6,7 +6,6 @@
         Spell,
         Prayer,
         ItemBound,
-        SpecialMove,
         CareerAbility
     }
 

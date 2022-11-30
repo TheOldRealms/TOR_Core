@@ -303,11 +303,11 @@ namespace TOR_Core.AbilitySystem
                 {
                     Agent.Main.CastCurrentAbility();
                 }
-                if(_abilityComponent.SpecialMove != null && _abilityComponent.SpecialMove.IsUsing) _abilityComponent.StopSpecialMove();
+                if(_abilityComponent.CareerAbility != null && _abilityComponent.CareerAbility.IsUsing) _abilityComponent.StopSpecialMove();
             }
             else if (Input.IsKeyPressed(InputKey.RightMouseButton))
             {
-                if (_abilityComponent.SpecialMove != null && _abilityComponent.SpecialMove.IsUsing) _abilityComponent.StopSpecialMove();
+                if (_abilityComponent.CareerAbility != null && _abilityComponent.CareerAbility.IsUsing) _abilityComponent.StopSpecialMove();
             }
             else if (Input.IsKeyPressed(InputKey.MouseScrollUp) && _currentState != AbilityModeState.Off)
             {

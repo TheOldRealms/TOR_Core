@@ -19,7 +19,6 @@ namespace TOR_Core.AbilitySystem
         private bool _isInitialized;
         private AbilityHUD_VM _abilityHUD_VM;
         private CareerAbilityHUD_VM _careerabilityHUD_VM;
-        private SpecialMoveHUD_VM _specialMoveHUD_VM;
         private GauntletLayer _abilityLayer;
         private GauntletLayer _specialMoveLayer;
         private GauntletLayer _careerAbilityLayer;
@@ -69,14 +68,7 @@ namespace TOR_Core.AbilitySystem
             _careerAbilityLayer = new GauntletLayer(98);
             _careerAbilityLayer.LoadMovie("CareerAbilityHUD", _careerabilityHUD_VM);
             MissionScreen.AddLayer(_careerAbilityLayer);
-
-          
             
-            /*_specialMoveHUD_VM = new SpecialMoveHUD_VM();
-            _specialMoveLayer = new GauntletLayer(99);
-            _specialMoveLayer.LoadMovie("SpecialMoveHUD", _specialMoveHUD_VM);
-            MissionScreen.AddLayer(_specialMoveLayer);*/
-
             _isInitialized = true;
         }
 
@@ -115,10 +107,6 @@ namespace TOR_Core.AbilitySystem
                 {
                     _abilityHUD_VM.UpdateProperties();
                       
-                }
-                if (_hasSpecialMove)
-                {
-                    _specialMoveHUD_VM.UpdateProperties();
                 }
                 return;
             }

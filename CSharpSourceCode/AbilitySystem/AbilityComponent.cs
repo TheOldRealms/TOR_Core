@@ -30,21 +30,12 @@ namespace TOR_Core.AbilitySystem
                         {
                             ability.OnCastStart += OnCastStart;
                             ability.OnCastComplete += OnCastComplete;
-
-                            switch (ability)
+                            if (ability is CareerAbility)
                             {
-                                case CareerAbility careerAbility:
-                                    _careerAbility = careerAbility;
-                                    break;
-                                case SpecialMove move:
-                                    _specialMove = move;
-                                    break;
-                                default:
-                                {
-                                    if(ability.Template.AbilityType != AbilityType.ItemBound) _knownAbilitySystem.Add(ability);
-                                    break;
-                                }
+                                _careerAbility = (CareerAbility) ability;
                             }
+                            else
+                            if(ability.Template.AbilityType != AbilityType.ItemBound) _knownAbilitySystem.Add(ability);
                         }
                         else
                         {
@@ -56,7 +47,6 @@ namespace TOR_Core.AbilitySystem
                         TORCommon.Log("Failed instantiating ability class: " + item, LogLevel.Error);
                     }
                 }
-               // if (Agent.IsVampire() && _specialMove == null) _specialMove = (CareerAbility)AbilityFactory.CreateNew("ShadowStep", Agent);
             }
             if (Agent.CanPlaceArtillery())
             {
@@ -197,7 +187,7 @@ namespace TOR_Core.AbilitySystem
 
         public void StopSpecialMove()
         {
-            ((ShadowStepScript)SpecialMove.AbilityScript)?.Stop();
+            ((ShadowStepScript)CareerAbility.AbilityScript)?.Stop();
         }
 
         public List<AbilityTemplate> GetKnownAbilityTemplates()
@@ -225,7 +215,6 @@ namespace TOR_Core.AbilitySystem
         }
 
         private Ability _currentAbility = null;
-        private SpecialMove _specialMove = null;
         private CareerAbility _careerAbility = null;
         private readonly List<Ability> _knownAbilitySystem = new List<Ability>();
         private int _currentAbilityIndex;
@@ -240,7 +229,6 @@ namespace TOR_Core.AbilitySystem
         }
         
         public CareerAbility CareerAbility { get => _careerAbility; private set => _careerAbility = value; }
-        public SpecialMove SpecialMove { get => _specialMove; private set => _specialMove = value; }
         public List<Ability> KnownAbilitySystem { get => _knownAbilitySystem; }
         public delegate void CurrentAbilityChangedHandler(AbilityCrosshair crosshair);
         public event CurrentAbilityChangedHandler CurrentAbilityChanged;

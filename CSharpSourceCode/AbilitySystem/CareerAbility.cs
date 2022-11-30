@@ -85,6 +85,15 @@ namespace TOR_Core.AbilitySystem.Spells
          
             return _currentCharge >= _maximumCoolDownCharge;
         }*/
+        
+        public bool IsUsing
+        {
+            get
+            {
+                return (ShadowStepScript)AbilityScript != null && !((ShadowStepScript)AbilityScript).IsFadinOut;
+            }
+        }
+
 
         public override void ActivateAbility(Agent casterAgent)
         {

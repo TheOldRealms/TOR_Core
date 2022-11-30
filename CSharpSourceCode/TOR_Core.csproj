@@ -380,8 +380,6 @@
     <Compile Include="AbilitySystem\Scripts\WindScript.cs" />
     <Compile Include="AbilitySystem\SeekerController.cs" />
     <Compile Include="AbilitySystem\SeekerParameters.cs" />
-    <Compile Include="AbilitySystem\SpecialMove.cs" />
-    <Compile Include="AbilitySystem\SpecialMoveHUD_VM.cs" />
     <Compile Include="AbilitySystem\Spells\Spell.cs" />
     <Compile Include="AbilitySystem\Spells\LoreObject.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\LoreObjectVM.cs" />
