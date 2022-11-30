@@ -97,10 +97,8 @@ namespace TOR_Core.AbilitySystem.Spells
 
         public override void ActivateAbility(Agent casterAgent)
         {
-
             base.ActivateAbility(casterAgent);
-
-         this.AbilityScript.OnEffectTriggeredSucessfull += PostTriggeredSucessfullEffect;
+            
         }
 
         public override bool CanCast(Agent casterAgent)
@@ -129,16 +127,6 @@ namespace TOR_Core.AbilitySystem.Spells
         
         
 
-
-        private void PostTriggeredSucessfullEffect(IEnumerable<Agent> affectedAgents, Agent caster)
-        {
-            TORCommon.Say("hello I triggered my effect on "+affectedAgents.Count() +  " agents");
-            if (affectedAgents.Count() > 5)
-            {
-                Owner.ApplyStatusEffect("healing_regeneration",caster);
-            }
-
-            this.AbilityScript.OnEffectTriggeredSucessfull -= PostTriggeredSucessfullEffect;
-        }
+        
     }
 }
