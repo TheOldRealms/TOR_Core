@@ -48,6 +48,8 @@ namespace TOR_Core.Utilities
                 ? CampaignCheats.ErrorType
                 : AggregateOutput("Player got these spells:", Hero.MainHero.GetExtendedInfo().AllAbilites);
 
+        
+        
         [CommandLineFunctionality.CommandLineArgumentFunction("add_spells_to_player", "tor")]
         public static string AddSpells(List<string> arguments)
         {
@@ -73,7 +75,9 @@ namespace TOR_Core.Utilities
                             newSpells.Add(torSpell);
                         }
                     }
-                foreach (var torSpell in torCareerAbilities)            //TODO RESTRICT THIS TO ONE! REMOVE ANY OTHER 
+                
+                //TODO Testing stuff, will be merged in ability below
+                /*foreach (var torSpell in torCareerAbilities)           
                     if (string.Equals(torSpell, argument, StringComparison.CurrentCultureIgnoreCase))
                     {
                         matchedArguments.Add(torSpell);
@@ -85,7 +89,7 @@ namespace TOR_Core.Utilities
                             Hero.MainHero.AddAbility(torSpell);
                             newSpells.Add(torSpell);
                         }
-                    }
+                    }*/
             }
             
 
@@ -103,7 +107,10 @@ namespace TOR_Core.Utilities
             );
 
 
-        [CommandLineFunctionality.CommandLineArgumentFunction("chooseCareer", "tor")]
+        
+        //Some rudmentary testing thing, come back to that later 
+        
+        /*[CommandLineFunctionality.CommandLineArgumentFunction("chooseCareer", "tor")]
         public static string ChooseCareer(List<string>  arguments)
         {
             if (arguments.Count > 1)
@@ -121,7 +128,7 @@ namespace TOR_Core.Utilities
             }
 
             return "Could not found career";
-        }
+        }*/
 
 
         [CommandLineFunctionality.CommandLineArgumentFunction("make_player_necromancer", "tor")]

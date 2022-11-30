@@ -123,12 +123,8 @@ namespace TOR_Core.HarmonyPatches
                 {
                     var career =Campaign.Current.GetCampaignBehavior<CareerCampaignBase>();
                     float[] bonusDamage = new float[damageProportions.Length];//TODO -1 ?
-                    if(attackType == AttackType.Melee) 
-                        bonusDamage=career.GetCareerBonusMeleeDamage();
-                    else
-                    {
-                        bonusDamage= career.GetCareerBonusRangeDamage();
-                    }
+                    bonusDamage = attackType == AttackType.Melee ? career.GetCareerBonusMeleeDamage() : career.GetCareerBonusRangeDamage();
+                    
                     for (var i = 0; i < damageProportions.Length; i++)
                     {
                         damageProportions[i]+= bonusDamage[i];
@@ -148,10 +144,6 @@ namespace TOR_Core.HarmonyPatches
                     resultDamage += (int)damageCategories[i];
                 }
             }
-
-           
-            
-            
             
             resultDamage = (int)(resultDamage * wardSaveFactor);
             b.InflictedDamage = resultDamage;
