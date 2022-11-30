@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using TaleWorlds.Core;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Career
@@ -47,6 +48,8 @@ namespace TOR_Core.CampaignMechanics.Career
                     var structure = career.Structure.ToList();
                     ValidateTreeStructure(career.ToString(), ref treeElements, ref structure);
                     if (structure.Count == 0) continue;
+
+                    career.Structure = structure;
                     career.KeyStoneNodes = career.KeyStoneNodes.Where(x => structure.ContainsNode(x.Id)).ToList();
                     career.PassiveNodes = career.PassiveNodes.Where(x => structure.ContainsNode(x.Id)).ToList();
                     _templates.Add(career.CareerId.ToString(), career);
@@ -85,8 +88,8 @@ namespace TOR_Core.CampaignMechanics.Career
                     var level = structure.FirstOrDefault(x => x.Children.Contains(parent));
                     if (level != null)
                     {
-                        var node = structure.FirstOrDefault(x => x.Parent.Contains(leaf));
-                        node.Level = path.Count;
+                        structure.Find(elem => elem.Parent == leaf).Level=path.Count;
+
                         path.Add(level.Parent);
 
                         parent = level.Parent;
