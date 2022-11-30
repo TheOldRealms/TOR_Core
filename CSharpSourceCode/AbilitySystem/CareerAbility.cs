@@ -93,13 +93,7 @@ namespace TOR_Core.AbilitySystem.Spells
                 return (ShadowStepScript)AbilityScript != null && !((ShadowStepScript)AbilityScript).IsFadinOut;
             }
         }
-
-
-        public override void ActivateAbility(Agent casterAgent)
-        {
-            base.ActivateAbility(casterAgent);
-            
-        }
+        
 
         public override bool CanCast(Agent casterAgent)
         {
