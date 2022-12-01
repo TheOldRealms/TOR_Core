@@ -33,7 +33,7 @@ namespace TOR_Core.Models
         public override (float affectedSideMaxMoraleLoss, float affectorSideMaxMoraleGain) CalculateMaxMoraleChangeDueToAgentIncapacitated(Agent affectedAgent, AgentState affectedAgentState, Agent affectorAgent, in KillingBlow killingBlow)
         {
             var result = base.CalculateMaxMoraleChangeDueToAgentIncapacitated(affectedAgent, affectedAgentState, affectorAgent, killingBlow);
-            if(killingBlow.WeaponClass == (int)WeaponClass.Boulder || killingBlow.WeaponClass == (int)WeaponClass.Cartridge)
+            if(killingBlow.WeaponClass == (int)WeaponClass.Boulder || killingBlow.WeaponClass == (int)WeaponClass.Cartridge)    // we should check here for explosive weapon, that perk affects muskets as well
             {
                 var leader = affectorAgent.GetPartyLeaderCharacter();
                 if(leader != null && leader.GetPerkValue(TORPerks.GunPowder.SteelTerror))
