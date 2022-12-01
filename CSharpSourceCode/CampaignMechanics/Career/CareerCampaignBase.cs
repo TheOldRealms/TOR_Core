@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
-using TaleWorlds.SaveSystem;
-using TOR_Core.AbilitySystem;
-using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
-using TOR_Core.Quests;
-using TOR_Core.Utilities;
-
 namespace TOR_Core.CampaignMechanics.Career
 {
     
@@ -42,17 +35,16 @@ namespace TOR_Core.CampaignMechanics.Career
         private bool _canBeUsedOnHorse = false;
 
         private CareerTemplate _currentSelectedCareerTemplate;
-
-        private AbilityTemplate _careerAbilityTemplate;
-        //post attack behavior? Scriptname
+        
+        //post attack behavior? Script name
         
         //modifiers
         private int _chargeModfier;
         private int _damageModifer;
         private int _usagesModifer;
         private float _durationModifier;
-        private float _offsetModfier;
-        private float _radiusModfier;
+        private float _offsetModifier;
+        private float _radiusModifier;
         private float _castTimeModifier;
         private float _impactRadius;
         private float _maxDistance;
@@ -63,9 +55,12 @@ namespace TOR_Core.CampaignMechanics.Career
         
         //overrides
         private DamageType _damageTypeOverride;
+        
+        
 
         public string GetCareerAbilityID()
         {
+            if (_currentSelectedCareerTemplate == null) return "";
             return _currentSelectedCareerTemplate.AbilityTemplateId;
         }
 
@@ -102,39 +97,50 @@ namespace TOR_Core.CampaignMechanics.Career
 
         public float[] GetCareerBonusMeleeDamage()
         {
-            
-            //return _bonusMeleeDamage
-            float[] damage = new float[(int)DamageType.All + 1];
-
-            damage[(int)DamageType.Holy] = 0.25f;
-            return damage;
-
+            return _bonusMeleeDamage;
         }
         
         public float[] GetCareerBonusRangeDamage()
         {
             //return _bonusMeleeDamage
-            float[] damage = new float[(int)DamageType.All + 1];
-            damage[(int)DamageType.Lightning] = 0.25f;
-            return damage;
+            return _bonusRangeDamage;
         }
 
         public void SelectCareer(CareerId id)
         {
-            if (_currentSelectedCareerTemplate != null)
-            {
-                //Remove all Career Information
-            }
-            LoadCareerTemplate(id);
+            ResetCareer(); 
+            ExtendedInfoManager.Instance.GetHeroInfoFor(Hero.MainHero.GetInfoKey())._AcquiredCareer=id; 
+            ExtendedInfoManager.Instance.GetHeroInfoFor(Hero.MainHero.GetInfoKey()).AvailableTorSkillPoints=Campaign.Current.MainParty.LeaderHero.Level; 
+            InitializeCareer();
         }
 
-
-        
-
-        private void  LoadCareerTemplate(CareerId id)
+        private void ResetCareer()
         {
-            _currentSelectedCareerTemplate = CareerFactory.GetTemplate(id);
+            _extraAmmo = 0;
+            _extraWind = 0;
+            _extraHealthPoints = 0;
+            _currentSelectedCareerTemplate = null;
+            _chargeModfier=0; 
+            _damageModifer=0;
+            _usagesModifer=0;
+            _durationModifier=0;
+            _offsetModifier=0;
+            _radiusModifier=0;
+            _castTimeModifier=0;
+            _impactRadius=0;
+            _maxDistance=0; 
+            _minDistance=0;
+            _baseMovementSpeed=0;
+            _imbuedStatusEffectDuration=0;
+            _windsOfMagicCost=0;
+
+            _careerId = CareerId.None;
         }
+
+
+
+
+    
         
         
         public override void RegisterEvents()
@@ -147,25 +153,30 @@ namespace TOR_Core.CampaignMechanics.Career
             
         }
 
-
-        
-        
         /// <summary>
         /// Replaces the current Career with a new one.
         /// </summary>
-        private void LoadCareer()
+        private void InitializeCareer()
         {
               var info = ExtendedInfoManager.Instance.GetHeroInfoFor(Hero.MainHero.GetInfoKey());
-            _torCareerSkillPoints = info.AcquiredAbilitiesTORSkillPoints;
+            _torCareerSkillPoints = info.AcquiredAbilitiesTORSkillPointIds;
             _careerId = info._AcquiredCareer;
+            
+            _careerId= CareerId.MinorVampire;
+
+            _bonusMeleeDamage = new float[(int)DamageType.All + 1];
+            _bonusRangeDamage = new float[(int)DamageType.All + 1];
+            _bonusSpellDamge = new float[(int)DamageType.All + 1];
+            if (_careerId == CareerId.None)
+            {
+                return;
+            }
             
 
             if (_careerId == CareerId.None&&_torCareerSkillPoints!=null)
             {
                 _torCareerSkillPoints.Clear();
             }
-            
-          
             
             //_currentSelectedCareerTemplate = CareerFactory.GetTemplate(_careerId);
             _currentSelectedCareerTemplate = CareerFactory.GetTemplate(CareerId.MinorVampire);
@@ -198,8 +209,6 @@ namespace TOR_Core.CampaignMechanics.Career
                 AddPassiveNodeEffect(node);
             }
 
-            _careerAbilityTemplate = AbilityFactory.GetTemplate(_currentSelectedCareerTemplate.AbilityTemplateId);
-            
             foreach (var node in _currentSelectedCareerTemplate.KeyStoneNodes)
             {
                // if(node.State != TreeNodeState.Unlocked) continue;
@@ -234,19 +243,25 @@ namespace TOR_Core.CampaignMechanics.Career
                     _extraWind += (int)node.Amount;
                     break;
                 case PassiveEffect.MD:
-                    _bonusMeleeDamage[(int) node.DamageType] += (int)node.Amount;
+                    _bonusMeleeDamage[(int) node.DamageType] += node.Amount;   //do not cast to int!
                     break;
                 case PassiveEffect.RD:
-                    _bonusRangeDamage[(int) node.DamageType] += (int)node.Amount;
+                    _bonusRangeDamage[(int) node.DamageType] += node.Amount;
                     break;
                 case PassiveEffect.SD:
-                    _bonusSpellDamge[(int) node.DamageType] += (int)node.Amount;
+                    _bonusSpellDamge[(int) node.DamageType] += node.Amount;
                     break;
                 case PassiveEffect.None:
                     break;
                 default:
                     return;
             }
+        }
+        
+        
+        private void  LoadCareerTemplate(CareerId id)
+        {
+            _currentSelectedCareerTemplate = CareerFactory.GetTemplate(id);
         }
         
         /// <summary>
@@ -258,8 +273,8 @@ namespace TOR_Core.CampaignMechanics.Career
             _chargeModfier+= node.Modifier.Charge;
             _damageModifer += node.Modifier.Damage;
             _durationModifier += node.Modifier.Duration;
-            _offsetModfier += node.Modifier.Offset;
-            _radiusModfier += node.Modifier.Radius;
+            _offsetModifier += node.Modifier.Offset;
+            _radiusModifier += node.Modifier.Radius;
             _castTimeModifier += node.Modifier.CastTime;
             _usagesModifer += node.Modifier.Usages;
             _impactRadius += node.Modifier.ImpactRadius;
@@ -286,7 +301,7 @@ namespace TOR_Core.CampaignMechanics.Career
 
         private void OnSessionLaunched(CampaignGameStarter obj)
         {
-          LoadCareer();
+          InitializeCareer();
         }
         
         

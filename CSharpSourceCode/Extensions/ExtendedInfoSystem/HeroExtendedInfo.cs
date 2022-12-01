@@ -26,7 +26,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         [SaveableField(6)] private List<string> _knownLores = new List<string>();
         [SaveableField(7)] private List<string> _selectedAbilities = new List<string>();
         [SaveableField(8)] public CareerId _AcquiredCareer = CareerId.None;
-        [SaveableField(9)] public List<string> AcquiredAbilitiesTORSkillPoints = new List<string>();
+        [SaveableField(9)] public List<string> AcquiredAbilitiesTORSkillPointIds = new List<string>();
         [SaveableField(10)] public int AvailableTorSkillPoints;         //might not be completely important. Could be deducted from Player Level.
         public CharacterObject BaseCharacter => _baseCharacter;
 
@@ -137,7 +137,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                         list.AddRange(_baseCharacter.OriginalCharacter.GetAttributes());
                     }
                 }
-                list.AddRange(AcquiredAbilitiesTORSkillPoints);
+                list.AddRange(AcquiredAbilitiesTORSkillPointIds);
                 return list;
             }
         }
