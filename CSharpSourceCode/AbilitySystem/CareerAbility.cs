@@ -1,21 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem.Scripts;
-using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.CampaignMechanics.Career;
-using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem.Spells
 {
     public class CareerAbility: Ability
     {
-        private Agent Owner;
         private CareerCampaignBase _career;
         private AbilityTemplate _ability;
         
@@ -32,7 +24,6 @@ namespace TOR_Core.AbilitySystem.Spells
             
             if(_career.GetCareerAbilityID()==null) return;
             
-            this.Owner = owner;
            // _maximumCoolDownCharge = template.ChargeRequirement;
             if (template.StartsOnCoolDown)
             {
