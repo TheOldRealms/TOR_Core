@@ -87,6 +87,15 @@ namespace TOR_Core.Extensions
                 info.AcquiredAttributes.Add(attribute);
             }
         }
+        
+        public static void RemoveAttribute(this Hero hero, string attribute)
+        {
+            var info = hero.GetExtendedInfo();
+            if (info != null && !info.AllAttributes.Contains(attribute))
+            {
+                info.AcquiredAttributes.Remove(attribute);
+            }
+        }
 
         public static bool HasAttribute(this Hero hero, string attribute)
         {
@@ -157,6 +166,11 @@ namespace TOR_Core.Extensions
         public static bool IsUndead(this Hero hero)
         {
             return hero.HasAttribute("Undead");
+        }
+
+        public static void MakeVampire(this Hero hero)
+        {
+            Hero.MainHero.CharacterObject.Race = FaceGen.GetRaceOrDefault("vampire");
         }
 
         public static bool IsVampire(this Hero hero)

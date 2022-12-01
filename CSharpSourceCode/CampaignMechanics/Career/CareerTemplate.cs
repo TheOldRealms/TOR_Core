@@ -21,16 +21,22 @@ namespace TOR_Core.CampaignMechanics.Career
         public bool CanBeUsedOnHorse = true;
         [XmlAttribute] public CareerId CareerId = CareerId.None; //might also be just a string ensures, that no typos are made and the right Career template
 
-        [XmlArray("KeyStones")] public List<KeyStoneNode> KeyStoneNodes = new List<KeyStoneNode>();
+        [XmlArray("KeyStones")] 
+        public List<KeyStoneNode> KeyStoneNodes = new List<KeyStoneNode>();
 
-        [XmlArray("PassiveNodes")] public List<PassiveNode> PassiveNodes = new List<PassiveNode>();
+        [XmlArray("PassiveNodes")] 
+        public List<PassiveNode> PassiveNodes = new List<PassiveNode>();
 
-        [XmlArray("Structure")] public List<SubTree> Structure = new List<SubTree>();
+        [XmlArray("Structure")] 
+        public List<SubTree> Structure = new List<SubTree>();
+        
+        
+        //Attributes that will be applied upon Changing or acquiring the Career e.g. IsVampire(for adding body), IsKnight, IsWarriorpriest (e.g. for adding a title)
 
         public CareerTemplate()
         {
-        }
 
+        }
         public CareerTemplate(CareerId id)
         {
             CareerId = id;

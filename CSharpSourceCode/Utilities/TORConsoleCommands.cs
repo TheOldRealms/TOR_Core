@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Helpers;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TOR_Core.AbilitySystem;
 using TOR_Core.CampaignMechanics.Career;
@@ -129,7 +130,20 @@ namespace TOR_Core.Utilities
 
             return "Could not found career";
         }*/
-
+        
+        [CommandLineFunctionality.CommandLineArgumentFunction("change_Career", "tor")]
+        public static string ChangeCareer(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+            
+            if (!(Game.Current.GameType is Campaign)) return "Current Campaign Mode is not Campaign";
+            var valid = CareerId.TryParse(arguments[0], out CareerId career);
+            if (!valid) return "Not a valid career";
+            var careerBase = CampaignBehaviorBase.GetCampaignBehavior<CareerCampaignBase>();
+            careerBase.SelectCareer(career);
+            return $"Chose {career} as new career. ";
+        }
 
         [CommandLineFunctionality.CommandLineArgumentFunction("make_player_necromancer", "tor")]
         public static string MakePlayerNecromancer(List<string> arguments)

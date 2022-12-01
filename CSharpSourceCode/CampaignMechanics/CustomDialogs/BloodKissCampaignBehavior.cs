@@ -32,7 +32,7 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
         private void OnBloodKissRecieved()
         {
             MBInformationManager.ShowSceneNotification(new BloodKissSceneNotificationItem());
-            Hero.MainHero.CharacterObject.Race = FaceGen.GetRaceOrDefault("vampire");
+            Hero.MainHero.MakeVampire();
         }
 
         private bool IsEligibleForBloodKiss()

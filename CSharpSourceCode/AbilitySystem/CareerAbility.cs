@@ -25,7 +25,13 @@ namespace TOR_Core.AbilitySystem.Spells
 
         public CareerAbility(AbilityTemplate template, Agent owner) : base(template)
         {
-
+            if (Game.Current.GameType is Campaign)
+            {
+                _career=Campaign.Current.GetCampaignBehavior<CareerCampaignBase>();
+            }
+            
+            if(_career.GetCareerAbilityID()==null) return;
+            
             this.Owner = owner;
            // _maximumCoolDownCharge = template.ChargeRequirement;
             if (template.StartsOnCoolDown)
@@ -36,16 +42,19 @@ namespace TOR_Core.AbilitySystem.Spells
                 _currentCharge = 0;
 
             }
+            
+            //Override Components
+            Template.AssociatedTriggeredEffectTemplate.DamageType = _career.DamageTypeOverride;
 
             _currentCharge = Template.Charge;
 
            // _currentCharge = Math.Min(_maximumCoolDownCharge, _currentCharge);
 
-            if (Game.Current.GameType is Campaign)
-            {
-                _career=Campaign.Current.GetCampaignBehavior<CareerCampaignBase>();
-            }
-            Template.AssociatedTriggeredEffectTemplate.ImbuedStatusEffectID = "fireball_dot";
+            
+            
+            
+            
+           // Template.AssociatedTriggeredEffectTemplate.ImbuedStatusEffectID;
             
             
             //Set here career ability overrides

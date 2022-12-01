@@ -36,7 +36,7 @@
 		<PassiveNodes >
 			<PassiveNode Id="2" EffectType="HP" Amount ="5">
 			</PassiveNode>
-			<PassiveNode  Id="3" EffectType="HP" Amount ="5">
+			<PassiveNode  Id="3" EffectType="MD" DamageType="Lightning" Amount ="0.25">
 			</PassiveNode>
 			<PassiveNode  Id="8" EffectType="HP" Amount ="5">
 			</PassiveNode>
@@ -87,8 +87,8 @@
 		</Structure>
 	</CareerTemplate>
  <CareerTemplate CareerId="MinorVampire"
-	AbilityTemplateId="ShadowStep"
-	  CanBeUsedOnHorse="false" > 
+	  CanBeUsedOnHorse="false" 
+	   AbilityTemplateId="ShadowStep">> 
 		<CareerAbilityWeaponRequirements>
 					<WeaponClass>OneHandedSword</WeaponClass>
 					<WeaponClass>TwoHandedSword</WeaponClass>
@@ -122,7 +122,7 @@
 		<PassiveNodes >
 			<PassiveNode Id="2" EffectType="HP" Amount ="5">
 			</PassiveNode>
-			<PassiveNode  Id="3" EffectType="HP" Amount ="5">
+			<PassiveNode  Id="3" EffectType="MD" DamageType="Lightning" Amount ="0.25">
 			</PassiveNode>
 			<PassiveNode  Id="8" EffectType="HP" Amount ="5">
 			</PassiveNode>

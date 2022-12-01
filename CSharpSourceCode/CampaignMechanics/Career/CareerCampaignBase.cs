@@ -39,7 +39,7 @@ namespace TOR_Core.CampaignMechanics.Career
         //post attack behavior? Script name
         
         //modifiers
-        private int _chargeModfier;
+        private int _chargeModifier;
         private int _damageModifer;
         private int _usagesModifer;
         private float _durationModifier;
@@ -55,8 +55,9 @@ namespace TOR_Core.CampaignMechanics.Career
         
         //overrides
         private DamageType _damageTypeOverride;
-        
-        
+
+        public DamageType DamageTypeOverride => _damageTypeOverride;
+
 
         public string GetCareerAbilityID()
         {
@@ -78,21 +79,17 @@ namespace TOR_Core.CampaignMechanics.Career
         }
         public int GetExtraAmmoPoints()
         {
-            return 0;
+            return _extraAmmo;
         }
         
         public int GetExtraWindPoints()
         {
-            return 10;
+            return _extraWind;
         }
         
         public float[] GetCareerBonusSpellDamage()
         {
-            //return _bonusMeleeDamage
-            float[] damage = new float[(int)DamageType.All + 1];
-
-            damage[(int)DamageType.Fire] = 0.25f;
-            return damage;
+            return _bonusSpellDamge;
         }
 
         public float[] GetCareerBonusMeleeDamage()
@@ -102,25 +99,30 @@ namespace TOR_Core.CampaignMechanics.Career
         
         public float[] GetCareerBonusRangeDamage()
         {
-            //return _bonusMeleeDamage
             return _bonusRangeDamage;
         }
 
         public void SelectCareer(CareerId id)
         {
-            ResetCareer(); 
-            ExtendedInfoManager.Instance.GetHeroInfoFor(Hero.MainHero.GetInfoKey())._AcquiredCareer=id; 
-            ExtendedInfoManager.Instance.GetHeroInfoFor(Hero.MainHero.GetInfoKey()).AvailableTorSkillPoints=Campaign.Current.MainParty.LeaderHero.Level; 
+            ResetCareerData();
+            ExtendedInfoManager.Instance.GetHeroInfoFor(Hero.MainHero.GetInfoKey())._AcquiredCareer=id;
+
+            if (id == CareerId.MinorVampire)
+            {
+                Hero.MainHero.MakeVampire();
+            }
+            
+            ExtendedInfoManager.Instance.GetHeroInfoFor(Hero.MainHero.GetInfoKey()).AvailableTorSkillPoints=Campaign.Current.MainParty.LeaderHero.Level;
             InitializeCareer();
         }
 
-        private void ResetCareer()
+        private void ResetCareerData()
         {
             _extraAmmo = 0;
             _extraWind = 0;
             _extraHealthPoints = 0;
             _currentSelectedCareerTemplate = null;
-            _chargeModfier=0; 
+            _chargeModifier=0; 
             _damageModifer=0;
             _usagesModifer=0;
             _durationModifier=0;
@@ -133,13 +135,26 @@ namespace TOR_Core.CampaignMechanics.Career
             _baseMovementSpeed=0;
             _imbuedStatusEffectDuration=0;
             _windsOfMagicCost=0;
-
             _careerId = CareerId.None;
+            
+            //TODO Overrides are still needed
+            CleanFromCareerSpecificAttributes();
         }
+        
 
+        private void CleanFromCareerSpecificAttributes()
+        {
+            if(_currentSelectedCareerTemplate==null) return;
+            var list = _currentSelectedCareerTemplate.KeyStoneNodes.Select(node => node.CharacterAttribute).ToList();
+            
+            var info = ExtendedInfoManager.Instance.GetHeroInfoFor(Hero.MainHero.GetInfoKey());
 
-
-
+            foreach (var item in list.Where(item => info.AcquiredAbilities.Contains(item)))
+            {
+                Hero.MainHero.RemoveAttribute(item);
+            }
+            
+        }
     
         
         
@@ -154,15 +169,14 @@ namespace TOR_Core.CampaignMechanics.Career
         }
 
         /// <summary>
-        /// Replaces the current Career with a new one.
+        /// Initialize a new Career. Every launch, this is loaded again, to check unlocked points against it. If changes were made, these points were freed.
+        /// This should avoid data un
         /// </summary>
         private void InitializeCareer()
-        {
-              var info = ExtendedInfoManager.Instance.GetHeroInfoFor(Hero.MainHero.GetInfoKey());
+        { 
+            var info = ExtendedInfoManager.Instance.GetHeroInfoFor(Hero.MainHero.GetInfoKey());
             _torCareerSkillPoints = info.AcquiredAbilitiesTORSkillPointIds;
             _careerId = info._AcquiredCareer;
-            
-            _careerId= CareerId.MinorVampire;
 
             _bonusMeleeDamage = new float[(int)DamageType.All + 1];
             _bonusRangeDamage = new float[(int)DamageType.All + 1];
@@ -178,8 +192,8 @@ namespace TOR_Core.CampaignMechanics.Career
                 _torCareerSkillPoints.Clear();
             }
             
-            //_currentSelectedCareerTemplate = CareerFactory.GetTemplate(_careerId);
-            _currentSelectedCareerTemplate = CareerFactory.GetTemplate(CareerId.MinorVampire);
+            _currentSelectedCareerTemplate = CareerFactory.GetTemplate(_careerId);
+            //_currentSelectedCareerTemplate = CareerFactory.GetTemplate(CareerId.MinorVampire);
             
             Campaign.Current.MainParty.LeaderHero.AddAttribute("AbilityUser");
             if (_currentSelectedCareerTemplate == null) return;
@@ -220,8 +234,8 @@ namespace TOR_Core.CampaignMechanics.Career
 
             foreach (var node in SortedKeyStones)
             {
-                AddAbilityModifiers(node);
-               ApplyAbilityOverrides(node);     //don't forget to sort!
+                AddAbilityModifiers(node); 
+                ApplyAbilityOverrides(node);     //don't forget to sort!
             }
         }
         
@@ -257,20 +271,14 @@ namespace TOR_Core.CampaignMechanics.Career
                     return;
             }
         }
-        
-        
-        private void  LoadCareerTemplate(CareerId id)
-        {
-            _currentSelectedCareerTemplate = CareerFactory.GetTemplate(id);
-        }
-        
+
         /// <summary>
         /// Apply modifiers on the Career Skill ability to make it 
         /// </summary>
         /// <param name="node">Talent tree "Key stone"</param>
         private void AddAbilityModifiers(KeyStoneNode node)
         {
-            _chargeModfier+= node.Modifier.Charge;
+            _chargeModifier+= node.Modifier.Charge;
             _damageModifer += node.Modifier.Damage;
             _durationModifier += node.Modifier.Duration;
             _offsetModifier += node.Modifier.Offset;
