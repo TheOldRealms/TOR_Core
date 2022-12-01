@@ -2,9 +2,13 @@
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
+using TaleWorlds.SaveSystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Utilities;
+
 namespace TOR_Core.CampaignMechanics.Career
 {
     
@@ -15,6 +19,9 @@ namespace TOR_Core.CampaignMechanics.Career
     /// </summary>
     public class CareerCampaignBase:CampaignBehaviorBase
     {
+        [SaveableField(0)] public List<SubTree> TalentTreeStructure;
+        
+        
         private CareerId _careerId;
         private List<string> _torCareerSkillPoints;
 
@@ -164,8 +171,8 @@ namespace TOR_Core.CampaignMechanics.Career
         }
 
         public override void SyncData(IDataStore dataStore)
-        {
-            
+        { 
+            dataStore.SyncData("TalentTreeStructure", ref TalentTreeStructure);
         }
 
         /// <summary>
@@ -185,7 +192,6 @@ namespace TOR_Core.CampaignMechanics.Career
             {
                 return;
             }
-            
 
             if (_careerId == CareerId.None&&_torCareerSkillPoints!=null)
             {
@@ -193,34 +199,70 @@ namespace TOR_Core.CampaignMechanics.Career
             }
             
             _currentSelectedCareerTemplate = CareerFactory.GetTemplate(_careerId);
-            //_currentSelectedCareerTemplate = CareerFactory.GetTemplate(CareerId.MinorVampire);
-            
+
             Campaign.Current.MainParty.LeaderHero.AddAttribute("AbilityUser");
             if (_currentSelectedCareerTemplate == null) return;
-
-
             _canBeUsedOnHorse = _currentSelectedCareerTemplate.CanBeUsedOnHorse;
-
-
             _requiredWeaponTypes = _currentSelectedCareerTemplate.CareerAbilityWeaponRequirements;
-            
-            var treeElements = _currentSelectedCareerTemplate.PassiveNodes.Cast<CareerTreeNode>().ToList();
-            treeElements.AddRange(_currentSelectedCareerTemplate.KeyStoneNodes);
+            var nodes = _currentSelectedCareerTemplate.PassiveNodes.Cast<CareerTreeNode>().ToList();
+            nodes.AddRange(_currentSelectedCareerTemplate.KeyStoneNodes);
             
             //unlocked Skill points
             
+            _torCareerSkillPoints.Add("3");
+            
+            _torCareerSkillPoints.Add("1");
+            
+            _torCareerSkillPoints.Add("10");
+            /*if (_torCareerSkillPoints != null && _torCareerSkillPoints.Count > 0)
+            {
+                foreach (var node in nodes.Where(node => _torCareerSkillPoints.Any(x => node.Id==x)))
+                { 
+                    if(_currentSelectedCareerTemplate.KeyStoneNodes.Fir((x => x.Id == node.Id)))
+                    {
+                        _currentSelectedCareerTemplate.KeyStoneNodes.FirstOrDefault((x => x.Id == node.Id));
+                    }
+                    _currentSelectedCareerTemplate.PassiveNodes.FirstOrDefault((x => x.Id == node.Id)).State=TreeNodeState.Unlocked;
+                }
+
+                foreach (var id in _torCareerSkillPoints.Where(id => nodes.All(x => x.Id != id)))
+                {
+                    ExtendedInfoManager.Instance.GetHeroInfoFor(Hero.MainHero.GetInfoKey()).AcquiredAbilitiesTORSkillPointIds.Remove(id);
+                }
+            }*/
+            
+            if(TalentTreeStructure==null||!TalentTreeStructure.AreIdentical(_currentSelectedCareerTemplate.Structure))
+            {
+               ResetSpendPoints(nodes);
+            }
+            
+            
+                
+            
             
             //Are all nodes reachable ? Traverse Tree for all stored ids. For Errors, Count them towards the unspend points
+            var extraPoints = 0;
+            var spendPoints = _torCareerSkillPoints.Count;
+            _torCareerSkillPoints.RemoveAll(x => !nodes.Any(y => y.Id.Contains(x)));
+            extraPoints = spendPoints - _torCareerSkillPoints.Count;
 
-            foreach (var element in _torCareerSkillPoints.SelectMany(id => treeElements.Where(element => element.Id == id)))
+
+            var LeftPoints = _torCareerSkillPoints.Count;
+            
+            
+
+
+            foreach (var element in _torCareerSkillPoints.SelectMany(id => nodes.Where(element => element.Id == id)))
             {
                 element.State = TreeNodeState.Unlocked;
             }
             
+            
+            
             foreach (var node in _currentSelectedCareerTemplate.PassiveNodes)
             {
-                //if (node.State != TreeNodeState.Unlocked) continue;
-                AddPassiveNodeEffect(node);
+                if (node.State != TreeNodeState.Unlocked) continue;
+                    AddPassiveNodeEffect(node);
             }
 
             foreach (var node in _currentSelectedCareerTemplate.KeyStoneNodes)
@@ -231,12 +273,27 @@ namespace TOR_Core.CampaignMechanics.Career
             
             var structure = _currentSelectedCareerTemplate.Structure;
             var SortedKeyStones = _currentSelectedCareerTemplate.KeyStoneNodes.OrderBy(x => structure.GetNodeLevel(x.Id));
+            
 
             foreach (var node in SortedKeyStones)
             {
                 AddAbilityModifiers(node); 
                 ApplyAbilityOverrides(node);     //don't forget to sort!
             }
+
+            TalentTreeStructure = _currentSelectedCareerTemplate.Structure;
+
+
+        }
+        
+        private void ResetSpendPoints(List<CareerTreeNode> nodes)
+        {
+            foreach (var node in nodes)
+            {
+                node.State = TreeNodeState.Locked;
+            }
+            
+            ExtendedInfoManager.Instance.GetHeroInfoFor(Hero.MainHero.GetInfoKey()).AvailableTorSkillPoints=Campaign.Current.MainParty.LeaderHero.Level;
         }
         
         /// <summary>

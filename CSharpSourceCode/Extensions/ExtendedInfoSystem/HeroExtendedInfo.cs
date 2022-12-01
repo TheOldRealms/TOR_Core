@@ -27,7 +27,9 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         [SaveableField(7)] private List<string> _selectedAbilities = new List<string>();
         [SaveableField(8)] public CareerId _AcquiredCareer = CareerId.None;
         [SaveableField(9)] public List<string> AcquiredAbilitiesTORSkillPointIds = new List<string>();
-        [SaveableField(10)] public int AvailableTorSkillPoints;         //might not be completely important. Could be deducted from Player Level.
+        [SaveableField(10)] public int AvailableTorSkillPoints;
+     
+        
         public CharacterObject BaseCharacter => _baseCharacter;
 
         public float MaxWindsOfMagic

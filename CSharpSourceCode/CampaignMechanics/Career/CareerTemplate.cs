@@ -27,8 +27,10 @@ namespace TOR_Core.CampaignMechanics.Career
         [XmlArray("PassiveNodes")] 
         public List<PassiveNode> PassiveNodes = new List<PassiveNode>();
 
-        [XmlArray("Structure")] 
+        [XmlArray("Structure")]
         public List<SubTree> Structure = new List<SubTree>();
+        
+        
         
         
         //Attributes that will be applied upon Changing or acquiring the Career e.g. IsVampire(for adding body), IsKnight, IsWarriorpriest (e.g. for adding a title)
@@ -190,17 +192,29 @@ namespace TOR_Core.CampaignMechanics.Career
     [Serializable]
     public class SubTree
     {
-        [XmlArray("Children")] public List<string> Children = new List<string>();
-
+        [SaveableField(0)]
         public int Level;
-
-        [XmlAttribute] public string Parent = "";
+        [SaveableField(1)][XmlArray("Children")] 
+        public List<string> Children = new List<string>();
+        [SaveableField(2)][XmlAttribute] 
+        public string Parent = "";
 
         public bool Contains(string element)
         {
             if (Parent == element || Children.Contains(element))
                 return true;
             return false;
+        }
+
+        public bool HasSameValues(SubTree subTree)
+        {
+            if (subTree == null) return false;
+            
+            var compare =subTree.Children == this.Children &&
+                         subTree.Parent == this.Parent &&
+                         subTree.Level == this.Level;
+            return compare;
+
         }
     }
 
@@ -240,6 +254,19 @@ namespace TOR_Core.CampaignMechanics.Career
         {
             return RootNode;
         }
+
+
+
+        public static bool AreIdentical(this List<SubTree> TreeStructure, List<SubTree> otherTree)
+        {
+            if (otherTree == null) return false;
+            if (TreeStructure.Count != otherTree.Count) return false;
+
+            return !TreeStructure.Where((t, i) => !t.HasSameValues(otherTree[i])).Any();
+        }
+        
+        
+        
 
         public static bool ContainsNode(this List<SubTree> TreeStructure, string element)
         {
@@ -313,9 +340,9 @@ namespace TOR_Core.CampaignMechanics.Career
         }
     }
 
-    public class SpellCastingTypeDefiner : SaveableTypeDefiner
+    public class CareerTypeDefiner : SaveableTypeDefiner
     {
-        public SpellCastingTypeDefiner() : base(1_456_199)
+        public CareerTypeDefiner() : base(1_456_199)
         {
         }
 
@@ -324,4 +351,22 @@ namespace TOR_Core.CampaignMechanics.Career
             AddEnumDefinition(typeof(CareerId), 1);
         }
     }
+    
+    public class TreeStructureDefiner: SaveableTypeDefiner
+    {
+        public TreeStructureDefiner() : base(1_899_199)
+        {
+        }
+        
+        protected override void DefineClassTypes()
+        {
+            AddClassDefinition(typeof(SubTree),1);
+        }
+
+        protected override void DefineContainerDefinitions()
+        {
+            ConstructContainerDefinition(typeof(List<SubTree>));
+        }
+    }
+    
 }
