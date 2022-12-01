@@ -111,7 +111,7 @@ namespace TOR_Core.Extensions
         {
             if (hero.GetExtendedInfo() == null) return false;
             if (!(Game.Current.GameType is Campaign) || hero != Campaign.Current.MainParty.LeaderHero) return false;
-            return CampaignBehaviorBase.GetCampaignBehavior<CareerCampaignBase>().GetCareerAbilityID()!= null;
+            return CampaignBehaviorBase.GetCampaignBehavior<CareerCampaignBase>().GetCareerAbilityID()!= "";
         }
 
         public static void SetSpellCastingLevel(this Hero hero, SpellCastingLevel level)

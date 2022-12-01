@@ -37,23 +37,27 @@ namespace TOR_Core.CampaignMechanics.Career
         {
             var ser = new XmlSerializer(typeof(List<CareerTemplate>));
             var path = TORPaths.TORCoreModuleExtendedDataPath + _filename;
-            if (File.Exists(path))
+            if (!File.Exists(path)) return;
+            
+            var careerList = ser.Deserialize(File.OpenRead(path)) as List<CareerTemplate>;
+            foreach (var career in careerList)
             {
-                var careerList = ser.Deserialize(File.OpenRead(path)) as List<CareerTemplate>;
-                foreach (var career in careerList)
-                {
-                    //validate career node entries
-                    var treeElements = career.PassiveNodes.Cast<CareerTreeNode>().ToList();
-                    treeElements.AddRange(career.KeyStoneNodes);
-                    var structure = career.Structure.ToList();
-                    ValidateTreeStructure(career.ToString(), ref treeElements, ref structure);
-                    if (structure.Count == 0) continue;
 
-                    career.Structure = structure;
-                    career.KeyStoneNodes = career.KeyStoneNodes.Where(x => structure.ContainsNode(x.Id)).ToList();
-                    career.PassiveNodes = career.PassiveNodes.Where(x => structure.ContainsNode(x.Id)).ToList();
-                    _templates.Add(career.CareerId.ToString(), career);
+                if (career.AbilityTemplateId == null||career.AbilityTemplateId == "none")
+                {
+                    career.AbilityTemplateId = "";
                 }
+                //validate career node entries
+                var treeElements = career.PassiveNodes.Cast<CareerTreeNode>().ToList();
+                treeElements.AddRange(career.KeyStoneNodes);
+                var structure = career.Structure.ToList();
+                ValidateTreeStructure(career.ToString(), ref treeElements, ref structure);
+                if (structure.Count == 0) continue;
+
+                career.Structure = structure;
+                career.KeyStoneNodes = career.KeyStoneNodes.Where(x => structure.ContainsNode(x.Id)).ToList();
+                career.PassiveNodes = career.PassiveNodes.Where(x => structure.ContainsNode(x.Id)).ToList();
+                _templates.Add(career.CareerId.ToString(), career);
             }
         }
 

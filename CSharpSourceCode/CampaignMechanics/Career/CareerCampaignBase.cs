@@ -147,9 +147,15 @@ namespace TOR_Core.CampaignMechanics.Career
             
         }
 
-        private void OnSessionLaunched(CampaignGameStarter obj)
+
+        
+        
+        /// <summary>
+        /// Replaces the current Career with a new one.
+        /// </summary>
+        private void LoadCareer()
         {
-            var info = ExtendedInfoManager.Instance.GetHeroInfoFor(Hero.MainHero.GetInfoKey());
+              var info = ExtendedInfoManager.Instance.GetHeroInfoFor(Hero.MainHero.GetInfoKey());
             _torCareerSkillPoints = info.AcquiredAbilitiesTORSkillPoints;
             _careerId = info._AcquiredCareer;
             
@@ -159,10 +165,10 @@ namespace TOR_Core.CampaignMechanics.Career
                 _torCareerSkillPoints.Clear();
             }
             
-            //dynamically creates all career information, checks all unlocked abilities and applies the buffs, modifiers and overrides accordingly.
+          
             
             //_currentSelectedCareerTemplate = CareerFactory.GetTemplate(_careerId);
-            _currentSelectedCareerTemplate = CareerFactory.GetTemplate(CareerId.GrailKnight);
+            _currentSelectedCareerTemplate = CareerFactory.GetTemplate(CareerId.MinorVampire);
             
             Campaign.Current.MainParty.LeaderHero.AddAttribute("AbilityUser");
             if (_currentSelectedCareerTemplate == null) return;
@@ -189,31 +195,7 @@ namespace TOR_Core.CampaignMechanics.Career
             foreach (var node in _currentSelectedCareerTemplate.PassiveNodes)
             {
                 //if (node.State != TreeNodeState.Unlocked) continue;
-                switch (node.EffectType)
-                {
-                    case PassiveEffect.HP:
-                        _extraHealthPoints += (int)node.Amount;
-                        break;
-                    case PassiveEffect.AP: 
-                        _extraAmmo += (int)node.Amount;
-                        break;
-                    case PassiveEffect.WP:
-                        _extraWind += (int)node.Amount;
-                        break;
-                    case PassiveEffect.MD:
-                        _bonusMeleeDamage[(int) node.DamageType] += (int)node.Amount;
-                        break;
-                    case PassiveEffect.RD:
-                        _bonusRangeDamage[(int) node.DamageType] += (int)node.Amount;
-                        break;
-                    case PassiveEffect.SD:
-                        _bonusSpellDamge[(int) node.DamageType] += (int)node.Amount;
-                        break;
-                    case PassiveEffect.None:
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+                AddPassiveNodeEffect(node);
             }
 
             _careerAbilityTemplate = AbilityFactory.GetTemplate(_currentSelectedCareerTemplate.AbilityTemplateId);
@@ -222,35 +204,89 @@ namespace TOR_Core.CampaignMechanics.Career
             {
                // if(node.State != TreeNodeState.Unlocked) continue;
                 
-                _chargeModfier+= node.Modifier.Charge;
-                _damageModifer += node.Modifier.Damage;
-                _durationModifier += node.Modifier.Duration;
-                _offsetModfier += node.Modifier.Offset;
-                _radiusModfier += node.Modifier.Radius;
-                _castTimeModifier += node.Modifier.CastTime;
-                _usagesModifer += node.Modifier.Usages;
-                _impactRadius += node.Modifier.ImpactRadius;
-                _maxDistance += node.Modifier.MaxDistance;
-                _minDistance += node.Modifier.MinDistance;
-                _baseMovementSpeed += node.Modifier.BaseMovementSpeed;
-                _imbuedStatusEffectDuration += node.Modifier.ImbuedStatusEffectDuration;
-                _windsOfMagicCost += node.Modifier.WindsOfMagicCost;
             }
-
+            
             var structure = _currentSelectedCareerTemplate.Structure;
-
-            var level = 0;
-
             var SortedKeyStones = _currentSelectedCareerTemplate.KeyStoneNodes.OrderBy(x => structure.GetNodeLevel(x.Id));
 
             foreach (var node in SortedKeyStones)
             {
-                //if(node.State != TreeNodeState.Unlocked) continue;
-
-                _damageTypeOverride = node.Overrides.DamageType;
-
-
+                AddAbilityModifiers(node);
+               ApplyAbilityOverrides(node);     //don't forget to sort!
             }
+        }
+        
+        /// <summary>
+        /// Adding passive effects that will affect regular attacks or spells , NOT the career skill
+        /// </summary>
+        /// <param name="node">Talent tree "Passive node"</param>
+        private void AddPassiveNodeEffect(PassiveNode node)
+        {
+            switch (node.EffectType)
+            {
+                case PassiveEffect.HP:
+                    _extraHealthPoints += (int)node.Amount;
+                    break;
+                case PassiveEffect.AP: 
+                    _extraAmmo += (int)node.Amount;
+                    break;
+                case PassiveEffect.WP:
+                    _extraWind += (int)node.Amount;
+                    break;
+                case PassiveEffect.MD:
+                    _bonusMeleeDamage[(int) node.DamageType] += (int)node.Amount;
+                    break;
+                case PassiveEffect.RD:
+                    _bonusRangeDamage[(int) node.DamageType] += (int)node.Amount;
+                    break;
+                case PassiveEffect.SD:
+                    _bonusSpellDamge[(int) node.DamageType] += (int)node.Amount;
+                    break;
+                case PassiveEffect.None:
+                    break;
+                default:
+                    return;
+            }
+        }
+        
+        /// <summary>
+        /// Apply modifiers on the Career Skill ability to make it 
+        /// </summary>
+        /// <param name="node">Talent tree "Key stone"</param>
+        private void AddAbilityModifiers(KeyStoneNode node)
+        {
+            _chargeModfier+= node.Modifier.Charge;
+            _damageModifer += node.Modifier.Damage;
+            _durationModifier += node.Modifier.Duration;
+            _offsetModfier += node.Modifier.Offset;
+            _radiusModfier += node.Modifier.Radius;
+            _castTimeModifier += node.Modifier.CastTime;
+            _usagesModifer += node.Modifier.Usages;
+            _impactRadius += node.Modifier.ImpactRadius;
+            _maxDistance += node.Modifier.MaxDistance;
+            _minDistance += node.Modifier.MinDistance;
+            _baseMovementSpeed += node.Modifier.BaseMovementSpeed;
+            _imbuedStatusEffectDuration += node.Modifier.ImbuedStatusEffectDuration;
+            _windsOfMagicCost += node.Modifier.WindsOfMagicCost;
+        }
+        
+        /// <summary>
+        /// Apply overrides to the ability, like changing the damage type from physical to holy.
+        /// Former effects are overriden, meaning, the order of execution is important! 
+        /// </summary>
+        /// <param name="node">Talent tree "Key stone"</param>
+        private void ApplyAbilityOverrides(KeyStoneNode node)
+        {
+            _damageTypeOverride = node.Overrides.DamageType;
+        }
+        
+        
+        
+        
+
+        private void OnSessionLaunched(CampaignGameStarter obj)
+        {
+          LoadCareer();
         }
         
         

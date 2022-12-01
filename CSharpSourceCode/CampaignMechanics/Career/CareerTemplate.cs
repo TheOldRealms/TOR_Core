@@ -13,15 +13,12 @@ namespace TOR_Core.CampaignMechanics.Career
     [Serializable]
     public class CareerTemplate //The Serializable Component that stores all passive nodes and key stones, and is load into the game on start up
     {
-        [XmlAttribute] public string AbilityTemplateId;
-
-
         [XmlAttribute] 
-        public bool CanBeUsedOnHorse = true;
-
+        public string AbilityTemplateId;
         [XmlArray("CareerAbilityWeaponRequirements")]
         public List<WeaponClass> CareerAbilityWeaponRequirements = new List<WeaponClass>();
-
+        [XmlAttribute] 
+        public bool CanBeUsedOnHorse = true;
         [XmlAttribute] public CareerId CareerId = CareerId.None; //might also be just a string ensures, that no typos are made and the right Career template
 
         [XmlArray("KeyStones")] public List<KeyStoneNode> KeyStoneNodes = new List<KeyStoneNode>();
