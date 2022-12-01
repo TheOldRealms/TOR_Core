@@ -188,6 +188,7 @@ namespace TOR_Core
             mission.AddMissionBehavior(new UndeadMoraleMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new ForceAtmosphereMissionLogic());
+            mission.AddMissionBehavior(new BaseGameDebugMissionLogic());
 
             if (Game.Current.GameType is Campaign)
             {

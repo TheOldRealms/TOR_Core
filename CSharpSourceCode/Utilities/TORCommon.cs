@@ -1,8 +1,11 @@
 ﻿using NLog;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
@@ -11,6 +14,7 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.Inventory;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.Utilities
 {
@@ -29,7 +33,7 @@ namespace TOR_Core.Utilities
         /// <param name="text">The text that you want to print to the console.</param>
         public static void Say(string text)
         {
-            InformationManager.DisplayMessage(new InformationMessage(text, new Color(134, 114, 250)));
+            InformationManager.DisplayMessage(new InformationMessage(text, new TaleWorlds.Library.Color(134, 114, 250)));
         }
 
 
@@ -110,7 +114,7 @@ namespace TOR_Core.Utilities
         {
             var filterednames = new List<string>();
             string pickedname = "towmm_menuscene_01";
-            var path = BasePath.Name + "Modules/TOR_Environment/SceneObj/";
+            var path = TORPaths.TOREnvironmentModuleRootPath + "SceneObj/";
             if (Directory.Exists(path))
             {
                 var dirnames = Directory.GetDirectories(path);
@@ -149,6 +153,59 @@ namespace TOR_Core.Utilities
             // settlement with minimum distance.
             return nearbySettlements.MinBy(
                 settlement => Campaign.Current.Models.MapDistanceModel.GetDistance(party, settlement));
+        }
+
+        public static void WriteHeightMapDataForCurrentScene()
+        {
+            var scene = Mission.Current?.Scene;
+            if(scene != null && scene.HasTerrainHeightmap)
+            {
+                // heightmap generation
+                /// Here's how to extraxt heightmap data from a scene that doesn't have terrain edit 
+                /// data. The idea is to get number of nodes in the x and y directions, call it xNodes 
+                /// and yNodes respectively, the number of meters in the x and y directions, call it 
+                /// xMeters and yMeters, set the resolution of the output image in the x and y 
+                /// directions, call it xRes and yRes, and get the 'height' for each pixel in the 
+                /// output image using
+                /// (x_i, y_j) = (xMeters * i / xRes, yMeters * j / yRes)
+                Vec2i nodeDimension = default(Vec2i); // the number of nodes in the x and y directions
+                float nodeSize = 0f; // the length of the side of a node in meters
+                int layerCount = 0;
+                int layerVersion = 0;
+                scene.GetTerrainData(out nodeDimension, out nodeSize, out layerCount, out layerVersion);
+                int xNodes = nodeDimension.Item1; // nodes in the x direction
+                int yNodes = nodeDimension.Item2; // nodes in the y direction
+                float xMeters = nodeSize * xNodes; // meters in the x direction
+                float yMeters = nodeSize * yNodes; // meters in the y direction
+                int xRes = 4096; // x resolution of final image, 1 pixel for every half meters for now
+                int yRes = 4096; // y resolution of final image
+                double[,] terrainData = new double[xRes, yRes];
+                double max = double.MinValue; // max height of the terrain
+                double min = double.MaxValue; // min height of the terrain
+                for (int i = 0; i < xRes; i++)
+                {
+                    float x = xMeters * ((float)i / (float)xRes);
+                    for (int j = 0; j < yRes; j++)
+                    {
+                        float y = yMeters * ((float)j / (float)xRes);
+                        Vec2 pos = new Vec2(x, y);
+                        double height = (double)scene.GetTerrainHeight(pos);
+                        terrainData[i, j] = height;
+                        if (height > max)
+                            max = height;
+
+                        if (height < min)
+                            min = height;
+                    }
+                }
+                PixelFormat formatOutput = PixelFormat.Format16bppGrayScale;
+                Accord.Imaging.Converters.MatrixToImage conv = new Accord.Imaging.Converters.MatrixToImage(min, max);
+                Bitmap image = new Bitmap(yRes, yRes, formatOutput);
+                conv.Convert(terrainData, out image);
+                image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                image.Save("heightmap_for_" + scene.GetName() + ".png", ImageFormat.Png);
+                Say("Heightmap saved.");
+            }
         }
     }
 }
