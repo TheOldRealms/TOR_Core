@@ -295,15 +295,19 @@ namespace TOR_Core.AbilitySystem
             }
             else if (Input.IsKeyPressed(InputKey.LeftMouseButton))
             {
-                bool flag = _abilityComponent.CurrentAbility.Crosshair == null ||
-                            !_abilityComponent.CurrentAbility.Crosshair.IsVisible ||
-                            _currentState != AbilityModeState.Idle ||
-                            (_abilityComponent.CurrentAbility.Crosshair.CrosshairType == CrosshairType.SingleTarget &&
-                            !((SingleTargetCrosshair)_abilityComponent.CurrentAbility.Crosshair).IsTargetLocked);
-                if (!flag)
+                if (_abilityComponent.CurrentAbility != null)
                 {
-                    Agent.Main.CastCurrentAbility();
+                    bool flag = _abilityComponent.CurrentAbility.Crosshair == null ||
+                        !_abilityComponent.CurrentAbility.Crosshair.IsVisible ||
+                        _currentState != AbilityModeState.Idle ||
+                        (_abilityComponent.CurrentAbility.Crosshair.CrosshairType == CrosshairType.SingleTarget &&
+                         !((SingleTargetCrosshair)_abilityComponent.CurrentAbility.Crosshair).IsTargetLocked);
+                    if (!flag)
+                    {
+                        Agent.Main.CastCurrentAbility();
+                    }
                 }
+                
                 if(_abilityComponent.CareerAbility != null && _abilityComponent.CareerAbility.IsUsing) _abilityComponent.StopSpecialMove();
             }
             else if (Input.IsKeyPressed(InputKey.RightMouseButton))
