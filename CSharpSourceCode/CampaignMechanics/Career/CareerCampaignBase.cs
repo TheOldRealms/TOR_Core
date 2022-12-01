@@ -4,6 +4,8 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.SaveSystem;
+using TOR_Core.AbilitySystem;
+using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -37,10 +39,11 @@ namespace TOR_Core.CampaignMechanics.Career
         
         private List<WeaponClass> _requiredWeaponTypes=new List<WeaponClass>();
         private string statusEffectOverride;
-        private bool CanBeUsedOnHorse = false;
+        private bool _canBeUsedOnHorse = false;
 
         private CareerTemplate _currentSelectedCareerTemplate;
-        
+
+        private AbilityTemplate _careerAbilityTemplate;
         //post attack behavior? Scriptname
         
         //modifiers
@@ -61,6 +64,10 @@ namespace TOR_Core.CampaignMechanics.Career
         //overrides
         private DamageType _damageTypeOverride;
 
+        public string GetCareerAbilityID()
+        {
+            return _currentSelectedCareerTemplate.AbilityTemplateId;
+        }
 
         public bool HasRequiredWeaponFlags(WeaponClass weaponClass)
         {
@@ -68,7 +75,7 @@ namespace TOR_Core.CampaignMechanics.Career
         }
         public bool CanBeUsedWhileMounted()
         {
-            return CanBeUsedOnHorse;
+            return _canBeUsedOnHorse;
         }
         public int GetExtraHealthPoints()
         {
@@ -157,7 +164,11 @@ namespace TOR_Core.CampaignMechanics.Career
             //_currentSelectedCareerTemplate = CareerFactory.GetTemplate(_careerId);
             _currentSelectedCareerTemplate = CareerFactory.GetTemplate(CareerId.GrailKnight);
             
+            Campaign.Current.MainParty.LeaderHero.AddAttribute("AbilityUser");
             if (_currentSelectedCareerTemplate == null) return;
+
+
+            _canBeUsedOnHorse = _currentSelectedCareerTemplate.CanBeUsedOnHorse;
 
 
             _requiredWeaponTypes = _currentSelectedCareerTemplate.CareerAbilityWeaponRequirements;
@@ -204,6 +215,8 @@ namespace TOR_Core.CampaignMechanics.Career
                         throw new ArgumentOutOfRangeException();
                 }
             }
+
+            _careerAbilityTemplate = AbilityFactory.GetTemplate(_currentSelectedCareerTemplate.AbilityTemplateId);
             
             foreach (var node in _currentSelectedCareerTemplate.KeyStoneNodes)
             {
@@ -230,7 +243,7 @@ namespace TOR_Core.CampaignMechanics.Career
 
             var SortedKeyStones = _currentSelectedCareerTemplate.KeyStoneNodes.OrderBy(x => structure.GetNodeLevel(x.Id));
 
-            foreach (var node in _currentSelectedCareerTemplate.KeyStoneNodes)
+            foreach (var node in SortedKeyStones)
             {
                 //if(node.State != TreeNodeState.Unlocked) continue;
 

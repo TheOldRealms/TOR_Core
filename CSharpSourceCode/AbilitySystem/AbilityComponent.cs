@@ -1,4 +1,4 @@
-﻿using NLog;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +11,7 @@ using TOR_Core.Utilities;
 using TOR_Core.Extensions;
 using TaleWorlds.CampaignSystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics.Career;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -30,11 +31,6 @@ namespace TOR_Core.AbilitySystem
                         {
                             ability.OnCastStart += OnCastStart;
                             ability.OnCastComplete += OnCastComplete;
-                            if (ability is CareerAbility)
-                            {
-                                _careerAbility = (CareerAbility) ability;
-                            }
-                            else
                             if(ability.Template.AbilityType != AbilityType.ItemBound) _knownAbilitySystem.Add(ability);
                         }
                         else
@@ -47,6 +43,30 @@ namespace TOR_Core.AbilitySystem
                         TORCommon.Log("Failed instantiating ability class: " + item, LogLevel.Error);
                     }
                 }
+            }
+
+            if (Agent.HasCareerAbility())
+            {
+                try
+                {
+                    var ability = AbilityFactory.CreateNew(CampaignBehaviorBase.GetCampaignBehavior<CareerCampaignBase>().GetCareerAbilityID(), agent);
+                    if (ability != null)
+                    {
+                        _careerAbility = (CareerAbility) ability;
+                        ability.OnCastStart += OnCastStart;
+                        ability.OnCastComplete += OnCastComplete;
+                    }
+                    else
+                    {
+                        TORCommon.Log("Attempted to add an ability to agent: " + agent.Character.StringId + ", but it wasn't of type BaseAbility", LogLevel.Warn);
+                    }
+                }
+                catch (Exception)
+                {
+                    TORCommon.Log("Failed instantiating ability class: " + CampaignBehaviorBase.GetCampaignBehavior<CareerCampaignBase>().GetCareerAbilityID(), LogLevel.Error);
+                }
+                ;
+
             }
             if (Agent.CanPlaceArtillery())
             {
@@ -228,7 +248,17 @@ namespace TOR_Core.AbilitySystem
             }
         }
         
-        public CareerAbility CareerAbility { get => _careerAbility; private set => _careerAbility = value; }
+        public CareerAbility CareerAbility
+        {
+            get
+            {
+                return _careerAbility;
+            }
+            set
+            {
+                _careerAbility = value;
+            }
+        }
         public List<Ability> KnownAbilitySystem { get => _knownAbilitySystem; }
         public delegate void CurrentAbilityChangedHandler(AbilityCrosshair crosshair);
         public event CurrentAbilityChangedHandler CurrentAbilityChanged;

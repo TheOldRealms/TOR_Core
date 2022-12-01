@@ -7,6 +7,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics.Career;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.Extensions
@@ -109,10 +110,8 @@ namespace TOR_Core.Extensions
         public static bool HasCareerAbility(this Hero hero)
         {
             if (hero.GetExtendedInfo() == null) return false;
-            
-            var knownAblitlities = hero.GetExtendedInfo().AllAbilites;
-            var careerAbilities= AbilityFactory.GetAllCareerAbilityNamesAsList();
-            return knownAblitlities.Any(ability => careerAbilities.Contains(ability));
+            if (!(Game.Current.GameType is Campaign) || hero != Campaign.Current.MainParty.LeaderHero) return false;
+            return CampaignBehaviorBase.GetCampaignBehavior<CareerCampaignBase>().GetCareerAbilityID()!= null;
         }
 
         public static void SetSpellCastingLevel(this Hero hero, SpellCastingLevel level)

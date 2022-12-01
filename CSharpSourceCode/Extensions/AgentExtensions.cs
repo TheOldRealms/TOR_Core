@@ -99,6 +99,11 @@ namespace TOR_Core.Extensions
         {
             return agent.GetAttributes().Contains("SpellCaster");
         }
+        
+        public static bool HasCareerAbility(this Agent agent)
+        {
+            return agent.GetHero().HasCareerAbility();
+        }
 
         public static bool CanPlaceArtillery(this Agent agent)
         {
@@ -397,9 +402,9 @@ namespace TOR_Core.Extensions
             var abilitycomponent = agent.GetComponent<AbilityComponent>();
             if (abilitycomponent != null)
             {
-                return abilitycomponent.CareerAbility;
+                return abilitycomponent.CareerAbility ?? null;
             }
-            else return null;
+            return null;
         }
         
 

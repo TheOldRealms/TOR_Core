@@ -89,9 +89,7 @@ namespace TOR_Core.CampaignMechanics.Career
                     if (level != null)
                     {
                         structure.Find(elem => elem.Parent == leaf).Level=path.Count;
-
                         path.Add(level.Parent);
-
                         parent = level.Parent;
                     }
                     else

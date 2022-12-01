@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <ArrayOfCareerTemplate xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	  <CareerTemplate CareerId="GrailKnight"
+	  CanBeUsedOnHorse="true"
 	  AbilityTemplateId="KnightlyStrike">
 		<CareerAbilityWeaponRequirements>
 					<WeaponClass>OneHandedSword</WeaponClass>
@@ -19,10 +20,16 @@
 				<Overrides DamageType="Physical">
 				</Overrides>
 			</KeyStoneNode>
-				<KeyStoneNode Id="6" CharacterAttribute ="" AttributeValue="0">
+				<KeyStoneNode Id="9" CharacterAttribute ="" AttributeValue="0">
 				<Modifier Charge="5">
 				</Modifier>
 				<Overrides DamageType="Fire">
+				</Overrides>
+			</KeyStoneNode>
+				<KeyStoneNode Id="6" CharacterAttribute ="" AttributeValue="0">
+				<Modifier Charge="5">
+				</Modifier>
+				<Overrides DamageType="Lightning">
 				</Overrides>
 			</KeyStoneNode>
 		</KeyStones>
@@ -72,6 +79,97 @@
 					<string>6</string>
 				</Children>
 			</SubTree>
+			<SubTree Parent="6">
+				<Children>
+					<string>9</string>
+				</Children>
+			</SubTree>
 		</Structure>
-	</CareerTemplate>	
+	</CareerTemplate>
+ <CareerTemplate CareerId="MinorVampire"
+	AbilityTemplateId="ShadowStep"
+	  CanBeUsedOnHorse="false" > 
+		<CareerAbilityWeaponRequirements>
+					<WeaponClass>OneHandedSword</WeaponClass>
+					<WeaponClass>TwoHandedSword</WeaponClass>
+		</CareerAbilityWeaponRequirements>
+		<KeyStones>
+			<KeyStoneNode Id="1" CharacterAttribute ="" AttributeValue="0">
+				<Modifier Charge="5">
+				</Modifier>
+				<Overrides DamageType="Holy">
+				</Overrides>
+			</KeyStoneNode>
+				<KeyStoneNode Id="5" CharacterAttribute ="" AttributeValue="0">
+				<Modifier Charge="5">
+				</Modifier>
+				<Overrides DamageType="Physical">
+				</Overrides>
+			</KeyStoneNode>
+				<KeyStoneNode Id="9" CharacterAttribute ="" AttributeValue="0">
+				<Modifier Charge="5">
+				</Modifier>
+				<Overrides DamageType="Fire">
+				</Overrides>
+			</KeyStoneNode>
+				<KeyStoneNode Id="6" CharacterAttribute ="" AttributeValue="0">
+				<Modifier Charge="5">
+				</Modifier>
+				<Overrides DamageType="Lightning">
+				</Overrides>
+			</KeyStoneNode>
+		</KeyStones>
+		<PassiveNodes >
+			<PassiveNode Id="2" EffectType="HP" Amount ="5">
+			</PassiveNode>
+			<PassiveNode  Id="3" EffectType="HP" Amount ="5">
+			</PassiveNode>
+			<PassiveNode  Id="8" EffectType="HP" Amount ="5">
+			</PassiveNode>
+			<PassiveNode  Id="7" EffectType="HP" Amount ="1">
+			</PassiveNode>
+		</PassiveNodes>
+		<Structure>
+			<SubTree Parent="0">
+				<Children>
+					<string>4</string>
+					<string>2</string>
+					<string>3</string>
+					<string>1</string>
+				</Children>
+			</SubTree>
+			<SubTree Parent="0">
+				<Children>
+					<string>2</string>
+					<string>3</string>
+				</Children>
+			</SubTree>
+			<SubTree Parent="1">
+				<Children>
+					<string>6</string>
+				</Children>
+			</SubTree>
+			<SubTree Parent="1">
+				<Children>
+					<string>6</string>
+				</Children>
+			</SubTree>
+			<SubTree Parent="2">
+				<Children>
+					<string>5</string>
+					<string>1</string>
+				</Children>
+			</SubTree>
+			<SubTree Parent="5">
+				<Children>
+					<string>6</string>
+				</Children>
+			</SubTree>
+			<SubTree Parent="6">
+				<Children>
+					<string>9</string>
+				</Children>
+			</SubTree>
+		</Structure>
+	</CareerTemplate>		
 </ArrayOfCareerTemplate>

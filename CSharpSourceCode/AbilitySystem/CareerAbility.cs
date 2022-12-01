@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -25,6 +25,7 @@ namespace TOR_Core.AbilitySystem.Spells
 
         public CareerAbility(AbilityTemplate template, Agent owner) : base(template)
         {
+
             this.Owner = owner;
            // _maximumCoolDownCharge = template.ChargeRequirement;
             if (template.StartsOnCoolDown)
@@ -90,16 +91,21 @@ namespace TOR_Core.AbilitySystem.Spells
         {
             get
             {
-                return (ShadowStepScript)AbilityScript != null && !((ShadowStepScript)AbilityScript).IsFadinOut;
+                if (AbilityScript == null || AbilityScript.GetType() != typeof(ShadowStepScript)) return false;
+                var ShadowStep = (ShadowStepScript)AbilityScript;
+                return !ShadowStep.IsFadinOut;
+
             }
         }
         
 
         public override bool CanCast(Agent casterAgent)
         {
+            if (!casterAgent.IsPlayerControlled) return false;
+
             bool canCast;
             if (casterAgent.WieldedWeapon.IsEmpty) return false;
-
+            
             if (Template.ChargeType != ChargeType.Time)
             {
                 if (!ReachedChargeRequirement(out float t)) return false;

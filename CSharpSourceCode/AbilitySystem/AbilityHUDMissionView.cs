@@ -32,6 +32,7 @@ namespace TOR_Core.AbilitySystem
             {
                 if (Campaign.Current.MainParty.LeaderHero.HasCareerAbility())//Campaign.Current.MainParty.LeaderHero.HasCareerAbility())
                 {
+                    _hasCareerAbility = true;
                     _abilityHUD_VM = new AbilityHUD_VM(true);
                     _abilityLayer = new GauntletLayer(100);
                     _abilityLayer.LoadMovie("AbilityHUD", _abilityHUD_VM);
@@ -49,10 +50,12 @@ namespace TOR_Core.AbilitySystem
                     _abilityLayer.LoadMovie("AbilityHUD", _abilityHUD_VM);
                     MissionScreen.AddLayer(_abilityLayer);
                     
+                    /*
                     _careerabilityHUD_VM = new CareerAbilityHUD_VM();
                     _careerAbilityLayer = new GauntletLayer(98);
                     _careerAbilityLayer.LoadMovie("CareerAbilityHUD", _careerabilityHUD_VM);
                     MissionScreen.AddLayer(_careerAbilityLayer);
+                    */
 
                 }
                 _isInitialized = true;
@@ -63,12 +66,7 @@ namespace TOR_Core.AbilitySystem
             _abilityLayer = new GauntletLayer(100);
             _abilityLayer.LoadMovie("AbilityHUD", _abilityHUD_VM);
             MissionScreen.AddLayer(_abilityLayer);
-           
-            _careerabilityHUD_VM = new CareerAbilityHUD_VM();
-            _careerAbilityLayer = new GauntletLayer(98);
-            _careerAbilityLayer.LoadMovie("CareerAbilityHUD", _careerabilityHUD_VM);
-            MissionScreen.AddLayer(_careerAbilityLayer);
-            
+
             _isInitialized = true;
         }
 
@@ -112,7 +110,9 @@ namespace TOR_Core.AbilitySystem
             }
             
             _abilityHUD_VM.IsVisible = false; 
-            _careerabilityHUD_VM.IsVisible = false;
+            
+            if(_hasCareerAbility)
+                _careerabilityHUD_VM.IsVisible = false;
             
             //_specialMoveHUD_VM.IsVisible = false;
         }

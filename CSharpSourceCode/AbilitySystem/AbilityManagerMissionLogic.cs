@@ -156,7 +156,8 @@ namespace TOR_Core.AbilitySystem
 
         private void CheckIfMainAgentHasPendingActivation()
         {
-            if (_abilityComponent.CurrentAbility.IsActivationPending) _abilityComponent.CurrentAbility.ActivateAbility(Agent.Main);
+            if(_abilityComponent.CurrentAbility!=null)
+                if (_abilityComponent.CurrentAbility.IsActivationPending) _abilityComponent.CurrentAbility.ActivateAbility(Agent.Main);
         }
 
         private void HandleAnimations()
@@ -372,8 +373,8 @@ namespace TOR_Core.AbilitySystem
                    !(ScreenManager.TopScreen as MissionScreen).IsPhotoModeEnabled &&
                    (Mission.Mode == MissionMode.Battle ||
                     Mission.Mode == MissionMode.Stealth) &&
-                   _abilityComponent != null &&
-                   _abilityComponent.CurrentAbility != null;
+                   _abilityComponent != null &&(_abilityComponent.CareerAbility!=null||
+                   _abilityComponent.CurrentAbility != null);
                    
         }
 

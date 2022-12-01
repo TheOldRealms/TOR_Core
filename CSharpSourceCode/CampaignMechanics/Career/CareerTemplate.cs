@@ -15,6 +15,10 @@ namespace TOR_Core.CampaignMechanics.Career
     {
         [XmlAttribute] public string AbilityTemplateId;
 
+
+        [XmlAttribute] 
+        public bool CanBeUsedOnHorse = true;
+
         [XmlArray("CareerAbilityWeaponRequirements")]
         public List<WeaponClass> CareerAbilityWeaponRequirements = new List<WeaponClass>();
 
