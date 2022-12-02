@@ -87,6 +87,33 @@ namespace TOR_Core.Extensions
                 info.AcquiredAttributes.Add(attribute);
             }
         }
+
+        public static void AddCareerPointId(this Hero hero, string attribute)
+        {
+            var info = hero.GetExtendedInfo();
+            if (info != null && !info.AllAttributes.Contains(attribute))
+            {
+                info.AcquiredTorCareerTreeNodeIds.Add(attribute);
+            }
+        }
+        
+        public static void ChangeCareer(this Hero hero, CareerId id)
+        {
+            var info = hero.GetExtendedInfo();
+            if (info != null && info.AcquiredCareer!=id)
+            {
+                info.AcquiredCareer = id;
+            }
+        }
+        
+        public static void SetAvailableCareerTreePoints(this Hero hero, int i)
+        {
+            var info = hero.GetExtendedInfo();
+            if (info != null && info.AvailableTorCareerTreePoints!=i)
+            {
+                info.AvailableTorCareerTreePoints = i;
+            }
+        }
         
         public static void RemoveAttribute(this Hero hero, string attribute)
         {
@@ -114,6 +141,8 @@ namespace TOR_Core.Extensions
             }
             else return false;
         }
+
+       
 
 
         public static bool HasCareerAbility(this Hero hero)

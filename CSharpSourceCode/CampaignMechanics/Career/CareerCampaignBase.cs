@@ -114,20 +114,15 @@ namespace TOR_Core.CampaignMechanics.Career
         {
             ResetCareerData();
             
-            
-            ExtendedInfoManager.Instance.GetHeroInfoFor(Hero.MainHero.GetInfoKey()).AcquiredCareer=id;
-            ExtendedInfoManager.Instance.GetHeroInfoFor(Hero.MainHero.GetInfoKey()).AvailableTorCareerTreePoints=Campaign.Current.MainParty.LeaderHero.Level;
-
-
+            Hero.MainHero.ChangeCareer(id);
+            Hero.MainHero.SetAvailableCareerTreePoints(Hero.MainHero.Level);
+                
             if (id == CareerId.MinorVampire)
             {
                 Hero.MainHero.MakeVampire();
             }
             
-            
-
             _careerId = id;
-            AcquiredCareer = id;
             InitializeCareer();
         }
 
@@ -213,10 +208,12 @@ namespace TOR_Core.CampaignMechanics.Career
                 return;
             }*/
 
+            /*
             if (AcquiredCareer == CareerId.None&&_torCareerSkillPoints!=null)
             {
                 _torCareerSkillPoints.Clear();
             }
+            */
             
             _currentSelectedCareerTemplate = CareerFactory.GetTemplate(_careerId);
 
@@ -286,10 +283,6 @@ namespace TOR_Core.CampaignMechanics.Career
                 ApplyAbilityOverrides(node);     //don't forget to sort!
             }
             
-            
-            
-
-            TalentTreeStructure = _currentSelectedCareerTemplate.Structure;
 
             _treeStructure = _currentSelectedCareerTemplate.CareerTree;
         }
@@ -355,22 +348,25 @@ namespace TOR_Core.CampaignMechanics.Career
 
 
         }
+
+
+        public void AddNodeIdToCareerPointIds(string id)
+        {
+           Campaign.Current.MainParty.LeaderHero.AddCareerPointId(id);
+        }
         
         
         
         
-        
-        
-        
-        private void ResetSpendPoints(List<CareerTreeNode> nodes)
+        /*private void ResetSpendPoints(List<CareerTreeNode> nodes)
         {
             foreach (var node in nodes)
             {
                 node.State = TreeNodeState.Locked;
             }
             ClearFromCareerSpecificAttributes();
-            AvailableTorSkillPoints = Campaign.Current.MainParty.LeaderHero.Level;
-        }
+             = Campaign.Current.MainParty.LeaderHero.Level;
+        }*/
         
         /// <summary>
         /// Adding passive effects that will affect regular attacks or spells , NOT the career skill
@@ -403,6 +399,8 @@ namespace TOR_Core.CampaignMechanics.Career
                 default:
                     return;
             }
+            
+            AddNodeIdToCareerPointIds(node.Id);
         }
 
         /// <summary>
