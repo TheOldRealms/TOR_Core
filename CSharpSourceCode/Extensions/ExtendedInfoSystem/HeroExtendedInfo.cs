@@ -1,4 +1,4 @@
-﻿using Helpers;
+using Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +25,9 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         [SaveableField(5)] private CharacterObject _baseCharacter;
         [SaveableField(6)] private List<string> _knownLores = new List<string>();
         [SaveableField(7)] private List<string> _selectedAbilities = new List<string>();
-        [SaveableField(8)] public CareerId _AcquiredCareer = CareerId.None;
-        [SaveableField(9)] public List<string> AcquiredAbilitiesTORSkillPointIds = new List<string>();
-        [SaveableField(10)] public int AvailableTorSkillPoints;
+        [SaveableField(8)] public CareerId AcquiredCareer = CareerId.None;
+        [SaveableField(9)] public List<string> AcquiredTorCareerTreePoints = new List<string>();
+        [SaveableField(10)] public int AvailableTorCareerTreePoints;
      
         
         public CharacterObject BaseCharacter => _baseCharacter;
@@ -139,7 +139,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                         list.AddRange(_baseCharacter.OriginalCharacter.GetAttributes());
                     }
                 }
-                list.AddRange(AcquiredAbilitiesTORSkillPointIds);
+                list.AddRange(AcquiredTorCareerTreePoints);
                 return list;
             }
         }

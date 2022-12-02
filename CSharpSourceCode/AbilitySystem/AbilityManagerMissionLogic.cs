@@ -274,6 +274,7 @@ namespace TOR_Core.AbilitySystem
 
             if (Input.IsKeyPressed(_quickCast.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCast.ControllerKey.InputKey))
             {
+                if(_abilityComponent.CurrentAbility==null) return;
                 if(_abilityComponent != null && _abilityComponent.CurrentAbility.AbilityEffectType != AbilityEffectType.SeekerMissile)
                     Agent.Main.CastCurrentAbility();
             }

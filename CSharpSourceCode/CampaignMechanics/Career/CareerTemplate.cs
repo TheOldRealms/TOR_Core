@@ -26,13 +26,15 @@ namespace TOR_Core.CampaignMechanics.Career
 
         [XmlArray("PassiveNodes")] 
         public List<PassiveNode> PassiveNodes = new List<PassiveNode>();
+        
+       
 
         [XmlArray("Structure")]
         public List<SubTree> Structure = new List<SubTree>();
         
         
-        
-        
+        public List<CareerTreeNode> CareerTree = new List<CareerTreeNode>();
+
         //Attributes that will be applied upon Changing or acquiring the Career e.g. IsVampire(for adding body), IsKnight, IsWarriorpriest (e.g. for adding a title)
 
         public CareerTemplate()
@@ -54,13 +56,165 @@ namespace TOR_Core.CampaignMechanics.Career
         [XmlAttribute] public string Id = "";
 
         [XmlAttribute] public List<string> LockNodes = new List<string>(); // On investing into this talent node, the list of  nodes that get blocked
-
-        [XmlAttribute] public List<string> ParentIDs = new List<string>();
+        
+       
 
         [XmlAttribute] // The node can have 1 or many parents. If parents are empty it's the root node. The parents only account for setting the "unlockable" state if other conditions are met.
         public TreeNodeState State = TreeNodeState.Locked;
 
         [XmlAttribute] public string UnlockConditionText = "";
+        
+        
+        public List<string> ParentIDs = new List<string>();
+        
+        public List<string> ChildrenIDs = new List<string>();
+
+        public int Level;
+
+
+        
+        public List<CareerTreeNode> GetNeighbors(List<SubTree> treeStructure, List<CareerTreeNode> allNodes)
+        {
+            var neighbors = new List<CareerTreeNode>();
+            if (!treeStructure.ContainsNode(this.Id)) return neighbors;
+
+            var list = treeStructure.Where(x => x.Contains(this.Id)).ToList();
+            var ids = new List<string>();
+
+            foreach (var subtree in list)
+            {
+                ids.AddRange(subtree.Children);
+                ids.Add(subtree.Parent);
+            }
+
+            foreach (var id in ids)
+            {
+                var node = allNodes.FirstOrDefault(x => x.Id == id);
+                neighbors.Add(node);
+            }
+
+            return neighbors;
+        }
+        
+      
+        public void UnlockNode(List<SubTree> treeStructure, List<CareerTreeNode> allNodes)
+        {
+            foreach (var node in allNodes)
+            {
+                if(this==node)continue;
+                if (!this.LockNodes.Contains(node.Id)) continue;
+                if (node.State == TreeNodeState.Unlocked)
+                {
+                    continue;
+                }
+
+                node.State = TreeNodeState.Locked;
+            }
+            this.State = TreeNodeState.Unlocked;
+        }
+
+        public bool HasUnlockedNeighbor(List<SubTree> treeStructure, List<CareerTreeNode> allNodes, out List<CareerTreeNode> neighbors)
+        {
+            neighbors = new List<CareerTreeNode>();
+            if (!treeStructure.ContainsNode(this.Id)) return false;
+            
+            
+            var list = treeStructure.Where(x => x.Contains(this.Id)).ToList();      //nodes that have this node as children
+            
+            if (list.IsEmpty())
+                return false;
+
+            foreach (var subtree in list)
+            {
+                var node =allNodes.FirstOrDefault(x => x.Id == subtree.Parent);
+                if (node.State == TreeNodeState.Unlocked)
+                {
+                    neighbors.Add(node);
+                    return true;
+                }
+            }
+            
+
+            foreach (var subtree in list)
+            {
+                var node =allNodes.FirstOrDefault(x => subtree.Children.Contains(x.Id));
+                if (node.State == TreeNodeState.Unlocked)
+                {
+                    neighbors.Add(node);
+                    return true;
+                }
+            }
+
+            
+            return false;
+        }
+    }
+
+
+    public static class TreeNodeDataStructureExtension
+    {
+        
+        public static List<CareerTreeNode> GetNeighbors(this List<CareerTreeNode> tree, CareerTreeNode selected)
+        {
+            
+            
+            
+            var neighbors=new List<CareerTreeNode>();
+            foreach (var node in tree)
+            {
+                if(node.Id!=selected.Id) continue;
+                foreach (var id in node.ParentIDs)
+                {
+                    neighbors.Add(node);
+                }
+                
+                
+                foreach (var id in node.ChildrenIDs)
+                {
+                    neighbors.Add(node);
+                }
+            }
+            return neighbors;
+        }
+        
+        
+        public static void UnlockNode(this List<CareerTreeNode> allNodes, CareerTreeNode selectedNode)
+        {
+            foreach (var node in allNodes)
+            {
+                if(selectedNode==node)continue;
+                if (!selectedNode.LockNodes.Contains(node.Id)) continue;
+                if (node.State == TreeNodeState.Unlocked)
+                {
+                    return;
+                }
+                
+            }
+            selectedNode.State = TreeNodeState.Unlocked;
+            //TODO lock nodes ? 
+        }
+        
+        public static List<KeyStoneNode> GetKeyStoneNodes(this List<CareerTreeNode> tree)
+        {
+            return tree.Where(element => element.GetType() == typeof(KeyStoneNode)).Cast<KeyStoneNode>().ToList();
+        }
+        
+        public static List<PassiveNode> GetPassiveNodes(this List<CareerTreeNode> tree)
+        {
+            return tree.Where(element => element.GetType() == typeof(PassiveNode)).Cast<PassiveNode>().ToList();
+        }
+
+    }
+    
+    public class RootNode : CareerTreeNode
+    {
+        public RootNode()
+        {
+            Level = 0;
+            ParentIDs = new List<string>() { "-1" };
+            ChildrenIDs = new List<string>();
+            State = TreeNodeState.Unlocked;
+        }
     }
 
     [Serializable]
@@ -201,7 +355,7 @@ namespace TOR_Core.CampaignMechanics.Career
 
         public bool Contains(string element)
         {
-            if (Parent == element || Children.Contains(element))
+            if (Parent==element||Children.Contains(element))
                 return true;
             return false;
         }
@@ -268,9 +422,9 @@ namespace TOR_Core.CampaignMechanics.Career
         
         
 
-        public static bool ContainsNode(this List<SubTree> TreeStructure, string element)
+        public static bool ContainsNode(this List<SubTree> treeStructure, string element)
         {
-            return TreeStructure.Any(subtree => subtree.Contains(element));
+            return treeStructure.Any(subtree => subtree.Contains(element));
         }
 
         public static List<SubTree> GetAllParents(this List<SubTree> TreeStructure, string element)
@@ -295,6 +449,22 @@ namespace TOR_Core.CampaignMechanics.Career
 
         private static List<SubTree> FinalizeTreeStructure(this List<SubTree> treeStructure)
         {
+            var root = new SubTree();
+            root.Parent = "-1";
+            root.Level = 0;
+            var list= treeStructure.Where(x => x.Parent == "0").ToList();
+
+            foreach (var tree in list)
+            {
+                foreach (var child in tree.Children)
+                {
+                    root.Children.Add(child);
+                }
+            }
+           
+            
+            treeStructure.Add(root);
+            
             var children = treeStructure.GetAllChildren();
             var leaves = children.Where(child => treeStructure.All(x => x.Parent != child)).ToList();
 

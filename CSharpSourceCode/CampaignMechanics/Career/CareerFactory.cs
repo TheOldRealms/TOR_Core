@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 using TaleWorlds.Core;
+using TOR_Core.AbilitySystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Career
@@ -57,6 +58,38 @@ namespace TOR_Core.CampaignMechanics.Career
                 career.Structure = structure;
                 career.KeyStoneNodes = career.KeyStoneNodes.Where(x => structure.ContainsNode(x.Id)).ToList();
                 career.PassiveNodes = career.PassiveNodes.Where(x => structure.ContainsNode(x.Id)).ToList();
+
+                var rootNode = new RootNode();
+
+                var t = career.Structure.FirstOrDefault(x => x.Parent =="0");
+                rootNode.ChildrenIDs.AddRange(t.Children);
+
+                career.CareerTree.Add(rootNode);
+                career.CareerTree.AddRange(career.KeyStoneNodes);
+                career.CareerTree.AddRange(career.PassiveNodes);
+
+                foreach (var elem in career.CareerTree)
+                {
+                    var treeStructureElements= career.Structure.Where(x => x.Children.Contains(elem.Id));
+
+                    var level = 0;
+                    foreach (var subTree in treeStructureElements)
+                    {
+                        if (level <= subTree.Level)
+                            level = subTree.Level;
+                        elem.ParentIDs.Add(subTree.Parent);
+                    }
+
+                    elem.Level = level;
+                    
+                    var parent = career.Structure.FirstOrDefault(x => x.Parent == elem.Id);
+                    if(parent!=null)
+                    elem.ChildrenIDs.AddRange(parent.Children);
+                }
+
+                career.PassiveNodes = career.CareerTree.GetPassiveNodes();
+                career.KeyStoneNodes = career.CareerTree.GetKeyStoneNodes();
+                
                 _templates.Add(career.CareerId.ToString(), career);
             }
         }
@@ -109,7 +142,7 @@ namespace TOR_Core.CampaignMechanics.Career
                     }
                 }
 
-                if (leaf == root) structure.FirstOrDefault(x => leaf.Contains(x.Parent)).Level = 0;
+                if (leaf == root) structure.FirstOrDefault(x => leaf.Contains(x.Parent)).Level = -1;
             }
         }
     }
