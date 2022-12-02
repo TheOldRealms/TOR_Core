@@ -46,6 +46,7 @@ using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignSupport.TownBehaviours;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.GameManagers;
@@ -204,6 +205,7 @@ namespace TOR_Core
         public override void BeginGameStart(Game game)
         {
             game.ObjectManager.RegisterType<TORCustomSettlementComponent>("TORCustomSettlementComponent", "TORCustomSettlementComponents", 99U, true);
+            game.ObjectManager.RegisterType<CareerObject>("Career", "Careers", 100U, true);
         }
 
         private static void ConfigureLogging()
