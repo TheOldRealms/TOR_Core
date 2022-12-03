@@ -106,30 +106,7 @@ namespace TOR_Core.Utilities
             AggregateOutput("Already known spells in request:", knownSpells) +
             AggregateOutput("Added spells :", newSpells
             );
-
-
         
-        //Some rudmentary testing thing, come back to that later 
-        
-        /*[CommandLineFunctionality.CommandLineArgumentFunction("chooseCareer", "tor")]
-        public static string ChooseCareer(List<string>  arguments)
-        {
-            if (arguments.Count > 1)
-            {
-                return "Only One Career is valid";
-            }
-
-            var argument = arguments[0];
-            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
-                return CampaignCheats.ErrorType;
-
-            foreach (var career in CareerFactory.ListAvailableCareers().Where(career => career == argument))
-            {
-                return "Changed to "+career;
-            }
-
-            return "Could not found career";
-        }*/
         
         [CommandLineFunctionality.CommandLineArgumentFunction("selectNode", "tor")]
         public static string selectNode(List<string> arguments)
@@ -149,9 +126,30 @@ namespace TOR_Core.Utilities
             {
                 return $"Couldn't Choose {arguments[0]}. {text} ";
             }
+        }
+        
+        [CommandLineFunctionality.CommandLineArgumentFunction("get_all_nodes", "tor")]
+        public static string GetAllNodes(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
             
+            var State = arguments[0];
             
+            var valid = TreeNodeState.TryParse(arguments[0], out TreeNodeState state);
+            if (!valid) return "Not a valid node state";
             
+            var careerBase = CampaignBehaviorBase.GetCampaignBehavior<CareerCampaignBase>();
+
+            var list = careerBase.GetAllNodes(state);
+
+            string concat ="";
+            foreach (var element in list)
+            {
+                concat = concat.Add(element+", ",false);
+            }
+            
+            return concat + $" are {state}";
         }
         
         [CommandLineFunctionality.CommandLineArgumentFunction("change_Career", "tor")]
@@ -161,6 +159,9 @@ namespace TOR_Core.Utilities
                 return CampaignCheats.ErrorType;
             
             if (!(Game.Current.GameType is Campaign)) return "Current Campaign Mode is not Campaign";
+            if (arguments.Count == 0)
+                return "Please select a Career";
+            
             var valid = CareerId.TryParse(arguments[0], out CareerId career);
             if (!valid) return "Not a valid career";
             var careerBase = CampaignBehaviorBase.GetCampaignBehavior<CareerCampaignBase>();
@@ -194,6 +195,8 @@ namespace TOR_Core.Utilities
 
             return "Player is spell caster now. \n";
         }
+        
+        
 
         private static string AggregateOutput(string topicHeader, List<string> matchedSpells) =>
             matchedSpells.Aggregate(

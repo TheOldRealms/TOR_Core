@@ -72,8 +72,11 @@ namespace TOR_Core.CampaignMechanics.Career
 
                 var rootNode = new RootNode();
 
+                rootNode.Id = "0";
                 var t = career.Structure.FirstOrDefault(x => x.Parent =="0");
                 rootNode.ChildrenIDs.AddRange(t.Children);
+
+                rootNode.NodeType = NodeType.RootNode;
 
                 career.CareerTree.Add(rootNode);
                 career.CareerTree.AddRange(career.KeyStoneNodes);

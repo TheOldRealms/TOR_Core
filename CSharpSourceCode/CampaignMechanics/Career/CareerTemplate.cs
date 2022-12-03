@@ -13,36 +13,33 @@ namespace TOR_Core.CampaignMechanics.Career
     public class CareerBody
     {
         public CareerId Id;
-        public string AbilityTemplateId; 
+        public string AbilityTemplateId;
         public List<WeaponClass> CareerAbilityWeaponRequirements = new List<WeaponClass>();
         public bool CanBeUsedOnHorse = true;
         public List<CareerTreeNode> CareerTree = new List<CareerTreeNode>();
     }
-    
-    
+
+
     [Serializable]
     public class CareerTemplate //The Serializable Component that stores all passive nodes and key stones, and is load into the game on start up
     {
-        [XmlAttribute] 
-        public string AbilityTemplateId;
+        [XmlAttribute] public string AbilityTemplateId;
+
         [XmlArray("CareerAbilityWeaponRequirements")]
         public List<WeaponClass> CareerAbilityWeaponRequirements = new List<WeaponClass>();
-        [XmlAttribute] 
-        public bool CanBeUsedOnHorse = true;
+
+        [XmlAttribute] public bool CanBeUsedOnHorse = true;
         [XmlAttribute] public CareerId CareerId = CareerId.None; //might also be just a string ensures, that no typos are made and the right Career template
 
-        [XmlArray("KeyStones")] 
-        public List<KeyStoneNode> KeyStoneNodes = new List<KeyStoneNode>();
+        [XmlArray("KeyStones")] public List<KeyStoneNode> KeyStoneNodes = new List<KeyStoneNode>();
 
-        [XmlArray("PassiveNodes")] 
-        public List<PassiveNode> PassiveNodes = new List<PassiveNode>();
-        
-       
+        [XmlArray("PassiveNodes")] public List<PassiveNode> PassiveNodes = new List<PassiveNode>();
 
-        [XmlArray("Structure")]
-        public List<SubTree> Structure = new List<SubTree>();
-        
-        
+
+
+        [XmlArray("Structure")] public List<SubTree> Structure = new List<SubTree>();
+
+
         public List<CareerTreeNode> CareerTree = new List<CareerTreeNode>();
 
         //Attributes that will be applied upon Changing or acquiring the Career e.g. IsVampire(for adding body), IsKnight, IsWarriorpriest (e.g. for adding a title)
@@ -51,12 +48,13 @@ namespace TOR_Core.CampaignMechanics.Career
         {
 
         }
+
         public CareerTemplate(CareerId id)
         {
             CareerId = id;
         }
     }
-    
+
     public enum NodeType
     {
         RootNode,
@@ -64,17 +62,20 @@ namespace TOR_Core.CampaignMechanics.Career
         KeyStoneNode
     }
 
+    [Serializable]
+
     public class CareerTreeNode
     {
-        public NodeType NodeType;
-        
-        [XmlAttribute] public string AttributeCondition = ""; // The Node requires the character to posses a certain attribute, like being a Questing Knight, to unlock Node
-
-        [XmlAttribute] public string DescriptionText = "";
-
         [SaveableField(0)][XmlAttribute] public string Id = "";
-        [SaveableField(1)][XmlAttribute]public TreeNodeState State = TreeNodeState.Locked;
-        [SaveableField(2)][XmlAttribute] public List<string> LockNodes = new List<string>(); // On investing into this talent node, the list of  nodes that get blocked
+        [SaveableField(1)]public NodeType NodeType;
+        
+        [SaveableField(2)][XmlAttribute]public string AttributeCondition = ""; // The Node requires the character to posses a certain attribute, like being a Questing Knight, to unlock Node
+
+        [SaveableField(3)][XmlAttribute]public string DescriptionText = "";
+
+        
+        [SaveableField(4)][XmlAttribute]public TreeNodeState State = TreeNodeState.Locked;
+        [SaveableField(5)][XmlAttribute] public List<string> LockNodes = new List<string>(); // On investing into this talent node, the list of  nodes that get blocked
         
         
         // The node can have 1 or many parents. If parents are empty it's the root node. The parents only account for setting the "unlockable" state if other conditions are met.
@@ -83,11 +84,11 @@ namespace TOR_Core.CampaignMechanics.Career
         [XmlAttribute] public string UnlockConditionText = "";
         
         
-        [SaveableField(3)] 
+        [SaveableField(6)] 
         public List<string> ParentIDs = new List<string>(); 
-        [SaveableField(4)] 
+        [SaveableField(7)] 
         public List<string> ChildrenIDs = new List<string>();
-        [SaveableField(5)] 
+        [SaveableField(8)] 
         public int Level;
         
 
@@ -199,10 +200,17 @@ namespace TOR_Core.CampaignMechanics.Career
         {
             return tree.Where(element => element.GetType() == typeof(PassiveNode)).Cast<PassiveNode>().ToList();
         }
+
+        public static RootNode GetRootNode(this List<CareerTreeNode> tree)
+        {
+            var node = tree.FirstOrDefault(element => element.NodeType == NodeType.RootNode);
+            return (RootNode) node;
+        }
         
         
         public static bool IsReplicant(this List<CareerTreeNode> TreeStructure, List<CareerTreeNode> otherTree)
         {
+            if (TreeStructure == null) return false;
             if (otherTree == null) return false;
             if (TreeStructure.Count != otherTree.Count) return false;
 
@@ -213,7 +221,7 @@ namespace TOR_Core.CampaignMechanics.Career
      
 
     }
-    
+    [Serializable]
     public class RootNode : CareerTreeNode
     {
         public RootNode()
@@ -365,11 +373,10 @@ namespace TOR_Core.CampaignMechanics.Career
     [Serializable]
     public class SubTree
     {
-        [SaveableField(0)]
-        public int Level;
-        [SaveableField(1)][XmlArray("Children")] 
-        public List<string> Children = new List<string>();
-        [SaveableField(2)][XmlAttribute] 
+        public int Level; 
+        [XmlArray("Children")] 
+        public List<string> Children = new List<string>(); 
+        [XmlAttribute] 
         public string Parent = "";
 
         public bool Contains(string element)
@@ -513,15 +520,28 @@ namespace TOR_Core.CampaignMechanics.Career
         }
     }
     
-    public class TreeStructureDefiner: SaveableTypeDefiner
+    public class TreeNodeStateDefiner : SaveableTypeDefiner
     {
-        public TreeStructureDefiner() : base(1_899_199)
+        public TreeNodeStateDefiner() : base(1_1337_199)
+        {
+        }
+
+        protected override void DefineEnumTypes()
+        {
+            AddEnumDefinition(typeof(TreeNodeState), 1);
+        }
+    }
+    
+    
+    public class CareerTreeNodeDefiner: SaveableTypeDefiner
+    {
+        public CareerTreeNodeDefiner() : base(1_899_199)
         {
         }
         
         protected override void DefineClassTypes()
         {
-            AddClassDefinition(typeof(CareerTreeNode),1);
+            AddClassDefinition(typeof(CareerTreeNode), 1);
         }
 
         protected override void DefineContainerDefinitions()

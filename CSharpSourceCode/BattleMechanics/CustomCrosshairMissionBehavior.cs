@@ -93,6 +93,7 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
             return !Mission.IsFriendlyMission &&
                    _missionLogic != null &&
                    _missionLogic.CurrentState != AbilityModeState.Off &&
+                   _abilityComponent.CurrentAbility!=null&&
                    _abilityComponent.CurrentAbility.CanCast(Agent.Main);
         }
 
