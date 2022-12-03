@@ -203,10 +203,10 @@ namespace TOR_Core.CampaignMechanics.Career
             _bonusMeleeDamage = new float[(int)DamageType.All + 1];
             _bonusRangeDamage = new float[(int)DamageType.All + 1];
             _bonusSpellDamge = new float[(int)DamageType.All + 1];
-            /*if (_careerId == CareerId.None)
+            if (_careerId == CareerId.None)
             {
                 return;
-            }*/
+            }
 
             /*
             if (AcquiredCareer == CareerId.None&&_torCareerSkillPoints!=null)
@@ -247,11 +247,10 @@ namespace TOR_Core.CampaignMechanics.Career
                     ExtendedInfoManager.Instance.GetHeroInfoFor(Hero.MainHero.GetInfoKey()).AcquiredAbilitiesTORSkillPointIds.Remove(id);
                 }
             }*/
+
+            //TODO compare with other version
+            _currentSelectedCareerTemplate.CareerTree.IsReplicant(_currentSelectedCareerTemplate.CareerTree);
             
-            /*if(TalentTreeStructure==null||!TalentTreeStructure.AreIdentical(_currentSelectedCareerTemplate.Structure))
-            {
-                ResetSpendPoints(nodes);
-            }*/
             
             //Are all nodes reachable ? Traverse Tree for all stored ids. For Errors, Count them towards the unspend points
             var extraPoints = 0;
@@ -422,6 +421,7 @@ namespace TOR_Core.CampaignMechanics.Career
             _baseMovementSpeed += node.Modifier.BaseMovementSpeed;
             _imbuedStatusEffectDuration += node.Modifier.ImbuedStatusEffectDuration;
             _windsOfMagicCost += node.Modifier.WindsOfMagicCost;
+            AddNodeIdToCareerPointIds(node.Id);
         }
         
         /// <summary>

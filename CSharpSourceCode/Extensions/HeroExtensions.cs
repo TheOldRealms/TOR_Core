@@ -91,7 +91,7 @@ namespace TOR_Core.Extensions
         public static void AddCareerPointId(this Hero hero, string attribute)
         {
             var info = hero.GetExtendedInfo();
-            if (info != null && !info.AllAttributes.Contains(attribute))
+            if (info != null && !info.AcquiredTorCareerTreeNodeIds.Contains(attribute))
             {
                 info.AcquiredTorCareerTreeNodeIds.Add(attribute);
             }

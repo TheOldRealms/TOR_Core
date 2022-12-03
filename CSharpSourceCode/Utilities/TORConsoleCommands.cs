@@ -144,7 +144,7 @@ namespace TOR_Core.Utilities
             careerBase.SelectNode(arguments[0], out text);
             
             
-            return $"Chose {arguments[0]} ";
+            return $"Chose {arguments[0]}. "+text;;
         }
         
         [CommandLineFunctionality.CommandLineArgumentFunction("change_Career", "tor")]

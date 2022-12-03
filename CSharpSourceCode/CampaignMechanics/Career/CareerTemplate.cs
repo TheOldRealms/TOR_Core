@@ -70,48 +70,7 @@ namespace TOR_Core.CampaignMechanics.Career
         public List<string> ChildrenIDs = new List<string>();
 
         public int Level;
-
-
         
-        public List<CareerTreeNode> GetNeighbors(List<SubTree> treeStructure, List<CareerTreeNode> allNodes)
-        {
-            var neighbors = new List<CareerTreeNode>();
-            if (!treeStructure.ContainsNode(this.Id)) return neighbors;
-
-            var list = treeStructure.Where(x => x.Contains(this.Id)).ToList();
-            var ids = new List<string>();
-
-            foreach (var subtree in list)
-            {
-                ids.AddRange(subtree.Children);
-                ids.Add(subtree.Parent);
-            }
-
-            foreach (var id in ids)
-            {
-                var node = allNodes.FirstOrDefault(x => x.Id == id);
-                neighbors.Add(node);
-            }
-
-            return neighbors;
-        }
-        
-      
-        public void UnlockNode(List<SubTree> treeStructure, List<CareerTreeNode> allNodes)
-        {
-            foreach (var node in allNodes)
-            {
-                if(this==node)continue;
-                if (!this.LockNodes.Contains(node.Id)) continue;
-                if (node.State == TreeNodeState.Unlocked)
-                {
-                    continue;
-                }
-
-                node.State = TreeNodeState.Locked;
-            }
-            this.State = TreeNodeState.Unlocked;
-        }
 
         public bool HasUnlockedNeighbor(List<SubTree> treeStructure, List<CareerTreeNode> allNodes, out List<CareerTreeNode> neighbors)
         {
@@ -148,6 +107,27 @@ namespace TOR_Core.CampaignMechanics.Career
             
             return false;
         }
+        
+        public bool HasSameValues(CareerTreeNode node)
+        {
+            if (node == null) return false;
+            var type = node.GetType();
+
+            if (type != this.GetType())
+                return false;
+
+
+            if (Level != node.Level)
+                return false;
+
+
+            if (ChildrenIDs.Where((t, i) => node.ChildrenIDs[i] != t).Any())
+            {
+                return false;
+            }
+
+            return !ParentIDs.Where((t, i) => node.ParentIDs[i] != t).Any();
+        }
     }
 
 
@@ -156,9 +136,6 @@ namespace TOR_Core.CampaignMechanics.Career
         
         public static List<CareerTreeNode> GetNeighbors(this List<CareerTreeNode> tree, CareerTreeNode selected)
         {
-            
-            
-            
             var neighbors=new List<CareerTreeNode>();
             foreach (var node in tree)
             {
@@ -203,6 +180,18 @@ namespace TOR_Core.CampaignMechanics.Career
         {
             return tree.Where(element => element.GetType() == typeof(PassiveNode)).Cast<PassiveNode>().ToList();
         }
+        
+        
+        public static bool IsReplicant(this List<CareerTreeNode> TreeStructure, List<CareerTreeNode> otherTree)
+        {
+            if (otherTree == null) return false;
+            if (TreeStructure.Count != otherTree.Count) return false;
+
+            return !TreeStructure.Where((t, i) => !t.HasSameValues(otherTree[i])).Any();
+        }
+        
+       
+     
 
     }
     
@@ -409,19 +398,7 @@ namespace TOR_Core.CampaignMechanics.Career
             return RootNode;
         }
 
-
-
-        public static bool AreIdentical(this List<SubTree> TreeStructure, List<SubTree> otherTree)
-        {
-            if (otherTree == null) return false;
-            if (TreeStructure.Count != otherTree.Count) return false;
-
-            return !TreeStructure.Where((t, i) => !t.HasSameValues(otherTree[i])).Any();
-        }
         
-        
-        
-
         public static bool ContainsNode(this List<SubTree> treeStructure, string element)
         {
             return treeStructure.Any(subtree => subtree.Contains(element));
@@ -449,22 +426,6 @@ namespace TOR_Core.CampaignMechanics.Career
 
         private static List<SubTree> FinalizeTreeStructure(this List<SubTree> treeStructure)
         {
-            var root = new SubTree();
-            root.Parent = "-1";
-            root.Level = 0;
-            var list= treeStructure.Where(x => x.Parent == "0").ToList();
-
-            foreach (var tree in list)
-            {
-                foreach (var child in tree.Children)
-                {
-                    root.Children.Add(child);
-                }
-            }
-           
-            
-            treeStructure.Add(root);
-            
             var children = treeStructure.GetAllChildren();
             var leaves = children.Where(child => treeStructure.All(x => x.Parent != child)).ToList();
 
