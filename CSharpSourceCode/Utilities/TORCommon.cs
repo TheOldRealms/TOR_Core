@@ -1,12 +1,11 @@
 ﻿using NLog;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
@@ -79,7 +78,7 @@ namespace TOR_Core.Utilities
             text += GetText(vm.CharacterMountSlot) + ",";
             text += GetText(vm.CharacterMountArmorSlot);
             Clipboard.SetText(text);
-            InformationManager.DisplayMessage(new InformationMessage("Equipment items copied!", Colors.Green));
+            InformationManager.DisplayMessage(new InformationMessage("Equipment items copied!", TaleWorlds.Library.Colors.Green));
         }
 
         private static string GetText(SPItemVM slot)
@@ -179,9 +178,9 @@ namespace TOR_Core.Utilities
                 float yMeters = nodeSize * yNodes; // meters in the y direction
                 int xRes = 4096; // x resolution of final image, 1 pixel for every half meters for now
                 int yRes = 4096; // y resolution of final image
-                double[,] terrainData = new double[xRes, yRes];
-                double max = double.MinValue; // max height of the terrain
-                double min = double.MaxValue; // min height of the terrain
+                float[,] terrainData = new float[xRes, yRes];
+                float max = float.MinValue; // max height of the terrain
+                float min = float.MaxValue; // min height of the terrain
                 for (int i = 0; i < xRes; i++)
                 {
                     float x = xMeters * ((float)i / (float)xRes);
@@ -189,7 +188,7 @@ namespace TOR_Core.Utilities
                     {
                         float y = yMeters * ((float)j / (float)xRes);
                         Vec2 pos = new Vec2(x, y);
-                        double height = (double)scene.GetTerrainHeight(pos);
+                        float height = scene.GetTerrainHeight(pos);
                         terrainData[i, j] = height;
                         if (height > max)
                             max = height;
@@ -198,14 +197,28 @@ namespace TOR_Core.Utilities
                             min = height;
                     }
                 }
-                PixelFormat formatOutput = PixelFormat.Format16bppGrayScale;
-                Accord.Imaging.Converters.MatrixToImage conv = new Accord.Imaging.Converters.MatrixToImage(min, max);
-                Bitmap image = new Bitmap(yRes, yRes, formatOutput);
-                conv.Convert(terrainData, out image);
-                image.RotateFlip(RotateFlipType.Rotate270FlipNone);
-                image.Save("heightmap_for_" + scene.GetName() + ".png", ImageFormat.Png);
+                PixelFormat formatOutput = PixelFormats.Gray16;
+                ushort[] imagedata = new ushort[yRes * xRes];
+                for(int i = 0; i < yRes; i++)
+                {
+                    for(int j = 0; j < xRes; j++)
+                    {
+                        imagedata[i * yRes + j] = MapToRange(terrainData[i, j], min, max);
+                    }
+                }
+                BitmapSource bitmap = BitmapSource.Create(yRes, xRes, 96, 96, formatOutput, null, imagedata, yRes * 2);
+                TransformedBitmap tb = new TransformedBitmap(bitmap, new RotateTransform(270));
+                FileStream stream = new FileStream("heightmap_for_" + scene.GetName() + ".png", FileMode.Create);
+                PngBitmapEncoder encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(tb));
+                encoder.Save(stream);
                 Say("Heightmap saved.");
             }
+        }
+        private static ushort MapToRange(float value, float minSource, float maxSource, ushort minTarget = ushort.MinValue, ushort maxTarget = ushort.MaxValue)
+        {
+            var result = (value - minSource) / (maxSource - minSource) * (maxTarget - minTarget) + minTarget;
+            return (ushort)result;
         }
     }
 }
