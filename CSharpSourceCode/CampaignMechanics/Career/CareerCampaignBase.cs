@@ -42,8 +42,8 @@ namespace TOR_Core.CampaignMechanics.Career
         private bool _canBeUsedOnHorse = false;
 
         private CareerBody _currentSelectedCareer;
-
-        [SaveableField(0)]private List<CareerTreeNode>TreeStructure;
+        
+        private List<CareerTreeNode>TreeStructure;
         //post attack behavior? Script name
         
         //modifiers
@@ -387,14 +387,11 @@ namespace TOR_Core.CampaignMechanics.Career
             
             
             var neighbors = _currentSelectedCareer.CareerTree.GetNeighbors(selected);
+            
+            //Is the selection valid?
 
             foreach (var neighbor  in neighbors)
             {
-                if (neighbor.State != TreeNodeState.Available)
-                {
-                    return false;
-                }
-
                 if (neighbor.State == TreeNodeState.Unlocked)
                 {
                     _currentSelectedCareer.CareerTree.UnlockNode(selected);
@@ -423,7 +420,7 @@ namespace TOR_Core.CampaignMechanics.Career
 
         public void AddNodeIdToCareerPointIds(string id)
         {
-           Campaign.Current.MainParty.LeaderHero.AddCareerPointId(id);
+          // Campaign.Current.MainParty.LeaderHero.AddCareerPointId(id);
         }
         
         
@@ -538,9 +535,10 @@ namespace TOR_Core.CampaignMechanics.Career
             list.AddRange(nodes.Select(node => node.Id));
             return list;
         }
+        
+       
+        
 
 
     }
-    
-   
 }
