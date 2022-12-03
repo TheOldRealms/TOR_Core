@@ -39,7 +39,7 @@ namespace TOR_Core.CampaignMechanics.Career
         private string statusEffectOverride;
         private bool _canBeUsedOnHorse = false;
 
-        private CareerTemplate _currentSelectedCareerTemplate;
+        private CareerBody _currentSelectedCareer;
 
         private List<CareerTreeNode> _treeStructure;
         //post attack behavior? Script name
@@ -69,8 +69,8 @@ namespace TOR_Core.CampaignMechanics.Career
 
         public string GetCareerAbilityID()
         {
-            if (_currentSelectedCareerTemplate == null) return "";
-            return _currentSelectedCareerTemplate.AbilityTemplateId;
+            if (_currentSelectedCareer == null) return "";
+            return _currentSelectedCareer.AbilityTemplateId;
         }
 
         public bool HasRequiredWeaponFlags(WeaponClass weaponClass)
@@ -128,7 +128,7 @@ namespace TOR_Core.CampaignMechanics.Career
 
         private void ResetCareerData()
         {
-            _currentSelectedCareerTemplate = null;
+            _currentSelectedCareer = null;
             
             _extraAmmo = 0;
             _extraWind = 0;
@@ -150,7 +150,7 @@ namespace TOR_Core.CampaignMechanics.Career
             _careerId = CareerId.None;
             
             //TODO Overrides are still needed
-            ClearFromCareerSpecificAttributes();
+            //ClearFromCareerSpecificAttributes();
         }
 
         private void ResetPassives()
@@ -160,11 +160,11 @@ namespace TOR_Core.CampaignMechanics.Career
             _extraHealthPoints = 0;
         }
         
-
-        private void ClearFromCareerSpecificAttributes()
+            //TODO rework now with attached tree in body
+        /*private void ClearFromCareerSpecificAttributes()
         {
-            if(_currentSelectedCareerTemplate==null) return;
-            var list = _currentSelectedCareerTemplate.KeyStoneNodes.Select(node => node.CharacterAttribute).ToList();
+            if(_currentSelectedCareer==null) return;
+            var list = _currentSelectedCareer.CareerTree.Select(node => node.State).ToList();
             
             var info = ExtendedInfoManager.Instance.GetHeroInfoFor(Hero.MainHero.GetInfoKey());
 
@@ -173,7 +173,7 @@ namespace TOR_Core.CampaignMechanics.Career
                 Hero.MainHero.RemoveAttribute(item);
             }
             
-        }
+        }*/
     
         
         
@@ -207,22 +207,33 @@ namespace TOR_Core.CampaignMechanics.Career
             {
                 return;
             }
+            
+            var careerBody = CareerFactory.GetCareerBody(_careerId);
+
+            if (info.AcquiredTorCareerTree.IsReplicant(careerBody.CareerTree))
+            {
+                ExtendedInfoManager.Instance.GetHeroInfoFor(Hero.MainHero.GetInfoKey()).AcquiredTorCareerTree = careerBody.CareerTree;
+            }
+            
+            //else we have to reestablish the tree, reset all points
+                
 
             /*
             if (AcquiredCareer == CareerId.None&&_torCareerSkillPoints!=null)
             {
-                _torCareerSkillPoints.Clear();
+                
             }
             */
             
-            _currentSelectedCareerTemplate = CareerFactory.GetTemplate(_careerId);
-
+          
             Campaign.Current.MainParty.LeaderHero.AddAttribute("AbilityUser");
-            if (_currentSelectedCareerTemplate == null) return;
-            _canBeUsedOnHorse = _currentSelectedCareerTemplate.CanBeUsedOnHorse;
-            _requiredWeaponTypes = _currentSelectedCareerTemplate.CareerAbilityWeaponRequirements;
-            var nodes = _currentSelectedCareerTemplate.PassiveNodes.Cast<CareerTreeNode>().ToList();
-            nodes.AddRange(_currentSelectedCareerTemplate.KeyStoneNodes);
+            if (_currentSelectedCareer == null) return;
+            _canBeUsedOnHorse = _currentSelectedCareer.CanBeUsedOnHorse;
+            _requiredWeaponTypes = _currentSelectedCareer.CareerAbilityWeaponRequirements;
+
+            var nodes = _currentSelectedCareer.CareerTree;
+            //var nodes = _currentSelectedCareer.PassiveNodes.Cast<CareerTreeNode>().ToList();
+           // nodes.AddRange(_currentSelectedCareer.KeyStoneNodes);
             
             //unlocked Skill points
             
@@ -249,7 +260,7 @@ namespace TOR_Core.CampaignMechanics.Career
             }*/
 
             //TODO compare with other version
-            _currentSelectedCareerTemplate.CareerTree.IsReplicant(_currentSelectedCareerTemplate.CareerTree);
+            
             
             
             //Are all nodes reachable ? Traverse Tree for all stored ids. For Errors, Count them towards the unspend points
@@ -265,17 +276,14 @@ namespace TOR_Core.CampaignMechanics.Career
             }
             
             
-            
-            foreach (var node in _currentSelectedCareerTemplate.PassiveNodes)
+
+            foreach (var node in _currentSelectedCareer.CareerTree.GetPassiveNodes())
             {
                 if (node.State != TreeNodeState.Unlocked) continue;
                     AddPassiveNodeEffect(node);
             }
-
-            var structure = _currentSelectedCareerTemplate.Structure;
-            var SortedKeyStones = _currentSelectedCareerTemplate.KeyStoneNodes.OrderBy(x => structure.GetNodeLevel(x.Id));
             
-
+            var SortedKeyStones = _currentSelectedCareer.CareerTree.GetKeyStoneNodes().OrderBy(x => x.Level);
             foreach (var node in SortedKeyStones)
             {
                 AddAbilityModifiers(node); 
@@ -283,7 +291,7 @@ namespace TOR_Core.CampaignMechanics.Career
             }
             
 
-            _treeStructure = _currentSelectedCareerTemplate.CareerTree;
+            _treeStructure = _currentSelectedCareer.CareerTree;
         }
 
 
@@ -294,7 +302,7 @@ namespace TOR_Core.CampaignMechanics.Career
                 callback = "Currently no Career is Selected";
                 return false;
             }
-            var t= _currentSelectedCareerTemplate.CareerTree.FirstOrDefault(x =>nodeID==x.Id);
+            var t= _currentSelectedCareer.CareerTree.FirstOrDefault(x =>nodeID==x.Id);
             if(t!=null)
                 if (SelectNode(t))
                 {
@@ -314,7 +322,7 @@ namespace TOR_Core.CampaignMechanics.Career
         private bool SelectNode(CareerTreeNode selected)
         {
             //if(AvailableTorSkillPoints<=0) return;
-            var neighbors = _currentSelectedCareerTemplate.CareerTree.GetNeighbors(selected);
+            var neighbors = _currentSelectedCareer.CareerTree.GetNeighbors(selected);
 
             foreach (var neighbor  in neighbors)
             {
@@ -325,7 +333,7 @@ namespace TOR_Core.CampaignMechanics.Career
 
                 if (neighbor.State == TreeNodeState.Unlocked)
                 {
-                    _currentSelectedCareerTemplate.CareerTree.UnlockNode(selected);
+                    _currentSelectedCareer.CareerTree.UnlockNode(selected);
 
                     if (selected.GetType() == typeof(PassiveNode))
                     {

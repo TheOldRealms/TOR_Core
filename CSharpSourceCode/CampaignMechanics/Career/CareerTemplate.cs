@@ -10,6 +10,16 @@ using TOR_Core.BattleMechanics.DamageSystem;
 
 namespace TOR_Core.CampaignMechanics.Career
 {
+    public class CareerBody
+    {
+        public CareerId Id;
+        public string AbilityTemplateId; 
+        public List<WeaponClass> CareerAbilityWeaponRequirements = new List<WeaponClass>();
+        public bool CanBeUsedOnHorse = true;
+        public List<CareerTreeNode> CareerTree = new List<CareerTreeNode>();
+    }
+    
+    
     [Serializable]
     public class CareerTemplate //The Serializable Component that stores all passive nodes and key stones, and is load into the game on start up
     {
@@ -46,29 +56,38 @@ namespace TOR_Core.CampaignMechanics.Career
             CareerId = id;
         }
     }
+    
+    public enum NodeType
+    {
+        RootNode,
+        PassiveNode,
+        KeyStoneNode
+    }
 
     public class CareerTreeNode
     {
+        public NodeType NodeType;
+        
         [XmlAttribute] public string AttributeCondition = ""; // The Node requires the character to posses a certain attribute, like being a Questing Knight, to unlock Node
 
         [XmlAttribute] public string DescriptionText = "";
 
-        [XmlAttribute] public string Id = "";
-
-        [XmlAttribute] public List<string> LockNodes = new List<string>(); // On investing into this talent node, the list of  nodes that get blocked
+        [SaveableField(0)][XmlAttribute] public string Id = "";
+        [SaveableField(1)][XmlAttribute]public TreeNodeState State = TreeNodeState.Locked;
+        [SaveableField(2)][XmlAttribute] public List<string> LockNodes = new List<string>(); // On investing into this talent node, the list of  nodes that get blocked
         
-       
-
-        [XmlAttribute] // The node can have 1 or many parents. If parents are empty it's the root node. The parents only account for setting the "unlockable" state if other conditions are met.
-        public TreeNodeState State = TreeNodeState.Locked;
+        
+        // The node can have 1 or many parents. If parents are empty it's the root node. The parents only account for setting the "unlockable" state if other conditions are met.
+        
 
         [XmlAttribute] public string UnlockConditionText = "";
         
         
-        public List<string> ParentIDs = new List<string>();
-        
+        [SaveableField(3)] 
+        public List<string> ParentIDs = new List<string>(); 
+        [SaveableField(4)] 
         public List<string> ChildrenIDs = new List<string>();
-
+        [SaveableField(5)] 
         public int Level;
         
 
@@ -111,11 +130,11 @@ namespace TOR_Core.CampaignMechanics.Career
         public bool HasSameValues(CareerTreeNode node)
         {
             if (node == null) return false;
-            var type = node.GetType();
 
-            if (type != this.GetType())
+            if (NodeType != node.NodeType)
+            {
                 return false;
-
+            }
 
             if (Level != node.Level)
                 return false;
@@ -199,6 +218,7 @@ namespace TOR_Core.CampaignMechanics.Career
     {
         public RootNode()
         {
+            NodeType = NodeType.RootNode;
             Level = 0;
             ParentIDs = new List<string>() { "-1" };
             ChildrenIDs = new List<string>();
@@ -209,6 +229,11 @@ namespace TOR_Core.CampaignMechanics.Career
     [Serializable]
     public class PassiveNode : CareerTreeNode
     {
+        public PassiveNode()
+        {
+            NodeType = NodeType.PassiveNode;
+        }
+        
         [XmlAttribute] public float Amount;
 
         [XmlAttribute] public DamageType DamageType = DamageType.Physical;
@@ -219,6 +244,11 @@ namespace TOR_Core.CampaignMechanics.Career
     [Serializable]
     public class KeyStoneNode : CareerTreeNode
     {
+        public KeyStoneNode()
+        {
+            NodeType = NodeType.KeyStoneNode;
+        }
+        
         [XmlAttribute] public float AttributeValue; // Not mandatory but potential either a scale factor or addition 
 
         [XmlAttribute] public string CharacterAttribute = ""; // Attributes can serve to add new benefits for campaign via models : Example : grailknight: Requires attribute "QuestingKnight" to recruit Questing Knights 
@@ -491,12 +521,12 @@ namespace TOR_Core.CampaignMechanics.Career
         
         protected override void DefineClassTypes()
         {
-            AddClassDefinition(typeof(SubTree),1);
+            AddClassDefinition(typeof(CareerTreeNode),1);
         }
 
         protected override void DefineContainerDefinitions()
         {
-            ConstructContainerDefinition(typeof(List<SubTree>));
+            ConstructContainerDefinition(typeof(List<CareerTreeNode>));
         }
     }
     

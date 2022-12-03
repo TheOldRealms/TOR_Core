@@ -11,6 +11,8 @@ namespace TOR_Core.CampaignMechanics.Career
 {
     public class CareerFactory
     {
+        private static readonly Dictionary<CareerId, CareerBody> _careerBodies = new Dictionary<CareerId, CareerBody>();
+        
         private static readonly Dictionary<string, CareerTemplate> _templates = new Dictionary<string, CareerTemplate>();
 
 
@@ -26,6 +28,15 @@ namespace TOR_Core.CampaignMechanics.Career
             var list = new List<CareerTemplate>();
             foreach (var template in _templates.Values) list.Add(template);
             return list;
+        }
+
+        public static CareerBody GetCareerBody(CareerId id)
+        {
+            if (id == CareerId.None) return null;
+            else
+            {
+                return _careerBodies.ContainsKey(id) ? _careerBodies[id] : null;
+            }
         }
 
         public static CareerTemplate GetTemplate(CareerId id)
@@ -84,13 +95,26 @@ namespace TOR_Core.CampaignMechanics.Career
                     
                     var parent = career.Structure.FirstOrDefault(x => x.Parent == elem.Id);
                     if(parent!=null)
-                    elem.ChildrenIDs.AddRange(parent.Children);
+                        elem.ChildrenIDs.AddRange(parent.Children);
                 }
 
                 career.PassiveNodes = career.CareerTree.GetPassiveNodes();
                 career.KeyStoneNodes = career.CareerTree.GetKeyStoneNodes();
                 
                 _templates.Add(career.CareerId.ToString(), career);
+
+
+                CareerBody careerBody = new CareerBody();
+
+                careerBody.Id = career.CareerId;
+                careerBody.CareerTree = career.CareerTree;
+                careerBody.AbilityTemplateId = career.AbilityTemplateId;
+                careerBody.CanBeUsedOnHorse = career.CanBeUsedOnHorse;
+                careerBody.CareerAbilityWeaponRequirements = career.CareerAbilityWeaponRequirements;
+                
+                _careerBodies.Add(careerBody.Id,careerBody);
+
+
             }
         }
 

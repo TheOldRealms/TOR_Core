@@ -26,7 +26,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         [SaveableField(6)] private List<string> _knownLores = new List<string>();
         [SaveableField(7)] private List<string> _selectedAbilities = new List<string>();
         [SaveableField(8)] public CareerId AcquiredCareer = CareerId.None;
-        [SaveableField(9)] public List<string> AcquiredTorCareerTreeNodeIds = new List<string>();
+        [SaveableField(9)] public List<CareerTreeNode> AcquiredTorCareerTree = new List<CareerTreeNode>();
         [SaveableField(10)] public int AvailableTorCareerTreePoints;
      
         
@@ -126,7 +126,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             }
         }
         
-        public List<string> AllCareerSkillPoints
+        /*public List<string> AllCareerSkillPoints
         {
             get
             {
@@ -142,7 +142,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 list.AddRange(AcquiredTorCareerTreeNodeIds);
                 return list;
             }
-        }
+        }*/
 
         public List<string> SelectedAbilities
         {

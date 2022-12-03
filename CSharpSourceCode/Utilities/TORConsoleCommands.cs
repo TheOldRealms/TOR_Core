@@ -131,7 +131,7 @@ namespace TOR_Core.Utilities
             return "Could not found career";
         }*/
         
-        [CommandLineFunctionality.CommandLineArgumentFunction("selectNode", "tor.career")]
+        [CommandLineFunctionality.CommandLineArgumentFunction("selectNode", "tor")]
         public static string selectNode(List<string> arguments)
         {
             if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
@@ -141,10 +141,17 @@ namespace TOR_Core.Utilities
 
             var text="";
             var careerBase = CampaignBehaviorBase.GetCampaignBehavior<CareerCampaignBase>();
-            careerBase.SelectNode(arguments[0], out text);
+            if (careerBase.SelectNode(arguments[0], out text))
+            {
+                return $"Chose {arguments[0]}. ";
+            }
+            else
+            {
+                return $"Couldn't Choose {arguments[0]}. {text} ";
+            }
             
             
-            return $"Chose {arguments[0]}. "+text;;
+            
         }
         
         [CommandLineFunctionality.CommandLineArgumentFunction("change_Career", "tor")]
