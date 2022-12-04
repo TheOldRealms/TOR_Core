@@ -21,11 +21,11 @@ namespace TOR_Core.AbilitySystem
 
         public bool IsCasting { get; private set; }
         public string StringID { get; }
-        public AbilityTemplate Template { get; private set; }
-        public AbilityScript AbilityScript { get; private set; }
+        public AbilityTemplate Template { get; protected set; }
+        public AbilityScript AbilityScript { get; protected set; }
         public AbilityCrosshair Crosshair { get; private set; }
         public bool IsActivationPending { get; private set; }
-        public virtual AbilityEffectType AbilityEffectType => Template.AbilityEffectType;
+        public AbilityEffectType AbilityEffectType => Template.AbilityEffectType;
         public bool IsOnCooldown() => _timer.Enabled;
         public int GetCoolDownLeft() => _coolDownLeft;
         private bool IsSingleTarget() => Template.AbilityTargetType == AbilityTargetType.SingleAlly || Template.AbilityTargetType == AbilityTargetType.SingleEnemy;
@@ -243,7 +243,7 @@ namespace TOR_Core.AbilitySystem
                         frame.rotation =  Agent.Main.LookFrame.rotation;
                         break;
                     }
-                    case AbilityEffectType.AgentMoving:
+                    case AbilityEffectType.CareerAbilityEffect:
                         break;
                     default: 
                         break;
@@ -279,7 +279,7 @@ namespace TOR_Core.AbilitySystem
                     frame.rotation = casterAgent.Frame.rotation;
                     break;
                 }
-                case AbilityEffectType.AgentMoving:
+                case AbilityEffectType.CareerAbilityEffect:
                 {
                     frame = casterAgent.LookFrame;
                     break;
@@ -333,7 +333,7 @@ namespace TOR_Core.AbilitySystem
                     frame.rotation = casterAgent.Frame.rotation;
                     break;
                 }
-                case AbilityEffectType.AgentMoving:
+                case AbilityEffectType.CareerAbilityEffect:
                 {
                     frame = casterAgent.LookFrame;
                     break;
@@ -369,7 +369,7 @@ namespace TOR_Core.AbilitySystem
             return frame;
         }
 
-        private GameEntity SpawnEntity()
+        protected GameEntity SpawnEntity()
         {
             GameEntity entity = null;
             if (Template.ParticleEffectPrefab != "none")
@@ -409,7 +409,7 @@ namespace TOR_Core.AbilitySystem
             entity.SetPhysicsState(true, false);
         }
 
-        private void AddBehaviour(ref GameEntity entity, Agent casterAgent)
+        protected void AddBehaviour(ref GameEntity entity, Agent casterAgent)
         {
             switch (Template.AbilityEffectType)
             {
@@ -429,8 +429,8 @@ namespace TOR_Core.AbilitySystem
                 case AbilityEffectType.Summoning:
                     AddExactBehaviour<SummoningScript>(entity, casterAgent);
                     break;
-                case AbilityEffectType.AgentMoving:
-                    AddExactBehaviour<ShadowStepScript>(entity, casterAgent);
+                case AbilityEffectType.CareerAbilityEffect:
+                    AddExactBehaviour<CareerAbilityScript>(entity, casterAgent);
                     break;
                 case AbilityEffectType.Hex:
                     AddExactBehaviour<HexScript>(entity, casterAgent);
@@ -486,7 +486,7 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-        private void AddExactBehaviour<TAbilityScript>(GameEntity parentEntity, Agent casterAgent)
+        protected virtual void AddExactBehaviour<TAbilityScript>(GameEntity parentEntity, Agent casterAgent)
             where TAbilityScript : AbilityScript
         {
             parentEntity.CreateAndAddScriptComponent(typeof(TAbilityScript).Name);

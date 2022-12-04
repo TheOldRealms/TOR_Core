@@ -17,8 +17,8 @@ namespace TOR_Core.CharacterDevelopment
         public static MBReadOnlyList<CareerChoiceObject> All => Instance._readonlyCareerChoices;
 
 
-        private CareerChoiceObject _knightlyStrike;
-        public static CareerChoiceObject KnightlyStrike => Instance._knightlyStrike;
+        private CareerChoiceObject _strongerKnightlyStrike;
+        public static CareerChoiceObject StrongerKnightlyStrike => Instance._strongerKnightlyStrike;
 
         public TORCareerChoices()
         {
@@ -30,13 +30,22 @@ namespace TOR_Core.CharacterDevelopment
 
         private void RegisterAll()
         {
-            _knightlyStrike = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("KnightlyStrike"));
-            _allCareerChoices.Add(_knightlyStrike);
+            _strongerKnightlyStrike = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("StrongerKnightlyStrike"));
+            _allCareerChoices.Add(_strongerKnightlyStrike);
         }
 
         private void InitializeAll()
         {
-            _knightlyStrike.Initialize("KnightlyStrike", "Knightly Strike", TORCareers.GrailKnight, ChoiceType.Keystone);
+            _strongerKnightlyStrike.Initialize("StrongerKnightlyStrike", 
+                "Stronger Knightly Strike", 
+                TORCareers.GrailKnight, 
+                ChoiceType.Keystone, 
+                new CareerChoiceObject.MutationObject()
+                {
+                    FieldName = "DamageAmount",
+                    FieldValue = 0.2f,
+                    MutationType = MutationType.Multiply
+                });
         }
     }
 }

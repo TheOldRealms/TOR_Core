@@ -1,16 +1,12 @@
 ﻿using Helpers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.SaveSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CharacterDevelopment;
-using TOR_Core.CharacterDevelopment.CareerSystem;
 
 namespace TOR_Core.Extensions.ExtendedInfoSystem
 {
@@ -24,8 +20,8 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         [SaveableField(5)] private CharacterObject _baseCharacter;
         [SaveableField(6)] private List<string> _knownLores = new List<string>();
         [SaveableField(7)] private List<string> _selectedAbilities = new List<string>();
-        [SaveableField(8)] public string CareerName = "NoCareer";
-        [SaveableField(9)] public HeroCareerChoices CareerChoices = new HeroCareerChoices();
+        [SaveableField(8)] public string CareerID = string.Empty;
+        [SaveableField(9)] public List<string> CareerChoices = new List<string>();
 
         public CharacterObject BaseCharacter => _baseCharacter;
 
@@ -173,14 +169,11 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         protected override void DefineClassTypes()
         {
             AddClassDefinition(typeof(HeroExtendedInfo), 1);
-            AddClassDefinition(typeof(CareerChoiceObject), 2);
-            AddClassDefinition(typeof(HeroCareerChoices), 3);
         }
 
         protected override void DefineContainerDefinitions()
         {
             ConstructContainerDefinition(typeof(Dictionary<string, HeroExtendedInfo>));
-            ConstructContainerDefinition(typeof(Dictionary<CareerChoiceObject, int>));
         }
     }
 }

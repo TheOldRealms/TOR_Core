@@ -6,7 +6,7 @@
         Spell,
         Prayer,
         ItemBound,
-        SpecialMove
+        CareerAbility
     }
 
     public enum AbilityEffectType
@@ -22,7 +22,7 @@
         Bombardment,
         Blast,
         ArtilleryPlacement,
-        AgentMoving,
+        CareerAbilityEffect
     }
 
     public enum AbilityTargetType

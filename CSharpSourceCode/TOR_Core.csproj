@@ -352,6 +352,7 @@
     <Compile Include="AbilitySystem\AbilityManagerMissionLogic.cs" />
     <Compile Include="AbilitySystem\AbilityTemplate.cs" />
     <Compile Include="AbilitySystem\AbilityType.cs" />
+    <Compile Include="AbilitySystem\CareerAbility.cs" />
     <Compile Include="AbilitySystem\CrossHairs\AbilityCrosshair.cs" />
     <Compile Include="AbilitySystem\CrossHairs\Crosshair.cs" />
     <Compile Include="AbilitySystem\CrossHairs\CrosshairType.cs" />
@@ -370,6 +371,7 @@
     <Compile Include="AbilitySystem\Scripts\AugmentScript.cs" />
     <Compile Include="AbilitySystem\Scripts\BlastScript.cs" />
     <Compile Include="AbilitySystem\Scripts\BombardmentScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\CareerAbilityScript.cs" />
     <Compile Include="AbilitySystem\Scripts\HealScript.cs" />
     <Compile Include="AbilitySystem\Scripts\HexScript.cs" />
     <Compile Include="AbilitySystem\Scripts\MissileScript.cs" />
@@ -487,7 +489,6 @@
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceObject.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerHelper.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerObject.cs" />
-    <Compile Include="CharacterDevelopment\CareerSystem\HeroCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\TORAttributes.cs" />
     <Compile Include="CharacterDevelopment\TORCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\TORCareers.cs" />

@@ -173,7 +173,17 @@ namespace TOR_Core.Extensions
             bool result = false;
             if (hero != null && hero.GetExtendedInfo() != null)
             {
-                return hero.GetExtendedInfo().CareerChoices.GetPropertyValue(choice) != 0;
+                return hero.GetExtendedInfo().CareerChoices.Contains(choice.StringId);
+            }
+            return result;
+        }
+
+        public static bool HasCareer(this Hero hero, CareerObject career)
+        {
+            bool result = false;
+            if (hero != null && hero.GetExtendedInfo() != null)
+            {
+                return hero.GetExtendedInfo().CareerID == career.StringId;
             }
             return result;
         }

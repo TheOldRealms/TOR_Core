@@ -73,9 +73,9 @@ namespace TOR_Core.AbilitySystem
             {
                 ability = new Prayer(template);
             }
-            else if (template.AbilityType == AbilityType.SpecialMove)
+            else if (template.AbilityType == AbilityType.CareerAbility)
             {
-                ability = new SpecialMove(template);
+                ability = new CareerAbility(template, caster);
             }
             else if(template.AbilityType == AbilityType.ItemBound)
             {

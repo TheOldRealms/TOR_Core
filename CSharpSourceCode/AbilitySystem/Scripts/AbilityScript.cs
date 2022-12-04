@@ -205,7 +205,7 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         protected void TriggerEffect(Vec3 position, Vec3 normal)
         {
-            var effect = TriggeredEffectManager.CreateNew(_ability?.Template.TriggeredEffectID);
+            var effect = GetEffectToTrigger();
             if (effect != null)
             {
                 if(_ability.Template.AbilityTargetType == AbilityTargetType.Self)
@@ -218,6 +218,11 @@ namespace TOR_Core.AbilitySystem.Scripts
                 }
                 else effect.Trigger(position, normal, _casterAgent, _ability.Template);
             }
+        }
+
+        protected virtual TriggeredEffect GetEffectToTrigger()
+        {
+            return TriggeredEffectManager.CreateNew(_ability?.Template.TriggeredEffectID);
         }
 
         protected override void OnRemoved(int removeReason)

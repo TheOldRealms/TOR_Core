@@ -43,5 +43,28 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         public int NumberToSummon = 0;
 
         public StatusEffectTemplate AssociatedStatusEffect => StatusEffectManager.GetStatusEffectTemplateWithId(ImbuedStatusEffectID);
+
+        public TriggeredEffectTemplate Clone(string newId)
+        {
+            return new TriggeredEffectTemplate()
+            {
+                StringID = newId,
+                BurstParticleEffectPrefab = BurstParticleEffectPrefab,
+                SoundEffectId = SoundEffectId,
+                SoundEffectLength = SoundEffectLength,
+                DamageType = DamageType,
+                DamageAmount = DamageAmount,
+                Radius = Radius,
+                HasShockWave = HasShockWave,
+                TargetType = TargetType,
+                ImbuedStatusEffectID = ImbuedStatusEffectID,
+                ImbuedStatusEffectDuration = ImbuedStatusEffectDuration,
+                DamageVariance = DamageVariance,
+                ScriptNameToTrigger = ScriptNameToTrigger,
+                SpawnPrefabName = SpawnPrefabName,
+                TroopIdToSummon = TroopIdToSummon,
+                NumberToSummon = NumberToSummon
+            };
+        }
     }
 }

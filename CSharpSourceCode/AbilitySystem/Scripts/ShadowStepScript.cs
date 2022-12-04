@@ -6,7 +6,7 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.AbilitySystem.Scripts
 {
-    public class ShadowStepScript : AbilityScript
+    public class ShadowStepScript : CareerAbilityScript
     {
         public override void Initialize(Ability ability)
         {

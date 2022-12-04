@@ -125,7 +125,7 @@ namespace TOR_Core.Utilities
             var match = TORCareers.All.FirstOrDefault(x => x.ToString() == careerName);
             if(match != null)
             {
-                Hero.MainHero.GetExtendedInfo().CareerName = match.StringId;
+                Hero.MainHero.GetExtendedInfo().CareerID = match.StringId;
                 return string.Format("Player now has {0} career. \n", match.Name);
             }
             else return "No career matching the given argument found. \n";
@@ -139,12 +139,12 @@ namespace TOR_Core.Utilities
 
             var careerChoiceName = arguments[0];
             var match = TORCareerChoices.All.FirstOrDefault(x => x.ToString() == careerChoiceName);
-            if (match != null)
+            if (match != null && !Hero.MainHero.GetExtendedInfo().CareerChoices.Contains(match.StringId))
             {
-                Hero.MainHero.GetExtendedInfo().CareerChoices.SetPropertyValue(match, 1);
+                Hero.MainHero.GetExtendedInfo().CareerChoices.Add(match.StringId);
                 return string.Format("Player now has {0} career choice. \n", match.Name);
             }
-            else return "No career choice matching the given argument found. \n";
+            else return "No career choice matching the given argument found or choice is already present on hero. \n";
         }
     }
 }
