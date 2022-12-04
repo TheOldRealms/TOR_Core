@@ -131,5 +131,51 @@ namespace TOR_Core.AbilitySystem
             }
             return list;
         }
+
+        public AbilityTemplate Clone(string newId)
+        {
+            return new AbilityTemplate(newId)
+            {
+                Name = Name,
+                SpriteName  = SpriteName,
+                CoolDown = CoolDown,
+                WindsOfMagicCost = WindsOfMagicCost,
+                BaseMisCastChance = BaseMisCastChance,
+                Duration = Duration,
+                Radius = Radius,
+                AbilityType = AbilityType,
+                AbilityEffectType = AbilityEffectType,
+                BaseMovementSpeed = BaseMovementSpeed,
+                TickInterval = TickInterval,
+                TriggerType = TriggerType,
+                TriggeredEffectID = TriggeredEffectID,
+                HasLight = HasLight,
+                LightIntensity = LightIntensity,
+                LightRadius = LightRadius,
+                LightColorRGB = LightColorRGB,
+                LightFlickeringMagnitude = LightFlickeringMagnitude,
+                LightFlickeringInterval = LightFlickeringInterval,
+                ShadowCastEnabled = ShadowCastEnabled,
+                ParticleEffectPrefab = ParticleEffectPrefab,
+                ParticleEffectSizeModifier = ParticleEffectSizeModifier,
+                SoundEffectToPlay = SoundEffectToPlay,
+                ShouldSoundLoopOverDuration = ShouldSoundLoopOverDuration,
+                CastType = CastType,
+                CastTime = CastTime,
+                AnimationActionName = AnimationActionName,
+                AbilityTargetType = AbilityTargetType,
+                Offset = Offset,
+                CrosshairType = CrosshairType,
+                MinDistance = MinDistance,
+                MaxDistance = MaxDistance,
+                TargetCapturingRadius = TargetCapturingRadius,
+                SpellTier = SpellTier,
+                BelongsToLoreID = BelongsToLoreID,
+                TooltipDescription = TooltipDescription,
+                MaxRandomDeviation = MaxRandomDeviation,
+                ShouldRotateVisuals = ShouldRotateVisuals,
+                VisualsRotationVelocity = VisualsRotationVelocity
+            };
+        }
     }
 }

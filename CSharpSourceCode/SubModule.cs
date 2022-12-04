@@ -206,6 +206,9 @@ namespace TOR_Core
         {
             game.ObjectManager.RegisterType<TORCustomSettlementComponent>("TORCustomSettlementComponent", "TORCustomSettlementComponents", 99U, true);
             game.ObjectManager.RegisterType<CareerObject>("Career", "Careers", 100U, true);
+            game.ObjectManager.RegisterType<CareerChoiceObject>("CareerChoice", "CareerChoices", 100U, true);
+            _ = new TORCareers();
+            _ = new TORCareerChoices();
         }
 
         private static void ConfigureLogging()

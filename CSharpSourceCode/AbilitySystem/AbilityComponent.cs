@@ -31,7 +31,7 @@ namespace TOR_Core.AbilitySystem
                             ability.OnCastComplete += OnCastComplete;
                             if (ability is SpecialMove)
                             {
-                                _specialMove = (SpecialMove)ability;
+                                SpecialMove = (SpecialMove)ability;
                             }
                             else
                             {
@@ -48,7 +48,7 @@ namespace TOR_Core.AbilitySystem
                         TORCommon.Log("Failed instantiating ability class: " + item, LogLevel.Error);
                     }
                 }
-                if (Agent.IsVampire() && _specialMove == null) _specialMove = (SpecialMove)AbilityFactory.CreateNew("ShadowStep", Agent);
+                if (Agent.IsVampire() && SpecialMove == null) SpecialMove = (SpecialMove)AbilityFactory.CreateNew("ShadowStep", Agent);
             }
             if (Agent.CanPlaceArtillery())
             {
@@ -215,7 +215,6 @@ namespace TOR_Core.AbilitySystem
         }
 
         private Ability _currentAbility = null;
-        private SpecialMove _specialMove = null;
         private readonly List<Ability> _knownAbilitySystem = new List<Ability>();
         private int _currentAbilityIndex;
         public Ability CurrentAbility
@@ -227,7 +226,7 @@ namespace TOR_Core.AbilitySystem
                 CurrentAbilityChanged?.Invoke(_currentAbility.Crosshair);
             }
         }
-        public SpecialMove SpecialMove { get => _specialMove; private set => _specialMove = value; }
+        public SpecialMove SpecialMove { get; private set; }
         public List<Ability> KnownAbilitySystem { get => _knownAbilitySystem; }
         public delegate void CurrentAbilityChangedHandler(AbilityCrosshair crosshair);
         public event CurrentAbilityChangedHandler CurrentAbilityChanged;

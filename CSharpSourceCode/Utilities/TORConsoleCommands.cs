@@ -5,6 +5,7 @@ using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 using TOR_Core.AbilitySystem;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Quests;
 
@@ -113,5 +114,37 @@ namespace TOR_Core.Utilities
                 (current, spell) =>
                     $"{current}{spell}\n"
             );
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("add_career", "tor")]
+        public static string AddCareerToPlayer(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+
+            var careerName = arguments[0];
+            var match = TORCareers.All.FirstOrDefault(x => x.ToString() == careerName);
+            if(match != null)
+            {
+                Hero.MainHero.GetExtendedInfo().CareerName = match.StringId;
+                return string.Format("Player now has {0} career. \n", match.Name);
+            }
+            else return "No career matching the given argument found. \n";
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("add_career_choice", "tor")]
+        public static string AddCareerChoiceToPlayer(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+
+            var careerChoiceName = arguments[0];
+            var match = TORCareerChoices.All.FirstOrDefault(x => x.ToString() == careerChoiceName);
+            if (match != null)
+            {
+                Hero.MainHero.GetExtendedInfo().CareerChoices.SetPropertyValue(match, 1);
+                return string.Format("Player now has {0} career choice. \n", match.Name);
+            }
+            else return "No career choice matching the given argument found. \n";
+        }
     }
 }

@@ -484,7 +484,13 @@
     <Compile Include="CampaignMechanics\TORPartyHealCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORPartyUpgraderCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORWanderersCampaignBehavior.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceObject.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerHelper.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerObject.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\HeroCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\TORAttributes.cs" />
+    <Compile Include="CharacterDevelopment\TORCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\TORCareers.cs" />
     <Compile Include="CharacterDevelopment\TORCharacterTraits.cs" />
     <Compile Include="CharacterDevelopment\TORPerkHandlerCampaignBehavior.cs" />
     <Compile Include="CharacterDevelopment\TORPerks.cs" />

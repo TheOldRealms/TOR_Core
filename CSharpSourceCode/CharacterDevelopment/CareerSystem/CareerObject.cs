@@ -14,18 +14,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
     public class CareerObject : PropertyObject
     {
         private Predicate<Hero> _condition;
-        private AbilityTemplate _careerAbility;
-        private CareerNode _rootNode;
         public CareerObject(string stringId) : base(stringId) { }
 
         public override string ToString() => Name.ToString();
 
-        public void Initialize(string name, string description, Predicate<Hero> condition, string careerAbilityID)
+        public void Initialize(string name, string description, Predicate<Hero> condition)
         {
             base.Initialize(new TextObject(name), new TextObject(description));
             _condition = condition;
-            _careerAbility = AbilityFactory.GetTemplate(careerAbilityID);
-            AddNode(new CareerNode(name + "Root", (hero) => hero.AddAbility(_careerAbility.StringID)));
         }
 
         public bool IsConditionsMet(Hero hero)
@@ -36,15 +32,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 result = true;
             }
             return result;
-        }
-
-        public void AddNode(CareerNode node, string nextNodeId = null)
-        {
-            if (nextNodeId == null && _rootNode == null && node != null) _rootNode = node;
-            else
-            {
-
-            }
         }
     }
 }

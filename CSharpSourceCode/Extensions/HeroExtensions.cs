@@ -7,6 +7,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.Extensions
@@ -165,6 +166,16 @@ namespace TOR_Core.Extensions
             if(hero!=null)
                 return hero.Occupation == Occupation.Special&& hero.Name.Contains("Master Engineer");
             return false;
+        }
+
+        public static bool HasCareerChoice(this Hero hero, CareerChoiceObject choice)
+        {
+            bool result = false;
+            if (hero != null && hero.GetExtendedInfo() != null)
+            {
+                return hero.GetExtendedInfo().CareerChoices.GetPropertyValue(choice) != 0;
+            }
+            return result;
         }
 
         public static string GetInfoKey(this Hero hero)
