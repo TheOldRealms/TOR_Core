@@ -5,20 +5,20 @@ using TaleWorlds.Library;
 
 namespace TOR_Core.AbilitySystem
 {
-    public class SpecialMoveHUD_VM : ViewModel
+    public class CareerAbilityHUD_VM : ViewModel
     {
         private bool _isVisible;
         private int _chargeLevel;
 
-        public SpecialMoveHUD_VM() : base() { }
+        public CareerAbilityHUD_VM() : base() { }
 
         public void UpdateProperties()
         {
             IsVisible = true;
-            ChargeLevel = Convert.ToInt32(SpecialMove.ChargeLevel);
+            ChargeLevel = Convert.ToInt32(CareerAbility.ChargeLevel);
         }
 
-        public SpecialMove SpecialMove { get; set; }
+        public CareerAbility CareerAbility { get; set; }
 
         [DataSourceProperty]
         public bool IsVisible

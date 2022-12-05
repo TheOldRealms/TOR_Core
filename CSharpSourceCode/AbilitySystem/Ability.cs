@@ -25,6 +25,9 @@ namespace TOR_Core.AbilitySystem
         public AbilityScript AbilityScript { get; protected set; }
         public AbilityCrosshair Crosshair { get; private set; }
         public bool IsActivationPending { get; private set; }
+
+        public bool IsActive => IsCasting || IsActivationPending || (AbilityScript != null && !AbilityScript.IsFading);
+
         public AbilityEffectType AbilityEffectType => Template.AbilityEffectType;
         public bool IsOnCooldown() => _timer.Enabled;
         public int GetCoolDownLeft() => _coolDownLeft;

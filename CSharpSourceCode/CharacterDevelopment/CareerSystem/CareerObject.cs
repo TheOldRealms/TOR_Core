@@ -49,7 +49,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 if(info.CareerID == StringId)
                 {
                     ability.ChargeType = _chargeType;
-                    var choices = TORCareerChoices.All.Where(x => hero.GetExtendedInfo().CareerChoices.Contains(x.StringId));
+                    var choices = TORCareerChoices.All.Where(x => info.CareerChoices.Contains(x.StringId));
                     foreach(var choice in choices)
                     {
                         choice.MutateAbility(ability, hero);
@@ -65,7 +65,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 var info = hero.GetExtendedInfo();
                 if (info.CareerID == StringId)
                 {
-                    var choices = TORCareerChoices.All.Where(x => hero.GetExtendedInfo().CareerChoices.Contains(x.StringId));
+                    var choices = TORCareerChoices.All.Where(x => info.CareerChoices.Contains(x.StringId));
                     foreach (var choice in choices)
                     {
                         choice.MutateEffect(effect, hero);

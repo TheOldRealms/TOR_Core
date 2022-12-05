@@ -17,7 +17,7 @@ namespace TOR_Core.AbilitySystem
     {
         private Hero _ownerHero = null;
         private CareerObject _career = null;
-        public float ChargeLevel { get; private set; }
+        public float ChargeLevel { get; private set; } = 100f;
         public bool IsCharged => ChargeLevel >= 100f;
         public ChargeType ChargeType { get; set; } = ChargeType.CooldownOnly;
 
@@ -26,7 +26,7 @@ namespace TOR_Core.AbilitySystem
             _ownerHero = agent.GetHero();
             if(_ownerHero != null)
             {
-                _career = TORCareers.All.FirstOrDefault(x => x.AbilityTemplateID == Template.StringID);
+                _career = _ownerHero.GetCareer();
                 if(_career != null)
                 {
                     Template = template.Clone(template.StringID + "_modified_" + _ownerHero.StringId);
@@ -40,7 +40,7 @@ namespace TOR_Core.AbilitySystem
             if(_career.AbilityScriptType != null)
             {
                 parentEntity.CreateAndAddScriptComponent(_career.AbilityScriptType.Name);
-                AbilityScript = parentEntity.GetFirstScriptOfType<TAbilityScript>();
+                AbilityScript = (AbilityScript)parentEntity.GetFirstScriptOfType(_career.AbilityScriptType);
                 var prefabEntity = SpawnEntity();
                 parentEntity.AddChild(prefabEntity);
                 AbilityScript?.Initialize(this);

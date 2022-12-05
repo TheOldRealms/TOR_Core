@@ -17,6 +17,21 @@ namespace TOR_Core.AbilitySystem
     {
         public AbilityComponent(Agent agent) : base(agent)
         {
+            if(Game.Current.GameType is Campaign && agent.GetHero() != null && agent.GetHero() == Hero.MainHero)
+            {
+                var career = Hero.MainHero.GetCareer();
+                if(career != null)
+                {
+                    var ability = AbilityFactory.CreateNew(career.AbilityTemplateID, agent);
+                    if (ability != null && ability is CareerAbility)
+                    {
+                        CareerAbility = (CareerAbility)ability;
+                        CareerAbility.OnCastStart += OnCastStart;
+                        CareerAbility.OnCastComplete += OnCastComplete;
+                        _knownAbilitySystem.Add(CareerAbility);
+                    }
+                }
+            }
             var abilities = agent.GetSelectedAbilities();
             if (abilities.Count > 0)
             {
@@ -29,14 +44,7 @@ namespace TOR_Core.AbilitySystem
                         {
                             ability.OnCastStart += OnCastStart;
                             ability.OnCastComplete += OnCastComplete;
-                            if (ability is SpecialMove)
-                            {
-                                SpecialMove = (SpecialMove)ability;
-                            }
-                            else
-                            {
-                                if(ability.Template.AbilityType != AbilityType.ItemBound) _knownAbilitySystem.Add(ability);
-                            }
+                            if (ability.Template.AbilityType != AbilityType.ItemBound) _knownAbilitySystem.Add(ability);
                         }
                         else
                         {
@@ -48,7 +56,6 @@ namespace TOR_Core.AbilitySystem
                         TORCommon.Log("Failed instantiating ability class: " + item, LogLevel.Error);
                     }
                 }
-                if (Agent.IsVampire() && SpecialMove == null) SpecialMove = (SpecialMove)AbilityFactory.CreateNew("ShadowStep", Agent);
             }
             if (Agent.CanPlaceArtillery())
             {
@@ -185,9 +192,12 @@ namespace TOR_Core.AbilitySystem
             SelectAbility(_currentAbilityIndex);
         }
 
-        public void StopSpecialMove()
+        public void OnInterrupt()
         {
-            ((ShadowStepScript)SpecialMove.AbilityScript)?.Stop();
+            if(CareerAbility.AbilityScript != null && CareerAbility.AbilityScript is ShadowStepScript)
+            {
+                ((ShadowStepScript)CareerAbility.AbilityScript)?.Stop();
+            }
         }
 
         public List<AbilityTemplate> GetKnownAbilityTemplates()
@@ -226,7 +236,7 @@ namespace TOR_Core.AbilitySystem
                 CurrentAbilityChanged?.Invoke(_currentAbility.Crosshair);
             }
         }
-        public SpecialMove SpecialMove { get; private set; }
+        public CareerAbility CareerAbility { get; private set; }
         public List<Ability> KnownAbilitySystem { get => _knownAbilitySystem; }
         public delegate void CurrentAbilityChangedHandler(AbilityCrosshair crosshair);
         public event CurrentAbilityChangedHandler CurrentAbilityChanged;

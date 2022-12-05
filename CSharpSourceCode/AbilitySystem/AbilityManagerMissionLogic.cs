@@ -36,7 +36,7 @@ namespace TOR_Core.AbilitySystem
         private readonly string _castingStanceParticleName = "psys_spellcasting_stance";
         private SummonedCombatant _defenderSummoningCombatant;
         private SummonedCombatant _attackerSummoningCombatant;
-        private readonly float DamagePortionForChargingSpecialMove = 0.25f;
+        private readonly float DamagePortionForChargingCareerAbility = 0.25f;
         private Dictionary<Team, int> _artillerySlots = new Dictionary<Team, int>();
 
         private GameKey _spellcastingModeKey;
@@ -107,7 +107,7 @@ namespace TOR_Core.AbilitySystem
             var comp = affectorAgent.GetComponent<AbilityComponent>();
             if (comp != null)
             {
-                if (comp.SpecialMove != null) comp.SpecialMove.AddCharge(blow.InflictedDamage * DamagePortionForChargingSpecialMove);
+                if (comp.CareerAbility != null && comp.CareerAbility.ChargeType == ChargeType.DamageDone) comp.CareerAbility.AddCharge(blow.InflictedDamage * DamagePortionForChargingCareerAbility);
             }
         }
 
@@ -236,11 +236,11 @@ namespace TOR_Core.AbilitySystem
             if (Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) ||
                 Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey))
             {
-                if( _abilityComponent != null && _abilityComponent.SpecialMove != null)
+                if( _abilityComponent != null && _abilityComponent.CareerAbility != null)
                     if (_currentState == AbilityModeState.Off  &&
                         IsCurrentCrossHairCompatible())
                     {
-                        _abilityComponent.SpecialMove.TryCast(Agent.Main);
+                        _abilityComponent.CareerAbility.TryCast(Agent.Main);
                     }
             }
             
@@ -282,11 +282,11 @@ namespace TOR_Core.AbilitySystem
                 {
                     Agent.Main.CastCurrentAbility();
                 }
-                if(_abilityComponent.SpecialMove != null && _abilityComponent.SpecialMove.IsUsing) _abilityComponent.StopSpecialMove();
+                if(_abilityComponent.CareerAbility != null && _abilityComponent.CareerAbility.IsActive) _abilityComponent.OnInterrupt();
             }
             else if (Input.IsKeyPressed(InputKey.RightMouseButton))
             {
-                if (_abilityComponent.SpecialMove != null && _abilityComponent.SpecialMove.IsUsing) _abilityComponent.StopSpecialMove();
+                if (_abilityComponent.CareerAbility != null && _abilityComponent.CareerAbility.IsActive) _abilityComponent.OnInterrupt();
             }
             else if (Input.IsKeyPressed(InputKey.MouseScrollUp) && _currentState != AbilityModeState.Off)
             {

@@ -56,7 +56,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         protected override void OnTick(float dt)
         {
             if (_ability == null) return;
-            if (_isFading) return;
+            if (IsFading) return;
             _timeSinceLastTick += dt;
             UpdateLifeTime(dt);
 
@@ -115,8 +115,6 @@ namespace TOR_Core.AbilitySystem.Scripts
             RestoreKeyBindings();
             base.OnRemoved(removeReason);
         }
-
-        public bool IsFadinOut { get => _isFading; }
 
         private float _speed = 10f;
         private InputKey[] _axisKeys = new InputKey[4];

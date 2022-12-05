@@ -121,8 +121,8 @@ namespace TOR_Core.Utilities
             if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
                 return CampaignCheats.ErrorType;
 
-            var careerName = arguments[0];
-            var match = TORCareers.All.FirstOrDefault(x => x.ToString() == careerName);
+            var careerID = arguments[0];
+            var match = TORCareers.All.FirstOrDefault(x => x.StringId == careerID);
             if(match != null)
             {
                 Hero.MainHero.GetExtendedInfo().CareerID = match.StringId;
@@ -137,8 +137,8 @@ namespace TOR_Core.Utilities
             if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
                 return CampaignCheats.ErrorType;
 
-            var careerChoiceName = arguments[0];
-            var match = TORCareerChoices.All.FirstOrDefault(x => x.ToString() == careerChoiceName);
+            var careerChoiceID = arguments[0];
+            var match = TORCareerChoices.All.FirstOrDefault(x => x.StringId == careerChoiceID);
             if (match != null && !Hero.MainHero.GetExtendedInfo().CareerChoices.Contains(match.StringId))
             {
                 Hero.MainHero.GetExtendedInfo().CareerChoices.Add(match.StringId);

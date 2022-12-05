@@ -38,10 +38,33 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     switch (_mutation.MutationType)
                     {
                         case MutationType.Replace:
+                            traverse.Field(_mutation.FieldName).SetValue(_mutation.FieldValue);
                             break;
                         case MutationType.Multiply:
+                            var type = traverse.Field(_mutation.FieldName).GetValueType();
+                            if (type == typeof(float))
+                            {
+                                var value = traverse.Field(_mutation.FieldName).GetValue<float>();
+                                traverse.Field(_mutation.FieldName).SetValue(value * (1 + Convert.ToSingle(_mutation.FieldValue)));
+                            }
+                            else if(type == typeof(int))
+                            {
+                                var value = traverse.Field(_mutation.FieldName).GetValue<int>();
+                                traverse.Field(_mutation.FieldName).SetValue(value * (1 + Convert.ToInt32(_mutation.FieldValue)));
+                            }
                             break;
                         case MutationType.Add:
+                            var type2 = traverse.Field(_mutation.FieldName).GetValueType();
+                            if (type2 == typeof(float))
+                            {
+                                var value = traverse.Field(_mutation.FieldName).GetValue<float>();
+                                traverse.Field(_mutation.FieldName).SetValue(value + Convert.ToSingle(_mutation.FieldValue));
+                            }
+                            else if (type2 == typeof(int))
+                            {
+                                var value = traverse.Field(_mutation.FieldName).GetValue<int>();
+                                traverse.Field(_mutation.FieldName).SetValue(value + Convert.ToInt32(_mutation.FieldValue));
+                            }
                             break;
                         default:
                             break;
@@ -60,10 +83,33 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     switch (_mutation.MutationType)
                     {
                         case MutationType.Replace:
+                            traverse.Field(_mutation.FieldName).SetValue(_mutation.FieldValue);
                             break;
                         case MutationType.Multiply:
+                            var type = traverse.Field(_mutation.FieldName).GetValueType();
+                            if (type == typeof(float))
+                            {
+                                var value = traverse.Field(_mutation.FieldName).GetValue<float>();
+                                traverse.Field(_mutation.FieldName).SetValue(value * (1 + Convert.ToSingle(_mutation.FieldValue)));
+                            }
+                            else if (type == typeof(int))
+                            {
+                                var value = traverse.Field(_mutation.FieldName).GetValue<int>();
+                                traverse.Field(_mutation.FieldName).SetValue(value * (1 + Convert.ToInt32(_mutation.FieldValue)));
+                            }
                             break;
                         case MutationType.Add:
+                            var type2 = traverse.Field(_mutation.FieldName).GetValueType();
+                            if (type2 == typeof(float))
+                            {
+                                var value = traverse.Field(_mutation.FieldName).GetValue<float>();
+                                traverse.Field(_mutation.FieldName).SetValue(value + Convert.ToSingle(_mutation.FieldValue));
+                            }
+                            else if (type2 == typeof(int))
+                            {
+                                var value = traverse.Field(_mutation.FieldName).GetValue<int>();
+                                traverse.Field(_mutation.FieldName).SetValue(value + Convert.ToInt32(_mutation.FieldValue));
+                            }
                             break;
                         default:
                             break;

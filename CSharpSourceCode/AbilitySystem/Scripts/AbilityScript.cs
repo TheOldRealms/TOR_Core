@@ -17,7 +17,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         private SoundEvent _sound;
         protected Agent _casterAgent;
         protected float _abilityLife = -1;
-        protected bool _isFading;
+        public bool IsFading { get; protected set; }
         protected float _timeSinceLastTick = 0;
         private bool _hasCollided;
         private bool _hasTickedOnce;
@@ -77,7 +77,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         {
             base.OnTick(dt);
             if (_ability == null) return;
-            if (_isFading) return;
+            if (IsFading) return;
             _timeSinceLastTick += dt;
             UpdateLifeTime(dt);
 
@@ -132,7 +132,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             else _abilityLife += dt;
             if (_ability != null)
             {
-                if (_abilityLife > _ability.Template.Duration && !_isFading)
+                if (_abilityLife > _ability.Template.Duration && !IsFading)
                 {
                     Stop();
                 }
@@ -197,7 +197,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             if (!_hasCollided && position.IsValid && position.IsNonZero)
             {
                 GameEntity.FadeOut(0.05f, true);
-                _isFading = true;
+                IsFading = true;
                 TriggerEffect(position, normal);
                 _hasCollided = true;
             }
@@ -237,7 +237,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         public virtual void Stop()
         {
             GameEntity.FadeOut(0.05f, true);
-            _isFading = true;
+            IsFading = true;
         }
     }
 }

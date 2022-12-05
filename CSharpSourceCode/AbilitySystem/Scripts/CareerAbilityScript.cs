@@ -22,7 +22,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                     var info = _casterAgent.GetHero().GetExtendedInfo();
                     if(info != null && string.IsNullOrEmpty(info.CareerID))
                     {
-                        var career = TORCareers.All.FirstOrDefault(x => x.StringId == info.CareerID);
+                        var career = _casterAgent.GetHero().GetCareer();
                         if(career != null)
                         {
                             var template = TriggeredEffectManager.GetTemplateWithId(id).Clone(id + "_modified_" + _casterAgent.Index);

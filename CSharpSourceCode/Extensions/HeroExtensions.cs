@@ -7,6 +7,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 
@@ -184,6 +185,16 @@ namespace TOR_Core.Extensions
             if (hero != null && hero.GetExtendedInfo() != null)
             {
                 return hero.GetExtendedInfo().CareerID == career.StringId;
+            }
+            return result;
+        }
+
+        public static CareerObject GetCareer(this Hero hero)
+        {
+            CareerObject result = null;
+            if (hero != null && hero.GetExtendedInfo() != null && !string.IsNullOrEmpty(hero.GetExtendedInfo().CareerID))
+            {
+                result = TORCareers.All.FirstOrDefault(x=>x.StringId == hero.GetExtendedInfo().CareerID);
             }
             return result;
         }
