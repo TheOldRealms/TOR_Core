@@ -10,7 +10,9 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
 using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
 using TOR_Core.BattleMechanics.AI.Decision;
+using TOR_Core.BattleMechanics.AI.TeamBehavior;
 using TOR_Core.BattleMechanics.TriggeredEffect.Scripts;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.Artillery
 {
@@ -50,7 +52,7 @@ namespace TOR_Core.BattleMechanics.Artillery
         public float Recoil2Duration = 0.8f;
         public string DisplayName = "Artillery";
         public float BaseMuzzleVelocity = 40f;
-        public bool UsesCalculatedMuzzleVelocity = false;
+        public bool PreferHighAngle = false;
         private int _fireSoundIndex;
         private int _fireSoundIndex2;
         private SynchedMissionObject _body;
@@ -74,35 +76,13 @@ namespace TOR_Core.BattleMechanics.Artillery
         private int _rotationDirection = 0;
         private float _lastCurrentDirection;
 
-        protected override float ShootingSpeed
-        {
-            get
-            {
-                if (UsesCalculatedMuzzleVelocity)
-                {
-                    var cheat = MathF.Sqrt(TargetDistance) * 3.1415f;
-                    return MathF.Max(10f, cheat + TargetDistance * 0.1f);
-                }
-                else return BaseMuzzleVelocity;
-            }
-        }
+        protected override float ShootingSpeed => BaseMuzzleVelocity;
         protected override Vec3 ShootingDirection => Projectile.GameEntity.GetGlobalFrame().rotation.f;
         protected override Vec3 VisualizationShootingDirection => ShootingDirection;
         public override BattleSideEnum Side => _side;
         public void SetSide(BattleSideEnum side) => _side = side;
         public Team Team { get; internal set; }
         protected override float MaximumBallisticError => 0.2f;
-        private float TargetDistance
-        {
-            get
-            {
-                if (Target == null) return 0;
-                else
-                {
-                    return (Target.Position - MissleStartingPositionForSimulation).Length;
-                }
-            }
-        }
 
         public override UsableMachineAIBase CreateAIBehaviorObject()
         {
@@ -141,7 +121,11 @@ namespace TOR_Core.BattleMechanics.Artillery
         protected override void OnTick(float dt)
         {
             CheckNullReloaderOriginalPoint();
-            base.OnTick(dt);
+            if (_target != null)
+            {
+                base.OnTick(dt);
+            }
+
             HandleAnimations();
             HandleAmmoPickup();
             HandleAmmoLoad();
@@ -149,6 +133,31 @@ namespace TOR_Core.BattleMechanics.Artillery
             HandleWaitingTimer();
             UpdateRecoilEffect(dt);
             UpdateWheelRotation(dt);
+            HandleAITeamUsage();
+        }
+        
+        private void HandleAITeamUsage()
+        {
+            if (!Team?.IsPlayerTeam ?? false)
+            {
+                if (UserFormations.Count > 0 && UserFormations.All(formation => formation.Index != (int) TORFormationClass.Artillery))
+                {
+                    UserFormations[0]?.StopUsingMachine(this);
+                }
+
+                if (UserFormations.Count == 0)
+                {
+                    Team.FormationsIncludingSpecialAndEmpty.ToList().FirstOrDefault(form => form.Index == (int) TORFormationClass.Artillery)?.StartUsingMachine(this);
+                }
+            }
+            else if(Team?.IsPlayerTeam ?? false)
+            {
+                if (UserFormations.Count == 0)
+                {
+                    var form = Team.Formations.ToList().FirstOrDefault(formation => formation.Arrangement.GetAllUnits().FindAll(unit => ((Agent)unit).HasAttribute("ArtilleryCrew")).Count() > 2);
+                    if (form != null) form.StartUsingMachine(this, true);
+                }
+            }
         }
 
         private void CheckNullReloaderOriginalPoint()
@@ -290,7 +299,6 @@ namespace TOR_Core.BattleMechanics.Artillery
                 case WeaponState.Shooting:
                     {
                         PlayFireProjectileEffects();
-                        AddCannonballScript();
                         State = WeaponState.WaitingAfterShooting;
                         return;
                     }
@@ -348,9 +356,41 @@ namespace TOR_Core.BattleMechanics.Artillery
             _lastCurrentDirection = currentDirection;
         }
 
-        public override bool AimAtTarget(Vec3 target)
+        public override float GetTargetReleaseAngle(Vec3 target)
         {
-            return base.AimAtTarget(target);
+            float angle = GetTargetReleaseAngle(target, out _);
+            if (angle == float.NaN) angle = base.GetTargetReleaseAngle(target);
+            return angle;
+        }
+
+        public float GetTargetReleaseAngle(Vec3 target, out Vec3 launchVec)
+        {
+            Vec3 low = Vec3.Zero;
+            Vec3 high = Vec3.Zero;
+            launchVec = Vec3.Zero;
+            float angle = 0;
+            int numSolutions = Ballistics.GetLaunchVectorForProjectileToHitTarget(MissleStartingPositionForSimulation, ShootingSpeed, target, out low, out high);
+            if (numSolutions <= 0) return float.NaN;
+
+            if(numSolutions == 2)
+            {
+                if (PreferHighAngle) launchVec = high;
+                else launchVec = low;
+            }
+            else
+            {
+                if (low != Vec3.Zero) launchVec = low;
+                else launchVec = high;
+            }
+
+            Vec3 forward = launchVec.NormalizedCopy();
+            forward.z = 0;
+            Vec3 dir = launchVec.NormalizedCopy();
+            Vec3 diff = dir - forward;
+            float zDiff = diff.z;
+            angle = Vec3.AngleBetweenTwoVectors(forward, dir);
+            if (zDiff < 0) angle = -angle;
+            return angle;
         }
 
         private void CollectEntities()
@@ -460,19 +500,7 @@ namespace TOR_Core.BattleMechanics.Artillery
         }
         internal void SetTarget(Target target) => _target = target;
         internal void ClearTarget() => _target = null;
-
-        private void AddCannonballScript()
-        {
-            var cannonball = Mission.Current.Missiles.FirstOrDefault(missile => missile.ShooterAgent == PilotAgent);
-            if (cannonball != null)
-            {
-                GameEntity entity = cannonball.Entity;
-                entity.CreateAndAddScriptComponent("CannonBallScript");
-                CannonBallScript cannonBallScript = entity.GetFirstScriptOfType<CannonBallScript>();
-                cannonBallScript.SetShooterAgent(PilotAgent);
-                entity.CallScriptCallbacks();
-            }
-        }
+        
 
         private void PlayFireProjectileEffects()
         {
@@ -571,25 +599,26 @@ namespace TOR_Core.BattleMechanics.Artillery
 
         public float GetEstimatedCurrentFlightTime()
         {
+            //return 0;
             if (Target == null) return 0;
-            return GetTimeOfProjectileFlight(ShootingSpeed, targetReleaseAngle, MissleStartingPositionForSimulation.Z, Target.GetPosition().Z);
+            var diff = Target.SelectedWorldPosition - MissleStartingPositionForSimulation;
+            return Ballistics.GetTimeOfProjectileFlight(ShootingSpeed, currentReleaseAngle, diff.Length);
+        }
+        
+        public bool IsTargetInRange(Vec3 position)
+        {
+            var startPos = ProjectileEntityCurrentGlobalPosition;
+            var diff = position - startPos;
+            var maxrange = Ballistics.GetMaximumRange(BaseMuzzleVelocity, diff.z);
+            diff.z = 0;
+            return diff.Length < maxrange;
         }
 
-        public static float GetTimeOfProjectileFlight(float velocity, float angle, float heightBegin, float heightEnd)
+        public bool IsSafeToFire()
         {
-            //calculate maximum height 
-            var traveledHeight = (velocity * velocity * (Mathf.Sin(angle) * Mathf.Sin(angle))) / (2 * MBGlobals.Gravity);
-            var maximumHeight = traveledHeight + heightBegin;
-
-            var timeTraveledToMaximumHeight = Mathf.Abs((2 * velocity * Mathf.Sin(angle)) / MBGlobals.Gravity) / 2;
-
-            //calculate from the maximum height down to the end height
-            var maximumRelativeToEnd = traveledHeight - heightEnd;
-
-            var term = (velocity * Mathf.Sin(0) + (float)Math.Pow((velocity * Mathf.Sin(0)), 2) + 2 * MBGlobals.Gravity * maximumRelativeToEnd) / MBGlobals.Gravity; ;
-            var timeTravelFromMiddleToEnd = velocity * Mathf.Sin(0);
-
-            return timeTraveledToMaximumHeight + timeTravelFromMiddleToEnd;
+            Agent agent = Mission.Current.RayCastForClosestAgent(MissleStartingPositionForSimulation, MissleStartingPositionForSimulation + ShootingDirection.NormalizedCopy() * 60, out float distanceA, -1, 0.05f);
+            Mission.Current.Scene.RayCastForClosestEntityOrTerrain(MissleStartingPositionForSimulation, MissleStartingPositionForSimulation + ShootingDirection.NormalizedCopy() * 25, out float distanceE, out GameEntity entity, 0.05f);
+            return !(distanceA < 50 && agent != null && !agent.IsEnemyOf(PilotAgent) || distanceE < 15);
         }
     }
 }

@@ -1,16 +1,16 @@
 ﻿<Module>
 	<Name value="The Old Realms Core Module" />
 	<Id value="TOR_Core" />
-	<Version value="v1.8.0" />
+	<Version value="v1.0.2" />
 	<SingleplayerModule value="true" />
 	<MultiplayerModule value="false" />
 	<DependedModules>
-		<DependedModule Id="Native" DependentVersion="e1.8.0" />
-		<DependedModule Id="SandBoxCore" DependentVersion="e1.8.0" />
-		<DependedModule Id="Sandbox" DependentVersion="e1.8.0" />
-		<DependedModule Id="StoryMode" DependentVersion="e1.8.0" />
-		<DependedModule Id="TOR_Armory" DependentVersion="v1.8.0" />
-		<!--<DependedModule Id="TOR_Environment" DependentVersion="v1.8.0" />-->
+		<DependedModule Id="Native" DependentVersion="v1.0.2" />
+		<DependedModule Id="SandBoxCore" DependentVersion="v1.0.2" />
+		<DependedModule Id="Sandbox" DependentVersion="v1.0.2" />
+		<DependedModule Id="StoryMode" DependentVersion="v1.0.2" />
+		<DependedModule Id="TOR_Armory" DependentVersion="v1.0.2" />
+		<DependedModule Id="TOR_Environment" DependentVersion="v1.0.2" />
 	</DependedModules>
 	<SubModules>
 		<SubModule>
@@ -25,19 +25,10 @@
 	</SubModules>
 	<Xmls>
 		<XmlNode>
-			<XmlName id="NPCCharacters" path="tor_pre_npccharacters" />
-			<IncludedGameTypes>
-				<GameType value="Campaign" />
-				<GameType value="CampaignStoryMode" />
-				<GameType value="CustomGame" />
-			</IncludedGameTypes>
-		</XmlNode>
-		<XmlNode>
 			<XmlName id="NPCCharacters" path="tor_townspeople" />
 			<IncludedGameTypes>
 				<GameType value="Campaign" />
 				<GameType value="CampaignStoryMode" />
-				<GameType value="CustomGame" />
 			</IncludedGameTypes>
 		</XmlNode>
 		<XmlNode>
@@ -46,6 +37,91 @@
 				<GameType value="Campaign" />
 				<GameType value="CampaignStoryMode" />
 				<GameType value="CustomGame" />
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="tor_lords" />
+			<IncludedGameTypes>
+				<GameType value="CustomGame" />
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="tor_dummyNPCs" />
+			<IncludedGameTypes>
+				<GameType value="Campaign" />
+				<GameType value="CampaignStoryMode" />
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="tor_campaign_lords" />
+			<IncludedGameTypes>
+				<GameType value="Campaign" />
+				<GameType value="CampaignStoryMode" />
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="tor_charactertemplates" />
+			<IncludedGameTypes>
+				<GameType value="Campaign" />
+				<GameType value="CampaignStoryMode" />
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="SPCultures" path="tor_pre_cultures" />
+			<IncludedGameTypes>
+				<GameType value="Campaign" />
+				<GameType value="CampaignStoryMode" />
+				<GameType value="CustomGame" />
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="SPCultures" path="tor_cultures" />
+			<IncludedGameTypes>
+				<GameType value="Campaign" />
+				<GameType value="CampaignStoryMode" />
+				<GameType value="CustomGame" />
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="Heroes" path="tor_pre_heroes"/>
+			<IncludedGameTypes>
+				<GameType value = "Campaign"/>
+				<GameType value = "CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="Heroes" path="tor_heroes"/>
+			<IncludedGameTypes>
+				<GameType value = "Campaign"/>
+				<GameType value = "CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="Kingdoms" path="tor_pre_kingdoms"/>
+			<IncludedGameTypes>
+				<GameType value = "Campaign"/>
+				<GameType value = "CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="Kingdoms" path="tor_kingdoms"/>
+			<IncludedGameTypes>
+				<GameType value = "Campaign"/>
+				<GameType value = "CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="Factions" path="tor_pre_clans"/>
+			<IncludedGameTypes>
+				<GameType value = "Campaign"/>
+				<GameType value = "CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="Factions" path="tor_clans"/>
+			<IncludedGameTypes>
+				<GameType value = "Campaign"/>
+				<GameType value = "CampaignStoryMode"/>
 			</IncludedGameTypes>
 		</XmlNode>
 		<XmlNode>
@@ -75,9 +151,41 @@
 			</IncludedGameTypes>
 		</XmlNode>
 		<XmlNode>
-			<XmlName id="NPCCharacters" path="tor_lords" />
+			<XmlName id="partyTemplates" path="tor_pre_partytemplates" />
 			<IncludedGameTypes>
-				<GameType value="CustomGame" />
+				<GameType value="Campaign" />
+				<GameType value="CampaignStoryMode" />
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="partyTemplates" path="tor_partytemplates" />
+			<IncludedGameTypes>
+				<GameType value="Campaign" />
+				<GameType value="CampaignStoryMode" />
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="Settlements" path="tor_pre_settlements" />
+			<IncludedGameTypes>
+				<GameType value="Campaign" />
+				<GameType value="CampaignStoryMode" />
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="Settlements" path="tor_settlements" />
+			<IncludedGameTypes>
+				<GameType value="Campaign" />
+				<GameType value="CampaignStoryMode" />
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="GameText" path="tor_strings" />
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="GameText" path="tor_voiced_strings" />
+			<IncludedGameTypes>
+				<GameType value="Campaign" />
+				<GameType value="CampaignStoryMode" />
 			</IncludedGameTypes>
 		</XmlNode>
 	</Xmls>

@@ -20,6 +20,9 @@
 			Steward
 			Medicine
 			Engineering
+			Faith
+			Gunpowder
+			Spellcraft
 	AttributeToIncrease possible values:
 			Vigor
 			Control
@@ -27,6 +30,7 @@
 			Cunning
 			Social
 			Intelligence
+			Discipline
 	-->
 	<!-- Empire stage 1 -->
 	<CharacterCreationOption Id="option1" Culture="empire" StageNumber="1" EquipmentSetId="tor_cc_imperial_nobility_1">
@@ -46,6 +50,7 @@
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>TwoHanded</string>
+			<string>Gunpowder</string>
 			<string>Athletics</string>
 			<string>Tactics</string>
 		</SkillsToIncrease>
@@ -96,6 +101,7 @@
 			<string>Athletics</string>
 			<string>TwoHanded</string>
 			<string>Polearm</string>
+			<string>Gunpowder</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Endurance</AttributeToIncrease>
 		<OptionText>Enlisted in the Militia</OptionText>
@@ -127,10 +133,10 @@
 	<CharacterCreationOption Id="option9" Culture="empire" StageNumber="2" EquipmentSetId="tor_cc_acolyte_sigmar_2">
 		<SkillsToIncrease>
 			<string>Medicine</string>
-			<string>Charm</string>
+			<string>Faith</string>
 			<string>Steward</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Social</AttributeToIncrease>
+		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>Acolyte of Sigmar</OptionText>
 		<OptionFlavourText>You felt a calling deep within yourself, a need to serve something greater. Donning the cloth of an acolyte, your life became one of constant prayer and learning so that you could better serve Sigmar. </OptionFlavourText>
 	</CharacterCreationOption>
@@ -140,6 +146,7 @@
 			<string>Medicine</string>
 			<string>Charm</string>
 			<string>Steward</string>
+			<string>Gunpowder</string>
 			<string>Engineering</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Control</AttributeToIncrease>
@@ -164,10 +171,11 @@
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>Athletics</string>
+			<string>Spellcraft</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>Bright Order Initiate</OptionText>
-		<OptionFlavourText>Your aptitude for the Winds of Magic earned you a place within the Colleges of Altdorf, with time you learned to harness the basics of your power and flames would dance at your fingertips.  -  Starts with the fireball spell.</OptionFlavourText>
+		<OptionFlavourText>Your aptitude for the Winds of Magic earned you a place within the Colleges of Altdorf, with time you learned to harness the basics of your power and flames would dance at your fingertips.  -  LOCKED TO THE LORE OF AQSHY.</OptionFlavourText>
 	</CharacterCreationOption>
 
 	<CharacterCreationOption Id="option13" Culture="empire" StageNumber="3" EquipmentSetId="tor_cc_warrior_priest_acolyte_3">
@@ -175,10 +183,11 @@
 			<string>OneHanded</string>
 			<string>Medicine</string>
 			<string>Riding</string>
+			<string>Faith</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>Warrior Priest Acolyte</OptionText>
-		<OptionFlavourText>Dedicating your life to the destruction of evil in Sigmars righteous name, you trained until you were entrusted with the robes and hammer of a Warrior Priest acolyte. Soon you would set out to rid the world of corruption.  -  Gains access to prayers in later levels (Enabled at level 1 for testing).</OptionFlavourText>
+		<OptionFlavourText>Dedicating your life to the destruction of evil in Sigmars righteous name, you trained until you were entrusted with the robes and hammer of a Warrior Priest acolyte. Soon you would set out to rid the world of corruption.  -  Gains access to prayers, but cannot learn spells.</OptionFlavourText>
 	</CharacterCreationOption> 
 
 	<CharacterCreationOption Id="option14" Culture="empire" StageNumber="3" EquipmentSetId="tor_cc_trainee_templar_3">
@@ -221,6 +230,7 @@
 			<string>Steward</string>
 			<string>Medicine</string>
 			<string>Tactics</string>
+			<string>Faith</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Cunning</AttributeToIncrease>
 		<OptionText>Priests of Morr</OptionText>
@@ -276,6 +286,7 @@
 		<SkillsToIncrease>
 			<string>Medicine</string>
 			<string>Crafting</string>
+			<string>Spellcraft</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Intelligence</AttributeToIncrease>
 		<OptionText>Necromancer's apprentice </OptionText>
@@ -330,10 +341,10 @@
 		<SkillsToIncrease>
 			<string>Medicine</string>
 			<string>Crafting</string>
-			<string>Tactics</string>
+			<string>Spellcraft</string>
 			<string>Roguery</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>Novice Necromancer</OptionText>
 		<OptionFlavourText>You broke away from the role of a communion slave to a much older necromancer, stealing one of his tomes on your way out. You are now free to delve into dark lores and determine your own fate.  -   Gains access to summon skeleton spell and the ability to raise dead post-battle or in graveyards.</OptionFlavourText>
 	</CharacterCreationOption>

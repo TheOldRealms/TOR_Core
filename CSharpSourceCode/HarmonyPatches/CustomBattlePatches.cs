@@ -74,15 +74,31 @@ namespace TOR_Core.HarmonyPatches
         }
 
         [HarmonyPrefix]
-        [HarmonyPatch(typeof(CustomGame), "LoadCustomBattleScenes")]
-        public static void Postfix5(ref CustomGame __instance, ref XmlDocument doc)
+        [HarmonyPatch(typeof(ArmyCompositionItemVM), "IsValidUnitItem")]
+        public static bool Prefix(ref ArmyCompositionItemVM __instance, BasicCharacterObject o, ref bool __result, BasicCultureObject ____culture, ArmyCompositionItemVM.CompositionType ____type)
         {
-            var path = TORPaths.TOREnvironmentModuleDataPath + "tor_custombattlescenes.xml";
-            if (File.Exists(path))
+            if (o != null && o.StringId.StartsWith("tor_") && o.Culture.StringId == ____culture.StringId && o.DefaultFormationClass == GetFormationFor(____type))
             {
-                XmlDocument moredoc = new XmlDocument();
-                moredoc.Load(path);
-                doc = MBObjectManager.MergeTwoXmls(doc, moredoc);
+                __result = true;
+            }
+            else __result = false;
+            return false;
+        }
+
+        private static FormationClass GetFormationFor(ArmyCompositionItemVM.CompositionType type)
+        {
+            switch (type)
+            {
+                case ArmyCompositionItemVM.CompositionType.MeleeInfantry:
+                    return FormationClass.Infantry;
+                case ArmyCompositionItemVM.CompositionType.RangedInfantry:
+                    return FormationClass.Ranged;
+                case ArmyCompositionItemVM.CompositionType.MeleeCavalry:
+                    return FormationClass.Cavalry;
+                case ArmyCompositionItemVM.CompositionType.RangedCavalry:
+                    return FormationClass.HorseArcher;
+                default:
+                    return FormationClass.Infantry;
             }
         }
     }

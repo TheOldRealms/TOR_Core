@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rhubarbResult>
+  <metadata>
+    <soundFile></soundFile>
+    <duration>3.53</duration>
+  </metadata>
+  <mouthCues>
+    <mouthCue start="0.00" end="0.03">X</mouthCue>
+    <mouthCue start="0.03" end="0.10">C</mouthCue>
+    <mouthCue start="0.10" end="0.17">B</mouthCue>
+    <mouthCue start="0.17" end="0.31">C</mouthCue>
+    <mouthCue start="0.31" end="0.41">A</mouthCue>
+    <mouthCue start="0.41" end="0.56">C</mouthCue>
+    <mouthCue start="0.56" end="0.70">B</mouthCue>
+    <mouthCue start="0.70" end="0.77">F</mouthCue>
+    <mouthCue start="0.77" end="0.90">A</mouthCue>
+    <mouthCue start="0.90" end="1.11">B</mouthCue>
+    <mouthCue start="1.11" end="1.39">C</mouthCue>
+    <mouthCue start="1.39" end="1.74">H</mouthCue>
+    <mouthCue start="1.74" end="2.11">B</mouthCue>
+    <mouthCue start="2.11" end="2.30">C</mouthCue>
+    <mouthCue start="2.30" end="2.44">E</mouthCue>
+    <mouthCue start="2.44" end="2.65">B</mouthCue>
+    <mouthCue start="2.65" end="2.79">C</mouthCue>
+    <mouthCue start="2.79" end="3.42">F</mouthCue>
+    <mouthCue start="3.42" end="3.53">X</mouthCue>
+  </mouthCues>
+</rhubarbResult>

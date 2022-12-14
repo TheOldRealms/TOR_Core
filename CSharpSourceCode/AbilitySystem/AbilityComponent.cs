@@ -9,6 +9,7 @@ using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.AbilitySystem.Scripts;
 using TOR_Core.Utilities;
 using TOR_Core.Extensions;
+using TaleWorlds.CampaignSystem;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -16,7 +17,7 @@ namespace TOR_Core.AbilitySystem
     {
         public AbilityComponent(Agent agent) : base(agent)
         {
-            var abilities = agent.GetAbilities();
+            var abilities = agent.GetSelectedAbilities();
             if (abilities.Count > 0)
             {
                 foreach (var item in abilities)
@@ -51,24 +52,49 @@ namespace TOR_Core.AbilitySystem
             }
             if (Agent.CanPlaceArtillery())
             {
-                if(Agent.GetHero() != null)
+                var hero = agent.GetHero();
+                if (hero != null)
                 {
-                    var artilleryRoster = agent.GetHero().PartyBelongedTo.GetArtilleryItems();
-                    if (artilleryRoster.Count > 0)
+                    if(hero == Hero.MainHero)
                     {
-                        for (int i = 0; i < artilleryRoster.Count; i++)
+                        var artilleryRoster = hero.PartyBelongedTo.GetArtilleryItems();
+                        if (artilleryRoster.Count > 0)
                         {
-                            var artillery = artilleryRoster[i];
-                            var ability = (ItemBoundAbility)AbilityFactory.CreateNew(artillery.EquipmentElement.Item.PrefabName, agent);
-                            if (ability != null)
+                            for (int i = 0; i < artilleryRoster.Count; i++)
                             {
-                                ability.OnCastStart += OnCastStart;
-                                ability.OnCastComplete += OnCastComplete;
-                                ability.SetChargeNum(artillery.Amount);
-                                _knownAbilitySystem.Add(ability);
+                                var artillery = artilleryRoster[i];
+                                var ability = (ItemBoundAbility)AbilityFactory.CreateNew(artillery.EquipmentElement.Item.PrefabName, agent);
+                                if (ability != null)
+                                {
+                                    ability.OnCastStart += OnCastStart;
+                                    ability.OnCastComplete += OnCastComplete;
+                                    ability.SetChargeNum(artillery.Amount);
+                                    _knownAbilitySystem.Add(ability);
+                                }
                             }
                         }
                     }
+                    else
+                    {
+                        var ability1 = (ItemBoundAbility)AbilityFactory.CreateNew("GreatCannonSpawner", agent);
+                        if (ability1 != null)
+                        {
+                            ability1.OnCastStart += OnCastStart;
+                            ability1.OnCastComplete += OnCastComplete;
+                            ability1.SetChargeNum(1);
+                            _knownAbilitySystem.Add(ability1);
+                        }
+
+                        var ability2 = (ItemBoundAbility)AbilityFactory.CreateNew("MortarSpawner", agent);
+                        if (ability2 != null)
+                        {
+                            ability2.OnCastStart += OnCastStart;
+                            ability2.OnCastComplete += OnCastComplete;
+                            ability2.SetChargeNum(2);
+                            _knownAbilitySystem.Add(ability2);
+                        }
+                    }
+                    
                 }
                 else if(Game.Current.GameType is CustomGame)
                 {

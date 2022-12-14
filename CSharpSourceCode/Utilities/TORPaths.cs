@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.Library;
+using TaleWorlds.ModuleManager;
+using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.Utilities
 {
@@ -15,7 +18,7 @@ namespace TOR_Core.Utilities
         /// </summary>
         public static string TORCoreModuleRootPath
         {
-            get { return Path.Combine(BasePath.Name, "Modules/TOR_Core/"); }
+            get { return ModuleHelper.GetModuleFullPath("TOR_Core"); }
         }
 
         /// <summary>
@@ -42,9 +45,13 @@ namespace TOR_Core.Utilities
             get { return TORCoreModuleRootPath + "Logs/${LogHome}${date:format=yyyy}/${date:format=MMMM}/${date:format=dd}/TOR_log${shortdate}.txt"; }
         }
 
+        public static bool IsPlatformSteamWorkshop()
+        {
+            return TORCoreModuleRootPath.Contains("workshop");
+        }
         public static string TOREnvironmentModuleRootPath
         {
-            get { return Path.Combine(BasePath.Name, "Modules/TOR_Environment/"); }
+            get { return ModuleHelper.GetModuleFullPath("TOR_Environment"); }
         }
 
         public static string TOREnvironmentModuleDataPath

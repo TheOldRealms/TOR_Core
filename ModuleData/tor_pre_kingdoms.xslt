@@ -5,5 +5,5 @@
 			<xsl:apply-templates select="@*|node()"/>
 		</xsl:copy>
 	</xsl:template>
-	<xsl:template match="NPCCharacter"/>
+	<xsl:template match="Kingdom"/>
 </xsl:stylesheet>

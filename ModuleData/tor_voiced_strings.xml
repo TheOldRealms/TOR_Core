@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<strings>
+  <!-- CULTIST CLASS -->
+  <string id="ccultist_robbery" text="{=ccultist_robbery}Another fool enters our domain. Surrender your gold or forfeit your life!" />
+  <!-- VAMPIRE CLASS -->
+  <string id="str_context_line_vampire.first_meeting_cu" text="{=v_first_meeting}What do you want of me?">
+    <tags>
+      <tag tag_name="FirstMeetingTag" />
+      <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_vampire.first_meeting_wary_cu" text="{=v_annoyed_first_meeting}Who are you to approach me? Speak, my patience wears thin.">
+    <tags>
+      <tag tag_name="FirstMeetingTag" />
+      <tag tag_name="WaryTag" />
+      <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_vampire.first_meeting_under_command_cu" text="{=v_fealty}{STR_SALUTATION}... I offer you my fealty.">
+    <tags>
+      <tag tag_name="UnderCommandTag" weight="15" />
+      <tag tag_name="FirstMeetingTag" />
+      <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_vampire.first_meeting_attacking_cu" text="{=v_whoislay}Halt there! Who are you? I would know whom I slay.">
+    <tags>
+      <tag tag_name="FirstMeetingTag" />
+      <tag tag_name="AttackingTag" weight="+4" />
+      <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_vampire.metbefore_cu" text="{=v_beensometime}{STR_SALUTATION}. It has been some time.">
+    <tags>
+      <tag tag_name="MetBeforeTag" />
+      <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_vampire.under_command_cu" text="{=v_yourstocommand}{STR_SALUTATION}... I am yours to command.">
+    <tags>
+      <tag tag_name="UnderCommandTag" weight="+2" />
+      <tag tag_name="MetBeforeTag" />
+      <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_vampire.under_command_notable_cu" text="{=v_atyourservice}I am at your beckon call. How may I serve?">
+    <tags>
+      <tag tag_name="UnderCommandTag" weight="+2" />
+      <tag tag_name="MetBeforeTag" />
+      <tag tag_name="AnyNotableTypeTag" />
+      <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_vampire.dislike_nasty_cu" text="{=v_unburied}{STR_SALUTATION}... I will make sure you remain unburied after you fall.">
+    <tags>
+      <tag tag_name="HostileRelationshipTag" />
+      <tag tag_name="CruelTag" weight="1" />
+      <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_vampire.attacking_firstmeeting_cu" text="{=v_perish}Say what you will, afterwards you will perish.">
+    <tags>
+      <tag tag_name="AttackingTag" />
+      <tag tag_name="MetBeforeTag" />
+      <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_vampire.dislike_threatening_cu" text="{=v_diejoinarmy}If you die well today, you will join my armies in death.">
+    <tags>
+      <tag tag_name="ImpoliteTag" />
+      <tag tag_name="MetBeforeTag" />
+      <tag tag_name="FriendlyRelationshipTag" weight="-1" />
+      <tag tag_name="CruelTag" weight="1" />
+      <tag tag_name="VoiceGroupPersonaCurtTribalTag" />
+    </tags>
+  </string>
+</strings>

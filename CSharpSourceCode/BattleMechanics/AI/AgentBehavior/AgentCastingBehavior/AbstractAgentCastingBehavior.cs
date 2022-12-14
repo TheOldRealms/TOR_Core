@@ -13,7 +13,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
     public abstract class AbstractAgentCastingBehavior : IAgentBehavior
     {
         private WizardAIComponent _component;
-        public readonly Agent Agent;
+        public Agent Agent;
         protected float Hysteresis = 0.20f;
         private readonly int _abilityRange;
         public readonly AbilityTemplate AbilityTemplate;
@@ -62,7 +62,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
             return target;
         }
 
-        protected virtual bool HaveLineOfSightToTarget(Target targetAgent)
+        protected virtual bool HaveLineOfSightToTarget(Target target)
         {
             return true;
         }
@@ -102,7 +102,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
             return Mat3.CreateMat3WithForward(targetPosition - originaPosition);
         }
 
-        public List<BehaviorOption> CalculateUtility()
+        public virtual List<BehaviorOption> CalculateUtility()
         {
             LatestScores = AgentCastingBehaviorConfiguration.FindTargets(Agent, AbilityTemplate)
                 .Select(target =>
@@ -118,13 +118,19 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
 
         protected virtual float CalculateUtility(Target target)
         {
-            if (Agent.GetAbility(AbilityIndex).IsOnCooldown() || target.Formation == null)
+            var ability = Agent.GetAbility(AbilityIndex);
+            if (ability.IsOnCooldown() || !ability.CanCast(Agent) || target.Formation == null && target.TacticalPosition == null)
             {
                 return 0.0f;
             }
 
             var hysteresis = Component.CurrentCastingBehavior == this && target.Formation == CurrentTarget.Formation ? Hysteresis : 0.0f;
             return _axisList.GeometricMean(target) + hysteresis;
+        }
+
+        public void SetCurrentTarget(Target target)
+        {
+            CurrentTarget = target;
         }
     }
 }

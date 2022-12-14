@@ -1,5 +1,7 @@
-﻿using TaleWorlds.Library;
+﻿using System;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.AI.Decision
 {
@@ -9,6 +11,7 @@ namespace TOR_Core.BattleMechanics.AI.Decision
     public class Target : Threat
     {
         public Vec3 SelectedWorldPosition = Vec3.Zero;
+        public TacticalPosition TacticalPosition;
 
         public float UtilityValue
         {
@@ -18,9 +21,42 @@ namespace TOR_Core.BattleMechanics.AI.Decision
 
         public Vec3 GetPosition()
         {
+            if (WeaponEntity != null)
+                return (WeaponEntity.GetTargetEntity().GlobalBoxMax + WeaponEntity.GetTargetEntity().GlobalBoxMin) * 0.5f;
+            if (Agent != null)
+                return Agent.CollisionCapsuleCenter;
+            if (Formation != null)
+                return Formation.GetMedianAgent(false, false, Formation.GetAveragePositionOfUnits(false, false)).Position;
             if (SelectedWorldPosition != Vec3.Zero)
                 return SelectedWorldPosition;
-            return Position;
+            if (TacticalPosition != null)
+                return TacticalPosition.Position.GetGroundVec3();
+            try
+            {
+                return Position;
+            }
+            catch(NullReferenceException)
+            {
+                TORCommon.Log("Null error in TOR_Core.BattleMechanics.AI.Decision.Target.GetPosition(). Suppressed.", NLog.LogLevel.Error);
+                return Vec3.Invalid;
+            }
+        }
+        
+        public Vec3 GetPositionPrioritizeCalculated()
+        {
+            if (SelectedWorldPosition != Vec3.Zero)
+                return SelectedWorldPosition;
+            if (TacticalPosition != null)
+                return TacticalPosition.Position.GetGroundVec3();
+            try
+            {
+                return Position;
+            }
+            catch (NullReferenceException)
+            {
+                TORCommon.Log("Null error in TOR_Core.BattleMechanics.AI.Decision.Target.GetPositionPrioritizeCalculated(). Suppressed.", NLog.LogLevel.Error);
+                return Vec3.Invalid;
+            }
         }
 
         public new Agent Agent

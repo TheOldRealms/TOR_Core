@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <VoiceOvers>
+    <VoiceOver id="v_first_meeting">
+      <Voice path="VoicedLines/EN/$PLATFORM/vamp_whatdoyouwant" />
+    </VoiceOver>
+    <VoiceOver id="v_beensometime">
+      <Voice path="VoicedLines/EN/$PLATFORM/vamp_hasbeensometime" />
+    </VoiceOver>
+    <VoiceOver id="v_whoislay">
+      <Voice path="VoicedLines/EN/$PLATFORM/vamp_whoislay" />
+    </VoiceOver>
+    <VoiceOver id="v_fealty">
+      <Voice path="VoicedLines/EN/$PLATFORM/vamp_fealty" />
+    </VoiceOver>
+    <VoiceOver id="v_yourstocommand">
+      <Voice path="VoicedLines/EN/$PLATFORM/vamp_yourstocommand" />
+    </VoiceOver>
+    <VoiceOver id="v_atyourservice">
+      <Voice path="VoicedLines/EN/$PLATFORM/vamp_atyourservice" />
+    </VoiceOver>
+    <VoiceOver id="v_unburied">
+      <Voice path="VoicedLines/EN/$PLATFORM/vamp_unburied" />
+    </VoiceOver>
+    <VoiceOver id="v_perish">
+      <Voice path="VoicedLines/EN/$PLATFORM/vamp_youwillperish" />
+    </VoiceOver>
+    <VoiceOver id="v_diejoinarmy">
+      <Voice path="VoicedLines/EN/$PLATFORM/vamp_diejoinarmy" />
+    </VoiceOver>
+    <VoiceOver id="v_annoyed_first_meeting">
+      <Voice path="VoicedLines/EN/$PLATFORM/vamp_annoyed_greeting" />
+    </VoiceOver>
+    <VoiceOver id="ccultist_robbery">
+      <Voice path="VoicedLines/EN/$PLATFORM/cultist_forfeit" />
+    </VoiceOver>
+    <VoiceOver id="ccultist_drowninblood">
+      <Voice path="VoicedLines/EN/$PLATFORM/cultist_drowninblood" />
+    </VoiceOver>
+    <VoiceOver id="ccultist_flames">
+      <Voice path="VoicedLines/EN/$PLATFORM/cultist_flames" />
+    </VoiceOver>
+    <VoiceOver id="ccultist_thirdeye">
+      <Voice path="VoicedLines/EN/$PLATFORM/cultist_thirdeye" />
+    </VoiceOver>
+    <VoiceOver id="ccultist_spreadpox">
+      <Voice path="VoicedLines/EN/$PLATFORM/cultist_spreadpox" />
+    </VoiceOver>
+    <VoiceOver id="beastmen_trample">
+      <Voice path="VoicedLines/EN/$PLATFORM/beastmen_trample" />
+    </VoiceOver>
+  </VoiceOvers>
+</Base>

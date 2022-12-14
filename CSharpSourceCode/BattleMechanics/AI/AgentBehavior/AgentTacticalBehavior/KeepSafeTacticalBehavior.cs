@@ -1,6 +1,7 @@
 ﻿using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.BattleMechanics.AI.Decision;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentTacticalBehavior
@@ -46,6 +47,10 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentTacticalBehavior
                 AIComponent.SetBehaviorParams(HumanAIComponent.AISimpleBehaviorKind.ChargeHorseback, 0, 7, 0, 30, 0);
                 AIComponent.SetBehaviorParams(HumanAIComponent.AISimpleBehaviorKind.RangedHorseback, 0f, 2.5f, 0f, 10f, 0.0f);
             }
+        }
+
+        public override void SetCurrentTarget(Target target)
+        {
         }
 
 

@@ -16,7 +16,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             sphere.BodyFlag |= BodyFlags.DontCollideWithCamera;
             sphere.EntityVisibilityFlags |= EntityVisibilityFlags.VisibleOnlyForEnvmap;
             GameEntity.AddChild(sphere);
-            DisbindKeyBindings();
+            SaveKeyBindings();
         }
 
         public override void SetAgent(Agent agent)
@@ -24,11 +24,20 @@ namespace TOR_Core.AbilitySystem.Scripts
             base.SetAgent(agent);
             agent.Disappear();
             agent.ToggleInvulnerable();
+            if(agent.IsPlayerControlled) DisbindKeyBindings();
             var frame = _casterAgent.Frame.Elevate(1f);
             GameEntity.SetGlobalFrame(frame);
         }
 
-        private void BindKeyBindings()
+        private void SaveKeyBindings()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                _axisKeys[i] = _keyContext.GetGameKey(i).KeyboardKey.InputKey;
+            }
+        }
+
+        private void RestoreKeyBindings()
         {
             _keyContext.GetGameKey(0).KeyboardKey.ChangeKey(_axisKeys[0]);
             _keyContext.GetGameKey(1).KeyboardKey.ChangeKey(_axisKeys[1]);
@@ -40,7 +49,6 @@ namespace TOR_Core.AbilitySystem.Scripts
         {
             for (int i = 0; i < 4; i++)
             {
-                _axisKeys[i] = _keyContext.GetGameKey(i).KeyboardKey.InputKey;
                 _keyContext.GetGameKey(i).KeyboardKey.ChangeKey(InputKey.Invalid);
             }
         }
@@ -97,16 +105,21 @@ namespace TOR_Core.AbilitySystem.Scripts
         public override void Stop()
         {
             base.Stop();
-            BindKeyBindings();
+            RestoreKeyBindings();
             _casterAgent.Appear();
             _casterAgent.ToggleInvulnerable();
         }
 
+        protected override void OnRemoved(int removeReason)
+        {
+            RestoreKeyBindings();
+            base.OnRemoved(removeReason);
+        }
 
         public bool IsFadinOut { get => _isFading; }
 
         private float _speed = 10f;
         private InputKey[] _axisKeys = new InputKey[4];
-        private GameKeyContext _keyContext = HotKeyManager.GetCategory("CombatHotKeyCategory");
+        private GameKeyContext _keyContext = HotKeyManager.GetCategory("Generic");
     }
 }

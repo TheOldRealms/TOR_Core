@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
 {
@@ -34,6 +35,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             {
                 artillery.SetSide(triggeredByAgent.Team.Side);
                 artillery.Team = triggeredByAgent.Team;
+                artillery.ForcedUse = !triggeredByAgent.Team.IsPlayerTeam;
             }
         }
 

@@ -10,10 +10,10 @@ namespace TOR_Core.AbilitySystem.Crosshairs
         public TargetedAOECrosshair(AbilityTemplate template) : base(template)
         {
             _targetType = _template.AbilityTargetType;
-            _crosshair = GameEntity.Instantiate(Mission.Current.Scene, "targeting_rune_empire", false);
+            _crosshair = GameEntity.Instantiate(Mission.Current.Scene, "circular_targeting_rune", false);
             _crosshair.EntityFlags |= EntityFlags.NotAffectedBySeason;
             MatrixFrame frame = _crosshair.GetFrame();
-            frame.Scale(new Vec3(template.TargetCapturingRadius, template.TargetCapturingRadius, 1, -1));
+            frame.Scale(new Vec3(template.TargetCapturingRadius * 2, template.TargetCapturingRadius * 2, 1, -1));
             _crosshair.SetFrame(ref frame);
             InitializeColors();
             AddLight();
@@ -55,6 +55,10 @@ namespace TOR_Core.AbilitySystem.Crosshairs
                         _position.z = _mission.Scene.GetGroundHeightAtPosition(Position);
                     }
                     Position = _position;
+                    Mat3 _rotation = Mat3.CreateMat3WithForward(in _normal);
+                    _rotation.RotateAboutSide(-90f.ToRadians());
+                    Rotation = _rotation;
+
                 }
                 else
                 {
@@ -71,12 +75,12 @@ namespace TOR_Core.AbilitySystem.Crosshairs
             {
                 case AbilityTargetType.AlliesInAOE:
                     {
-                        Targets = _mission.GetNearbyAllyAgents(Position.AsVec2, 5, _mission.PlayerTeam).ToArray();
+                        Targets = _mission.GetNearbyAllyAgents(Position.AsVec2, _template.TargetCapturingRadius, _mission.PlayerTeam).ToArray();
                         break;
                     }
                 case AbilityTargetType.EnemiesInAOE:
                     {
-                        Targets = _mission.GetNearbyEnemyAgents(Position.AsVec2, 5, _mission.PlayerTeam).ToArray();
+                        Targets = _mission.GetNearbyEnemyAgents(Position.AsVec2, _template.TargetCapturingRadius, _mission.PlayerTeam).ToArray();
                         break;
                     }
             }

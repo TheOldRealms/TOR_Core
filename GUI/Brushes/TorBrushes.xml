@@ -1,4 +1,35 @@
 <Brushes>
+    <Brush Name="TorInitialMenuButtonBrush" FontColor="#F4E1C4FF" Font="CasablancaAntique" TransitionDuration="0.2">
+        <Layers>
+            <BrushLayer Name="Default" Color="#FFFFFFFF" />
+        </Layers>
+        <Styles>
+            <Style Name="Default" FontColor="#F4E1C4FF" TextGlowColor="#FFFFFF11" TextGlowRadius="0.1" FontSize="32">
+                <BrushLayer Name="Default" FontColor="#F4E1C4FF" />
+            </Style>
+            <Style Name="Hovered" FontColor="#F3C697FF" TextGlowColor="#F3C69711">
+                <BrushLayer Name="Default" FontColor="#F3C697FF" />
+            </Style>
+            <Style Name="Pressed" FontColor="#B57F5CFF" TextGlowColor="#B57F5C11">
+                <BrushLayer Name="Default" />
+            </Style>
+            <Style Name="Disabled" TextGlowColor="#00000000" TextAlphaFactor="0.35">
+                <BrushLayer Name="Default" />
+            </Style>
+        </Styles>
+        <SoundProperties>
+            <StateSounds>
+            </StateSounds>
+            <EventSounds>
+                <EventSound EventName="Click" Audio="default" />
+            </EventSounds>
+        </SoundProperties>
+    </Brush>
+    <Brush Name="TorRoRSettlementBrush" Font="CasablancaAntique" TextHorizontalAlignment="Center">
+        <Styles>
+            <Style Name="Default" FontColor="#FFFFFFFF" TextBlur="1" TextOutlineAmount="1" TextGlowRadius="0" FontSize="20" />
+        </Styles>
+    </Brush>
     <Brush Name="TorInventoryMagicItemBrush" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Center">
         <Styles>
             <Style Name="Default" FontColor="#0095A4FF" TextBlur="0" TextOutlineAmount="0" TextGlowRadius="0" FontSize="16" />
@@ -38,7 +69,7 @@
                 <EventSound EventName="Click" Audio="checkbox" />
             </EventSounds>
         </SoundProperties>
-  </Brush>
+    </Brush>
     <Brush Name="TorSpecialMoveBrush">
         <Layers>
             <BrushLayer Name="EmptyFill" Sprite="BlankWhiteSquare_9" ColorFactor="1" Color="#404040FF" />
@@ -47,6 +78,25 @@
         </Layers>
         <Styles>
             <Style Name="Default" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorInventoryMagicItemTupleBrush">
+        <Layers>
+            <BrushLayer Name="Default" Sprite="Inventory\tuple_right" ExtendTop="2" ExtendBottom="2" Color="#FF39FFEB"/>
+        </Layers>
+        <Styles>
+            <Style Name="Default">
+                <BrushLayer Name="Default" Sprite="Inventory\tuple_right" ExtendTop="2" ExtendBottom="2" />
+            </Style>
+            <Style Name="Hovered">
+                <BrushLayer Name="Default" Sprite="Inventory\tuple_right" ExtendTop="2" ExtendBottom="2" ColorFactor="1.2"/>
+            </Style>
+            <Style Name="Pressed">
+                <BrushLayer Name="Default" Sprite="Inventory\tuple_right_pressed" ExtendTop="2" ExtendBottom="2" ExtendLeft="2" ExtendRight="2" />
+            </Style>
+            <Style Name="Selected">
+                <BrushLayer Name="Default" Sprite="Inventory\tuple_right" ExtendTop="2" ExtendBottom="2" SaturationFactor="15" ValueFactor="5" />
+            </Style>
         </Styles>
     </Brush>
 </Brushes>

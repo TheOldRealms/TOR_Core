@@ -29,5 +29,10 @@ namespace TOR_Core.AbilitySystem
             base.DoCast(casterAgent);
             _chargeNum--;
         }
+
+        public int GetRemainingCharges()
+        {
+            return _chargeNum;
+        }
     }
 }

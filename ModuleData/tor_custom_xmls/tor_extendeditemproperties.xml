@@ -159,6 +159,24 @@
   <ExtendedItemObjectProperties ItemStringId="tor_empire_head_helm_pistolier_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_head_helm_pistolier_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_head_helm_karl_franz">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_head_helm_lord_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_head_helm_lord_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_head_helm_taal_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_head_helm_taal_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_head_helm_pigface_bascinet_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -238,6 +256,18 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_head_helm_cairn_wraith_006">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_head_helm_hell_knight_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_head_helm_hell_knight_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_head_helm_hell_knight_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_head_helm_dh_templar_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_head_invisible_skull_001">
@@ -407,6 +437,15 @@
   <ExtendedItemObjectProperties ItemStringId="tor_empire_shoulder_pauldron_pistolier_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_shoulder_pauldron_karl_franz">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_shoulder_pauldron_lord_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_shoulder_pauldron_lord_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_shoulder_pauldron_skeleton_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -449,6 +488,12 @@
   <ExtendedItemObjectProperties ItemStringId="tor_vc_shoulder_pauldron_grave_guard_002">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_shoulder_pauldron_grave_guard_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_shoulder_pauldron_grave_guard_004">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_shoulder_pauldron_wight_king_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -462,6 +507,12 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_body_breastplate_cairn_wraith_004">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_shoulder_pauldron_hell_knight_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_shoulder_pauldron_dh_templar_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_shoulder_pauldron_nurgle_001">
@@ -637,6 +688,18 @@
   <ExtendedItemObjectProperties ItemStringId="tor_empire_body_armor_pistolier_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_body_armor_pistolier_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_body_armor_karl_franz">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_body_armor_lord_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_body_armor_lord_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_body_breastplate_skeleton_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -676,16 +739,34 @@
   <ExtendedItemObjectProperties ItemStringId="tor_vc_body_breastplate_grave_guard_002">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_breastplate_grave_guard_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_breastplate_grave_guard_004">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_breastplate_grave_guard_005">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_breastplate_grave_guard_006">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_body_breastplate_wight_king_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_armor_cairn_wraith_001_hideskin">
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_armor_cairn_wraith_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_armor_cairn_wraith_002_hideskin">
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_armor_cairn_wraith_002">
     <ItemTraits />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_armor_cairn_wraith_003_hideskin">
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_armor_cairn_wraith_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_breastplate_hell_knight_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_breastplate_dh_templar_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_body_armor_chaos_knight_001">
@@ -837,6 +918,15 @@
   <ExtendedItemObjectProperties ItemStringId="tor_empire_arm_gauntlet_pistolier_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_arm_gauntlet_karl_franz">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_arm_gauntlet_lord_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_arm_gauntlet_lord_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_arm_gauntlet_vampire_lord_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -867,10 +957,10 @@
   <ExtendedItemObjectProperties ItemStringId="tor_vc_arm_bracers_wight_king_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_vc_arm_hand_cairn_wraith">
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_arm_gauntlet_hell_knight_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_body_skeleton_hideskin">
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_arm_gauntlet_dh_templar_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_arm_gauntlet_chaos_knight_001">
@@ -886,9 +976,6 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_tiliean_arm_gauntlet_knight_002">
-    <ItemTraits />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_body_body_ungor_hideskin">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_leg_boots_free_company_001">
@@ -1028,6 +1115,15 @@
   <ExtendedItemObjectProperties ItemStringId="tor_empire_leg_boots_pistolier_003">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_leg_boots_karl_franz">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_leg_boots_lord_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_leg_boots_lord_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_leg_boots_skeleton_warrior_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -1080,6 +1176,12 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_leg_boots_cairn_wraith_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_leg_boots_vc_hell_knight_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_leg_boots_vc_dh_templar_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_leg_boots_chaos_knight_001">
@@ -1269,6 +1371,42 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.25" />
       <DamageProportionTuple DamageType="Magical" Percent="0.75" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_sword_reiksguard_knight_001">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_sword_reiksguard_knight_002">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_sword_reiksguard_knight_003">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_sword_reiksguard_circle_001">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_sword_reiksguard_circle_002">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_sword_reiksguard_circle_003">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_weapon_sword_khopesh_001">
@@ -1601,10 +1739,22 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_flagellant_002">
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_ghal_maraz">
     <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_flagellant_002">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Holy Additional Damage" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% additional holy damage</ItemTraitDescription>
+        <AdditionalDamageTuple DamageType="Holy" Percent="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="0.80" />
+      <DamageProportionTuple DamageType="Holy" Percent="0.20" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_weapon_thmace_vampire_001">
@@ -1872,6 +2022,18 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_lance_reiksguard_knight_001">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_lance_reiksguard_knight_002">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_weapon_lance_black_knight_001">
     <ItemTraits />
     <DamageProportions>
@@ -1881,7 +2043,8 @@
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_weapon_metal_ud_lance_001">
     <ItemTraits />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.90" />
+      <DamageProportionTuple DamageType="Fire" Percent="0.10" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_scythe_morr_001">
@@ -1892,6 +2055,13 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_scythe_morr_002">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="0.50" />
+      <DamageProportionTuple DamageType="Holy" Percent="0.50" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_scythe_morr_003">
     <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.50" />
@@ -2122,6 +2292,39 @@
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_warrior_priest_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_warrior_priest_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_warrior_priest_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_warrior_priest_004">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_warrior_priest_005">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_reiksguard_knight_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_reiksguard_knight_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_reiksguard_knight_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_reiksguard_circle_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_reiksguard_circle_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_reiksguard_circle_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_weapon_shield_skeleton_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -2211,7 +2414,7 @@
   <ExtendedItemObjectProperties ItemStringId="tor_book_rougery_001">
     <ItemTraits>
       <ItemTrait ItemTraitName="Roguery Knowledge" IconName="xp_icon">
-        <ItemTraitDescription>This book provides 5000 roguery skill expierence points upon reading</ItemTraitDescription>
+        <ItemTraitDescription>This book provides 5000 roguery skill experience points upon reading</ItemTraitDescription>
         <SkillTuple SkillId="Roguery" SkillExp="5000" LearningTime="15" />
       </ItemTrait>
       <ItemTrait ItemTraitName="Small Crossbow Instruction" IconName="xp_icon">
@@ -2253,13 +2456,17 @@
         <ItemTraitDescription>This book provides 5000 crossbow skill experience points upon reading.</ItemTraitDescription>
         <SkillTuple SkillId="Crossbow" SkillExp="5000" LearningTime="10" />
       </ItemTrait>
+      <ItemTrait ItemTraitName="Gunpowder Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 5000 gunpowder skill experience points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Gunpowder" SkillExp="5000" LearningTime="12" />
+      </ItemTrait>
     </ItemTraits>
     <Description>"… Kroxigors are roughly 9 feet high, and weigh around as much as two Reikland cows, they have sharp teeth and a yaw with at least one hundred teeth. Their footprint is roughly 6-8 times bigger than that of a grown man. Their skin is thick and it’s near-impossible to cut through with most common weapons. A wise Hunter would always keep their distance from these beasts. Hunt them in pairs, try to use traps and use Steel Arrowheads or Crossbow Bolts. Better yet a Handgun, despite the noise it will create, should be able to pierce a Kroxigor’s hide. [Below a sketch of a Kroxigore]"</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_crafting_001">
     <ItemTraits>
       <ItemTrait ItemTraitName="Smithing Knowledge" IconName="xp_icon">
-        <ItemTraitDescription>This book provides 5000 smithing skill expierence points upon reading</ItemTraitDescription>
+        <ItemTraitDescription>This book provides 5000 smithing skill experience points upon reading</ItemTraitDescription>
         <SkillTuple SkillId="Crafting" SkillExp="5000" LearningTime="12" />
       </ItemTrait>
     </ItemTraits>
@@ -2268,7 +2475,7 @@
   <ExtendedItemObjectProperties ItemStringId="tor_book_riding_001">
     <ItemTraits>
       <ItemTrait ItemTraitName="Riding Knowledge" IconName="xp_icon">
-        <ItemTraitDescription>This book provides 5000 riding skill expierence points upon reading</ItemTraitDescription>
+        <ItemTraitDescription>This book provides 5000 riding skill experience points upon reading</ItemTraitDescription>
         <SkillTuple SkillId="Riding" SkillExp="5000" LearningTime="12" />
       </ItemTrait>
     </ItemTraits>
@@ -2384,5 +2591,80 @@
       </ItemTrait>
     </ItemTraits>
     <Description>"There were countless disasters at the prototype stage and the whole project became known as the 'coffin filler' by the young apprentices attached to it in dread. Steam boilers such as they could construct couldn't be made small enough and retain the necessary power without becoming dangerously unstable, hull mounted ordinance proved just as likely to smash the machine to pieces when fired, and the whole thing had a tendency to fall apart when the smallest change in direction was attempted. It was then that one of the more unstable of the Gunnery School Engineers, a man named Hezekiah Guttmann (known less than affectionately as the 'burnt scarecrow' to his fellows), had an epiphany. If they could not construct a small, powerful boiler such as the Steam Tank had, why bother? Why not use a larger, cruder one instead and the machine could be scaled up accordingly, and conversely the cannon could be made smaller…"</Description>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_books_gunpowder_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Gunpowder Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 5000 gunpowder skill experience points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Gunpowder" SkillExp="5000" LearningTime="12" />
+      </ItemTrait>
+    </ItemTraits>
+    <Description>"The handgunn is a truly devastating weapon, able to kill some of the most well armoured foes in one well aimed shot. Despite this, these weapons require the care and respect that such power implies. A Handgunner must keep his powder supply and the inside of his arm dry, wet powder does not ignite. Past this, the barrel of the handgunn must be regularly cleaned; dirt and powder can build up and create misfires, inaccuracy or failures for the lead ball to leave the barrel upon ignition of the powder. Finally, the lock on the rear of the barrel must be maintained; after some use the hammer can deform and no longer align with its flashpan. Keep this maintenance in mind and practise your marksmanship, and one will be well on their way to proficiency."</Description>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_books_gunpowder_002">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Gunpowder Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 5000 gunpowder skill experience points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Gunpowder" SkillExp="5000" LearningTime="12" />
+      </ItemTrait>
+    </ItemTraits>
+    <Description>"As the handgun fires, the force of the lead ball leaving the end of the barrel causes the rotation witnessed by the observer. The rotation is halted by the gearlock on the rear of the handgun, which does not activate until the next barrel has aligned with the striking mechanism. What is this force and how do we describe the lock’s ability to halt it? The force is clearly caused by the ignition of the black powder in the rear of the barrel, which both propels the ball forward while undoing the hold of the lock on the Cavalcade. Is it also the same force which brings the lock’s hold back around the Cavalcade, stopping it from spinning endlessly and allowing the user to take aim again? In my experiments..."</Description>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_book_spellcraft_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Spellcraft Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 5000 spellcraft skill experience points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Spellcraft" SkillExp="5000" LearningTime="12" />
+      </ItemTrait>
+    </ItemTraits>
+    <Description>"Most believe the Cult of the Mother died out long ago. They are wrong. Not only do the Great Families of my Order continue Her traditions, but the sickle is born by others, which most of whom hide far from prying eyes. Before he formed our Order, Teclis came to our great groves. By channelling Ghyran he activated the Waystones we believed had been raised by our ancestors, and showed us what our ""Oghams"" truly were: a creation of the Elder Race, the Asur, the Elves. We watched wide-eyed as Teclis explained the nature of belief, magic, and of Hoeth, the god he especially revered. Not all of us accepted his foreign ways. Indeed, a full third of the Druidic Families stubbornly spurned Teclis, refusing to believe his ""truth,"" and fled into the dark forests, just like the prehistoric tribes of old. But those who remained, listened, and then eventually understood…"</Description>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_book_spellcraft_002">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Spellcraft Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 5000 spellcraft skill experience points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Spellcraft" SkillExp="5000" LearningTime="12" />
+      </ItemTrait>
+    </ItemTraits>
+    <Description>"…Even though this might be true, I do not believe that we, the Magisters of the Imperial Colleges of Magic, should follow their example and choose for ourselves Gods to wholly dedicate ourselves to and beg favours from, to use in conjunction with our own arcane spellcraft. Nothing in this life or the next is free, and whilst I am willing to trust in my own abilities and limitations, and accept any errors I make while weaving my spells, I do not wish to trust the continued benevolence of a deity whose need for my faith and dedication might far outweigh my own need for His or Her aid..."</Description>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_book_spellcraft_003">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Spellcraft Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 5000 spellcraft skill experience points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Spellcraft" SkillExp="5000" LearningTime="12" />
+      </ItemTrait>
+    </ItemTraits>
+    <Description>"The seventh wind of the Aethyr. Wherever there is passion, argument, or excitement, there is Ashqy. While the devastating power of this wind resides in the control over fire and flames: Fireballs, Flame storms or the Carnage of a burning head are only depicting a fraction of its might. But fire is not only for destruction. Purification of wounds, or even our everyday meal is better served cooked and therefore requires a flame. Fire is what allows for human inspiration, boldness and heroism. Whether it be brashness or courage, fire is the everpresent companion of mankind. All of these aspects are incorporated in the wind, and are studied by the bright wizard order. The magisters of the first magic order ever found by Teclis, use their knowledge over the flaming spells for protection of the empire."</Description>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_book_hybrid_002">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Spellcraft Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 5000 spellcraft skill experience points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Spellcraft" SkillExp="5000" LearningTime="12" />
+      </ItemTrait>
+      <ItemTrait ItemTraitName="Smithing Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 2000 smithing skill experience points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Crafting" SkillExp="5001" LearningTime="13" />
+      </ItemTrait>
+    </ItemTraits>
+    <Description>When asked: What is the name of the stone that burns? Thou shalt respond: Sulphur to be mixed with mercury. When asked: What is the name of the universal solvent? Thou shalt respond: Al-kahest.  When asked: What is the name of the remedy for all maladies Thou shalt respond: Panacea Universalis.  When asked: What is the name of the acme of the Art? Thou shalt respond: The Elixir of Life. When asked: What is the name of the noblest of metals? Thou shalt respond: Gold</Description>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_book_hybrid_003">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Small Spellcraft Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 2000 spellcraft skill experience points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Spellcraft" SkillExp="2000" LearningTime="10" />
+      </ItemTrait>
+      <ItemTrait ItemTraitName="Gunpowder Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 5000 gunpowder skill experience points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Gunpowder" SkillExp="5000" LearningTime="12" />
+      </ItemTrait>
+      <ItemTrait ItemTraitName="Small Roguery Knowledge" IconName="xp_icon">
+        <ItemTraitDescription>This book provides 2000 roguery skill experience points upon reading</ItemTraitDescription>
+        <SkillTuple SkillId="Roguery" SkillExp="2000" LearningTime="10" />
+      </ItemTrait>
+    </ItemTraits>
+    <Description>"Even the far coasts of Lustria seem not to be spared of the taint of vampires. Legends say, a single mad Vampire, Luthor Harkon, established his own Colony. Legends say his mind is shattered since plundering a temple of the lizardmen that cursed him and his body. Many different personalities are fighting in his soul for control, some might call a curse or blessing. Crazy or not, he managed to conquer, and recruit many of the pirates in his undead army. Vampires, either looking for adventure or hunted in  Sylvania, search for a new life far from their former habitat, and they become captains and his first mates, to haunt the shores. May Sigmar protect any living sailor that has the misfortune to come across them."</Description>
   </ExtendedItemObjectProperties>
 </ArrayOfExtendedItemObjectProperties>

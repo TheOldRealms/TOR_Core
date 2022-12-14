@@ -15,7 +15,7 @@ using TaleWorlds.ScreenSystem;
 
 namespace TOR_Core.AbilitySystem.SpellBook
 {
-    public class SpellBookMapIconCampaignBehaviour : CampaignBehaviorBase
+    public class SpellBookMapIconCampaignBehavior : CampaignBehaviorBase
     {
         public override void RegisterEvents()
         {

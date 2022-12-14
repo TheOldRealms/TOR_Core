@@ -1,10 +1,35 @@
-﻿using TaleWorlds.MountAndBlade;
+﻿using System.Collections.Generic;
+using HarmonyLib;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 
 namespace TOR_Core.Extensions
 {
     public static class MissionExtensions
     {
+        
+        public static bool IsPlayerInSpellCasterMode(this Mission mission)
+        {
+            var abilityManagerMissionLogic = mission.GetMissionBehavior<AbilityManagerMissionLogic>();
+            return abilityManagerMissionLogic.CurrentState == AbilityModeState.Casting ||
+                   abilityManagerMissionLogic.CurrentState == AbilityModeState.Casting;
+        }
+        
+        public static void AddMissionLogicAtIndexOf(this Mission mission, MissionLogic missionCombatantsLogic, MissionLogic torMissionCombatantsLogic)
+        {
+            var behaviorIndex = mission.MissionBehaviors.FindIndex(item => item.GetType() == missionCombatantsLogic.GetType());
+            var logics = Traverse.Create(mission).Field("_missionLogics").GetValue() as List<MissionLogic>;
+            var logicsIndex = logics.FindIndex(item => item.GetType() == missionCombatantsLogic.GetType());
+            mission.RemoveMissionBehavior(missionCombatantsLogic);
+
+            mission.AddMissionBehavior(torMissionCombatantsLogic); //TODO: Need to call this so that .mission is set on the behavior
+            mission.MissionBehaviors.Remove(torMissionCombatantsLogic); //TODO: Then we remove without calling the mission.RemoveMissionBehavior, as it sets Mission to null.
+            logics.Remove(torMissionCombatantsLogic);
+
+            mission.MissionBehaviors.Insert(behaviorIndex, torMissionCombatantsLogic); //TODO: And place at right location.
+            logics.Insert(logicsIndex, torMissionCombatantsLogic);
+        }
+
         public static void RemoveMissionBehaviourIfNotNull(this Mission mission, MissionBehavior behavior)
         {
             if (behavior != null)
@@ -21,6 +46,7 @@ namespace TOR_Core.Extensions
             {
                 slotsLeft = manager.GetArtillerySlotsLeftForTeam(team);
             }
+
             return slotsLeft;
         }
     }

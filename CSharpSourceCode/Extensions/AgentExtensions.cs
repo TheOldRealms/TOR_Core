@@ -1,10 +1,8 @@
 ﻿using NLog;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -14,15 +12,57 @@ using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
+using TOR_Core.Models;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions
 {
     public static class AgentExtensions
     {
-        /// <summary>
-        /// Maps all character IDs to a list of attributes for that character. For example, <"skeleton_warrior" <=> {"Expendable", "Undead"}>
-        /// </summary>
+        public static CharacterObject GetCaptainCharacter(this Agent agent)
+        {
+            if(agent.Formation != null && agent.Formation.Captain != null && agent.Formation.Captain.Character != null)
+            {
+                var character = agent.Formation.Captain.Character as CharacterObject;
+                if (character != null) return character;
+            }
+            return null;
+        }
+
+        public static CharacterObject GetPartyLeaderCharacter(this Agent agent)
+        {
+            if(agent.Origin?.BattleCombatant is PartyBase)
+            {
+                var party = (PartyBase)agent.Origin.BattleCombatant;
+                return party.LeaderHero?.CharacterObject;
+            }
+            return null;
+        }
+
+        public static CharacterObject GetArmyCommanderCharacter(this Agent agent)
+        {
+            if (agent.Origin?.BattleCombatant is PartyBase)
+            {
+                var party = (PartyBase)agent.Origin.BattleCombatant;
+                var character = party.General as CharacterObject;
+                return character;
+            }
+            return null;
+        }
+
+        public static MobileParty GetOriginMobileParty(this Agent agent)
+        {
+            var party = agent.GetOriginPartyBase();
+            if(party == null) return null;
+            return party.MobileParty;
+        }
+
+        public static PartyBase GetOriginPartyBase(this Agent agent)
+        {
+            if (agent.Origin?.BattleCombatant is PartyBase) return agent.Origin.BattleCombatant as PartyBase;
+            return null;
+        }
+
         public static bool IsExpendable(this Agent agent)
         {
             return agent.GetAttributes().Contains("Expendable");
@@ -45,7 +85,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsVampire(this Agent agent)
         {
-            return agent.Character.IsVampire();
+            return agent.Character != null ? agent.Character.IsVampire() : false;
         }
 
         public static bool IsAbilityUser(this Agent agent)
@@ -79,12 +119,12 @@ namespace TOR_Core.Extensions
         }
 
         /// <summary>
-        /// Get Extented Character properties, based on dynamic properties like temporary weapon enhancements
+        /// Get Extended Character properties based on dynamic properties like temporary weapon enhancements
         /// and status effects and static properties  like equipment and unit information.
         /// 
         /// </summary>
-        /// <param name="agent">The agent we are accessing. Note that Units are handled differently from Heroes.
-        /// Hero equipment information and gets read out for Heroes specifically resides in the 'tor_extendeditemproperties.xml'
+        /// <param name="agent">The agent are accessing. Note that Units are handled differently from Heroes.
+        /// Hero equipment information that gets read out for Heroes specifically resides in the 'tor_extendeditemproperties.xml'
         /// Unit information gets read out from the tor_extendedunitproperties.xml
         /// </param>
         /// <paramref name="agent"/>
@@ -142,7 +182,7 @@ namespace TOR_Core.Extensions
                 }
                 if (mask == PropertyMask.Defense || mask == PropertyMask.All)
                 {
-                    //add all offense properties of the Unit
+                    //add all defense properties of the Unit
                     var defenseProperties = agent.Character.GetDefenseProperties();
 
                     foreach (var property in defenseProperties)
@@ -163,7 +203,7 @@ namespace TOR_Core.Extensions
                         }
                     }
 
-                    //statuseffects
+                    //status effects
                     var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances();
 
                     for (int i = 0; i < damageResistances.Length; i++)
@@ -225,6 +265,10 @@ namespace TOR_Core.Extensions
                         }
 
                     }
+                    else
+                    {
+                        damageProportions[(int)DamageType.Physical] = 1f; //memo , this is for siege weapons, in principle a wielded Item shouldn't be found either in case of spell casting - yet it is found.
+                    }
                 }
                 if (mask == PropertyMask.Defense || mask == PropertyMask.All)
                 {
@@ -260,9 +304,18 @@ namespace TOR_Core.Extensions
             }
             #endregion
 
-            return new AgentPropertyContainer(damageProportions, damageAmplifications, damageResistances, additionalDamagePercentages);
+            var result = new AgentPropertyContainer(damageProportions, damageAmplifications, damageResistances, additionalDamagePercentages);
 
+            if (Game.Current.GameType is Campaign)
+            {
+                var model = MissionGameModels.Current.AgentStatCalculateModel as TORAgentStatCalculateModel;
+                if(model != null)
+                {
+                    result = model.AddPerkEffectsToAgentPropertyContainer(agent, mask, result);
+                }
+            }
 
+            return result;
         }
 
         public static Ability GetCurrentAbility(this Agent agent)
@@ -304,11 +357,14 @@ namespace TOR_Core.Extensions
 
         public static Hero GetHero(this Agent agent)
         {
+            if (agent == null) return null;
+            
             if (agent.Character == null) return null;
             Hero hero = null;
             if (Game.Current.GameType is Campaign)
             {
-                hero = Hero.FindFirst(x => x.StringId == agent.Character.StringId);
+                var character = agent.Character as CharacterObject;
+                if (character != null && character.IsHero) hero = character.HeroObject;
             }
             return hero;
         }
@@ -337,6 +393,21 @@ namespace TOR_Core.Extensions
             if (hero != null)
             {
                 return hero.GetExtendedInfo().AllAbilites;
+            }
+            else if (character != null)
+            {
+                return agent.Character.GetAbilities();
+            }
+            else return new List<string>();
+        }
+
+        public static List<string> GetSelectedAbilities(this Agent agent)
+        {
+            var hero = agent.GetHero();
+            var character = agent.Character;
+            if (hero != null)
+            {
+                return hero.GetExtendedInfo().SelectedAbilities;
             }
             else if (character != null)
             {
@@ -401,39 +472,28 @@ namespace TOR_Core.Extensions
                     if (agent.IsFadingOut())
                         return;
 
-                    var blow = new Blow(-1);
-                    blow.DamageCalculated = true;
+                    var damagerAgent = damager != null ? damager : agent;
+
+                    var blow = new Blow(damagerAgent.Index);
+                    blow.DamageType = DamageTypes.Blunt;
+                    blow.BoneIndex = agent.Monster.HeadLookDirectionBoneIndex;
+                    blow.Position = agent.GetChestGlobalPosition();
+                    blow.BaseMagnitude = damageAmount;
+                    blow.WeaponRecord.FillAsMeleeBlow(null, null, -1, -1);
                     blow.InflictedDamage = damageAmount;
+                    var direction = agent.Position == impactPosition ? agent.LookDirection : agent.Position - impactPosition;
+                    direction.Normalize();
+                    blow.Direction = direction;
+                    blow.SwingDirection = direction;
+                    blow.DamageCalculated = true;
                     blow.AttackType = AgentAttackType.Kick;
                     blow.BlowFlag = BlowFlags.NoSound;
-                    blow.BaseMagnitude = damageAmount;
-                    blow.DamageType = DamageTypes.Invalid;
                     blow.VictimBodyPart = BoneBodyPartType.Chest;
-                    blow.StrikeType = StrikeType.Invalid;
-                    blow.WeaponRecord.FillAsMeleeBlow(null, null, -1, -1);
-                    blow.Position = impactPosition;
-                    blow.Direction = agent.Position - impactPosition;
-                    blow.Direction.Normalize();
-                    blow.SwingDirection = blow.Direction;
+                    blow.StrikeType = StrikeType.Thrust;
                     if (hasShockWave)
                     {
                         if (agent.HasMount) blow.BlowFlag |= BlowFlags.CanDismount;
                         else blow.BlowFlag |= BlowFlags.KnockDown;
-                    }
-                    if (damager != null)
-                    {
-                        var checkAgent = Mission.Current.FindAgentWithIndex(damager.Index);
-                        if (checkAgent != null && checkAgent.Equals(damager))
-                        {
-                            blow.OwnerId = damager.Index;
-                        }
-                    }
-                    else
-                    {
-                        blow.InflictedDamage = 0;
-                        blow.BaseMagnitude = 0;
-                        blow.SelfInflictedDamage = damageAmount;
-                        blow.OwnerId = agent.Index;
                     }
 
                     if (agent.Health <= damageAmount && !doBlow)
@@ -441,7 +501,39 @@ namespace TOR_Core.Extensions
                         agent.Die(blow);
                         return;
                     }
-                    agent.RegisterBlow(blow, new AttackCollisionData());
+                    sbyte mainHandItemBoneIndex = damagerAgent.Monster.MainHandItemBoneIndex;
+                    AttackCollisionData attackCollisionData = AttackCollisionData.GetAttackCollisionDataForDebugPurpose(
+                        false, 
+                        false, 
+                        false, 
+                        true, 
+                        false, 
+                        false, 
+                        false, 
+                        false, 
+                        false, 
+                        false, 
+                        false, 
+                        false, 
+                        CombatCollisionResult.StrikeAgent, 
+                        -1,
+                        1,
+                        2,
+                        blow.BoneIndex, 
+                        blow.VictimBodyPart, 
+                        mainHandItemBoneIndex, 
+                        Agent.UsageDirection.AttackUp, 
+                        -1, 
+                        CombatHitResultFlags.NormalHit, 
+                        0.5f, 1f, 0f, 0f, 0f, 0f, 0f, 0f, 
+                        Vec3.Up, 
+                        blow.Direction, 
+                        blow.Position, 
+                        Vec3.Zero, 
+                        Vec3.Zero, 
+                        agent.Velocity, 
+                        Vec3.Up);
+                    agent.RegisterBlow(blow, attackCollisionData);
                 }
             }
             catch (Exception e)
@@ -461,10 +553,10 @@ namespace TOR_Core.Extensions
             agent.Health = Math.Min(agent.Health + healingAmount, agent.HealthLimit);
         }
 
-        public static void ApplyStatusEffect(this Agent agent, string effectId, Agent applierAgent)
+        public static void ApplyStatusEffect(this Agent agent, string effectId, Agent applierAgent, float multiplier = 1f)
         {
             var comp = agent.GetComponent<StatusEffectComponent>();
-            if (comp != null) comp.RunStatusEffect(effectId, applierAgent);
+            if (comp != null) comp.RunStatusEffect(effectId, applierAgent, multiplier);
         }
 
         public static void FallDown(this Agent agent)

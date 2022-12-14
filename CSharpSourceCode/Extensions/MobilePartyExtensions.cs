@@ -5,11 +5,17 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TOR_Core.CampaignMechanics.RaidingParties;
 
 namespace TOR_Core.Extensions
 {
     public static class MobilePartyExtensions
     {
+        public static bool IsRaidingParty(this MobileParty party)
+        {
+            return party.PartyComponent is IRaidingParty;
+        }
+
         public static bool IsNearASettlement(this MobileParty party, float threshold = 1.5f)
         {
             foreach (Settlement settlement in Settlement.All)

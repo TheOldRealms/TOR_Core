@@ -8,7 +8,7 @@ namespace TOR_Core.AbilitySystem.Crosshairs
     {
         public Pointer(AbilityTemplate template) : base(template)
         {
-            _crosshair = GameEntity.Instantiate(Mission.Current.Scene, "targeting_rune_empire", false);
+            _crosshair = GameEntity.Instantiate(Mission.Current.Scene, "circular_targeting_rune", false);
             _crosshair.EntityFlags |= EntityFlags.NotAffectedBySeason;
             MatrixFrame frame = _crosshair.GetFrame();
             frame.Scale(new Vec3(template.TargetCapturingRadius, template.TargetCapturingRadius, 1, -1));
@@ -38,6 +38,9 @@ namespace TOR_Core.AbilitySystem.Crosshairs
                         _position.z = _mission.Scene.GetGroundHeightAtPosition(Position);
                     }
                     Position = _position;
+                    Mat3 _rotation = Mat3.CreateMat3WithForward(in _normal);
+                    _rotation.RotateAboutSide(-90f.ToRadians());
+                    Rotation = _rotation;
                 }
                 else
                 {

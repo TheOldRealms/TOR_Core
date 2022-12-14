@@ -23,7 +23,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             _effectAggregate = new EffectAggregate();
         }
 
-        public void RunStatusEffect(string id, Agent applierAgent)
+        public void RunStatusEffect(string id, Agent applierAgent, float multiplier)
         {
             if (Agent == null)
                 return;
@@ -31,12 +31,12 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             StatusEffect effect = _currentEffects.Keys.Where(e => e.Template.Id.Equals(id)).FirstOrDefault();
             if (effect != null)
             {
-                effect.CurrentDuration += effect.Template.BaseDuration;
+                effect.CurrentDuration += (int)(effect.Template.BaseDuration * multiplier);
             }
             else
             {
-                effect = StatusEffectManager.GetStatusEffect(id);
-                effect.CurrentDuration = effect.Template.BaseDuration;
+                effect = StatusEffectManager.CreateNewStatusEffect(id);
+                effect.CurrentDuration = (int)(effect.Template.BaseDuration * multiplier);
                 AddEffect(effect, applierAgent);
             }
         }

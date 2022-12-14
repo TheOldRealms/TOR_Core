@@ -17,7 +17,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior
                 {AbilityEffectType.Blast, (agent, abilityIndex, abilityTemplate) => new AoETargetedCastingBehavior(agent, abilityTemplate, abilityIndex)},
                 {AbilityEffectType.Bombardment, (agent, abilityIndex, abilityTemplate) => new AoETargetedCastingBehavior(agent, abilityTemplate, abilityIndex)},
                 {AbilityEffectType.Vortex, (agent, abilityIndex, abilityTemplate) => new AoETargetedCastingBehavior(agent, abilityTemplate, abilityIndex)},
-               
+
                 {
                     AbilityEffectType.Heal, (agent, abilityIndex, abilityTemplate) =>
                     {
@@ -58,8 +58,8 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior
 
                 {AbilityEffectType.Wind, (agent, abilityIndex, abilityTemplate) => new AoEDirectionalCastingBehavior(agent, abilityTemplate, abilityIndex)},
 
-              //  {AbilityEffectType.AgentMoving, (agent, abilityIndex, abilityTemplate) => new MovementCastingBehavior(agent, abilityTemplate, abilityIndex)},
-              //  {AbilityEffectType.ArtilleryPlacement,(agent, abilityIndex, abilityTemplate) => new ArtilleryPlacementCastingBehavior(agent, abilityTemplate, abilityIndex)},
+                //  {AbilityEffectType.AgentMoving, (agent, abilityIndex, abilityTemplate) => new MovementCastingBehavior(agent, abilityTemplate, abilityIndex)},
+                {AbilityEffectType.ArtilleryPlacement, (agent, abilityIndex, abilityTemplate) => new ArtilleryPlacementCastingBehavior(agent, abilityTemplate, abilityIndex)},
             };
 
         public static List<Target> FindTargets(Agent agent, AbilityTemplate abilityTemplate)
@@ -102,6 +102,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior
                 {typeof(SelectSingleTargetCastingBehavior), CreateBuffSpellAxis()},
 
                 {typeof(SummoningCastingBehavior), CreateSummoningAxis()},
+                {typeof(ArtilleryPlacementCastingBehavior), CreateArtilleryPlacementAxis()},
             };
 
         public static List<AbstractAgentCastingBehavior> PrepareCastingBehaviors(Agent agent)
@@ -132,6 +133,20 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior
             };
         }
 
+        private static Func<AbstractAgentCastingBehavior, List<Axis>> CreateArtilleryPlacementAxis()
+        {
+            return behavior =>
+            {
+                var axes = new List<Axis>();
+
+                axes.Add(new Axis(0, 100f, x => 1 - x, CommonAIDecisionFunctions.DistanceToTarget(() => behavior.Agent.Team.QuerySystem.MedianPosition.GetGroundVec3())));
+                axes.Add(new Axis(0, 70f, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles(behavior.Agent.Team)));
+                axes.Add(new Axis(0, 1, x => x, CommonAIDecisionFunctions.AssessPositionForArtillery()));
+
+                return axes;
+            };
+        }
+
         private static Func<AbstractAgentCastingBehavior, List<Axis>> CreateAoEAdjacentSpellAxis()
         {
             return behavior =>
@@ -144,7 +159,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior
                 if (behavior.AbilityTemplate.AbilityTargetType != AbilityTargetType.Self)
                 {
                     axes.Add(new Axis(0, 100, x => 1 - x, CommonAIDecisionFunctions.DistanceToTarget(() => behavior.Agent.Position)));
-                    axes.Add(new Axis(0, 5, x => 1 - x, CommonAIDecisionFunctions.FormationDistanceToHostiles()));
+                    axes.Add(new Axis(0, 5, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToHostiles()));
                     axes.Add(new Axis(0, 3, x => 1 - x + 0.1f, CommonAIDecisionFunctions.TargetSpeed()));
                     axes.Add(new Axis(0, 0.5f, x => x + 0.01f, CommonAIDecisionFunctions.FormationUnderFire()));
                 }
@@ -184,7 +199,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior
                 return new List<Axis>
                 {
                     new Axis(0, 50, x => ScoringFunctions.Logistic(0.4f, 1, 20).Invoke(1 - x), CommonAIDecisionFunctions.DistanceToTarget(() => behavior.Agent.Position)),
-                    new Axis(0, 15, x => 1 - x, CommonAIDecisionFunctions.FormationDistanceToHostiles()),
+                    new Axis(0, 15, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToHostiles()),
                     new Axis(0, CommonAIDecisionFunctions.CalculateTeamTotalPower(behavior.Agent.Team), x => x, CommonAIDecisionFunctions.FormationPower()),
                     new Axis(1, 2.5f, x => 1 - x, CommonAIDecisionFunctions.Dispersedness()),
                 };
@@ -198,7 +213,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior
                 return new List<Axis>
                 {
                     new Axis(0, 50, x => ScoringFunctions.Logistic(0.4f, 1, 20).Invoke(1 - x), CommonAIDecisionFunctions.DistanceToTarget(() => behavior.Agent.Position)),
-                    new Axis(0, 15, x => 1 - x, CommonAIDecisionFunctions.FormationDistanceToHostiles()),
+                    new Axis(0, 15, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToHostiles()),
                     new Axis(0, CommonAIDecisionFunctions.CalculateEnemyTotalPower(behavior.Agent.Team), x => x, CommonAIDecisionFunctions.FormationPower()),
                     new Axis(1, 2.5f, x => 1 - x, CommonAIDecisionFunctions.Dispersedness()),
                     new Axis(0, 1, x => 1 - x, CommonAIDecisionFunctions.CavalryUnitRatio()),

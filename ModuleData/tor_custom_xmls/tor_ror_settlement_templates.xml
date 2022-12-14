@@ -16,7 +16,7 @@
         RegimentName="Stir River Patrol"
         RegimentHQName="River Patrol Barracks"
     />
-    	<RORSettlementTemplate
+    <RORSettlementTemplate
         SettlementId="town_AV1"
         BaseTroopId="tor_ror_blazing_sun_initiate"
         MenuHeaderText="A small Chapter House of the Knighthood Order, for members to rest and resupply."
@@ -24,7 +24,7 @@
         RegimentName="Knights of the Blazing Sun"
         RegimentHQName="Blazing Sun Chapter House"
     />
-    	<RORSettlementTemplate
+    <RORSettlementTemplate
         SettlementId="town_AV3"
         BaseTroopId="tor_ror_kragsburg_retainer"
         MenuHeaderText="Ornate, ordered and clean. The barrack of Von Kragsburgs Guard."
@@ -32,7 +32,7 @@
         RegimentName="Von Kragsburg Guard"
         RegimentHQName="Von Kragsburg Barracks"
     />
-    	<RORSettlementTemplate
+    <RORSettlementTemplate
         SettlementId="town_WI1"
         BaseTroopId="tor_empire_novice_engineer"
         MenuHeaderText="A sprawling network of forges, smelteries and factories, worked by the Empires Veteran Gunsmiths and Engineers."
@@ -40,7 +40,7 @@
         RegimentName="Imperial Gunnery School of Nuln"
         RegimentHQName="Imperial Gunnery School"
     />
-    	<RORSettlementTemplate
+    <RORSettlementTemplate
         SettlementId="town_WI4"
         BaseTroopId="tor_ror_grundel_defender_troop"
         MenuHeaderText="A temporary resting place for the Defenders, spears are lined up against the walls."
@@ -48,7 +48,7 @@
         RegimentName="Grundel's Defenders"
         RegimentHQName="Defenders Quarters"
     />
-    	<RORSettlementTemplate
+    <RORSettlementTemplate
         SettlementId="town_SY2"
         BaseTroopId="tor_ror_dragon_knight_initiate"
         MenuHeaderText="A small Chapter House of the Knighthood Order, for members to rest and resupply."
@@ -56,7 +56,7 @@
         RegimentName="Blood Dragons"
         RegimentHQName="Blood Dragon Chapter House"
     />
-    	<RORSettlementTemplate
+    <RORSettlementTemplate
         SettlementId="village_ST3_1"
         BaseTroopId="tor_ror_sternieste_skeleton"
         MenuHeaderText="A crypt for the Forgotten, ready to be raised."
@@ -64,12 +64,44 @@
         RegimentName="Forgotten Legion of Castle Sternieste"
         RegimentHQName="Forgotten Legion Crypt"
     />
-    	<RORSettlementTemplate
+    <RORSettlementTemplate
         SettlementId="town_SY1"
         BaseTroopId="tor_ror_konigstein_skeleton"
         MenuHeaderText="An ancient crypt, filled with the future servants of Sylvania."
         MenuBackgroundImageId="invalid"
         RegimentName="Konigstein Stalkers"
         RegimentHQName="Konigstein Crypt"
+    />
+    <RORSettlementTemplate
+        SettlementId="village_TB1_2"
+        BaseTroopId="tor_ror_longshank_initiate"
+        MenuHeaderText="Despite their life of constant travel, vowing to never stay anywhere for long, camps like this can still be found when these hardy folk rest their weary legs."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Longshanks"
+        RegimentHQName="Longshanks Encampment"
+    />
+    <RORSettlementTemplate
+        SettlementId="castle_village_TB3_2"
+        BaseTroopId="tor_ror_ward_of_taal"
+        MenuHeaderText="Despite deep forays into the woods of Talabecland, travelling far from civilisation to honour Taal, Hunters are seen to pass through this camp to rest."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Horned Hunters of Taal"
+        RegimentHQName="Horned Hunter Encampment"
+    />
+    <RORSettlementTemplate
+        SettlementId="castle_RL3"
+        BaseTroopId="tor_ror_son_of_altdorf"
+        MenuHeaderText="Home to the renowned and loved 'Sons of the Reik', only the best Altdorf has to offer may fight alongside these venerable warriors."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Altdorf Company of Honour"
+        RegimentHQName="Company Barracks"
+    />
+    <RORSettlementTemplate
+        SettlementId="town_RL1"
+        BaseTroopId="tor_ror_griffon_initiate"
+        MenuHeaderText="Within the great Cathedral of Sigmar, resides the barracks of the Knights Griffon. The deadliest knights within the Empire."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Knights Griffon"
+        RegimentHQName="Cathedral of Sigmar"
     />
 </ArrayOfRORSettlementTemplate>
