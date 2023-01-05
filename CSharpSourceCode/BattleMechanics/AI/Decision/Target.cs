@@ -18,7 +18,7 @@ namespace TOR_Core.BattleMechanics.AI.Decision
             get => ThreatValue;
             set => ThreatValue = value;
         }
-
+        
         public Vec3 GetPosition()
         {
             if (WeaponEntity != null)
@@ -33,7 +33,7 @@ namespace TOR_Core.BattleMechanics.AI.Decision
                 return TacticalPosition.Position.GetGroundVec3();
             try
             {
-                return Position;
+                return base.Position;
             }
             catch(NullReferenceException)
             {
@@ -41,7 +41,16 @@ namespace TOR_Core.BattleMechanics.AI.Decision
                 return Vec3.Invalid;
             }
         }
-        
+
+        public new Vec3 GetVelocity()
+        {
+            if(Formation != null)
+            {
+                return Formation.QuerySystem.CurrentVelocity.ToVec3();
+            }
+            else return base.GetVelocity();
+        }
+
         public Vec3 GetPositionPrioritizeCalculated()
         {
             if (SelectedWorldPosition != Vec3.Zero)
@@ -72,5 +81,7 @@ namespace TOR_Core.BattleMechanics.AI.Decision
             }
             set => base.Agent = value;
         }
+
+        public new Vec3 Position => GetPosition();
     }
 }

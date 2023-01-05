@@ -40,7 +40,6 @@
           <z>255</z>
         </AsVec2>
       </LightColorRGB>
-      <SeekerParameters Proportional="0.5" Derivative="0" DisableDistance="10"/>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="WardOfArrows" 

@@ -393,6 +393,12 @@ namespace TOR_Core.BattleMechanics.Artillery
             return angle;
         }
 
+        public new Vec3 GetEstimatedTargetMovementVector(Vec3 targetCurrentPosition, Vec3 targetVelocity)
+        {
+            if (targetVelocity == Vec3.Zero) return Vec3.Zero;
+            return targetVelocity * GetEstimatedCurrentFlightTime();
+        }
+
         private void CollectEntities()
         {
             _body = GameEntity.CollectObjectsWithTag<SynchedMissionObject>(_baseTag)[0];
