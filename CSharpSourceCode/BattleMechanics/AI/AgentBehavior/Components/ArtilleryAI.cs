@@ -26,7 +26,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
 
         protected override void OnTick(Func<Agent, bool> isAgentManagedByThisMachineAI, Team potentialUsersTeam, float dt)
         {
-            //base.OnTick(isAgentManagedByThisMachineAI, potentialUsersTeam, dt);
+            base.OnTick(isAgentManagedByThisMachineAI, potentialUsersTeam, dt);
             if (_artillery.PilotAgent != null && _artillery.PilotAgent.IsAIControlled)
             {
                 if (_artillery.State == RangedSiegeWeapon.WeaponState.Idle)
