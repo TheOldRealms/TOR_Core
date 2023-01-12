@@ -19,7 +19,7 @@ namespace TOR_Core.Extensions
         public static void AddMissionLogicAtIndexOf(this Mission mission, MissionLogic missionCombatantsLogic, MissionLogic torMissionCombatantsLogic)
         {
             var behaviorIndex = mission.MissionBehaviors.FindIndex(item => item.GetType() == missionCombatantsLogic.GetType());
-            var logics = Traverse.Create(mission).Field("_missionLogics").GetValue() as List<MissionLogic>;
+            var logics = Traverse.Create(mission).Property("MissionLogics").GetValue() as List<MissionLogic>;
             var logicsIndex = logics.FindIndex(item => item.GetType() == missionCombatantsLogic.GetType());
             mission.RemoveMissionBehavior(missionCombatantsLogic);
 
