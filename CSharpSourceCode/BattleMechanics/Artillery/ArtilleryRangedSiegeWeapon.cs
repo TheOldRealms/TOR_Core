@@ -154,7 +154,7 @@ namespace TOR_Core.BattleMechanics.Artillery
             {
                 if (UserFormations.Count == 0)
                 {
-                    var form = Team.Formations.ToList().FirstOrDefault(formation => formation.Arrangement.GetAllUnits().FindAll(unit => ((Agent)unit).HasAttribute("ArtilleryCrew")).Count() > 2);
+                    var form = Team.FormationsIncludingSpecialAndEmpty.ToList().FirstOrDefault(formation => formation.Arrangement.GetAllUnits().FindAll(unit => ((Agent)unit).HasAttribute("ArtilleryCrew")).Count() > 2);
                     if (form != null) form.StartUsingMachine(this, true);
                 }
             }
@@ -164,7 +164,7 @@ namespace TOR_Core.BattleMechanics.Artillery
         {
             if (ReloaderAgentOriginalPoint == null && ReloaderAgent != null)
             {
-                ReloaderAgent.StopUsingGameObject(true, true);
+                ReloaderAgent.StopUsingGameObject(true);
                 ReloaderAgent = null;
             }
         }
@@ -198,10 +198,10 @@ namespace TOR_Core.BattleMechanics.Artillery
                     if (wieldedItemIndex != EquipmentIndex.None && user.Equipment[wieldedItemIndex].CurrentUsageItem.WeaponClass == OriginalMissileItem.PrimaryWeapon.WeaponClass)
                     {
                         user.RemoveEquippedWeapon(wieldedItemIndex);
-                        user.StopUsingGameObject(true, false);
+                        user.StopUsingGameObject(true, Agent.StopUsingGameObjectFlags.None);
                         State = WeaponState.WaitingBeforeIdle;
                     }
-                    user.StopUsingGameObject(true, true);
+                    user.StopUsingGameObject(true);
                 }
                 else
                 {
@@ -214,7 +214,7 @@ namespace TOR_Core.BattleMechanics.Artillery
                                 user.RemoveEquippedWeapon(equipmentIndex);
                             }
                         }
-                        user.StopUsingGameObject(true, true);
+                        user.StopUsingGameObject(true);
                     }
                 }
             }
@@ -237,7 +237,7 @@ namespace TOR_Core.BattleMechanics.Artillery
                             {
                                 MissionWeapon missionWeapon = new MissionWeapon(LoadedMissileItem, null, null, 1);
                                 user.EquipWeaponToExtraSlotAndWield(ref missionWeapon);
-                                user.StopUsingGameObject(true, false);
+                                user.StopUsingGameObject(true, Agent.StopUsingGameObjectFlags.None);
                                 if (user.IsAIControlled)
                                 {
                                     if (!LoadAmmoStandingPoint.HasUser && !LoadAmmoStandingPoint.IsDeactivated)
@@ -265,7 +265,7 @@ namespace TOR_Core.BattleMechanics.Artillery
                             }
                             else if (!user.SetActionChannel(1, act_pickup_boulder_begin))
                             {
-                                user.StopUsingGameObject(true, true);
+                                user.StopUsingGameObject(true);
                             }
                         }
                     }

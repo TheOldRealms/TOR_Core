@@ -24,7 +24,6 @@ namespace TOR_Core.Quests
         [SaveableField(5)] private JournalLog _task4 = null;
         [SaveableField(6)] private MobileParty _targetParty = null;
         [SaveableField(7)] private bool _failstate;
-        private bool _initAfterReload;
         private bool _skipImprisonment;
         private const string QuestName = "Runaway Parts";
         private const string CultistFactionId = "forest_bandits";
@@ -39,8 +38,6 @@ namespace TOR_Core.Quests
         private const string RogueEngineerLeaderTemplateId = "tor_engineerquesthero";
         public EngineerQuestStates CurrentActiveLog => (EngineerQuestStates)_currentActiveLog;
         private List<JournalLog> _logs;
-        private CharacterObject _cultistLeader;
-        private string _cityId = "town_WI1";
 
         private delegate void InializeVisuals(MobileParty party);
 
@@ -184,7 +181,6 @@ namespace TOR_Core.Quests
 
         protected override void OnStartQuest()
         {
-            Settlement targetSettlement = null;
             SpawnQuestParty(CultistLeaderTemplateId, CultistPartyTemplateId, CultistFactionId, CultistPartyLeaderName,
                 CultistPartyDisplayName);
         }

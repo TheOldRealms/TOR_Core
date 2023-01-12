@@ -10,6 +10,7 @@ using System.Xml.Serialization;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.TroopSuppliers;
 using TaleWorlds.Core;
@@ -113,25 +114,30 @@ namespace TOR_Core.HarmonyPatches
                     {
                         list.Add(new WorkshopMissionHandler(currentTown));
                     }
-                    Mission.BattleSizeType battleSizeType = isSallyOut ? Mission.BattleSizeType.SallyOut : Mission.BattleSizeType.Siege;
-                    list.Add(CreateCampaignMissionAgentSpawnLogic(battleSizeType));
-                    list.Add(new BattlePowerCalculationLogic());
+                    Mission.BattleSizeType battleSizeType = Mission.BattleSizeType.Siege;
                     if (isSallyOut)
                     {
-                        list.Add(new SandBoxSallyOutMissionSpawnHandler());
-                        list.Add(new SallyOutMissionNotificationsHandler());
-                    }
-                    else if (isReliefForceAttack)
-                    {
-                        list.Add(new SandBoxSallyOutMissionSpawnHandler());
-                        list.Add(new SallyOutMissionNotificationsHandler());
+                        battleSizeType = Mission.BattleSizeType.SallyOut;
+                        FlattenedTroopRoster priorityTroopsForSallyOutAmbush = Campaign.Current.Models.SiegeEventModel.GetPriorityTroopsForSallyOutAmbush();
+                        list.Add(new SandBoxSallyOutMissionController());
+                        list.Add(CreateCampaignMissionAgentSpawnLogic(battleSizeType, priorityTroopsForSallyOutAmbush, null));
                     }
                     else
                     {
-                        list.Add(new SandBoxSiegeMissionSpawnHandler());
+                        if (isReliefForceAttack)
+                        {
+                            list.Add(new SandBoxSallyOutMissionController());
+                        }
+                        else
+                        {
+                            list.Add(new SandBoxSiegeMissionSpawnHandler());
+                        }
+                        list.Add(CreateCampaignMissionAgentSpawnLogic(battleSizeType, null, null));
                     }
+                    list.Add(new BattlePowerCalculationLogic());
                     list.Add(new BattleObserverMissionLogic());
                     list.Add(new BattleAgentLogic());
+                    list.Add(new BattleSurgeonLogic());
                     list.Add(new MountAgentLogic());
                     list.Add(new BannerBearerLogic());
                     list.Add(new AgentHumanAILogic());
@@ -145,8 +151,7 @@ namespace TOR_Core.HarmonyPatches
                     Hero leaderHero = MapEvent.PlayerMapEvent.AttackerSide.LeaderParty.LeaderHero;
                     TextObject attackerGeneralName = (leaderHero != null) ? leaderHero.Name : null;
                     Hero leaderHero2 = MapEvent.PlayerMapEvent.DefenderSide.LeaderParty.LeaderHero;
-                    list2.Add(new CreateBodyguardMissionBehavior(attackerGeneralName, (leaderHero2 != null) ? leaderHero2.Name : null, null, null, false));
-                    list.Add(new SandboxAutoCaptainAssignmentLogic(battleSizeType));
+                    list2.Add(new SandboxGeneralsAndCaptainsAssignmentLogic(attackerGeneralName, (leaderHero2 != null) ? leaderHero2.Name : null, null, null, false));
                     list.Add(new MissionAgentPanicHandler());
                     list.Add(new MissionBoundaryPlacer());
                     list.Add(new MissionBoundaryCrossingHandler());
@@ -154,9 +159,16 @@ namespace TOR_Core.HarmonyPatches
                     list.Add(new HighlightsController());
                     list.Add(new BattleHighlightsController());
                     list.Add(new EquipmentControllerLeaveLogic());
-                    list.Add(new MissionSiegeEnginesLogic(siegeWeaponsOfDefenders, siegeWeaponsOfAttackers));
+                    if (isSallyOut)
+                    {
+                        list.Add(new MissionSiegeEnginesLogic(new List<MissionSiegeWeapon>(), siegeWeaponsOfAttackers));
+                    }
+                    else
+                    {
+                        list.Add(new MissionSiegeEnginesLogic(siegeWeaponsOfDefenders, siegeWeaponsOfAttackers));
+                    }
                     list.Add(new SiegeDeploymentHandler(isPlayerAttacker));
-                    list.Add(new SiegeMissionController(isPlayerAttacker, isSallyOut));
+                    list.Add(new SiegeDeploymentMissionController(isPlayerAttacker));
                     return list.ToArray();
                 }, true, true);
 
@@ -165,12 +177,12 @@ namespace TOR_Core.HarmonyPatches
             return true;
         }
 
-        private static MissionAgentSpawnLogic CreateCampaignMissionAgentSpawnLogic(Mission.BattleSizeType battleSizeType)
+        private static MissionAgentSpawnLogic CreateCampaignMissionAgentSpawnLogic(Mission.BattleSizeType battleSizeType, FlattenedTroopRoster priorTroopsForDefenders = null, FlattenedTroopRoster priorTroopsForAttackers = null)
         {
             return new MissionAgentSpawnLogic(new IMissionTroopSupplier[]
             {
-                new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Defender, null, null),
-                new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Attacker, null, null)
+                new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Defender, priorTroopsForDefenders, null),
+                new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Attacker, priorTroopsForAttackers, null)
             }, PartyBase.MainParty.Side, battleSizeType);
         }
 

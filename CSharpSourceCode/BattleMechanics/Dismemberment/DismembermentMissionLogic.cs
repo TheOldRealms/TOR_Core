@@ -60,11 +60,11 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             }
         }
 
-        public override void HandleOnCloseMission()
+        public override void OnClearScene()
         {
             Clear();
         }
-        
+
         private void Clear()
         {
             // just to make sure that all references are cleared

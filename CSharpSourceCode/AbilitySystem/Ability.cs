@@ -198,10 +198,10 @@ namespace TOR_Core.AbilitySystem
                         Mission.Current.Scene.GetHeightAtPoint(pos.AsVec2, BodyFlags.CommonCollisionExcludeFlagsForCombat, ref height);
                         pos.z = height;
 
+                        MBList<Agent> targets = new MBList<Agent>();
+                        targets = Mission.Current.GetNearbyAgents(pos.AsVec2, 5, targets);
 
-                        var target= Mission.Current.GetAgentsInRange(pos.AsVec2,5);
-
-                        foreach (var agent in target)
+                        foreach (var agent in targets)
                         {
                             if (agent.Team != Mission.Current.Teams.PlayerEnemy) continue;
                             frame.origin = agent.Frame.origin;

@@ -177,9 +177,9 @@ namespace TOR_Core.AbilitySystem.Scripts
         protected virtual bool CollidedWithAgent()
         {
             var collisionRadius = _ability.Template.Radius + 1;
-            return Mission.Current
-                .GetAgentsInRange(GameEntity.GetGlobalFrame().origin.AsVec2, collisionRadius, true)
-                .Any(agent => agent != _casterAgent && Math.Abs(GameEntity.GetGlobalFrame().origin.Z - agent.Position.Z) < collisionRadius);
+            MBList<Agent> agents = new MBList<Agent>();
+            agents = Mission.Current.GetNearbyAgents(GameEntity.GetGlobalFrame().origin.AsVec2, collisionRadius, agents);
+            return agents.Any(agent => agent != _casterAgent && Math.Abs(GameEntity.GetGlobalFrame().origin.Z - agent.Position.Z) < collisionRadius);
         }
 
         protected override void OnPhysicsCollision(ref PhysicsContact contact)
@@ -210,11 +210,11 @@ namespace TOR_Core.AbilitySystem.Scripts
             {
                 if(_ability.Template.AbilityTargetType == AbilityTargetType.Self)
                 {
-                    effect.Trigger(position, normal, _casterAgent, _ability.Template, new List<Agent>(1) { _casterAgent });
+                    effect.Trigger(position, normal, _casterAgent, _ability.Template, new MBList<Agent>(1) { _casterAgent });
                 }
                 else if(IsSingleTarget() && _targetAgent != null)
                 {
-                    effect.Trigger(position, normal, _casterAgent, _ability.Template, new List<Agent>(1) { _targetAgent });
+                    effect.Trigger(position, normal, _casterAgent, _ability.Template, new MBList<Agent>(1) { _targetAgent });
                 }
                 else effect.Trigger(position, normal, _casterAgent, _ability.Template);
             }

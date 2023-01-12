@@ -83,123 +83,130 @@ namespace TOR_Core.CharacterDevelopment
 
         private void InitializeAll()
         {
-            _runAndGun.InitializeNew("{=!}Run and Gun", TORSkills.GunPowder, 50, _mountedHeritage, 
+            _runAndGun.Initialize("{=!}Run and Gun", TORSkills.GunPowder, 50, _mountedHeritage, 
                 "{=!}While on foot and using a pistol, your accuracy penalty for moving is reduced by 20%.", 
                 SkillEffect.PerkRole.Personal, -20f, SkillEffect.EffectIncrementType.AddFactor, 
                 "{=!}Gunpowder infantry troops in your party have their gunpowder skill increased by 30.", 
                 SkillEffect.PerkRole.PartyLeader, 30f, SkillEffect.EffectIncrementType.Add, TroopClassFlag.None, TroopClassFlag.Infantry | TroopClassFlag.Ranged);
-            _mountedHeritage.InitializeNew("{=!}Mounted Heritage", TORSkills.GunPowder, 50, _runAndGun,
+            _mountedHeritage.Initialize("{=!}Mounted Heritage", TORSkills.GunPowder, 50, _runAndGun,
                 "{=!}Your accuracy is increased by 20% with gunpowder weapons when mounted.",
                 SkillEffect.PerkRole.Personal, -20f, SkillEffect.EffectIncrementType.AddFactor,
                 "{=!}Mounted ranged troops in your party have their riding skill increased by 30.",
                 SkillEffect.PerkRole.PartyLeader, 30f, SkillEffect.EffectIncrementType.Add, TroopClassFlag.None, TroopClassFlag.Cavalry | TroopClassFlag.Ranged);
 
-            _firingDrills.InitializeNew("{=!}Firing Drills", TORSkills.GunPowder, 100, _ammoWagons,
+            _firingDrills.Initialize("{=!}Firing Drills", TORSkills.GunPowder, 100, _ammoWagons,
                 "{=!}Immediately gain +1 Discipline.",
                 SkillEffect.PerkRole.Personal, 1f, SkillEffect.EffectIncrementType.Add,
                 "{=!}Gunpowder troops in your party recieve +5 experience per day.",
                 SkillEffect.PerkRole.PartyLeader, 5f, SkillEffect.EffectIncrementType.Add, TroopClassFlag.None, TroopClassFlag.Ranged);
-            _ammoWagons.InitializeNew("{=!}Ammunition Wagons", TORSkills.GunPowder, 100, _firingDrills,
+            _ammoWagons.Initialize("{=!}Ammunition Wagons", TORSkills.GunPowder, 100, _firingDrills,
                 "{=!}+50% starting ammunition for all gunpowder troops (including player).",
                 SkillEffect.PerkRole.PartyLeader, 50f, SkillEffect.EffectIncrementType.AddFactor,
                 "{=!}Increase your party's inventory capacity by 30%.",
                 SkillEffect.PerkRole.PartyLeader, 30f, SkillEffect.EffectIncrementType.AddFactor, TroopClassFlag.None, TroopClassFlag.None);
 
-            _closeQuarters.InitializeNew("{=!}Close Quarters", TORSkills.GunPowder, 150, _deadEye,
+            _closeQuarters.Initialize("{=!}Close Quarters", TORSkills.GunPowder, 150, _deadEye,
                 "{=!}You deal 25% increased damage with gunpowder weapons to enemies within 7 meters.",
                 SkillEffect.PerkRole.Personal, 25f, SkillEffect.EffectIncrementType.AddFactor,
                 "{=!}Ranged troops in your party have their One-handed skill increased by 30.",
                 SkillEffect.PerkRole.PartyLeader, 30f, SkillEffect.EffectIncrementType.Add, TroopClassFlag.None, TroopClassFlag.Ranged);
-            _deadEye.InitializeNew("{=!}Dead Eye", TORSkills.GunPowder, 150, _closeQuarters,
+            _deadEye.Initialize("{=!}Dead Eye", TORSkills.GunPowder, 150, _closeQuarters,
                 "{=!}You deal 30% increased damage with longrifles.",
                 SkillEffect.PerkRole.Personal, 30f, SkillEffect.EffectIncrementType.AddFactor,
                 "{=!}Two-Handed gunpowder troops in your party have their accuracy increased by 20%.",
                 SkillEffect.PerkRole.Captain, -20f, SkillEffect.EffectIncrementType.AddFactor, TroopClassFlag.None, TroopClassFlag.Ranged);
 
-            _bulletProof.InitializeNew("{=!}Bullet Proof", TORSkills.GunPowder, 200, _bombingSuit,
+            _bulletProof.Initialize("{=!}Bullet Proof", TORSkills.GunPowder, 200, _bombingSuit,
                 "{=!}You take 15% less damage from handheld ranged weapons.",
                 SkillEffect.PerkRole.Personal, -15f, SkillEffect.EffectIncrementType.AddFactor,
                 "{=!}Troops in your party recieve 5% less damage from handheld ranged weapons.",
                 SkillEffect.PerkRole.Captain, -5f, SkillEffect.EffectIncrementType.AddFactor, TroopClassFlag.None, TroopClassFlag.None);
-            _bombingSuit.InitializeNew("{=!}Bomb Suit", TORSkills.GunPowder, 200, _bulletProof,
+            _bombingSuit.Initialize("{=!}Bomb Suit", TORSkills.GunPowder, 200, _bulletProof,
                 "{=!}You take 25% less damage from siege artillery and explosions.",
                 SkillEffect.PerkRole.Personal, -25f, SkillEffect.EffectIncrementType.AddFactor,
                 "{=!}Troops in your party recieve 10% less damage from siege artillery and explosions.",
                 SkillEffect.PerkRole.Captain, -10f, SkillEffect.EffectIncrementType.AddFactor, TroopClassFlag.None, TroopClassFlag.None);
 
-            _packItIn.InitializeNew("{=!}Pack It In", TORSkills.GunPowder, 250, _steelTerror,
+            _packItIn.Initialize("{=!}Pack It In", TORSkills.GunPowder, 250, _steelTerror,
                 "{=!}When you are using a multi-projectile gunpowder weapon, increase the number of projectiles by 50%.",
                 SkillEffect.PerkRole.Personal, 50f, SkillEffect.EffectIncrementType.AddFactor,
                 "{=!}Troops in your formation gain +10% bonus damage and the damage is converted to Fire Damage when they are using explosive gunpowder weapons.",
                 SkillEffect.PerkRole.Captain, 10f, SkillEffect.EffectIncrementType.AddFactor, TroopClassFlag.None, TroopClassFlag.None);
-            _steelTerror.InitializeNew("{=!}Steel Terror", TORSkills.GunPowder, 250, _packItIn,
+            _steelTerror.Initialize("{=!}Steel Terror", TORSkills.GunPowder, 250, _packItIn,
                 "{=!}Artillery and Heavy Gunpowder weapons deal +10% morale damage in battle.",
                 SkillEffect.PerkRole.Captain, 10f, SkillEffect.EffectIncrementType.AddFactor,
                 "{=!}Artillery crews and engineers in your party become unbreakable due to morale loss.",
                 SkillEffect.PerkRole.PartyLeader, 1f, SkillEffect.EffectIncrementType.Add, TroopClassFlag.None, TroopClassFlag.None);
 
-            _piercingShots.Initialize("{=!}Piercing Shots", "{=!}Your shots ignore 50% of enemy armor and troops using gunpowder weapons penetrate shields with their shots.", TORSkills.GunPowder, 300, null, SkillEffect.PerkRole.Personal, -50f);
+            _piercingShots.Initialize("{=!}Piercing Shots", TORSkills.GunPowder, 300, null, 
+                "{=!}Your shots ignore 50% of enemy armor and troops using gunpowder weapons penetrate shields with their shots.", 
+                SkillEffect.PerkRole.Personal, -50f, SkillEffect.EffectIncrementType.Invalid);
 
-            _entrySpells.Initialize("{=!}Novice Spellcaster", "{=!}Gain access to entry level spells.", TORSkills.SpellCraft, 25, null, SkillEffect.PerkRole.Personal);
-            _adeptSpells.Initialize("{=!}Adept Spellcaster", "{=!}Gain access to adept level spells.", TORSkills.SpellCraft, 75, null, SkillEffect.PerkRole.Personal);
-            _masterSpells.Initialize("{=!}Master Spellcaster", "{=!}Gain access to master level spells.", TORSkills.SpellCraft, 125, null, SkillEffect.PerkRole.Personal);
+            _entrySpells.Initialize("{=!}Novice Spellcaster", TORSkills.SpellCraft, 25, null, 
+                "{=!}Gain access to entry level spells.", SkillEffect.PerkRole.Personal, 0, SkillEffect.EffectIncrementType.Invalid);
+            _adeptSpells.Initialize("{=!}Adept Spellcaster", TORSkills.SpellCraft, 75, null,
+                "{=!}Gain access to adept level spells.", SkillEffect.PerkRole.Personal, 0, SkillEffect.EffectIncrementType.Invalid);
+            _masterSpells.Initialize("{=!}Master Spellcaster", TORSkills.SpellCraft, 125, null,
+                "{=!}Gain access to master level spells.", SkillEffect.PerkRole.Personal, 0, SkillEffect.EffectIncrementType.Invalid);
 
-            _selfish.InitializeNew("{=!}Selfish", TORSkills.SpellCraft, 50, _wellControlled,
+            _selfish.Initialize("{=!}Selfish", TORSkills.SpellCraft, 50, _wellControlled,
                 "{=!}Your damaging spells do 90% reduced damage to yourself.",
                 SkillEffect.PerkRole.Personal, -90f, SkillEffect.EffectIncrementType.AddFactor,
                 "{=!}Your self targeted buff spells have 50% more duration.",
                 SkillEffect.PerkRole.Personal, 50f, SkillEffect.EffectIncrementType.AddFactor, TroopClassFlag.None, TroopClassFlag.None);
-            _wellControlled.InitializeNew("{=!}Well Controlled", TORSkills.SpellCraft, 50, _selfish,
+            _wellControlled.Initialize("{=!}Well Controlled", TORSkills.SpellCraft, 50, _selfish,
                 "{=!}Your damaging spells do 30% less damage to troops in your party.",
                 SkillEffect.PerkRole.Personal, -30f, SkillEffect.EffectIncrementType.AddFactor,
                 "{=!}Gain 5% advantage in simulation battles.",
                 SkillEffect.PerkRole.PartyLeader, 5f, SkillEffect.EffectIncrementType.AddFactor, TroopClassFlag.None, TroopClassFlag.None);
 
-            _librarian.InitializeNew("{=!}Librarian", TORSkills.SpellCraft, 100, _storyTeller,
+            _librarian.Initialize("{=!}Librarian", TORSkills.SpellCraft, 100, _storyTeller,
                 "{=!}You gain double experience from reading books.",
                 SkillEffect.PerkRole.Personal, 100f, SkillEffect.EffectIncrementType.AddFactor,
                 "{=!}Learning new spells cost 50% less gold.",
                 SkillEffect.PerkRole.Personal, -50f, SkillEffect.EffectIncrementType.AddFactor, TroopClassFlag.None, TroopClassFlag.None);
-            _storyTeller.InitializeNew("{=!}Storyteller", TORSkills.SpellCraft, 100, _librarian,
+            _storyTeller.Initialize("{=!}Storyteller", TORSkills.SpellCraft, 100, _librarian,
                 "{=!}Every companion in your party gains 1000 experience in a random skill per day.",
                 SkillEffect.PerkRole.PartyLeader, 1000f, SkillEffect.EffectIncrementType.Add,
                 "{=!}Your party gains a permanent +5 increase to party morale.",
                 SkillEffect.PerkRole.PartyLeader, 5f, SkillEffect.EffectIncrementType.Add, TroopClassFlag.None, TroopClassFlag.None);
 
-            _overCaster.InitializeNew("{=!}Overcaster", TORSkills.SpellCraft, 150, _efficientSpellCaster,
+            _overCaster.Initialize("{=!}Overcaster", TORSkills.SpellCraft, 150, _efficientSpellCaster,
                 "{=!}Your damaging spells do 20% more damage but cost 10% more winds of magic.",
                 SkillEffect.PerkRole.Personal, 20f, SkillEffect.EffectIncrementType.AddFactor,
                 string.Empty,
                 SkillEffect.PerkRole.None, 10f, SkillEffect.EffectIncrementType.AddFactor, TroopClassFlag.None, TroopClassFlag.None);
-            _efficientSpellCaster.InitializeNew("{=!}Efficient Spellcaster", TORSkills.SpellCraft, 150, _overCaster,
+            _efficientSpellCaster.Initialize("{=!}Efficient Spellcaster", TORSkills.SpellCraft, 150, _overCaster,
                 "{=!}Your damaging spells do 20% less damage, but cost 30% less winds of magic.",
                 SkillEffect.PerkRole.Personal, -20f, SkillEffect.EffectIncrementType.AddFactor,
                 string.Empty,
                 SkillEffect.PerkRole.None, -30f, SkillEffect.EffectIncrementType.AddFactor, TroopClassFlag.None, TroopClassFlag.None);
 
-            _improvision.InitializeNew("{=!}Improvision", TORSkills.SpellCraft, 200, _catalyst,
+            _improvision.Initialize("{=!}Improvision", TORSkills.SpellCraft, 200, _catalyst,
                 "{=!}Your Winds of Magic is set to 25 if you have less than that at the beginning of the battle.",
                 SkillEffect.PerkRole.Personal, 25f, SkillEffect.EffectIncrementType.Add,
                 "{=!}+10% Persuasion chance during speech checks.",
                 SkillEffect.PerkRole.Personal, 10f, SkillEffect.EffectIncrementType.AddFactor, TroopClassFlag.None, TroopClassFlag.None);
-            _catalyst.InitializeNew("{=!}Catalyst", TORSkills.SpellCraft, 200, _improvision,
+            _catalyst.Initialize("{=!}Catalyst", TORSkills.SpellCraft, 200, _improvision,
                 "{=!}For every magical item in your equipment slots you gain +5 extra Winds of magic at the start of battle.",
                 SkillEffect.PerkRole.Personal, 5f, SkillEffect.EffectIncrementType.Add,
                 "{=!}You gain +20% Winds of Magic regeneration while waiting in a town.",
                 SkillEffect.PerkRole.Personal, 20f, SkillEffect.EffectIncrementType.AddFactor, TroopClassFlag.None, TroopClassFlag.None);
 
-            _dampener.InitializeNew("{=!}Dampener", TORSkills.SpellCraft, 250, _arcaneLink,
+            _dampener.Initialize("{=!}Dampener", TORSkills.SpellCraft, 250, _arcaneLink,
                 "{=!}Damage dealt by your damaging spells is reduced by 15%, but troops in your formation take 30% less damage from spells.",
                 SkillEffect.PerkRole.Personal, -15f, SkillEffect.EffectIncrementType.AddFactor,
                 "{=!}You gain 5% ward save.",
                 SkillEffect.PerkRole.Personal, -5f, SkillEffect.EffectIncrementType.AddFactor, TroopClassFlag.None, TroopClassFlag.None);
-            _arcaneLink.InitializeNew("{=!}Arcane Link", TORSkills.SpellCraft, 250, _dampener,
+            _arcaneLink.Initialize("{=!}Arcane Link", TORSkills.SpellCraft, 250, _dampener,
                 "{=!}Any buffs you cast on a friendly unit will now also apply to you even if you are not in range.",
                 SkillEffect.PerkRole.Personal, 1f, SkillEffect.EffectIncrementType.Add,
                 "{=!}As formation Captain, all troops in your formation deal additonal 10% magic damage.",
                 SkillEffect.PerkRole.Captain, 10f, SkillEffect.EffectIncrementType.AddFactor, TroopClassFlag.None, TroopClassFlag.None);
 
-            _exchange.Initialize("{=!}Exchange", "{=!}All physical damage done by your weapons is doubled and dealt again as magical damage.", TORSkills.SpellCraft, 300, null, SkillEffect.PerkRole.Personal, 100f);
+            _exchange.Initialize("{=!}Exchange", TORSkills.SpellCraft, 300, null,
+                "{=!}All physical damage done by your weapons is doubled and dealt again as magical damage.", 
+                SkillEffect.PerkRole.Personal, 100f, SkillEffect.EffectIncrementType.AddFactor);
         }
 
         public static class SpellCraft

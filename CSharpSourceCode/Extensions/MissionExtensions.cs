@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using HarmonyLib;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
@@ -48,6 +49,16 @@ namespace TOR_Core.Extensions
             }
 
             return slotsLeft;
+        }
+
+        public static List<Team> GetEnemyTeamsOf(this Mission mission, Team team)
+        {
+            return mission.Teams.Where(x => x.IsEnemyOf(team)).ToList();
+        }
+
+        public static List<Team> GetAllyTeamsOf(this Mission mission, Team team)
+        {
+            return mission.Teams.Where(x => x.IsFriendOf(team)).ToList();
         }
     }
 }

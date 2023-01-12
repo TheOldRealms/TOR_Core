@@ -73,7 +73,8 @@ namespace TOR_Core.AbilitySystem.Scripts
                 }
             }
 
-            var agents = Mission.Current.GetAgentsInRange(_casterAgent.Position.AsVec2, 2);
+            MBList<Agent> agents = new MBList<Agent>();
+            agents = Mission.Current.GetNearbyAgents(_casterAgent.Position.AsVec2, 2, agents);
             foreach (Agent agent in agents)
             {
                 if (agent != _casterAgent && MathF.Abs(_casterAgent.Position.Z - agent.Position.Z) < 1)

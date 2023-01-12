@@ -67,8 +67,8 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior
             if (abilityTemplate.AbilityTargetType == AbilityTargetType.AlliesInAOE ||
                 abilityTemplate.AbilityEffectType == AbilityEffectType.Heal ||
                 abilityTemplate.AbilityTargetType == AbilityTargetType.SingleAlly)
-                return agent.Team.QuerySystem.AllyTeams
-                    .SelectMany(team => team.Team.Formations)
+                return agent.Team.GetAllyTeams()
+                    .SelectMany(team => team.FormationsIncludingSpecialAndEmpty)
                     .Select(form => new Target {Formation = form})
                     .ToList();
             if (abilityTemplate.AbilityEffectType == AbilityEffectType.Summoning ||
@@ -82,8 +82,8 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior
                     }
                 };
 
-            return agent.Team.QuerySystem.EnemyTeams
-                .SelectMany(team => team.Team.Formations)
+            return agent.Team.GetEnemyTeams()
+                .SelectMany(team => team.FormationsIncludingSpecialAndEmpty)
                 .Select(form => new Target {Formation = form})
                 .ToList();
         }

@@ -5,9 +5,9 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 {
     public class ExtendedInfoMissionLogic : MissionLogic
     {
-        public override void OnMissionDeactivate()
+        public override void OnMissionStateDeactivated()
         {
-            base.OnMissionDeactivate();
+            base.OnMissionStateDeactivated();
             TORSpellBlowHelper.Clear();
         }
     }

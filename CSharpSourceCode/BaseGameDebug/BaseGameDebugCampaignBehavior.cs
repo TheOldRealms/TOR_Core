@@ -35,7 +35,7 @@ namespace TOR_Core.BaseGameDebug
                     {
                         LeaveSettlementAction.ApplyForParty(parties[i]);
                         parties[i].Aggressiveness = 1f - 0.2f * MBRandom.RandomFloat;
-                        parties[i].SetMovePatrolAroundSettlement(hideout.Settlement);
+                        SetPartyAiAction.GetActionForPatrollingAroundSettlement(parties[i], hideout.Settlement);
                     }
                 }
             }
