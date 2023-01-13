@@ -7,6 +7,7 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.AI.Decision;
 using TOR_Core.BattleMechanics.Artillery;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
 {
@@ -120,7 +121,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
         private IEnumerable<Formation> GetUnemployedEnemyFormations()
         {
             return from f in (from t in Mission.Current.Teams where t.Side.GetOppositeSide() == _artillery.Side select t)
-                    .SelectMany((Team t) => t.FormationsIncludingSpecialAndEmpty)
+                    .SelectMany((Team t) => t.GetFormationsIncludingSpecial())
                 where f.CountOfUnits > 0
                 select f;
         }

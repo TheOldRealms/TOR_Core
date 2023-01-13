@@ -154,7 +154,7 @@ namespace TOR_Core.BattleMechanics.Artillery
             {
                 if (UserFormations.Count == 0)
                 {
-                    var form = Team.FormationsIncludingSpecialAndEmpty.ToList().FirstOrDefault(formation => formation.Arrangement.GetAllUnits().FindAll(unit => ((Agent)unit).HasAttribute("ArtilleryCrew")).Count() > 2);
+                    var form = Team.GetFormations().ToList().FirstOrDefault(formation => formation.Arrangement.GetAllUnits().FindAll(unit => ((Agent)unit).HasAttribute("ArtilleryCrew")).Count() > 2);
                     if (form != null) form.StartUsingMachine(this, true);
                 }
             }

@@ -83,7 +83,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
             AssignTacticFormations1121();
 
             var allFormations = Team.FormationsIncludingSpecialAndEmpty.ToList();
-            var infantryFormations = Team.FormationsIncludingSpecialAndEmpty.ToList().FindAll(formation => formation.QuerySystem.IsInfantryFormation);
+            var infantryFormations = Team.GetFormationsIncludingSpecial().ToList().FindAll(formation => formation.QuerySystem.IsInfantryFormation);
             var updatedFormations = new List<Formation>();
 
             allFormations.SelectMany(form => form.Arrangement.GetAllUnits()).ToList().Select(unit => (Agent) unit).ToList().ForEach(agent =>
@@ -310,7 +310,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
 
         protected override bool CheckAndSetAvailableFormationsChanged()
         {
-            var aiControlledFormationCount = FormationsIncludingSpecialAndEmpty.Count(f => f.IsAIControlled);
+            var aiControlledFormationCount = FormationsIncludingSpecialAndEmpty.ToList().FindAll(form => form.CountOfUnits > 0).Count(f => f.IsAIControlled);
             if (aiControlledFormationCount != _AIControlledFormationCount)
             {
                 _AIControlledFormationCount = aiControlledFormationCount;

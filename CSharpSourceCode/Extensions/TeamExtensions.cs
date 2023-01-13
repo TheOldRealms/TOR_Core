@@ -9,6 +9,16 @@ namespace TOR_Core.Extensions
 {
     public static class TeamExtensions
     {
+        public static List<Formation> GetFormations(this Team team)
+        {
+            return team.FormationsIncludingEmpty.FindAll(form => form.CountOfUnits > 0);
+        }
+
+        public static List<Formation> GetFormationsIncludingSpecial(this Team team)
+        {
+            return team.FormationsIncludingSpecialAndEmpty.FindAll(form => form.CountOfUnits > 0);
+        }
+        
         public static List<Team> GetEnemyTeams(this Team team)
         {
             return Mission.Current.Teams.Where(x => x.IsEnemyOf(team)).ToList();

@@ -18,17 +18,17 @@ namespace TOR_Core.Extensions
         
         public static void AddMissionLogicAtIndexOf(this Mission mission, MissionLogic missionCombatantsLogic, MissionLogic torMissionCombatantsLogic)
         {
+           
             var behaviorIndex = mission.MissionBehaviors.FindIndex(item => item.GetType() == missionCombatantsLogic.GetType());
-            var logics = Traverse.Create(mission).Property("MissionLogics").GetValue() as List<MissionLogic>;
-            var logicsIndex = logics.FindIndex(item => item.GetType() == missionCombatantsLogic.GetType());
+            var logicsIndex = mission.MissionLogics.FindIndex(item => item.GetType() == missionCombatantsLogic.GetType());
             mission.RemoveMissionBehavior(missionCombatantsLogic);
 
             mission.AddMissionBehavior(torMissionCombatantsLogic); //TODO: Need to call this so that .mission is set on the behavior
             mission.MissionBehaviors.Remove(torMissionCombatantsLogic); //TODO: Then we remove without calling the mission.RemoveMissionBehavior, as it sets Mission to null.
-            logics.Remove(torMissionCombatantsLogic);
+            mission.MissionLogics.Remove(torMissionCombatantsLogic);
 
             mission.MissionBehaviors.Insert(behaviorIndex, torMissionCombatantsLogic); //TODO: And place at right location.
-            logics.Insert(logicsIndex, torMissionCombatantsLogic);
+            mission.MissionLogics.Insert(logicsIndex, torMissionCombatantsLogic);
         }
 
         public static void RemoveMissionBehaviourIfNotNull(this Mission mission, MissionBehavior behavior)
