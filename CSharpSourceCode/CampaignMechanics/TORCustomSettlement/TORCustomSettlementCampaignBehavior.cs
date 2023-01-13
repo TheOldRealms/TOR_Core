@@ -6,6 +6,8 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
+using TaleWorlds.SaveSystem;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement
 {
@@ -66,9 +68,26 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             Hero.MainHero.PartyBelongedTo.Party.ItemRoster.AddToCounts(item, 1);
         }
 
-        public override void SyncData(IDataStore dataStore)
+        public override void SyncData(IDataStore dataStore) { }
+    }
+
+    public class TORCustomSettlementComponentSaveableTypeDefiner : SaveableTypeDefiner
+    {
+        public TORCustomSettlementComponentSaveableTypeDefiner() : base(529011) { }
+
+        protected override void DefineClassTypes()
         {
-            //throw new NotImplementedException();
+            AddClassDefinition(typeof(TORCustomSettlementComponent), 7070);
+        }
+
+        protected override void DefineInterfaceTypes()
+        {
+            AddInterfaceDefinition(typeof(ISettlementType), 7071);
+        }
+
+        protected override void DefineContainerDefinitions()
+        {
+            ConstructContainerDefinition(typeof(Dictionary<Settlement, Dictionary<CharacterObject, int>>));
         }
     }
 }
