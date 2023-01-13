@@ -494,6 +494,7 @@ namespace TOR_Core.BattleMechanics.Artillery
         protected override void RegisterAnimationParameters()
         {
             SkeletonOwnerObjects = new SynchedMissionObject[0];
+            Skeletons = new Skeleton[0];
             _idleAnimationActionIndex = ActionIndexCache.Create(IdleActionName);
             _shootAnimationActionIndex = ActionIndexCache.Create(ShootActionName);
             _reload1AnimationActionIndex = ActionIndexCache.Create(Reload1ActionName);
