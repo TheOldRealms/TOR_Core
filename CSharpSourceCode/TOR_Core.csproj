@@ -527,7 +527,6 @@
     <Compile Include="HarmonyPatches\ItemPatches.cs" />
     <Compile Include="HarmonyPatches\LoadingScreenPatches.cs" />
     <Compile Include="HarmonyPatches\MainMenuOptionsPatches.cs" />
-    <Compile Include="HarmonyPatches\MapBarPatches.cs" />
     <Compile Include="HarmonyPatches\MBMusicManagerPatches.cs" />
     <Compile Include="HarmonyPatches\MissionPatches.cs" />
     <Compile Include="HarmonyPatches\ObjectManagerPatches.cs" />
