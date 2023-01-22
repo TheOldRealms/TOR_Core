@@ -476,7 +476,7 @@
     <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\ISettlementType.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementComponent.cs" />
-    <Compile Include="CampaignMechanics\TORMapInfoVM.cs" />
+    <Compile Include="CampaignMechanics\TORMapInfoVMExtension.cs" />
     <Compile Include="CampaignMechanics\TORPartyHealCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORPartyUpgraderCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORWanderersCampaignBehavior.cs" />
@@ -501,6 +501,10 @@
     <Compile Include="Extensions\MobilePartyExtensions.cs" />
     <Compile Include="Extensions\SettlementExtensions.cs" />
     <Compile Include="Extensions\TeamExtensions.cs" />
+    <Compile Include="Extensions\UI\BaseViewModelExtension.cs" />
+    <Compile Include="Extensions\UI\ViewModelExtensionAttribute.cs" />
+    <Compile Include="Extensions\UI\ViewModelExtensionManager.cs" />
+    <Compile Include="Extensions\ViewModelExtensions.cs" />
     <Compile Include="GameManagers\TORKeyInputManager.cs" />
     <Compile Include="GameManagers\TORGameKeyContext.cs" />
     <Compile Include="GameManagers\TORShaderGameManager.cs" />
@@ -530,6 +534,8 @@
     <Compile Include="HarmonyPatches\PerkResetRelatedPatch.cs" />
     <Compile Include="HarmonyPatches\RotatingMainMenuScenePatch.cs" />
     <Compile Include="HarmonyPatches\SettlementPatches.cs" />
+    <Compile Include="HarmonyPatches\ViewModelPatches.cs" />
+    <Compile Include="HarmonyPatches\ViewModelRefreshPatch.cs" />
     <Compile Include="Items\ExtendedItemObjectManager.cs" />
     <Compile Include="Items\ExtendedItemObjectProperties.cs" />
     <Compile Include="Items\ItemTrait.cs" />

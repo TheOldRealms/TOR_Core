@@ -54,7 +54,7 @@ namespace TOR_Core.AbilitySystem
             return slotsLeft;
         }
 
-        public override void OnFormationUnitsSpawned(Team team)
+        public override void OnTeamDeployed(Team team)
         {
             InitTeam(team);
         }
