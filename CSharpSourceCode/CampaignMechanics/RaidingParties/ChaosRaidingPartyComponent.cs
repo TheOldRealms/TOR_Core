@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Party.PartyComponents;
 using TaleWorlds.CampaignSystem.Settlements;
@@ -11,6 +12,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.ChaosRaiding
 {
@@ -87,15 +89,13 @@ namespace TOR_Core.CampaignMechanics.ChaosRaiding
 
         private void FindNewTarget()
         {
-            Target = Settlement.FindSettlementsAroundPosition(Party.Position2D, 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
-            Party.MobileParty.Ai.SetAIState(AIState.Raiding);
-            Party.MobileParty.SetMoveRaidSettlement(Target);
+            Target = TORCommon.FindSettlementsAroundPosition(Party.Position2D, 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
+            SetPartyAiAction.GetActionForRaidingSettlement(Party.MobileParty, Target);
         }
 
         private void ResumeRaiding()
         {
-            Party.MobileParty.Ai.SetAIState(AIState.Raiding);
-            Party.MobileParty.SetMoveRaidSettlement(Target);
+            SetPartyAiAction.GetActionForRaidingSettlement(Party.MobileParty, Target);
         }
     }
 

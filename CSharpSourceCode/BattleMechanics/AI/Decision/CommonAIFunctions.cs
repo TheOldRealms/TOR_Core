@@ -3,6 +3,7 @@ using System.Linq;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.AI.Decision
 {
@@ -105,9 +106,9 @@ namespace TOR_Core.BattleMechanics.AI.Decision
         public static float CalculateEnemyTotalPower(Team chosenTeam)
         {
             float power = 0;
-            foreach (var team in chosenTeam.QuerySystem.EnemyTeams)
+            foreach (var team in Mission.Current.GetEnemyTeamsOf(chosenTeam))
             {
-                power += team.TeamPower;
+                power += team.QuerySystem.TeamPower;
             }
 
             return power;

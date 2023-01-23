@@ -10,9 +10,9 @@ namespace TOR_Core.Models
     {
         private static readonly string _cheatGoldAdjustmentName = "AI Gold Adjustment";
 
-        public override ExplainedNumber CalculateClanGoldChange(Clan clan, bool includeDescriptions = false, bool applyWithdrawals = false)
+        public override ExplainedNumber CalculateClanGoldChange(Clan clan, bool includeDescriptions = false, bool applyWithdrawals = false, bool includeDetails = false)
         {
-            var num = base.CalculateClanGoldChange(clan, includeDescriptions, applyWithdrawals);
+            var num = base.CalculateClanGoldChange(clan, includeDescriptions, applyWithdrawals, includeDetails);
             if(clan.Kingdom != null && clan.Kingdom.RulingClan != clan && clan != Clan.PlayerClan && !clan.IsMinorFaction && num.ResultNumber < 0 && clan.Gold < 100000)
             {
                 AdjustIncomeForAI(ref num);
@@ -20,9 +20,9 @@ namespace TOR_Core.Models
             return num;
         }
 
-        public override ExplainedNumber CalculateClanIncome(Clan clan, bool includeDescriptions = false, bool applyWithdrawals = false)
+        public override ExplainedNumber CalculateClanIncome(Clan clan, bool includeDescriptions = false, bool applyWithdrawals = false, bool includeDetails = false)
         {
-            var income = base.CalculateClanIncome(clan, includeDescriptions, applyWithdrawals);
+            var income = base.CalculateClanIncome(clan, includeDescriptions, applyWithdrawals, includeDetails);
             var num = CalculateClanGoldChange(clan, includeDescriptions, applyWithdrawals);
             var cheat = num.GetLines().Where(x => x.name == _cheatGoldAdjustmentName);
             if(cheat != null && cheat.Count() > 0)

@@ -251,10 +251,6 @@
       <HintPath>$(GameDir)\bin\Win64_Shipping_Client\TaleWorlds.SaveSystem.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="TaleWorlds.Starter.DotNetCore.dll">
-      <HintPath>$(GameDir)\bin\Win64_Shipping_Client\TaleWorlds.Starter.DotNetCore.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="TaleWorlds.Starter.Library.dll">
       <HintPath>$(GameDir)\bin\Win64_Shipping_Client\TaleWorlds.Starter.Library.dll</HintPath>
       <Private>False</Private>
@@ -510,6 +506,7 @@
     <Compile Include="Extensions\MissionExtensions.cs" />
     <Compile Include="Extensions\MobilePartyExtensions.cs" />
     <Compile Include="Extensions\SettlementExtensions.cs" />
+    <Compile Include="Extensions\TeamExtensions.cs" />
     <Compile Include="GameManagers\TORKeyInputManager.cs" />
     <Compile Include="GameManagers\TORGameKeyContext.cs" />
     <Compile Include="GameManagers\TORShaderGameManager.cs" />

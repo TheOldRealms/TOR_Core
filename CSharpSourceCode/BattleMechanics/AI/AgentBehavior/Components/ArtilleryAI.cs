@@ -7,16 +7,17 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.AI.Decision;
 using TOR_Core.BattleMechanics.Artillery;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
 {
     public class ArtilleryAI : UsableMachineAIBase
     {
-        private readonly Artillery.ArtilleryRangedSiegeWeapon _artillery;
+        private readonly ArtilleryRangedSiegeWeapon _artillery;
         private Target _target;
         private List<Axis> targetDecisionFunctions;
 
-        public ArtilleryAI(Artillery.ArtilleryRangedSiegeWeapon usableMachine) : base(usableMachine)
+        public ArtilleryAI(ArtilleryRangedSiegeWeapon usableMachine) : base(usableMachine)
         {
             _artillery = usableMachine;
             targetDecisionFunctions = CreateTargetingFunctions();
@@ -24,9 +25,9 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
 
         public override bool HasActionCompleted => base.HasActionCompleted;
 
-        protected override void OnTick(Func<Agent, bool> isAgentManagedByThisMachineAI, Team potentialUsersTeam, float dt)
+        protected override void OnTick(Agent agentToCompareTo, Formation formationToCompareTo, Team potentialUsersTeam, float dt)
         {
-            base.OnTick(isAgentManagedByThisMachineAI, potentialUsersTeam, dt);
+            base.OnTick(agentToCompareTo, formationToCompareTo, potentialUsersTeam, dt);
             if (_artillery.PilotAgent != null && _artillery.PilotAgent.IsAIControlled)
             {
                 if (_artillery.State == RangedSiegeWeapon.WeaponState.Idle)
@@ -41,11 +42,11 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
                         if (_artillery.Target != null && _artillery.PilotAgent.Formation.FiringOrder.OrderType != OrderType.HoldFire)
                         {
                             var position = GetAdjustedTargetPosition(_artillery.Target);
-                            if(position != Vec3.Zero && _artillery.AimAtTarget(position) && _artillery.IsTargetInRange(position) && _artillery.IsSafeToFire())
+                            if (position != Vec3.Zero && _artillery.AimAtThreat(_artillery.Target) && _artillery.IsTargetInRange(position) && _artillery.IsSafeToFire())
                             {
                                 _artillery.AiRequestsShoot();
                                 _target = null;
-                            } 
+                            }
 
                             if (!_artillery.IsSafeToFire()) //Since safe to fi
                             {
@@ -77,8 +78,6 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
             target.SelectedWorldPosition = target.Position + velocity * time;
             return target.SelectedWorldPosition;
         }
-
-     
 
         private Target FindNewTarget()
         {
@@ -122,7 +121,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
         private IEnumerable<Formation> GetUnemployedEnemyFormations()
         {
             return from f in (from t in Mission.Current.Teams where t.Side.GetOppositeSide() == _artillery.Side select t)
-                    .SelectMany((Team t) => t.FormationsIncludingSpecial)
+                    .SelectMany((Team t) => t.GetFormationsIncludingSpecial())
                 where f.CountOfUnits > 0
                 select f;
         }

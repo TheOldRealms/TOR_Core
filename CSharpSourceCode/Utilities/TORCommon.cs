@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using Helpers;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,6 +8,7 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Map;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Inventory;
@@ -145,13 +147,32 @@ namespace TOR_Core.Utilities
         /// <returns></returns>
         public static Settlement FindNearestSettlement(MobileParty party, float radius)
         {
-            var nearbySettlements =
-                Settlement.FindSettlementsAroundPosition(party.GetPosition2D, radius);
+            LocatableSearchData<Settlement> locatableSearchData = Settlement.StartFindingLocatablesAroundPosition(party.Position2D, radius);
+            List<Settlement> nearbySettlements = new List<Settlement>();
+            for (Settlement settlement = Settlement.FindNextLocatable(ref locatableSearchData); settlement != null; settlement = Settlement.FindNextLocatable(ref locatableSearchData))
+            {
+                nearbySettlements.Add(settlement);
+            }
 
             // The list of nearbySettlements is unordered, thus we need to find the
             // settlement with minimum distance.
             return nearbySettlements.MinBy(
                 settlement => Campaign.Current.Models.MapDistanceModel.GetDistance(party, settlement));
+        }
+
+        public static MBList<Settlement> FindSettlementsAroundPosition(Vec2 position, float radius, Func<Settlement, bool> condition = null)
+        {
+            MBList<Settlement> settlements = new MBList<Settlement>();
+            LocatableSearchData<Settlement> locatableSearchData = Settlement.StartFindingLocatablesAroundPosition(position, radius);
+
+            for (Settlement settlement = Settlement.FindNextLocatable(ref locatableSearchData); settlement != null; settlement = Settlement.FindNextLocatable(ref locatableSearchData))
+            {
+                if(condition == null || condition(settlement))
+                {
+                    settlements.Add(settlement);
+                }
+            }
+            return settlements;
         }
 
         public static void WriteHeightMapDataForCurrentScene()

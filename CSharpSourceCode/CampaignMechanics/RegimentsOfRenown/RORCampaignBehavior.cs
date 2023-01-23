@@ -153,7 +153,7 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                 mobileParty.MapFaction.IsKingdomFaction &&
                 settlement.IsRoRSettlement() &&
                 mobileParty.Party.NumberOfAllMembers < mobileParty.LimitedPartySize &&
-                (mobileParty.UnlimitedWage || mobileParty.PaymentLimit >= mobileParty.TotalWage) &&
+                mobileParty.CanPayMoreWage() &&
                 mobileParty.LeaderHero.Gold > HeroHelper.StartRecruitingMoneyLimit(mobileParty.LeaderHero) && 
                 (mobileParty.LeaderHero == mobileParty.LeaderHero.Clan.Leader || mobileParty.LeaderHero.Clan.Gold > HeroHelper.StartRecruitingMoneyLimitForClanLeader(mobileParty.LeaderHero)))
             {
@@ -185,7 +185,7 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                 !mobileParty.Party.IsStarving &&
                 mobileParty.MapFaction.IsKingdomFaction &&
                 mobileParty.Party.NumberOfAllMembers < mobileParty.LimitedPartySize &&
-                (mobileParty.UnlimitedWage || mobileParty.PaymentLimit >= mobileParty.TotalWage) &&
+                mobileParty.CanPayMoreWage() &&
                 mobileParty.LeaderHero.Gold > HeroHelper.StartRecruitingMoneyLimit(mobileParty.LeaderHero) &&
                 (mobileParty.LeaderHero == mobileParty.LeaderHero.Clan.Leader || mobileParty.LeaderHero.Clan.Gold > HeroHelper.StartRecruitingMoneyLimitForClanLeader(mobileParty.LeaderHero)))
             {

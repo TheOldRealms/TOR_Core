@@ -56,7 +56,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
                 return behaviorOptions;
             }
 
-            var artilleryFormation = Agent.Team.FormationsIncludingSpecial.ToList().Find(formation => formation.Index == (int) TORFormationClass.Artillery);
+            var artilleryFormation = Agent.Team.GetFormationsIncludingSpecial().ToList().Find(formation => formation.Index == (int) TORFormationClass.Artillery);
 
             var artilleryPosition = CurrentTarget.TacticalPosition.Position.GetGroundVec3();
             CurrentTarget.UtilityValue = Mission.Current.GetArtillerySlotsLeftForTeam(Agent.Team) > 0 &&

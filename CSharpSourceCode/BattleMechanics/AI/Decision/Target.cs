@@ -21,19 +21,19 @@ namespace TOR_Core.BattleMechanics.AI.Decision
 
         public Vec3 GetPosition()
         {
-            if (WeaponEntity != null)
-                return (WeaponEntity.GetTargetEntity().GlobalBoxMax + WeaponEntity.GetTargetEntity().GlobalBoxMin) * 0.5f;
-            if (Agent != null)
-                return Agent.CollisionCapsuleCenter;
-            if (Formation != null)
-                return Formation.GetMedianAgent(false, false, Formation.GetAveragePositionOfUnits(false, false)).Position;
-            if (SelectedWorldPosition != Vec3.Zero)
-                return SelectedWorldPosition;
-            if (TacticalPosition != null)
-                return TacticalPosition.Position.GetGroundVec3();
             try
             {
-                return Position;
+                if (WeaponEntity != null)
+                    return (WeaponEntity.GetTargetEntity().GlobalBoxMax + WeaponEntity.GetTargetEntity().GlobalBoxMin) * 0.5f;
+                if (Agent != null)
+                    return Agent.CollisionCapsuleCenter;
+                if (Formation != null)
+                    return Formation.GetMedianAgent(false, false, Formation.GetAveragePositionOfUnits(false, false)).Position;
+                if (SelectedWorldPosition != Vec3.Zero)
+                    return SelectedWorldPosition;
+                if (TacticalPosition != null)
+                    return TacticalPosition.Position.GetGroundVec3();
+                return base.Position;
             }
             catch(NullReferenceException)
             {
@@ -41,7 +41,16 @@ namespace TOR_Core.BattleMechanics.AI.Decision
                 return Vec3.Invalid;
             }
         }
-        
+
+        public new Vec3 GetVelocity()
+        {
+            if(Formation != null)
+            {
+                return Formation.QuerySystem.CurrentVelocity.ToVec3();
+            }
+            else return base.GetVelocity();
+        }
+
         public Vec3 GetPositionPrioritizeCalculated()
         {
             if (SelectedWorldPosition != Vec3.Zero)
@@ -72,5 +81,7 @@ namespace TOR_Core.BattleMechanics.AI.Decision
             }
             set => base.Agent = value;
         }
+
+        public new Vec3 Position => GetPosition();
     }
 }
