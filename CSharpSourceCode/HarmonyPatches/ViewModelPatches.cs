@@ -88,5 +88,17 @@ namespace TOR_Core.HarmonyPatches
             }
             return true;
         }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(ViewModel), "ExecuteCommand")]
+        public static bool PatchExecutor(ViewModel __instance, string commandName, object[] parameters)
+        {
+            if (__instance.HasExtension())
+            {
+                __instance.GetExtension().ExecuteCommand(commandName, parameters);
+                return false;
+            }
+            return true;
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace TOR_Core.Extensions.UI
         Dictionary<string, MethodInfo> GetMethods();
     }
 
-    public abstract class BaseViewModelExtension : IViewModelExtension
+    public abstract class BaseViewModelExtension : IViewModelExtension, IDisposable
     {
         protected ViewModel _vm;
         public BaseViewModelExtension(ViewModel vm)
@@ -147,12 +147,68 @@ namespace TOR_Core.Extensions.UI
 
         public void ExecuteCommand(string commandName, object[] parameters)
         {
-            throw new NotImplementedException();
+            var methodInfo = _vm.GetType().GetMethod(commandName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            if (methodInfo == null) methodInfo = GetType().GetMethod(commandName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            if(methodInfo != null)
+            {
+                if (methodInfo.GetParameters().Length == parameters.Length)
+                {
+                    object[] array = new object[parameters.Length];
+                    ParameterInfo[] args = methodInfo.GetParameters();
+                    for (int i = 0; i < parameters.Length; i++)
+                    {
+                        object obj = parameters[i];
+                        Type parameterType = args[i].ParameterType;
+                        array[i] = obj;
+                        if (obj is string && parameterType != typeof(string))
+                        {
+                            object stringObj = ConvertValueTo((string)obj, parameterType);
+                            array[i] = stringObj;
+                        }
+                    }
+                    if(IsExtendedMethod(methodInfo)) methodInfo.InvokeWithLog(this, array);
+                    else methodInfo.InvokeWithLog(_vm, array);
+                    return;
+                }
+                if (methodInfo.GetParameters().Length == 0)
+                {
+                    if (IsExtendedMethod(methodInfo)) methodInfo.InvokeWithLog(this, null);
+                    else methodInfo.InvokeWithLog(_vm, null);
+                }
+            }
+        }
+
+        private object ConvertValueTo(string value, Type parameterType)
+        {
+            object result = null;
+            if (parameterType == typeof(string))
+            {
+                result = value;
+            }
+            else if (parameterType == typeof(int))
+            {
+                result = Convert.ToInt32(value);
+            }
+            else if (parameterType == typeof(float))
+            {
+                result = Convert.ToSingle(value);
+            }
+            return result;
         }
 
         private bool IsExtendedProperty(PropertyInfo prop)
         {
             return typeof(IViewModelExtension).IsAssignableFrom(prop.DeclaringType);
+        }
+
+        private bool IsExtendedMethod(MethodInfo method)
+        {
+            return typeof(IViewModelExtension).IsAssignableFrom(method.DeclaringType);
+        }
+
+        public void Dispose()
+        {
+            _vm = null;
         }
     }
 }
