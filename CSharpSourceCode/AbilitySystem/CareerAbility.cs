@@ -40,7 +40,7 @@ namespace TOR_Core.AbilitySystem
             if(_career.AbilityScriptType != null)
             {
                 parentEntity.CreateAndAddScriptComponent(_career.AbilityScriptType.Name);
-                AbilityScript = (AbilityScript)parentEntity.GetFirstScriptOfType(_career.AbilityScriptType);
+                AbilityScript = parentEntity.GetFirstScriptOfType<CareerAbilityScript>();
                 var prefabEntity = SpawnEntity();
                 parentEntity.AddChild(prefabEntity);
                 AbilityScript?.Initialize(this);
