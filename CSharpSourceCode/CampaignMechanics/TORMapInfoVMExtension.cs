@@ -5,10 +5,12 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.Map.MapBar;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.UI;
 
 namespace TOR_Core.CampaignMechanics
 {
-    public class TORMapInfoVM : MapInfoVM
+    [ViewModelExtension(typeof(MapInfoVM), "Refresh")]
+    public class TORMapInfoVMExtension : BaseViewModelExtension
 	{
 		private string _windsOfMagic = "0";
 		private string _artilleryText = "0";
@@ -20,10 +22,11 @@ namespace TOR_Core.CampaignMechanics
 		private int _maxArtillery = 0;
 		private int _currentArtilleryItems = 0;
 
-		public TORMapInfoVM() : base()
+		public TORMapInfoVMExtension(ViewModel vm) : base(vm)
 		{
-			this._windsHint = new BasicTooltipViewModel(GetWindsHintText);
-			this._artilleryHint = new BasicTooltipViewModel(GetArtilleryHintText);
+			_windsHint = new BasicTooltipViewModel(GetWindsHintText);
+			_artilleryHint = new BasicTooltipViewModel(GetArtilleryHintText);
+			RefreshValues();
 		}
 
 		private List<TooltipProperty> GetArtilleryHintText()
@@ -48,11 +51,6 @@ namespace TOR_Core.CampaignMechanics
 		public override void RefreshValues()
 		{
 			base.RefreshValues();
-			RefreshExtraProperties();
-		}
-
-		public void RefreshExtraProperties()
-		{
 			IsSpellCaster = Hero.MainHero.IsSpellCaster();
 			if (IsSpellCaster)
 			{
@@ -83,7 +81,7 @@ namespace TOR_Core.CampaignMechanics
 				if (value != this._isSpellCaster)
 				{
 					this._isSpellCaster = value;
-					base.OnPropertyChangedWithValue(value, "IsSpellCaster");
+					_vm.OnPropertyChangedWithValue(value, "IsSpellCaster");
 				}
 			}
 		}
@@ -100,7 +98,7 @@ namespace TOR_Core.CampaignMechanics
 				if (value != this._windsOfMagic)
 				{
 					this._windsOfMagic = value;
-					base.OnPropertyChangedWithValue(value, "WindsOfMagic");
+					_vm.OnPropertyChangedWithValue(value, "WindsOfMagic");
 				}
 			}
 		}
@@ -117,7 +115,7 @@ namespace TOR_Core.CampaignMechanics
 				if (value != this._artilleryText)
 				{
 					this._artilleryText = value;
-					base.OnPropertyChangedWithValue(value, "ArtilleryText");
+					_vm.OnPropertyChangedWithValue(value, "ArtilleryText");
 				}
 			}
 		}
@@ -134,7 +132,7 @@ namespace TOR_Core.CampaignMechanics
 				if (value != this._windsHint)
 				{
 					this._windsHint = value;
-					base.OnPropertyChangedWithValue(value, "WindsHint");
+					_vm.OnPropertyChangedWithValue(value, "WindsHint");
 				}
 			}
 		}
@@ -151,7 +149,7 @@ namespace TOR_Core.CampaignMechanics
 				if (value != this._artilleryHint)
 				{
 					this._artilleryHint = value;
-					base.OnPropertyChangedWithValue(value, "ArtilleryHint");
+					_vm.OnPropertyChangedWithValue(value, "ArtilleryHint");
 				}
 			}
 		}

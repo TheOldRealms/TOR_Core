@@ -49,6 +49,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Extensions.UI;
 using TOR_Core.GameManagers;
 using TOR_Core.Items;
 using TOR_Core.Models;
@@ -61,6 +62,7 @@ namespace TOR_Core
     {
         private static float _tick = 0f;
         private static int _num = -1;
+        public static Harmony HarmonyInstance { get; private set; }
 
         protected override void OnBeforeInitialModuleScreenSetAsRoot()
         {
@@ -69,13 +71,13 @@ namespace TOR_Core
 
         protected override void OnSubModuleLoad()
         {
-            Harmony harmony = new Harmony("mod.harmony.theoldrealms");
-            harmony.PatchAll();
+            ViewModelExtensionManager.Initialize(); //has to happen before harmony PatchAll
+            HarmonyInstance = new Harmony("mod.harmony.theoldrealms");
+            HarmonyInstance.PatchAll();
             ConfigureLogging();
             UIConfig.DoNotUseGeneratedPrefabs = true;
             
             TORKeyInputManager.Initialize();
-
             StatusEffectManager.LoadStatusEffects();
             TriggeredEffectManager.LoadTemplates();
             AbilityFactory.LoadTemplates();
