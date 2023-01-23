@@ -15,18 +15,20 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
     public class CareerObject : PropertyObject
     {
         private Predicate<Hero> _condition;
-        private ChargeType _chargeType;
+        public ChargeType ChargeType { get; private set; }
+        public int MaxCharge { get; private set; }
         public string AbilityTemplateID { get; private set; }
         public Type AbilityScriptType { get; private set; }
         public CareerObject(string stringId) : base(stringId) { }
 
         public override string ToString() => Name.ToString();
 
-        public void Initialize(string name, string description, Predicate<Hero> condition, string abilityID, ChargeType chargeType, Type abilityScriptType = null)
+        public void Initialize(string name, string description, Predicate<Hero> condition, string abilityID, ChargeType chargeType = ChargeType.CooldownOnly, int maxCharge = 100, Type abilityScriptType = null)
         {
             base.Initialize(new TextObject(name), new TextObject(description));
             _condition = condition;
-            _chargeType = chargeType;
+            ChargeType = chargeType;
+            MaxCharge = maxCharge;
             AbilityTemplateID = abilityID;
             AbilityScriptType = abilityScriptType;
         }
@@ -48,7 +50,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 var info = hero.GetExtendedInfo();
                 if(info.CareerID == StringId)
                 {
-                    ability.ChargeType = _chargeType;
                     var choices = TORCareerChoices.All.Where(x => info.CareerChoices.Contains(x.StringId));
                     foreach(var choice in choices)
                     {

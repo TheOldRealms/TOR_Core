@@ -18,8 +18,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         public bool ApplyToRootBoneOnly { get; set; } = false;
         [XmlAttribute("health_over_time")]
         public float HealthOverTime { get; set; } = 0;
-        [XmlAttribute("duration")]
-        public int BaseDuration { get; set; } = 0;
         [XmlAttribute("type")]
         public EffectType Type { get; set; } = EffectType.Invalid;
         [XmlAttribute("damage_over_time")]

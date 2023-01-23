@@ -15,12 +15,12 @@ namespace TOR_Core.AbilitySystem.Scripts
         protected override TriggeredEffect GetEffectToTrigger()
         {
             var id = _ability?.Template.TriggeredEffectID;
-            if (id != null && string.IsNullOrEmpty(id))
+            if (id != null && !string.IsNullOrEmpty(id))
             {
                 if(_casterAgent.GetHero() != null)
                 {
                     var info = _casterAgent.GetHero().GetExtendedInfo();
-                    if(info != null && string.IsNullOrEmpty(info.CareerID))
+                    if(info != null && !string.IsNullOrEmpty(info.CareerID))
                     {
                         var career = _casterAgent.GetHero().GetCareer();
                         if(career != null)

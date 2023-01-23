@@ -17,9 +17,11 @@ namespace TOR_Core.AbilitySystem
     {
         private Hero _ownerHero = null;
         private CareerObject _career = null;
-        public float ChargeLevel { get; private set; } = 100f;
-        public bool IsCharged => ChargeLevel >= 100f;
-        public ChargeType ChargeType { get; set; } = ChargeType.CooldownOnly;
+        private int _maxCharge = 100;
+        private float _currentCharge = 0;
+        public ChargeType ChargeType { get; private set; } = ChargeType.CooldownOnly;
+        public float ChargeLevel => _currentCharge / _maxCharge;
+        public bool IsCharged => _currentCharge >= _maxCharge;
 
         public CareerAbility(AbilityTemplate template, Agent agent) : base(template)
         {
@@ -29,6 +31,8 @@ namespace TOR_Core.AbilitySystem
                 _career = _ownerHero.GetCareer();
                 if(_career != null)
                 {
+                    ChargeType = _career.ChargeType;
+                    _maxCharge = _career.MaxCharge;
                     Template = template.Clone(template.StringID + "_modified_" + _ownerHero.StringId);
                     _career.MutateAbility(this, _ownerHero);
                 }
@@ -53,22 +57,22 @@ namespace TOR_Core.AbilitySystem
         public override void ActivateAbility(Agent casterAgent)
         {
             base.ActivateAbility(casterAgent);
-            ChargeLevel = 0;
+            if (ChargeType != ChargeType.CooldownOnly) _currentCharge = 0;
         }
 
         public override bool CanCast(Agent casterAgent)
         {
+            if (Template.StringID == "ShadowStep" && casterAgent.HasMount) return false;
             return !IsCasting &&
                    !IsOnCooldown() &&
                    IsCharged &&
-                   !casterAgent.HasMount &&
                    casterAgent.IsPlayerControlled;
         }
 
         public void AddCharge(float amount)
         {
-            ChargeLevel += amount;
-            ChargeLevel = Math.Min(100, ChargeLevel);
+            _currentCharge += amount;
+            _currentCharge = Math.Min(_maxCharge, _currentCharge);
         }
     }
 
@@ -76,6 +80,7 @@ namespace TOR_Core.AbilitySystem
     {
         CooldownOnly,
         NumberOfKills,
-        DamageDone
+        DamageDone,
+        DamageTaken
     }
 }

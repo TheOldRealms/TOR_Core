@@ -15,7 +15,7 @@ namespace TOR_Core.AbilitySystem
         public void UpdateProperties()
         {
             IsVisible = true;
-            ChargeLevel = Convert.ToInt32(CareerAbility.ChargeLevel);
+            ChargeLevel = Convert.ToInt32(CareerAbility.ChargeLevel) * 100;
         }
 
         public CareerAbility CareerAbility { get; set; }

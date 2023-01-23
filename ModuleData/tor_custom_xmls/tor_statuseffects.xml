@@ -6,7 +6,6 @@
 		particle_intensity="High"
 		health_over_time="0"
 		damage_over_time="5"
-		duration="3"
 		type="DamageOverTime"
 		damage_type="Holy"/>
 	<StatusEffectTemplate 
@@ -14,7 +13,6 @@
 		particle_id="undead_crumbling"
 		particle_intensity="Low"
 		health_over_time="3"
-		duration="3"
 		type="HealthOverTime"
 		damage_type="Holy"/>
 	<StatusEffectTemplate 
@@ -22,7 +20,6 @@
 		particle_id="healing_regeneration"
 		particle_intensity="High"
 		health_over_time="20"
-		duration="5"
 		type="HealthOverTime"
 		damage_type="Holy"/>
 	<StatusEffectTemplate 
@@ -30,7 +27,6 @@
 		particle_id="red_regeneration"
 		particle_intensity="High"
 		health_over_time="20"
-		duration="5"
 		type="HealthOverTime"
 		damage_type="Holy"/>
 	<StatusEffectTemplate 
@@ -39,7 +35,6 @@
 		particle_intensity="High"
 		health_over_time="0"
 		damage_over_time="10"
-		duration="12"
 		type="DamageOverTime"
 		damage_type="Fire">
 	</StatusEffectTemplate> 
@@ -49,7 +44,6 @@
 		particle_intensity="High"
     	health_over_time="0"
     	damage_over_time="10"
-		duration="10"
 		type="DamageOverTime"/>
  	<StatusEffectTemplate
 		id="soulstealer"
@@ -57,7 +51,6 @@
 		particle_intensity="High"
     	health_over_time="0"
     	damage_over_time="12"
-		duration="10"
 		type="DamageOverTime">
   	</StatusEffectTemplate>
 	<StatusEffectTemplate
@@ -67,7 +60,6 @@
 		apply_particle_to_root_bone_only="true"
     	health_over_time="0"
     	damage_over_time="0"
-		duration="15"
 		type="Resistance">
     	<Resistance ResistedDamageType="Physical" ReductionPercent="0.2" />
   	</StatusEffectTemplate>
@@ -78,7 +70,6 @@
 		apply_particle_to_root_bone_only="true"
     	health_over_time="0"
     	damage_over_time="0"
-		duration="15"
 		type="Resistance">
     	<Resistance ResistedDamageType="Physical" ReductionPercent="0.5" />
   	</StatusEffectTemplate>
@@ -89,7 +80,6 @@
 		apply_particle_to_root_bone_only="true"
     	health_over_time="0"
     	damage_over_time="0"
-		duration="15"
 		type="DamageAmplification">
     	<DamageAmplifier AmplifiedDamageType="Physical" DamageAmplifier="0.2" />
   	</StatusEffectTemplate>

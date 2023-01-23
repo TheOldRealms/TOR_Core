@@ -1998,7 +1998,7 @@
     </LightColorRGB>
   </AbilityTemplate>
 
-<!-- Misc/Unused -->
+<!-- Career Abilities -->
   <AbilityTemplate StringID="ShadowStep"
        Name="Shadow Step"
        SpriteName="windofdeath_icon"
@@ -2039,46 +2039,47 @@
       </AsVec2>
     </LightColorRGB>
   </AbilityTemplate>
-  <!--
-  <AbilityTemplate StringID="HurlWeapons"
-      Name="Hurl Weapons"
-      SpriteName="fireball_icon"
-      CoolDown="3"
-      WindsOfMagicCost="0"
-      BaseMisCastChance="0.05"
-      Duration="0"
-      Radius="0"
-      AbilityType="Innate"
-      AbilityEffectType="Missile"
-      BaseMovementSpeed="0"
-      TickInterval="-1"
-      TriggerType="TickOnce"
-      HasLight="false"
-      LightIntensity="0"
-      LightRadius="0"
-      LightFlickeringMagnitude="0"
-      LightFlickeringInterval="0"
-      ShadowCastEnabled="true"
-      ParticleEffectPrefab=""
-      ParticleEffectSizeModifier="0"
-      SoundEffectToPlay=""
-      ShouldSoundLoopOverDuration="false"
-      CastType="Instant"
-      CastTime="0.5"
-      AnimationActionName="act_release_heavy_thrown"
-      TriggeredEffectID="hurl_weapons"
-      Offset="0.5"
-      AbilityTargetType="SingleEnemy"
-      MaxDistance="20"
-      CrosshairType="SingleTarget">
-    <LightColorRGB x="255" y="170" z="0" w="-1">
+  <AbilityTemplate StringID="RighteousFury"
+       Name="Righteous Fury"
+       SpriteName="windofdeath_icon"
+       CoolDown="10"
+       WindsOfMagicCost="0"
+       BaseMisCastChance="0"
+       Duration="8"
+       Radius="3"
+       AbilityType="CareerAbility"
+       AbilityEffectType="CareerAbilityEffect"
+       BaseMovementSpeed="0"
+       TickInterval="-1"
+       TriggerType="TickOnce"
+       HasLight="false"
+       LightIntensity="0"
+       LightRadius="0"
+       LightFlickeringMagnitude="0"
+       LightFlickeringInterval="0"
+       ShadowCastEnabled="false"
+       ParticleEffectPrefab=""
+       ParticleEffectSizeModifier="0"
+       SoundEffectToPlay=""
+       ShouldSoundLoopOverDuration="false"
+       CastType="Instant"
+       CastTime="0.5"
+       AnimationActionName="act_release_heavy_thrown"
+       TriggeredEffectID="physical_bonus_20"
+       Offset="0"
+       AbilityTargetType="AlliesInAOE"
+       CrosshairType="Self"
+       TargetCapturingRadius="4">
+    <LightColorRGB x="255" y="255" z="255" w="-1">
       <AsVec2>
         <x>255</x>
-        <y>170</y>
+        <y>255</y>
+        <z>255</z>
       </AsVec2>
     </LightColorRGB>
   </AbilityTemplate>
-  -->
+
+<!-- Battle Prayers -->
   <AbilityTemplate StringID="HealingAOE" 
       Name="Circle of Healing" 
       SpriteName="healingprayer_icon" 

@@ -93,7 +93,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 {
                     if(!targets.Contains(triggererAgent)) targets.Append(triggererAgent);
                 }
-                TORMissionHelper.ApplyStatusEffectToAgents(targets, _template.ImbuedStatusEffectID, triggererAgent, durationMultiplier, _template.TargetType);
+                TORMissionHelper.ApplyStatusEffectToAgents(targets, _template.ImbuedStatusEffectID, triggererAgent, durationMultiplier, _template.ImbuedStatusEffectDuration);
             }
             SpawnVisuals(position, normal);
             PlaySound(position);

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Scripts;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -46,8 +48,11 @@ namespace TOR_Core.CharacterDevelopment
         private void InitializeAll()
         {
             _grailKnight.Initialize("Grail Knight", "Grail Knight career is for those...", hero => hero.Clan.Tier > 2, "ShadowStep", ChargeType.NumberOfKills);
-            _minorVampire.Initialize("Minor Vampire", "Minor Vampire is ...", hero => hero.Clan.Tier > 2, "ShadowStep", ChargeType.DamageDone, typeof(ShadowStepScript));
-            _warriorPriest.Initialize("Warrior Priest", "Warrior Priest is ...", hero => hero.Clan.Tier > 2, "ShadowStep", ChargeType.CooldownOnly);
+            _minorVampire.Initialize("Minor Vampire", "Minor Vampire is ...", hero => hero.Clan.Tier > 2, "ShadowStep", ChargeType.DamageDone, 100, typeof(ShadowStepScript));
+            _warriorPriest.Initialize("Warrior Priest", "Warrior Priest is ...", (hero) => 
+            {
+                return hero.Culture == MBObjectManager.Instance.GetObject<CultureObject>("empire") && hero.Clan.Tier >= 1;
+            }, "RighteousFury", ChargeType.DamageTaken, 50);
         }
     }
 }

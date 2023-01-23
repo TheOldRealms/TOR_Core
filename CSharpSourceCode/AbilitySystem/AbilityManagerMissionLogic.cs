@@ -36,7 +36,7 @@ namespace TOR_Core.AbilitySystem
         private readonly string _castingStanceParticleName = "psys_spellcasting_stance";
         private SummonedCombatant _defenderSummoningCombatant;
         private SummonedCombatant _attackerSummoningCombatant;
-        private readonly float DamagePortionForChargingCareerAbility = 0.25f;
+        private readonly float DamagePortionForChargingCareerAbility = 1f;
         private Dictionary<Team, int> _artillerySlots = new Dictionary<Team, int>();
 
         private GameKey _spellcastingModeKey;
@@ -108,6 +108,11 @@ namespace TOR_Core.AbilitySystem
             if (comp != null)
             {
                 if (comp.CareerAbility != null && comp.CareerAbility.ChargeType == ChargeType.DamageDone) comp.CareerAbility.AddCharge(blow.InflictedDamage * DamagePortionForChargingCareerAbility);
+            }
+            var comp2 = affectedAgent.GetComponent<AbilityComponent>();
+            if (comp2 != null)
+            {
+                if (comp2.CareerAbility != null && comp2.CareerAbility.ChargeType == ChargeType.DamageTaken) comp2.CareerAbility.AddCharge(blow.InflictedDamage * DamagePortionForChargingCareerAbility);
             }
         }
 
