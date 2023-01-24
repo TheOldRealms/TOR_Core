@@ -49,7 +49,7 @@ namespace TOR_Core.BattleMechanics.Morale
 
         private void ApplyCrumble()
         {
-            Agent.ApplyStatusEffect("crumble", Agent, 1, 600, false);
+            Agent.ApplyStatusEffect("crumble", Agent, 600, false);
         }
     }
 }

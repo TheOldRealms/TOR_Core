@@ -45,13 +45,13 @@ namespace TOR_Core.Utilities
             }
         }
 
-        public static void ApplyStatusEffectToAgents(IEnumerable<Agent> agents, string effectId, Agent applierAgent, float multiplier = 1f, float duration = 5, bool append = true)
+        public static void ApplyStatusEffectToAgents(IEnumerable<Agent> agents, string effectId, Agent applierAgent, float duration = 5, bool append = true)
         {
             if (agents != null)
             {
                 foreach (var agent in agents)
                 {
-                    agent.ApplyStatusEffect(effectId, applierAgent, multiplier, duration, append);
+                    agent.ApplyStatusEffect(effectId, applierAgent, duration, append);
                 }
             }
         }

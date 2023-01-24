@@ -579,7 +579,7 @@
     <Compile Include="Models\TORPersuasionModel.cs" />
     <Compile Include="Models\TORPrisonerRecruitmentCalculationModel.cs" />
     <Compile Include="Models\TORSettlementMilitiaModel.cs" />
-    <Compile Include="Models\TORSpellcraftModel.cs" />
+    <Compile Include="Models\TORAbilityModel.cs" />
     <Compile Include="Models\TORStrikeMagnitudeModel.cs" />
     <Compile Include="Models\TORVoiceOverModel.cs" />
     <Compile Include="Quests\EngineerQuest.cs" />

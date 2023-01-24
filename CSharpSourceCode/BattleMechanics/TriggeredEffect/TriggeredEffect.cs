@@ -48,7 +48,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             _timer.Start();
 
             float damageMultiplier = 1f;
-            float durationMultiplier = 1f;
+            float statusEffectDuration = _template.ImbuedStatusEffectDuration;
             if(Game.Current.GameType is Campaign && originAbilityTemplate != null)
             {
                 var model = Campaign.Current.Models.GetSpellcraftModel();
@@ -56,8 +56,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 if(model != null && character != null)
                 {
                     damageMultiplier = model.GetSkillEffectivenessForAbilityDamage(character, originAbilityTemplate);
-                    durationMultiplier = model.GetSkillEffectivenessForAbilityDuration(character, originAbilityTemplate);
-                    if(character.IsHero) durationMultiplier *= model.GetPerkEffectsOnAbilityDuration(character, originAbilityTemplate);
+                    statusEffectDuration = model.CalculateStatusEffectDurationForAbility(character, originAbilityTemplate, statusEffectDuration);
                 }
             }
             //Cause Damage
@@ -93,7 +92,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 {
                     if(!targets.Contains(triggererAgent)) targets.Append(triggererAgent);
                 }
-                TORMissionHelper.ApplyStatusEffectToAgents(targets, _template.ImbuedStatusEffectID, triggererAgent, durationMultiplier, _template.ImbuedStatusEffectDuration);
+                TORMissionHelper.ApplyStatusEffectToAgents(targets, _template.ImbuedStatusEffectID, triggererAgent, statusEffectDuration);
             }
             SpawnVisuals(position, normal);
             PlaySound(position);

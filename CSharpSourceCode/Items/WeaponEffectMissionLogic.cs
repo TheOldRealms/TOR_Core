@@ -29,7 +29,7 @@ namespace TOR_Core.Items
                 {
                     foreach (var trait in relevantTraits)
                     {
-                        affectedAgent.ApplyStatusEffect(trait.ImbuedStatusEffectId, affectorAgent, 1, 5, false);
+                        affectedAgent.ApplyStatusEffect(trait.ImbuedStatusEffectId, affectorAgent, 5, false);
                     }
                 }
                 //TODO: disabling this for first release, we dont actually have an item script. This just clogs system resources and spams the screen with debug messages.
