@@ -96,6 +96,7 @@ namespace TOR_Core.HarmonyPatches
             resultDamage = (int)(resultDamage * wardSaveFactor);
             b.InflictedDamage = resultDamage;
             b.BaseMagnitude = resultDamage;
+            if (victim.GetAttributes().Contains("Unstoppable")) b.BlowFlag |= BlowFlags.ShrugOff;
 
             if (b.InflictedDamage > 0)
             {

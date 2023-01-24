@@ -83,4 +83,17 @@
 		type="DamageAmplification">
     	<DamageAmplifier AmplifiedDamageType="Physical" DamageAmplifier="0.2" />
   	</StatusEffectTemplate>
+	<StatusEffectTemplate
+		id="righteous_fury_effect"
+		particle_id="berzerk_effect"
+		particle_intensity="High"
+		apply_particle_to_root_bone_only="true"
+    	health_over_time="0"
+    	damage_over_time="0"
+		type="DamageAmplification">
+    	<DamageAmplifier AmplifiedDamageType="Physical" DamageAmplifier="0.2" />
+		<TemporaryAttributes>
+			<string>Unstoppable</string>
+		</TemporaryAttributes>
+  	</StatusEffectTemplate>
 </StatusEffects>

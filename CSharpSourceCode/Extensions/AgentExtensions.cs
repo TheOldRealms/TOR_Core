@@ -429,19 +429,36 @@ namespace TOR_Core.Extensions
 
         public static List<string> GetAttributes(this Agent agent)
         {
+            List<string> result = new List<string>();
             var hero = agent.GetHero();
             var character = agent.Character;
             if (hero != null)
             {
-                if (hero.GetExtendedInfo() != null)    //TODO this shouldn't be null at all points, however had to fix cause of respawn hack for quest parties
-                    return hero.GetExtendedInfo().AllAttributes;
+                var info = hero.GetExtendedInfo();
+                if(info != null && info.AllAttributes.Count > 0)
+                {
+                    foreach(var attribute in info.AllAttributes)
+                    {
+                        if (!result.Contains(attribute)) result.Add(attribute);
+                    }
+                }
             }
             else if (character != null)
             {
-                return agent.Character.GetAttributes();
+                foreach(var attribute in character.GetAttributes())
+                {
+                    if (!result.Contains(attribute)) result.Add(attribute);
+                }
             }
-
-            return new List<string>();
+            var comp = agent.GetComponent<StatusEffectComponent>();
+            if (comp != null)
+            {
+                foreach (var attribute in comp.GetTemporaryAttributes())
+                {
+                    if (!result.Contains(attribute)) result.Add(attribute);
+                }
+            }
+            return result;
         }
 
         /// <summary>

@@ -41,7 +41,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
         }
 
-        
+        public override void OnAgentRemoved() => CleanUp();
+
         public void OnElapsed(float dt)
         {
             foreach (StatusEffect effect in _currentEffects.Keys)
@@ -118,6 +119,19 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             return _effectAggregate.Resistance;
         }
 
+        public List<string> GetTemporaryAttributes()
+        {
+            List<string> list = new List<string>();
+            foreach(var effect in _currentEffects.Keys)
+            {
+                foreach(var attribute in effect.Template.TemporaryAttributes)
+                {
+                    if (!list.Contains(attribute)) list.Add(attribute);
+                }
+            }
+            return list;
+        }
+
         private void AddEffect(StatusEffect effect, Agent applierAgent)
         {
             List<GameEntity> childEntities;
@@ -127,6 +141,16 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             data.ParticleEntities = childEntities;
 
             _currentEffects.Add(effect, data);
+        }
+
+        private void CleanUp()
+        {
+            foreach (var item in _currentEffects.ToList())
+            {
+                RemoveEffect(item.Key);
+            }
+            _currentEffects.Clear();
+            _effectAggregate = null;
         }
 
         private class EffectData

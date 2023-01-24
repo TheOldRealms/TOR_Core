@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -28,6 +29,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         public AmplifierTuple DamageAmplifier { get; set; } = new AmplifierTuple();
         [XmlElement]
         public ResistanceTuple Resistance { get; set; } = new ResistanceTuple();
+        [XmlElement]
+        public List<string> TemporaryAttributes { get; set; } = new List<string>();
 
         public enum EffectType
         {
