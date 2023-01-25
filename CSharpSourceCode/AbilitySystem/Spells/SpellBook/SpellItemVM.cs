@@ -76,7 +76,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
         public override void RefreshValues()
         {
             _goldCost = _spellTemplate.GoldCost;
-            var model = Campaign.Current.Models.GetSpellcraftModel();
+            var model = Campaign.Current.Models.GetAbilityModel();
             var info = _hero.GetExtendedInfo();
             if (model != null)
             {

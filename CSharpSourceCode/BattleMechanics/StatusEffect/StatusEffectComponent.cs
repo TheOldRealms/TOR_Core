@@ -7,6 +7,9 @@ using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.Utilities;
 using TaleWorlds.Library;
 using TaleWorlds.Core;
+using TaleWorlds.CampaignSystem;
+using TOR_Core.Extensions.ExtendedInfoSystem;
+using System;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
 {
@@ -23,21 +26,26 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             _effectAggregate = new EffectAggregate();
         }
 
-        public void RunStatusEffect(string id, Agent applierAgent, float duration, bool append)
+        public void RunStatusEffect(string effectId, Agent applierAgent, float duration, bool append, bool isMutated)
         {
             if (Agent == null)
                 return;
 
-            StatusEffect effect = _currentEffects.Keys.Where(e => e.Template.Id.Equals(id)).FirstOrDefault();
+            StatusEffect effect = _currentEffects.Keys.Where(e => e.Template.Id.Equals(effectId)).FirstOrDefault();
             if (effect != null)
             {
                 if (append) effect.CurrentDuration += duration;
             }
             else
             {
-                effect = StatusEffectManager.CreateNewStatusEffect(id);
+                effect = StatusEffectManager.CreateNewStatusEffect(effectId, applierAgent, isMutated);
+                if (applierAgent.IsHero)
+                {
+                    var career = applierAgent.GetHero().GetCareer();
+                    if(career != null) career.MutateStatusEffect(effect, applierAgent.GetHero());
+                }
                 effect.CurrentDuration = duration;
-                AddEffect(effect, applierAgent);
+                AddEffect(effect);
             }
         }
 
@@ -45,30 +53,25 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         public void OnElapsed(float dt)
         {
-            foreach (StatusEffect effect in _currentEffects.Keys)
+            foreach (var item in _currentEffects.ToList())
             {
+                StatusEffect effect = item.Key;
                 effect.CurrentDuration--;
                 if (effect.CurrentDuration <= 0)
                 {
                     RemoveEffect(effect);
-                    return;
                 }
             }
             CalculateEffectAggregate();
             StatusEffect dotEffect = _currentEffects.Keys.Where(x => x.Template.Type == StatusEffectTemplate.EffectType.DamageOverTime).FirstOrDefault();
-            EffectData data = null;
-            if (dotEffect != null)
-            {
-                data = _currentEffects[dotEffect];
-            }
 
             //Temporary method for applying effects from the aggregate. This needs to go to a damage manager/calculator which will use the 
             //aggregated information to determine how much damage to apply to the agent
             if (Agent.IsActive() && Agent != null && !Agent.IsFadingOut())
             {
-                if (_effectAggregate.DamageOverTime > 0 && data != null)
+                if (_effectAggregate.DamageOverTime > 0)
                 {
-                    Agent.ApplyDamage((int)_effectAggregate.DamageOverTime, Agent.Position, data.ApplierAgent, false, false);
+                    Agent.ApplyDamage((int)_effectAggregate.DamageOverTime, Agent.Position, dotEffect.ApplierAgent, false, false);
                 }
                 else if (_effectAggregate.HealthOverTime > 0)
                 {
@@ -80,9 +83,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         private void CalculateEffectAggregate()
         {
             _effectAggregate = new EffectAggregate();
-            foreach (var effect in _currentEffects.Keys)
+            foreach (var item in _currentEffects)
             {
-                _effectAggregate.AddEffect(effect);
+                _effectAggregate.AddEffect(item);
             }
         }
 
@@ -109,14 +112,14 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             _currentEffects.Remove(effect);
         }
 
-        public float[] GetAmplifiers()
+        public float[] GetAmplifiers(AttackTypeMask mask)
         {
-            return _effectAggregate.DamageAmplification;
+            return _effectAggregate.DamageAmplifications[mask];
         }
 
-        public float[] GetResistances()
+        public float[] GetResistances(AttackTypeMask mask)
         {
-            return _effectAggregate.Resistance;
+            return _effectAggregate.Resistances[mask];
         }
 
         public List<string> GetTemporaryAttributes()
@@ -132,12 +135,12 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             return list;
         }
 
-        private void AddEffect(StatusEffect effect, Agent applierAgent)
+        private void AddEffect(StatusEffect effect)
         {
             List<GameEntity> childEntities;
             TORParticleSystem.ApplyParticleToAgent(Agent, effect.Template.ParticleId, out childEntities, effect.Template.ParticleIntensity, effect.Template.ApplyToRootBoneOnly);
 
-            EffectData data = new EffectData(effect, childEntities, applierAgent);
+            EffectData data = new EffectData(effect, childEntities);
             data.ParticleEntities = childEntities;
 
             _currentEffects.Add(effect, data);
@@ -155,42 +158,85 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         private class EffectData
         {
-            public EffectData(StatusEffect effect, List<GameEntity> particleEntities, Agent applierAgent)
+            public EffectData(StatusEffect effect, List<GameEntity> particleEntities)
             {
                 Effect = effect;
                 ParticleEntities = particleEntities;
-                ApplierAgent = applierAgent;
             }
 
             public List<GameEntity> ParticleEntities { get; set; }
             public StatusEffect Effect { get; set; }
-            public Agent ApplierAgent { get; set; }
         }
 
         private class EffectAggregate
         {
             public float HealthOverTime { get; set; } = 0;
             public float DamageOverTime { get; set; } = 0;
-            public readonly float[] DamageAmplification = new float[(int)DamageType.All + 1];
-            public readonly float[] Resistance = new float[(int)DamageType.All + 1];
+            public Dictionary<AttackTypeMask, float[]> DamageAmplifications { get; }
+            public Dictionary<AttackTypeMask, float[]> Resistances { get; }
 
-            public void AddEffect(StatusEffect effect)
+            public EffectAggregate()
             {
-                var template = effect.Template;
+                DamageAmplifications = new Dictionary<AttackTypeMask, float[]>();
+                Resistances = new Dictionary<AttackTypeMask, float[]>();
+                foreach (AttackTypeMask item in Enum.GetValues(typeof(AttackTypeMask)))
+                {
+                    DamageAmplifications.Add(item, new float[(int)DamageType.All + 1]);
+                    Resistances.Add(item, new float[(int)DamageType.All + 1]);
+                }
+            }
+
+            public void AddEffect(KeyValuePair<StatusEffect, EffectData> effect)
+            {
+                var template = effect.Key.Template;
+                var strength = template.BaseEffectValue;
+                
                 switch (template.Type)
                 {
                     case StatusEffectTemplate.EffectType.DamageOverTime:
-                        DamageOverTime += template.DamageOverTime;
+                        DamageOverTime += strength;
                         break;
                     case StatusEffectTemplate.EffectType.HealthOverTime:
-                        HealthOverTime += template.HealthOverTime;
+                        HealthOverTime += strength;
                         break;
                     case StatusEffectTemplate.EffectType.DamageAmplification :
-                        DamageAmplification[(int)template.DamageAmplifier.AmplifiedDamageType] = template.DamageAmplifier.DamageAmplifier;
+                        AddDamageAmplification(template.DamageType, template.AttackTypeMask, strength);
                         break;
                     case StatusEffectTemplate.EffectType.Resistance:
-                        Resistance[(int)template.Resistance.ResistedDamageType] = template.Resistance.ReductionPercent;
+                        AddResistance(template.DamageType, template.AttackTypeMask, strength);
                         break;
+                }
+            }
+
+            private void AddResistance(DamageType damageType, AttackTypeMask attackMask, float value)
+            {
+                if (attackMask.HasAnyFlag(AttackTypeMask.Ranged))
+                {
+                    Resistances[AttackTypeMask.Ranged][(int)damageType] += value;
+                }
+                if (attackMask.HasAnyFlag(AttackTypeMask.Spell))
+                {
+                    Resistances[AttackTypeMask.Spell][(int)damageType] += value;
+                }
+                if (attackMask.HasAnyFlag(AttackTypeMask.Melee))
+                {
+                    Resistances[AttackTypeMask.Melee][(int)damageType] += value;
+                }
+            }
+
+            private void AddDamageAmplification(DamageType damageType, AttackTypeMask attackMask, float value)
+            {
+                if (attackMask.HasAnyFlag(AttackTypeMask.Ranged))
+                {
+                    DamageAmplifications[AttackTypeMask.Ranged][(int)damageType] += value;
+                }
+                if (attackMask.HasAnyFlag(AttackTypeMask.Spell))
+                {
+                    DamageAmplifications[AttackTypeMask.Spell][(int)damageType] += value;
+                }
+                if (attackMask.HasAnyFlag(AttackTypeMask.Melee))
+                {
+                    DamageAmplifications[AttackTypeMask.Melee][(int)damageType] += value;
                 }
             }
         }

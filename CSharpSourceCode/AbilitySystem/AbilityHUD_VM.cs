@@ -55,7 +55,7 @@ namespace TOR_Core.AbilitySystem
         private int AddPerkEffectsToWindsCost(Hero hero, AbilityTemplate template)
         {
             int result = template.WindsOfMagicCost;
-            var model = Campaign.Current.Models.GetSpellcraftModel();
+            var model = Campaign.Current.Models.GetAbilityModel();
             if(model != null && hero != null)
             {
                 result = model.GetEffectiveWindsCost(hero.CharacterObject, template);

@@ -10,7 +10,7 @@ namespace TOR_Core.Extensions
 {
     public static class GameModelsExtensions
     {
-        public static TORAbilityModel GetSpellcraftModel(this GameModels models)
+        public static TORAbilityModel GetAbilityModel(this GameModels models)
         {
             var result = models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TORAbilityModel));
             return result == null ? null : (TORAbilityModel)result;

@@ -77,13 +77,13 @@ namespace TOR_Core.Models
             return resultDamage.ResultNumber;
         }
 
-        public float CalculateWardSaveFactor(Agent victim)
+        public float CalculateWardSaveFactor(Agent victim, AttackTypeMask attackTypeMask)
         {
             float result = 1f;
             var victimCharacter = victim.Character as CharacterObject;
             if(victimCharacter != null)
             {
-                var container = victim.GetProperties(PropertyMask.Defense);
+                var container = victim.GetProperties(PropertyMask.Defense, attackTypeMask);
 
                 if (container.ResistancePercentages[(int)DamageType.All] > 0)
                 {

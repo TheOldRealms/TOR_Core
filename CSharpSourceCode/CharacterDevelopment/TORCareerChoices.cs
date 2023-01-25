@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 
 namespace TOR_Core.CharacterDevelopment
@@ -18,10 +20,8 @@ namespace TOR_Core.CharacterDevelopment
         public static MBReadOnlyList<CareerChoiceObject> All => Instance._readonlyCareerChoices;
 
 
-        private CareerChoiceObject _strongerKnightlyStrike;
-        private CareerChoiceObject _longerShadowStep;
-        public static CareerChoiceObject StrongerKnightlyStrike => Instance._strongerKnightlyStrike;
-        public static CareerChoiceObject LongerShadowStep => Instance._longerShadowStep;
+        private CareerChoiceObject _warriorPriestRoot;
+        public static CareerChoiceObject WarriorPriestRoot => Instance._warriorPriestRoot;
 
         public TORCareerChoices()
         {
@@ -33,35 +33,22 @@ namespace TOR_Core.CharacterDevelopment
 
         private void RegisterAll()
         {
-            _strongerKnightlyStrike = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("StrongerKnightlyStrike"));
-            _longerShadowStep = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("LongerShadowStep"));
-            _allCareerChoices.Add(_strongerKnightlyStrike);
-            _allCareerChoices.Add(_longerShadowStep);
+            _warriorPriestRoot = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("WarriorPriestRoot"));
+            _allCareerChoices.Add(_warriorPriestRoot);
         }
 
         private void InitializeAll()
         {
-            _strongerKnightlyStrike.Initialize("Stronger Knightly Strike", 
-                "Increases the damage done by Knightly Strike by 20%.", 
-                TORCareers.GrailKnight, 
+            _warriorPriestRoot.Initialize("Warrior Priest Career Tree Root", 
+                "The root of the career choices tree.", 
+                TORCareers.WarriorPriest, true,
                 ChoiceType.Keystone, 
                 new CareerChoiceObject.MutationObject()
                 {
-                    FieldName = "DamageAmount",
-                    FieldValue = 0.2f,
+                    MutationTarget = typeof(TriggeredEffectTemplate),
+                    FieldName = "Radius",
+                    FieldValue = 0.2,
                     MutationType = MutationType.Multiply
-                });
-
-            _longerShadowStep.Initialize("Longer Shadow Step",
-                "Increases the duration of Shadow Step by 5 seconds.",
-                TORCareers.MinorVampire,
-                ChoiceType.Keystone,
-                new CareerChoiceObject.MutationObject()
-                {
-                    MutationTarget = typeof(CareerAbility),
-                    FieldName = "Duration",
-                    FieldValue = 5,
-                    MutationType = MutationType.Add
                 });
         }
     }

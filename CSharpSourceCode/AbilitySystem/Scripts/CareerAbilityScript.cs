@@ -27,7 +27,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                         {
                             var template = TriggeredEffectManager.GetTemplateWithId(id).Clone(id + "_modified_" + _casterAgent.Index);
                             career.MutateTriggeredEffect(template, _casterAgent.GetHero());
-                            return new TriggeredEffect(template);
+                            return new TriggeredEffect(template, true);
                         }
                     }
                 }

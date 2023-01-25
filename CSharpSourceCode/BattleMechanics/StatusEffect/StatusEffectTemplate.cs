@@ -17,18 +17,14 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         public ParticleIntensity ParticleIntensity { get; set; }
         [XmlAttribute("apply_particle_to_root_bone_only")]
         public bool ApplyToRootBoneOnly { get; set; } = false;
-        [XmlAttribute("health_over_time")]
-        public float HealthOverTime { get; set; } = 0;
+        [XmlAttribute("base_effect_value")]
+        public float BaseEffectValue { get; set; } = 0;
         [XmlAttribute("type")]
         public EffectType Type { get; set; } = EffectType.Invalid;
-        [XmlAttribute("damage_over_time")]
-        public float DamageOverTime { get; set; } = 0;
         [XmlAttribute("damage_type")]
         public DamageType DamageType { get; set; } = DamageType.Physical;
-        [XmlElement]
-        public AmplifierTuple DamageAmplifier { get; set; } = new AmplifierTuple();
-        [XmlElement]
-        public ResistanceTuple Resistance { get; set; } = new ResistanceTuple();
+        [XmlAttribute("applies_for_attack_type")]
+        public AttackTypeMask AttackTypeMask { get; set; } = AttackTypeMask.Melee | AttackTypeMask.Ranged | AttackTypeMask.Spell;
         [XmlElement]
         public List<string> TemporaryAttributes { get; set; } = new List<string>();
 
@@ -38,6 +34,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             DamageOverTime,
             DamageAmplification,
             Resistance,
+            TemporaryAttributeOnly,
             Invalid
         };
 
@@ -60,6 +57,21 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         public bool Equals(StatusEffectTemplate other)
         {
             return GetHashCode() == other.GetHashCode();
+        }
+
+        public StatusEffectTemplate Clone(string newId)
+        {
+            return new StatusEffectTemplate()
+            {
+                Id = newId,
+                ParticleId = ParticleId,
+                ParticleIntensity = ParticleIntensity,
+                ApplyToRootBoneOnly = ApplyToRootBoneOnly,
+                BaseEffectValue = BaseEffectValue,
+                Type = Type,
+                DamageType = DamageType,
+                TemporaryAttributes = TemporaryAttributes
+            };
         }
     }
 }

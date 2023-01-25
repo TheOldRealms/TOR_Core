@@ -182,7 +182,7 @@ namespace TOR_Core.AbilitySystem
             if (agent.IsHero && Game.Current.GameType is Campaign)
             {
                 var hero = agent.GetHero();
-                var model = Campaign.Current.Models.GetSpellcraftModel();
+                var model = Campaign.Current.Models.GetAbilityModel();
                 if (model != null && hero != null)
                 {
                     var skill = model.GetRelevantSkillForAbility(ability.Template);

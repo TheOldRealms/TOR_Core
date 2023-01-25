@@ -127,6 +127,7 @@ namespace TOR_Core.Utilities
             {
                 Hero.MainHero.GetExtendedInfo().CareerID = match.StringId;
                 if (!Hero.MainHero.IsAbilityUser()) Hero.MainHero.AddAttribute("AbilityUser");
+                if (match.RootNode != null) AddCareerChoiceToPlayer(new List<string> { match.RootNode.StringId });
                 return string.Format("Player now has {0} career. \n", match.Name);
             }
             else return "No career matching the given argument found. \n";

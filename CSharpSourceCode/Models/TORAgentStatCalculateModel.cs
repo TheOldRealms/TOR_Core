@@ -209,7 +209,7 @@ namespace TOR_Core.Models
             return base.GetMaxCameraZoom(agent);
         }
 
-        public AgentPropertyContainer AddPerkEffectsToAgentPropertyContainer(Agent agent, PropertyMask mask, AgentPropertyContainer container)
+        public AgentPropertyContainer AddPerkEffectsToAgentPropertyContainer(Agent agent, PropertyMask mask, AttackTypeMask attackMask, AgentPropertyContainer container)
         {
             var proportions = container.DamageProportions;
             var damageamps = container.DamagePercentages;
@@ -233,7 +233,7 @@ namespace TOR_Core.Models
                     {
                         damagebonuses[(int)DamageType.Magical] += (TORPerks.SpellCraft.ArcaneLink.SecondaryBonus / 100f);
                     }
-                    if(wieldedItem != null && wieldedItem.HasWeaponComponent && wieldedItem.IsSpecialAmmunitionItem())
+                    if(wieldedItem != null && wieldedItem.HasWeaponComponent && wieldedItem.IsSpecialAmmunitionItem() && attackMask.HasAnyFlag(AttackTypeMask.Ranged))
                     {
                         if(agentCaptain != null && agentCaptain.GetPerkValue(TORPerks.GunPowder.PackItIn))
                         {

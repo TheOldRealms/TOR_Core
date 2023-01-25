@@ -37,6 +37,7 @@ namespace TOR_Core.AbilitySystem
                     _career.MutateAbility(this, _ownerHero);
                 }
             }
+            _currentCharge = _maxCharge;
         }
 
         protected override void AddExactBehaviour<TAbilityScript>(GameEntity parentEntity, Agent casterAgent)

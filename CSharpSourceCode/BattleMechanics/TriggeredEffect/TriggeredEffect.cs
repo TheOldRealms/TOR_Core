@@ -22,10 +22,12 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         private SoundEvent _sound;
         private Timer _timer;
         private object _sync = new object();
+        private bool _isTemplateMutated;
 
-        public TriggeredEffect(TriggeredEffectTemplate template)
+        public TriggeredEffect(TriggeredEffectTemplate template, bool isTemplateMutated = false)
         {
             _template = template;
+            _isTemplateMutated = isTemplateMutated;
         }
         
         public void Trigger(Vec3 position, Vec3 normal, Agent triggererAgent, AbilityTemplate originAbilityTemplate = null, MBList<Agent> targets = null)
@@ -51,7 +53,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             float statusEffectDuration = _template.ImbuedStatusEffectDuration;
             if(Game.Current.GameType is Campaign && originAbilityTemplate != null)
             {
-                var model = Campaign.Current.Models.GetSpellcraftModel();
+                var model = Campaign.Current.Models.GetAbilityModel();
                 var character = triggererAgent.Character as CharacterObject;
                 if(model != null && character != null)
                 {
@@ -92,7 +94,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 {
                     if(!targets.Contains(triggererAgent)) targets.Append(triggererAgent);
                 }
-                TORMissionHelper.ApplyStatusEffectToAgents(targets, _template.ImbuedStatusEffectID, triggererAgent, statusEffectDuration);
+                TORMissionHelper.ApplyStatusEffectToAgents(targets, _template.ImbuedStatusEffectID, triggererAgent, statusEffectDuration, true, _isTemplateMutated);
             }
             SpawnVisuals(position, normal);
             PlaySound(position);

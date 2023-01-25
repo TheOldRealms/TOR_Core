@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 using TaleWorlds.ModuleManager;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
@@ -37,9 +38,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             return result;
         }
 
-        public static StatusEffect CreateNewStatusEffect(string effectId)
+        public static StatusEffect CreateNewStatusEffect(string effectId, Agent applierAgent, bool requestClone)
         {
-            return new StatusEffect(_idToStatusEffect[effectId]);
+            StatusEffectTemplate template = _idToStatusEffect[effectId];
+            if (requestClone) template = template.Clone(effectId + "_cloned_" + applierAgent.Index);
+            return new StatusEffect(template, applierAgent);
         }
     }
 }

@@ -45,7 +45,7 @@ namespace TOR_Core.Extensions
             int result = spell.WindsOfMagicCost;
             if (Game.Current.GameType is Campaign)
             {
-                var model = Campaign.Current.Models.GetSpellcraftModel();
+                var model = Campaign.Current.Models.GetAbilityModel();
                 if (model != null)
                 {
                     result = model.GetEffectiveWindsCost(hero.CharacterObject, spell);

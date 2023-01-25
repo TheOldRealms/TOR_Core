@@ -128,9 +128,9 @@ namespace TOR_Core.Extensions
         /// Unit information gets read out from the tor_extendedunitproperties.xml
         /// </param>
         /// <paramref name="agent"/>
-        /// <param name="mask">Which properties needs to be accessed? be mindful about which information is really required for your specific situation. Not used properties are returned as empty arrays</param>
+        /// <param name="propertyMask">Which properties needs to be accessed? be mindful about which information is really required for your specific situation. Not used properties are returned as empty arrays</param>
         ///<returns>A struct containing 3 arrays, each containing the  properties:  proportions, damage amplifications and resistances.</returns>
-        public static AgentPropertyContainer GetProperties(this Agent agent, PropertyMask mask = PropertyMask.All)
+        public static AgentPropertyContainer GetProperties(this Agent agent, PropertyMask propertyMask, AttackTypeMask attackTypeMask)
         {
             if (agent.IsMount)
                 return new AgentPropertyContainer();
@@ -143,7 +143,7 @@ namespace TOR_Core.Extensions
             #region Unit
             if (!agent.IsHero)
             {
-                if (mask == PropertyMask.Attack || mask == PropertyMask.All)
+                if (propertyMask == PropertyMask.Attack || propertyMask == PropertyMask.All)
                 {
                     var unitDamageProportion = agent.Character.GetUnitDamageProportions();
                     foreach (var proportionTuple in unitDamageProportion)
@@ -174,13 +174,13 @@ namespace TOR_Core.Extensions
                             additionalDamagePercentages[(int)additionalDamageProperty.DamageType] += additionalDamageProperty.Percent;
                         }
                     }
-                    var statusEffectAmplifiers = agent.GetComponent<StatusEffectComponent>().GetAmplifiers();
+                    var statusEffectAmplifiers = agent.GetComponent<StatusEffectComponent>().GetAmplifiers(attackTypeMask);
                     for (int i = 0; i < damageAmplifications.Length; i++)
                     {
                         damageAmplifications[i] += statusEffectAmplifiers[i];
                     }
                 }
-                if (mask == PropertyMask.Defense || mask == PropertyMask.All)
+                if (propertyMask == PropertyMask.Defense || propertyMask == PropertyMask.All)
                 {
                     //add all defense properties of the Unit
                     var defenseProperties = agent.Character.GetDefenseProperties();
@@ -204,7 +204,7 @@ namespace TOR_Core.Extensions
                     }
 
                     //status effects
-                    var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances();
+                    var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances(attackTypeMask);
 
                     for (int i = 0; i < damageResistances.Length; i++)
                     {
@@ -218,7 +218,7 @@ namespace TOR_Core.Extensions
 
             else
             {
-                if (mask == PropertyMask.Attack || mask == PropertyMask.All)
+                if (propertyMask == PropertyMask.Attack || propertyMask == PropertyMask.All)
                 {
                     //Hero item level attributes 
                     List<ItemTrait> itemTraits = new List<ItemTrait>();
@@ -230,7 +230,7 @@ namespace TOR_Core.Extensions
                         if (item.HasTrait())
                             itemTraits.AddRange(item.GetTraits(agent));
                     }
-                    //equipment amplifiers  , also implies dynamic traits
+                    //equipment amplifiers, also implies dynamic traits
                     foreach (var itemTrait in itemTraits)
                     {
                         var property = itemTrait.AmplifierTuple;
@@ -245,7 +245,7 @@ namespace TOR_Core.Extensions
 
                     }
 
-                    var statusEffectAmplifiers = agent.GetComponent<StatusEffectComponent>().GetAmplifiers();
+                    var statusEffectAmplifiers = agent.GetComponent<StatusEffectComponent>().GetAmplifiers(attackTypeMask);
 
                     for (int i = 0; i < damageAmplifications.Length; i++)
                     {
@@ -270,7 +270,7 @@ namespace TOR_Core.Extensions
                         damageProportions[(int)DamageType.Physical] = 1f; //memo , this is for siege weapons, in principle a wielded Item shouldn't be found either in case of spell casting - yet it is found.
                     }
                 }
-                if (mask == PropertyMask.Defense || mask == PropertyMask.All)
+                if (propertyMask == PropertyMask.Defense || propertyMask == PropertyMask.All)
                 {
                     //Hero item level attributes 
 
@@ -294,7 +294,7 @@ namespace TOR_Core.Extensions
                     }
 
                     //statuseffects
-                    var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances();
+                    var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances(attackTypeMask);
 
                     for (int i = 0; i < damageResistances.Length; i++)
                     {
@@ -311,7 +311,7 @@ namespace TOR_Core.Extensions
                 var model = MissionGameModels.Current.AgentStatCalculateModel as TORAgentStatCalculateModel;
                 if(model != null)
                 {
-                    result = model.AddPerkEffectsToAgentPropertyContainer(agent, mask, result);
+                    result = model.AddPerkEffectsToAgentPropertyContainer(agent, propertyMask, attackTypeMask, result);
                 }
             }
 
@@ -570,10 +570,10 @@ namespace TOR_Core.Extensions
             agent.Health = Math.Min(agent.Health + healingAmount, agent.HealthLimit);
         }
 
-        public static void ApplyStatusEffect(this Agent agent, string effectId, Agent applierAgent, float duration = 5, bool append = true)
+        public static void ApplyStatusEffect(this Agent agent, string effectId, Agent applierAgent, float duration = 5, bool append = true, bool isMutated = false)
         {
             var comp = agent.GetComponent<StatusEffectComponent>();
-            if (comp != null) comp.RunStatusEffect(effectId, applierAgent, duration, append);
+            if (comp != null) comp.RunStatusEffect(effectId, applierAgent, duration, append, isMutated);
         }
 
         public static void FallDown(this Agent agent)

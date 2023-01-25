@@ -7,6 +7,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.Extensions;
 
@@ -19,6 +20,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         public int MaxCharge { get; private set; }
         public string AbilityTemplateID { get; private set; }
         public Type AbilityScriptType { get; private set; }
+        public CareerChoiceObject RootNode { get; set; }
         public CareerObject(string stringId) : base(stringId) { }
 
         public override string ToString() => Name.ToString();
@@ -69,7 +71,23 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     var choices = TORCareerChoices.All.Where(x => info.CareerChoices.Contains(x.StringId));
                     foreach (var choice in choices)
                     {
-                        choice.MutateEffect(effect, hero);
+                        choice.MutateTriggeredEffect(effect, hero);
+                    }
+                }
+            }
+        }
+
+        internal void MutateStatusEffect(StatusEffect effect, Hero hero)
+        {
+            if (hero != null && hero.GetExtendedInfo() != null)
+            {
+                var info = hero.GetExtendedInfo();
+                if (info.CareerID == StringId)
+                {
+                    var choices = TORCareerChoices.All.Where(x => info.CareerChoices.Contains(x.StringId));
+                    foreach (var choice in choices)
+                    {
+                        choice.MutateStatusEffect(effect, hero);
                     }
                 }
             }

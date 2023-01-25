@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
@@ -21,11 +22,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         public CareerChoiceObject(string stringId) : base(stringId) { }
         public override string ToString() => Name.ToString();
 
-        public void Initialize(string name, string description, CareerObject ownerCareer, ChoiceType type, MutationObject mutation)
+        public void Initialize(string name, string description, CareerObject ownerCareer, bool isRootNode, ChoiceType type, MutationObject mutation)
         {
             base.Initialize(new TextObject(name), new TextObject(description));
             OwnerCareer = ownerCareer;
             _mutation = mutation;
+            if (isRootNode) OwnerCareer.RootNode = this;
         }
 
         public void MutateAbility(CareerAbility ability, Hero hero)
@@ -73,7 +75,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             }
         }
 
-        public void MutateEffect(TriggeredEffectTemplate effect, Hero hero)
+        public void MutateTriggeredEffect(TriggeredEffectTemplate effect, Hero hero)
         {
             if (_mutation != null && _mutation.MutationTarget == typeof(TriggeredEffectTemplate) && _mutation.MutationType != MutationType.None && !string.IsNullOrEmpty(_mutation.FieldName) && _mutation.FieldValue != null)
             {
@@ -118,9 +120,54 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             }
         }
 
+        public void MutateStatusEffect(StatusEffect effect, Hero hero)
+        {
+            if (_mutation != null && _mutation.MutationTarget == typeof(StatusEffectTemplate) && _mutation.MutationType != MutationType.None && !string.IsNullOrEmpty(_mutation.FieldName) && _mutation.FieldValue != null)
+            {
+                var traverse = Traverse.Create(effect);
+                if (traverse.Field(_mutation.FieldName).FieldExists())
+                {
+                    switch (_mutation.MutationType)
+                    {
+                        case MutationType.Replace:
+                            traverse.Field(_mutation.FieldName).SetValue(_mutation.FieldValue);
+                            break;
+                        case MutationType.Multiply:
+                            var type = traverse.Field(_mutation.FieldName).GetValueType();
+                            if (type == typeof(float))
+                            {
+                                var value = traverse.Field(_mutation.FieldName).GetValue<float>();
+                                traverse.Field(_mutation.FieldName).SetValue(value * (1 + Convert.ToSingle(_mutation.FieldValue)));
+                            }
+                            else if (type == typeof(int))
+                            {
+                                var value = traverse.Field(_mutation.FieldName).GetValue<int>();
+                                traverse.Field(_mutation.FieldName).SetValue(value * (1 + Convert.ToInt32(_mutation.FieldValue)));
+                            }
+                            break;
+                        case MutationType.Add:
+                            var type2 = traverse.Field(_mutation.FieldName).GetValueType();
+                            if (type2 == typeof(float))
+                            {
+                                var value = traverse.Field(_mutation.FieldName).GetValue<float>();
+                                traverse.Field(_mutation.FieldName).SetValue(value + Convert.ToSingle(_mutation.FieldValue));
+                            }
+                            else if (type2 == typeof(int))
+                            {
+                                var value = traverse.Field(_mutation.FieldName).GetValue<int>();
+                                traverse.Field(_mutation.FieldName).SetValue(value + Convert.ToInt32(_mutation.FieldValue));
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+
         public class MutationObject
         {
-            public Type MutationTarget { get; set; } = typeof(TriggeredEffectTemplate);
+            public Type MutationTarget { get; set; }
             public string FieldName { get; set; } = string.Empty;
             public object FieldValue { get; set; } = null;
             public MutationType MutationType { get; set; } = MutationType.None;

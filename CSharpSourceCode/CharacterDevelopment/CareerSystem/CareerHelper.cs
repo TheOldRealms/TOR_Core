@@ -8,6 +8,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
     public static class CareerHelper
     {
+        public static void AddSkillEffectToValue()
+        {
 
+        }
     }
 }

@@ -26,9 +26,10 @@ namespace TOR_Core.HarmonyPatches
                 return true;
             }
 
+            AttackTypeMask attackTypeMask = DetermineMask(b);
             float[] damageCategories = new float[(int)DamageType.All + 1];
-            var attackerPropertyContainer = attacker.GetProperties(PropertyMask.Attack);
-            var victimPropertyContainer = victim.GetProperties(PropertyMask.Defense);
+            var attackerPropertyContainer = attacker.GetProperties(PropertyMask.Attack, attackTypeMask);
+            var victimPropertyContainer = victim.GetProperties(PropertyMask.Defense, attackTypeMask);
             //attack properties;
             var damageProportions = attackerPropertyContainer.DamageProportions;
             var damagePercentages = attackerPropertyContainer.DamagePercentages;
@@ -43,7 +44,7 @@ namespace TOR_Core.HarmonyPatches
                 if(model != null && model is TORAgentApplyDamageModel)
                 {
                     var torModel = model as TORAgentApplyDamageModel;
-                    wardSaveFactor = torModel.CalculateWardSaveFactor(victim);
+                    wardSaveFactor = torModel.CalculateWardSaveFactor(victim, attackTypeMask);
                 }
             }
 
@@ -62,7 +63,7 @@ namespace TOR_Core.HarmonyPatches
                     if (attacker.IsHero && abilityTemplate != null)
                     {
                         var hero = attacker.GetHero();
-                        var model = Campaign.Current.Models.GetSpellcraftModel();
+                        var model = Campaign.Current.Models.GetAbilityModel();
                         if (model != null)
                         {
                             resultDamage = (int)(resultDamage * model.GetPerkEffectsOnAbilityDamage(hero.CharacterObject, victim, abilityTemplate));
@@ -93,7 +94,8 @@ namespace TOR_Core.HarmonyPatches
                     resultDamage += (int)damageCategories[i];
                 }
             }
-            resultDamage = (int)(resultDamage * wardSaveFactor);
+            resultDamage = (int)(resultDamage * wardSaveFactor * (1 + damagePercentages[(int)DamageType.All]));
+            var originalDamage = b.InflictedDamage;
             b.InflictedDamage = resultDamage;
             b.BaseMagnitude = resultDamage;
             if (victim.GetAttributes().Contains("Unstoppable")) b.BlowFlag |= BlowFlags.ShrugOff;
@@ -101,9 +103,25 @@ namespace TOR_Core.HarmonyPatches
             if (b.InflictedDamage > 0)
             {
                 if (attacker == Agent.Main || victim == Agent.Main)
+                {
                     TORDamageDisplay.DisplayDamageResult(resultDamage, damageCategories);
+                    if(attacker == Agent.Main)
+                    {
+                        double damageIncrease = 0f;
+                        if (originalDamage > 0) damageIncrease = (double)b.InflictedDamage / originalDamage;
+                        TORCommon.Say(string.Format("Modified damage by {0}", damageIncrease.ToString("P")));
+                    }
+                    
+                }
             }
             return true;
+        }
+
+        public static AttackTypeMask DetermineMask(Blow blow)
+        {
+            if (TORSpellBlowHelper.IsSpellBlow(blow)) return AttackTypeMask.Spell;
+            if (blow.IsMissile) return AttackTypeMask.Ranged;
+            return AttackTypeMask.Melee;
         }
     }
 }
