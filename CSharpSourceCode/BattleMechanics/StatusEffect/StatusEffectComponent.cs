@@ -31,7 +31,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             if (Agent == null)
                 return;
 
-            StatusEffect effect = _currentEffects.Keys.Where(e => e.Template.Id.Equals(effectId)).FirstOrDefault();
+            StatusEffect effect = _currentEffects.Keys.Where(e => e.Template.StringID.Equals(effectId)).FirstOrDefault();
             if (effect != null)
             {
                 if (append) effect.CurrentDuration += duration;
@@ -42,7 +42,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 if (applierAgent.IsHero)
                 {
                     var career = applierAgent.GetHero().GetCareer();
-                    if(career != null) career.MutateStatusEffect(effect, applierAgent.GetHero());
+                    if(career != null) career.MutateStatusEffect(effect.Template, applierAgent.GetHero());
                 }
                 effect.CurrentDuration = duration;
                 AddEffect(effect);

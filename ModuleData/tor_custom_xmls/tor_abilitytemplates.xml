@@ -27,7 +27,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_stone" 
-      TriggeredEffectID="dart_explosion"
       SpellTier="1"
       BelongsToLoreID="MinorMagic"
       MaxDistance="100"
@@ -40,6 +39,9 @@
           <z>255</z>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>dart_explosion</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="WardOfArrows" 
@@ -68,7 +70,6 @@
       CastType="Instant" 
       CastTime="0" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="physical_resistance_20"
       Offset="0"
       AbilityTargetType="Self"
       CrosshairType="Self"
@@ -83,6 +84,9 @@
           <z>255</z>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>physical_resistance_20</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="MinorHeal" 
@@ -111,7 +115,6 @@
       CastType="Instant" 
       CastTime="0" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="apply_healing_statuseffect"
       Offset="0"
       AbilityTargetType="Self"
       CrosshairType="Self"
@@ -126,6 +129,9 @@
           <z>255</z>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>apply_healing_statuseffect</string>
+      </TriggeredEffects>
   </AbilityTemplate>  
 
   <AbilityTemplate StringID="FoetidCloud" 
@@ -154,7 +160,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="foetid_cloud_burst"
       Offset="3"
       AbilityTargetType="WorldPosition"
       CrosshairType="Wind"
@@ -170,6 +175,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>foetid_cloud_burst</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="EnchantWeapon"
@@ -198,7 +206,6 @@
       CastType="Instant"
       CastTime="0.5"
       AnimationActionName="act_release_heavy_thrown"
-      TriggeredEffectID="enchant_weapon"
       Offset="0.5"
       AbilityTargetType="SingleAlly"
       TargetCapturingRadius="1"
@@ -213,6 +220,9 @@
         <y>170</y>
       </AsVec2>
     </LightColorRGB>
+      <TriggeredEffects>
+        <string>enchant_weapon</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="AuraOfResistance"
@@ -241,7 +251,6 @@
       CastType="Instant"
       CastTime="0.5"
       AnimationActionName="act_release_heavy_thrown"
-      TriggeredEffectID="physical_resistance_20"
       Offset="0.5"
       AbilityTargetType="AlliesInAOE"
       TargetCapturingRadius="4"
@@ -256,6 +265,9 @@
         <y>170</y>
       </AsVec2>
     </LightColorRGB>
+      <TriggeredEffects>
+        <string>physical_resistance_20</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="StrengthOfCombat" 
@@ -284,7 +296,6 @@
       CastType="Instant" 
       CastTime="0" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="physical_bonus_20"
       Offset="0"
       AbilityTargetType="Self"
       CrosshairType="Self"
@@ -299,6 +310,9 @@
           <z>255</z>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>physical_bonus_20</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="DustStorm" 
@@ -327,7 +341,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="dust_storm_tick"
       Offset="3"
       AbilityTargetType="GroundAtPosition"
       CrosshairType="TargetedAOE"
@@ -346,6 +359,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>dust_storm_tick</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
 <!-- Lore of Fire -->
@@ -375,7 +391,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="fireball_explosion"
       Offset="0.5"
       CrosshairType="Missile"
       AbilityTargetType="WorldPosition"
@@ -388,6 +403,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>fireball_explosion</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="CinderBlast" 
@@ -416,7 +434,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="cinderblast_explosion"
       Offset="0.5"
       CrosshairType="Missile"
       AbilityTargetType="WorldPosition"
@@ -429,6 +446,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>cinderblast_explosion</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
     <AbilityTemplate StringID="BoltOfAqshy" 
@@ -457,7 +477,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_stone" 
-      TriggeredEffectID="boltofaqshy_explosion"
       Offset="0.5"
       CrosshairType="Missile"
       AbilityTargetType="WorldPosition"
@@ -470,6 +489,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>boltofaqshy_explosion</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="Sear" 
@@ -498,7 +520,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="sear_burst"
       Offset="3"
       AbilityTargetType="WorldPosition"
       CrosshairType="Wind"
@@ -514,6 +535,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>sear_burst</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="FlamingSwords"
@@ -542,7 +566,6 @@
       CastType="Instant"
       CastTime="0.5"
       AnimationActionName="act_release_heavy_thrown"
-      TriggeredEffectID="apply_flaming_sword_trait"
       Offset="0.5"
       AbilityTargetType="AlliesInAOE"
       TargetCapturingRadius="5"
@@ -557,6 +580,9 @@
         <y>170</y>
       </AsVec2>
     </LightColorRGB>
+      <TriggeredEffects>
+        <string>apply_flaming_sword_trait</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="BurningHead" 
@@ -585,7 +611,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_stone" 
-      TriggeredEffectID="burning_head_tick"
       Offset="10"
       AbilityTargetType="GroundAtPosition"
       CrosshairType="Wind"
@@ -601,6 +626,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>burning_head_tick</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="FlameStorm" 
@@ -629,7 +657,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="burning_head_tick"
       Offset="3"
       AbilityTargetType="GroundAtPosition"
       CrosshairType="TargetedAOE"
@@ -648,6 +675,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>burning_head_tick</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
 <!-- Lore of Heavens -->
@@ -677,7 +707,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_stone" 
-      TriggeredEffectID="lightningbolt_explosion"
       Offset="0.5"
       CrosshairType="Missile"
       AbilityTargetType="WorldPosition"
@@ -690,6 +719,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>lightningbolt_explosion</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="WindBlast" 
@@ -718,7 +750,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="windblast_burst"
       Offset="5"
       AbilityTargetType="WorldPosition"
       CrosshairType="Wind"
@@ -734,6 +765,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>windblast_burst</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="ChainLightning" 
@@ -762,7 +796,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="lightning_tick"
       Offset="3"
       AbilityTargetType="GroundAtPosition"
       CrosshairType="TargetedAOE"
@@ -781,6 +814,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>lightning_tick</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="HarmonicConvergence"
@@ -809,7 +845,6 @@
       CastType="Instant"
       CastTime="0.5"
       AnimationActionName="act_release_heavy_thrown"
-      TriggeredEffectID="physical_resistance_50"
       Offset="0.5"
       AbilityTargetType="AlliesInAOE"
       TargetCapturingRadius="4"
@@ -824,6 +859,9 @@
         <y>170</y>
       </AsVec2>
     </LightColorRGB>
+      <TriggeredEffects>
+        <string>physical_resistance_50</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="Blizzard" 
@@ -852,7 +890,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="blizzard_tick"
       Offset="10"
       AbilityTargetType="GroundAtPosition"
       CrosshairType="TargetedAOE"
@@ -868,6 +905,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>blizzard_tick</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="CometOfCasandora"
@@ -896,7 +936,6 @@
       CastType="WindUp"
       CastTime="0.5"
       AnimationActionName="act_release_heavy_thrown"
-      TriggeredEffectID="comet_explosion"
       Offset="100"
       CrosshairType="TargetedAOE"
       AbilityTargetType="GroundAtPosition"
@@ -915,6 +954,9 @@
         <y>170</y>
       </AsVec2>
     </LightColorRGB>
+      <TriggeredEffects>
+        <string>comet_explosion</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="Thunderbolt" 
@@ -943,7 +985,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="thunderbolt_explosion"
       Offset="0"
       AbilityTargetType="GroundAtPosition"
       CrosshairType="TargetedAOE"
@@ -959,6 +1000,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>thunderbolt_explosion</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
 <!-- Lore of Light -->
@@ -988,7 +1032,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_stone" 
-      TriggeredEffectID="shemgaze_explosion"
       Offset="0.5"
       CrosshairType="Missile"
       AbilityTargetType="WorldPosition"
@@ -1001,6 +1044,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>shemgaze_explosion</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="StoneAssault" 
@@ -1029,7 +1075,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="cinderblast_explosion"
       Offset="0.5"
       CrosshairType="Missile"
       AbilityTargetType="WorldPosition"
@@ -1042,6 +1087,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>cinderblast_explosion</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="HealingLight"
@@ -1070,7 +1118,6 @@
       CastType="Instant"
       CastTime="0.5"
       AnimationActionName="act_release_heavy_thrown"
-      TriggeredEffectID="apply_healing_statuseffect"
       Offset="0.5"
       AbilityTargetType="AlliesInAOE"
       TargetCapturingRadius="3"
@@ -1085,6 +1132,9 @@
         <y>170</y>
       </AsVec2>
     </LightColorRGB>
+      <TriggeredEffects>
+        <string>apply_healing_statuseffect</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="PhaProtection"
@@ -1113,7 +1163,6 @@
       CastType="Instant"
       CastTime="0.5"
       AnimationActionName="act_release_heavy_thrown"
-      TriggeredEffectID="physical_resistance_50"
       Offset="0.5"
       AbilityTargetType="AlliesInAOE"
       TargetCapturingRadius="4"
@@ -1128,6 +1177,9 @@
         <y>170</y>
       </AsVec2>
     </LightColorRGB>
+      <TriggeredEffects>
+        <string>physical_resistance_50</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="DeathlyShards" 
@@ -1156,7 +1208,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="shard_explosion"
       Offset="0.5"
       CrosshairType="Missile"
       AbilityTargetType="WorldPosition"
@@ -1169,6 +1220,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>shard_explosion</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="RadiancePillar" 
@@ -1197,7 +1251,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="pillar_tick"
       Offset="0"
       AbilityTargetType="GroundAtPosition"
       CrosshairType="TargetedAOE"
@@ -1213,6 +1266,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>pillar_tick</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="RadiantGaze" 
@@ -1241,7 +1297,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="wind_of_death_tick"
       Offset="10"
       CrosshairType="Wind"
       AbilityTargetType="GroundAtPosition"
@@ -1257,6 +1312,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>wind_of_death_tick</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
 <!-- Necromancy -->
@@ -1286,7 +1344,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_stone" 
-      TriggeredEffectID="nagashgaze_explosion"
       Offset="0.5"
       CrosshairType="Missile"
       AbilityTargetType="WorldPosition"
@@ -1299,6 +1356,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>nagashgaze_explosion</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="SummonSkeleton" 
@@ -1327,7 +1387,6 @@
       CastType="Instant" 
       CastTime="0" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="summon_skeleton"
       Offset="10"
       AbilityTargetType="GroundAtPosition"
       CrosshairType="Pointer"
@@ -1343,6 +1402,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>summon_skeleton</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="Shadowblood" 
@@ -1371,7 +1433,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="shadowblood_explosion"
       Offset="2"
       CrosshairType="Missile"
       AbilityTargetType="WorldPosition"
@@ -1384,6 +1445,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>shadowblood_explosion</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="Morkharn"
@@ -1412,7 +1476,6 @@
       CastType="Instant"
       CastTime="0.5"
       AnimationActionName="act_release_heavy_thrown"
-      TriggeredEffectID="apply_red_healing_statuseffect"
       Offset="0.5"
       AbilityTargetType="AlliesInAOE"
       TargetCapturingRadius="4"
@@ -1427,6 +1490,9 @@
         <y>170</y>
       </AsVec2>
     </LightColorRGB>
+      <TriggeredEffects>
+        <string>apply_red_healing_statuseffect</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="WitheringWave" 
@@ -1455,7 +1521,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="witheringwave_tick"
       Offset="3"
       AbilityTargetType="GroundAtPosition"
       CrosshairType="TargetedAOE"
@@ -1474,6 +1539,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>witheringwave_tick</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="Kandorak" 
@@ -1502,7 +1570,6 @@
       CastType="Instant" 
       CastTime="0" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="summon_kandorak"
       Offset="10"
       AbilityTargetType="GroundAtPosition"
       CrosshairType="Pointer"
@@ -1518,6 +1585,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>summon_kandorak</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="ScreamingSkull" 
@@ -1546,7 +1616,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_stone" 
-      TriggeredEffectID="wind_of_death_tick"
       Offset="10"
       CrosshairType="Wind"
       AbilityTargetType="GroundAtPosition"
@@ -1563,6 +1632,9 @@
           <z>88</z>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>wind_of_death_tick</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="WindOfDeath" 
@@ -1591,7 +1663,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="wind_of_death_tick"
       Offset="10"
       CrosshairType="Wind"
       AbilityTargetType="GroundAtPosition"
@@ -1607,6 +1678,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>wind_of_death_tick</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="GraveCall" 
@@ -1635,7 +1709,6 @@
       CastType="Instant" 
       CastTime="0" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="summon_gravecall"
       Offset="10"
       AbilityTargetType="GroundAtPosition"
       CrosshairType="Pointer"
@@ -1651,6 +1724,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>summon_gravecall</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
 <!-- Dark Magic -->
@@ -1680,7 +1756,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="windblast_burst"
       Offset="5"
       AbilityTargetType="WorldPosition"
       CrosshairType="Wind"
@@ -1696,6 +1771,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>windblast_burst</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="DoomBolt" 
@@ -1724,7 +1802,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_stone" 
-      TriggeredEffectID="fireball_explosion"
       Offset="0.5"
       CrosshairType="Missile"
       AbilityTargetType="WorldPosition"
@@ -1737,6 +1814,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>fireball_explosion</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="SoulDrain" 
@@ -1765,7 +1845,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="lightning_tick"
       Offset="10"
       AbilityTargetType="GroundAtPosition"
       CrosshairType="TargetedAOE"
@@ -1781,6 +1860,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>lightning_tick</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="PowerOfDarkness"
@@ -1809,7 +1891,6 @@
       CastType="Instant"
       CastTime="0.5"
       AnimationActionName="act_release_heavy_thrown"
-      TriggeredEffectID="physical_bonus_20"
       Offset="0.5"
       AbilityTargetType="AlliesInAOE"
       TargetCapturingRadius="4"
@@ -1824,6 +1905,9 @@
         <y>170</y>
       </AsVec2>
     </LightColorRGB>
+      <TriggeredEffects>
+        <string>physical_bonus_20</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="BlackHorror" 
@@ -1852,7 +1936,6 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="witheringwave_tick"
       Offset="3"
       AbilityTargetType="GroundAtPosition"
       CrosshairType="TargetedAOE"
@@ -1871,6 +1954,9 @@
           <y>170</y>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>witheringwave_tick</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
   <AbilityTemplate StringID="SoulStealer"
@@ -1899,7 +1985,6 @@
    CastType="Instant"
    CastTime="0.5"
    AnimationActionName="act_release_heavy_thrown"
-   TriggeredEffectID="soulstealer"
    Offset="0.5"
    AbilityTargetType="EnemiesInAOE"
    TargetCapturingRadius="5"
@@ -1914,6 +1999,9 @@
         <y>170</y>
       </AsVec2>
     </LightColorRGB>
+      <TriggeredEffects>
+        <string>soulstealer</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
 <!-- Artillery -->
@@ -1943,7 +2031,6 @@
     CastType="Instant" 
     CastTime="0" 
     AnimationActionName="act_release_heavy_thrown" 
-    TriggeredEffectID="place_mortar"
     Offset="10"
     AbilityTargetType="GroundAtPosition"
     CrosshairType="Pointer"
@@ -1956,7 +2043,11 @@
         <y>170</y>
       </AsVec2>
     </LightColorRGB>
+      <TriggeredEffects>
+        <string>place_mortar</string>
+      </TriggeredEffects>
   </AbilityTemplate>
+
   <AbilityTemplate StringID="GreatCannonSpawner" 
     Name="Place Great Cannon" 
     SpriteName="placeartillery_icon" 
@@ -1983,7 +2074,6 @@
     CastType="Instant" 
     CastTime="0" 
     AnimationActionName="act_release_heavy_thrown" 
-    TriggeredEffectID="place_greatcannon"
     Offset="10"
     AbilityTargetType="GroundAtPosition"
     CrosshairType="Pointer"
@@ -1996,6 +2086,9 @@
         <y>170</y>
       </AsVec2>
     </LightColorRGB>
+      <TriggeredEffects>
+        <string>place_greatcannon</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
 <!-- Career Abilities -->
@@ -2025,7 +2118,6 @@
        CastType="Instant"
        CastTime="0.5"
        AnimationActionName="none"
-       TriggeredEffectID="shadow_step"
        Offset="10"
        CrosshairType="Self"
        MinDistance="1"
@@ -2038,7 +2130,11 @@
         <z>255</z>
       </AsVec2>
     </LightColorRGB>
+      <TriggeredEffects>
+        <string>shadow_step</string>
+      </TriggeredEffects>
   </AbilityTemplate>
+
   <AbilityTemplate StringID="RighteousFury"
        Name="Righteous Fury"
        SpriteName="windofdeath_icon"
@@ -2065,7 +2161,6 @@
        CastType="Instant"
        CastTime="0.5"
        AnimationActionName="act_release_heavy_thrown"
-       TriggeredEffectID="apply_righteous_fury"
        Offset="0"
        AbilityTargetType="AlliesInAOE"
        CrosshairType="Self"
@@ -2077,6 +2172,9 @@
         <z>255</z>
       </AsVec2>
     </LightColorRGB>
+      <TriggeredEffects>
+        <string>apply_righteous_fury</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 
 <!-- Battle Prayers -->
@@ -2106,7 +2204,6 @@
       CastType="Instant" 
       CastTime="0" 
       AnimationActionName="act_release_heavy_thrown" 
-      TriggeredEffectID="healing_tick"
       Offset="0"
       AbilityTargetType="GroundAtPosition"
       CrosshairType="TargetedAOE"
@@ -2118,5 +2215,8 @@
           <z>255</z>
         </AsVec2>
       </LightColorRGB>
+      <TriggeredEffects>
+        <string>healing_tick</string>
+      </TriggeredEffects>
   </AbilityTemplate>
 </ArrayOfAbilityTemplate>

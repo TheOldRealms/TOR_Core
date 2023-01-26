@@ -92,7 +92,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             if (_ability.Template.TriggerType == TriggerType.EveryTick && _timeSinceLastTick > _ability.Template.TickInterval)
             {
                 _timeSinceLastTick = 0;
-                TriggerEffect(frame.origin, frame.origin.NormalizedCopy());
+                TriggerEffects(frame.origin, frame.origin.NormalizedCopy());
             }
             else if (_ability.Template.TriggerType == TriggerType.TickOnce && _abilityLife > _ability.Template.TickInterval && !_hasTriggered)
             {
@@ -103,7 +103,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                     position = frame.Advance(_ability.Template.Offset).origin;
                     normal = frame.rotation.f.NormalizedCopy();
                 }
-                TriggerEffect(position, normal);
+                TriggerEffects(position, normal);
                 _hasTriggered = true;
             }
             _hasTickedOnce = true;
@@ -198,31 +198,39 @@ namespace TOR_Core.AbilitySystem.Scripts
             {
                 GameEntity.FadeOut(0.05f, true);
                 IsFading = true;
-                TriggerEffect(position, normal);
+                TriggerEffects(position, normal);
                 _hasCollided = true;
             }
         }
 
-        protected void TriggerEffect(Vec3 position, Vec3 normal)
+        protected void TriggerEffects(Vec3 position, Vec3 normal)
         {
-            var effect = GetEffectToTrigger();
-            if (effect != null)
+            var effects = GetEffectsToTrigger();
+            foreach(var effect in effects)
             {
-                if(_ability.Template.AbilityTargetType == AbilityTargetType.Self)
+                if (effect != null)
                 {
-                    effect.Trigger(position, normal, _casterAgent, _ability.Template, new MBList<Agent>(1) { _casterAgent });
+                    if (_ability.Template.AbilityTargetType == AbilityTargetType.Self)
+                    {
+                        effect.Trigger(position, normal, _casterAgent, _ability.Template, new MBList<Agent>(1) { _casterAgent });
+                    }
+                    else if (IsSingleTarget() && _targetAgent != null)
+                    {
+                        effect.Trigger(position, normal, _casterAgent, _ability.Template, new MBList<Agent>(1) { _targetAgent });
+                    }
+                    else effect.Trigger(position, normal, _casterAgent, _ability.Template);
                 }
-                else if(IsSingleTarget() && _targetAgent != null)
-                {
-                    effect.Trigger(position, normal, _casterAgent, _ability.Template, new MBList<Agent>(1) { _targetAgent });
-                }
-                else effect.Trigger(position, normal, _casterAgent, _ability.Template);
             }
         }
 
-        protected virtual TriggeredEffect GetEffectToTrigger()
+        protected virtual List<TriggeredEffect> GetEffectsToTrigger()
         {
-            return TriggeredEffectManager.CreateNew(_ability?.Template.TriggeredEffectID);
+            List<TriggeredEffect> effects = new List<TriggeredEffect>();
+            foreach(var effect in _ability.Template.AssociatedTriggeredEffectTemplates)
+            {
+                effects.Add(new TriggeredEffect(effect));
+            }
+            return effects;
         }
 
         protected override void OnRemoved(int removeReason)

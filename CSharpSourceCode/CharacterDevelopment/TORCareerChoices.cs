@@ -21,7 +21,9 @@ namespace TOR_Core.CharacterDevelopment
 
 
         private CareerChoiceObject _warriorPriestRoot;
+        private CareerChoiceObject _bookOfSigmar;
         public static CareerChoiceObject WarriorPriestRoot => Instance._warriorPriestRoot;
+        public static CareerChoiceObject BookOfSigmar => Instance._bookOfSigmar;
 
         public TORCareerChoices()
         {
@@ -34,7 +36,9 @@ namespace TOR_Core.CharacterDevelopment
         private void RegisterAll()
         {
             _warriorPriestRoot = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("WarriorPriestRoot"));
+            _bookOfSigmar = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BookOfSigmar"));
             _allCareerChoices.Add(_warriorPriestRoot);
+            _allCareerChoices.Add(_bookOfSigmar);
         }
 
         private void InitializeAll()
@@ -42,13 +46,38 @@ namespace TOR_Core.CharacterDevelopment
             _warriorPriestRoot.Initialize("Warrior Priest Career Tree Root", 
                 "The root of the career choices tree.", 
                 TORCareers.WarriorPriest, true,
-                ChoiceType.Keystone, 
-                new CareerChoiceObject.MutationObject()
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
-                    MutationTarget = typeof(TriggeredEffectTemplate),
-                    FieldName = "Radius",
-                    FieldValue = 0.2,
-                    MutationType = MutationType.Multiply
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_righteous_fury",
+                        FieldName = "ImbuedStatusEffectDuration",
+                        FieldValue = (choice, originalValue, hero) => CareerHelper.AddSkillEffectToValue(choice, hero, new List<SkillObject>(){ TORSkills.Faith }, 0.05f),
+                        MutationType = MutationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "righteous_fury_effect",
+                        FieldName = "BaseEffectValue",
+                        FieldValue = (choice, originalValue, hero) => CareerHelper.AddSkillEffectToValue(choice, hero, new List<SkillObject>(){ TORSkills.Faith }, 0.05f),
+                        MutationType = MutationType.Add
+                    }
+                });
+            _warriorPriestRoot.Initialize("Book of Sigmar",
+                "Please provide description.",
+                TORCareers.WarriorPriest, false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_righteous_fury",
+                        FieldName = "ImbuedStatusEffects",
+                        FieldValue = (choice, originalValue, hero) => StatusEffectManager.GetStatusEffectTemplatesWithIds(new List<string>(){ "righteous_fury_effect", "healing_regeneration"}),
+                        MutationType = MutationType.Replace
+                    },
                 });
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
@@ -7,10 +8,10 @@ using TOR_Core.BattleMechanics.StatusEffect;
 namespace TOR_Core.BattleMechanics.TriggeredEffect
 {
     [Serializable]
-    public class TriggeredEffectTemplate
+    public class TriggeredEffectTemplate : ITemplate
     {
         [XmlAttribute]
-        public string StringID = "";
+        public string StringID { get; set; } = "";
         [XmlAttribute]
         public string BurstParticleEffectPrefab = "none";
         [XmlAttribute]
@@ -27,8 +28,8 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         public bool HasShockWave = false;
         [XmlAttribute]
         public TargetType TargetType = TargetType.Enemy;
-        [XmlAttribute]
-        public string ImbuedStatusEffectID = "none";
+        [XmlElement]
+        public List<string> ImbuedStatusEffects = new List<string>();
         [XmlAttribute]
         public float ImbuedStatusEffectDuration = 5f;
         [XmlAttribute]
@@ -42,9 +43,9 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         [XmlAttribute]
         public int NumberToSummon = 0;
 
-        public StatusEffectTemplate AssociatedStatusEffect => StatusEffectManager.GetStatusEffectTemplateWithId(ImbuedStatusEffectID);
+        public List<StatusEffectTemplate> AssociatedStatusEffects => StatusEffectManager.GetStatusEffectTemplatesWithIds(ImbuedStatusEffects);
 
-        public TriggeredEffectTemplate Clone(string newId)
+        public ITemplate Clone(string newId)
         {
             return new TriggeredEffectTemplate()
             {
@@ -57,7 +58,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 Radius = Radius,
                 HasShockWave = HasShockWave,
                 TargetType = TargetType,
-                ImbuedStatusEffectID = ImbuedStatusEffectID,
+                ImbuedStatusEffects = ImbuedStatusEffects,
                 ImbuedStatusEffectDuration = ImbuedStatusEffectDuration,
                 DamageVariance = DamageVariance,
                 ScriptNameToTrigger = ScriptNameToTrigger,

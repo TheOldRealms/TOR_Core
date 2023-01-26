@@ -87,14 +87,17 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 TORMissionHelper.HealAgents(targets, (int)(-_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(-_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType, originAbilityTemplate);
             }
             //Apply status effects
-            if (_template.ImbuedStatusEffectID != "none" && _template.AssociatedStatusEffect != null)
+            if (_template.AssociatedStatusEffects != null && _template.AssociatedStatusEffects.Count > 0)
             {
                 var triggererCharacter = triggererAgent.Character as CharacterObject;
-                if(triggererCharacter != null && triggererCharacter.GetPerkValue(TORPerks.SpellCraft.ArcaneLink) && _template.AssociatedStatusEffect.IsBuffEffect)
+                foreach (var effect in _template.AssociatedStatusEffects)
                 {
-                    if(!targets.Contains(triggererAgent)) targets.Append(triggererAgent);
+                    if (triggererCharacter != null && triggererCharacter.GetPerkValue(TORPerks.SpellCraft.ArcaneLink) && effect.IsBuffEffect)
+                    {
+                        if (!targets.Contains(triggererAgent)) targets.Append(triggererAgent);
+                    }
+                    TORMissionHelper.ApplyStatusEffectToAgents(targets, effect.StringID, triggererAgent, statusEffectDuration, true, _isTemplateMutated);
                 }
-                TORMissionHelper.ApplyStatusEffectToAgents(targets, _template.ImbuedStatusEffectID, triggererAgent, statusEffectDuration, true, _isTemplateMutated);
             }
             SpawnVisuals(position, normal);
             PlaySound(position);

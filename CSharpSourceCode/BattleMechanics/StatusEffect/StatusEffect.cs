@@ -20,6 +20,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             ApplierAgent = null;
         }
 
-        public bool Equals(StatusEffect other) => Template.Id == other.Template.Id;
+        public bool Equals(StatusEffect other) => Template.StringID == other.Template.StringID;
     }
 }

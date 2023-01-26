@@ -45,7 +45,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             return result;
         }
 
-        public void MutateAbility(CareerAbility ability, Hero hero)
+        public void MutateAbility(AbilityTemplate ability, Hero hero)
         {
             if(hero != null && hero.GetExtendedInfo() != null)
             {
@@ -77,7 +77,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             }
         }
 
-        internal void MutateStatusEffect(StatusEffect effect, Hero hero)
+        internal void MutateStatusEffect(StatusEffectTemplate effect, Hero hero)
         {
             if (hero != null && hero.GetExtendedInfo() != null)
             {

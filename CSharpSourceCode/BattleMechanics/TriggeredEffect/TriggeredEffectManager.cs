@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 using TOR_Core.Utilities;
@@ -34,10 +35,24 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             }
         }
 
-        public static TriggeredEffectTemplate GetTemplateWithId(string id)
+        internal static TriggeredEffectTemplate GetTemplateWithId(string id)
         {
-            TriggeredEffectTemplate result = null;
-            _dictionary.TryGetValue(id, out result);
+            TriggeredEffectTemplate template = null;
+            _dictionary.TryGetValue(id, out template);
+            return template;
+        }
+
+        public static List<TriggeredEffectTemplate> GetTemplatesWithIds(List<string> ids)
+        {
+            List<TriggeredEffectTemplate> result = new List<TriggeredEffectTemplate>();
+            foreach(var id in ids)
+            {
+                TriggeredEffectTemplate template = null;
+                if(_dictionary.TryGetValue(id, out template))
+                {
+                    result.Add(template);
+                }
+            }
             return result;
         }
     }

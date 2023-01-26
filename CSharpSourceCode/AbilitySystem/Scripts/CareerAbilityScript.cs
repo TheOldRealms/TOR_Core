@@ -12,27 +12,31 @@ namespace TOR_Core.AbilitySystem.Scripts
 {
     public class CareerAbilityScript : AbilityScript
     {
-        protected override TriggeredEffect GetEffectToTrigger()
+        protected override List<TriggeredEffect> GetEffectsToTrigger()
         {
-            var id = _ability?.Template.TriggeredEffectID;
-            if (id != null && !string.IsNullOrEmpty(id))
+            List<TriggeredEffect> result = new List<TriggeredEffect>();
+            var effects = _ability?.Template.TriggeredEffects;
+            foreach (var effect in effects)
             {
-                if(_casterAgent.GetHero() != null)
+                if (effect != null && !string.IsNullOrEmpty(effect))
                 {
-                    var info = _casterAgent.GetHero().GetExtendedInfo();
-                    if(info != null && !string.IsNullOrEmpty(info.CareerID))
+                    if (_casterAgent.GetHero() != null)
                     {
-                        var career = _casterAgent.GetHero().GetCareer();
-                        if(career != null)
+                        var info = _casterAgent.GetHero().GetExtendedInfo();
+                        if (info != null && !string.IsNullOrEmpty(info.CareerID))
                         {
-                            var template = TriggeredEffectManager.GetTemplateWithId(id).Clone(id + "_modified_" + _casterAgent.Index);
-                            career.MutateTriggeredEffect(template, _casterAgent.GetHero());
-                            return new TriggeredEffect(template, true);
+                            var career = _casterAgent.GetHero().GetCareer();
+                            if (career != null)
+                            {
+                                TriggeredEffectTemplate template = (TriggeredEffectTemplate)TriggeredEffectManager.GetTemplateWithId(effect).Clone(effect + "*cloned*" + _casterAgent.Index);
+                                career.MutateTriggeredEffect(template, _casterAgent.GetHero());
+                                result.Add(new TriggeredEffect(template, true));
+                            }
                         }
                     }
                 }
             }
-            return null;
+            return result;
         }
     }
 }

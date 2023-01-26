@@ -9,14 +9,22 @@ using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.Utilities;
 using TOR_Core.Extensions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TOR_Core.AbilitySystem
 {
+    public interface ITemplate
+    {
+        string StringID { get; }
+        ITemplate Clone(string newId);
+    }
+
     [Serializable]
-    public class AbilityTemplate
+    public class AbilityTemplate : ITemplate
     {
         [XmlAttribute]
-        public string StringID = "";
+        public string StringID { get; set; } = "";
         [XmlAttribute]
         public string Name = "";
         [XmlAttribute]
@@ -41,8 +49,8 @@ namespace TOR_Core.AbilitySystem
         public float TickInterval = 1f;
         [XmlAttribute]
         public TriggerType TriggerType = TriggerType.OnCollision;
-        [XmlAttribute]
-        public string TriggeredEffectID = "";
+        [XmlElement]
+        public List<string> TriggeredEffects = new List<string>();
         [XmlAttribute]
         public bool HasLight = true;
         [XmlAttribute]
@@ -101,8 +109,8 @@ namespace TOR_Core.AbilitySystem
         public AbilityTemplate(string id) => StringID = id;
 
         public bool IsSpell => AbilityType == AbilityType.Spell;
-        public TriggeredEffectTemplate AssociatedTriggeredEffectTemplate => TriggeredEffectManager.GetTemplateWithId(TriggeredEffectID);
-        public bool DoesDamage => AssociatedTriggeredEffectTemplate?.DamageType != DamageType.Invalid && AssociatedTriggeredEffectTemplate?.DamageAmount > 0;
+        public List<TriggeredEffectTemplate> AssociatedTriggeredEffectTemplates => TriggeredEffectManager.GetTemplatesWithIds(TriggeredEffects);
+        public bool DoesDamage => AssociatedTriggeredEffectTemplates.Any(x=> x.DamageType != DamageType.Invalid && x.DamageAmount > 0);
         public int GoldCost
         {
             get
@@ -132,7 +140,7 @@ namespace TOR_Core.AbilitySystem
             return list;
         }
 
-        public AbilityTemplate Clone(string newId)
+        public ITemplate Clone(string newId)
         {
             return new AbilityTemplate(newId)
             {
@@ -148,7 +156,7 @@ namespace TOR_Core.AbilitySystem
                 BaseMovementSpeed = BaseMovementSpeed,
                 TickInterval = TickInterval,
                 TriggerType = TriggerType,
-                TriggeredEffectID = TriggeredEffectID,
+                TriggeredEffects = TriggeredEffects,
                 HasLight = HasLight,
                 LightIntensity = LightIntensity,
                 LightRadius = LightRadius,

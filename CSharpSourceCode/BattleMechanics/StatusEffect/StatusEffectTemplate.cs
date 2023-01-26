@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using static TOR_Core.Utilities.TORParticleSystem;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
 {
-    public class StatusEffectTemplate : IEquatable<StatusEffectTemplate>
+    public class StatusEffectTemplate : IEquatable<StatusEffectTemplate>, ITemplate
     {
         [XmlAttribute("id")]
-        public string Id { get; set; }
+        public string StringID { get; set; }
         [XmlAttribute("particle_id")]
         public string ParticleId { get; set; }
         [XmlAttribute("particle_intensity")]
@@ -42,7 +43,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         public override int GetHashCode()
         {
-            return Id.GetHashCode();
+            return StringID.GetHashCode();
         }
 
         public override bool Equals(object obj)
@@ -59,11 +60,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             return GetHashCode() == other.GetHashCode();
         }
 
-        public StatusEffectTemplate Clone(string newId)
+        public ITemplate Clone(string newId)
         {
             return new StatusEffectTemplate()
             {
-                Id = newId,
+                StringID = newId,
                 ParticleId = ParticleId,
                 ParticleIntensity = ParticleIntensity,
                 ApplyToRootBoneOnly = ApplyToRootBoneOnly,
