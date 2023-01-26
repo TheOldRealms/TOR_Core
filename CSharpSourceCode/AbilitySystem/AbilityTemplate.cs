@@ -26,91 +26,92 @@ namespace TOR_Core.AbilitySystem
         [XmlAttribute]
         public string StringID { get; set; } = "";
         [XmlAttribute]
-        public string Name = "";
+        public string Name { get; set; } = "";
         [XmlAttribute]
-        public string SpriteName  = "";
+        public string SpriteName { get; set; } = "";
         [XmlAttribute]
-        public int CoolDown = 10;
+        public int CoolDown { get; set; } = 10;
         [XmlAttribute]
-        public int WindsOfMagicCost = 0; //spell only
+        public int WindsOfMagicCost { get; set; } = 0; //spell only
         [XmlAttribute]
-        public float BaseMisCastChance = 0.3f; //spell only
+        public float BaseMisCastChance { get; set; } = 0.3f; //spell only
         [XmlAttribute]
-        public float Duration = 3;
+        public float Duration { get; set; } = 3;
         [XmlAttribute]
-        public float Radius = 0.8f;
+        public float Radius { get; set; } = 0.8f;
         [XmlAttribute]
-        public AbilityType AbilityType = AbilityType.Spell;
+        public AbilityType AbilityType { get; set; } = AbilityType.Spell;
         [XmlAttribute]
-        public AbilityEffectType AbilityEffectType = AbilityEffectType.Missile;
+        public AbilityEffectType AbilityEffectType { get; set; } = AbilityEffectType.Missile;
         [XmlAttribute]
-        public float BaseMovementSpeed = 35f;
+        public float BaseMovementSpeed { get; set; } = 35f;
         [XmlAttribute]
-        public float TickInterval = 1f;
+        public float TickInterval { get; set; } = 1f;
         [XmlAttribute]
-        public TriggerType TriggerType = TriggerType.OnCollision;
+        public TriggerType TriggerType { get; set; } = TriggerType.OnCollision;
+        [XmlElement("TriggeredEffect")]
+        public List<string> TriggeredEffects { get; set; } = new List<string>();
+        [XmlAttribute]
+        public bool HasLight { get; set; } = true;
+        [XmlAttribute]
+        public float LightIntensity { get; set; } = 5f;
+        [XmlAttribute]
+        public float LightRadius { get; set; } = 5f;
         [XmlElement]
-        public List<string> TriggeredEffects = new List<string>();
+        public Vec3 LightColorRGB { get; set; } = new Vec3(255, 170, 0);
         [XmlAttribute]
-        public bool HasLight = true;
+        public float LightFlickeringMagnitude { get; set; } = 1;
         [XmlAttribute]
-        public float LightIntensity = 5f;
+        public float LightFlickeringInterval { get; set; } = 0.2f;
         [XmlAttribute]
-        public float LightRadius = 5f;
-        public Vec3 LightColorRGB = new Vec3(255, 170, 0);
+        public bool ShadowCastEnabled { get; set; } = true;
         [XmlAttribute]
-        public float LightFlickeringMagnitude = 1;
+        public string ParticleEffectPrefab { get; set; } = "";
         [XmlAttribute]
-        public float LightFlickeringInterval = 0.2f;
+        public float ParticleEffectSizeModifier { get; set; } = 1;
         [XmlAttribute]
-        public bool ShadowCastEnabled = true;
+        public string SoundEffectToPlay { get; set; } = "";
         [XmlAttribute]
-        public string ParticleEffectPrefab = "";
+        public bool ShouldSoundLoopOverDuration { get; set; } = true;
         [XmlAttribute]
-        public float ParticleEffectSizeModifier = 1;
+        public CastType CastType { get; set; } = CastType.Instant;
         [XmlAttribute]
-        public string SoundEffectToPlay = "";
+        public float CastTime { get; set; } = 0;
         [XmlAttribute]
-        public bool ShouldSoundLoopOverDuration = true;
+        public string AnimationActionName { get; set; } = "";
         [XmlAttribute]
-        public CastType CastType = CastType.Instant;
+        public AbilityTargetType AbilityTargetType { get; set; } = AbilityTargetType.EnemiesInAOE;
         [XmlAttribute]
-        public float CastTime = 0;
+        public float Offset { get; set; } = 1.0f;
         [XmlAttribute]
-        public string AnimationActionName = "";
+        public CrosshairType CrosshairType { get; set; } = CrosshairType.Self;
         [XmlAttribute]
-        public AbilityTargetType AbilityTargetType = AbilityTargetType.EnemiesInAOE;
+        public float MinDistance { get; set; } = 1.0f;
         [XmlAttribute]
-        public float Offset = 1.0f;
+        public float MaxDistance { get; set; } = 1.0f;
         [XmlAttribute]
-        public CrosshairType CrosshairType = CrosshairType.Self;
+        public float TargetCapturingRadius { get; set; } = 0;
         [XmlAttribute]
-        public float MinDistance = 1.0f;
+        public int SpellTier { get; set; } = 0; //spell only, max 3 (0-1-2-3)
         [XmlAttribute]
-        public float MaxDistance = 1.0f;
+        public string BelongsToLoreID { get; set; } = ""; //spell only
         [XmlAttribute]
-        public float TargetCapturingRadius = 0;
+        public string TooltipDescription { get; set; } = "default";
         [XmlAttribute]
-        public int SpellTier = 0; //spell only, max 3 (0-1-2-3)
+        public float MaxRandomDeviation { get; set; } = 0;
         [XmlAttribute]
-        public string BelongsToLoreID = ""; //spell only
+        public bool ShouldRotateVisuals { get; set; } = false;
         [XmlAttribute]
-        public string TooltipDescription = "default";
-        [XmlAttribute]
-        public float MaxRandomDeviation = 0;
-        [XmlAttribute]
-        public bool ShouldRotateVisuals = false;
-        [XmlAttribute]
-        public float VisualsRotationVelocity = 0f;
-
-        public SeekerParameters SeekerParameters;
-        
-        public AbilityTemplate() { }
-        public AbilityTemplate(string id) => StringID = id;
-
+        public float VisualsRotationVelocity { get; set; } = 0f;
+        [XmlIgnore]
+        public SeekerParameters SeekerParameters { get; set; }
+        [XmlIgnore]
         public bool IsSpell => AbilityType == AbilityType.Spell;
+        [XmlIgnore]
         public List<TriggeredEffectTemplate> AssociatedTriggeredEffectTemplates => TriggeredEffectManager.GetTemplatesWithIds(TriggeredEffects);
+        [XmlIgnore]
         public bool DoesDamage => AssociatedTriggeredEffectTemplates.Any(x=> x.DamageType != DamageType.Invalid && x.DamageAmount > 0);
+        [XmlIgnore]
         public int GoldCost
         {
             get
@@ -125,7 +126,8 @@ namespace TOR_Core.AbilitySystem
                 }
             }
         }
-
+        public AbilityTemplate() { }
+        public AbilityTemplate(string id) => StringID = id;
         public MBBindingList<StatItemVM> GetStats(Hero hero, AbilityTemplate spellTemplate)
         {
             MBBindingList<StatItemVM> list = new MBBindingList<StatItemVM>();

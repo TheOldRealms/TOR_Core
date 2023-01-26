@@ -13,36 +13,36 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         [XmlAttribute]
         public string StringID { get; set; } = "";
         [XmlAttribute]
-        public string BurstParticleEffectPrefab = "none";
+        public string BurstParticleEffectPrefab { get; set; } = "none";
         [XmlAttribute]
-        public string SoundEffectId = "none";
+        public string SoundEffectId { get; set; } = "none";
         [XmlAttribute]
-        public float SoundEffectLength = 2.5f;
+        public float SoundEffectLength { get; set; } = 2.5f;
         [XmlAttribute]
-        public DamageType DamageType = DamageType.Fire;
+        public DamageType DamageType { get; set; } = DamageType.Fire;
         [XmlAttribute]
-        public int DamageAmount = 50;
+        public int DamageAmount { get; set; } = 50;
         [XmlAttribute]
-        public float Radius = 5;
+        public float Radius { get; set; } = 5;
         [XmlAttribute]
-        public bool HasShockWave = false;
+        public bool HasShockWave { get; set; } = false;
         [XmlAttribute]
-        public TargetType TargetType = TargetType.Enemy;
-        [XmlElement]
-        public List<string> ImbuedStatusEffects = new List<string>();
+        public TargetType TargetType { get; set; } = TargetType.Enemy;
         [XmlAttribute]
-        public float ImbuedStatusEffectDuration = 5f;
+        public float ImbuedStatusEffectDuration { get; set; } = 5f;
         [XmlAttribute]
-        public float DamageVariance = 0.2f;
+        public float DamageVariance { get; set; } = 0.2f;
         [XmlAttribute]
-        public string ScriptNameToTrigger = "none";
+        public string ScriptNameToTrigger { get; set; } = "none";
         [XmlAttribute]
-        public string SpawnPrefabName = "none";
+        public string SpawnPrefabName { get; set; } = "none";
         [XmlAttribute]
-        public string TroopIdToSummon = "none";
+        public string TroopIdToSummon { get; set; } = "none";
         [XmlAttribute]
-        public int NumberToSummon = 0;
-
+        public int NumberToSummon { get; set; } = 0;
+        [XmlElement("ImbuedStatusEffect")]
+        public List<string> ImbuedStatusEffects { get; set; } = new List<string>();
+        [XmlIgnore]
         public List<StatusEffectTemplate> AssociatedStatusEffects => StatusEffectManager.GetStatusEffectTemplatesWithIds(ImbuedStatusEffects);
 
         public ITemplate Clone(string newId)

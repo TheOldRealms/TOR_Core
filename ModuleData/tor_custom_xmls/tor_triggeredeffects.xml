@@ -1,5 +1,5 @@
-<?xml version="1.0"?>
-<ArrayOfTriggeredEffectTemplate xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="utf-8" ?>
+<TriggeredEffectTemplates>
 <!-- Minor magic -->
       <TriggeredEffectTemplate StringID="dart_explosion" 
             BurstParticleEffectPrefab="blue_particle_explosion" 
@@ -24,9 +24,7 @@
             ImbuedStatusEffectDuration="15" 
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
-            <ImbuedStatusEffects>
-                  <string>physical_resistance_20</string>
-            </ImbuedStatusEffects>
+            <ImbuedStatusEffect>physical_resistance_20</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
       <TriggeredEffectTemplate StringID="apply_healing_statuseffect" 
             BurstParticleEffectPrefab="none" 
@@ -40,9 +38,7 @@
             ImbuedStatusEffectDuration="5" 
             DamageVariance="0.1" 
             ScriptNameToTrigger="none">
-            <ImbuedStatusEffects>
-                  <string>healing_regeneration</string>
-            </ImbuedStatusEffects>
+            <ImbuedStatusEffect>healing_regeneration</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
       <TriggeredEffectTemplate StringID="foetid_cloud_burst" 
             BurstParticleEffectPrefab="none" 
@@ -78,9 +74,7 @@
             ImbuedStatusEffectDuration="15" 
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
-            <ImbuedStatusEffects>
-                  <string>physical_bonus_20</string>
-            </ImbuedStatusEffects>
+            <ImbuedStatusEffect>physical_bonus_20</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
       <TriggeredEffectTemplate StringID="dust_storm_tick" 
             BurstParticleEffectPrefab="none" 
@@ -106,9 +100,7 @@
             ImbuedStatusEffectDuration="5" 
             DamageVariance="0.05" 
             ScriptNameToTrigger="none">
-            <ImbuedStatusEffects>
-                  <string>fireball_dot</string>
-            </ImbuedStatusEffects>
+            <ImbuedStatusEffect>fireball_dot</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
       <TriggeredEffectTemplate StringID="cinderblast_explosion" 
             BurstParticleEffectPrefab="cinder_explosion" 
@@ -165,9 +157,7 @@
             ImbuedStatusEffectDuration="5" 
             DamageVariance="0.1" 
             ScriptNameToTrigger="none">
-            <ImbuedStatusEffects>
-                  <string>fireball_dot</string>
-            </ImbuedStatusEffects>
+            <ImbuedStatusEffect>fireball_dot</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 <!-- Lore of Heavens -->
       <TriggeredEffectTemplate StringID="lightningbolt_explosion" 
@@ -215,9 +205,7 @@
             ImbuedStatusEffectDuration="15" 
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
-            <ImbuedStatusEffects>
-                  <string>physical_resistance_50</string>
-            </ImbuedStatusEffects>
+            <ImbuedStatusEffect>physical_resistance_50</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
       <TriggeredEffectTemplate StringID="blizzard_tick" 
             BurstParticleEffectPrefab="none" 
@@ -321,9 +309,7 @@
             ImbuedStatusEffectDuration="5" 
             DamageVariance="0.1" 
             ScriptNameToTrigger="none">
-            <ImbuedStatusEffects>
-                  <string>red_regeneration</string>
-            </ImbuedStatusEffects>
+            <ImbuedStatusEffect>red_regeneration</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
       <TriggeredEffectTemplate StringID="witheringwave_tick" 
             BurstParticleEffectPrefab="none" 
@@ -399,9 +385,7 @@
             ImbuedStatusEffectDuration="10" 
             DamageVariance="0"
             ScriptNameToTrigger="none">
-            <ImbuedStatusEffects>
-                  <string>soulstealer</string>
-            </ImbuedStatusEffects>
+            <ImbuedStatusEffect>soulstealer</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 
 <!-- Artillery -->
@@ -443,9 +427,7 @@
             ImbuedStatusEffectDuration="5" 
             DamageVariance="0.2" 
             ScriptNameToTrigger="none">
-            <ImbuedStatusEffects>
-                  <string>fireball_dot</string>
-            </ImbuedStatusEffects>
+            <ImbuedStatusEffect>fireball_dot</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 
       <TriggeredEffectTemplate StringID="grenade_explosion" 
@@ -496,9 +478,7 @@
             ImbuedStatusEffectDuration="8" 
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
-            <ImbuedStatusEffects>
-                  <string>righteous_fury_effect</string>
-            </ImbuedStatusEffects>
+            <ImbuedStatusEffect>righteous_fury_effect</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 
-</ArrayOfTriggeredEffectTemplate>
+</TriggeredEffectTemplates>

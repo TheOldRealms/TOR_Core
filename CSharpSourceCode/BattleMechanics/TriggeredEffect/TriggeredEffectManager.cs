@@ -23,7 +23,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
 
         public static void LoadTemplates()
         {
-            var ser = new XmlSerializer(typeof(List<TriggeredEffectTemplate>));
+            var ser = new XmlSerializer(typeof(List<TriggeredEffectTemplate>), new XmlRootAttribute("TriggeredEffectTemplates"));
             var path = TORPaths.TORCoreModuleExtendedDataPath + _filename;
             if (File.Exists(path))
             {

@@ -39,7 +39,7 @@ namespace TOR_Core.AbilitySystem
 
         public static void LoadTemplates()
         {
-            var ser = new XmlSerializer(typeof(List<AbilityTemplate>));
+            var ser = new XmlSerializer(typeof(List<AbilityTemplate>), new XmlRootAttribute("AbilityTemplates"));
             var path = TORPaths.TORCoreModuleExtendedDataPath + _filename;
             if (File.Exists(path))
             {
