@@ -10,7 +10,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
 {
     public class ApplyFlamingItemTraitScript : ITriggeredScript
     {
-        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents)
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
             if(triggeredAgents.Count() > 0)
             {
@@ -32,7 +32,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     var comp = agent.GetComponent<ItemTraitAgentComponent>();
                     if(comp != null)
                     {
-                        comp.AddTraitToWieldedWeapon(trait, 20);
+                        comp.AddTraitToWieldedWeapon(trait, duration);
                     }
                 }
             }
@@ -41,7 +41,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
 
     public class EnchantWeaponScript : ITriggeredScript
     {
-        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents)
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
             if (triggeredAgents.Count() > 0)
             {
@@ -63,7 +63,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     var comp = agent.GetComponent<ItemTraitAgentComponent>();
                     if (comp != null)
                     {
-                        comp.AddTraitToWieldedWeapon(trait, 20);
+                        comp.AddTraitToWieldedWeapon(trait, duration);
                     }
                 }
             }

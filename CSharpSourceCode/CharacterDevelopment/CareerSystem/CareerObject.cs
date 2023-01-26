@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
@@ -45,49 +46,49 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             return result;
         }
 
-        public void MutateAbility(AbilityTemplate ability, Hero hero)
+        public void MutateAbility(AbilityTemplate ability, Agent casterAgent)
         {
-            if(hero != null && hero.GetExtendedInfo() != null)
+            if(casterAgent != null && casterAgent.GetHero()?.GetExtendedInfo() != null)
             {
-                var info = hero.GetExtendedInfo();
+                var info = casterAgent.GetHero().GetExtendedInfo();
                 if(info.CareerID == StringId)
                 {
                     var choices = TORCareerChoices.All.Where(x => info.CareerChoices.Contains(x.StringId));
                     foreach(var choice in choices)
                     {
-                        choice.MutateAbility(ability, hero);
+                        choice.MutateAbility(ability, casterAgent);
                     }
                 }
             }
         }
 
-        public void MutateTriggeredEffect(TriggeredEffectTemplate effect, Hero hero)
+        public void MutateTriggeredEffect(TriggeredEffectTemplate effect, Agent triggererAgent)
         {
-            if (hero != null && hero.GetExtendedInfo() != null)
+            if (triggererAgent != null && triggererAgent.GetHero()?.GetExtendedInfo() != null)
             {
-                var info = hero.GetExtendedInfo();
+                var info = triggererAgent.GetHero().GetExtendedInfo();
                 if (info.CareerID == StringId)
                 {
                     var choices = TORCareerChoices.All.Where(x => info.CareerChoices.Contains(x.StringId));
                     foreach (var choice in choices)
                     {
-                        choice.MutateTriggeredEffect(effect, hero);
+                        choice.MutateTriggeredEffect(effect, triggererAgent);
                     }
                 }
             }
         }
 
-        internal void MutateStatusEffect(StatusEffectTemplate effect, Hero hero)
+        internal void MutateStatusEffect(StatusEffectTemplate effect, Agent applierAgent)
         {
-            if (hero != null && hero.GetExtendedInfo() != null)
+            if (applierAgent != null && applierAgent.GetHero()?.GetExtendedInfo() != null)
             {
-                var info = hero.GetExtendedInfo();
+                var info = applierAgent.GetHero().GetExtendedInfo();
                 if (info.CareerID == StringId)
                 {
                     var choices = TORCareerChoices.All.Where(x => info.CareerChoices.Contains(x.StringId));
                     foreach (var choice in choices)
                     {
-                        choice.MutateStatusEffect(effect, hero);
+                        choice.MutateStatusEffect(effect, applierAgent);
                     }
                 }
             }

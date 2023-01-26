@@ -60,6 +60,7 @@
             Radius="5" 
             HasShockWave="false" 
             TargetType="Friendly" 
+            ImbuedStatusEffectDuration="20" 
             DamageVariance="0" 
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.EnchantWeaponScript" />
       <TriggeredEffectTemplate StringID="physical_bonus_20" 
@@ -144,6 +145,7 @@
             Radius="4" 
             HasShockWave="false" 
             TargetType="Friendly" 
+            ImbuedStatusEffectDuration="20" 
             DamageVariance="0" 
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyFlamingItemTraitScript" />
       <TriggeredEffectTemplate StringID="burning_head_tick" 
@@ -467,15 +469,15 @@
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.KnockDownScript"/>
       
       <TriggeredEffectTemplate StringID="apply_righteous_fury" 
-            BurstParticleEffectPrefab="none" 
+            BurstParticleEffectPrefab="shards_explosion" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
             DamageType="Invalid" 
             DamageAmount="0" 
-            Radius="4" 
+            Radius="2" 
             HasShockWave="false" 
             TargetType="Friendly" 
-            ImbuedStatusEffectDuration="8" 
+            ImbuedStatusEffectDuration="2" 
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>righteous_fury_effect</ImbuedStatusEffect>

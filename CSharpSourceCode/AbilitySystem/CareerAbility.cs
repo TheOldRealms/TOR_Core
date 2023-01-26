@@ -34,7 +34,7 @@ namespace TOR_Core.AbilitySystem
                     ChargeType = _career.ChargeType;
                     _maxCharge = _career.MaxCharge;
                     Template = (AbilityTemplate)template.Clone(template.StringID + "*cloned*" + _ownerHero.StringId);
-                    _career.MutateAbility(Template, _ownerHero);
+                    _career.MutateAbility(Template, agent);
                 }
             }
             _currentCharge = _maxCharge;

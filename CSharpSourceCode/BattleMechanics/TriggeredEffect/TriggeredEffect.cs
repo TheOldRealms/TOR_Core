@@ -101,7 +101,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             }
             SpawnVisuals(position, normal);
             PlaySound(position);
-            TriggerScript(position, triggererAgent, targets);
+            TriggerScript(position, triggererAgent, targets, statusEffectDuration);
         }
 
         private void SpawnVisuals(Vec3 position, Vec3 normal)
@@ -132,7 +132,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             }
         }
 
-        private void TriggerScript(Vec3 position, Agent triggerer, IEnumerable<Agent> triggeredAgents)
+        private void TriggerScript(Vec3 position, Agent triggerer, IEnumerable<Agent> triggeredAgents, float duration)
         {
             if (_template.ScriptNameToTrigger != "none")
             {
@@ -152,7 +152,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                     if (obj is ITriggeredScript)
                     {
                         var script = obj as ITriggeredScript;
-                        script.OnTrigger(position, triggerer, triggeredAgents);
+                        script.OnTrigger(position, triggerer, triggeredAgents, duration);
                     }
                 }
                 catch (Exception)

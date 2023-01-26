@@ -5,23 +5,31 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
     public static class CareerHelper
     {
-        public static float AddSkillEffectToValue(CareerChoiceObject careerChoice, Hero hero, List<SkillObject> relevantSkills, float scalingFactor)
+        public static float AddSkillEffectToValue(CareerChoiceObject careerChoice, Agent agent, List<SkillObject> relevantSkills, float scalingFactor, bool highestOnly = false)
         {
-            float result = 0f;
-            if(hero != null && relevantSkills != null && relevantSkills.Count > 0)
+            float retVal = 0f;
+            if(agent != null && agent.IsHero && relevantSkills != null && relevantSkills.Count > 0)
             {
                 foreach (var skill in relevantSkills)
                 {
-                    int skillValue = hero.GetSkillValue(skill);
-                    result = skillValue * scalingFactor;
+                    int skillValue = agent.GetHero().GetSkillValue(skill);
+                    var result = skillValue * scalingFactor;
+                    if (highestOnly && result > retVal) retVal = result;
+                    else retVal += result;
+                }
+                if(careerChoice == TORCareerChoices.ProtectorOfTheWeak)
+                {
+                    if (agent.WieldedWeapon.Item?.PrimaryWeapon?.SwingDamageType != DamageTypes.Blunt) return 0f;
                 }
             }
-            return result;
+            return retVal;
         }
     }
 }

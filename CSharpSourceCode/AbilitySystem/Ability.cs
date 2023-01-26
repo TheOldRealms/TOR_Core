@@ -247,6 +247,8 @@ namespace TOR_Core.AbilitySystem
                         break;
                     }
                     case AbilityEffectType.CareerAbilityEffect:
+                        frame.origin = Agent.Main.GetChestGlobalPosition();
+                        frame.rotation = Agent.Main.LookFrame.rotation;
                         break;
                     default: 
                         break;
@@ -284,7 +286,8 @@ namespace TOR_Core.AbilitySystem
                 }
                 case AbilityEffectType.CareerAbilityEffect:
                 {
-                    frame = casterAgent.LookFrame;
+                    frame.origin = casterAgent.GetChestGlobalPosition();
+                    frame.rotation = casterAgent.LookFrame.rotation;
                     break;
                 }
                 case AbilityEffectType.ArtilleryPlacement:
@@ -338,7 +341,8 @@ namespace TOR_Core.AbilitySystem
                 }
                 case AbilityEffectType.CareerAbilityEffect:
                 {
-                    frame = casterAgent.LookFrame;
+                    frame.origin = casterAgent.GetChestGlobalPosition();
+                    frame.rotation = casterAgent.LookFrame.rotation;
                     break;
                 }
                 case AbilityEffectType.ArtilleryPlacement:

@@ -89,6 +89,11 @@ namespace TOR_Core.AbilitySystem.Scripts
             {
                 HandleCollision(frame.origin, frame.origin.NormalizedCopy());
             }
+            if(_ability.Template.TriggerType == TriggerType.EveryTick && !_hasTriggered)
+            {
+                TriggerEffects(frame.origin, frame.origin.NormalizedCopy());
+                _hasTriggered = true;
+            }
             if (_ability.Template.TriggerType == TriggerType.EveryTick && _timeSinceLastTick > _ability.Template.TickInterval)
             {
                 _timeSinceLastTick = 0;

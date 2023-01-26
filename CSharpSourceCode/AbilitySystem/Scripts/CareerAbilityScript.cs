@@ -29,7 +29,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                             if (career != null)
                             {
                                 TriggeredEffectTemplate template = (TriggeredEffectTemplate)TriggeredEffectManager.GetTemplateWithId(effect).Clone(effect + "*cloned*" + _casterAgent.Index);
-                                career.MutateTriggeredEffect(template, _casterAgent.GetHero());
+                                career.MutateTriggeredEffect(template, _casterAgent);
                                 result.Add(new TriggeredEffect(template, true));
                             }
                         }
@@ -37,6 +37,19 @@ namespace TOR_Core.AbilitySystem.Scripts
                 }
             }
             return result;
+        }
+
+        protected override void OnTick(float dt)
+        {
+            if (!_casterAgent.IsActive()) Stop();
+            base.OnTick(dt);
+        }
+
+        protected override bool ShouldMove() => true;
+
+        protected override MatrixFrame GetNextFrame(MatrixFrame oldFrame, float dt)
+        {
+            return new MatrixFrame(_casterAgent.LookRotation, _casterAgent.GetChestGlobalPosition());
         }
     }
 }

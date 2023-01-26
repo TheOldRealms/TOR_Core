@@ -42,7 +42,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 if (applierAgent.IsHero)
                 {
                     var career = applierAgent.GetHero().GetCareer();
-                    if(career != null) career.MutateStatusEffect(effect.Template, applierAgent.GetHero());
+                    if(career != null) career.MutateStatusEffect(effect.Template, applierAgent);
                 }
                 effect.CurrentDuration = duration;
                 AddEffect(effect);

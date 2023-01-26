@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
@@ -26,17 +28,17 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         {
             base.Initialize(new TextObject(name), new TextObject(description));
             OwnerCareer = ownerCareer;
-            _mutations.AddRange(mutations);
+            if(mutations != null) _mutations.AddRange(mutations);
             if (isRootNode) OwnerCareer.RootNode = this;
         }
 
-        public void MutateAbility(AbilityTemplate ability, Hero hero) => MutateObject(ability, hero);
+        public void MutateAbility(AbilityTemplate ability, Agent agent) => MutateObject(ability, agent);
 
-        public void MutateTriggeredEffect(TriggeredEffectTemplate effect, Hero hero) => MutateObject(effect, hero);
+        public void MutateTriggeredEffect(TriggeredEffectTemplate effect, Agent agent) => MutateObject(effect, agent);
 
-        public void MutateStatusEffect(StatusEffectTemplate effect, Hero hero) => MutateObject(effect, hero);
+        public void MutateStatusEffect(StatusEffectTemplate effect, Agent agent) => MutateObject(effect, agent);
 
-        private void MutateObject(ITemplate target, Hero hero)
+        private void MutateObject(ITemplate target, Agent agent)
         {
             var type = target.GetType();
             foreach(var mutation in _mutations)
@@ -48,7 +50,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     var traverse = Traverse.Create(target);
                     if (traverse.Property(mutation.PropertyName).PropertyExists())
                     {
-                        object newValue = mutation.PropertyValue(this, traverse.Property(mutation.PropertyName).GetValue(), hero);
+                        object newValue = mutation.PropertyValue(this, traverse.Property(mutation.PropertyName).GetValue(), agent);
                         var propertyType = traverse.Property(mutation.PropertyName).GetValueType();
                         switch (mutation.MutationType)
                         {
@@ -96,7 +98,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             public Type MutationTargetType { get; set; }
             public string MutationTargetOriginalId { get; set; } = string.Empty;
             public string PropertyName { get; set; } = string.Empty;
-            public Func<CareerChoiceObject, object, Hero, object> PropertyValue { get; set; } = null;
+            public Func<CareerChoiceObject, object, Agent, object> PropertyValue { get; set; } = null;
             public MutationType MutationType { get; set; } = MutationType.None;
         }
     }
