@@ -41,46 +41,46 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             var type = target.GetType();
             foreach(var mutation in _mutations)
             {
-                if (mutation != null && mutation.MutationTargetType == type && mutation.MutationType != MutationType.None && !string.IsNullOrEmpty(mutation.MutationTargetOriginalId) && !string.IsNullOrEmpty(mutation.FieldName) && mutation.FieldValue != null)
+                if (mutation != null && mutation.MutationTargetType == type && mutation.MutationType != MutationType.None && !string.IsNullOrEmpty(mutation.MutationTargetOriginalId) && !string.IsNullOrEmpty(mutation.PropertyName) && mutation.PropertyValue != null)
                 {
                     var originalId = target.StringID.Split(new char[] { '*' }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
                     if (originalId == null || originalId != mutation.MutationTargetOriginalId) continue;
                     var traverse = Traverse.Create(target);
-                    if (traverse.Field(mutation.FieldName).FieldExists())
+                    if (traverse.Property(mutation.PropertyName).PropertyExists())
                     {
-                        object newValue = mutation.FieldValue(this, traverse.Field(mutation.FieldName).GetValue(), hero);
-                        var fieldType = traverse.Field(mutation.FieldName).GetValueType();
+                        object newValue = mutation.PropertyValue(this, traverse.Property(mutation.PropertyName).GetValue(), hero);
+                        var propertyType = traverse.Property(mutation.PropertyName).GetValueType();
                         switch (mutation.MutationType)
                         {
                             case MutationType.Replace:
-                                if(newValue.GetType() == fieldType) 
+                                if(newValue.GetType() == propertyType) 
                                 {
-                                    traverse.Field(mutation.FieldName).SetValue(newValue);
+                                    traverse.Property(mutation.PropertyName).SetValue(newValue);
                                 }
                                 break;
                             case MutationType.Multiply:
                                 
-                                if (fieldType == typeof(float))
+                                if (propertyType == typeof(float))
                                 {
-                                    var value = traverse.Field(mutation.FieldName).GetValue<float>();
-                                    traverse.Field(mutation.FieldName).SetValue(value * (1 + Convert.ToSingle(newValue)));
+                                    var value = traverse.Property(mutation.PropertyName).GetValue<float>();
+                                    traverse.Property(mutation.PropertyName).SetValue(value * (1 + Convert.ToSingle(newValue)));
                                 }
-                                else if (fieldType == typeof(int))
+                                else if (propertyType == typeof(int))
                                 {
-                                    var value = traverse.Field(mutation.FieldName).GetValue<int>();
-                                    traverse.Field(mutation.FieldName).SetValue(value * (1 + Convert.ToInt32(newValue)));
+                                    var value = traverse.Property(mutation.PropertyName).GetValue<int>();
+                                    traverse.Property(mutation.PropertyName).SetValue(value * (1 + Convert.ToInt32(newValue)));
                                 }
                                 break;
                             case MutationType.Add:
-                                if (fieldType == typeof(float))
+                                if (propertyType == typeof(float))
                                 {
-                                    var value = traverse.Field(mutation.FieldName).GetValue<float>();
-                                    traverse.Field(mutation.FieldName).SetValue(value + Convert.ToSingle(newValue));
+                                    var value = traverse.Property(mutation.PropertyName).GetValue<float>();
+                                    traverse.Property(mutation.PropertyName).SetValue(value + Convert.ToSingle(newValue));
                                 }
-                                else if (fieldType == typeof(int))
+                                else if (propertyType == typeof(int))
                                 {
-                                    var value = traverse.Field(mutation.FieldName).GetValue<int>();
-                                    traverse.Field(mutation.FieldName).SetValue(value + Convert.ToInt32(newValue));
+                                    var value = traverse.Property(mutation.PropertyName).GetValue<int>();
+                                    traverse.Property(mutation.PropertyName).SetValue(value + Convert.ToInt32(newValue));
                                 }
                                 break;
                             default:
@@ -95,8 +95,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         {
             public Type MutationTargetType { get; set; }
             public string MutationTargetOriginalId { get; set; } = string.Empty;
-            public string FieldName { get; set; } = string.Empty;
-            public Func<CareerChoiceObject, object, Hero, object> FieldValue { get; set; } = null;
+            public string PropertyName { get; set; } = string.Empty;
+            public Func<CareerChoiceObject, object, Hero, object> PropertyValue { get; set; } = null;
             public MutationType MutationType { get; set; } = MutationType.None;
         }
     }

@@ -52,20 +52,20 @@ namespace TOR_Core.CharacterDevelopment
                     {
                         MutationTargetType = typeof(TriggeredEffectTemplate),
                         MutationTargetOriginalId = "apply_righteous_fury",
-                        FieldName = "ImbuedStatusEffectDuration",
-                        FieldValue = (choice, originalValue, hero) => CareerHelper.AddSkillEffectToValue(choice, hero, new List<SkillObject>(){ TORSkills.Faith }, 0.05f),
+                        PropertyName = "ImbuedStatusEffectDuration",
+                        PropertyValue = (choice, originalValue, hero) => CareerHelper.AddSkillEffectToValue(choice, hero, new List<SkillObject>(){ TORSkills.Faith }, 0.05f),
                         MutationType = MutationType.Add
                     },
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(StatusEffectTemplate),
                         MutationTargetOriginalId = "righteous_fury_effect",
-                        FieldName = "BaseEffectValue",
-                        FieldValue = (choice, originalValue, hero) => CareerHelper.AddSkillEffectToValue(choice, hero, new List<SkillObject>(){ TORSkills.Faith }, 0.05f),
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, hero) => CareerHelper.AddSkillEffectToValue(choice, hero, new List<SkillObject>(){ TORSkills.Faith }, 0.05f),
                         MutationType = MutationType.Add
                     }
                 });
-            _warriorPriestRoot.Initialize("Book of Sigmar",
+            _bookOfSigmar.Initialize("Book of Sigmar",
                 "Please provide description.",
                 TORCareers.WarriorPriest, false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
@@ -74,8 +74,8 @@ namespace TOR_Core.CharacterDevelopment
                     {
                         MutationTargetType = typeof(TriggeredEffectTemplate),
                         MutationTargetOriginalId = "apply_righteous_fury",
-                        FieldName = "ImbuedStatusEffects",
-                        FieldValue = (choice, originalValue, hero) => StatusEffectManager.GetStatusEffectTemplatesWithIds(new List<string>(){ "righteous_fury_effect", "healing_regeneration"}),
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, hero) => new List<string>{ "righteous_fury_effect", "healing_regeneration"},
                         MutationType = MutationType.Replace
                     },
                 });
