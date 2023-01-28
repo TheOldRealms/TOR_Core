@@ -114,6 +114,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         public float[] GetAmplifiers(AttackTypeMask mask)
         {
+            if (_effectAggregate == null) _effectAggregate = new EffectAggregate();
             return _effectAggregate.DamageAmplifications[mask];
         }
 

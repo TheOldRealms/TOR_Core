@@ -1,6 +1,7 @@
 ﻿using NLog;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
@@ -222,10 +223,10 @@ namespace TOR_Core.Extensions
                 {
                     //Hero item level attributes 
                     List<ItemTrait> itemTraits = new List<ItemTrait>();
-                    List<ItemObject> items;
-                    // get all equipment Pieces
-                    items = agent.Character.GetCharacterEquipment();
-                    foreach (var item in items)
+                    List<ItemObject> armorItems;
+                    // get all equipment Pieces - here only armor
+                    armorItems = agent.Character.GetCharacterEquipment(EquipmentIndex.ArmorItemBeginSlot);
+                    foreach (var item in armorItems)
                     {
                         if (item.HasTrait())
                             itemTraits.AddRange(item.GetTraits(agent));
@@ -251,9 +252,87 @@ namespace TOR_Core.Extensions
                     {
                         damageAmplifications[i] += statusEffectAmplifiers[i];
                     }
+                    
+                    //Weapon properties
+                    if (attackTypeMask == AttackTypeMask.Ranged)
+                    {
+                        if (agent.WieldedWeapon.Item != null)
+                        {
+                            var ammoItem = Mission.Current.Missiles.FirstOrDefault(x => x.ShooterAgent == agent)?.Weapon.Item;
+                            var weapon = agent.WieldedWeapon.Item;
+                            List<ItemTrait> rangeItemTraits = new List<ItemTrait>();
+                            
+                            if(ammoItem!=null)
+                                rangeItemTraits.AddRange(ammoItem.GetTraits());
+                            rangeItemTraits.AddRange(weapon.GetTraits());
+                            foreach (var itemTrait in rangeItemTraits)
+                            {
+                                var property = itemTrait.AmplifierTuple;
+                                if(property!=null)
+                                    damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
 
-                    //weapon properties
-                    if (agent.WieldedWeapon.Item != null)
+                                var additionalDamageProperty = itemTrait.AdditionalDamageTuple;
+                                if (additionalDamageProperty != null)
+                                {
+                                    additionalDamagePercentages[(int)additionalDamageProperty.DamageType] += additionalDamageProperty.Percent;
+                                }
+                            }
+                            //range damage Propotions
+                            var weaponProperty = weapon.GetTorSpecificData().DamageProportions;
+                            if (weaponProperty != null)
+                            {
+                                foreach (var tuple in weaponProperty)
+                                {
+                                    damageProportions[(int)tuple.DamageType] = tuple.Percent;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            damageProportions[(int)DamageType.Physical] = 1f; //memo , this is for siege weapons
+                        }
+                    }
+
+                    if (attackTypeMask == AttackTypeMask.Melee)
+                    {
+                        if (agent.WieldedWeapon.Item != null)
+                        {
+                            var weapon = agent.WieldedWeapon.Item;
+                            var offhand = agent.WieldedOffhandWeapon.Item;
+                            List<ItemTrait> meleeItemTraits = new List<ItemTrait>();
+                            meleeItemTraits.AddRange(weapon.GetTraits());
+                            if (offhand != null)
+                                meleeItemTraits.AddRange(offhand.GetTraits());
+                            
+                            foreach (var itemTrait in meleeItemTraits)
+                            {
+                                var property = itemTrait.AmplifierTuple;
+                                
+                                if(property!=null)
+                                    damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
+
+                                var additionalDamageProperty = itemTrait.AdditionalDamageTuple;
+                                if (additionalDamageProperty != null)
+                                {
+                                    additionalDamagePercentages[(int)additionalDamageProperty.DamageType] += additionalDamageProperty.Percent;
+                                }
+                            }
+                            
+                            var weaponProperty = weapon.GetTorSpecificData().DamageProportions;
+                            if (weaponProperty != null)
+                            {
+                                foreach (var tuple in weaponProperty)
+                                {
+                                    damageProportions[(int)tuple.DamageType] = tuple.Percent;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            damageProportions[(int)DamageType.Physical] = 1f; //memo , this is for siege weapons, in principle a wielded Item shouldn't be found either in case of spell casting - yet it is found.
+                        }
+                    }
+                    /*if (agent.WieldedWeapon.Item != null)
                     {
                         var weaponProperty = agent.WieldedWeapon.Item.GetTorSpecificData().DamageProportions;
                         if (weaponProperty != null)
@@ -268,7 +347,7 @@ namespace TOR_Core.Extensions
                     else
                     {
                         damageProportions[(int)DamageType.Physical] = 1f; //memo , this is for siege weapons, in principle a wielded Item shouldn't be found either in case of spell casting - yet it is found.
-                    }
+                    }*/
                 }
                 if (propertyMask == PropertyMask.Defense || propertyMask == PropertyMask.All)
                 {
@@ -277,7 +356,7 @@ namespace TOR_Core.Extensions
                     List<ItemTrait> itemTraits = new List<ItemTrait>();
                     List<ItemObject> items;
 
-                    items = agent.Character.GetCharacterEquipment();
+                    items = agent.Character.GetCharacterEquipment(EquipmentIndex.ArmorItemBeginSlot);
                     foreach (var item in items)
                     {
                         if (item.HasTrait())
@@ -300,6 +379,32 @@ namespace TOR_Core.Extensions
                     {
                         damageResistances[i] += statusEffectResistances[i];
                     }
+
+                    if (agent.WieldedWeapon.Item != null)
+                    {
+                        List<ItemTrait> wieldedItemTraits = new List<ItemTrait>();
+                        var weapon = agent.WieldedWeapon.Item;
+
+                        var offHand = agent.WieldedOffhandWeapon.Item;
+                        
+                        
+                        wieldedItemTraits.AddRange(weapon.GetTraits());
+                        if (offHand != null)
+                        {
+                            wieldedItemTraits.AddRange(offHand.GetTraits());
+                        }
+                        
+                        foreach (var itemTrait in wieldedItemTraits)
+                        {
+                            var defenseProperty = itemTrait.ResistanceTuple;
+                            if (defenseProperty == null)
+                                continue;
+                            damageResistances[(int)defenseProperty.ResistedDamageType] += defenseProperty.ReductionPercent;
+                        }
+                        
+                    }
+                    
+                    
                 }
             }
             #endregion
