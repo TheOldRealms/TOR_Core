@@ -81,7 +81,7 @@ namespace TOR_Core.CharacterDevelopment
                         MutationTargetType = typeof(StatusEffectTemplate),
                         MutationTargetOriginalId = "righteous_fury_effect",
                         PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.05f),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.0005f),
                         MutationType = MutationType.Add
                     }
                 });
@@ -95,7 +95,7 @@ namespace TOR_Core.CharacterDevelopment
                         MutationTargetType = typeof(TriggeredEffectTemplate),
                         MutationTargetOriginalId = "apply_righteous_fury",
                         PropertyName = "ImbuedStatusEffects",
-                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"healing_regeneration"}).ToList(),
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"righteousfury_regeneration"}).ToList(),
                         MutationType = MutationType.Replace
                     },
                 });
@@ -131,7 +131,7 @@ namespace TOR_Core.CharacterDevelopment
                         MutationTargetType = typeof(StatusEffectTemplate),
                         MutationTargetOriginalId = "righteous_fury_effect",
                         PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership }, 0.05f),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership }, 0.0005f),
                         MutationType = MutationType.Add
                     },
                     new CareerChoiceObject.MutationObject()
@@ -161,7 +161,7 @@ namespace TOR_Core.CharacterDevelopment
                         MutationTargetType = typeof(StatusEffectTemplate),
                         MutationTargetOriginalId = "righteous_fury_effect",
                         PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded, DefaultSkills.TwoHanded, DefaultSkills.Polearm }, 0.05f, true),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded, DefaultSkills.TwoHanded, DefaultSkills.Polearm }, 0.0005f, true),
                         MutationType = MutationType.Add
                     },
                     new CareerChoiceObject.MutationObject()
@@ -183,7 +183,7 @@ namespace TOR_Core.CharacterDevelopment
                         MutationTargetType = typeof(AbilityTemplate),
                         MutationTargetOriginalId = "RighteousFury",
                         PropertyName = "TriggeredEffects",
-                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"apply_flaming_sword_trait"}).ToList(),
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"apply_fury_sword_trait"}).ToList(),
                         MutationType = MutationType.Replace
                     },
                 });

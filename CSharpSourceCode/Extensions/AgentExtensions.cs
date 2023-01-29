@@ -332,22 +332,6 @@ namespace TOR_Core.Extensions
                             damageProportions[(int)DamageType.Physical] = 1f; //memo , this is for siege weapons, in principle a wielded Item shouldn't be found either in case of spell casting - yet it is found.
                         }
                     }
-                    /*if (agent.WieldedWeapon.Item != null)
-                    {
-                        var weaponProperty = agent.WieldedWeapon.Item.GetTorSpecificData().DamageProportions;
-                        if (weaponProperty != null)
-                        {
-                            foreach (var tuple in weaponProperty)
-                            {
-                                damageProportions[(int)tuple.DamageType] = tuple.Percent;
-                            }
-                        }
-
-                    }
-                    else
-                    {
-                        damageProportions[(int)DamageType.Physical] = 1f; //memo , this is for siege weapons, in principle a wielded Item shouldn't be found either in case of spell casting - yet it is found.
-                    }*/
                 }
                 if (propertyMask == PropertyMask.Defense || propertyMask == PropertyMask.All)
                 {
@@ -387,7 +371,6 @@ namespace TOR_Core.Extensions
 
                         var offHand = agent.WieldedOffhandWeapon.Item;
                         
-                        
                         wieldedItemTraits.AddRange(weapon.GetTraits());
                         if (offHand != null)
                         {
@@ -400,11 +383,8 @@ namespace TOR_Core.Extensions
                             if (defenseProperty == null)
                                 continue;
                             damageResistances[(int)defenseProperty.ResistedDamageType] += defenseProperty.ReductionPercent;
-                        }
-                        
+                        }   
                     }
-                    
-                    
                 }
             }
             #endregion

@@ -26,7 +26,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         public DamageType DamageType { get; set; } = DamageType.Physical;
         [XmlAttribute("applies_for_attack_type")]
         public AttackTypeMask AttackTypeMask { get; set; } = AttackTypeMask.Melee | AttackTypeMask.Ranged | AttackTypeMask.Spell;
-        [XmlElement]
+        [XmlElement("temporary_attribute")]
         public List<string> TemporaryAttributes { get; set; } = new List<string>();
 
         public enum EffectType

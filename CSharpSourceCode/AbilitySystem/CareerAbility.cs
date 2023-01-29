@@ -72,8 +72,11 @@ namespace TOR_Core.AbilitySystem
 
         public void AddCharge(float amount)
         {
-            _currentCharge += amount;
-            _currentCharge = Math.Min(_maxCharge, _currentCharge);
+            if (!IsActive)
+            {
+                _currentCharge += amount;
+                _currentCharge = Math.Min(_maxCharge, _currentCharge);
+            }
         }
     }
 

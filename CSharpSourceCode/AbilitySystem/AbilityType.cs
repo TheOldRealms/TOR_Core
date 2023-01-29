@@ -57,6 +57,7 @@
         Enemy,
         All,
         FriendlyHero,
-        EnemyHero
+        EnemyHero,
+        Self
     }
 }

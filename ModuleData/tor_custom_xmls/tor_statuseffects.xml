@@ -82,8 +82,17 @@
 		type="DamageAmplification"
 		damage_type="All"
 		applies_for_attack_type="Melee">
-		<TemporaryAttributes>
-			<string>Unstoppable</string>
-		</TemporaryAttributes>
+		<temporary_attribute>Unstoppable</temporary_attribute>
   	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="righteousfury_regeneration" 
+		particle_id="healing_regeneration"
+		particle_intensity="High"
+		base_effect_value="5"
+		type="HealthOverTime"/>
+	<StatusEffectTemplate 
+		id="righteous_fury_pulsevisual" 
+		particle_id="righteousfury_pulse"
+		particle_intensity="High"
+		apply_particle_to_root_bone_only="true"/>
 </StatusEffects>

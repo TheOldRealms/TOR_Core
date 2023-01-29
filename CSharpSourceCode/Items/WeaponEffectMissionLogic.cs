@@ -17,6 +17,14 @@ namespace TOR_Core.Items
             }
         }
 
+        public override void OnMissionTick(float dt)
+        {
+            if(Agent.Main != null && Agent.Main.GetComponent<ItemTraitAgentComponent>() != null)
+            {
+                Agent.Main.GetComponent<ItemTraitAgentComponent>().OnTickAsMainAgent(dt);
+            }
+        }
+
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
             if (affectedAgent == affectorAgent)

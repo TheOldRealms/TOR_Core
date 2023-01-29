@@ -61,11 +61,15 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                     statusEffectDuration = model.CalculateStatusEffectDurationForAbility(character, originAbilityTemplate, statusEffectDuration);
                 }
             }
-            //Cause Damage
+            //Determine targets
             if (targets == null && triggererAgent != null)
             {
                 targets = new MBList<Agent>();
-                if (_template.TargetType == TargetType.Enemy)
+                if(_template.TargetType == TargetType.Self)
+                {
+                    targets.Add(triggererAgent);
+                }
+                else if (_template.TargetType == TargetType.Enemy)
                 {
                     targets = Mission.Current.GetNearbyEnemyAgents(position.AsVec2, _template.Radius, triggererAgent.Team, targets);
                 }
@@ -78,6 +82,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                     targets = Mission.Current.GetNearbyAgents(position.AsVec2, _template.Radius, targets);
                 }
             }
+            //Cause Damage
             if (_template.DamageAmount > 0)
             {
                 TORMissionHelper.DamageAgents(targets, (int)(_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType, _template, _template.DamageType, _template.HasShockWave, position, originAbilityTemplate);

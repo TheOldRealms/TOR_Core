@@ -469,18 +469,44 @@
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.KnockDownScript"/>
       
       <TriggeredEffectTemplate StringID="apply_righteous_fury" 
-            BurstParticleEffectPrefab="shards_explosion" 
+            BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
             DamageType="Invalid" 
             DamageAmount="0" 
-            Radius="2" 
+            Radius="3" 
             HasShockWave="false" 
             TargetType="Friendly" 
-            ImbuedStatusEffectDuration="2" 
+            ImbuedStatusEffectDuration="2.1" 
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>righteous_fury_effect</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
+      <TriggeredEffectTemplate StringID="apply_righteous_fury_pulse" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="3" 
+            HasShockWave="false" 
+            TargetType="Self" 
+            ImbuedStatusEffectDuration="1.98" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>righteous_fury_pulsevisual</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+      <TriggeredEffectTemplate StringID="apply_fury_sword_trait" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="3" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="2.1" 
+            DamageVariance="0" 
+            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyFlamingItemTraitScript" />
 
 </TriggeredEffectTemplates>
