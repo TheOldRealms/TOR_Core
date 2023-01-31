@@ -13,8 +13,9 @@ using System;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
 {
-    public class StatusEffectComponent : AgentComponent
+    public class StatusEffectComponent : AgentComponent, IDisposable
     {
+        private GameEntity _dummyEntity;
         private float _updateFrequency = 1;
         private float _deltaSinceLastTick = MBRandom.RandomFloatRanged(0, 0.1f);
         private Dictionary<StatusEffect, EffectData> _currentEffects;
@@ -24,6 +25,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         {
             _currentEffects = new Dictionary<StatusEffect, EffectData>();
             _effectAggregate = new EffectAggregate();
+            _dummyEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
         }
 
         public void RunStatusEffect(string effectId, Agent applierAgent, float duration, bool append, bool isMutated)
@@ -97,19 +99,39 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 _deltaSinceLastTick = MBRandom.RandomFloatRanged(0, 0.1f);
                 OnElapsed(dt);
             }
+            UpdateDummyEntity(dt);
+        }
+
+        private void UpdateDummyEntity(float dt)
+        {
+            _dummyEntity?.SetGlobalFrameMT(new MatrixFrame(new Mat3(Agent.LookRotation.s, Agent.LookRotation.f, Vec3.Up), Agent.GetChestGlobalPosition()));
         }
 
         private void RemoveEffect(StatusEffect effect)
         {
             EffectData data = _currentEffects[effect];
 
-            data.ParticleEntities.ForEach(pe =>
+            if (data.IsParticleAttachedToAgentSkeleton)
             {
-                pe.RemoveAllParticleSystems();
-                pe = null;
-            });
-
+                foreach(var entity in data.Entities)
+                {
+                    entity.RemoveAllParticleSystems();
+                }
+            }
+            else
+            {
+                _dummyEntity.RemoveAllParticleSystems();
+            }
             _currentEffects.Remove(effect);
+            foreach(var currEffect in _currentEffects.Keys)
+            {
+                if (!_currentEffects[currEffect].IsParticleAttachedToAgentSkeleton)
+                {
+                    _currentEffects[currEffect].Particles.Clear();
+                    MatrixFrame frame = MatrixFrame.Identity;
+                    _currentEffects[currEffect].Particles.Add(ParticleSystem.CreateParticleSystemAttachedToEntity(currEffect.Template.ParticleId, _dummyEntity, ref frame));
+                }
+            }
         }
 
         public float[] GetAmplifiers(AttackTypeMask mask)
@@ -139,12 +161,20 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         private void AddEffect(StatusEffect effect)
         {
-            List<GameEntity> childEntities;
-            TORParticleSystem.ApplyParticleToAgent(Agent, effect.Template.ParticleId, out childEntities, effect.Template.ParticleIntensity, effect.Template.ApplyToRootBoneOnly);
-
-            EffectData data = new EffectData(effect, childEntities);
-            data.ParticleEntities = childEntities;
-
+            EffectData data;
+            if (effect.Template.DoNotAttachToAgentSkeleton)
+            {
+                MatrixFrame frame = MatrixFrame.Identity;
+                var psys = ParticleSystem.CreateParticleSystemAttachedToEntity(effect.Template.ParticleId, _dummyEntity, ref frame);
+                data = new EffectData(effect, new List<ParticleSystem> { psys }, null);
+                data.IsParticleAttachedToAgentSkeleton = false;
+            }
+            else
+            {
+                List<GameEntity> entities;
+                List<ParticleSystem> particles = TORParticleSystem.ApplyParticleToAgent(Agent, effect.Template.ParticleId, out entities, effect.Template.ParticleIntensity, effect.Template.ApplyToRootBoneOnly);
+                data = new EffectData(effect, particles, entities);
+            }
             _currentEffects.Add(effect, data);
         }
 
@@ -156,18 +186,28 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
             _currentEffects.Clear();
             _effectAggregate = null;
+            _dummyEntity?.FadeOut(0.1f, true);
+            _dummyEntity = null;
+        }
+
+        public void Dispose()
+        {
+            CleanUp();
         }
 
         private class EffectData
         {
-            public EffectData(StatusEffect effect, List<GameEntity> particleEntities)
+            public EffectData(StatusEffect effect, List<ParticleSystem> particles, List<GameEntity> entities)
             {
                 Effect = effect;
-                ParticleEntities = particleEntities;
+                Particles = particles;
+                Entities = entities;
             }
 
-            public List<GameEntity> ParticleEntities { get; set; }
+            public List<ParticleSystem> Particles { get; set; }
+            public List<GameEntity> Entities { get; set; }
             public StatusEffect Effect { get; set; }
+            public bool IsParticleAttachedToAgentSkeleton { get; set; } = true;
         }
 
         private class EffectAggregate

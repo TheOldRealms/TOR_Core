@@ -1,0 +1,40 @@
+<Prefab>
+  <Constants>
+
+  </Constants>
+  <Variables>
+  </Variables>
+  <VisualDefinitions>
+    <VisualDefinition Name="BottomMenu" EaseIn="true" TransitionDuration="0.45">
+      <VisualState PositionYOffset="6" State="Default" />
+    </VisualDefinition>
+    <VisualDefinition Name="TopPanel" EaseIn="true" TransitionDuration="0.45">
+      <VisualState PositionYOffset="-6" State="Default" />
+    </VisualDefinition>
+    <VisualDefinition Name="LeftPanel" EaseIn="true" TransitionDuration="0.9">
+      <VisualState PositionXOffset="30" State="Default" />
+    </VisualDefinition>
+    <VisualDefinition Name="RightPanel" EaseIn="true" TransitionDuration="0.45">
+      <VisualState PositionXOffset="-30" State="Default" />
+    </VisualDefinition>
+  </VisualDefinitions>
+  <Window>
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+      <Children>
+
+        <Standard.Background />
+
+        <!--Top Panel-->
+        <Widget VisualDefinition="TopPanel" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="755" SuggestedHeight="182" HorizontalAlignment="Center" PositionXOffset="60" PositionYOffset="-182" Sprite="StdAssets\tabbar_standart" ValueFactor="-30">
+          <Children>
+            <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="18" Brush="Quest.CenterPanel.Title.Text" Brush.FontSize="45" Text="Careers" />
+          </Children>
+        </Widget>
+
+        <!--Close Screen Button-->
+        <Standard.DialogCloseButtons VisualDefinition="BottomMenu" HorizontalAlignment="Center" VerticalAlignment="Bottom" PositionYOffset="100" Parameter.DoneButtonAction="ExecuteClose" Parameter.DoneButtonText="Done" Parameter.ShowCancel="false" />
+
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

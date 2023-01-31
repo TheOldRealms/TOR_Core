@@ -484,6 +484,10 @@
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceObject.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerHelper.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerObject.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerScreen.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerScreenGameState.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerScreenVM.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CharacterDeveloperVMExtension.cs" />
     <Compile Include="CharacterDevelopment\TORAttributes.cs" />
     <Compile Include="CharacterDevelopment\TORCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\TORCareers.cs" />

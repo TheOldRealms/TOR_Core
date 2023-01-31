@@ -18,6 +18,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         public ParticleIntensity ParticleIntensity { get; set; }
         [XmlAttribute("apply_particle_to_root_bone_only")]
         public bool ApplyToRootBoneOnly { get; set; } = false;
+        [XmlAttribute("do_not_attach_to_agent_skeleton")]
+        public bool DoNotAttachToAgentSkeleton { get; set; } = false;
         [XmlAttribute("base_effect_value")]
         public float BaseEffectValue { get; set; } = 0;
         [XmlAttribute("type")]
@@ -68,6 +70,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 ParticleId = ParticleId,
                 ParticleIntensity = ParticleIntensity,
                 ApplyToRootBoneOnly = ApplyToRootBoneOnly,
+                DoNotAttachToAgentSkeleton = DoNotAttachToAgentSkeleton,
                 BaseEffectValue = BaseEffectValue,
                 Type = Type,
                 DamageType = DamageType,
