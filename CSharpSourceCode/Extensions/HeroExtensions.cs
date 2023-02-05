@@ -28,6 +28,26 @@ namespace TOR_Core.Extensions
             return hero.GetAttributeValue(DefaultCharacterAttributes.Intelligence) * 0.07f;
         }
 
+        public static float AddWindsOfMagic(this Hero hero, float amount)
+        {
+            float result = 0;
+            var info = hero.GetExtendedInfo();
+            if(info != null)
+            {
+                if((info.CurrentWindsOfMagic + amount) < info.MaxWindsOfMagic)
+                {
+                    result = amount;
+                    info.CurrentWindsOfMagic += amount;
+                }
+                else
+                {
+                    result = info.MaxWindsOfMagic - info.CurrentWindsOfMagic;
+                    info.CurrentWindsOfMagic = info.MaxWindsOfMagic;
+                }
+            }
+            return result;
+        }
+
         public static HeroExtendedInfo GetExtendedInfo(this Hero hero)
         {
             return ExtendedInfoManager.Instance.GetHeroInfoFor(hero.GetInfoKey());
