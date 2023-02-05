@@ -1,4 +1,4 @@
-﻿using Helpers;
+using Helpers;
 using SandBox.GameComponents;
 using System;
 using TaleWorlds.CampaignSystem;
@@ -10,6 +10,7 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics.Crosshairs;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -157,6 +158,13 @@ namespace TOR_Core.Models
                     agentDrivenProperties.MaxSpeedMultiplier *= modificator;
                     agentDrivenProperties.CombatMaxSpeedMultiplier *= modificator;
                 }
+            }
+            
+            var t = agent.GetComponent<StatusEffectComponent>();
+            if (t!=null)
+            {
+                //agentDrivenProperties.TopSpeedReachDuration = 0f;
+             //   agentDrivenProperties.MaxSpeedMultiplier = t.value;
             }
         }
 

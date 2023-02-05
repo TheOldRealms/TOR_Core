@@ -108,6 +108,12 @@ namespace TOR_Core.Extensions
             return characterObject.GetAttributes().Contains("Undead");
         }
 
+
+        public static bool IsKnight(this BasicCharacterObject characterObject)
+        {
+            return characterObject.StringId.Contains("knight")||characterObject.StringId.Contains("reiksguard");
+        }
+
         public static bool IsVampire(this BasicCharacterObject characterObject)
         {
             return characterObject.Race == FaceGen.GetRaceOrDefault("vampire");
