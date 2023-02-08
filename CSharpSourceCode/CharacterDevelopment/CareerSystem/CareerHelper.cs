@@ -24,7 +24,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     if (highestOnly && result > retVal) retVal = result;
                     else retVal += result;
                 }
-                if(careerChoice == TORCareerChoices.ProtectorOfTheWeak)
+                if(careerChoice == TORCareerChoices.GetChoice("ProtectorOfTheWeakKeyStone"))
                 {
                     if (agent.WieldedWeapon.Item?.PrimaryWeapon?.SwingDamageType != DamageTypes.Blunt) return 0f;
                 }

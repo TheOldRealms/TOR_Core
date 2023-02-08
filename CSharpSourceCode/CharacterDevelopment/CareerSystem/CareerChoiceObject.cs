@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
@@ -17,17 +18,23 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
     public class CareerChoiceObject : PropertyObject
     {
-        private List<CareerChoiceObject> _nextNodes = new List<CareerChoiceObject>();
         private List<MutationObject> _mutations = new List<MutationObject>();
         public CareerObject OwnerCareer { get; private set; }
+        public CareerChoiceGroupObject BelongsToGroup { get; private set; }
 
         public CareerChoiceObject(string stringId) : base(stringId) { }
         public override string ToString() => Name.ToString();
 
-        public void Initialize(string name, string description, CareerObject ownerCareer, bool isRootNode, ChoiceType type, List<MutationObject> mutations)
+        public void Initialize(CareerObject ownerCareer, string belongsToGroup, bool isRootNode, ChoiceType type, List<MutationObject> mutations)
         {
-            base.Initialize(new TextObject(name), new TextObject(description));
+            base.Initialize(new TextObject(StringId), new TextObject("description for " + StringId));
             OwnerCareer = ownerCareer;
+            if (!string.IsNullOrEmpty(belongsToGroup))
+            {
+                BelongsToGroup = MBObjectManager.Instance.GetObject<CareerChoiceGroupObject>(x => x.StringId == belongsToGroup);
+            }
+            else BelongsToGroup = null;
+            if (BelongsToGroup != null) BelongsToGroup.Choices.Add(this);
             if(mutations != null) _mutations.AddRange(mutations);
             if (isRootNode) OwnerCareer.RootNode = this;
         }

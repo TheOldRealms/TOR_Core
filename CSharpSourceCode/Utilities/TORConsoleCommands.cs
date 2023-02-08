@@ -114,39 +114,5 @@ namespace TOR_Core.Utilities
                 (current, spell) =>
                     $"{current}{spell}\n"
             );
-
-        [CommandLineFunctionality.CommandLineArgumentFunction("add_career", "tor")]
-        public static string AddCareerToPlayer(List<string> arguments)
-        {
-            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
-                return CampaignCheats.ErrorType;
-
-            var careerID = arguments[0];
-            var match = TORCareers.All.FirstOrDefault(x => x.StringId == careerID);
-            if(match != null)
-            {
-                Hero.MainHero.GetExtendedInfo().CareerID = match.StringId;
-                if (!Hero.MainHero.IsAbilityUser()) Hero.MainHero.AddAttribute("AbilityUser");
-                if (match.RootNode != null) AddCareerChoiceToPlayer(new List<string> { match.RootNode.StringId });
-                return string.Format("Player now has {0} career. \n", match.Name);
-            }
-            else return "No career matching the given argument found. \n";
-        }
-
-        [CommandLineFunctionality.CommandLineArgumentFunction("add_career_choice", "tor")]
-        public static string AddCareerChoiceToPlayer(List<string> arguments)
-        {
-            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
-                return CampaignCheats.ErrorType;
-
-            var careerChoiceID = arguments[0];
-            var match = TORCareerChoices.All.FirstOrDefault(x => x.StringId == careerChoiceID);
-            if (match != null && !Hero.MainHero.GetExtendedInfo().CareerChoices.Contains(match.StringId))
-            {
-                Hero.MainHero.GetExtendedInfo().CareerChoices.Add(match.StringId);
-                return string.Format("Player now has {0} career choice. \n", match.Name);
-            }
-            else return "No career choice matching the given argument found or choice is already present on hero. \n";
-        }
     }
 }

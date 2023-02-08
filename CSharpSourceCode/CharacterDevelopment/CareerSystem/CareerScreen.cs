@@ -10,6 +10,7 @@ using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.ScreenSystem;
+using TaleWorlds.TwoDimension;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
@@ -19,11 +20,23 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         private GauntletLayer _gauntletLayer;
         private CareerScreenVM _vm;
         private CareerScreenGameState _state;
+        private SpriteCategory _inventoryCategory;
+        private SpriteCategory _clanCategory;
 
         public CareerScreen(CareerScreenGameState state)
         {
             _state = state;
             _state.RegisterListener(this);
+
+            //load inventory ui category
+            var spriteData = UIResourceManager.SpriteData;
+            var resourceContext = UIResourceManager.ResourceContext;
+            var resourceDepot = UIResourceManager.UIResourceDepot;
+
+            _inventoryCategory = spriteData.SpriteCategories["ui_inventory"];
+            _clanCategory = spriteData.SpriteCategories["ui_clan"];
+            _inventoryCategory.Load(resourceContext, resourceDepot);
+            _clanCategory.Load(resourceContext, resourceDepot);
         }
 
         protected override void OnFrameTick(float dt)
@@ -59,6 +72,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         void IGameStateListener.OnFinalize()
         {
+            _inventoryCategory.Unload();
+            _clanCategory.Unload();
             _gauntletLayer = null;
             _vm = null;
         }

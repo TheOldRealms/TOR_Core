@@ -22,6 +22,17 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         public string AbilityTemplateID { get; private set; }
         public Type AbilityScriptType { get; private set; }
         public CareerChoiceObject RootNode { get; set; }
+        public List<CareerChoiceGroupObject> ChoiceGroups { get; private set; } = new List<CareerChoiceGroupObject>();
+        public List<CareerChoiceObject> AllChoices
+        {
+            get
+            {
+                List<CareerChoiceObject> result = new List<CareerChoiceObject>();
+                ChoiceGroups.ForEach(x => x.Choices.ForEach(y => result.Add(y)));
+                return result;
+            }
+        }
+
         public CareerObject(string stringId) : base(stringId) { }
 
         public override string ToString() => Name.ToString();
@@ -51,13 +62,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             if(casterAgent != null && casterAgent.GetHero()?.GetExtendedInfo() != null)
             {
                 var info = casterAgent.GetHero().GetExtendedInfo();
-                if(info.CareerID == StringId)
+                var choices = AllChoices.Where(x => info.CareerChoices.Contains(x.StringId));
+                foreach (var choice in choices)
                 {
-                    var choices = TORCareerChoices.All.Where(x => info.CareerChoices.Contains(x.StringId));
-                    foreach(var choice in choices)
-                    {
-                        choice.MutateAbility(ability, casterAgent);
-                    }
+                    choice.MutateAbility(ability, casterAgent);
                 }
             }
         }
@@ -69,7 +77,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 var info = triggererAgent.GetHero().GetExtendedInfo();
                 if (info.CareerID == StringId)
                 {
-                    var choices = TORCareerChoices.All.Where(x => info.CareerChoices.Contains(x.StringId));
+                    var choices = AllChoices.Where(x => info.CareerChoices.Contains(x.StringId));
                     foreach (var choice in choices)
                     {
                         choice.MutateTriggeredEffect(effect, triggererAgent);
@@ -85,7 +93,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 var info = applierAgent.GetHero().GetExtendedInfo();
                 if (info.CareerID == StringId)
                 {
-                    var choices = TORCareerChoices.All.Where(x => info.CareerChoices.Contains(x.StringId));
+                    var choices = AllChoices.Where(x => info.CareerChoices.Contains(x.StringId));
                     foreach (var choice in choices)
                     {
                         choice.MutateStatusEffect(effect, applierAgent);

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
@@ -15,57 +16,38 @@ namespace TOR_Core.CharacterDevelopment
     public class TORCareerChoices
     {
         public static TORCareerChoices Instance { get; private set; }
-        private List<CareerChoiceObject> _allCareerChoices = new List<CareerChoiceObject>();
-        private MBReadOnlyList<CareerChoiceObject> _readonlyCareerChoices;
-        public static MBReadOnlyList<CareerChoiceObject> All => Instance._readonlyCareerChoices;
-
 
         private CareerChoiceObject _warriorPriestRoot;
-        private CareerChoiceObject _bookOfSigmar;
-        private CareerChoiceObject _sigmarProclaimer;
-        private CareerChoiceObject _relentlessFanatic;
-        private CareerChoiceObject _protectorOfTheWeak;
-        private CareerChoiceObject _holyPurge;
-        private CareerChoiceObject _archLector;
-        public static CareerChoiceObject WarriorPriestRoot => Instance._warriorPriestRoot;
-        public static CareerChoiceObject BookOfSigmar => Instance._bookOfSigmar;
-        public static CareerChoiceObject SigmarsProclaimer => Instance._sigmarProclaimer;
-        public static CareerChoiceObject RelentlessFanatic => Instance._relentlessFanatic;
-        public static CareerChoiceObject ProtectorOfTheWeak => Instance._protectorOfTheWeak;
-        public static CareerChoiceObject HolyPurge => Instance._holyPurge;
-        public static CareerChoiceObject ArchLector => Instance._archLector;
+        private CareerChoiceObject _bookOfSigmarKeystone;
+        private CareerChoiceObject _sigmarProclaimerKeystone;
+        private CareerChoiceObject _relentlessFanaticKeystone;
+        private CareerChoiceObject _protectorOfTheWeakKeystone;
+        private CareerChoiceObject _holyPurgeKeystone;
+        private CareerChoiceObject _archLectorKeystone;
 
         public TORCareerChoices()
         {
             Instance = this;
             RegisterAll();
             InitializeAll();
-            _readonlyCareerChoices = new MBReadOnlyList<CareerChoiceObject>(_allCareerChoices);
         }
+
+        public static CareerChoiceObject GetChoice(string id) => MBObjectManager.Instance.GetObject<CareerChoiceObject>(x => x.StringId == id);
 
         private void RegisterAll()
         {
             _warriorPriestRoot = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("WarriorPriestRoot"));
-            _bookOfSigmar = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BookOfSigmar"));
-            _sigmarProclaimer = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SigmarsProclaimer"));
-            _relentlessFanatic = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("RelentlessFanatic"));
-            _protectorOfTheWeak = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ProtectorOfTheWeak"));
-            _holyPurge = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("HolyPurge"));
-            _archLector = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ArchLector"));
-            _allCareerChoices.Add(_warriorPriestRoot);
-            _allCareerChoices.Add(_bookOfSigmar);
-            _allCareerChoices.Add(_sigmarProclaimer);
-            _allCareerChoices.Add(_relentlessFanatic);
-            _allCareerChoices.Add(_protectorOfTheWeak);
-            _allCareerChoices.Add(_holyPurge);
-            _allCareerChoices.Add(_archLector);
+            _bookOfSigmarKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BookOfSigmarKeyStone"));
+            _sigmarProclaimerKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SigmarsProclaimerKeyStone"));
+            _relentlessFanaticKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("RelentlessFanaticKeyStone"));
+            _protectorOfTheWeakKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ProtectorOfTheWeakKeyStone"));
+            _holyPurgeKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("HolyPurgeKeyStone"));
+            _archLectorKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ArchLectorKeyStone"));
         }
 
         private void InitializeAll()
         {
-            _warriorPriestRoot.Initialize("Warrior Priest Career Tree Root", 
-                "The root of the career choices tree.", 
-                TORCareers.WarriorPriest, true,
+            _warriorPriestRoot.Initialize(TORCareers.WarriorPriest, null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -85,9 +67,7 @@ namespace TOR_Core.CharacterDevelopment
                         MutationType = MutationType.Add
                     }
                 });
-            _bookOfSigmar.Initialize("Book of Sigmar",
-                "Please provide description.",
-                TORCareers.WarriorPriest, false,
+            _bookOfSigmarKeystone.Initialize(TORCareers.WarriorPriest, "BookOfSigmar", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -99,9 +79,7 @@ namespace TOR_Core.CharacterDevelopment
                         MutationType = MutationType.Replace
                     },
                 });
-            _sigmarProclaimer.Initialize("Sigmar's Proclaimer",
-                "Please provide description.",
-                TORCareers.WarriorPriest, false,
+            _sigmarProclaimerKeystone.Initialize(TORCareers.WarriorPriest, "SigmarsProclaimer", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -113,9 +91,7 @@ namespace TOR_Core.CharacterDevelopment
                         MutationType = MutationType.Replace
                     },
                 });
-            _relentlessFanatic.Initialize("Relentless Fanatic",
-                "Please provide description.",
-                TORCareers.WarriorPriest, false,
+            _relentlessFanaticKeystone.Initialize(TORCareers.WarriorPriest, "RelentlessFanatic", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -143,9 +119,7 @@ namespace TOR_Core.CharacterDevelopment
                         MutationType = MutationType.Replace
                     },
                 });
-            _protectorOfTheWeak.Initialize("Protector of the Weak",
-                "Please provide description.",
-                TORCareers.WarriorPriest, false,
+            _protectorOfTheWeakKeystone.Initialize(TORCareers.WarriorPriest, "ProtectorOfTheWeak", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -173,9 +147,7 @@ namespace TOR_Core.CharacterDevelopment
                         MutationType = MutationType.Replace
                     },
                 });
-            _holyPurge.Initialize("Holy Purge",
-                "Please provide description.",
-                TORCareers.WarriorPriest, false,
+            _holyPurgeKeystone.Initialize(TORCareers.WarriorPriest, "HolyPurge", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -187,9 +159,7 @@ namespace TOR_Core.CharacterDevelopment
                         MutationType = MutationType.Replace
                     },
                 });
-            _archLector.Initialize("Arch Lector",
-                "Please provide description.",
-                TORCareers.WarriorPriest, false,
+            _archLectorKeystone.Initialize(TORCareers.WarriorPriest, "ArchLector", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()

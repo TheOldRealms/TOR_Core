@@ -11,12 +11,6 @@
     <VisualDefinition Name="TopPanel" EaseIn="true" TransitionDuration="0.45">
       <VisualState PositionYOffset="-6" State="Default" />
     </VisualDefinition>
-    <VisualDefinition Name="LeftPanel" EaseIn="true" TransitionDuration="0.9">
-      <VisualState PositionXOffset="30" State="Default" />
-    </VisualDefinition>
-    <VisualDefinition Name="RightPanel" EaseIn="true" TransitionDuration="0.45">
-      <VisualState PositionXOffset="-30" State="Default" />
-    </VisualDefinition>
   </VisualDefinitions>
   <Window>
     <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
@@ -25,9 +19,135 @@
         <Standard.Background />
 
         <!--Top Panel-->
-        <Widget VisualDefinition="TopPanel" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="755" SuggestedHeight="182" HorizontalAlignment="Center" PositionXOffset="60" PositionYOffset="-182" Sprite="StdAssets\tabbar_standart" ValueFactor="-30">
+        <Widget VisualDefinition="TopPanel" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="755" SuggestedHeight="182" HorizontalAlignment="Center" PositionYOffset="-182" Sprite="StdAssets\tabbar_standart" ValueFactor="-30">
           <Children>
             <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="18" Brush="Quest.CenterPanel.Title.Text" Brush.FontSize="45" Text="Careers" />
+          </Children>
+        </Widget>
+
+        <!--Middle area-->
+        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="920" HorizontalAlignment="Center" VerticalAlignment="Center" MarginTop="60">
+          <Children>
+
+            <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Left" VerticalAlignment="Center" StackLayout.LayoutMethod="HorizontalRightToLeft">
+              <Children>
+                <!--right panel-->
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="500" HorizontalAlignment="Left" VerticalAlignment="Center">
+                  <Children>
+                    <CharacterTableauWidget DataSource="{HeroVM}" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="900" HorizontalAlignment="Right" VerticalAlignment="Bottom" BannerCodeText="@BannerCodeText" BodyProperties="@BodyProperties" CharStringId="@CharStringId" EquipmentCode="@EquipmentCode" IsFemale="@IsFemale" MountCreationKey="@MountCreationKey" Race="@Race" StanceIndex="@StanceIndex" ArmorColor1="@ArmorColor1" ArmorColor2="@ArmorColor2" IsEnabled="false" DoNotUseCustomScale="true"/>
+                  </Children>
+                </Widget>
+                <!-- middle panel-->
+                <Widget DataSource="{CurrentCareer}" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="920" HorizontalAlignment="Left" VerticalAlignment="Center">
+                  <Children>
+                    <Listpanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Top" StackLayout.LayoutMethod="VerticalTopToBottom" MarginLeft="20">
+                      <Children>
+                        <Listpanel WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="200" HorizontalAlignment="Center" VerticalAlignment="Top" StackLayout.LayoutMethod="HorizontalLeftToRight">
+                          <Children>
+                            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="700" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="BlankWhiteSquare" Color="#F4FFC4FF">
+                              <Children>
+                                <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="200" SuggestedHeight="30" HorizontalAlignment="Left" VerticalAlignment="Center" Text="@Name"/>
+                              </Children>
+                            </Widget>
+                            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="200" HorizontalAlignment="Right" VerticalAlignment="Center" Sprite="BlankWhiteSquare" Color="#F4CCC4FF">
+                            </Widget>
+                          </Children>
+                        </Listpanel>
+                        <!-- choicegroups -->
+                        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="720" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                          <Children>
+
+                            <Listpanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Bottom" StackLayout.LayoutMethod="VerticalBottomToTop">
+                              <Children>
+                                
+                                <!-- tier 1-->
+                                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="240" HorizontalAlignment="Center" VerticalAlignment="Bottom" >
+                                  <Children>
+                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="4" HorizontalAlignment="Center" Sprite="Clan\divider_mid" />
+                                    <ListPanel DataSource="{ChoiceGroupsTier1}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" StackLayout.LayoutMethod="HorizontalCentered">
+                                      <ItemTemplate>
+                                        <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="80" SuggestedHeight="80" Sprite="BlankWhiteSquare" VerticalAlignment="Center" MarginTop="5" MarginLeft="50" MarginRight="50" Text="@GroupName"/>
+                                      </ItemTemplate>
+                                    </ListPanel>
+                                  </Children>
+                                </Widget>
+                                
+                                <!-- tier 2-->
+                                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="240" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                  <Children>
+                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="4" HorizontalAlignment="Center" Sprite="Clan\divider_mid" />
+                                    <ListPanel DataSource="{ChoiceGroupsTier2}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" StackLayout.LayoutMethod="HorizontalCentered">
+                                      <ItemTemplate>
+                                        <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="80" SuggestedHeight="80" Sprite="BlankWhiteSquare" VerticalAlignment="Center" MarginTop="5" MarginLeft="50" MarginRight="50" Text="@GroupName"/>
+                                      </ItemTemplate>
+                                    </ListPanel>
+                                  </Children>
+                                </Widget>
+                                
+                                <!-- tier 3-->
+                                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="240" HorizontalAlignment="Center" VerticalAlignment="Top" >
+                                  <Children>
+                                    <ListPanel DataSource="{ChoiceGroupsTier3}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" StackLayout.LayoutMethod="HorizontalCentered">
+                                      <ItemTemplate>
+                                        <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="80" SuggestedHeight="80" Sprite="BlankWhiteSquare" VerticalAlignment="Center" MarginTop="5" MarginLeft="50" MarginRight="50" Text="@GroupName"/>
+                                      </ItemTemplate>
+                                    </ListPanel>
+                                  </Children>
+                                </Widget>
+
+                              </Children>
+                            </Listpanel>
+
+                          </Children>
+                        </Widget>
+                      </Children>
+                    </Listpanel>
+                  </Children>
+                </Widget>
+                <!--left panel-->
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="500" HorizontalAlignment="Left" VerticalAlignment="Center">
+                  <Children>
+
+                    <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Frame1.Broken.Left" RenderLate="true">
+                      <Children>
+                        
+                        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="75" HorizontalAlignment="Left" VerticalAlignment="Top" Sprite="Inventory\header_left" />
+                        
+                        <ScrollablePanel HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" InnerPanel="MyClipRect\InnerPanelParent" ClipRect="MyClipRect" HorizontalAlignment="Center" VerticalAlignment="Bottom" VerticalScrollbar="..\Scrollbar\Scrollbar" AutoHideScrollBars="true" ClipContents="true" MarginLeft="21" MarginTop="75">
+                          <Children>
+                            
+                            <Widget Id="MyClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true" HorizontalAlignment="Center">
+                              <Children>
+
+                                <ListPanel Id="InnerPanelParent" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" Sprite="BlankWhiteSquare" Color="#F4CCC4FF">
+                                  <Children>
+
+                                    <NavigatableListPanel Id="InnerPanel" DataSource="{Careers}" StackLayout.LayoutMethod="VerticalBottomToTop" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MinIndex="0" MaxIndex="100" StepSize="1" EmptyNavigationWidget="..\..\..\MyClipRect">
+                                      <ItemTemplate>
+                                        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="200" Sprite="BlankWhiteSquare" MarginTop="5" Text="@Name"/>
+                                      </ItemTemplate>
+                                    </NavigatableListPanel>
+
+                                    <!--Bottom Margin Widget-->
+                                    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="10" VerticalAlignment="Bottom"/>
+
+                                  </Children>
+                                </ListPanel>
+
+                              </Children>
+                            </Widget>
+
+                          </Children>
+                        </ScrollablePanel>
+
+                        <Standard.VerticalScrollbar Id="Scrollbar" HorizontalAlignment="Left" VerticalAlignment="Bottom" HeightSizePolicy ="StretchToParent" />
+
+                      </Children>
+                    </BrushWidget>
+                  </Children>
+                </Widget>
+              </Children>
+            </ListPanel>
           </Children>
         </Widget>
 
