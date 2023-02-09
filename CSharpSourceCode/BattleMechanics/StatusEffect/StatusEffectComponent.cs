@@ -10,6 +10,7 @@ using TaleWorlds.Core;
 using TaleWorlds.CampaignSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using System;
+using TOR_Core.Models;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
 {
@@ -20,12 +21,16 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         private float _deltaSinceLastTick = MBRandom.RandomFloatRanged(0, 0.1f);
         private Dictionary<StatusEffect, EffectData> _currentEffects;
         private EffectAggregate _effectAggregate;
+        private bool _movementIsUnAffected;
+        private float _currentRegularSpeed;
+        public bool _init;
 
         public StatusEffectComponent(Agent agent) : base(agent)
         {
             _currentEffects = new Dictionary<StatusEffect, EffectData>();
             _effectAggregate = new EffectAggregate();
             _dummyEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
+            _init = true;
         }
 
         public void RunStatusEffect(string effectId, Agent applierAgent, float duration, bool append, bool isMutated)
@@ -55,6 +60,21 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         public void OnElapsed(float dt)
         {
+            if (_init&&Mission.Current.MainAgent==Agent)
+            {
+                Mission.Current.MainAgent.AgentDrivenProperties.TopSpeedReachDuration = 0f;
+                var t = Mission.Current.MainAgent.AgentDrivenProperties.MaxSpeedMultiplier = 200f;
+                //Agent.AgentDrivenProperties.TopSpeedReachDuration= 0f;
+
+                var prop = Agent.AgentDrivenProperties;
+                
+                
+                Agent.AgentDrivenProperties.();
+                _init = false;
+            }
+            
+            
+            
             foreach (var item in _currentEffects.ToList())
             {
                 StatusEffect effect = item.Key;
@@ -79,6 +99,39 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 {
                     Agent.Heal((int)_effectAggregate.HealthOverTime);
                 }
+
+                
+
+                if (_effectAggregate.MovementSpeedReduction== 0f) return;
+                
+                
+                if (_init)
+                {
+                    _currentRegularSpeed = Agent.AgentDrivenProperties.TopSpeedReachDuration;
+                    _init = false;
+                }
+
+                var val = 1 + _effectAggregate.MovementSpeedReduction;
+                
+                var speed = _currentRegularSpeed * val;
+                
+                
+                
+                
+                _movementIsUnAffected = Math.Abs(_effectAggregate.MovementSpeedReduction - 1f) > 0f;
+
+                /*if (speed != _currentRegularSpeed)
+                {
+                    
+                }
+                else if (_movementIsAffected)
+                {
+                    
+                    _currentRegularSpeed = Agent.AgentDrivenProperties.MaxSpeedMultiplier;
+                    Agent.AgentDrivenProperties.MaxSpeedMultiplier = 1f;
+                    Agent.ResetAgentProperties();
+                    _movementIsAffected = false;
+                }*/
             }
         }
 
@@ -217,6 +270,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             public Dictionary<AttackTypeMask, float[]> DamageAmplifications { get; }
             public Dictionary<AttackTypeMask, float[]> Resistances { get; }
 
+            public float MovementSpeedReduction { get; set; } = 0;
+
             public EffectAggregate()
             {
                 DamageAmplifications = new Dictionary<AttackTypeMask, float[]>();
@@ -247,6 +302,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     case StatusEffectTemplate.EffectType.Resistance:
                         AddResistance(template.DamageType, template.AttackTypeMask, strength);
                         break;
+                    case StatusEffectTemplate.EffectType.MovementReduction:
+                        MovementSpeedReduction += strength;
+                        break;
+                    case StatusEffectTemplate.EffectType.TemporaryAttributeOnly:
+                        break;
                 }
             }
 
@@ -265,6 +325,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     Resistances[AttackTypeMask.Melee][(int)damageType] += value;
                 }
             }
+            
 
             private void AddDamageAmplification(DamageType damageType, AttackTypeMask attackMask, float value)
             {

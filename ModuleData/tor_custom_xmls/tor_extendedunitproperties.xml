@@ -2809,6 +2809,7 @@
       <string>DeathlyShards</string>
       <string>RadiancePillar</string>
       <string>RadiantGaze</string>
+	  <string>NetOfAmyntok</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>

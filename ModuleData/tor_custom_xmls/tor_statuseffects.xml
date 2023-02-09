@@ -84,6 +84,18 @@
 		applies_for_attack_type="Melee">
 		<temporary_attribute>Unstoppable</temporary_attribute>
   	</StatusEffectTemplate>
+	<StatusEffectTemplate
+		id="movement_impairment"
+		particle_id="harmonic_convergence"
+		particle_intensity="High"
+		apply_particle_to_root_bone_only="true"
+    	base_effect_value="-1"
+		type="MovementReduction"
+		damage_type="Physical">
+  	</StatusEffectTemplate>
+	
+	
+	
 	<StatusEffectTemplate 
 		id="righteousfury_regeneration" 
 		particle_id="healing_regeneration"
