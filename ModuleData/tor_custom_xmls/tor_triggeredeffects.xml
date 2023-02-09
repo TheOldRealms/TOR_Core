@@ -510,18 +510,17 @@
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyFlamingItemTraitScript">
 			<ImbuedStatusEffect>movement_impairment</ImbuedStatusEffect>
 			</TriggeredEffectTemplate>
-      <TriggeredEffectTemplate StringID="apply_fury_sword_trait" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
             DamageType="Invalid" 
             DamageAmount="0" 
-            Radius="3" 
+            Radius="15" 
             HasShockWave="false" 
             TargetType="Friendly" 
-            ImbuedStatusEffectDuration="2.1" 
+            ImbuedStatusEffectDuration="6" 
             DamageVariance="0" 
-            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyFlamingItemTraitScript" />
+            ScriptNameToTrigger="none">
 		
 
 </TriggeredEffectTemplates>
