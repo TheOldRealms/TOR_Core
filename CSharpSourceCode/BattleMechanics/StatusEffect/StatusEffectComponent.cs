@@ -103,10 +103,22 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             //aggregated information to determine how much damage to apply to the agent
             if (Agent.IsActive() && Agent != null && !Agent.IsFadingOut())
             {
+                if (_effectAggregate.DamageOverTime > 0)
+                {
+                    Agent.ApplyDamage((int)_effectAggregate.DamageOverTime, Agent.Position, dotEffect.ApplierAgent, false, false);
+                }
+                else if (_effectAggregate.HealthOverTime > 0)
+                {
+                    Agent.Heal((int)_effectAggregate.HealthOverTime);
+                }
+
+
+                if(_effectAggregate==null) return;
                 if (_effectAggregate.MovementSpeedReduction == 0f)
                 {
                     if (!ChangedValue) return;
                     value = _baseValue;
+                    _lastValue = _baseValue;
                     Agent.UpdateAgentProperties();
                     ChangedValue = false;
                     return;
@@ -124,19 +136,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 value = _baseValue + _effectAggregate.MovementSpeedReduction;
                 _lastValue = _effectAggregate.MovementSpeedReduction;
                 Agent.UpdateAgentProperties();
-                
-                if (_effectAggregate.DamageOverTime > 0)
-                {
-                    Agent.ApplyDamage((int)_effectAggregate.DamageOverTime, Agent.Position, dotEffect.ApplierAgent, false, false);
-                }
-                else if (_effectAggregate.HealthOverTime > 0)
-                {
-                    Agent.Heal((int)_effectAggregate.HealthOverTime);
-                }
-
-
-
-               
 
                 //Agent.AgentDrivenProperties.SetStat(DrivenProperty.TopSpeedReachDuration, 0f);
                 //Agent.AgentDrivenProperties.SetStat(DrivenProperty.MaxSpeedMultiplier, 200f);
