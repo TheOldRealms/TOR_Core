@@ -1,4 +1,4 @@
-﻿using Helpers;
+using Helpers;
 using SandBox.GameComponents;
 using System;
 using TaleWorlds.CampaignSystem;
@@ -8,12 +8,14 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.Battle.CrosshairMissionBehavior;
+using TOR_Core.BattleMechanics.AI.FormationBehavior;
 using TOR_Core.BattleMechanics.Crosshairs;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -171,6 +173,20 @@ namespace TOR_Core.Models
                     
                 }
             }
+            
+            var t = agent.GetComponent<StatusEffectComponent>();
+            if (t!=null)
+            {
+                if (t.value > 0)
+                {
+                  //  agentDrivenProperties.TopSpeedReachDuration = 200;
+                    agentDrivenProperties.MaxSpeedMultiplier = 0f;// t.value;
+                }
+                if(Agent.Main!=null)
+                TORCommon.Say(Agent.Main.AgentDrivenProperties.MaxSpeedMultiplier + " " + Agent.Main.AgentDrivenProperties.TopSpeedReachDuration);
+            }
+  
+            
         }
 
         private void AddSkillEffectsForAgent(Agent agent, AgentDrivenProperties agentDrivenProperties)

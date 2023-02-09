@@ -21,9 +21,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         private float _deltaSinceLastTick = MBRandom.RandomFloatRanged(0, 0.1f);
         private Dictionary<StatusEffect, EffectData> _currentEffects;
         private EffectAggregate _effectAggregate;
-        private bool _movementIsUnAffected;
-        private float _currentRegularSpeed;
-        public bool _init;
+        private bool test;
+        public float value=0f;
+        private float baseValue;
 
         public StatusEffectComponent(Agent agent) : base(agent)
         {
@@ -86,6 +86,26 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
             CalculateEffectAggregate();
             StatusEffect dotEffect = _currentEffects.Keys.Where(x => x.Template.Type == StatusEffectTemplate.EffectType.DamageOverTime).FirstOrDefault();
+            
+            
+            
+            if (_effectAggregate.HealthOverTime > 0)
+            {
+                test = true;
+               //Agent.AgentDrivenProperties.SetStat(DrivenProperty.TopSpeedReachDuration, 0f);
+               //Agent.AgentDrivenProperties.SetStat(DrivenProperty.MaxSpeedMultiplier, 200f);
+             
+                value = 2f;
+                Agent.UpdateAgentProperties();
+            }
+            
+            /*if(test)
+                if (_effectAggregate.HealthOverTime > 0)
+                {
+                    test = false;
+                    value = baseValue;
+                    Agent.UpdateAgentProperties();
+                }*/
 
             //Temporary method for applying effects from the aggregate. This needs to go to a damage manager/calculator which will use the 
             //aggregated information to determine how much damage to apply to the agent
