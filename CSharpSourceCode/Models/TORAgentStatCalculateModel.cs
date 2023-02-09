@@ -6,6 +6,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics.AI.FormationBehavior;
@@ -144,49 +145,32 @@ namespace TOR_Core.Models
 
         private void UpdateAgentDrivenProperties(Agent agent, AgentDrivenProperties agentDrivenProperties)
         {
-            if (agent.IsHuman)
+            if (!agent.IsHuman) return;
+            AddSkillEffectsForAgent(agent, agentDrivenProperties);
+            AddPerkEffectsForAgent(agent, agentDrivenProperties);
+            var character = agent.Character as CharacterObject;
+            if (character != null && character.IsVampire())
             {
-                AddSkillEffectsForAgent(agent, agentDrivenProperties);
-                AddPerkEffectsForAgent(agent, agentDrivenProperties);
-                var character = agent.Character as CharacterObject;
-                if (character != null && character.IsVampire())
+                float modificator = vampireDaySpeedModificator;
+                if (Campaign.Current != null && Campaign.Current.IsNight)
                 {
-                    float modificator = vampireDaySpeedModificator;
-                    if (Campaign.Current != null && Campaign.Current.IsNight)
-                    {
-                        modificator = vampireNightSpeedModificator;
-                    }
-                    agentDrivenProperties.TopSpeedReachDuration *= modificator;
-                    agentDrivenProperties.MaxSpeedMultiplier *= modificator;
-                    agentDrivenProperties.CombatMaxSpeedMultiplier *= modificator;
-
-
-                    var t = agent.GetComponent<StatusEffectComponent>();
-                    if (agent.GetComponent<StatusEffectComponent>() != null&& agent.IsMainAgent)
-                    {
-                        if (t._init == false)
-                        {
-                            agentDrivenProperties.TopSpeedReachDuration *= 200;
-                            agentDrivenProperties.MaxSpeedMultiplier *= 200;
-                        }
-                    }
-                    
+                    modificator = vampireNightSpeedModificator;
                 }
+                agentDrivenProperties.TopSpeedReachDuration *= modificator;
+                agentDrivenProperties.MaxSpeedMultiplier *= modificator;
+                agentDrivenProperties.CombatMaxSpeedMultiplier *= modificator;
             }
-            
+                
             var t = agent.GetComponent<StatusEffectComponent>();
-            if (t!=null)
+            if (t == null) return;
+            if (t.ChangedValue)
             {
-                if (t.value > 0)
-                {
-                  //  agentDrivenProperties.TopSpeedReachDuration = 200;
-                    agentDrivenProperties.MaxSpeedMultiplier = 0f;// t.value;
-                }
-                if(Agent.Main!=null)
-                TORCommon.Say(Agent.Main.AgentDrivenProperties.MaxSpeedMultiplier + " " + Agent.Main.AgentDrivenProperties.TopSpeedReachDuration);
+                agentDrivenProperties.MaxSpeedMultiplier = Mathf.Max(0, t.value);// t.value;// t.value;
             }
-  
-            
+
+
+
+
         }
 
         private void AddSkillEffectsForAgent(Agent agent, AgentDrivenProperties agentDrivenProperties)

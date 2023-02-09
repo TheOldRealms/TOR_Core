@@ -21,16 +21,16 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         private float _deltaSinceLastTick = MBRandom.RandomFloatRanged(0, 0.1f);
         private Dictionary<StatusEffect, EffectData> _currentEffects;
         private EffectAggregate _effectAggregate;
-        private bool test;
+        public bool ChangedValue;
         public float value=0f;
-        private float baseValue;
+        private float _baseValue;
+        private float _lastValue=0f;
 
         public StatusEffectComponent(Agent agent) : base(agent)
         {
             _currentEffects = new Dictionary<StatusEffect, EffectData>();
             _effectAggregate = new EffectAggregate();
             _dummyEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
-            _init = true;
         }
 
         public void RunStatusEffect(string effectId, Agent applierAgent, float duration, bool append, bool isMutated)
@@ -60,7 +60,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         public void OnElapsed(float dt)
         {
-            if (_init&&Mission.Current.MainAgent==Agent)
+            /*if (_init&&Mission.Current.MainAgent==Agent)
             {
                 Mission.Current.MainAgent.AgentDrivenProperties.TopSpeedReachDuration = 0f;
                 var t = Mission.Current.MainAgent.AgentDrivenProperties.MaxSpeedMultiplier = 200f;
@@ -71,7 +71,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 
                 Agent.AgentDrivenProperties.();
                 _init = false;
-            }
+            }*/
             
             
             
@@ -89,15 +89,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             
             
             
-            if (_effectAggregate.HealthOverTime > 0)
-            {
-                test = true;
-               //Agent.AgentDrivenProperties.SetStat(DrivenProperty.TopSpeedReachDuration, 0f);
-               //Agent.AgentDrivenProperties.SetStat(DrivenProperty.MaxSpeedMultiplier, 200f);
-             
-                value = 2f;
-                Agent.UpdateAgentProperties();
-            }
+           
             
             /*if(test)
                 if (_effectAggregate.HealthOverTime > 0)
@@ -111,6 +103,28 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             //aggregated information to determine how much damage to apply to the agent
             if (Agent.IsActive() && Agent != null && !Agent.IsFadingOut())
             {
+                if (_effectAggregate.MovementSpeedReduction == 0f)
+                {
+                    if (!ChangedValue) return;
+                    value = _baseValue;
+                    Agent.UpdateAgentProperties();
+                    ChangedValue = false;
+                    return;
+                }
+                
+                if(Math.Abs(_effectAggregate.MovementSpeedReduction - _lastValue) < 0.01f)
+                    return;
+
+                if (!ChangedValue)
+                {
+                    _baseValue= Agent.AgentDrivenProperties.MaxSpeedMultiplier;
+                    ChangedValue = true;
+                }
+
+                value = _baseValue + _effectAggregate.MovementSpeedReduction;
+                _lastValue = _effectAggregate.MovementSpeedReduction;
+                Agent.UpdateAgentProperties();
+                
                 if (_effectAggregate.DamageOverTime > 0)
                 {
                     Agent.ApplyDamage((int)_effectAggregate.DamageOverTime, Agent.Position, dotEffect.ApplierAgent, false, false);
@@ -120,12 +134,22 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     Agent.Heal((int)_effectAggregate.HealthOverTime);
                 }
 
-                
 
-                if (_effectAggregate.MovementSpeedReduction== 0f) return;
+
+               
+
+                //Agent.AgentDrivenProperties.SetStat(DrivenProperty.TopSpeedReachDuration, 0f);
+                //Agent.AgentDrivenProperties.SetStat(DrivenProperty.MaxSpeedMultiplier, 200f);
+             
+               // value = 2f;
                 
                 
-                if (_init)
+                
+                
+                
+                
+                
+                /*if (_init)
                 {
                     _currentRegularSpeed = Agent.AgentDrivenProperties.TopSpeedReachDuration;
                     _init = false;
@@ -138,7 +162,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 
                 
                 
-                _movementIsUnAffected = Math.Abs(_effectAggregate.MovementSpeedReduction - 1f) > 0f;
+                _movementIsUnAffected = Math.Abs(_effectAggregate.MovementSpeedReduction - 1f) > 0f;*/
 
                 /*if (speed != _currentRegularSpeed)
                 {
