@@ -28,7 +28,6 @@ using TOR_Core.BattleMechanics.AI;
 using TOR_Core.BattleMechanics.AI.TeamBehavior;
 using TOR_Core.BattleMechanics.Atmosphere;
 using TOR_Core.BattleMechanics.Banners;
-using TOR_Core.BattleMechanics.Cosmetics;
 using TOR_Core.BattleMechanics.Dismemberment;
 using TOR_Core.BattleMechanics.Firearms;
 using TOR_Core.BattleMechanics.Morale;
@@ -181,7 +180,7 @@ namespace TOR_Core
         {
 
             mission.RemoveMissionBehavior(mission.GetMissionBehavior<MissionGauntletCrosshair>());
-            mission.AddMissionBehavior(new LanceRemovalMissionLogic());
+            //mission.AddMissionBehavior(new LanceRemovalMissionLogic());
             mission.AddMissionBehavior(new StatusEffectMissionLogic());
             mission.AddMissionBehavior(new ExtendedInfoMissionLogic());
             mission.AddMissionBehavior(new AbilityManagerMissionLogic());
