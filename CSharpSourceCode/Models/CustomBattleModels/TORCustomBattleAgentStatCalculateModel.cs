@@ -1,4 +1,5 @@
 ﻿using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
 using TOR_Core.Battle.CrosshairMissionBehavior;
@@ -60,7 +61,12 @@ namespace TOR_Core.Models.CustomBattleModels
                     //agentDrivenProperties.TopSpeedReachDuration=Mathf.Max(0, t.value);
                     agentDrivenProperties.MountSpeed = Mathf.Max(0, t.value);
                     agentDrivenProperties.MountDashAccelerationMultiplier=Mathf.Max(0, t.value);
-     
+                    agentDrivenProperties.MountManeuver = Mathf.Max(0, t.value);
+                    agent.SetActionChannel(0, ActionIndexCache.Create("act_horse_stand_1"));
+                    agent.SetAgentFlags(AgentFlag.MoveForwardOnly);
+                    agent.SetCurrentActionSpeed(0,0f);
+                    
+
                     //agent.MountAgent.AgentDrivenProperties.SetStat(DrivenProperty.ArmorEncumbrance,Mathf.Max(10000000000000000000000000f, t.value));
                 }
                 else

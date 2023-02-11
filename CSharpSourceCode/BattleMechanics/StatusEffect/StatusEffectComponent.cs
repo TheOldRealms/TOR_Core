@@ -94,9 +94,17 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     ChangedValue = false;
                     return;
                 }
-                
-                if(Math.Abs(_effectAggregate.MovementSpeedReduction - _lastValue) < 0.01f)
+
+                if (Math.Abs(_effectAggregate.MovementSpeedReduction - _lastValue) < 0.01f)
+                {
+                    if (Agent.HasMount)
+                    {
+                        
+                        Agent.MountAgent.SetActionChannel(0, ActionIndexCache.Create("act_horse_stand_1"));;
+                    }
                     return;
+                }
+                    
 
                 if (!ChangedValue)
                 {

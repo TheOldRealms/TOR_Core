@@ -502,11 +502,12 @@
             SoundEffectLength="0" 
             DamageType="Invalid" 
             DamageAmount="0" 
-            Radius="10" 
+            Radius="20" 
             HasShockWave="false" 
             TargetType="Enemy" 
             ImbuedStatusEffectDuration="5.1" 
             DamageVariance="0" 
+			ScriptNameToTrigger="none" >
 			<ImbuedStatusEffect>movement_impairment</ImbuedStatusEffect>
 			</TriggeredEffectTemplate>
             BurstParticleEffectPrefab="none" 
