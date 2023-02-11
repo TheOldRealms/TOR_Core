@@ -166,6 +166,13 @@ namespace TOR_Core.Models
             if (t.ChangedValue)
             {
                 agentDrivenProperties.MaxSpeedMultiplier = Mathf.Max(0, t.value);// t.value;// t.value;
+                
+                if (agent.HasMount)
+                {
+                    agent.MountAgent.AgentDrivenProperties.MountDashAccelerationMultiplier = Mathf.Max(0, t.value);
+                    agent.MountAgent.AgentDrivenProperties.MountSpeed=Mathf.Max(0, t.value);
+                    agent.MountAgent.AgentDrivenProperties.MountManeuver=Mathf.Max(0, t.value);
+                }
             }
 
 

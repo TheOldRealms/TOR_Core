@@ -60,21 +60,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         public void OnElapsed(float dt)
         {
-            /*if (_init&&Mission.Current.MainAgent==Agent)
-            {
-                Mission.Current.MainAgent.AgentDrivenProperties.TopSpeedReachDuration = 0f;
-                var t = Mission.Current.MainAgent.AgentDrivenProperties.MaxSpeedMultiplier = 200f;
-                //Agent.AgentDrivenProperties.TopSpeedReachDuration= 0f;
-
-                var prop = Agent.AgentDrivenProperties;
-                
-                
-                Agent.AgentDrivenProperties.();
-                _init = false;
-            }*/
-            
-            
-            
             foreach (var item in _currentEffects.ToList())
             {
                 StatusEffect effect = item.Key;
@@ -87,20 +72,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             CalculateEffectAggregate();
             StatusEffect dotEffect = _currentEffects.Keys.Where(x => x.Template.Type == StatusEffectTemplate.EffectType.DamageOverTime).FirstOrDefault();
             
-            
-            
-           
-            
-            /*if(test)
-                if (_effectAggregate.HealthOverTime > 0)
-                {
-                    test = false;
-                    value = baseValue;
-                    Agent.UpdateAgentProperties();
-                }*/
-
-            //Temporary method for applying effects from the aggregate. This needs to go to a damage manager/calculator which will use the 
-            //aggregated information to determine how much damage to apply to the agent
             if (Agent.IsActive() && Agent != null && !Agent.IsFadingOut())
             {
                 if (_effectAggregate.DamageOverTime > 0)
@@ -136,45 +107,10 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 value = _baseValue + _effectAggregate.MovementSpeedReduction;
                 _lastValue = _effectAggregate.MovementSpeedReduction;
                 Agent.UpdateAgentProperties();
-
-                //Agent.AgentDrivenProperties.SetStat(DrivenProperty.TopSpeedReachDuration, 0f);
-                //Agent.AgentDrivenProperties.SetStat(DrivenProperty.MaxSpeedMultiplier, 200f);
-             
-               // value = 2f;
-                
-                
-                
-                
-                
-                
-                
-                /*if (_init)
+                if (Agent.HasMount)
                 {
-                    _currentRegularSpeed = Agent.AgentDrivenProperties.TopSpeedReachDuration;
-                    _init = false;
+                    Agent.MountAgent.UpdateAgentProperties();
                 }
-
-                var val = 1 + _effectAggregate.MovementSpeedReduction;
-                
-                var speed = _currentRegularSpeed * val;
-                
-                
-                
-                
-                _movementIsUnAffected = Math.Abs(_effectAggregate.MovementSpeedReduction - 1f) > 0f;*/
-
-                /*if (speed != _currentRegularSpeed)
-                {
-                    
-                }
-                else if (_movementIsAffected)
-                {
-                    
-                    _currentRegularSpeed = Agent.AgentDrivenProperties.MaxSpeedMultiplier;
-                    Agent.AgentDrivenProperties.MaxSpeedMultiplier = 1f;
-                    Agent.ResetAgentProperties();
-                    _movementIsAffected = false;
-                }*/
             }
         }
 
@@ -272,6 +208,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 data = new EffectData(effect, particles, entities);
             }
             _currentEffects.Add(effect, data);
+
+
+            AgentDrivenProperties t;
+
+            //t.MaxSpeedMultiplier;
         }
 
         private void CleanUp()
@@ -312,6 +253,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             public float DamageOverTime { get; set; } = 0;
             public Dictionary<AttackTypeMask, float[]> DamageAmplifications { get; }
             public Dictionary<AttackTypeMask, float[]> Resistances { get; }
+
+            public float[] AgentStatModifications;
 
             public float MovementSpeedReduction { get; set; } = 0;
 

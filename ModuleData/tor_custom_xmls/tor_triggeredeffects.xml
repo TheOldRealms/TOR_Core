@@ -507,7 +507,6 @@
             TargetType="Enemy" 
             ImbuedStatusEffectDuration="5.1" 
             DamageVariance="0" 
-            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyFlamingItemTraitScript">
 			<ImbuedStatusEffect>movement_impairment</ImbuedStatusEffect>
 			</TriggeredEffectTemplate>
             BurstParticleEffectPrefab="none" 
