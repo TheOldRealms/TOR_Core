@@ -89,8 +89,8 @@
 		particle_id="harmonic_convergence"
 		particle_intensity="High"
 		apply_particle_to_root_bone_only="true"
-    	base_effect_value="-100"
-		type="MovementReduction"
+    	base_effect_value="-5"
+		type="MovementManipulation"
 		damage_type="Physical">
   	</StatusEffectTemplate>
 	

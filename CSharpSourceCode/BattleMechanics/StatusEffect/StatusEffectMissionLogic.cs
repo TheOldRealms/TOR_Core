@@ -13,6 +13,13 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
         }
 
+        public override void OnAgentMount(Agent agent)
+        {
+            StatusEffectComponent effectComponent = agent.GetComponent<StatusEffectComponent>();
+            effectComponent.SynchronizeBaseValues(true);
+            
+        }
+
         public override void OnMissionTick(float dt)
         {
             foreach (var agent in Mission.Current.AllAgents)

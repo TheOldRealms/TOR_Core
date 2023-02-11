@@ -505,7 +505,7 @@
             Radius="20" 
             HasShockWave="false" 
             TargetType="Enemy" 
-            ImbuedStatusEffectDuration="5.1" 
+            ImbuedStatusEffectDuration="15" 
             DamageVariance="0" 
 			ScriptNameToTrigger="none" >
 			<ImbuedStatusEffect>movement_impairment</ImbuedStatusEffect>

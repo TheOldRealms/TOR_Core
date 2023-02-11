@@ -21,18 +21,38 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         private float _deltaSinceLastTick = MBRandom.RandomFloatRanged(0, 0.1f);
         private Dictionary<StatusEffect, EffectData> _currentEffects;
         private EffectAggregate _effectAggregate;
-        public bool ChangedValue;
+        public bool ModifiedDrivenProperties;
         public float value=0f;
         private float _baseValue;
         private float _lastValue=0f;
-        
-        
+
+        private bool _initBaseValues;
+        private Dictionary<DrivenProperty, float> _baseValues;
+
+
 
         public StatusEffectComponent(Agent agent) : base(agent)
         {
             _currentEffects = new Dictionary<StatusEffect, EffectData>();
             _effectAggregate = new EffectAggregate();
             _dummyEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
+
+            _baseValues = new Dictionary<DrivenProperty, float>();
+
+        }
+
+        public void SynchronizeBaseValues(bool mountOnly=false)
+        {
+            if(Agent.AgentDrivenProperties==null) return;
+            if (!mountOnly)
+            {
+                _baseValues.AddOrReplace(DrivenProperty.MaxSpeedMultiplier, this.Agent.AgentDrivenProperties.MaxSpeedMultiplier);
+            }
+
+            if (!this.Agent.HasMount) return;
+            _baseValues.AddOrReplace(DrivenProperty.MountManeuver,Agent.MountAgent.AgentDrivenProperties.MountManeuver);
+            _baseValues.AddOrReplace(DrivenProperty.MountSpeed,this.Agent.MountAgent.AgentDrivenProperties.MountSpeed);
+            _baseValues.AddOrReplace(DrivenProperty.MountDashAccelerationMultiplier,this.Agent.MountAgent.AgentDrivenProperties.MountDashAccelerationMultiplier);
         }
 
         public void RunStatusEffect(string effectId, Agent applierAgent, float duration, bool append, bool isMutated)
@@ -58,10 +78,20 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
         }
 
+        public bool AreBaseValuesInitialized()
+        {
+            return _initBaseValues;
+        }
+
         public override void OnAgentRemoved() => CleanUp();
 
         public void OnElapsed(float dt)
         {
+            if (!_initBaseValues)
+            {
+                SynchronizeBaseValues();
+                _initBaseValues = true;
+            }
             foreach (var item in _currentEffects.ToList())
             {
                 StatusEffect effect = item.Key;
@@ -87,31 +117,32 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
 
                 if(_effectAggregate==null) return;
-                if (_effectAggregate.SpeedProperties.Item2 == 0f)
+                if (_effectAggregate.SpeedProperties == 0f)
                 {
-                    if (!ChangedValue) return;
-                    value = _baseValue;
-                    _lastValue = _baseValue;
+                    if (!ModifiedDrivenProperties) return;
                     Agent.UpdateAgentProperties();
-                    ChangedValue = false;
+                    ModifiedDrivenProperties = false;
+                    if (Agent.HasMount)
+                    {
+                        Agent.MountAgent.UpdateAgentProperties();
+                    }
                     return;
                 }
 
-                if (Math.Abs(_effectAggregate.SpeedProperties.Item2 - _lastValue) < 0.01f)
+                if (Math.Abs(_effectAggregate.SpeedProperties - _lastValue) < 0.01f)
                 {
                     if (Agent.HasMount)
                     {
-                        
                         Agent.MountAgent.SetActionChannel(0, ActionIndexCache.Create("act_horse_stand_1"));;
                     }
                     return;
                 }
                     
 
-                if (!ChangedValue)
+                if (!ModifiedDrivenProperties)
                 {
-                    _effectAggregate.SpeedProperties.Item1= Agent.AgentDrivenProperties.MaxSpeedMultiplier;
-                    ChangedValue = true;
+                    _effectAggregate.SpeedProperties= Agent.AgentDrivenProperties.MaxSpeedMultiplier;
+                    ModifiedDrivenProperties = true;
                 }
 
                 //value = _baseValue + _effectAggregate.SpeedProperties;
@@ -126,12 +157,10 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         private void CalculateEffectAggregate()
         {
-            var former = false;
             float baseSpeed = 0f;
             if (_effectAggregate != null)
             {
-                baseSpeed= _effectAggregate.SpeedProperties.Item1;
-                former=true;
+                baseSpeed= _effectAggregate.SpeedProperties;
             }
             _effectAggregate = new EffectAggregate();
             
@@ -140,10 +169,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 _effectAggregate.AddEffect(item);
             }
 
-            if (former)
-            {
-                _effectAggregate.SpeedProperties.Item1 = baseSpeed;
-            }
+          
         }
 
         public void OnTick(float dt)
@@ -201,10 +227,27 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             return _effectAggregate.Resistances[mask];
         }
         
-        public (float,float) GetMovementSpeedModifier()
+        public float GetMovementSpeedModifier()
         {
             if (_effectAggregate == null) _effectAggregate = new EffectAggregate();
             return _effectAggregate.SpeedProperties;
+        }
+
+        public float GetBaseValueForDrivenProperty(DrivenProperty property)
+        {
+            if (_baseValues == null)
+            {
+                _baseValues = new Dictionary<DrivenProperty, float>();
+                SynchronizeBaseValues();
+            }
+
+            if (!_baseValues.ContainsKey(property))
+            {
+                //_baseValues.AddOrReplace(property);
+                throw new ArgumentException("The property was not defined in the status effect system", property.ToString());
+            }
+            
+            return _baseValues[property];
         }
 
         public List<string> GetTemporaryAttributes()
@@ -285,7 +328,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
             public float[] AgentStatModifications;
 
-            public (float, float) SpeedProperties;
+            public float SpeedProperties;
           //  public KeyValuePr<float[], float[]> MountSpeedProperties;
 
            // public float MovementSpeedReduction { get; set; } = 0;
@@ -321,7 +364,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                         AddResistance(template.DamageType, template.AttackTypeMask, strength);
                         break;
                     case StatusEffectTemplate.EffectType.MovementManipulation:
-                        SpeedProperties.Item2 += strength;
+                        SpeedProperties += strength;
                         break;
                     case StatusEffectTemplate.EffectType.TemporaryAttributeOnly:
                         break;
@@ -361,5 +404,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 }
             }
         }
+        
+        
     }
 }

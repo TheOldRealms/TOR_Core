@@ -25,6 +25,7 @@ namespace TOR_Core.Models
         private float vampireDaySpeedModificator = 1.1f;
         private float vampireNightSpeedModificator = 1.2f;
         private CustomCrosshairMissionBehavior _crosshairBehavior;
+        
 
 
         public override void InitializeAgentStats(Agent agent, Equipment spawnEquipment, AgentDrivenProperties agentDrivenProperties, AgentBuildData agentBuildData)
@@ -161,17 +162,18 @@ namespace TOR_Core.Models
                 agentDrivenProperties.CombatMaxSpeedMultiplier *= modificator;
             }
                 
-            var t = agent.GetComponent<StatusEffectComponent>();
-            if (t == null) return;
-            if (t.ChangedValue)
+            var statusEffectComponent = agent.GetComponent<StatusEffectComponent>();
+            if (statusEffectComponent == null) return;
+            if (statusEffectComponent.ModifiedDrivenProperties)
             {
-                agentDrivenProperties.MaxSpeedMultiplier = Mathf.Max(0, t.value);// t.value;// t.value;
+                agentDrivenProperties.MaxSpeedMultiplier = Mathf.Max(0, statusEffectComponent.value);// t.value;// t.value;
                 
                 if (agent.HasMount)
                 {
-                    agent.MountAgent.AgentDrivenProperties.MountDashAccelerationMultiplier = Mathf.Max(0, t.value);
-                    agent.MountAgent.AgentDrivenProperties.MountSpeed=Mathf.Max(0, t.value);
-                    agent.MountAgent.AgentDrivenProperties.MountManeuver=Mathf.Max(0, t.value);
+                    agent.MountAgent.AgentDrivenProperties.MountDashAccelerationMultiplier = Mathf.Max(0, statusEffectComponent.value);
+                    agent.MountAgent.AgentDrivenProperties.MountSpeed=Mathf.Max(0, statusEffectComponent.value);
+                    agent.MountAgent.AgentDrivenProperties.MountManeuver=Mathf.Max(0, statusEffectComponent.value);
+                    agent.SetActionChannel(1, ActionIndexCache.Create(""));
                 }
             }
 
