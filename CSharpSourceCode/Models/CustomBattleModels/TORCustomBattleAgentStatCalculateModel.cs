@@ -51,12 +51,14 @@ namespace TOR_Core.Models.CustomBattleModels
             
             /*var t = agent.GetComponent<StatusEffectComponent>();
             if (t == null) return;*/
-            if (t.ChangedValue)
+            var speedModifier = t.GetMovementSpeedModifier();
+            if (speedModifier.Item2!=0f)
             {
-                
+                var speedmultiplier =  Mathf.Clamp(speedModifier.Item2 + 1,0,2);
 
                 if (agent.IsMount)
                 {
+                    
                     agentDrivenProperties.MountSpeed=Mathf.Max(0, t.value);
                     //agentDrivenProperties.TopSpeedReachDuration=Mathf.Max(0, t.value);
                     agentDrivenProperties.MountSpeed = Mathf.Max(0, t.value);
@@ -71,27 +73,20 @@ namespace TOR_Core.Models.CustomBattleModels
                 }
                 else
                 {
-                    agentDrivenProperties.MaxSpeedMultiplier = Mathf.Max(0, t.value);
+                    
+                    agentDrivenProperties.MaxSpeedMultiplier =speedModifier.Item1*speedmultiplier;
                 }
-                //agentDrivenProperties.MountSpeed = Mathf.Max(0, t.value);
-                if (agent.HasMount)
+            }
+            else
+            {
+                if (agent.IsMount)
                 {
-                   
-                  //  agent.MountAgent.AgentDrivenProperties.MountManeuver=Mathf.Max(0, t.value);
-                    //agent.MountAgent.AgentDrivenProperties.TopSpeedReachDuration=Mathf.Max(0, t.value);
-                    //agent.MountAgent.AgentDrivenProperties.MountDashAccelerationMultiplier=Mathf.Max(0, t.value);
-                    //agent.MountAgent.SetAgentDrivenPropertyValueFromConsole();
-                    //agent.MountAgent.AgentDrivenProperties.MountManeuver=Mathf.Max(0, t.value);
-                   // agent.MountAgent.AgentDrivenProperties.MaxSpeedMultiplier = Mathf.Max(0, t.value);
                 }
-                
-                /*if (agent.HasMount)
+                else
                 {
-                   
-                    agent.MountAgent.UpdateAgentProperties();
-                }*/
-                   
-
+                    if(speedModifier.Item1<=0) return;
+                    agentDrivenProperties.MaxSpeedMultiplier = Mathf.Max(0, speedModifier.Item1);
+                }
             }
         }
     }

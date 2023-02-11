@@ -25,6 +25,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         public float value=0f;
         private float _baseValue;
         private float _lastValue=0f;
+        
+        
 
         public StatusEffectComponent(Agent agent) : base(agent)
         {
@@ -85,7 +87,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
 
                 if(_effectAggregate==null) return;
-                if (_effectAggregate.MovementSpeedReduction == 0f)
+                if (_effectAggregate.SpeedProperties.Item2 == 0f)
                 {
                     if (!ChangedValue) return;
                     value = _baseValue;
@@ -95,7 +97,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     return;
                 }
 
-                if (Math.Abs(_effectAggregate.MovementSpeedReduction - _lastValue) < 0.01f)
+                if (Math.Abs(_effectAggregate.SpeedProperties.Item2 - _lastValue) < 0.01f)
                 {
                     if (Agent.HasMount)
                     {
@@ -108,12 +110,12 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
                 if (!ChangedValue)
                 {
-                    _baseValue= Agent.AgentDrivenProperties.MaxSpeedMultiplier;
+                    _effectAggregate.SpeedProperties.Item1= Agent.AgentDrivenProperties.MaxSpeedMultiplier;
                     ChangedValue = true;
                 }
 
-                value = _baseValue + _effectAggregate.MovementSpeedReduction;
-                _lastValue = _effectAggregate.MovementSpeedReduction;
+                //value = _baseValue + _effectAggregate.SpeedProperties;
+                //_lastValue = _effectAggregate.MovementSpeedReduction;
                 Agent.UpdateAgentProperties();
                 if (Agent.HasMount)
                 {
@@ -124,10 +126,23 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         private void CalculateEffectAggregate()
         {
+            var former = false;
+            float baseSpeed = 0f;
+            if (_effectAggregate != null)
+            {
+                baseSpeed= _effectAggregate.SpeedProperties.Item1;
+                former=true;
+            }
             _effectAggregate = new EffectAggregate();
+            
             foreach (var item in _currentEffects)
             {
                 _effectAggregate.AddEffect(item);
+            }
+
+            if (former)
+            {
+                _effectAggregate.SpeedProperties.Item1 = baseSpeed;
             }
         }
 
@@ -184,6 +199,12 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         {
             if (_effectAggregate == null) _effectAggregate = new EffectAggregate();
             return _effectAggregate.Resistances[mask];
+        }
+        
+        public (float,float) GetMovementSpeedModifier()
+        {
+            if (_effectAggregate == null) _effectAggregate = new EffectAggregate();
+            return _effectAggregate.SpeedProperties;
         }
 
         public List<string> GetTemporaryAttributes()
@@ -264,7 +285,10 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
             public float[] AgentStatModifications;
 
-            public float MovementSpeedReduction { get; set; } = 0;
+            public (float, float) SpeedProperties;
+          //  public KeyValuePr<float[], float[]> MountSpeedProperties;
+
+           // public float MovementSpeedReduction { get; set; } = 0;
 
             public EffectAggregate()
             {
@@ -296,8 +320,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     case StatusEffectTemplate.EffectType.Resistance:
                         AddResistance(template.DamageType, template.AttackTypeMask, strength);
                         break;
-                    case StatusEffectTemplate.EffectType.MovementReduction:
-                        MovementSpeedReduction += strength;
+                    case StatusEffectTemplate.EffectType.MovementManipulation:
+                        SpeedProperties.Item2 += strength;
                         break;
                     case StatusEffectTemplate.EffectType.TemporaryAttributeOnly:
                         break;
