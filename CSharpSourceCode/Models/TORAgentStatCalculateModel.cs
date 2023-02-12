@@ -9,7 +9,6 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.Battle.CrosshairMissionBehavior;
-using TOR_Core.BattleMechanics.AI.FormationBehavior;
 using TOR_Core.BattleMechanics.Crosshairs;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
@@ -177,10 +176,6 @@ namespace TOR_Core.Models
             
 
             if(!statusEffectComponent.AreBaseValuesInitialized()||!statusEffectComponent.ModifiedDrivenProperties) return;
-            
-            counter++;
-            TORCommon.Say(counter.ToString());
-            
             var speedModifier = statusEffectComponent.GetMovementSpeedModifier();
             if (speedModifier!=0f)
             {

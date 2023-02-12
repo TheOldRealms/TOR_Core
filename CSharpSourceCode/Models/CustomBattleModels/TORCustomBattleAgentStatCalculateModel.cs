@@ -1,6 +1,4 @@
-﻿using TaleWorlds.Core;
-using TaleWorlds.Library;
-using TaleWorlds.MountAndBlade;
+﻿using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics.Crosshairs;

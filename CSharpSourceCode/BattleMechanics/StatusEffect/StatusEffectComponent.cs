@@ -7,10 +7,8 @@ using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.Utilities;
 using TaleWorlds.Library;
 using TaleWorlds.Core;
-using TaleWorlds.CampaignSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using System;
-using TOR_Core.Models;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
 {
@@ -23,7 +21,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         private EffectAggregate _effectAggregate;
         public bool ModifiedDrivenProperties;
         private bool _restoredBaseValues;
-
         private bool _initBaseValues;
         private Dictionary<DrivenProperty, float> _baseValues;
 
@@ -149,19 +146,12 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         private void CalculateEffectAggregate()
         {
-            float baseSpeed = 0f;
-            if (_effectAggregate != null)
-            {
-                baseSpeed= _effectAggregate.SpeedProperties;
-            }
             _effectAggregate = new EffectAggregate();
             
             foreach (var item in _currentEffects)
             {
                 _effectAggregate.AddEffect(item);
             }
-
-          
         }
 
         public void OnTick(float dt)
