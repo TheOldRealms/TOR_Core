@@ -352,9 +352,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                         AddDamageAmplification(template.DamageType, template.AttackTypeMask, strength);
                         break;
                     case StatusEffectTemplate.EffectType.Resistance:
-                                AddResistance(template.DamageType, template.AttackTypeMask, strength);
-                                break;
-                            case StatusEffectTemplate.EffectType.MovementManipulation:
+                        AddResistance(template.DamageType, template.AttackTypeMask, strength);
+                        break;
+                    case StatusEffectTemplate.EffectType.MovementManipulation:
                         SpeedProperties += strength;
                         break;
                     case StatusEffectTemplate.EffectType.AttackSpeedManipulation:
