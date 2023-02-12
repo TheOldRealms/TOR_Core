@@ -496,6 +496,7 @@
     <Compile Include="CharacterDevelopment\TORPerks.cs" />
     <Compile Include="CharacterDevelopment\TORSkillEffects.cs" />
     <Compile Include="CharacterDevelopment\TORSkills.cs" />
+    <Compile Include="Extensions\AgentDrivenPropertiesExtensions.cs" />
     <Compile Include="Extensions\AgentExtensions.cs" />
     <Compile Include="Extensions\CharacterObjectExtensions.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
