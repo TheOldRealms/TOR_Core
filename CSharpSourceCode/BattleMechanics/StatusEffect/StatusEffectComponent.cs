@@ -22,9 +22,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         private Dictionary<StatusEffect, EffectData> _currentEffects;
         private EffectAggregate _effectAggregate;
         public bool ModifiedDrivenProperties;
-        public float value=0f;
         private float _baseValue;
-        private float _lastValue=0f;
 
         private bool _initBaseValues;
         private Dictionary<DrivenProperty, float> _baseValues;
@@ -128,30 +126,28 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     }
                     return;
                 }
-
-                if (Math.Abs(_effectAggregate.SpeedProperties - _lastValue) < 0.01f)
+                else
                 {
+                    ModifiedDrivenProperties = true;
+
+                    Agent.UpdateAgentProperties();
                     if (Agent.HasMount)
                     {
-                        Agent.MountAgent.SetActionChannel(0, ActionIndexCache.Create("act_horse_stand_1"));;
+                        Agent.MountAgent.UpdateAgentProperties();
                     }
-                    return;
+                }
+                
+                
+
+                if (Math.Abs(_effectAggregate.SpeedProperties - (-1)) < 0.01)   //if the movement is impaired completely...
+                {
+                    if (!Agent.HasMount) return;
+                    Agent.MountAgent.SetActionChannel(0, ActionIndexCache.Create("act_horse_stand_1"));;
                 }
                     
 
-                if (!ModifiedDrivenProperties)
-                {
-                    _effectAggregate.SpeedProperties= Agent.AgentDrivenProperties.MaxSpeedMultiplier;
-                    ModifiedDrivenProperties = true;
-                }
-
-                //value = _baseValue + _effectAggregate.SpeedProperties;
-                //_lastValue = _effectAggregate.MovementSpeedReduction;
-                Agent.UpdateAgentProperties();
-                if (Agent.HasMount)
-                {
-                    Agent.MountAgent.UpdateAgentProperties();
-                }
+                
+               
             }
         }
 

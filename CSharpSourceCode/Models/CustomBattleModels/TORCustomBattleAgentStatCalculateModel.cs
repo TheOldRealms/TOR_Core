@@ -29,69 +29,50 @@ namespace TOR_Core.Models.CustomBattleModels
         public override void UpdateAgentStats(Agent agent, AgentDrivenProperties agentDrivenProperties)
         {
             base.UpdateAgentStats(agent, agentDrivenProperties);
-            UpdateAgentDrivenProperties(agent, agentDrivenProperties);
+            UpdateDynamicAgentDrivenProperties(agent, agentDrivenProperties);
         }
 
 
-        public  void UpdateAgentDrivenProperties(Agent agent, AgentDrivenProperties agentDrivenProperties)
+        private  void UpdateDynamicAgentDrivenProperties(Agent agent, AgentDrivenProperties agentDrivenProperties)
         {
-            
-            
-            if (!agent.IsMount&&agent.GetComponent<StatusEffectComponent>() == null)
+            var statusEffectComponent = agent.IsMount ? agent.RiderAgent?.GetComponent<StatusEffectComponent>()  : agent.GetComponent<StatusEffectComponent>();
+            if(statusEffectComponent==null)
                 return;
-            switch (agent.IsMount)
-            {
-                case true when agent.RiderAgent == null:
-                case true when agent.RiderAgent.GetComponent<StatusEffectComponent>() == null:
-                    return;
-            }
-            
 
-
-            StatusEffectComponent t;
-
-            t = agent.IsMount ? agent.RiderAgent.GetComponent<StatusEffectComponent>() : agent.GetComponent<StatusEffectComponent>();
-            
-            if(!t.AreBaseValuesInitialized()) return;
-            /*var t = agent.GetComponent<StatusEffectComponent>();
-            if (t == null) return;*/
-            var speedModifier = t.GetMovementSpeedModifier();
+            if(!statusEffectComponent.AreBaseValuesInitialized()) return;
+            var speedModifier = statusEffectComponent.GetMovementSpeedModifier();
             if (speedModifier!=0f)
             {
-                var speedMultiplier =  Mathf.Clamp(speedModifier + 1,0,2);
-
-                if (agent.IsMount)
-                {
-
-                    agentDrivenProperties.MountSpeed = t.GetBaseValueForDrivenProperty(DrivenProperty.MountSpeed) * speedMultiplier;
-                    agentDrivenProperties.MountDashAccelerationMultiplier=t.GetBaseValueForDrivenProperty(DrivenProperty.MountDashAccelerationMultiplier) * speedMultiplier;
-                    agentDrivenProperties.MountManeuver = t.GetBaseValueForDrivenProperty(DrivenProperty.MountManeuver) * speedMultiplier;
-                   // agent.SetActionChannel(0, ActionIndexCache.Create("act_horse_stand_1"));
-                    //agent.SetAgentFlags(AgentFlag.MoveForwardOnly);
-                   // agent.SetCurrentActionSpeed(0,0f);
-                    
-
-                    //agent.MountAgent.AgentDrivenProperties.SetStat(DrivenProperty.ArmorEncumbrance,Mathf.Max(10000000000000000000000000f, t.value));
-                }
-                else
-                {
-                    agentDrivenProperties.MaxSpeedMultiplier =t.GetBaseValueForDrivenProperty(DrivenProperty.MaxSpeedMultiplier)*speedMultiplier;
-                    
-                }
+                var speedMultiplier =  Mathf.Clamp(speedModifier + 1,0,2);      //to set in the right offset, where -100% would actually result in 0% movement speed
+                SetDynamicMovementAgentProperties(agent, statusEffectComponent, agentDrivenProperties, speedMultiplier);
             }
             else
             {
-                if (agent.IsMount)
-                {
-                    agentDrivenProperties.MountSpeed = t.GetBaseValueForDrivenProperty(DrivenProperty.MountSpeed);
-                    agentDrivenProperties.MountDashAccelerationMultiplier=t.GetBaseValueForDrivenProperty(DrivenProperty.MountDashAccelerationMultiplier);
-                    agentDrivenProperties.MountManeuver = t.GetBaseValueForDrivenProperty(DrivenProperty.MountManeuver);
-                }
-                else
-                {
-                    agentDrivenProperties.MaxSpeedMultiplier = t.GetBaseValueForDrivenProperty(DrivenProperty.MaxSpeedMultiplier);
-                }
+                SetDynamicMovementAgentProperties(agent, statusEffectComponent, agentDrivenProperties, 1);
             }
+        }
+
+        private void SetDynamicMovementAgentProperties(Agent agent, StatusEffectComponent component, AgentDrivenProperties agentDrivenProperties, float speedMultiplier)
+        {
+            if (agent.IsMount)
+            {
+                SetDynamicMountMovementProperties(component,agentDrivenProperties, speedMultiplier);
+            }
+            else
+            {
+                SetDynamicHumanoidMovementProperties(component,agentDrivenProperties, speedMultiplier);
+            }
+        }
+        private void SetDynamicHumanoidMovementProperties(StatusEffectComponent statusEffectComponent, AgentDrivenProperties properties, float speedMultiplier)
+        {
+            properties.MaxSpeedMultiplier =statusEffectComponent.GetBaseValueForDrivenProperty(DrivenProperty.MaxSpeedMultiplier)*speedMultiplier;
+        }
+
+        private void SetDynamicMountMovementProperties(StatusEffectComponent statusEffectComponent, AgentDrivenProperties properties, float speedMultiplier)
+        {
+            properties.MountSpeed = statusEffectComponent.GetBaseValueForDrivenProperty(DrivenProperty.MountSpeed)*speedMultiplier;
+            properties.MountDashAccelerationMultiplier=statusEffectComponent.GetBaseValueForDrivenProperty(DrivenProperty.MountDashAccelerationMultiplier)*speedMultiplier;
+            properties.MountManeuver = statusEffectComponent.GetBaseValueForDrivenProperty(DrivenProperty.MountManeuver)*speedMultiplier;
         }
     }
 }

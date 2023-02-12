@@ -22,6 +22,7 @@ namespace TOR_Core.Models
 {
     public class TORAgentStatCalculateModel : SandboxAgentStatCalculateModel
     {
+        private int counter;
         private float vampireDaySpeedModificator = 1.1f;
         private float vampireNightSpeedModificator = 1.2f;
         private CustomCrosshairMissionBehavior _crosshairBehavior;
@@ -146,40 +147,73 @@ namespace TOR_Core.Models
 
         private void UpdateAgentDrivenProperties(Agent agent, AgentDrivenProperties agentDrivenProperties)
         {
-            if (!agent.IsHuman) return;
-            AddSkillEffectsForAgent(agent, agentDrivenProperties);
-            AddPerkEffectsForAgent(agent, agentDrivenProperties);
-            var character = agent.Character as CharacterObject;
-            if (character != null && character.IsVampire())
+            if (agent.IsHuman)
             {
-                float modificator = vampireDaySpeedModificator;
-                if (Campaign.Current != null && Campaign.Current.IsNight)
+                AddSkillEffectsForAgent(agent, agentDrivenProperties);
+                AddPerkEffectsForAgent(agent, agentDrivenProperties);
+                var character = agent.Character as CharacterObject;
+                if (character != null && character.IsVampire())
                 {
-                    modificator = vampireNightSpeedModificator;
-                }
-                agentDrivenProperties.TopSpeedReachDuration *= modificator;
-                agentDrivenProperties.MaxSpeedMultiplier *= modificator;
-                agentDrivenProperties.CombatMaxSpeedMultiplier *= modificator;
-            }
-                
-            var statusEffectComponent = agent.GetComponent<StatusEffectComponent>();
-            if (statusEffectComponent == null) return;
-            if (statusEffectComponent.ModifiedDrivenProperties)
-            {
-                agentDrivenProperties.MaxSpeedMultiplier = Mathf.Max(0, statusEffectComponent.value);// t.value;// t.value;
-                
-                if (agent.HasMount)
-                {
-                    agent.MountAgent.AgentDrivenProperties.MountDashAccelerationMultiplier = Mathf.Max(0, statusEffectComponent.value);
-                    agent.MountAgent.AgentDrivenProperties.MountSpeed=Mathf.Max(0, statusEffectComponent.value);
-                    agent.MountAgent.AgentDrivenProperties.MountManeuver=Mathf.Max(0, statusEffectComponent.value);
-                    agent.SetActionChannel(1, ActionIndexCache.Create(""));
+                    float modificator = vampireDaySpeedModificator;
+                    if (Campaign.Current != null && Campaign.Current.IsNight)
+                    {
+                        modificator = vampireNightSpeedModificator;
+                    }
+                    agentDrivenProperties.TopSpeedReachDuration *= modificator;
+                    agentDrivenProperties.MaxSpeedMultiplier *= modificator;
+                    agentDrivenProperties.CombatMaxSpeedMultiplier *= modificator;
                 }
             }
+            
+            UpdateDynamicAgentDrivenProperties(agent, agentDrivenProperties);
+        }
+        
+        private  void UpdateDynamicAgentDrivenProperties(Agent agent, AgentDrivenProperties agentDrivenProperties)
+        {
+            var statusEffectComponent = agent.IsMount ? agent.RiderAgent?.GetComponent<StatusEffectComponent>()  : agent.GetComponent<StatusEffectComponent>();
+            if(statusEffectComponent==null)
+                return;
 
+            
 
+            if(!statusEffectComponent.AreBaseValuesInitialized()||!statusEffectComponent.ModifiedDrivenProperties) return;
+            
+            counter++;
+            TORCommon.Say(counter.ToString());
+            
+            var speedModifier = statusEffectComponent.GetMovementSpeedModifier();
+            if (speedModifier!=0f)
+            {
+                var speedMultiplier =  Mathf.Clamp(speedModifier + 1,0,2);      //to set in the right offset, where -100% would actually result in 0% movement speed
+                SetDynamicMovementAgentProperties(agent, statusEffectComponent, agentDrivenProperties, speedMultiplier);
+            }
+            else
+            {
+                SetDynamicMovementAgentProperties(agent, statusEffectComponent, agentDrivenProperties, 1);
+            }
+        }
 
+        private void SetDynamicMovementAgentProperties(Agent agent, StatusEffectComponent component, AgentDrivenProperties agentDrivenProperties, float speedMultiplier)
+        {
+            if (agent.IsMount)
+            {
+                SetDynamicMountMovementProperties(component,agentDrivenProperties, speedMultiplier);
+            }
+            else
+            {
+                SetDynamicHumanoidMovementProperties(component,agentDrivenProperties, speedMultiplier);
+            }
+        }
+        private void SetDynamicHumanoidMovementProperties(StatusEffectComponent statusEffectComponent, AgentDrivenProperties properties, float speedMultiplier)
+        {
+            properties.MaxSpeedMultiplier =statusEffectComponent.GetBaseValueForDrivenProperty(DrivenProperty.MaxSpeedMultiplier)*speedMultiplier;
+        }
 
+        private void SetDynamicMountMovementProperties(StatusEffectComponent statusEffectComponent, AgentDrivenProperties properties, float speedMultiplier)
+        {
+            properties.MountSpeed = statusEffectComponent.GetBaseValueForDrivenProperty(DrivenProperty.MountSpeed)*speedMultiplier;
+            properties.MountDashAccelerationMultiplier=statusEffectComponent.GetBaseValueForDrivenProperty(DrivenProperty.MountDashAccelerationMultiplier)*speedMultiplier;
+            properties.MountManeuver = statusEffectComponent.GetBaseValueForDrivenProperty(DrivenProperty.MountManeuver)*speedMultiplier;
         }
 
         private void AddSkillEffectsForAgent(Agent agent, AgentDrivenProperties agentDrivenProperties)
