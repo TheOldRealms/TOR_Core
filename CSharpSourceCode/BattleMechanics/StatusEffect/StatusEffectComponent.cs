@@ -22,7 +22,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         private Dictionary<StatusEffect, EffectData> _currentEffects;
         private EffectAggregate _effectAggregate;
         public bool ModifiedDrivenProperties;
-        private float _baseValue;
+        private bool _restoredBaseValues;
 
         private bool _initBaseValues;
         private Dictionary<DrivenProperty, float> _baseValues;
@@ -45,6 +45,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             if (!mountOnly)
             {
                 _baseValues.AddOrReplace(DrivenProperty.MaxSpeedMultiplier, this.Agent.AgentDrivenProperties.MaxSpeedMultiplier);
+                _baseValues.AddOrReplace(DrivenProperty.SwingSpeedMultiplier, this.Agent.AgentDrivenProperties.SwingSpeedMultiplier);
             }
 
             if (!this.Agent.HasMount) return;
@@ -112,33 +113,28 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 {
                     Agent.Heal((int)_effectAggregate.HealthOverTime);
                 }
-
-
+                
                 if(_effectAggregate==null) return;
-                if (_effectAggregate.SpeedProperties == 0f)
+
+                ModifiedDrivenProperties = _effectAggregate.SpeedProperties != 0 || _effectAggregate.AttackSpeedProperties != 0;
+
+                if (!ModifiedDrivenProperties)
                 {
-                    if (!ModifiedDrivenProperties) return;
+                    if (_restoredBaseValues) return;
                     Agent.UpdateAgentProperties();
-                    ModifiedDrivenProperties = false;
                     if (Agent.HasMount)
                     {
                         Agent.MountAgent.UpdateAgentProperties();
                     }
+
+                    _restoredBaseValues = true;
+
                     return;
                 }
-                else
-                {
-                    ModifiedDrivenProperties = true;
 
-                    Agent.UpdateAgentProperties();
-                    if (Agent.HasMount)
-                    {
-                        Agent.MountAgent.UpdateAgentProperties();
-                    }
-                }
+                _restoredBaseValues = false;
+                Agent.UpdateAgentProperties();
                 
-                
-
                 if (Math.Abs(_effectAggregate.SpeedProperties - (-1)) < 0.01)   //if the movement is impaired completely...
                 {
                     if (!Agent.HasMount) return;
@@ -228,6 +224,13 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             if (_effectAggregate == null) _effectAggregate = new EffectAggregate();
             return _effectAggregate.SpeedProperties;
         }
+        
+        public float GetAttackSpeedModifier()
+        {
+            if (_effectAggregate == null) _effectAggregate = new EffectAggregate();
+            return _effectAggregate.AttackSpeedProperties;
+        }
+
 
         public float GetBaseValueForDrivenProperty(DrivenProperty property)
         {
@@ -325,6 +328,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             public float[] AgentStatModifications;
 
             public float SpeedProperties;
+
+            public float AttackSpeedProperties;
           //  public KeyValuePr<float[], float[]> MountSpeedProperties;
 
            // public float MovementSpeedReduction { get; set; } = 0;
@@ -357,13 +362,17 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                         AddDamageAmplification(template.DamageType, template.AttackTypeMask, strength);
                         break;
                     case StatusEffectTemplate.EffectType.Resistance:
-                        AddResistance(template.DamageType, template.AttackTypeMask, strength);
-                        break;
-                    case StatusEffectTemplate.EffectType.MovementManipulation:
+                                AddResistance(template.DamageType, template.AttackTypeMask, strength);
+                                break;
+                            case StatusEffectTemplate.EffectType.MovementManipulation:
                         SpeedProperties += strength;
+                        break;
+                    case StatusEffectTemplate.EffectType.AttackSpeedManipulation:
+                        AttackSpeedProperties+= strength;
                         break;
                     case StatusEffectTemplate.EffectType.TemporaryAttributeOnly:
                         break;
+                    
                 }
             }
 

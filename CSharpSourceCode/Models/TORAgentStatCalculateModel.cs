@@ -185,28 +185,47 @@ namespace TOR_Core.Models
             if (speedModifier!=0f)
             {
                 var speedMultiplier =  Mathf.Clamp(speedModifier + 1,0,2);      //to set in the right offset, where -100% would actually result in 0% movement speed
-                SetDynamicMovementAgentProperties(agent, statusEffectComponent, agentDrivenProperties, speedMultiplier);
+                if (agent.IsMount)
+                {
+                    SetDynamicMountMovementProperties(statusEffectComponent,agentDrivenProperties, speedMultiplier);
+                }
+                else
+                {
+                    SetDynamicHumanoidMovementProperties(statusEffectComponent,agentDrivenProperties, speedMultiplier);
+                }
             }
             else
             {
-                SetDynamicMovementAgentProperties(agent, statusEffectComponent, agentDrivenProperties, 1);
+                if (agent.IsMount)
+                {
+                    SetDynamicMountMovementProperties(statusEffectComponent,agentDrivenProperties, 1);
+                }
+                else
+                {
+                    SetDynamicHumanoidMovementProperties(statusEffectComponent,agentDrivenProperties, 1);
+                }
             }
-        }
 
-        private void SetDynamicMovementAgentProperties(Agent agent, StatusEffectComponent component, AgentDrivenProperties agentDrivenProperties, float speedMultiplier)
+            var weaponSwingSpeedModifier = statusEffectComponent.GetAttackSpeedModifier();
+            if (weaponSwingSpeedModifier != 0)
+            {
+                var swingSpeedMultiplier =  Mathf.Clamp(weaponSwingSpeedModifier + 1,0.05f,2); //I guess its better to set here a minimum, just in case something breaks.
+                if(agent.IsMount) return;
+                SetDynamicCombatProperties(statusEffectComponent, agentDrivenProperties, swingSpeedMultiplier);
+            }
+
+
+        }
+        
+
+        private void SetDynamicCombatProperties(StatusEffectComponent statusEffectComponent, AgentDrivenProperties properties, float speedMultiplier)
         {
-            if (agent.IsMount)
-            {
-                SetDynamicMountMovementProperties(component,agentDrivenProperties, speedMultiplier);
-            }
-            else
-            {
-                SetDynamicHumanoidMovementProperties(component,agentDrivenProperties, speedMultiplier);
-            }
+            properties.SwingSpeedMultiplier = statusEffectComponent.GetBaseValueForDrivenProperty(DrivenProperty.SwingSpeedMultiplier)*speedMultiplier;
         }
         private void SetDynamicHumanoidMovementProperties(StatusEffectComponent statusEffectComponent, AgentDrivenProperties properties, float speedMultiplier)
         {
             properties.MaxSpeedMultiplier =statusEffectComponent.GetBaseValueForDrivenProperty(DrivenProperty.MaxSpeedMultiplier)*speedMultiplier;
+            
         }
 
         private void SetDynamicMountMovementProperties(StatusEffectComponent statusEffectComponent, AgentDrivenProperties properties, float speedMultiplier)

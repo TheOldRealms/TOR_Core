@@ -292,7 +292,7 @@
 				<z>255</z>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>physical_bonus_20</TriggeredEffect>
+		<TriggeredEffect>attackspeed_bonus_20</TriggeredEffect>
 	</AbilityTemplate>
 	<AbilityTemplate StringID="DustStorm" 
       Name="Dust Storm" 
@@ -1241,8 +1241,8 @@
       AbilityType="Spell"
       AbilityEffectType="Hex"
       BaseMovementSpeed="0"
-      TickInterval="-1"
-      TriggerType="TickOnce"
+      TickInterval="2"
+      TriggerType="EveryTick"
       HasLight="false"
       LightIntensity="0"
       LightRadius="0"

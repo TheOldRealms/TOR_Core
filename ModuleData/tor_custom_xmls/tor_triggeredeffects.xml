@@ -521,6 +521,19 @@
             ImbuedStatusEffectDuration="6" 
             DamageVariance="0" 
             ScriptNameToTrigger="none">
-		
+		<TriggeredEffectTemplate StringID="attackspeed_bonus_20" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="4" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="15" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>attackspeed_bonus_20</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
 
 </TriggeredEffectTemplates>
