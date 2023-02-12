@@ -1,7 +1,6 @@
 using Helpers;
 using System.Collections.Generic;
 using System.Linq;
-using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.GameMenus;
@@ -246,8 +245,6 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             var engineerItems = MBObjectManager.Instance.GetObjectTypeList<ItemObject>().Where(x => x.IsTorItem() && (x.StringId.Contains("gun") || x.StringId.Contains("artillery")));
             var ammo = MBObjectManager.Instance.GetObject<ItemObject>("tor_neutral_weapon_ammo_musket_ball");
             var grenades = MBObjectManager.Instance.GetObject<ItemObject>("tor_empire_weapon_ammo_grenade");
-            engineerItems.AddItem(ammo);
-            engineerItems.AddItem(grenades);
             List<ItemRosterElement> list = new List<ItemRosterElement>();
             foreach (var item in engineerItems)
             {
