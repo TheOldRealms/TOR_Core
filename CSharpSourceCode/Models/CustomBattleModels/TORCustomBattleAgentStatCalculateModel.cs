@@ -43,11 +43,25 @@ namespace TOR_Core.Models.CustomBattleModels
             if (speedModifier!=0f)
             {
                 var speedMultiplier =  Mathf.Clamp(speedModifier + 1,0,2);      //to set in the right offset, where -100% would actually result in 0% movement speed
-                agentDrivenProperties.SetDynamicHumanoidMovementProperties(statusEffectComponent,speedMultiplier);
+                if (agent.IsMount)
+                {
+                    agentDrivenProperties.SetDynamicMountMovementProperties(statusEffectComponent,speedMultiplier);
+                }
+                else
+                {
+                    agentDrivenProperties.SetDynamicHumanoidMovementProperties(statusEffectComponent,speedMultiplier);
+                }
             }
             else
             {
-                agentDrivenProperties.SetDynamicMountMovementProperties(statusEffectComponent,1);
+                if (agent.IsMount)
+                {
+                    agentDrivenProperties.SetDynamicMountMovementProperties(statusEffectComponent,1);
+                }
+                else
+                {
+                    agentDrivenProperties.SetDynamicHumanoidMovementProperties(statusEffectComponent,1);
+                }
             }
             
             var weaponSwingSpeedModifier = statusEffectComponent.GetAttackSpeedModifier();

@@ -496,31 +496,31 @@
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>righteous_fury_pulsevisual</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
-	  <TriggeredEffectTemplate StringID="movement_impairment" 
+	  <TriggeredEffectTemplate StringID="apply_fury_sword_trait" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
             DamageType="Invalid" 
             DamageAmount="0" 
-            Radius="20" 
+            Radius="3" 
             HasShockWave="false" 
             TargetType="Enemy" 
-            ImbuedStatusEffectDuration="15" 
             DamageVariance="0" 
+			ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyFlamingItemTraitScript"/>
+		<TriggeredEffectTemplate StringID="movement_impairment" 
+			BurstParticleEffectPrefab="none" 
+			SoundEffectId="none" 
+			SoundEffectLength="0" 
+			DamageType="Invalid" 
+			DamageAmount="0" 
+			Radius="20" 
+			HasShockWave="false" 
+			TargetType="Enemy" 
+			ImbuedStatusEffectDuration="15" 
+			DamageVariance="0" 
 			ScriptNameToTrigger="none" >
 			<ImbuedStatusEffect>movement_impairment</ImbuedStatusEffect>
-			</TriggeredEffectTemplate>
-            BurstParticleEffectPrefab="none" 
-            SoundEffectId="none" 
-            SoundEffectLength="0" 
-            DamageType="Invalid" 
-            DamageAmount="0" 
-            Radius="15" 
-            HasShockWave="false" 
-            TargetType="Friendly" 
-            ImbuedStatusEffectDuration="6" 
-            DamageVariance="0" 
-            ScriptNameToTrigger="none">
+		</TriggeredEffectTemplate>
 		<TriggeredEffectTemplate StringID="attackspeed_bonus_20" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 

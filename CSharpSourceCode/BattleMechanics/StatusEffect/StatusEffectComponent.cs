@@ -132,6 +132,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 _restoredBaseValues = false;
                 Agent.UpdateAgentProperties();
                 
+                if (Agent.HasMount)
+                {
+                    Agent.MountAgent.UpdateAgentProperties();
+                }
+                
                 if (Math.Abs(_effectAggregate.SpeedProperties - (-1)) < 0.01)   //if the movement is impaired completely...
                 {
                     if (!Agent.HasMount) return;
@@ -147,7 +152,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         private void CalculateEffectAggregate()
         {
             _effectAggregate = new EffectAggregate();
-            
             foreach (var item in _currentEffects)
             {
                 _effectAggregate.AddEffect(item);

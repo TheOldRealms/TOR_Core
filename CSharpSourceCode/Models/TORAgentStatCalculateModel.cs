@@ -1,6 +1,5 @@
 using Helpers;
 using SandBox.GameComponents;
-using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
@@ -15,13 +14,11 @@ using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
     public class TORAgentStatCalculateModel : SandboxAgentStatCalculateModel
     {
-        private int counter;
         private float vampireDaySpeedModificator = 1.1f;
         private float vampireNightSpeedModificator = 1.2f;
         private CustomCrosshairMissionBehavior _crosshairBehavior;
