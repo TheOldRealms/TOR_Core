@@ -22,7 +22,6 @@ namespace TOR_Core.Models
         private float vampireDaySpeedModificator = 1.1f;
         private float vampireNightSpeedModificator = 1.2f;
         private CustomCrosshairMissionBehavior _crosshairBehavior;
-        
 
 
         public override void InitializeAgentStats(Agent agent, Equipment spawnEquipment, AgentDrivenProperties agentDrivenProperties, AgentBuildData agentBuildData)
@@ -43,7 +42,7 @@ namespace TOR_Core.Models
             ExplainedNumber accuracy = new ExplainedNumber(result, false, null);
             var character = agent.Character as CharacterObject;
             var captain = agent.GetPartyLeaderCharacter();
-            if(character != null)
+            if (character != null)
             {
                 if (weapon.IsRangedWeapon && weapon.RelevantSkill == TORSkills.GunPowder)
                 {
@@ -52,13 +51,14 @@ namespace TOR_Core.Models
                     {
                         PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.MountedHeritage, character, true, ref accuracy);
                     }
-                    if(weapon.WeaponClass == WeaponClass.Musket)
+
+                    if (weapon.WeaponClass == WeaponClass.Musket)
                     {
                         PerkHelper.AddPerkBonusFromCaptain(TORPerks.GunPowder.DeadEye, captain, ref accuracy);
                     }
-
                 }
             }
+
             return accuracy.ResultNumber;
         }
 
@@ -87,8 +87,9 @@ namespace TOR_Core.Models
                                 {
                                     PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.AmmoWagons, mobileParty, true, ref ammoCount);
                                 }
+
                                 var result = MathF.Round(ammoCount.ResultNumber);
-                                if(result != missionWeapon.Amount)
+                                if (result != missionWeapon.Amount)
                                 {
                                     equipment.SetAmountOfSlot(equipmentIndex, (short)result, true);
                                 }
@@ -115,10 +116,12 @@ namespace TOR_Core.Models
                     {
                         PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.RunAndGun, mobileParty, false, ref resultNumber);
                     }
+
                     if (skill == DefaultSkills.OneHanded && agentCharacter.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
                     {
                         PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.CloseQuarters, mobileParty, false, ref resultNumber);
                     }
+
                     if (skill == DefaultSkills.Riding && agentCharacter.IsMounted && agentCharacter.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
                     {
                         PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.MountedHeritage, mobileParty, false, ref resultNumber);
@@ -155,63 +158,60 @@ namespace TOR_Core.Models
                     {
                         modificator = vampireNightSpeedModificator;
                     }
+                    
                     agentDrivenProperties.TopSpeedReachDuration *= modificator;
                     agentDrivenProperties.MaxSpeedMultiplier *= modificator;
                     agentDrivenProperties.CombatMaxSpeedMultiplier *= modificator;
                 }
             }
-            
+
             UpdateDynamicAgentDrivenProperties(agent, agentDrivenProperties);
         }
-        
-        private  void UpdateDynamicAgentDrivenProperties(Agent agent, AgentDrivenProperties agentDrivenProperties)
+
+        private void UpdateDynamicAgentDrivenProperties(Agent agent, AgentDrivenProperties agentDrivenProperties)
         {
-            var statusEffectComponent = agent.IsMount ? agent.RiderAgent?.GetComponent<StatusEffectComponent>()  : agent.GetComponent<StatusEffectComponent>();
-            if(statusEffectComponent==null)
+            var statusEffectComponent = agent.IsMount ? agent.RiderAgent?.GetComponent<StatusEffectComponent>() : agent.GetComponent<StatusEffectComponent>();
+            if (statusEffectComponent == null)
                 return;
-
             
-
-            if(!statusEffectComponent.AreBaseValuesInitialized()||!statusEffectComponent.ModifiedDrivenProperties) return;
+            if (!statusEffectComponent.AreBaseValuesInitialized() || !statusEffectComponent.ModifiedDrivenProperties) return;
             var speedModifier = statusEffectComponent.GetMovementSpeedModifier();
-            if (speedModifier!=0f)
+            if (speedModifier != 0f)
             {
-                var speedMultiplier =  Mathf.Clamp(speedModifier + 1,0,2);      //to set in the right offset, where -100% would actually result in 0% movement speed
+                var speedMultiplier = Mathf.Clamp(speedModifier + 1, 0, 2); //to set in the right offset, where -100% would actually result in 0% movement speed
                 if (agent.IsMount)
                 {
-                    agentDrivenProperties.SetDynamicMountMovementProperties(statusEffectComponent,speedMultiplier);
+                    agentDrivenProperties.SetDynamicMountMovementProperties(statusEffectComponent, speedMultiplier);
                 }
                 else
                 {
-                    agentDrivenProperties.SetDynamicHumanoidMovementProperties(statusEffectComponent,speedMultiplier);
+                    agentDrivenProperties.SetDynamicHumanoidMovementProperties(statusEffectComponent, speedMultiplier);
                 }
             }
             else
             {
                 if (agent.IsMount)
                 {
-                    agentDrivenProperties.SetDynamicMountMovementProperties(statusEffectComponent,1);
+                    agentDrivenProperties.SetDynamicMountMovementProperties(statusEffectComponent, 1);
                 }
                 else
                 {
-                    agentDrivenProperties.SetDynamicHumanoidMovementProperties(statusEffectComponent,1);
+                    agentDrivenProperties.SetDynamicHumanoidMovementProperties(statusEffectComponent, 1);
                 }
             }
 
             var weaponSwingSpeedModifier = statusEffectComponent.GetAttackSpeedModifier();
             if (weaponSwingSpeedModifier != 0)
             {
-                var swingSpeedMultiplier =  Mathf.Clamp(weaponSwingSpeedModifier + 1,0.05f,2); //I guess its better to set here a minimum, just in case something breaks.
-                if(agent.IsMount) return;
-                
-                agentDrivenProperties.SetDynamicCombatProperties(statusEffectComponent,swingSpeedMultiplier);
+                var swingSpeedMultiplier = Mathf.Clamp(weaponSwingSpeedModifier + 1, 0.05f, 2); //I guess its better to set here a minimum, just in case something breaks.
+                if (agent.IsMount) return;
+
+                agentDrivenProperties.SetDynamicCombatProperties(statusEffectComponent, swingSpeedMultiplier);
             }
             else
             {
-                agentDrivenProperties.SetDynamicCombatProperties(statusEffectComponent,1);  //I have the feeling this call is not necessary given the many updates that are done per frame.
+                agentDrivenProperties.SetDynamicCombatProperties(statusEffectComponent, 1); //I have the feeling this call is not necessary given the many updates that are done per frame.
             }
-
-
         }
 
         private void AddSkillEffectsForAgent(Agent agent, AgentDrivenProperties agentDrivenProperties)
@@ -224,10 +224,11 @@ namespace TOR_Core.Models
             {
                 int effectiveSkill = GetEffectiveSkill(character, agent.Origin, agent.Formation, weapon.RelevantSkill);
                 ExplainedNumber reloadSpeed = new ExplainedNumber(agentDrivenProperties.ReloadSpeed);
-                if(weapon.RelevantSkill == TORSkills.GunPowder)
+                if (weapon.RelevantSkill == TORSkills.GunPowder)
                 {
                     SkillHelper.AddSkillBonusForCharacter(TORSkills.GunPowder, TORSkillEffects.GunReloadSpeed, character, ref reloadSpeed, effectiveSkill, true, 0);
                 }
+
                 agentDrivenProperties.ReloadSpeed = reloadSpeed.ResultNumber;
             }
         }
@@ -246,6 +247,7 @@ namespace TOR_Core.Models
                     PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.RunAndGun, character, true, ref movementAccuracyPenalty);
                 }
             }
+
             agentDrivenProperties.WeaponMaxMovementAccuracyPenalty = movementAccuracyPenalty.ResultNumber;
         }
 
@@ -260,6 +262,7 @@ namespace TOR_Core.Models
             {
                 return 3;
             }
+
             return base.GetMaxCameraZoom(agent);
         }
 
@@ -275,21 +278,23 @@ namespace TOR_Core.Models
 
             var wieldedItem = agent.WieldedWeapon.Item;
 
-            if(agentCharacter != null)
+            if (agentCharacter != null)
             {
-                if(mask == PropertyMask.Attack || mask == PropertyMask.All)
+                if (mask == PropertyMask.Attack || mask == PropertyMask.All)
                 {
                     if (agentCharacter.GetPerkValue(TORPerks.SpellCraft.Exchange))
                     {
                         damagebonuses[(int)DamageType.Magical] += proportions[(int)DamageType.Physical];
                     }
+
                     if (agentCaptain != null && agentCaptain.GetPerkValue(TORPerks.SpellCraft.ArcaneLink))
                     {
                         damagebonuses[(int)DamageType.Magical] += (TORPerks.SpellCraft.ArcaneLink.SecondaryBonus / 100f);
                     }
-                    if(wieldedItem != null && wieldedItem.HasWeaponComponent && wieldedItem.IsSpecialAmmunitionItem() && attackMask.HasAnyFlag(AttackTypeMask.Ranged))
+
+                    if (wieldedItem != null && wieldedItem.HasWeaponComponent && wieldedItem.IsSpecialAmmunitionItem() && attackMask.HasAnyFlag(AttackTypeMask.Ranged))
                     {
-                        if(agentCaptain != null && agentCaptain.GetPerkValue(TORPerks.GunPowder.PackItIn))
+                        if (agentCaptain != null && agentCaptain.GetPerkValue(TORPerks.GunPowder.PackItIn))
                         {
                             proportions[(int)DamageType.Fire] = proportions[(int)DamageType.Physical];
                             proportions[(int)DamageType.Physical] = 0;

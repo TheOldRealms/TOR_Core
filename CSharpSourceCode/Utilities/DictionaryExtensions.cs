@@ -4,7 +4,7 @@ namespace TOR_Core.Utilities
 {
     public static class DictionaryExtensions
     {
-        public static void AddOrReplace<TKey, TValue>(this Dictionary<TKey, TValue> dict, 
+        public static void AddOrReplace<TKey, TValue>(this Dictionary<TKey, TValue> dict,
             TKey key, TValue value)
         {
             if (dict.ContainsKey(key))
@@ -13,9 +13,8 @@ namespace TOR_Core.Utilities
             }
             else
             {
-                dict.Add(key,value);
+                dict.Add(key, value);
             }
-           
         }
     }
 }
