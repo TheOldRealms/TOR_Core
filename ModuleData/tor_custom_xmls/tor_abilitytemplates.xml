@@ -292,7 +292,7 @@
 				<z>255</z>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>attackspeed_bonus_20</TriggeredEffect>
+		<TriggeredEffect>physical_bonus_20</TriggeredEffect>
 	</AbilityTemplate>
 	<AbilityTemplate StringID="DustStorm" 
       Name="Dust Storm" 
