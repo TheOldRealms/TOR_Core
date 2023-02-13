@@ -7,7 +7,6 @@ using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.Utilities;
 using TaleWorlds.Library;
 using TaleWorlds.Core;
-using TaleWorlds.CampaignSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using System;
 
@@ -20,18 +19,37 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         private float _deltaSinceLastTick = MBRandom.RandomFloatRanged(0, 0.1f);
         private Dictionary<StatusEffect, EffectData> _currentEffects;
         private EffectAggregate _effectAggregate;
+        public bool ModifiedDrivenProperties;
+        private bool _restoredBaseValues;
+        private bool _initBaseValues;
+        private Dictionary<DrivenProperty, float> _baseValues;
 
         public StatusEffectComponent(Agent agent) : base(agent)
         {
             _currentEffects = new Dictionary<StatusEffect, EffectData>();
             _effectAggregate = new EffectAggregate();
             _dummyEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
+            _baseValues = new Dictionary<DrivenProperty, float>();
+        }
+
+        public void SynchronizeBaseValues(bool mountOnly = false)
+        {
+            if (Agent.AgentDrivenProperties == null) return;
+            if (!mountOnly)
+            {
+                _baseValues.AddOrReplace(DrivenProperty.MaxSpeedMultiplier, this.Agent.AgentDrivenProperties.MaxSpeedMultiplier);
+                _baseValues.AddOrReplace(DrivenProperty.SwingSpeedMultiplier, this.Agent.AgentDrivenProperties.SwingSpeedMultiplier);
+            }
+
+            if (!this.Agent.HasMount) return;
+            _baseValues.AddOrReplace(DrivenProperty.MountManeuver, Agent.MountAgent.AgentDrivenProperties.MountManeuver);
+            _baseValues.AddOrReplace(DrivenProperty.MountSpeed, this.Agent.MountAgent.AgentDrivenProperties.MountSpeed);
+            _baseValues.AddOrReplace(DrivenProperty.MountDashAccelerationMultiplier, this.Agent.MountAgent.AgentDrivenProperties.MountDashAccelerationMultiplier);
         }
 
         public void RunStatusEffect(string effectId, Agent applierAgent, float duration, bool append, bool isMutated)
         {
-            if (Agent == null)
-                return;
+            if (Agent == null) return;
 
             StatusEffect effect = _currentEffects.Keys.Where(e => e.Template.StringID.Equals(effectId)).FirstOrDefault();
             if (effect != null)
@@ -44,17 +62,29 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 if (applierAgent.IsHero)
                 {
                     var career = applierAgent.GetHero().GetCareer();
-                    if(career != null) career.MutateStatusEffect(effect.Template, applierAgent);
+                    if (career != null) career.MutateStatusEffect(effect.Template, applierAgent);
                 }
+
                 effect.CurrentDuration = duration;
                 AddEffect(effect);
             }
+        }
+
+        public bool AreBaseValuesInitialized()
+        {
+            return _initBaseValues;
         }
 
         public override void OnAgentRemoved() => CleanUp();
 
         public void OnElapsed(float dt)
         {
+            if (!_initBaseValues)
+            {
+                SynchronizeBaseValues();
+                _initBaseValues = true;
+            }
+
             foreach (var item in _currentEffects.ToList())
             {
                 StatusEffect effect = item.Key;
@@ -64,11 +94,10 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     RemoveEffect(effect);
                 }
             }
+
             CalculateEffectAggregate();
             StatusEffect dotEffect = _currentEffects.Keys.Where(x => x.Template.Type == StatusEffectTemplate.EffectType.DamageOverTime).FirstOrDefault();
 
-            //Temporary method for applying effects from the aggregate. This needs to go to a damage manager/calculator which will use the 
-            //aggregated information to determine how much damage to apply to the agent
             if (Agent.IsActive() && Agent != null && !Agent.IsFadingOut())
             {
                 if (_effectAggregate.DamageOverTime > 0)
@@ -78,6 +107,38 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 else if (_effectAggregate.HealthOverTime > 0)
                 {
                     Agent.Heal((int)_effectAggregate.HealthOverTime);
+                }
+
+                if (_effectAggregate == null) return;
+
+                ModifiedDrivenProperties = _effectAggregate.SpeedProperties != 0 || _effectAggregate.AttackSpeedProperties != 0;
+
+                if (!ModifiedDrivenProperties)
+                {
+                    if (_restoredBaseValues) return;
+                    Agent.UpdateAgentProperties();
+                    if (Agent.HasMount)
+                    {
+                        Agent.MountAgent.UpdateAgentProperties();
+                    }
+
+                    _restoredBaseValues = true;
+
+                    return;
+                }
+
+                _restoredBaseValues = false;
+                Agent.UpdateAgentProperties();
+
+                if (Agent.HasMount)
+                {
+                    Agent.MountAgent.UpdateAgentProperties();
+                }
+
+                if (Math.Abs(_effectAggregate.SpeedProperties - (-1)) < 0.01) //if the movement is impaired completely...
+                {
+                    if (!Agent.HasMount) return;
+                    Agent.MountAgent.SetActionChannel(0, ActionIndexCache.Create("act_horse_stand_1"));
                 }
             }
         }
@@ -99,6 +160,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 _deltaSinceLastTick = MBRandom.RandomFloatRanged(0, 0.1f);
                 OnElapsed(dt);
             }
+
             UpdateDummyEntity(dt);
         }
 
@@ -113,7 +175,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
             if (data.IsParticleAttachedToAgentSkeleton)
             {
-                foreach(var entity in data.Entities)
+                foreach (var entity in data.Entities)
                 {
                     entity.RemoveAllParticleSystems();
                 }
@@ -122,8 +184,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             {
                 _dummyEntity.RemoveAllParticleSystems();
             }
+
             _currentEffects.Remove(effect);
-            foreach(var currEffect in _currentEffects.Keys)
+            foreach (var currEffect in _currentEffects.Keys)
             {
                 if (!_currentEffects[currEffect].IsParticleAttachedToAgentSkeleton)
                 {
@@ -146,16 +209,45 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             return _effectAggregate.Resistances[mask];
         }
 
+        public float GetMovementSpeedModifier()
+        {
+            if (_effectAggregate == null) _effectAggregate = new EffectAggregate();
+            return _effectAggregate.SpeedProperties;
+        }
+
+        public float GetAttackSpeedModifier()
+        {
+            if (_effectAggregate == null) _effectAggregate = new EffectAggregate();
+            return _effectAggregate.AttackSpeedProperties;
+        }
+
+        public float GetBaseValueForDrivenProperty(DrivenProperty property)
+        {
+            if (_baseValues == null)
+            {
+                _baseValues = new Dictionary<DrivenProperty, float>();
+                SynchronizeBaseValues();
+            }
+
+            if (!_baseValues.ContainsKey(property))
+            {
+                throw new ArgumentException("The property was not defined in the status effect system", property.ToString());
+            }
+
+            return _baseValues[property];
+        }
+
         public List<string> GetTemporaryAttributes()
         {
             List<string> list = new List<string>();
-            foreach(var effect in _currentEffects.Keys)
+            foreach (var effect in _currentEffects.Keys)
             {
-                foreach(var attribute in effect.Template.TemporaryAttributes)
+                foreach (var attribute in effect.Template.TemporaryAttributes)
                 {
                     if (!list.Contains(attribute)) list.Add(attribute);
                 }
             }
+
             return list;
         }
 
@@ -175,6 +267,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 List<ParticleSystem> particles = TORParticleSystem.ApplyParticleToAgent(Agent, effect.Template.ParticleId, out entities, effect.Template.ParticleIntensity, effect.Template.ApplyToRootBoneOnly);
                 data = new EffectData(effect, particles, entities);
             }
+
             _currentEffects.Add(effect, data);
         }
 
@@ -184,6 +277,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             {
                 RemoveEffect(item.Key);
             }
+
             _currentEffects.Clear();
             _effectAggregate = null;
             _dummyEntity?.FadeOut(0.1f, true);
@@ -216,6 +310,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             public float DamageOverTime { get; set; } = 0;
             public Dictionary<AttackTypeMask, float[]> DamageAmplifications { get; }
             public Dictionary<AttackTypeMask, float[]> Resistances { get; }
+            public float SpeedProperties;
+            public float AttackSpeedProperties;
 
             public EffectAggregate()
             {
@@ -232,7 +328,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             {
                 var template = effect.Key.Template;
                 var strength = template.BaseEffectValue;
-                
+
                 switch (template.Type)
                 {
                     case StatusEffectTemplate.EffectType.DamageOverTime:
@@ -241,11 +337,19 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     case StatusEffectTemplate.EffectType.HealthOverTime:
                         HealthOverTime += strength;
                         break;
-                    case StatusEffectTemplate.EffectType.DamageAmplification :
+                    case StatusEffectTemplate.EffectType.DamageAmplification:
                         AddDamageAmplification(template.DamageType, template.AttackTypeMask, strength);
                         break;
                     case StatusEffectTemplate.EffectType.Resistance:
                         AddResistance(template.DamageType, template.AttackTypeMask, strength);
+                        break;
+                    case StatusEffectTemplate.EffectType.MovementManipulation:
+                        SpeedProperties += strength;
+                        break;
+                    case StatusEffectTemplate.EffectType.AttackSpeedManipulation:
+                        AttackSpeedProperties += strength;
+                        break;
+                    case StatusEffectTemplate.EffectType.TemporaryAttributeOnly:
                         break;
                 }
             }
@@ -256,10 +360,12 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 {
                     Resistances[AttackTypeMask.Ranged][(int)damageType] += value;
                 }
+
                 if (attackMask.HasAnyFlag(AttackTypeMask.Spell))
                 {
                     Resistances[AttackTypeMask.Spell][(int)damageType] += value;
                 }
+
                 if (attackMask.HasAnyFlag(AttackTypeMask.Melee))
                 {
                     Resistances[AttackTypeMask.Melee][(int)damageType] += value;
@@ -272,10 +378,12 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 {
                     DamageAmplifications[AttackTypeMask.Ranged][(int)damageType] += value;
                 }
+
                 if (attackMask.HasAnyFlag(AttackTypeMask.Spell))
                 {
                     DamageAmplifications[AttackTypeMask.Spell][(int)damageType] += value;
                 }
+
                 if (attackMask.HasAnyFlag(AttackTypeMask.Melee))
                 {
                     DamageAmplifications[AttackTypeMask.Melee][(int)damageType] += value;

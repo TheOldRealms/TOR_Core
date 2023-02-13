@@ -37,6 +37,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             DamageOverTime,
             DamageAmplification,
             Resistance,
+            MovementManipulation,
+            AttackSpeedManipulation,
             TemporaryAttributeOnly,
             Invalid
         };
