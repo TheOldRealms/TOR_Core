@@ -128,5 +128,12 @@
 		base_effect_value="0.7"
 		damage_type="Fire"
 		type="Resistance"/>
-		
+	<StatusEffectTemplate 
+		id="physical_range_resistance_40" 
+		particle_id="undead_crumbling"
+		particle_intensity="Low"
+		base_effect_value="0.4"
+		damage_type="Physical"
+		applies_for_attack_type="Ranged"
+		type="Resistance"/>
 </StatusEffects>
