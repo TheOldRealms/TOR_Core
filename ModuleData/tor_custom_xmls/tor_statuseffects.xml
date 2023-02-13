@@ -102,9 +102,6 @@
 		type="AttackSpeedManipulation"
 		damage_type="Physical">
   	</StatusEffectTemplate>
-	
-	
-	
 	<StatusEffectTemplate 
 		id="righteousfury_regeneration" 
 		particle_id="healing_regeneration"
@@ -117,4 +114,19 @@
 		particle_id="righteousfury_pulse"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"/>
+	<StatusEffectTemplate 
+		id="fire_cloak_phy_res" 
+		particle_id="undead_crumbling"
+		particle_intensity="High"
+		base_effect_value="0.3"
+		damage_type="Physical"
+		type="Resistance"/>
+	<StatusEffectTemplate 
+		id="fire_cloak_fire_res" 
+		particle_id="undead_crumbling"
+		particle_intensity="Low"
+		base_effect_value="0.7"
+		damage_type="Fire"
+		type="Resistance"/>
+		
 </StatusEffects>

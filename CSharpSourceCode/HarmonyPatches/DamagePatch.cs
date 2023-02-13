@@ -104,7 +104,7 @@ namespace TOR_Core.HarmonyPatches
             {
                 if (attacker == Agent.Main || victim == Agent.Main)
                 {
-                    TORDamageDisplay.DisplayDamageResult(resultDamage, damageCategories);
+                    TORDamageDisplay.DisplayDamageResult(resultDamage, damageCategories, damagePercentages);
                     if(attacker == Agent.Main)
                     {
                         double damageIncrease = 0f;

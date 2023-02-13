@@ -504,6 +504,49 @@
 		</LightColorRGB>
 		<TriggeredEffect>sear_burst</TriggeredEffect>
 	</AbilityTemplate>
+	<AbilityTemplate StringID="CascadingFireCloak" 
+      Name="Cascading Fire-Cloak" 
+      SpriteName="sear_icon" 
+      CoolDown="30" 
+      WindsOfMagicCost="4" 
+      BaseMisCastChance="0.05" 
+      Duration="4" 
+      Radius="1" 
+      AbilityType="Spell" 
+      AbilityEffectType="Augment" 
+      BaseMovementSpeed="0" 
+      TickInterval="-1" 
+      TriggerType="TickOnce" 
+      HasLight="false" 
+      LightIntensity="20" 
+      LightRadius="10" 
+      LightFlickeringMagnitude="0" 
+      LightFlickeringInterval="0" 
+      ShadowCastEnabled="false" 
+      ParticleEffectPrefab="sear" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="sear" 
+      ShouldSoundLoopOverDuration="true"
+      CastType="Instant" 
+      CastTime="0" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0"
+      AbilityTargetType="Self"
+      CrosshairType="Self"
+      MinDistance="1"
+      MaxDistance="20"
+      TargetCapturingRadius="1"
+      SpellTier="2"
+      BelongsToLoreID="LoreOfFire"
+      TooltipDescription="[TODO]">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>apply_fire_cloak_augment</TriggeredEffect>
+	</AbilityTemplate>
 	<AbilityTemplate StringID="FlamingSwords"
       Name="Flaming Sword of Rhuin"
       SpriteName="swordsofrhuin_icon"
