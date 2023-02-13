@@ -129,8 +129,8 @@
 		damage_type="Fire"
 		type="Resistance"/>
 	<StatusEffectTemplate 
-		id="physical_range_resistance_40" 
-		particle_id="undead_crumbling"
+		id="physical_ranged_resistance_40" 
+		particle_id="psys_energy_sphere"
 		particle_intensity="Low"
 		base_effect_value="0.4"
 		damage_type="Physical"

@@ -552,11 +552,11 @@
             ImbuedStatusEffectDuration="15" 
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
-            <ImbuedStatusEffect>fire_cloak_p_res</ImbuedStatusEffect>
+            <ImbuedStatusEffect>fire_cloak_phy_res</ImbuedStatusEffect>
 			<ImbuedStatusEffect>fire_cloak_fire_res</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
       
-	  <TriggeredEffectTemplate StringID="physical_range_resistance_40" 
+	  <TriggeredEffectTemplate StringID="physical_ranged_resistance_40" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
@@ -568,6 +568,6 @@
             ImbuedStatusEffectDuration="10" 
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
-            <ImbuedStatusEffect>physical_range_resistance_40</ImbuedStatusEffect>
+            <ImbuedStatusEffect>physical_ranged_resistance_40</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 </TriggeredEffectTemplates>
