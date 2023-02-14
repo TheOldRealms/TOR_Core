@@ -397,4 +397,11 @@
   <string id="backstory_d.tor_wanderer_vampire_2" text="{=!}Mmm." />
   <string id="generic_backstory.tor_wanderer_vampire_2" text="{=!}I am a Wight King, servant in death." />
 
+  <!-- Career related -->
+  <string id="career_choicegroup1_name.WarriorPriest" text="{=!}Cultist of Sigmar" />
+  <string id="career_choicegroup2_name.WarriorPriest" text="{=!}Warrior Priest" />
+  <string id="career_choicegroup3_name.WarriorPriest" text="{=!}Arch Lector" />
+
+  <string id="career_description.WarriorPriest" text="{=!}A Warrior Priest of Sigmar is a priest of the Cult of Sigmar who is a member of a warrior-sect whose duty is to both lead and inspire Imperial troops on the field of battle and also to minister to their spiritual needs when facing the Empire's foes." />
+  <string id="careerchoice_description.WarriorPriestRoot" text="{=!}The Warrior Priest is unleashing the wrath of Sigmar which will make his and surrounding allies melee attacks stronger (20%) for 8 seconds. \n Troops with the effect can’t be staggered. \n For every points in Faith, the melee effect becomes 0.05% stronger and 0.05 seconds longer. \n Cooldown: take 50 points of damage." />
 </strings>

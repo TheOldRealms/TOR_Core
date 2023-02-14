@@ -30,6 +30,11 @@
             <Style Name="Default" FontColor="#FFFFFFFF" TextBlur="1" TextOutlineAmount="1" TextGlowRadius="0" FontSize="20" />
         </Styles>
     </Brush>
+    <Brush Name="TorCareerScreenBrush" Font="CasablancaAntique" TextHorizontalAlignment="Left">
+        <Styles>
+            <Style Name="Default" FontColor="#FFFFFFFF" TextBlur="1" TextOutlineAmount="1" TextGlowRadius="0" FontSize="20" />
+        </Styles>
+    </Brush>
     <Brush Name="TorInventoryMagicItemBrush" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Center">
         <Styles>
             <Style Name="Default" FontColor="#0095A4FF" TextBlur="0" TextOutlineAmount="0" TextGlowRadius="0" FontSize="16" />

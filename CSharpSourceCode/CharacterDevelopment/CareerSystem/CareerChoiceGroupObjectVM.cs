@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
@@ -12,13 +13,45 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         private CareerChoiceGroupObject _choiceGroup;
         private MBBindingList<CareerChoiceObjectVM> _choices;
         private string _groupName;
+        private bool _isActive;
+        private Action _choiceChangedAction;
 
-        public CareerChoiceGroupObjectVM(CareerChoiceGroupObject choiceGroup)
+        public CareerChoiceGroupObjectVM(CareerChoiceGroupObject choiceGroup, Action choiceChangedAction)
         {
             _choiceGroup = choiceGroup;
             _groupName = _choiceGroup.Name.ToString();
+            _choiceChangedAction = choiceChangedAction;
+            _isActive = _choiceGroup.IsActiveForHero(Hero.MainHero);
             _choices = new MBBindingList<CareerChoiceObjectVM>();
             choiceGroup.Choices.ForEach(x => _choices.Add(new CareerChoiceObjectVM(x)));
+        }
+
+        private void ExecuteClickIncrease()
+        {
+            for(int i = 0; i < _choices.Count; i++)
+            {
+                if (!_choices[i].IsTaken)
+                {
+                    _choices[i].SelectChoice();
+                    break;
+                }
+                else continue;
+            }
+            if (_choiceChangedAction != null) _choiceChangedAction();
+        }
+
+        private void ExecuteClickDecrease()
+        {
+            for (int i = _choices.Count - 1; i >= 0; i--)
+            {
+                if (_choices[i].IsTaken)
+                {
+                    _choices[i].DeSelectChoice();
+                    break;
+                }
+                else continue;
+            }
+            if (_choiceChangedAction != null) _choiceChangedAction();
         }
 
         [DataSourceProperty]
@@ -34,6 +67,23 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 {
                     _groupName = value;
                     OnPropertyChangedWithValue(value, "GroupName");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public bool IsActive
+        {
+            get
+            {
+                return _isActive;
+            }
+            set
+            {
+                if (value != _isActive)
+                {
+                    _isActive = value;
+                    OnPropertyChangedWithValue(value, "IsActive");
                 }
             }
         }

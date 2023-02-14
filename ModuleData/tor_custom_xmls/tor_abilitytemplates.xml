@@ -2077,7 +2077,6 @@
 			</AsVec2>
 		</LightColorRGB>
 		<TriggeredEffect>apply_righteous_fury</TriggeredEffect>
-      <TriggeredEffect>apply_righteous_fury_pulse</TriggeredEffect>
 	</AbilityTemplate>
 	<!-- Battle Prayers -->
 	<AbilityTemplate StringID="HealingAOE" 

@@ -108,6 +108,22 @@ namespace TOR_Core.Utilities
             return "Player is spell caster now. \n";
         }
 
+        [CommandLineFunctionality.CommandLineArgumentFunction("add_career", "tor")]
+        public static string AddCareerToPlayer(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+
+            var careerId = arguments[0];
+            var career = TORCareers.All.FirstOrDefault(x => x.StringId == careerId);
+            if(career != null)
+            {
+                Hero.MainHero.AddCareer(career);
+                return string.Format("Player now has {0} career. \n", career.StringId); 
+            }
+            else return "No career with the given argument found. \n";
+        }
+
         private static string AggregateOutput(string topicHeader, List<string> matchedSpells) =>
             matchedSpells.Aggregate(
                 $"\n{topicHeader}\n",

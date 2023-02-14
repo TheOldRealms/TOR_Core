@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
@@ -11,21 +14,32 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
     {
         private string _name;
         private string _spriteName;
+        private string _abilitySpriteName;
+        private string _abilityName;
+        private MBBindingList<CareerAbilityEffectVM> _abilityDescription;
+        private string _description;
         private CareerObject _career;
-        private Action<CareerObject> _onSelected;
-        private bool _isDisabled;
-        private bool _isSelected;
         private MBBindingList<CareerChoiceGroupObjectVM> _choiceGroups1;
         private MBBindingList<CareerChoiceGroupObjectVM> _choiceGroups2;
         private MBBindingList<CareerChoiceGroupObjectVM> _choiceGroups3;
+        private string _choiceGroup1Name;
+        private string _choiceGroup2Name;
+        private string _choiceGroup3Name;
+        private string _choiceGroup1Condition;
+        private string _choiceGroup2Condition;
+        private string _choiceGroup3Condition;
+        private string _freeCareerPoints;
 
-        public CareerObjectVM(CareerObject career, Action<CareerObject> onSelected)
+        public CareerObjectVM(CareerObject career)
         {
             _career = career;
-            _onSelected = onSelected;
             _name = career.Name.ToString();
             _spriteName = "CareerSystem\\Illustrations\\" + career.StringId;
-
+            _abilitySpriteName = _career.GetAbilityTemplate().SpriteName;
+            _abilityName = _career.GetAbilityTemplate().Name;
+            _abilityDescription = new MBBindingList<CareerAbilityEffectVM>();
+            _career.GetAbilityEffectLines().ForEach(x => _abilityDescription.Add(new CareerAbilityEffectVM(x)));
+            _description = _career.Description.ToString();
             _choiceGroups1 = new MBBindingList<CareerChoiceGroupObjectVM>();
             _choiceGroups2 = new MBBindingList<CareerChoiceGroupObjectVM>();
             _choiceGroups3 = new MBBindingList<CareerChoiceGroupObjectVM>();
@@ -35,23 +49,35 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 switch (group.Tier)
                 {
                     case 1:
-                        _choiceGroups1.Add(new CareerChoiceGroupObjectVM(group));
+                        _choiceGroups1.Add(new CareerChoiceGroupObjectVM(group, RefreshValues));
+                        _choiceGroup1Condition = group.GetConditionText(Hero.MainHero);
                         break;
                     case 2:
-                        _choiceGroups2.Add(new CareerChoiceGroupObjectVM(group));
+                        _choiceGroups2.Add(new CareerChoiceGroupObjectVM(group, RefreshValues));
+                        _choiceGroup2Condition = group.GetConditionText(Hero.MainHero);
                         break;
                     case 3:
-                        _choiceGroups3.Add(new CareerChoiceGroupObjectVM(group));
+                        _choiceGroups3.Add(new CareerChoiceGroupObjectVM(group, RefreshValues));
+                        _choiceGroup3Condition = group.GetConditionText(Hero.MainHero);
                         break;
                     default:
                         break;
                 }
             }
+            _choiceGroup1Name = GameTexts.FindText("career_choicegroup1_name", _career.StringId).ToString();
+            _choiceGroup2Name = GameTexts.FindText("career_choicegroup2_name", _career.StringId).ToString();
+            _choiceGroup3Name = GameTexts.FindText("career_choicegroup3_name", _career.StringId).ToString();
+            RefreshValues();
         }
 
-        private void ExecuteSelect()
+        public override void RefreshValues()
         {
-            if (_onSelected != null) _onSelected(_career);
+            var info = Hero.MainHero.GetExtendedInfo();
+            if(info != null)
+            {
+                int usedPoints = info.CareerChoices.Count - 1; //Account for root choice, does not need to be taken into consideration.
+                FreeCareerPoints = "Free career points: " + (Hero.MainHero.Level - usedPoints).ToString();
+            }
         }
 
         [DataSourceProperty]
@@ -72,52 +98,86 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         }
 
         [DataSourceProperty]
+        public string Description
+        {
+            get
+            {
+                return _description;
+            }
+            set
+            {
+                if (value != _description)
+                {
+                    _description = value;
+                    OnPropertyChangedWithValue(value, "Description");
+                }
+            }
+        }
+
+        [DataSourceProperty]
         public string SpriteName
         {
             get
             {
-                return _name;
+                return _spriteName;
             }
             set
             {
-                if (value != _name)
+                if (value != _spriteName)
                 {
-                    _name = value;
+                    _spriteName = value;
                     OnPropertyChangedWithValue(value, "SpriteName");
                 }
             }
         }
 
         [DataSourceProperty]
-        public bool IsDisabled
+        public string AbilitySpriteName
         {
             get
             {
-                return _isDisabled;
+                return _abilitySpriteName;
             }
             set
             {
-                if (value != _isDisabled)
+                if (value != _abilitySpriteName)
                 {
-                    _isDisabled = value;
-                    OnPropertyChangedWithValue(value, "IsDisabled");
+                    _abilitySpriteName = value;
+                    OnPropertyChangedWithValue(value, "AbilitySpriteName");
                 }
             }
         }
 
         [DataSourceProperty]
-        public bool IsSelected
+        public string AbilityName
         {
             get
             {
-                return _isSelected;
+                return _abilityName;
             }
             set
             {
-                if (value != _isSelected)
+                if (value != _abilityName)
                 {
-                    _isSelected = value;
-                    OnPropertyChangedWithValue(value, "IsSelected");
+                    _abilityName = value;
+                    OnPropertyChangedWithValue(value, "AbilityName");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public MBBindingList<CareerAbilityEffectVM> AbilityEffects
+        {
+            get
+            {
+                return _abilityDescription;
+            }
+            set
+            {
+                if (value != _abilityDescription)
+                {
+                    _abilityDescription = value;
+                    OnPropertyChangedWithValue(value, "AbilityEffects");
                 }
             }
         }
@@ -169,6 +229,125 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 {
                     _choiceGroups3 = value;
                     OnPropertyChangedWithValue(value, "ChoiceGroupsTier3");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public string ChoiceGroup1Name
+        {
+            get
+            {
+                return _choiceGroup1Name;
+            }
+            set
+            {
+                if (value != _choiceGroup1Name)
+                {
+                    _choiceGroup1Name = value;
+                    OnPropertyChangedWithValue(value, "ChoiceGroup1Name");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public string ChoiceGroup2Name
+        {
+            get
+            {
+                return _choiceGroup2Name;
+            }
+            set
+            {
+                if (value != _choiceGroup2Name)
+                {
+                    _choiceGroup2Name = value;
+                    OnPropertyChangedWithValue(value, "ChoiceGroup2Name");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public string ChoiceGroup3Name
+        {
+            get
+            {
+                return _choiceGroup3Name;
+            }
+            set
+            {
+                if (value != _choiceGroup3Name)
+                {
+                    _choiceGroup3Name = value;
+                    OnPropertyChangedWithValue(value, "ChoiceGroup3Name");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public string ChoiceGroup1Condition
+        {
+            get
+            {
+                return _choiceGroup1Condition;
+            }
+            set
+            {
+                if (value != _choiceGroup1Condition)
+                {
+                    _choiceGroup1Condition = value;
+                    OnPropertyChangedWithValue(value, "ChoiceGroup1Condition");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public string ChoiceGroup2Condition
+        {
+            get
+            {
+                return _choiceGroup2Condition;
+            }
+            set
+            {
+                if (value != _choiceGroup2Condition)
+                {
+                    _choiceGroup2Condition = value;
+                    OnPropertyChangedWithValue(value, "ChoiceGroup2Condition");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public string ChoiceGroup3Condition
+        {
+            get
+            {
+                return _choiceGroup3Condition;
+            }
+            set
+            {
+                if (value != _choiceGroup3Condition)
+                {
+                    _choiceGroup3Condition = value;
+                    OnPropertyChangedWithValue(value, "ChoiceGroup3Condition");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public string FreeCareerPoints
+        {
+            get
+            {
+                return _freeCareerPoints;
+            }
+            set
+            {
+                if (value != _freeCareerPoints)
+                {
+                    _freeCareerPoints = value;
+                    OnPropertyChangedWithValue(value, "FreeCareerPoints");
                 }
             }
         }

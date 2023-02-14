@@ -67,9 +67,9 @@
               <Children>
                 
                 <!--Navigate to Careers screen-->
-                <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="200" SuggestedHeight="50" MarginTop="50" HorizontalAlignment="Center" PositionXOffset="-15" Command.Click="ExecuteNavigateToCareers">
+                <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="200" SuggestedHeight="50" MarginTop="50" HorizontalAlignment="Center" PositionXOffset="-15" Command.Click="ExecuteNavigateToCareers" Brush="TorSpellBookLearnButton" IsVisible="@HasCareer">
                   <Children>
-                    <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginLeft="2" MarginRight="2" VerticalAlignment="Center" Text="Careers" />
+                    <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginLeft="2" MarginRight="2" VerticalAlignment="Center" Text="Career Options" Brush.FontSize="22"/>
                   </Children>
                 </ButtonWidget>
 

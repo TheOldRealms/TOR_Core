@@ -90,8 +90,8 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
     [Flags]
     public enum AttackTypeMask
     {
-        Ranged = 0,
-        Melee = 1,
-        Spell = 2
+        Ranged = 1,
+        Melee = 2,
+        Spell = 4
     }
 }

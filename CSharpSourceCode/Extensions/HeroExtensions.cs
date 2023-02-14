@@ -179,12 +179,54 @@ namespace TOR_Core.Extensions
             return result;
         }
 
+        public static bool TryAddCareerChoice(this Hero hero, CareerChoiceObject choice)
+        {
+            if (hero != null)
+            {
+                var info = hero.GetExtendedInfo();
+                if (info != null && !info.CareerChoices.Contains(choice.StringId))
+                {
+                    int maxChoices = hero.Level + 1;
+                    if(info.CareerChoices.Count < maxChoices)
+                    {
+                        info.CareerChoices.Add(choice.StringId);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static bool TryRemoveCareerChoice(this Hero hero, CareerChoiceObject choice)
+        {
+            var info = hero.GetExtendedInfo();
+            if (hero != null && info != null)
+            {
+                if (info.CareerChoices.Contains(choice.StringId))
+                {
+                    info.CareerChoices.Remove(choice.StringId);
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static bool HasCareer(this Hero hero, CareerObject career)
         {
             bool result = false;
             if (hero != null && hero.GetExtendedInfo() != null)
             {
                 return hero.GetExtendedInfo().CareerID == career.StringId;
+            }
+            return result;
+        }
+
+        public static bool HasAnyCareer(this Hero hero)
+        {
+            bool result = false;
+            if (hero != null && hero.GetExtendedInfo() != null)
+            {
+                result = !string.IsNullOrEmpty(hero.GetExtendedInfo().CareerID);
             }
             return result;
         }
@@ -197,6 +239,20 @@ namespace TOR_Core.Extensions
                 result = TORCareers.All.FirstOrDefault(x=>x.StringId == hero.GetExtendedInfo().CareerID);
             }
             return result;
+        }
+
+        public static void AddCareer(this Hero hero, CareerObject career)
+        {
+            if (hero != null)
+            {
+                var info = hero.GetExtendedInfo();
+                if (info != null)
+                {
+                    info.CareerID = career.StringId;
+                    info.CareerChoices.Clear();
+                    info.CareerChoices.Add(career.RootNode.StringId);
+                }
+            }
         }
 
         public static string GetInfoKey(this Hero hero)

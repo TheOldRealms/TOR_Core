@@ -102,11 +102,8 @@
 		type="AttackSpeedManipulation"
 		damage_type="Physical">
   	</StatusEffectTemplate>
-	
-	
-	
 	<StatusEffectTemplate 
-		id="righteousfury_regeneration" 
+		id="righteous_fury_regeneration" 
 		particle_id="healing_regeneration"
 		particle_intensity="High"
 		base_effect_value="5"
