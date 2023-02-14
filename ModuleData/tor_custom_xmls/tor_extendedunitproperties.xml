@@ -2817,6 +2817,15 @@
       <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
+   <CharacterExtendedInfo id="tor_prophetess_lw">
+    <Abilities>
+      <string>DwellersBelow</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_cw_lord">
     <Abilities>
       <string>LightningBolt</string>

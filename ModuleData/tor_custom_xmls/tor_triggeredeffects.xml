@@ -525,6 +525,20 @@
             ScriptNameToTrigger="none" >
             <ImbuedStatusEffect>movement_impairment</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
+	  
+	   <TriggeredEffectTemplate StringID="dwellers_below_tick" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+            DamageAmount="10" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            ImbuedStatusEffectDuration="2.1" 
+            ScriptNameToTrigger="none" >
+            <ImbuedStatusEffect>dwellersbelow_impairment</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
       
       <TriggeredEffectTemplate StringID="attackspeed_bonus_20" 
             BurstParticleEffectPrefab="none" 

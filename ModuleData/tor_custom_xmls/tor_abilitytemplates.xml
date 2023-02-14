@@ -1315,9 +1315,6 @@
 		</LightColorRGB>
 		<TriggeredEffect>movement_impairment</TriggeredEffect>
 	</AbilityTemplate>
-	
-	
-	
 	<!-- Necromancy -->
 	<AbilityTemplate StringID="NagashGaze" 
       Name="Gaze of Nagash" 
@@ -1960,6 +1957,52 @@
 		</LightColorRGB>
 		<TriggeredEffect>soulstealer</TriggeredEffect>
 	</AbilityTemplate>
+	<!-- Light Magic -->
+	<AbilityTemplate StringID="DwellersBelow"
+      Name="Dwelllers Below"
+      SpriteName="phasprotection_icon"
+      CoolDown="5"
+      WindsOfMagicCost="12"
+      BaseMisCastChance="0.05"
+      Duration="20"
+      Radius="20"
+      AbilityType="Spell"
+      AbilityEffectType="Bombardment"
+      BaseMovementSpeed="0"
+      TickInterval="1.9"
+      TriggerType="EveryTick"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab=""
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.0"
+      AbilityTargetType="GroundAtPosition"
+      TargetCapturingRadius="4"
+      MaxDistance="50"
+      CrosshairType="TargetedAOE"
+      SpellTier="3"
+      BelongsToLoreID="LoreOfLife"
+      TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>dwellers_below_tick</TriggeredEffect>
+	</AbilityTemplate>
+	
+	
+	
 	<!-- Artillery -->
 	<AbilityTemplate StringID="MortarSpawner" 
     Name="Place Mortar" 
@@ -2162,4 +2205,6 @@
 		</LightColorRGB>
 		<TriggeredEffect>healing_tick</TriggeredEffect>
 	</AbilityTemplate>
+	
+	
 </AbilityTemplates>
