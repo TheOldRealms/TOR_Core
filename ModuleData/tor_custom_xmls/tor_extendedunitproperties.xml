@@ -2820,6 +2820,10 @@
    <CharacterExtendedInfo id="tor_prophetess_lw">
     <Abilities>
       <string>DwellersBelow</string>
+	  <string>TheGreenEye</string>
+	  <string>Barkskin</string>
+	  <string>SummerHeat</string>
+	   <string>Regrowth</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>

@@ -94,7 +94,31 @@
 		damage_type="Physical">
   	</StatusEffectTemplate>
 	<StatusEffectTemplate
-		id="movement_impairment"
+		id="summerheat_impairment_50"
+		particle_id="harmonic_convergence"
+		particle_intensity="High"
+		apply_particle_to_root_bone_only="true"
+    	base_effect_value="-0.5"
+		type="MovementManipulation"
+		damage_type="Physical">
+  	</StatusEffectTemplate>
+	<StatusEffectTemplate
+		id="summerheat_fireres_debuff_25"
+		particle_id="soulstealer"
+		particle_intensity="High"
+		apply_particle_to_root_bone_only="true"
+    	base_effect_value="-0.25"
+		type="Resistance"
+		damage_type="Fire">
+  	</StatusEffectTemplate>
+	<StatusEffectTemplate
+		id="regrowth_heal" 
+		particle_id="healing_regeneration"
+		particle_intensity="High"
+		base_effect_value="5"
+		type="HealthOverTime"/>
+	<StatusEffectTemplate
+		id="movement_impairment_100"
 		particle_id="harmonic_convergence"
 		particle_intensity="High"
 		apply_particle_to_root_bone_only="true"

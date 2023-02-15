@@ -276,6 +276,70 @@
             TargetType="All" 
             DamageVariance="0.1" 
             ScriptNameToTrigger="none"/>
+			
+	  <TriggeredEffectTemplate StringID="net_of_amyntok_hex" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="20" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            ImbuedStatusEffectDuration="15" 
+            DamageVariance="0" 
+            ScriptNameToTrigger="none" >
+            <ImbuedStatusEffect>movement_impairment_100</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+	  
+<!--LifeMagic-->
+  
+  	   <TriggeredEffectTemplate StringID="dwellers_below_tick" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+            DamageAmount="10" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            ImbuedStatusEffectDuration="2.1" 
+            ScriptNameToTrigger="none" >
+            <ImbuedStatusEffect>dwellersbelow_impairment</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+	  
+	  
+	   <TriggeredEffectTemplate StringID="summer_heat" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            ImbuedStatusEffectDuration="8" 
+            ScriptNameToTrigger="none" >
+            <ImbuedStatusEffect>summerheat_impairment_50</ImbuedStatusEffect>
+			<ImbuedStatusEffect>summerheat_fireres_debuff_25</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+  
+        <TriggeredEffectTemplate StringID="regrowth_heal" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            DamageVariance="0.0" 
+			ImbuedStatusEffectDuration="12" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>regrowth_heal</ImbuedStatusEffect>
+	  </TriggeredEffectTemplate>
+  
+			
 <!-- Necromancy -->
       <TriggeredEffectTemplate StringID="nagashgaze_explosion" 
             BurstParticleEffectPrefab="purple_particle_explosion" 
@@ -510,35 +574,8 @@
             ImbuedStatusEffectDuration="2.1" 
             DamageVariance="0" 
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyFlamingItemTraitScript"/>
-      
-	  <TriggeredEffectTemplate StringID="movement_impairment" 
-            BurstParticleEffectPrefab="none" 
-            SoundEffectId="none" 
-            SoundEffectLength="0" 
-            DamageType="Invalid" 
-            DamageAmount="0" 
-            Radius="20" 
-            HasShockWave="false" 
-            TargetType="Enemy" 
-            ImbuedStatusEffectDuration="15" 
-            DamageVariance="0" 
-            ScriptNameToTrigger="none" >
-            <ImbuedStatusEffect>movement_impairment</ImbuedStatusEffect>
-      </TriggeredEffectTemplate>
 	  
-	   <TriggeredEffectTemplate StringID="dwellers_below_tick" 
-            BurstParticleEffectPrefab="none" 
-            SoundEffectId="none" 
-            SoundEffectLength="0" 
-            DamageType="Physical" 
-            DamageAmount="10" 
-            Radius="5" 
-            HasShockWave="false" 
-            TargetType="Enemy" 
-            ImbuedStatusEffectDuration="2.1" 
-            ScriptNameToTrigger="none" >
-            <ImbuedStatusEffect>dwellersbelow_impairment</ImbuedStatusEffect>
-      </TriggeredEffectTemplate>
+
       
       <TriggeredEffectTemplate StringID="attackspeed_bonus_20" 
             BurstParticleEffectPrefab="none" 
