@@ -2824,6 +2824,8 @@
 	  <string>Barkskin</string>
 	  <string>SummerHeat</string>
 	   <string>Regrowth</string>
+	   <string>DrainLife</string>
+	   <string>StormOfRenewal</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>

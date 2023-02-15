@@ -338,6 +338,39 @@
             ScriptNameToTrigger="none">
 			<ImbuedStatusEffect>regrowth_heal</ImbuedStatusEffect>
 	  </TriggeredEffectTemplate>
+	  
+	  
+	  
+		<TriggeredEffectTemplate StringID="drain_life" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Magical" 
+            DamageAmount="0" 
+            Radius="4" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            ImbuedStatusEffectDuration="10" 
+            DamageVariance="0"
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>drain_life_dot</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+	  
+	  
+		<TriggeredEffectTemplate StringID="storm_of_renewal" 
+            BurstParticleEffectPrefab="cinder_explosion" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Magical" 
+            DamageAmount="-30" 
+            Radius="4" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="2" 
+            DamageVariance="0"
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>storm_of_renewal_heal</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
   
 			
 <!-- Necromancy -->

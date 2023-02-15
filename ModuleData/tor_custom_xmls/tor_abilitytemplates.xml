@@ -2172,6 +2172,94 @@
 		</LightColorRGB>
 		<TriggeredEffect>regrowth_heal</TriggeredEffect>
 	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="DrainLife"
+   Name="Drain Life"
+   SpriteName="soulstealer_icon"
+   CoolDown="15"
+   WindsOfMagicCost="6"
+   BaseMisCastChance="0.05"
+   Duration="0"
+   Radius="0"
+   AbilityType="Spell"
+   AbilityEffectType="Hex"
+   BaseMovementSpeed="0"
+   TickInterval="-1"
+   TriggerType="TickOnce"
+   HasLight="false"
+   LightIntensity="0"
+   LightRadius="0"
+   LightFlickeringMagnitude="0"
+   LightFlickeringInterval="0"
+   ShadowCastEnabled="true"
+   ParticleEffectPrefab=""
+   ParticleEffectSizeModifier="0"
+   SoundEffectToPlay=""
+   ShouldSoundLoopOverDuration="false"
+   CastType="Instant"
+   CastTime="0.5"
+   AnimationActionName="act_release_heavy_thrown"
+   Offset="0.5"
+   AbilityTargetType="EnemiesInAOE"
+   TargetCapturingRadius="5"
+   MaxDistance="20"
+   CrosshairType="TargetedAOE"
+   SpellTier="4"
+    BelongsToLoreID="DarkMagic"
+    TooltipDescription="Enemies in the area experience a soul draining direct damage over time effect causing them to take 12 damage every second for 10 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>drain_life</TriggeredEffect>
+	</AbilityTemplate>
+	
+	
+	<AbilityTemplate StringID="StormOfRenewal" 
+	Name="Storm of Renewal"
+	SpriteName="resistanceaura_icon"
+	CoolDown="10"
+	WindsOfMagicCost="6"
+	BaseMisCastChance="0.05"
+	Duration="12"
+	Radius="3"
+	AbilityType="Spell"
+	AbilityEffectType="Bombardment"
+	BaseMovementSpeed="0"
+	TickInterval="2"
+	TriggerType="EveryTick"
+	HasLight="false"
+	LightIntensity="0"
+	LightRadius="0"
+	LightFlickeringMagnitude="0"
+	LightFlickeringInterval="0"
+	ShadowCastEnabled="true"
+	ParticleEffectPrefab=""
+	ParticleEffectSizeModifier="0"
+	SoundEffectToPlay=""
+	ShouldSoundLoopOverDuration="false"
+	CastType="Instant"
+	CastTime="0.5"
+	AnimationActionName="act_release_heavy_thrown"
+	Offset="0.5"
+	AbilityTargetType="GroundAtPosition"
+	TargetCapturingRadius="4"
+	MaxDistance="20"
+	CrosshairType="TargetedAOE"
+	SpellTier="1"
+	BelongsToLoreID="LoreOfLife"
+	TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
+		<LightColorRGB x="255" y="255" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>storm_of_renewal</TriggeredEffect>
+	</AbilityTemplate>
 
 	
 	<!-- Artillery -->

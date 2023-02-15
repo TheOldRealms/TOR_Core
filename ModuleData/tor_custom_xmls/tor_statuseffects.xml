@@ -113,10 +113,23 @@
   	</StatusEffectTemplate>
 	<StatusEffectTemplate
 		id="regrowth_heal" 
-		particle_id="healing_regeneration"
+		particle_id="holy_healing_regeneration"
 		particle_intensity="High"
 		base_effect_value="5"
+		type="HealthOverTime"
+		do_not_attach_to_agent_skeleton="true"/>
+	<StatusEffectTemplate
+		id="storm_of_renewal_heal" 
+		particle_id="harmonic_convergence"
+		particle_intensity="High"
+		base_effect_value="10"
 		type="HealthOverTime"/>
+	<StatusEffectTemplate
+		id="drain_life_dot"
+		particle_id="soulstealer"
+		particle_intensity="High"
+    	base_effect_value="5"
+		type="DamageOverTime"/>
 	<StatusEffectTemplate
 		id="movement_impairment_100"
 		particle_id="harmonic_convergence"
