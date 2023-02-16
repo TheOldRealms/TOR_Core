@@ -2267,11 +2267,11 @@
 	<AbilityTemplate StringID="TanglingThorn"
       Name="Tangling Thorn"
       SpriteName="phasprotection_icon"
-      CoolDown="5"
-      WindsOfMagicCost="12"
+      CoolDown="15"
+      WindsOfMagicCost="8"
       BaseMisCastChance="0.05"
-      Duration="20"
-      Radius="20"
+      Duration="0"
+      Radius="4"
       AbilityType="Spell"
       AbilityEffectType="Hex"
       BaseMovementSpeed="0"
@@ -2284,16 +2284,16 @@
       LightFlickeringInterval="0"
       ShadowCastEnabled="true"
       ParticleEffectPrefab=""
-      ParticleEffectSizeModifier="0"
+      ParticleEffectSizeModifier="1"
       SoundEffectToPlay=""
       ShouldSoundLoopOverDuration="false"
-      CastType="Instant"
+      CastType="WindUp"
       CastTime="0.5"
       AnimationActionName="act_release_heavy_thrown"
-      Offset="0.0"
+      Offset="5"
       AbilityTargetType="GroundAtPosition"
       TargetCapturingRadius="4"
-      MaxDistance="50"
+      MaxDistance="15"
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="LoreOfBeasts"
@@ -2304,10 +2304,140 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>dwellers_below_tick</TriggeredEffect>
+		<TriggeredEffect>tangling_thorn</TriggeredEffect>
 	</AbilityTemplate>
 	
-
+	
+	<AbilityTemplate StringID="PannsImpenetrablePelt" 
+      Name="Pann's Impenetrable Pelt" 
+      SpriteName="healingprayer_icon" 
+      CoolDown="10" 
+      WindsOfMagicCost="3" 
+      BaseMisCastChance="0.05" 
+      Duration="0" 
+      Radius="0" 
+      AbilityType="Spell" 
+      AbilityEffectType="Augment" 
+      BaseMovementSpeed="0" 
+      TickInterval="-1" 
+      TriggerType="TickOnce" 
+      HasLight="false" 
+      LightIntensity="0"
+      LightRadius="0" 
+      LightFlickeringMagnitude="0" 
+      LightFlickeringInterval="0" 
+      ShadowCastEnabled="false" 
+      ParticleEffectPrefab="none" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="none" 
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant" 
+      CastTime="0" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0"
+      AbilityTargetType="Self"
+      CrosshairType="Self"
+      TargetCapturingRadius="1"
+      SpellTier="1"
+      BelongsToLoreID="LoreOfBeasts"
+      TooltipDescription="Adds 20% physical damage bonus for 15 seconds to the caster.">
+		<LightColorRGB x="255" y="255" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>pans_pelt</TriggeredEffect>
+	</AbilityTemplate>
+	
+	
+	<AbilityTemplate StringID="HailStorm" 
+      Name="Hail Storm" 
+      SpriteName="souldrain_icon" 
+      CoolDown="30" 
+      WindsOfMagicCost="15" 
+      BaseMisCastChance="0.5" 
+      Duration="5" 
+      Radius="3" 
+      AbilityType="Spell" 
+      AbilityEffectType="Bombardment" 
+      BaseMovementSpeed="0" 
+      TickInterval="0.5" 
+      TriggerType="EveryTick" 
+      HasLight="false" 
+      LightIntensity="50" 
+      LightRadius="3" 
+      LightFlickeringMagnitude="0" 
+      LightFlickeringInterval="0" 
+      ShadowCastEnabled="true" 
+      ParticleEffectPrefab="souldrain" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="lightning_strike" 
+      ShouldSoundLoopOverDuration="true"
+      CastType="WindUp" 
+      CastTime="0.5" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="10"
+      AbilityTargetType="GroundAtPosition"
+      CrosshairType="TargetedAOE"
+      MinDistance="5"
+      MaxDistance="30"
+      TargetCapturingRadius="2"
+      SpellTier="3"
+      BelongsToLoreID="LoreOfBeasts"
+      TooltipDescription="A black cloud looms over the targeted area striking those below with arcane lightning bolts.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>lightning_tick</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="FlockOfDoom"
+   Name="Flock Of Doom"
+   SpriteName="soulstealer_icon"
+   CoolDown="15"
+   WindsOfMagicCost="6"
+   BaseMisCastChance="0.05"
+   Duration="11"
+   Radius="10"
+   AbilityType="Spell"
+   AbilityEffectType="Hex"
+   BaseMovementSpeed="0"
+   TickInterval="2"
+   TriggerType="EveryTick"
+   HasLight="false"
+   LightIntensity="0"
+   LightRadius="0"
+   LightFlickeringMagnitude="0"
+   LightFlickeringInterval="0"
+   ShadowCastEnabled="true"
+   ParticleEffectPrefab=""
+   ParticleEffectSizeModifier="0"
+   SoundEffectToPlay=""
+   ShouldSoundLoopOverDuration="false"
+   CastType="Instant"
+   CastTime="0.5"
+   AnimationActionName="act_release_heavy_thrown"
+   Offset="0.5"
+   AbilityTargetType="EnemiesInAOE"
+   TargetCapturingRadius="15"
+   MaxDistance="75"
+   CrosshairType="TargetedAOE"
+   SpellTier="4"
+    BelongsToLoreID="LoreOfBeasts"
+    TooltipDescription="Enemies in the area experience a soul draining direct damage over time effect causing them to take 12 damage every second for 10 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>flock_of_doom_tick</TriggeredEffect>
+	</AbilityTemplate>
 	
 	<!-- Artillery -->
 	<AbilityTemplate StringID="MortarSpawner" 

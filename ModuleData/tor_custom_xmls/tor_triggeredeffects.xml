@@ -371,7 +371,56 @@
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>storm_of_renewal_heal</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
-  
+	  
+	  
+<!--Beast Magic-->
+
+	  <TriggeredEffectTemplate StringID="tangling_thorn" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            ImbuedStatusEffectDuration="4" 
+            DamageVariance="0" 
+            ScriptNameToTrigger="none" >
+            <ImbuedStatusEffect>tangling_thorn</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+
+      <TriggeredEffectTemplate StringID="pans_pelt" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="4" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="12" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>pans_pelt</ImbuedStatusEffect>
+	  </TriggeredEffectTemplate>
+	  
+	  
+	        <TriggeredEffectTemplate StringID="flock_of_doom_tick" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+			ImbuedStatusEffectDuration="3" 
+            DamageAmount="0" 
+            Radius="15" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            DamageVariance="2" >
+			<ImbuedStatusEffect>flock_of_doom</ImbuedStatusEffect>
+		</TriggeredEffectTemplate>
+
+
 			
 <!-- Necromancy -->
       <TriggeredEffectTemplate StringID="nagashgaze_explosion" 

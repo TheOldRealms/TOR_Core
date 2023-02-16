@@ -2832,6 +2832,18 @@
       <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
+     <CharacterExtendedInfo id="tor_prophetess_bw">
+    <Abilities>
+		<string>TanglingThorn</string>
+		<string>PannsImpenetrablePelt</string>
+		<string>HailStorm</string>
+		<string>FlockOfDoom</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_cw_lord">
     <Abilities>
       <string>LightningBolt</string>

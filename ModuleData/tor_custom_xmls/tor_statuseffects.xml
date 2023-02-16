@@ -182,4 +182,30 @@
 		damage_type="Physical"
 		applies_for_attack_type="Ranged"
 		type="Resistance"/>
+		
+	<StatusEffectTemplate
+		id="tangling_thorn"
+		particle_id="harmonic_convergence"
+		particle_intensity="High"
+		apply_particle_to_root_bone_only="true"
+    	base_effect_value="-0.9"
+		type="MovementManipulation"
+		damage_type="Physical"/>
+		
+	<StatusEffectTemplate 
+		id="pans_pelt" 
+		particle_id="undead_crumbling"
+		particle_intensity="Low"
+		base_effect_value="0.35"
+		damage_type="Physical"
+		type="Resistance"/>
+		
+	<StatusEffectTemplate
+		id="flock_of_doom"
+		particle_id="harmonic_convergence"
+		particle_intensity="High"
+		apply_particle_to_root_bone_only="true"
+    	base_effect_value="10"
+		type="DamageOverTime"
+		damage_type="Physical"/>
 </StatusEffects>
