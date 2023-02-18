@@ -2838,6 +2838,9 @@
 		<string>PannsImpenetrablePelt</string>
 		<string>HailStorm</string>
 		<string>FlockOfDoom</string>
+		<string>TheBeastUnleashed</string>
+		<string>CurseOfAnraheir</string>
+		
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>

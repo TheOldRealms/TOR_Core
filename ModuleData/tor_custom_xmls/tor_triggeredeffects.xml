@@ -406,7 +406,7 @@
 	  </TriggeredEffectTemplate>
 	  
 	  
-	        <TriggeredEffectTemplate StringID="flock_of_doom_tick" 
+		<TriggeredEffectTemplate StringID="flock_of_doom_tick" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
@@ -417,8 +417,42 @@
             HasShockWave="false" 
             TargetType="Enemy" 
             DamageVariance="2" >
-			<ImbuedStatusEffect>flock_of_doom</ImbuedStatusEffect>
+			<ImbuedStatusEffect>flock_of_doom_dot</ImbuedStatusEffect>
+				<ImbuedStatusEffect>flock_of_doom_phy_red</ImbuedStatusEffect>
 		</TriggeredEffectTemplate>
+		
+	<TriggeredEffectTemplate StringID="beast_unleashed" 
+		BurstParticleEffectPrefab="none" 
+		SoundEffectId="none" 
+		SoundEffectLength="0" 
+		DamageType="Physical" 
+		ImbuedStatusEffectDuration="20" 
+		DamageAmount="0" 
+		Radius="15" 
+		HasShockWave="false" 
+		TargetType="Friendly" 
+		DamageVariance="2" 
+		 ScriptNameToTrigger="none">
+		<ImbuedStatusEffect>beast_unleashed_phys_buff</ImbuedStatusEffect>
+		<ImbuedStatusEffect>beast_unleashed_ats_buff</ImbuedStatusEffect>
+	</TriggeredEffectTemplate>
+	
+	
+	<TriggeredEffectTemplate StringID="curse_of_anraheir" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+			ImbuedStatusEffectDuration="15" 
+            DamageAmount="0" 
+            Radius="15" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            DamageVariance="2" >
+			<ImbuedStatusEffect>curse_of_anraheir_ats_debuff</ImbuedStatusEffect>
+			<ImbuedStatusEffect>curse_of_anraheir_mv_debuff</ImbuedStatusEffect>
+			<ImbuedStatusEffect>curse_of_anraheir_dot</ImbuedStatusEffect>
+	</TriggeredEffectTemplate>
 
 
 			
