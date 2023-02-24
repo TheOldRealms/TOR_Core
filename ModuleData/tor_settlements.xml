@@ -13,7 +13,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="TOR_empire_city_averheim_02" scene_name_1="TOR_empire_city_averheim_02" scene_name_2="TOR_empire_city_averheim_02" scene_name_3="TOR_empire_city_averheim_02" />
-      <Location id="arena" scene_name="TOW_arena_empire_a" />
+      <Location id="arena" scene_name="TOR_empire_arena_averheim_01" />
       <Location id="tavern" scene_name="TOR_empire_tavern_ninian_01" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
@@ -496,8 +496,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_ST4" name="{=Settlements.Settlement.name.town_ST4}Mittlenburg" owner="Faction.stirland_clan_1" posX="1554.683" posY="881.617" culture="Culture.empire" prosperity="4000" gate_posX="1554.314" gate_posY="882.6886" text="{=!}Mittlenburg sits at the foot of the black mountains, not far from the fallen Karak Varn and lake Black Water. The town is a modest one, the people here are very aware of their precarious position between Black Fire Pass and Sylvania, as such the town is decently fortified in preparation for these threats. The temples of Sigmar and Taal are well consecrated, and the Garden of Morr has a protective curtain wall around it. Many pilgrims on their way to take the trek up to the final temple of Skaranorak stop in Mittlenburg to purchase supplies.
-Special Scenes: no special scenes, besides maybe the temples, would be nice if one of the temples of Skaranorak was visible from a vantage point somewhere in the town.">
+  <Settlement id="town_ST4" name="{=Settlements.Settlement.name.town_ST4}Mittlenburg" owner="Faction.stirland_clan_1" posX="1554.683" posY="881.617" culture="Culture.empire" prosperity="4000" gate_posX="1554.314" gate_posY="882.6886" text="{=!}Mittlenburg sits at the foot of the black mountains, not far from the fallen Karak Varn and lake Black Water. The town is a modest one, the people here are very aware of their precarious position between Black Fire Pass and Sylvania, as such the town is decently fortified in preparation for these threats. The temples of Sigmar and Taal are well consecrated, and the Garden of Morr has a protective curtain wall around it. Many pilgrims on their way to take the trek up to the final temple of Skaranorak stop in Mittlenburg to purchase supplies.&#xD;&#xA;Special Scenes: no special scenes, besides maybe the temples, would be nice if one of the temples of Skaranorak was visible from a vantage point somewhere in the town.">
     <Components>
       <Town id="town_comp_ST4" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -1036,7 +1035,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_SY7" name="{=Settlements.Settlement.name.castle_SY7}Zherdenschlosse Castle" owner="Faction.sylvania_clan_2" posX="1698.386" posY="996.875" prosperity="800" culture="Culture.khuzait" gate_posX="1698.976" gate_posY="997.5018">
+  <Settlement id="castle_SY7" name="{=Settlements.Settlement.name.castle_SY7}Zherdenschlosse Castle" owner="Faction.sylvania_clan_2" posX="1698.386" posY="996.875" prosperity="800" culture="Culture.khuzait" gate_posX="1699.278" gate_posY="997.5581">
     <Components>
       <Town id="castle_comp_SY7" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="vampire_city_background" gate_rotation="0.908" />
     </Components>
@@ -2149,7 +2148,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_RL2" name="{=Settlements.Settlement.name.town_RL2}Schilderheim" owner="Faction.reikland_clan_3" posX="1191.087" posY="1078.689" culture="Culture.empire" prosperity="4500" gate_posX="1190.67" gate_posY="1079.899" text="{=!}At the Confluence of the River Reik and the River Schilder sits the town of Schilderheim. Ruled by Graf Robert von Uhland, Schilderheim is an important river market down river from altdorf, being one of the last places that trade on the River Reik can stop before reaching Marienburg."> 
+  <Settlement id="town_RL2" name="{=Settlements.Settlement.name.town_RL2}Schilderheim" owner="Faction.reikland_clan_3" posX="1191.087" posY="1078.689" culture="Culture.empire" prosperity="4500" gate_posX="1190.67" gate_posY="1079.9" text="{=!}At the Confluence of the River Reik and the River Schilder sits the town of Schilderheim. Ruled by Graf Robert von Uhland, Schilderheim is an important river market down river from altdorf, being one of the last places that trade on the River Reik can stop before reaching Marienburg.">
     <Components>
       <Town id="town_comp_RL2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -2215,7 +2214,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_RL3_1" name="{=Settlements.Settlement.name.village_RL3_1}Ussingen" posX="1210.412" posY="1053.094" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL3_1}Ussingen is a small village located on the road between Holthusen and Osburg. The town is at the furthest point that the River Schilder remains navigable by barge, meaning that many shipments bound for Helmgart will arrive first here. The people here raise crops along the river Schilder and will venture into the nearby Grey Mountains to mine seams of ore. The town is well protected by the walls at Helmgart, and really only worries about the denizens of the Reikwald.">   
+  <Settlement id="village_RL3_1" name="{=Settlements.Settlement.name.village_RL3_1}Ussingen" posX="1210.412" posY="1053.094" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL3_1}Ussingen is a small village located on the road between Holthusen and Osburg. The town is at the furthest point that the River Schilder remains navigable by barge, meaning that many shipments bound for Helmgart will arrive first here. The people here raise crops along the river Schilder and will venture into the nearby Grey Mountains to mine seams of ore. The town is well protected by the walls at Helmgart, and really only worries about the denizens of the Reikwald.">
     <Components>
       <Village id="village_comp_RL3_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL3" bound="Settlement.town_RL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2392,7 +2391,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_RL1" name="{=Settlements.Settlement.name.castle_RL1}Stimmigen" owner="Faction.reikland_clan_2" posX="1291.684" posY="980.917" prosperity="800" culture="Culture.empire" gate_posX="1290.492" gate_posY="980.3779" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods."> 
+  <Settlement id="castle_RL1" name="{=Settlements.Settlement.name.castle_RL1}Stimmigen" owner="Faction.reikland_clan_2" posX="1291.684" posY="980.917" prosperity="800" culture="Culture.empire" gate_posX="1290.492" gate_posY="980.3779" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
       <Town id="castle_comp_RL1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -2684,7 +2683,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Hideout id="hideout_forest_22" map_icon="bandit_hideout_b" scene_name="mountain_hideout_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="hideout_forest_23" name="{=Settlements.Settlement.name.hideout_forest_23}Cultist Hideout" type="Hideout" posX="1526.917" posY="1090.241" culture="Culture.forest_bandits">
+  <Settlement id="hideout_forest_23" name="{=Settlements.Settlement.name.hideout_forest_23}Cultist Hideout" type="Hideout" posX="1526.916" posY="1090.241" culture="Culture.forest_bandits">
     <Components>
       <Hideout id="hideout_forest_23" map_icon="bandit_hideout_b" scene_name="bandit_forest" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
@@ -3011,7 +3010,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Hideout id="hideout_beastmen_27" map_icon="bandit_hideout_a" scene_name="hideout_steppe_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="hideout_beastmen_28" name="{=Settlements.Settlement.name.hideout_beastmen_28}Ungor Camp" type="Hideout" posX="1315.22" posY="991.0353" culture="Culture.steppe_bandits">
+  <Settlement id="hideout_beastmen_28" name="{=Settlements.Settlement.name.hideout_beastmen_28}Ungor Camp" type="Hideout" posX="1315.22" posY="991.035" culture="Culture.steppe_bandits">
     <Components>
       <Hideout id="hideout_beastmen_28" map_icon="bandit_hideout_a" scene_name="hideout_steppe_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
