@@ -1,9 +1,11 @@
-﻿using HarmonyLib;
+﻿using System.Linq;
+using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Models;
@@ -27,6 +29,7 @@ namespace TOR_Core.HarmonyPatches
             }
 
             AttackTypeMask attackTypeMask = DetermineMask(b);
+
             float[] damageCategories = new float[(int)DamageType.All + 1];
             var attackerPropertyContainer = attacker.GetProperties(PropertyMask.Attack, attackTypeMask);
             var victimPropertyContainer = victim.GetProperties(PropertyMask.Defense, attackTypeMask);
@@ -48,18 +51,48 @@ namespace TOR_Core.HarmonyPatches
                 }
             }
 
-            //calculating spell damage
-            if (TORSpellBlowHelper.IsSpellBlow(b))
+
+            string abilityName = null;
+            if (attackTypeMask==AttackTypeMask.Ranged)
             {
-                var spellInfo = TORSpellBlowHelper.GetSpellBlowInfo(victim.Index, attacker.Index);
-                int damageType = (int)spellInfo.DamageType;
+                var blow = b;
+                var magicSpellMissle = Mission.Current.Missiles.FirstOrDefault(x => x.Index == blow.OwnerId + 10000 + 1337);
+                if (magicSpellMissle != null)
+                {
+                    attackTypeMask = AttackTypeMask.Spell;
+                    abilityName = magicSpellMissle.Weapon.Item.ToString();
+                }
+            }
+
+            //calculating spell damage
+            if (TORSpellBlowHelper.IsSpellBlow(b)|| attackTypeMask.HasFlag(AttackTypeMask.Spell)&&abilityName!=null );
+            {
+                var abilityId="";
+                int damageType = 0;
+                if (abilityName != null)
+                {
+                    var template = AbilityFactory.GetTemplate(abilityName);
+                    var triggeredEffectTemplate = TriggeredEffectManager.GetTemplateWithId(template.TriggeredEffects[0]);
+                    abilityId = abilityName;
+                    damageType = triggeredEffectTemplate==null? (int)DamageType.Physical:(int) triggeredEffectTemplate.DamageType;
+                }
+                else
+                {
+                    var spellInfo = TORSpellBlowHelper.GetSpellBlowInfo(victim.Index, attacker.Index);
+                    damageType = (int)spellInfo.DamageType;
+                    abilityId = spellInfo.OriginAbilityTemplateId;
+                }
+                
+                
+               
                 damageCategories[damageType] = b.InflictedDamage;
                 damagePercentages[damageType] -= resistancePercentages[damageType];
                 damageCategories[damageType] *= 1 + damagePercentages[damageType];
                 resultDamage = (int)damageCategories[damageType];
+                
                 if(Game.Current.GameType is Campaign)
                 {
-                    var abilityTemplate = AbilityFactory.GetTemplate(spellInfo.OriginAbilityTemplateId);
+                    var abilityTemplate = AbilityFactory.GetTemplate(abilityId);
                     if (attacker.IsHero && abilityTemplate != null)
                     {
                         var hero = attacker.GetHero();
@@ -77,7 +110,7 @@ namespace TOR_Core.HarmonyPatches
                 b.InflictedDamage = resultDamage;
                 b.BaseMagnitude = resultDamage;
                 if (attacker == Agent.Main || victim == Agent.Main)
-                    TORDamageDisplay.DisplaySpellDamageResult(spellInfo.TriggeredEffectId, spellInfo.DamageType, resultDamage, damagePercentages[damageType]);                
+                    TORDamageDisplay.DisplaySpellDamageResult((DamageType) damageType, resultDamage, damagePercentages[damageType]);                
                 return true;
             }
 
@@ -120,7 +153,12 @@ namespace TOR_Core.HarmonyPatches
         public static AttackTypeMask DetermineMask(Blow blow)
         {
             if (TORSpellBlowHelper.IsSpellBlow(blow)) return AttackTypeMask.Spell;
-            if (blow.IsMissile) return AttackTypeMask.Ranged;
+            if (blow.IsMissile)
+            {
+                return AttackTypeMask.Ranged;
+            } 
+                
+            
             return AttackTypeMask.Melee;
         }
     }

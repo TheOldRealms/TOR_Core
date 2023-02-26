@@ -703,7 +703,17 @@
             ImbuedStatusEffectDuration="2.1" 
             DamageVariance="0" 
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyFlamingItemTraitScript"/>
-	  
+			
+			
+		 <TriggeredEffectTemplate StringID="amber_spear" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Magical" 
+            DamageAmount="25" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            DamageVariance="0" />
 
       
       <TriggeredEffectTemplate StringID="attackspeed_bonus_20" 

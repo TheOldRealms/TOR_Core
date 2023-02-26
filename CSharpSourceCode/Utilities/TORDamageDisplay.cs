@@ -7,7 +7,7 @@ namespace TOR_Core.Utilities
 {
     public static class TORDamageDisplay
     {
-        public static void DisplaySpellDamageResult(string SpellName, DamageType additionalDamageType,
+        public static void DisplaySpellDamageResult(DamageType additionalDamageType,
             int resultDamage, float damageAmplifier)
         {
             var displayColor = Color.White;

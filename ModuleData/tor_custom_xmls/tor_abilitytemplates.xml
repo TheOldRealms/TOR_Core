@@ -2303,6 +2303,7 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
+		<TriggeredEffect>amber_spear</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="TanglingThorn"
