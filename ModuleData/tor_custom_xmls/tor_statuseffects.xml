@@ -95,7 +95,7 @@
   	</StatusEffectTemplate>
 	<StatusEffectTemplate
 		id="summerheat_impairment_50"
-		particle_id="harmonic_convergence"
+		particle_id="summer_heat"
 		particle_intensity="High"
 		apply_particle_to_root_bone_only="true"
     	base_effect_value="-0.5"
@@ -104,16 +104,16 @@
   	</StatusEffectTemplate>
 	<StatusEffectTemplate
 		id="summerheat_fireres_debuff_25"
-		particle_id="soulstealer"
+		particle_id="summer_heat"
 		particle_intensity="High"
-		apply_particle_to_root_bone_only="true"
+		do_not_attach_to_agent_skeleton="true"
     	base_effect_value="-0.25"
 		type="Resistance"
 		damage_type="Fire">
   	</StatusEffectTemplate>
 	<StatusEffectTemplate
 		id="regrowth_heal" 
-		particle_id="holy_healing_regeneration"
+		particle_id="regrowth_heal"
 		particle_intensity="High"
 		base_effect_value="5"
 		type="HealthOverTime"
@@ -126,7 +126,8 @@
 		type="HealthOverTime"/>
 	<StatusEffectTemplate
 		id="drain_life_dot"
-		particle_id="soulstealer"
+		particle_id="drain_life"
+		do_not_attach_to_agent_skeleton="true"
 		particle_intensity="High"
     	base_effect_value="5"
 		type="DamageOverTime"/>
@@ -162,15 +163,17 @@
 		do_not_attach_to_agent_skeleton="true"/>
 	<StatusEffectTemplate 
 		id="fire_cloak_phy_res" 
-		particle_id="undead_crumbling"
+		particle_id="firecloak"
+		do_not_attach_to_agent_skeleton="true"
 		particle_intensity="High"
 		base_effect_value="0.3"
 		damage_type="Physical"
 		type="Resistance"/>
 	<StatusEffectTemplate 
 		id="fire_cloak_fire_res" 
-		particle_id="undead_crumbling"
-		particle_intensity="Low"
+		particle_id="firecloak"
+		do_not_attach_to_agent_skeleton="true"
+		particle_intensity="High"
 		base_effect_value="0.7"
 		damage_type="Fire"
 		type="Resistance"/>
@@ -191,6 +194,16 @@
     	base_effect_value="-0.9"
 		type="MovementManipulation"
 		damage_type="Physical"/>
+		
+		
+	<StatusEffectTemplate 
+		id="barkskin" 
+		do_not_attach_to_agent_skeleton="true"
+		particle_id="barkskin"
+		particle_intensity="Low"
+		base_effect_value="0.35"
+		damage_type="Physical"
+		type="Resistance"/>
 		
 	<StatusEffectTemplate 
 		id="pans_pelt" 

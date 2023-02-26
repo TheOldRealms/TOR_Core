@@ -2834,13 +2834,13 @@
   </CharacterExtendedInfo>
      <CharacterExtendedInfo id="tor_prophetess_bw">
     <Abilities>
+		<string>AmberSpear</string>
 		<string>TanglingThorn</string>
 		<string>PannsImpenetrablePelt</string>
 		<string>HailStorm</string>
 		<string>FlockOfDoom</string>
 		<string>TheBeastUnleashed</string>
 		<string>CurseOfAnraheir</string>
-		
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>

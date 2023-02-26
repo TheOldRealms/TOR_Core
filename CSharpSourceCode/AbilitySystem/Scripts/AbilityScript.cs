@@ -19,7 +19,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         protected float _abilityLife = -1;
         public bool IsFading { get; protected set; }
         protected float _timeSinceLastTick = 0;
-        private bool _hasCollided;
+        protected bool _hasCollided;
         private bool _hasTickedOnce;
         protected bool _hasTriggered;
         protected Vec3 _previousFrameOrigin;

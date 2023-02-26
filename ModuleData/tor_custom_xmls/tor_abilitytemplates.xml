@@ -2072,7 +2072,7 @@
       Offset="0.5"
       AbilityTargetType="AlliesInAOE"
       TargetCapturingRadius="4"
-      MaxDistance="20"
+      MaxDistance="0.5"
       CrosshairType="TargetedAOE"
       SpellTier="1"
       BelongsToLoreID="LoreOfLife"
@@ -2083,7 +2083,7 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>physical_resistance_20</TriggeredEffect>
+		<TriggeredEffect>bark_skin</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="SummerHeat"
@@ -2263,6 +2263,47 @@
 	
 	
 	<!-- Lore of Beasts-->
+	
+	<AbilityTemplate StringID="AmberSpear" 
+      Name="Amber Spear" 
+      SpriteName="assaultofstone_icon" 
+      CoolDown="4" 
+      WindsOfMagicCost="8" 
+      BaseMisCastChance="0.05" 
+      Duration="2" 
+      Radius="0.4" 
+      AbilityType="Spell" 
+      AbilityEffectType="Projectile" 
+      BaseMovementSpeed="60"
+	  TickOnce="false"
+      TickInterval="1" 
+      TriggerType="EveryTick" 
+      HasLight="false" 
+      LightIntensity="50" 
+      LightRadius="10" 
+      LightFlickeringMagnitude="3" 
+      LightFlickeringInterval="0.7" 
+      ShadowCastEnabled="true" 
+      ParticleEffectPrefab="stone_assault" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="rocks_grinding" 
+      ShouldSoundLoopOverDuration="true" 
+      CastType="WindUp" 
+      CastTime="0.5" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0.5"
+      CrosshairType="Missile"
+      AbilityTargetType="WorldPosition"
+      SpellTier="2"
+      BelongsToLoreID="LoreOfBeasts"
+      TooltipDescription="Launch a small number of stones at the enemy - Monthy Python style.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="TanglingThorn"
       Name="Tangling Thorn"

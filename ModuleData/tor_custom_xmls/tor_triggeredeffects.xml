@@ -308,6 +308,19 @@
             <ImbuedStatusEffect>dwellersbelow_impairment</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
+	   <TriggeredEffectTemplate StringID="bark_skin" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+            DamageAmount="0" 
+            Radius="15" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="8" 
+            ScriptNameToTrigger="none" >
+            <ImbuedStatusEffect>barkskin</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
 	  
 	   <TriggeredEffectTemplate StringID="summer_heat" 
             BurstParticleEffectPrefab="none" 
