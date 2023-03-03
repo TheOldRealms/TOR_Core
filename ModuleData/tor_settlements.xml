@@ -2109,7 +2109,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_RL1_1" name="{=Settlements.Settlement.name.village_RL1_1}Frederheim" posX="1103.949" posY="861.056" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL1_1}Frederheim is a small Reiklander village just north of Altdorf on the Altdorf-Middenheim road. While the town is a possession of Karl-Franz and is a part of Altdorf’s demesne, the Emperor has seen fit to give oversight of it in all but name to the Cult of Shallya. This is a result of the cult's request for an area in which to establish a walled hospice and sanatorium.">
+  <Settlement id="village_RL1_1" name="{=Settlements.Settlement.name.village_RL1_1}Frederheim" posX="1249.612" posY="1084.818" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL1_1}Frederheim is a small Reiklander village just north of Altdorf on the Altdorf-Middenheim road. While the town is a possession of Karl-Franz and is a part of Altdorf’s demesne, the Emperor has seen fit to give oversight of it in all but name to the Cult of Shallya. This is a result of the cult's request for an area in which to establish a walled hospice and sanatorium.">
     <Components>
       <Village id="village_comp_RL1_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL1" bound="Settlement.town_RL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2122,7 +2122,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_RL1_2" name="{=Settlements.Settlement.name.village_RL1_2}Kaldach" posX="1107.311" posY="858.175" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL1_2}On the eastern side of the confluence of the rivers Taal and Reik sits the village of Kaldach. The town is notable particularly for being the demarcation of the Reikland/Talabecland border. Besides this, it remains a small farming community.">
+  <Settlement id="village_RL1_2" name="{=Settlements.Settlement.name.village_RL1_2}Kaldach" posX="1274.112" posY="1055.412" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL1_2}On the eastern side of the confluence of the rivers Taal and Reik sits the village of Kaldach. The town is notable particularly for being the demarcation of the Reikland/Talabecland border. Besides this, it remains a small farming community.">
     <Components>
       <Village id="village_comp_RL1_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL1" bound="Settlement.town_RL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2135,7 +2135,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_RL1_3" name="{=Settlements.Settlement.name.village_RL1_3}Hochloff" posX="1111.96" posY="861.741" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL1_3}Directly west of Altdorf, between the river Reik and the Weissbruck canal is the village of Hochloff. The town is known for the type of grain it raises the Hochloffkorn which is very well regarded for making a high quality flour.">
+  <Settlement id="village_RL1_3" name="{=Settlements.Settlement.name.village_RL1_3}Hochloff" posX="1291.759" posY="1054.569" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL1_3}Directly west of Altdorf, between the river Reik and the Weissbruck canal is the village of Hochloff. The town is known for the type of grain it raises the Hochloffkorn which is very well regarded for making a high quality flour.">
     <Components>
       <Village id="village_comp_RL1_3" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL1" bound="Settlement.town_RL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2168,7 +2168,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_RL2_1" name="{=Settlements.Settlement.name.village_RL2_1}Holthusen" posX="1109.642" posY="868.074" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL2_1}Holthusen is a town in western Reikland on the river Schilder. By road it lies between Eilhart and Schilderheim. The town's primary trade good is the Holthusen Hogshead barrel which is used across the empire to age or ferment their products before shipment. The barrels are said to be so sturdy as to be able to protect their contents even from direct cannon fire. Every year Holthusen hosts the Weinfest, a great gathering for wine tasting that requires an invite to enter. Of course the lack of invite does not stop the horde of wastrels and rogues who wish to drink the free wine provided by the festival. Weinfest also marks the only time of year during which the Golden Cask is brought out, which is said to contain the best wine in the Empire if not the entire Old World. Due to the town's forested location, it is frequently attacked by beastmen. The palisades and guards are normally strong enough to see the monsters off, but the townspeople fear the day this defence falls short. As such, some of the townspeople have been leaving casks of cheap wine at the edge of the woods in an attempt to appease the beastmen with tribute. This dubious practice likely will not be allowed to continue much longer.">
+  <Settlement id="village_RL2_1" name="{=Settlements.Settlement.name.village_RL2_1}Holthusen" posX="1200.37" posY="1068.356" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL2_1}Holthusen is a town in western Reikland on the river Schilder. By road it lies between Eilhart and Schilderheim. The town's primary trade good is the Holthusen Hogshead barrel which is used across the empire to age or ferment their products before shipment. The barrels are said to be so sturdy as to be able to protect their contents even from direct cannon fire. Every year Holthusen hosts the Weinfest, a great gathering for wine tasting that requires an invite to enter. Of course the lack of invite does not stop the horde of wastrels and rogues who wish to drink the free wine provided by the festival. Weinfest also marks the only time of year during which the Golden Cask is brought out, which is said to contain the best wine in the Empire if not the entire Old World. Due to the town's forested location, it is frequently attacked by beastmen. The palisades and guards are normally strong enough to see the monsters off, but the townspeople fear the day this defence falls short. As such, some of the townspeople have been leaving casks of cheap wine at the edge of the woods in an attempt to appease the beastmen with tribute. This dubious practice likely will not be allowed to continue much longer.">
     <Components>
       <Village id="village_comp_RL2_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL2" bound="Settlement.town_RL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2181,7 +2181,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_RL2_2" name="{=Settlements.Settlement.name.village_RL2_2}Eilhart" posX="1113.43" posY="866.393" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_RL2_2" name="{=Settlements.Settlement.name.village_RL2_2}Eilhart" posX="1201.432" posY="1060.383" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
     <Components>
       <Village id="village_comp_RL2_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL2" bound="Settlement.town_RL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2214,7 +2214,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_RL3_1" name="{=Settlements.Settlement.name.village_RL3_1}Ussingen" posX="1106.813" posY="867.856" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL3_1}Ussingen is a small village located on the road between Holthusen and Osburg. The town is at the furthest point that the River Schilder remains navigable by barge, meaning that many shipments bound for Helmgart will arrive first here. The people here raise crops along the river Schilder and will venture into the nearby Grey Mountains to mine seams of ore. The town is well protected by the walls at Helmgart, and really only worries about the denizens of the Reikwald.">
+  <Settlement id="village_RL3_1" name="{=Settlements.Settlement.name.village_RL3_1}Ussingen" posX="1210.412" posY="1053.094" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL3_1}Ussingen is a small village located on the road between Holthusen and Osburg. The town is at the furthest point that the River Schilder remains navigable by barge, meaning that many shipments bound for Helmgart will arrive first here. The people here raise crops along the river Schilder and will venture into the nearby Grey Mountains to mine seams of ore. The town is well protected by the walls at Helmgart, and really only worries about the denizens of the Reikwald.">
     <Components>
       <Village id="village_comp_RL3_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL3" bound="Settlement.town_RL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2227,7 +2227,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_RL3_2" name="{=Settlements.Settlement.name.village_RL3_2}Morlenfurt" posX="1103.54" posY="866.971" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL3_2}Morlenfurt is a small village near the headwaters of the river Bogen. The town is known for its silver mines and the small community of Dwarfs which contribute to the silver trade within the Reikland.">
+  <Settlement id="village_RL3_2" name="{=Settlements.Settlement.name.village_RL3_2}Morlenfurt" posX="1226.971" posY="1025.689" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL3_2}Morlenfurt is a small village near the headwaters of the river Bogen. The town is known for its silver mines and the small community of Dwarfs which contribute to the silver trade within the Reikland.">
     <Components>
       <Village id="village_comp_RL3_2" village_type="VillageType.silver_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL3" bound="Settlement.town_RL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2260,7 +2260,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_RL4_1" name="{=Settlements.Settlement.name.village_RL4_1}Osburg" posX="1107.987" posY="862.255" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL4_1}At the foot of the Axe Bite Pass sits the village of Osburg, the last Imperial settlement before the Market fortress of Helmgart and the Imperial/Bretonnian border. Any shipments bound for Helmgart must pass first through Osburg, and this source of trade makes the merchants here fairly prosperous.">
+  <Settlement id="village_RL4_1" name="{=Settlements.Settlement.name.village_RL4_1}Osburg" posX="1216.879" posY="1038.57" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL4_1}At the foot of the Axe Bite Pass sits the village of Osburg, the last Imperial settlement before the Market fortress of Helmgart and the Imperial/Bretonnian border. Any shipments bound for Helmgart must pass first through Osburg, and this source of trade makes the merchants here fairly prosperous.">
     <Components>
       <Village id="village_comp_RL4_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL4" bound="Settlement.town_RL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2273,7 +2273,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_RL4_2" name="{=Settlements.Settlement.name.village_RL4_2}Herzhald " posX="1111.288" posY="855.364" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL4_2}To the north northwest of Bögenhafen is the timber producing village of Herzhald. Situated deep in the Reikwald, Herzhald is known for the quality and lengths of its timber samples, much of which is sent to Bögenhafen and Grünburg for their boatbuilding.">
+  <Settlement id="village_RL4_2" name="{=Settlements.Settlement.name.village_RL4_2}Herzhald " posX="1258.085" posY="1025.51" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL4_2}To the north northwest of Bögenhafen is the timber producing village of Herzhald. Situated deep in the Reikwald, Herzhald is known for the quality and lengths of its timber samples, much of which is sent to Bögenhafen and Grünburg for their boatbuilding.">
     <Components>
       <Village id="village_comp_RL4_2" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL4" bound="Settlement.town_RL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2306,7 +2306,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_RL5_1" name="{=Settlements.Settlement.name.village_RL5_1}Greissbach " posX="1114.829" posY="862.412" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL5_1}Geissbach is a forest village just north of Ubersreik. The people here carefully timber the woods nearby and grow what crops they can in the clearings around the village. For a long time there have been rumors and worries about a dark estate just east of the village, which is said to house great evil.">
+  <Settlement id="village_RL5_1" name="{=Settlements.Settlement.name.village_RL5_1}Greissbach " posX="1260.401" posY="1005.038" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL5_1}Geissbach is a forest village just north of Ubersreik. The people here carefully timber the woods nearby and grow what crops they can in the clearings around the village. For a long time there have been rumors and worries about a dark estate just east of the village, which is said to house great evil.">
     <Components>
       <Village id="village_comp_RL5_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL5" bound="Settlement.town_RL5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2319,7 +2319,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_RL5_2" name="{=Settlements.Settlement.name.village_RL5_2}Tallerhof" posX="1114.065" posY="858.439" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL1_2}Tallerhof is a small village that sits where the Grey Lady Road meets the Dwarf Road. It astrides the river Teufel and marks the highest place where the river is still navigable by barge. If it were not for the dwarf trade passing through from Karak Azgaraz for Ubersreik, the village would have long been abandoned.">
+  <Settlement id="village_RL5_2" name="{=Settlements.Settlement.name.village_RL5_2}Tallerhof" posX="1253.312" posY="996.028" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL1_2}Tallerhof is a small village that sits where the Grey Lady Road meets the Dwarf Road. It astrides the river Teufel and marks the highest place where the river is still navigable by barge. If it were not for the dwarf trade passing through from Karak Azgaraz for Ubersreik, the village would have long been abandoned.">
     <Components>
       <Village id="village_comp_RL5_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL5" bound="Settlement.town_RL5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2332,7 +2332,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_RL5_3" name="{=Settlements.Settlement.name.village_RL5_3}Hugeldal" posX="1108.387" posY="850.07" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL5_3}To the south of Ubersreik is the mining town of Hugeldal. Hugeldal was founded three hundred years after the founding of the empire to mine copper and iron from the Grey mountains. In 1112 IC, town records indicate that the Black Plague devastated the local population and nearly ruined the town. The cult of Shallya saw fit to establish a hospice here shortly thereafter. Not long after the arrival of the Shallyans, the Strigany that have always frequented the area were banned from entering the town. Despite this they regularly pitch camp outside of the palisade to entertain and trade with the locals">
+  <Settlement id="village_RL5_3" name="{=Settlements.Settlement.name.village_RL5_3}Hugeldal" posX="1276.306" posY="988.509" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL5_3}To the south of Ubersreik is the mining town of Hugeldal. Hugeldal was founded three hundred years after the founding of the empire to mine copper and iron from the Grey mountains. In 1112 IC, town records indicate that the Black Plague devastated the local population and nearly ruined the town. The cult of Shallya saw fit to establish a hospice here shortly thereafter. Not long after the arrival of the Shallyans, the Strigany that have always frequented the area were banned from entering the town. Despite this they regularly pitch camp outside of the palisade to entertain and trade with the locals">
     <Components>
       <Village id="village_comp_RL5_3" village_type="VillageType.iron_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL5" bound="Settlement.town_RL5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2365,7 +2365,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_RL6_1" name="{=Settlements.Settlement.name.village_RL6_1}Barfsheim" posX="1105.058" posY="857.048" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL6_1}Barfsheim is a small village along the river Grissen near the Countess Emmanuelle canal. Its grain often is exported out of the Reikland to feed Grissenwald and Nuln.">
+  <Settlement id="village_RL6_1" name="{=Settlements.Settlement.name.village_RL6_1}Barfsheim" posX="1293.931" posY="959.604" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL6_1}Barfsheim is a small village along the river Grissen near the Countess Emmanuelle canal. Its grain often is exported out of the Reikland to feed Grissenwald and Nuln.">
     <Components>
       <Village id="village_comp_RL6_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL6" bound="Settlement.town_RL6" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2378,7 +2378,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_RL6_2" name="{=Settlements.Settlement.name.village_RL6_2}Steindorf" posX="1102.528" posY="852.3" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL6_2}Steindorf is a small village near the headwaters of the river Grissen. Its people refuse to travel into the Grey Mountains that often overshadow the village. Despite the fact that the minerals would bring great wealth to the village, the people here speak of a dread castle in the mountains above them, saying that they would rather remain in their vale with their grain.">
+  <Settlement id="village_RL6_2" name="{=Settlements.Settlement.name.village_RL6_2}Steindorf" posX="1309.852" posY="977.429" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL6_2}Steindorf is a small village near the headwaters of the river Grissen. Its people refuse to travel into the Grey Mountains that often overshadow the village. Despite the fact that the minerals would bring great wealth to the village, the people here speak of a dread castle in the mountains above them, saying that they would rather remain in their vale with their grain.">
     <Components>
       <Village id="village_comp_RL6_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL6" bound="Settlement.town_RL6" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2401,7 +2401,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_RL1_1" name="{=Settlements.Settlement.name.castle_village_RL1_1}Naffdorf" posX="1101.721" posY="858.031" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
+  <Settlement id="castle_village_RL1_1" name="{=Settlements.Settlement.name.castle_village_RL1_1}Naffdorf" posX="1292.379" posY="996.332" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
     <Components>
       <Village id="castle_village_comp_RL1_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_RL6" bound="Settlement.castle_RL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2414,7 +2414,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_RL1_2" name="{=Settlements.Settlement.name.castle_village_RL1_2}Teufelfeuer" posX="1099.417" posY="855.674" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_RL1_2" name="{=Settlements.Settlement.name.castle_village_RL1_2}Teufelfeuer" posX="1307.066" posY="988.116" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
     <Components>
       <Village id="castle_village_comp_RL1_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_RL6" bound="Settlement.castle_RL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2437,7 +2437,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_RL2_1" name="{=Settlements.Settlement.name.castle_village_RL2_1}Diesdorf" posX="1099.268" posY="861.403" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL2_1}Diesdorf is a small town on the river Reik located between Altdorf and Kemperbad. Diesdorf is a major holy site of the Cult of Sigmar, it is said that Magnus the Pious once made a powerful and stirring speech to the crowds who had gathered to hear him. Around sixty years ago, Emperor Wilhelm III founded the Diesdorf Military college to train those who have proven their leadership abilities in battle.">
+  <Settlement id="castle_village_RL2_1" name="{=Settlements.Settlement.name.castle_village_RL2_1}Diesdorf" posX="1317.257" posY="1019.406" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL2_1}Diesdorf is a small town on the river Reik located between Altdorf and Kemperbad. Diesdorf is a major holy site of the Cult of Sigmar, it is said that Magnus the Pious once made a powerful and stirring speech to the crowds who had gathered to hear him. Around sixty years ago, Emperor Wilhelm III founded the Diesdorf Military college to train those who have proven their leadership abilities in battle.">
     <Components>
       <Village id="castle_village_comp_RL2_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_RL5" bound="Settlement.castle_RL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2450,7 +2450,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_RL2_2" name="{=Settlements.Settlement.name.castle_village_RL2_2}Lachenbad" posX="1113.123" posY="850.901" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL2_2}Lachenbad sits along the Tranig river at the joining points of the Grey Lady  and Ober-Stimmigen canals. While the village is a farming community, it is the home of a talented blacksmith, Uli and his promisingly talented son Valten.">
+  <Settlement id="castle_village_RL2_2" name="{=Settlements.Settlement.name.castle_village_RL2_2}Lachenbad" posX="1331.87" posY="996.181" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL2_2}Lachenbad sits along the Tranig river at the joining points of the Grey Lady  and Ober-Stimmigen canals. While the village is a farming community, it is the home of a talented blacksmith, Uli and his promisingly talented son Valten.">
     <Components>
       <Village id="castle_village_comp_RL2_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_RL5" bound="Settlement.castle_RL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2473,7 +2473,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_RL3_1" name="{=Settlements.Settlement.name.castle_village_RL3_1}Worlitz" posX="1115.053" posY="852.909" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL3_1}Worlitz is a river village protected by the forces garrisoning the Castle Reiksguard. The people here are very loyal directly to the Emperor Karl-Franz who many believe to be a reincarnation of Sigmar. The town benefits from trade heading down the Reik to Altdorf, Marienburg and beyond.">
+  <Settlement id="castle_village_RL3_1" name="{=Settlements.Settlement.name.castle_village_RL3_1}Worlitz" posX="1315.466" posY="1043.359" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL3_1}Worlitz is a river village protected by the forces garrisoning the Castle Reiksguard. The people here are very loyal directly to the Emperor Karl-Franz who many believe to be a reincarnation of Sigmar. The town benefits from trade heading down the Reik to Altdorf, Marienburg and beyond.">
     <Components>
       <Village id="castle_village_comp_RL3_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_RL1" bound="Settlement.castle_RL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2486,7 +2486,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_RL3_2" name="{=Settlements.Settlement.name.castle_village_RL3_2}Grünburg" posX="1117.699" posY="858.53" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL3_2}The town of Grünburg sits on the river Teufel. While trade flows through the town from the canals to itself and from the Reik to its north, Grünburg’s main source of wealth comes from its river boatyards, where many of the boats and barges that ply the rivers of the Reikland originate from. The town is also famous for the Battle of Grünburg where the advance of Orc Warlord Gorbad Ironclaw was finally halted around a half a millenia ago. The battle plains is valued particularly due to the fact that nearly all of the Imperial and orc forces present were mounted calvarymen, unusual for both the contemporary period and the modern era. As such an excavation site has been established by several interested parties and many come to look upon their work.">
+  <Settlement id="castle_village_RL3_2" name="{=Settlements.Settlement.name.castle_village_RL3_2}Grünburg" posX="1305.495" posY="1030.855" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL3_2}The town of Grünburg sits on the river Teufel. While trade flows through the town from the canals to itself and from the Reik to its north, Grünburg’s main source of wealth comes from its river boatyards, where many of the boats and barges that ply the rivers of the Reikland originate from. The town is also famous for the Battle of Grünburg where the advance of Orc Warlord Gorbad Ironclaw was finally halted around a half a millenia ago. The battle plains is valued particularly due to the fact that nearly all of the Imperial and orc forces present were mounted calvarymen, unusual for both the contemporary period and the modern era. As such an excavation site has been established by several interested parties and many come to look upon their work.">
     <Components>
       <Village id="castle_village_comp_RL3_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_RL1" bound="Settlement.castle_RL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2509,7 +2509,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_RL4_1" name="{=Settlements.Settlement.name.castle_village_RL4_1}Weissbruck" posX="1118.825" posY="863.096" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL4_1}Weissbruck sits on the joining of the Weissbruck Canal and the river Bӧgen. The town once was a major source of coal and iron in the Reikland, the mining of which provided the Gruber family with enough funds to construct the Weissbruck Canal, which enabled easier transportation of the mined material to market. Now the mines have mostly been depleted and while the town continues to have prosperous ventures in trade thanks to the canal, the many former workers of the mine have found themselves unemployed and stuck in Weissbruck, where they spend their time drinking cheap alcohol and causing trouble.">
+  <Settlement id="castle_village_RL4_1" name="{=Settlements.Settlement.name.castle_village_RL4_1}Weissbruck" posX="1259.172" posY="1066.273" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL4_1}Weissbruck sits on the joining of the Weissbruck Canal and the river Bӧgen. The town once was a major source of coal and iron in the Reikland, the mining of which provided the Gruber family with enough funds to construct the Weissbruck Canal, which enabled easier transportation of the mined material to market. Now the mines have mostly been depleted and while the town continues to have prosperous ventures in trade thanks to the canal, the many former workers of the mine have found themselves unemployed and stuck in Weissbruck, where they spend their time drinking cheap alcohol and causing trouble.">
     <Components>
       <Village id="castle_village_comp_RL4_1" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.town_RL1" bound="Settlement.castle_RL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2522,7 +2522,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_RL4_2" name="{=Settlements.Settlement.name.castle_village_RL4_2}Heiligen" posX="1115.418" posY="869.11" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL4_2}Just to the south west of altdorf is the small village of Heiligen. The village is nothing to speak of, but it is near the amber hills, which offer a spectacular view of Altdorf from their height.">
+  <Settlement id="castle_village_RL4_2" name="{=Settlements.Settlement.name.castle_village_RL4_2}Heiligen" posX="1232.292" posY="1066.186" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL4_2}Just to the south west of altdorf is the small village of Heiligen. The village is nothing to speak of, but it is near the amber hills, which offer a spectacular view of Altdorf from their height.">
     <Components>
       <Village id="castle_village_comp_RL4_2" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.town_RL1" bound="Settlement.castle_RL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2545,7 +2545,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_RL5_1" name="{=Settlements.Settlement.name.castle_village_RL5_1}Reinsfeld" posX="1108.789" posY="872.003" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL5_1}Reinsfeld is a village along the Uhl river in the northwestern Reikwald. The people here are fairly isolated from the rest of the Province, relying on what little trade passes by on the road towards Marienburg.">
+  <Settlement id="castle_village_RL5_1" name="{=Settlements.Settlement.name.castle_village_RL5_1}Reinsfeld" posX="1164.732" posY="1096.432" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL5_1}Reinsfeld is a village along the Uhl river in the northwestern Reikwald. The people here are fairly isolated from the rest of the Province, relying on what little trade passes by on the road towards Marienburg.">
     <Components>
       <Village id="castle_village_comp_RL5_1" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.town_RL2" bound="Settlement.castle_RL5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2558,7 +2558,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_RL5_2" name="{=Settlements.Settlement.name.castle_village_RL4_2}Ruhfurt" posX="1100.964" posY="865.321" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL5_2}">
+  <Settlement id="castle_village_RL5_2" name="{=Settlements.Settlement.name.castle_village_RL4_2}Ruhfurt" posX="1144.86" posY="1101.761" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL5_2}">
     <Components>
       <Village id="castle_village_comp_RL5_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_RL2" bound="Settlement.castle_RL5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2603,7 +2603,7 @@
       <Hideout id="hideout_forest_6" map_icon="bandit_hideout_b" scene_name="bandit_forest" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="hideout_forest_7" name="{=Settlements.Settlement.name.hideout_forest_7}Cultist Hideout" type="Hideout" posX="1326.16" posY="808.8143" culture="Culture.forest_bandits">
+  <Settlement id="hideout_forest_7" name="{=Settlements.Settlement.name.hideout_forest_7}Cultist Hideout" type="Hideout" posX="1326.16" posY="808.814" culture="Culture.forest_bandits">
     <Components>
       <Hideout id="hideout_forest_7" map_icon="bandit_hideout_b" scene_name="mountain_hideout_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
