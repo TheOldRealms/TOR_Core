@@ -50,42 +50,49 @@ namespace TOR_Core.HarmonyPatches
                     wardSaveFactor = torModel.CalculateWardSaveFactor(victim, attackTypeMask);
                 }
             }
-
-
-            string abilityName = null;
+            
+            string abilityName = "";
             if (attackTypeMask==AttackTypeMask.Ranged)
             {
                 var blow = b;
-                var magicSpellMissle = Mission.Current.Missiles.FirstOrDefault(x => x.Index == blow.OwnerId + 10000 + 1337);
-                if (magicSpellMissle != null)
+                var magicSpellMissile = Mission.Current.Missiles.FirstOrDefault(x => x.Index == blow.OwnerId);
+                if (magicSpellMissile != null)
                 {
-                    attackTypeMask = AttackTypeMask.Spell;
-                    abilityName = magicSpellMissle.Weapon.Item.ToString();
+                    var template =  AbilityFactory.GetTemplate(magicSpellMissile.Weapon.Item.ToString());
+
+                    if (template != null)
+                    {
+                        attackTypeMask = AttackTypeMask.Spell;
+                        abilityName = magicSpellMissile.Weapon.Item.ToString();
+                    }
+
                 }
             }
 
             //calculating spell damage
-            if (TORSpellBlowHelper.IsSpellBlow(b)|| attackTypeMask.HasFlag(AttackTypeMask.Spell)&&abilityName!=null );
+            if (TORSpellBlowHelper.IsSpellBlow(b)|| (attackTypeMask ==AttackTypeMask.Spell&&abilityName!="") )
             {
                 var abilityId="";
                 int damageType = 0;
-                if (abilityName != null)
+                if (abilityName != "")
                 {
                     var template = AbilityFactory.GetTemplate(abilityName);
                     var triggeredEffectTemplate = TriggeredEffectManager.GetTemplateWithId(template.TriggeredEffects[0]);
                     abilityId = abilityName;
                     damageType = triggeredEffectTemplate==null? (int)DamageType.Physical:(int) triggeredEffectTemplate.DamageType;
+                    damageCategories[damageType] = triggeredEffectTemplate.DamageAmount * b.BaseMagnitude;
                 }
                 else
                 {
                     var spellInfo = TORSpellBlowHelper.GetSpellBlowInfo(victim.Index, attacker.Index);
                     damageType = (int)spellInfo.DamageType;
                     abilityId = spellInfo.OriginAbilityTemplateId;
+                    damageCategories[damageType] = b.InflictedDamage;
                 }
                 
                 
                
-                damageCategories[damageType] = b.InflictedDamage;
+               
                 damagePercentages[damageType] -= resistancePercentages[damageType];
                 damageCategories[damageType] *= 1 + damagePercentages[damageType];
                 resultDamage = (int)damageCategories[damageType];

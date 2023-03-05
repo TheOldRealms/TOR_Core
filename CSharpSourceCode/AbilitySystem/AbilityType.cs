@@ -11,6 +11,7 @@
 
     public enum AbilityEffectType
     {
+        Projectile,
         Missile,
         SeekerMissile,
         Wind,

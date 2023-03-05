@@ -16,52 +16,63 @@ namespace TOR_Core.AbilitySystem.Scripts
         public override void SetAgent(Agent agent)
         {
             base.SetAgent(agent);
-            var arrowItem = MBObjectManager.Instance.GetObject<ItemObject>(this._ability.StringID);
+            var id = this._ability.StringID;
+            var arrowItem = MBObjectManager.Instance.GetObject<ItemObject>(id);
             
             var projectile = new MissionWeapon(arrowItem, null, null);
-            _id = agent.Index+10000+1337;
+            _id = agent.Index;
             var speed = this._ability.Template.BaseMovementSpeed;
             RemoveProjectile();
+            
             Mission.Current.AddCustomMissile(agent, projectile,
                 agent.GetEyeGlobalPosition(),agent.LookDirection,
                 orientation: Mat3.CreateMat3WithForward(agent.LookDirection),
                 speed,speed,false,null,_id);
-
-           //_lifeTime = _ability.Template.Duration;
+            
            init = true;
-           _hasCollided = false;
            _lifeTime = 0;
         }
 
         protected override void OnTick(float dt)
         {
-            base.OnTick(dt);
-            
             if(!init)
                 return;
             
+            var frame = GameEntity.GetGlobalFrame();
             var missile = Mission.Current.Missiles.FirstOrDefault(x => x.Index == _id);
-            if (missile != null)
+            if (missile == null)
             {
-                //RemoveProjectile();
                 Stop();
+                OnRemoved(0);
             }
-
+            if(_ability==null)
+                return;
             
-            //if(_hasCollided) return;
-            TORCommon.Say(_lifeTime.ToString());
+            UpdatePosition(frame,dt);
+            UpdateSound(GameEntity.GlobalPosition);
             _lifeTime += dt;
             if (_lifeTime>_ability.Template.Duration)
             {
                 RemoveProjectile();
             }
-
-
         }
 
-
+        protected override void UpdatePosition(MatrixFrame frame, float dt)
+        {
+            var missile = Mission.Current.Missiles.FirstOrDefault(x => x.Index == _id);
+            if (missile == null)
+            {
+                Stop();
+                OnRemoved(0);
+                return;
+            }
+            frame.origin= missile.GetPosition();
+            GameEntity.SetGlobalFrame(frame);
+        }
+        
         protected override void OnRemoved(int removeReason)
         {
+            init = false;
             RemoveProjectile();
             base.OnRemoved(removeReason);
         }
@@ -75,10 +86,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                 missile.Entity.Remove(0);
                 TORCommon.Say("killed");
             }
-
-            if (init) return;
-            _hasCollided = true;
-
+            
         }
     }
 }

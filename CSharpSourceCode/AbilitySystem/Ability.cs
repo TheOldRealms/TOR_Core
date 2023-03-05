@@ -40,6 +40,7 @@ namespace TOR_Core.AbilitySystem
         public delegate void OnCastStartHandler(Ability ability);
 
         public event OnCastStartHandler OnCastStart;
+        
 
         public Ability(AbilityTemplate template)
         {
@@ -420,6 +421,9 @@ namespace TOR_Core.AbilitySystem
         {
             switch (Template.AbilityEffectType)
             {
+                case AbilityEffectType.Projectile:
+                    AddExactBehaviour<ProjectileScript>(entity,casterAgent);
+                    break;
                 case AbilityEffectType.SeekerMissile:
                 case AbilityEffectType.Missile:
                     AddExactBehaviour<MissileScript>(entity, casterAgent);
