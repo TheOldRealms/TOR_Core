@@ -363,6 +363,7 @@
     <Compile Include="AbilitySystem\Scripts\HealScript.cs" />
     <Compile Include="AbilitySystem\Scripts\HexScript.cs" />
     <Compile Include="AbilitySystem\Scripts\MissileScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\ProjectileScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ShadowStepScript.cs" />
     <Compile Include="AbilitySystem\Scripts\SummoningScript.cs" />
     <Compile Include="AbilitySystem\Scripts\VortexScript.cs" />
