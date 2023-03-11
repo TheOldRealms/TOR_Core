@@ -419,19 +419,19 @@
 	  </TriggeredEffectTemplate>
 	  
 	  
-		<TriggeredEffectTemplate StringID="flock_of_doom_tick" 
+		<TriggeredEffectTemplate StringID="flock_of_doom" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
             DamageType="Physical" 
-			ImbuedStatusEffectDuration="3" 
+			ImbuedStatusEffectDuration="8" 
             DamageAmount="0" 
             Radius="15" 
             HasShockWave="false" 
             TargetType="Enemy" 
             DamageVariance="2" >
 			<ImbuedStatusEffect>flock_of_doom_dot</ImbuedStatusEffect>
-				<ImbuedStatusEffect>flock_of_doom_phy_red</ImbuedStatusEffect>
+			<ImbuedStatusEffect>flock_of_doom_phy_red</ImbuedStatusEffect>
 		</TriggeredEffectTemplate>
 		
 	<TriggeredEffectTemplate StringID="beast_unleashed" 

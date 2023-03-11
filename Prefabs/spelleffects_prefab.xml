@@ -323,6 +323,14 @@
 			</particle_system_instanced_component>
 		</components>
 	</game_entity>
+	<game_entity name="amber_spear" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{DD4CD7CC-64D1-4B2F-91FC-FCC659F61101}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
 	<game_entity name="stone_assault" old_prefab_name="" mobility="1">
 		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
 		<components>

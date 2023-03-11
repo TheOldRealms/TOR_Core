@@ -2284,7 +2284,7 @@
       LightFlickeringMagnitude="3" 
       LightFlickeringInterval="0.7" 
       ShadowCastEnabled="true" 
-      ParticleEffectPrefab="stone_assault" 
+      ParticleEffectPrefab="amber_spear" 
       ParticleEffectSizeModifier="1" 
       SoundEffectToPlay="rocks_grinding" 
       ShouldSoundLoopOverDuration="true" 
@@ -2444,8 +2444,8 @@
    CoolDown="15"
    WindsOfMagicCost="6"
    BaseMisCastChance="0.05"
-   Duration="11"
-   Radius="10"
+   Duration="4"
+   Radius="7.5"
    AbilityType="Spell"
    AbilityEffectType="Hex"
    BaseMovementSpeed="0"
@@ -2466,7 +2466,7 @@
    AnimationActionName="act_release_heavy_thrown"
    Offset="0.5"
    AbilityTargetType="EnemiesInAOE"
-   TargetCapturingRadius="15"
+   TargetCapturingRadius="10"
    MaxDistance="75"
    CrosshairType="TargetedAOE"
    SpellTier="4"
@@ -2478,7 +2478,7 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>flock_of_doom_tick</TriggeredEffect>
+		<TriggeredEffect>flock_of_doom</TriggeredEffect>
 	</AbilityTemplate>
 	
 	

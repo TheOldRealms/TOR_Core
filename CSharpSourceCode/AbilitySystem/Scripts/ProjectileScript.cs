@@ -73,7 +73,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         protected override void OnRemoved(int removeReason)
         {
             init = false;
-            RemoveProjectile();
+            RemoveProjectile(); //TODO crashs when mission is closed when projectile is flying
             base.OnRemoved(removeReason);
         }
 

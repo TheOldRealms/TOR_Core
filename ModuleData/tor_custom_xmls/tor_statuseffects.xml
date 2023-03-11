@@ -207,25 +207,26 @@
 		
 	<StatusEffectTemplate 
 		id="pans_pelt" 
-		particle_id="undead_crumbling"
+		particle_id="panns_impenetrable_pelt"
 		particle_intensity="Low"
+		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="0.35"
 		damage_type="Physical"
 		type="Resistance"/>
 		
 	<StatusEffectTemplate
 		id="flock_of_doom_dot"
-		particle_id="harmonic_convergence"
+		particle_id="flock_of_doom"
 		particle_intensity="High"
-		apply_particle_to_root_bone_only="true"
     	base_effect_value="10"
+		do_not_attach_to_agent_skeleton="true"
 		type="DamageOverTime"
 		damage_type="Physical"/>
 		
 	<StatusEffectTemplate
 		id="flock_of_doom_phy_red"
-		particle_id="harmonic_convergence"
-		particle_intensity="High"
+		particle_id=""
+		particle_intensity="Low"
 		apply_particle_to_root_bone_only="true"
     	base_effect_value="-0.2"
 		type="Resistance"
@@ -242,7 +243,7 @@
 		
 	<StatusEffectTemplate
 		id="beast_unleashed_phys_buff"
-		particle_id="harmonic_convergence"
+		particle_id="beast_unleashed"
 		particle_intensity="High"
 		apply_particle_to_root_bone_only="true"
 		base_effect_value="0.25"
