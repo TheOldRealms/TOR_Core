@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using HarmonyLib;
 using NLog;
 using NLog.Config;
@@ -70,7 +71,12 @@ namespace TOR_Core
         }
 
         protected override void OnSubModuleLoad()
-        {
+        { 
+            
+            CampaignTime startTime = CampaignTime.Years(2502)+CampaignTime.Weeks(4)+CampaignTime.Days(5);
+            
+            typeof(CampaignData).GetField("CampaignStartTime",BindingFlags.Static|BindingFlags.Public)?.SetValue(null,startTime);
+            
             ViewModelExtensionManager.Initialize(); //has to happen before harmony PatchAll
             HarmonyInstance = new Harmony("mod.harmony.theoldrealms");
             HarmonyInstance.PatchAll();
