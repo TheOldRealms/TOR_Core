@@ -96,6 +96,14 @@
 			</particle_system_instanced_component>
 		</components>
 	</game_entity>
+		<game_entity name="hail_storm" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{CC615B59-F874-4C1B-B8F0-32998DD5C9B8}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
 	<game_entity name="bats_vfx" old_prefab_name="" mobility="1">
 		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
 		<components>
@@ -328,6 +336,14 @@
 		<components>
 			<particle_system_instanced_component>
 				<effect_ref base_effect="{DD4CD7CC-64D1-4B2F-91FC-FCC659F61101}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="green_eye" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{91DB985A-149D-4274-927F-B09D2F755615}"/>
 			</particle_system_instanced_component>
 		</components>
 	</game_entity>

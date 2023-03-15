@@ -84,7 +84,6 @@ namespace TOR_Core.AbilitySystem.Scripts
             {
                 Mission.Current.RemoveMissileAsClient(_id);
                 missile.Entity.Remove(0);
-                TORCommon.Say("killed");
             }
             
         }

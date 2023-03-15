@@ -184,6 +184,17 @@
             DamageVariance="0.1" 
             ScriptNameToTrigger="none" 
             HasShockWave="true" />
+	  <TriggeredEffectTemplate StringID="phys_tick" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+            DamageAmount="25" 
+            Radius="2" 
+            HasShockWave="false" 
+            TargetType="All" 
+            DamageVariance="0.1" 
+            ScriptNameToTrigger="none"/>
       <TriggeredEffectTemplate StringID="lightning_tick" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 

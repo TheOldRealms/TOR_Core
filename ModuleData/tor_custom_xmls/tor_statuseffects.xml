@@ -234,7 +234,7 @@
 		
 	<StatusEffectTemplate
 		id="beast_unleashed_ats_buff"
-		particle_id="harmonic_convergence"
+		particle_id="beast_unleashed"
 		particle_intensity="High"
 		apply_particle_to_root_bone_only="true"
 		base_effect_value="0.5"
@@ -243,7 +243,7 @@
 		
 	<StatusEffectTemplate
 		id="beast_unleashed_phys_buff"
-		particle_id="beast_unleashed"
+		particle_id=""
 		particle_intensity="High"
 		apply_particle_to_root_bone_only="true"
 		base_effect_value="0.25"
