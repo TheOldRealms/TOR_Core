@@ -144,6 +144,17 @@ namespace TOR_Core.Utilities
             return "Story opened. \n";
         }
 
+        [CommandLineFunctionality.CommandLineArgumentFunction("reload_ink_stories", "tor")]
+        public static string ReloadInkStories(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+
+            InkStoryManager.ReloadStories();
+
+            return "Ink Stories reloaded. \n";
+        }
+
         private static string AggregateOutput(string topicHeader, List<string> matchedSpells) =>
             matchedSpells.Aggregate(
                 $"\n{topicHeader}\n",

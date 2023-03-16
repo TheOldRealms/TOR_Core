@@ -37,6 +37,11 @@ namespace TOR_Core.Ink
             }
         }
 
+        public static void ReloadStories()
+        {
+            _instance.LoadStories();
+        }
+
         public static InkStory GetStory(string name)
         {
             InkStory story = null;
