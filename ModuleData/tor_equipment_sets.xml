@@ -70,13 +70,11 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_empire_recruit_template" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_spear_004" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_militia_003" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
       <Equipment slot="Leg" id="Item.leather_boots" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_spear_004" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_militia_003" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
       <Equipment slot="Leg" id="Item.leather_boots" />
@@ -116,12 +114,10 @@
       <Equipment slot="Body" id="Item.tied_cloth_tunic" />
     </EquipmentSet>
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_spear_004" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
       <Equipment slot="Gloves" id="Item.guarded_armwraps" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_spear_004" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
       <Equipment slot="Gloves" id="Item.guarded_armwraps" />
     </EquipmentSet>

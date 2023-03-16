@@ -13,6 +13,7 @@ using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using FaceGen = TaleWorlds.Core.FaceGen;
 
 namespace TOR_Core.Models
 {
@@ -141,6 +142,7 @@ namespace TOR_Core.Models
 
         private void UpdateAgentDrivenProperties(Agent agent, AgentDrivenProperties agentDrivenProperties)
         {
+          
             if (agent.IsHuman)
             {
                 AddSkillEffectsForAgent(agent, agentDrivenProperties);

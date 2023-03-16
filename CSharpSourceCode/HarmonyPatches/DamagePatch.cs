@@ -26,6 +26,11 @@ namespace TOR_Core.HarmonyPatches
                 return true;
             }
 
+            if (attacker.Character.Race == 5)
+            {
+                b.InflictedDamage *= (int)0.25f;
+            }
+
             float[] damageCategories = new float[(int)DamageType.All + 1];
             var attackerPropertyContainer = attacker.GetProperties(PropertyMask.Attack);
             var victimPropertyContainer = victim.GetProperties(PropertyMask.Defense);

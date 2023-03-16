@@ -21,5 +21,19 @@ namespace TOR_Core.Models.CustomBattleModels
             }
             return base.GetMaxCameraZoom(agent);
         }
+        
+        public override void UpdateAgentStats(Agent agent, AgentDrivenProperties agentDrivenProperties)
+        {
+            base.UpdateAgentStats(agent,agentDrivenProperties);
+            
+            if(!agent.IsHuman) return;
+            
+            if (agent.Character.Race == 5)
+            {
+                agentDrivenProperties.MaxSpeedMultiplier = 0.4f;
+            }
+
+        }
     }
+    
 }

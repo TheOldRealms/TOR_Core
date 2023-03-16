@@ -473,7 +473,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_empire_state_troop">
     <Abilities />
-    <Attributes />
+     <Attributes>
+      <string>Undead</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
