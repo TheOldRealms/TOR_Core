@@ -61,16 +61,24 @@
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Lib.Harmony.2.2.2\lib\net472\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="TaleWorlds.ScreenSystem">
-      <HintPath>$(GameDir)\bin\Win64_Shipping_Client\TaleWorlds.ScreenSystem.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="ink-engine-runtime, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\ink-engine-runtime.dll</HintPath>
     </Reference>
+    <Reference Include="ink_compiler, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\ink_compiler.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Drawing" />
     <Reference Include="TaleWorlds.AchievementSystem.dll">
       <HintPath>$(GameDir)\bin\Win64_Shipping_Client\TaleWorlds.AchievementSystem.dll</HintPath>
       <Private>False</Private>
@@ -249,6 +257,10 @@
     </Reference>
     <Reference Include="TaleWorlds.SaveSystem.dll">
       <HintPath>$(GameDir)\bin\Win64_Shipping_Client\TaleWorlds.SaveSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.ScreenSystem">
+      <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.ScreenSystem.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="TaleWorlds.Starter.Library.dll">
@@ -548,6 +560,11 @@
     <Compile Include="HarmonyPatches\SettlementPatches.cs" />
     <Compile Include="HarmonyPatches\ViewModelPatches.cs" />
     <Compile Include="HarmonyPatches\ViewModelRefreshPatch.cs" />
+    <Compile Include="Ink\InkStoryCampaignBehavior.cs" />
+    <Compile Include="Ink\InkStory.cs" />
+    <Compile Include="Ink\InkStoryChoiceVM.cs" />
+    <Compile Include="Ink\InkStoryManager.cs" />
+    <Compile Include="Ink\InkStoryVM.cs" />
     <Compile Include="Items\ExtendedItemObjectManager.cs" />
     <Compile Include="Items\ExtendedItemObjectProperties.cs" />
     <Compile Include="Items\ItemTrait.cs" />

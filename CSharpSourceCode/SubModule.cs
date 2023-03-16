@@ -51,6 +51,7 @@ using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Extensions.UI;
 using TOR_Core.GameManagers;
+using TOR_Core.Ink;
 using TOR_Core.Items;
 using TOR_Core.Models;
 using TOR_Core.Models.CustomBattleModels;
@@ -84,6 +85,7 @@ namespace TOR_Core
             ExtendedItemObjectManager.LoadXML();
             CustomBannerManager.LoadXML();
             RORManager.LoadTemplates();
+            InkStoryManager.Initialize();
         }
 
         protected override void InitializeGameStarter(Game game, IGameStarter starterObject)
@@ -112,6 +114,7 @@ namespace TOR_Core
                 starter.AddBehavior(new BaseGameDebugCampaignBehavior());
                 starter.AddBehavior(new BloodKissCampaignBehavior());
                 starter.AddBehavior(new TORPartyUpgraderCampaignBehavior());
+                starter.AddBehavior(new InkStoryCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }

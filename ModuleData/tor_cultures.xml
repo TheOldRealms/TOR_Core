@@ -1295,24 +1295,7 @@
 			<name name="{=empire_female_393}Zena" />
 		</female_names>
 		<clan_names>
-			<name name="{=pRA9EzNv}Acapanos" />
-			<name name="{=ogq9oxDn}Angarys" />
-			<name name="{=MgDUudOx}Balastisos" />
-			<name name="{=Rvww4Kxi}Corstases" />
-			<name name="{=kWiQaFLM}Delicos" />
-			<name name="{=DiB4ukeK}Elysos" />
-			<name name="{=pUvrTrHT}Gessios" />
-			<name name="{=fsOUhzLv}Jalos" />
-			<name name="{=CuocGtTq}Lestharos" />
-			<name name="{=FVl3D2qT}Meones" />
-			<name name="{=fAKa9JfU}Nathanys" />
-			<name name="{=RhwPmahK}Opynates" />
-			<name name="{=OL6fbZRY}Paltos" />
-			<name name="{=HPrHkie6}Phenigos" />
-			<name name="{=DYdI0faN}Stracanasthes" />
-			<name name="{=g7etVhSO}Sumessos" />
-			<name name="{=oGf1fUpP}Therycos" />
-			<name name="{=AeNqteUX}Zebales" />
+			<name name="{=empire_generic_clan_name}von {ORIGIN_SETTLEMENT}" />
 		</clan_names>
 		<cultural_feats>
       		<feat id="empire_decreased_garrison_wage" />
@@ -2713,17 +2696,7 @@
 			<name name="{=vampire_counts_female_393}Zena" />
 		</female_names>
 		<clan_names>
-			<name name="{=qJprzW1N}Airit" />
-			<name name="{=4833ZS9c}Aldusunit" />
-			<name name="{=tPG5uf4C}Bochit" />
-			<name name="{=J1s05Ovk}Charait" />
-			<name name="{=3apHdqU7}Ingchit" />
-			<name name="{=5zxaCgd6}Maranjit" />
-			<name name="{=tDaWbJlY}Oranarit" />
-			<name name="{=lhiAWoFw}Sunit" />
-			<name name="{=MjZumz0j}Tokhit" />
-			<name name="{=LipFTLvz}Ubchit" />
-			<name name="{=ZwOT9J49}Yujit" />
+			<name name="{=vampire_counts_generic_clan_name}von {ORIGIN_SETTLEMENT}" />
 		</clan_names>
 		<cultural_feats>
 			<feat id="khuzait_cheaper_recruits_mounted" />
