@@ -397,6 +397,22 @@
       </TriggeredEffectTemplate>
 	  
 	  
+		<TriggeredEffectTemplate StringID="green_eye_end" 
+            BurstParticleEffectPrefab="green_eye_end" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Magical" 
+            DamageAmount="30" 
+            Radius="4" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="2" 
+            DamageVariance="0"
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect></ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+	  
+	  
 <!--Beast Magic-->
 
 	  <TriggeredEffectTemplate StringID="tangling_thorn" 

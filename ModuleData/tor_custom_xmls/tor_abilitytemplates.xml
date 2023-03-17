@@ -2012,7 +2012,7 @@
       Radius="0.4" 
       AbilityType="Spell" 
       AbilityEffectType="Projectile" 
-      BaseMovementSpeed="140" 
+      BaseMovementSpeed="100" 
 	  TickOnce ="false"
       TickInterval="-1" 
       TriggerType="EveryTick" 
@@ -2041,7 +2041,7 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>cinderblast_explosion</TriggeredEffect>
+		<TriggeredEffect>green_eye_end</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="Barkskin"

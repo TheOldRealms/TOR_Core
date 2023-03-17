@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -81,7 +81,8 @@ namespace TOR_Core.AbilitySystem.Scripts
         {
             var missile = Mission.Current.Missiles.FirstOrDefault(x => x.Index == _id);
             if (missile != null)
-            {
+            { 
+                TriggerEffects(this.GameEntity.GlobalPosition, this.GameEntity.GlobalPosition.NormalizedCopy()); //TODO there is no particle effect when multiple units get pierced with green eye
                 Mission.Current.RemoveMissileAsClient(_id);
                 missile.Entity.Remove(0);
             }
