@@ -231,6 +231,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         protected virtual List<TriggeredEffect> GetEffectsToTrigger()
         {
             List<TriggeredEffect> effects = new List<TriggeredEffect>();
+            if (_ability == null) return effects; 
             foreach(var effect in _ability.Template.AssociatedTriggeredEffectTemplates)
             {
                 effects.Add(new TriggeredEffect(effect));

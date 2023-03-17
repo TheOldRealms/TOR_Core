@@ -97,16 +97,14 @@
 		id="summerheat_impairment_50"
 		particle_id="summer_heat"
 		particle_intensity="High"
-		apply_particle_to_root_bone_only="true"
+		do_not_attach_to_agent_skeleton="true"
     	base_effect_value="-0.5"
 		type="MovementManipulation"
 		damage_type="Physical">
   	</StatusEffectTemplate>
 	<StatusEffectTemplate
 		id="summerheat_fireres_debuff_25"
-		particle_id="summer_heat"
-		particle_intensity="High"
-		do_not_attach_to_agent_skeleton="true"
+		particle_id=""
     	base_effect_value="-0.25"
 		type="Resistance"
 		damage_type="Fire">
@@ -120,8 +118,8 @@
 		do_not_attach_to_agent_skeleton="true"/>
 	<StatusEffectTemplate
 		id="storm_of_renewal_heal" 
-		particle_id="harmonic_convergence"
-		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		particle_id="storm_of_renewal"
 		base_effect_value="10"
 		type="HealthOverTime"/>
 	<StatusEffectTemplate

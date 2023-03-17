@@ -95,12 +95,21 @@
 				<effect_ref base_effect="{BAE4E95F-9112-469C-8A16-98D1999415F4}"/>
 			</particle_system_instanced_component>
 		</components>
+		
 	</game_entity>
 		<game_entity name="hail_storm" old_prefab_name="">
 		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
 		<components>
 			<particle_system_instanced_component>
 				<effect_ref base_effect="{CC615B59-F874-4C1B-B8F0-32998DD5C9B8}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="storm_of_renewal_ground" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{DB579893-7096-49A0-BDDD-9308F09035D2}"/>
 			</particle_system_instanced_component>
 		</components>
 	</game_entity>

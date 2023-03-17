@@ -382,7 +382,7 @@
 	  
 	  
 		<TriggeredEffectTemplate StringID="storm_of_renewal" 
-            BurstParticleEffectPrefab="cinder_explosion" 
+            BurstParticleEffectPrefab="storm_of_renewal_ground" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
             DamageType="Magical" 
