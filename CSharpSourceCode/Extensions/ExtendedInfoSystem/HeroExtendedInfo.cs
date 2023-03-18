@@ -6,6 +6,7 @@ using TaleWorlds.Core;
 using TaleWorlds.SaveSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 
 namespace TOR_Core.Extensions.ExtendedInfoSystem
@@ -15,7 +16,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         [SaveableField(0)] public List<string> AcquiredAbilities = new List<string>();
         [SaveableField(1)] public List<string> AcquiredAttributes = new List<string>();
         [SaveableField(2)] public float CurrentWindsOfMagic = 0;
-        [SaveableField(3)] public int Corruption = 0; //between 0 and 100, 0 = pure af, 100 = fallen to chaos
+        [SaveableField(3)] public List<Tuple<string, int>> ReligionInfluences = new List<Tuple<string, int>>();
         [SaveableField(4)] public SpellCastingLevel SpellCastingLevel = SpellCastingLevel.None;
         [SaveableField(5)] private CharacterObject _baseCharacter;
         [SaveableField(6)] private List<string> _knownLores = new List<string>();
@@ -110,6 +111,16 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             {
                 if (_selectedAbilities.Count > 0) return _selectedAbilities;
                 else return AllAbilites;
+            }
+        }
+
+        public ReligionObject DominantReligion
+        {
+            get
+            {
+                if(ReligionInfluences.Count == 0) return null;
+                var dominantTuple = ReligionInfluences.MaxBy(x => x.Item2);
+                return ReligionManager.GetReligion(dominantTuple.Item1);
             }
         }
 

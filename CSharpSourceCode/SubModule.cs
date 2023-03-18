@@ -41,6 +41,7 @@ using TOR_Core.CampaignMechanics.CustomEncounterDialogs;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.SkillBooks;
 using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
@@ -86,6 +87,7 @@ namespace TOR_Core
             CustomBannerManager.LoadXML();
             RORManager.LoadTemplates();
             InkStoryManager.Initialize();
+            ReligionManager.LoadXML();
         }
 
         protected override void InitializeGameStarter(Game game, IGameStarter starterObject)
@@ -115,6 +117,7 @@ namespace TOR_Core
                 starter.AddBehavior(new BloodKissCampaignBehavior());
                 starter.AddBehavior(new TORPartyUpgraderCampaignBehavior());
                 starter.AddBehavior(new InkStoryCampaignBehavior());
+                starter.AddBehavior(new ReligionCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
