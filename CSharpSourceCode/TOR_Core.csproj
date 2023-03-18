@@ -474,8 +474,9 @@
     <Compile Include="CampaignMechanics\RegimentsOfRenown\RoRSettlementNameplateVM.cs" />
     <Compile Include="CampaignMechanics\RegimentsOfRenown\RORSettlementTemplate.cs" />
     <Compile Include="CampaignMechanics\Religion\BlessingObject.cs" />
+    <Compile Include="CampaignMechanics\Religion\EncyclopediaReligionObjectVM.cs" />
     <Compile Include="CampaignMechanics\Religion\ReligionCampaignBehavior.cs" />
-    <Compile Include="CampaignMechanics\Religion\ReligionManager.cs" />
+    <Compile Include="CampaignMechanics\Religion\ReligionEncyclopediaPage.cs" />
     <Compile Include="CampaignMechanics\Religion\ReligionObject.cs" />
     <Compile Include="CampaignMechanics\SkillBooks\TORSkillBookCampaignBehavior.cs" />
     <Compile Include="BattleMechanics\TORBattleAgentLogic.cs" />
@@ -528,6 +529,7 @@
     <Compile Include="Extensions\SettlementExtensions.cs" />
     <Compile Include="Extensions\TeamExtensions.cs" />
     <Compile Include="Extensions\UI\BaseViewModelExtension.cs" />
+    <Compile Include="Extensions\UI\HeroEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionAttribute.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionManager.cs" />
     <Compile Include="Extensions\ViewModelExtensions.cs" />
@@ -546,6 +548,7 @@
     <Compile Include="HarmonyPatches\CustomWorldMapPatch.cs" />
     <Compile Include="HarmonyPatches\DamagePatch.cs" />
     <Compile Include="HarmonyPatches\EncounterPatches.cs" />
+    <Compile Include="HarmonyPatches\EncyclopediaPatches.cs" />
     <Compile Include="HarmonyPatches\FactionBannerPatches.cs" />
     <Compile Include="HarmonyPatches\GameKeyOptionsCategoryPatch.cs" />
     <Compile Include="HarmonyPatches\GameTextPatches.cs" />

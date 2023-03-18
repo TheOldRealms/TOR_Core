@@ -18,6 +18,7 @@ using TaleWorlds.MountAndBlade.CustomBattle;
 using TaleWorlds.MountAndBlade.GameKeyCategory;
 using TaleWorlds.MountAndBlade.GauntletUI.Mission;
 using TaleWorlds.MountAndBlade.Source.Missions;
+using TaleWorlds.ObjectSystem;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.SpellBook;
@@ -87,7 +88,7 @@ namespace TOR_Core
             CustomBannerManager.LoadXML();
             RORManager.LoadTemplates();
             InkStoryManager.Initialize();
-            ReligionManager.LoadXML();
+            //ReligionManager.LoadXML();
         }
 
         protected override void InitializeGameStarter(Game game, IGameStarter starterObject)
@@ -212,13 +213,18 @@ namespace TOR_Core
 
         public override void BeginGameStart(Game game)
         {
-            game.ObjectManager.RegisterType<TORCustomSettlementComponent>("TORCustomSettlementComponent", "TORCustomSettlementComponents", 99U, true);
-            game.ObjectManager.RegisterType<CareerObject>("Career", "Careers", 100U, true);
-            game.ObjectManager.RegisterType<CareerChoiceObject>("CareerChoice", "CareerChoices", 101U, true);
-            game.ObjectManager.RegisterType<CareerChoiceGroupObject>("CareerChoiceGroup", "CareerChoiceGroups", 102U, true);
-            _ = new TORCareers();
-            _ = new TORCareerChoiceGroups();
-            _ = new TORCareerChoices();
+            if(game.GameType is Campaign)
+            {
+                game.ObjectManager.RegisterType<TORCustomSettlementComponent>("TORCustomSettlementComponent", "TORCustomSettlementComponents", 99U, true);
+                game.ObjectManager.RegisterType<CareerObject>("Career", "Careers", 100U, true);
+                game.ObjectManager.RegisterType<CareerChoiceObject>("CareerChoice", "CareerChoices", 101U, true);
+                game.ObjectManager.RegisterType<CareerChoiceGroupObject>("CareerChoiceGroup", "CareerChoiceGroups", 102U, true);
+                game.ObjectManager.RegisterType<ReligionObject>("Religion", "Religions", 103U, true);
+                _ = new TORCareers();
+                _ = new TORCareerChoiceGroups();
+                _ = new TORCareerChoices();
+                MBObjectManager.Instance.LoadXML("Religions", false);
+            }
         }
 
         private static void ConfigureLogging()

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<Religions>
-    <ReligionObject StringId="test1" Name="Test1" CultureId="empire">
-        <HostileReligion>test2</HostileReligion>
-    </ReligionObject>
-    <ReligionObject StringId="test2" Name="Test2" CultureId="khuzait">
-        <HostileReligion>test1</HostileReligion>
-    </ReligionObject>
-</Religions>

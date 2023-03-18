@@ -7,6 +7,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -271,6 +272,26 @@ namespace TOR_Core.Extensions
                     info.CareerID = career.StringId;
                     info.CareerChoices.Clear();
                     info.CareerChoices.Add(career.RootNode.StringId);
+                }
+            }
+        }
+
+        public static bool HasAnyReligion(this Hero hero) => hero.GetDominantReligion() != null;
+
+        public static ReligionObject GetDominantReligion(this Hero hero) => hero.GetExtendedInfo() != null ? hero.GetExtendedInfo().DominantReligion : null;
+
+        public static void AddReligiousInfluence(this Hero hero, ReligionObject religion, int amount)
+        {
+            var info = hero.GetExtendedInfo();
+            if(info != null)
+            {
+                if(info.ReligionInfluences.ContainsKey(religion.StringId))
+                {
+                    info.ReligionInfluences[religion.StringId] += amount;
+                }
+                else
+                {
+                    info.ReligionInfluences.Add(religion.StringId, amount);
                 }
             }
         }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Religions>
+    <Religion id="test1" Name="Test1" Culture="Culture.empire">
+        <HostileReligion id="Religion.test2" />
+    </Religion>
+    <Religion id="test2" Name="Test2" Culture="Culture.khuzait">
+        <HostileReligion id="Religion.test1" />
+    </Religion>
+</Religions>
