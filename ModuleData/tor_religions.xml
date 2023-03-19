@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Religions>
-    <Religion id="test1" Name="Test1" Culture="Culture.empire">
-        <HostileReligion id="Religion.test2" />
+    <Religion id="cult_of_sigmar" Name="Cult of Sigmar" Culture="Culture.empire">
+        <HostileReligions>
+            <HostileReligion id="Religion.cult_of_taal" /> 
+        </HostileReligions>
+        <Followers>
+            <FollowerHero id="Hero.tor_emp_lord_averland_factionleader" DevotionLevel="10" />
+            <FollowerHero id="Hero.tor_emp_lord_averland_golden_1" DevotionLevel="10" />
+            <FollowerHero id="Hero.tor_emp_lord_stirland_factionleader" DevotionLevel="10" />
+            <FollowerHero id="Hero.tor_emp_lord_wissenland_factionleader" DevotionLevel="10" />
+            <FollowerHero id="Hero.tor_emp_lord_reikland_factionleader" DevotionLevel="10" />
+        </Followers>
+        <ReligiousTroops>
+            <ReligiousTroop id="NPCCharacter.tor_empire_recruit" />
+        </ReligiousTroops>
     </Religion>
-    <Religion id="test2" Name="Test2" Culture="Culture.khuzait">
-        <HostileReligion id="Religion.test1" />
+    <Religion id="cult_of_taal" Name="Cult of Taal" Culture="Culture.empire">
+        <HostileReligions>
+            <HostileReligion id="Religion.cult_of_sigmar" /> 
+        </HostileReligions>
+        <Followers>
+            <FollowerHero id="Hero.tor_emp_lord_talabecland_factionleader" DevotionLevel="10" />
+        </Followers>
+        <ReligiousTroops>
+            <ReligiousTroop id="NPCCharacter.tor_empire_recruit" />
+        </ReligiousTroops>
     </Religion>
 </Religions>

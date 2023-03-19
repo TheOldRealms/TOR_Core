@@ -15,7 +15,6 @@ namespace TOR_Core.Extensions.UI
     [ViewModelExtension(typeof(EncyclopediaHeroPageVM))]
     public class HeroEncyclopediaVMExtension : BaseViewModelExtension
     {
-		private string _religionText = "Doesn't follow any religion";
 		private Hero _hero;
 
         public HeroEncyclopediaVMExtension(ViewModel vm) : base(vm)
@@ -40,33 +39,15 @@ namespace TOR_Core.Extensions.UI
 				}
 				if (_hero != null)
 				{
-                    if (!_hero.HasAnyReligion())
-                    {
-						_hero.AddReligiousInfluence(ReligionObject.All.GetRandomElementInefficiently(), 10);
-                    }
-                    if (_hero.HasAnyReligion())
-                    {
-						ReligionText = string.Format("Follower of {0}", _hero.GetDominantReligion().EncyclopediaLinkWithName.ToString());
-						heroVM.Stats.Add(new StringPairItemVM("Religion:", ReligionText));
+					var list = ReligionObject.All;
+					string religionText = "Not a follower of any religion";
+					if (_hero.HasAnyReligion())
+					{
+						religionText = string.Format("Follower of {0}", _hero.GetDominantReligion().EncyclopediaLinkWithName.ToString());
 					}
+					heroVM.Stats.Add(new StringPairItemVM("Religion:", religionText));
 				}
 			}
         }
-
-		public string ReligionText
-		{
-			get
-			{
-				return _religionText;
-			}
-			set
-			{
-				if (value != _religionText)
-				{
-					_religionText = value;
-					_vm.OnPropertyChangedWithValue(value, "ReligionText");
-				}
-			}
-		}
 	}
 }

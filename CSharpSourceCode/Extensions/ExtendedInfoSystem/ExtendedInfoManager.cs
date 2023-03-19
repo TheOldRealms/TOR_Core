@@ -25,7 +25,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         public override void RegisterEvents()
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionStart);
-            CampaignEvents.OnNewGameCreatedPartialFollowUpEndEvent.AddNonSerializedListener(this, OnNewGameCreatedPartialFollowUpEnd);
+            CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, OnNewGameCreatedPartialFollowUpEnd);
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, FillWindsOfMagic);
             CampaignEvents.HeroCreated.AddNonSerializedListener(this, OnHeroCreated);
             CampaignEvents.HeroKilledEvent.AddNonSerializedListener(this, OnHeroKilled);
@@ -55,11 +55,14 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             TryLoadCharacters(out _characterInfos);
         }
 
-        private void OnNewGameCreatedPartialFollowUpEnd(CampaignGameStarter campaignGameStarter)
+        private void OnNewGameCreatedPartialFollowUpEnd(CampaignGameStarter campaignGameStarter, int index)
         {
-            if (_characterInfos.Count > 0) _characterInfos.Clear();
-            TryLoadCharacters(out _characterInfos);
-            InitializeHeroes();
+            if(index == CampaignEvents.OnNewGameCreatedPartialFollowUpEventMaxIndex - 2)
+            {
+                if (_characterInfos.Count > 0) _characterInfos.Clear();
+                TryLoadCharacters(out _characterInfos);
+                InitializeHeroes();
+            }
         }
 
         private void FillWindsOfMagic()
