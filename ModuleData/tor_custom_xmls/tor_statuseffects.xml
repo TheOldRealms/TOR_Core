@@ -130,10 +130,10 @@
     	base_effect_value="5"
 		type="DamageOverTime"/>
 	<StatusEffectTemplate
-		id="movement_impairment_100"
-		particle_id="harmonic_convergence"
+		id="net_amyn_movementimpair__100"
+		particle_id="net_of_amyntok"
 		particle_intensity="High"
-		apply_particle_to_root_bone_only="true"
+		do_not_attach_to_agent_skeleton="true"
     	base_effect_value="-5"
 		type="MovementManipulation"
 		damage_type="Physical">
@@ -250,26 +250,23 @@
 		
 	<StatusEffectTemplate
 		id="curse_of_anraheir_ats_debuff"
-		particle_id="harmonic_convergence"
+		particle_id="curse_of_anraheir"
 		particle_intensity="High"
-		apply_particle_to_root_bone_only="true"
+		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="-0.5"
 		type="AttackSpeedManipulation"
 		damage_type="Physical"/>
 		
 	<StatusEffectTemplate
 		id="curse_of_anraheir_mv_debuff"
-		particle_id="harmonic_convergence"
-		particle_intensity="High"
-		apply_particle_to_root_bone_only="true"
+		particle_id=""
 		base_effect_value="-0.35"
 		type="MovementManipulation"
 		damage_type="Physical"/>
 		
 	<StatusEffectTemplate
 		id="curse_of_anraheir_dot"
-		particle_id="harmonic_convergence"
-		particle_intensity="High"
+		particle_id=""
 		apply_particle_to_root_bone_only="true"
 		base_effect_value="3"
 		type="DamageOverTime"

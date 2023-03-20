@@ -300,7 +300,7 @@
             ImbuedStatusEffectDuration="15" 
             DamageVariance="0" 
             ScriptNameToTrigger="none" >
-            <ImbuedStatusEffect>movement_impairment_100</ImbuedStatusEffect>
+            <ImbuedStatusEffect>net_amyn_movementimpair__100</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 <!--LifeMagic-->
@@ -479,7 +479,7 @@
 	
 	
 	<TriggeredEffectTemplate StringID="curse_of_anraheir" 
-            BurstParticleEffectPrefab="none" 
+            BurstParticleEffectPrefab="curse_of_anraheir_ground" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
             DamageType="Physical" 
