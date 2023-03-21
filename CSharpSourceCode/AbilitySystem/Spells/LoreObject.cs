@@ -35,6 +35,7 @@ namespace TOR_Core.AbilitySystem.Spells
                 _lores.Add("LoreOfFire", new LoreObject("LoreOfFire", "Lore of Fire", "firemagic_symbol", new List<string>() { "khuzait" }));
                 _lores.Add("LoreOfLight", new LoreObject("LoreOfLight", "Lore of Light", "lightmagic_symbol", new List<string>() { "khuzait" }));
                 _lores.Add("LoreOfHeavens", new LoreObject("LoreOfHeavens", "Lore of Heavens", "celestial_symbol", new List<string>() { "khuzait" }));
+                _lores.Add("LoreOfLife", new LoreObject("LoreOfLife", "Life Magic", "darkmagic_symbol", new List<string>() { "khuzait" }, true));
                 _lores.Add("DarkMagic", new LoreObject("DarkMagic", "Dark Magic", "darkmagic_symbol", new List<string>() { "empire" }, true));
                 _lores.Add("Necromancy", new LoreObject("Necromancy", "Necromancy", "necromancy_symbol", new List<string>() { "empire" }));
             }

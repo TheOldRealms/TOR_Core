@@ -1961,7 +1961,7 @@
 	<!-- Lore of Life-->
 	<AbilityTemplate StringID="DwellersBelow"
       Name="Dwelllers Below"
-      SpriteName="phasprotection_icon"
+      SpriteName="dwellersbelow_icon"
       CoolDown="5"
       WindsOfMagicCost="12"
       BaseMisCastChance="0.05"
@@ -2004,7 +2004,7 @@
 	
 	<AbilityTemplate StringID="TheGreenEye" 
       Name="The Green Eye" 
-      SpriteName="assaultofstone_icon" 
+      SpriteName="greeneye_icon" 
       CoolDown="5" 
       WindsOfMagicCost="8" 
       BaseMisCastChance="0.05" 
@@ -2046,7 +2046,7 @@
 	
 	<AbilityTemplate StringID="Barkskin"
       Name="Barkskin"
-      SpriteName="resistanceaura_icon"
+      SpriteName="barkskin_icon"
       CoolDown="10"
       WindsOfMagicCost="6"
       BaseMisCastChance="0.05"
@@ -2089,7 +2089,7 @@
 	
 	<AbilityTemplate StringID="SummerHeat"
       Name="Summer Heat"
-      SpriteName="phasprotection_icon"
+      SpriteName="summerheat_icon"
       CoolDown="5"
       WindsOfMagicCost="12"
       BaseMisCastChance="0.05"
@@ -2132,7 +2132,7 @@
 	
 	<AbilityTemplate StringID="Regrowth" 
 	Name="Regrowth"
-	SpriteName="resistanceaura_icon"
+	SpriteName="regrowth_icon"
 	CoolDown="10"
 	WindsOfMagicCost="6"
 	BaseMisCastChance="0.05"
@@ -2176,7 +2176,7 @@
 	
 	<AbilityTemplate StringID="DrainLife"
    Name="Drain Life"
-   SpriteName="soulstealer_icon"
+   SpriteName="drainlife_icon"
    CoolDown="15"
    WindsOfMagicCost="6"
    BaseMisCastChance="0.05"
@@ -2206,7 +2206,7 @@
    MaxDistance="20"
    CrosshairType="TargetedAOE"
    SpellTier="4"
-    BelongsToLoreID="DarkMagic"
+    BelongsToLoreID="LoreOfLife"
     TooltipDescription="Enemies in the area experience a soul draining direct damage over time effect causing them to take 12 damage every second for 10 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
@@ -2220,7 +2220,7 @@
 	
 	<AbilityTemplate StringID="StormOfRenewal" 
 	Name="Storm of Renewal"
-	SpriteName="resistanceaura_icon"
+	SpriteName="stormofrenewal_icon"
 	CoolDown="10"
 	WindsOfMagicCost="6"
 	BaseMisCastChance="0.05"
@@ -2267,7 +2267,7 @@
 	
 	<AbilityTemplate StringID="AmberSpear" 
       Name="Amber Spear" 
-      SpriteName="assaultofstone_icon" 
+      SpriteName="amberspear_icon" 
       CoolDown="4" 
       WindsOfMagicCost="8" 
       BaseMisCastChance="0.05" 
@@ -2733,6 +2733,7 @@
       <TriggeredEffect>apply_righteous_fury_pulse</TriggeredEffect>
 	</AbilityTemplate>
 	<!-- Battle Prayers -->
+	
 	<AbilityTemplate StringID="HealingAOE" 
       Name="Circle of Healing" 
       SpriteName="healingprayer_icon" 
@@ -2772,6 +2773,45 @@
 		</LightColorRGB>
 		<TriggeredEffect>healing_tick</TriggeredEffect>
 	</AbilityTemplate>
-	
+	<AbilityTemplate StringID="CometOfSigmar" 
+      Name="Fireball" 
+      SpriteName="fireball_icon" 
+      CoolDown="30" 
+      WindsOfMagicCost="15" 
+      BaseMisCastChance="0.05" 
+      Duration="3" 
+      Radius="0.4" 
+      AbilityType="Spell" 
+      AbilityEffectType="Missile" 
+      BaseMovementSpeed="35" 
+      TickInterval="-1" 
+      TriggerType="OnCollision" 
+      HasLight="true" 
+      LightIntensity="50" 
+      LightRadius="10" 
+      LightFlickeringMagnitude="3" 
+      LightFlickeringInterval="0.7" 
+      ShadowCastEnabled="true" 
+      ParticleEffectPrefab="comet_of_sigmar" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="fireball" 
+      ShouldSoundLoopOverDuration="true" 
+      CastType="WindUp" 
+      CastTime="0.5" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0.5"
+      CrosshairType="Missile"
+      AbilityTargetType="WorldPosition"
+      SpellTier="3"
+      BelongsToLoreID="LoreOfFire"
+      TooltipDescription="There is nothing quite as welcoming as a fireball to the face. Does 80 damage in a 3 meter radius and imbues the burning statuseffect for 5 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>fireball_explosion</TriggeredEffect>
+	</AbilityTemplate>
 	
 </AbilityTemplates>

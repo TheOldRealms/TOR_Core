@@ -95,9 +95,8 @@
 				<effect_ref base_effect="{BAE4E95F-9112-469C-8A16-98D1999415F4}"/>
 			</particle_system_instanced_component>
 		</components>
-		
 	</game_entity>
-		<game_entity name="hail_storm" old_prefab_name="">
+	<game_entity name="hail_storm" old_prefab_name="">
 		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
 		<components>
 			<particle_system_instanced_component>
@@ -523,6 +522,15 @@
 			<particle_system_instanced_component>
 				<effect_ref base_effect="{E187EE03-D466-4DD4-9A21-555B67269F5C}"/>
 			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="comet_of_sigmar" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{561D58F0-7C36-4D28-8017-E73958F7A7BB}"/>
+			</particle_system_instanced_component>
+			<meta_mesh_component name="magic_sphere_holy" position="0.000, 0.000, 0.000" rotation="0.000, 0.000, 0.000" scale="0.200, 0.200, 0.200" _index_="1"/>
 		</components>
 	</game_entity>
 </prefabs>
