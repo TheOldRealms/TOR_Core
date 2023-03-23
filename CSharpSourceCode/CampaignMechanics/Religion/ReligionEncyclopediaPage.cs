@@ -55,9 +55,9 @@ namespace TOR_Core.CampaignMechanics.Religion
 
         public override string GetViewFullyQualifiedName() => "EncyclopediaReligionPage";
 
-        public override TextObject GetName() => GameTexts.FindText("str_concepts", null);
+        public override TextObject GetName() => GameTexts.FindText("str_religion", null);
 
-        public override TextObject GetDescriptionText() => GameTexts.FindText("str_concepts", null);
+        public override TextObject GetDescriptionText() => GameTexts.FindText("str_religion", null);
 
         public override string GetStringID() => "EncyclopediaReligionObject";
 

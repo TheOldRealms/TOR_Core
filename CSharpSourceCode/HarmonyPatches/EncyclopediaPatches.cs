@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem.Encyclopedia;
+using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia.Pages;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
@@ -95,5 +96,16 @@ namespace TOR_Core.HarmonyPatches
 			}
 			return true;
         }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(EncyclopediaHomeVM), MethodType.Constructor, typeof(EncyclopediaPageArgs))]
+		public static void DontAddReligionToHomePage(EncyclopediaHomeVM __instance)
+        {
+			var items = __instance.Lists.Where(x => x.Order > 600).ToList();
+			foreach(var item in items)
+            {
+				__instance.Lists.Remove(item);
+            }
+		}
     }
 }
