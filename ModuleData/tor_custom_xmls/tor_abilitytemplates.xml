@@ -2773,21 +2773,22 @@
 		</LightColorRGB>
 		<TriggeredEffect>healing_tick</TriggeredEffect>
 	</AbilityTemplate>
+	
 	<AbilityTemplate StringID="CometOfSigmar" 
-      Name="Fireball" 
+      Name="Comet of Sigmar" 
       SpriteName="fireball_icon" 
       CoolDown="30" 
       WindsOfMagicCost="15" 
       BaseMisCastChance="0.05" 
       Duration="3" 
       Radius="0.4" 
-      AbilityType="Spell" 
+      AbilityType="Prayer" 
       AbilityEffectType="Missile" 
       BaseMovementSpeed="35" 
       TickInterval="-1" 
       TriggerType="OnCollision" 
       HasLight="true" 
-      LightIntensity="50" 
+      LightIntensity="15" 
       LightRadius="10" 
       LightFlickeringMagnitude="3" 
       LightFlickeringInterval="0.7" 
@@ -2803,15 +2804,56 @@
       CrosshairType="Missile"
       AbilityTargetType="WorldPosition"
       SpellTier="3"
-      BelongsToLoreID="LoreOfFire"
-      TooltipDescription="There is nothing quite as welcoming as a fireball to the face. Does 80 damage in a 3 meter radius and imbues the burning statuseffect for 5 seconds.">
-		<LightColorRGB x="255" y="170" z="0" w="-1">
+      BelongsToLoreID="SigmaritePrayers"
+      TooltipDescription="You throw a fiery missile that takes the form ofSigmar’s famed twin-tailed comet. A comet of Sigmar is a holy missile with 30 Damage. It can knock units down, or throw them off horse">
+		<LightColorRGB x="245" y="247" z="129" w="-1">
 			<AsVec2>
 				<x>255</x>
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>fireball_explosion</TriggeredEffect>
+		<TriggeredEffect>comet_of_sigmar_explosion</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="HealingHand" 
+      Name="Healing Hand" 
+      SpriteName="healingprayer_icon" 
+      CoolDown="40" 
+      WindsOfMagicCost="0" 
+      BaseMisCastChance="0.3" 
+      Duration="9" 
+      Radius="0.1" 
+      AbilityType="Prayer" 
+      AbilityEffectType="Heal" 
+      BaseMovementSpeed="0" 
+      TickInterval="1" 
+      TriggerType="EveryTick" 
+      HasLight="false" 
+      LightIntensity="0" 
+      LightRadius="10" 
+      LightFlickeringMagnitude="0" 
+      LightFlickeringInterval="0" 
+      ShadowCastEnabled="false" 
+      ParticleEffectPrefab="healing_hand_ground" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="empire_heal" 
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant" 
+      CastTime="0" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0"
+      AbilityTargetType="GroundAtPosition"
+      CrosshairType="TargetedAOE"
+      TargetCapturingRadius="5">
+	BelongsToLoreID="SigmaritePrayers"
+		<LightColorRGB x="255" y="255" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>healing_hand_tick</TriggeredEffect>
 	</AbilityTemplate>
 	
 </AbilityTemplates>

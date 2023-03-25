@@ -364,6 +364,22 @@
 	  </TriggeredEffectTemplate>
 	  
 	  
+	  <TriggeredEffectTemplate StringID="healing_hand_tick" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            DamageVariance="0.0" 
+			ImbuedStatusEffectDuration="2" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>healing_hand_tick</ImbuedStatusEffect>
+	  </TriggeredEffectTemplate>
+	  
+	  
 	  
 		<TriggeredEffectTemplate StringID="drain_life" 
             BurstParticleEffectPrefab="none" 
@@ -635,6 +651,25 @@
             DamageVariance="0" 
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.PrefabSpawnerScript" 
             SpawnPrefabName="tor_greatcannon"/>
+			
+			
+<!-- Sigmarite Prayers -->
+
+      <TriggeredEffectTemplate StringID="comet_of_sigmar_explosion" 
+            BurstParticleEffectPrefab="psys_burning_projectile_default_coll" 
+            SoundEffectId="fireball_explosion" 
+            SoundEffectLength="2.5" 
+            DamageType="Holy" 
+            DamageAmount="30" 
+            Radius="5" 
+            HasShockWave="true" 
+            TargetType="All" 
+            ImbuedStatusEffectDuration="0" 
+            DamageVariance="0.2" 
+            ScriptNameToTrigger="none">
+      </TriggeredEffectTemplate>
+
+
 <!-- Misc/Unused -->
 
       <TriggeredEffectTemplate StringID="explosion_01" 

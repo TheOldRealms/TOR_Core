@@ -271,7 +271,14 @@
 		base_effect_value="3"
 		type="DamageOverTime"
 		damage_type="Magical"/>
-		
+	
+	<StatusEffectTemplate
+		id="healing_hand_tick"
+		particle_id="healing_hand"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="5"
+		type="HealthOverTime"
+		damage_type="Holy"/>	
 		
 		
 </StatusEffects>
