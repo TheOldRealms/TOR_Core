@@ -2779,7 +2779,10 @@
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord">
-    <Abilities />
+    <Abilities>
+	     <string>HealingHand</string>
+		 <string>CometOfSigmar</string>
+    </Abilities>
     <Attributes>
       <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
@@ -2788,6 +2791,7 @@
   <CharacterExtendedInfo id="tor_bw_lord">
     <Abilities>
       <string>Fireball</string>
+	  <string>CometOfSigmar</string>
       <string>CinderBlast</string>
       <string>BoltOfAqshy</string>
 	  <string>CascadingFireCloak</string>
@@ -2826,6 +2830,7 @@
 	   <string>Regrowth</string>
 	   <string>DrainLife</string>
 	   <string>StormOfRenewal</string>
+	   <string>LadysFavour</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>

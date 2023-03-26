@@ -364,20 +364,7 @@
 	  </TriggeredEffectTemplate>
 	  
 	  
-	  <TriggeredEffectTemplate StringID="healing_hand_tick" 
-            BurstParticleEffectPrefab="none" 
-            SoundEffectId="none" 
-            SoundEffectLength="0" 
-            DamageType="Invalid" 
-            DamageAmount="0" 
-            Radius="5" 
-            HasShockWave="false" 
-            TargetType="Friendly" 
-            DamageVariance="0.0" 
-			ImbuedStatusEffectDuration="2" 
-            ScriptNameToTrigger="none">
-			<ImbuedStatusEffect>healing_hand_tick</ImbuedStatusEffect>
-	  </TriggeredEffectTemplate>
+
 	  
 	  
 	  
@@ -668,6 +655,38 @@
             DamageVariance="0.2" 
             ScriptNameToTrigger="none">
       </TriggeredEffectTemplate>
+	  
+	  <TriggeredEffectTemplate StringID="healing_hand_tick" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            DamageVariance="0.0" 
+			ImbuedStatusEffectDuration="2" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>healing_hand_tick</ImbuedStatusEffect>
+	  </TriggeredEffectTemplate>
+
+<!-- Power of the Lady -->
+
+	  <TriggeredEffectTemplate StringID="ladys_favour" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            DamageVariance="0.0" 
+			ImbuedStatusEffectDuration="2" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>ladysfavour_tick</ImbuedStatusEffect>
+	  </TriggeredEffectTemplate>
 
 
 <!-- Misc/Unused -->
@@ -822,4 +841,7 @@
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>physical_ranged_resistance_40</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
+	  
+	  
+	  
 </TriggeredEffectTemplates>

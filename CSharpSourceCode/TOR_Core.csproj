@@ -430,6 +430,8 @@
     <Compile Include="BattleMechanics\Firearms\FirearmsMissionLogic.cs" />
     <Compile Include="BattleMechanics\Morale\UndeadMoraleAgentComponent.cs" />
     <Compile Include="BattleMechanics\Morale\UndeadMoraleMissionLogic.cs" />
+    <Compile Include="BattleMechanics\SFX\TORFaceEnemy.cs" />
+    <Compile Include="BattleMechanics\SFX\TORLightDampener.cs" />
     <Compile Include="BattleMechanics\SniperScope\SniperScope.cs" />
     <Compile Include="BattleMechanics\StatusEffect\StatusEffect.cs" />
     <Compile Include="BattleMechanics\StatusEffect\StatusEffectComponent.cs" />

@@ -2732,7 +2732,9 @@
 		<TriggeredEffect>apply_righteous_fury</TriggeredEffect>
       <TriggeredEffect>apply_righteous_fury_pulse</TriggeredEffect>
 	</AbilityTemplate>
-	<!-- Battle Prayers -->
+	
+	
+	<!-- Sigmarite Prayers -->
 	
 	<AbilityTemplate StringID="HealingAOE" 
       Name="Circle of Healing" 
@@ -2844,8 +2846,8 @@
       Offset="0"
       AbilityTargetType="GroundAtPosition"
       CrosshairType="TargetedAOE"
-      TargetCapturingRadius="5">
-	BelongsToLoreID="SigmaritePrayers"
+      TargetCapturingRadius="5"
+	  BelongsToLoreID="SigmaritePrayers">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2855,5 +2857,95 @@
 		</LightColorRGB>
 		<TriggeredEffect>healing_hand_tick</TriggeredEffect>
 	</AbilityTemplate>
+	
+	
+	<AbilityTemplate StringID="AmourOfRighteousness"
+      Name="Amour of Righteousness"
+      SpriteName="barkskin_icon"
+      CoolDown="10"
+      WindsOfMagicCost="6"
+      BaseMisCastChance="0.05"
+      Duration="0"
+      Radius="3"
+      AbilityType="Spell"
+      AbilityEffectType="Augment"
+      BaseMovementSpeed="0"
+      TickInterval="-1"
+      TriggerType="TickOnce"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab=""
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.5"
+      AbilityTargetType="AlliesInAOE"
+      TargetCapturingRadius="4"
+      MaxDistance="0.5"
+      CrosshairType="TargetedAOE"
+      SpellTier="1"
+      BelongsToLoreID="SigmaritePrayers"
+      TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>bark_skin</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<!-- Power of the Lady -->
+	
+	<AbilityTemplate StringID="LadysFavour"
+      Name="Lady's Favour"
+      SpriteName="resistanceaura_icon"
+      CoolDown="5"
+      WindsOfMagicCost="0"
+      BaseMisCastChance="0.05"
+      Duration="10"
+      Radius="6"
+      AbilityType="Prayer"
+      AbilityEffectType="Augment"
+      BaseMovementSpeed="0"
+      TickInterval="2"
+      TriggerType="EveryTick"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="false"
+      ParticleEffectPrefab="ladys_favour"
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.5"
+      AbilityTargetType="AlliesInAOE"
+      TargetCapturingRadius="4"
+      MaxDistance="20"
+      CrosshairType="TargetedAOE"
+      SpellTier="1"
+      BelongsToLoreID="PowerOfTheLady"
+      TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>ladys_favour</TriggeredEffect>
+	</AbilityTemplate>
+	
 	
 </AbilityTemplates>

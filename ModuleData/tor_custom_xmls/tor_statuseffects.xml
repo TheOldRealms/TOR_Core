@@ -279,6 +279,13 @@
 		base_effect_value="5"
 		type="HealthOverTime"
 		damage_type="Holy"/>	
-		
+	
+	<StatusEffectTemplate
+		id="ladysfavour_tick"
+		particle_id="ladysfavour"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.25"
+		type="AttackSpeedManipulation"
+		damage_type="Holy"/>	
 		
 </StatusEffects>
