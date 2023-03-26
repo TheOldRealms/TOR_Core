@@ -32,6 +32,7 @@ using TOR_Core.BattleMechanics.Banners;
 using TOR_Core.BattleMechanics.Dismemberment;
 using TOR_Core.BattleMechanics.Firearms;
 using TOR_Core.BattleMechanics.Morale;
+using TOR_Core.BattleMechanics.SFX;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics;
