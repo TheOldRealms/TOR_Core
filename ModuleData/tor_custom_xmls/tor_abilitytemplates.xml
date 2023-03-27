@@ -2231,9 +2231,9 @@
 	BaseMovementSpeed="0"
 	TickInterval="2"
 	TriggerType="EveryTick"
-	HasLight="false"
-	LightIntensity="0"
-	LightRadius="0"
+	HasLight="true"
+	LightIntensity="600"
+	LightRadius="5"
 	LightFlickeringMagnitude="0"
 	LightFlickeringInterval="0"
 	ShadowCastEnabled="true"
@@ -2252,7 +2252,7 @@
 	SpellTier="1"
 	BelongsToLoreID="LoreOfLife"
 	TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
-		<LightColorRGB x="255" y="255" z="255" w="-1">
+		<LightColorRGB x="50" y="255" z="100" w="-1">
 			<AsVec2>
 				<x>255</x>
 				<y>255</y>
@@ -2820,7 +2820,7 @@
 	<AbilityTemplate StringID="HealingHand" 
       Name="Healing Hand" 
       SpriteName="healingprayer_icon" 
-      CoolDown="40" 
+      CoolDown="50" 
       WindsOfMagicCost="0" 
       BaseMisCastChance="0.3" 
       Duration="9" 
@@ -2867,7 +2867,7 @@
       BaseMisCastChance="0.05"
       Duration="0"
       Radius="3"
-      AbilityType="Spell"
+      AbilityType="Prayer"
       AbilityEffectType="Augment"
       BaseMovementSpeed="0"
       TickInterval="-1"
@@ -2900,6 +2900,49 @@
 			</AsVec2>
 		</LightColorRGB>
 		<TriggeredEffect>bark_skin</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="Vanquish"
+      Name="Vanquish"
+      SpriteName="swordsofrhuin_icon"
+      CoolDown="100"
+      WindsOfMagicCost="13"
+      BaseMisCastChance="0.05"
+      Duration="0"
+      Radius="0"
+      AbilityType="Prayer"
+      AbilityEffectType="Augment"
+      BaseMovementSpeed="0"
+      TickInterval="-1"
+      TriggerType="TickOnce"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab=""
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.5"
+      AbilityTargetType="AlliesInAOE"
+      TargetCapturingRadius="5"
+      MaxDistance="20"
+      CrosshairType="TargetedAOE"
+      SpellTier="3"
+      BelongsToLoreID="SigmaritePrayers"
+      TooltipDescription="Buff the weapons of allies in a 5 meter radius with the Flaming trait for 20 seconds. The weapons burst into fire and burn every enemy they strike.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>apply_holy_sword_trait</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<!-- Power of the Lady -->

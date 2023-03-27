@@ -244,7 +244,7 @@ namespace TOR_Core.AbilitySystem
             {
                 if (ability.Template.AbilityType == AbilityType.Prayer)
                 {
-                    if (!ability.IsOnCooldown()||ability.GetCoolDownLeft()<time)
+                    if (!ability.IsOnCooldown()||(ability.GetCoolDownLeft()<time))
                     {
                         ability.SetCoolDown(time);
                     }

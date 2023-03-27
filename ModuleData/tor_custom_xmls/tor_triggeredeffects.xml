@@ -136,7 +136,7 @@
             TargetType="All" 
             DamageVariance="0.1" 
             ScriptNameToTrigger="none"/>
-      <TriggeredEffectTemplate StringID="apply_flaming_sword_trait" 
+      <TriggeredEffectTemplate StringID="apply_holy_sword_trait" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
@@ -145,9 +145,10 @@
             Radius="4" 
             HasShockWave="false" 
             TargetType="Friendly" 
-            ImbuedStatusEffectDuration="20" 
+            ImbuedStatusEffectDuration="30" 
             DamageVariance="0" 
-            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyFlamingItemTraitScript" />
+            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyHolyItemTraitScript" />
+			
       <TriggeredEffectTemplate StringID="burning_head_tick" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
@@ -670,6 +671,20 @@
             ScriptNameToTrigger="none">
 			<ImbuedStatusEffect>healing_hand_tick</ImbuedStatusEffect>
 	  </TriggeredEffectTemplate>
+	  
+	  
+		<TriggeredEffectTemplate StringID="apply_flaming_sword_trait" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="20" 
+            DamageVariance="0" 
+            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyHolyItemTraitScript" />
 
 <!-- Power of the Lady -->
 

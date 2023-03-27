@@ -2782,6 +2782,7 @@
     <Abilities>
 	     <string>HealingHand</string>
 		 <string>CometOfSigmar</string>
+		 <string>Vanquish</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
