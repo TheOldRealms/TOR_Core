@@ -569,7 +569,6 @@
 							<variable name="FadeOutIntensityChange" value="1200.000"/>
 							<variable name="BeginIntensity" value="0.000"/>
 							<variable name="MaximumIntensity" value="1500.000"/>
-							<variable name="FadeOutIntensity" value="0.000"/>
 						</variables>
 					</script>
 				</scripts>
@@ -606,7 +605,7 @@
 		</scripts>
 		<children>
 			<game_entity name="lady_ghost" old_prefab_name="" mobility="1">
-				<transform position="0.010, 0.202, 0.000" rotation_euler="-0.011, -0.013, 0.000" scale="2.500, 2.500, 2.500"/>
+				<transform position="0.010, 0.202, 0.000" rotation_euler="0.000, 0.000, 0.000" scale="2.500, 2.500, 2.500"/>
 				<components>
 					<meta_mesh_component name="ladystatue" position="0.100, 0.000, 0.000" rotation="0.000, 0.000, 0.000" scale="1.000, 1.000, 1.000">
 						<mesh name="ladystatue" material="vc_ghost_horse_reins_001"/>

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Windows.Media.Media3D;
-using TaleWorlds.Engine;
+﻿using TaleWorlds.Engine;
 using TaleWorlds.Library;
-using TOR_Core.Utilities;
 using Light = TaleWorlds.Engine.Light;
 
 namespace TOR_Core.BattleMechanics.SFX
@@ -16,7 +13,6 @@ namespace TOR_Core.BattleMechanics.SFX
         public float FadeOutIntensityChange=1200;
         public float BeginIntensity=0;
         public float MaximumIntensity = 2000;
-        public float FadeOutIntensity=0;
 
 
         private bool _init;
@@ -106,7 +102,6 @@ namespace TOR_Core.BattleMechanics.SFX
             
             if (_timer >= Duration)
             {
-                TORCommon.Say("restart");
                 _timer = 0;
                 _currentIntensity = BeginIntensity;
                 _passedFadeIn = false;
