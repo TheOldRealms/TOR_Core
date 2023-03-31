@@ -251,6 +251,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             return list;
         }
 
+        public bool HasTemporaryAttribute(string id)
+        {
+            return !_currentEffects.IsEmpty() && _currentEffects.Keys.Any(effect => effect.Template.TemporaryAttributes.Contains(id));
+        }
+
         private void AddEffect(StatusEffect effect)
         {
             EffectData data;
