@@ -852,7 +852,7 @@
 	</AbilityTemplate>
 	<AbilityTemplate StringID="Blizzard" 
       Name="Iceshard Blizzard" 
-      SpriteName="iceshardblizzard_icon" 
+      SpriteName="hailstorm_icon" 
       CoolDown="30" 
       WindsOfMagicCost="14" 
       BaseMisCastChance="0.5" 
@@ -2232,8 +2232,8 @@
 	TickInterval="2"
 	TriggerType="EveryTick"
 	HasLight="true"
-	LightIntensity="600"
-	LightRadius="5"
+	LightIntensity="300"
+	LightRadius="3"
 	LightFlickeringMagnitude="0"
 	LightFlickeringInterval="0"
 	ShadowCastEnabled="true"
@@ -2252,7 +2252,7 @@
 	SpellTier="1"
 	BelongsToLoreID="LoreOfLife"
 	TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
-		<LightColorRGB x="50" y="255" z="100" w="-1">
+		<LightColorRGB x="50" y="255" z="50" w="-1">
 			<AsVec2>
 				<x>255</x>
 				<y>255</y>
@@ -2309,16 +2309,16 @@
 	
 	<AbilityTemplate StringID="TanglingThorn"
       Name="Tangling Thorn"
-      SpriteName="phasprotection_icon"
+      SpriteName="tanglingthorn_icon"
       CoolDown="15"
       WindsOfMagicCost="8"
       BaseMisCastChance="0.05"
-      Duration="0"
-      Radius="4"
+      Duration="0.9"
+      Radius="3"
       AbilityType="Spell"
       AbilityEffectType="Hex"
       BaseMovementSpeed="0"
-      TickInterval="1.9"
+      TickInterval="1.0"
       TriggerType="EveryTick"
       HasLight="false"
       LightIntensity="0"
@@ -2326,7 +2326,7 @@
       LightFlickeringMagnitude="0"
       LightFlickeringInterval="0"
       ShadowCastEnabled="true"
-      ParticleEffectPrefab=""
+      ParticleEffectPrefab="none"
       ParticleEffectSizeModifier="1"
       SoundEffectToPlay=""
       ShouldSoundLoopOverDuration="false"
@@ -2353,7 +2353,7 @@
 	
 	<AbilityTemplate StringID="PannsImpenetrablePelt" 
       Name="Pann's Impenetrable Pelt" 
-      SpriteName="healingprayer_icon" 
+      SpriteName="pannsimpenetrablepelt_icon" 
       CoolDown="10" 
       WindsOfMagicCost="3" 
       BaseMisCastChance="0.05" 
@@ -2397,7 +2397,7 @@
 	
 	<AbilityTemplate StringID="HailStorm" 
       Name="Hail Storm" 
-      SpriteName="assaultofstone_icon" 
+      SpriteName="hailstorm_icon" 
       CoolDown="30" 
       WindsOfMagicCost="15" 
       BaseMisCastChance="0.5" 
@@ -2441,7 +2441,7 @@
 	
 	<AbilityTemplate StringID="FlockOfDoom"
    Name="Flock Of Doom"
-   SpriteName="soulstealer_icon"
+   SpriteName="flockofdoom_icon"
    CoolDown="15"
    WindsOfMagicCost="6"
    BaseMisCastChance="0.05"
@@ -2485,7 +2485,7 @@
 	
 	<AbilityTemplate StringID="TheBeastUnleashed"
       Name="The Beast Unleashed"
-      SpriteName="resistanceaura_icon"
+      SpriteName="beastunleashed_icon"
       CoolDown="10"
       WindsOfMagicCost="6"
       BaseMisCastChance="0.05"
@@ -2528,7 +2528,7 @@
 	
 	<AbilityTemplate StringID="CurseOfAnraheir"
    Name="Curse Of Anraheir"
-   SpriteName="soulstealer_icon"
+   SpriteName="curseofanraheir_icon"
    CoolDown="15"
    WindsOfMagicCost="6"
    BaseMisCastChance="0.05"
@@ -2946,6 +2946,49 @@
 	</AbilityTemplate>
 	
 	<!-- Power of the Lady -->
+	
+	<AbilityTemplate StringID="AerialShield" 
+      Name="Aerial Shield" 
+      SpriteName="ward_of_arrows_icon" 
+      CoolDown="10" 
+      WindsOfMagicCost="3" 
+      BaseMisCastChance="0.05" 
+      Duration="0" 
+      Radius="0" 
+      AbilityType="Spell" 
+      AbilityEffectType="Augment" 
+      BaseMovementSpeed="0" 
+      TickInterval="-1" 
+      TriggerType="TickOnce" 
+      HasLight="false" 
+      LightIntensity="0" 
+      LightRadius="0" 
+      LightFlickeringMagnitude="0" 
+      LightFlickeringInterval="0" 
+      ShadowCastEnabled="false" 
+      ParticleEffectPrefab="none" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="none" 
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant" 
+      CastTime="0" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0"
+      AbilityTargetType="Self"
+      CrosshairType="Self"
+      TargetCapturingRadius="1"
+      SpellTier="1"
+      BelongsToLoreID="PowerOfTheLady"
+      TooltipDescription="Adds 40% physical resistance against ranged damage for 15 seconds to the caster.">
+		<LightColorRGB x="255" y="255" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>ward_of_arrows</TriggeredEffect>
+	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="LadysFavour"
       Name="Lady's Favour"
