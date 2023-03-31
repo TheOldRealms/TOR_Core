@@ -167,6 +167,7 @@ namespace TOR_Core
             }
             else if (Game.Current.GameType is CustomGame && gameStarterObject is BasicGameStarter)
             {
+                gameStarterObject.AddModel(new TORDamageParticleModel());
                 gameStarterObject.AddModel(new TORCustomBattleMoraleModel());
                 gameStarterObject.AddModel(new TORCustomBattleAgentStatCalculateModel());
             }
