@@ -176,19 +176,21 @@
 		damage_type="Fire"
 		type="Resistance"/>
 	<StatusEffectTemplate 
-		id="physical_ranged_resistance_40" 
+		id="ward_of_arrows" 
 		particle_id="psys_energy_sphere"
 		particle_intensity="Low"
-		base_effect_value="0.4"
+		base_effect_value="1"
 		damage_type="Physical"
 		applies_for_attack_type="Ranged"
-		type="Resistance"/>
+		type="Resistance">
+		<temporary_attribute>ClearBloodBurst</temporary_attribute>
+	</StatusEffectTemplate>
 		
 	<StatusEffectTemplate
 		id="tangling_thorn"
-		particle_id="harmonic_convergence"
+		particle_id="tangling_thorn"
 		particle_intensity="High"
-		apply_particle_to_root_bone_only="true"
+		do_not_attach_to_agent_skeleton="true"
     	base_effect_value="-0.9"
 		type="MovementManipulation"
 		damage_type="Physical"/>

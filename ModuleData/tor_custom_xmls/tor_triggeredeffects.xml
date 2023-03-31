@@ -418,11 +418,10 @@
 	  
 	  
 <!--Beast Magic-->
-
 	  <TriggeredEffectTemplate StringID="tangling_thorn" 
-            BurstParticleEffectPrefab="none" 
-            SoundEffectId="none" 
-            SoundEffectLength="0" 
+            BurstParticleEffectPrefab="tangling_thorn_ground" 
+            SoundEffectId="" 
+            SoundEffectLength="1" 
             DamageType="Invalid" 
             DamageAmount="0" 
             Radius="5" 
@@ -842,7 +841,7 @@
 			<ImbuedStatusEffect>fire_cloak_fire_res</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
       
-	  <TriggeredEffectTemplate StringID="physical_ranged_resistance_40" 
+	  <TriggeredEffectTemplate StringID="ward_of_arrows" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
@@ -854,7 +853,7 @@
             ImbuedStatusEffectDuration="10" 
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
-            <ImbuedStatusEffect>physical_ranged_resistance_40</ImbuedStatusEffect>
+            <ImbuedStatusEffect>ward_of_arrows</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	  
