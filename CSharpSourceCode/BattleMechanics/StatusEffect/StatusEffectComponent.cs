@@ -9,6 +9,7 @@ using TaleWorlds.Library;
 using TaleWorlds.Core;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using System;
+using TOR_Core.BattleMechanics.SFX;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
 {
@@ -251,10 +252,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             return list;
         }
 
-        public bool HasTemporaryAttribute(string id)
-        {
-            return !_currentEffects.IsEmpty() && _currentEffects.Keys.Any(effect => effect.Template.TemporaryAttributes.Contains(id));
-        }
+        
 
         private void AddEffect(StatusEffect effect)
         {
@@ -263,8 +261,15 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             {
                 MatrixFrame frame = MatrixFrame.Identity;
                 var psys = ParticleSystem.CreateParticleSystemAttachedToEntity(effect.Template.ParticleId, _dummyEntity, ref frame);
+                if (effect.Template.Rotation)
+                {
+                    _dummyEntity.CreateAndAddScriptComponent("TORSpinner");
+                    _dummyEntity.GetFirstScriptOfType<TORSpinner>().RotationSpeed = effect.Template.RotationSpeed; 
+                }
+                
                 data = new EffectData(effect, new List<ParticleSystem> { psys }, null);
                 data.IsParticleAttachedToAgentSkeleton = false;
+
             }
             else
             {

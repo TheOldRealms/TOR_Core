@@ -35,18 +35,13 @@ namespace TOR_Core.Models
         }
         public override int GetMissileAttackParticle(Agent attacker, Agent victim, in Blow blow, in AttackCollisionData collisionData)
         {
-            if (victim.GetComponent<StatusEffectComponent>()!=null)
-            {
-                if (victim.GetComponent<StatusEffectComponent>().HasTemporaryAttribute("ClearBloodBurst"))
-                {
-                    HideMissleIfExists(blow.WeaponRecord.AffectorWeaponSlotOrMissileIndex);
-                    return -1;
-                }
-                   
-            }
-            
             if (victim.IsUndead())
             {
+                return -1;
+            }
+            if (victim.ShouldNotBleed())
+            {
+                HideMissleIfExists(blow.WeaponRecord.AffectorWeaponSlotOrMissileIndex);
                 return -1;
             }
             return base.GetMissileAttackParticle(attacker, victim, blow, collisionData);

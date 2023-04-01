@@ -83,6 +83,12 @@ namespace TOR_Core.Extensions
         {
             return agent.GetAttributes().Contains("Undead");
         }
+        
+        public static bool ShouldNotBleed(this Agent agent)
+        {
+            return agent.GetAttributes().Contains("ClearBloodBurst");
+        }
+
 
         public static bool IsVampire(this Agent agent)
         {
@@ -485,6 +491,7 @@ namespace TOR_Core.Extensions
             }
             else return new List<string>();
         }
+        
 
         public static List<string> GetSelectedAbilities(this Agent agent)
         {
@@ -511,6 +518,8 @@ namespace TOR_Core.Extensions
 
             return null;
         }
+
+        
 
         public static List<string> GetAttributes(this Agent agent)
         {

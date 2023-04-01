@@ -203,7 +203,9 @@
 		particle_intensity="Low"
 		base_effect_value="0.35"
 		damage_type="Physical"
-		type="Resistance"/>
+		type="Resistance"
+		rotation="true"/>
+		
 		
 	<StatusEffectTemplate 
 		id="pans_pelt" 

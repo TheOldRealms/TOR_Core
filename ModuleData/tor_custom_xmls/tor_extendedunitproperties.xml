@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfCharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_villager">
     <Abilities />
@@ -2882,8 +2882,7 @@
       <string>WindOfDeath</string>
     </Abilities>
     <Attributes>
-      <string>AbilityUser</string>
-      <string>SpellCaster</string>
+
       <string>Unbreakable</string>
     </Attributes>
   </CharacterExtendedInfo>
