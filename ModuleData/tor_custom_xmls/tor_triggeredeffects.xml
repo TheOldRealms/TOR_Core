@@ -522,7 +522,7 @@
             TargetType="All" 
             DamageVariance="0.1" 
             ScriptNameToTrigger="none"/>
-      <TriggeredEffectTemplate StringID="apply_red_healing_statuseffect" 
+      <TriggeredEffectTemplate StringID="breath_of_darkness" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
@@ -534,7 +534,7 @@
             ImbuedStatusEffectDuration="5" 
             DamageVariance="0.1" 
             ScriptNameToTrigger="none">
-            <ImbuedStatusEffect>red_regeneration</ImbuedStatusEffect>
+            <ImbuedStatusEffect>breath_of_darkness</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
       <TriggeredEffectTemplate StringID="witheringwave_tick" 
             BurstParticleEffectPrefab="none" 
@@ -700,6 +700,53 @@
 			ImbuedStatusEffectDuration="2" 
             ScriptNameToTrigger="none">
 			<ImbuedStatusEffect>ladysfavour_tick</ImbuedStatusEffect>
+	  </TriggeredEffectTemplate>
+	  
+	     <TriggeredEffectTemplate StringID="aura_of_lady" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="8" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            DamageVariance="0.0" 
+			ImbuedStatusEffectDuration="15" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>aura_of_lady_magic</ImbuedStatusEffect>
+			<ImbuedStatusEffect>aura_of_lady_fire</ImbuedStatusEffect>
+			<ImbuedStatusEffect>aura_of_lady_lightning</ImbuedStatusEffect>
+	  </TriggeredEffectTemplate>
+	  
+	   <TriggeredEffectTemplate StringID="shield_of_combat" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="8" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            DamageVariance="0.0" 
+			ImbuedStatusEffectDuration="15" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>shield_of_combat</ImbuedStatusEffect>
+	  </TriggeredEffectTemplate>
+	  
+	   <TriggeredEffectTemplate StringID="aerial_shield" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="8" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            DamageVariance="0.0" 
+			ImbuedStatusEffectDuration="1.05" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>aerial_shield_tick</ImbuedStatusEffect>
 	  </TriggeredEffectTemplate>
 
 

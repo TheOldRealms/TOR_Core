@@ -20,9 +20,10 @@
 		base_effect_value="20"
 		type="HealthOverTime"/>
 	<StatusEffectTemplate 
-		id="red_regeneration" 
-		particle_id="red_regeneration"
+		id="breath_of_darkness" 
+		particle_id="breath_of_darkness"
 		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="20"
 		type="HealthOverTime"/>
 	<StatusEffectTemplate 
@@ -174,7 +175,9 @@
 		particle_intensity="High"
 		base_effect_value="0.7"
 		damage_type="Fire"
-		type="Resistance"/>
+		type="Resistance">
+		<temporary_attribute>ClearBloodBurst</temporary_attribute>
+	</StatusEffectTemplate>
 	<StatusEffectTemplate 
 		id="ward_of_arrows" 
 		particle_id="psys_energy_sphere"
@@ -290,6 +293,57 @@
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="0.25"
 		type="AttackSpeedManipulation"
-		damage_type="Holy"/>	
-		
+		damage_type="Holy"/>
+
+	<StatusEffectTemplate
+		id="shield_of_combat"
+		particle_id="shield_of_combat"
+		base_effect_value="0.5"
+		do_not_attach_to_agent_skeleton="true"
+		applies_for_attack_type="Melee"
+		type="Resistance"
+		damage_type="Physical">
+		<temporary_attribute>ClearBloodBurst</temporary_attribute>		
+	</StatusEffectTemplate>
+	
+		<StatusEffectTemplate
+		id="aura_of_lady_magic"
+		particle_id="aura_of_lady"
+		base_effect_value="0.8"
+		do_not_attach_to_agent_skeleton="true"
+		applies_for_attack_type="Spell"
+		type="Resistance"
+		damage_type="Magical">
+	</StatusEffectTemplate>
+	
+		<StatusEffectTemplate
+		id="aura_of_lady_fire"
+		particle_id=""
+		base_effect_value="0.8"
+		do_not_attach_to_agent_skeleton="true"
+		applies_for_attack_type="Spell"
+		type="Resistance"
+		damage_type="Fire">
+	</StatusEffectTemplate>
+	
+		<StatusEffectTemplate
+		id="aura_of_lady_lightning"
+		particle_id=""
+		base_effect_value="0.8"
+		do_not_attach_to_agent_skeleton="true"
+		applies_for_attack_type="Spell"
+		type="Resistance"
+		damage_type="Lightning">
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="aerial_shield_tick"
+		particle_id="aerial_shield"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="1.0"
+		applies_for_attack_type="Ranged"
+		type="Resistance"
+		damage_type="Physical">
+		<temporary_attribute>ClearBloodBurst</temporary_attribute>		
+	</StatusEffectTemplate>
 </StatusEffects>

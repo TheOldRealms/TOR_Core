@@ -523,7 +523,7 @@
       LightFlickeringMagnitude="0" 
       LightFlickeringInterval="0" 
       ShadowCastEnabled="false" 
-      ParticleEffectPrefab="sear" 
+      ParticleEffectPrefab="" 
       ParticleEffectSizeModifier="1" 
       SoundEffectToPlay="sear" 
       ShouldSoundLoopOverDuration="true"
@@ -1479,7 +1479,7 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>apply_red_healing_statuseffect</TriggeredEffect>
+		<TriggeredEffect>breath_of_darkness</TriggeredEffect>
 	</AbilityTemplate>
 	<AbilityTemplate StringID="WitheringWave" 
       Name="Withering Wave " 
@@ -2953,8 +2953,52 @@
       CoolDown="10" 
       WindsOfMagicCost="3" 
       BaseMisCastChance="0.05" 
+      Duration="45" 
+      Radius="8" 
+      AbilityType="Spell" 
+      AbilityEffectType="Augment" 
+      BaseMovementSpeed="0" 
+      TickInterval="1" 
+      TriggerType="EveryTick" 
+      HasLight="false" 
+      LightIntensity="0" 
+      LightRadius="0" 
+      LightFlickeringMagnitude="0" 
+      LightFlickeringInterval="0" 
+      ShadowCastEnabled="false" 
+      ParticleEffectPrefab="ethereal_dome" 
+      ParticleEffectSizeModifier="0" 
+      SoundEffectToPlay="none" 
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant" 
+      CastTime="0" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0"
+      AbilityTargetType="AlliesInAOE"
+      CrosshairType="TargetedAOE"
+	  MaxDistance="3"
+      TargetCapturingRadius="8"
+      SpellTier="1"
+      BelongsToLoreID="PowerOfTheLady"
+      TooltipDescription="Adds 40% physical resistance against ranged damage for 15 seconds to the caster.">
+		<LightColorRGB x="255" y="255" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>aerial_shield</TriggeredEffect>
+	</AbilityTemplate>
+	
+		<AbilityTemplate StringID="AuraOfTheLady" 
+      Name="Aura Of The Lady" 
+      SpriteName="ward_of_arrows_icon" 
+      CoolDown="10" 
+      WindsOfMagicCost="3" 
+      BaseMisCastChance="0.05" 
       Duration="0" 
-      Radius="0" 
+      Radius="8" 
       AbilityType="Spell" 
       AbilityEffectType="Augment" 
       BaseMovementSpeed="0" 
@@ -2967,16 +3011,17 @@
       LightFlickeringInterval="0" 
       ShadowCastEnabled="false" 
       ParticleEffectPrefab="none" 
-      ParticleEffectSizeModifier="1" 
+      ParticleEffectSizeModifier="0" 
       SoundEffectToPlay="none" 
       ShouldSoundLoopOverDuration="false"
       CastType="Instant" 
       CastTime="0" 
       AnimationActionName="act_release_heavy_thrown" 
       Offset="0"
-      AbilityTargetType="Self"
-      CrosshairType="Self"
-      TargetCapturingRadius="1"
+      AbilityTargetType="AlliesInAOE"
+      CrosshairType="TargetedAOE"
+	  MaxDistance="20"
+      TargetCapturingRadius="8"
       SpellTier="1"
       BelongsToLoreID="PowerOfTheLady"
       TooltipDescription="Adds 40% physical resistance against ranged damage for 15 seconds to the caster.">
@@ -2987,7 +3032,51 @@
 				<z>255</z>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>ward_of_arrows</TriggeredEffect>
+		<TriggeredEffect>aura_of_lady</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="ShieldOfCombat" 
+      Name="Shield Of Combat" 
+      SpriteName="ward_of_arrows_icon" 
+      CoolDown="10" 
+      WindsOfMagicCost="3" 
+      BaseMisCastChance="0.05" 
+      Duration="0" 
+      Radius="8" 
+      AbilityType="Spell" 
+      AbilityEffectType="Augment" 
+      BaseMovementSpeed="0" 
+      TickInterval="-1" 
+      TriggerType="TickOnce" 
+      HasLight="false" 
+      LightIntensity="0" 
+      LightRadius="0" 
+      LightFlickeringMagnitude="0" 
+      LightFlickeringInterval="0" 
+      ShadowCastEnabled="false" 
+      ParticleEffectPrefab="none" 
+      ParticleEffectSizeModifier="0" 
+      SoundEffectToPlay="none" 
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant" 
+      CastTime="0" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0"
+      AbilityTargetType="AlliesInAOE"
+      CrosshairType="TargetedAOE"
+	  MaxDistance="20"
+      TargetCapturingRadius="8"
+      SpellTier="1"
+      BelongsToLoreID="PowerOfTheLady"
+      TooltipDescription="Adds 40% physical resistance against ranged damage for 15 seconds to the caster.">
+		<LightColorRGB x="255" y="255" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>shield_of_combat</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="LadysFavour"

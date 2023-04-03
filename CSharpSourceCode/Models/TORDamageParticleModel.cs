@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.Extensions;
@@ -9,7 +9,7 @@ namespace TOR_Core.Models
     {
         public override void GetMeleeAttackBloodParticles(Agent attacker, Agent victim, in Blow blow, in AttackCollisionData collisionData, out HitParticleResultData particleResultData)
         {
-            if (victim.IsUndead())
+            if (victim.IsUndead()||victim.ShouldNotBleed())
             {
                 particleResultData.ContinueHitParticleIndex = -1;
                 particleResultData.StartHitParticleIndex = -1;

@@ -2833,6 +2833,8 @@
 	   <string>StormOfRenewal</string>
 	   <string>LadysFavour</string>
 	   <string>AerialShield</string>
+	   <string>ShieldOfCombat</string>
+	   <string>AuraOfTheLady</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
@@ -2882,7 +2884,7 @@
       <string>WindOfDeath</string>
     </Abilities>
     <Attributes>
-
+	  <string>AbilityUser</string>
       <string>Unbreakable</string>
     </Attributes>
   </CharacterExtendedInfo>
