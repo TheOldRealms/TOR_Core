@@ -167,7 +167,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         private void UpdateDummyEntity(float dt)
         {
-            _dummyEntity?.SetGlobalFrameMT(new MatrixFrame(new Mat3(Agent.LookRotation.s, Agent.LookRotation.f, Vec3.Up), Agent.GetChestGlobalPosition()));
+           // _dummyEntity; = Agent.GetChestGlobalPosition();
+           _dummyEntity?.SetGlobalFrameMT(new MatrixFrame(_dummyEntity.GetFrame().rotation,Agent.GetChestGlobalPosition()));
+          //  _dummyEntity?.SetGlobalFrameMT(new MatrixFrame(new Mat3(Agent.LookRotation.s, Agent.LookRotation.f, Vec3.Up), Agent.GetChestGlobalPosition()));
         }
 
         private void RemoveEffect(StatusEffect effect)
@@ -277,6 +279,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 List<ParticleSystem> particles = TORParticleSystem.ApplyParticleToAgent(Agent, effect.Template.ParticleId, out entities, effect.Template.ParticleIntensity, effect.Template.ApplyToRootBoneOnly);
                 data = new EffectData(effect, particles, entities);
             }
+
+            
 
             _currentEffects.Add(effect, data);
         }

@@ -211,6 +211,19 @@
 		
 		
 	<StatusEffectTemplate 
+		id="armour_of_the_righteous" 
+		do_not_attach_to_agent_skeleton="true"
+		particle_id="armour_of_the_righteous"
+		particle_intensity="Low"
+		base_effect_value="0.35"
+		damage_type="Physical"
+		type="Resistance"
+		rotation="true"
+		rotation_speed="200"
+		/>
+		
+		
+	<StatusEffectTemplate 
 		id="pans_pelt" 
 		particle_id="panns_impenetrable_pelt"
 		particle_intensity="Low"

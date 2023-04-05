@@ -2899,7 +2899,7 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>bark_skin</TriggeredEffect>
+		<TriggeredEffect>armour_of_the_righteous</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="Vanquish"

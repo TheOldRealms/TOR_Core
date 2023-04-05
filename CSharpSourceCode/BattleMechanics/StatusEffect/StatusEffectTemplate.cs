@@ -31,8 +31,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         [XmlElement("temporary_attribute")]
         public List<string> TemporaryAttributes { get; set; } = new List<string>();
 
-        [XmlElement("rotation")] public bool Rotation { get; set; } = false;
-        [XmlElement("rotation_speed")] public int RotationSpeed { get; set; } = 100;
+        [XmlAttribute("rotation")] public bool Rotation { get; set; } = false;
+        [XmlAttribute("rotation_speed")] public int RotationSpeed { get; set; } = 100;
         
 
         public enum EffectType

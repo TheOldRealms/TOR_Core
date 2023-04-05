@@ -684,6 +684,21 @@
             ImbuedStatusEffectDuration="20" 
             DamageVariance="0" 
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyHolyItemTraitScript" />
+			
+			
+		<TriggeredEffectTemplate StringID="armour_of_the_righteous" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+            DamageAmount="0" 
+            Radius="15" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="8" 
+            ScriptNameToTrigger="none" >
+            <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
 
 <!-- Power of the Lady -->
 

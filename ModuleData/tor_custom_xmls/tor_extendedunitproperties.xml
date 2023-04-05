@@ -2783,6 +2783,7 @@
 	     <string>HealingHand</string>
 		 <string>CometOfSigmar</string>
 		 <string>Vanquish</string>
+		 <string>AmourOfRighteousness</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
