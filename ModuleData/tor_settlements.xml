@@ -3220,7 +3220,9 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
     </CommonAreas>
   </Settlement>
   <!-- Bordeleaux -->
-  <Settlement id="town_BL1" name="{=Settlements.Settlement.name.town_BL1}Castle Bordeleaux" owner="Faction.reikland_clan_1" posX="924.726" posY="942.541" culture="Culture.vlandia" prosperity="4500" gate_posX="924.4052" gate_posY="940.5958" text="{=Settlements.Settlement.text.town_BL1}Built upon ancient stonework, the fortress-city of Bordeleaux is perhaps the most important harbour in Bretonnia, rivalled only by Lyon. Castle Bordeleaux sits on a cliff which rises above the harbour, looking over the entire sprawling city and nearby sea traffic. It is said that the engines on its walls, and their skilled engineers, are capable of sinking a moored rowboat without damaging the boats to either side. The city is home to two major holy sites in the realm, the First Chapel of Castle Bordeleaux, the most sacred Grail Chapel in the kingdom; and the Temple of Manaan, of which some say rivals even the temple in Marienburg.">
+
+
+ <Settlement id="town_BL1" name="{=Settlements.Settlement.name.town_BL1}Castle Bordeleaux" owner="Faction.bordeleaux_clan_1" posX="924.726" posY="942.541" culture="Culture.vlandia" prosperity="4500" gate_posX="924.4052" gate_posY="940.5958" text="{=Settlements.Settlement.text.town_BL1}Built upon ancient stonework, the fortress-city of Bordeleaux is perhaps the most important harbour in Bretonnia, rivalled only by Lyon. Castle Bordeleaux sits on a cliff which rises above the harbour, looking over the entire sprawling city and nearby sea traffic. It is said that the engines on its walls, and their skilled engineers, are capable of sinking a moored rowboat without damaging the boats to either side. The city is home to two major holy sites in the realm, the First Chapel of Castle Bordeleaux, the most sacred Grail Chapel in the kingdom; and the Temple of Manaan, of which some say rivals even the temple in Marienburg.">
     <Components>
       <Town id="town_comp_BL1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -3240,7 +3242,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BL1_1" name="{=Settlements.Settlement.name.village_BL2_1}Saint-Junien" posX="908.942" posY="942.641" culture="Culture.empire" text="{=Settlements.Settlement.text.village_BL1_1}Right on the coast of the Great Ocean is the village of Saint Junien. Saint Junien was named after a grail knight who long ago defended the peasants in the area from mysterious sea devils. The peasants here continue to rely on Manaan for their livelihood, though many visitors note that they always seem to have one eye out towards the watery horizon.">
+  <Settlement id="village_BL1_1" name="{=Settlements.Settlement.name.village_BL2_1}Saint-Junien" posX="908.942" posY="942.641" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BL1_1}Right on the coast of the Great Ocean is the village of Saint Junien. Saint Junien was named after a grail knight who long ago defended the peasants in the area from mysterious sea devils. The peasants here continue to rely on Manaan for their livelihood, though many visitors note that they always seem to have one eye out towards the watery horizon.">
     <Components>
       <Village id="village_comp_BL1_1" village_type="VillageType.fisherman" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BL1" bound="Settlement.town_BL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3253,7 +3255,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BL1_2" name="{=Settlements.Settlement.name.village_BL1_2}Aigre" posX="925.4" posY="954.35" culture="Culture.empire" text="{=Settlements.Settlement.text.village_BL1_2}Sitting on the road between Tureene and Bordeleaux is Aigre. Aigre is an idyllic place, the peasants here seem content most years and grain normally comes in abundance. Economy: grain">
+  <Settlement id="village_BL1_2" name="{=Settlements.Settlement.name.village_BL1_2}Aigre" posX="925.4" posY="954.35" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BL1_2}Sitting on the road between Tureene and Bordeleaux is Aigre. Aigre is an idyllic place, the peasants here seem content most years and grain normally comes in abundance. Economy: grain">
     <Components>
       <Village id="village_comp_BL1_2" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BL1" bound="Settlement.town_BL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3266,7 +3268,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BL1_3" name="{=Settlements.Settlement.name.village_BL1_2}Niort" posX="938.202" posY="941.974" culture="Culture.empire" text="{=Settlements.Settlement.text.village_BL1_3}The area around Niort is famous for its vineyards. The fruit produced here makes a nice red wine, favoured by many nobles all over Bretonnia.">
+  <Settlement id="village_BL1_3" name="{=Settlements.Settlement.name.village_BL1_2}Niort" posX="938.202" posY="941.974" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BL1_3}The area around Niort is famous for its vineyards. The fruit produced here makes a nice red wine, favoured by many nobles all over Bretonnia.">
     <Components>
       <Village id="village_comp_BL1_3" village_type="VillageType.vineyard" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BL1" bound="Settlement.town_BL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3279,7 +3281,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_BL2" name="{=Settlements.Settlement.name.town_BA1}Turenne" owner="Faction.reikland_clan_1" posX="874.636" posY="954.618" culture="Culture.empire" prosperity="4500" gate_posX="873.3562" gate_posY="953.1183" text="{=!}The peasant town of Turenne, though lowly, is nothing to scoff at. The people here live under the protection of the duke and while most make their living in the fields around the town, there are those peasants that have taken up a craft or trade near the town square. Turenne is a town dependent on the excesses of Bordeleaux, merchants needing a simple place to stop can often find cheaper rooms and supplies here.">
+  <Settlement id="town_BL2" name="{=Settlements.Settlement.name.town_BA1}Turenne" owner="Faction.bordeleaux_clan_1" posX="874.636" posY="954.618" culture="Culture.vlandia" prosperity="4500" gate_posX="873.3562" gate_posY="953.1183" text="{=!}The peasant town of Turenne, though lowly, is nothing to scoff at. The people here live under the protection of the duke and while most make their living in the fields around the town, there are those peasants that have taken up a craft or trade near the town square. Turenne is a town dependent on the excesses of Bordeleaux, merchants needing a simple place to stop can often find cheaper rooms and supplies here.">
     <Components>
       <Town id="town_comp_BL2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -3299,7 +3301,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BL2_1" name="{=Settlements.Settlement.name.village_BL2_1}Parthenay" posX="867.736" posY="973.639" culture="Culture.empire" text="{=Settlements.Settlement.text.village_BL2_1}Surrounded by rocky crags, the isolated village of Parthenay sits on a hill overlooking the lands of Bordelen and, across the River Grismerie, Mousillon. The people here haul up salt from the beaches below, pack it, and send it to Turenne to their south.">
+  <Settlement id="village_BL2_1" name="{=Settlements.Settlement.name.village_BL2_1}Parthenay" posX="867.736" posY="973.639" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BL2_1}Surrounded by rocky crags, the isolated village of Parthenay sits on a hill overlooking the lands of Bordelen and, across the River Grismerie, Mousillon. The people here haul up salt from the beaches below, pack it, and send it to Turenne to their south.">
     <Components>
       <Village id="village_comp_BL2_1" village_type="VillageType.salt_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BL2" bound="Settlement.town_BL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3312,7 +3314,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BL2_2" name="{=Settlements.Settlement.name.village_BL2_2}Anglet" posX="884.937" posY="964.362" culture="Culture.empire" text="{=Settlements.Settlement.text.village_BL2_2}The people of Anglet pride themselves on breeding some of the best riding stock this side of Massif Orcal. Every year, the peasants round up the various herds, and drive them to market in Bordeleaux.">
+  <Settlement id="village_BL2_2" name="{=Settlements.Settlement.name.village_BL2_2}Anglet" posX="884.937" posY="964.362" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BL2_2}The people of Anglet pride themselves on breeding some of the best riding stock this side of Massif Orcal. Every year, the peasants round up the various herds, and drive them to market in Bordeleaux.">
     <Components>
       <Village id="village_comp_BL2_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BL2" bound="Settlement.town_BL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3325,7 +3327,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BL2_3" name="{=Settlements.Settlement.name.village_BL2_3}Royan" posX="890.0909" posY="948.799" culture="Culture.empire" text="{=Settlements.Settlement.text.village_BL2_3}Royan lays in a low and wide gulley, sheltered from the winds that constantly blow across the coastal plains of Bordeleaux. The depression also provides some sanctuary from norscan raiders, who often are unable to see it from the ocean.">
+  <Settlement id="village_BL2_3" name="{=Settlements.Settlement.name.village_BL2_3}Royan" posX="890.0909" posY="948.799" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BL2_3}Royan lays in a low and wide gulley, sheltered from the winds that constantly blow across the coastal plains of Bordeleaux. The depression also provides some sanctuary from norscan raiders, who often are unable to see it from the ocean.">
     <Components>
       <Village id="village_comp_BL2_3" village_type="VillageType.salt_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BL2" bound="Settlement.town_BL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3338,7 +3340,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BL1" name="{=Settlements.Settlement.name.castle_BL1}Turris Vigilans" owner="Faction.reikland_clan_2" posX="934.417" posY="990.942" prosperity="800" culture="Culture.empire" gate_posX="934.4772" gate_posY="991.7035" text="{=!}De Turris Vigilans, the vigilant tower, is a centre of Verenan worship in Bretonnia. In addition to a large temple, the cult maintains a great lighthouse which is widely considered to be the most reliable in the world. The Priests of Verena here will often offer advice to those that seek their counsel, and are reputable for its benefits. The Cult and the Dukedom of Bordeleaux have the shared interest in watching the cursed land to their north, as a result; the Duke has established a garrison here and the fortifications are always maintained.">
+  <Settlement id="castle_BL1" name="{=Settlements.Settlement.name.castle_BL1}Turris Vigilans" owner="Faction.bordeleaux_clan_1" posX="934.417" posY="990.942" prosperity="800" culture="Culture.vlandia" gate_posX="934.4772" gate_posY="991.7035" text="{=!}De Turris Vigilans, the vigilant tower, is a centre of Verenan worship in Bretonnia. In addition to a large temple, the cult maintains a great lighthouse which is widely considered to be the most reliable in the world. The Priests of Verena here will often offer advice to those that seek their counsel, and are reputable for its benefits. The Cult and the Dukedom of Bordeleaux have the shared interest in watching the cursed land to their north, as a result; the Duke has established a garrison here and the fortifications are always maintained.">
     <Components>
       <Town id="castle_comp_BL1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -3348,7 +3350,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_BL1_1" name="{=Settlements.Settlement.name.castle_village_BL1_1}Daglan" posX="925.869" posY="970.054" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_BL1_1}Daglan is a small farming village that provides the nearby temple of Verena with most of its foodstuffs. The fruit grown here is known for its hardiness, and can make a decent vintage.">
+  <Settlement id="castle_village_BL1_1" name="{=Settlements.Settlement.name.castle_village_BL1_1}Daglan" posX="925.869" posY="970.054" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BL1_1}Daglan is a small farming village that provides the nearby temple of Verena with most of its foodstuffs. The fruit grown here is known for its hardiness, and can make a decent vintage.">
     <Components>
       <Village id="castle_village_comp_BL1_1" village_type="VillageType.vineyard" hearth="200" trade_bound="Settlement.castle_BL1" bound="Settlement.castle_BL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3361,7 +3363,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_BL1_2" name="{=Settlements.Settlement.name.castle_village_BL1_2}Talence" posX="943.818" posY="980.018" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_BL1_2}The fish that come down into the brackish waters of the River Grismerie are known for their size and their taste. Really, many local nobles suppose that is the only reason the peasants continue to dwell in Talence, being far too close to the marshes of cursed Mousillon for their liking.">
+  <Settlement id="castle_village_BL1_2" name="{=Settlements.Settlement.name.castle_village_BL1_2}Talence" posX="943.818" posY="980.018" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BL1_2}The fish that come down into the brackish waters of the River Grismerie are known for their size and their taste. Really, many local nobles suppose that is the only reason the peasants continue to dwell in Talence, being far too close to the marshes of cursed Mousillon for their liking.">
     <Components>
       <Village id="castle_village_comp_BL1_2" village_type="VillageType.fisherman" hearth="200" trade_bound="Settlement.castle_BL1" bound="Settlement.castle_BL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3374,7 +3376,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BL2" name="{=Settlements.Settlement.name.castle_BL1}Castle Saint Jean-de-Luz" owner="Faction.reikland_clan_2" posX="968.823" posY="989.551" prosperity="800" culture="Culture.empire" gate_posX="969.5837" gate_posY="989.4823" text="{=!}A small castle, established to watch over the farms and woodlands of east Bordelen. It is named after a long dead noble who stopped an orc warboss from Massif Orcal on the grounds where the castle now sits.">
+  <Settlement id="castle_BL2" name="{=Settlements.Settlement.name.castle_BL1}Castle Saint Jean-de-Luz" owner="Faction.bordeleaux_clan_1" posX="968.823" posY="989.551" prosperity="800" culture="Culture.vlandia" gate_posX="969.5837" gate_posY="989.4823" text="{=!}A small castle, established to watch over the farms and woodlands of east Bordelen. It is named after a long dead noble who stopped an orc warboss from Massif Orcal on the grounds where the castle now sits.">
     <Components>
       <Town id="castle_comp_BL2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -3384,7 +3386,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_BL2_1" name="{=Settlements.Settlement.name.castle_village_BL2_1}Belves" posX="958.957" posY="983.022" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_BL2_1}In the middle of the rolling plains is the village of Belves. Belves has some of the most.. provincial peasants in Bordeleaux. Their lord rarely comes here, with the yeoman tax collector often being the only visitor to Belves for years at a time.">
+  <Settlement id="castle_village_BL2_1" name="{=Settlements.Settlement.name.castle_village_BL2_1}Belves" posX="958.957" posY="983.022" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BL2_1}In the middle of the rolling plains is the village of Belves. Belves has some of the most.. provincial peasants in Bordeleaux. Their lord rarely comes here, with the yeoman tax collector often being the only visitor to Belves for years at a time.">
     <Components>
       <Village id="castle_village_comp_BL2_1" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.castle_BL2" bound="Settlement.castle_BL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3397,7 +3399,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_BL2_2" name="{=Settlements.Settlement.name.castle_village_BL2_2}Sare" posX="982.4609" posY="983.605" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_BL2_2}Sare Saddlebreds are dependable mounts for any knights, yeomen or traveller. The people here pride themselves on producing steads of the highest quality, the result of course is that they only produce a few every season.">
+  <Settlement id="castle_village_BL2_2" name="{=Settlements.Settlement.name.castle_village_BL2_2}Sare" posX="982.4609" posY="983.605" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BL2_2}Sare Saddlebreds are dependable mounts for any knights, yeomen or traveller. The people here pride themselves on producing steads of the highest quality, the result of course is that they only produce a few every season.">
     <Components>
       <Village id="castle_village_comp_BL2_2" village_type="VillageType.europe_horse_ranch" hearth="200" trade_bound="Settlement.castle_BL2" bound="Settlement.castle_BL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3410,7 +3412,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BL3" name="{=Settlements.Settlement.name.castle_BL3}Castle Châtellerault" owner="Faction.reikland_clan_2" posX="949.337" posY="959.723" prosperity="800" culture="Culture.empire" gate_posX="949.3543" gate_posY="958.9594" text="{=!}On the edge of the Forest of Châlons sits Castle Châtellerault. Châlons is a dangerous and twisted place; dark trees stand over deep ravines, boulders and chasms. One shouldn't be mistaken, it has its beauties; sweet and cool streams, waterfalls and calm pools dot the undergrowth. It is even said that the true sacred lake of the lady lies somewhere within this forest. With this land, comes the typical predations, greenskins, beastmen and far worse make their homes, and so Châtellerault stands its watch against incursion.">
+  <Settlement id="castle_BL3" name="{=Settlements.Settlement.name.castle_BL3}Castle Châtellerault" owner="Faction.bordeleaux_clan_1" posX="949.337" posY="959.723" prosperity="800" culture="Culture.vlandia" gate_posX="949.3543" gate_posY="958.9594" text="{=!}On the edge of the Forest of Châlons sits Castle Châtellerault. Châlons is a dangerous and twisted place; dark trees stand over deep ravines, boulders and chasms. One shouldn't be mistaken, it has its beauties; sweet and cool streams, waterfalls and calm pools dot the undergrowth. It is even said that the true sacred lake of the lady lies somewhere within this forest. With this land, comes the typical predations, greenskins, beastmen and far worse make their homes, and so Châtellerault stands its watch against incursion.">
     <Components>
       <Town id="castle_comp_BL3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -3420,7 +3422,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_BL3_1" name="{=Settlements.Settlement.name.castle_village_BL3_1}Monpazier" posX="967.2739" posY="966.974" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_BL3_1}Delving into the forest of Châlons for timber, the woodsmen of Monpazier are some of the bravest peasants in all Bordelen. Their daily task brings them almost constantly into contact with beastmen and other foul monstrosities.">
+  <Settlement id="castle_village_BL3_1" name="{=Settlements.Settlement.name.castle_village_BL3_1}Monpazier" posX="967.2739" posY="966.974" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BL3_1}Delving into the forest of Châlons for timber, the woodsmen of Monpazier are some of the bravest peasants in all Bordelen. Their daily task brings them almost constantly into contact with beastmen and other foul monstrosities.">
     <Components>
       <Village id="castle_village_comp_BL3_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.castle_BL3" bound="Settlement.castle_BL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3433,7 +3435,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_BL3_2" name="{=Settlements.Settlement.name.castle_village_BL3_2}Limeuil" posX="991.309" posY="974.684" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_BL3_2} The peasants of Limeuil venture into the outlying crags of Massif Orcal, looking for sites for clay pits. While they bring back a good amount of clay, they also tell tales of the things they encounter at the foot of the mountains. The local lord has on more than one occasion deemed fit to send men-at-arms into the foothills. What they fought there remains unknown to most.">
+  <Settlement id="castle_village_BL3_2" name="{=Settlements.Settlement.name.castle_village_BL3_2}Limeuil" posX="991.309" posY="974.684" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BL3_2} The peasants of Limeuil venture into the outlying crags of Massif Orcal, looking for sites for clay pits. While they bring back a good amount of clay, they also tell tales of the things they encounter at the foot of the mountains. The local lord has on more than one occasion deemed fit to send men-at-arms into the foothills. What they fought there remains unknown to most.">
     <Components>
       <Village id="castle_village_comp_BL3_2" village_type="VillageType.clay_mine" hearth="200" trade_bound="Settlement.castle_BL3" bound="Settlement.castle_BL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
