@@ -4174,19 +4174,19 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
     </CommonAreas>
   </Settlement>
   <!-- Quenelles -->
-  <Settlement id="town_QU1" name="{=Settlements.Settlement.name.town_QU1}Castle Quenelles" owner="Faction.reikland_clan_1" posX="1156.113" posY="805.968" culture="Culture.empire" prosperity="4500" gate_posX="1158.084" gate_posY="805.9794" text="{=!}Altdorf is at once perhaps the greatest city of the Empire and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the Reikland and the Empire of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the Empire; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
+  <Settlement id="town_QU1" name="{=Settlements.Settlement.name.town_QU1}Castle Quenelles" owner="Faction.quenelles_clan_1" posX="1156.113" posY="805.968" culture="Culture.vlandia" prosperity="4500" gate_posX="1158.084" gate_posY="805.9794" text="{=!}Altdorf is at once perhaps the greatest city of the vlandia and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the Reikland and the vlandia of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the vlandia; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
     <Components>
-      <Town id="town_comp_QU1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+      <Town id="town_comp_QU1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_vlandia_1" wait_mesh="vlandia_city_background" gate_rotation="0.908" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
-      <Location id="arena" scene_name="TOW_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="arena" scene_name="TOW_arena_vlandia_a" />
+      <Location id="tavern" scene_name="vlandia_tavern_01" />
+      <Location id="lordshall" scene_name_1="TOW_vlandia_keep_l1" scene_name_2="TOW_vlandia_keep_l2" scene_name_3="TOW_vlandia_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
-      <Location id="house_2" scene_name="empire_house_d_interior_house" />
-      <Location id="house_3" scene_name="empire_house_d_interior_house" />
+      <Location id="house_2" scene_name="vlandia_house_d_interior_house" />
+      <Location id="house_3" scene_name="vlandia_house_d_interior_house" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -4194,12 +4194,12 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_QU1_1" name="{=Settlements.Settlement.name.village_QU1_1}Perrache" posX="1152.572" posY="826.288" culture="Culture.empire" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_QU1_1" name="{=Settlements.Settlement.name.village_QU1_1}Perrache" posX="1152.572" posY="826.288" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
     <Components>
-      <Village id="village_comp_QU1_1" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU1" bound="Settlement.town_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_QU1_1" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU1" bound="Settlement.town_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_empire_village_005" />
+      <Location id="village_center" scene_name="TOR_vlandia_village_005" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4207,12 +4207,12 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_QU1_2" name="{=Settlements.Settlement.name.village_QU1_2}Nailloux" posX="1128.767" posY="830.808" culture="Culture.empire" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_QU1_2" name="{=Settlements.Settlement.name.village_QU1_2}Nailloux" posX="1128.767" posY="830.808" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
     <Components>
-      <Village id="village_comp_QU1_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU1" bound="Settlement.town_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_QU1_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU1" bound="Settlement.town_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_empire_village_005" />
+      <Location id="village_center" scene_name="TOR_vlandia_village_005" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4220,12 +4220,12 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_QU1_3" name="{=Settlements.Settlement.name.village_QU1_1}Bézier" posX="1116.459" posY="834.748" culture="Culture.empire" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_QU1_3" name="{=Settlements.Settlement.name.village_QU1_1}Bézier" posX="1116.459" posY="834.748" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
     <Components>
-      <Village id="village_comp_QU1_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU1" bound="Settlement.town_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_QU1_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU1" bound="Settlement.town_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_empire_village_005" />
+      <Location id="village_center" scene_name="TOR_vlandia_village_005" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4233,19 +4233,19 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_QU2" name="{=Settlements.Settlement.name.town_QU2}Viefin" owner="Faction.reikland_clan_1" posX="1077.9" posY="884.417" culture="Culture.empire" prosperity="4500" gate_posX="1077.075" gate_posY="886.2074" text="{=!}Altdorf is at once perhaps the greatest city of the Empire and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the Reikland and the Empire of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the Empire; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
+  <Settlement id="town_QU2" name="{=Settlements.Settlement.name.town_QU2}Viefin" owner="Faction.quenelles_clan_1" posX="1077.9" posY="884.417" culture="Culture.vlandia" prosperity="4500" gate_posX="1077.075" gate_posY="886.2074" text="{=!}Altdorf is at once perhaps the greatest city of the vlandia and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the Reikland and the vlandia of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the vlandia; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
     <Components>
-      <Town id="town_comp_QU2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+      <Town id="town_comp_QU2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_vlandia_1" wait_mesh="vlandia_city_background" gate_rotation="0.908" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
-      <Location id="arena" scene_name="TOW_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="arena" scene_name="TOW_arena_vlandia_a" />
+      <Location id="tavern" scene_name="vlandia_tavern_01" />
+      <Location id="lordshall" scene_name_1="TOW_vlandia_keep_l1" scene_name_2="TOW_vlandia_keep_l2" scene_name_3="TOW_vlandia_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
-      <Location id="house_2" scene_name="empire_house_d_interior_house" />
-      <Location id="house_3" scene_name="empire_house_d_interior_house" />
+      <Location id="house_2" scene_name="vlandia_house_d_interior_house" />
+      <Location id="house_3" scene_name="vlandia_house_d_interior_house" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -4253,12 +4253,12 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_QU2_1" name="{=Settlements.Settlement.name.village_QU2_1}Chinon" posX="1072.786" posY="923.083" culture="Culture.empire" text="{=Settlements.Settlement.text.village_QU2_1}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_QU2_1" name="{=Settlements.Settlement.name.village_QU2_1}Chinon" posX="1072.786" posY="923.083" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_QU2_1}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
     <Components>
-      <Village id="village_comp_QU2_1" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU2" bound="Settlement.town_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_QU2_1" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU2" bound="Settlement.town_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_empire_village_005" />
+      <Location id="village_center" scene_name="TOR_vlandia_village_005" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4266,12 +4266,12 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_QU2_2" name="{=Settlements.Settlement.name.village_QU2_2}Gien" posX="1060.276" posY="875.809" culture="Culture.empire" text="{=Settlements.Settlement.text.village_QU2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_QU2_2" name="{=Settlements.Settlement.name.village_QU2_2}Gien" posX="1060.276" posY="875.809" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_QU2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
     <Components>
-      <Village id="village_comp_QU2_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU2" bound="Settlement.town_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_QU2_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU2" bound="Settlement.town_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_empire_village_005" />
+      <Location id="village_center" scene_name="TOR_vlandia_village_005" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4279,12 +4279,12 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_QU2_3" name="{=Settlements.Settlement.name.village_QU2_3}Mont-Dore" posX="1102.904" posY="876.855" culture="Culture.empire" text="{=Settlements.Settlement.text.village_QU2_3}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_QU2_3" name="{=Settlements.Settlement.name.village_QU2_3}Mont-Dore" posX="1102.904" posY="876.855" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_QU2_3}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
     <Components>
-      <Village id="village_comp_QU2_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU2" bound="Settlement.town_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_QU2_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU2" bound="Settlement.town_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_empire_village_005" />
+      <Location id="village_center" scene_name="TOR_vlandia_village_005" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4292,22 +4292,22 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_QU1" name="{=Settlements.Settlement.name.castle_QU1}Castle Beaumarchais" owner="Faction.reikland_clan_2" posX="1143.043" posY="898.181" prosperity="800" culture="Culture.empire" gate_posX="1143.246" gate_posY="898.9174" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_QU1" name="{=Settlements.Settlement.name.castle_QU1}Castle Beaumarchais" owner="Faction.quenelles_clan_1" posX="1143.043" posY="898.181" prosperity="800" culture="Culture.vlandia" gate_posX="1143.246" gate_posY="898.9174" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
-      <Town id="castle_comp_QU1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+      <Town id="castle_comp_QU1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_vlandia_1" wait_mesh="vlandia_city_background" gate_rotation="0.908" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
-      <Location id="prison" scene_name="empire_dungeon_a" />
+      <Location id="center" scene_name="vlandia_siege_001" scene_name_1="vlandia_siege_001" scene_name_2="vlandia_siege_001" scene_name_3="vlandia_siege_001" />
+      <Location id="lordshall" scene_name_1="TOW_vlandia_keep_l1" scene_name_2="TOW_vlandia_keep_l2" scene_name_3="TOW_vlandia_keep_l2" />
+      <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_QU1_1" name="{=Settlements.Settlement.name.castle_village_QUI_3}Merceaux Descloux" posX="1156.346" posY="915.696" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_QU1_1}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_QU1_1" name="{=Settlements.Settlement.name.castle_village_QUI_3}Merceaux Descloux" posX="1156.346" posY="915.696" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU1_1}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
     <Components>
-      <Village id="castle_village_comp_QU1_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU1" bound="Settlement.castle_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_QU1_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU1" bound="Settlement.castle_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4315,12 +4315,12 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_QU1_2" name="{=Settlements.Settlement.name.castle_village_QU1_2}Montlac" posX="1138.555" posY="869.866" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_QU1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_QU1_2" name="{=Settlements.Settlement.name.castle_village_QU1_2}Montlac" posX="1138.555" posY="869.866" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
     <Components>
-      <Village id="castle_village_comp_QU1_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU1" bound="Settlement.castle_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_QU1_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU1" bound="Settlement.castle_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4328,12 +4328,12 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_QU1_3" name="{=Settlements.Settlement.name.castle_village_QUI_3}Saint Gaudens" posX="1119.182" posY="873.229" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_QU1_3}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_QU1_3" name="{=Settlements.Settlement.name.castle_village_QUI_3}Saint Gaudens" posX="1119.182" posY="873.229" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU1_3}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
     <Components>
-      <Village id="castle_village_comp_QU1_3" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU1" bound="Settlement.castle_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_QU1_3" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU1" bound="Settlement.castle_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4341,22 +4341,22 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_QU2" name="{=Settlements.Settlement.name.castle_QU2}Castle Carrad" owner="Faction.reikland_clan_2" posX="1161.716" posY="790.336" prosperity="800" culture="Culture.empire" gate_posX="1161.478" gate_posY="789.6103" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_QU2" name="{=Settlements.Settlement.name.castle_QU2}Castle Carrad" owner="Faction.quenelles_clan_1" posX="1161.716" posY="790.336" prosperity="800" culture="Culture.vlandia" gate_posX="1161.478" gate_posY="789.6103" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
-      <Town id="castle_comp_QU2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+      <Town id="castle_comp_QU2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_vlandia_1" wait_mesh="vlandia_city_background" gate_rotation="0.908" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
-      <Location id="prison" scene_name="empire_dungeon_a" />
+      <Location id="center" scene_name="vlandia_siege_001" scene_name_1="vlandia_siege_001" scene_name_2="vlandia_siege_001" scene_name_3="vlandia_siege_001" />
+      <Location id="lordshall" scene_name_1="TOW_vlandia_keep_l1" scene_name_2="TOW_vlandia_keep_l2" scene_name_3="TOW_vlandia_keep_l2" />
+      <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_QU2_1" name="{=Settlements.Settlement.name.castle_village_QU1_3}Nice" posX="1138.491" posY="786.548" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_QU2_1}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_QU2_1" name="{=Settlements.Settlement.name.castle_village_QU1_3}Nice" posX="1138.491" posY="786.548" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU2_1}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
     <Components>
-      <Village id="castle_village_comp_QU2_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU2" bound="Settlement.castle_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_QU2_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU2" bound="Settlement.castle_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4364,12 +4364,12 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_QU2_2" name="{=Settlements.Settlement.name.castle_village_QU1_2}Labège" posX="1129.822" posY="801.283" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_QU2_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_QU2_2" name="{=Settlements.Settlement.name.castle_village_QU1_2}Labège" posX="1129.822" posY="801.283" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU2_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
     <Components>
-      <Village id="castle_village_comp_QU2_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU2" bound="Settlement.castle_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_QU2_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU2" bound="Settlement.castle_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4377,12 +4377,12 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_QU2_3" name="{=Settlements.Settlement.name.castle_village_QU2_3}Grasse" posX="1094.863" posY="812.291" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_QU2_3}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_QU2_3" name="{=Settlements.Settlement.name.castle_village_QU2_3}Grasse" posX="1094.863" posY="812.291" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU2_3}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
     <Components>
-      <Village id="castle_village_comp_QU2_3" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU2" bound="Settlement.castle_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_QU2_3" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU2" bound="Settlement.castle_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4390,22 +4390,22 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_QU3" name="{=Settlements.Settlement.name.castle_QU3}Castle Laguiller" owner="Faction.reikland_clan_2" posX="1028.699" posY="823.477" prosperity="800" culture="Culture.empire" gate_posX="1027.986" gate_posY="823.7521" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_QU3" name="{=Settlements.Settlement.name.castle_QU3}Castle Laguiller" owner="Faction.quenelles_clan_1" posX="1028.699" posY="823.477" prosperity="800" culture="Culture.vlandia" gate_posX="1027.986" gate_posY="823.7521" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
-      <Town id="castle_comp_QU3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
+      <Town id="castle_comp_QU3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_vlandia_1" wait_mesh="vlandia_city_background" gate_rotation="0.908" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
-      <Location id="prison" scene_name="empire_dungeon_a" />
+      <Location id="center" scene_name="vlandia_siege_001" scene_name_1="vlandia_siege_001" scene_name_2="vlandia_siege_001" scene_name_3="vlandia_siege_001" />
+      <Location id="lordshall" scene_name_1="TOW_vlandia_keep_l1" scene_name_2="TOW_vlandia_keep_l2" scene_name_3="TOW_vlandia_keep_l2" />
+      <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_QU3_1" name="{=Settlements.Settlement.name.castle_village_QU3_1}Brusse" posX="1015.82" posY="831.971" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_QU3_1}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_QU3_1" name="{=Settlements.Settlement.name.castle_village_QU3_1}Brusse" posX="1015.82" posY="831.971" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU3_1}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
     <Components>
-      <Village id="castle_village_comp_QU3_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU3" bound="Settlement.castle_QU3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_QU3_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU3" bound="Settlement.castle_QU3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4413,12 +4413,12 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_QU3_2" name="{=Settlements.Settlement.name.castle_village_QU3_2}Montaudran" posX="1054.895" posY="829.429" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_QU3_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_QU3_2" name="{=Settlements.Settlement.name.castle_village_QU3_2}Montaudran" posX="1054.895" posY="829.429" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU3_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
     <Components>
-      <Village id="castle_village_comp_QU3_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU3" bound="Settlement.castle_QU3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_QU3_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU3" bound="Settlement.castle_QU3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4426,12 +4426,12 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_QU3_3" name="{=Settlements.Settlement.name.castle_village_QU3_3}Borderouge" posX="1062.949" posY="814.659" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_QU3_3}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_QU3_3" name="{=Settlements.Settlement.name.castle_village_QU3_3}Borderouge" posX="1062.949" posY="814.659" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU3_3}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
     <Components>
-      <Village id="castle_village_comp_QU3_3" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU3" bound="Settlement.castle_QU3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_QU3_3" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU3" bound="Settlement.castle_QU3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4439,6 +4439,7 @@ Special Scenes: no special scenes, besides maybe the temples, would be nice if o
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
+
   <!-- Hideouts -->
   <!-- hideout forest -->
   <Settlement id="hideout_forest_1" name="{=Settlements.Settlement.name.hideout_forest_1}Cultist Hideout" type="Hideout" posX="1393.676" posY="935.815" culture="Culture.forest_bandits">
