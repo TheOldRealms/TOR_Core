@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <GameDir>H:\Program Files (x86)\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord</GameDir>
+    <GameDir>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord</GameDir>
   </PropertyGroup>
   <PropertyGroup>
     <StartAction>Program</StartAction>
