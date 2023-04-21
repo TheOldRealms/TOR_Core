@@ -9,6 +9,7 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.Ink;
 using TOR_Core.Quests;
 
 namespace TOR_Core.Utilities
@@ -140,6 +141,36 @@ namespace TOR_Core.Utilities
             target.ApplyDamage(damage,target.Position);
             return "Damaged "+target.Name+" with "+ damage+ "\n";
 
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("open_ink_story", "tor")]
+        public static string OpenInkStory(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+
+            if(arguments == null || arguments.Count == 0)
+            {
+                return "Argument cannot be null. Pass in the name of the story to open. \n";
+            }
+
+            var storyName = arguments[0];
+            var story = InkStoryManager.GetStory(storyName);
+            if (story == null) return "No story found with the specified name. \n";
+            InkStoryManager.OpenStory(storyName);
+
+            return "Story opened. \n";
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("reload_ink_stories", "tor")]
+        public static string ReloadInkStories(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+
+            InkStoryManager.ReloadStories();
+
+            return "Ink Stories reloaded. \n";
         }
 
         private static string AggregateOutput(string topicHeader, List<string> matchedSpells) =>

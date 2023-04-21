@@ -49,6 +49,7 @@ namespace TOR_Core.HarmonyPatches
             {
                 list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>("empire"));
                 list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>("khuzait"));
+                list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>("vlandia"));
             }
             catch (Exception e)
             {
@@ -68,6 +69,9 @@ namespace TOR_Core.HarmonyPatches
                     break;
                 case CultureCode.Khuzait:
                     __result = Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_vc_skeleton_recruit");
+                    break;
+                case CultureCode.Vlandia:
+                    __result = Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_br_peasant_levy");
                     break;
                 default:
                     __result = Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_empire_recruit");

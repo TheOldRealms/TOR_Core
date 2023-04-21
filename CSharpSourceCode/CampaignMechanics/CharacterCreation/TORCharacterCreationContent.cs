@@ -250,6 +250,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 case "khuzait":
                     position2D = new Vec2(1617.54f, 969.70f);
                     break;
+                case "vlandia":
+                    position2D = new Vec2(998.96f, 830.02f);
+                    break;
                 default:
                     position2D = new Vec2(1420.97f, 981.37f);
                     break;

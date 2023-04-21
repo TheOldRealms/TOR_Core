@@ -65,11 +65,39 @@
 			<PartyTemplateStack min_value="1" max_value="2" troop="NPCCharacter.tor_vc_drakenhof_kastelan" />
 		</stacks>
 	</MBPartyTemplate>
+	<MBPartyTemplate id="bretonnia_lordparty_template" >
+		<stacks>
+			<PartyTemplateStack min_value="20" max_value="26" troop="NPCCharacter.tor_br_peasant_levy" />
+			<PartyTemplateStack min_value="10" max_value="20" troop="NPCCharacter.tor_br_peasant_archer" />
+			<PartyTemplateStack min_value="10" max_value="20" troop="NPCCharacter.tor_br_manatarms_militia" />
+			<PartyTemplateStack min_value="8" max_value="16" troop="NPCCharacter.tor_br_longbowman" />
+			<PartyTemplateStack min_value="4" max_value="8" troop="NPCCharacter.tor_br_villein" />
+			<PartyTemplateStack min_value="8" max_value="16" troop="NPCCharacter.tor_br_manatarms" />
+			<PartyTemplateStack min_value="4" max_value="8" troop="NPCCharacter.tor_br_manatarms_halberd" />
+			<PartyTemplateStack min_value="4" max_value="8" troop="NPCCharacter.tor_br_yeoman" />
+			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_br_yeoman_warden" />
+			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_br_foot_squire" />
+			<PartyTemplateStack min_value="4" max_value="8" troop="NPCCharacter.tor_br_mounted_yeoman" />
+			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_br_mounted_warden" />
+			<PartyTemplateStack min_value="3" max_value="6" troop="NPCCharacter.tor_br_noble" />
+			<PartyTemplateStack min_value="3" max_value="6" troop="NPCCharacter.tor_br_knight_errant" />
+			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_br_realm_knight" />
+			<PartyTemplateStack min_value="1" max_value="2" troop="NPCCharacter.tor_br_quest_knight" />
+			<PartyTemplateStack min_value="1" max_value="2" troop="NPCCharacter.tor_br_grail_knight" />
+		</stacks>
+	</MBPartyTemplate>
 	<MBPartyTemplate id="empire_caravan_template" >
 		<stacks>
 			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_empire_caravan_ranged" />
 			<PartyTemplateStack min_value="4" max_value="4" troop="NPCCharacter.tor_empire_caravan_guard" />
 			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_empire_caravan_vetguard" />
+		</stacks>
+	</MBPartyTemplate>
+	<MBPartyTemplate id="bretonnia_caravan_template" >
+		<stacks>
+			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_br_caravan_guard" />
+			<PartyTemplateStack min_value="4" max_value="4" troop="NPCCharacter.tor_br_caravan_ranged" />
+			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_br_caravan_captain" />
 		</stacks>
 	</MBPartyTemplate>
 	<MBPartyTemplate id="sylvanian_caravan_template" >
@@ -86,6 +114,14 @@
 			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_empire_caravan_captain" />
 		</stacks>
 	</MBPartyTemplate>
+	<MBPartyTemplate id="bretonnia_elite_caravan_template" >
+		<stacks>
+			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_br_caravan_guard" />
+			<PartyTemplateStack min_value="4" max_value="4" troop="NPCCharacter.tor_br_caravan_ranged" />
+			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_br_caravan_elite_ranged" />
+			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_br_caravan_captain" />
+		</stacks>
+	</MBPartyTemplate>
 	<MBPartyTemplate id="sylvanian_elite_caravan_template" >
 		<stacks>
 			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_vc_caravan_ranged" />
@@ -98,6 +134,11 @@
 		  <PartyTemplateStack min_value="15" max_value="30" troop="NPCCharacter.tor_empire_villager" />
 		</stacks>
 	</MBPartyTemplate>
+	<MBPartyTemplate id="bretonnia_villager_template" >
+		<stacks>
+		  <PartyTemplateStack min_value="15" max_value="30" troop="NPCCharacter.tor_br_villager" />
+		</stacks>
+	</MBPartyTemplate>
 	<MBPartyTemplate id="vc_villager_template" >
 		<stacks>
 		  <PartyTemplateStack min_value="15" max_value="30" troop="NPCCharacter.tor_vc_villager" />
@@ -107,6 +148,12 @@
 		<stacks>
 			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_empire_state_troop" />
 			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_empire_archer" />
+		</stacks>
+	</MBPartyTemplate>
+	<MBPartyTemplate id="bretonnia_militia_template" >
+		<stacks>
+			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_br_manatarms_militia" />
+			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_br_peasant_archer" />
 		</stacks>
 	</MBPartyTemplate>
 	<MBPartyTemplate id="sylvania_militia_template" >
@@ -126,6 +173,17 @@
 		  <PartyTemplateStack min_value="2" max_value="30" troop="NPCCharacter.tor_empire_deserter" />
 		  <PartyTemplateStack min_value="1" max_value="20" troop="NPCCharacter.tor_empire_deserter_scout" />
 		  <PartyTemplateStack min_value="1" max_value="4" troop="NPCCharacter.tor_empire_deserter_sergeant" />
+		</stacks>
+	</MBPartyTemplate>
+	<MBPartyTemplate id="bretonnia_rebelparty_template" >
+		<stacks>
+			<PartyTemplateStack min_value="20" max_value="26" troop="NPCCharacter.tor_br_peasant_levy" />
+			<PartyTemplateStack min_value="10" max_value="20" troop="NPCCharacter.tor_br_peasant_archer" />
+			<PartyTemplateStack min_value="10" max_value="20" troop="NPCCharacter.tor_br_manatarms_militia" />
+			<PartyTemplateStack min_value="8" max_value="16" troop="NPCCharacter.tor_br_longbowman" />
+			<PartyTemplateStack min_value="4" max_value="8" troop="NPCCharacter.tor_br_villein" />
+			<PartyTemplateStack min_value="8" max_value="16" troop="NPCCharacter.tor_br_manatarms" />
+			<PartyTemplateStack min_value="4" max_value="8" troop="NPCCharacter.tor_br_manatarms_halberd" />
 		</stacks>
 	</MBPartyTemplate>
 	<MBPartyTemplate id="empire_deserters_boss_party" >

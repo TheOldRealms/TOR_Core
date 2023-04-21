@@ -1148,6 +1148,110 @@
       <Equipment slot="Item0" id="Item.tor_empire_weapon_thsword_greatsword_001" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_br_villager_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.peasant_pitchfork_2_t1" />
+      <Equipment slot="Head" id="Item.imperial_cloth_coif" />
+      <Equipment slot="Body" id="Item.vlandia_bandit_b" />
+      <Equipment slot="Leg" id="Item.leather_shoes" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.peasant_pitchfork_2_t1" />
+      <Equipment slot="Head" id="Item.imperial_cloth_coif" />
+      <Equipment slot="Body" id="Item.vlandia_bandit_b" />
+      <Equipment slot="Leg" id="Item.leather_shoes" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_woodsman_001" />
+      <Equipment slot="Body" id="Item.sackcloth_tunic" />
+      <Equipment slot="Gloves" id="Item.armwraps" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_woodsman_001" />
+      <Equipment slot="Body" id="Item.sackcloth_tunic" />
+      <Equipment slot="Gloves" id="Item.armwraps" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.peasant_hammer_1_t1" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_woodsman_001" />
+      <Equipment slot="Body" id="Item.bandit_leather_water_flask" />
+      <Equipment slot="Leg" id="Item.leather_shoes" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.peasant_hammer_1_t1" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_woodsman_001" />
+      <Equipment slot="Body" id="Item.bandit_leather_water_flask" />
+      <Equipment slot="Leg" id="Item.leather_shoes" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.peasant_pitchfork_2_t1" />
+      <Equipment slot="Item1" id="Item.hooked_cleaver" />
+      <Equipment slot="Body" id="Item.sackcloth_tunic" />
+      <Equipment slot="Cape" id="Item.green_hood" />
+      <Equipment slot="Leg" id="Item.sturgia_boots_a" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.peasant_pitchfork_2_t1" />
+      <Equipment slot="Item1" id="Item.hooked_cleaver" />
+      <Equipment slot="Body" id="Item.sackcloth_tunic" />
+      <Equipment slot="Cape" id="Item.green_hood" />
+      <Equipment slot="Leg" id="Item.sturgia_boots_a" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_br_peasant_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.peasant_pitchfork_2_t1" />
+      <Equipment slot="Head" id="Item.imperial_cloth_coif" />
+      <Equipment slot="Body" id="Item.vlandia_bandit_b" />
+      <Equipment slot="Leg" id="Item.leather_shoes" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.peasant_pitchfork_2_t1" />
+      <Equipment slot="Head" id="Item.imperial_cloth_coif" />
+      <Equipment slot="Body" id="Item.vlandia_bandit_b" />
+      <Equipment slot="Leg" id="Item.leather_shoes" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_woodsman_001" />
+      <Equipment slot="Body" id="Item.sackcloth_tunic" />
+      <Equipment slot="Gloves" id="Item.armwraps" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_woodsman_001" />
+      <Equipment slot="Body" id="Item.sackcloth_tunic" />
+      <Equipment slot="Gloves" id="Item.armwraps" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.peasant_hammer_1_t1" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_woodsman_001" />
+      <Equipment slot="Body" id="Item.bandit_leather_water_flask" />
+      <Equipment slot="Leg" id="Item.leather_shoes" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.peasant_hammer_1_t1" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_woodsman_001" />
+      <Equipment slot="Body" id="Item.bandit_leather_water_flask" />
+      <Equipment slot="Leg" id="Item.leather_shoes" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.peasant_pitchfork_2_t1" />
+      <Equipment slot="Item1" id="Item.hooked_cleaver" />
+      <Equipment slot="Body" id="Item.sackcloth_tunic" />
+      <Equipment slot="Cape" id="Item.green_hood" />
+      <Equipment slot="Leg" id="Item.sturgia_boots_a" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.peasant_pitchfork_2_t1" />
+      <Equipment slot="Item1" id="Item.hooked_cleaver" />
+      <Equipment slot="Body" id="Item.sackcloth_tunic" />
+      <Equipment slot="Cape" id="Item.green_hood" />
+      <Equipment slot="Leg" id="Item.sturgia_boots_a" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_vc_skeleton_template" culture="Culture.khuzait">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_skeleton_002" />
@@ -8823,6 +8927,7 @@
   <EquipmentRoster id="tor_karl_franz_template" culture="Culture.empire">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_ghal_maraz" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_runefang_001" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_karl_franz" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_karl_franz" />
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_karl_franz" />
@@ -8833,6 +8938,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_ghal_maraz" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_runefang_001" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_karl_franz" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_karl_franz" />
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_karl_franz" />
@@ -9819,6 +9925,7 @@
       <Equipment slot="Head" id="Item.tor_vc_head_helm_wight_king_001" />
       <Equipment slot="Body" id="Item.tor_vc_body_breastplate_wight_king_001" />
       <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_wight_king_001" />
+      <Equipment slot="Gloves" id="tor_vc_arm_bracers_wight_king_001" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_vc_wight_king_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -9827,18 +9934,19 @@
       <Equipment slot="Head" id="Item.tor_vc_head_helm_wight_king_001" />
       <Equipment slot="Body" id="Item.tor_vc_body_breastplate_wight_king_001" />
       <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_wight_king_001" />
+      <Equipment slot="Gloves" id="tor_vc_arm_bracers_wight_king_001" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_vc_wight_king_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_bretonnian_knight_template" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_sword_003" />
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_001" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_knight_001" />
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_knight_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_sword_003" />
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_001" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_knight_001" />
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_knight_001" />
