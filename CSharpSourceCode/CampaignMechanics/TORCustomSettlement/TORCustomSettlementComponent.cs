@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes;
 using TOR_Core.Extensions;
 
@@ -16,6 +17,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
     public class TORCustomSettlementComponent : SettlementComponent
     {
         private Clan _ownerClan;
+        private string _religionString = "";
         public Clan OwnerClan => _ownerClan;
         private ISettlementType _settlementType;
         public ISettlementType SettlementType => _settlementType;
@@ -23,7 +25,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         public void SetClan(Clan clan) => _ownerClan = clan;
         protected override void OnInventoryUpdated(ItemRosterElement item, int count) { }
 
-        public override void OnInit() => _settlementType.SetSettlement(Settlement);
+        public override void OnInit() => _settlementType.OnInit(Settlement, ReligionObject.All.FirstOrDefault(x => x.StringId == _religionString));
 
         protected override void AfterLoad() => OnInit();
 
@@ -52,6 +54,10 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 {
                     _settlementType = SettlementTypeHelper.GetSettlementType(type);
                 }
+            }
+            if (node.Attributes["religion"] != null)
+            {
+                _religionString = node.Attributes["religion"].Value;
             }
         }
     }

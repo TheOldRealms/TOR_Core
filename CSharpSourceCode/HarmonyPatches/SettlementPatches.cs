@@ -6,11 +6,14 @@ using System.Linq;
 using System.Xml;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.CampaignSystem.ViewModelCollection;
+using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.HarmonyPatches
@@ -49,6 +52,31 @@ namespace TOR_Core.HarmonyPatches
             return true;
         }
 
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(PropertyBasedTooltipVM), "Refresh")]
+        public static void AddExtrasToSettlementInfo(PropertyBasedTooltipVM __instance, Type ____shownType, object[] ____typeArgs)
+        {
+            if(____shownType == typeof(Settlement))
+            {
+                var settlement = ____typeArgs[0] as Settlement;
+                if (settlement.SettlementComponent is TORCustomSettlementComponent)
+                {
+                    var comp = settlement.SettlementComponent as TORCustomSettlementComponent;
+                    if (comp.SettlementType is Shrine)
+                    {
+                        var shrine = comp.SettlementType as Shrine;
+                        if(shrine.Religion != null)
+                        {
+                            var copy = __instance.TooltipPropertyList.Where(x => !string.IsNullOrWhiteSpace(x.ValueLabel)).ToList();
+                            copy.Insert(copy.Count - 1, new TooltipProperty("Affiliation", shrine.Religion.Name.ToString(), 0));
+                            __instance.TooltipPropertyList.Clear();
+                            foreach (var item in copy) __instance.TooltipPropertyList.Add(item);
+                        }
+                    }
+                }
+            }
+        }
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(SettlementNameplatesVM), "Initialize")]
         public static bool AddCustomNamePlateVM(SettlementNameplatesVM __instance, IEnumerable<Tuple<Settlement, GameEntity>> settlements, ref IEnumerable<Tuple<Settlement, GameEntity>> ____allHideouts, Camera ____mapCamera, Action<Vec2> ____fastMoveCameraToPosition)
@@ -62,14 +90,14 @@ namespace TOR_Core.HarmonyPatches
 
             foreach (Tuple<Settlement, GameEntity> tuple in enumerable)
             {
-                RoRSettlementNameplateVM item = new RoRSettlementNameplateVM(tuple.Item1, tuple.Item2, ____mapCamera, ____fastMoveCameraToPosition);
+                ToRSettlementNameplateVM item = new ToRSettlementNameplateVM(tuple.Item1, tuple.Item2, ____mapCamera, ____fastMoveCameraToPosition);
                 __instance.Nameplates.Add(item);
             }
             foreach (Tuple<Settlement, GameEntity> tuple2 in ____allHideouts)
             {
                 if (tuple2.Item1.Hideout.IsSpotted)
                 {
-                    RoRSettlementNameplateVM item2 = new RoRSettlementNameplateVM(tuple2.Item1, tuple2.Item2, ____mapCamera, ____fastMoveCameraToPosition);
+                    ToRSettlementNameplateVM item2 = new ToRSettlementNameplateVM(tuple2.Item1, tuple2.Item2, ____mapCamera, ____fastMoveCameraToPosition);
                     __instance.Nameplates.Add(item2);
                 }
             }

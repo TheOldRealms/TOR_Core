@@ -9,6 +9,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.ChaosRaiding;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes
@@ -29,7 +30,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes
         }
         public string RewardItemId => "tor_empire_weapon_sword_runefang_001";
 
-        public void SetSettlement(Settlement settlement)
+        public void OnInit(Settlement settlement, ReligionObject religion)
         {
             _gameMenuName = "customsettlement_menu_" + settlement.StringId;
             _settlement = settlement;

@@ -284,10 +284,13 @@
   <string id="str_inventory_weapon.22" text="{=!}Pistol" />
   <string id="str_inventory_weapon.23" text="{=!}Handgun" />
 
-  <!--chaos portal-->
+  <!--custom settlements e.g. chaos portal, shrines, herdstones -->
   <string id="customsettlement_intro.chaos_portal_01" text="{=!}You arrive at an active chaos portal. The vile thing pulses with arcane magic, chaos forces are invading in minor numbers from their realm." />
   <string id="customsettlement_disabled.chaos_portal_01" text="{=!}The portal lies dormant. Come back at a later time." />
   <string id="customsettlement_battle.chaos_portal_01" text="{=!}Attempt to defeat the chaos forces present and close the portal." />
+
+  <string id="customsettlement_intro.sigmar_shrine_01" text="{=!}You arrive at a shrine of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the God-King." />
+  <string id="customsettlement_disabled.sigmar_shrine_01" text="{=!}The shrine lies in ruins. There is nothing to do here." />
 
   <!--wanderer stories-->
   <string id="prebackstory.tor_wanderer_empire_0" text="{=!}My story? Sure, I can share it." />

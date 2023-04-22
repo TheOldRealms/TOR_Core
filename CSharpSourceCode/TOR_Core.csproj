@@ -471,7 +471,7 @@
     <Compile Include="CampaignMechanics\RaiseDead\RaiseDeadInTownBehavior.cs" />
     <Compile Include="CampaignMechanics\RegimentsOfRenown\RORCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\RegimentsOfRenown\RORManager.cs" />
-    <Compile Include="CampaignMechanics\RegimentsOfRenown\RoRSettlementNameplateVM.cs" />
+    <Compile Include="CampaignMechanics\RegimentsOfRenown\ToRSettlementNameplateVM.cs" />
     <Compile Include="CampaignMechanics\RegimentsOfRenown\RORSettlementTemplate.cs" />
     <Compile Include="CampaignMechanics\Religion\BlessingObject.cs" />
     <Compile Include="CampaignMechanics\Religion\EncyclopediaReligionObjectVM.cs" />
@@ -483,7 +483,9 @@
     <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCaptivityCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\ChaosPortal.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\HerdStone.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\ISettlementType.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\Shrine.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementComponent.cs" />
     <Compile Include="CampaignMechanics\TORMapInfoVMExtension.cs" />

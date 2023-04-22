@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
+using TOR_Core.CampaignMechanics.Religion;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes
 {
@@ -17,13 +18,14 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes
         string RewardItemId { get; }
         void AddGameMenus(CampaignGameStarter starter);
         void SpawnNewParty();
-        void SetSettlement(Settlement settlement);
+        void OnInit(Settlement settlement, ReligionObject religion = null);
     }
 
     public enum SettlementType
     {
         ChaosPortal,
-        HerdStone
+        HerdStone,
+        Shrine
     }
 
     public static class SettlementTypeHelper
@@ -33,6 +35,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes
             switch (type)
             {
                 case SettlementType.ChaosPortal: return new ChaosPortal();
+                case SettlementType.HerdStone: return new HerdStone();
+                case SettlementType.Shrine: return new Shrine();
                 default: return null;
             }
         }
