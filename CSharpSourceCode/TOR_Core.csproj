@@ -444,6 +444,7 @@
     <Compile Include="BattleMechanics\Morale\UndeadMoraleMissionLogic.cs" />
     <Compile Include="BattleMechanics\SFX\TORFaceEnemy.cs" />
     <Compile Include="BattleMechanics\SFX\TORLightDampener.cs" />
+    <Compile Include="BattleMechanics\SFX\TORSpinner.cs" />
     <Compile Include="BattleMechanics\SniperScope\SniperScope.cs" />
     <Compile Include="BattleMechanics\StatusEffect\StatusEffect.cs" />
     <Compile Include="BattleMechanics\StatusEffect\StatusEffectComponent.cs" />
@@ -458,6 +459,7 @@
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffect.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectManager.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectTemplate.cs" />
+    <Compile Include="CampaignMechanics\AICompanions\TORAICompanionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissCampaignBehavior.cs" />

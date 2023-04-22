@@ -2998,10 +2998,25 @@
       <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_reikland_first_hero_2">
+    <Abilities>
+      <string>Fireball</string>
+      <string>CinderBlast</string>
+      <string>BoltOfAqshy</string>
+	  <string>CascadingFireCloak</string>
+      <string>Sear</string>
+      <string>FlamingSwords</string>
+      <string>BurningHead</string>
+      <string>FlameStorm</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_bw_lord">
     <Abilities>
       <string>Fireball</string>
-	  <string>CometOfSigmar</string>
       <string>CinderBlast</string>
       <string>BoltOfAqshy</string>
 	  <string>CascadingFireCloak</string>
