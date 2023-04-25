@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.AgentOrigins;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.Settlements.Locations;
 using TaleWorlds.Core;
@@ -16,14 +17,68 @@ namespace TOR_Core.CampaignMechanics.AICompanions
 {
     public class TORAICompanionCampaignBehavior : CampaignBehaviorBase
     {
+        private const string Keep = "lordshall";
         private bool _init;
         public override void RegisterEvents()
         {
             //CampaignEvents.DailyTickEvent.AddNonSerializedListener(this,InitializeHeroes);
-            CampaignEvents.OnGameLoadFinishedEvent.AddNonSerializedListener(this,OnNewGameStarted);
-            CampaignEvents.SettlementEntered.AddNonSerializedListener(this,SetHeroesInKeep2);
+            //CampaignEvents.OnGameLoadFinishedEvent.AddNonSerializedListener(this,OnNewGameStarted);
+            CampaignEvents.SettlementEntered.AddNonSerializedListener(this,SetHeroesInKeep);
             CampaignEvents.OnSettlementLeftEvent.AddNonSerializedListener(this,RemoveHeroesFromKeep);
-            CampaignEvents.OnPrisonerReleasedEvent.AddNonSerializedListener(this, );
+            CampaignEvents.OnPrisonerReleasedEvent.AddNonSerializedListener(this, HandleHeroEscape);
+            CampaignEvents.OnPartyDisbandedEvent.AddNonSerializedListener(this, ReturnHeroToTown);
+            CampaignEvents.BeforeHeroKilledEvent.AddNonSerializedListener(this,PreventKill);
+            CampaignEvents.HeroWounded.AddNonSerializedListener(this,MoveWoundedHeroHome);
+        }
+
+        private void MoveWoundedHeroHome(Hero hero)
+        {
+            if(hero.PartyBelongedTo.IsMainParty) return;
+            
+            if (hero.IsAICompanion())
+            {
+                MoveCompanionToHomeTown(hero);
+            }
+        }
+
+        private void HandleHeroEscape(FlattenedTroopRoster obj)
+        {
+            var characterObject = obj.Troops.FirstOrDefault(x => x.HeroObject.IsAICompanion());
+            if(characterObject==null) return;
+       //     if(characterObject.HeroObject.PartyBelongedTo.IsMainParty) return;
+            
+            if(characterObject.HeroObject.Clan!=null)
+                TORCommon.Say("test");
+        }
+
+        private void PreventKill(Hero victim, Hero killer, KillCharacterAction.KillCharacterActionDetail killCharacterActionDetail, bool notification)
+        {
+            if(killer==null) return;
+            if(killer.IsHumanPlayerCharacter) return;
+            
+                if (victim.Clan != null && victim.IsAICompanion())
+                {
+                    MoveCompanionToHomeTown(victim);
+                }
+        }
+
+        private void MoveCompanionToHomeTown(Hero hero)
+        {
+            var home = hero.Clan.Leader.HomeSettlement;
+            var location = home.LocationComplex.GetLocationWithId(Keep);
+            AddLocationCharacterToLocation(hero,location);
+        }
+
+        private void ReturnHeroToTown(MobileParty mobileParty, Settlement settlement)
+        {
+            foreach (var hero in mobileParty.GetMemberHeroes())
+            {
+                if (hero.IsAICompanion())
+                {
+                    MoveCompanionToHomeTown(hero);
+                }
+            }
+           
         }
 
         private void RemoveHeroesFromKeep(MobileParty mobileParty, Settlement settlement)
@@ -36,12 +91,11 @@ namespace TOR_Core.CampaignMechanics.AICompanions
             if (mobileParty.LeaderHero != mobileParty.LeaderHero.Clan.Leader) return;
             if (mobileParty == MobileParty.MainParty) return;
             var leader = mobileParty.LeaderHero;
-            
-            if(leader.Name.ToString() != "Emperor Karl Franz von Holswig-Schliestein")
-                return;
-            
+
+
+
             if (!(settlement.IsCastle || settlement.IsTown)) return;
-            var location = settlement.LocationComplex.GetLocationWithId("lordshall");
+            var location = settlement.LocationComplex.GetLocationWithId(Keep);
             foreach (var companion in mobileParty.GetMemberHeroes())
             {
                 if(companion==leader) continue;
@@ -63,113 +117,45 @@ namespace TOR_Core.CampaignMechanics.AICompanions
 
         private void AddHeroesToClanLeader(Hero hero)
         {
+            var companions = hero.Clan.Heroes.Where(x => x.IsAICompanion());
+            if (!companions.Any()) return;
             
-            foreach (var companion in hero.Clan.Heroes)
+            foreach (var companion in companions)
             {
-                if (companion.Occupation == Occupation.Special)
-                {
-                    if (companion.IsHealthFull())
-                    {
-                        if(!hero.PartyBelongedTo.GetMemberHeroes().Contains(companion))
-                            AddHeroToPartyAction.Apply(companion,hero.PartyBelongedTo,false);
-                    }
-                }
+               // if (!companion.IsHealthFull()) continue;
+                if(companion.IsPrisoner) continue;
+                
+                if(!hero.PartyBelongedTo.GetMemberHeroes().Contains(companion))
+                    AddHeroToPartyAction.Apply(companion,hero.PartyBelongedTo,false);
             }
         }
         
-        private void SetHeroesInKeep2(MobileParty mobileParty, Settlement settlement, Hero hero)
+        private void SetHeroesInKeep(MobileParty mobileParty, Settlement settlement, Hero hero)
         {
             if(mobileParty==null || mobileParty.LeaderHero==null)return;
             
             if (hero != hero.Clan.Leader) return;
-
-            if(hero.Name.ToString() != "Emperor Karl Franz von Holswig-Schliestein")
-                return;
             
             if (mobileParty == MobileParty.MainParty) return;
 
             if (!(settlement.IsCastle || settlement.IsTown)) return;
         
-            var location = settlement.LocationComplex.GetLocationWithId("lordshall");
+            var location = settlement.LocationComplex.GetLocationWithId(Keep);
             if (location == null) return;
             foreach (var companion in mobileParty.GetMemberHeroes())
             {
                 if(companion==hero) continue;
                 if(companion.Occupation == Occupation.Lord) continue;
-                LocationCharacter locationCharacter = new LocationCharacter(new AgentData(new SimpleAgentOrigin(companion.CharacterObject, -1, null, default(UniqueTroopDescriptor))).Monster(Game.Current.DefaultMonster),
-                    new LocationCharacter.AddBehaviorsDelegate(SandBoxManager.Instance.AgentBehaviorManager.AddWandererBehaviors), "npc_common", true, LocationCharacter.CharacterRelations.Neutral, null, true, false, null, false, false, true);
-                location.AddCharacter(locationCharacter);
-            }
-
-
-            //SpawnHeroesIfNeeded();
-        }
-        
-        private void SetHeroesInKeep(MobileParty mobileParty, Settlement settlement, Hero hero)
-        {
-            if (hero != Hero.MainHero) return;
-            if(Hero.MainHero.CurrentSettlement == settlement) return;
-            
-            SpawnHeroesIfNeeded();
-        }
-        
-        private void SpawnHeroesIfNeeded()
-        {
-            if (Settlement.CurrentSettlement != null && Settlement.CurrentSettlement.IsTown)
-            {
-                
-                if (IsLordPartyInTown(Settlement.CurrentSettlement, out Hero lord))
-                {
-                    foreach (var hero in lord.CompanionsInParty)
-                    {
-                        SpawnHeroInKeep(hero,Settlement.CurrentSettlement);
-                    }
-
-                    
-                }
+                AddLocationCharacterToLocation(companion,location);
             }
         }
-        
-        private bool IsLordPartyInTown(Settlement settlement, out Hero clanLeader)
-        {
-            var location = settlement.LocationComplex.GetLocationWithId("lordshall");
-            foreach (var hero in from hero in Campaign.Current.AliveHeroes where hero.Occupation == Occupation.Lord where hero.Clan.Leader == hero where location.ContainsCharacter(hero) select hero)
-            {
-                clanLeader = hero;
-                return true;
-            }
-            clanLeader = null;
-            return false;
-        }
-        
-        
-        private void SpawnHeroInKeep(Hero hero,Settlement settlement)
-        {
-            
-            var keep = settlement.LocationComplex.GetLocationWithId("lordshall");
-            
-            if (hero != null && keep != null)
-            {
-                LocationCharacter locationCharacter = new LocationCharacter(new AgentData(new SimpleAgentOrigin(hero.CharacterObject, -1, null, default(UniqueTroopDescriptor))).
-                    Monster(Game.Current.DefaultMonster), 
-                    new LocationCharacter.AddBehaviorsDelegate(SandBoxManager.Instance.AgentBehaviorManager.AddWandererBehaviors), "npc_common", true, LocationCharacter.CharacterRelations.Neutral, null, true, false, null, false, false, true);
-            }
-        }
-        
 
-        private void OnNewGameStarted()
+        private static void AddLocationCharacterToLocation(Hero hero, Location location)
         {
-            
-            
+            LocationCharacter locationCharacter = new LocationCharacter(new AgentData(new SimpleAgentOrigin(hero.CharacterObject)).Monster(Game.Current.DefaultMonster),
+                SandBoxManager.Instance.AgentBehaviorManager.AddWandererBehaviors, "npc_common", true, LocationCharacter.CharacterRelations.Neutral, null, true);
+            location.AddCharacter(locationCharacter);
         }
-        
-        private void OnNewGameCreated(CampaignGameStarter obj)
-        {
-           
-        }
-
-
-
         
         
 

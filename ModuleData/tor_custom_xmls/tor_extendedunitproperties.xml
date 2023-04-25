@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfCharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_villager">
     <Abilities />
@@ -3230,6 +3230,13 @@
       <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_reikland_first_hero_1">
+    <Abilities>
+    </Abilities>
+    <Attributes>
+	  <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_first_hero_2">
     <Abilities>
       <string>Fireball</string>
@@ -3244,6 +3251,7 @@
     <Attributes>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
+	  <string>AICompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_bw_lord">
