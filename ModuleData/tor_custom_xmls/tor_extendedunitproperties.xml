@@ -438,6 +438,19 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_empire_flagellant">
+    <Abilities />
+    <Attributes>
+      <string>Unbreakable</string>
+    </Attributes>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
+    </Resistances>
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_villager">
     <Abilities />
     <Attributes>
@@ -3017,7 +3030,6 @@
       <string>DeathlyShards</string>
       <string>RadiancePillar</string>
       <string>RadiantGaze</string>
-	  <string>NetOfAmyntok</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>

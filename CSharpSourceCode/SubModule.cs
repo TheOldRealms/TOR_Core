@@ -223,6 +223,7 @@ namespace TOR_Core
                 _ = new TORCareers();
                 _ = new TORCareerChoiceGroups();
                 _ = new TORCareerChoices();
+                _ = new TORCampaignEvents();
                 MBObjectManager.Instance.LoadXML("Religions", false);
             }
         }

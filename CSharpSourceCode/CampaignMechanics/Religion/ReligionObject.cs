@@ -17,6 +17,9 @@ namespace TOR_Core.CampaignMechanics.Religion
 {
     public class ReligionObject : MBObjectBase
     {
+        public const int MAXIMUM_DEVOTION_LEVEL = 99;
+        public const int DEVOTED_TRESHOLD = 50;
+        public const int FANATIC_TRESHOLD = 75;
         public TextObject Name { get; set; }
         public TextObject LoreText { get; private set; }
         public CultureObject Culture { get; private set; }
@@ -79,5 +82,13 @@ namespace TOR_Core.CampaignMechanics.Religion
                 }
             }
         }
+    }
+
+    public enum DevotionLevel
+    {
+        None,
+        Follower,
+        Devoted,
+        Fanatic
     }
 }

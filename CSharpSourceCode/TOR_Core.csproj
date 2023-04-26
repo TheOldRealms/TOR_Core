@@ -473,7 +473,6 @@
     <Compile Include="CampaignMechanics\RegimentsOfRenown\RORManager.cs" />
     <Compile Include="CampaignMechanics\RegimentsOfRenown\ToRSettlementNameplateVM.cs" />
     <Compile Include="CampaignMechanics\RegimentsOfRenown\RORSettlementTemplate.cs" />
-    <Compile Include="CampaignMechanics\Religion\BlessingObject.cs" />
     <Compile Include="CampaignMechanics\Religion\EncyclopediaReligionObjectVM.cs" />
     <Compile Include="CampaignMechanics\Religion\ReligionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Religion\ReligionEncyclopediaPage.cs" />
@@ -523,6 +522,7 @@
     <Compile Include="Extensions\ExtendedInfoSystem\ExtendedInfoManager.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\ExtendedInfoMissionLogic.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\HeroExtendedInfo.cs" />
+    <Compile Include="Extensions\ExtendedInfoSystem\MobilePartyExtendedInfo.cs" />
     <Compile Include="Extensions\GameModelsExtensions.cs" />
     <Compile Include="Extensions\HeroExtensions.cs" />
     <Compile Include="Extensions\ItemObjectExtensions.cs" />
@@ -623,6 +623,7 @@
     <Compile Include="Utilities\TORConsoleCommands.cs" />
     <Compile Include="Utilities\TORConstants.cs" />
     <Compile Include="Utilities\TORDamageDisplay.cs" />
+    <Compile Include="Utilities\TORCampaignEvents.cs" />
     <Compile Include="Utilities\TORGameMenuBackgroundSwitcher.cs" />
     <Compile Include="Utilities\TORGameStarterHelper.cs" />
     <Compile Include="Utilities\TORMissionHelper.cs" />

@@ -43,7 +43,7 @@ namespace TOR_Core.Extensions.UI
 					string religionText = "Not a follower of any religion";
 					if (_hero.HasAnyReligion())
 					{
-						religionText = string.Format("Follower of {0}", _hero.GetDominantReligion().EncyclopediaLinkWithName.ToString());
+						religionText = string.Format("{0} of {1}", _hero.GetDevotionLevelForReligion(_hero.GetDominantReligion()) ,_hero.GetDominantReligion().EncyclopediaLinkWithName.ToString());
 					}
 					heroVM.Stats.Add(new StringPairItemVM("Religion:", religionText));
 				}

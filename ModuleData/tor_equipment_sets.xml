@@ -1090,6 +1090,16 @@
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_cannon_crew_001" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_empire_flagellant_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_002" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_002" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_empire_tournament_template_one_participant_v1" culture="Culture.empire">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes;
 
 namespace TOR_Core.Models
 {
@@ -16,10 +17,13 @@ namespace TOR_Core.Models
             var settlement = GetEncounteredPartyBase(attackerParty, defenderParty).Settlement;
             if (settlement != null && settlement.SettlementComponent is TORCustomSettlementComponent)
             {
-                var component = settlement.SettlementComponent as TORCustomSettlementComponent;
                 startBattle = false;
                 joinBattle = false;
-                return component.SettlementType.GameMenuName;
+                var type = ((TORCustomSettlementComponent)settlement.SettlementComponent).SettlementType;
+                if (type is Shrine) return "shrine_menu";
+                else if (type is ChaosPortal) return "chaosportal_menu";
+                else if (type is HerdStone) return "herdstone_menu";
+                else return string.Empty;
             }
             else return base.GetEncounterMenu(attackerParty, defenderParty, out startBattle, out joinBattle);
         }

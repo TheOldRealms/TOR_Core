@@ -11,12 +11,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes
 {
     public interface ISettlementType
     {
-        string GameMenuName { get; }
         bool IsRaidingPartySpawner { get; }
         bool IsActive { get; set; }
-        bool IsBattleUnderway { get; set; }
-        string RewardItemId { get; }
-        void AddGameMenus(CampaignGameStarter starter);
         void SpawnNewParty();
         void OnInit(Settlement settlement, ReligionObject religion = null);
     }

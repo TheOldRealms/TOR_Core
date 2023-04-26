@@ -17,7 +17,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         [SaveableField(0)] public List<string> AcquiredAbilities = new List<string>();
         [SaveableField(1)] public List<string> AcquiredAttributes = new List<string>();
         [SaveableField(2)] public float CurrentWindsOfMagic = 0;
-        [SaveableField(3)] public Dictionary<string, int> ReligionInfluences = new Dictionary<string, int>();
+        [SaveableField(3)] public Dictionary<string, int> ReligionDevotionLevels = new Dictionary<string, int>();
         [SaveableField(4)] public SpellCastingLevel SpellCastingLevel = SpellCastingLevel.None;
         [SaveableField(5)] private CharacterObject _baseCharacter;
         [SaveableField(6)] private List<string> _knownLores = new List<string>();
@@ -119,8 +119,8 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             get
             {
-                if(ReligionInfluences.Count == 0) return null;
-                var dominantTuple = ReligionInfluences.MaxBy(x => x.Value);
+                if(ReligionDevotionLevels.Count == 0) return null;
+                var dominantTuple = ReligionDevotionLevels.MaxBy(x => x.Value);
                 return MBObjectManager.Instance.GetObject<ReligionObject>(dominantTuple.Key);
             }
         }

@@ -6,6 +6,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TOR_Core.CampaignMechanics.RaidingParties;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.Extensions
 {
@@ -14,6 +15,28 @@ namespace TOR_Core.Extensions
         public static bool IsRaidingParty(this MobileParty party)
         {
             return party.PartyComponent is IRaidingParty;
+        }
+
+        public static MobilePartyExtendedInfo GetPartyInfo(this MobileParty party)
+        {
+            return ExtendedInfoManager.Instance.GetPartyInfoFor(party.StringId);
+        }
+
+        public static void AddBlessingToParty(this MobileParty party, string blessingId, int duration)
+        {
+            if(party.IsActive && party.IsLordParty) ExtendedInfoManager.Instance.AddBlessingToParty(party.StringId, blessingId, duration);
+        }
+
+        public static bool HasAnyActiveBlessing(this MobileParty party)
+        {
+            var info = party.GetPartyInfo();
+            return info != null && info.CurrentBlessingRemainingDuration > 0 && !string.IsNullOrWhiteSpace(info.CurrentBlessingStringId);
+        }
+
+        public static bool HasBlessing(this MobileParty party, string id)
+        {
+            var info = party.GetPartyInfo();
+            return info != null && info.CurrentBlessingStringId == id && info.CurrentBlessingRemainingDuration > 0;
         }
 
         public static bool IsNearASettlement(this MobileParty party, float threshold = 1.5f)

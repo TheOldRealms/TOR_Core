@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
+using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
@@ -72,6 +74,19 @@ namespace TOR_Core.HarmonyPatches
                             __instance.TooltipPropertyList.Clear();
                             foreach (var item in copy) __instance.TooltipPropertyList.Add(item);
                         }
+                    }
+                }
+            }
+            else if(____shownType == typeof(MobileParty) && __instance.IsExtended)
+            {
+                var party = ____typeArgs[0] as MobileParty;
+                if(party != null)
+                {
+                    var info = party.GetPartyInfo();
+                    if(info != null && info.CurrentBlessingRemainingDuration > 0 && !string.IsNullOrWhiteSpace(info.CurrentBlessingStringId))
+                    {
+                        var text = GameTexts.FindText("tor_religion_blessing_name", info.CurrentBlessingStringId);
+                        __instance.TooltipPropertyList.Add(new TooltipProperty("Blessing", text.ToString(), 0));
                     }
                 }
             }
