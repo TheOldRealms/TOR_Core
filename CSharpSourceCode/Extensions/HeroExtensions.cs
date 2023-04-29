@@ -295,7 +295,7 @@ namespace TOR_Core.Extensions
             }
         }
 
-        public static void AddReligiousInfluence(this Hero hero, ReligionObject religion, int amount)
+        public static void AddReligiousInfluence(this Hero hero, ReligionObject religion, int amount, bool shouldNotify = true)
         {
             var info = hero.GetExtendedInfo();
             if(info != null)
@@ -369,7 +369,7 @@ namespace TOR_Core.Extensions
                 {
                     if (newDevotionLevels.ContainsKey(entry.Key))
                     {
-                        if (newDevotionLevels[entry.Key] != originalDevotionLevels[entry.Key]) 
+                        if (newDevotionLevels[entry.Key] != originalDevotionLevels[entry.Key] && shouldNotify) 
                             TORCampaignEvents.Instance.OnDevotionLevelChanged(hero, ReligionObject.All.FirstOrDefault(x=>x.StringId == entry.Key), originalDevotionLevels[entry.Key], newDevotionLevels[entry.Key]);
                     }
                 }

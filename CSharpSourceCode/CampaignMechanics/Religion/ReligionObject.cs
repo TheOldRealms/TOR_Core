@@ -25,7 +25,7 @@ namespace TOR_Core.CampaignMechanics.Religion
         public CultureObject Culture { get; private set; }
         public List<ReligionObject> HostileReligions { get; private set; } = new List<ReligionObject>();
         public List<CharacterObject> ReligiousTroops { get; private set; } = new List<CharacterObject>();
-        public Dictionary<Hero, int> InitialFollowers { get; private set; } = new Dictionary<Hero, int>();
+        public List<string> InitialClans { get; private set; } = new List<string>();
 
         public static MBReadOnlyList<ReligionObject> All => MBObjectManager.Instance.GetObjectTypeList<ReligionObject>();
 
@@ -60,11 +60,10 @@ namespace TOR_Core.CampaignMechanics.Religion
                     {
                         foreach (XmlNode followerNode in child.ChildNodes)
                         {
-                            if (followerNode.Name == "FollowerHero")
+                            if(followerNode.Name == "FollowerClan")
                             {
-                                Hero followerHero = MBObjectManager.Instance.ReadObjectReferenceFromXml<Hero>("id", followerNode);
-                                int devotion = int.Parse(followerNode.Attributes.GetNamedItem("DevotionLevel").Value);
-                                if (followerHero != null) InitialFollowers.Add(followerHero, devotion);
+                                var id = followerNode.Attributes.GetNamedItem("stringId").Value;
+                                if (!string.IsNullOrWhiteSpace(id) && !InitialClans.Contains(id)) InitialClans.Add(id);
                             }
                         }
                     }
