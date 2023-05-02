@@ -1,6 +1,7 @@
 ﻿using Helpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
@@ -119,7 +120,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             get
             {
-                if(ReligionDevotionLevels.Count == 0) return null;
+                if(ReligionDevotionLevels.Count == 0 || ReligionDevotionLevels.Values.Sum() == 0) return null;
                 var dominantTuple = ReligionDevotionLevels.MaxBy(x => x.Value);
                 return MBObjectManager.Instance.GetObject<ReligionObject>(dominantTuple.Key);
             }

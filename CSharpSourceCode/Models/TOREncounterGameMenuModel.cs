@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes;
+using TOR_Core.Ink;
 
 namespace TOR_Core.Models
 {
@@ -23,6 +25,12 @@ namespace TOR_Core.Models
                 if (type is Shrine) return "shrine_menu";
                 else if (type is ChaosPortal) return "chaosportal_menu";
                 else if (type is HerdStone) return "herdstone_menu";
+                else if (type is CursedSite)
+                {
+                    InkStoryManager.OpenStory("teststory", () => PlayerEncounter.Finish(true));
+                    return string.Empty;
+                    //return "cursedsite_menu";
+                }
                 else return string.Empty;
             }
             else return base.GetEncounterMenu(attackerParty, defenderParty, out startBattle, out joinBattle);

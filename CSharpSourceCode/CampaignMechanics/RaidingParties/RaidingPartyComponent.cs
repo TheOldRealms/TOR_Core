@@ -10,41 +10,36 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
-using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.Utilities;
 
-namespace TOR_Core.CampaignMechanics.ChaosRaiding
+namespace TOR_Core.CampaignMechanics.RaidingParties
 {
-    public class ChaosRaidingPartyComponent : WarPartyComponent, IRaidingParty
+    public class RaidingPartyComponent : WarPartyComponent, IRaidingParty
     {
-        [SaveableProperty(1)] public Settlement Portal { get; private set; }
+        [SaveableProperty(1)] public Settlement Target { get; set; }
 
-        [SaveableProperty(3)] public Settlement Target { get; set; }
-
-        [SaveableField(4)] private Hero _owner;
+        [SaveableField(2)] private Hero _owner;
         public override Hero PartyOwner => _owner;
 
-        [SaveableField(5)] private Settlement _home;
+        [SaveableField(3)] private Settlement _home;
         public override Settlement HomeSettlement => _home;
 
         [CachedData] private TextObject _cachedName;
 
-        private ChaosRaidingPartyComponent(Settlement portal, TORCustomSettlementComponent questBattleSettlementComponent)
+        private RaidingPartyComponent(Settlement home, string name, Clan ownerClan)
         {
-            Portal = portal;
+            _home = home;
+            _cachedName = new TextObject(name);
+            _owner = ownerClan.Leader;
         }
 
-        private void InitializeChaosRaidingParty(MobileParty mobileParty, int partySize)
+        private void InitializeRaidingParty(MobileParty mobileParty, int partySize, PartyTemplateObject template, Clan ownerClan)
         {
-            Clan chaosClan = Clan.All.ToList().Find(x => x.StringId == "chaos_clan_1");
-            if (chaosClan != null && chaosClan.Culture != null && chaosClan.Culture.StringId == "chaos_culture")
+            if (ownerClan != null && template != null)
             {
-                PartyTemplateObject chaosPartyTemplate = chaosClan.Culture.DefaultPartyTemplate;
-                mobileParty.Party.MobileParty.InitializeMobilePartyAroundPosition(chaosPartyTemplate, Portal.Position2D, 1f, troopNumberLimit: partySize);
-                mobileParty.ActualClan = chaosClan;
-                _owner = mobileParty.ActualClan.Leader;
-                _home = Portal;
+                mobileParty.Party.MobileParty.InitializeMobilePartyAroundPosition(template, HomeSettlement.Position2D, 1f, troopNumberLimit: partySize);
+                mobileParty.ActualClan = ownerClan;
                 mobileParty.Aggressiveness = 2.0f;
                 mobileParty.Party.Visuals.SetMapIconAsDirty();
                 mobileParty.ItemRoster.Add(new ItemRosterElement(DefaultItems.Meat, MBRandom.RandomInt(partySize, partySize * 2)));
@@ -52,15 +47,15 @@ namespace TOR_Core.CampaignMechanics.ChaosRaiding
             }
             else
             {
-                throw new MBNotFoundException("Chaos Clan object not found. Can not spawn chaos parties.");
+                throw new MBNullParameterException("PartyTemplateObject or owner Clan is null.");
             }
         }
 
-        public static MobileParty CreateChaosRaidingParty(string stringId, Settlement portal, TORCustomSettlementComponent component, int partySize)
+        public static MobileParty CreateRaidingParty(string stringId, Settlement home, string name, PartyTemplateObject template, Clan owner, int partySize)
         {
             return MobileParty.CreateParty(stringId,
-                new ChaosRaidingPartyComponent(portal, component),
-                mobileParty => ((ChaosRaidingPartyComponent)mobileParty.PartyComponent).InitializeChaosRaidingParty(mobileParty, partySize));
+                new RaidingPartyComponent(home, name, owner),
+                mobileParty => ((RaidingPartyComponent)mobileParty.PartyComponent).InitializeRaidingParty(mobileParty, partySize, template, owner));
         }
 
         public override TextObject Name
@@ -69,7 +64,7 @@ namespace TOR_Core.CampaignMechanics.ChaosRaiding
             {
                 if (_cachedName == null)
                 {
-                    _cachedName = new TextObject("Chaos Raiders");
+                    _cachedName = new TextObject(HomeSettlement.Culture.Name + " Raiders");
                 }
                 return _cachedName;
             }
@@ -107,12 +102,12 @@ namespace TOR_Core.CampaignMechanics.ChaosRaiding
 
         protected override void DefineClassTypes()
         {
-            AddClassDefinition(typeof(ChaosRaidingPartyComponent), 1);
+            AddClassDefinition(typeof(RaidingPartyComponent), 1);
         }
 
         protected override void DefineContainerDefinitions()
         {
-            ConstructContainerDefinition(typeof(List<ChaosRaidingPartyComponent>));
+            ConstructContainerDefinition(typeof(List<RaidingPartyComponent>));
         }
     }
 }

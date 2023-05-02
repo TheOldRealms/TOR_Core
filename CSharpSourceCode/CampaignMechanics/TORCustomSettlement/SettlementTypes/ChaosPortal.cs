@@ -8,7 +8,8 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
-using TOR_Core.CampaignMechanics.ChaosRaiding;
+using TaleWorlds.ObjectSystem;
+using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Utilities;
 
@@ -32,10 +33,12 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes
 
         public void SpawnNewParty()
         {
+            PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_patrol");
+            Clan chaosClan = Clan.FindFirst(x => x.StringId == "chaos_clan_1");
             var find = TORCommon.FindSettlementsAroundPosition(_settlement.Position2D, 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
-            var chaosRaidingParty = ChaosRaidingPartyComponent.CreateChaosRaidingParty("chaos_clan_1_party_" + _component.RaidingPartyCount + 1, _settlement, _component, MBRandom.RandomInt(75, 99));
+            var chaosRaidingParty = RaidingPartyComponent.CreateRaidingParty("chaos_clan_1_party_" + _component.RaidingPartyCount + 1, _settlement, "Chaos Raiders", template, chaosClan, MBRandom.RandomInt(75, 99));
             SetPartyAiAction.GetActionForRaidingSettlement(chaosRaidingParty, find);
-            ((ChaosRaidingPartyComponent)chaosRaidingParty.PartyComponent).Target = find;
+            ((RaidingPartyComponent)chaosRaidingParty.PartyComponent).Target = find;
         }
     }
 }

@@ -461,7 +461,7 @@
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissSceneNotificationItem.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\CustomDialogCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\MasterEngineer\MasterEngineerTownBehavior.cs" />
-    <Compile Include="CampaignMechanics\RaidingParties\ChaosRaidingPartyComponent.cs" />
+    <Compile Include="CampaignMechanics\RaidingParties\RaidingPartyComponent.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\CharacterCreationOption.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\TORCharacterCreationContent.cs" />
     <Compile Include="CampaignMechanics\RaidingParties\IRaidingParty.cs" />
@@ -482,6 +482,7 @@
     <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCaptivityCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\ChaosPortal.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\CursedSite.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\HerdStone.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\ISettlementType.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\Shrine.cs" />

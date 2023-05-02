@@ -73,6 +73,7 @@
         </HostileReligions>
         <Followers>
             <FollowerClan stringId="chaos_clan_1" />
+            <FollowerClan stringId="beastmen_clan_1" />
         </Followers>
         <ReligiousTroops>
         </ReligiousTroops>

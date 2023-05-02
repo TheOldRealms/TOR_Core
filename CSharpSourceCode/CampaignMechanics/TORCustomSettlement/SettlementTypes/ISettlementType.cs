@@ -21,7 +21,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes
     {
         ChaosPortal,
         HerdStone,
-        Shrine
+        Shrine,
+        CursedSite
     }
 
     public static class SettlementTypeHelper
@@ -33,6 +34,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes
                 case SettlementType.ChaosPortal: return new ChaosPortal();
                 case SettlementType.HerdStone: return new HerdStone();
                 case SettlementType.Shrine: return new Shrine();
+                case SettlementType.CursedSite: return new CursedSite();
                 default: return null;
             }
         }

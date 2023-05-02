@@ -29,9 +29,17 @@ namespace TOR_Core.HarmonyPatches
         {
             if (__instance.SettlementComponent is TORCustomSettlementComponent)
             {
-                string clanName = node.Attributes["owner"].Value;
-                clanName = clanName.Split('.')[1];
-                Clan clan = Clan.FindFirst(x => x.StringId == clanName);
+                Clan clan = null;
+                if (!__instance.IsInitialized)
+                {
+                    clan = MBObjectManager.Instance.ReadObjectReferenceFromXml<Clan>("owner", node);
+                }
+                else
+                {
+                    var value = node.Attributes["owner"].Value;
+                    var clanName = value.Split('.')[1];
+                    clan = Clan.All.FirstOrDefault(x=>x.StringId == clanName);
+                }
                 if (clan != null)
                 {
                     var comp = __instance.SettlementComponent as TORCustomSettlementComponent;

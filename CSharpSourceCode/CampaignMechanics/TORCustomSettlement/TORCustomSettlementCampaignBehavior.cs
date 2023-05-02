@@ -13,10 +13,12 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
-using TOR_Core.CampaignMechanics.ChaosRaiding;
+using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes;
 using TOR_Core.Extensions;
+using TOR_Core.Ink;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement
 {
@@ -28,6 +30,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         public override void RegisterEvents()
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
+            CampaignEvents.HourlyTickSettlementEvent.AddNonSerializedListener(this, OnSettlementHourlyTick);
             CampaignEvents.OnMissionEndedEvent.AddNonSerializedListener(this, OnMissionEnded);
         }
 
@@ -35,6 +38,40 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         {
             AddChaosPortalMenus(starter);
             AddShrineMenus(starter);
+            AddCursedSiteMenus(starter);
+        }
+
+        private void OnSettlementHourlyTick(Settlement settlement)
+        {
+            if(settlement.SettlementComponent is TORCustomSettlementComponent)
+            {
+                var comp = settlement.SettlementComponent as TORCustomSettlementComponent;
+                if(comp.SettlementType is CursedSite)
+                {
+                    var site = comp.SettlementType as CursedSite;
+                    if (site.IsActive)
+                    {
+                        var affectedParties = TORCommon.FindPartiesAroundPosition(settlement.Position2D, 25, x => x.IsLordParty && x.LeaderHero != null && x.LeaderHero.GetDominantReligion() != site.Religion);
+                        foreach (var party in affectedParties)
+                        {
+                            if(party.IsActive && !party.IsDisbanding && party.MapEvent == null && party.BesiegedSettlement == null)
+                            {
+                                if (party.MemberRoster.TotalHealthyCount > party.MemberRoster.TotalManCount * 0.25f)
+                                {
+                                    party.MemberRoster.WoundNumberOfTroopsRandomly((int)Math.Ceiling(party.MemberRoster.TotalHealthyCount * 0.05f));
+                                }
+                                foreach (var hero in party.GetMemberHeroes())
+                                {
+                                    if (hero.HitPoints > 25 && hero.HitPoints <= hero.MaxHitPoints)
+                                    {
+                                        hero.HitPoints -= 5;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         #region ChaosPortal
@@ -78,7 +115,9 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             var settlement = Settlement.CurrentSettlement;
             var component = settlement.SettlementComponent as TORCustomSettlementComponent;
             var portal = component.SettlementType as ChaosPortal;
-            var party = ChaosRaidingPartyComponent.CreateChaosRaidingParty(settlement.StringId + "_defender_party", settlement, component, 250);
+            PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_patrol");
+            Clan chaosClan = Clan.FindFirst(x => x.StringId == "chaos_clan_1");
+            var party = RaidingPartyComponent.CreateRaidingParty(settlement.StringId + "_defender_party", settlement, "Portal Defenders", template, chaosClan, 250);
             PlayerEncounter.RestartPlayerEncounter(party.Party, PartyBase.MainParty, true);
             if (PlayerEncounter.Battle == null)
             {
@@ -131,6 +170,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         }
         #endregion
 
+        #region Shrine
         public void AddShrineMenus(CampaignGameStarter starter)
         {
             starter.AddGameMenu("shrine_menu", "{LOCATION_DESCRIPTION}", ShrineMenuInit);
@@ -221,6 +261,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                             {
                                 if(freeSlots < count) count = freeSlots;
                                 MobileParty.MainParty.MemberRoster.AddToCounts(troop, count);
+                                CampaignEventDispatcher.Instance.OnTroopRecruited(Hero.MainHero, settlement, null, troop, count);
                                 _followersGained += count;
                             }
                         }
@@ -243,6 +284,26 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 MBTextManager.SetTextVariable("FOLLOWERS_RESULT", "Witnessing your prayers have inspired " + _followersGained.ToString() + " " + troop.EncyclopediaLinkWithName + " to join your party.");
             }
             Hero.MainHero.AddReligiousInfluence(shrine.Religion, 62);
+        }
+        #endregion
+
+        private void AddCursedSiteMenus(CampaignGameStarter starter)
+        {
+            starter.AddGameMenu("cursedsite_menu", "{LOCATION_DESCRIPTION}", CursedSiteMenuInit);
+            starter.AddGameMenuOption("cursedsite_menu", "leave", "Leave...", delegate (MenuCallbackArgs args)
+            {
+                args.optionLeaveType = GameMenuOption.LeaveType.Leave;
+                return true;
+            }, (MenuCallbackArgs args) => PlayerEncounter.Finish(true), true);
+        }
+
+        private void CursedSiteMenuInit(MenuCallbackArgs args)
+        {
+            var settlement = Settlement.CurrentSettlement;
+            var component = settlement.SettlementComponent as TORCustomSettlementComponent;
+            var text = component.SettlementType.IsActive ? GameTexts.FindText("customsettlement_intro", settlement.StringId) : GameTexts.FindText("customsettlement_disabled", settlement.StringId);
+            MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", text);
+            args.MenuContext.SetBackgroundMeshName(component.BackgroundMeshName);
         }
 
         public override void SyncData(IDataStore dataStore) { }
