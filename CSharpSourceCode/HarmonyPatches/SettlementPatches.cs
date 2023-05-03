@@ -30,7 +30,7 @@ namespace TOR_Core.HarmonyPatches
             if (__instance.SettlementComponent is TORCustomSettlementComponent)
             {
                 Clan clan = null;
-                if (!__instance.IsInitialized)
+                if (Campaign.Current.CampaignGameLoadingType == Campaign.GameLoadingType.NewCampaign)
                 {
                     clan = MBObjectManager.Instance.ReadObjectReferenceFromXml<Clan>("owner", node);
                 }

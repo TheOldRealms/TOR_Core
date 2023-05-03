@@ -22,7 +22,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes
         private ReligionObject _religion;
         private Settlement _settlement;
         private TORCustomSettlementComponent _component;
-        public const int DEFAULT_BLESSING_DURATION = 6;
+        public const int DEFAULT_BLESSING_DURATION = 72;
 
         public bool IsRaidingPartySpawner => false;
         public bool IsActive { get; set; } = true;
@@ -33,26 +33,6 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes
             _settlement = settlement;
             _component = settlement.SettlementComponent as TORCustomSettlementComponent;
             _religion = religion;
-        }
-
-        private bool HireCondition(MenuCallbackArgs args)
-        {
-            args.optionLeaveType = GameMenuOption.LeaveType.Recruit;
-            var godName = GameTexts.FindText("tor_religion_name_of_god", _religion.StringId);
-            var baseTroop = _religion.ReligiousTroops.FirstOrDefault(x => x.IsBasicTroop && x.Occupation == Occupation.Soldier);
-            MBTextManager.SetTextVariable("HIRE_TEXT", "Hire a " + baseTroop.Name + " to fight for you.");
-            if ((int)Hero.MainHero.GetDevotionLevelForReligion(Hero.MainHero.GetDominantReligion()) < (int)DevotionLevel.Devoted)
-            {
-                args.Tooltip = new TextObject("{=!}You need to be at least Devoted to " + godName + " in order to hire religious troops", null);
-                args.IsEnabled = false;
-            }
-            return IsActive;
-        }
-
-        private void HireConsequence(MenuCallbackArgs args)
-        {
-            var baseTroop = _religion.ReligiousTroops.FirstOrDefault(x => x.IsBasicTroop && x.Occupation == Occupation.Soldier);
-
         }
 
         public void SpawnNewParty() { }

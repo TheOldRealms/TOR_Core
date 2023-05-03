@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Overlay;
@@ -17,7 +18,6 @@ using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes;
 using TOR_Core.Extensions;
-using TOR_Core.Ink;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement
@@ -32,6 +32,37 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
             CampaignEvents.HourlyTickSettlementEvent.AddNonSerializedListener(this, OnSettlementHourlyTick);
             CampaignEvents.OnMissionEndedEvent.AddNonSerializedListener(this, OnMissionEnded);
+            CampaignEvents.TickPartialHourlyAiEvent.AddNonSerializedListener(this, OnAiTick);
+            CampaignEvents.SettlementEntered.AddNonSerializedListener(this, OnSettlementEntered);
+        }
+
+        private void OnSettlementEntered(MobileParty party, Settlement settlement, Hero hero)
+        {
+            if(settlement.SettlementComponent is TORCustomSettlementComponent && ((TORCustomSettlementComponent)settlement.SettlementComponent).SettlementType is Shrine)
+            {
+                var shrine = ((TORCustomSettlementComponent)settlement.SettlementComponent).SettlementType as Shrine;
+                party.AddBlessingToParty(shrine.Religion.StringId, Shrine.DEFAULT_BLESSING_DURATION);
+                LeaveSettlementAction.ApplyForParty(party);
+                party.Ai.SetDoNotMakeNewDecisions(false);
+                party.Ai.RethinkAtNextHourlyTick = true;
+            }
+        }
+
+        private void OnAiTick(MobileParty party)
+        {
+            if (CanPartyGoToShrine(party))
+            {
+                var settlements = TORCommon.FindSettlementsAroundPosition(party.Position2D, 20, x => x.SettlementComponent is TORCustomSettlementComponent && ((TORCustomSettlementComponent)x.SettlementComponent).SettlementType is Shrine);
+                if(settlements.Count > 0)
+                {
+                    var shrine = ((TORCustomSettlementComponent)settlements.First().SettlementComponent).SettlementType as Shrine;
+                    if(party.LeaderHero.GetDominantReligion() == shrine.Religion)
+                    {
+                        party.Ai.SetMoveGoToSettlement(settlements.First());
+                        party.Ai.SetDoNotMakeNewDecisions(true);
+                    }
+                }
+            }
         }
 
         private void OnSessionLaunched(CampaignGameStarter starter)
@@ -307,6 +338,19 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         }
 
         public override void SyncData(IDataStore dataStore) { }
+
+        private static bool CanPartyGoToShrine(MobileParty party)
+        {
+            return party.IsLordParty &&
+                !party.IsEngaging &&
+                party.IsActive &&
+                !party.IsDisbanding &&
+                !party.IsCurrentlyUsedByAQuest &&
+                party.CurrentSettlement == null &&
+                party.MapEvent == null &&
+                !party.Ai.IsDisabled &&
+                !party.HasAnyActiveBlessing();
+        }
     }
 
     public class TORCustomSettlementComponentSaveableTypeDefiner : SaveableTypeDefiner
