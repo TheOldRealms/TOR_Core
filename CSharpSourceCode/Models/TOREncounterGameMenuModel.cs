@@ -25,12 +25,13 @@ namespace TOR_Core.Models
                 if (type is Shrine) return "shrine_menu";
                 else if (type is ChaosPortal) return "chaosportal_menu";
                 else if (type is HerdStone) return "herdstone_menu";
-                else if (type is CursedSite)
+                else if (type is CursedSite) return "cursedsite_menu";
+                /*
                 {
                     InkStoryManager.OpenStory("teststory", () => PlayerEncounter.Finish(true));
                     return string.Empty;
-                    //return "cursedsite_menu";
                 }
+                */
                 else return string.Empty;
             }
             else return base.GetEncounterMenu(attackerParty, defenderParty, out startBattle, out joinBattle);
