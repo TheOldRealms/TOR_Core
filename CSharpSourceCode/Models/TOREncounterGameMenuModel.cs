@@ -7,7 +7,6 @@ using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
-using TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes;
 using TOR_Core.Ink;
 
 namespace TOR_Core.Models
@@ -17,15 +16,14 @@ namespace TOR_Core.Models
         public override string GetEncounterMenu(PartyBase attackerParty, PartyBase defenderParty, out bool startBattle, out bool joinBattle)
         {
             var settlement = GetEncounteredPartyBase(attackerParty, defenderParty).Settlement;
-            if (settlement != null && settlement.SettlementComponent is TORCustomSettlementComponent)
+            if (settlement != null && settlement.SettlementComponent is TORBaseSettlementComponent)
             {
                 startBattle = false;
                 joinBattle = false;
-                var type = ((TORCustomSettlementComponent)settlement.SettlementComponent).SettlementType;
-                if (type is Shrine) return "shrine_menu";
-                else if (type is ChaosPortal) return "chaosportal_menu";
-                else if (type is HerdStone) return "herdstone_menu";
-                else if (type is CursedSite) return "cursedsite_menu";
+                if (settlement.SettlementComponent is ShrineComponent) return "shrine_menu";
+                else if (settlement.SettlementComponent is ChaosPortalComponent) return "chaosportal_menu";
+                else if (settlement.SettlementComponent is HerdStoneComponent) return "herdstone_menu";
+                else if (settlement.SettlementComponent is CursedSiteComponent) return "cursedsite_menu";
                 /*
                 {
                     InkStoryManager.OpenStory("teststory", () => PlayerEncounter.Finish(true));

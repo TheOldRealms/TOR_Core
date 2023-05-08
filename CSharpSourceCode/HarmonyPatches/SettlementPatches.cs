@@ -14,7 +14,6 @@ using TaleWorlds.Library;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
-using TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.HarmonyPatches
@@ -26,7 +25,7 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(Settlement), "Deserialize")]
         public static void DeserializePostfix(MBObjectManager objectManager, XmlNode node, Settlement __instance)
         {
-            if (__instance.SettlementComponent is TORCustomSettlementComponent)
+            if (__instance.SettlementComponent is TORBaseSettlementComponent)
             {
                 Clan clan = null;
                 if (Campaign.Current.CampaignGameLoadingType == Campaign.GameLoadingType.NewCampaign)
@@ -41,8 +40,8 @@ namespace TOR_Core.HarmonyPatches
                 }
                 if (clan != null)
                 {
-                    var comp = __instance.SettlementComponent as TORCustomSettlementComponent;
-                    comp.SetClan(clan);
+                    var comp = __instance.SettlementComponent as TORBaseSettlementComponent;
+                    comp.OwnerClan = clan;
                 }
             }
         }
@@ -52,9 +51,9 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch("OwnerClan", MethodType.Getter)]
         public static bool OwnerClanPrefix(ref Clan __result, Settlement __instance)
         {
-            if (__instance.SettlementComponent is TORCustomSettlementComponent)
+            if (__instance.SettlementComponent is TORBaseSettlementComponent)
             {
-                var comp = __instance.SettlementComponent as TORCustomSettlementComponent;
+                var comp = __instance.SettlementComponent as TORBaseSettlementComponent;
                 __result = comp.OwnerClan;
                 return false;
             }
@@ -68,19 +67,15 @@ namespace TOR_Core.HarmonyPatches
             if(____shownType == typeof(Settlement))
             {
                 var settlement = ____typeArgs[0] as Settlement;
-                if (settlement.SettlementComponent is TORCustomSettlementComponent)
+                if (settlement.SettlementComponent is ShrineComponent)
                 {
-                    var comp = settlement.SettlementComponent as TORCustomSettlementComponent;
-                    if (comp.SettlementType is Shrine)
+                    var shrine = settlement.SettlementComponent as ShrineComponent;
+                    if (shrine.Religion != null)
                     {
-                        var shrine = comp.SettlementType as Shrine;
-                        if(shrine.Religion != null)
-                        {
-                            var copy = __instance.TooltipPropertyList.Where(x => !string.IsNullOrWhiteSpace(x.ValueLabel)).ToList();
-                            copy.Insert(copy.Count - 1, new TooltipProperty("Affiliation", shrine.Religion.Name.ToString(), 0));
-                            __instance.TooltipPropertyList.Clear();
-                            foreach (var item in copy) __instance.TooltipPropertyList.Add(item);
-                        }
+                        var copy = __instance.TooltipPropertyList.Where(x => !string.IsNullOrWhiteSpace(x.ValueLabel)).ToList();
+                        copy.Insert(copy.Count - 1, new TooltipProperty("Affiliation", shrine.Religion.Name.ToString(), 0));
+                        __instance.TooltipPropertyList.Clear();
+                        foreach (var item in copy) __instance.TooltipPropertyList.Add(item);
                     }
                 }
             }

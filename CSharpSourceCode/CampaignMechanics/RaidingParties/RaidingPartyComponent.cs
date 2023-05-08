@@ -93,21 +93,4 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
             SetPartyAiAction.GetActionForRaidingSettlement(Party.MobileParty, Target);
         }
     }
-
-    public class ChaosRaidingPartySaveDefiner : SaveableTypeDefiner
-    {
-        public ChaosRaidingPartySaveDefiner() : base(2_543_135)
-        {
-        }
-
-        protected override void DefineClassTypes()
-        {
-            AddClassDefinition(typeof(RaidingPartyComponent), 1);
-        }
-
-        protected override void DefineContainerDefinitions()
-        {
-            ConstructContainerDefinition(typeof(List<RaidingPartyComponent>));
-        }
-    }
 }

@@ -8,7 +8,6 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
-using TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
@@ -21,7 +20,7 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
         public ToRSettlementNameplateVM(Settlement settlement, GameEntity entity, Camera mapCamera, Action<Vec2> fastMoveCameraToPosition) : base(settlement, entity, mapCamera, fastMoveCameraToPosition)
         {
             _isRoRSettlement = settlement.IsRoRSettlement();
-            _isShrine = settlement.SettlementComponent is TORCustomSettlementComponent && ((TORCustomSettlementComponent)settlement.SettlementComponent).SettlementType is Shrine;
+            _isShrine = settlement.SettlementComponent is ShrineComponent;
         }
 
         [DataSourceProperty]

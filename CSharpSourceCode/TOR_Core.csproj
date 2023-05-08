@@ -481,13 +481,9 @@
     <Compile Include="BattleMechanics\TORBattleAgentLogic.cs" />
     <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCaptivityCampaignBehavior.cs" />
-    <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\ChaosPortal.cs" />
-    <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\CursedSite.cs" />
-    <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\HerdStone.cs" />
-    <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\BaseSettlementType.cs" />
-    <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\Shrine.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\TORBaseSettlementComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementCampaignBehavior.cs" />
-    <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementComponent.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\TORSettlementComponents.cs" />
     <Compile Include="CampaignMechanics\TORMapInfoVMExtension.cs" />
     <Compile Include="CampaignMechanics\TORPartyHealCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORPartyUpgraderCampaignBehavior.cs" />
@@ -617,6 +613,7 @@
     <Compile Include="Quests\QuestPartyComponent.cs" />
     <Compile Include="Quests\SpecializeLoreQuest.cs" />
     <Compile Include="Quests\TORQuestHelper.cs" />
+    <Compile Include="SaveGameSystem\SaveableTypeDefiners.cs" />
     <Compile Include="SubModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\DictionaryExtensions.cs" />

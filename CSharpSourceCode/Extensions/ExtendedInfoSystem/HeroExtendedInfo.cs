@@ -176,17 +176,4 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             }
         }
     }
-    public class HeroExtendedInfoInfoDefiner : SaveableTypeDefiner
-    {
-        public HeroExtendedInfoInfoDefiner() : base(1_543_132) { }
-        protected override void DefineClassTypes()
-        {
-            AddClassDefinition(typeof(HeroExtendedInfo), 1);
-        }
-
-        protected override void DefineContainerDefinitions()
-        {
-            ConstructContainerDefinition(typeof(Dictionary<string, HeroExtendedInfo>));
-        }
-    }
 }

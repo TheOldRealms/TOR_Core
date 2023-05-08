@@ -17,14 +17,14 @@ namespace TOR_Core.Models
         public override ExplainedNumber GetDailyHealingForRegulars(MobileParty party, bool includeDescriptions = false)
         {
             var result = base.GetDailyHealingForRegulars(party, includeDescriptions);
-            if (party.HasBlessing("cult_of_sigmar")) result.AddFactor(0.2f, new TextObject("Blessing of Sigmar"));
+            if (party.HasBlessing("cult_of_sigmar")) result.AddFactor(0.2f, GameTexts.FindText("tor_religion_blessing_name", "cult_of_sigmar"));
             return result;
         }
 
         public override ExplainedNumber GetDailyHealingHpForHeroes(MobileParty party, bool includeDescriptions = false)
         {
             var result = base.GetDailyHealingHpForHeroes(party, includeDescriptions);
-            if (party.HasBlessing("cult_of_sigmar")) result.AddFactor(0.2f, new TextObject("Blessing of Sigmar"));
+            if (party.HasBlessing("cult_of_sigmar")) result.AddFactor(0.2f, GameTexts.FindText("tor_religion_blessing_name", "cult_of_sigmar"));
             return result;
         }
     }

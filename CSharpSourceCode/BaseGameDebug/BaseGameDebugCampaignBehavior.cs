@@ -71,16 +71,5 @@ namespace TOR_Core.BaseGameDebug
         {
             dataStore.SyncData("_heroRaceMap", ref _heroRaceMap);
         }
-    }
-    
-    public class HeroRaceMapSaveableTypeDefiner : SaveableTypeDefiner
-    {
-        public HeroRaceMapSaveableTypeDefiner() : base(576011) { }
-
-        protected override void DefineContainerDefinitions()
-        {
-            ConstructContainerDefinition(typeof(Dictionary<string, int>));
-        }
-    }
-    
+    }   
 }

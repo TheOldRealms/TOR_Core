@@ -54,13 +54,4 @@ namespace TOR_Core.Quests
             }
         }
     }
-
-    public class PracticeMagicQuestTypeDefiner : SaveableTypeDefiner
-    {
-        public PracticeMagicQuestTypeDefiner() : base(701791) { }
-        protected override void DefineClassTypes()
-        {
-            AddClassDefinition(typeof(SpecializeLoreQuest), 1);
-        }
-    }
 }

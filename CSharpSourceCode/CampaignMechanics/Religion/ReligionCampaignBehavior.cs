@@ -70,6 +70,7 @@ namespace TOR_Core.CampaignMechanics.Religion
 
         private void DetermineReligionForHero(Hero hero)
         {
+            if (hero == Hero.MainHero) return;
             ReligionObject religion = null;
             //follow fater, then clanleader, then culture
             if (hero.Father != null && hero.Father.HasAnyReligion())

@@ -215,11 +215,14 @@ namespace TOR_Core
         {
             if(game.GameType is Campaign)
             {
-                game.ObjectManager.RegisterType<TORCustomSettlementComponent>("TORCustomSettlementComponent", "TORCustomSettlementComponents", 99U, true);
-                game.ObjectManager.RegisterType<CareerObject>("Career", "Careers", 100U, true);
-                game.ObjectManager.RegisterType<CareerChoiceObject>("CareerChoice", "CareerChoices", 101U, true);
-                game.ObjectManager.RegisterType<CareerChoiceGroupObject>("CareerChoiceGroup", "CareerChoiceGroups", 102U, true);
-                game.ObjectManager.RegisterType<ReligionObject>("Religion", "Religions", 103U, true);
+                game.ObjectManager.RegisterType<ShrineComponent>("Shrine", "Components", 99U, true);
+                game.ObjectManager.RegisterType<ChaosPortalComponent>("ChaosPortal", "Components", 100U, true);
+                game.ObjectManager.RegisterType<HerdStoneComponent>("HerdStone", "Components", 101U, true);
+                game.ObjectManager.RegisterType<CursedSiteComponent>("CursedSite", "Components", 102U, true);
+                game.ObjectManager.RegisterType<CareerObject>("Career", "Careers", 103U, true);
+                game.ObjectManager.RegisterType<CareerChoiceObject>("CareerChoice", "CareerChoices", 104U, true);
+                game.ObjectManager.RegisterType<CareerChoiceGroupObject>("CareerChoiceGroup", "CareerChoiceGroups", 105U, true);
+                game.ObjectManager.RegisterType<ReligionObject>("Religion", "Religions", 106U, true);
                 _ = new TORCareers();
                 _ = new TORCareerChoiceGroups();
                 _ = new TORCareerChoices();
