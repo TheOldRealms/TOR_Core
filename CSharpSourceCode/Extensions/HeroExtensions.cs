@@ -289,8 +289,8 @@ namespace TOR_Core.Extensions
             {
                 var value = info.ReligionDevotionLevels[religion.StringId];
                 if (value <= 0) return DevotionLevel.None;
-                else if (value < ReligionObject.DEVOTED_TRESHOLD) return DevotionLevel.Follower;
-                else if (value < ReligionObject.FANATIC_TRESHOLD) return DevotionLevel.Devoted;
+                else if (value < TORConstants.DEVOTED_TRESHOLD) return DevotionLevel.Follower;
+                else if (value < TORConstants.FANATIC_TRESHOLD) return DevotionLevel.Devoted;
                 else return DevotionLevel.Fanatic;
             }
         }
@@ -307,15 +307,15 @@ namespace TOR_Core.Extensions
                     if (copy.ContainsKey(ro.StringId))
                     {
                         if (copy[ro.StringId] <= 0) originalDevotionLevels.Add(ro.StringId, DevotionLevel.None);
-                        else if (copy[ro.StringId] < ReligionObject.DEVOTED_TRESHOLD) originalDevotionLevels.Add(ro.StringId, DevotionLevel.Follower);
-                        else if (copy[ro.StringId] < ReligionObject.FANATIC_TRESHOLD) originalDevotionLevels.Add(ro.StringId, DevotionLevel.Devoted);
+                        else if (copy[ro.StringId] < TORConstants.DEVOTED_TRESHOLD) originalDevotionLevels.Add(ro.StringId, DevotionLevel.Follower);
+                        else if (copy[ro.StringId] < TORConstants.FANATIC_TRESHOLD) originalDevotionLevels.Add(ro.StringId, DevotionLevel.Devoted);
                         else originalDevotionLevels.Add(ro.StringId, DevotionLevel.Fanatic);
                     }
                     else originalDevotionLevels.Add(ro.StringId, DevotionLevel.None);
                 }
 
                 int sumTotalDevotion = info.ReligionDevotionLevels.Sum(x => x.Value);
-                if(sumTotalDevotion + amount <= ReligionObject.MAXIMUM_DEVOTION_LEVEL)
+                if(sumTotalDevotion + amount <= TORConstants.MAXIMUM_DEVOTION_LEVEL)
                 {
                     if (info.ReligionDevotionLevels.ContainsKey(religion.StringId))
                     {
@@ -328,7 +328,7 @@ namespace TOR_Core.Extensions
                 }
                 else
                 {
-                    var newAmount = ReligionObject.MAXIMUM_DEVOTION_LEVEL - sumTotalDevotion;
+                    var newAmount = TORConstants.MAXIMUM_DEVOTION_LEVEL - sumTotalDevotion;
                     if (info.ReligionDevotionLevels.ContainsKey(religion.StringId))
                     {
                         foreach (var entry in info.ReligionDevotionLevels.ToDictionary(x => x.Key, x => x.Value))
@@ -338,7 +338,7 @@ namespace TOR_Core.Extensions
                                 info.ReligionDevotionLevels[entry.Key] += newAmount;
                             }
                             else info.ReligionDevotionLevels[entry.Key] -= newAmount;
-                            info.ReligionDevotionLevels[entry.Key] = Math.Min(ReligionObject.MAXIMUM_DEVOTION_LEVEL, info.ReligionDevotionLevels[entry.Key]);
+                            info.ReligionDevotionLevels[entry.Key] = Math.Min(TORConstants.MAXIMUM_DEVOTION_LEVEL, info.ReligionDevotionLevels[entry.Key]);
                         }
                     }
                     else
@@ -358,8 +358,8 @@ namespace TOR_Core.Extensions
                     if (info.ReligionDevotionLevels.ContainsKey(ro.StringId))
                     {
                         if (info.ReligionDevotionLevels[ro.StringId] <= 0) newDevotionLevels.Add(ro.StringId, DevotionLevel.None);
-                        else if (info.ReligionDevotionLevels[ro.StringId] < ReligionObject.DEVOTED_TRESHOLD) newDevotionLevels.Add(ro.StringId, DevotionLevel.Follower);
-                        else if (info.ReligionDevotionLevels[ro.StringId] < ReligionObject.FANATIC_TRESHOLD) newDevotionLevels.Add(ro.StringId, DevotionLevel.Devoted);
+                        else if (info.ReligionDevotionLevels[ro.StringId] < TORConstants.DEVOTED_TRESHOLD) newDevotionLevels.Add(ro.StringId, DevotionLevel.Follower);
+                        else if (info.ReligionDevotionLevels[ro.StringId] < TORConstants.FANATIC_TRESHOLD) newDevotionLevels.Add(ro.StringId, DevotionLevel.Devoted);
                         else newDevotionLevels.Add(ro.StringId, DevotionLevel.Fanatic);
                     }
                     else newDevotionLevels.Add(ro.StringId, DevotionLevel.None);

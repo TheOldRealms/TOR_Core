@@ -9,23 +9,21 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
+using TaleWorlds.SaveSystem;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.CampaignMechanics.Religion;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes
 {
-    public class CursedSite : ISettlementType, IDisposable
+    public class CursedSite : BaseSettlementType, IDisposable
     {
         private Settlement _settlement;
         private bool _isMarkerShown = false;
         private GameEntity _markerEntity;
         private Decal _markerDecal;
-        public bool IsRaidingPartySpawner => false;
         public ReligionObject Religion { get; private set; }
 
-        public bool IsActive { get; set; } = true;
-
-        public void OnInit(Settlement settlement, ReligionObject religion = null)
+        public override void OnInit(Settlement settlement, ReligionObject religion = null)
         {
             _settlement = settlement;
             Religion = religion;
@@ -78,8 +76,6 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes
                 _markerEntity.AddComponent(_markerDecal);
             }
         }
-
-        public void SpawnNewParty() { }
 
         public void Dispose()
         {

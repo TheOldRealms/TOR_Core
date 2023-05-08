@@ -17,15 +17,13 @@ namespace TOR_Core.CampaignMechanics.Religion
 {
     public class ReligionObject : MBObjectBase
     {
-        public const int MAXIMUM_DEVOTION_LEVEL = 99;
-        public const int DEVOTED_TRESHOLD = 50;
-        public const int FANATIC_TRESHOLD = 75;
         public TextObject Name { get; set; }
         public TextObject LoreText { get; private set; }
         public CultureObject Culture { get; private set; }
         public List<ReligionObject> HostileReligions { get; private set; } = new List<ReligionObject>();
         public List<CharacterObject> ReligiousTroops { get; private set; } = new List<CharacterObject>();
         public List<string> InitialClans { get; private set; } = new List<string>();
+        public ReligionAffinity Affinity { get; private set; }
 
         public static MBReadOnlyList<ReligionObject> All => MBObjectManager.Instance.GetObjectTypeList<ReligionObject>();
 
@@ -40,6 +38,7 @@ namespace TOR_Core.CampaignMechanics.Religion
             base.Deserialize(objectManager, node);
             Name = new TextObject(node.Attributes.GetNamedItem("Name").Value);
             Culture = MBObjectManager.Instance.ReadObjectReferenceFromXml<CultureObject>("Culture", node);
+            Affinity = (ReligionAffinity)Enum.Parse(typeof(ReligionAffinity), node.Attributes.GetNamedItem("Affinity").Value);
             LoreText = GameTexts.FindText("tor_religion_description", StringId);
             if (node.HasChildNodes)
             {
@@ -89,5 +88,12 @@ namespace TOR_Core.CampaignMechanics.Religion
         Follower,
         Devoted,
         Fanatic
+    }
+
+    public enum ReligionAffinity
+    {
+        Order,
+        Chaos,
+        Vampire
     }
 }

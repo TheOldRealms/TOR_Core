@@ -46,7 +46,7 @@
       <TORCustomSettlementComponent id="herdstone_02" settlement_type="HerdStone" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="haunted_site_01" name="{=!}Cursed Site" owner="Faction.neutral" posX="1608.94" posY="1006.724" culture="Culture.khuzait" prosperity="500" text="{=!}Cursed Site">
+  <Settlement id="haunted_site_01" name="{=!}Hunger Woods" owner="Faction.neutral" posX="1608.94" posY="1006.724" culture="Culture.khuzait" prosperity="500" text="{=!}Cursed Site">
     <Components>
       <TORCustomSettlementComponent id="haunted_site_01" settlement_type="CursedSite" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>

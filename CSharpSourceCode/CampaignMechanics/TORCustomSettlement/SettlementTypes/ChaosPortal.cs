@@ -15,23 +15,22 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes
 {
-    public class ChaosPortal : ISettlementType
+    public class ChaosPortal : BaseSettlementType
     {
         private Settlement _settlement;
         private TORCustomSettlementComponent _component;
         public string BattleSceneName => "TOR_chaos_portal_001_forceatmo";
-        public bool IsActive { get; set; } = true;
-        public bool IsRaidingPartySpawner => true;
         public bool IsBattleUnderway { get; set; }
         public string RewardItemId => "tor_empire_weapon_sword_runefang_001";
 
-        public void OnInit(Settlement settlement, ReligionObject religion)
+        public override void OnInit(Settlement settlement, ReligionObject religion)
         {
             _settlement = settlement;
             _component = settlement.SettlementComponent as TORCustomSettlementComponent;
+            IsRaidingPartySpawner = true;
         }
 
-        public void SpawnNewParty()
+        public override void SpawnNewParty()
         {
             PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_patrol");
             Clan chaosClan = Clan.FindFirst(x => x.StringId == "chaos_clan_1");

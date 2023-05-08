@@ -484,7 +484,7 @@
     <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\ChaosPortal.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\CursedSite.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\HerdStone.cs" />
-    <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\ISettlementType.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\BaseSettlementType.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\SettlementTypes\Shrine.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementComponent.cs" />

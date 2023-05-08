@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.ObjectSystem;
+using TaleWorlds.SaveSystem;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes;
 using TOR_Core.Extensions;
@@ -19,8 +20,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         private Clan _ownerClan;
         private string _religionString = "";
         public Clan OwnerClan => _ownerClan;
-        private ISettlementType _settlementType;
-        public ISettlementType SettlementType => _settlementType;
+        [SaveableField(0)] private BaseSettlementType _settlementType;
+        public BaseSettlementType SettlementType => _settlementType;
         public int RaidingPartyCount => MobileParty.All.Where(x => x.IsRaidingParty() && x.HomeSettlement == Settlement).Count();
         public void SetClan(Clan clan) => _ownerClan = clan;
         protected override void OnInventoryUpdated(ItemRosterElement item, int count) { }

@@ -5,16 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.SaveSystem;
 using TOR_Core.CampaignMechanics.Religion;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes
 {
-    public interface ISettlementType
+    public abstract class BaseSettlementType
     {
-        bool IsRaidingPartySpawner { get; }
-        bool IsActive { get; set; }
-        void SpawnNewParty();
-        void OnInit(Settlement settlement, ReligionObject religion = null);
+        public bool IsRaidingPartySpawner { get; protected set; }
+        [SaveableProperty(0)] public bool IsActive { get; set; }
+        public virtual void SpawnNewParty() { }
+        public virtual void OnInit(Settlement settlement, ReligionObject religion = null) { }
     }
 
     public enum SettlementType
@@ -27,7 +28,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.SettlementTypes
 
     public static class SettlementTypeHelper
     {
-        public static ISettlementType GetSettlementType(SettlementType type)
+        public static BaseSettlementType GetSettlementType(SettlementType type)
         {
             switch (type)
             {

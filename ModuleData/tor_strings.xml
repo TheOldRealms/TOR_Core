@@ -304,6 +304,9 @@
   <string id="customsettlement_intro.grove_of_the_lady_02" text="{=!}You arrive at a grove of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the Lady of the Lake." />
   <string id="customsettlement_disabled.grove_of_the_lady_02" text="{=!}The shrine lies in ruins. There is nothing to do here." />
 
+  <string id="customsettlement_intro.haunted_site_01" text="{=!}You are deep within the Hunger Woods - a spirit infested cursed forest." />
+  <string id="customsettlement_disabled.haunted_site_01" text="{=!}You shouldn't see this." />
+
   <!--wanderer stories-->
   <string id="prebackstory.tor_wanderer_empire_0" text="{=!}My story? Sure, I can share it." />
   <string id="backstory_a.tor_wanderer_empire_0" text="{=!}As a boy I discovered I was not like most children, it was not long before the colleges realised this as well." />
