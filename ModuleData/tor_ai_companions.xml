@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <NPCCharacters>
-<NPCCharacter id="tor_emp_lord_reikland_first_hero_1" default_group="cavalry" name="{=str_tor_emp_lord_reikland_first_hero_1}Ludwig Schwarzhelm" occupation="Special" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+<NPCCharacter id="tor_emp_hero_reikland_first_1" default_group="cavalry" name="{=str_tor_emp_hero_reikland_first_1}Ludwig Schwarzhelm" occupation="Special" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="54" weight="0.1466" build="0.5" key="001BB8001A00395B39D67B4366A38DCB7A358B5254C69B1384874BA947A9E07500BCB6030B974A5900000000000000000000000000000000000000003B6C3002" />
     </face>
@@ -18,7 +18,8 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-<NPCCharacter id="tor_emp_lord_reikland_first_hero_2" default_group="cavalry" name="{=str_tor_emp_lord_reikland_first_hero_2}Magister Patriarch Thyrus Gormann" occupation="Special" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  
+<NPCCharacter id="tor_emp_hero_reikland_first_2" default_group="cavalry" name="{=str_tor_emp_hero_reikland_first_2}Magister Patriarch Thyrus Gormann" occupation="Special" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="54" weight="0.1466" build="0.5" key="001BB8001A00395B39D67B4366A38DCB7A358B5254C69B1384874BA947A9E07500BCB6030B974A5900000000000000000000000000000000000000003B6C3002" />
     </face>
@@ -36,4 +37,82 @@
       <EquipmentSet id="tor_bright_wizard_template" civilian="true" />
     </Equipments>
 </NPCCharacter>
+
+<NPCCharacter id="tor_emp_hero_averland_first_1" default_group="cavalry" name="{=str_tor_emp_hero_reikland_first_1}Ludwig Weißhelm" occupation="Special" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="54" weight="0.1466" build="0.5" key="001BB8001A00395B39D67B4366A38DCB7A358B5254C69B1384874BA947A9E07500BCB6030B974A5900000000000000000000000000000000000000003B6C3002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" />
+      <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" civilian="true" />
+    </Equipments>
+ </NPCCharacter>
+
+<NPCCharacter id="tor_emp_hero_averland_first_2" default_group="cavalry" name="{=str_tor_emp_hero_reikland_first_2}Averland mage" occupation="Special" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="54" weight="0.1466" build="0.5" key="001BB8001A00395B39D67B4366A38DCB7A358B5254C69B1384874BA947A9E07500BCB6030B974A5900000000000000000000000000000000000000003B6C3002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bright_wizard_template" />
+      <EquipmentSet id="tor_bright_wizard_template" civilian="true" />
+    </Equipments>
+</NPCCharacter>
+
+<NPCCharacter id="tor_vc_hero_sylvania_first_1" default_group="cavalry" name="{=str_tor_emp_lord_reikland_first_hero_2}Necromancer dude" occupation="Special" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="54" weight="0.1466" build="0.5" key="001BB8001A00395B39D67B4366A38DCB7A358B5254C69B1384874BA947A9E07500BCB6030B974A5900000000000000000000000000000000000000003B6C3002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_necromancer_template" />
+      <EquipmentSet id="tor_necromancer_template" civilian="true" />
+    </Equipments>
+</NPCCharacter>
+
+<NPCCharacter id="tor_vc_hero_sylvania_first_2" default_group="cavalry" name="{=str_tor_emp_lord_reikland_first_hero_2}Necromancer dude too" occupation="Special" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="54" weight="0.1466" build="0.5" key="001BB8001A00395B39D67B4366A38DCB7A358B5254C69B1384874BA947A9E07500BCB6030B974A5900000000000000000000000000000000000000003B6C3002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_necromancer_template" />
+      <EquipmentSet id="tor_necromancer_template" civilian="true" />
+    </Equipments>
+</NPCCharacter>
+
+
 </NPCCharacters>

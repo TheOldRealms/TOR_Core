@@ -3230,14 +3230,21 @@
       <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_emp_lord_reikland_first_hero_1">
+  <CharacterExtendedInfo id="tor_emp_hero_reikland_first_1">
     <Abilities>
     </Abilities>
     <Attributes>
 	  <string>AICompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_emp_lord_reikland_first_hero_2">
+  <CharacterExtendedInfo id="tor_emp_hero_averland_first_1">
+    <Abilities>
+    </Abilities>
+    <Attributes>
+	  <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_hero_averland_first_2">
     <Abilities>
       <string>Fireball</string>
       <string>CinderBlast</string>
@@ -3251,6 +3258,55 @@
     <Attributes>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
+	  <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_hero_reikland_first_2">
+    <Abilities>
+      <string>Fireball</string>
+      <string>CinderBlast</string>
+      <string>BoltOfAqshy</string>
+	  <string>CascadingFireCloak</string>
+      <string>Sear</string>
+      <string>FlamingSwords</string>
+      <string>BurningHead</string>
+      <string>FlameStorm</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+	  <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_vc_hero_sylvania_first_1">
+    <Abilities>
+	  <string>NagashGaze</string>
+      <string>SummonSkeleton</string>
+      <string>Shadowblood</string>
+      <string>Morkharn</string>
+      <string>WitheringWave</string>
+      <string>Kandorak</string>
+      <string>ScreamingSkull</string>
+      <string>WindOfDeath</string>
+      <string>GraveCall</string>
+    </Abilities>
+    <Attributes>
+	  <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_vc_hero_sylvania_first_2">
+    <Abilities>
+	  <string>NagashGaze</string>
+      <string>SummonSkeleton</string>
+      <string>Shadowblood</string>
+      <string>Morkharn</string>
+      <string>WitheringWave</string>
+      <string>Kandorak</string>
+      <string>ScreamingSkull</string>
+      <string>WindOfDeath</string>
+      <string>GraveCall</string>
+    </Abilities>
+    <Attributes>
 	  <string>AICompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
