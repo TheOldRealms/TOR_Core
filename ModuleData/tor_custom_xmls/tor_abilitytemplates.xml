@@ -1744,7 +1744,55 @@
 		</LightColorRGB>
 		<TriggeredEffect>windblast_burst</TriggeredEffect>
 	</AbilityTemplate>
-	<AbilityTemplate StringID="DoomBolt" 
+	
+	<AbilityTemplate StringID="DoomBolt"
+      Name="Doom Bolt"
+      SpriteName="comet_icon"
+      CoolDown="40"
+      WindsOfMagicCost="40"
+      BaseMisCastChance="0.3"
+      Duration="30"
+      Radius="2"
+      AbilityType="Spell"
+      AbilityEffectType="Bombardment"
+      BaseMovementSpeed="4"
+      TickInterval="0.5"
+      TriggerType="OnCollision"
+      HasLight="false"
+      LightIntensity="50"
+      LightRadius="10"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="false"
+      ParticleEffectPrefab="doom_bolt_prefab"
+      ParticleEffectSizeModifier="1"
+      SoundEffectToPlay="none"
+      ShouldSoundLoopOverDuration="false"
+      CastType="WindUp"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="100"
+      CrosshairType="TargetedAOE"
+      AbilityTargetType="GroundAtPosition"
+      MinDistance="3"
+      MaxDistance="30"
+      TargetCapturingRadius="4"
+      MaxRandomDeviation="1"
+      ShouldRotateVisuals="true"
+      VisualsRotationVelocity="1"
+      SpellTier="4"
+      BelongsToLoreID="DarkMagic"
+      TooltipDescription="A large meteor strikes the area killing all below in a giant shockwave.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>doom_bolt_explosion</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="DeathSpasm" 
       Name="Doom Bolt" 
       SpriteName="doombolt_icon" 
       CoolDown="20" 

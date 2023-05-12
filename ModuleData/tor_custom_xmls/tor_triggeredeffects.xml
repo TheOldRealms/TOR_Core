@@ -243,6 +243,18 @@
             TargetType="All" 
             DamageVariance="0.2" 
             ScriptNameToTrigger="none"/>
+			
+      <TriggeredEffectTemplate StringID="doom_bolt_explosion" 
+            BurstParticleEffectPrefab="doom_bolt_explosion" 
+            SoundEffectId="fireball_explosion" 
+            SoundEffectLength="2.5" 
+            DamageType="Magical" 
+            DamageAmount="120" 
+            Radius="5" 
+            HasShockWave="true" 
+            TargetType="All" 
+            DamageVariance="0.2" 
+            ScriptNameToTrigger="none"/>
       <TriggeredEffectTemplate StringID="thunderbolt_explosion" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
