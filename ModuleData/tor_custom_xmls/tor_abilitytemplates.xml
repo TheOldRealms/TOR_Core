@@ -1978,7 +1978,7 @@
       LightFlickeringMagnitude="0"
       LightFlickeringInterval="0"
       ShadowCastEnabled="true"
-      ParticleEffectPrefab=""
+      ParticleEffectPrefab="dwellers_below_ground"
       ParticleEffectSizeModifier="0"
       SoundEffectToPlay=""
       ShouldSoundLoopOverDuration="false"
