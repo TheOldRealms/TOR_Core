@@ -35,6 +35,50 @@ namespace TOR_Core.Utilities
             return "Engineer Quest is not active \n";
         }
         
+        [CommandLineFunctionality.CommandLineArgumentFunction("whereAreAICompanions", "tor")]
+        public static string ShowCompanionPosition(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+
+            string result = "";
+
+            var aiCompanions = Campaign.Current.AliveHeroes.Where(x => x.IsAICompanion());
+            
+
+            foreach (var companion in aiCompanions)
+            {
+                var partResult = "";
+                if (companion.CurrentSettlement != null)
+                {
+                    partResult = partResult.Add(companion.Name.ToString() + " " + " is currently in " + companion.CurrentSettlement);
+                    result+=partResult;
+                    continue;
+                }
+
+                if (companion.PartyBelongedTo != null)
+                {
+                    partResult=partResult.Add(companion.Name.ToString() + " " + " is part of  " + companion.PartyBelongedTo.LeaderHero.Name + " Party"+ companion.PartyBelongedTo.GetPosition2D);
+                    result+=partResult;
+                    continue;
+                }
+
+                if (companion.CurrentSettlement == null && companion.PartyBelongedTo == null)
+                {
+                    partResult= partResult.Add(companion.Name.ToString() + " " + " is nowhere to be found.");
+                    result+=partResult;
+                    continue;
+                }
+
+
+
+            }
+
+
+            return result;
+        }
+        
+        
         
         [CommandLineFunctionality.CommandLineArgumentFunction("list_spells", "tor")]
         public static string ListSpells(List<string> argumentNames) =>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Heroes>
+  <Hero id="tor_emp_hero_reikland_first_1" faction="Faction.reikland_clan_1" text="Ludwig Schwarzhelm is the Emperor’s personal bodyguard and bannerman, the Empire’s Sword of Justice and one of the closest people in the Empire to Karl-Franz. Ludwig is often trusted to personally deliver messages or investigate rumours by the Emperor; besides when these duties take him away from the Emperor’s side, he might as well be the Emperor von Holswig-Schliestein’s deadly shadow." />
+  <Hero id="tor_emp_hero_reikland_first_2" faction="Faction.reikland_clan_1" text="As Magister Patriarch of the Bright College, Thyrus Gormann is quite possibly the greatest Battle Wizard in the Empire. His hot temper and fiery nature lend themselves well to the battlefield, thus he far more enjoys the fiery blaze of war to dusty tomes or simpering courtiers.[5a]Thyrus has few peers as an artificer of magical items, having learned forging techniques rarely mastered outside the Gold College. He is massively protective of these items. He would only willingly surrender the Staff of Volans to Teclis or the next Supreme Patriarch, for instance.[5a]He might loan other items to members of the Bright College, but only under duress. Should anyone steal any of these items, Thyrus would focus all his efforts on their summary cremation." />
+  <Hero id="tor_emp_hero_averland_first_1" faction="Faction.averland_clan_1" text="magic duide 1" />
+  <Hero id="tor_emp_hero_averland_first_2" faction="Faction.averland_clan_1" text="magic dude 2" />
+  <Hero id="tor_vc_hero_sylvania_first_1" faction="Faction.sylvania_clan_1" text="necromancer dude" />
+  <Hero id="tor_vc_hero_sylvania_first_2" faction="Faction.sylvania_clan_1" text="necromancer dude too" />
+</Heroes>
