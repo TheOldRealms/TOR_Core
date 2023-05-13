@@ -36,7 +36,6 @@
 	<CharacterCreationOption Id="option1" Culture="empire" StageNumber="1" EquipmentSetId="tor_cc_imperial_nobility_1">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
-
 			<string>Leadership</string>
 			<string>Polearm</string>
 			<string>Riding</string>
@@ -48,7 +47,6 @@
 
 	<CharacterCreationOption Id="option2" Culture="empire" StageNumber="1" EquipmentSetId="tor_cc_imperial_sergeant_1">
 		<SkillsToIncrease>
-			
 			<string>TwoHanded</string>
 			<string>Gunpowder</string>
 			<string>Athletics</string>
@@ -73,14 +71,14 @@
 
 	<CharacterCreationOption Id="option4" Culture="empire" StageNumber="1" EquipmentSetId="tor_cc_cultists_1">
 		<SkillsToIncrease>
-			<string>Charm</string>
-			<string>OneHanded</string>
+			<string>Engineering</string>
+			<string>Crossbow</string>
 			<string>Scouting</string>
-			<string>Athletics</string>
+			<string>Crafting</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Cunning</AttributeToIncrease>
-		<OptionText>Cultists</OptionText>
-		<OptionFlavourText>Strange rituals and a life on the run. You never truly understood what your parents were, all you can remember is having to flee your home to the chants of heretic and a burning pyre.</OptionFlavourText>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>Commoners</OptionText>
+		<OptionFlavourText></OptionFlavourText>
 	</CharacterCreationOption>
 
 	<CharacterCreationOption Id="option5" Culture="empire" StageNumber="1" EquipmentSetId="tor_cc_wine_merchants_1">
@@ -88,7 +86,7 @@
 			<string>Trade</string>
 			<string>Charm</string>
 			<string>Steward</string>
-			<string>Crafting</string>
+			<string>Medicine</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Social</AttributeToIncrease>
 		<OptionText>Merchants</OptionText>
@@ -101,7 +99,7 @@
 			<string>Athletics</string>
 			<string>TwoHanded</string>
 			<string>Polearm</string>
-			<string>Gunpowder</string>
+			<string>Crossbow</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Endurance</AttributeToIncrease>
 		<OptionText>Enlisted in the Militia</OptionText>
@@ -146,7 +144,6 @@
 
 	<CharacterCreationOption Id="option10" Culture="empire" StageNumber="2" EquipmentSetId="tor_cc_engineering_student_2">
 		<SkillsToIncrease>
-			<string>Medicine</string>
 			<string>Charm</string>
 			<string>Steward</string>
 			<string>Gunpowder</string>
@@ -179,7 +176,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>Magister Apprentice</OptionText>
-		<OptionFlavourText>Your aptitude for the Winds of Magic earned you a place within the Colleges of Altdorf, with time you learned to harness the basics of your power and flames would dance at your fingertips.  -  LOCKED TO THE LORE OF AQSHY.</OptionFlavourText>
+		<OptionFlavourText>Your aptitude for the Winds of Magic earned you a place within the Colleges of Altdorf, with time you learned to harness the basics of your power and learn the nature of your aligned wind.</OptionFlavourText>
 	</CharacterCreationOption>
 
 	<CharacterCreationOption Id="option13" Culture="empire" StageNumber="3" EquipmentSetId="tor_cc_warrior_priest_acolyte_3">
@@ -191,7 +188,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>Priest Acolyte</OptionText>
-		<OptionFlavourText>Dedicating your life to the destruction of evil in Sigmars righteous name, you trained until you were entrusted with the robes and hammer of a Warrior Priest acolyte. Soon you would set out to rid the world of corruption.  -  Gains access to prayers, but cannot learn spells.</OptionFlavourText>
+		<OptionFlavourText>Dedicating your life to the cult of your patron god, you seek the path of righteousness in line with your faith. To be an Acolyte is to temper yourself against evil, the unnatural and the monstrous. (Gains access to Prayers, but cannot learn Spells. Prompt to pick your Imperial Cult will occur at game start)</OptionFlavourText>
 	</CharacterCreationOption> 
 
 	<CharacterCreationOption Id="option14" Culture="empire" StageNumber="3" EquipmentSetId="tor_cc_trainee_templar_3">
@@ -203,7 +200,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Cunning</AttributeToIncrease>
 		<OptionText>Trainee Templar</OptionText>
-		<OptionFlavourText>Heresy was the bane of the good people of the Empire, a rot that needed to be removed. Learning the arts of the Witch Hunters you readied yourself to face all manner of unholy beasts and magicians, with gunpowder and faith. </OptionFlavourText>
+		<OptionFlavourText>Heresy was the bane of the good people of the Empire, a rot that needed to be removed. Learning the arts of the Witch Hunters you readied yourself to face all manner of unholy beasts and magicians, with faith and silver. </OptionFlavourText>
 	</CharacterCreationOption> 
 
 	<CharacterCreationOption Id="option15" Culture="empire" StageNumber="3" EquipmentSetId="tor_cc_merchant_3">
@@ -401,7 +398,6 @@
 		<OptionText>Vagabond</OptionText>
 		<OptionFlavourText>The roads of Sylvania are dark and dangerous, you prey on its few travellers and hoard what little riches you can take with your blade. Yet you are not the only monster lurking within the dark swamps and forests, at times there is nothing left of the travellers to thieve from.</OptionFlavourText>
 	</CharacterCreationOption>
-</ArrayOfCharacterCreationOption>
 
 <!-- Bretonnia stage 1 -->
 
@@ -417,8 +413,8 @@
 
 	<CharacterCreationOption Id="option32" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_imperial_sergeant_1">
 		<SkillsToIncrease>
-			<string>
-			
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Control</AttributeToIncrease>
 		<OptionText>Imperial Sergeant</OptionText>
@@ -427,8 +423,8 @@
 
 	<CharacterCreationOption Id="option33" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_thieves_1">
 		<SkillsToIncrease>
-			<string>
-			
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Cunning</AttributeToIncrease>
 		<OptionText>Thieves</OptionText>
@@ -437,8 +433,8 @@
 
 	<CharacterCreationOption Id="option34" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_cultists_1">
 		<SkillsToIncrease>
-			<string>
-			
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Cunning</AttributeToIncrease>
 		<OptionText>Cultists</OptionText>
@@ -447,8 +443,8 @@
 
 	<CharacterCreationOption Id="option35" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_wine_merchants_1">
 		<SkillsToIncrease>
-			<string>
-			
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Social</AttributeToIncrease>
 		<OptionText>Wine Merchants</OptionText>
@@ -468,8 +464,8 @@
 
 	<CharacterCreationOption Id="option37" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_merchants_assistant_2">
 		<SkillsToIncrease>
-			<string>
-			
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Social</AttributeToIncrease>
 		<OptionText>Merchants assistant</OptionText>
@@ -478,8 +474,8 @@
 
 	<CharacterCreationOption Id="option38" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_blacksmith_apprentice_2">
 		<SkillsToIncrease>
-			<string>
-			
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Cunning</AttributeToIncrease>
 		<OptionText>Blacksmith Apprentice</OptionText>
@@ -488,8 +484,8 @@
 
 	<CharacterCreationOption Id="option39" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_acolyte_sigmar_2">
 		<SkillsToIncrease>
-			<string>
-			
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>Acolyte of Sigmar</OptionText>
@@ -498,8 +494,8 @@
 
 	<CharacterCreationOption Id="option40" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_engineering_student_2">
 		<SkillsToIncrease>
-			<string>
-			
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Control</AttributeToIncrease>
 		<OptionText>Engineering Student</OptionText>
@@ -509,8 +505,8 @@
 	<!--  Bretonnia stage 3 -->
 	<CharacterCreationOption Id="option41" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_free_company_militiaman_3">
 		<SkillsToIncrease>
-			<string>
-			
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 		<OptionText>Free Company Militiaman</OptionText>
@@ -519,8 +515,8 @@
 	
 	<CharacterCreationOption Id="option42" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_bright_order_initiate_3">
 		<SkillsToIncrease>
-			<string>
-			
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>Bright Order Initiate</OptionText>
@@ -529,8 +525,8 @@
 
 	<CharacterCreationOption Id="option43" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_warrior_priest_acolyte_3">
 		<SkillsToIncrease>
-			<string>
-			
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>Warrior Priest Acolyte</OptionText>
@@ -539,8 +535,8 @@
 
 	<CharacterCreationOption Id="option44" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_trainee_templar_3">
 		<SkillsToIncrease>
-			<string>
-			
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Cunning</AttributeToIncrease>
 		<OptionText>Trainee Templar</OptionText>
@@ -549,10 +545,11 @@
 
 	<CharacterCreationOption Id="option45" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_merchant_3">
 		<SkillsToIncrease>
-			<string>
-			
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Social</AttributeToIncrease>
 		<OptionText>Merchant</OptionText>
 		<OptionFlavourText>There are many trade goods within the Empire and you saw fit to take your place amongst its many Merchants, with the money you saved you set out to form your own caravan and make a name for yourself. </OptionFlavourText>
 	</CharacterCreationOption> 
+</ArrayOfCharacterCreationOption>
