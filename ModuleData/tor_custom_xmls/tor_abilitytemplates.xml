@@ -506,7 +506,7 @@
 	</AbilityTemplate>
 	<AbilityTemplate StringID="CascadingFireCloak" 
       Name="Cascading Fire-Cloak" 
-      SpriteName="sear_icon" 
+      SpriteName="cascadingfirecloak_icon" 
       CoolDown="30" 
       WindsOfMagicCost="4" 
       BaseMisCastChance="0.05" 
@@ -1275,7 +1275,7 @@
 	</AbilityTemplate>
 	<AbilityTemplate StringID="NetOfAmyntok"
       Name="Net of Amyntok"
-      SpriteName="phasprotection_icon"
+      SpriteName="netofamyntok_icon"
       CoolDown="5"
       WindsOfMagicCost="12"
       BaseMisCastChance="0.05"
@@ -1747,7 +1747,7 @@
 	
 	<AbilityTemplate StringID="DoomBolt"
       Name="Doom Bolt"
-      SpriteName="comet_icon"
+      SpriteName="doombolt_icon"
       CoolDown="40"
       WindsOfMagicCost="40"
       BaseMisCastChance="0.3"
@@ -1793,8 +1793,8 @@
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="DeathSpasm" 
-      Name="Doom Bolt" 
-      SpriteName="doombolt_icon" 
+      Name="Death Spasm" 
+      SpriteName="deathsypasm_icon" 
       CoolDown="20" 
       WindsOfMagicCost="12" 
       BaseMisCastChance="0.05" 
@@ -1832,9 +1832,9 @@
 		</LightColorRGB>
 		<TriggeredEffect>fireball_explosion</TriggeredEffect>
 	</AbilityTemplate>
-	<AbilityTemplate StringID="SoulDrain" 
-      Name="Soul Drain" 
-      SpriteName="souldrain_icon" 
+	<AbilityTemplate StringID="SoulRrain" 
+      Name="Soul Rain" 
+      SpriteName="soulrain_icon" 
       CoolDown="30" 
       WindsOfMagicCost="15" 
       BaseMisCastChance="0.5" 
