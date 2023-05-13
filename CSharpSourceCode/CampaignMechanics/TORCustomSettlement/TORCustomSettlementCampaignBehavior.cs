@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
+using TaleWorlds.CampaignSystem.Inventory;
 using TaleWorlds.CampaignSystem.Overlay;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
@@ -16,7 +18,9 @@ using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.Models;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement
@@ -27,6 +31,10 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         private int _numberOfTroops = 0;
         [SaveableField(0)] private Dictionary<string, bool> _customSettlementActiveStates = new Dictionary<string, bool>();
         [SaveableField(1)] private Dictionary<string, int> _cursedSiteWardDurationLeft = new Dictionary<string, int>();
+        [SaveableField(2)] private Dictionary<string, int> _lastGhostRecruitmentTime = new Dictionary<string, int>();
+        private TORFaithModel _model;
+
+        public static MBReadOnlyList<Settlement> AllCustomSettlements = new MBReadOnlyList<Settlement>();
 
         public override void RegisterEvents()
         {
@@ -42,6 +50,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         private void CollectSettlementData()
         {
             var customSettlements = Settlement.FindAll(x => x.SettlementComponent is TORBaseSettlementComponent);
+            AllCustomSettlements = new MBReadOnlyList<Settlement>(customSettlements);
             foreach (var settlement in customSettlements)
             {
                 var comp = settlement.SettlementComponent as TORBaseSettlementComponent;
@@ -84,8 +93,35 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             if(settlement.SettlementComponent is ShrineComponent)
             {
                 var shrine = settlement.SettlementComponent as ShrineComponent;
-                party.AddBlessingToParty(shrine.Religion.StringId, TORConstants.DEFAULT_BLESSING_DURATION);
+                party.AddBlessingToParty(shrine.Religion.StringId, _model.CalculateBlessingDurationForParty(party));
+                party.LeaderHero.AddSkillXp(TORSkills.Faith, _model.CalculateSkillXpForPraying(party.LeaderHero));
+                party.LeaderHero.AddReligiousInfluence(shrine.Religion, _model.CalculateDevotionIncreaseForPraying(party.LeaderHero));
                 LeaveSettlementAction.ApplyForParty(party);
+                party.Ai.SetDoNotMakeNewDecisions(false);
+                party.Ai.RethinkAtNextHourlyTick = true;
+            }
+            else if(settlement.SettlementComponent is CursedSiteComponent)
+            {
+                var troop = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_spirit_host");
+                var freeSlots = party.Party.PartySizeLimit - party.MemberRoster.TotalManCount;
+                int raisePower = Math.Max(1, (int)party.LeaderHero.GetExtendedInfo().SpellCastingLevel);
+                var count = MBRandom.RandomInt(0, 8);
+                count *= raisePower;
+                if (freeSlots > 0)
+                {
+                    if (freeSlots < count) count = freeSlots;
+                    party.MemberRoster.AddToCounts(troop, count);
+                    CampaignEventDispatcher.Instance.OnTroopRecruited(party.LeaderHero, settlement, null, troop, count);
+                }
+                LeaveSettlementAction.ApplyForParty(party);
+                if (_lastGhostRecruitmentTime.ContainsKey(party.LeaderHero.StringId))
+                {
+                    _lastGhostRecruitmentTime[party.LeaderHero.StringId] = (int)CampaignTime.Now.ToDays;
+                }
+                else
+                {
+                    _lastGhostRecruitmentTime.Add(party.LeaderHero.StringId, (int)CampaignTime.Now.ToDays);
+                }
                 party.Ai.SetDoNotMakeNewDecisions(false);
                 party.Ai.RethinkAtNextHourlyTick = true;
             }
@@ -93,6 +129,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
 
         private void OnAiTick(MobileParty party)
         {
+            if (party == MobileParty.MainParty) return;
             if (CanPartyGoToShrine(party))
             {
                 var settlements = TORCommon.FindSettlementsAroundPosition(party.Position2D, 20, x => x.SettlementComponent is ShrineComponent);
@@ -106,10 +143,20 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                     }
                 }
             }
+            if (CanPartyRecruitGhosts(party))
+            {
+                var settlements = TORCommon.FindSettlementsAroundPosition(party.Position2D, 20, x => x.SettlementComponent is CursedSiteComponent);
+                if (settlements.Count > 0)
+                {
+                    party.Ai.SetMoveGoToSettlement(settlements.First());
+                    party.Ai.SetDoNotMakeNewDecisions(true);
+                }
+            }
         }
 
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
+            _model = Campaign.Current.Models.GetFaithModel();
             AddChaosPortalMenus(starter);
             AddShrineMenus(starter);
             AddCursedSiteMenus(starter);
@@ -126,6 +173,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                     }
                 }
             }
+            CollectSettlementData();
         }
 
         private void OnSettlementHourlyTick(Settlement settlement)
@@ -135,20 +183,20 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 var site = settlement.SettlementComponent as CursedSiteComponent;
                 if (site.IsActive)
                 {
-                    var affectedParties = TORCommon.FindPartiesAroundPosition(settlement.Position2D, 25, x => x.IsLordParty && x.LeaderHero != null && x.LeaderHero.GetDominantReligion() != site.Religion);
+                    var affectedParties = TORCommon.FindPartiesAroundPosition(settlement.Position2D, TORConstants.DEFAULT_CURSE_RADIUS, x => x.IsLordParty && x.LeaderHero != null && x.LeaderHero.GetDominantReligion() != site.Religion);
                     foreach (var party in affectedParties)
                     {
                         if (party.IsActive && !party.IsDisbanding && party.MapEvent == null && party.BesiegedSettlement == null && party.CurrentSettlement == null)
                         {
                             if (party.MemberRoster.TotalHealthyCount > party.MemberRoster.TotalManCount * 0.25f)
                             {
-                                party.MemberRoster.WoundNumberOfTroopsRandomly((int)Math.Ceiling(party.MemberRoster.TotalHealthyCount * (TORConstants.DEFAULT_CURSE_WOUND_STRENGTH / 100f)));
+                                party.MemberRoster.WoundNumberOfTroopsRandomly((int)Math.Ceiling(party.MemberRoster.TotalHealthyCount * (_model.CalculateCursedRegionDamagePerHour(party) / 100f)));
                             }
                             foreach (var hero in party.GetMemberHeroes())
                             {
                                 if (hero.HitPoints > 25 && hero.HitPoints <= hero.MaxHitPoints)
                                 {
-                                    hero.HitPoints -= TORConstants.DEFAULT_CURSE_WOUND_STRENGTH;
+                                    hero.HitPoints -= _model.CalculateCursedRegionDamagePerHour(party);
                                 }
                             }
                         }
@@ -255,7 +303,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         public void AddShrineMenus(CampaignGameStarter starter)
         {
             starter.AddGameMenu("shrine_menu", "{LOCATION_DESCRIPTION}", ShrineMenuInit);
-            starter.AddGameMenuOption("shrine_menu", "pray", "{PRAY_TEXT}", PrayCondition, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("shrine_menu_praying"));
+            starter.AddGameMenuOption("shrine_menu", "pray", "{PRAY_TEXT}", PrayCondition, (args) => GameMenu.SwitchToMenu("shrine_menu_praying"));
+            starter.AddGameMenuOption("shrine_menu", "donate", "{=!}Give items as an offering", DonationCondition, (args) => InventoryManager.OpenScreenAsInventory());
             starter.AddGameMenuOption("shrine_menu", "leave", "Leave...", delegate (MenuCallbackArgs args)
             {
                 args.optionLeaveType = GameMenuOption.LeaveType.Leave;
@@ -298,13 +347,26 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             var component = settlement.SettlementComponent as ShrineComponent;
             args.optionLeaveType = GameMenuOption.LeaveType.ShowMercy;
             var godName = GameTexts.FindText("tor_religion_name_of_god", component.Religion.StringId);
-            MBTextManager.SetTextVariable("PRAY_TEXT", "Pray to recieve the blessing of " + godName + ".");
+            MBTextManager.SetTextVariable("PRAY_TEXT", "Pray to recieve the blessing of " + godName);
             if (MobileParty.MainParty.HasAnyActiveBlessing())
             {
                 args.Tooltip = new TextObject("{=!}You already have an active blessing.", null);
                 args.IsEnabled = false;
             }
-            return component.IsActive;
+            return component.IsActive && component.Religion != null && !component.Religion.HostileReligions.Contains(Hero.MainHero.GetDominantReligion());
+        }
+
+        private bool DonationCondition(MenuCallbackArgs args)
+        {
+            var settlement = Settlement.CurrentSettlement;
+            var component = settlement.SettlementComponent as ShrineComponent;
+            args.optionLeaveType = GameMenuOption.LeaveType.Trade;
+            if (!Hero.MainHero.GetPerkValue(TORPerks.Faith.Offering))
+            {
+                args.Tooltip = new TextObject("{=!}You need the Offering perk in the Faith skill line to perform this action.", null);
+                args.IsEnabled = false;
+            }
+            return component.IsActive && component.Religion != null && !component.Religion.HostileReligions.Contains(Hero.MainHero.GetDominantReligion());
         }
 
         private void PrayConsequence(MenuCallbackArgs args)
@@ -352,7 +414,6 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         {
             var settlement = Settlement.CurrentSettlement;
             var component = settlement.SettlementComponent as ShrineComponent;
-            MobileParty.MainParty.AddBlessingToParty(component.Religion.StringId, TORConstants.DEFAULT_BLESSING_DURATION);
             var godName = GameTexts.FindText("tor_religion_name_of_god", component.Religion.StringId);
             var troop = component.Religion.ReligiousTroops.FirstOrDefault(x => x.IsBasicTroop && x.Occupation == Occupation.Soldier);
             MBTextManager.SetTextVariable("PRAY_RESULT", "You recieve the blessing of " + godName + ".");
@@ -360,7 +421,9 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             {
                 MBTextManager.SetTextVariable("FOLLOWERS_RESULT", "Witnessing your prayers have inspired " + _numberOfTroops.ToString() + " " + troop.EncyclopediaLinkWithName + " to join your party.");
             }
-            Hero.MainHero.AddReligiousInfluence(component.Religion, TORConstants.DEFAULT_PRAYING_DEVOTION_INCREASE);
+            MobileParty.MainParty.AddBlessingToParty(component.Religion.StringId, _model.CalculateBlessingDurationForParty(MobileParty.MainParty));
+            Hero.MainHero.AddReligiousInfluence(component.Religion, _model.CalculateDevotionIncreaseForPraying(Hero.MainHero));
+            Hero.MainHero.AddSkillXp(TORSkills.Faith, _model.CalculateSkillXpForPraying(Hero.MainHero));
         }
         #endregion
 
@@ -456,6 +519,11 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 args.Tooltip = new TextObject("You are not a practicioner of necromancy.");
                 args.IsEnabled = false;
             }
+            if (_lastGhostRecruitmentTime.ContainsKey(Hero.MainHero.StringId) && _lastGhostRecruitmentTime[Hero.MainHero.StringId] >= (int)CampaignTime.Now.ToDays)
+            {
+                args.Tooltip = new TextObject("You can only perform this action once a day.");
+                args.IsEnabled = false;
+            }
             return Hero.MainHero.Culture.StringId == "khuzait" && component.IsActive;
         }
 
@@ -505,7 +573,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                     var troop = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_spirit_host");
                     var freeSlots = MobileParty.MainParty.Party.PartySizeLimit - MobileParty.MainParty.MemberRoster.TotalManCount;
                     int raisePower = Math.Max(1, (int)Hero.MainHero.GetExtendedInfo().SpellCastingLevel);
-                    var count = MBRandom.RandomInt(0, 2);
+                    var count = MBRandom.RandomInt(1, 3);
                     count *= raisePower;
                     if (freeSlots > 0)
                     {
@@ -529,6 +597,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 MBTextManager.SetTextVariable("WOUNDED_RESULT", "Staying in the cursed area while performing the ritual has taken a toll on your men. " + _numberOfTroops + " of your party members have become wounded.");
             }
             Hero.MainHero.AddReligiousInfluence(Hero.MainHero.GetDominantReligion(), TORConstants.DEFAULT_WARDING_DEVOTION_INCREASE);
+            Hero.MainHero.AddSkillXp(TORSkills.Faith, 300);
             component.IsActive = false;
             component.WardHours = duration;
         }
@@ -538,6 +607,14 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             if (_numberOfTroops > 0)
             {
                 MBTextManager.SetTextVariable("GHOST_RESULT", "You successfully bind " + _numberOfTroops + " spirits to your command.");
+                if (_lastGhostRecruitmentTime.ContainsKey(Hero.MainHero.StringId))
+                {
+                    _lastGhostRecruitmentTime[Hero.MainHero.StringId] = (int)CampaignTime.Now.ToDays;
+                }
+                else
+                {
+                    _lastGhostRecruitmentTime.Add(Hero.MainHero.StringId, (int)CampaignTime.Now.ToDays);
+                }
             }
         }
 
@@ -547,9 +624,10 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         {
             dataStore.SyncData("_customSettlementActiveStates", ref _customSettlementActiveStates);
             dataStore.SyncData("_cursedSiteWardDurationLeft", ref _cursedSiteWardDurationLeft);
+            dataStore.SyncData("_lastGhostRecruitmentTime", ref _lastGhostRecruitmentTime);
         }
 
-        private static bool CanPartyGoToShrine(MobileParty party)
+        private bool CanPartyGoToShrine(MobileParty party)
         {
             return party.IsLordParty &&
                 !party.IsEngaging &&
@@ -560,6 +638,21 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 party.MapEvent == null &&
                 !party.Ai.IsDisabled &&
                 !party.HasAnyActiveBlessing();
+        }
+
+        private bool CanPartyRecruitGhosts(MobileParty party)
+        {
+            return party.IsLordParty &&
+                !party.IsEngaging &&
+                party.IsActive &&
+                !party.IsDisbanding &&
+                !party.IsCurrentlyUsedByAQuest &&
+                party.CurrentSettlement == null &&
+                party.MapEvent == null &&
+                !party.Ai.IsDisabled &&
+                party.LeaderHero != null &&
+                (party.LeaderHero.IsNecromancer() || party.LeaderHero.IsVampire()) &&
+                (!_lastGhostRecruitmentTime.ContainsKey(party.LeaderHero.StringId) || _lastGhostRecruitmentTime[party.LeaderHero.StringId] < (int)CampaignTime.Now.ToDays);
         }
     }
 }

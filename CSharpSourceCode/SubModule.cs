@@ -162,6 +162,9 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORPartyMoraleModel());
                 gameStarterObject.AddModel(new TORPersuasionModel());
                 gameStarterObject.AddModel(new TORVoiceOverModel());
+                gameStarterObject.AddModel(new TORFaithModel());
+                gameStarterObject.AddModel(new TORClanPoliticsModel());
+                gameStarterObject.AddModel(new TORMapVisibilityModel());
 
                 CampaignOptions.IsLifeDeathCycleDisabled = true;
             }

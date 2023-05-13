@@ -1,8 +1,15 @@
 ﻿using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.MapEvents;
+using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.TORCustomSettlement;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -15,7 +22,29 @@ namespace TOR_Core.CampaignMechanics.Religion
             CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, AfterNewGameStart);
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionStart);
             CampaignEvents.HeroCreated.AddNonSerializedListener(this, OnHeroCreated);
+            CampaignEvents.OnItemsDiscardedByPlayerEvent.AddNonSerializedListener(this, OnItemsDiscarded);
+            CampaignEvents.HourlyTickPartyEvent.AddNonSerializedListener(this, HourlyPartyTick);
             TORCampaignEvents.Instance.DevotionLevelChanged += OnDevotionLevelChanged;
+        }
+
+        private void HourlyPartyTick(MobileParty party)
+        {
+            if(party.IsLordParty && party.IsActive && !party.IsDisbanding && party.CurrentSettlement != null && 
+                party.CurrentSettlement.IsTown && party.LeaderHero.GetPerkValue(TORPerks.Faith.Imperturbable))
+            {
+                party.LeaderHero.AddSkillXp(TORSkills.Faith, TORPerks.Faith.Imperturbable.PrimaryBonus / 24);
+            }
+        }
+
+        private void OnItemsDiscarded(ItemRoster itemRoster)
+        {
+            if(Settlement.CurrentSettlement != null && 
+                Settlement.CurrentSettlement.SettlementComponent is ShrineComponent && 
+                Hero.MainHero.GetPerkValue(TORPerks.Faith.Offering) &&
+                itemRoster.Count > 0)
+            {
+                GainRenownAction.Apply(Hero.MainHero, Math.Max(1, itemRoster.TotalValue / 1000));
+            }
         }
 
         private void OnHeroCreated(Hero hero, bool arg2)
@@ -25,7 +54,7 @@ namespace TOR_Core.CampaignMechanics.Religion
 
         private void OnDevotionLevelChanged(object sender, DevotionLevelChangedEventArgs e)
         {
-            if((int)e.NewDevotionLevel > (int)e.OldDevotionLevel)
+            if((int)e.NewDevotionLevel > (int)e.OldDevotionLevel && e.Hero == Hero.MainHero)
             {
                 MBInformationManager.AddQuickInformation(new TextObject(e.Hero.Name.ToString() + " is now a " + e.NewDevotionLevel.ToString() + " of the " + e.Religion.Name));
             }
@@ -65,6 +94,23 @@ namespace TOR_Core.CampaignMechanics.Religion
                 {
                     if (!religion2.HostileReligions.Contains(religion)) religion2.HostileReligions.Add(religion);
                 }
+            }
+            //add descendants of religious units if xml only has base troop
+            foreach(var religion in ReligionObject.All)
+            {
+                foreach(var troop in religion.ReligiousTroops.ToList())
+                {
+                    AddReligiousUnitToReligionRecursive(religion, troop);
+                }
+            }
+        }
+
+        private void AddReligiousUnitToReligionRecursive(ReligionObject religion, CharacterObject troop)
+        {
+            if (!religion.ReligiousTroops.Contains(troop)) religion.ReligiousTroops.Add(troop);
+            if(troop.UpgradeTargets.Count() > 0)
+            {
+                foreach (var target in troop.UpgradeTargets) AddReligiousUnitToReligionRecursive(religion, target);
             }
         }
 

@@ -87,7 +87,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                     float bonusRegen = 1f;
                     if(hero != null && hero.GetPerkValue(TORPerks.SpellCraft.Catalyst) && hero.CurrentSettlement != null && hero.CurrentSettlement.IsTown)
                     {
-                        bonusRegen += TORPerks.SpellCraft.Catalyst.SecondaryBonus * 0.01f;
+                        bonusRegen += TORPerks.SpellCraft.Catalyst.SecondaryBonus;
                     }
                     entry.Value.CurrentWindsOfMagic += entry.Value.WindsOfMagicRechargeRate * bonusRegen;
                     entry.Value.CurrentWindsOfMagic = Math.Min(entry.Value.CurrentWindsOfMagic, entry.Value.MaxWindsOfMagic);

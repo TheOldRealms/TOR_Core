@@ -6,7 +6,9 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TOR_Core.CampaignMechanics.RaidingParties;
+using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions
 {
@@ -51,6 +53,23 @@ namespace TOR_Core.Extensions
                 }
             }
 
+            return false;
+        }
+
+        public static bool IsAffectedByCurse(this MobileParty party)
+        {
+            foreach (Settlement settlement in TORCustomSettlementCampaignBehavior.AllCustomSettlements)
+            {
+                if(settlement.SettlementComponent is CursedSiteComponent)
+                {
+                    float distance;
+                    Campaign.Current.Models.MapDistanceModel.GetDistance(settlement, party, Campaign.MapDiagonal, out distance);
+                    if (distance < TORConstants.DEFAULT_CURSE_RADIUS)
+                    {
+                        return true;
+                    }
+                }
+            }
             return false;
         }
 

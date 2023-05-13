@@ -585,13 +585,16 @@
     <Compile Include="Models\TORCharacterDevelopmentModel.cs" />
     <Compile Include="Models\TORCharacterStatsModel.cs" />
     <Compile Include="Models\TORClanFinanceModel.cs" />
+    <Compile Include="Models\TORClanPoliticsModel.cs" />
     <Compile Include="Models\TORClanTierModel.cs" />
     <Compile Include="Models\TORCombatSimulationModel.cs" />
     <Compile Include="Models\TORCombatXpModel.cs" />
     <Compile Include="Models\TORCompanionHiringPriceCalculationModel.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleAgentStatCalculateModel.cs" />
     <Compile Include="Models\TORDamageParticleModel.cs" />
+    <Compile Include="Models\TORFaithModel.cs" />
     <Compile Include="Models\TORInventoryCapacityModel.cs" />
+    <Compile Include="Models\TORMapVisibilityModel.cs" />
     <Compile Include="Models\TORPartyMoraleModel.cs" />
     <Compile Include="Models\TORPartySpeedCalculatingModel.cs" />
     <Compile Include="Models\TOREncounterGameMenuModel.cs" />

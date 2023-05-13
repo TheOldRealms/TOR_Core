@@ -170,11 +170,11 @@ namespace TOR_Core.Models
             {
                 if (character.GetPerkValue(TORPerks.SpellCraft.OverCaster))
                 {
-                    cost.AddFactor(TORPerks.SpellCraft.OverCaster.SecondaryBonus / 100);
+                    cost.AddFactor(TORPerks.SpellCraft.OverCaster.SecondaryBonus);
                 }
                 if (character.GetPerkValue(TORPerks.SpellCraft.EfficientSpellCaster))
                 {
-                    cost.AddFactor(TORPerks.SpellCraft.EfficientSpellCaster.SecondaryBonus / 100);
+                    cost.AddFactor(TORPerks.SpellCraft.EfficientSpellCaster.SecondaryBonus);
                 }
             }
             return (int)cost.ResultNumber;
