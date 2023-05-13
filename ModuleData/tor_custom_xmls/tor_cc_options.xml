@@ -138,8 +138,8 @@
 			<string>Steward</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Discipline</AttributeToIncrease>
-		<OptionText>Acolyte of Sigmar</OptionText>
-		<OptionFlavourText>You felt a calling deep within yourself, a need to serve something greater. Donning the cloth of an acolyte, your life became one of constant prayer and learning so that you could better serve Sigmar. </OptionFlavourText>
+		<OptionText>Imperial Cultist</OptionText>
+		<OptionFlavourText>You spent most of your time in the temple district, praying to the various gods of the Imperial Pantheon. Some of the priests there took note of you and began to teach you of their scriptures. </OptionFlavourText>
 	</CharacterCreationOption>
 
 	<CharacterCreationOption Id="option10" Culture="empire" StageNumber="2" EquipmentSetId="tor_cc_engineering_student_2">
@@ -183,7 +183,7 @@
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>Medicine</string>
-			<string>Riding</string>
+			<string>Faith</string>
 			<string>Faith</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Discipline</AttributeToIncrease>
@@ -220,24 +220,24 @@
 		<SkillsToIncrease>
 			<string>Leadership</string>
 			<string>Steward</string>
-			<string>Charm</string>
+			<string>OneHanded</string>
 			<string>Riding</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Social</AttributeToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
 		<OptionText>Exiled Nobility</OptionText>
 		<OptionFlavourText>Ambition is the downfall of many and your family fell out of grace with their Elector, banished to Sylvania with a meagre fortune your family was forced to live amongst the peasant folk. </OptionFlavourText>
 	</CharacterCreationOption>
 
 	<CharacterCreationOption Id="option17" Culture="khuzait" StageNumber="1" EquipmentSetId="tor_cc_priests_morr_1">
 		<SkillsToIncrease>
-			<string>Steward</string>
-			<string>Medicine</string>
-			<string>Tactics</string>
-			<string>Faith</string>
+			<string>Trade</string>
+			<string>Scouting</string>
+			<string>Crafting</string>
+			<string>Charm</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Cunning</AttributeToIncrease>
-		<OptionText>Priests of Morr</OptionText>
-		<OptionFlavourText>The dead do not rest easy in Sylvania and the work of Morr is never done. Your father was a quiet man whose life was a dedication to death. Maintaining a garden of Morr and performing the necessary rights to ensure the dead would rest, normally with a blade of silver by his side.</OptionFlavourText>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>Strigany Caravanners</OptionText>
+		<OptionFlavourText>You were born into a family of Strigany. Tolerated by some and accepted by none, your childhood was spent traveling from city to city along with the clan caravan.</OptionFlavourText>
 	</CharacterCreationOption>
 
 	<CharacterCreationOption Id="option18" Culture="khuzait" StageNumber="1" EquipmentSetId="tor_cc_graverobbers_1">
@@ -245,9 +245,9 @@
 			<string>Throwing</string>
 			<string>Athletics</string>
 			<string>Roguery</string>
-			<string>Scouting</string>
+			<string>Polearm</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Cunning</AttributeToIncrease>
+		<AttributeToIncrease>Control</AttributeToIncrease>
 		<OptionText>Graverobbers</OptionText>
 		<OptionFlavourText>There are those within Sylvania who pay well for bodies, this was the trade your family chose. Stealing loved ones in the dead of night and taking them to the castles or keeps of nobility, never questioning why.</OptionFlavourText>
 	</CharacterCreationOption>
@@ -256,12 +256,12 @@
 		<SkillsToIncrease>
 			<string>Steward</string>
 			<string>Medicine</string>
-			<string>Trade</string>
-			<string>Crafting</string>
+			<string>Athletics</string>
+			<string>Engineering</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Social</AttributeToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
 		<OptionText>Fisherman and his Frog Wife</OptionText>
-		<OptionFlavourText>For generations your family have fished along the River Stir to keep themselves fed, it was far from a spectacular life but it was honest work and your family was content. Even after the disappearance of your brother...</OptionFlavourText>
+		<OptionFlavourText>For generations your family have fished the rivers and fetid pools of the swamp to keep themselves fed, it was far from a spectacular life but it was honest work and your family was content. Even after the disappearance of your brother...</OptionFlavourText>
 	</CharacterCreationOption>
 
 	<CharacterCreationOption Id="option20" Culture="khuzait" StageNumber="1" EquipmentSetId="tor_cc_orphan_1">
@@ -271,7 +271,7 @@
 			<string>Tactics</string>
 			<string>Roguery</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<AttributeToIncrease>Cunning</AttributeToIncrease>
 		<OptionText>Orphan</OptionText>
 		<OptionFlavourText>You never knew of your family though many looked at you with fear and whispered in hushed tones, you could do little else but struggle to survive through scrounging and from scraps of others. Often having to hide from the creatures that lurk in the night.</OptionFlavourText>
 	</CharacterCreationOption>
@@ -288,13 +288,13 @@
 		<OptionText>Noble Attendant </OptionText>
 		<OptionFlavourText>Serving in the courts of a Von Carstein gave you insight into the lives of the everliving, the intricacies and politics of the nobility taught you many things. Your diligence kept you alive and comfortable. </OptionFlavourText>
 	</CharacterCreationOption>
-	
+
 	<CharacterCreationOption Id="option22" Culture="khuzait" StageNumber="2" EquipmentSetId="tor_cc_necromancers_apprentice_2">
 		<SkillsToIncrease>
 			<string>Medicine</string>
 			<string>Spellcraft</string>
 			<string>Spellcraft</string>
-			<string>Medicine</string>
+			<string>Polearm</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Intelligence</AttributeToIncrease>
 		<OptionText>Necromancer's apprentice </OptionText>
@@ -303,38 +303,38 @@
 
 	<CharacterCreationOption Id="option23" Culture="khuzait" StageNumber="2" EquipmentSetId="tor_cc_blood_slave_2">
 		<SkillsToIncrease>
-			<string>Roguery</string>
+			<string>Crafting</string>
 			<string>OneHanded</string>
 			<string>Polearm</string>
 			<string>Athletics</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Intelligence</AttributeToIncrease>
-		<OptionText>Blood Slave</OptionText>
-		<OptionFlavourText>There were perks to this chosen life, you had shelter, food and protection. While your life was not your own, you could wander freely in the halls of your master and go unnoticed. </OptionFlavourText>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>Peat Farmer</OptionText>
+		<OptionFlavourText>Digging up the fetid scum ridden soil of swamps is not easy living. It does let you and your village scrap a meager harvest out of what suitable farmland there is.</OptionFlavourText>
 	</CharacterCreationOption>
 
 	<CharacterCreationOption Id="option24" Culture="khuzait" StageNumber="2" EquipmentSetId="tor_cc_stableboy_2">
 		<SkillsToIncrease>
-			<string>Riding</string>
-			<string>Steward</string>
-			<string>Scouting</string>
-			<string>Athletics</string>
+			<string>Engineering</string>
+			<string>TwoHanded</string>
+			<string>OneHanded</string>
+			<string>Bow</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Intelligence</AttributeToIncrease>
-		<OptionText>Stableboy </OptionText>
-		<OptionFlavourText>After the strange disappearance of the previous stableboy the local lord took you in his stead, you tended to the mighty steeds but it always felt like they were eyeing you out of hunger...</OptionFlavourText>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>Levied Militia</OptionText>
+		<OptionFlavourText>Levied into the armies of your master, you spent your adolescence on the battlefield. Fighting alongside undead horrors and necrotic abominations. You came out of it alive, somehow, and can live to tell the tale.</OptionFlavourText>
 	</CharacterCreationOption>
 
 	<CharacterCreationOption Id="option25" Culture="khuzait" StageNumber="2" EquipmentSetId="tor_cc_warpstone_miner_2">
 		<SkillsToIncrease>
-			<string>Medicine</string>
-			<string>Crafting</string>
-			<string>Polearm</string>
-			<string>OneHanded</string>
+			<string>Scouting</string>
+			<string>Roguery</string>
+			<string>Charm</string>
+			<string>Trade</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Intelligence</AttributeToIncrease>
-		<OptionText>Warpstone Miner</OptionText>
-		<OptionFlavourText>This strange glowing rock was highly desired by many, yet you never knew why. Your life was filled with the clinking of pickaxes and the shouts of your overseer, a strange fellow in a large coat who finished every sentence with ‘’yes-yes’’</OptionFlavourText>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>Strigany Rake</OptionText>
+		<OptionFlavourText>Watching for easy marks and young maidens along the outskirts of the camps, you spent your time plying your trade by using your seductive and debonair attitude. </OptionFlavourText>
 	</CharacterCreationOption>
 
 	<!-- VC stage 3 -->
@@ -348,7 +348,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 		<OptionText>Vampiric Nobility</OptionText>
-		<OptionFlavourText>At some point your lord recognized your qualities, lifting you out of poverty and revealing his true nature. After receiving the blood kiss you have been reborn, immortal and more powerful.  -   Gains the the ability to raise dead post-battle or in graveyards.</OptionFlavourText>
+		<OptionFlavourText>At some point your lord recognised your qualities, lifting you out of poverty and revealing his true nature. After receiving the blood kiss you are reborn, immortal and more powerful.  -   Gains the the ability to learn spells and raise dead post-battle or in graveyards. Prompt to pick your bloodline will occur at game start.</OptionFlavourText>
 	</CharacterCreationOption>
 
 	<CharacterCreationOption Id="option27" Culture="khuzait" StageNumber="3" EquipmentSetId="tor_cc_novice_necromancer_3">
@@ -360,39 +360,39 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>Novice Necromancer</OptionText>
-		<OptionFlavourText>You broke away from the role of a communion slave to a much older necromancer, stealing one of his tomes on your way out. You are now free to delve into dark lores and determine your own fate.  -   Gains access to summon skeleton spell and the ability to raise dead post-battle or in graveyards.</OptionFlavourText>
+		<OptionFlavourText>An unexpected opportunity presented itself and you were able steal an ancient tome of lore, and this beset you on the path of Necromancy  -   Gains access to summon skeleton spell and the ability to raise dead post-battle or in graveyards.</OptionFlavourText>
 	</CharacterCreationOption>
 
 	<CharacterCreationOption Id="option28" Culture="khuzait" StageNumber="3" EquipmentSetId="tor_cc_sylvanian_statetroop_3">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>Polearm</string>
-		    <string>Crossbow</string>
+		    <string>Bow</string>
 			<string>Tactics</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Control</AttributeToIncrease>
-		<OptionText>Sylvanian state trooper </OptionText>
-		<OptionFlavourText>The mortals of Sylvania are known to march into battle alongside the undead hordes of their masters. A more dour and superstitious folk you will never meet but they rarely break in the heat of battle. </OptionFlavourText>
+		<OptionText>Night Soldier</OptionText>
+		<OptionFlavourText>Mortals are often called upon to serve their undead masters. These professional soldiers are known to march into battle alongside the undead hordes of their masters. A more dour and superstitious folk you will never meet but they rarely break in the heat of battle. </OptionFlavourText>
 	</CharacterCreationOption>
 
 	<CharacterCreationOption Id="option29" Culture="khuzait" StageNumber="3" EquipmentSetId="tor_cc_travelling_merchant_3">
 		<SkillsToIncrease>
 			<string>Trade</string>
-			<string>Trade</string>
-			<string>Engineering</string>
-			<string>Crafting</string>
+			<string>Throwing</string>
+			<string>Charm</string>
+			<string>Scouting</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Social</AttributeToIncrease>
-		<OptionText>Travelling Merchant</OptionText>
-		<OptionFlavourText>Few are brave or foolish enough to peddle goods into Sylvania, as all manner of beasts may come for you. You however saw a fortune to be made in bringing luxuries from Wurtbad to the Von Carstein Nobility, the luck during your travels had always seemed unnatural. </OptionFlavourText>
+		<OptionText>Strigany Donmu</OptionText>
+		<OptionFlavourText>While not as influential as the matriarchs of their clan, the Donmu are important members of Strigany society. They maintain familial cohesion and are the face of the clan when dealing with outsiders. While not professional warriors, their long years of leading the caravans through the old world make them nothing to scoff at.</OptionFlavourText>
 	</CharacterCreationOption>
 
 	<CharacterCreationOption Id="option30" Culture="khuzait" StageNumber="3" EquipmentSetId="tor_cc_vagabond_3">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>Roguery</string>
-			<string>Scouting</string>
-			<string>Throwing</string>
+			<string>Athletics</string>
+			<string>TwoHanded</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Cunning</AttributeToIncrease>
 		<OptionText>Vagabond</OptionText>
@@ -400,7 +400,6 @@
 	</CharacterCreationOption>
 
 <!-- Bretonnia stage 1 -->
-
 <CharacterCreationOption Id="option31" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_imperial_nobility_1">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
