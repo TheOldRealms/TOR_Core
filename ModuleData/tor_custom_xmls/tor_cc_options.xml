@@ -161,7 +161,7 @@
 	<CharacterCreationOption Id="option11" Culture="empire" StageNumber="3" EquipmentSetId="tor_cc_free_company_militiaman_3">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
-			<string>gunpowder</string>
+			<string>Gunpowder</string>
 			<string>TwoHanded</string>
 			<string>Bow</string>
 		</SkillsToIncrease>
@@ -405,121 +405,101 @@
 
 <!-- Bretonnia stage 1 -->
 
-<CharacterCreationOption Id="option1" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_imperial_nobility_1">
+<CharacterCreationOption Id="option31" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_imperial_nobility_1">
 		<SkillsToIncrease>
-			<string>OneHanded</string>			
-			<string>Leadership</string>
-			<string>Leadership</string>
-			<string>Polearm</string>
-			<string>Riding</string>
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 		<OptionText>Imperial Nobility</OptionText>
-		<OptionFlavourText>Your parents loyally served Graf Haupt-Anderrson, while not major nobility they nonetheless held sway within the courts of the Elector Count and thus ensured your childhood was one of comfort. </OptionFlavourText>
+		<OptionFlavourText>I am French</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option2" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_imperial_sergeant_1">
+	<CharacterCreationOption Id="option32" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_imperial_sergeant_1">
 		<SkillsToIncrease>
-			<string>OneHanded</string>
-			<string>TwoHanded</string>
-			<string>Gunpowder</string>
-			<string>Athletics</string>
-			<string>Tactics</string>
+			<string>
+			
 		</SkillsToIncrease>
 		<AttributeToIncrease>Control</AttributeToIncrease>
 		<OptionText>Imperial Sergeant</OptionText>
-		<OptionFlavourText>Your father had not only served with distinction but survived long enough to receive the title of Sergeant, a veteran that has spilled the blood of beastmen and bandits alike.</OptionFlavourText>
+		<OptionFlavourText></OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option3" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_thieves_1">
+	<CharacterCreationOption Id="option33" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_thieves_1">
 		<SkillsToIncrease>
-			<string>Throwing</string>
-			<string>OneHanded</string>
-			<string>Roguery</string>
-			<string>Athletics</string>
+			<string>
+			
 		</SkillsToIncrease>
 		<AttributeToIncrease>Cunning</AttributeToIncrease>
 		<OptionText>Thieves</OptionText>
-		<OptionFlavourText>Not all within the Empire are blessed by Ranald, your family was poor and scratched a living with quick wit and quicker hands. Stealing coins from loose pockets and stuffing them in their own. </OptionFlavourText>
+		<OptionFlavourText></OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option4" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_cultists_1">
+	<CharacterCreationOption Id="option34" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_cultists_1">
 		<SkillsToIncrease>
-			<string>Charm</string>
-			<string>OneHanded</string>
-			<string>Scouting</string>
-			<string>Athletics</string>
+			<string>
+			
 		</SkillsToIncrease>
 		<AttributeToIncrease>Cunning</AttributeToIncrease>
 		<OptionText>Cultists</OptionText>
-		<OptionFlavourText>Strange rituals and a life on the run. You never truly understood what your parents were, all you can remember is having to flee your home to the chants of heretic and a burning pyre.</OptionFlavourText>
+		<OptionFlavourText></OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option5" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_wine_merchants_1">
+	<CharacterCreationOption Id="option35" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_wine_merchants_1">
 		<SkillsToIncrease>
-			<string>Trade</string>
-			<string>Charm</string>
-			<string>Steward</string>
-			<string>Crafting</string>
+			<string>
+			
 		</SkillsToIncrease>
 		<AttributeToIncrease>Social</AttributeToIncrease>
 		<OptionText>Wine Merchants</OptionText>
-		<OptionFlavourText>Wine is the blood of Wurtbad and your family made its profits driving this trade up the River Stir and across the Empire. Your early life was one of constant travel. </OptionFlavourText>
+		<OptionFlavourText></OptionFlavourText>
 	</CharacterCreationOption>
 
 	<!-- Bretonnia stage 2 -->
-	<CharacterCreationOption Id="option6" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_enlisted_militia_2">
+	<CharacterCreationOption Id="option36" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_enlisted_militia_2">
 		<SkillsToIncrease>
-			<string>Athletics</string>
+			<string>OneHanded</string>
 			<string>TwoHanded</string>
-			<string>Polearm</string>
-			<string>Gunpowder</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Endurance</AttributeToIncrease>
 		<OptionText>Enlisted in the Militia</OptionText>
-		<OptionFlavourText>Beastmen and bandits are rife within the Empire and your home was in need of strong men, training alongside the militia you soon gained a strong arm and a taste for combat.</OptionFlavourText>
+		<OptionFlavourText>I am French</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option7" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_merchants_assistant_2">
+	<CharacterCreationOption Id="option37" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_merchants_assistant_2">
 		<SkillsToIncrease>
-			<string>Trade</string>
-			<string>Polearm</string>
-			<string>Tactics</string>
+			<string>
+			
 		</SkillsToIncrease>
 		<AttributeToIncrease>Social</AttributeToIncrease>
 		<OptionText>Merchants assistant</OptionText>
-		<OptionFlavourText>Noticing your aptitude for numbers, a merchant passing through your home took you under his wing, offering to teach you his trade in return for daily assistance in his tasks.</OptionFlavourText>
+		<OptionFlavourText></OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option8" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_blacksmith_apprentice_2">
+	<CharacterCreationOption Id="option38" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_blacksmith_apprentice_2">
 		<SkillsToIncrease>
-			<string>OneHanded</string>
-			<string>Trade</string>
-			<string>Tactics</string>
+			<string>
+			
 		</SkillsToIncrease>
 		<AttributeToIncrease>Cunning</AttributeToIncrease>
 		<OptionText>Blacksmith Apprentice</OptionText>
 		<OptionFlavourText>Conflict was never ending for the Empire and neither was the work of its Blacksmiths, you chose to turn your strength into a trade as you bent metals to your will under the tutelage of the local smith. Your first sword may have been wonky but it was still sharp!</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option9" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_acolyte_sigmar_2">
+	<CharacterCreationOption Id="option39" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_acolyte_sigmar_2">
 		<SkillsToIncrease>
-			<string>Medicine</string>
-			<string>Faith</string>
-			<string>Steward</string>
+			<string>
+			
 		</SkillsToIncrease>
 		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>Acolyte of Sigmar</OptionText>
 		<OptionFlavourText>You felt a calling deep within yourself, a need to serve something greater. Donning the cloth of an acolyte, your life became one of constant prayer and learning so that you could better serve Sigmar. </OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option10" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_engineering_student_2">
+	<CharacterCreationOption Id="option40" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_engineering_student_2">
 		<SkillsToIncrease>
-			<string>Medicine</string>
-			<string>Charm</string>
-			<string>Steward</string>
-			<string>Gunpowder</string>
-			<string>Engineering</string>
+			<string>
+			
 		</SkillsToIncrease>
 		<AttributeToIncrease>Control</AttributeToIncrease>
 		<OptionText>Engineering Student</OptionText>
@@ -527,58 +507,50 @@
 	</CharacterCreationOption>
 
 	<!--  Bretonnia stage 3 -->
-	<CharacterCreationOption Id="option11" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_free_company_militiaman_3">
+	<CharacterCreationOption Id="option41" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_free_company_militiaman_3">
 		<SkillsToIncrease>
-			<string>OneHanded</string>
-			<string>Polearm</string>
-			<string>TwoHanded</string>
-			<string>Crossbow</string>
+			<string>
+			
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 		<OptionText>Free Company Militiaman</OptionText>
 		<OptionFlavourText>Fighting and drinking, what more could one need in life? With sword in hand you marched with your rag-tag Free Company from battle to battle, earning your fair share of scars. You would serve any lord, for the right price.</OptionFlavourText>
 	</CharacterCreationOption>
 	
-	<CharacterCreationOption Id="option12" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_bright_order_initiate_3">
+	<CharacterCreationOption Id="option42" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_bright_order_initiate_3">
 		<SkillsToIncrease>
-			<string>OneHanded</string>
-			<string>Athletics</string>
-			<string>Spellcraft</string>
+			<string>
+			
 		</SkillsToIncrease>
 		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>Bright Order Initiate</OptionText>
 		<OptionFlavourText>Your aptitude for the Winds of Magic earned you a place within the Colleges of Altdorf, with time you learned to harness the basics of your power and flames would dance at your fingertips.  -  LOCKED TO THE LORE OF AQSHY.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option13" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_warrior_priest_acolyte_3">
+	<CharacterCreationOption Id="option43" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_warrior_priest_acolyte_3">
 		<SkillsToIncrease>
-			<string>OneHanded</string>
-			<string>Medicine</string>
-			<string>Riding</string>
-			<string>Faith</string>
+			<string>
+			
 		</SkillsToIncrease>
 		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>Warrior Priest Acolyte</OptionText>
 		<OptionFlavourText>Dedicating your life to the destruction of evil in Sigmars righteous name, you trained until you were entrusted with the robes and hammer of a Warrior Priest acolyte. Soon you would set out to rid the world of corruption.  -  Gains access to prayers, but cannot learn spells.</OptionFlavourText>
 	</CharacterCreationOption> 
 
-	<CharacterCreationOption Id="option14" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_trainee_templar_3">
+	<CharacterCreationOption Id="option44" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_trainee_templar_3">
 		<SkillsToIncrease>
-			<string>OneHanded</string>
-			<string>Roguery</string>
-			<string>Riding</string>
+			<string>
+			
 		</SkillsToIncrease>
 		<AttributeToIncrease>Cunning</AttributeToIncrease>
 		<OptionText>Trainee Templar</OptionText>
 		<OptionFlavourText>Heresy was the bane of the good people of the Empire, a rot that needed to be removed. Learning the arts of the Witch Hunters you readied yourself to face all manner of unholy beasts and magicians, with gunpowder and faith. </OptionFlavourText>
 	</CharacterCreationOption> 
 
-	<CharacterCreationOption Id="option15" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_merchant_3">
+	<CharacterCreationOption Id="option45" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_merchant_3">
 		<SkillsToIncrease>
-			<string>Charm</string>
-			<string>Trade</string>			
-			<string>Trade</string>
-			<string>Trade</string>
+			<string>
+			
 		</SkillsToIncrease>
 		<AttributeToIncrease>Social</AttributeToIncrease>
 		<OptionText>Merchant</OptionText>
