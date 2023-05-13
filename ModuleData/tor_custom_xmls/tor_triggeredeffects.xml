@@ -609,6 +609,22 @@
             TargetType="All" 
             DamageVariance="0.2" 
             ScriptNameToTrigger="none"/>
+			
+	  <TriggeredEffectTemplate StringID="curse_of_years_hex" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="20" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            ImbuedStatusEffectDuration="15" 
+            DamageVariance="0" 
+            ScriptNameToTrigger="none" >
+			<ImbuedStatusEffect>curseofyears_movementimpair_50</ImbuedStatusEffect>
+			<ImbuedStatusEffect>curseofyears_attackspeed_50</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
 <!-- Dark Magic -->
       <TriggeredEffectTemplate StringID="soulstealer" 
             BurstParticleEffectPrefab="none" 

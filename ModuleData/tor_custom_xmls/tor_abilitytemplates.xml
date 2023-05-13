@@ -852,7 +852,7 @@
 	</AbilityTemplate>
 	<AbilityTemplate StringID="Blizzard" 
       Name="Iceshard Blizzard" 
-      SpriteName="hailstorm_icon" 
+      SpriteName="iceshardblizzard_icon" 
       CoolDown="30" 
       WindsOfMagicCost="14" 
       BaseMisCastChance="0.5" 
@@ -1481,7 +1481,7 @@
 		</LightColorRGB>
 		<TriggeredEffect>breath_of_darkness</TriggeredEffect>
 	</AbilityTemplate>
-	<AbilityTemplate StringID="WitheringWave" 
+<!-- 	<AbilityTemplate StringID="WitheringWave" 
       Name="Withering Wave " 
       SpriteName="witheringwave_icon" 
       CoolDown="30" 
@@ -1526,7 +1526,7 @@
 			</AsVec2>
 		</LightColorRGB>
 		<TriggeredEffect>witheringwave_tick</TriggeredEffect>
-	</AbilityTemplate>
+	</AbilityTemplate> -->
 	<AbilityTemplate StringID="Kandorak" 
       Name="Kandorak - The Harbinger" 
       SpriteName="theharbinger_icon" 
@@ -1700,6 +1700,51 @@
 		</LightColorRGB>
 		<TriggeredEffect>summon_gravecall</TriggeredEffect>
 	</AbilityTemplate>
+	
+		<AbilityTemplate StringID="CurseOfYears"
+      Name="Curse of Years"
+      SpriteName="curseofyears_icon"
+      CoolDown="5"
+      WindsOfMagicCost="12"
+      BaseMisCastChance="0.05"
+      Duration="2"
+      Radius="20"
+      AbilityType="Spell"
+      AbilityEffectType="Hex"
+      BaseMovementSpeed="0"
+      TickInterval="1.9"
+      TriggerType="TickOnce"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab=""
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.0"
+      AbilityTargetType="EnemiesInAOE"
+      TargetCapturingRadius="4"
+      MaxDistance="50"
+      CrosshairType="TargetedAOE"
+      SpellTier="3"
+      BelongsToLoreID="Necromancy"
+      TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>curse_of_years_hex</TriggeredEffect>
+	</AbilityTemplate>
+	
+	
 	<!-- Dark Magic -->
 	<AbilityTemplate StringID="Chillwind" 
       Name="Chillwind" 
@@ -1794,7 +1839,7 @@
 	
 	<AbilityTemplate StringID="DeathSpasm" 
       Name="Death Spasm" 
-      SpriteName="deathsypasm_icon" 
+      SpriteName="deathspasm_icon" 
       CoolDown="20" 
       WindsOfMagicCost="12" 
       BaseMisCastChance="0.05" 
@@ -2141,13 +2186,13 @@
       CoolDown="5"
       WindsOfMagicCost="12"
       BaseMisCastChance="0.05"
-      Duration="20"
+      Duration="2"
       Radius="20"
       AbilityType="Spell"
       AbilityEffectType="Hex"
       BaseMovementSpeed="0"
       TickInterval="1.9"
-      TriggerType="EveryTick"
+      TriggerType="TickOnce"
       HasLight="false"
       LightIntensity="0"
       LightRadius="0"

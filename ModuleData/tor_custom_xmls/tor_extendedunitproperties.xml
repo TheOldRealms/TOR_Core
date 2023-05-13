@@ -2348,7 +2348,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulDrain</string>
+      <string>SoulRain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2615,7 +2615,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulDrain</string>
+      <string>SoulRain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2632,7 +2632,8 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulDrain</string>
+	  <string>DeathSpasm</string>
+      <string>SoulRain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2649,7 +2650,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulDrain</string>
+      <string>SoulRain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2666,7 +2667,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulDrain</string>
+      <string>SoulRain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2683,7 +2684,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulDrain</string>
+      <string>SoulRain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2700,7 +2701,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulDrain</string>
+      <string>SoulRain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2717,7 +2718,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulDrain</string>
+      <string>SoulRain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2734,7 +2735,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulDrain</string>
+      <string>SoulRain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2751,7 +2752,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulDrain</string>
+      <string>SoulRain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2873,7 +2874,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulDrain</string>
+      <string>SoulRain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2890,7 +2891,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulDrain</string>
+      <string>SoulRain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2907,7 +2908,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulDrain</string>
+      <string>SoulRain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2924,7 +2925,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulDrain</string>
+      <string>SoulRain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -3395,7 +3396,8 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulDrain</string>
+	  <string>DeathSpasm</string>
+      <string>SoulRain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -3419,6 +3421,7 @@
       <string>ScreamingSkull</string>
       <string>WindOfDeath</string>
       <string>GraveCall</string>
+	  <string>CurseOfYears</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>

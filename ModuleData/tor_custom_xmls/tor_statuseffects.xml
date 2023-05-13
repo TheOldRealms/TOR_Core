@@ -131,6 +131,21 @@
     	base_effect_value="5"
 		type="DamageOverTime"/>
 	<StatusEffectTemplate
+		id="curseofyears_movementimpair_50"
+		particle_id="curse_of_years"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+    	base_effect_value="-0.5"
+		type="MovementManipulation"/>
+	<StatusEffectTemplate
+		id="curseofyears_attackspeed_50"
+		particle_id=""
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+    	base_effect_value="-0.5"
+		type="AttackSpeedManipulation"/>
+
+	<StatusEffectTemplate
 		id="net_amyn_movementimpair__100"
 		particle_id="net_of_amyntok"
 		particle_intensity="High"
