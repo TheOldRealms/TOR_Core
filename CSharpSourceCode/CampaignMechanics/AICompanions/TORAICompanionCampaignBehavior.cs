@@ -43,6 +43,11 @@ namespace TOR_Core.CampaignMechanics.AICompanions
 
         private void HandleHeroEscape(FlattenedTroopRoster obj)
         {
+            if(obj==null|| (obj != null && !obj.Troops.FirstOrDefault().IsHero))
+            {
+                return;
+            }
+               
             var characterObject = obj.Troops.FirstOrDefault(x => x.HeroObject.IsAICompanion());
             if(characterObject==null) return;
        //     if(characterObject.HeroObject.PartyBelongedTo.IsMainParty) return;
