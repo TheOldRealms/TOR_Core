@@ -2794,7 +2794,7 @@
   </Settlement>
   <Settlement id="castle_village_MO2_1" name="{=Settlements.Settlement.name.castle_village_MO2_1}Les Auxons" posX="1128.882" posY="1020.518" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MO2_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
     <Components>
-      <Village id="castle_village_comp_MO1_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_MO2" bound="Settlement.castle_MO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_MO2_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_MO2" bound="Settlement.castle_MO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
