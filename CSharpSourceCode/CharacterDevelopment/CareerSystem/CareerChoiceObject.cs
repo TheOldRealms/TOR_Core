@@ -24,10 +24,21 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public CareerChoiceObject(string stringId) : base(stringId) { }
         public override string ToString() => Name.ToString();
+        public PassiveEffect Passive { get; private set; }
 
-        public void Initialize(CareerObject ownerCareer, string belongsToGroup, bool isRootNode, ChoiceType type, List<MutationObject> mutations)
+        public void Initialize(CareerObject ownerCareer, string description, string belongsToGroup, bool isRootNode, ChoiceType type, List<MutationObject> mutations = null, PassiveEffect passiveEffect = null)
         {
-            base.Initialize(new TextObject(StringId), new TextObject("description for " + StringId));
+            TextObject descriptionOverride;
+            if(GameTexts.TryGetText("careerchoice_description", out descriptionOverride, StringId))
+            {
+                if(Passive != null)
+                {
+                    if (Passive.InterpretAsPercentage) GameTexts.SetVariable("EFFECT_VALUE", Passive.EffectMagnitude.ToString("R"));
+                    else GameTexts.SetVariable("EFFECT_VALUE", Passive.EffectMagnitude.ToString());
+                }
+                description = descriptionOverride.ToString();
+            }
+            base.Initialize(new TextObject(StringId), new TextObject(description));
             OwnerCareer = ownerCareer;
             if (!string.IsNullOrEmpty(belongsToGroup))
             {
@@ -36,6 +47,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             else BelongsToGroup = null;
             if (BelongsToGroup != null) BelongsToGroup.Choices.Add(this);
             if(mutations != null) _mutations.AddRange(mutations);
+            Passive = passiveEffect;
             if (isRootNode) OwnerCareer.RootNode = this;
         }
 
@@ -50,7 +62,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             var type = target.GetType();
             foreach(var mutation in _mutations)
             {
-                if (mutation != null && mutation.MutationTargetType == type && mutation.MutationType != MutationType.None && !string.IsNullOrEmpty(mutation.MutationTargetOriginalId) && !string.IsNullOrEmpty(mutation.PropertyName) && mutation.PropertyValue != null)
+                if (mutation != null && mutation.MutationTargetType == type && mutation.MutationType != OperationType.None && !string.IsNullOrEmpty(mutation.MutationTargetOriginalId) && !string.IsNullOrEmpty(mutation.PropertyName) && mutation.PropertyValue != null)
                 {
                     var originalId = target.StringID.Split(new char[] { '*' }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
                     if (originalId == null || originalId != mutation.MutationTargetOriginalId) continue;
@@ -61,13 +73,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                         var propertyType = traverse.Property(mutation.PropertyName).GetValueType();
                         switch (mutation.MutationType)
                         {
-                            case MutationType.Replace:
+                            case OperationType.Replace:
                                 if(newValue.GetType() == propertyType) 
                                 {
                                     traverse.Property(mutation.PropertyName).SetValue(newValue);
                                 }
                                 break;
-                            case MutationType.Multiply:
+                            case OperationType.Multiply:
                                 
                                 if (propertyType == typeof(float))
                                 {
@@ -80,7 +92,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                                     traverse.Property(mutation.PropertyName).SetValue(value * (1 + Convert.ToInt32(newValue)));
                                 }
                                 break;
-                            case MutationType.Add:
+                            case OperationType.Add:
                                 if (propertyType == typeof(float))
                                 {
                                     var value = traverse.Property(mutation.PropertyName).GetValue<float>();
@@ -106,7 +118,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             public string MutationTargetOriginalId { get; set; } = string.Empty;
             public string PropertyName { get; set; } = string.Empty;
             public Func<CareerChoiceObject, object, Agent, object> PropertyValue { get; set; } = null;
-            public MutationType MutationType { get; set; } = MutationType.None;
+            public OperationType MutationType { get; set; } = OperationType.None;
+        }
+
+        public class PassiveEffect
+        {
+            public float EffectMagnitude = 0f;
+            public OperationType Operation = OperationType.None;
+            public bool InterpretAsPercentage = true;
         }
     }
 
@@ -116,7 +135,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         Passive
     }
 
-    public enum MutationType
+    public enum OperationType
     {
         Add,
         Multiply,

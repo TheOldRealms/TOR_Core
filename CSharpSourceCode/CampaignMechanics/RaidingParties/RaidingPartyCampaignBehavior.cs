@@ -41,10 +41,10 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
 
         private void DailyTickSettlement(Settlement settlement)
         {
-            if(settlement.SettlementComponent is TORCustomSettlementComponent)
+            if(settlement.SettlementComponent is BaseRaiderSpawnerComponent)
             {
-                var component = settlement.SettlementComponent as TORCustomSettlementComponent;
-                if (component.SettlementType.IsRaidingPartySpawner && component.RaidingPartyCount < 5) component.SettlementType.SpawnNewParty();
+                var component = settlement.SettlementComponent as BaseRaiderSpawnerComponent;
+                if (component.RaidingPartyCount < 5) component.SpawnNewParty();
             }
         }
 

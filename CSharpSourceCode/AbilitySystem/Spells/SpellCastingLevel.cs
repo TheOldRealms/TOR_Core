@@ -11,13 +11,4 @@ namespace TOR_Core.AbilitySystem.Spells
         [SaveableField(3)] Adept,
         [SaveableField(4)] Master
     }
-
-    public class SpellCastingTypeDefiner : SaveableTypeDefiner
-    {
-        public SpellCastingTypeDefiner() : base(1_143_199) { }
-        protected override void DefineEnumTypes()
-        {
-            AddEnumDefinition(typeof(SpellCastingLevel), 1);
-        }
-    }
 }

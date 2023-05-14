@@ -7,9 +7,11 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions
 {
@@ -207,12 +209,54 @@ namespace TOR_Core.Extensions
             return result;
         }
 
+        public static bool TryAddCareerChoice(this Hero hero, CareerChoiceObject choice)
+        {
+            if (hero != null)
+            {
+                var info = hero.GetExtendedInfo();
+                if (info != null && !info.CareerChoices.Contains(choice.StringId))
+                {
+                    int maxChoices = hero.Level + 1;
+                    if(info.CareerChoices.Count < maxChoices)
+                    {
+                        info.CareerChoices.Add(choice.StringId);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static bool TryRemoveCareerChoice(this Hero hero, CareerChoiceObject choice)
+        {
+            var info = hero.GetExtendedInfo();
+            if (hero != null && info != null)
+            {
+                if (info.CareerChoices.Contains(choice.StringId))
+                {
+                    info.CareerChoices.Remove(choice.StringId);
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static bool HasCareer(this Hero hero, CareerObject career)
         {
             bool result = false;
             if (hero != null && hero.GetExtendedInfo() != null)
             {
                 return hero.GetExtendedInfo().CareerID == career.StringId;
+            }
+            return result;
+        }
+
+        public static bool HasAnyCareer(this Hero hero)
+        {
+            bool result = false;
+            if (hero != null && hero.GetExtendedInfo() != null)
+            {
+                result = !string.IsNullOrEmpty(hero.GetExtendedInfo().CareerID);
             }
             return result;
         }
@@ -225,6 +269,119 @@ namespace TOR_Core.Extensions
                 result = TORCareers.All.FirstOrDefault(x=>x.StringId == hero.GetExtendedInfo().CareerID);
             }
             return result;
+        }
+
+        public static void AddCareer(this Hero hero, CareerObject career)
+        {
+            if (hero != null)
+            {
+                var info = hero.GetExtendedInfo();
+                if (info != null)
+                {
+                    info.CareerID = career.StringId;
+                    info.CareerChoices.Clear();
+                    info.CareerChoices.Add(career.RootNode.StringId);
+                }
+            }
+        }
+
+        public static bool HasAnyReligion(this Hero hero) => hero.GetDominantReligion() != null;
+
+        public static ReligionObject GetDominantReligion(this Hero hero) => hero.GetExtendedInfo() != null ? hero.GetExtendedInfo().DominantReligion : null;
+
+        public static DevotionLevel GetDevotionLevelForReligion(this Hero hero, ReligionObject religion)
+        {
+            var info = hero.GetExtendedInfo();
+            if (info == null || !info.ReligionDevotionLevels.ContainsKey(religion.StringId)) return DevotionLevel.None;
+            else
+            {
+                var value = info.ReligionDevotionLevels[religion.StringId];
+                if (value <= 0) return DevotionLevel.None;
+                else if (value < TORConstants.DEVOTED_TRESHOLD) return DevotionLevel.Follower;
+                else if (value < TORConstants.FANATIC_TRESHOLD) return DevotionLevel.Devoted;
+                else return DevotionLevel.Fanatic;
+            }
+        }
+
+        public static void AddReligiousInfluence(this Hero hero, ReligionObject religion, int amount, bool shouldNotify = true)
+        {
+            var info = hero.GetExtendedInfo();
+            if(info != null)
+            {
+                var copy = info.ReligionDevotionLevels.ToDictionary(x => x.Key, x => x.Value);
+                Dictionary<string, DevotionLevel> originalDevotionLevels = new Dictionary<string, DevotionLevel>();
+                foreach(var ro in ReligionObject.All)
+                {
+                    if (copy.ContainsKey(ro.StringId))
+                    {
+                        if (copy[ro.StringId] <= 0) originalDevotionLevels.Add(ro.StringId, DevotionLevel.None);
+                        else if (copy[ro.StringId] < TORConstants.DEVOTED_TRESHOLD) originalDevotionLevels.Add(ro.StringId, DevotionLevel.Follower);
+                        else if (copy[ro.StringId] < TORConstants.FANATIC_TRESHOLD) originalDevotionLevels.Add(ro.StringId, DevotionLevel.Devoted);
+                        else originalDevotionLevels.Add(ro.StringId, DevotionLevel.Fanatic);
+                    }
+                    else originalDevotionLevels.Add(ro.StringId, DevotionLevel.None);
+                }
+
+                int sumTotalDevotion = info.ReligionDevotionLevels.Sum(x => x.Value);
+                if(sumTotalDevotion + amount <= TORConstants.MAXIMUM_DEVOTION_LEVEL)
+                {
+                    if (info.ReligionDevotionLevels.ContainsKey(religion.StringId))
+                    {
+                        info.ReligionDevotionLevels[religion.StringId] += amount;
+                    }
+                    else
+                    {
+                        info.ReligionDevotionLevels.Add(religion.StringId, amount);
+                    }
+                }
+                else
+                {
+                    var newAmount = TORConstants.MAXIMUM_DEVOTION_LEVEL - sumTotalDevotion;
+                    if (info.ReligionDevotionLevels.ContainsKey(religion.StringId))
+                    {
+                        foreach (var entry in info.ReligionDevotionLevels.ToDictionary(x => x.Key, x => x.Value))
+                        {
+                            if (entry.Key == religion.StringId)
+                            {
+                                info.ReligionDevotionLevels[entry.Key] += newAmount;
+                            }
+                            else info.ReligionDevotionLevels[entry.Key] -= newAmount;
+                            info.ReligionDevotionLevels[entry.Key] = Math.Min(TORConstants.MAXIMUM_DEVOTION_LEVEL, info.ReligionDevotionLevels[entry.Key]);
+                        }
+                    }
+                    else
+                    {
+                        foreach (var entry in info.ReligionDevotionLevels.ToDictionary(x => x.Key, x => x.Value))
+                        {
+                            info.ReligionDevotionLevels[entry.Key] -= newAmount;
+                            
+                        }
+                        info.ReligionDevotionLevels.Add(religion.StringId, newAmount);
+                    }
+                }
+
+                Dictionary<string, DevotionLevel> newDevotionLevels = new Dictionary<string, DevotionLevel>();
+                foreach (var ro in ReligionObject.All)
+                {
+                    if (info.ReligionDevotionLevels.ContainsKey(ro.StringId))
+                    {
+                        if (info.ReligionDevotionLevels[ro.StringId] <= 0) newDevotionLevels.Add(ro.StringId, DevotionLevel.None);
+                        else if (info.ReligionDevotionLevels[ro.StringId] < TORConstants.DEVOTED_TRESHOLD) newDevotionLevels.Add(ro.StringId, DevotionLevel.Follower);
+                        else if (info.ReligionDevotionLevels[ro.StringId] < TORConstants.FANATIC_TRESHOLD) newDevotionLevels.Add(ro.StringId, DevotionLevel.Devoted);
+                        else newDevotionLevels.Add(ro.StringId, DevotionLevel.Fanatic);
+                    }
+                    else newDevotionLevels.Add(ro.StringId, DevotionLevel.None);
+                }
+
+                foreach(var entry in originalDevotionLevels)
+                {
+                    if (newDevotionLevels.ContainsKey(entry.Key))
+                    {
+                        if (newDevotionLevels[entry.Key] != originalDevotionLevels[entry.Key] && shouldNotify) 
+                            TORCampaignEvents.Instance.OnDevotionLevelChanged(hero, ReligionObject.All.FirstOrDefault(x=>x.StringId == entry.Key), originalDevotionLevels[entry.Key], newDevotionLevels[entry.Key]);
+                    }
+                }
+            }
         }
 
         public static string GetInfoKey(this Hero hero)

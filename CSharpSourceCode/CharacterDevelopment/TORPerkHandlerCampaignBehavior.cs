@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
+using TaleWorlds.Core;
 
 namespace TOR_Core.CharacterDevelopment
 {
@@ -23,6 +24,15 @@ namespace TOR_Core.CharacterDevelopment
                 {
                     hero.HeroDeveloper.AddAttribute(TORAttributes.Discipline, 1, false);
                 }
+                if(perk == TORPerks.Faith.DivineMission)
+                {
+                    if (hero.HeroDeveloper.CanAddFocusToSkill(DefaultSkills.Medicine))
+                    {
+                        hero.HeroDeveloper.AddFocus(DefaultSkills.Medicine, 1);
+                    }
+                    else hero.HeroDeveloper.UnspentFocusPoints += 1;
+                }
+                if (perk == TORPerks.Faith.ForeSight) hero.HeroDeveloper.UnspentAttributePoints += 1;
             }
         }
 

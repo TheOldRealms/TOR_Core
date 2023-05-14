@@ -14,6 +14,7 @@ namespace TOR_Core.Ink
     {
         private static InkStoryManager _instance;
         private Dictionary<string, InkStory> _stories = new Dictionary<string, InkStory>();
+        private Action _action;
 
         private InkStoryManager() { }
 
@@ -49,13 +50,17 @@ namespace TOR_Core.Ink
             return story;
         }
 
-        public static void OpenStory(string name)
+        public static void OpenStory(string name, Action afterClose = null)
         {
             var story = GetStory(name);
             if(story != null && Game.Current.GameType is Campaign)
             {
                 var behavior = Campaign.Current.GetCampaignBehavior<InkStoryCampaignBehavior>();
-                if(behavior != null) behavior.OpenStory(story);
+                if(behavior != null)
+                {
+                    behavior.OpenStory(story);
+                    _instance._action = afterClose;
+                }
             }
         }
 
@@ -64,7 +69,11 @@ namespace TOR_Core.Ink
             if(Game.Current.GameType is Campaign)
             {
                 var behavior = Campaign.Current.GetCampaignBehavior<InkStoryCampaignBehavior>();
-                if (behavior != null) behavior.CloseStory();
+                if (behavior != null)
+                {
+                    behavior.CloseStory();
+                    if (_instance._action != null) _instance._action();
+                }
             }
         }
     }

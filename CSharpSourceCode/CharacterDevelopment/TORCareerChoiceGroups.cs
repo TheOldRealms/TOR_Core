@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 
@@ -38,12 +39,36 @@ namespace TOR_Core.CharacterDevelopment
 
         private void InitializeAll()
         {
-            _bookOfSigmar.Initialize("Book of Sigmar", TORCareers.WarriorPriest, 1);
-            _sigmarProclaimer.Initialize("Sigmar's Proclaimer", TORCareers.WarriorPriest, 1);
-            _relentlessFanatic.Initialize("Relentless Fanatic", TORCareers.WarriorPriest, 2);
-            _protectorOfTheWeak.Initialize("Protector of the Weak", TORCareers.WarriorPriest, 2);
-            _holyPurge.Initialize("Holy Purge", TORCareers.WarriorPriest, 2);
-            _archLector.Initialize("Arch Lector", TORCareers.WarriorPriest, 3);
+            _bookOfSigmar.Initialize("Book of Sigmar", TORCareers.WarriorPriest, 1, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 1";
+                return hero.Clan.Tier >= 1;
+            });
+            _sigmarProclaimer.Initialize("Sigmar's Proclaimer", TORCareers.WarriorPriest, 1, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 1";
+                return hero.Clan.Tier >= 1;
+            });
+            _relentlessFanatic.Initialize("Relentless Fanatic", TORCareers.WarriorPriest, 2, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 3";
+                return hero.Clan.Tier >= 3;
+            });
+            _protectorOfTheWeak.Initialize("Protector of the Weak", TORCareers.WarriorPriest, 2, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 3";
+                return hero.Clan.Tier >= 3;
+            });
+            _holyPurge.Initialize("Holy Purge", TORCareers.WarriorPriest, 2, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 3";
+                return hero.Clan.Tier >= 3;
+            });
+            _archLector.Initialize("Arch Lector", TORCareers.WarriorPriest, 3, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 5";
+                return hero.Clan.Tier >= 5;
+            });
         }
     }
 }

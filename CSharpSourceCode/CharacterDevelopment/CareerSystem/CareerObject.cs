@@ -37,9 +37,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public override string ToString() => Name.ToString();
 
-        public void Initialize(string name, string description, Predicate<Hero> condition, string abilityID, ChargeType chargeType = ChargeType.CooldownOnly, int maxCharge = 100, Type abilityScriptType = null)
+        public void Initialize(string name, Predicate<Hero> condition, string abilityID, ChargeType chargeType = ChargeType.CooldownOnly, int maxCharge = 100, Type abilityScriptType = null)
         {
-            base.Initialize(new TextObject(name), new TextObject(description));
+            var description = GameTexts.FindText("career_description", StringId);
+            base.Initialize(new TextObject(name), description);
             _condition = condition;
             ChargeType = chargeType;
             MaxCharge = maxCharge;
@@ -86,7 +87,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             }
         }
 
-        internal void MutateStatusEffect(StatusEffectTemplate effect, Agent applierAgent)
+        public void MutateStatusEffect(StatusEffectTemplate effect, Agent applierAgent)
         {
             if (applierAgent != null && applierAgent.GetHero()?.GetExtendedInfo() != null)
             {
@@ -100,6 +101,19 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     }
                 }
             }
+        }
+
+        public AbilityTemplate GetAbilityTemplate() => AbilityFactory.GetTemplate(AbilityTemplateID);
+
+        public List<TextObject> GetAbilityEffectLines()
+        {
+            var lines = new List<TextObject>();
+            string[] s = RootNode.Description.ToString().Split(new string[] { "\\n" }, StringSplitOptions.RemoveEmptyEntries);
+            foreach(var line in s)
+            {
+                lines.Add(new TextObject(line.Trim()));
+            }
+            return lines;
         }
     }
 }

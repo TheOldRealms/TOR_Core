@@ -79,7 +79,7 @@ namespace TOR_Core.Models
 
         public float CalculateWardSaveFactor(Agent victim, AttackTypeMask attackTypeMask)
         {
-            float result = 1f;
+            ExplainedNumber result = new ExplainedNumber(1f);
             var victimCharacter = victim.Character as CharacterObject;
             if(victimCharacter != null)
             {
@@ -87,15 +87,16 @@ namespace TOR_Core.Models
 
                 if (container.ResistancePercentages[(int)DamageType.All] > 0)
                 {
-                    result -= container.ResistancePercentages[(int)DamageType.All] / 100;
+                    result.Add(-container.ResistancePercentages[(int)DamageType.All] / 100);
                 }
 
                 if (victimCharacter.GetPerkValue(TORPerks.SpellCraft.Dampener))
                 {
-                    result += TORPerks.SpellCraft.Dampener.SecondaryBonus * 0.01f;
+                    result.AddFactor(TORPerks.SpellCraft.Dampener.SecondaryBonus);
                 }
+                SkillHelper.AddSkillBonusForCharacter(TORSkills.Faith, TORSkillEffects.FaithWardSave, victimCharacter, ref result, -1, false);
             }
-            return result;
+            return result.ResultNumber;
         }
     }
 }

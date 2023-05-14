@@ -312,14 +312,4 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
             }
         }
     }
-
-    public class RoRSaveableTypeDefiner : SaveableTypeDefiner
-    {
-        public RoRSaveableTypeDefiner() : base(516023) { }
-
-        protected override void DefineContainerDefinitions()
-        {
-            ConstructContainerDefinition(typeof(Dictionary<Settlement, Dictionary<CharacterObject, int>>));
-        }
-    }
 }

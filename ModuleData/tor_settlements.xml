@@ -1,9 +1,64 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Settlements>
   <!--Custom Settlements-->
-  <Settlement id="chaos_portal_01" name="{=!}Chaos Portal" owner="Faction.chaos_clan_1" posX="1421.222" posY="900.709" culture="Culture.chaos_culture" prosperity="500" text="{=!}Chaos Portal">
+  <Settlement id="chaos_portal_01" name="{=!}Chaos Portal" owner="Faction.chaos_clan_1" posX="1421.178" posY="900.773" culture="Culture.chaos_culture" prosperity="500" text="{=!}Chaos Portal">
     <Components>
-      <TORCustomSettlementComponent id="chaos_portal_01" settlement_type="ChaosPortal" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <ChaosPortal id="chaos_portal_01" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="sigmar_shrine_01" name="{=!}Shrine of Sigmar" owner="Faction.stirland_clan_1" posX="1464.568" posY="992.714" culture="Culture.empire" prosperity="500" text="{=!}Shrine of Sigmar">
+    <Components>
+      <Shrine id="sigmar_shrine_01" religion="cult_of_sigmar" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="sigmar_shrine_02" name="{=!}Shrine of Sigmar" owner="Faction.averland_clan_1" posX="1501.502" posY="872.2694" culture="Culture.empire" prosperity="500" text="{=!}Shrine of Sigmar">
+    <Components>
+      <Shrine id="sigmar_shrine_02" religion="cult_of_sigmar" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="sigmar_shrine_03" name="{=!}Shrine of Sigmar" owner="Faction.reikland_clan_1" posX="1291.902" posY="1038.979" culture="Culture.empire" prosperity="500" text="{=!}Shrine of Sigmar">
+    <Components>
+      <Shrine id="sigmar_shrine_03" religion="cult_of_sigmar" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="taal_shrine_01" name="{=!}Shrine of Taal" owner="Faction.talabecland_clan_1" posX="1428.681" posY="1104.84" culture="Culture.empire" prosperity="500" text="{=!}Shrine of Sigmar">
+    <Components>
+      <Shrine id="taal_shrine_01" religion="cult_of_taal" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="grove_of_the_lady_01" name="{=!}Grove of the Lady" owner="Faction.carcassonne_clan_1" posX="1016.4" posY="810.7563" culture="Culture.vlandia" prosperity="500" text="{=!}Grove of the Lady">
+    <Components>
+      <Shrine id="grove_of_the_lady_01" religion="cult_of_lady" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="grove_of_the_lady_02" name="{=!}Grove of the Lady" owner="Faction.bastonne_clan_1" posX="1038.792" posY="1070.953" culture="Culture.vlandia" prosperity="500" text="{=!}Grove of the Lady">
+    <Components>
+      <Shrine id="grove_of_the_lady_02" religion="cult_of_lady" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="herdstone_01" name="{=!}Beastmen Herdstone" owner="Faction.beastmen_clan_1" posX="1472.928" posY="1069.09" culture="Culture.chaos_culture" prosperity="500" text="{=!}Beastmen Herdstone">
+    <Components>
+      <HerdStone id="herdstone_01" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="herdstone_02" name="{=!}Beastmen Herdstone" owner="Faction.beastmen_clan_1" posX="885.5717" posY="803.756" culture="Culture.chaos_culture" prosperity="500" text="{=!}Beastmen Herdstone">
+    <Components>
+      <HerdStone id="herdstone_02" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="haunted_site_01" name="{=!}Hunger Woods" owner="Faction.sylvania_clan_1" posX="1608.94" posY="1006.724" culture="Culture.khuzait" prosperity="500" text="{=!}Cursed Site">
+    <Components>
+      <CursedSite id="haunted_site_01" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="haunted_site_02" name="{=!}Cursed Site" owner="Faction.sylvania_clan_1" posX="1578.651" posY="954.0835" culture="Culture.khuzait" prosperity="500" text="{=!}Cursed Site">
+    <Components>
+      <CursedSite id="haunted_site_02" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="haunted_site_03" name="{=!}Cursed Site" owner="Faction.sylvania_clan_1" posX="1505.873" posY="1086.675" culture="Culture.khuzait" prosperity="500" text="{=!}Cursed Site">
+    <Components>
+      <CursedSite id="haunted_site_03" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <!-- Averland 2 Towns 11 villages 2 castles -->
@@ -2148,7 +2203,6 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <!-- original owner is reikland_clan_3, culture is empire -->
   <Settlement id="town_RL2" name="{=Settlements.Settlement.name.town_RL2}Schilderheim" owner="Faction.reikland_clan_3" posX="1191.087" posY="1078.689" culture="Culture.empire" prosperity="4500" gate_posX="1190.67" gate_posY="1079.9" text="{=!}At the Confluence of the River Reik and the River Schilder sits the town of Schilderheim. Ruled by Graf Robert von Uhland, Schilderheim is an important river market down river from altdorf, being one of the last places that trade on the River Reik can stop before reaching Marienburg.">
     <Components>
       <Town id="town_comp_RL2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
@@ -3791,7 +3845,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AQ1" name="{=Settlements.Settlement.name.castle_AQ1}Castle Libourne" owner="Faction.aquitaine_clan_1" posX="919.7657" posY="924.764" prosperity="800" culture="Culture.vlandia" gate_posX="922.556" gate_posY="925.291" text="{=!}In the Suden Vorbergland of aquitaine sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_AQ1" name="{=Settlements.Settlement.name.castle_AQ1}Castle Libourne" owner="Faction.aquitaine_clan_1" posX="922.856" posY="920.45" prosperity="800" culture="Culture.vlandia" gate_posX="922.4922" gate_posY="925.2435" text="{=!}In the Suden Vorbergland of aquitaine sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
       <Town id="castle_comp_AQ1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_vlandia_1" wait_mesh="vlandia_city_background" gate_rotation="0.908" />
     </Components>

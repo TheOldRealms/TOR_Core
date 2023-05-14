@@ -49,7 +49,7 @@ namespace TOR_Core.CharacterDevelopment
         {
             //_grailKnight.Initialize("Grail Knight", "Grail Knight career is for those...", hero => hero.Clan.Tier > 2, "ShadowStep", ChargeType.NumberOfKills);
             //_minorVampire.Initialize("Minor Vampire", "Minor Vampire is ...", hero => hero.Clan.Tier > 2, "ShadowStep", ChargeType.DamageDone, 100, typeof(ShadowStepScript));
-            _warriorPriest.Initialize("Warrior Priest", "Warrior Priest is ...", (hero) => 
+            _warriorPriest.Initialize("Warrior Priest", (hero) => 
             {
                 return hero.Culture == MBObjectManager.Instance.GetObject<CultureObject>("empire") && hero.Clan.Tier >= 1;
             }, "RighteousFury", ChargeType.DamageTaken, 50);

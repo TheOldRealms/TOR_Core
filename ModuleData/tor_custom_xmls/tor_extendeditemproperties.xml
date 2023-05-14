@@ -709,6 +709,9 @@
   <ExtendedItemObjectProperties ItemStringId="tor_empire_body_armor_lord_002">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_flagellant_armor_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_body_breastplate_skeleton_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -800,6 +803,9 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_peasant_garments_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_manatarms_armor_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_tilean_body_armor_knight_001">
@@ -1011,9 +1017,6 @@
   <ExtendedItemObjectProperties ItemStringId="tor_empire_leg_boots_greatsword_002">
     <ItemTraits />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_empire_leg_boots_veteran">
-    <ItemTraits />
-  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_leg_boots_luthor_huss">
     <ItemTraits>
       <ItemTrait ItemTraitName="Holy Amplification" IconName="winds_icon_45">
@@ -1212,6 +1215,9 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_leg_boots_knight_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_leg_boots_manatarms_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_tilean_leg_boots_knight_001">

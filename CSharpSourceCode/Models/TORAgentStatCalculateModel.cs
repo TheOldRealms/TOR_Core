@@ -275,6 +275,7 @@ namespace TOR_Core.Models
 
             var agentCharacter = agent.Character as CharacterObject;
             var agentCaptain = agent.GetCaptainCharacter();
+            var agentLeader = agent.GetPartyLeaderCharacter();
 
             var wieldedItem = agent.WieldedWeapon.Item;
 
@@ -289,7 +290,12 @@ namespace TOR_Core.Models
 
                     if (agentCaptain != null && agentCaptain.GetPerkValue(TORPerks.SpellCraft.ArcaneLink))
                     {
-                        damagebonuses[(int)DamageType.Magical] += (TORPerks.SpellCraft.ArcaneLink.SecondaryBonus / 100f);
+                        damagebonuses[(int)DamageType.Magical] += (TORPerks.SpellCraft.ArcaneLink.SecondaryBonus);
+                    }
+
+                    if (agentLeader != null && agentLeader.GetPerkValue(TORPerks.Faith.Superstitious) && agentCharacter.IsReligiousUnit())
+                    {
+                        damagebonuses[(int)DamageType.Physical] += (TORPerks.Faith.Superstitious.SecondaryBonus);
                     }
 
                     if (wieldedItem != null && wieldedItem.HasWeaponComponent && wieldedItem.IsSpecialAmmunitionItem() && attackMask.HasAnyFlag(AttackTypeMask.Ranged))
@@ -299,6 +305,13 @@ namespace TOR_Core.Models
                             proportions[(int)DamageType.Fire] = proportions[(int)DamageType.Physical];
                             proportions[(int)DamageType.Physical] = 0;
                         }
+                    }
+                }
+                if(mask == PropertyMask.Defense || mask == PropertyMask.All)
+                {
+                    if(agentLeader != null && agentLeader.GetPerkValue(TORPerks.Faith.Imperturbable) && agentCharacter.IsReligiousUnit())
+                    {
+                        resistances[(int)DamageType.Physical] += (TORPerks.Faith.Imperturbable.SecondaryBonus);
                     }
                 }
             }

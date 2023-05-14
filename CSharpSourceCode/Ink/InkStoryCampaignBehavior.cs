@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.GauntletUI.Data;
+using TaleWorlds.Library;
 using TaleWorlds.ScreenSystem;
 
 namespace TOR_Core.Ink
@@ -15,36 +16,26 @@ namespace TOR_Core.Ink
     public class InkStoryCampaignBehavior : CampaignBehaviorBase
     {
         private InkBookMapView _inkView;
+        private MapScreen _mapScreen;
         private CampaignTimeControlMode _cachedSpeed = CampaignTimeControlMode.StoppablePlay;
-        public override void RegisterEvents()
-        {
-            ScreenManager.OnPushScreen += OnPushScreen;
-        }
-
-        private void OnPushScreen(ScreenBase pushedScreen)
-        {
-            if (pushedScreen.GetType() != typeof(MapScreen)) return;
-            else
-            {
-                var mapscreen = pushedScreen as MapScreen;
-                if(mapscreen.GetMapView<InkBookMapView>() == null)
-                {
-                    mapscreen.AddMapView<InkBookMapView>();
-                }
-                _inkView = mapscreen.GetMapView<InkBookMapView>();
-            }
-        }
+        public override void RegisterEvents() { }
 
         public void OpenStory(InkStory story) 
         {
-            _cachedSpeed = Campaign.Current.TimeControlMode;
-            Campaign.Current.TimeControlMode = CampaignTimeControlMode.Stop;
-            _inkView.OpenStory(story);
+            if(ScreenManager.TopScreen is MapScreen)
+            {
+                _mapScreen = ScreenManager.TopScreen as MapScreen;
+                _cachedSpeed = Campaign.Current.TimeControlMode;
+                Campaign.Current.TimeControlMode = CampaignTimeControlMode.Stop;
+                _inkView = (InkBookMapView)_mapScreen.AddMapView<InkBookMapView>();
+                if(_inkView != null) _inkView.OpenStory(story);
+            }
         }
 
         public void CloseStory()
         {
             _inkView.CloseStory();
+            _mapScreen.RemoveMapView(_inkView);
             Campaign.Current.TimeControlMode = _cachedSpeed;
         }
 
@@ -61,10 +52,12 @@ namespace TOR_Core.Ink
         {
             base.CreateLayout();
             _vm = new InkStoryVM();
-            GauntletMapBasicView mapView = MapScreen.GetMapView<GauntletMapBasicView>();
-            Layer = mapView.GauntletLayer;
+            Layer = new GauntletLayer(4399) { IsFocusLayer = true };
             _layer = Layer as GauntletLayer;
             _movie = _layer.LoadMovie("InkStory", _vm);
+            Layer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
+            MapScreen.AddLayer(Layer);
+            ScreenManager.TrySetFocus(Layer);
         }
 
         protected override void OnMapScreenUpdate(float dt)
@@ -86,6 +79,9 @@ namespace TOR_Core.Ink
 
         protected override void OnFinalize()
         {
+            Layer.InputRestrictions.ResetInputRestrictions();
+            MapScreen.RemoveLayer(Layer);
+            ScreenManager.TryLoseFocus(Layer);
             _vm.OnFinalize();
             _vm = null;
             _layer.ReleaseMovie(_movie);

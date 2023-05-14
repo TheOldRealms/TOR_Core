@@ -17,6 +17,8 @@ namespace TOR_Core.CharacterDevelopment
         private SkillEffect _spellDuration;
         private SkillEffect _windsRechargeRate;
         private SkillEffect _maxWinds;
+        private SkillEffect _faithWardSave;
+        private SkillEffect _blessingDuration;
 
         public static TORSkillEffects Instance { get; private set; }
         public static SkillEffect GunReloadSpeed => Instance._gunReloadSpeed;
@@ -25,6 +27,8 @@ namespace TOR_Core.CharacterDevelopment
         public static SkillEffect SpellDuration => Instance._spellDuration;
         public static SkillEffect WindsRechargeRate => Instance._windsRechargeRate;
         public static SkillEffect MaxWinds => Instance._maxWinds;
+        public static SkillEffect FaithWardSave => Instance._faithWardSave;
+        public static SkillEffect BlessingDuration => Instance._blessingDuration;
 
         public TORSkillEffects()
         {
@@ -35,6 +39,8 @@ namespace TOR_Core.CharacterDevelopment
             _spellDuration = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("SpellDuration"));
             _windsRechargeRate = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("WindsRechargeRate"));
             _maxWinds = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("MaxWinds"));
+            _faithWardSave = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("FaithWardSave"));
+            _blessingDuration = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("BlessingDuration"));
 
             _gunReloadSpeed.Initialize(new TextObject("{=!}Gunpowder firearms reload speed: +{a0} %", null), new SkillObject[]
             {
@@ -65,6 +71,16 @@ namespace TOR_Core.CharacterDevelopment
             {
                 TORSkills.SpellCraft
             }, SkillEffect.PerkRole.Personal, 0.3f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.Add, 0f, 0f);
+
+            _faithWardSave.Initialize(new TextObject("{=!}Ward save: +{a0} %", null), new SkillObject[]
+            {
+                TORSkills.Faith
+            }, SkillEffect.PerkRole.Personal, 0.08f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.AddFactor, 0f, 0f);
+
+            _blessingDuration.Initialize(new TextObject("{=!}Blessing duration increase: +{a0} %", null), new SkillObject[]
+            {
+                TORSkills.Faith
+            }, SkillEffect.PerkRole.PartyLeader, 0.05f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.AddFactor, 0f, 0f);
         }
     }
 }
