@@ -530,6 +530,7 @@
     <Compile Include="HarmonyPatches\MapBarPatches.cs" />
     <Compile Include="HarmonyPatches\MBMusicManagerPatches.cs" />
     <Compile Include="HarmonyPatches\MissionPatches.cs" />
+    <Compile Include="HarmonyPatches\MountCreationPatches.cs" />
     <Compile Include="HarmonyPatches\ObjectManagerPatches.cs" />
     <Compile Include="HarmonyPatches\PerkResetRelatedPatch.cs" />
     <Compile Include="HarmonyPatches\RotatingMainMenuScenePatch.cs" />
