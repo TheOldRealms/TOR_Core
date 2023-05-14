@@ -260,7 +260,7 @@
 			<string>Engineering</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Endurance</AttributeToIncrease>
-		<OptionText>Fisherman and his Frog Wife</OptionText>
+		<OptionText>Fisherfolk</OptionText>
 		<OptionFlavourText>For generations your family have fished the rivers and fetid pools of the swamp to keep themselves fed, it was far from a spectacular life but it was honest work and your family was content. Even after the disappearance of your brother...</OptionFlavourText>
 	</CharacterCreationOption>
 
@@ -371,7 +371,7 @@
 			<string>Tactics</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Control</AttributeToIncrease>
-		<OptionText>Night Soldier</OptionText>
+		<OptionText>Night Watchman</OptionText>
 		<OptionFlavourText>Mortals are often called upon to serve their undead masters. These professional soldiers are known to march into battle alongside the undead hordes of their masters. A more dour and superstitious folk you will never meet but they rarely break in the heat of battle. </OptionFlavourText>
 	</CharacterCreationOption>
 
@@ -432,7 +432,7 @@
 			<string>Gunpowder</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
-		<OptionText>Bretonnian Sailor</OptionText>
+		<OptionText>Bretonnian Sailors</OptionText>
 		<OptionFlavourText>TEST</OptionFlavourText>
 	</CharacterCreationOption>
 
