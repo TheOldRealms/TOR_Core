@@ -637,6 +637,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 party.CurrentSettlement == null &&
                 party.MapEvent == null &&
                 !party.Ai.IsDisabled &&
+                party.Army == null &&
                 !party.HasAnyActiveBlessing();
         }
 
@@ -645,6 +646,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             return party.IsLordParty &&
                 !party.IsEngaging &&
                 party.IsActive &&
+                party.Army == null &&
                 !party.IsDisbanding &&
                 !party.IsCurrentlyUsedByAQuest &&
                 party.CurrentSettlement == null &&

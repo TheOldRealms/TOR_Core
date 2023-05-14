@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Helpers;
+using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
@@ -24,7 +25,40 @@ namespace TOR_Core.CampaignMechanics.Religion
             CampaignEvents.HeroCreated.AddNonSerializedListener(this, OnHeroCreated);
             CampaignEvents.OnItemsDiscardedByPlayerEvent.AddNonSerializedListener(this, OnItemsDiscarded);
             CampaignEvents.HourlyTickPartyEvent.AddNonSerializedListener(this, HourlyPartyTick);
+            CampaignEvents.MapEventEnded.AddNonSerializedListener(this, MapEventEnded);
             TORCampaignEvents.Instance.DevotionLevelChanged += OnDevotionLevelChanged;
+        }
+
+        private void MapEventEnded(MapEvent mapEvent)
+        {
+            var attackerParties = mapEvent.PartiesOnSide(BattleSideEnum.Attacker);
+            var defenderParties = mapEvent.PartiesOnSide(BattleSideEnum.Defender);
+            attackerParties.ForEach(x => DistributeXpForKilledUnits(x));
+            defenderParties.ForEach(x => DistributeXpForKilledUnits(x));
+        }
+
+        private void DistributeXpForKilledUnits(MapEventParty party)
+        {
+            if(party != null && party.Party != null && party.Party.MobileParty != null && party.Party.MobileParty.IsLordParty)
+            {
+                var mobileParty = party.Party.MobileParty;
+                if(mobileParty.LeaderHero != null && mobileParty.LeaderHero.GetPerkValue(TORPerks.Faith.Spirit))
+                {
+                    int xp = 0;
+                    var killedtroops = party.Troops.Where(x => x.IsKilled);
+                    foreach (var troop in killedtroops)
+                    {
+                        if (troop.Troop.Tier >= 6)
+                        {
+                            xp = (int)(1.333f * Math.Pow(troop.Troop.Level + 4, 2));
+                        }
+                    }
+                    if (xp > 0)
+                    {
+                        MobilePartyHelper.PartyAddSharedXp(mobileParty, xp);
+                    }
+                }
+            }
         }
 
         private void HourlyPartyTick(MobileParty party)
