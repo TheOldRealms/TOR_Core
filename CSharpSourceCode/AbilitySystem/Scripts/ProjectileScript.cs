@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -12,6 +13,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         private int _id;
         private float _lifeTime;
         private bool init;
+        private bool triggered;
 
         public override void SetAgent(Agent agent)
         {
@@ -22,8 +24,11 @@ namespace TOR_Core.AbilitySystem.Scripts
             var projectile = new MissionWeapon(arrowItem, null, null);
             _id = agent.Index;
             var speed = this._ability.Template.BaseMovementSpeed;
-            RemoveProjectile();
-            
+            if (Mission.Current.Missiles.FirstOrDefault(x => x.Index == _id)!=null)
+            {
+                RemoveProjectile();
+            }
+
             Mission.Current.AddCustomMissile(agent, projectile,
                 agent.GetEyeGlobalPosition(),agent.LookDirection,
                 orientation: Mat3.CreateMat3WithForward(agent.LookDirection),
@@ -73,20 +78,26 @@ namespace TOR_Core.AbilitySystem.Scripts
         protected override void OnRemoved(int removeReason)
         {
             init = false;
-            RemoveProjectile(); //TODO crashs when mission is closed when projectile is flying
+            if (!triggered)
+            {
+                RemoveProjectile();
+            }
+
             base.OnRemoved(removeReason);
         }
 
         private void RemoveProjectile()
         {
+            TriggerEffects(this.GameEntity.GlobalPosition, this.GameEntity.GlobalPosition.NormalizedCopy()); //TODO there is no particle effect when multiple units get pierced with green eye
             var missile = Mission.Current.Missiles.FirstOrDefault(x => x.Index == _id);
             if (missile != null)
-            { 
-                TriggerEffects(this.GameEntity.GlobalPosition, this.GameEntity.GlobalPosition.NormalizedCopy()); //TODO there is no particle effect when multiple units get pierced with green eye
+            {
                 Mission.Current.RemoveMissileAsClient(_id);
                 missile.Entity.Remove(0);
             }
-            
+
+            triggered = true;
+
         }
     }
 }
