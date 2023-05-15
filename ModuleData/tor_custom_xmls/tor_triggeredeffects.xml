@@ -421,7 +421,7 @@
             DamageAmount="30" 
             Radius="4" 
             HasShockWave="false" 
-            TargetType="Friendly" 
+            TargetType="Enemy" 
             ImbuedStatusEffectDuration="2" 
             DamageVariance="0"
             ScriptNameToTrigger="none">

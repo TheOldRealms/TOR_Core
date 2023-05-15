@@ -33,11 +33,10 @@ namespace TOR_Core.AbilitySystem.Scripts
                 agent.GetEyeGlobalPosition(),agent.LookDirection,
                 orientation: Mat3.CreateMat3WithForward(agent.LookDirection),
                 speed,speed,false,null,_id);
-            
-           init = true;
+            init = true;
            _lifeTime = 0;
         }
-
+        
         protected override void OnTick(float dt)
         {
             if(!init)
@@ -88,7 +87,18 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         private void RemoveProjectile()
         {
-            TriggerEffects(this.GameEntity.GlobalPosition, this.GameEntity.GlobalPosition.NormalizedCopy()); //TODO there is no particle effect when multiple units get pierced with green eye
+            if (Mission.Current.CurrentState == Mission.State.Over)
+            {
+                triggered = true;   //I hate myself for this fix. there is no good way to find out if the mission is currently in a loading state or in a transition to menu. 
+                                    //later in the triggered effect , the effect would happen for these projectile based spells too late, and cause a crash in custom battle (in campaign this will most likely not happen due to the short lifetime of such projectiles)
+                                    // the fix now restricts the projectiles to only work during mission, but in the "after(Over) mission state, like cheering of the troops and the "mission won" info.
+                                    // Tthe effect is not triggered anymore and the Spell entity will be removed by the TW garbage collector
+                                    
+                return;
+            }
+            
+            TriggerEffects(this.GameEntity.GlobalPosition, this.GameEntity.GlobalPosition.NormalizedCopy());
+
             var missile = Mission.Current.Missiles.FirstOrDefault(x => x.Index == _id);
             if (missile != null)
             {
