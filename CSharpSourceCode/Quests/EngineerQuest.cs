@@ -317,17 +317,4 @@ namespace TOR_Core.Quests
         RogueEngineerhunt = 2,
         HandInRogueEngineerHunt = 3
     }
-
-    public class RogueEngineerQuestTypeDefiner : SaveableTypeDefiner
-    {
-        public RogueEngineerQuestTypeDefiner() : base(701792)
-        {
-        }
-
-        protected override void DefineClassTypes()
-        {
-            AddClassDefinition(typeof(EngineerQuest), 1);
-            AddEnumDefinition(typeof(EngineerQuestStates), 2);
-        }
-    }
 }

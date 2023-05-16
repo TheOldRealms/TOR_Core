@@ -5,6 +5,7 @@ using System.IO;
 using System.Xml.Serialization;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.Party;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CharacterDevelopment;
@@ -16,6 +17,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
     {
         private static Dictionary<string, CharacterExtendedInfo> _characterInfos = new Dictionary<string, CharacterExtendedInfo>();
         private Dictionary<string, HeroExtendedInfo> _heroInfos = new Dictionary<string, HeroExtendedInfo>();
+        private Dictionary<string, MobilePartyExtendedInfo> _partyInfos = new Dictionary<string, MobilePartyExtendedInfo>();
         private static ExtendedInfoManager _instance;
 
         public static ExtendedInfoManager Instance => _instance;
@@ -25,10 +27,12 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         public override void RegisterEvents()
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionStart);
-            CampaignEvents.OnNewGameCreatedPartialFollowUpEndEvent.AddNonSerializedListener(this, OnNewGameCreatedPartialFollowUpEnd);
-            CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, FillWindsOfMagic);
+            CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, OnNewGameCreatedPartialFollowUpEnd);
+            CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, HourlyTick);
             CampaignEvents.HeroCreated.AddNonSerializedListener(this, OnHeroCreated);
             CampaignEvents.HeroKilledEvent.AddNonSerializedListener(this, OnHeroKilled);
+            CampaignEvents.MobilePartyCreated.AddNonSerializedListener(this, OnPartyCreated);
+            CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this, OnPartyDestroyed);
         }
 
         public static CharacterExtendedInfo GetCharacterInfoFor(string id)
@@ -39,6 +43,11 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         public HeroExtendedInfo GetHeroInfoFor(string id)
         {
             return _heroInfos.ContainsKey(id) ? _heroInfos[id] : null;
+        }
+
+        public MobilePartyExtendedInfo GetPartyInfoFor(string id)
+        {
+            return _partyInfos.ContainsKey(id) ? _partyInfos[id] : null;
         }
 
         public void ClearInfo(Hero hero)
@@ -53,17 +62,23 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             if (_characterInfos.Count > 0) _characterInfos.Clear();
             TryLoadCharacters(out _characterInfos);
+            EnsurePartyInfos();
         }
 
-        private void OnNewGameCreatedPartialFollowUpEnd(CampaignGameStarter campaignGameStarter)
+        private void OnNewGameCreatedPartialFollowUpEnd(CampaignGameStarter campaignGameStarter, int index)
         {
-            if (_characterInfos.Count > 0) _characterInfos.Clear();
-            TryLoadCharacters(out _characterInfos);
-            InitializeHeroes();
+            if(index == CampaignEvents.OnNewGameCreatedPartialFollowUpEventMaxIndex - 2)
+            {
+                if (_characterInfos.Count > 0) _characterInfos.Clear();
+                TryLoadCharacters(out _characterInfos);
+                InitializeHeroes();
+                EnsurePartyInfos();
+            }
         }
 
-        private void FillWindsOfMagic()
+        private void HourlyTick()
         {
+            //fill winds of magic
             foreach (var entry in _heroInfos)
             {
                 if (entry.Value.AllAttributes.Contains("SpellCaster"))
@@ -72,10 +87,23 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                     float bonusRegen = 1f;
                     if(hero != null && hero.GetPerkValue(TORPerks.SpellCraft.Catalyst) && hero.CurrentSettlement != null && hero.CurrentSettlement.IsTown)
                     {
-                        bonusRegen += TORPerks.SpellCraft.Catalyst.SecondaryBonus * 0.01f;
+                        bonusRegen += TORPerks.SpellCraft.Catalyst.SecondaryBonus;
                     }
                     entry.Value.CurrentWindsOfMagic += entry.Value.WindsOfMagicRechargeRate * bonusRegen;
                     entry.Value.CurrentWindsOfMagic = Math.Min(entry.Value.CurrentWindsOfMagic, entry.Value.MaxWindsOfMagic);
+                }
+            }
+            //count down blessing duration
+            foreach(var entry in _partyInfos)
+            {
+                if(!string.IsNullOrWhiteSpace(entry.Value.CurrentBlessingStringId) && entry.Value.CurrentBlessingRemainingDuration > 0)
+                {
+                    entry.Value.CurrentBlessingRemainingDuration--;
+                }
+                else
+                {
+                    entry.Value.CurrentBlessingRemainingDuration = -1;
+                    entry.Value.CurrentBlessingStringId = null;
                 }
             }
         }
@@ -176,9 +204,37 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             }
         }
 
+        private void OnPartyCreated(MobileParty party)
+        {
+            if (!_partyInfos.ContainsKey(party.StringId) && party.IsLordParty) _partyInfos.Add(party.StringId, new MobilePartyExtendedInfo());
+        }
+
+        private void OnPartyDestroyed(MobileParty destroyedParty, PartyBase destroyerParty)
+        {
+            if (_partyInfos.ContainsKey(destroyedParty.StringId)) _partyInfos.Remove(destroyedParty.StringId);
+        }
+
+        private void EnsurePartyInfos()
+        {
+            foreach(var party in MobileParty.AllLordParties)
+            {
+                OnPartyCreated(party);
+            }
+        }
+
+        public void AddBlessingToParty(string partyId, string blessingId, int duration)
+        {
+            if (_partyInfos.ContainsKey(partyId))
+            {
+                _partyInfos[partyId].CurrentBlessingStringId = blessingId;
+                _partyInfos[partyId].CurrentBlessingRemainingDuration = duration;
+            }
+        }
+
         public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData("_heroInfos", ref _heroInfos);
+            dataStore.SyncData("_partyInfos", ref _partyInfos);
         }
 
     }

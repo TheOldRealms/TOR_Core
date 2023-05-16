@@ -65,6 +65,13 @@
             <!--Right Panel-->
             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="255" HorizontalAlignment="Right" DoNotAcceptEvents="true">
               <Children>
+                
+                <!--Navigate to Careers screen-->
+                <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="200" SuggestedHeight="50" MarginTop="50" HorizontalAlignment="Center" PositionXOffset="-15" Command.Click="ExecuteNavigateToCareers" Brush="TorSpellBookLearnButton" IsVisible="@HasCareer">
+                  <Children>
+                    <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginLeft="2" MarginRight="2" VerticalAlignment="Center" Text="Career Options" Brush.FontSize="22"/>
+                  </Children>
+                </ButtonWidget>
 
                 <!--Character Tableau-->
                 <CharacterTableauWidget DataSource="{CurrentCharacter\HeroCharacter}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="550" SuggestedHeight="1000" HorizontalAlignment="Center" VerticalAlignment="Center" BannerCodeText="@BannerCodeText" BodyProperties="@BodyProperties" CharStringId="@CharStringId" EquipmentCode="@EquipmentCode" IsFemale="@IsFemale" MountCreationKey="@MountCreationKey" StanceIndex="@StanceIndex" ArmorColor1="@ArmorColor1" ArmorColor2="@ArmorColor2" Race="@Race" IsEnabled="false" PositionXOffset="-50" DoNotUseCustomScale="true"/>

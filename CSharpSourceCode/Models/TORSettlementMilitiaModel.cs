@@ -1,7 +1,9 @@
+using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Localization;
+using TOR_Core.CharacterDevelopment;
 
 namespace TOR_Core.Models
 {
@@ -39,6 +41,10 @@ namespace TOR_Core.Models
                         result.Add(2f, new TextObject("Bonus"));
                         break;
                 }
+            }
+            if(settlement.OwnerClan != null && settlement.OwnerClan.Leader != null)
+            {
+                PerkHelper.AddPerkBonusForCharacter(TORPerks.Faith.DivineMission, settlement.OwnerClan.Leader.CharacterObject, false, ref result);
             }
             return result;
         }

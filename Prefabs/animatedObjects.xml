@@ -1,0 +1,27 @@
+<prefabs>
+	<game_entity name="tendrils" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<skeleton skeleton_model="tendrils_skeleton">
+			<components>
+				<meta_mesh_component name="tendrils_mesh">
+					<mesh name="tendrils_mesh" material="empire_light_wizard_gauntlets"/>
+				</meta_mesh_component>
+			</components>
+			<bones>
+				<bone frame="0.081099, 0.101871, 0.991486, 0.000000, 0.996695, -0.013013, -0.080188, 0.000000, 0.004733, 0.994713, -0.102590, 0.000000, 0.000000, 0.000000, 0.000000, 1.000000"/>
+				<bone frame="0.997856, -0.003649, 0.065343, 0.000000, 0.005026, 0.999768, -0.020923, 0.000000, -0.065251, 0.021206, 0.997644, 0.000000, 1.000000, 0.000000, 0.000000, 1.000000" _index_="1"/>
+				<bone frame="0.863379, -0.193645, -0.465916, 0.000000, 0.190162, 0.980210, -0.055012, 0.000000, 0.467349, -0.041103, 0.883117, 0.000000, 1.531801, 0.000000, 0.000000, 1.000000" _index_="2"/>
+				<bone frame="0.477506, -0.282749, -0.831890, 0.000000, 0.342797, 0.931725, -0.119916, 0.000000, 0.808999, -0.227909, 0.541829, 0.000000, 1.655508, -0.000000, -0.000000, 1.000000" _index_="3"/>
+				<bone frame="0.905674, -0.280524, 0.317900, 0.000000, 0.221234, 0.952325, 0.210079, 0.000000, -0.361676, -0.119932, 0.924557, 0.000000, 1.386652, 0.000000, 0.000000, 1.000000" _index_="4"/>
+			</bones>
+		</skeleton>
+		<scripts>
+			<script name="TORSimpleObjectAnimator">
+				<variables>
+					<variable name="AnimationName" value="tendrils_idle"/>
+				</variables>
+			</script>
+		</scripts>
+	</game_entity>
+</prefabs>
+

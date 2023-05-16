@@ -175,6 +175,21 @@ namespace TOR_Core.Utilities
             return settlements;
         }
 
+        public static MBReadOnlyList<MobileParty> FindPartiesAroundPosition(Vec2 position, float radius, Func<MobileParty, bool> condition = null)
+        {
+            MBList<MobileParty> parties = new MBList<MobileParty>();
+            LocatableSearchData<MobileParty> locatableSearchData = MobileParty.StartFindingLocatablesAroundPosition(position, radius);
+
+            for (MobileParty party = MobileParty.FindNextLocatable(ref locatableSearchData); party != null; party = MobileParty.FindNextLocatable(ref locatableSearchData))
+            {
+                if (condition == null || condition(party))
+                {
+                    parties.Add(party);
+                }
+            }
+            return new MBReadOnlyList<MobileParty>(parties);
+        }
+
         public static void WriteHeightMapDataForCurrentScene()
         {
             var scene = Mission.Current?.Scene;

@@ -73,8 +73,8 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
             return Agent.Main != null &&
                    Agent.Main.State == AgentState.Active &&
                    (_abilityComponent == null ||
-                   _abilityComponent.SpecialMove == null ||
-                   !_abilityComponent.SpecialMove.IsUsing) &&
+                   _abilityComponent.CareerAbility == null ||
+                   !_abilityComponent.CareerAbility.IsActive) &&
                    Mission.Mode != MissionMode.Conversation &&
                    Mission.Mode != MissionMode.Deployment &&
                    Mission.Mode != MissionMode.CutScene &&

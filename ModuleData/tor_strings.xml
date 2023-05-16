@@ -284,10 +284,28 @@
   <string id="str_inventory_weapon.22" text="{=!}Pistol" />
   <string id="str_inventory_weapon.23" text="{=!}Handgun" />
 
-  <!--chaos portal-->
+  <!--custom settlements e.g. chaos portal, shrines, herdstones -->
   <string id="customsettlement_intro.chaos_portal_01" text="{=!}You arrive at an active chaos portal. The vile thing pulses with arcane magic, chaos forces are invading in minor numbers from their realm." />
   <string id="customsettlement_disabled.chaos_portal_01" text="{=!}The portal lies dormant. Come back at a later time." />
   <string id="customsettlement_battle.chaos_portal_01" text="{=!}Attempt to defeat the chaos forces present and close the portal." />
+
+  <string id="customsettlement_intro.sigmar_shrine_01" text="{=!}You arrive at a shrine of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the God-King." />
+  <string id="customsettlement_disabled.sigmar_shrine_01" text="{=!}The shrine lies in ruins. There is nothing to do here." />
+  <string id="customsettlement_intro.sigmar_shrine_02" text="{=!}You arrive at a shrine of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the God-King." />
+  <string id="customsettlement_disabled.sigmar_shrine_02" text="{=!}The shrine lies in ruins. There is nothing to do here." />
+  <string id="customsettlement_intro.sigmar_shrine_03" text="{=!}You arrive at a shrine of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the God-King." />
+  <string id="customsettlement_disabled.sigmar_shrine_03" text="{=!}The shrine lies in ruins. There is nothing to do here." />
+
+  <string id="customsettlement_intro.taal_shrine_01" text="{=!}You arrive at a shrine of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the God of Nature." />
+  <string id="customsettlement_disabled.taal_shrine_01" text="{=!}The shrine lies in ruins. There is nothing to do here." />
+
+  <string id="customsettlement_intro.grove_of_the_lady_01" text="{=!}You arrive at a grove of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the Lady of the Lake." />
+  <string id="customsettlement_disabled.grove_of_the_lady_01" text="{=!}The shrine lies in ruins. There is nothing to do here." />
+  <string id="customsettlement_intro.grove_of_the_lady_02" text="{=!}You arrive at a grove of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the Lady of the Lake." />
+  <string id="customsettlement_disabled.grove_of_the_lady_02" text="{=!}The shrine lies in ruins. There is nothing to do here." />
+
+  <string id="customsettlement_intro.haunted_site_01" text="{=!}You are deep within the Hunger Woods - a spirit infested cursed forest." />
+  <string id="customsettlement_disabled.haunted_site_01" text="{=!}You shouldn't see this." />
 
   <!--wanderer stories-->
   <string id="prebackstory.tor_wanderer_empire_0" text="{=!}My story? Sure, I can share it." />
@@ -398,4 +416,44 @@
   <string id="backstory_d.tor_wanderer_vampire_2" text="{=!}Mmm." />
   <string id="generic_backstory.tor_wanderer_vampire_2" text="{=!}I am a Wight King, servant in death." />
 
+  <!-- Religions -->
+  <string id="str_religion" text="{=!}Religion" />
+  <string id="tor_religion_description.cult_of_sigmar" text="{=!}The Cult of Sigmar, also sometimes called the Church of Sigmar, the Holy Temple of Sigmar, the Clergy of Sigmar or simply the Sigmarite Cult, is the state church of the Empire that administrates the worship of that realm's patron god, Sigmar Heldenhammer. The Cult of Sigmar was founded by the wild-eyed friar Johann Helstrum in the year 73 IC, when he appeared before the masses to relate a vision that he experienced of Sigmar kneeling before Ulric, the god of war and winter, who placed the crown of godhood upon his brow as Sigmar took his place amongst the deities of the Old World Pantheon. As of today, the Cult of Sigmar has become an essential part of Imperial society. Nearly every city, town or village within the Empire has dedicated a portion of their wealth and land to the creation and maintenance of a Sigmarite temple, from which a priest of the Cult of Sigmar will attend to the spiritual well-being of its citizenry, whether it be through holy words of prayer or through heroic actions and trials by combat." />
+  <string id="tor_religion_description.cult_of_taal" text="{=!}The Cult of Taal and Rhya is among the most ancient and pervasive in the Old World, tracing a direct line to the primal gods from the deepest of history. The cult grew organically, as early Humans tried to explain natural phenomenon, such as thunder, the turning of the seasons, and the rise and ebb of the seas. Over time, the Gods Taal and Rhya came into being, beginning as a single entity, known as Ishnernos. This split occurred many thousands of years ago, and the Cult of Ishnernos faded into distant memory. Taal rules nature and is considered King of the Gods. He claims the wild places as his domain and is primarily worshipped by hardy woodsmen, trackers, and rangers. Rhya's worshippers are found in the cultivated fields and orchards of the Empire, and are found among farmers, fishermen, and young lovers everywhere. The Cult of Taal and Rhya is the sanctioned cult of Talabecland, and is wildly popular in the eastern and northern parts of the Empire. Of the two, Taal receives most recognition, and Rhya's role is much diminished. The grand city of Talabheim is particularly fervent in its worship of both Taal and Rhya. However, in other cities, although Rhya's name is commonly known, he worship is rare, leading many urbanites to conclude that her cult is on the decline." />
+  <string id="tor_religion_description.cult_of_lady" text="{=!}The Cult of the Lady of the Lake, or simply the Cult of the Lady, is a state-official religious cult that serves to follow and uphold the values set upon them by the Lady of the Lake, and to serve the interest of her and the Kingdom of Bretonnia. Since ancient times, the Bretonnians have worshipped the Lady of the Lake as their goddess and their primary deity, a figure of myth and legend who guides their Kings and protects their lands from harm. Worship of the Lady can be traced to the earliest days of the Kingdom. It is said that she arose from a Sacred Lake before Gilles le Breton and his Knightly Companions on the dawn of the Great Victory of Bordeleaux. Wreathed in a fey light, the Lady rose from the water bearing a Grail which overflowed with light that spilled into the waters of the lake, blessing the assembled knights until dawn's light broke over the mountains." />
+  <string id="tor_religion_description.cult_of_myrmidia" text="{=!}" />
+  <string id="tor_religion_description.cult_of_nagash" text="{=!}Vampires of all kinds loathe the gods. They don't deny their existence, but they don't serve them, seeking to be their equal instead. The closest idea of a religion to vampires would be their shared recognition of Nagash as the creator of undeath. Ultimately, all vampires descend from him. Nagash, known by many names such as the 'Great Necromancer', the 'Great Betrayer', the 'Usurper', the 'Undying King', the 'Supreme Lord of Undeath' or simply 'He Who Shall Not Be Named' is the ultimate personification of death and the Undead, an ancient, evil being who sought to conquer this cruel, chaotic mortal world and bring about an age of Undeath that will rule for all eternity. Nagash is darkness and unreasoning hatred given form, the father and creator of the foul art of necromancy and lord of all Vampires. His every action and deed is self-serving, his achievement horrific and loathsome, and his every whim bent solely to ensure that no one shall ever deny nor challenge his right to rule ever again." />
+  <string id="tor_religion_description.chaos_undivided" text="{=!}The term Chaos Undivided refers to a faction among the forces of Chaos that serves the pantheon of the major Chaos Gods as a whole rather than owing complete fealty to one over the others. It is often represented by the Everchosen of Chaos, the mortal Chaos Lord who is the greatest champion of all the major Chaos Gods. Followers of Chaos Undivided venerate the force of Chaos itself, sometimes as an entity that some insane scholars of the Old World name the 'Great Beast' in which the major Chaos Gods are seen as a single deity whose four major constituent parts are to be worshipped equally as different emanations of the same universal force. At times, this entity sets aside its mad internal struggle, which is otherwise known as the Great Game, to make it possible for the fragmented armies of the major Chaos Gods to gather together under one banner, such as during the various Chaos incursions into the Known World like the Great War Against Chaos and the End Times. These moments cause the Old World to tremble and quake in fear and loathing." />
+  <string id="tor_religion_description.cult_of_slaanesh" text="{=!}Slaanesh, also known as the 'Dark Prince', the 'Prince of Pleasure', the 'Lord of Excess', the 'God of Obsession', 'the Serpent', the 'Master of Excess in All Things', the 'Perfect Prince' and even the 'Prince of Chaos' is the major Chaos God of pleasure, passion, obsession, excess, hedonism, decadence and pain. Born of mortal inspiration and desire, Slaanesh is the great muse, the fulfiller of dreams. He is passion given form. He is pleasure incarnate, from the intellectual satisfaction of a problem solved to the fulfilment of baser desires. His is the domain of frustration and agony, the struggle to achieve that which mortals covet. He is titillation. He is suffering. He is the sum of all mortal experience." />
+  <string id="tor_religion_description.cult_of_nurgle" text="{=!}Nurgle, also known as the 'Plague Lord', 'Grandfather Nurgle', the 'Lord of Pestilence', the 'Fly Lord', the 'Urfather' and 'the Crow' among many other names is the major Chaos God of disease, decay, despair, destruction, death and rebirth. Nurgle is the Chaos God most directly involved with the plight of mortals, particularly Men, who suffer so acutely from a fear of death. He is the eldest of the four Chaos Gods and indeed is undoubtedly the oldest Chaos God of all, for the process of death and decay is as ancient as life itself. Nurgle is the embodiment of the constant cycle of death and rebirth which animates all life in the universe, and was brought into being by mortals' fears of death and the despair they feel about their inevitable mortality from age and disease." />
+  <string id="tor_religion_description.cult_of_khorne" text="{=!}Khorne, also known as the 'Blood God', the 'Lord of Murder', the 'Lord of Skulls', 'Hunter of Souls' and 'the Hound' in Norsca, is the major Chaos God of war, hatred, wrath, rage, murder, blood, strength, courage and martial honour. Khorne is the second eldest of the major Ruinous Powers and his waxing strength in this time of constant conflict often renders him the mightiest of the Chaos Gods in his effect on the mortal world and in the Great Game between the gods. His domain encompasses the most basic and brutal of sentient emotions - hate, anger, rage, the desire for destruction and the joy of killing one's enemies. Every act of killing or murder in the mortal world feeds and empowers Khorne, the more senseless, vicious and bloodthirsty, the better." />
+  <string id="tor_religion_description.cult_of_tzeentch" text="{=!}Tzeentch, also known as the 'Changer of Ways', the 'Lord of Change', the 'Architect of Fate', the 'Wind-lord', the 'Raven God', and the 'Great Conspirator' is the major Chaos God of change, evolution, ambition, intrigue, destiny, lies, trickery, sorcery, knowledge, and mutation. Though weary scholars of daemonology know this god by the name of Tzeentch, in truth, he exceeds all the other Ruinous Powers in his number of facets, names and aspects. For he is change, said to embody every mortal creature's recognition of, and desire, to change, to grow, to move, to seek more -- more knowledge, more wealth, more power. His face and form shifts and turns from eternity unto eternity." />
+
+  <string id="tor_religion_name_of_god.cult_of_sigmar" text="{=!}Sigmar" />
+  <string id="tor_religion_name_of_god.cult_of_taal" text="{=!}Taal" />
+  <string id="tor_religion_name_of_god.cult_of_lady" text="{=!}the Lady" />
+  <string id="tor_religion_name_of_god.cult_of_myrmidia" text="{=!}Myrmidia" />
+  <string id="tor_religion_name_of_god.cult_of_nagash" text="{=!}Nagash" />
+  <string id="tor_religion_name_of_god.chaos_undivided" text="{=!}Ruinous Powers" />
+  <string id="tor_religion_name_of_god.cult_of_slaanesh" text="{=!}Slaanesh" />
+  <string id="tor_religion_name_of_god.cult_of_nurgle" text="{=!}Nurgle" />
+  <string id="tor_religion_name_of_god.cult_of_khorne" text="{=!}Khorne" />
+  <string id="tor_religion_name_of_god.cult_of_tzeentch" text="{=!}Tzeentch" />
+
+  <string id="tor_religion_blessing_effect_description.cult_of_sigmar" text="{=!}Your party members heal their wounds 20% faster." />
+  <string id="tor_religion_blessing_effect_description.cult_of_taal" text="{=!}Increase your party's movement speed in forests by 20%." />
+  <string id="tor_religion_blessing_effect_description.cult_of_lady" text="{=!}Increase your party's morale by 20." />
+  <string id="tor_religion_blessing_effect_description.cult_of_myrmidia" text="{=!}Earn 20% more xp from battles." />
+  <string id="tor_religion_blessing_name.cult_of_sigmar" text="{=!}Blessing of Sigmar" />
+  <string id="tor_religion_blessing_name.cult_of_taal" text="{=!}Blessing of Taal" />
+  <string id="tor_religion_blessing_name.cult_of_lady" text="{=!}Blessing of the Lady" />
+  <string id="tor_religion_blessing_name.cult_of_myrmidia" text="{=!}Blessing of Myrmidia" />
+
+  <!-- Career related -->
+  <string id="career_choicegroup1_name.WarriorPriest" text="{=!}Cultist of Sigmar" />
+  <string id="career_choicegroup2_name.WarriorPriest" text="{=!}Warrior Priest" />
+  <string id="career_choicegroup3_name.WarriorPriest" text="{=!}Arch Lector" />
+
+  <string id="career_description.WarriorPriest" text="{=!}A Warrior Priest of Sigmar is a priest of the Cult of Sigmar who is a member of a warrior-sect whose duty is to both lead and inspire Imperial troops on the field of battle and also to minister to their spiritual needs when facing the Empire's foes." />
+  <string id="careerchoice_description.WarriorPriestRoot" text="{=!}The Warrior Priest is unleashing the wrath of Sigmar which will make his and surrounding allies melee attacks stronger (20%) for 8 seconds. \n Troops with the effect can’t be staggered. \n For every points in Faith, the melee effect becomes 0.05% stronger and 0.05 seconds longer. \n Cooldown: take 50 points of damage." />
 </strings>

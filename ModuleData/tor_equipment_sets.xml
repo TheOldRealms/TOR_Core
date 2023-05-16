@@ -1090,6 +1090,16 @@
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_cannon_crew_001" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_empire_flagellant_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_002" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_002" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_empire_tournament_template_one_participant_v1" culture="Culture.empire">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
@@ -10832,6 +10842,21 @@
     <EquipmentSet civilian="true">
       <Equipment slot="Body" id="Item.tor_empire_body_robe_light_wizard_001" />
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_light_wizard_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_light_wizard_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_light_wizard_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_prophetess_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Body" id="Item.vlandian_corset_dress" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_celestial_wizard_001" />
+	  <Equipment slot="Head" id="Item.vlandia_crown" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_light_wizard_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_light_wizard_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Body" id="Item.vlandian_corset_dress" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_celestial_wizard_001" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_light_wizard_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_light_wizard_001" />
     </EquipmentSet>

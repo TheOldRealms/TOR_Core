@@ -10,7 +10,7 @@ namespace TOR_Core.Models
         {
             if (party.Culture != character.Culture)
             {
-                conformityNeeded = 0;
+                conformityNeeded = 999;
                 return false;
             }
             return base.IsPrisonerRecruitable(party, character, out conformityNeeded);

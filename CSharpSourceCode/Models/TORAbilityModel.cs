@@ -8,12 +8,13 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
 {
-    public class TORSpellcraftModel : GameModel
+    public class TORAbilityModel : GameModel
     {
         public SkillObject GetRelevantSkillForAbility(AbilityTemplate ability)
         {
@@ -75,6 +76,14 @@ namespace TOR_Core.Models
                 if(skillEffect != null) SkillHelper.AddSkillBonusForCharacter(skill, skillEffect, character, ref explainedNumber, skillValue, true, 0);
             }
             return explainedNumber.ResultNumber;
+        }
+
+        public float CalculateStatusEffectDurationForAbility(CharacterObject character, AbilityTemplate originAbilityTemplate, float statusEffectDuration)
+        {
+            float skillmultiplier = GetSkillEffectivenessForAbilityDuration(character, originAbilityTemplate);
+            float perkmultiplier = 1f;
+            if (character.IsHero) perkmultiplier = GetPerkEffectsOnAbilityDuration(character, originAbilityTemplate);
+            return statusEffectDuration * skillmultiplier * perkmultiplier;
         }
 
         public float GetSkillEffectivenessForAbilityDuration(CharacterObject character, AbilityTemplate ability)
@@ -161,11 +170,11 @@ namespace TOR_Core.Models
             {
                 if (character.GetPerkValue(TORPerks.SpellCraft.OverCaster))
                 {
-                    cost.AddFactor(TORPerks.SpellCraft.OverCaster.SecondaryBonus / 100);
+                    cost.AddFactor(TORPerks.SpellCraft.OverCaster.SecondaryBonus);
                 }
                 if (character.GetPerkValue(TORPerks.SpellCraft.EfficientSpellCaster))
                 {
-                    cost.AddFactor(TORPerks.SpellCraft.EfficientSpellCaster.SecondaryBonus / 100);
+                    cost.AddFactor(TORPerks.SpellCraft.EfficientSpellCaster.SecondaryBonus);
                 }
             }
             return (int)cost.ResultNumber;

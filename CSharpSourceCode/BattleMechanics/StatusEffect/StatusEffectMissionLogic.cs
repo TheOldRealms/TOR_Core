@@ -1,4 +1,4 @@
-﻿using TaleWorlds.MountAndBlade;
+using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
 {
@@ -11,6 +11,12 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 StatusEffectComponent effectComponent = new StatusEffectComponent(agent);
                 agent.AddComponent(effectComponent);
             }
+        }
+
+        public override void OnAgentMount(Agent agent)
+        {
+            StatusEffectComponent effectComponent = agent.GetComponent<StatusEffectComponent>();
+            effectComponent.SynchronizeBaseValues(true);
         }
 
         public override void OnMissionTick(float dt)

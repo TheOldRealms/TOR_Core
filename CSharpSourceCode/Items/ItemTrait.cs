@@ -5,7 +5,7 @@ using TOR_Core.Extensions.ExtendedInfoSystem;
 namespace TOR_Core.Items
 {
     [Serializable]
-    public class ItemTrait
+    public class ItemTrait : IEquatable<ItemTrait>
     {
         [XmlAttribute]
         public string ItemTraitName { get; set; }
@@ -27,6 +27,16 @@ namespace TOR_Core.Items
         public string IconName { get; set; } = "none";
         [XmlElement]
         public WeaponParticlePreset WeaponParticlePreset { get; set; }
+
+        public bool Equals(ItemTrait other)
+        {
+            return ItemTraitName == other.ItemTraitName &&
+                ItemTraitDescription == other.ItemTraitDescription &&
+                OnHitScriptName == other.OnHitScriptName &&
+                ImbuedStatusEffectId == other.ImbuedStatusEffectId &&
+                WeaponParticlePreset.ParticlePrefab == other.WeaponParticlePreset.ParticlePrefab &&
+                WeaponParticlePreset.IsUniqueSingleCopy == other.WeaponParticlePreset.IsUniqueSingleCopy;
+        }
     }
 
     [Serializable]

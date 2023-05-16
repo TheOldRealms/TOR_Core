@@ -92,14 +92,4 @@ namespace TOR_Core.CampaignMechanics.Assimilation
             dataStore.SyncData("_settlementCulturePairs", ref _settlementCulturePairs);
         }
     }
-
-    public class AssimilationSaveableTypeDefiner : SaveableTypeDefiner
-    {
-        public AssimilationSaveableTypeDefiner() : base(519011) { }
-
-        protected override void DefineContainerDefinitions()
-        {
-            ConstructContainerDefinition(typeof(Dictionary<Settlement, CultureObject>));
-        }
-    }
 }
