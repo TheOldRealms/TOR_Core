@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Settlements>
   <!--Custom Settlements-->
   <Settlement id="chaos_portal_01" name="{=!}Chaos Portal" owner="Faction.chaos_clan_1" posX="1421.178" posY="900.773" culture="Culture.chaos_culture" prosperity="500" text="{=!}Chaos Portal">
@@ -11,7 +11,7 @@
       <Shrine id="sigmar_shrine_01" religion="cult_of_sigmar" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="sigmar_shrine_02" name="{=!}Shrine of Sigmar" owner="Faction.averland_clan_1" posX="1501.502" posY="872.2694" culture="Culture.empire" prosperity="500" text="{=!}Shrine of Sigmar">
+  <Settlement id="sigmar_shrine_02" name="{=!}Shrine of Sigmar" owner="Faction.averland_clan_1" posX="1501.502" posY="872.269" culture="Culture.empire" prosperity="500" text="{=!}Shrine of Sigmar">
     <Components>
       <Shrine id="sigmar_shrine_02" religion="cult_of_sigmar" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
@@ -26,7 +26,7 @@
       <Shrine id="taal_shrine_01" religion="cult_of_taal" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="grove_of_the_lady_01" name="{=!}Grove of the Lady" owner="Faction.carcassonne_clan_1" posX="1016.4" posY="810.7563" culture="Culture.vlandia" prosperity="500" text="{=!}Grove of the Lady">
+  <Settlement id="grove_of_the_lady_01" name="{=!}Grove of the Lady" owner="Faction.carcassonne_clan_1" posX="1016.4" posY="810.756" culture="Culture.vlandia" prosperity="500" text="{=!}Grove of the Lady">
     <Components>
       <Shrine id="grove_of_the_lady_01" religion="cult_of_lady" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
@@ -41,7 +41,7 @@
       <HerdStone id="herdstone_01" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="herdstone_02" name="{=!}Beastmen Herdstone" owner="Faction.beastmen_clan_1" posX="885.5717" posY="803.756" culture="Culture.chaos_culture" prosperity="500" text="{=!}Beastmen Herdstone">
+  <Settlement id="herdstone_02" name="{=!}Beastmen Herdstone" owner="Faction.beastmen_clan_1" posX="885.572" posY="803.756" culture="Culture.chaos_culture" prosperity="500" text="{=!}Beastmen Herdstone">
     <Components>
       <HerdStone id="herdstone_02" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
@@ -51,7 +51,7 @@
       <CursedSite id="haunted_site_01" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="haunted_site_02" name="{=!}Cursed Site" owner="Faction.sylvania_clan_1" posX="1578.651" posY="954.0835" culture="Culture.khuzait" prosperity="500" text="{=!}Cursed Site">
+  <Settlement id="haunted_site_02" name="{=!}Cursed Site" owner="Faction.sylvania_clan_1" posX="1578.651" posY="954.083" culture="Culture.khuzait" prosperity="500" text="{=!}Cursed Site">
     <Components>
       <CursedSite id="haunted_site_02" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
@@ -3164,7 +3164,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BA1" name="{=Settlements.Settlement.name.castle_AQ3}Castle Garamont" owner="Faction.bastonne_clan_1" posX="989.302" posY="994.982" prosperity="800" culture="Culture.vlandia" gate_posX="988.5467" gate_posY="995.0958" text="{=!}In the Suden Vorbergland of bastonne sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_BA1" name="{=Settlements.Settlement.name.castle_AQ3}Castle Garamont" owner="Faction.bastonne_clan_1" posX="995.262" posY="989.388" prosperity="800" culture="Culture.vlandia" gate_posX="993.6954" gate_posY="988.9298" text="{=!}In the Suden Vorbergland of bastonne sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
       <Town id="castle_comp_BA1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -3200,7 +3200,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BA2" name="{=Settlements.Settlement.name.castle_BA2}Castle Sangasse" owner="Faction.bastonne_clan_1" posX="995.7729" posY="1043.539" prosperity="800" culture="Culture.vlandia" gate_posX="996.1249" gate_posY="1044.217" text="{=!}In the Suden Vorbergland of bastonne sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_BA2" name="{=Settlements.Settlement.name.castle_BA2}Castle Sangasse" owner="Faction.bastonne_clan_1" posX="993.903" posY="1045.672" prosperity="800" culture="Culture.vlandia" gate_posX="994.4677" gate_posY="1044.103" text="{=!}In the Suden Vorbergland of bastonne sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
       <Town id="castle_comp_BA2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -3236,7 +3236,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BA3" name="{=Settlements.Settlement.name.castle_BA3}Castle Riom" owner="Faction.bastonne_clan_1" posX="943.275" posY="1016.364" prosperity="800" culture="Culture.vlandia" gate_posX="943.1903" gate_posY="1017.123" text="{=!}In the Suden Vorbergland of bastonne sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_BA3" name="{=Settlements.Settlement.name.castle_BA3}Castle Riom" owner="Faction.bastonne_clan_1" posX="942.152" posY="1019.03" prosperity="800" culture="Culture.vlandia" gate_posX="943.6414" gate_posY="1017.5" text="{=!}In the Suden Vorbergland of bastonne sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
       <Town id="castle_comp_BA3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -3332,7 +3332,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_BL2" name="{=Settlements.Settlement.name.town_BA1}Turenne" owner="Faction.bordeleaux_clan_1" posX="866.3693" posY="953.6926" culture="Culture.vlandia" prosperity="4500" gate_posX="871.8522" gate_posY="955.2079" text="{=!}The peasant town of Turenne, though lowly, is nothing to scoff at. The people here live under the protection of the duke and while most make their living in the fields around the town, there are those peasants that have taken up a craft or trade near the town square. Turenne is a town dependent on the excesses of Bordeleaux, merchants needing a simple place to stop can often find cheaper rooms and supplies here.">
+  <Settlement id="town_BL2" name="{=Settlements.Settlement.name.town_BA1}Turenne" owner="Faction.bordeleaux_clan_1" posX="866.9789" posY="954.75" culture="Culture.vlandia" prosperity="4500" gate_posX="871.7209" gate_posY="958.6868" text="{=!}The peasant town of Turenne, though lowly, is nothing to scoff at. The people here live under the protection of the duke and while most make their living in the fields around the town, there are those peasants that have taken up a craft or trade near the town square. Turenne is a town dependent on the excesses of Bordeleaux, merchants needing a simple place to stop can often find cheaper rooms and supplies here.">
     <Components>
       <Town id="town_comp_BL2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -3391,7 +3391,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BL1" name="{=Settlements.Settlement.name.castle_BL1}Turris Vigilans" owner="Faction.bordeleaux_clan_1" posX="930.6349" posY="989.7952" prosperity="800" culture="Culture.vlandia" gate_posX="932.7274" gate_posY="989.0912" text="{=!}De Turris Vigilans, the vigilant tower, is a centre of Verenan worship in Bretonnia. In addition to a large temple, the cult maintains a great lighthouse which is widely considered to be the most reliable in the world. The Priests of Verena here will often offer advice to those that seek their counsel, and are reputable for its benefits. The Cult and the Dukedom of Bordeleaux have the shared interest in watching the cursed land to their north, as a result; the Duke has established a garrison here and the fortifications are always maintained.">
+  <Settlement id="castle_BL1" name="{=Settlements.Settlement.name.castle_BL1}Turris Vigilans" owner="Faction.bordeleaux_clan_1" posX="930.707" posY="987.846" prosperity="800" culture="Culture.vlandia" gate_posX="931.418" gate_posY="988.8735" text="{=!}De Turris Vigilans, the vigilant tower, is a centre of Verenan worship in Bretonnia. In addition to a large temple, the cult maintains a great lighthouse which is widely considered to be the most reliable in the world. The Priests of Verena here will often offer advice to those that seek their counsel, and are reputable for its benefits. The Cult and the Dukedom of Bordeleaux have the shared interest in watching the cursed land to their north, as a result; the Duke has established a garrison here and the fortifications are always maintained.">
     <Components>
       <Town id="castle_comp_BL1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -3427,7 +3427,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BL2" name="{=Settlements.Settlement.name.castle_BL1}Castle Saint Jean-de-Luz" owner="Faction.bordeleaux_clan_1" posX="968.823" posY="989.551" prosperity="800" culture="Culture.vlandia" gate_posX="969.5837" gate_posY="989.4823" text="{=!}A small castle, established to watch over the farms and woodlands of east Bordelen. It is named after a long dead noble who stopped an orc warboss from Massif Orcal on the grounds where the castle now sits.">
+  <Settlement id="castle_BL2" name="{=Settlements.Settlement.name.castle_BL1}Castle Saint Jean-de-Luz" owner="Faction.bordeleaux_clan_1" posX="970.317" posY="989.862" prosperity="800" culture="Culture.vlandia" gate_posX="968.7495" gate_posY="988.4116" text="{=!}A small castle, established to watch over the farms and woodlands of east Bordelen. It is named after a long dead noble who stopped an orc warboss from Massif Orcal on the grounds where the castle now sits.">
     <Components>
       <Town id="castle_comp_BL2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -3463,7 +3463,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BL3" name="{=Settlements.Settlement.name.castle_BL3}Castle Châtellerault" owner="Faction.bordeleaux_clan_1" posX="949.337" posY="959.723" prosperity="800" culture="Culture.vlandia" gate_posX="949.3543" gate_posY="958.9594" text="{=!}On the edge of the Forest of Châlons sits Castle Châtellerault. Châlons is a dangerous and twisted place; dark trees stand over deep ravines, boulders and chasms. One shouldn't be mistaken, it has its beauties; sweet and cool streams, waterfalls and calm pools dot the undergrowth. It is even said that the true sacred lake of the lady lies somewhere within this forest. With this land, comes the typical predations, greenskins, beastmen and far worse make their homes, and so Châtellerault stands its watch against incursion.">
+  <Settlement id="castle_BL3" name="{=Settlements.Settlement.name.castle_BL3}Castle Châtellerault" owner="Faction.bordeleaux_clan_1" posX="950.7009" posY="959.831" prosperity="800" culture="Culture.vlandia" gate_posX="948.2441" gate_posY="960.8041" text="{=!}On the edge of the Forest of Châlons sits Castle Châtellerault. Châlons is a dangerous and twisted place; dark trees stand over deep ravines, boulders and chasms. One shouldn't be mistaken, it has its beauties; sweet and cool streams, waterfalls and calm pools dot the undergrowth. It is even said that the true sacred lake of the lady lies somewhere within this forest. With this land, comes the typical predations, greenskins, beastmen and far worse make their homes, and so Châtellerault stands its watch against incursion.">
     <Components>
       <Town id="castle_comp_BL3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -3786,7 +3786,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AQ2" name="{=Settlements.Settlement.name.town_AQ2}Château D'Epee" owner="Faction.aquitaine_clan_1" posX="955.3856" posY="902.4203" culture="Culture.vlandia" prosperity="4500" gate_posX="958.3504" gate_posY="904.615" text="{=!}Altdorf is at once perhaps the greatest city of the vlandia and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the aquitaine and the vlandia of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the vlandia; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
+  <Settlement id="town_AQ2" name="{=Settlements.Settlement.name.town_AQ2}Château D'Epee" owner="Faction.aquitaine_clan_1" posX="962.228" posY="909.745" culture="Culture.vlandia" prosperity="4500" gate_posX="961.2035" gate_posY="908.0606" text="{=!}Altdorf is at once perhaps the greatest city of the vlandia and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the aquitaine and the vlandia of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the vlandia; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
     <Components>
       <Town id="town_comp_AQ2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_vlandia_1" wait_mesh="vlandia_city_background" gate_rotation="0.908" />
     </Components>
@@ -3954,7 +3954,7 @@
     </CommonAreas>
   </Settlement>
   <!-- Carcassonne -->
-  <Settlement id="town_CC1" name="{=Settlements.Settlement.name.town_CC1}Castle Carcassonne" owner="Faction.carcassonne_clan_1" posX="1006.505" posY="797.48" culture="Culture.vlandia" prosperity="4500" gate_posX="1005.406" gate_posY="795.8434" text="{=Settlements.Settlement.text.town_CC1}The fortress city and the ducal capital of Carcassonne, Castle Carcassonne sits on an island surrounded by the river Songez. Due to the defensive location Castle Carcassonne is designed to be more of a fortress rather than a city, however there is a small attached town that acts as a marketplace and hub for many travelers and Knights who seek services.">
+  <Settlement id="town_CC1" name="{=Settlements.Settlement.name.town_CC1}Castle Carcassonne" owner="Faction.carcassonne_clan_1" posX="1003.06" posY="793.878" culture="Culture.vlandia" prosperity="4500" gate_posX="1004.635" gate_posY="795.5981" text="{=Settlements.Settlement.text.town_CC1}The fortress city and the ducal capital of Carcassonne, Castle Carcassonne sits on an island surrounded by the river Songez. Due to the defensive location Castle Carcassonne is designed to be more of a fortress rather than a city, however there is a small attached town that acts as a marketplace and hub for many travelers and Knights who seek services.">
     <Components>
       <Town id="town_comp_CC1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
