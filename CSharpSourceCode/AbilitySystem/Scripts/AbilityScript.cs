@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.Engine;
@@ -19,7 +19,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         protected float _abilityLife = -1;
         public bool IsFading { get; protected set; }
         protected float _timeSinceLastTick = 0;
-        private bool _hasCollided;
+        protected bool _hasCollided;
         private bool _hasTickedOnce;
         protected bool _hasTriggered;
         protected Vec3 _previousFrameOrigin;
@@ -231,6 +231,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         protected virtual List<TriggeredEffect> GetEffectsToTrigger()
         {
             List<TriggeredEffect> effects = new List<TriggeredEffect>();
+            if (_ability == null) return effects; 
             foreach(var effect in _ability.Template.AssociatedTriggeredEffectTemplates)
             {
                 effects.Add(new TriggeredEffect(effect));

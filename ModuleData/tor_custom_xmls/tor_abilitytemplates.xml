@@ -73,7 +73,7 @@
       TargetCapturingRadius="1"
       SpellTier="1"
       BelongsToLoreID="MinorMagic"
-      TooltipDescription="Adds 20% physical resistance for 15 seconds to the caster.">
+      TooltipDescription="Adds 40% physical resistance against ranged damage for 15 seconds to the caster.">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -81,7 +81,7 @@
 				<z>255</z>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>physical_resistance_20</TriggeredEffect>
+		<TriggeredEffect>physical_ranged_resistance_40</TriggeredEffect>
 	</AbilityTemplate>
 	<AbilityTemplate StringID="MinorHeal" 
       Name="Petty Heal" 
@@ -503,6 +503,49 @@
 			</AsVec2>
 		</LightColorRGB>
 		<TriggeredEffect>sear_burst</TriggeredEffect>
+	</AbilityTemplate>
+	<AbilityTemplate StringID="CascadingFireCloak" 
+      Name="Cascading Fire-Cloak" 
+      SpriteName="cascadingfirecloak_icon" 
+      CoolDown="30" 
+      WindsOfMagicCost="4" 
+      BaseMisCastChance="0.05" 
+      Duration="4" 
+      Radius="1" 
+      AbilityType="Spell" 
+      AbilityEffectType="Augment" 
+      BaseMovementSpeed="0" 
+      TickInterval="-1" 
+      TriggerType="TickOnce" 
+      HasLight="false" 
+      LightIntensity="20" 
+      LightRadius="10" 
+      LightFlickeringMagnitude="0" 
+      LightFlickeringInterval="0" 
+      ShadowCastEnabled="false" 
+      ParticleEffectPrefab="" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="sear" 
+      ShouldSoundLoopOverDuration="true"
+      CastType="Instant" 
+      CastTime="0" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0"
+      AbilityTargetType="Self"
+      CrosshairType="Self"
+      MinDistance="1"
+      MaxDistance="20"
+      TargetCapturingRadius="1"
+      SpellTier="2"
+      BelongsToLoreID="LoreOfFire"
+      TooltipDescription="[TODO]">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>apply_fire_cloak_augment</TriggeredEffect>
 	</AbilityTemplate>
 	<AbilityTemplate StringID="FlamingSwords"
       Name="Flaming Sword of Rhuin"
@@ -1232,7 +1275,7 @@
 	</AbilityTemplate>
 	<AbilityTemplate StringID="NetOfAmyntok"
       Name="Net of Amyntok"
-      SpriteName="phasprotection_icon"
+      SpriteName="netofamyntok_icon"
       CoolDown="5"
       WindsOfMagicCost="12"
       BaseMisCastChance="0.05"
@@ -1270,11 +1313,8 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>movement_impairment</TriggeredEffect>
+		<TriggeredEffect>net_of_amyntok_hex</TriggeredEffect>
 	</AbilityTemplate>
-	
-	
-	
 	<!-- Necromancy -->
 	<AbilityTemplate StringID="NagashGaze" 
       Name="Gaze of Nagash" 
@@ -1439,9 +1479,9 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>apply_red_healing_statuseffect</TriggeredEffect>
+		<TriggeredEffect>breath_of_darkness</TriggeredEffect>
 	</AbilityTemplate>
-	<AbilityTemplate StringID="WitheringWave" 
+<!-- 	<AbilityTemplate StringID="WitheringWave" 
       Name="Withering Wave " 
       SpriteName="witheringwave_icon" 
       CoolDown="30" 
@@ -1486,7 +1526,7 @@
 			</AsVec2>
 		</LightColorRGB>
 		<TriggeredEffect>witheringwave_tick</TriggeredEffect>
-	</AbilityTemplate>
+	</AbilityTemplate> -->
 	<AbilityTemplate StringID="Kandorak" 
       Name="Kandorak - The Harbinger" 
       SpriteName="theharbinger_icon" 
@@ -1660,6 +1700,51 @@
 		</LightColorRGB>
 		<TriggeredEffect>summon_gravecall</TriggeredEffect>
 	</AbilityTemplate>
+	
+		<AbilityTemplate StringID="CurseOfYears"
+      Name="Curse of Years"
+      SpriteName="curseofyears_icon"
+      CoolDown="5"
+      WindsOfMagicCost="12"
+      BaseMisCastChance="0.05"
+      Duration="2"
+      Radius="20"
+      AbilityType="Spell"
+      AbilityEffectType="Hex"
+      BaseMovementSpeed="0"
+      TickInterval="1.9"
+      TriggerType="TickOnce"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab=""
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.0"
+      AbilityTargetType="EnemiesInAOE"
+      TargetCapturingRadius="4"
+      MaxDistance="50"
+      CrosshairType="TargetedAOE"
+      SpellTier="3"
+      BelongsToLoreID="Necromancy"
+      TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>curse_of_years_hex</TriggeredEffect>
+	</AbilityTemplate>
+	
+	
 	<!-- Dark Magic -->
 	<AbilityTemplate StringID="Chillwind" 
       Name="Chillwind" 
@@ -1704,9 +1789,57 @@
 		</LightColorRGB>
 		<TriggeredEffect>windblast_burst</TriggeredEffect>
 	</AbilityTemplate>
-	<AbilityTemplate StringID="DoomBolt" 
-      Name="Doom Bolt" 
-      SpriteName="doombolt_icon" 
+	
+	<AbilityTemplate StringID="DoomBolt"
+      Name="Doom Bolt"
+      SpriteName="doombolt_icon"
+      CoolDown="40"
+      WindsOfMagicCost="40"
+      BaseMisCastChance="0.3"
+      Duration="30"
+      Radius="2"
+      AbilityType="Spell"
+      AbilityEffectType="Bombardment"
+      BaseMovementSpeed="4"
+      TickInterval="0.5"
+      TriggerType="OnCollision"
+      HasLight="false"
+      LightIntensity="50"
+      LightRadius="10"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="false"
+      ParticleEffectPrefab="doom_bolt_prefab"
+      ParticleEffectSizeModifier="1"
+      SoundEffectToPlay="none"
+      ShouldSoundLoopOverDuration="false"
+      CastType="WindUp"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="100"
+      CrosshairType="TargetedAOE"
+      AbilityTargetType="GroundAtPosition"
+      MinDistance="3"
+      MaxDistance="30"
+      TargetCapturingRadius="4"
+      MaxRandomDeviation="1"
+      ShouldRotateVisuals="true"
+      VisualsRotationVelocity="1"
+      SpellTier="4"
+      BelongsToLoreID="DarkMagic"
+      TooltipDescription="A large meteor strikes the area killing all below in a giant shockwave.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>doom_bolt_explosion</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="DeathSpasm" 
+      Name="Death Spasm" 
+      SpriteName="deathspasm_icon" 
       CoolDown="20" 
       WindsOfMagicCost="12" 
       BaseMisCastChance="0.05" 
@@ -1744,9 +1877,9 @@
 		</LightColorRGB>
 		<TriggeredEffect>fireball_explosion</TriggeredEffect>
 	</AbilityTemplate>
-	<AbilityTemplate StringID="SoulDrain" 
-      Name="Soul Drain" 
-      SpriteName="souldrain_icon" 
+	<AbilityTemplate StringID="SoulRrain" 
+      Name="Soul Rain" 
+      SpriteName="soulrain_icon" 
       CoolDown="30" 
       WindsOfMagicCost="15" 
       BaseMisCastChance="0.5" 
@@ -1917,6 +2050,619 @@
 		</LightColorRGB>
 		<TriggeredEffect>soulstealer</TriggeredEffect>
 	</AbilityTemplate>
+	
+	<!-- Lore of Life-->
+	<AbilityTemplate StringID="DwellersBelow"
+      Name="Dwelllers Below"
+      SpriteName="dwellersbelow_icon"
+      CoolDown="5"
+      WindsOfMagicCost="12"
+      BaseMisCastChance="0.05"
+      Duration="20"
+      Radius="20"
+      AbilityType="Spell"
+      AbilityEffectType="Bombardment"
+      BaseMovementSpeed="0"
+      TickInterval="1.9"
+      TriggerType="EveryTick"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab="dwellers_below_ground"
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.0"
+      AbilityTargetType="GroundAtPosition"
+      TargetCapturingRadius="4"
+      MaxDistance="50"
+      CrosshairType="TargetedAOE"
+      SpellTier="3"
+      BelongsToLoreID="LoreOfLife"
+      TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>dwellers_below_tick</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="TheGreenEye" 
+      Name="The Green Eye" 
+      SpriteName="greeneye_icon" 
+      CoolDown="5" 
+      WindsOfMagicCost="8" 
+      BaseMisCastChance="0.05" 
+      Duration="0.3" 
+      Radius="0.4" 
+      AbilityType="Spell" 
+      AbilityEffectType="Projectile" 
+      BaseMovementSpeed="100" 
+	  TickOnce ="false"
+      TickInterval="-1" 
+      TriggerType="EveryTick" 
+      HasLight="false" 
+      LightIntensity="50" 
+      LightRadius="10" 
+      LightFlickeringMagnitude="3" 
+      LightFlickeringInterval="0.7" 
+      ShadowCastEnabled="true" 
+      ParticleEffectPrefab="green_eye" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="rocks_grinding" 
+      ShouldSoundLoopOverDuration="true" 
+      CastType="WindUp" 
+      CastTime="0.5" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0.5"
+      CrosshairType="Missile"
+      AbilityTargetType="WorldPosition"
+      SpellTier="2"
+      BelongsToLoreID="LoreOfLife"
+      TooltipDescription="Launch a small number of stones at the enemy - Monthy Python style.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>green_eye_end</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="Barkskin"
+      Name="Barkskin"
+      SpriteName="barkskin_icon"
+      CoolDown="10"
+      WindsOfMagicCost="6"
+      BaseMisCastChance="0.05"
+      Duration="0"
+      Radius="3"
+      AbilityType="Spell"
+      AbilityEffectType="Augment"
+      BaseMovementSpeed="0"
+      TickInterval="-1"
+      TriggerType="TickOnce"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab=""
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.5"
+      AbilityTargetType="AlliesInAOE"
+      TargetCapturingRadius="4"
+      MaxDistance="0.5"
+      CrosshairType="TargetedAOE"
+      SpellTier="1"
+      BelongsToLoreID="LoreOfLife"
+      TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>bark_skin</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="SummerHeat"
+      Name="Summer Heat"
+      SpriteName="summerheat_icon"
+      CoolDown="5"
+      WindsOfMagicCost="12"
+      BaseMisCastChance="0.05"
+      Duration="2"
+      Radius="20"
+      AbilityType="Spell"
+      AbilityEffectType="Hex"
+      BaseMovementSpeed="0"
+      TickInterval="1.9"
+      TriggerType="TickOnce"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab=""
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.0"
+      AbilityTargetType="EnemiesInAOE"
+      TargetCapturingRadius="4"
+      MaxDistance="50"
+      CrosshairType="TargetedAOE"
+      SpellTier="3"
+      BelongsToLoreID="LoreOfLife"
+      TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>summer_heat</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="Regrowth" 
+	Name="Regrowth"
+	SpriteName="regrowth_icon"
+	CoolDown="10"
+	WindsOfMagicCost="6"
+	BaseMisCastChance="0.05"
+	Duration="0"
+	Radius="3"
+	AbilityType="Spell"
+	AbilityEffectType="Augment"
+	BaseMovementSpeed="0"
+	TickInterval="-1"
+	TriggerType="TickOnce"
+	HasLight="false"
+	LightIntensity="0"
+	LightRadius="0"
+	LightFlickeringMagnitude="0"
+	LightFlickeringInterval="0"
+	ShadowCastEnabled="true"
+	ParticleEffectPrefab=""
+	ParticleEffectSizeModifier="0"
+	SoundEffectToPlay=""
+	ShouldSoundLoopOverDuration="false"
+	CastType="Instant"
+	CastTime="0.5"
+	AnimationActionName="act_release_heavy_thrown"
+	Offset="0.5"
+	AbilityTargetType="AlliesInAOE"
+	TargetCapturingRadius="4"
+	MaxDistance="20"
+	CrosshairType="TargetedAOE"
+	SpellTier="1"
+	BelongsToLoreID="LoreOfLife"
+	TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
+		<LightColorRGB x="255" y="255" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>regrowth_heal</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="DrainLife"
+   Name="Drain Life"
+   SpriteName="drainlife_icon"
+   CoolDown="15"
+   WindsOfMagicCost="6"
+   BaseMisCastChance="0.05"
+   Duration="0"
+   Radius="0"
+   AbilityType="Spell"
+   AbilityEffectType="Hex"
+   BaseMovementSpeed="0"
+   TickInterval="-1"
+   TriggerType="TickOnce"
+   HasLight="false"
+   LightIntensity="0"
+   LightRadius="0"
+   LightFlickeringMagnitude="0"
+   LightFlickeringInterval="0"
+   ShadowCastEnabled="true"
+   ParticleEffectPrefab=""
+   ParticleEffectSizeModifier="0"
+   SoundEffectToPlay=""
+   ShouldSoundLoopOverDuration="false"
+   CastType="Instant"
+   CastTime="0.5"
+   AnimationActionName="act_release_heavy_thrown"
+   Offset="0.5"
+   AbilityTargetType="EnemiesInAOE"
+   TargetCapturingRadius="5"
+   MaxDistance="20"
+   CrosshairType="TargetedAOE"
+   SpellTier="4"
+    BelongsToLoreID="LoreOfLife"
+    TooltipDescription="Enemies in the area experience a soul draining direct damage over time effect causing them to take 12 damage every second for 10 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>drain_life</TriggeredEffect>
+	</AbilityTemplate>
+	
+	
+	<AbilityTemplate StringID="StormOfRenewal" 
+	Name="Storm of Renewal"
+	SpriteName="stormofrenewal_icon"
+	CoolDown="10"
+	WindsOfMagicCost="6"
+	BaseMisCastChance="0.05"
+	Duration="12"
+	Radius="5"
+	AbilityType="Spell"
+	AbilityEffectType="Bombardment"
+	BaseMovementSpeed="0"
+	TickInterval="2"
+	TriggerType="EveryTick"
+	HasLight="true"
+	LightIntensity="300"
+	LightRadius="3"
+	LightFlickeringMagnitude="0"
+	LightFlickeringInterval="0"
+	ShadowCastEnabled="true"
+	ParticleEffectPrefab=""
+	ParticleEffectSizeModifier="0"
+	SoundEffectToPlay=""
+	ShouldSoundLoopOverDuration="false"
+	CastType="Instant"
+	CastTime="0.5"
+	AnimationActionName="act_release_heavy_thrown"
+	Offset="0.5"
+	AbilityTargetType="GroundAtPosition"
+	TargetCapturingRadius="4"
+	MaxDistance="20"
+	CrosshairType="TargetedAOE"
+	SpellTier="1"
+	BelongsToLoreID="LoreOfLife"
+	TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
+		<LightColorRGB x="50" y="255" z="50" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>storm_of_renewal</TriggeredEffect>
+	</AbilityTemplate>
+	
+	
+	<!-- Lore of Beasts-->
+	
+	<AbilityTemplate StringID="AmberSpear" 
+      Name="Amber Spear" 
+      SpriteName="amberspear_icon" 
+      CoolDown="4" 
+      WindsOfMagicCost="8" 
+      BaseMisCastChance="0.05" 
+      Duration="2" 
+      Radius="0.4" 
+      AbilityType="Spell" 
+      AbilityEffectType="Projectile" 
+      BaseMovementSpeed="60"
+	  TickOnce="false"
+      TickInterval="1" 
+      TriggerType="EveryTick" 
+      HasLight="false" 
+      LightIntensity="50" 
+      LightRadius="10" 
+      LightFlickeringMagnitude="3" 
+      LightFlickeringInterval="0.7" 
+      ShadowCastEnabled="true" 
+      ParticleEffectPrefab="amber_spear" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="rocks_grinding" 
+      ShouldSoundLoopOverDuration="true" 
+      CastType="WindUp" 
+      CastTime="0.5" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0.5"
+      CrosshairType="Missile"
+      AbilityTargetType="WorldPosition"
+      SpellTier="2"
+      BelongsToLoreID="LoreOfBeasts"
+      TooltipDescription="Launch a small number of stones at the enemy - Monthy Python style.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>amber_spear</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="TanglingThorn"
+      Name="Tangling Thorn"
+      SpriteName="tanglingthorn_icon"
+      CoolDown="15"
+      WindsOfMagicCost="8"
+      BaseMisCastChance="0.05"
+      Duration="0.9"
+      Radius="3"
+      AbilityType="Spell"
+      AbilityEffectType="Hex"
+      BaseMovementSpeed="0"
+      TickInterval="1.0"
+      TriggerType="EveryTick"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab="none"
+      ParticleEffectSizeModifier="1"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="WindUp"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="5"
+      AbilityTargetType="GroundAtPosition"
+      TargetCapturingRadius="4"
+      MaxDistance="15"
+      CrosshairType="TargetedAOE"
+      SpellTier="3"
+      BelongsToLoreID="LoreOfBeasts"
+      TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>tangling_thorn</TriggeredEffect>
+	</AbilityTemplate>
+	
+	
+	<AbilityTemplate StringID="PannsImpenetrablePelt" 
+      Name="Pann's Impenetrable Pelt" 
+      SpriteName="pannsimpenetrablepelt_icon" 
+      CoolDown="10" 
+      WindsOfMagicCost="3" 
+      BaseMisCastChance="0.05" 
+      Duration="0" 
+      Radius="0" 
+      AbilityType="Spell" 
+      AbilityEffectType="Augment" 
+      BaseMovementSpeed="0" 
+      TickInterval="-1" 
+      TriggerType="TickOnce" 
+      HasLight="false" 
+      LightIntensity="0"
+      LightRadius="0" 
+      LightFlickeringMagnitude="0" 
+      LightFlickeringInterval="0" 
+      ShadowCastEnabled="false" 
+      ParticleEffectPrefab="none" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="none" 
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant" 
+      CastTime="0" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0"
+      AbilityTargetType="Self"
+      CrosshairType="Self"
+      TargetCapturingRadius="1"
+      SpellTier="1"
+      BelongsToLoreID="LoreOfBeasts"
+      TooltipDescription="Adds 20% physical damage bonus for 15 seconds to the caster.">
+		<LightColorRGB x="255" y="255" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>pans_pelt</TriggeredEffect>
+	</AbilityTemplate>
+	
+	
+	<AbilityTemplate StringID="HailStorm" 
+      Name="Hail Storm" 
+      SpriteName="hailstorm_icon" 
+      CoolDown="30" 
+      WindsOfMagicCost="15" 
+      BaseMisCastChance="0.5" 
+      Duration="10" 
+      Radius="6" 
+      AbilityType="Spell" 
+      AbilityEffectType="Bombardment" 
+      BaseMovementSpeed="0" 
+      TickInterval="0.5" 
+      TriggerType="EveryTick" 
+      HasLight="false" 
+      LightIntensity="50" 
+      LightRadius="3" 
+      LightFlickeringMagnitude="0" 
+      LightFlickeringInterval="0" 
+      ShadowCastEnabled="true" 
+      ParticleEffectPrefab="hail_storm" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="lightning_strike" 
+      ShouldSoundLoopOverDuration="true"
+      CastType="WindUp" 
+      CastTime="0.5" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="10"
+      AbilityTargetType="GroundAtPosition"
+      CrosshairType="TargetedAOE"
+      MinDistance="5"
+      MaxDistance="30"
+      TargetCapturingRadius="6"
+      SpellTier="3"
+      BelongsToLoreID="LoreOfBeasts"
+      TooltipDescription="A black cloud looms over the targeted area striking those below with arcane lightning bolts.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>phys_tick</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="FlockOfDoom"
+   Name="Flock Of Doom"
+   SpriteName="flockofdoom_icon"
+   CoolDown="15"
+   WindsOfMagicCost="6"
+   BaseMisCastChance="0.05"
+   Duration="4"
+   Radius="7.5"
+   AbilityType="Spell"
+   AbilityEffectType="Hex"
+   BaseMovementSpeed="0"
+   TickInterval="2"
+   TriggerType="EveryTick"
+   HasLight="false"
+   LightIntensity="0"
+   LightRadius="0"
+   LightFlickeringMagnitude="0"
+   LightFlickeringInterval="0"
+   ShadowCastEnabled="true"
+   ParticleEffectPrefab=""
+   ParticleEffectSizeModifier="0"
+   SoundEffectToPlay=""
+   ShouldSoundLoopOverDuration="false"
+   CastType="Instant"
+   CastTime="0.5"
+   AnimationActionName="act_release_heavy_thrown"
+   Offset="0.5"
+   AbilityTargetType="EnemiesInAOE"
+   TargetCapturingRadius="10"
+   MaxDistance="75"
+   CrosshairType="TargetedAOE"
+   SpellTier="4"
+    BelongsToLoreID="LoreOfBeasts"
+    TooltipDescription="Enemies in the area experience a soul draining direct damage over time effect causing them to take 12 damage every second for 10 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>flock_of_doom</TriggeredEffect>
+	</AbilityTemplate>
+	
+	
+	<AbilityTemplate StringID="TheBeastUnleashed"
+      Name="The Beast Unleashed"
+      SpriteName="beastunleashed_icon"
+      CoolDown="10"
+      WindsOfMagicCost="6"
+      BaseMisCastChance="0.05"
+      Duration="0"
+      Radius="3"
+      AbilityType="Spell"
+      AbilityEffectType="Augment"
+      BaseMovementSpeed="0"
+      TickInterval="-1"
+      TriggerType="TickOnce"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab=""
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.5"
+      AbilityTargetType="AlliesInAOE"
+      TargetCapturingRadius="4"
+      MaxDistance="20"
+      CrosshairType="TargetedAOE"
+      SpellTier="1"
+      BelongsToLoreID="LoreOfBeasts"
+      TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>beast_unleashed</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="CurseOfAnraheir"
+   Name="Curse Of Anraheir"
+   SpriteName="curseofanraheir_icon"
+   CoolDown="15"
+   WindsOfMagicCost="6"
+   BaseMisCastChance="0.05"
+   Duration="11"
+   Radius="10"
+   AbilityType="Spell"
+   AbilityEffectType="Hex"
+   BaseMovementSpeed="0"
+   TickInterval="2"
+   TriggerType="EveryTick"
+   HasLight="false"
+   LightIntensity="0"
+   LightRadius="0"
+   LightFlickeringMagnitude="0"
+   LightFlickeringInterval="0"
+   ShadowCastEnabled="true"
+   ParticleEffectPrefab=""
+   ParticleEffectSizeModifier="0"
+   SoundEffectToPlay=""
+   ShouldSoundLoopOverDuration="false"
+   CastType="Instant"
+   CastTime="0.5"
+   AnimationActionName="act_release_heavy_thrown"
+   Offset="0.5"
+   AbilityTargetType="EnemiesInAOE"
+   TargetCapturingRadius="15"
+   MaxDistance="75"
+   CrosshairType="TargetedAOE"
+   SpellTier="4"
+    BelongsToLoreID="LoreOfBeasts"
+    TooltipDescription="Enemies in the area experience a soul draining direct damage over time effect causing them to take 12 damage every second for 10 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>curse_of_anraheir</TriggeredEffect>
+	</AbilityTemplate>
+	
+	
 	<!-- Artillery -->
 	<AbilityTemplate StringID="MortarSpawner" 
     Name="Place Mortar" 
@@ -2078,7 +2824,10 @@
 		</LightColorRGB>
 		<TriggeredEffect>apply_righteous_fury</TriggeredEffect>
 	</AbilityTemplate>
-	<!-- Battle Prayers -->
+	
+	
+	<!-- Sigmarite Prayers -->
+	
 	<AbilityTemplate StringID="HealingAOE" 
       Name="Circle of Healing" 
       SpriteName="healingprayer_icon" 
@@ -2118,4 +2867,352 @@
 		</LightColorRGB>
 		<TriggeredEffect>healing_tick</TriggeredEffect>
 	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="CometOfSigmar" 
+      Name="Comet of Sigmar" 
+      SpriteName="fireball_icon" 
+      CoolDown="30" 
+      WindsOfMagicCost="15" 
+      BaseMisCastChance="0.05" 
+      Duration="3" 
+      Radius="0.4" 
+      AbilityType="Prayer" 
+      AbilityEffectType="Missile" 
+      BaseMovementSpeed="35" 
+      TickInterval="-1" 
+      TriggerType="OnCollision" 
+      HasLight="true" 
+      LightIntensity="15" 
+      LightRadius="10" 
+      LightFlickeringMagnitude="3" 
+      LightFlickeringInterval="0.7" 
+      ShadowCastEnabled="true" 
+      ParticleEffectPrefab="comet_of_sigmar" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="fireball" 
+      ShouldSoundLoopOverDuration="true" 
+      CastType="WindUp" 
+      CastTime="0.5" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0.5"
+      CrosshairType="Missile"
+      AbilityTargetType="WorldPosition"
+      SpellTier="3"
+      BelongsToLoreID="SigmaritePrayers"
+      TooltipDescription="You throw a fiery missile that takes the form ofSigmar’s famed twin-tailed comet. A comet of Sigmar is a holy missile with 30 Damage. It can knock units down, or throw them off horse">
+		<LightColorRGB x="245" y="247" z="129" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>comet_of_sigmar_explosion</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="HealingHand" 
+      Name="Healing Hand" 
+      SpriteName="healingprayer_icon" 
+      CoolDown="50" 
+      WindsOfMagicCost="0" 
+      BaseMisCastChance="0.3" 
+      Duration="9" 
+      Radius="0.1" 
+      AbilityType="Prayer" 
+      AbilityEffectType="Heal" 
+      BaseMovementSpeed="0" 
+      TickInterval="1" 
+      TriggerType="EveryTick" 
+      HasLight="false" 
+      LightIntensity="0" 
+      LightRadius="10" 
+      LightFlickeringMagnitude="0" 
+      LightFlickeringInterval="0" 
+      ShadowCastEnabled="false" 
+      ParticleEffectPrefab="healing_hand_ground" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="empire_heal" 
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant" 
+      CastTime="0" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0"
+      AbilityTargetType="GroundAtPosition"
+      CrosshairType="TargetedAOE"
+      TargetCapturingRadius="5"
+	  BelongsToLoreID="SigmaritePrayers">
+		<LightColorRGB x="255" y="255" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>healing_hand_tick</TriggeredEffect>
+	</AbilityTemplate>
+	
+	
+	<AbilityTemplate StringID="AmourOfRighteousness"
+      Name="Amour of Righteousness"
+      SpriteName="barkskin_icon"
+      CoolDown="10"
+      WindsOfMagicCost="6"
+      BaseMisCastChance="0.05"
+      Duration="0"
+      Radius="3"
+      AbilityType="Prayer"
+      AbilityEffectType="Augment"
+      BaseMovementSpeed="0"
+      TickInterval="-1"
+      TriggerType="TickOnce"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab=""
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.5"
+      AbilityTargetType="AlliesInAOE"
+      TargetCapturingRadius="4"
+      MaxDistance="0.5"
+      CrosshairType="TargetedAOE"
+      SpellTier="1"
+      BelongsToLoreID="SigmaritePrayers"
+      TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>armour_of_the_righteous</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="Vanquish"
+      Name="Vanquish"
+      SpriteName="swordsofrhuin_icon"
+      CoolDown="100"
+      WindsOfMagicCost="13"
+      BaseMisCastChance="0.05"
+      Duration="0"
+      Radius="0"
+      AbilityType="Prayer"
+      AbilityEffectType="Augment"
+      BaseMovementSpeed="0"
+      TickInterval="-1"
+      TriggerType="TickOnce"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab=""
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.5"
+      AbilityTargetType="AlliesInAOE"
+      TargetCapturingRadius="5"
+      MaxDistance="20"
+      CrosshairType="TargetedAOE"
+      SpellTier="3"
+      BelongsToLoreID="SigmaritePrayers"
+      TooltipDescription="Buff the weapons of allies in a 5 meter radius with the Flaming trait for 20 seconds. The weapons burst into fire and burn every enemy they strike.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>apply_holy_sword_trait</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<!-- Power of the Lady -->
+	
+	<AbilityTemplate StringID="AerialShield" 
+      Name="Aerial Shield" 
+      SpriteName="ward_of_arrows_icon" 
+      CoolDown="10" 
+      WindsOfMagicCost="3" 
+      BaseMisCastChance="0.05" 
+      Duration="45" 
+      Radius="8" 
+      AbilityType="Spell" 
+      AbilityEffectType="Augment" 
+      BaseMovementSpeed="0" 
+      TickInterval="1" 
+      TriggerType="EveryTick" 
+      HasLight="false" 
+      LightIntensity="0" 
+      LightRadius="0" 
+      LightFlickeringMagnitude="0" 
+      LightFlickeringInterval="0" 
+      ShadowCastEnabled="false" 
+      ParticleEffectPrefab="ethereal_dome" 
+      ParticleEffectSizeModifier="0" 
+      SoundEffectToPlay="none" 
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant" 
+      CastTime="0" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0"
+      AbilityTargetType="AlliesInAOE"
+      CrosshairType="TargetedAOE"
+	  MaxDistance="3"
+      TargetCapturingRadius="8"
+      SpellTier="1"
+      BelongsToLoreID="PowerOfTheLady"
+      TooltipDescription="Adds 40% physical resistance against ranged damage for 15 seconds to the caster.">
+		<LightColorRGB x="255" y="255" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>aerial_shield</TriggeredEffect>
+	</AbilityTemplate>
+	
+		<AbilityTemplate StringID="AuraOfTheLady" 
+      Name="Aura Of The Lady" 
+      SpriteName="ward_of_arrows_icon" 
+      CoolDown="10" 
+      WindsOfMagicCost="3" 
+      BaseMisCastChance="0.05" 
+      Duration="0" 
+      Radius="8" 
+      AbilityType="Spell" 
+      AbilityEffectType="Augment" 
+      BaseMovementSpeed="0" 
+      TickInterval="-1" 
+      TriggerType="TickOnce" 
+      HasLight="false" 
+      LightIntensity="0" 
+      LightRadius="0" 
+      LightFlickeringMagnitude="0" 
+      LightFlickeringInterval="0" 
+      ShadowCastEnabled="false" 
+      ParticleEffectPrefab="none" 
+      ParticleEffectSizeModifier="0" 
+      SoundEffectToPlay="none" 
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant" 
+      CastTime="0" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0"
+      AbilityTargetType="AlliesInAOE"
+      CrosshairType="TargetedAOE"
+	  MaxDistance="20"
+      TargetCapturingRadius="8"
+      SpellTier="1"
+      BelongsToLoreID="PowerOfTheLady"
+      TooltipDescription="Adds 40% physical resistance against ranged damage for 15 seconds to the caster.">
+		<LightColorRGB x="255" y="255" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>aura_of_lady</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="ShieldOfCombat" 
+      Name="Shield Of Combat" 
+      SpriteName="ward_of_arrows_icon" 
+      CoolDown="10" 
+      WindsOfMagicCost="3" 
+      BaseMisCastChance="0.05" 
+      Duration="0" 
+      Radius="8" 
+      AbilityType="Spell" 
+      AbilityEffectType="Augment" 
+      BaseMovementSpeed="0" 
+      TickInterval="-1" 
+      TriggerType="TickOnce" 
+      HasLight="false" 
+      LightIntensity="0" 
+      LightRadius="0" 
+      LightFlickeringMagnitude="0" 
+      LightFlickeringInterval="0" 
+      ShadowCastEnabled="false" 
+      ParticleEffectPrefab="none" 
+      ParticleEffectSizeModifier="0" 
+      SoundEffectToPlay="none" 
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant" 
+      CastTime="0" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0"
+      AbilityTargetType="AlliesInAOE"
+      CrosshairType="TargetedAOE"
+	  MaxDistance="20"
+      TargetCapturingRadius="8"
+      SpellTier="1"
+      BelongsToLoreID="PowerOfTheLady"
+      TooltipDescription="Adds 40% physical resistance against ranged damage for 15 seconds to the caster.">
+		<LightColorRGB x="255" y="255" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>shield_of_combat</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="LadysFavour"
+      Name="Lady's Favour"
+      SpriteName="resistanceaura_icon"
+      CoolDown="5"
+      WindsOfMagicCost="0"
+      BaseMisCastChance="0.05"
+      Duration="10"
+      Radius="6"
+      AbilityType="Prayer"
+      AbilityEffectType="Augment"
+      BaseMovementSpeed="0"
+      TickInterval="2"
+      TriggerType="EveryTick"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="false"
+      ParticleEffectPrefab="ladys_favour"
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.5"
+      AbilityTargetType="AlliesInAOE"
+      TargetCapturingRadius="4"
+      MaxDistance="20"
+      CrosshairType="TargetedAOE"
+      SpellTier="1"
+      BelongsToLoreID="PowerOfTheLady"
+      TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>ladys_favour</TriggeredEffect>
+	</AbilityTemplate>
+	
+	
 </AbilityTemplates>

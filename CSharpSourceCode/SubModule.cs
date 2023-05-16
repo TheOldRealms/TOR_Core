@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using HarmonyLib;
 using NLog;
 using NLog.Config;
@@ -32,9 +33,11 @@ using TOR_Core.BattleMechanics.Banners;
 using TOR_Core.BattleMechanics.Dismemberment;
 using TOR_Core.BattleMechanics.Firearms;
 using TOR_Core.BattleMechanics.Morale;
+using TOR_Core.BattleMechanics.SFX;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics;
+using TOR_Core.CampaignMechanics.AICompanions;
 using TOR_Core.CampaignMechanics.Assimilation;
 using TOR_Core.CampaignMechanics.Chaos;
 using TOR_Core.CampaignMechanics.CustomDialogs;
@@ -73,7 +76,12 @@ namespace TOR_Core
         }
 
         protected override void OnSubModuleLoad()
-        {
+        { 
+            
+            CampaignTime startTime = CampaignTime.Years(2502)+CampaignTime.Weeks(4)+CampaignTime.Days(5);
+            
+            typeof(CampaignData).GetField("CampaignStartTime",BindingFlags.Static|BindingFlags.Public)?.SetValue(null,startTime);
+            
             ViewModelExtensionManager.Initialize(); //has to happen before harmony PatchAll
             HarmonyInstance = new Harmony("mod.harmony.theoldrealms");
             HarmonyInstance.PatchAll();
@@ -114,6 +122,7 @@ namespace TOR_Core
                 starter.AddBehavior(new SpellTrainerInTownBehavior());
                 starter.AddBehavior(new MasterEngineerTownBehaviour());
                 starter.AddBehavior(new TORPerkHandlerCampaignBehavior());
+                starter.AddBehavior(new TORAICompanionCampaignBehavior());
                 starter.AddBehavior(new BaseGameDebugCampaignBehavior());
                 starter.AddBehavior(new BloodKissCampaignBehavior());
                 starter.AddBehavior(new TORPartyUpgraderCampaignBehavior());
@@ -170,6 +179,7 @@ namespace TOR_Core
             }
             else if (Game.Current.GameType is CustomGame && gameStarterObject is BasicGameStarter)
             {
+                gameStarterObject.AddModel(new TORDamageParticleModel());
                 gameStarterObject.AddModel(new TORCustomBattleMoraleModel());
                 gameStarterObject.AddModel(new TORCustomBattleAgentStatCalculateModel());
             }

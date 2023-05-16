@@ -10846,4 +10846,19 @@
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_light_wizard_001" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_prophetess_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Body" id="Item.vlandian_corset_dress" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_celestial_wizard_001" />
+	  <Equipment slot="Head" id="Item.vlandia_crown" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_light_wizard_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_light_wizard_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Body" id="Item.vlandian_corset_dress" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_celestial_wizard_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_light_wizard_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_light_wizard_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
 </EquipmentRosters>

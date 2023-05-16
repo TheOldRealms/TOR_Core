@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Helpers;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
@@ -32,6 +34,50 @@ namespace TOR_Core.Utilities
             }
             return "Engineer Quest is not active \n";
         }
+        
+        [CommandLineFunctionality.CommandLineArgumentFunction("whereAreAICompanions", "tor")]
+        public static string ShowCompanionPosition(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+
+            string result = "";
+
+            var aiCompanions = Campaign.Current.AliveHeroes.Where(x => x.IsAICompanion());
+            
+
+            foreach (var companion in aiCompanions)
+            {
+                var partResult = "";
+                if (companion.CurrentSettlement != null)
+                {
+                    partResult = partResult.Add(companion.Name.ToString() + " " + " is currently in " + companion.CurrentSettlement);
+                    result+=partResult;
+                    continue;
+                }
+
+                if (companion.PartyBelongedTo != null)
+                {
+                    partResult=partResult.Add(companion.Name.ToString() + " " + " is part of  " + companion.PartyBelongedTo.LeaderHero.Name + " Party"+ companion.PartyBelongedTo.GetPosition2D);
+                    result+=partResult;
+                    continue;
+                }
+
+                if (companion.CurrentSettlement == null && companion.PartyBelongedTo == null)
+                {
+                    partResult= partResult.Add(companion.Name.ToString() + " " + " is nowhere to be found.");
+                    result+=partResult;
+                    continue;
+                }
+
+
+
+            }
+
+
+            return result;
+        }
+        
         
         
         [CommandLineFunctionality.CommandLineArgumentFunction("list_spells", "tor")]
@@ -107,6 +153,38 @@ namespace TOR_Core.Utilities
                 Hero.MainHero.AddAttribute("AbilityUser");
 
             return "Player is spell caster now. \n";
+        }
+        
+        [CommandLineFunctionality.CommandLineArgumentFunction("damage_agent", "tor")]
+        public static string DamageAgent(List<string> arguments)
+        {
+            if (Campaign.Current != null)
+            {
+                if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                    return CampaignCheats.ErrorType;
+            }
+        
+            if (Mission.Current == null)
+                return "not in mission";
+            
+            Agent target=null;
+            int damage;
+            if (int.TryParse(arguments[0], out damage))
+            {
+                target = Mission.Current.MainAgent;
+            }
+            else
+            {
+                if (arguments.Count==2&&int.TryParse(arguments[1], out damage))
+                {
+                    target= Mission.Current.Agents.FirstOrDefault(x => x.Name == arguments[0]);
+                }
+            }
+
+            if (target == null) return "Couldn't find agent";
+            target.ApplyDamage(damage,target.Position);
+            return "Damaged "+target.Name+" with "+ damage+ "\n";
+
         }
 
         [CommandLineFunctionality.CommandLineArgumentFunction("add_career", "tor")]

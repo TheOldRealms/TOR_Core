@@ -20,9 +20,10 @@
 		base_effect_value="20"
 		type="HealthOverTime"/>
 	<StatusEffectTemplate 
-		id="red_regeneration" 
-		particle_id="red_regeneration"
+		id="breath_of_darkness" 
+		particle_id="breath_of_darkness"
 		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="20"
 		type="HealthOverTime"/>
 	<StatusEffectTemplate 
@@ -85,10 +86,70 @@
 		<temporary_attribute>Unstoppable</temporary_attribute>
   	</StatusEffectTemplate>
 	<StatusEffectTemplate
-		id="movement_impairment"
+		id="dwellersbelow_impairment"
 		particle_id="harmonic_convergence"
 		particle_intensity="High"
 		apply_particle_to_root_bone_only="true"
+    	base_effect_value="-0.8"
+		type="MovementManipulation"
+		damage_type="Physical">
+  	</StatusEffectTemplate>
+	<StatusEffectTemplate
+		id="summerheat_impairment_50"
+		particle_id="summer_heat"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+    	base_effect_value="-0.5"
+		type="MovementManipulation"
+		damage_type="Physical">
+  	</StatusEffectTemplate>
+	<StatusEffectTemplate
+		id="summerheat_fireres_debuff_25"
+		particle_id=""
+    	base_effect_value="-0.25"
+		type="Resistance"
+		damage_type="Fire">
+  	</StatusEffectTemplate>
+	<StatusEffectTemplate
+		id="regrowth_heal" 
+		particle_id="regrowth_heal"
+		particle_intensity="High"
+		base_effect_value="5"
+		type="HealthOverTime"
+		do_not_attach_to_agent_skeleton="true"/>
+	<StatusEffectTemplate
+		id="storm_of_renewal_heal" 
+		do_not_attach_to_agent_skeleton="true"
+		particle_id="storm_of_renewal"
+		base_effect_value="10"
+		type="HealthOverTime"/>
+	<StatusEffectTemplate
+		id="drain_life_dot"
+		particle_id="drain_life"
+		do_not_attach_to_agent_skeleton="true"
+		particle_intensity="High"
+    	base_effect_value="5"
+		type="DamageOverTime"/>
+	<StatusEffectTemplate
+		id="curseofyears_movementimpair_50"
+		particle_id="curse_of_years"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+    	base_effect_value="-0.5"
+		type="MovementManipulation"/>
+	<StatusEffectTemplate
+		id="curseofyears_attackspeed_50"
+		particle_id=""
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+    	base_effect_value="-0.5"
+		type="AttackSpeedManipulation"/>
+
+	<StatusEffectTemplate
+		id="net_amyn_movementimpair__100"
+		particle_id="net_of_amyntok"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
     	base_effect_value="-5"
 		type="MovementManipulation"
 		damage_type="Physical">
@@ -114,4 +175,203 @@
 		particle_id="righteousfury_pulse"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"/>
+	<StatusEffectTemplate 
+		id="fire_cloak_phy_res" 
+		particle_id="firecloak"
+		do_not_attach_to_agent_skeleton="true"
+		particle_intensity="High"
+		base_effect_value="0.3"
+		damage_type="Physical"
+		type="Resistance"/>
+	<StatusEffectTemplate 
+		id="fire_cloak_fire_res" 
+		particle_id="firecloak"
+		do_not_attach_to_agent_skeleton="true"
+		particle_intensity="High"
+		base_effect_value="0.7"
+		damage_type="Fire"
+		type="Resistance">
+		<temporary_attribute>ClearBloodBurst</temporary_attribute>
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="ward_of_arrows" 
+		particle_id="psys_energy_sphere"
+		particle_intensity="Low"
+		base_effect_value="1"
+		damage_type="Physical"
+		applies_for_attack_type="Ranged"
+		type="Resistance">
+		<temporary_attribute>ClearBloodBurst</temporary_attribute>
+	</StatusEffectTemplate>
+		
+	<StatusEffectTemplate
+		id="tangling_thorn"
+		particle_id="tangling_thorn"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+    	base_effect_value="-0.9"
+		type="MovementManipulation"
+		damage_type="Physical"/>
+		
+		
+	<StatusEffectTemplate 
+		id="barkskin" 
+		do_not_attach_to_agent_skeleton="true"
+		particle_id="barkskin"
+		particle_intensity="Low"
+		base_effect_value="0.35"
+		damage_type="Physical"
+		type="Resistance"
+		rotation="true"/>
+		
+		
+	<StatusEffectTemplate 
+		id="armour_of_the_righteous" 
+		do_not_attach_to_agent_skeleton="true"
+		particle_id="armour_of_the_righteous"
+		particle_intensity="Low"
+		base_effect_value="0.35"
+		damage_type="Physical"
+		type="Resistance"
+		rotation="true"
+		rotation_speed="200"
+		/>
+		
+		
+	<StatusEffectTemplate 
+		id="pans_pelt" 
+		particle_id="panns_impenetrable_pelt"
+		particle_intensity="Low"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.35"
+		damage_type="Physical"
+		type="Resistance"/>
+		
+	<StatusEffectTemplate
+		id="flock_of_doom_dot"
+		particle_id="flock_of_doom"
+		particle_intensity="High"
+    	base_effect_value="10"
+		do_not_attach_to_agent_skeleton="true"
+		type="DamageOverTime"
+		damage_type="Physical"/>
+		
+	<StatusEffectTemplate
+		id="flock_of_doom_phy_red"
+		particle_id=""
+		particle_intensity="Low"
+		apply_particle_to_root_bone_only="true"
+    	base_effect_value="-0.2"
+		type="Resistance"
+		damage_type="Physical"/>
+		
+	<StatusEffectTemplate
+		id="beast_unleashed_ats_buff"
+		particle_id="beast_unleashed"
+		particle_intensity="High"
+		apply_particle_to_root_bone_only="true"
+		base_effect_value="0.5"
+		type="AttackSpeedManipulation"
+		damage_type="Physical"/>
+		
+	<StatusEffectTemplate
+		id="beast_unleashed_phys_buff"
+		particle_id=""
+		particle_intensity="High"
+		apply_particle_to_root_bone_only="true"
+		base_effect_value="0.25"
+		type="DamageAmplification"
+		damage_type="Physical"/>
+		
+	<StatusEffectTemplate
+		id="curse_of_anraheir_ats_debuff"
+		particle_id="curse_of_anraheir"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="-0.5"
+		type="AttackSpeedManipulation"
+		damage_type="Physical"/>
+		
+	<StatusEffectTemplate
+		id="curse_of_anraheir_mv_debuff"
+		particle_id=""
+		base_effect_value="-0.35"
+		type="MovementManipulation"
+		damage_type="Physical"/>
+		
+	<StatusEffectTemplate
+		id="curse_of_anraheir_dot"
+		particle_id=""
+		apply_particle_to_root_bone_only="true"
+		base_effect_value="3"
+		type="DamageOverTime"
+		damage_type="Magical"/>
+	
+	<StatusEffectTemplate
+		id="healing_hand_tick"
+		particle_id="healing_hand"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="5"
+		type="HealthOverTime"
+		damage_type="Holy"/>	
+	
+	<StatusEffectTemplate
+		id="ladysfavour_tick"
+		particle_id="ladysfavour"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.25"
+		type="AttackSpeedManipulation"
+		damage_type="Holy"/>
+
+	<StatusEffectTemplate
+		id="shield_of_combat"
+		particle_id="shield_of_combat"
+		base_effect_value="0.5"
+		do_not_attach_to_agent_skeleton="true"
+		applies_for_attack_type="Melee"
+		type="Resistance"
+		damage_type="Physical">
+		<temporary_attribute>ClearBloodBurst</temporary_attribute>		
+	</StatusEffectTemplate>
+	
+		<StatusEffectTemplate
+		id="aura_of_lady_magic"
+		particle_id="aura_of_lady"
+		base_effect_value="0.8"
+		do_not_attach_to_agent_skeleton="true"
+		applies_for_attack_type="Spell"
+		type="Resistance"
+		damage_type="Magical">
+	</StatusEffectTemplate>
+	
+		<StatusEffectTemplate
+		id="aura_of_lady_fire"
+		particle_id=""
+		base_effect_value="0.8"
+		do_not_attach_to_agent_skeleton="true"
+		applies_for_attack_type="Spell"
+		type="Resistance"
+		damage_type="Fire">
+	</StatusEffectTemplate>
+	
+		<StatusEffectTemplate
+		id="aura_of_lady_lightning"
+		particle_id=""
+		base_effect_value="0.8"
+		do_not_attach_to_agent_skeleton="true"
+		applies_for_attack_type="Spell"
+		type="Resistance"
+		damage_type="Lightning">
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="aerial_shield_tick"
+		particle_id="aerial_shield"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="1.0"
+		applies_for_attack_type="Ranged"
+		type="Resistance"
+		damage_type="Physical">
+		<temporary_attribute>ClearBloodBurst</temporary_attribute>		
+	</StatusEffectTemplate>
 </StatusEffects>

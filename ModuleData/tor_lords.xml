@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <NPCCharacters>
   <NPCCharacter id="tor_emp_lord" default_group="cavalry" name="{=str_tor_emp_lord}Empire Lord" occupation="Lord" culture="Culture.empire" voice="curt" age="50" skill_template="SkillSet.tor_custombattle_generic" is_hero="true">
     <face>
@@ -106,6 +106,42 @@
     <Equipments>
       <EquipmentSet id="tor_necromancer_template" />
       <EquipmentSet id="tor_necromancer_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+    <NPCCharacter id="tor_prophetess_lw" default_group="infantry" name="{=str_ tor_prophetsse_life}Prophetess(Life)" occupation="Lord" is_female="true" culture="Culture.empire" voice="curt" age="45" skill_template="SkillSet.tor_custombattle_generic" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="35" weight="0.1941" build="0.037"  key="001B900000B430157279D168465B5B774BC879C47BA98A488748E8A9857B5A9801A136130A77758A00000000000000000000000000000000000000001F4C30C3"  />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_prophetess_template" />
+      <EquipmentSet id="tor_prophetess_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_prophetess_bw" default_group="infantry" name="{=str_ tor_prophetsse_life}Prophetess(Beast)" occupation="Lord" is_female="true" culture="Culture.empire" voice="curt" age="45" skill_template="SkillSet.tor_custombattle_generic" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="35" weight="0.1941" build="0.037"  key="001B900000B430157279D168465B5B774BC879C47BA98A488748E8A9857B5A9801A136130A77758A00000000000000000000000000000000000000001F4C30C3"  />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_prophetess_template" />
+      <EquipmentSet id="tor_prophetess_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 </NPCCharacters>

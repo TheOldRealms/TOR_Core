@@ -1,4 +1,4 @@
-﻿using TaleWorlds.Library;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.Engine;
 using System;

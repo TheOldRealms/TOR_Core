@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -375,6 +375,7 @@
     <Compile Include="AbilitySystem\Scripts\HealScript.cs" />
     <Compile Include="AbilitySystem\Scripts\HexScript.cs" />
     <Compile Include="AbilitySystem\Scripts\MissileScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\ProjectileScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ShadowStepScript.cs" />
     <Compile Include="AbilitySystem\Scripts\SummoningScript.cs" />
     <Compile Include="AbilitySystem\Scripts\VortexScript.cs" />
@@ -441,6 +442,10 @@
     <Compile Include="BattleMechanics\Firearms\FirearmsMissionLogic.cs" />
     <Compile Include="BattleMechanics\Morale\UndeadMoraleAgentComponent.cs" />
     <Compile Include="BattleMechanics\Morale\UndeadMoraleMissionLogic.cs" />
+    <Compile Include="BattleMechanics\SFX\TORFaceEnemy.cs" />
+    <Compile Include="BattleMechanics\SFX\TORLightDampener.cs" />
+    <Compile Include="BattleMechanics\SFX\TORSimpleObjectAnimator.cs" />
+    <Compile Include="BattleMechanics\SFX\TORSpinner.cs" />
     <Compile Include="BattleMechanics\SniperScope\SniperScope.cs" />
     <Compile Include="BattleMechanics\StatusEffect\StatusEffect.cs" />
     <Compile Include="BattleMechanics\StatusEffect\StatusEffectComponent.cs" />
@@ -455,6 +460,7 @@
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffect.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectManager.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectTemplate.cs" />
+    <Compile Include="CampaignMechanics\AICompanions\TORAICompanionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissCampaignBehavior.cs" />
@@ -557,6 +563,7 @@
     <Compile Include="HarmonyPatches\MainMenuOptionsPatches.cs" />
     <Compile Include="HarmonyPatches\MBMusicManagerPatches.cs" />
     <Compile Include="HarmonyPatches\MissionPatches.cs" />
+    <Compile Include="HarmonyPatches\MountCreationPatches.cs" />
     <Compile Include="HarmonyPatches\ObjectManagerPatches.cs" />
     <Compile Include="HarmonyPatches\PerkResetRelatedPatch.cs" />
     <Compile Include="HarmonyPatches\RotatingMainMenuScenePatch.cs" />

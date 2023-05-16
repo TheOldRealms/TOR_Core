@@ -40,6 +40,7 @@ namespace TOR_Core.AbilitySystem
         public delegate void OnCastStartHandler(Ability ability);
 
         public event OnCastStartHandler OnCastStart;
+        
 
         public Ability(AbilityTemplate template)
         {
@@ -104,14 +105,24 @@ namespace TOR_Core.AbilitySystem
                 timer.Start();
             }
         }
-        
+
+        public void SetCoolDown(int cooldownTime)
+        {
+            _coolDownLeft =cooldownTime;
+            _cooldown_end_time = Mission.Current.CurrentTime + _coolDownLeft + 0.8f; //Adjustment was needed for natural tick on UI
+            _timer.Start();
+        }
         public virtual void ActivateAbility(Agent casterAgent)
         {
             IsActivationPending = false;
             IsCasting = false;
-            _coolDownLeft = Template.CoolDown;
-            _cooldown_end_time = Mission.Current.CurrentTime + _coolDownLeft + 0.8f; //Adjustment was needed for natural tick on UI
-            _timer.Start();
+            
+            if(Template.AbilityType == AbilityType.Prayer)
+                casterAgent.GetComponent<AbilityComponent>().SetPrayerCoolDown(Template.CoolDown);
+            else
+                SetCoolDown(Template.CoolDown);
+            
+           
             var frame = GetSpawnFrame(casterAgent); 
             
             GameEntity parentEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
@@ -420,6 +431,9 @@ namespace TOR_Core.AbilitySystem
         {
             switch (Template.AbilityEffectType)
             {
+                case AbilityEffectType.Projectile:
+                    AddExactBehaviour<ProjectileScript>(entity,casterAgent);
+                    break;
                 case AbilityEffectType.SeekerMissile:
                 case AbilityEffectType.Missile:
                     AddExactBehaviour<MissileScript>(entity, casterAgent);

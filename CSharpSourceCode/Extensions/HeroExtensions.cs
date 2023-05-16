@@ -178,9 +178,17 @@ namespace TOR_Core.Extensions
         {
             return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("vampire");
         }
+        
+        public static bool IsAICompanion(this Hero hero)
+        {
+            return hero.HasAttribute("AICompanion");
+        }
+
 
         public static bool IsSpellTrainer(this Hero hero)
         {
+            if (IsAICompanion(hero)) return false;
+            
             return hero.Occupation == Occupation.Special && hero.Name.Contains("Magister");
         }
 

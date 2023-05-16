@@ -237,6 +237,9 @@ namespace TOR_Core.AbilitySystem
         private void HandleInput()
         {
             //Turning ability mode on/off
+            
+            if(Input.IsKeyDown(InputKey.Tab))
+                return; 
 
             if (Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) ||
                 Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey))

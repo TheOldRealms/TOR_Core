@@ -9,6 +9,7 @@ using TaleWorlds.Library;
 using TaleWorlds.Core;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using System;
+using TOR_Core.BattleMechanics.SFX;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
 {
@@ -166,7 +167,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         private void UpdateDummyEntity(float dt)
         {
-            _dummyEntity?.SetGlobalFrameMT(new MatrixFrame(new Mat3(Agent.LookRotation.s, Agent.LookRotation.f, Vec3.Up), Agent.GetChestGlobalPosition()));
+           // _dummyEntity; = Agent.GetChestGlobalPosition();
+           _dummyEntity?.SetGlobalFrameMT(new MatrixFrame(_dummyEntity.GetFrame().rotation,Agent.GetChestGlobalPosition()));
+          //  _dummyEntity?.SetGlobalFrameMT(new MatrixFrame(new Mat3(Agent.LookRotation.s, Agent.LookRotation.f, Vec3.Up), Agent.GetChestGlobalPosition()));
         }
 
         private void RemoveEffect(StatusEffect effect)
@@ -251,6 +254,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             return list;
         }
 
+        
+
         private void AddEffect(StatusEffect effect)
         {
             EffectData data;
@@ -258,8 +263,15 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             {
                 MatrixFrame frame = MatrixFrame.Identity;
                 var psys = ParticleSystem.CreateParticleSystemAttachedToEntity(effect.Template.ParticleId, _dummyEntity, ref frame);
+                if (effect.Template.Rotation)
+                {
+                    _dummyEntity.CreateAndAddScriptComponent("TORSpinner");
+                    _dummyEntity.GetFirstScriptOfType<TORSpinner>().RotationSpeed = effect.Template.RotationSpeed; 
+                }
+                
                 data = new EffectData(effect, new List<ParticleSystem> { psys }, null);
                 data.IsParticleAttachedToAgentSkeleton = false;
+
             }
             else
             {
@@ -267,6 +279,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 List<ParticleSystem> particles = TORParticleSystem.ApplyParticleToAgent(Agent, effect.Template.ParticleId, out entities, effect.Template.ParticleIntensity, effect.Template.ApplyToRootBoneOnly);
                 data = new EffectData(effect, particles, entities);
             }
+
+            
 
             _currentEffects.Add(effect, data);
         }

@@ -236,6 +236,21 @@ namespace TOR_Core.AbilitySystem
                 CurrentAbilityChanged?.Invoke(_currentAbility.Crosshair);
             }
         }
+
+
+        public void SetPrayerCoolDown(int time)
+        {
+            foreach (var ability in _knownAbilitySystem)
+            {
+                if (ability.Template.AbilityType == AbilityType.Prayer)
+                {
+                    if (!ability.IsOnCooldown()||(ability.GetCoolDownLeft()<time))
+                    {
+                        ability.SetCoolDown(time);
+                    }
+                }
+            }
+        }
         public CareerAbility CareerAbility { get; private set; }
         public List<Ability> KnownAbilitySystem { get => _knownAbilitySystem; }
         public delegate void CurrentAbilityChangedHandler(AbilityCrosshair crosshair);

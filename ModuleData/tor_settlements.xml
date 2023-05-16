@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Settlements>
   <!--Custom Settlements-->
   <Settlement id="chaos_portal_01" name="{=!}Chaos Portal" owner="Faction.chaos_clan_1" posX="1421.178" posY="900.773" culture="Culture.chaos_culture" prosperity="500" text="{=!}Chaos Portal">
@@ -2794,7 +2794,7 @@
   </Settlement>
   <Settlement id="castle_village_MO2_1" name="{=Settlements.Settlement.name.castle_village_MO2_1}Les Auxons" posX="1128.882" posY="1020.518" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MO2_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
     <Components>
-      <Village id="castle_village_comp_MO1_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_MO2" bound="Settlement.castle_MO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_MO2_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_MO2" bound="Settlement.castle_MO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
@@ -3332,7 +3332,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_BL2" name="{=Settlements.Settlement.name.town_BA1}Turenne" owner="Faction.bordeleaux_clan_1" posX="874.636" posY="954.618" culture="Culture.vlandia" prosperity="4500" gate_posX="873.3562" gate_posY="953.1183" text="{=!}The peasant town of Turenne, though lowly, is nothing to scoff at. The people here live under the protection of the duke and while most make their living in the fields around the town, there are those peasants that have taken up a craft or trade near the town square. Turenne is a town dependent on the excesses of Bordeleaux, merchants needing a simple place to stop can often find cheaper rooms and supplies here.">
+  <Settlement id="town_BL2" name="{=Settlements.Settlement.name.town_BA1}Turenne" owner="Faction.bordeleaux_clan_1" posX="866.3693" posY="953.6926" culture="Culture.vlandia" prosperity="4500" gate_posX="871.8522" gate_posY="955.2079" text="{=!}The peasant town of Turenne, though lowly, is nothing to scoff at. The people here live under the protection of the duke and while most make their living in the fields around the town, there are those peasants that have taken up a craft or trade near the town square. Turenne is a town dependent on the excesses of Bordeleaux, merchants needing a simple place to stop can often find cheaper rooms and supplies here.">
     <Components>
       <Town id="town_comp_BL2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -3391,7 +3391,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BL1" name="{=Settlements.Settlement.name.castle_BL1}Turris Vigilans" owner="Faction.bordeleaux_clan_1" posX="934.417" posY="990.942" prosperity="800" culture="Culture.vlandia" gate_posX="934.4772" gate_posY="991.7035" text="{=!}De Turris Vigilans, the vigilant tower, is a centre of Verenan worship in Bretonnia. In addition to a large temple, the cult maintains a great lighthouse which is widely considered to be the most reliable in the world. The Priests of Verena here will often offer advice to those that seek their counsel, and are reputable for its benefits. The Cult and the Dukedom of Bordeleaux have the shared interest in watching the cursed land to their north, as a result; the Duke has established a garrison here and the fortifications are always maintained.">
+  <Settlement id="castle_BL1" name="{=Settlements.Settlement.name.castle_BL1}Turris Vigilans" owner="Faction.bordeleaux_clan_1" posX="930.6349" posY="989.7952" prosperity="800" culture="Culture.vlandia" gate_posX="932.7274" gate_posY="989.0912" text="{=!}De Turris Vigilans, the vigilant tower, is a centre of Verenan worship in Bretonnia. In addition to a large temple, the cult maintains a great lighthouse which is widely considered to be the most reliable in the world. The Priests of Verena here will often offer advice to those that seek their counsel, and are reputable for its benefits. The Cult and the Dukedom of Bordeleaux have the shared interest in watching the cursed land to their north, as a result; the Duke has established a garrison here and the fortifications are always maintained.">
     <Components>
       <Town id="castle_comp_BL1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -3786,7 +3786,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AQ2" name="{=Settlements.Settlement.name.town_AQ2}Château D'Epee" owner="Faction.aquitaine_clan_1" posX="962.228" posY="909.745" culture="Culture.vlandia" prosperity="4500" gate_posX="961.2035" gate_posY="908.0606" text="{=!}Altdorf is at once perhaps the greatest city of the vlandia and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the aquitaine and the vlandia of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the vlandia; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
+  <Settlement id="town_AQ2" name="{=Settlements.Settlement.name.town_AQ2}Château D'Epee" owner="Faction.aquitaine_clan_1" posX="955.3856" posY="902.4203" culture="Culture.vlandia" prosperity="4500" gate_posX="958.3504" gate_posY="904.615" text="{=!}Altdorf is at once perhaps the greatest city of the vlandia and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the aquitaine and the vlandia of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the vlandia; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
     <Components>
       <Town id="town_comp_AQ2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_vlandia_1" wait_mesh="vlandia_city_background" gate_rotation="0.908" />
     </Components>
