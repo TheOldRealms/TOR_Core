@@ -249,7 +249,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_patrol");
             Clan chaosClan = Clan.FindFirst(x => x.StringId == "chaos_clan_1");
             var party = RaidingPartyComponent.CreateRaidingParty(settlement.StringId + "_defender_party", settlement, "Portal Defenders", template, chaosClan, 250);
-            PlayerEncounter.RestartPlayerEncounter(party.Party, PartyBase.MainParty, true);
+            PlayerEncounter.RestartPlayerEncounter(party.Party, PartyBase.MainParty, false);
             if (PlayerEncounter.Battle == null)
             {
                 PlayerEncounter.StartBattle();

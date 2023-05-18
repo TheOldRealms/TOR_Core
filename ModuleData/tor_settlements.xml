@@ -3729,13 +3729,13 @@
   <!-- Aquitaine -->
   <Settlement id="town_AQ1" name="{=Settlements.Settlement.name.town_AQ1}Castle Aquitaine" owner="Faction.aquitaine_clan_1" posX="990.5289" posY="884.731" culture="Culture.vlandia" prosperity="4500" gate_posX="993.7783" gate_posY="889.0854" text="{=!}Altdorf is at once perhaps the greatest city of the vlandia and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the aquitaine and the vlandia of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the vlandia; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
     <Components>
-      <Town id="town_comp_AQ1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_vlandia_1" wait_mesh="vlandia_city_background" gate_rotation="0.908" />
+      <Town id="town_comp_AQ1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
-      <Location id="arena" scene_name="TOW_arena_vlandia_a" />
+      <Location id="arena" scene_name="TOW_arena_empire_a" />
       <Location id="tavern" scene_name="vlandia_tavern_01" />
-      <Location id="lordshall" scene_name_1="TOW_vlandia_keep_l1" scene_name_2="TOW_vlandia_keep_l2" scene_name_3="TOW_vlandia_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="vlandia_house_d_interior_house" />
@@ -3752,7 +3752,7 @@
       <Village id="village_comp_AQ1_1" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AQ1" bound="Settlement.town_AQ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vlandia_village_005" />
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3765,7 +3765,7 @@
       <Village id="village_comp_AQ1_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AQ1" bound="Settlement.town_AQ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vlandia_village_005" />
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3778,7 +3778,7 @@
       <Village id="village_comp_AQ1_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AQ1" bound="Settlement.town_AQ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vlandia_village_005" />
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3788,13 +3788,13 @@
   </Settlement>
   <Settlement id="town_AQ2" name="{=Settlements.Settlement.name.town_AQ2}Château D'Epee" owner="Faction.aquitaine_clan_1" posX="962.228" posY="909.745" culture="Culture.vlandia" prosperity="4500" gate_posX="961.2035" gate_posY="908.0606" text="{=!}Altdorf is at once perhaps the greatest city of the vlandia and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the aquitaine and the vlandia of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the vlandia; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
     <Components>
-      <Town id="town_comp_AQ2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_vlandia_1" wait_mesh="vlandia_city_background" gate_rotation="0.908" />
+      <Town id="town_comp_AQ2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
-      <Location id="arena" scene_name="TOW_arena_vlandia_a" />
+      <Location id="arena" scene_name="TOW_arena_empire_a" />
       <Location id="tavern" scene_name="vlandia_tavern_01" />
-      <Location id="lordshall" scene_name_1="TOW_vlandia_keep_l1" scene_name_2="TOW_vlandia_keep_l2" scene_name_3="TOW_vlandia_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="vlandia_house_d_interior_house" />
@@ -3811,7 +3811,7 @@
       <Village id="village_comp_AQ2_1" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AQ2" bound="Settlement.town_AQ2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vlandia_village_005" />
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3824,7 +3824,7 @@
       <Village id="village_comp_AQ2_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AQ2" bound="Settlement.town_AQ2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vlandia_village_005" />
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3837,7 +3837,7 @@
       <Village id="village_comp_AQ2_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AQ2" bound="Settlement.town_AQ2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vlandia_village_005" />
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3847,11 +3847,11 @@
   </Settlement>
   <Settlement id="castle_AQ1" name="{=Settlements.Settlement.name.castle_AQ1}Castle Libourne" owner="Faction.aquitaine_clan_1" posX="922.856" posY="920.45" prosperity="800" culture="Culture.vlandia" gate_posX="922.4922" gate_posY="925.2435" text="{=!}In the Suden Vorbergland of aquitaine sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
-      <Town id="castle_comp_AQ1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_vlandia_1" wait_mesh="vlandia_city_background" gate_rotation="0.908" />
+      <Town id="castle_comp_AQ1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="vlandia_siege_001" scene_name_1="vlandia_siege_001" scene_name_2="vlandia_siege_001" scene_name_3="vlandia_siege_001" />
-      <Location id="lordshall" scene_name_1="TOW_vlandia_keep_l1" scene_name_2="TOW_vlandia_keep_l2" scene_name_3="TOW_vlandia_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
@@ -3860,7 +3860,7 @@
       <Village id="castle_village_comp_AQ1_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_AQ1" bound="Settlement.castle_AQ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3873,7 +3873,7 @@
       <Village id="castle_village_comp_AQ1_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_AQ1" bound="Settlement.castle_AQ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3883,11 +3883,11 @@
   </Settlement>
   <Settlement id="castle_AQ2" name="{=Settlements.Settlement.name.castle_AQ2}Castle Monflanquin" owner="Faction.aquitaine_clan_1" posX="1014.628" posY="873.556" prosperity="800" culture="Culture.vlandia" gate_posX="1014.208" gate_posY="874.1943" text="{=!}In the Suden Vorbergland of aquitaine sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
-      <Town id="castle_comp_AQ2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_vlandia_1" wait_mesh="vlandia_city_background" gate_rotation="0.908" />
+      <Town id="castle_comp_AQ2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="vlandia_siege_001" scene_name_1="vlandia_siege_001" scene_name_2="vlandia_siege_001" scene_name_3="vlandia_siege_001" />
-      <Location id="lordshall" scene_name_1="TOW_vlandia_keep_l1" scene_name_2="TOW_vlandia_keep_l2" scene_name_3="TOW_vlandia_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
@@ -3896,7 +3896,7 @@
       <Village id="castle_village_comp_AQ2_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_AQ2" bound="Settlement.castle_AQ2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3909,7 +3909,7 @@
       <Village id="castle_village_comp_AQ2_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_AQ2" bound="Settlement.castle_AQ2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3919,11 +3919,11 @@
   </Settlement>
   <Settlement id="castle_AQ3" name="{=Settlements.Settlement.name.castle_AQ3}Castle Curemonte" owner="Faction.aquitaine_clan_1" posX="1031.677" posY="910.5967" prosperity="800" culture="Culture.vlandia" gate_posX="1033.169" gate_posY="908.5917" text="{=!}In the Suden Vorbergland of aquitaine sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
-      <Town id="castle_comp_AQ3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_vlandia_1" wait_mesh="vlandia_city_background" gate_rotation="0.908" />
+      <Town id="castle_comp_AQ3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="vlandia_siege_001" scene_name_1="vlandia_siege_001" scene_name_2="vlandia_siege_001" scene_name_3="vlandia_siege_001" />
-      <Location id="lordshall" scene_name_1="TOW_vlandia_keep_l1" scene_name_2="TOW_vlandia_keep_l2" scene_name_3="TOW_vlandia_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
@@ -3932,7 +3932,7 @@
       <Village id="castle_village_comp_AQ3_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_AQ3" bound="Settlement.castle_AQ3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3945,7 +3945,7 @@
       <Village id="castle_village_comp_AQ3_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_AQ3" bound="Settlement.castle_AQ3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4222,13 +4222,13 @@
   <!-- Quenelles -->
   <Settlement id="town_QU1" name="{=Settlements.Settlement.name.town_QU1}Castle Quenelles" owner="Faction.quenelles_clan_1" posX="1160.415" posY="806.628" culture="Culture.vlandia" prosperity="4500" gate_posX="1157.651" gate_posY="805.8109" text="{=!}Altdorf is at once perhaps the greatest city of the vlandia and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the Reikland and the vlandia of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the vlandia; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
     <Components>
-      <Town id="town_comp_QU1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_vlandia_1" wait_mesh="vlandia_city_background" gate_rotation="0.908" />
+      <Town id="town_comp_QU1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
-      <Location id="arena" scene_name="TOW_arena_vlandia_a" />
+      <Location id="arena" scene_name="TOW_arena_empire_a" />
       <Location id="tavern" scene_name="vlandia_tavern_01" />
-      <Location id="lordshall" scene_name_1="TOW_vlandia_keep_l1" scene_name_2="TOW_vlandia_keep_l2" scene_name_3="TOW_vlandia_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="vlandia_house_d_interior_house" />
@@ -4245,7 +4245,7 @@
       <Village id="village_comp_QU1_1" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU1" bound="Settlement.town_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vlandia_village_005" />
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4258,7 +4258,7 @@
       <Village id="village_comp_QU1_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU1" bound="Settlement.town_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vlandia_village_005" />
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4271,7 +4271,7 @@
       <Village id="village_comp_QU1_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU1" bound="Settlement.town_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vlandia_village_005" />
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4281,13 +4281,13 @@
   </Settlement>
   <Settlement id="town_QU2" name="{=Settlements.Settlement.name.town_QU2}Viefin" owner="Faction.quenelles_clan_1" posX="1070.803" posY="891.58" culture="Culture.vlandia" prosperity="4500" gate_posX="1075.102" gate_posY="889.7614" text="{=!}Altdorf is at once perhaps the greatest city of the vlandia and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the Reikland and the vlandia of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the vlandia; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
     <Components>
-      <Town id="town_comp_QU2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_vlandia_1" wait_mesh="vlandia_city_background" gate_rotation="0.908" />
+      <Town id="town_comp_QU2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
-      <Location id="arena" scene_name="TOW_arena_vlandia_a" />
+      <Location id="arena" scene_name="TOW_arena_empire_a" />
       <Location id="tavern" scene_name="vlandia_tavern_01" />
-      <Location id="lordshall" scene_name_1="TOW_vlandia_keep_l1" scene_name_2="TOW_vlandia_keep_l2" scene_name_3="TOW_vlandia_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="vlandia_house_d_interior_house" />
@@ -4304,7 +4304,7 @@
       <Village id="village_comp_QU2_1" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU2" bound="Settlement.town_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vlandia_village_005" />
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4317,7 +4317,7 @@
       <Village id="village_comp_QU2_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU2" bound="Settlement.town_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vlandia_village_005" />
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4330,7 +4330,7 @@
       <Village id="village_comp_QU2_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU2" bound="Settlement.town_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vlandia_village_005" />
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4340,11 +4340,11 @@
   </Settlement>
   <Settlement id="castle_QU1" name="{=Settlements.Settlement.name.castle_QU1}Castle Beaumarchais" owner="Faction.quenelles_clan_1" posX="1143.043" posY="898.181" prosperity="800" culture="Culture.vlandia" gate_posX="1143.246" gate_posY="898.9174" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
-      <Town id="castle_comp_QU1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_vlandia_1" wait_mesh="vlandia_city_background" gate_rotation="0.908" />
+      <Town id="castle_comp_QU1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="vlandia_siege_001" scene_name_1="vlandia_siege_001" scene_name_2="vlandia_siege_001" scene_name_3="vlandia_siege_001" />
-      <Location id="lordshall" scene_name_1="TOW_vlandia_keep_l1" scene_name_2="TOW_vlandia_keep_l2" scene_name_3="TOW_vlandia_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
@@ -4353,7 +4353,7 @@
       <Village id="castle_village_comp_QU1_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU1" bound="Settlement.castle_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4366,7 +4366,7 @@
       <Village id="castle_village_comp_QU1_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU1" bound="Settlement.castle_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4379,7 +4379,7 @@
       <Village id="castle_village_comp_QU1_3" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU1" bound="Settlement.castle_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4389,11 +4389,11 @@
   </Settlement>
   <Settlement id="castle_QU2" name="{=Settlements.Settlement.name.castle_QU2}Castle Carrad" owner="Faction.quenelles_clan_1" posX="1164.44" posY="789.469" prosperity="800" culture="Culture.vlandia" gate_posX="1163.227" gate_posY="790.9955" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
-      <Town id="castle_comp_QU2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_vlandia_1" wait_mesh="vlandia_city_background" gate_rotation="0.908" />
+      <Town id="castle_comp_QU2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="vlandia_siege_001" scene_name_1="vlandia_siege_001" scene_name_2="vlandia_siege_001" scene_name_3="vlandia_siege_001" />
-      <Location id="lordshall" scene_name_1="TOW_vlandia_keep_l1" scene_name_2="TOW_vlandia_keep_l2" scene_name_3="TOW_vlandia_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
@@ -4402,7 +4402,7 @@
       <Village id="castle_village_comp_QU2_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU2" bound="Settlement.castle_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4415,7 +4415,7 @@
       <Village id="castle_village_comp_QU2_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU2" bound="Settlement.castle_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4428,7 +4428,7 @@
       <Village id="castle_village_comp_QU2_3" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU2" bound="Settlement.castle_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4438,11 +4438,11 @@
   </Settlement>
   <Settlement id="castle_QU3" name="{=Settlements.Settlement.name.castle_QU3}Castle Laguiller" owner="Faction.quenelles_clan_1" posX="1028.699" posY="823.477" prosperity="800" culture="Culture.vlandia" gate_posX="1027.986" gate_posY="823.7521" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
-      <Town id="castle_comp_QU3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_vlandia_1" wait_mesh="vlandia_city_background" gate_rotation="0.908" />
+      <Town id="castle_comp_QU3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="vlandia_siege_001" scene_name_1="vlandia_siege_001" scene_name_2="vlandia_siege_001" scene_name_3="vlandia_siege_001" />
-      <Location id="lordshall" scene_name_1="TOW_vlandia_keep_l1" scene_name_2="TOW_vlandia_keep_l2" scene_name_3="TOW_vlandia_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
@@ -4451,7 +4451,7 @@
       <Village id="castle_village_comp_QU3_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU3" bound="Settlement.castle_QU3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4464,7 +4464,7 @@
       <Village id="castle_village_comp_QU3_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU3" bound="Settlement.castle_QU3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4477,7 +4477,7 @@
       <Village id="castle_village_comp_QU3_3" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU3" bound="Settlement.castle_QU3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_vlandia_village_004" />
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
