@@ -3917,7 +3917,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AQ3" name="{=Settlements.Settlement.name.castle_AQ3}Castle Curemonte" owner="Faction.aquitaine_clan_1" posX="1030.116" posY="905.014" prosperity="800" culture="Culture.vlandia" gate_posX="1033.169" gate_posY="908.5919" text="{=!}In the Suden Vorbergland of aquitaine sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_AQ3" name="{=Settlements.Settlement.name.castle_AQ3}Castle Curemonte" owner="Faction.aquitaine_clan_1" posX="1031.677" posY="910.5967" prosperity="800" culture="Culture.vlandia" gate_posX="1033.169" gate_posY="908.5917" text="{=!}In the Suden Vorbergland of aquitaine sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
       <Town id="castle_comp_AQ3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_vlandia_1" wait_mesh="vlandia_city_background" gate_rotation="0.908" />
     </Components>
@@ -4013,7 +4013,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_CC2" name="{=Settlements.Settlement.name.town_CC2}Turin" owner="Faction.carcassonne_clan_1" posX="1083.126" posY="777.71" culture="Culture.vlandia" prosperity="4500" gate_posX="1082.027" gate_posY="776.0734" text="{=Settlements.Settlement.text.town_CC2}Located in the Vaults , the City of Turin is the capital of the Barony of Savoie. The region is influenced heavily by nearby Tilea, despite this the city and people are steadfastly loyal to Bretonnia. Holding the famed relic, the “Shroud of Gilles le Breton” the City of Turin is a Pilgrimage site to all who follow the Lady of the Lake, and all who seek visions of the Lady.">
+  <Settlement id="town_CC2" name="{=Settlements.Settlement.name.town_CC2}Turin" owner="Faction.carcassonne_clan_1" posX="1077.753" posY="766.6454" culture="Culture.vlandia" prosperity="4500" gate_posX="1078.515" gate_posY="768.9259" text="{=Settlements.Settlement.text.town_CC2}Located in the Vaults , the City of Turin is the capital of the Barony of Savoie. The region is influenced heavily by nearby Tilea, despite this the city and people are steadfastly loyal to Bretonnia. Holding the famed relic, the “Shroud of Gilles le Breton” the City of Turin is a Pilgrimage site to all who follow the Lady of the Lake, and all who seek visions of the Lady.">
     <Components>
       <Town id="town_comp_CC2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
