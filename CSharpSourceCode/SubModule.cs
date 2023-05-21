@@ -158,6 +158,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORPersuasionModel());
                 gameStarterObject.AddModel(new TORVoiceOverModel());
                 gameStarterObject.AddModel(new TORKingdomDecisionPermissionModel());
+                gameStarterObject.AddModel(new TORDiplomacyModel());
 
                 CampaignOptions.IsLifeDeathCycleDisabled = true;
             }

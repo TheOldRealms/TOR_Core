@@ -460,6 +460,7 @@
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissSceneNotificationItem.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\CustomDialogCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\TORDeclareWarDecision.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\TORDiplomacyModel.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\TORKingdomDecisionPermissionModel.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\TORKingdomDecisionProposalBehavior.cs" />
     <Compile Include="CampaignMechanics\MasterEngineer\MasterEngineerTownBehavior.cs" />
