@@ -38,6 +38,7 @@ using TOR_Core.CampaignMechanics.Assimilation;
 using TOR_Core.CampaignMechanics.Chaos;
 using TOR_Core.CampaignMechanics.CustomDialogs;
 using TOR_Core.CampaignMechanics.CustomEncounterDialogs;
+using TOR_Core.CampaignMechanics.Diplomacy;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
@@ -112,6 +113,7 @@ namespace TOR_Core
                 starter.AddBehavior(new BloodKissCampaignBehavior());
                 starter.AddBehavior(new TORPartyUpgraderCampaignBehavior());
                 starter.AddBehavior(new InkStoryCampaignBehavior());
+                starter.AddBehavior(new TORKingdomDecisionProposalBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
@@ -155,6 +157,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORPartyMoraleModel());
                 gameStarterObject.AddModel(new TORPersuasionModel());
                 gameStarterObject.AddModel(new TORVoiceOverModel());
+                gameStarterObject.AddModel(new TORKingdomDecisionPermissionModel());
 
                 CampaignOptions.IsLifeDeathCycleDisabled = true;
             }
