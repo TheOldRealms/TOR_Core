@@ -58,13 +58,4 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             mobileParty.Aggressiveness = 0f;
         }
     }
-
-    public class GraveyardNightWatchPartyComponentTypeDefiner : SaveableTypeDefiner
-    {
-        public GraveyardNightWatchPartyComponentTypeDefiner() : base(703789) { }
-        protected override void DefineClassTypes()
-        {
-            AddClassDefinition(typeof(GraveyardNightWatchPartyComponent), 1);
-        }
-    }
 }

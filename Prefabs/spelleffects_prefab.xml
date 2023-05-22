@@ -96,6 +96,38 @@
 			</particle_system_instanced_component>
 		</components>
 	</game_entity>
+	<game_entity name="tangling_thorn_ground" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{AEB30BC8-4458-4D51-A055-66634C2FAF63}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="hail_storm" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{CC615B59-F874-4C1B-B8F0-32998DD5C9B8}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="storm_of_renewal_ground" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{DB579893-7096-49A0-BDDD-9308F09035D2}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="curse_of_anraheir_ground" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{43B2213A-E721-435F-84AA-70F88FEF1EA4}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
 	<game_entity name="bats_vfx" old_prefab_name="" mobility="1">
 		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
 		<components>
@@ -323,6 +355,22 @@
 			</particle_system_instanced_component>
 		</components>
 	</game_entity>
+	<game_entity name="amber_spear" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{DD4CD7CC-64D1-4B2F-91FC-FCC659F61101}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="green_eye" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{91DB985A-149D-4274-927F-B09D2F755615}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
 	<game_entity name="stone_assault" old_prefab_name="" mobility="1">
 		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
 		<components>
@@ -481,6 +529,176 @@
 		<components>
 			<particle_system_instanced_component>
 				<effect_ref base_effect="{E187EE03-D466-4DD4-9A21-555B67269F5C}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="comet_of_sigmar" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{561D58F0-7C36-4D28-8017-E73958F7A7BB}"/>
+			</particle_system_instanced_component>
+			<meta_mesh_component name="magic_sphere_holy" position="0.000, 0.000, 0.000" rotation="0.000, 0.000, 0.000" scale="0.200, 0.200, 0.200" _index_="1"/>
+		</components>
+	</game_entity>
+	<game_entity name="healing_hand_ground" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<children>
+			<game_entity name="heavenlyLight" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.000, 5.750" rotation_euler="0.201, 0.232, -0.084"/>
+				<components>
+					<light_component flags="200" color="1.000, 0.831, 0.396" intensity="309.969" radius="8.000" local_frame_rot="4.618802, 0.000000, 0.000000, 0.000000, 4.618802, 0.000000, 0.000000, 0.000000, 8.000000" hotspot_angle="5.000" falloff_angle="30.000" shadow="2" mobility="1" shadow_size_multiplier="1" shadow_radius="4.800"/>
+				</components>
+				<scripts>
+					<script name="WaveFloater">
+						<variables>
+							<variable name="oscillateAtX" value="true"/>
+							<variable name="oscillateAtY" value="true"/>
+							<variable name="oscillateAtZ" value="false"/>
+							<variable name="oscillationFrequency" value="0.800"/>
+							<variable name="maxOscillationAngle" value="15.200"/>
+							<variable name="bounceX" value="false"/>
+							<variable name="bounceXFrequency" value="14.000"/>
+							<variable name="maxBounceXDistance" value="0.500"/>
+							<variable name="bounceY" value="false"/>
+							<variable name="bounceYFrequency" value="14.000"/>
+							<variable name="maxBounceYDistance" value="0.300"/>
+							<variable name="bounceZ" value="false"/>
+							<variable name="bounceZFrequency" value="14.000"/>
+							<variable name="maxBounceZDistance" value="0.300"/>
+						</variables>
+					</script>
+					<script name="TORLightDampener">
+						<variables>
+							<variable name="Duration" value="9.100"/>
+							<variable name="FadeInDuration" value="2.000"/>
+							<variable name="FadeOutDuration" value="1.500"/>
+							<variable name="FadeInIntenisityChange" value="900.000"/>
+							<variable name="FadeOutIntensityChange" value="1200.000"/>
+							<variable name="BeginIntensity" value="0.000"/>
+							<variable name="MaximumIntensity" value="1500.000"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+			<game_entity name="clouds" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.000, -0.010"/>
+				<components>
+					<particle_system_instanced_component>
+						<effect_ref base_effect="{EFAEF766-F994-44B3-AA14-3F6DE5CF43ED}"/>
+					</particle_system_instanced_component>
+				</components>
+				<scripts>
+					<script name="object_mover">
+						<variables>
+							<variable name="Move Amount" value="0.000000"/>
+							<variable name="Move Duration" value="0.000000"/>
+							<variable name="Up Movement Amount" value="0.000000"/>
+							<variable name="Up Movement Frequency" value="0.000000"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+		</children>
+	</game_entity>
+	<game_entity name="ladys_favour" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<scripts>
+			<script name="TORFaceArmy">
+				<variables>
+					<variable name="faceAllied" value="false"/>
+					<variable name="CultureId" value="empire"/>
+				</variables>
+			</script>
+		</scripts>
+		<children>
+			<game_entity name="lady_ghost" old_prefab_name="" mobility="1">
+				<transform position="0.010, 0.202, 0.000" rotation_euler="0.000, 0.000, 0.000" scale="2.500, 2.500, 2.500"/>
+				<components>
+					<meta_mesh_component name="ladystatue" position="0.100, 0.000, 0.000" rotation="0.000, 0.000, 0.000" scale="1.000, 1.000, 1.000">
+						<mesh name="ladystatue" material="vc_ghost_horse_reins_001"/>
+					</meta_mesh_component>
+				</components>
+			</game_entity>
+			<game_entity name="empty_object" old_prefab_name="" mobility="1">
+				<components>
+					<particle_system_instanced_component>
+						<effect_ref base_effect="{8B8F054C-5279-48F4-BB95-E14BD6963822}"/>
+					</particle_system_instanced_component>
+				</components>
+			</game_entity>
+		</children>
+	</game_entity>
+	<game_entity name="ethereal_dome" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<meta_mesh_component name="ethereal_dome"/>
+		</components>
+	</game_entity>
+	<game_entity name="dwellers_below_ground" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{765FF599-9528-445C-BA92-D79A43CE320C}"/>
+			</particle_system_instanced_component>
+		</components>
+		<children>
+			<game_entity name="tendrils" old_prefab_name="" mobility="1">
+				<transform position="2.222, 2.134, 0.000"/>
+				<skeleton skeleton_model="tendrils_skeleton">
+					<components>
+						<meta_mesh_component name="tendrils_mesh">
+							<mesh name="tendrils_mesh" material="empire_light_wizard_gauntlets"/>
+						</meta_mesh_component>
+					</components>
+					<bones>
+						<bone frame="0.084315, 0.204323, 0.975266, 0.000000, 0.996439, -0.016611, -0.082665, 0.000000, -0.000690, 0.978763, -0.204996, 0.000000, 0.000000, 0.000000, 0.000000, 1.000000"/>
+						<bone frame="0.990455, 0.002768, 0.137806, 0.000000, 0.000167, 0.999774, -0.021276, 0.000000, -0.137834, 0.021096, 0.990231, 0.000000, 1.000000, 0.000000, 0.000000, 1.000000" _index_="1"/>
+						<bone frame="0.851857, -0.192471, -0.487129, 0.000000, 0.188927, 0.980338, -0.056962, 0.000000, 0.488514, -0.043508, 0.871471, 0.000000, 1.531801, 0.000000, 0.000000, 1.000000" _index_="2"/>
+						<bone frame="0.425164, -0.280179, -0.860660, 0.000000, 0.343380, 0.929727, -0.133035, 0.000000, 0.837452, -0.238972, 0.491494, 0.000000, 1.655508, -0.000000, -0.000000, 1.000000" _index_="3"/>
+						<bone frame="0.964496, -0.256911, 0.061180, 0.000000, 0.245334, 0.957361, 0.152548, 0.000000, -0.097763, -0.132123, 0.986400, 0.000000, 1.386652, 0.000000, 0.000000, 1.000000" _index_="4"/>
+					</bones>
+				</skeleton>
+				<scripts>
+					<script name="TORSimpleObjectAnimator">
+						<variables>
+							<variable name="AnimationName" value="tendrils_idle"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+			<game_entity name="tendrils" old_prefab_name="" mobility="1">
+				<transform position="-1.621, -2.634, 0.000"/>
+				<skeleton skeleton_model="tendrils_skeleton">
+					<components>
+						<meta_mesh_component name="tendrils_mesh">
+							<mesh name="tendrils_mesh" material="empire_light_wizard_gauntlets"/>
+						</meta_mesh_component>
+					</components>
+					<bones>
+						<bone frame="0.059431, 0.127831, 0.990014, 0.000000, 0.998084, -0.024706, -0.056726, 0.000000, 0.017208, 0.991488, -0.129054, 0.000000, 0.000000, 0.000000, 0.000000, 1.000000"/>
+						<bone frame="0.932711, 0.021395, 0.359990, 0.000000, -0.031519, 0.999255, 0.022276, 0.000000, -0.359245, -0.032123, 0.932690, 0.000000, 1.000000, 0.000000, 0.000000, 1.000000" _index_="1"/>
+						<bone frame="0.823177, 0.049153, 0.565653, 0.000000, -0.059165, 0.998248, -0.000642, 0.000000, -0.564694, -0.032938, 0.824643, 0.000000, 1.531801, 0.000000, 0.000000, 1.000000" _index_="2"/>
+						<bone frame="0.999847, 0.002115, 0.017340, 0.000000, -0.002125, 0.999998, 0.000540, 0.000000, -0.017339, -0.000577, 0.999849, 0.000000, 1.655508, -0.000000, -0.000000, 1.000000" _index_="3"/>
+						<bone frame="0.999163, -0.007667, -0.040184, 0.000000, 0.007647, 0.999971, -0.000649, 0.000000, 0.040188, 0.000341, 0.999192, 0.000000, 1.386652, 0.000000, 0.000000, 1.000000" _index_="4"/>
+					</bones>
+				</skeleton>
+				<scripts>
+					<script name="TORSimpleObjectAnimator">
+						<variables>
+							<variable name="AnimationName" value="tendrils_idle"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+		</children>
+	</game_entity>
+	<game_entity name="doom_bolt_prefab" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<meta_mesh_component name="doombolt_crystal"/>
+			<particle_system_instanced_component _index_="1">
+				<effect_ref base_effect="{74E5BAF9-A2AA-450D-8CEF-405C64077122}"/>
 			</particle_system_instanced_component>
 		</components>
 	</game_entity>

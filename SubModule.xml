@@ -1,4 +1,4 @@
-﻿<Module>
+<Module>
 	<Name value="The Old Realms Core Module" />
 	<Id value="TOR_Core" />
 	<Version value="v1.1.1" />
@@ -60,6 +60,13 @@
 			</IncludedGameTypes>
 		</XmlNode>
 		<XmlNode>
+			<XmlName id="NPCCharacters" path="tor_ai_companions" />
+			<IncludedGameTypes>
+				<GameType value="Campaign" />
+				<GameType value="CampaignStoryMode" />
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
 			<XmlName id="NPCCharacters" path="tor_charactertemplates" />
 			<IncludedGameTypes>
 				<GameType value="Campaign" />
@@ -91,6 +98,13 @@
 		</XmlNode>
 		<XmlNode>
 			<XmlName id="Heroes" path="tor_heroes"/>
+			<IncludedGameTypes>
+				<GameType value = "Campaign"/>
+				<GameType value = "CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="Heroes" path="tor_heroes_companions"/>
 			<IncludedGameTypes>
 				<GameType value = "Campaign"/>
 				<GameType value = "CampaignStoryMode"/>
@@ -183,6 +197,13 @@
 		</XmlNode>
 		<XmlNode>
 			<XmlName id="GameText" path="tor_voiced_strings" />
+			<IncludedGameTypes>
+				<GameType value="Campaign" />
+				<GameType value="CampaignStoryMode" />
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="Religions" path="tor_religions" />
 			<IncludedGameTypes>
 				<GameType value="Campaign" />
 				<GameType value="CampaignStoryMode" />

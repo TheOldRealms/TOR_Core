@@ -24,6 +24,10 @@ namespace TOR_Core.Models
                     result.Add(0.25f, new TextObject("Vampire nighttime bonus"));
                 }
             }
+            if (mobileParty.HasBlessing("cult_of_taal"))
+            {
+                result.AddFactor(0.2f, GameTexts.FindText("tor_religion_blessing_name", "cult_of_taal"));
+            }
             return result;
         }
     }

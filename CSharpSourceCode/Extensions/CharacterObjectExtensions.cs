@@ -1,4 +1,4 @@
-﻿using NLog;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
 
@@ -111,6 +112,11 @@ namespace TOR_Core.Extensions
         public static bool IsVampire(this BasicCharacterObject characterObject)
         {
             return characterObject.Race == FaceGen.GetRaceOrDefault("vampire");
+        }
+
+        public static bool IsReligiousUnit(this CharacterObject characterObject)
+        {
+            return ReligionObject.All.Any(x => x.ReligiousTroops.Contains(characterObject));
         }
         /// <summary>
         /// Access item objects from the equipment of the character

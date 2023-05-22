@@ -83,13 +83,4 @@ namespace TOR_Core.Quests
             return MobileParty.IsCurrentlyUsedByAQuest;
         }
     }
-
-    public class QuestPartyComponentTypeDefiner : SaveableTypeDefiner
-    {
-        public QuestPartyComponentTypeDefiner() : base(703799) { }
-        protected override void DefineClassTypes()
-        {
-            AddClassDefinition(typeof(QuestPartyComponent), 1);
-        }
-    }
 }

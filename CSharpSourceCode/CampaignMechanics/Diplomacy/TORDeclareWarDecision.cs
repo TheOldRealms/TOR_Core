@@ -2,6 +2,8 @@
 using TaleWorlds.CampaignSystem.BarterSystem.Barterables;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.Election;
+using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.Diplomacy
 {

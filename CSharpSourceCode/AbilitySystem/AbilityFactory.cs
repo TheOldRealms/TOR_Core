@@ -39,7 +39,7 @@ namespace TOR_Core.AbilitySystem
 
         public static void LoadTemplates()
         {
-            var ser = new XmlSerializer(typeof(List<AbilityTemplate>));
+            var ser = new XmlSerializer(typeof(List<AbilityTemplate>), new XmlRootAttribute("AbilityTemplates"));
             var path = TORPaths.TORCoreModuleExtendedDataPath + _filename;
             if (File.Exists(path))
             {
@@ -73,9 +73,9 @@ namespace TOR_Core.AbilitySystem
             {
                 ability = new Prayer(template);
             }
-            else if (template.AbilityType == AbilityType.SpecialMove)
+            else if (template.AbilityType == AbilityType.CareerAbility)
             {
-                ability = new SpecialMove(template);
+                ability = new CareerAbility(template, caster);
             }
             else if(template.AbilityType == AbilityType.ItemBound)
             {

@@ -1,4 +1,4 @@
-﻿using TaleWorlds.Library;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.Engine;
 using System;
@@ -22,10 +22,12 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         private SoundEvent _sound;
         private Timer _timer;
         private object _sync = new object();
+        private bool _isTemplateMutated;
 
-        public TriggeredEffect(TriggeredEffectTemplate template)
+        public TriggeredEffect(TriggeredEffectTemplate template, bool isTemplateMutated = false)
         {
             _template = template;
+            _isTemplateMutated = isTemplateMutated;
         }
         
         public void Trigger(Vec3 position, Vec3 normal, Agent triggererAgent, AbilityTemplate originAbilityTemplate = null, MBList<Agent> targets = null)
@@ -48,23 +50,26 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             _timer.Start();
 
             float damageMultiplier = 1f;
-            float durationMultiplier = 1f;
+            float statusEffectDuration = _template.ImbuedStatusEffectDuration;
             if(Game.Current.GameType is Campaign && originAbilityTemplate != null)
             {
-                var model = Campaign.Current.Models.GetSpellcraftModel();
+                var model = Campaign.Current.Models.GetAbilityModel();
                 var character = triggererAgent.Character as CharacterObject;
                 if(model != null && character != null)
                 {
                     damageMultiplier = model.GetSkillEffectivenessForAbilityDamage(character, originAbilityTemplate);
-                    durationMultiplier = model.GetSkillEffectivenessForAbilityDuration(character, originAbilityTemplate);
-                    if(character.IsHero) durationMultiplier *= model.GetPerkEffectsOnAbilityDuration(character, originAbilityTemplate);
+                    statusEffectDuration = model.CalculateStatusEffectDurationForAbility(character, originAbilityTemplate, statusEffectDuration);
                 }
             }
-            //Cause Damage
+            //Determine targets
             if (targets == null && triggererAgent != null)
             {
                 targets = new MBList<Agent>();
-                if (_template.TargetType == TargetType.Enemy)
+                if(_template.TargetType == TargetType.Self)
+                {
+                    targets.Add(triggererAgent);
+                }
+                else if (_template.TargetType == TargetType.Enemy)
                 {
                     targets = Mission.Current.GetNearbyEnemyAgents(position.AsVec2, _template.Radius, triggererAgent.Team, targets);
                 }
@@ -77,6 +82,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                     targets = Mission.Current.GetNearbyAgents(position.AsVec2, _template.Radius, targets);
                 }
             }
+            //Cause Damage
             if (_template.DamageAmount > 0)
             {
                 TORMissionHelper.DamageAgents(targets, (int)(_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType, _template, _template.DamageType, _template.HasShockWave, position, originAbilityTemplate);
@@ -86,18 +92,21 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 TORMissionHelper.HealAgents(targets, (int)(-_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(-_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType, originAbilityTemplate);
             }
             //Apply status effects
-            if (_template.ImbuedStatusEffectID != "none" && _template.AssociatedStatusEffect != null)
+            if (_template.AssociatedStatusEffects != null && _template.AssociatedStatusEffects.Count > 0)
             {
                 var triggererCharacter = triggererAgent.Character as CharacterObject;
-                if(triggererCharacter != null && triggererCharacter.GetPerkValue(TORPerks.SpellCraft.ArcaneLink) && _template.AssociatedStatusEffect.IsBuffEffect)
+                foreach (var effect in _template.AssociatedStatusEffects)
                 {
-                    if(!targets.Contains(triggererAgent)) targets.Append(triggererAgent);
+                    if (triggererCharacter != null && triggererCharacter.GetPerkValue(TORPerks.SpellCraft.ArcaneLink) && effect.IsBuffEffect)
+                    {
+                        if (!targets.Contains(triggererAgent)) targets.Append(triggererAgent);
+                    }
+                    TORMissionHelper.ApplyStatusEffectToAgents(targets, effect.StringID, triggererAgent, statusEffectDuration, true, _isTemplateMutated);
                 }
-                TORMissionHelper.ApplyStatusEffectToAgents(targets, _template.ImbuedStatusEffectID, triggererAgent, durationMultiplier, _template.TargetType);
             }
             SpawnVisuals(position, normal);
             PlaySound(position);
-            TriggerScript(position, triggererAgent, targets);
+            TriggerScript(position, triggererAgent, targets, statusEffectDuration);
         }
 
         private void SpawnVisuals(Vec3 position, Vec3 normal)
@@ -128,7 +137,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             }
         }
 
-        private void TriggerScript(Vec3 position, Agent triggerer, IEnumerable<Agent> triggeredAgents)
+        private void TriggerScript(Vec3 position, Agent triggerer, IEnumerable<Agent> triggeredAgents, float duration)
         {
             if (_template.ScriptNameToTrigger != "none")
             {
@@ -148,7 +157,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                     if (obj is ITriggeredScript)
                     {
                         var script = obj as ITriggeredScript;
-                        script.OnTrigger(position, triggerer, triggeredAgents);
+                        script.OnTrigger(position, triggerer, triggeredAgents, duration);
                     }
                 }
                 catch (Exception)

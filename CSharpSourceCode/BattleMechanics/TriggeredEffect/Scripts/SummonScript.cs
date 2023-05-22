@@ -16,7 +16,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             NumberToSummon = number;
         }
 
-        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents)
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
             var data = GetAgentBuildData(triggeredByAgent);
             bool leftSide = false;

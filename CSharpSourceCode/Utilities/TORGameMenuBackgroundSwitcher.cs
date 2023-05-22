@@ -49,6 +49,19 @@ namespace TOR_Core.Utilities
         [GameMenuInitializationHandler("town_arena")]
         private static void game_menu_town_menu_arena_on_init_tow(MenuCallbackArgs args)
         {
+            var settlement = Settlement.CurrentSettlement
+                ?? TORCommon.FindNearestSettlement(MobileParty.MainParty, RAID_RADIUS)
+                ?? null;
+
+            if(settlement != null)
+            {
+                if(settlement.Culture.StringId == "vlandia")
+                {
+                    args.MenuContext.SetBackgroundMeshName("bretonnia_arena");
+                    return;
+                }
+            }
+            
             args.MenuContext.SetBackgroundMeshName("generic_arena");
             //args.MenuContext.SetAmbientSound("event:/map/ambient/node/settlements/2d/arena");
         }
@@ -78,6 +91,9 @@ namespace TOR_Core.Utilities
                     return;
                 case "khuzait":
                     args.MenuContext.SetBackgroundMeshName("vampire_captive");
+                    return;
+                case "vlandia":
+                    args.MenuContext.SetBackgroundMeshName("bretonnia_captive");
                     return;
                 default:
                     args.MenuContext.SetBackgroundMeshName("wait_captive_male");

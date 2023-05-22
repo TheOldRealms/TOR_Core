@@ -22,11 +22,11 @@ namespace TOR_Core.Models
             var attackerLeader = attackerParty.LeaderHero;
             if (defenderLeader != null && defenderLeader.GetPerkValue(TORPerks.SpellCraft.WellControlled))
             {
-                advantage.defenderAdvantage += TORPerks.SpellCraft.WellControlled.SecondaryBonus * 0.01f;
+                advantage.defenderAdvantage += TORPerks.SpellCraft.WellControlled.SecondaryBonus;
             }
             if (attackerLeader != null && attackerLeader.GetPerkValue(TORPerks.SpellCraft.WellControlled))
             {
-                advantage.attackerAdvantage += TORPerks.SpellCraft.WellControlled.SecondaryBonus * 0.01f;
+                advantage.attackerAdvantage += TORPerks.SpellCraft.WellControlled.SecondaryBonus;
             }
             return advantage;
         }

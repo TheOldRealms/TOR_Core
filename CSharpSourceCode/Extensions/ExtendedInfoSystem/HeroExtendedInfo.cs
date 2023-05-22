@@ -2,13 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 
 namespace TOR_Core.Extensions.ExtendedInfoSystem
@@ -18,11 +18,13 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         [SaveableField(0)] public List<string> AcquiredAbilities = new List<string>();
         [SaveableField(1)] public List<string> AcquiredAttributes = new List<string>();
         [SaveableField(2)] public float CurrentWindsOfMagic = 0;
-        [SaveableField(3)] public int Corruption = 0; //between 0 and 100, 0 = pure af, 100 = fallen to chaos
+        [SaveableField(3)] public Dictionary<string, int> ReligionDevotionLevels = new Dictionary<string, int>();
         [SaveableField(4)] public SpellCastingLevel SpellCastingLevel = SpellCastingLevel.None;
         [SaveableField(5)] private CharacterObject _baseCharacter;
         [SaveableField(6)] private List<string> _knownLores = new List<string>();
         [SaveableField(7)] private List<string> _selectedAbilities = new List<string>();
+        [SaveableField(8)] public string CareerID = string.Empty;
+        [SaveableField(9)] public List<string> CareerChoices = new List<string>();
 
         public CharacterObject BaseCharacter => _baseCharacter;
 
@@ -114,6 +116,16 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             }
         }
 
+        public ReligionObject DominantReligion
+        {
+            get
+            {
+                if(ReligionDevotionLevels.Count == 0 || ReligionDevotionLevels.Values.Sum() == 0) return null;
+                var dominantTuple = ReligionDevotionLevels.MaxBy(x => x.Value);
+                return MBObjectManager.Instance.GetObject<ReligionObject>(dominantTuple.Key);
+            }
+        }
+
         public void AddSelectedAbility(string abilityId)
         {
             if(!_selectedAbilities.Contains(abilityId)) _selectedAbilities.Add(abilityId);
@@ -162,19 +174,6 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             {
                 if (!HasKnownLore(item.BelongsToLoreID)) AddKnownLore(item.BelongsToLoreID);
             }
-        }
-    }
-    public class HeroExtendedInfoInfoDefiner : SaveableTypeDefiner
-    {
-        public HeroExtendedInfoInfoDefiner() : base(1_543_132) { }
-        protected override void DefineClassTypes()
-        {
-            AddClassDefinition(typeof(HeroExtendedInfo), 1);
-        }
-
-        protected override void DefineContainerDefinitions()
-        {
-            ConstructContainerDefinition(typeof(Dictionary<string, HeroExtendedInfo>));
         }
     }
 }

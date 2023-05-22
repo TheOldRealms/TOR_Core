@@ -11,17 +11,27 @@ namespace TOR_Core.Items
 {
     public class ItemTraitAgentComponent : AgentComponent
     {
-        private List<Tuple<MissionWeapon, ItemTrait, float>> _dynamicTraits = new List<Tuple<MissionWeapon, ItemTrait, float>>();
-        private List<Tuple<WeaponParticlePreset, List<ParticleSystem>, bool>> _currentPresets = new List<Tuple<WeaponParticlePreset, List<ParticleSystem>, bool>>();
-        private BasicMissionTimer _missionTimer = new BasicMissionTimer();
+        private readonly List<Tuple<MissionWeapon, ItemTrait, float>> _dynamicTraits = new List<Tuple<MissionWeapon, ItemTrait, float>>();
+        private readonly List<Tuple<WeaponParticlePreset, List<ParticleSystem>, bool>> _currentPresets = new List<Tuple<WeaponParticlePreset, List<ParticleSystem>, bool>>();
+        private readonly BasicMissionTimer _missionTimer = new BasicMissionTimer();
         private readonly float _tickInterval = 1f;
 
         public ItemTraitAgentComponent(Agent agent) : base(agent) { }
 
+        internal void OnTickAsMainAgent(float dt)
+        {
+            UpdateLifeTime(dt);
+        }
+
         public override void OnTickAsAI(float dt)
         {
             base.OnTickAsAI(dt);
-            if(_missionTimer.ElapsedTime > _tickInterval)
+            UpdateLifeTime(dt);
+        }
+
+        private void UpdateLifeTime(float dt)
+        {
+            if (_missionTimer.ElapsedTime > _tickInterval)
             {
                 _missionTimer.Reset();
                 if (_dynamicTraits.Count > 0)
@@ -38,7 +48,6 @@ namespace TOR_Core.Items
                     }
                 }
             }
-            
         }
 
         public void OnWieldedItemChanged()
@@ -108,7 +117,17 @@ namespace TOR_Core.Items
                 var weapon = Agent.WieldedWeapon;
                 if(weapon.CurrentUsageItem != null && !weapon.CurrentUsageItem.IsRangedWeapon)
                 {
-                    if (!_dynamicTraits.Any(x => x.Item1.Item == weapon.Item))
+                    if (_dynamicTraits.Any(x => x.Item1.Item == weapon.Item && x.Item2.Equals(trait)))
+                    {
+                        var match = _dynamicTraits.FirstOrDefault(x => x.Item1.Item == weapon.Item && x.Item2.Equals(trait));
+                        if (match != null)
+                        {
+                            var newTuple = new Tuple<MissionWeapon, ItemTrait, float>(match.Item1, match.Item2, match.Item3 + duration);
+                            _dynamicTraits.Remove(match);
+                            _dynamicTraits.Add(newTuple);
+                        }
+                    }
+                    else
                     {
                         _dynamicTraits.Add(new Tuple<MissionWeapon, ItemTrait, float>(weapon, trait, duration));
                         UpdatePresets();
@@ -132,7 +151,7 @@ namespace TOR_Core.Items
                 var info = weapon.Item.GetTorSpecificData(Agent);
                 if (info != null)
                 {
-                    var traitsWithParticles = info.ItemTraits.FindAll(x => x.WeaponParticlePreset != null && x.WeaponParticlePreset.ParticlePrefab != "invalid" && x.WeaponParticlePreset.ParticlePrefab != "none");
+                    var traitsWithParticles = info.ItemTraits.FindAll(x => x.WeaponParticlePreset != null && x.WeaponParticlePreset.ParticlePrefab != "invalid" && x.WeaponParticlePreset.ParticlePrefab != "none" && !string.IsNullOrEmpty(x.WeaponParticlePreset.ParticlePrefab));
                     foreach (var trait in traitsWithParticles)
                     {
                         ApplyParticlePreset(trait.WeaponParticlePreset, weapon);
