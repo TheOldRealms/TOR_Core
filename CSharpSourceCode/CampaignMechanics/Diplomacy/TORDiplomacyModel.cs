@@ -44,7 +44,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 }
             }
 
-            return religionValue / factionToDeclareWarOn.Heroes.Count;
+            return religionValue; // / factionToDeclareWarOn.Heroes.Count;
         }
 
         private float DeterminePositiveEffect(Hero hero, ReligionObject religion, Hero enemy, ReligionObject comparedToReligion)
