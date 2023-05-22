@@ -3,6 +3,7 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Diplomacy
 {
@@ -13,18 +14,18 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             float scoreOfDeclaringWar = base.GetScoreOfDeclaringWar(factionDeclaresWar, factionDeclaredWar, evaluatingClan, out warReason);
             // Do your magic religion stuff here, but potentially biasing it towards Religious decisions quite heavily.
 
-            DetermineEffectOfReligion(factionDeclaresWar, factionDeclaredWar, (Clan)evaluatingClan);
+            TORCommon.Say("Score: " + scoreOfDeclaringWar + " Religion:" + DetermineEffectOfReligion(factionDeclaresWar, factionDeclaredWar, (Clan)evaluatingClan));
             return scoreOfDeclaringWar;
         }
 
 
         private float DetermineEffectOfReligion(IFaction factionDeclaresWar, IFaction factionToDeclareWarOn, IFaction evaluatingClan)
         {
-            var ownClanHeroes = evaluatingClan.Heroes;
+            var kingdomHeroes = factionDeclaresWar.Heroes;
 
             float religionValue = 0f;
 
-            foreach (var hero in ownClanHeroes)
+            foreach (var hero in kingdomHeroes)
             {
                 var otherSideHeroes = factionToDeclareWarOn.Heroes;
                 foreach (var enemy in otherSideHeroes)
