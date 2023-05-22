@@ -630,7 +630,7 @@
 		</children>
 	</game_entity>
 	<game_entity name="ethereal_dome" old_prefab_name="">
-		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000" scale="3.0, 3.0, 3.0"/>
 		<components>
 			<meta_mesh_component name="magic_sphere_water"/>
 		</components>
