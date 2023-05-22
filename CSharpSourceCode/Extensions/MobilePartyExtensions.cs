@@ -62,6 +62,8 @@ namespace TOR_Core.Extensions
             {
                 if(settlement.SettlementComponent is CursedSiteComponent)
                 {
+                    var comp = settlement.SettlementComponent as CursedSiteComponent;
+                    if (party.LeaderHero?.GetDominantReligion() == comp.Religion) continue;
                     float distance;
                     Campaign.Current.Models.MapDistanceModel.GetDistance(settlement, party, Campaign.MapDiagonal, out distance);
                     if (distance < TORConstants.DEFAULT_CURSE_RADIUS)

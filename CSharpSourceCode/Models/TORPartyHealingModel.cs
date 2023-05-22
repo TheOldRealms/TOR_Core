@@ -25,7 +25,7 @@ namespace TOR_Core.Models
             if (party.HasBlessing("cult_of_sigmar")) result.AddFactor(0.2f, GameTexts.FindText("tor_religion_blessing_name", "cult_of_sigmar"));
             if (party.IsAffectedByCurse())
             {
-                result.Add(-result.ResultNumber, new TextObject("{=!}Inside a cursed region"));
+                result = new ExplainedNumber(0, true, new TextObject("{=!}Inside a cursed region"));
             }
             return result;
         }
@@ -36,7 +36,7 @@ namespace TOR_Core.Models
             if (party.HasBlessing("cult_of_sigmar")) result.AddFactor(0.2f, GameTexts.FindText("tor_religion_blessing_name", "cult_of_sigmar"));
             if (party.IsAffectedByCurse())
             {
-                result.Add(-result.ResultNumber, new TextObject("{=!}Inside a cursed region"));
+                result = new ExplainedNumber(0, true, new TextObject("{=!}Inside a cursed region"));
             }
             return result;
         }
