@@ -14,7 +14,9 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
         {
             Hero leader = clan.Leader;
             DeclareWarDecisionOutcome warDecisionOutcome = (DeclareWarDecisionOutcome)possibleOutcome;
-            float num = new DeclareWarBarterable(Kingdom, FactionToDeclareWarOn).GetValueForFaction(clan) * Campaign.Current.Models.DiplomacyModel.DenarsToInfluence();
+            float denarsToInfluence = Campaign.Current.Models.DiplomacyModel.DenarsToInfluence();
+            int valueForFaction = new DeclareWarBarterable(Kingdom, FactionToDeclareWarOn).GetValueForFaction(clan);
+            float num = valueForFaction * denarsToInfluence;
             return warDecisionOutcome.ShouldWarBeDeclared ? num + (leader.GetTraitLevel(DefaultTraits.Valor) * 20 - leader.GetTraitLevel(DefaultTraits.Mercy) * 10) : -num + (-leader.GetTraitLevel(DefaultTraits.Valor) * 20 + leader.GetTraitLevel(DefaultTraits.Mercy) * 10);
         }
 

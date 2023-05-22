@@ -14,8 +14,9 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             float scoreOfDeclaringWar = base.GetScoreOfDeclaringWar(factionDeclaresWar, factionDeclaredWar, evaluatingClan, out warReason);
             // Do your magic religion stuff here, but potentially biasing it towards Religious decisions quite heavily.
 
-            TORCommon.Say("Score: " + scoreOfDeclaringWar + " Religion:" + DetermineEffectOfReligion(factionDeclaresWar, factionDeclaredWar, (Clan)evaluatingClan));
-            return scoreOfDeclaringWar;
+            float determineEffectOfReligion = DetermineEffectOfReligion(factionDeclaresWar, factionDeclaredWar, (Clan)evaluatingClan);
+            TORCommon.Say("Score: " + scoreOfDeclaringWar + " Religion:" + determineEffectOfReligion);
+            return scoreOfDeclaringWar + determineEffectOfReligion;
         }
 
 

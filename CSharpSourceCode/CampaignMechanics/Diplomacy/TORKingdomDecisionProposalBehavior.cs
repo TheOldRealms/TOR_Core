@@ -188,7 +188,8 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             
             TORDeclareWarDecision decision = new TORDeclareWarDecision(clan, otherFaction);
             float support = decision.CalculateSupport(clan);
-            return support > 50.0 && MBRandom.RandomFloat < 1.4 * GetKingdomSupportForDecision(decision) - 0.55;
+            float kingdomSupportForDecision = GetKingdomSupportForDecision(decision);
+            return support > 50.0 && MBRandom.RandomFloat < 1.4 * kingdomSupportForDecision - 0.55;
         }
 
         private KingdomDecision GetRandomPeaceDecision(Clan clan)
