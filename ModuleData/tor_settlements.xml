@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Settlements>
   <!--Custom Settlements-->
   <Settlement id="chaos_portal_01" name="{=!}Chaos Portal" owner="Faction.chaos_clan_1" posX="1421.178" posY="900.773" culture="Culture.chaos_culture" prosperity="500" text="{=!}Chaos Portal">
@@ -2855,7 +2855,7 @@
     </CommonAreas>
   </Settlement>
   <!-- Parravon -->
-  <Settlement id="town_PA1" name="{=Settlements.Settlement.name.town_PA1}Parravon" owner="Faction.parravon_clan_1" posX="1188.615" posY="962.274" culture="Culture.vlandia" prosperity="4500" gate_posX="1188.782" gate_posY="962.0594" text="{=!}Altdorf is at once perhaps the greatest city of the Empire and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the Reikland and the Empire of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the Empire; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
+  <Settlement id="town_PA1" name="{=Settlements.Settlement.name.town_PA1}Parravon" owner="Faction.parravon_clan_1" posX="1190.324" posY="964.688" culture="Culture.vlandia" prosperity="4500" gate_posX="1189.248" gate_posY="958.2303" text="{=!}Altdorf is at once perhaps the greatest city of the Empire and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the Reikland and the Empire of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the Empire; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
     <Components>
       <Town id="town_comp_PA1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -2914,7 +2914,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_PA2" name="{=Settlements.Settlement.name.town_PA2}Grunere" owner="Faction.parravon_clan_1" posX="1211.504" posY="956.433" culture="Culture.vlandia" prosperity="4500" gate_posX="1211.573" gate_posY="956.4047" text="{=!}At the Confluence of the River Reik and the River Schilder sits the town of Schilderheim. Ruled by Graf Robert von Uhland, Schilderheim is an important river market down river from altdorf, being one of the last places that trade on the River Reik can stop before reaching Marienburg.">
+  <Settlement id="town_PA2" name="{=Settlements.Settlement.name.town_PA2}Grunere" owner="Faction.parravon_clan_1" posX="1214.782" posY="953.9189" culture="Culture.vlandia" prosperity="4500" gate_posX="1211.385" gate_posY="956.5652" text="{=!}At the Confluence of the River Reik and the River Schilder sits the town of Schilderheim. Ruled by Graf Robert von Uhland, Schilderheim is an important river market down river from altdorf, being one of the last places that trade on the River Reik can stop before reaching Marienburg.">
     <Components>
       <Town id="town_comp_PA2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -3009,7 +3009,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_PA2" name="{=Settlements.Settlement.name.castle_MO2}Castle Chambonnay" owner="Faction.parravon_clan_1" posX="1173.18" posY="941.078" prosperity="800" culture="Culture.vlandia" gate_posX="1173.383" gate_posY="941.8144" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_PA2" name="{=Settlements.Settlement.name.castle_MO2}Castle Chambonnay" owner="Faction.parravon_clan_1" posX="1172.206" posY="943.2213" prosperity="800" culture="Culture.vlandia" gate_posX="1173.042" gate_posY="942.4231" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
       <Town id="castle_comp_PA2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -3917,7 +3917,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AQ3" name="{=Settlements.Settlement.name.castle_AQ3}Castle Curemonte" owner="Faction.aquitaine_clan_1" posX="1031.677" posY="910.5967" prosperity="800" culture="Culture.vlandia" gate_posX="1033.169" gate_posY="908.5917" text="{=!}In the Suden Vorbergland of aquitaine sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_AQ3" name="{=Settlements.Settlement.name.castle_AQ3}Castle Curemonte" owner="Faction.aquitaine_clan_1" posX="1031.677" posY="910.597" prosperity="800" culture="Culture.vlandia" gate_posX="1033.168" gate_posY="908.5917" text="{=!}In the Suden Vorbergland of aquitaine sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
       <Town id="castle_comp_AQ3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -4013,7 +4013,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_CC2" name="{=Settlements.Settlement.name.town_CC2}Turin" owner="Faction.carcassonne_clan_1" posX="1077.753" posY="766.6454" culture="Culture.vlandia" prosperity="4500" gate_posX="1078.515" gate_posY="768.9259" text="{=Settlements.Settlement.text.town_CC2}Located in the Vaults , the City of Turin is the capital of the Barony of Savoie. The region is influenced heavily by nearby Tilea, despite this the city and people are steadfastly loyal to Bretonnia. Holding the famed relic, the “Shroud of Gilles le Breton” the City of Turin is a Pilgrimage site to all who follow the Lady of the Lake, and all who seek visions of the Lady.">
+  <Settlement id="town_CC2" name="{=Settlements.Settlement.name.town_CC2}Turin" owner="Faction.carcassonne_clan_1" posX="1077.753" posY="766.645" culture="Culture.vlandia" prosperity="4500" gate_posX="1078.517" gate_posY="768.9257" text="{=Settlements.Settlement.text.town_CC2}Located in the Vaults , the City of Turin is the capital of the Barony of Savoie. The region is influenced heavily by nearby Tilea, despite this the city and people are steadfastly loyal to Bretonnia. Holding the famed relic, the “Shroud of Gilles le Breton” the City of Turin is a Pilgrimage site to all who follow the Lady of the Lake, and all who seek visions of the Lady.">
     <Components>
       <Town id="town_comp_CC2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
@@ -4338,7 +4338,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_QU1" name="{=Settlements.Settlement.name.castle_QU1}Castle Beaumarchais" owner="Faction.quenelles_clan_1" posX="1143.043" posY="898.181" prosperity="800" culture="Culture.vlandia" gate_posX="1143.246" gate_posY="898.9174" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_QU1" name="{=Settlements.Settlement.name.castle_QU1}Castle Beaumarchais" owner="Faction.quenelles_clan_1" posX="1139.147" posY="898.0963" prosperity="800" culture="Culture.vlandia" gate_posX="1141.179" gate_posY="896.7448" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
       <Town id="castle_comp_QU1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" />
     </Components>
