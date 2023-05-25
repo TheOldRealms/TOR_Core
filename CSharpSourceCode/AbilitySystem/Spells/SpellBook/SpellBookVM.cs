@@ -67,7 +67,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
                 {
                     if (info.KnownLores.Contains(lore)) LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero));
                 }
-                else if(!lore.DisabledForTrainersWithCultures.Contains(_trainerCulture))
+                else if(!lore.DisabledForCultures.Contains(_trainerCulture))
                 {
                     LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
                 }

@@ -3,6 +3,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.SaveSystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.BattleMechanics.Jousting;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
@@ -30,12 +31,13 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(QuestPartyComponent), 11);
             AddClassDefinition(typeof(RaidingPartyComponent), 12);
             AddClassDefinition(typeof(SpecializeLoreQuest), 13);
+            AddClassDefinition(typeof(JoustTournamentGame), 14);
         }
 
         protected override void DefineEnumTypes()
         {
-            AddEnumDefinition(typeof(EngineerQuestStates), 14);
-            AddEnumDefinition(typeof(SpellCastingLevel), 15);
+            AddEnumDefinition(typeof(EngineerQuestStates), 15);
+            AddEnumDefinition(typeof(SpellCastingLevel), 16);
         }
 
         protected override void DefineContainerDefinitions()

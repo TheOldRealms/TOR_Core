@@ -8,7 +8,7 @@ namespace TOR_Core.Utilities
 {
     public static class TORConstants
     {
-        public const int TotalNumberOfUniqueLoadingScreenImages = 7;
+        public const int TotalNumberOfUniqueLoadingScreenImages = 8;
         public const int MAXIMUM_DEVOTION_LEVEL = 99;
         public const int DEVOTED_TRESHOLD = 50;
         public const int FANATIC_TRESHOLD = 75;

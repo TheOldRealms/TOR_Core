@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -440,6 +440,7 @@
     <Compile Include="BattleMechanics\DamageSystem\DamageType.cs" />
     <Compile Include="BattleMechanics\Dismemberment\DismembermentMissionLogic.cs" />
     <Compile Include="BattleMechanics\Firearms\FirearmsMissionLogic.cs" />
+    <Compile Include="BattleMechanics\Jousting\JoustTournamentGame.cs" />
     <Compile Include="BattleMechanics\Morale\UndeadMoraleAgentComponent.cs" />
     <Compile Include="BattleMechanics\Morale\UndeadMoraleMissionLogic.cs" />
     <Compile Include="BattleMechanics\SFX\TORFaceEnemy.cs" />
@@ -618,6 +619,7 @@
     <Compile Include="Models\TORSettlementMilitiaModel.cs" />
     <Compile Include="Models\TORAbilityModel.cs" />
     <Compile Include="Models\TORStrikeMagnitudeModel.cs" />
+    <Compile Include="Models\TORTournamentModel.cs" />
     <Compile Include="Models\TORVoiceOverModel.cs" />
     <Compile Include="Quests\EngineerQuest.cs" />
     <Compile Include="Quests\QuestPartyComponent.cs" />
@@ -634,6 +636,7 @@
     <Compile Include="Utilities\TORCampaignEvents.cs" />
     <Compile Include="Utilities\TORGameMenuBackgroundSwitcher.cs" />
     <Compile Include="Utilities\TORGameStarterHelper.cs" />
+    <Compile Include="Utilities\TORMassMaterialSwitcher.cs" />
     <Compile Include="Utilities\TORMissionHelper.cs" />
     <Compile Include="Utilities\TORMissionManager.cs" />
     <Compile Include="Utilities\TORParticleSystem.cs" />

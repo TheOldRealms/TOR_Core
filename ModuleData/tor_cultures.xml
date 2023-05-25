@@ -3085,21 +3085,13 @@
         <template name="NPCCharacter.tor_br_rogue_lord_0" />
       </rebellion_hero_templates>
       <tournament_team_templates_one_participant>
-        <template name="NPCCharacter.tournament_template_vlandia_one_participant_set_v1" />
-        <template name="NPCCharacter.tournament_template_vlandia_one_participant_set_v2" />
-        <template name="NPCCharacter.tournament_template_vlandia_one_participant_set_v3" />
+        <template name="NPCCharacter.tournament_template_br_one_participant_set_v1" />
       </tournament_team_templates_one_participant>
       <tournament_team_templates_two_participant>
-        <template name="NPCCharacter.tournament_template_vlandia_two_participant_set_v1" />
-        <template name="NPCCharacter.tournament_template_vlandia_two_participant_set_v2" />
-        <template name="NPCCharacter.tournament_template_vlandia_two_participant_set_v3" />
-        <template name="NPCCharacter.tournament_template_vlandia_two_participant_set_v4" />
+        <template name="NPCCharacter.tournament_template_br_two_participant_set_v1" />
       </tournament_team_templates_two_participant>
       <tournament_team_templates_four_participant>
-        <template name="NPCCharacter.tournament_template_vlandia_four_participant_set_v1" />
-        <template name="NPCCharacter.tournament_template_vlandia_four_participant_set_v2" />
-        <template name="NPCCharacter.tournament_template_vlandia_four_participant_set_v3" />
-        <template name="NPCCharacter.tournament_template_vlandia_four_participant_set_v4" />
+        <template name="NPCCharacter.tournament_template_br_four_participant_set_v1" />
       </tournament_team_templates_four_participant>
       <basic_mercenary_troops>
         <template name="NPCCharacter.tor_br_caravan_guard" />

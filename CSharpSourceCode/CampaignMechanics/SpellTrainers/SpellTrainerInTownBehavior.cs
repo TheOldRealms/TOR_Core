@@ -299,7 +299,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             foreach (var item in LoreObject.GetAll())
             {
                 if (item.ID != "MinorMagic" &&
-                    !item.DisabledForTrainersWithCultures.Contains(partnerCulture) &&
+                    !item.DisabledForCultures.Contains(partnerCulture) &&
                     !info.HasKnownLore(item.ID) &&
                     !(item.IsRestrictedToVampires && !Hero.MainHero.IsVampire())) possibleLores.Add(item);
             }
@@ -370,7 +370,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             var lores = LoreObject.GetAll();
             foreach (var item in lores)
             {
-                if (item.ID != "MinorMagic" && !item.DisabledForTrainersWithCultures.Contains(CharacterObject.OneToOneConversationCharacter.Culture.StringId) && !Hero.MainHero.GetExtendedInfo().HasKnownLore(item.ID)) list.Add(new InquiryElement(item, item.Name, null));
+                if (item.ID != "MinorMagic" && !item.DisabledForCultures.Contains(CharacterObject.OneToOneConversationCharacter.Culture.StringId) && !Hero.MainHero.GetExtendedInfo().HasKnownLore(item.ID)) list.Add(new InquiryElement(item, item.Name, null));
             }
             var inquirydata = new MultiSelectionInquiryData("Choose Lore", "Choose a lore to specialize in.", list, true, 1, "Confirm", "Cancel", OnChooseLore, OnCancelLore);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);

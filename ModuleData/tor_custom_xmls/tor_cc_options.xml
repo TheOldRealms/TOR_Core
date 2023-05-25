@@ -69,7 +69,7 @@
 		<OptionFlavourText>Not all within the Empire are blessed by Ranald, your family was poor and scratched a living with quick wit and quicker hands. Stealing coins from loose pockets and stuffing them in their own. </OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option4" Culture="empire" StageNumber="1" EquipmentSetId="tor_cc_cultists_1">
+	<CharacterCreationOption Id="option4" Culture="empire" StageNumber="1" EquipmentSetId="tor_cc_commoners_1">
 		<SkillsToIncrease>
 			<string>Engineering</string>
 			<string>Crossbow</string>
@@ -81,7 +81,7 @@
 		<OptionFlavourText></OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option5" Culture="empire" StageNumber="1" EquipmentSetId="tor_cc_wine_merchants_1">
+	<CharacterCreationOption Id="option5" Culture="empire" StageNumber="1" EquipmentSetId="tor_cc_merchants_1">
 		<SkillsToIncrease>
 			<string>Trade</string>
 			<string>Charm</string>
@@ -130,7 +130,7 @@
 		<OptionFlavourText>Conflict was never ending for the Empire and neither was the work of its Blacksmiths, you chose to turn your strength into a trade as you bent metals to your will under the tutelage of the local smith. Your first sword may have been wonky but it was still sharp!</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option9" Culture="empire" StageNumber="2" EquipmentSetId="tor_cc_acolyte_sigmar_2">
+	<CharacterCreationOption Id="option9" Culture="empire" StageNumber="2" EquipmentSetId="tor_cc_imperial_cultist_2">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>Medicine</string>
@@ -167,7 +167,7 @@
 		<OptionFlavourText>Fighting and drinking, what more could one need in life? With sword in hand you marched with your rag-tag Free Company from battle to battle, earning your fair share of scars. You would serve any lord, for the right price.</OptionFlavourText>
 	</CharacterCreationOption>
 	
-	<CharacterCreationOption Id="option12" Culture="empire" StageNumber="3" EquipmentSetId="tor_cc_bright_order_initiate_3">
+	<CharacterCreationOption Id="option12" Culture="empire" StageNumber="3" EquipmentSetId="tor_cc_magister_apprentice_3">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>Athletics</string>
@@ -179,7 +179,7 @@
 		<OptionFlavourText>Your aptitude for the Winds of Magic earned you a place within the Colleges of Altdorf, with time you learned to harness the basics of your power and learn the nature of your aligned wind.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option13" Culture="empire" StageNumber="3" EquipmentSetId="tor_cc_warrior_priest_acolyte_3">
+	<CharacterCreationOption Id="option13" Culture="empire" StageNumber="3" EquipmentSetId="tor_cc_priest_acolyte_3">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>Medicine</string>
@@ -228,7 +228,7 @@
 		<OptionFlavourText>Ambition is the downfall of many and your family fell out of grace with their Elector, banished to Sylvania with a meagre fortune your family was forced to live amongst the peasant folk. </OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option17" Culture="khuzait" StageNumber="1" EquipmentSetId="tor_cc_priests_morr_1">
+	<CharacterCreationOption Id="option17" Culture="khuzait" StageNumber="1" EquipmentSetId="tor_cc_strigany_caravanners_1">
 		<SkillsToIncrease>
 			<string>Trade</string>
 			<string>Scouting</string>
@@ -252,7 +252,7 @@
 		<OptionFlavourText>There are those within Sylvania who pay well for bodies, this was the trade your family chose. Stealing loved ones in the dead of night and taking them to the castles or keeps of nobility, never questioning why.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option19" Culture="khuzait" StageNumber="1" EquipmentSetId="tor_cc_fisherman_frogwife_1">
+	<CharacterCreationOption Id="option19" Culture="khuzait" StageNumber="1" EquipmentSetId="tor_cc_fisherfolk_1">
 		<SkillsToIncrease>
 			<string>Steward</string>
 			<string>Medicine</string>
@@ -301,7 +301,7 @@
 		<OptionFlavourText>Little could be said for your master's sanity, his days were dedicated to dissecting scrolls and performing dark rituals. Obsessed with becoming powerful yet unable to, he sought to use your abilities to bolster his own.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option23" Culture="khuzait" StageNumber="2" EquipmentSetId="tor_cc_blood_slave_2">
+	<CharacterCreationOption Id="option23" Culture="khuzait" StageNumber="2" EquipmentSetId="tor_cc_peat_farmer_2">
 		<SkillsToIncrease>
 			<string>Crafting</string>
 			<string>OneHanded</string>
@@ -325,7 +325,7 @@
 		<OptionFlavourText>Levied into the armies of your master, you spent your adolescence on the battlefield. Fighting alongside undead horrors and necrotic abominations. You came out of it alive, somehow, and can live to tell the tale.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option25" Culture="khuzait" StageNumber="2" EquipmentSetId="tor_cc_warpstone_miner_2">
+	<CharacterCreationOption Id="option25" Culture="khuzait" StageNumber="2" EquipmentSetId="tor_cc_strigany_rake_2">
 		<SkillsToIncrease>
 			<string>Scouting</string>
 			<string>Roguery</string>
@@ -363,7 +363,7 @@
 		<OptionFlavourText>An unexpected opportunity presented itself and you were able steal an ancient tome of lore, and this beset you on the path of Necromancy  -   Gains access to summon skeleton spell and the ability to raise dead post-battle or in graveyards.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option28" Culture="khuzait" StageNumber="3" EquipmentSetId="tor_cc_sylvanian_statetroop_3">
+	<CharacterCreationOption Id="option28" Culture="khuzait" StageNumber="3" EquipmentSetId="tor_cc_night_watchman_3">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>Polearm</string>
@@ -375,7 +375,7 @@
 		<OptionFlavourText>Mortals are often called upon to serve their undead masters. These professional soldiers are known to march into battle alongside the undead hordes of their masters. A more dour and superstitious folk you will never meet but they rarely break in the heat of battle. </OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option29" Culture="khuzait" StageNumber="3" EquipmentSetId="tor_cc_travelling_merchant_3">
+	<CharacterCreationOption Id="option29" Culture="khuzait" StageNumber="3" EquipmentSetId="tor_cc_strigany_donmu_3">
 		<SkillsToIncrease>
 			<string>Trade</string>
 			<string>Throwing</string>
@@ -399,8 +399,8 @@
 		<OptionFlavourText>The roads of Sylvania are dark and dangerous, you prey on its few travellers and hoard what little riches you can take with your blade. Yet you are not the only monster lurking within the dark swamps and forests, at times there is nothing left of the travellers to thieve from.</OptionFlavourText>
 	</CharacterCreationOption>
 
-<!-- Bretonnia stage 1 -->
-<CharacterCreationOption Id="option31" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_imperial_nobility_1">
+	<!-- Bretonnia stage 1 -->
+	<CharacterCreationOption Id="option31" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_bretonnian_nobility_1">
 		<SkillsToIncrease>
 			<string>Steward</string>
 			<string>Polearm</string>
@@ -409,10 +409,10 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 		<OptionText>Bretonnian Nobility</OptionText>
-		<OptionFlavourText>TEST</OptionFlavourText>
+		<OptionFlavourText>Your family can trace its various roots and relations nearly as far back as the time of Giles. You were born into the nobility of Bretonnia; and everyone knows it by the way you dress, the way you talk and the way you order the peasants about.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option32" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_imperial_sergeant_1">
+	<CharacterCreationOption Id="option32" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_peasants_1">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>Athletics</string>
@@ -421,10 +421,10 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Endurance</AttributeToIncrease>
 		<OptionText>Bretonnian Peasants</OptionText>
-		<OptionFlavourText>TEST</OptionFlavourText>
+		<OptionFlavourText>For untold generations, your family has worked the land of your feudal lord. Your father gave up long ago at trying to understand your lord’s words and simply look to the Yeoman who always accompanies him for orders, which normally involves great physical labour.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option33" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_thieves_1">
+	<CharacterCreationOption Id="option33" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_sailors_1">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>Charm</string>
@@ -433,10 +433,10 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 		<OptionText>Bretonnian Sailors</OptionText>
-		<OptionFlavourText>TEST</OptionFlavourText>
+		<OptionFlavourText>Your father was a sailor on a Bretonnian Buccaneer. When he returned to your fishing village, he spent as much time as he could with your mother, you and your siblings. He taught you as many skills as he could, such as knot tying, the use of a spyglass and how to navigate by the night sky.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option34" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_cultists_1">
+	<CharacterCreationOption Id="option34" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_outlaws_1">
 		<SkillsToIncrease>
 			<string>Bow</string>
 			<string>Roguery</string>
@@ -445,10 +445,10 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Cunning</AttributeToIncrease>
 		<OptionText>Outlaws</OptionText>
-		<OptionFlavourText>TEST</OptionFlavourText>
+		<OptionFlavourText>Somehow, your family broke one of the oath bonds to your lord and has since been branded as outlaws. Constantly on the run and living at the fringe of society, your family makes due with what they can poach from the forests.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option35" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_wine_merchants_1">
+	<CharacterCreationOption Id="option35" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_bretonnian_merchants_1">
 		<SkillsToIncrease>
 			<string>Medicine</string>
 			<string>Trade</string>
@@ -457,11 +457,11 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Social</AttributeToIncrease>
 		<OptionText>Wine Merchants</OptionText>
-		<OptionFlavourText>TEST</OptionFlavourText>
+		<OptionFlavourText>Your family was a part of the very small number of wealthy peasants that exist in Bretonnia. They gained their wealth over the generations through the sale of the many Bretonnian vintages into the Empire, Estalia and Tilea. Recently, your lord granted an exemption to the Sumptuary laws, enabling you to wear boots that reach to your knees.</OptionFlavourText>
 	</CharacterCreationOption>
 
 	<!-- Bretonnia stage 2 -->
-	<CharacterCreationOption Id="option36" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_enlisted_militia_2">
+	<CharacterCreationOption Id="option36" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_courtier_2">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>Polearm</string>
@@ -470,10 +470,10 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Social</AttributeToIncrease>
 		<OptionText>Bretonnian Courtier</OptionText>
-		<OptionFlavourText>TEST</OptionFlavourText>
+		<OptionFlavourText>For years, you were groomed to be the best Bretonnian noble you could be. This included lessons in manners, horsemanship and chivalry.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option37" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_merchants_assistant_2">
+	<CharacterCreationOption Id="option37" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_men_at_arms_2">
 		<SkillsToIncrease>
 			<string>TwoHanded</string>
 			<string>Polearm</string>
@@ -482,10 +482,10 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 		<OptionText>Man-at-Arms</OptionText>
-		<OptionFlavourText>TEST</OptionFlavourText>
+		<OptionFlavourText>When you came of age, you entered the service of your lord. You were trained to hold the line and survive on the battlefield the best you can. You are still alive now, so you must have been pretty good at it.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option38" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_blacksmith_apprentice_2">
+	<CharacterCreationOption Id="option38" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_highwayman_2">
 		<SkillsToIncrease>
 			<string>Bow</string>
 			<string>Tactics</string>
@@ -493,11 +493,11 @@
 			<string>Scouting</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Cunning</AttributeToIncrease>
-		<OptionText>Highwayman</OptionText>
-		<OptionFlavourText>TEST</OptionFlavourText>
+		<OptionText>Wanted Criminal</OptionText>
+		<OptionFlavourText>In your youthful rashness, you broke one of the many laws setting the boundaries of Bretonnian society. Without any other options, you were forced into the fringe of society, forever on the run from the authorities. You lived for a time only by your poaching and stealing, while eventually finding forgiveness for your crimes.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option39" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_acolyte_sigmar_2">
+	<CharacterCreationOption Id="option39" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_apprentice_craftsmen_2">
 		<SkillsToIncrease>
 			<string>Engineering</string>
 			<string>Crafting</string>
@@ -506,10 +506,10 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Intelligence</AttributeToIncrease>
 		<OptionText>Apprentice Craftsmen</OptionText>
-		<OptionFlavourText>TEST</OptionFlavourText>
+		<OptionFlavourText>Your father was able to get you an apprenticeship with one of the local artisans. Over the course of five years your master taught you everything he could, leaving you with skills that would forever put you above the average peasant.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option40" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_engineering_student_2">
+	<CharacterCreationOption Id="option40" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_shephard_2">
 		<SkillsToIncrease>
 			<string>Polearm</string>
 			<string>Throwing</string>
@@ -518,11 +518,11 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Endurance</AttributeToIncrease>
 		<OptionText>Shepard</OptionText>
-		<OptionFlavourText>TEST</OptionFlavourText>
+		<OptionFlavourText>You became a shepherd, watching over the various livestock that your community relied upon for food and clothing. You and your fellows in essence served two roles, protecting the herds from wolves and other predators, while also watching at the outskirts of the village for signs of invaders.</OptionFlavourText>
 	</CharacterCreationOption>
 
 	<!--  Bretonnia stage 3 -->
-	<CharacterCreationOption Id="option41" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_free_company_militiaman_3">
+	<CharacterCreationOption Id="option41" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_knight_errant_3">
 		<SkillsToIncrease>
 			<string>Polearm</string>
 			<string>Riding</string>
@@ -531,10 +531,10 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 		<OptionText>Knight Errant</OptionText>
-		<OptionFlavourText>TEST</OptionFlavourText>
+		<OptionFlavourText>You have chosen to set out on the path of a knight of Bretonnia. The trail of dutiful chivalry is a hard one - many foes and battles await you. But, if you are worthy, at the end of your quest you will receive the greatest blessing known to men; a sip from the Grail of the Lady.</OptionFlavourText>
 	</CharacterCreationOption>
 	
-	<CharacterCreationOption Id="option42" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_bright_order_initiate_3">
+	<CharacterCreationOption Id="option42" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_damsel_3">
 		<SkillsToIncrease>
 			<string>Spellcraft</string>
 			<string>Spellcraft</string>
@@ -543,10 +543,10 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>Damsel of the Lady</OptionText>
-		<OptionFlavourText>TEST</OptionFlavourText>
+		<OptionFlavourText>Earlier in your life, the Fay Enchantress visited your family and took you away. She saw within you a great potential and you joined her other students. After years of training she has deemed you ready to ride out, to serve the will of the Lady.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option43" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_warrior_priest_acolyte_3">
+	<CharacterCreationOption Id="option43" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_yeoman_warden_3">
 		<SkillsToIncrease>
 			<string>Tactics</string>
 			<string>TwoHanded</string>
@@ -555,10 +555,10 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Endurance</AttributeToIncrease>
 		<OptionText>Yeoman Warden</OptionText>
-		<OptionFlavourText>TEST</OptionFlavourText>
+		<OptionFlavourText>You proved your worth to your lord and he rewarded you with the title of Yeoman. As such, you were at times placed in command of other peasants or expected to act as an outrider while on campaign.</OptionFlavourText>
 	</CharacterCreationOption> 
 
-	<CharacterCreationOption Id="option44" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_trainee_templar_3">
+	<CharacterCreationOption Id="option44" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_freemen_3">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>Steward</string>
@@ -566,11 +566,11 @@
 			<string>Trade</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Social</AttributeToIncrease>
-		<OptionText>Freemen</OptionText>
-		<OptionFlavourText>TEST</OptionFlavourText>
+		<OptionText>Freeman</OptionText>
+		<OptionFlavourText>With licence of movement and a sense to improve yourself, you found yourself free of a direct lord and able to make something of yourself. With some skill in craft or luck in trade, you may yet make yourself a peasant worthy of sumptuary exemptions.</OptionFlavourText>
 	</CharacterCreationOption> 
 
-	<CharacterCreationOption Id="option45" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_merchant_3">
+	<CharacterCreationOption Id="option45" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_wall_warden_3">
 		<SkillsToIncrease>
 			<string>Engineering</string>
 			<string>Crossbow</string>
@@ -579,7 +579,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Intelligence</AttributeToIncrease>
 		<OptionText>Wall Warden</OptionText>
-		<OptionFlavourText>TEST</OptionFlavourText>
+		<OptionFlavourText>You were the apprentice of a Wall Warden for some time. You helped him evaluate damage and maintain the castle of your lord. When your master was killed during an assault on the castle walls, you became the Wall Warden. After a small mistake however, your lord has released you from your bond to find someone with more expertise.</OptionFlavourText>
 	</CharacterCreationOption> 
 </ArrayOfCharacterCreationOption>
 

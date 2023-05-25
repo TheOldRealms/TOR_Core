@@ -21,7 +21,6 @@ namespace TOR_Core.Utilities
 	public static class TorMissionManager
 	{
 		[MissionMethod]
-		//public static Mission OpenGraveyardMission(FlattenedTroopRoster playerTroops, FlattenedTroopRoster enemyTroops)
 		public static Mission OpenGraveyardMission()
 		{
 			var rec = SandBoxMissions.CreateSandBoxMissionInitializerRecord("TOR_graveyard_01_forceatmo");
