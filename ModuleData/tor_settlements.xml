@@ -2818,7 +2818,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_MO3" name="{=Settlements.Settlement.name.castle_MO3}Guette Orcal" owner="Faction.montfort_clan_1" posX="1102.881" posY="994.914" prosperity="800" culture="Culture.vlandia" gate_posX="1102.504" gate_posY="993.668" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_MO3" name="{=Settlements.Settlement.name.castle_MO3}Guette Orcal" owner="Faction.montfort_clan_1" posX="1102.881" posY="994.914" prosperity="800" culture="Culture.vlandia" gate_posX="1102.504" gate_posY="993.668" text="{=Settlements.Settlement.text.castle_MO3}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
       <Town id="castle_comp_MO3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -2828,7 +2828,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_MO3_1" name="{=Settlements.Settlement.name.castle_village_MO3_1}Gilley" posX="1084.669" posY="1017.322" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MO1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
+  <Settlement id="castle_village_MO3_1" name="{=Settlements.Settlement.name.castle_village_MO3_1}Gilley" posX="1084.669" posY="1017.322" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MO1_1}Just east of Guette Orcal lies the hamlet of Giley, a small fishing village sitting on the Grismerie river. The village is not very prosperous due to increasing raids from Greenskins.">
     <Components>
       <Village id="castle_village_comp_MO3_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_MO1" bound="Settlement.castle_MO3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4180,9 +4180,9 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_CC3_1" name="{=Settlements.Settlement.name.castle_village_CC3_1}Salignac La Rouge" posX="1182.247" posY="728.827" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_CC3_1" name="{=Settlements.Settlement.name.castle_village_CC3_1}Salignac La Rouge" posX="1182.247" posY="728.827" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CC3_1}Salignac La Rouge is the last Bretonnian settlement along the Loren Highway. Travelers heading towards Kreutzhafen will typically pick up anything they need for the long journey there from the peasants here. The people here feel uncomfortably close to the Fey of Cavaroc, but relations with Athel Loren remain as amicable as possible.">
     <Components>
-      <Village id="castle_village_comp_CC3_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_CC3" bound="Settlement.castle_CC3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_CC3_1" village_type="VillageType.swine_farm" hearth="200" trade_bound="Settlement.castle_CC3" bound="Settlement.castle_CC3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
