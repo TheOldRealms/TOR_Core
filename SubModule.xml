@@ -195,5 +195,12 @@
 				<GameType value="CampaignStoryMode" />
 			</IncludedGameTypes>
 		</XmlNode>
+		<XmlNode>                
+			<XmlName id="Concepts" path="tor_concept_strings"/>
+			<IncludedGameTypes>
+				<GameType value = "Campaign"/>
+				<GameType value = "CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>  
 	</Xmls>
 </Module>
