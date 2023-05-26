@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Settlements>
   <!--Custom Settlements-->
   <Settlement id="chaos_portal_01" name="{=!}Chaos Portal" owner="Faction.chaos_clan_1" posX="1421.178" posY="900.773" culture="Culture.chaos_culture" prosperity="500" text="{=!}Chaos Portal">
@@ -3954,7 +3954,7 @@
     </CommonAreas>
   </Settlement>
   <!-- Carcassonne -->
-  <Settlement id="town_CC1" name="{=Settlements.Settlement.name.town_CC1}Castle Carcassonne" owner="Faction.carcassonne_clan_1" posX="1003.06" posY="793.878" culture="Culture.vlandia" prosperity="4500" gate_posX="1006.099" gate_posY="797.0253" text="{=Settlements.Settlement.text.town_CC1}The fortress city and the ducal capital of Carcassonne, Castle Carcassonne sits on an island surrounded by the river Songez. Due to the defensive location Castle Carcassonne is designed to be more of a fortress rather than a city, however there is a small attached town that acts as a marketplace and hub for many travelers and Knights who seek services.">
+  <Settlement id="town_CC1" name="{=Settlements.Settlement.name.town_CC1}Castle Carcassonne" owner="Faction.carcassonne_clan_1" posX="1003.06" posY="793.878" culture="Culture.vlandia" prosperity="4500" gate_posX="1006.099" gate_posY="797.0253" text="{=Settlements.Settlement.text.town_CC1} The fortress city and the ducal capital of Carcassonne, Castle Carcassonne sits on an island surrounded by the river Songez. Due to the defensive location Castle Carcassonne is designed to be more of a fortress rather than a city, however there is a small town attached to the castle that acts as a marketplace and hub for many travelers and Knights who seek services.">
     <Components>
       <Town id="town_comp_CC1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -3974,9 +3974,9 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_CC1_1" name="{=Settlements.Settlement.name.village_CC1_1}Tarbes" posX="984.033" posY="808.439" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_CC1_1" name="{=Settlements.Settlement.name.village_CC1_1}Tarbes" posX="984.033" posY="808.439" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CC1_1}Located near the Border of Carcassonne and Brionne on the river Brienne, maintains a trusting relationship with the outlying villages of Lunel and Vauvert, having been trade partners for ages past.">
     <Components>
-      <Village id="village_comp_CC1_1" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CC1" bound="Settlement.town_CC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_CC1_1" village_type="VillageType.cattle_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CC1" bound="Settlement.town_CC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -3987,9 +3987,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_CC1_2" name="{=Settlements.Settlement.name.village_CC1_2}Albi" posX="984.572" posY="764.996" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_CC1_2" name="{=Settlements.Settlement.name.village_CC1_2}Albi" posX="984.572" posY="764.996" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CC1_2}Located at the base of the Irana Mountains, the village of Albi has been host to countless raids from Greenskin tribes. As such, the shepherds have become battle hardened and will defend their village from any oncoming monstrosities.">
     <Components>
-      <Village id="village_comp_CC1_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CC1" bound="Settlement.town_CC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_CC1_2" village_type="VillageType.sheep_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CC1" bound="Settlement.town_CC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -4000,9 +4000,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_CC1_3" name="{=Settlements.Settlement.name.village_CC1_3}Cahors" posX="1028.839" posY="796.812" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_CC1_3" name="{=Settlements.Settlement.name.village_CC1_3}Cahors" posX="1028.839" posY="796.812" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CC1_3}East of Carcassonne lies the farm village of Cahors. Although not very populous, Cahors is an asset to Castle Carcassonne, providing most of their grain to feed the fortress town.">
     <Components>
-      <Village id="village_comp_CC1_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CC1" bound="Settlement.town_CC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_CC1_3" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CC1" bound="Settlement.town_CC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -4033,9 +4033,9 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_CC2_1" name="{=Settlements.Settlement.name.village_CC2_1}Montauban" posX="1060.132" posY="785.053" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_CC2_1" name="{=Settlements.Settlement.name.village_CC2_1}Montauban" posX="1060.132" posY="785.053" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CC2_1}Having been sacked by Greenskin invaders many times in the past, the population of Montebaun is very low. Being one of the few timber villages in carcassonne, the remaining peasants here are often worked to the bone.">
     <Components>
-      <Village id="village_comp_CC2_1" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CC2" bound="Settlement.town_CC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_CC2_1" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CC2" bound="Settlement.town_CC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -4046,9 +4046,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_CC2_2" name="{=Settlements.Settlement.name.village_CC2_2}Castre" posX="1099.842" posY="786.582" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_CC2_2" name="{=Settlements.Settlement.name.village_CC2_2}Castre" posX="1099.842" posY="786.582" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CC2_2}Sitting south of the Quenelles border and the river Brienne, the village of Castre is a small farming community that provides its grain to the City of Turin.">
     <Components>
-      <Village id="village_comp_CC2_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CC2" bound="Settlement.town_CC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_CC2_2" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CC2" bound="Settlement.town_CC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -4059,9 +4059,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_CC2_3" name="{=Settlements.Settlement.name.village_CC2_3}Auch" posX="1074.224" posY="807.517" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_CC2_3" name="{=Settlements.Settlement.name.village_CC2_3}Auch" posX="1074.224" posY="807.517" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CC2_3}Just west of Castre, along the Breinne river, the small land is home to many olive fields, worked tirelessly by the Tilean influenced Bretonnian peasants.">
     <Components>
-      <Village id="village_comp_CC2_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CC2" bound="Settlement.town_CC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_CC2_3" village_type="VillageType.olive_trees" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CC2" bound="Settlement.town_CC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -4072,7 +4072,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_CC1" name="{=Settlements.Settlement.name.castle_CC1}Toulouse" owner="Faction.carcassonne_clan_1" posX="932.5229" posY="778.352" prosperity="800" culture="Culture.vlandia" gate_posX="931.8373" gate_posY="778.6887" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_CC1" name="{=Settlements.Settlement.name.castle_CC1}Toulouse" owner="Faction.carcassonne_clan_1" posX="932.5229" posY="778.352" prosperity="800" culture="Culture.vlandia" gate_posX="931.8373" gate_posY="778.6887" text="{=Settlements.Settlement.text.castle_CC1}Located on the western border of Carcassonne and at the base of the Irana Mountains, Toulouse is a vital defensive position that holds the River Niveau crossing, that separates the border of Carcassonne and Estalia.">
     <Components>
       <Town id="castle_comp_CC1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -4082,9 +4082,9 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_CC1_1" name="{=Settlements.Settlement.name.castle_village_CC1_2}Condom" posX="934.0339" posY="809.916" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_CC1_1" name="{=Settlements.Settlement.name.castle_village_CC1_2}Condom" posX="934.0339" posY="809.916" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CC1_1}Condom is a timber village located in the most north western part of Carcassonne, that borders Estalia and the Duchy of Brionne.">
     <Components>
-      <Village id="castle_village_comp_CC1_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_CC1" bound="Settlement.castle_CC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_CC1_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.castle_CC1" bound="Settlement.castle_CC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
@@ -4095,9 +4095,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_CC1_2" name="{=Settlements.Settlement.name.castle_village_CC1_2}Muret" posX="909.9299" posY="787.266" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_CC1_2" name="{=Settlements.Settlement.name.castle_village_CC1_2}Muret" posX="909.9299" posY="787.266" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CC1_2}Nestled in the western Irana Mountains, Muret is a mining town that has become a fierce recruiting ground for Carcassonne Knights. The peasants are avid blacksmiths and miners, and will not shy away from a fight with Greenskins.">
     <Components>
-      <Village id="castle_village_comp_CC1_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_CC1" bound="Settlement.castle_CC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_CC1_2" village_type="VillageType.iron_mine" hearth="200" trade_bound="Settlement.castle_CC1" bound="Settlement.castle_CC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
@@ -4108,9 +4108,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_CC1_3" name="{=Settlements.Settlement.name.castle_village_CC1_2}Montesquieu" posX="949.234" posY="791.555" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_CC1_3" name="{=Settlements.Settlement.name.castle_village_CC1_3}Montesquieu" posX="949.234" posY="791.555" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CC1_3}In the green pastures of western Carcassonne lies the village of Montesquieu. The lush fields of green attract many breeds of Bretonnian Horse, which has made the village quite wealthy compared to most Bretonnian villages.">
     <Components>
-      <Village id="castle_village_comp_CC1_3" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_CC1" bound="Settlement.castle_CC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_CC1_3" village_type="VillageType.europe_horse_ranch" hearth="200" trade_bound="Settlement.castle_CC1" bound="Settlement.castle_CC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
@@ -4121,7 +4121,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_CC2" name="{=Settlements.Settlement.name.castle_CC2}Lovarre" owner="Faction.carcassonne_clan_1" posX="1119.17" posY="741.966" prosperity="800" culture="Culture.vlandia" gate_posX="1118.484" gate_posY="742.3027" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_CC2" name="{=Settlements.Settlement.name.castle_CC2}Lovarre" owner="Faction.carcassonne_clan_1" posX="1119.17" posY="741.966" prosperity="800" culture="Culture.vlandia" gate_posX="1118.484" gate_posY="742.3027" text="{=Settlements.Settlement.text.castle_CC2}A small fortress settlement on the Southern Reach of Bretonnia near the Tilean border. Once besieged by the armies of Tilea, the siege turned to a massacre when Ser Der Raker broke the assailants single handedly.">
     <Components>
       <Town id="castle_comp_CC2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -4131,9 +4131,9 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_CC2_1" name="{=Settlements.Settlement.name.castle_village_CC2_1}Narbonne" posX="1125.557" posY="762.214" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_CC2_1" name="{=Settlements.Settlement.name.castle_village_CC2_1}Narbonne" posX="1125.557" posY="762.214" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CC2_1}In the eastern plains of Carcassonne, Narbonne sits just opposite of the village Perpignan on the river Pou. Just outside of Narbonne lies the Burial Mound of Grundsnik, an orc warboss who was defeated many centuries ago. Orcs occasionally come here, seeking to reclaim Grundsnik’s treasure.">
     <Components>
-      <Village id="castle_village_comp_CC2_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_CC2" bound="Settlement.castle_CC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_CC2_1" village_type="VillageType.olive_trees" hearth="200" trade_bound="Settlement.castle_CC2" bound="Settlement.castle_CC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
@@ -4144,9 +4144,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_CC2_2" name="{=Settlements.Settlement.name.castle_village_CC2_1}Cugnaux" posX="1100.012" posY="762.903" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_CC2_2" name="{=Settlements.Settlement.name.castle_village_CC2_1}Cugnaux" posX="1100.012" posY="762.903" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CC2_2}A small mining village on the eastern base of the Irana Mountains and the Western Vaults, the Village of Cugnaux are hardened miners, working iron for the city of Turin and beyond.">
     <Components>
-      <Village id="castle_village_comp_CC2_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_CC2" bound="Settlement.castle_CC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_CC2_2" village_type="VillageType.iron_mine" hearth="200" trade_bound="Settlement.castle_CC2" bound="Settlement.castle_CC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
@@ -4157,9 +4157,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_CC2_3" name="{=Settlements.Settlement.name.castle_village_CC2_2}Escalquens" posX="1119.042" posY="775.944" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_CC2_3" name="{=Settlements.Settlement.name.castle_village_CC2_2}Escalquens" posX="1119.042" posY="775.944" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CC_3}At the crossing of the river Brienne and the river Pou, Escalquens grows flax for the city of Turin. Because of their Tilean lineage, Escalquens is quite prosperous and rich compared to the surrounding villages.">
     <Components>
-      <Village id="castle_village_comp_CC2_3" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_CC2" bound="Settlement.castle_CC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_CC2_3" village_type="VillageType.flax_plant" hearth="300" trade_bound="Settlement.castle_CC2" bound="Settlement.castle_CC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
@@ -4170,7 +4170,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_CC3" name="{=Settlements.Settlement.name.castle_CC3}Gaudaron" owner="Faction.carcassonne_clan_1" posX="1152.379" posY="738.412" prosperity="800" culture="Culture.vlandia" gate_posX="1151.888" gate_posY="737.8265" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_CC3" name="{=Settlements.Settlement.name.castle_CC3}Gaudaron" owner="Faction.carcassonne_clan_1" posX="1152.379" posY="738.412" prosperity="800" culture="Culture.vlandia" gate_posX="1151.888" gate_posY="737.8265" text="{=Settlements.Settlement.text.castle_CC3}Located near the borders of the Loren Forrest, Castle Gaudaron is an ever watchful eye that stands at the base of the Vaults mountain range. Castle Gaudaron is a key position for maintaining Bretonnian rule over the northern end of the Novalone Pass, as well as for guarding the Loren highway.">
     <Components>
       <Town id="castle_comp_CC3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
