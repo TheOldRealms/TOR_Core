@@ -10788,7 +10788,7 @@
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_vc_wight_king_001" />
     </EquipmentSet>
   </EquipmentRoster>
-  <EquipmentRoster id="tor_bretonnian_knight_template" culture="Culture.empire">
+  <EquipmentRoster id="tor_bretonnian_knight_template" culture="Culture.vlandia">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_001" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_knight_001" />
@@ -10800,6 +10800,28 @@
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_knight_001" />
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_knight_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_prophetess_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.bo_staff" />
+      <Equipment slot="Head" id="Item.vlandia_crown" />
+      <Equipment slot="Body" id="Item.vlandian_corset_dress" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_celestial_wizard_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_light_wizard_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_light_wizard_001" />
+      <Equipment slot="Horse" id="Item.t2_vlandia_horse" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.bo_staff" />
+      <Equipment slot="Head" id="Item.vlandia_crown" />
+      <Equipment slot="Body" id="Item.vlandian_corset_dress" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_celestial_wizard_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_light_wizard_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_light_wizard_001" />
+      <Equipment slot="Horse" id="Item.t2_vlandia_horse" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_archaon_template" culture="Culture.chaos_culture">

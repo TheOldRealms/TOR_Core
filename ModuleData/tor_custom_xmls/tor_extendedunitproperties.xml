@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfCharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_villager">
     <Abilities />
@@ -2361,7 +2361,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulRain</string>
+      <string>SoulDrain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2547,7 +2547,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_first_3">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>AICompanion</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_first_4">
     <Abilities />
@@ -2561,7 +2563,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulRain</string>
+      <string>SoulDrain</string>
       <string>PowerOfDarkness</string>
       <string>SoulStealer</string>
     </Abilities>
@@ -2572,6 +2574,22 @@
     <Attributes>
       <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_reikland_first_8">
+    <Abilities>
+      <string>Fireball</string>
+      <string>CinderBlast</string>
+      <string>BoltOfAqshy</string>
+      <string>Sear</string>
+      <string>FlamingSwords</string>
+      <string>BurningHead</string>
+      <string>FlameStorm</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+      <string>AICompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_second_1">
@@ -2628,7 +2646,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulRain</string>
+      <string>SoulDrain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2645,8 +2663,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-	  <string>DeathSpasm</string>
-      <string>SoulRain</string>
+      <string>SoulDrain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2663,7 +2680,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulRain</string>
+      <string>SoulDrain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2680,7 +2697,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulRain</string>
+      <string>SoulDrain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2697,7 +2714,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulRain</string>
+      <string>SoulDrain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2714,7 +2731,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulRain</string>
+      <string>SoulDrain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2731,7 +2748,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulRain</string>
+      <string>SoulDrain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2748,7 +2765,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulRain</string>
+      <string>SoulDrain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2765,7 +2782,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulRain</string>
+      <string>SoulDrain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2887,7 +2904,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulRain</string>
+      <string>SoulDrain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2904,7 +2921,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulRain</string>
+      <string>SoulDrain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2921,7 +2938,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulRain</string>
+      <string>SoulDrain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -2938,7 +2955,7 @@
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-      <string>SoulRain</string>
+      <string>SoulDrain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -3237,95 +3254,10 @@
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord">
-    <Abilities>
-	     <string>HealingHand</string>
-		 <string>CometOfSigmar</string>
-		 <string>Vanquish</string>
-		 <string>AmourOfRighteousness</string>
-    </Abilities>
+    <Abilities />
     <Attributes>
       <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_emp_hero_reikland_first_1">
-    <Abilities>
-    </Abilities>
-    <Attributes>
-	  <string>AICompanion</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_emp_hero_averland_first_1">
-    <Abilities>
-    </Abilities>
-    <Attributes>
-	  <string>AICompanion</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_emp_hero_averland_first_2">
-    <Abilities>
-      <string>Fireball</string>
-      <string>CinderBlast</string>
-      <string>BoltOfAqshy</string>
-	  <string>CascadingFireCloak</string>
-      <string>Sear</string>
-      <string>FlamingSwords</string>
-      <string>BurningHead</string>
-      <string>FlameStorm</string>
-    </Abilities>
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>SpellCaster</string>
-	  <string>AICompanion</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_emp_hero_reikland_first_2">
-    <Abilities>
-      <string>Fireball</string>
-      <string>CinderBlast</string>
-      <string>BoltOfAqshy</string>
-	  <string>CascadingFireCloak</string>
-      <string>Sear</string>
-      <string>FlamingSwords</string>
-      <string>BurningHead</string>
-      <string>FlameStorm</string>
-    </Abilities>
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>SpellCaster</string>
-	  <string>AICompanion</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_vc_hero_sylvania_first_1">
-    <Abilities>
-	  <string>NagashGaze</string>
-      <string>SummonSkeleton</string>
-      <string>Shadowblood</string>
-      <string>Morkharn</string>
-      <string>WitheringWave</string>
-      <string>Kandorak</string>
-      <string>ScreamingSkull</string>
-      <string>WindOfDeath</string>
-      <string>GraveCall</string>
-    </Abilities>
-    <Attributes>
-	  <string>AICompanion</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_vc_hero_sylvania_first_2">
-    <Abilities>
-	  <string>NagashGaze</string>
-      <string>SummonSkeleton</string>
-      <string>Shadowblood</string>
-      <string>Morkharn</string>
-      <string>WitheringWave</string>
-      <string>Kandorak</string>
-      <string>ScreamingSkull</string>
-      <string>WindOfDeath</string>
-      <string>GraveCall</string>
-    </Abilities>
-    <Attributes>
-	  <string>AICompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_bw_lord">
@@ -3333,7 +3265,6 @@
       <string>Fireball</string>
       <string>CinderBlast</string>
       <string>BoltOfAqshy</string>
-	  <string>CascadingFireCloak</string>
       <string>Sear</string>
       <string>FlamingSwords</string>
       <string>BurningHead</string>
@@ -3359,40 +3290,6 @@
       <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
-   <CharacterExtendedInfo id="tor_prophetess_lw">
-    <Abilities>
-      <string>DwellersBelow</string>
-	  <string>TheGreenEye</string>
-	  <string>Barkskin</string>
-	  <string>SummerHeat</string>
-	   <string>Regrowth</string>
-	   <string>DrainLife</string>
-	   <string>StormOfRenewal</string>
-	   <string>LadysFavour</string>
-	   <string>AerialShield</string>
-	   <string>ShieldOfCombat</string>
-	   <string>AuraOfTheLady</string>
-    </Abilities>
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>SpellCaster</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-     <CharacterExtendedInfo id="tor_prophetess_bw">
-    <Abilities>
-		<string>AmberSpear</string>
-		<string>TanglingThorn</string>
-		<string>PannsImpenetrablePelt</string>
-		<string>HailStorm</string>
-		<string>FlockOfDoom</string>
-		<string>TheBeastUnleashed</string>
-		<string>CurseOfAnraheir</string>
-    </Abilities>
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>SpellCaster</string>
-    </Attributes>
-  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_cw_lord">
     <Abilities>
       <string>LightningBolt</string>
@@ -3408,12 +3305,41 @@
       <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_prophetess_lw">
+    <Abilities>
+      <string>DwellersBelow</string>
+      <string>TheGreenEye</string>
+      <string>Barkskin</string>
+      <string>SummerHeat</string>
+      <string>Regrowth</string>
+      <string>DrainLife</string>
+      <string>StormOfRenewal</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_prophetess_bw">
+    <Abilities>
+      <string>AmberSpear</string>
+      <string>TanglingThorn</string>
+      <string>PannsImpenetrablePelt</string>
+      <string>HailStorm</string>
+      <string>FlockOfDoom</string>
+      <string>TheBeastUnleashed</string>
+      <string>CurseOfAnraheir</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord">
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
-	  <string>DeathSpasm</string>
-      <string>SoulRain</string>
+      <string>SoulDrain</string>
       <string>PowerOfDarkness</string>
       <string>BlackHorror</string>
       <string>SoulStealer</string>
@@ -3422,7 +3348,8 @@
       <string>WindOfDeath</string>
     </Abilities>
     <Attributes>
-	  <string>AbilityUser</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
       <string>Unbreakable</string>
     </Attributes>
   </CharacterExtendedInfo>
@@ -3437,7 +3364,6 @@
       <string>ScreamingSkull</string>
       <string>WindOfDeath</string>
       <string>GraveCall</string>
-	  <string>CurseOfYears</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
