@@ -3500,7 +3500,7 @@
     </CommonAreas>
   </Settlement>
   <!-- Brionne -->
-  <Settlement id="town_BE1" name="{=Settlements.Settlement.name.town_BA1}Castle Brionne" owner="Faction.brionne_clan_1" posX="917.73" posY="845.113" culture="Culture.vlandia" prosperity="4500" gate_posX="920.2581" gate_posY="847.4011" text="{=!}Altdorf is at once perhaps the greatest city of the Empire and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the Reikland and the Empire of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the Empire; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
+  <Settlement id="town_BE1" name="{=Settlements.Settlement.name.town_BE1}Castle Brionne" owner="Faction.brionne_clan_1" posX="917.73" posY="845.113" culture="Culture.vlandia" prosperity="4500" gate_posX="920.2581" gate_posY="847.4011" text="{=Settlements.Settlement.text.town_BE1}The jewel of Bretonnia, as Brionnians would have you believe, is a remarkable city built out of the local white stone and the high quality sand from its bay, which is one of the things Brionne is famous for. The city is well defended thanks to its location, lone towers watch over the land that can withstand against entire armies with but a small garrison. The Hall of Minstrels is the most important building in Brionne, as many would be bards and minstrels hone their skills here. The hall is surrounded by a large garden, which in times of war can be used as a killing room to dispose of invaders. It is a beautiful circular structure made from polished white stone, the inside is home to an auditorium with flawless acoustics, which minstrels use at any time of the day or night.">
     <Components>
       <Town id="town_comp_BE1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -3520,9 +3520,9 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BE1_1" name="{=Settlements.Settlement.name.village_BE1_1}Lourdes" posX="910.53" posY="859.481" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_BE1_1" name="{=Settlements.Settlement.name.village_BE1_1}Lourdes" posX="910.53" posY="859.481" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BE1_1}On the coast of the Great Ocean, the village of Lourdes ekes out a meagre existence as a fishing village. Delivering “fresh” fish directly to Castle Brionne.">
     <Components>
-      <Village id="village_comp_BE1_1" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BE1" bound="Settlement.town_BE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BE1_1" village_type="VillageType.fisherman" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BE1" bound="Settlement.town_BE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -3533,9 +3533,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BE1_2" name="{=Settlements.Settlement.name.village_BE1_2}Tournefeuille" posX="932.859" posY="842.695" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_BE1_2" name="{=Settlements.Settlement.name.village_BE1_2}Tournefeuille" posX="932.859" posY="842.695" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BE1_2}The village of Tournefeuille, the last settlement on the River Brienne before Castle Brionne. The villagers here take care of great herds of cattle, providing much of the meat needed by the dukedom.">
     <Components>
-      <Village id="village_comp_BE1_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BE1" bound="Settlement.town_BE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BE1_2" village_type="VillageType.cattle_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BE1" bound="Settlement.town_BE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -3546,7 +3546,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BE1_3" name="{=Settlements.Settlement.name.village_BE1_3}Beaucaire" posX="928.486" posY="856.503" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_BE1_3" name="{=Settlements.Settlement.name.village_BE1_3}Beaucaire" posX="928.486" posY="856.503" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BE1_3}A moderately rich farming village near Brionne, Beaucaire acts as a crossroads between the surrounding villages and Brionne so it sees a decent bit of traffic, thanks to the local toll booth the village is slightly more prosperous than the others, but still just as run down.">
     <Components>
       <Village id="village_comp_BE1_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BE1" bound="Settlement.town_BE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3559,7 +3559,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_BE2" name="{=Settlements.Settlement.name.town_BA1}Chateau Frontière" owner="Faction.brionne_clan_1" posX="943.677" posY="824.454" culture="Culture.vlandia" prosperity="4500" gate_posX="945.9337" gate_posY="825.634" text="{=!}Altdorf is at once perhaps the greatest city of the Empire and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the Reikland and the Empire of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the Empire; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
+  <Settlement id="town_BE2" name="{=Settlements.Settlement.name.town_BE1}Chateau Frontière" owner="Faction.brionne_clan_1" posX="943.677" posY="824.454" culture="Culture.vlandia" prosperity="4500" gate_posX="945.9337" gate_posY="825.634" text="{=Settlements.Settlement.name.town_BE1}A site of many sieges from Norsca in ages past, ever since Alaron the Intrepid aided in the defence against Bjorn Irongrim and his army of mercenaries, the frequency of raids on Brionne have died down significantly. Due to its strategic location, Chateau Frontière holds many relics from the crusades.">
     <Components>
       <Town id="town_comp_BE2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -3579,7 +3579,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BE2_1" name="{=Settlements.Settlement.name.village_BE2_1}Lunel" posX="971.168" posY="833.024" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_BE2_1" name="{=Settlements.Settlement.name.village_BE2_1}Lunel" posX="971.168" posY="833.024" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BE2_1}Lunel sees many travellers pass by as they live close to the bridge that connects them with Carcassonne, be they adventuring knights or merchants. The village therefore is looked after more than others,  so passing  nobles can at least somewhat bear to look at it.">
     <Components>
       <Village id="village_comp_BE2_1" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BE2" bound="Settlement.town_BE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3592,9 +3592,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BE2_2" name="{=Settlements.Settlement.name.village_BE2_1}Gaillac" posX="950.558" posY="839.581" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_BE2_2" name="{=Settlements.Settlement.name.village_BE2_1}Gaillac" posX="950.558" posY="839.581" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BE2_2}Gaillac doesn’t get many visitors, being so out of the way, yet caravans often leave to deliver crops to Chateau Frontière. Gaillac is one of the biggest food producers of Brionne.Gaillac, a remote location that often goes unnoticed, being so far away from the main roads. The village is a bustling hub for caravans that transport crops to Chateau Frontière. Gaillac holds a critical role in Brionne’s food production.">
     <Components>
-      <Village id="village_comp_BE2_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BE2" bound="Settlement.town_BE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BE2_2" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BE2" bound="Settlement.town_BE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -3605,9 +3605,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BE2_3" name="{=Settlements.Settlement.name.village_BE2_1}Vauvert" posX="988.9399" posY="827.348" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_BE2_3" name="{=Settlements.Settlement.name.village_BE2_1}Vauvert" posX="988.9399" posY="827.348" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BE2_2}Rows of grapevines run along the village of Vauvert. With fresh water nearby the grapes are very juicy and rich in taste; while it can’t compete with the wine of Bordeleaux it still quenches the thirst of the local nobility.">
     <Components>
-      <Village id="village_comp_BE2_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BE2" bound="Settlement.town_BE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BE2_3" village_type="VillageType.vineyard" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BE2" bound="Settlement.town_BE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -3618,7 +3618,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BE1" name="{=Settlements.Settlement.name.castle_BL3}Castle Gransette" owner="Faction.brionne_clan_1" posX="957.473" posY="861.784" prosperity="800" culture="Culture.vlandia" gate_posX="956.7041" gate_posY="860.4589" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_BE1" name="{=Settlements.Settlement.name.castle_BL3}Castle Gransette" owner="Faction.brionne_clan_1" posX="957.473" posY="861.784" prosperity="800" culture="Culture.vlandia" gate_posX="956.7041" gate_posY="860.4589" text="{=Settlements.Settlement.text.castle_BL3}Castle Gransette, the site of a great tragedy in ages past, a tragedy worthy of any song. The lady Isolde took the knight Sir Gaseric as her lover, but unfortunately her husband was not keen on becoming a superfluous husband. He locked Lady Isolde in her tower and challenged Sir Gaseric to a duel. He agreed, on the condition that it was held in the court so Lady Isolde could watch. The duel never happened, as the two knights were about to clash their steel a horde of zombies befell them. It is said that the zombies were defeated by a group of adventurers, but they never returned, and neither did any group that was sent to investigate. The local duke, the only living relative of Lord Gransette, has taken up residence after a substantial cleansing of the castle, despite this, the castle staff reports that the castle is still haunted, hearing footsteps and moans around corners. It was even reported by the groundskeeper, that on one fateful night, he saw the apparitions of Sir Gaseric and Lord Gransette duelling each other, still fighting for their long lost love.">
     <Components>
       <Town id="castle_comp_BE1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -3628,7 +3628,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_BE1_1" name="{=Settlements.Settlement.name.castle_village_BE1_1}Mende" posX="968.823" posY="862.076" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_BE1_1" name="{=Settlements.Settlement.name.castle_village_BE1_1}Mende" posX="968.823" posY="862.076" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BE1_1}A somewhat dour village along the northern border, when Castle Gransette was beset by zombies many of those who fled, fled to Mende, dragging several zombies in tow. The attack was repelled, but it left its mark on the village; houses are more rundown and desolate than usual, and the faint stench of death still lingers in the air.">
     <Components>
       <Village id="castle_village_comp_BE1_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_BE1" bound="Settlement.castle_BE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3641,9 +3641,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_BE1_2" name="{=Settlements.Settlement.name.castle_village_BE1_2}Collioure" posX="950.407" posY="872.639" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_BE1_2" name="{=Settlements.Settlement.name.castle_village_BE1_2}Collioure" posX="950.407" posY="872.639" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BE1_2}The local nobility is more keen to make visits to Collioure, as they supply most of Brionne with olives, used for their cuisine. This is why the village is more staunchly protected in times of need.">
     <Components>
-      <Village id="castle_village_comp_BE1_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_BE1" bound="Settlement.castle_BE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BE1_2" village_type="VillageType.olive_trees" hearth="200" trade_bound="Settlement.castle_BE1" bound="Settlement.castle_BE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
@@ -3654,7 +3654,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BE2" name="{=Settlements.Settlement.name.castle_BL3}Castle Hossegor" owner="Faction.brionne_clan_1" posX="1003.581" posY="853.014" prosperity="800" culture="Culture.vlandia" gate_posX="1008.253" gate_posY="852.8986" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_BE2" name="{=Settlements.Settlement.name.castle_BE3}Castle Hossegor" owner="Faction.brionne_clan_1" posX="1003.581" posY="853.014" prosperity="800" culture="Culture.vlandia" gate_posX="1008.253" gate_posY="852.8986" text="{=Settlements.Settlement.text.castle_BE3}Castle Hossegor is more of a giant hospital than a mere fortress. Inside, nobles receive the finest treatments from priestesses of Shallya; while outside peasants beseech the many wisemen and healers that flock to the area. Some complain about receiving their treatment in the open air, but many of the practitioners believe this separation protects their noble clients and disperses the more vile miasmas brought here by the peasants.">
     <Components>
       <Town id="castle_comp_BE2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -3664,9 +3664,9 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_BE2_1" name="{=Settlements.Settlement.name.castle_village_BE2_1}Foix" posX="1006.581" posY="822.911" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_BE2_1" name="{=Settlements.Settlement.name.castle_village_BE2_1}Foix" posX="1006.581" posY="822.911" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BE2_1}The bleating of the herds of local sheep drown out most of the noises during the day, Foix delivers copious amounts of cotton to Castle Hossegor to be used for bandages and cleaning materials.">
     <Components>
-      <Village id="castle_village_comp_BE2_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_BE2" bound="Settlement.castle_BE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BE2_1" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.castle_BE2" bound="Settlement.castle_BE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
@@ -3677,9 +3677,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_BE2_2" name="{=Settlements.Settlement.name.castle_village_BE2_2}Colomier" posX="985.548" posY="854.242" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_BE2_2" name="{=Settlements.Settlement.name.castle_village_BE2_2}Colomier" posX="985.548" posY="854.242" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BE2_2}Nestled in the rolling hills and verdant fields, lies Colomier, where the air is always fragrant with the aroma of herbs. The village is a picturesque haven with neat rows of herbs that flourish under the warm rays of the sun. The villagers take great pride in their craft, carefully tending to their plants with love and care.">
     <Components>
-      <Village id="castle_village_comp_BE2_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_BE2" bound="Settlement.castle_BE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BE2_2" village_type="VillageType.flax_plant" hearth="200" trade_bound="Settlement.castle_BE2" bound="Settlement.castle_BE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
@@ -3690,7 +3690,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BE3" name="{=Settlements.Settlement.name.castle_BE3}Castle Portet castle" owner="Faction.brionne_clan_1" posX="928.53" posY="882.416" prosperity="800" culture="Culture.vlandia" gate_posX="928.0579" gate_posY="883.0165" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_BE3" name="{=Settlements.Settlement.name.castle_BE3}Castle Portet" owner="Faction.brionne_clan_1" posX="928.53" posY="882.416" prosperity="800" culture="Culture.vlandia" gate_posX="928.0579" gate_posY="883.0165" text="{=Settlements.Settlement.name.castle_BE3}Also known as the castle of glass, renowned for its breathtaking stained glass windows, it stands as a testament to Brionnian architectural grandeur and artistic mastery, the castle emanates an enchanting aura, which pulls in many visitors from all over Bretonnia.">
     <Components>
       <Town id="castle_comp_BE3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -3700,7 +3700,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_BE3_1" name="{=Settlements.Settlement.name.castle_village_BE3_1}Billère" posX="907.101" posY="897.327" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_BE3_1" name="{=Settlements.Settlement.name.castle_village_BE3_1}Billère" posX="907.101" posY="897.327" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BE3_1}The village of Billère is surrounded by fields and pastures, with castle Portet looming in the distance, a constant reminder of the feudal system that governs the life of the locals. The villagers are hardworking and resilient, eking out a living from the land and the trades they have honed over generations.">
     <Components>
       <Village id="castle_village_comp_BE3_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_BE3" bound="Settlement.castle_BE3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3713,9 +3713,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_BE3_2" name="{=Settlements.Settlement.name.castle_village_BE3_2}Saverdun " posX="930.502" posY="869.368" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_BE3_2" name="{=Settlements.Settlement.name.castle_village_BE3_2}Saverdun" posX="930.502" posY="869.368" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BE3_2}The village of Saverdun is a dusty and bustling place, with narrow streets and buildings. Despite the arduous and often dangerous nature of their work, these villagers are a tight-knit community, bound together by a shared sense of purpose and a deep respect for the land. They know the secrets of clay, how to shape it, and finding the best veins to mine.">
     <Components>
-      <Village id="castle_village_comp_BE3_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_BE3" bound="Settlement.castle_BE3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BE3_2" village_type="VillageType.clay_mine" hearth="200" trade_bound="Settlement.castle_BE3" bound="Settlement.castle_BE3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
