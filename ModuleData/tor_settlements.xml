@@ -2628,7 +2628,7 @@
   </Settlement>
   <!-- Bretonnia -->
   <!-- Montfort -->
-  <Settlement id="town_MO1" name="{=Settlements.Settlement.name.town_MO1}Montfort" owner="Faction.montfort_clan_1" posX="1152.931" posY="1003.943" culture="Culture.vlandia" prosperity="4500" gate_posX="1154.654" gate_posY="1002.985" text="{=!}Altdorf is at once perhaps the greatest city of the Empire and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the Reikland and the Empire of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the Empire; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
+  <Settlement id="town_MO1" name="{=Settlements.Settlement.name.town_MO1}Montfort" owner="Faction.montfort_clan_1" posX="1152.931" posY="1003.943" culture="Culture.vlandia" prosperity="4500" gate_posX="1154.654" gate_posY="1002.985" text="{=Settlements.Settlement.text.town_MO1} The Fortress city of Montfort, sits at the opposite end of Axe Bite Pass. Encompassed in five tiers of towering stone walls, the Illustrious trade centre is renowned for its fine quality crafts, including Steel weapons and armours, owed to the close association of the Dwarfs of the Grey Mountains.">
     <Components>
       <Town id="town_comp_MO1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -2648,9 +2648,9 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_MO1_1" name="{=Settlements.Settlement.name.village_MO1_1}Jouinard" posX="1133.572" posY="996.359" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MO1_1}Frederheim is a small Reiklander village just north of Altdorf on the Altdorf-Middenheim road. While the town is a possession of Karl-Franz and is a part of Altdorf’s demesne, the Emperor has seen fit to give oversight of it in all but name to the Cult of Shallya. This is a result of the cult's request for an area in which to establish a walled hospice and sanatorium.">
+  <Settlement id="village_MO1_1" name="{=Settlements.Settlement.name.village_MO1_1}Jouinard" posX="1133.572" posY="996.359" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MO1_1} A small village located near the Bretonnian Entrance to Axe Bite Pass. Jouinard acts as a small trade settlement before encroaching on Montfort.">
     <Components>
-      <Village id="village_comp_MO1_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MO1" bound="Settlement.town_MO1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_MO1_1" village_type="VillageType.iron_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MO1" bound="Settlement.town_MO1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -2661,9 +2661,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_MO1_2" name="{=Settlements.Settlement.name.village_MO1_2}Hachepied" posX="1134.743" posY="1010.842" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MO1_2}On the eastern side of the confluence of the rivers Taal and Reik sits the village of Kaldach. The town is notable particularly for being the demarcation of the Reikland/Talabecland border. Besides this, it remains a small farming community.">
+  <Settlement id="village_MO1_2" name="{=Settlements.Settlement.name.village_MO1_2}Hachepied" posX="1134.743" posY="1010.842" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MO1_2}The hamlet of Hachpied, across the river from Montfort, is a small cattle farm that provides Castle Montfort with a steady supply of Meats and Hides.">
     <Components>
-      <Village id="village_comp_MO1_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MO1" bound="Settlement.town_MO1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_MO1_2" village_type="VillageType.cattle_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MO1" bound="Settlement.town_MO1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -2674,9 +2674,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_MO1_3" name="{=Settlements.Settlement.name.village_MO1_3}Noyers" posX="1149.479" posY="1008.169" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MO1_3}Directly west of Altdorf, between the river Reik and the Weissbruck canal is the village of Hochloff. The town is known for the type of grain it raises the Hochloffkorn which is very well regarded for making a high quality flour.">
+  <Settlement id="village_MO1_3" name="{=Settlements.Settlement.name.village_MO1_3}Noyers" posX="1149.479" posY="1008.169" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MO1_3}Noyers lies at the entrance of axe bite pass and is the first Bretonnia contact coming through the pass. Unfortunately, due to the Empire and Bretonnia’s constant engagements over axe bite pass, the village of Noyers is littered with graves and corpses.">
     <Components>
-      <Village id="village_comp_MO1_3" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MO1" bound="Settlement.town_MO1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_MO1_3" village_type="VillageType.salt_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MO1" bound="Settlement.town_MO1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -2687,7 +2687,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_MO2" name="{=Settlements.Settlement.name.town_MO2}Poussenc" owner="Faction.montfort_clan_1" posX="1096.973" posY="1051.954" culture="Culture.vlandia" prosperity="4500" gate_posX="1098.789" gate_posY="1053.609" text="{=!}At the Confluence of the River Reik and the River Schilder sits the town of Schilderheim. Ruled by Graf Robert von Uhland, Schilderheim is an important river market down river from altdorf, being one of the last places that trade on the River Reik can stop before reaching Marienburg.">
+  <Settlement id="town_MO2" name="{=Settlements.Settlement.name.town_MO2}Poussenc" owner="Faction.montfort_clan_1" posX="1096.973" posY="1051.954" culture="Culture.vlandia" prosperity="4500" gate_posX="1098.789" gate_posY="1053.609" text="{=Settlements.Settlement.text.town_MO2}Sitting north west of Montfort, the City of Poussenc rests on the River Grismerie. The markets of Poussenc are often flooded with Golden jewellery and crafts, thanks to it neighbouring the gold rich Grey Mountains.">
     <Components>
       <Town id="town_comp_MO2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -2707,7 +2707,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_MO2_1" name="{=Settlements.Settlement.name.village_MO2_1}Les Chalesmes" posX="1070.796" posY="1057.11" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MO2_1}Holthusen is a town in western Reikland on the river Schilder. By road it lies between Eilhart and Schilderheim. The town's primary trade good is the Holthusen Hogshead barrel which is used across the empire to age or ferment their products before shipment. The barrels are said to be so sturdy as to be able to protect their contents even from direct cannon fire. Every year Holthusen hosts the Weinfest, a great gathering for wine tasting that requires an invite to enter. Of course the lack of invite does not stop the horde of wastrels and rogues who wish to drink the free wine provided by the festival. Weinfest also marks the only time of year during which the Golden Cask is brought out, which is said to contain the best wine in the Empire if not the entire Old World. Due to the town's forested location, it is frequently attacked by beastmen. The palisades and guards are normally strong enough to see the monsters off, but the townspeople fear the day this defence falls short. As such, some of the townspeople have been leaving casks of cheap wine at the edge of the woods in an attempt to appease the beastmen with tribute. This dubious practice likely will not be allowed to continue much longer.">
+  <Settlement id="village_MO2_1" name="{=Settlements.Settlement.name.village_MO2_1}Les Chalesmes" posX="1070.796" posY="1057.11" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MO2_1}Huddled on the north side of the Grismerie river, the village of Les Chalesmes is a small farming village that provides most of its harvest to the city of Poussenc.">
     <Components>
       <Village id="village_comp_MO2_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MO2" bound="Settlement.town_MO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2720,9 +2720,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_MO2_2" name="{=Settlements.Settlement.name.village_MO2_2}Sirod" posX="1109.716" posY="1036.073" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MO2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_MO2_2" name="{=Settlements.Settlement.name.village_MO2_2}Sirod" posX="1109.716" posY="1036.073" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MO2_2}Sirod is a small village that is not very populous, nor flourishing, and that holds a deep clay deposit just off the river bank of the Grismerie river.">
     <Components>
-      <Village id="village_comp_MO2_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MO2" bound="Settlement.town_MO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_MO2_2" village_type="VillageType.clay_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MO2" bound="Settlement.town_MO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -2733,9 +2733,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_MO2_3" name="{=Settlements.Settlement.name.village_MO2_3}Ardon" posX="1122.629" posY="1049.412" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MO2_3}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_MO2_3" name="{=Settlements.Settlement.name.village_MO2_3}Ardon" posX="1122.629" posY="1049.412" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MO2_3}In the small woodlands east of Poussenc, the hamlet of Ardon provides Poussenc with timber for many of the cities' construction and outfitting their militias with bows and arrows.">
     <Components>
-      <Village id="village_comp_MO2_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MO2" bound="Settlement.town_MO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_MO2_3" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MO2" bound="Settlement.town_MO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -2746,7 +2746,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_MO1" name="{=Settlements.Settlement.name.castle_MO1}Hemmerle" owner="Faction.montfort_clan_1" posX="1146.043" posY="994.843" prosperity="800" culture="Culture.vlandia" gate_posX="1146.135" gate_posY="994.1898" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_MO1" name="{=Settlements.Settlement.name.castle_MO1}Hemmerle" owner="Faction.montfort_clan_1" posX="1146.043" posY="994.843" prosperity="800" culture="Culture.vlandia" gate_posX="1146.135" gate_posY="994.1898" text="{=Settlements.Settlement.text.castle_MO1}Castle Hemmerle sits on the border of Parravon and Montfort, along the river Grismerie. It is a key defensive choke point into Montfort when approaching from the south.">
     <Components>
       <Town id="castle_comp_MO1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -2756,9 +2756,9 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_MO1_1" name="{=Settlements.Settlement.name.castle_village_MO1_1}Bière" posX="1138.059" posY="992.262" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MO1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
+  <Settlement id="castle_village_MO1_1" name="{=Settlements.Settlement.name.castle_village_MO1_1}Bière" posX="1138.059" posY="992.262" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MO1_1}West of Montfort, the small village of Bière, provides Castle Montfort's supply of mounts for the stables. Although small, Horse breeders are never in short supply in the Horse Duchies of Bretonnia.">
     <Components>
-      <Village id="castle_village_comp_MO1_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_MO1" bound="Settlement.castle_MO1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_MO1_1" village_type="VillageType.europe_horse_ranch" hearth="200" trade_bound="Settlement.town_MO1" bound="Settlement.castle_MO1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
@@ -2769,9 +2769,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_MO1_2" name="{=Settlements.Settlement.name.castle_village_MO1_2}Etoy" posX="1140.563" posY="1005.139" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MO1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_MO1_2" name="{=Settlements.Settlement.name.castle_village_MO1_2}Etoy" posX="1140.563" posY="1005.139" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MO1_2}The hogs of Etoy provide most of its meat and its leather hides to Castle Montfort. The rest is usually reserved for the village itself or as a trade good for any adventurers or other villages needing such goods. Due to the location, Etoy has a good relationship with the small village of Laval in Parravon, and they often trade goods and hold small festivals together.">
     <Components>
-      <Village id="castle_village_comp_MO1_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_MO1" bound="Settlement.castle_MO1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_MO1_2" village_type="VillageType.swine_farm" hearth="200" trade_bound="Settlement.town_MO1" bound="Settlement.castle_MO1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
@@ -2782,7 +2782,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_MO2" name="{=Settlements.Settlement.name.castle_MO2}Grismerie" owner="Faction.montfort_clan_1" posX="1132.517" posY="1033.89" prosperity="800" culture="Culture.vlandia" gate_posX="1133.789" gate_posY="1034.173" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_MO2" name="{=Settlements.Settlement.name.castle_MO2}Valenfort" owner="Faction.montfort_clan_1" posX="1132.517" posY="1033.89" prosperity="800" culture="Culture.vlandia" gate_posX="1133.789" gate_posY="1034.173" text="{=Settlements.Settlement.text.castle_MO2}Nestled into the Grey Mountains, Castle Valenfort stands tall above the mountains providing a long sightline along the river coast.">
     <Components>
       <Town id="castle_comp_MO2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -2792,9 +2792,9 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_MO2_1" name="{=Settlements.Settlement.name.castle_village_MO2_1}Les Auxons" posX="1128.882" posY="1020.518" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MO2_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
+  <Settlement id="castle_village_MO2_1" name="{=Settlements.Settlement.name.castle_village_MO2_1}Les Auxons" posX="1128.882" posY="1020.518" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MO2_1}Les Auxons holds a small knit community of villagers who farm flax for the cities of Montfort. Despite being neither prosperous nor populous, the work they do does not go unnoticed and is often protected from Greenskin raids.">
     <Components>
-      <Village id="castle_village_comp_MO2_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_MO2" bound="Settlement.castle_MO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_MO2_1" village_type="VillageType.flax_plant" hearth="200" trade_bound="Settlement.town_MO2" bound="Settlement.castle_MO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
@@ -2805,9 +2805,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_MO2_2" name="{=Settlements.Settlement.name.castle_village_MO2_2}Boult" posX="1121.152" posY="1032.63" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MO1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_MO2_2" name="{=Settlements.Settlement.name.castle_village_MO2_2}Boult" posX="1121.152" posY="1032.63" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MO2_2} Along a small stream that runs from Axe Bite Pas, and into the Grismerie river, lies the small hamlet of Boult. The residents there work in the small salt mines up into the sides of Axe Bite Pass and into the Grey Mountains.">
     <Components>
-      <Village id="castle_village_comp_MO2_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_MO2" bound="Settlement.castle_MO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_MO2_2" village_type="VillageType.salt_mine" hearth="200" trade_bound="Settlement.town_MO2" bound="Settlement.castle_MO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
@@ -2818,7 +2818,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_MO3" name="{=Settlements.Settlement.name.castle_MO3}Guette Orcal" owner="Faction.montfort_clan_1" posX="1102.881" posY="994.914" prosperity="800" culture="Culture.vlandia" gate_posX="1102.504" gate_posY="993.668" text="{=Settlements.Settlement.text.castle_MO3}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_MO3" name="{=Settlements.Settlement.name.castle_MO3}Guette Orcal" owner="Faction.montfort_clan_1" posX="1102.881" posY="994.914" prosperity="800" culture="Culture.vlandia" gate_posX="1102.504" gate_posY="993.668" text="{=Settlements.Settlement.text.castle_MO3}Neighbouring the Mountains of Massif Orcal, Guette Orcal sits at its base, ready to pursue any and all greenskin raids coming from the Mountains.">
     <Components>
       <Town id="castle_comp_MO3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -2828,9 +2828,9 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_MO3_1" name="{=Settlements.Settlement.name.castle_village_MO3_1}Gilley" posX="1084.669" posY="1017.322" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MO1_1}Just east of Guette Orcal lies the hamlet of Giley, a small fishing village sitting on the Grismerie river. The village is not very prosperous due to increasing raids from Greenskins.">
+  <Settlement id="castle_village_MO3_1" name="{=Settlements.Settlement.name.castle_village_MO3_1}Gilley" posX="1084.669" posY="1017.322" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MO3_1}Just east of Guette Orcal lies the hamlet of Giley, a small fishing village sitting on the Grismerie river. The village is not very prosperous due to increasing raids from Greenskins.">
     <Components>
-      <Village id="castle_village_comp_MO3_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_MO1" bound="Settlement.castle_MO3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_MO3_1" village_type="VillageType.fisherman" hearth="200" trade_bound="Settlement.town_MO1" bound="Settlement.castle_MO3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
@@ -2841,7 +2841,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_MO3_2" name="{=Settlements.Settlement.name.castle_village_MO3_2}Morteau" posX="1104.826" posY="1008.577" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MO1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_MO3_2" name="{=Settlements.Settlement.name.castle_village_MO3_2}Morteau" posX="1104.826" posY="1008.577" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MO3_2}Montfort, fertile and rock free soil is in short supply, making Morteau, or rather its soil, critical to abating famine. As a result, Morteauan peasants are thought of as fat and lazy by their fellows.">
     <Components>
       <Village id="castle_village_comp_MO3_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_MO1" bound="Settlement.castle_MO3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
