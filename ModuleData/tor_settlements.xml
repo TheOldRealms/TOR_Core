@@ -2628,7 +2628,7 @@
   </Settlement>
   <!-- Bretonnia -->
   <!-- Montfort -->
-  <Settlement id="town_MO1" name="{=Settlements.Settlement.name.town_MO1}Montfort" owner="Faction.montfort_clan_1" posX="1152.931" posY="1003.943" culture="Culture.vlandia" prosperity="4500" gate_posX="1154.654" gate_posY="1002.985" text="{=Settlements.Settlement.text.town_MO1} The Fortress city of Montfort, sits at the opposite end of Axe Bite Pass. Encompassed in five tiers of towering stone walls, the Illustrious trade centre is renowned for its fine quality crafts, including Steel weapons and armours, owed to the close association of the Dwarfs of the Grey Mountains.">
+    <Settlement id="town_MO1" name="{=Settlements.Settlement.name.town_MO1}Montfort" owner="Faction.montfort_clan_1" posX="1160.316" posY="1003.644" culture="Culture.vlandia" prosperity="4500" gate_posX="1157.418" gate_posY="1004.255" text="{=Settlements.Settlement.text.town_MO1} The Fortress city of Montfort, sits at the opposite end of Axe Bite Pass. Encompassed in five tiers of towering stone walls, the Illustrious trade centre is renowned for its fine quality crafts, including Steel weapons and armours, owed to the close association of the Dwarfs of the Grey Mountains.">
     <Components>
       <Town id="town_comp_MO1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -2746,7 +2746,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_MO1" name="{=Settlements.Settlement.name.castle_MO1}Hemmerle" owner="Faction.montfort_clan_1" posX="1146.043" posY="994.843" prosperity="800" culture="Culture.vlandia" gate_posX="1146.135" gate_posY="994.1898" text="{=Settlements.Settlement.text.castle_MO1}Castle Hemmerle sits on the border of Parravon and Montfort, along the river Grismerie. It is a key defensive choke point into Montfort when approaching from the south.">
+    <Settlement id="castle_MO1" name="{=Settlements.Settlement.name.castle_MO1}Hemmerle" owner="Faction.montfort_clan_1" posX="1149.35" posY="994.186" prosperity="800" culture="Culture.vlandia" gate_posX="1146.957" gate_posY="994.7883" text="{=Settlements.Settlement.text.castle_MO1}Castle Hemmerle sits on the border of Parravon and Montfort, along the river Grismerie. It is a key defensive choke point into Montfort when approaching from the south.">
     <Components>
       <Town id="castle_comp_MO1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -2973,8 +2973,8 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_PA1" name="{=Settlements.Settlement.name.castle_PA1}Vingtiennes" owner="Faction.parravon_clan_1" posX="1159.27" posY="983.073" prosperity="800" culture="Culture.vlandia" gate_posX="1159.804" gate_posY="983.6193" text="{=Settlements.Settlement.name.castle_PA1}Located on the border of Montfort, Castle Vingtiennes holds the northern province of Parravon from attack, and overlooks the river Grismerie and Massif Orcal.">
-    <Components>
+  <Settlement id="castle_PA1" name="{=Settlements.Settlement.name.castle_PA1}Vingtiennes" owner="Faction.parravon_clan_1" posX="1158.472" posY="986.646" prosperity="800" culture="Culture.vlandia" gate_posX="1158.661" gate_posY="984.462" text="{=Settlements.Settlement.name.castle_PA1}Located on the border of Montfort, Castle Vingtiennes holds the northern province of Parravon from attack, and overlooks the river Grismerie and Massif Orcal.">
+   <Components>
       <Town id="castle_comp_PA1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
@@ -3306,7 +3306,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BL1_2" name="{=Settlements.Settlement.name.village_BL1_2}Aigre" posX="925.4" posY="954.35" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BL1_2}Sitting on the road between Tureene and Bordeleaux is Aigre. Aigre is an idyllic place, the peasants here seem content most years and grain normally comes in abundance. Economy: grain">
+  <Settlement id="village_BL1_2" name="{=Settlements.Settlement.name.village_BL1_2}Aigre" posX="925.4" posY="954.35" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BL1_2}Sitting on the road between Tureene and Bordeleaux is Aigre. Aigre is an idyllic place, the peasants here seem content most years and grain normally comes in abundance.">
     <Components>
       <Village id="village_comp_BL1_2" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BL1" bound="Settlement.town_BL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3332,7 +3332,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_BL2" name="{=Settlements.Settlement.name.town_BA1}Turenne" owner="Faction.bordeleaux_clan_1" posX="866.9789" posY="954.75" culture="Culture.vlandia" prosperity="4500" gate_posX="871.7209" gate_posY="958.6868" text="{=!}The peasant town of Turenne, though lowly, is nothing to scoff at. The people here live under the protection of the duke and while most make their living in the fields around the town, there are those peasants that have taken up a craft or trade near the town square. Turenne is a town dependent on the excesses of Bordeleaux, merchants needing a simple place to stop can often find cheaper rooms and supplies here.">
+  <Settlement id="town_BL2" name="{=Settlements.Settlement.name.town_BL2}Turenne" owner="Faction.bordeleaux_clan_1" posX="866.9789" posY="954.75" culture="Culture.vlandia" prosperity="4500" gate_posX="871.7209" gate_posY="958.6868" text="{=Settlements.Settlement.text.town_BL2}The peasant town of Turenne, though lowly, is nothing to scoff at. The people here live under the protection of the duke and while most make their living in the fields around the town, there are those peasants that have taken up a craft or trade near the town square. Turenne is a town dependent on the excesses of Bordeleaux, merchants needing a simple place to stop can often find cheaper rooms and supplies here.">
     <Components>
       <Town id="town_comp_BL2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -3391,7 +3391,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BL1" name="{=Settlements.Settlement.name.castle_BL1}Turris Vigilans" owner="Faction.bordeleaux_clan_1" posX="930.707" posY="987.846" prosperity="800" culture="Culture.vlandia" gate_posX="931.418" gate_posY="988.8735" text="{=!}De Turris Vigilans, the vigilant tower, is a centre of Verenan worship in Bretonnia. In addition to a large temple, the cult maintains a great lighthouse which is widely considered to be the most reliable in the world. The Priests of Verena here will often offer advice to those that seek their counsel, and are reputable for its benefits. The Cult and the Dukedom of Bordeleaux have the shared interest in watching the cursed land to their north, as a result; the Duke has established a garrison here and the fortifications are always maintained.">
+  <Settlement id="castle_BL1" name="{=Settlements.Settlement.name.castle_BL1}Turris Vigilans" owner="Faction.bordeleaux_clan_1" posX="930.707" posY="987.846" prosperity="800" culture="Culture.vlandia" gate_posX="931.418" gate_posY="988.8735" text="{=Settlements.Settlement.name.castle_BL1}De Turris Vigilans, the vigilant tower, is a centre of Verenan worship in Bretonnia. In addition to a large temple, the cult maintains a great lighthouse which is widely considered to be the most reliable in the world. The Priests of Verena here will often offer advice to those that seek their counsel, and are reputable for its benefits. The Cult and the Dukedom of Bordeleaux have the shared interest in watching the cursed land to their north, as a result; the Duke has established a garrison here and the fortifications are always maintained.">
     <Components>
       <Town id="castle_comp_BL1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -3427,7 +3427,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BL2" name="{=Settlements.Settlement.name.castle_BL1}Castle Saint Jean-de-Luz" owner="Faction.bordeleaux_clan_1" posX="970.317" posY="989.862" prosperity="800" culture="Culture.vlandia" gate_posX="968.7495" gate_posY="988.4116" text="{=!}A small castle, established to watch over the farms and woodlands of east Bordelen. It is named after a long dead noble who stopped an orc warboss from Massif Orcal on the grounds where the castle now sits.">
+  <Settlement id="castle_BL2" name="{=Settlements.Settlement.name.castle_BL2}Castle Saint Jean-de-Luz" owner="Faction.bordeleaux_clan_1" posX="970.317" posY="989.862" prosperity="800" culture="Culture.vlandia" gate_posX="968.7495" gate_posY="988.4116" text="{=Settlements.Settlement.text.castle_BL2}A small castle, established to watch over the farms and woodlands of east Bordelen. It is named after a long dead noble who stopped an orc warboss from Massif Orcal on the grounds where the castle now sits.">
     <Components>
       <Town id="castle_comp_BL2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -3463,7 +3463,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BL3" name="{=Settlements.Settlement.name.castle_BL3}Castle Châtellerault" owner="Faction.bordeleaux_clan_1" posX="950.7009" posY="959.831" prosperity="800" culture="Culture.vlandia" gate_posX="948.2441" gate_posY="960.8041" text="{=!}On the edge of the Forest of Châlons sits Castle Châtellerault. Châlons is a dangerous and twisted place; dark trees stand over deep ravines, boulders and chasms. One shouldn't be mistaken, it has its beauties; sweet and cool streams, waterfalls and calm pools dot the undergrowth. It is even said that the true sacred lake of the lady lies somewhere within this forest. With this land, comes the typical predations, greenskins, beastmen and far worse make their homes, and so Châtellerault stands its watch against incursion.">
+  <Settlement id="castle_BL3" name="{=Settlements.Settlement.name.castle_BL3}Castle Châtellerault" owner="Faction.bordeleaux_clan_1" posX="950.7009" posY="959.831" prosperity="800" culture="Culture.vlandia" gate_posX="948.2441" gate_posY="960.8041" text="{=Settlements.Settlement.text.castle_BL3}On the edge of the Forest of Châlons sits Castle Châtellerault. Châlons is a dangerous and twisted place; dark trees stand over deep ravines, boulders and chasms. One shouldn't be mistaken, it has its beauties; sweet and cool streams, waterfalls and calm pools dot the undergrowth. It is even said that the true sacred lake of the lady lies somewhere within this forest. With this land, comes the typical predations, greenskins, beastmen and far worse make their homes, and so Châtellerault stands its watch against incursion.">
     <Components>
       <Town id="castle_comp_BL3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -3486,7 +3486,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_BL3_2" name="{=Settlements.Settlement.name.castle_village_BL3_2}Limeuil" posX="991.309" posY="974.684" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BL3_2} The peasants of Limeuil venture into the outlying crags of Massif Orcal, looking for sites for clay pits. While they bring back a good amount of clay, they also tell tales of the things they encounter at the foot of the mountains. The local lord has on more than one occasion deemed fit to send men-at-arms into the foothills. What they fought there remains unknown to most.">
+  <Settlement id="castle_village_BL3_2" name="{=Settlements.Settlement.name.castle_village_BL3_2}Limeuil" posX="991.309" posY="974.684" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BL3_2}The peasants of Limeuil venture into the outlying crags of Massif Orcal, looking for sites for clay pits. While they bring back a good amount of clay, they also tell tales of the things they encounter at the foot of the mountains. The local lord has on more than one occasion deemed fit to send men-at-arms into the foothills. What they fought there remains unknown to most.">
     <Components>
       <Village id="castle_village_comp_BL3_2" village_type="VillageType.clay_mine" hearth="200" trade_bound="Settlement.castle_BL3" bound="Settlement.castle_BL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
