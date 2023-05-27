@@ -2903,7 +2903,7 @@
   </Settlement>
   <Settlement id="village_PA1_3" name="{=Settlements.Settlement.name.village_PA1_3}Goyarde" posX="1178.453" posY="974.034" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA1_3}Near the Grey Lady Pass, Goyarde holds a decent size of villagers, and militia alike. Being the first village into Bretonnia from Grey Lady pass, it is quite defensible and strategic in nature.">
     <Components>
-      <Village id="village_comp_PA1_3" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_PA1" bound="Settlement.town_PA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_PA1_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_PA1" bound="Settlement.town_PA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -3046,7 +3046,7 @@
     </CommonAreas>
   </Settlement>
   <!-- Bastonne -->
-  <Settlement id="town_BA1" name="{=Settlements.Settlement.name.town_BA1}Castle Bastonne" owner="Faction.bastonne_clan_1" posX="1027.567" posY="1027.402" culture="Culture.vlandia" prosperity="4500" gate_posX="1028.346" gate_posY="1025.591" text="{=!}Altdorf is at once perhaps the greatest city of the Empire and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the bastonne and the Empire of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the Empire; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
+  <Settlement id="town_BA1" name="{=Settlements.Settlement.name.town_BA1}Castle Bastonne" owner="Faction.bastonne_clan_1" posX="1027.567" posY="1027.402" culture="Culture.vlandia" prosperity="4500" gate_posX="1028.346" gate_posY="1025.591" text="{=Settlements.Settlement.text.town_BA1}Located in the heart of Bastonne, Castle Bastonne and the surrounding villages show many indications of their founder, the first king Gilles le Breton, or Gilles the Unifier. Castle Bastonne itself is almost always a pilgrimage for any Grail Knights, or any who wish to see the testimony of Gilles le Breton’s accomplishments.">
     <Components>
       <Town id="town_comp_BA1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -3066,7 +3066,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BA1_1" name="{=Settlements.Settlement.name.village_BA1_1}Saint-Etienne" posX="1069.153" posY="1027.714" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the bastonnes best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_BA1_1" name="{=Settlements.Settlement.name.village_BA1_1}Saint-Etienne" posX="1069.153" posY="1027.714" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BA1_1}Directly east of Bastonne, Saint-Etienne surveys the eastern border of Bastonne with Montfort. Within the vast verdant fields, the ponies of Bastonne freely breed and openly commune with many Bastonnians. Indeed, they are even smart enough to realize they offer them much protection from the many creatures and monsters of Massif Orcal.">
     <Components>
       <Village id="village_comp_BA1_1" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BA1" bound="Settlement.town_BA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3079,9 +3079,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BA1_2" name="{=Settlements.Settlement.name.village_BA1_2}Vichy" posX="1042.315" posY="1009.775" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the bastonnes best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_BA1_2" name="{=Settlements.Settlement.name.village_BA1_2}Vichy" posX="1042.315" posY="1009.775" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BA1_2}North of Massif Orcal, the small settlement of Vichy endures constant raids from Greenskins and strange rat-like beastmen. Indeed, in the past the village elders were forced to “collaborate” with these strange rat-like beastmen to avoid destruction. They are a hardy breed of peasants and have sustained many traumas.">
     <Components>
-      <Village id="village_comp_BA1_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BA1" bound="Settlement.town_BA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BA1_2" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BA1" bound="Settlement.town_BA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -3092,9 +3092,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BA1_3" name="{=Settlements.Settlement.name.village_BA1_3}Aurillac" posX="1032.916" posY="1037.678" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the bastonnes best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_BA1_3" name="{=Settlements.Settlement.name.village_BA1_3}Aurillac" posX="1032.916" posY="1037.678" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BA1_3}In the verdant green fields of Aurillac, the peasants there thrive off the trade of many Cattle hides and meats. Indeed whatever is left after the many tithes, Aurillac is able to make very little profit, and mainly survives off of communal farming.">
     <Components>
-      <Village id="village_comp_BA1_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BA1" bound="Settlement.town_BA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BA1_3" village_type="VillageType.cattle_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BA1" bound="Settlement.town_BA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -3105,7 +3105,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_BA2" name="{=Settlements.Settlement.name.town_PA1}Soude" owner="Faction.bastonne_clan_1" posX="1048.224" posY="1062.427" culture="Culture.vlandia" prosperity="4500" gate_posX="1049.473" gate_posY="1063.952" text="{=!}Altdorf is at once perhaps the greatest city of the Empire and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the bastonne and the Empire of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the Empire; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
+  <Settlement id="town_BA2" name="{=Settlements.Settlement.name.town_PA1}Soude" owner="Faction.bastonne_clan_1" posX="1048.224" posY="1062.427" culture="Culture.vlandia" prosperity="4500" gate_posX="1049.473" gate_posY="1063.952" text="{=Settlements.Settlement.text.town_PA1}In the north of Bastonne on the Grismerie river, near the Montfort border, the small city of Soude dwells. Being in the Heartlands of Bretonnia, the marketplaces of Soude are often filled to the brim with many goods that come from across Bretonnia. Including even foreign goods from the Empire, and the Wood Elves of the Loren Forest. Due to the nearness of Montfort, relations are straining, and long ago many border wars between the two dukedoms occurred.">
     <Components>
       <Town id="town_comp_BA2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -3125,9 +3125,9 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BA2_1" name="{=Settlements.Settlement.name.village_BA2_1}Clermont-Ferrand" posX="1062.368" posY="1048.339" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the bastonnes best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_BA2_1" name="{=Settlements.Settlement.name.village_BA2_1}Clermont-Ferrand" posX="1062.368" posY="1048.339" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BA2_1}Clermont-Ferrand is a little fishing village along the Grismerie river that sits across from the Montfort border. The village is fairly small sized due to fish not being a huge export out of the village.">
     <Components>
-      <Village id="village_comp_BA2_1" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BA2" bound="Settlement.town_BA2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BA2_1" village_type="VillageType.fisherman" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BA2" bound="Settlement.town_BA2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -3138,9 +3138,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BA2_2" name="{=Settlements.Settlement.name.village_BA2_2}Issoire" posX="1027.505" posY="1063.673" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the bastonnes best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_BA2_2" name="{=Settlements.Settlement.name.village_BA2_2}Issoire" posX="1027.505" posY="1063.673" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BA2_2}Located in northern Bastonne, Issoire is a predominantly farming community with some small abodes available for passerby adventurers or pilgrims on their way to Castle Bastonne.">
     <Components>
-      <Village id="village_comp_BA2_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BA2" bound="Settlement.town_BA2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BA2_2" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BA2" bound="Settlement.town_BA2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -3151,9 +3151,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BA2_3" name="{=Settlements.Settlement.name.village_BA2_3}Thiers" posX="1034.138" posY="1077.633" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the bastonnes best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_BA2_3" name="{=Settlements.Settlement.name.village_BA2_3}Thiers" posX="1034.138" posY="1077.633" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BA2_3} Located at the northernmost point of Bastonne, Thiers lies on the border of Giseroux. Thiers is a small trade hub that is visited by many caravans from the dukedom of Giseroux, but has had a harsh bit of bad luck recently due to dreadful Beastmen raids coming from the Arden forest.">
     <Components>
-      <Village id="village_comp_BA2_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BA2" bound="Settlement.town_BA2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BA2_3" village_type="VillageType.clay_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BA2" bound="Settlement.town_BA2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -3164,7 +3164,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BA1" name="{=Settlements.Settlement.name.castle_AQ3}Castle Garamont" owner="Faction.bastonne_clan_1" posX="995.262" posY="989.388" prosperity="800" culture="Culture.vlandia" gate_posX="993.6954" gate_posY="988.9298" text="{=!}In the Suden Vorbergland of bastonne sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_BA1" name="{=Settlements.Settlement.name.castle_BA1}Castle Garamont" owner="Faction.bastonne_clan_1" posX="995.262" posY="989.388" prosperity="800" culture="Culture.vlandia" gate_posX="993.6954" gate_posY="988.9298" text="{=Settlements.Settlement.text.castle_BA1}Castle Garamont holds the southern border of Bastonne from the western border of Bordeleaux, and provides a watchful lookout of the forest of Chȃlons and the feet of the mountains of Massif Orcal. The garrison has held off many Greenskin invaders.">
     <Components>
       <Town id="castle_comp_BA1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -3174,9 +3174,9 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_BA1_1" name="{=Settlements.Settlement.name.castle_village_BA1_1}Ambert" posX="1014.211" posY="995.664" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the bastonne Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_BA1_1" name="{=Settlements.Settlement.name.castle_village_BA1_1}Ambert" posX="1014.211" posY="995.664" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BA1_2}Ambert in the past has been raided, pillaged, and razed many times over in the past by Greenskin raiders from Massif Orcal. Calard of Garamont has sent many families to re-inhabit Ambert again, in a vain hope that the village will continue its production of timber from the Chalons Forest.">
     <Components>
-      <Village id="castle_village_comp_BA1_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_BA1" bound="Settlement.castle_BA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BA1_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.castle_BA1" bound="Settlement.castle_BA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
@@ -3187,9 +3187,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_BA1_2" name="{=Settlements.Settlement.name.castle_village_BA1_1}Montluçon" posX="979.426" posY="1001.493" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the bastonne Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_BA1_2" name="{=Settlements.Settlement.name.castle_village_BA1_2}Montluçon" posX="979.426" posY="1001.493" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BA1_2}Contrary to its unlucky neighbor Ambert, Montluçon is a thriving village that provides most of its breeds of horse to Castle Garamont’s stables and the other directly to Castle Bastonne. It is well protected by Calard and some of its inhabitants have ventured to Ambert to re-colonise it.">
     <Components>
-      <Village id="castle_village_comp_BA1_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_BA1" bound="Settlement.castle_BA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BA1_2" village_type="VillageType.europe_horse_ranch" hearth="200" trade_bound="Settlement.castle_BA1" bound="Settlement.castle_BA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
@@ -3200,7 +3200,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BA2" name="{=Settlements.Settlement.name.castle_BA2}Castle Sangasse" owner="Faction.bastonne_clan_1" posX="993.903" posY="1045.672" prosperity="800" culture="Culture.vlandia" gate_posX="994.4677" gate_posY="1044.103" text="{=!}In the Suden Vorbergland of bastonne sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_BA2" name="{=Settlements.Settlement.name.castle_BA2}Castle Sangasse" owner="Faction.bastonne_clan_1" posX="993.903" posY="1045.672" prosperity="800" culture="Culture.vlandia" gate_posX="994.4677" gate_posY="1044.103" text="{=Settlements.Settlement.text.castle_BA2}Lying just before the borders of Gisoreux, the fortress of Sangasse is a sentinel for any monsters or creatures that wish to venture out from the Arden forest. Indeed, many Beastmen raids have been thwarted by the garrison of knights stationed here.">
     <Components>
       <Town id="castle_comp_BA2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -3210,9 +3210,9 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_BA2_1" name="{=Settlements.Settlement.name.castle_village_BA2_1}Cusset" posX="1018.038" posY="1045.08" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the bastonne Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_BA2_1" name="{=Settlements.Settlement.name.castle_village_BA2_1}Cusset" posX="1018.038" posY="1045.08" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BA2_1}Behind the defenses of Castle Sangasse, Cusset harbors a small salt deposit right off the bank of the Grismerie river. Most of its supply of salt is directed straight to Castle Bastonne’s kitchens and warehouses.">
     <Components>
-      <Village id="castle_village_comp_BA2_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_BA2" bound="Settlement.castle_BA2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BA2_1" village_type="VillageType.salt_mine" hearth="200" trade_bound="Settlement.castle_BA2" bound="Settlement.castle_BA2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
@@ -3223,9 +3223,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_BA2_2" name="{=Settlements.Settlement.name.castle_village_BA2_2}Châtel-Guyon" posX="987.996" posY="1022.577" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the bastonne Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_BA2_2" name="{=Settlements.Settlement.name.castle_village_BA2_2}Châtel-Guyon" posX="987.996" posY="1022.577" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BA2_2}Built inside the old remains of a small castle, Châtel-Guyon is a small farming community that harvests flax from its fields. Due to the location, the fields are vibrant and yield extraordinary amounts of silk. Many inhabitants believe great battles were once fought in the very fields of Châtel-Guyon to bring about its great harvests.">
     <Components>
-      <Village id="castle_village_comp_BA2_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_BA2" bound="Settlement.castle_BA2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BA2_2" village_type="VillageType.silk_plant" hearth="300" trade_bound="Settlement.castle_BA2" bound="Settlement.castle_BA2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
@@ -3236,7 +3236,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BA3" name="{=Settlements.Settlement.name.castle_BA3}Castle Riom" owner="Faction.bastonne_clan_1" posX="942.152" posY="1019.03" prosperity="800" culture="Culture.vlandia" gate_posX="943.6414" gate_posY="1017.5" text="{=!}In the Suden Vorbergland of bastonne sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_BA3" name="{=Settlements.Settlement.name.castle_BA3}Castle Riom" owner="Faction.bastonne_clan_1" posX="942.152" posY="1019.03" prosperity="800" culture="Culture.vlandia" gate_posX="943.6414" gate_posY="1017.5" text="{=Settlements.Settlement.name.castle_BA3}On the Grismerie river, right across from the cursed city of Mousillon, Castle Riom stand firm directly in sight of the undead that many dread to plague Bretonnia. Many of the militia stationed in Castle Riom have heard dreadful noises coming from just across the river.">
     <Components>
       <Town id="castle_comp_BA3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -3246,9 +3246,9 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_BA3_1" name="{=Settlements.Settlement.name.castle_village_BA3_1}Laps" posX="964.844" posY="1031.85" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the bastonne Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_BA3_1" name="{=Settlements.Settlement.name.castle_village_BA3_1}Laps" posX="964.844" posY="1031.85" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BA3_1}The village of Laps is home to a hardened group of men and women who have had to fight the dangers of Mousillon for their homes for centuries. Many of Laps’ inhabitants voluntarily ask for employment under their protector Luca Loup so they can take the fight to the haggard entities that call Mousillon their home.">
     <Components>
-      <Village id="castle_village_comp_BA3_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_BA3" bound="Settlement.castle_BA3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BA3_1" village_type="VillageType.swine_farm" hearth="200" trade_bound="Settlement.castle_BA3" bound="Settlement.castle_BA3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
@@ -3259,9 +3259,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_BA3_2" name="{=Settlements.Settlement.name.castle_village_BA3_1}Laps" posX="955.8979" posY="1002.942" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the bastonne Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_BA3_2" name="{=Settlements.Settlement.name.castle_village_BA3_1}Ardes" posX="955.8979" posY="1002.942" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BA3_2}  Directly east of the dread city of Mousillon lies Ardes. The hamlet has been targeted for many raids by bandits, highwaymen, and even cultists. Its closeness to Mousillon has always made it easy pickings for the horrors that dwell in the cloudy mists of Mousillon.">
     <Components>
-      <Village id="castle_village_comp_BA3_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_BA3" bound="Settlement.castle_BA3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BA3_2" village_type="VillageType.trapper" hearth="200" trade_bound="Settlement.castle_BA3" bound="Settlement.castle_BA3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
