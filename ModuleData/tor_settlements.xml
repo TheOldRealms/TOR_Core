@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Settlements>
   <!--Custom Settlements-->
   <Settlement id="chaos_portal_01" name="{=!}Chaos Portal" owner="Faction.chaos_clan_1" posX="1421.178" posY="900.773" culture="Culture.chaos_culture" prosperity="500" text="{=!}Chaos Portal">
@@ -2628,7 +2628,7 @@
   </Settlement>
   <!-- Bretonnia -->
   <!-- Montfort -->
-    <Settlement id="town_MO1" name="{=Settlements.Settlement.name.town_MO1}Montfort" owner="Faction.montfort_clan_1" posX="1160.316" posY="1003.644" culture="Culture.vlandia" prosperity="4500" gate_posX="1157.418" gate_posY="1004.255" text="{=Settlements.Settlement.text.town_MO1} The Fortress city of Montfort, sits at the opposite end of Axe Bite Pass. Encompassed in five tiers of towering stone walls, the Illustrious trade centre is renowned for its fine quality crafts, including Steel weapons and armours, owed to the close association of the Dwarfs of the Grey Mountains.">
+  <Settlement id="town_MO1" name="{=Settlements.Settlement.name.town_MO1}Montfort" owner="Faction.montfort_clan_1" posX="1160.316" posY="1003.644" culture="Culture.vlandia" prosperity="4500" gate_posX="1157.418" gate_posY="1004.255" text="{=Settlements.Settlement.text.town_MO1} The Fortress city of Montfort, sits at the opposite end of Axe Bite Pass. Encompassed in five tiers of towering stone walls, the Illustrious trade centre is renowned for its fine quality crafts, including Steel weapons and armours, owed to the close association of the Dwarfs of the Grey Mountains.">
     <Components>
       <Town id="town_comp_MO1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -2746,7 +2746,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-    <Settlement id="castle_MO1" name="{=Settlements.Settlement.name.castle_MO1}Hemmerle" owner="Faction.montfort_clan_1" posX="1149.35" posY="994.186" prosperity="800" culture="Culture.vlandia" gate_posX="1146.957" gate_posY="994.7883" text="{=Settlements.Settlement.text.castle_MO1}Castle Hemmerle sits on the border of Parravon and Montfort, along the river Grismerie. It is a key defensive choke point into Montfort when approaching from the south.">
+  <Settlement id="castle_MO1" name="{=Settlements.Settlement.name.castle_MO1}Hemmerle" owner="Faction.montfort_clan_1" posX="1149.35" posY="994.186" prosperity="800" culture="Culture.vlandia" gate_posX="1146.957" gate_posY="994.7883" text="{=Settlements.Settlement.text.castle_MO1}Castle Hemmerle sits on the border of Parravon and Montfort, along the river Grismerie. It is a key defensive choke point into Montfort when approaching from the south.">
     <Components>
       <Town id="castle_comp_MO1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -2974,7 +2974,7 @@
     </CommonAreas>
   </Settlement>
   <Settlement id="castle_PA1" name="{=Settlements.Settlement.name.castle_PA1}Vingtiennes" owner="Faction.parravon_clan_1" posX="1158.472" posY="986.646" prosperity="800" culture="Culture.vlandia" gate_posX="1158.661" gate_posY="984.462" text="{=Settlements.Settlement.name.castle_PA1}Located on the border of Montfort, Castle Vingtiennes holds the northern province of Parravon from attack, and overlooks the river Grismerie and Massif Orcal.">
-   <Components>
+    <Components>
       <Town id="castle_comp_PA1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
@@ -3236,7 +3236,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BA3" name="{=Settlements.Settlement.name.castle_BA3}Castle Riom" owner="Faction.bastonne_clan_1" posX="942.152" posY="1019.03" prosperity="800" culture="Culture.vlandia" gate_posX="943.6414" gate_posY="1017.5" text="{=Settlements.Settlement.name.castle_BA3}On the Grismerie river, right across from the cursed city of Mousillon, Castle Riom stand firm directly in sight of the undead that many dread to plague Bretonnia. Many of the militia stationed in Castle Riom have heard dreadful noises coming from just across the river.">
+  <Settlement id="castle_BA3" name="{=Settlements.Settlement.name.castle_BA3}Castle Riom" owner="Faction.bastonne_clan_1" posX="943.572" posY="1027.487" prosperity="800" culture="Culture.vlandia" gate_posX="945.3618" gate_posY="1026.322" text="{=Settlements.Settlement.name.castle_BA3}On the Grismerie river, right across from the cursed city of Mousillon, Castle Riom stand firm directly in sight of the undead that many dread to plague Bretonnia. Many of the militia stationed in Castle Riom have heard dreadful noises coming from just across the river.">
     <Components>
       <Town id="castle_comp_BA3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -3391,7 +3391,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BL1" name="{=Settlements.Settlement.name.castle_BL1}Turris Vigilans" owner="Faction.bordeleaux_clan_1" posX="930.707" posY="987.846" prosperity="800" culture="Culture.vlandia" gate_posX="931.418" gate_posY="988.8735" text="{=Settlements.Settlement.name.castle_BL1}De Turris Vigilans, the vigilant tower, is a centre of Verenan worship in Bretonnia. In addition to a large temple, the cult maintains a great lighthouse which is widely considered to be the most reliable in the world. The Priests of Verena here will often offer advice to those that seek their counsel, and are reputable for its benefits. The Cult and the Dukedom of Bordeleaux have the shared interest in watching the cursed land to their north, as a result; the Duke has established a garrison here and the fortifications are always maintained.">
+  <Settlement id="castle_BL1" name="{=Settlements.Settlement.name.castle_BL1}Turris Vigilans" owner="Faction.bordeleaux_clan_1" posX="936.436" posY="998.89" prosperity="800" culture="Culture.vlandia" gate_posX="937.3413" gate_posY="999.7513" text="{=Settlements.Settlement.name.castle_BL1}De Turris Vigilans, the vigilant tower, is a centre of Verenan worship in Bretonnia. In addition to a large temple, the cult maintains a great lighthouse which is widely considered to be the most reliable in the world. The Priests of Verena here will often offer advice to those that seek their counsel, and are reputable for its benefits. The Cult and the Dukedom of Bordeleaux have the shared interest in watching the cursed land to their north, as a result; the Duke has established a garrison here and the fortifications are always maintained.">
     <Components>
       <Town id="castle_comp_BL1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -4486,7 +4486,7 @@
     </CommonAreas>
   </Settlement>
   <!--- Mousillion-->
-  <Settlement id="town_MS1" name="{=Settlements.Settlement.name.town_MS1}Castle Mousillon" owner="Faction.quenelles_clan_1" posX="1160.415" posY="806.628" culture="Culture.vlandia" prosperity="4500" gate_posX="1157.651" gate_posY="805.8109" text="{=Settlements.Settlement.name.town_MS1}Right on the border between the Land of Chivalry and the Forest of Loren, is Ducal Capital and Fortress-City of Quenelles. The city is so close to the Forest in fact, that the fey have demanded of the Quenellians to tear down the wall on the eastern side. Where the wall ends is met with a broad road and then immediately the fringes of the fey forest.">
+  <Settlement id="town_MS1" name="{=Settlements.Settlement.name.town_MS1}Castle Mousillon" owner="Faction.quenelles_clan_1" posX="921.125" posY="1016.838" culture="Culture.vlandia" prosperity="4500" gate_posX="919.65" gate_posY="1022.8" text="{=Settlements.Settlement.text.town_MS1} In the abyssal, death-ridden swamps formed by the slowing of the River Grismerie, Castle Mousillon slowly descends into the boundless depths of Mousillon’s murky waters. Mousillon itself thrives on barter and trade within the walls itself, many believe even more unsavoury acts happen deep within the city. Laden with dark lit taverns, unsavoury brothels, and dens of thieves, Mousillon is a haven for the enemies of Bretonnia.">
     <Components>
       <Town id="town_comp_MS1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -4506,9 +4506,9 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_MS1_1" name="{=Settlements.Settlement.name.village_MS1_1}Le Marais Mort" posX="1152.572" posY="826.288" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MS1_1}Perrach is a small farming community on the road between Castle Quenelles and Merceaux Descloux. The peasants here nar to go towards the woods in any way, so in fear they are of the Fey who watch over them from the shade of the trees.">
+  <Settlement id="village_MS1_1" name="{=Settlements.Settlement.name.village_MS1_1}Le Marais Mort" posX="901.08" posY="1036.726" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MS1_1}Located just north of Mousillon, Les Marais Mort is hidden just beyond a vast number of hills, called Les Collines de Charnel. The village is barebones and infested with peasants afflicted by various mutations, many believe the origin to be long lost diseases emanating from Le Collines de Charnel.">
     <Components>
-      <Village id="village_comp_MS1_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MS1" bound="Settlement.town_MS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_MS1_1" village_type="VillageType.clay_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MS1" bound="Settlement.town_MS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -4519,9 +4519,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_MS1_2" name="{=Settlements.Settlement.name.village_MS1_2}Gorges" posX="1128.767" posY="830.808" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MS1_2}In the flatlands of Quenelles, surrounded by a sea of grassgrasses and farmlands, is the village of Nailloux. The peasants here raise cattle on the fine grasses for most of the year. When it comes time to drive the cattle to market in Quenelles, the village becomes nearly uninhabited, as most of the population leaves along with their cattle.">
+  <Settlement id="village_MS1_2" name="{=Settlements.Settlement.name.village_MS1_2}Gorges" posX="903.536" posY="1054.367" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MS1_2}Residing on the northern bank of the Grismerie river, the small settlement of Gorges houses many humans and mutants alike. Being even poorer than most Bretonnian settlements, Gorges stays afloat with communal fishing and what little they can scratch out of the ground. When they aren’t levied into their lord's armies.">
     <Components>
-      <Village id="village_comp_MS1_2" village_type="VillageType.cattle_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MS1" bound="Settlement.town_MS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_MS1_2" village_type="VillageType.fisherman" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MS1" bound="Settlement.town_MS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -4532,9 +4532,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_MS1_3" name="{=Settlements.Settlement.name.village_MS1_1}La Grange" posX="1116.459" posY="834.748" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MS1_3}Nearly in the center of Quenelles, Bézier is an immensely isolated village. The most notable thing about it is the small grail shrine at the northern end of the village.">
+  <Settlement id="village_MS1_3" name="{=Settlements.Settlement.name.village_MS1_1}La Grange" posX="937.647" posY="1039.653" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MS1_3}La Grange, nicknamed “The Barn”, houses many steeds who would dare to graze into the foetid swamps of Mousillon. Although a breeding ground for livestock, it is also popular for mutants and humans that need safe dwelling from the foul creatures of the night.">
     <Components>
-      <Village id="village_comp_MS1_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MS1" bound="Settlement.town_MS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_MS1_3" village_type="VillageType.swine_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MS1" bound="Settlement.town_MS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -4545,7 +4545,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_MS1" name="{=Settlements.Settlement.name.castle_MS1}Castle Rachard " owner="Faction.quenelles_clan_1" posX="1139.147" posY="898.096" prosperity="800" culture="Culture.vlandia" gate_posX="1141.179" gate_posY="896.7446" text="{=Settlements.Settlement.text.castle_MS1}Castle Beaumarchais sits strategically between three important areas; Massif Orcal, the border with Parravon and the Loren forest. While Quenellian relations with the fey are… amicable, The Castle was built far enough from the border of the woods to prevent the wood elves interference with its walls such as at Castle Quenelles.">
+  <Settlement id="castle_MS1" name="{=Settlements.Settlement.name.castle_MS1}Castle Rachard " owner="Faction.quenelles_clan_1" posX="923.824" posY="1052.102" prosperity="800" culture="Culture.vlandia" gate_posX="923.772" gate_posY="1049.676" text="{=Settlements.Settlement.text.castle_MS1} Across the border of Lyonesse, Castle Rachard is lorded over by none other than Lord Rachard himself. Surprisingly, these lands are fairly established and well kept considering Mousillon’s hellish landscape and numerous dangers. Some adventurers and villagers say they hear noises coming from the castle, however no one has ever investigated the ongoing activities within the castle.">
     <Components>
       <Town id="castle_comp_MS1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -4555,9 +4555,9 @@
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_MS1_1" name="{=Settlements.Settlement.name.castle_village_MSI_3}Le Rosier Noir" posX="1156.346" posY="915.696" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MS1_1}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_MS1_1" name="{=Settlements.Settlement.name.castle_village_MSI_3}Le Rosier Noir" posX="916.1219" posY="1067.388" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MS1_1}Not so much a village but more of a Tavern surrounded by makeshift homes, Le Rosier Noir is a small gathering hub for many unwanted vagrants and shifty wanderers. Indeed it is remarkable the small village houses mostly humans and not any mutants. The few houses surrounding the village are home to the manystaff at Le Rosier Noir.">
     <Components>
-      <Village id="castle_village_comp_MS1_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_MS1" bound="Settlement.castle_MS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_MS1_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.castle_MS1" bound="Settlement.castle_MS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOW_empire_village_004" />
@@ -4568,7 +4568,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_MS2" name="{=Settlements.Settlement.name.castle_MS2}Castle Hane" owner="Faction.quenelles_clan_1" posX="1164.44" posY="789.469" prosperity="800" culture="Culture.vlandia" gate_posX="1163.227" gate_posY="790.9955" text="{=!}Castle Carrad sits on the shore of the River Brienne near the border of Carcassonne and the Forest of Loren. Its lord, Leofric Carrard, has inherited the fief in absentia. His father had given him permission to embark on his Grail Quest but as soon as Leofric left, his father grew gravely ill and passed into the arms of the Lady. Duke Tancred II has taken stewardship here until Leofric returns.">
+  <Settlement id="castle_MS2" name="{=Settlements.Settlement.name.castle_MS2}Castle Hane" owner="Faction.quenelles_clan_1" posX="963.22" posY="1060.316" prosperity="800" culture="Culture.vlandia" gate_posX="961.515" gate_posY="1059.451" text="{=!}Castle Hane is a tall hexagonal tower that stands near the Grismerie river, on a small island in the swamps. Lorded over by Aucassin, a long reigning noble of bretonnia, the surrounding villages are surprisingly livable by Mousillon standards. Surrounding the tower are many stables for Aucassin’s Vampiric Knights, and any who would visit the tower.">
     <Components>
       <Town id="castle_comp_MS2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -4578,7 +4578,7 @@
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_MS2_1" name="{=Settlements.Settlement.name.castle_village_MS1_3}Yremy" posX="1138.491" posY="786.548" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MS2_1}Nice is an old village, so old in fact that some Nobles suspect that the fey originally inhabited it. Despite this suspicion, the Fey have never disturbed the village, at least not in a manner particular compared to the normal demands and restrictions.">
+  <Settlement id="castle_village_MS2_1" name="{=Settlements.Settlement.name.castle_village_MS1_3}Yremy" posX="948.58" posY="1065.14" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MS2_1}A small hamlet that is isolated from most of Mousillon itself, Yremy is home to a great number of humans, rather than mutants. Many of the peasants residing in the village work for Lord Aucassin and work in his kitchen at Chateau Hane. Yremy does get some trade because of its closeness to Grenouille Gate however.">
     <Components>
       <Village id="castle_village_comp_MS2_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_MS2" bound="Settlement.castle_MS2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
