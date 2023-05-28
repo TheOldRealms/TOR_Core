@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -18,140 +19,95 @@ namespace TOR_Core.CampaignMechanics.AICompanions
     public class TORAICompanionCampaignBehavior : CampaignBehaviorBase
     {
         private const string Keep = "lordshall";
-        private bool _init;
         public override void RegisterEvents()
         {
-            //CampaignEvents.DailyTickEvent.AddNonSerializedListener(this,InitializeHeroes);
-            //CampaignEvents.OnGameLoadFinishedEvent.AddNonSerializedListener(this,OnNewGameStarted);
-            CampaignEvents.SettlementEntered.AddNonSerializedListener(this,SetHeroesInKeep);
-            CampaignEvents.OnSettlementLeftEvent.AddNonSerializedListener(this,RemoveHeroesFromKeep);
-            CampaignEvents.OnPrisonerReleasedEvent.AddNonSerializedListener(this, HandleHeroEscape);
-            CampaignEvents.OnPartyDisbandedEvent.AddNonSerializedListener(this, ReturnHeroToTown);
-            CampaignEvents.BeforeHeroKilledEvent.AddNonSerializedListener(this,PreventKill);
-            CampaignEvents.HeroWounded.AddNonSerializedListener(this,MoveWoundedHeroHome);
+            CampaignEvents.SettlementEntered.AddNonSerializedListener(this, OnSettlementEntered);
+            CampaignEvents.OnSettlementLeftEvent.AddNonSerializedListener(this, OnSettlementLeft);
+            CampaignEvents.MobilePartyCreated.AddNonSerializedListener(this, OnPartyCreated);
+            CampaignEvents.OnPartyDisbandedEvent.AddNonSerializedListener(this, OnPartyDisbanded);
+            CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this, OnPartyDestroyed);
+            CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, OnNewGameCreated);
         }
 
-        private void MoveWoundedHeroHome(Hero hero)
+        private void OnNewGameCreated(CampaignGameStarter starter, int index)
         {
-            if(hero.PartyBelongedTo.IsMainParty) return;
-            
-            if (hero.IsAICompanion())
+            if (index == CampaignEvents.OnNewGameCreatedPartialFollowUpEventMaxIndex - 1)
             {
-                MoveCompanionToHomeTown(hero);
-            }
-        }
-
-        private void HandleHeroEscape(FlattenedTroopRoster obj)
-        {
-            if(obj==null|| (obj != null && !obj.Troops.FirstOrDefault().IsHero))
-            {
-                return;
-            }
-               
-            var characterObject = obj.Troops.FirstOrDefault(x => x.HeroObject.IsAICompanion());
-            if(characterObject==null) return;
-       //     if(characterObject.HeroObject.PartyBelongedTo.IsMainParty) return;
-            
-            if(characterObject.HeroObject.Clan!=null)
-                TORCommon.Say("test");
-        }
-
-        private void PreventKill(Hero victim, Hero killer, KillCharacterAction.KillCharacterActionDetail killCharacterActionDetail, bool notification)
-        {
-            if(killer==null) return;
-            if(killer.IsHumanPlayerCharacter) return;
-            
-                if (victim.Clan != null && victim.IsAICompanion())
+                foreach(var party in MobileParty.AllLordParties)
                 {
-                    MoveCompanionToHomeTown(victim);
-                }
-        }
-
-        private void MoveCompanionToHomeTown(Hero hero)
-        {
-            var home = hero.Clan.Leader.HomeSettlement;
-            var location = home.LocationComplex.GetLocationWithId(Keep);
-            AddLocationCharacterToLocation(hero,location);
-        }
-
-        private void ReturnHeroToTown(MobileParty mobileParty, Settlement settlement)
-        {
-            foreach (var hero in mobileParty.GetMemberHeroes())
-            {
-                if (hero.IsAICompanion())
-                {
-                    MoveCompanionToHomeTown(hero);
+                    OnPartyCreated(party);
                 }
             }
-           
         }
 
-        private void RemoveHeroesFromKeep(MobileParty mobileParty, Settlement settlement)
+        private void OnPartyDestroyed(MobileParty party, PartyBase destroyer) => HandleRemoveParty(party);
+
+        private void OnPartyDisbanded(MobileParty party, Settlement settlement) => HandleRemoveParty(party);
+
+        private void HandleRemoveParty(MobileParty party)
         {
-            
-            if(mobileParty==null||mobileParty.LeaderHero==null)return;
-            
-            
-            
-            if (mobileParty.LeaderHero != mobileParty.LeaderHero.Clan.Leader) return;
-            if (mobileParty == MobileParty.MainParty) return;
-            var leader = mobileParty.LeaderHero;
-
-
-
-            if (!(settlement.IsCastle || settlement.IsTown)) return;
-            var location = settlement.LocationComplex.GetLocationWithId(Keep);
-            foreach (var companion in mobileParty.GetMemberHeroes())
+            if (party.GetMemberHeroes().Any(x => x.IsAICompanion()))
             {
-                if(companion==leader) continue;
-                if(companion.Occupation == Occupation.Lord) continue;
-
-                if (location.ContainsCharacter(companion))
+                foreach (var companion in party.GetMemberHeroes().Where(x => x.IsAICompanion()))
                 {
-                    var locationCharacter = location.GetLocationCharacter(companion);
-                    location.RemoveLocationCharacter(locationCharacter);
+                    if (party.MemberRoster.Contains(companion.CharacterObject)) party.MemberRoster.AddToCounts(companion.CharacterObject, -1);
+                    MoveHeroToHomeTown(companion);
                 }
-                   
-                
-                
             }
-            
-            AddHeroesToClanLeader(leader);
         }
 
-
-        private void AddHeroesToClanLeader(Hero hero)
+        private void MoveHeroToHomeTown(Hero hero)
         {
-            var companions = hero.Clan.Heroes.Where(x => x.IsAICompanion());
-            if (!companions.Any()) return;
-            
-            foreach (var companion in companions)
+            var town = hero?.Clan?.Leader?.HomeSettlement?.Town;
+            if (town == null) town = Town.AllTowns.GetRandomElementWithPredicate(x => x.Settlement.Culture == hero.Culture);
+            if (town == null) town = Town.AllTowns.GetRandomElementInefficiently();
+            EnterSettlementAction.ApplyForCharacterOnly(hero, town.Settlement);
+        }
+
+        private void OnPartyCreated(MobileParty party)
+        {
+            if(party != null && party.LeaderHero != null && party.LeaderHero.Clan != null && party.LeaderHero.Clan.Leader != null && party.LeaderHero.Clan.Leader == party.LeaderHero)
             {
-               // if (!companion.IsHealthFull()) continue;
-                if(companion.IsPrisoner) continue;
-                
-                if(!hero.PartyBelongedTo.GetMemberHeroes().Contains(companion))
-                    AddHeroToPartyAction.Apply(companion,hero.PartyBelongedTo,false);
+                var companions = party.LeaderHero.Clan.Heroes.Where(x => x.IsAICompanion());
+                foreach(var companion in companions)
+                {
+                    if (!party.GetMemberHeroes().Contains(companion)) AddHeroToPartyAction.Apply(companion, party);
+                }
             }
         }
-        
-        private void SetHeroesInKeep(MobileParty mobileParty, Settlement settlement, Hero hero)
-        {
-            if(mobileParty==null || mobileParty.LeaderHero==null)return;
-            
-            if (hero != hero.Clan.Leader) return;
-            
-            if (mobileParty == MobileParty.MainParty) return;
 
-            if (!(settlement.IsCastle || settlement.IsTown)) return;
-        
-            var location = settlement.LocationComplex.GetLocationWithId(Keep);
+        private void OnSettlementEntered(MobileParty party, Settlement settlement, Hero hero)
+        {
+            if (!settlement.IsFortification || party != MobileParty.MainParty) return;
+            var location = settlement.LocationComplex?.GetLocationWithId(Keep);
             if (location == null) return;
-            foreach (var companion in mobileParty.GetMemberHeroes())
+            List<Hero> companions = new List<Hero>();
+            foreach(var partyInSettlement in settlement.Parties)
             {
-                if(companion==hero) continue;
-                if(companion.Occupation == Occupation.Lord) continue;
-                AddLocationCharacterToLocation(companion,location);
+                foreach (var companion in partyInSettlement.GetMemberHeroes().Where(x => x.IsAICompanion()))
+                {
+                    companions.Add(companion);
+                }
+            }
+            foreach(var companion in settlement.HeroesWithoutParty.Where(x=>x.IsAICompanion()))
+            {
+                companions.Add(companion);
+            }
+            foreach(var companion in companions)
+            {
+                AddLocationCharacterToLocation(companion, location);
+            }
+        }
+
+        private void OnSettlementLeft(MobileParty party, Settlement settlement)
+        {
+            if (!settlement.IsTown) return;
+            if (party != null && party.GetMemberHeroes().Any(x => x.IsAICompanion()))
+            {
+                foreach (var companion in party.GetMemberHeroes().Where(x => x.IsAICompanion()))
+                {
+                    settlement.LocationComplex.RemoveCharacterIfExists(companion);
+                }
             }
         }
 
@@ -161,16 +117,7 @@ namespace TOR_Core.CampaignMechanics.AICompanions
                 SandBoxManager.Instance.AgentBehaviorManager.AddWandererBehaviors, "npc_common", true, LocationCharacter.CharacterRelations.Neutral, null, true);
             location.AddCharacter(locationCharacter);
         }
-        
-        
 
-        public override void SyncData(IDataStore dataStore)
-        {
-            dataStore.SyncData<bool>("_init", ref _init);
-        }
-        
-        
-        
-        
+        public override void SyncData(IDataStore dataStore) { }
     }
 }

@@ -181,14 +181,13 @@ namespace TOR_Core.Extensions
         
         public static bool IsAICompanion(this Hero hero)
         {
-            return hero.HasAttribute("AICompanion");
+            return hero.HasAttribute("AICompanion") && hero.Occupation == Occupation.Special;
         }
 
 
         public static bool IsSpellTrainer(this Hero hero)
         {
-            if (IsAICompanion(hero)) return false;
-            
+            if (IsAICompanion(hero)) return false;            
             return hero.Occupation == Occupation.Special && hero.Name.Contains("Magister");
         }
 

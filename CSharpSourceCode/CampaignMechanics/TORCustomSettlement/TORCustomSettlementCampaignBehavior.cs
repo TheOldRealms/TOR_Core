@@ -97,6 +97,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 party.LeaderHero.AddSkillXp(TORSkills.Faith, _model.CalculateSkillXpForPraying(party.LeaderHero));
                 party.LeaderHero.AddReligiousInfluence(shrine.Religion, _model.CalculateDevotionIncreaseForPraying(party.LeaderHero));
                 LeaveSettlementAction.ApplyForParty(party);
+                party.Ai.SetMoveModeHold();
                 party.Ai.SetDoNotMakeNewDecisions(false);
                 party.Ai.RethinkAtNextHourlyTick = true;
             }
