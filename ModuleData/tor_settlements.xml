@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Settlements>
   <!--Custom Settlements-->
   <Settlement id="chaos_portal_01" name="{=!}Chaos Portal" owner="Faction.chaos_clan_1" posX="1421.178" posY="900.773" culture="Culture.chaos_culture" prosperity="500" text="{=!}Chaos Portal">
@@ -59,6 +59,11 @@
   <Settlement id="haunted_site_03" name="{=!}Cursed Site" owner="Faction.sylvania_clan_1" posX="1505.873" posY="1086.675" culture="Culture.khuzait" prosperity="500" text="{=!}Cursed Site">
     <Components>
       <CursedSite id="haunted_site_03" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="haunted_site_04" name="{=!}The Charnel Hills" owner="Faction.sylvania_clan_1" posX="904.914" posY="1032.623" culture="Culture.khuzait" prosperity="500" text="{=!}Cursed Site">
+    <Components>
+      <CursedSite id="haunted_site_04" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <!-- Averland 2 Towns 11 villages 2 castles -->
