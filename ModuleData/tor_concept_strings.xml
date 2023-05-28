@@ -1,0 +1,9 @@
+<Concepts>
+  <!-- #The Old Realms -->
+  <Concept title="{=aIkffnN6}Winds of Magic" id="str_tor_windsofmagic" group="The Old Realms" link_id="TORTEST_LINK" text="Test text in-box" />
+  <Concept title="{=aIkffnN6}Skill books" id="str_tor_skillbook" group="The Old Realms" link_id="TORTEST_LINK2" text="Test text in-box" />
+  <Concept title="{=aIkffnN6}Religion" id="str_tor_religion" group="The Old Realms" link_id="TORTEST_LINK2" text="Test text in-box" />
+  <Concept title="{=aIkffnN6}Cursed Sites" id="str_tor_holysites" group="The Old Realms" link_id="TORTEST_LINK2" text="Test text in-box" />
+  <Concept title="{=aIkffnN6}new Skills" id="str_tor_skills" group="The Old Realms" link_id="TORTEST_LINK2" text="Test text in-box" />
+  <Concept title="{=aIkffnN6}Cannons" id="str_tor_cannons" group="The Old Realms" link_id="TORTEST_LINK2" text="Test text in-box" />
+</Concepts>
