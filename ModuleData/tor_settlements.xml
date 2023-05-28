@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Settlements>
   <!--Custom Settlements-->
   <Settlement id="chaos_portal_01" name="{=!}Chaos Portal" owner="Faction.chaos_clan_1" posX="1421.178" posY="900.773" culture="Culture.chaos_culture" prosperity="500" text="{=!}Chaos Portal">
@@ -59,6 +59,11 @@
   <Settlement id="haunted_site_03" name="{=!}Cursed Site" owner="Faction.sylvania_clan_1" posX="1505.873" posY="1086.675" culture="Culture.khuzait" prosperity="500" text="{=!}Cursed Site">
     <Components>
       <CursedSite id="haunted_site_03" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="haunted_site_04" name="{=!}The Charnel Hills" owner="Faction.sylvania_clan_1" posX="904.914" posY="1032.623" culture="Culture.khuzait" prosperity="500" text="{=!}Cursed Site">
+    <Components>
+      <CursedSite id="haunted_site_04" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <!-- Averland 2 Towns 11 villages 2 castles -->
@@ -3105,7 +3110,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_BA2" name="{=Settlements.Settlement.name.town_PA1}Soude" owner="Faction.bastonne_clan_1" posX="1048.224" posY="1062.427" culture="Culture.vlandia" prosperity="4500" gate_posX="1049.473" gate_posY="1063.952" text="{=Settlements.Settlement.text.town_PA1}In the north of Bastonne on the Grismerie river, near the Montfort border, the small city of Soude dwells. Being in the Heartlands of Bretonnia, the marketplaces of Soude are often filled to the brim with many goods that come from across Bretonnia. Including even foreign goods from the Empire, and the Wood Elves of the Loren Forest. Due to the nearness of Montfort, relations are straining, and long ago many border wars between the two dukedoms occurred.">
+  <Settlement id="town_BA2" name="{=Settlements.Settlement.name.town_BA2}Soude" owner="Faction.bastonne_clan_1" posX="1048.224" posY="1062.427" culture="Culture.vlandia" prosperity="4500" gate_posX="1049.473" gate_posY="1063.952" text="{=Settlements.Settlement.text.town_BA2}In the north of Bastonne on the Grismerie river, near the Montfort border, the small city of Soude dwells. Being in the Heartlands of Bretonnia, the marketplaces of Soude are often filled to the brim with many goods that come from across Bretonnia. Including even foreign goods from the Empire, and the Wood Elves of the Loren Forest. Due to the nearness of Montfort, relations are straining, and long ago many border wars between the two dukedoms occurred.">
     <Components>
       <Town id="town_comp_BA2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -3151,7 +3156,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BA2_3" name="{=Settlements.Settlement.name.village_BA2_3}Thiers" posX="1034.138" posY="1077.633" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BA2_3} Located at the northernmost point of Bastonne, Thiers lies on the border of Giseroux. Thiers is a small trade hub that is visited by many caravans from the dukedom of Giseroux, but has had a harsh bit of bad luck recently due to dreadful Beastmen raids coming from the Arden forest.">
+  <Settlement id="village_BA2_3" name="{=Settlements.Settlement.name.village_BA2_3}Thiers" posX="1034.138" posY="1077.633" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BA2_3}Located at the northernmost point of Bastonne, Thiers lies on the border of Giseroux. Thiers is a small trade hub that is visited by many caravans from the dukedom of Giseroux, but has had a harsh bit of bad luck recently due to dreadful Beastmen raids coming from the Arden forest.">
     <Components>
       <Village id="village_comp_BA2_3" village_type="VillageType.clay_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BA2" bound="Settlement.town_BA2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3259,7 +3264,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_BA3_2" name="{=Settlements.Settlement.name.castle_village_BA3_1}Ardes" posX="955.8979" posY="1002.942" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BA3_2}  Directly east of the dread city of Mousillon lies Ardes. The hamlet has been targeted for many raids by bandits, highwaymen, and even cultists. Its closeness to Mousillon has always made it easy pickings for the horrors that dwell in the cloudy mists of Mousillon.">
+  <Settlement id="castle_village_BA3_2" name="{=Settlements.Settlement.name.castle_village_BA3_2}Ardes" posX="955.8979" posY="1002.942" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BA3_2}  Directly east of the dread city of Mousillon lies Ardes. The hamlet has been targeted for many raids by bandits, highwaymen, and even cultists. Its closeness to Mousillon has always made it easy pickings for the horrors that dwell in the cloudy mists of Mousillon.">
     <Components>
       <Village id="castle_village_comp_BA3_2" village_type="VillageType.trapper" hearth="200" trade_bound="Settlement.castle_BA3" bound="Settlement.castle_BA3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4348,7 +4353,7 @@
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_QU1_1" name="{=Settlements.Settlement.name.castle_village_QUI_3}Merceaux Descloux" posX="1156.346" posY="915.696" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU1_1}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_QU1_1" name="{=Settlements.Settlement.name.castle_village_QUI_3}Merceaux Descloux" posX="1156.346" posY="915.696" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU1_1}Founded by Shallyan cultists, Merceaux Descloux has grown as those seeking cures for their ailments have begun to settle around the monastery in thanks. These supplicants have built small homes and tilled the land, providing for everything the cultists here need.">
     <Components>
       <Village id="castle_village_comp_QU1_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU1" bound="Settlement.castle_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4374,7 +4379,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_QU1_3" name="{=Settlements.Settlement.name.castle_village_QUI_3}Saint Gaudens" posX="1119.182" posY="873.229" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU1_3}Saint Gaudens is along the road that runs between Merceaux Descloux and Castle Quenelles. The people here long ago found a large deposit of clay.">
+  <Settlement id="castle_village_QU1_3" name="{=Settlements.Settlement.name.castle_village_QU1_3}Saint Gaudens" posX="1119.182" posY="873.229" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU1_3}Saint Gaudens is along the road that runs between Merceaux Descloux and Castle Quenelles. The people here long ago found a large deposit of clay.">
     <Components>
       <Village id="castle_village_comp_QU1_3" village_type="VillageType.clay_mine" hearth="200" trade_bound="Settlement.castle_QU1" bound="Settlement.castle_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4387,7 +4392,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_QU2" name="{=Settlements.Settlement.name.castle_QU2}Castle Carrard" owner="Faction.quenelles_clan_1" posX="1164.44" posY="789.469" prosperity="800" culture="Culture.vlandia" gate_posX="1163.227" gate_posY="790.9955" text="{=!}Castle Carrad sits on the shore of the River Brienne near the border of Carcassonne and the Forest of Loren. Its lord, Leofric Carrard, has inherited the fief in absentia. His father had given him permission to embark on his Grail Quest but as soon as Leofric left, his father grew gravely ill and passed into the arms of the Lady. Duke Tancred II has taken stewardship here until Leofric returns.">
+  <Settlement id="castle_QU2" name="{=Settlements.Settlement.name.castle_QU2}Castle Carrard" owner="Faction.quenelles_clan_1" posX="1164.44" posY="789.469" prosperity="800" culture="Culture.vlandia" gate_posX="1163.227" gate_posY="790.9955" text="{=Settlements.Settlement.text.castle_QU2}Castle Carrad sits on the shore of the River Brienne near the border of Carcassonne and the Forest of Loren. Its lord, Leofric Carrard, has inherited the fief in absentia. His father had given him permission to embark on his Grail Quest but as soon as Leofric left, his father grew gravely ill and passed into the arms of the Lady. Duke Tancred II has taken stewardship here until Leofric returns.">
     <Components>
       <Town id="castle_comp_QU2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
