@@ -4485,6 +4485,112 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
+  <!--- Mousillion-->
+  <Settlement id="town_MS1" name="{=Settlements.Settlement.name.town_MS1}Castle Mousillon" owner="Faction.quenelles_clan_1" posX="1160.415" posY="806.628" culture="Culture.vlandia" prosperity="4500" gate_posX="1157.651" gate_posY="805.8109" text="{=Settlements.Settlement.name.town_MS1}Right on the border between the Land of Chivalry and the Forest of Loren, is Ducal Capital and Fortress-City of Quenelles. The city is so close to the Forest in fact, that the fey have demanded of the Quenellians to tear down the wall on the eastern side. Where the wall ends is met with a broad road and then immediately the fringes of the fey forest.">
+    <Components>
+      <Town id="town_comp_MS1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.town_complex">
+      <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
+      <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
+      <Location id="tavern" scene_name="vlandia_tavern_interior_a" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="vlandia_dungeon_a" />
+      <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
+      <Location id="house_2" scene_name="vlandia_house_d_interior_house" />
+      <Location id="house_3" scene_name="vlandia_house_d_interior_house" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
+      <Area type="Clearing" name="{=LWHIVshb}Clearing" />
+      <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_MS1_1" name="{=Settlements.Settlement.name.village_MS1_1}Le Marais Mort" posX="1152.572" posY="826.288" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MS1_1}Perrach is a small farming community on the road between Castle Quenelles and Merceaux Descloux. The peasants here nar to go towards the woods in any way, so in fear they are of the Fey who watch over them from the shade of the trees.">
+    <Components>
+      <Village id="village_comp_MS1_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MS1" bound="Settlement.town_MS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_MS1_2" name="{=Settlements.Settlement.name.village_MS1_2}Gorges" posX="1128.767" posY="830.808" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MS1_2}In the flatlands of Quenelles, surrounded by a sea of grassgrasses and farmlands, is the village of Nailloux. The peasants here raise cattle on the fine grasses for most of the year. When it comes time to drive the cattle to market in Quenelles, the village becomes nearly uninhabited, as most of the population leaves along with their cattle.">
+    <Components>
+      <Village id="village_comp_MS1_2" village_type="VillageType.cattle_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MS1" bound="Settlement.town_MS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_MS1_3" name="{=Settlements.Settlement.name.village_MS1_1}La Grange" posX="1116.459" posY="834.748" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MS1_3}Nearly in the center of Quenelles, Bézier is an immensely isolated village. The most notable thing about it is the small grail shrine at the northern end of the village.">
+    <Components>
+      <Village id="village_comp_MS1_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MS1" bound="Settlement.town_MS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_MS1" name="{=Settlements.Settlement.name.castle_MS1}Castle Rachard " owner="Faction.quenelles_clan_1" posX="1139.147" posY="898.096" prosperity="800" culture="Culture.vlandia" gate_posX="1141.179" gate_posY="896.7446" text="{=Settlements.Settlement.text.castle_MS1}Castle Beaumarchais sits strategically between three important areas; Massif Orcal, the border with Parravon and the Loren forest. While Quenellian relations with the fey are… amicable, The Castle was built far enough from the border of the woods to prevent the wood elves interference with its walls such as at Castle Quenelles.">
+    <Components>
+      <Town id="castle_comp_MS1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.castle_complex">
+      <Location id="center" scene_name="vlandia_siege_001" scene_name_1="vlandia_siege_001" scene_name_2="vlandia_siege_001" scene_name_3="vlandia_siege_001" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="vlandia_dungeon_a" />
+    </Locations>
+  </Settlement>
+  <Settlement id="castle_village_MS1_1" name="{=Settlements.Settlement.name.castle_village_MSI_3}Le Rosier Noir" posX="1156.346" posY="915.696" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MS1_1}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+    <Components>
+      <Village id="castle_village_comp_MS1_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_MS1" bound="Settlement.castle_MS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_MS2" name="{=Settlements.Settlement.name.castle_MS2}Castle Hane" owner="Faction.quenelles_clan_1" posX="1164.44" posY="789.469" prosperity="800" culture="Culture.vlandia" gate_posX="1163.227" gate_posY="790.9955" text="{=!}Castle Carrad sits on the shore of the River Brienne near the border of Carcassonne and the Forest of Loren. Its lord, Leofric Carrard, has inherited the fief in absentia. His father had given him permission to embark on his Grail Quest but as soon as Leofric left, his father grew gravely ill and passed into the arms of the Lady. Duke Tancred II has taken stewardship here until Leofric returns.">
+    <Components>
+      <Town id="castle_comp_MS2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.castle_complex">
+      <Location id="center" scene_name="vlandia_siege_001" scene_name_1="vlandia_siege_001" scene_name_2="vlandia_siege_001" scene_name_3="vlandia_siege_001" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="vlandia_dungeon_a" />
+    </Locations>
+  </Settlement>
+  <Settlement id="castle_village_MS2_1" name="{=Settlements.Settlement.name.castle_village_MS1_3}Yremy" posX="1138.491" posY="786.548" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MS2_1}Nice is an old village, so old in fact that some Nobles suspect that the fey originally inhabited it. Despite this suspicion, the Fey have never disturbed the village, at least not in a manner particular compared to the normal demands and restrictions.">
+    <Components>
+      <Village id="castle_village_comp_MS2_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_MS2" bound="Settlement.castle_MS2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOW_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
   <!-- Hideouts -->
   <!-- hideout forest -->
   <Settlement id="hideout_forest_1" name="{=Settlements.Settlement.name.hideout_forest_1}Cultist Hideout" type="Hideout" posX="1393.676" posY="935.815" culture="Culture.forest_bandits">
