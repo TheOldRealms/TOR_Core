@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Settlements>
   <!--Custom Settlements-->
   <Settlement id="chaos_portal_01" name="{=!}Chaos Portal" owner="Faction.chaos_clan_1" posX="1421.178" posY="900.773" culture="Culture.chaos_culture" prosperity="500" text="{=!}Chaos Portal">
@@ -4597,7 +4597,7 @@
     </CommonAreas>
   </Settlement>
   <!-- Blood Keep -->
-  <Settlement id="castle_BK1" name="{=Settlements.Settlement.name.castle_BK1}Blood Keep" owner="Faction.quenelles_clan_1" posX="1280.048" posY="949.151" prosperity="800" culture="Culture.vlandia" gate_posX="1278.506" gate_posY="945.536" text="{=Settlements.Settlement.text.castle_BK1}Once the home of a valiant order of Knights known as the Order of the Blood Dragon, or the Ordo Draconis. One fateful night, a Vampire known as Walach Harkon challenged every Knight to single combat, eventually turning all who he deemed worthy into Vampires. The entirety of the Ordo Draconis was then wiped from existence and became known as the Blood Dragons.">
+  <Settlement id="castle_BK1" name="{=Settlements.Settlement.name.castle_BK1}Blood Keep" owner="Faction.blooddragons_clan_1" posX="1280.048" posY="949.151" prosperity="800" culture="Culture.khuzait" gate_posX="1278.506" gate_posY="945.536" text="{=Settlements.Settlement.text.castle_BK1}Once the home of a valiant order of Knights known as the Order of the Blood Dragon, or the Ordo Draconis. One fateful night, a Vampire known as Walach Harkon challenged every Knight to single combat, eventually turning all who he deemed worthy into Vampires. The entirety of the Ordo Draconis was then wiped from existence and became known as the Blood Dragons.">
     <Components>
       <Town id="castle_comp_BK1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -4606,19 +4606,6 @@
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
-  </Settlement>
-  <Settlement id="castle_village_BK1_1" name="{=Settlements.Settlement.name.castle_village_BK1_1}Blood Keep Stash" posX="1280.576" posY="942.969" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BK1_1}">
-    <Components>
-      <Village id="castle_village_comp_BK1_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_BK1" bound="Settlement.castle_BK1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
-    </Components>
-    <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
-    </Locations>
-    <CommonAreas>
-      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
-      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
-      <Area type="Bog" name="{=iXA5SttU}Bog" />
-    </CommonAreas>
   </Settlement>
   <!-- Hideouts -->
   <!-- hideout forest -->
