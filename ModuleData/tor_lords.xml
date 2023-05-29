@@ -72,7 +72,7 @@
       <EquipmentSet id="tor_celestial_wizard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_prophetess_lw" default_group="cavalry" name="{=str_tor_prophetess_lw}Prophetess(Life)" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_custombattle_generic" is_hero="true">
+  <NPCCharacter id="tor_prophetess_lw" default_group="cavalry" name="{=str_tor_prophetess_lw}Prophetess(Life)" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_custombattle_generic" is_female="true" is_hero="true">
     <face>
       <BodyProperties version="4" age="35" weight="0.2" build="0.1" key="001B900000B430157279D168465B5B774BC879C47BA98A488748E8A9857B5A9801A136130A77758A00000000000000000000000000000000000000001F4C30C3" />
     </face>
@@ -90,7 +90,7 @@
       <EquipmentSet id="tor_prophetess_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_prophetess_bw" default_group="cavalry" name="{=str_tor_prophetess_bw}Prophetess(Beast)" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_custombattle_generic" is_hero="true">
+  <NPCCharacter id="tor_prophetess_bw" default_group="cavalry" name="{=str_tor_prophetess_bw}Prophetess(Beast)" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_custombattle_generic" is_female="true" is_hero="true">
     <face>
       <BodyProperties version="4" age="35" weight="0.2" build="0.1" key="001B900000B430157279D168465B5B774BC879C47BA98A488748E8A9857B5A9801A136130A77758A00000000000000000000000000000000000000001F4C30C3" />
     </face>
