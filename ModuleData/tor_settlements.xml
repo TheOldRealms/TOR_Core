@@ -61,7 +61,7 @@
       <CursedSite id="haunted_site_03" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="haunted_site_04" name="{=!}The Charnel Hills" owner="Faction.sylvania_clan_1" posX="904.914" posY="1032.623" culture="Culture.khuzait" prosperity="500" text="{=!}Cursed Site">
+  <Settlement id="haunted_site_04" name="{=!}The Charnel Hills" owner="Faction.mousillion_clan_1" posX="904.914" posY="1032.623" culture="Culture.mousillion" prosperity="500" text="{=!}Cursed Site">
     <Components>
       <CursedSite id="haunted_site_04" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
@@ -4491,7 +4491,7 @@
     </CommonAreas>
   </Settlement>
   <!--- Mousillion-->
-  <Settlement id="town_MS1" name="{=Settlements.Settlement.name.town_MS1}Castle Mousillon" owner="Faction.quenelles_clan_1" posX="921.125" posY="1016.838" culture="Culture.vlandia" prosperity="4500" gate_posX="919.65" gate_posY="1022.8" text="{=Settlements.Settlement.text.town_MS1} In the abyssal, death-ridden swamps formed by the slowing of the River Grismerie, Castle Mousillon slowly descends into the boundless depths of Mousillon’s murky waters. Mousillon itself thrives on barter and trade within the walls itself, many believe even more unsavoury acts happen deep within the city. Laden with dark lit taverns, unsavoury brothels, and dens of thieves, Mousillon is a haven for the enemies of Bretonnia.">
+  <Settlement id="town_MS1" name="{=Settlements.Settlement.name.town_MS1}Castle Mousillion" owner="Faction.mousillion_clan_1" posX="921.125" posY="1016.838" culture="Culture.mousillion" prosperity="4500" gate_posX="919.65" gate_posY="1022.8" text="{=Settlements.Settlement.text.town_MS1} In the abyssal, death-ridden swamps formed by the slowing of the River Grismerie, Castle Mousillon slowly descends into the boundless depths of Mousillon’s murky waters. Mousillon itself thrives on barter and trade within the walls itself, many believe even more unsavoury acts happen deep within the city. Laden with dark lit taverns, unsavoury brothels, and dens of thieves, Mousillon is a haven for the enemies of Bretonnia.">
     <Components>
       <Town id="town_comp_MS1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -4511,7 +4511,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_MS1_1" name="{=Settlements.Settlement.name.village_MS1_1}Le Marais Mort" posX="901.08" posY="1036.726" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MS1_1}Located just north of Mousillon, Les Marais Mort is hidden just beyond a vast number of hills, called Les Collines de Charnel. The village is barebones and infested with peasants afflicted by various mutations, many believe the origin to be long lost diseases emanating from Le Collines de Charnel.">
+  <Settlement id="village_MS1_1" name="{=Settlements.Settlement.name.village_MS1_1}Le Marais Mort" posX="901.08" posY="1036.726" culture="Culture.mousillion" text="{=Settlements.Settlement.text.village_MS1_1}Located just north of Mousillon, Les Marais Mort is hidden just beyond a vast number of hills, called Les Collines de Charnel. The village is barebones and infested with peasants afflicted by various mutations, many believe the origin to be long lost diseases emanating from Le Collines de Charnel.">
     <Components>
       <Village id="village_comp_MS1_1" village_type="VillageType.clay_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MS1" bound="Settlement.town_MS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4524,7 +4524,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_MS1_2" name="{=Settlements.Settlement.name.village_MS1_2}Gorges" posX="903.536" posY="1054.367" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MS1_2}Residing on the northern bank of the Grismerie river, the small settlement of Gorges houses many humans and mutants alike. Being even poorer than most Bretonnian settlements, Gorges stays afloat with communal fishing and what little they can scratch out of the ground. When they aren’t levied into their lord's armies.">
+  <Settlement id="village_MS1_2" name="{=Settlements.Settlement.name.village_MS1_2}Gorges" posX="903.536" posY="1054.367" culture="Culture.mousillion" text="{=Settlements.Settlement.text.village_MS1_2}Residing on the northern bank of the Grismerie river, the small settlement of Gorges houses many humans and mutants alike. Being even poorer than most Bretonnian settlements, Gorges stays afloat with communal fishing and what little they can scratch out of the ground. When they aren’t levied into their lord's armies.">
     <Components>
       <Village id="village_comp_MS1_2" village_type="VillageType.fisherman" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MS1" bound="Settlement.town_MS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4537,7 +4537,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_MS1_3" name="{=Settlements.Settlement.name.village_MS1_1}La Grange" posX="937.647" posY="1039.653" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_MS1_3}La Grange, nicknamed “The Barn”, houses many steeds who would dare to graze into the foetid swamps of Mousillon. Although a breeding ground for livestock, it is also popular for mutants and humans that need safe dwelling from the foul creatures of the night.">
+  <Settlement id="village_MS1_3" name="{=Settlements.Settlement.name.village_MS1_1}La Grange" posX="937.647" posY="1039.653" culture="Culture.mousillion" text="{=Settlements.Settlement.text.village_MS1_3}La Grange, nicknamed “The Barn”, houses many steeds who would dare to graze into the foetid swamps of Mousillon. Although a breeding ground for livestock, it is also popular for mutants and humans that need safe dwelling from the foul creatures of the night.">
     <Components>
       <Village id="village_comp_MS1_3" village_type="VillageType.swine_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MS1" bound="Settlement.town_MS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4550,7 +4550,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_MS1" name="{=Settlements.Settlement.name.castle_MS1}Castle Rachard " owner="Faction.quenelles_clan_1" posX="923.824" posY="1052.102" prosperity="800" culture="Culture.vlandia" gate_posX="923.772" gate_posY="1049.676" text="{=Settlements.Settlement.text.castle_MS1} Across the border of Lyonesse, Castle Rachard is lorded over by none other than Lord Rachard himself. Surprisingly, these lands are fairly established and well kept considering Mousillon’s hellish landscape and numerous dangers. Some adventurers and villagers say they hear noises coming from the castle, however no one has ever investigated the ongoing activities within the castle.">
+  <Settlement id="castle_MS1" name="{=Settlements.Settlement.name.castle_MS1}Castle Rachard " owner="Faction.mousillion_clan_1" posX="923.824" posY="1052.102" prosperity="800" culture="Culture.vlandia" gate_posX="923.772" gate_posY="1049.676" text="{=Settlements.Settlement.text.castle_MS1} Across the border of Lyonesse, Castle Rachard is lorded over by none other than Lord Rachard himself. Surprisingly, these lands are fairly established and well kept considering Mousillon’s hellish landscape and numerous dangers. Some adventurers and villagers say they hear noises coming from the castle, however no one has ever investigated the ongoing activities within the castle.">
     <Components>
       <Town id="castle_comp_MS1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -4573,7 +4573,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_MS2" name="{=Settlements.Settlement.name.castle_MS2}Castle Hane" owner="Faction.quenelles_clan_1" posX="963.22" posY="1060.316" prosperity="800" culture="Culture.vlandia" gate_posX="961.515" gate_posY="1059.451" text="{=Settlements.Settlement.name.castle_MS2}Castle Hane is a tall hexagonal tower that stands near the Grismerie river, on a small island in the swamps. Lorded over by Aucassin, a long reigning noble of bretonnia, the surrounding villages are surprisingly livable by Mousillon standards. Surrounding the tower are many stables for Aucassin’s Vampiric Knights, and any who would visit the tower.">
+  <Settlement id="castle_MS2" name="{=Settlements.Settlement.name.castle_MS2}Castle Hane" owner="Faction.mousillion_clan_1" posX="963.22" posY="1060.316" prosperity="800" culture="Culture.vlandia" gate_posX="961.515" gate_posY="1059.451" text="{=Settlements.Settlement.name.castle_MS2}Castle Hane is a tall hexagonal tower that stands near the Grismerie river, on a small island in the swamps. Lorded over by Aucassin, a long reigning noble of bretonnia, the surrounding villages are surprisingly livable by Mousillon standards. Surrounding the tower are many stables for Aucassin’s Vampiric Knights, and any who would visit the tower.">
     <Components>
       <Town id="castle_comp_MS2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -4597,7 +4597,7 @@
     </CommonAreas>
   </Settlement>
   <!-- Blood Keep -->
-  <Settlement id="castle_BK1" name="{=Settlements.Settlement.name.castle_BK1}Blood Keep" owner="Faction.quenelles_clan_1" posX="1280.048" posY="949.151" prosperity="800" culture="Culture.vlandia" gate_posX="1278.506" gate_posY="945.536" text="{=Settlements.Settlement.text.castle_BK1}Once the home of a valiant order of Knights known as the Order of the Blood Dragon, or the Ordo Draconis. One fateful night, a Vampire known as Walach Harkon challenged every Knight to single combat, eventually turning all who he deemed worthy into Vampires. The entirety of the Ordo Draconis was then wiped from existence and became known as the Blood Dragons.">
+  <Settlement id="castle_BK1" name="{=Settlements.Settlement.name.castle_BK1}Blood Keep" owner="Faction.blooddragons_clan_1" posX="1280.048" posY="949.151" prosperity="800" culture="Culture.khuzait" gate_posX="1278.506" gate_posY="945.536" text="{=Settlements.Settlement.text.castle_BK1}Once the home of a valiant order of Knights known as the Order of the Blood Dragon, or the Ordo Draconis. One fateful night, a Vampire known as Walach Harkon challenged every Knight to single combat, eventually turning all who he deemed worthy into Vampires. The entirety of the Ordo Draconis was then wiped from existence and became known as the Blood Dragons.">
     <Components>
       <Town id="castle_comp_BK1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -4606,19 +4606,6 @@
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
-  </Settlement>
-  <Settlement id="castle_village_BK1_1" name="{=Settlements.Settlement.name.castle_village_BK1_1}Blood Keep Stash" posX="1280.576" posY="942.969" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BK1_1}">
-    <Components>
-      <Village id="castle_village_comp_BK1_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_BK1" bound="Settlement.castle_BK1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vlandia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
-    </Components>
-    <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
-    </Locations>
-    <CommonAreas>
-      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
-      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
-      <Area type="Bog" name="{=iXA5SttU}Bog" />
-    </CommonAreas>
   </Settlement>
   <!-- Hideouts -->
   <!-- hideout forest -->
