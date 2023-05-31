@@ -150,7 +150,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             charInfo.ClearFaceGenPrefab();
             int race = 0;
             Hero.MainHero.UpdatePlayerGender(_isFemale);
-            if (selectedOption.OptionText == "Vampiric Nobility")
+            if (selectedOption.OptionText == "Vampiric Nobility"|| selectedOption.OptionText == "Vampire of Mousillon")
             {
                 race = FaceGen.GetRaceOrDefault("vampire");
             }
@@ -216,7 +216,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddAbility("HealingAOE");
                 Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 60);
             }
-            else if (selectedOption.OptionText == "Novice Necromancer")
+            else if (selectedOption.OptionText == "Novice Necromancer"||selectedOption.OptionText == "Necromancer")
             {
                 Hero.MainHero.AddAttribute("SpellCaster");
                 Hero.MainHero.AddAttribute("Necromancer");
@@ -228,7 +228,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
                 Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 25);
             }
-            else if (selectedOption.OptionText == "Vampiric Nobility")
+            else if (selectedOption.OptionText == "Vampiric Nobility"||selectedOption.OptionText == "Vampire of Mousillon")
             {
                 Hero.MainHero.AddAttribute("Vampire");
                 Hero.MainHero.AddAttribute("Necromancer");
@@ -252,6 +252,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 case "vlandia":
                     position2D = new Vec2(998.96f, 830.02f);
                     break;
+                case "mousillion":
+                    position2D = new Vec2(932.531f, 1049.944f);
+                    break;
                 default:
                     position2D = new Vec2(1420.97f, 981.37f);
                     break;
@@ -264,7 +267,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 mapState.Handler.TeleportCameraToMainParty();
             }
             SetHeroAge(25);
-            if (Hero.MainHero.IsSpellCaster()) PromptChooseLore();
+            if (Hero.MainHero.IsSpellCaster()&&!Hero.MainHero.IsNecromancer()) PromptChooseLore();
             if (Hero.MainHero.IsVampire()) PromptChooseBloodline();
         }
 

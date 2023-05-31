@@ -85,13 +85,15 @@
   <string id="str_quest_tor_engineer.rogueEngineerEncounterPlayerAfterBattleAnswer" text="Your schemes end here"/>
 
   <!--culture related-->
+
   <string id="str_culture_rich_name.khuzait" text="{=!}Vampire Counts" />
   <string id="str_culture_rich_name.empire" text="{=!}Empire of Men" />
   <string id="str_culture_rich_name.vlandia" text="{=!}Bretonnia" />
+  <string id="str_culture_rich_name.mousillion" text="{=!}Mousillion" />
   <string id="str_culture_description.khuzait" text="{=!}The Vampire Counts are fiends without equal. They seek to topple the civilisations of the living and supplant them with an Undead empire. Each Vampire is a unique and majestic figure with his own personality, drive and ambition. In contrast, their minions are mindlessly obedient - rank after rank of ragged and dirt-encrusted cadavers forced back to life by their masters' necromantic power." />
   <string id="str_culture_description.empire" text="{=!}The Empire of Man, the sprawling nation of humans dominating the Old World, faces a daily struggle for survival. Guided by their Emperor, Karl Franz, its armies stand as a testament to unwavering discipline and unmatched martial skills. In a world teeming with brutal savages and bloodthirsty monsters, the Empire endures thanks to the renowned discipline of its armies, honed through rigorous training and fortified by their unyielding faith in Sigmar. A beacon of human resilience, the Empire's soldiers exemplify the indomitable spirit of man that prevails amidst its endless list of foes." />
   <string id="str_culture_description.vlandia" text="{=!}The Kingdom of Bretonnia is a land renowned for powerful Knights and their strong sense of Chivalry. Guided by the Fey Enchantress and the Damsels of the Lady, the peasants toil while their noble lords protect them from the many dangers threating their survival. In times of war the whole kingdom can join together, led in a crusade against their enemies by King Louen Leoncoeur, against which no foe has known victory." />
-
+  <string id="str_culture_description.mousillion" text="{=!}Mousillon, the accursed state nestled within the heart of Bretonnia, casts a dark and ominous shadow over the land. Once a proud dukedom, it now stands as a grim testament to the corruption that lingers in the shadows. Ruled by the Serpent of Mousillon, the realm of swamps and thickets contrasts against the vibrant setting of noble Bretonnia. Yet, even more tragic and unsettling are its mutated peasantry, ruled not by noble knights but the twisted undead, whose black knights evoke a chilling blend of traditional Bretonnian martial prowess and unholy power." />
   <string id="str_faction_official.empire" text="{=!}a count" />
   <string id="str_faction_official.empire_f" text="{=!}a countess" />
   <string id="str_faction_ruler.empire" text="{=!}elector count" />
@@ -119,10 +121,12 @@
   <string id="str_short_term_for_faction.talabecland" text="{=!}Talabecland" />
   <string id="str_short_term_for_faction.reikland" text="{=!}Reikland" />
   <string id="str_short_term_for_faction.moot" text="{=!}halflings" />
+    <string id="str_short_term_for_faction.mousillion" text="{=!}mousillion" />
   <string id="str_short_term_for_faction.sylvania" text="{=!}vampires" />
   <string id="str_faction_formal_name_for_culture.khuzait" text="{=!}Sylvania" />
   <string id="str_faction_formal_name_for_culture.empire" text="{=!}Empire" />
   <string id="str_faction_informal_name_for_culture.khuzait" text="{=!}Sylvania" />
+    <string id="str_faction_informal_name_for_culture.khuzait" text="{=!}Mousillion" />
   <string id="str_faction_informal_name_for_culture.empire" text="{=!}the Empire" />
   <string id="str_adjective_for_culture.khuzait" text="{=!}vampire" />
   <string id="str_adjective_for_culture.empire" text="{=!}imperial" />
