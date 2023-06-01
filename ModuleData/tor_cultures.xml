@@ -3491,6 +3491,25 @@
 			<item id="Item.vlandia_sword_5_t5" />
     	</banner_bearer_replacement_weapons>
 	</Culture>
+	<Culture id="sea_raiders"
+			 name="{=e6csp4ha}Herrimaults"
+			 bandit_chief="NPCCharacter.tor_br_brettonnia_bandit_leader"
+			 bandit_raider="NPCCharacter.tor_br_brettonnia_bandit"
+			 bandit_bandit="NPCCharacter.tor_br_herrimault_scout"
+			 bandit_boss="NPCCharacter.tor_br_brettonnia_bandit_leader"
+			 elite_basic_troop="NPCCharacter.tor_br_herrimault_scout"
+			 basic_troop="NPCCharacter.tor_br_brettonnia_bandit"
+			 is_bandit="true"
+			 can_have_settlement="true"
+			 encounter_background_mesh="bandit_encounter_background"
+			 bandit_boss_party_template="PartyTemplate.br_bandit_party" >
+		<banner_bearer_replacement_weapons>
+			<item id="Item.vlandia_sword_1_t2" />
+			<item id="Item.vlandia_sword_2_t3" />
+			<item id="Item.vlandia_sword_3_t4" />
+			<item id="Item.vlandia_sword_5_t5" />
+    	</banner_bearer_replacement_weapons>
+	</Culture>
 	<Culture id="neutral_culture"
 			 name="{=jKviMpbP}Neutral"
 			 elite_basic_troop="NPCCharacter.guard"

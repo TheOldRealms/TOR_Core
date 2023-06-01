@@ -2162,16 +2162,16 @@
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_blooddragons_factionleader" default_group="cavalry" name="{=str_tor_vc_lord_blooddragons_factionleader}Walach Harkon" occupation="Lord" culture="Culture.khuzait" voice="curt" age="43" skill_template="SkillSet.tor_skills_vampire_lord" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="43" weight="0.4657" build="0.3965" key="0000900E55881543424ACE7565C5A849A6659AA7A554A738D7365AAC6479977400767603F77198A6000000000000000000000000000000000000000048FC5080" />
+      <BodyProperties version="4" age="43" weight="0.4059" build="0.7546" key="003F8C04005800006681778646DB6AA574663A77829B983767386BB78487878D01DB66130D397659000000000000000000000000000000000000000075AC9080" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
-      <Trait id="Commander" value="7" />
+      <Trait id="Commander" value="10" />
       <Trait id="Politician" value="5" />
       <Trait id="Manager" value="6" />
-      <Trait id="Honor" value="1" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Generosity" value="-1" />
+      <Trait id="Honor" value="5" />
+      <Trait id="Mercy" value="-10" />
+      <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_generic_vampire_2H_blood_template" />
@@ -2180,7 +2180,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_blooddragons_first_2" default_group="cavalry" name="{=str_tor_vc_lord_blooddragons_first_2}Draku" occupation="Lord" culture="Culture.khuzait" voice="curt" age="45" skill_template="SkillSet.tor_skills_vampire_lord" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="43" weight="0.4657" build="0.3965" key="0000900E55881543424ACE7565C5A849A6659AA7A554A738D7365AAC6479977400767603F77198A6000000000000000000000000000000000000000048FC5080" />
+      <BodyProperties version="4" age="25" weight="0.6616" build="0.7303" key="003F7C0D80880009BAC7A4A8BDD5378288A688A98DD992887B67C4962D8A6663019BA6130994AD4B0000000000000000000000000000000000000000371C9040" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -2188,17 +2188,17 @@
       <Trait id="Politician" value="5" />
       <Trait id="Manager" value="6" />
       <Trait id="Honor" value="1" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Generosity" value="-1" />
+      <Trait id="Mercy" value="-10" />
+      <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_generic_vampire_2H_blood_template" />
       <EquipmentSet id="tor_generic_vampire_2H_blood_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_lord_blooddragons_first_3" default_group="cavalry" name="{=str_tor_vc_lord_blooddragons_first_3}Drashlohav of Brașov" occupation="Lord" culture="Culture.khuzait" voice="curt" age="68" skill_template="SkillSet.tor_skills_vampire_lord" race="vampire" is_hero="true">
+  <NPCCharacter id="tor_vc_lord_blooddragons_first_3" default_group="cavalry" name="{=str_tor_vc_lord_blooddragons_first_3}Drashlohav of Brasov" occupation="Lord" culture="Culture.khuzait" voice="curt" age="68" skill_template="SkillSet.tor_skills_vampire_lord" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="43" weight="0.4657" build="0.3965" key="0000900E55881543424ACE7565C5A849A6659AA7A554A738D7365AAC6479977400767603F77198A6000000000000000000000000000000000000000048FC5080" />
+      <BodyProperties version="4" age="43" weight="0.6962" build="0.7357" key="003F5809802C0006A88829DC68BC8458954D49B7367BBE7C78CE8666AD36A65F01BBA6130B8D8578000000000000000000000000000000000000000059648000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -2206,8 +2206,8 @@
       <Trait id="Politician" value="5" />
       <Trait id="Manager" value="6" />
       <Trait id="Honor" value="1" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Generosity" value="-1" />
+      <Trait id="Mercy" value="-10" />
+      <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_generic_vampire_2H_blood_template" />
@@ -2216,16 +2216,16 @@
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_blooddragons_first_4" default_group="cavalry" name="{=str_tor_vc_lord_blooddragons_first_4}Dardiolai the Dacian" occupation="Lord" culture="Culture.khuzait" voice="curt" age="212" skill_template="SkillSet.tor_skills_vampire_lord" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="43" weight="0.4657" build="0.3965" key="0000900E55881543424ACE7565C5A849A6659AA7A554A738D7365AAC6479977400767603F77198A6000000000000000000000000000000000000000048FC5080" />
+      <BodyProperties version="4" age="43" weight="0.6783" build="0.6183" key="003F9800008800069B78AE6EA26455579B6896459AB7A69765E8B7584C5B7CB801B9A6130BD568CB000000000000000000000000000000000000000033743040" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
       <Trait id="Commander" value="7" />
       <Trait id="Politician" value="5" />
       <Trait id="Manager" value="6" />
-      <Trait id="Honor" value="1" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Generosity" value="-1" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-10" />
+      <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_generic_vampire_2H_blood_template" />
@@ -3322,7 +3322,7 @@
       <Trait id="Politician" value="8" />
       <Trait id="Manager" value="8" />
       <Trait id="Honor" value="6" />
-      <Trait id="Mercy" value="4" />
+      <Trait id="Mercy" value="-6" />
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
@@ -3337,10 +3337,10 @@
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
       <Trait id="Commander" value="8" />
-      <Trait id="Politician" value="8" />
+      <Trait id="Politician" value="4" />
       <Trait id="Manager" value="8" />
       <Trait id="Honor" value="6" />
-      <Trait id="Mercy" value="4" />
+      <Trait id="Mercy" value="-6" />
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
@@ -3348,18 +3348,18 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ms_lord_mousillion_first_2" default_group="cavalry" name="{=str_tor_ms_lord_mousillion_first_2}Lord Aucassin" occupation="Lord" culture="Culture.mousillion" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_ms_lord_mousillion_first_2" default_group="cavalry" name="{=str_tor_ms_lord_mousillion_first_2}Lord Aucassin" occupation="Lord" culture="Culture.mousillion" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" race="vampire" is_hero="true">
     <face>
       <BodyProperties version="4" age="24" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
       <Trait id="Commander" value="8" />
-      <Trait id="Politician" value="8" />
+      <Trait id="Politician" value="6" />
       <Trait id="Manager" value="8" />
       <Trait id="Honor" value="6" />
-      <Trait id="Mercy" value="4" />
-      <Trait id="Generosity" value="0" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="-5" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
@@ -3373,10 +3373,10 @@
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
       <Trait id="Commander" value="8" />
-      <Trait id="Politician" value="8" />
+      <Trait id="Politician" value="4" />
       <Trait id="Manager" value="8" />
       <Trait id="Honor" value="6" />
-      <Trait id="Mercy" value="4" />
+      <Trait id="Mercy" value="-6" />
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
@@ -3391,15 +3391,15 @@
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
       <Trait id="Commander" value="8" />
-      <Trait id="Politician" value="8" />
+      <Trait id="Politician" value="4" />
       <Trait id="Manager" value="8" />
       <Trait id="Honor" value="6" />
-      <Trait id="Mercy" value="4" />
+      <Trait id="Mercy" value="-6" />
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
-      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+      <EquipmentSet id="tor_necromancer_template" />
+      <EquipmentSet id="tor_necromancer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_ms_lord_mousillion_first_5" default_group="cavalry" name="{=str_tor_ms_lord_mousillion_first_5}Ser Garreth of the Black Rose" occupation="Lord" culture="Culture.mousillion" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
@@ -3409,10 +3409,10 @@
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
       <Trait id="Commander" value="8" />
-      <Trait id="Politician" value="8" />
+      <Trait id="Politician" value="3" />
       <Trait id="Manager" value="8" />
       <Trait id="Honor" value="6" />
-      <Trait id="Mercy" value="4" />
+      <Trait id="Mercy" value="-6" />
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
@@ -3427,10 +3427,10 @@
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
       <Trait id="Commander" value="8" />
-      <Trait id="Politician" value="8" />
+      <Trait id="Politician" value="3" />
       <Trait id="Manager" value="8" />
       <Trait id="Honor" value="6" />
-      <Trait id="Mercy" value="4" />
+      <Trait id="Mercy" value="-6" />
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
@@ -3445,10 +3445,10 @@
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
       <Trait id="Commander" value="8" />
-      <Trait id="Politician" value="8" />
+      <Trait id="Politician" value="3" />
       <Trait id="Manager" value="8" />
       <Trait id="Honor" value="6" />
-      <Trait id="Mercy" value="4" />
+      <Trait id="Mercy" value="-6" />
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>

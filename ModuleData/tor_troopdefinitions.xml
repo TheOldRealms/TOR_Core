@@ -2361,4 +2361,38 @@
       <EquipmentSet id="tor_empire_deserter_scout_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  
+  <NPCCharacter id="tor_br_brettonnia_bandit" default_group="infantry" level="11" name="{=str_tor_br_brettonnia_bandit}Hood" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_empire_deserter_sergeant" />
+      <upgrade_target id="NPCCharacter.tor_empire_deserter_scout" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_empire_deserter_template" />
+      <EquipmentSet id="tor_empire_deserter_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_brettonnia_bandit_leader" default_group="infantry" level="16" name="{=str_tor_br_brettonnia_bandit_leader}Herrimault" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level16">
+    <face>
+      <face_key_template value="BodyProperty.brute" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_empire_deserter_sergeant_template" />
+      <EquipmentSet id="tor_empire_deserter_sergeant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_brettonnia_bandit_scout" default_group="ranged" level="16" name="{=str_tor_br_brettonnia_bandit_scout}Thief" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level16">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_empire_deserter_scout_template" />
+      <EquipmentSet id="tor_empire_deserter_scout_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
 </NPCCharacters>

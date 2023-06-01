@@ -267,7 +267,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 mapState.Handler.TeleportCameraToMainParty();
             }
             SetHeroAge(25);
-            if (Hero.MainHero.IsSpellCaster()&&!Hero.MainHero.IsNecromancer()) PromptChooseLore();
+            if (Hero.MainHero.IsSpellCaster()) PromptChooseLore();
             if (Hero.MainHero.IsVampire()) PromptChooseBloodline();
         }
 
@@ -282,10 +282,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             var lores = LoreObject.GetAll();
             foreach (var item in lores)
             {
-                if (item.ID != "MinorMagic" && !item.DisabledForCultures.Contains(CharacterObject.PlayerCharacter.Culture.StringId) && !Hero.MainHero.GetExtendedInfo().HasKnownLore(item.ID)) list.Add(new InquiryElement(item, item.Name, null));
+                if (item.ID != "MinorMagic" && !item.DisabledForCultures.Contains(CharacterObject.PlayerCharacter.Culture.StringId) && !Hero.MainHero.GetExtendedInfo().HasKnownLore(item.ID)&&!item.IsRestrictedToVampires) list.Add(new InquiryElement(item, item.Name, null)) ;
             }
+
+            if (list.IsEmpty()) return;
+            
             var inquirydata = new MultiSelectionInquiryData("Choose Lore", "Choose a lore to specialize in.", list, false, 1, "Confirm", "Cancel", OnChooseLore, OnCancel);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
+
         }
 
         private void OnChooseLore(List<InquiryElement> obj)

@@ -4759,6 +4759,21 @@
       <Hideout id="hideout_forest_30" map_icon="bandit_hideout_b" scene_name="mountain_hideout_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
   </Settlement>
+  <Settlement id="hideout_forest_31" name="{=Settlements.Settlement.name.hideout_forest_28}Cultist Hideout" type="Hideout" posX="950.272" posY="1083.004" culture="Culture.forest_bandits">
+    <Components>
+      <Hideout id="hideout_forest_31" map_icon="bandit_hideout_b" scene_name="mountain_hideout_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_forest_32" name="{=Settlements.Settlement.name.hideout_forest_29}Cultist Hideout" type="Hideout" posX="904.515" posY="884.607" culture="Culture.forest_bandits">
+    <Components>
+      <Hideout id="hideout_forest_32" map_icon="bandit_hideout_b" scene_name="bandit_forest" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_forest_33" name="{=Settlements.Settlement.name.hideout_forest_30}Cultist Hideout" type="Hideout" posX="890.168" posY="1051.974" culture="Culture.forest_bandits">
+    <Components>
+      <Hideout id="hideout_forest_33" map_icon="bandit_hideout_b" scene_name="mountain_hideout_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
   <!-- Mountain Bandit  Hideouts -->
   <Settlement id="hideout_mountain_1" name="{=Settlements.Settlement.name.hideout_mountain_1}Deserter Hideout" type="Hideout" posX="1418.34" posY="868.225" culture="Culture.mountain_bandits">
     <Components>
@@ -5059,6 +5074,102 @@
   <Settlement id="hideout_beastmen_30" name="{=Settlements.Settlement.name.hideout_beastmen_30}Ungor Camp" type="Hideout" posX="1208.113" posY="1071.24" culture="Culture.steppe_bandits">
     <Components>
       <Hideout id="hideout_beastmen_30" map_icon="bandit_hideout_a" scene_name="hideout_steppe_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_beastmen_31" name="{=Settlements.Settlement.name.hideout_beastmen_27}Ungor Camp" type="Hideout" posX="1144.629" posY="928.301" culture="Culture.steppe_bandits">
+    <Components>
+      <Hideout id="hideout_beastmen_31" map_icon="bandit_hideout_a" scene_name="hideout_steppe_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_beastmen_32" name="{=Settlements.Settlement.name.hideout_beastmen_28}Ungor Camp" type="Hideout" posX="1152.843" posY="959.277" culture="Culture.steppe_bandits">
+    <Components>
+      <Hideout id="hideout_beastmen_32" map_icon="bandit_hideout_a" scene_name="hideout_steppe_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_beastmen_33" name="{=Settlements.Settlement.name.hideout_beastmen_29}Ungor Camp" type="Hideout" posX="1256.691" posY="910.981" culture="Culture.steppe_bandits">
+    <Components>
+      <Hideout id="hideout_beastmen_33" map_icon="bandit_hideout_a" scene_name="hideout_steppe_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_beastmen_34" name="{=Settlements.Settlement.name.hideout_beastmen_30}Ungor Camp" type="Hideout" posX="1216.034" posY="926.752" culture="Culture.steppe_bandits">
+    <Components>
+      <Hideout id="hideout_beastmen_34" map_icon="bandit_hideout_a" scene_name="hideout_steppe_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_beastmen_35" name="{=Settlements.Settlement.name.hideout_beastmen_27}Ungor Camp" type="Hideout" posX="1175.027" posY="797.66" culture="Culture.steppe_bandits">
+    <Components>
+      <Hideout id="hideout_beastmen_35" map_icon="bandit_hideout_a" scene_name="hideout_steppe_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_beastmen_36" name="{=Settlements.Settlement.name.hideout_beastmen_28}Ungor Camp" type="Hideout" posX="1233.605" posY="720.973" culture="Culture.steppe_bandits">
+    <Components>
+      <Hideout id="hideout_beastmen_36" map_icon="bandit_hideout_a" scene_name="hideout_steppe_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_beastmen_37" name="{=Settlements.Settlement.name.hideout_beastmen_29}Ungor Camp" type="Hideout" posX="1178.459" posY="722.015" culture="Culture.steppe_bandits">
+    <Components>
+      <Hideout id="hideout_beastmen_37" map_icon="bandit_hideout_a" scene_name="hideout_steppe_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_beastmen_38" name="{=Settlements.Settlement.name.hideout_beastmen_30}Ungor Camp" type="Hideout" posX="1110.054" posY="786.105" culture="Culture.steppe_bandits">
+    <Components>
+      <Hideout id="hideout_beastmen_38" map_icon="bandit_hideout_a" scene_name="hideout_steppe_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <!-- Brettonnia Bandit Hideouts -->
+  <Settlement id="hideout_brettonnia_1" name="{=Settlements.Settlement.name.hideout_mountain_1}Herrimault Hideout" type="Hideout" posX="1132.458" posY="881.44" culture="Culture.sea_raiders">
+    <Components>
+      <Hideout id="hideout_brettonnia_1" map_icon="bandit_hideout_d" scene_name="forest_hideout_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_brettonnia_2" name="{=Settlements.Settlement.name.hideout_mountain_1}Herrimault Hideout" type="Hideout" posX="1051.742" posY="897.235" culture="Culture.sea_raiders">
+    <Components>
+      <Hideout id="hideout_brettonnia_2" map_icon="bandit_hideout_d" scene_name="forest_hideout_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_brettonnia_3" name="{=Settlements.Settlement.name.hideout_mountain_1}Herrimault Hideout" type="Hideout" posX="985.35" posY="871.761" culture="Culture.sea_raiders">
+    <Components>
+      <Hideout id="hideout_brettonnia_3" map_icon="bandit_hideout_d" scene_name="mountain_hideout_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_brettonnia_4" name="{=Settlements.Settlement.name.hideout_mountain_1}Herrimault Hideout" type="Hideout" posX="1176.468" posY="998.665" culture="Culture.sea_raiders">
+    <Components>
+      <Hideout id="hideout_brettonnia_4" map_icon="bandit_hideout_d" scene_name="mountain_hideout_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_brettonnia_5" name="{=Settlements.Settlement.name.hideout_mountain_1}Herrimault Hideout" type="Hideout" posX="1082.761" posY="1009.997" culture="Culture.sea_raiders">
+    <Components>
+      <Hideout id="hideout_brettonnia_5" map_icon="bandit_hideout_d" scene_name="forest_hideout_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_brettonnia_6" name="{=Settlements.Settlement.name.hideout_mountain_1}Herrimault Hideout" type="Hideout" posX="898.845" posY="986.324" culture="Culture.sea_raiders">
+    <Components>
+      <Hideout id="hideout_brettonnia_6" map_icon="bandit_hideout_d" scene_name="forest_hideout_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_brettonnia_7" name="{=Settlements.Settlement.name.hideout_mountain_1}Herrimault Hideout" type="Hideout" posX="964.139" posY="951.802" culture="Culture.sea_raiders">
+    <Components>
+      <Hideout id="hideout_brettonnia_7" map_icon="bandit_hideout_d" scene_name="mountain_hideout_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_brettonnia_8" name="{=Settlements.Settlement.name.hideout_mountain_1}Herrimault Hideout" type="Hideout" posX="1031.107" posY="948.419" culture="Culture.sea_raiders">
+    <Components>
+      <Hideout id="hideout_brettonnia_8" map_icon="bandit_hideout_d" scene_name="mountain_hideout_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_brettonnia_9" name="{=Settlements.Settlement.name.hideout_mountain_1}Herrimault Hideout" type="Hideout" posX="975.389" posY="793.933" culture="Culture.sea_raiders">
+    <Components>
+      <Hideout id="hideout_brettonnia_9" map_icon="bandit_hideout_d" scene_name="forest_hideout_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_brettonnia_10" name="{=Settlements.Settlement.name.hideout_mountain_1}Herrimault Hideout" type="Hideout" posX="1088.838" posY="838.028" culture="Culture.sea_raiders">
+    <Components>
+      <Hideout id="hideout_brettonnia_10" map_icon="bandit_hideout_d" scene_name="forest_hideout_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="hideout_brettonnia_11" name="{=Settlements.Settlement.name.hideout_mountain_1}Herrimault Hideout" type="Hideout" posX="1020.03" posY="1006.968" culture="Culture.sea_raiders">
+    <Components>
+      <Hideout id="hideout_brettonnia_11" map_icon="bandit_hideout_d" scene_name="mountain_hideout_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
   </Settlement>
 </Settlements>
