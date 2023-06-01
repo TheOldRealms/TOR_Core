@@ -1877,7 +1877,7 @@
 		</LightColorRGB>
 		<TriggeredEffect>fireball_explosion</TriggeredEffect>
 	</AbilityTemplate>
-	<AbilityTemplate StringID="SoulRrain" 
+	<AbilityTemplate StringID="SoulRain" 
       Name="Soul Rain" 
       SpriteName="soulrain_icon" 
       CoolDown="30" 
