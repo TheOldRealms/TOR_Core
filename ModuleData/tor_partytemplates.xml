@@ -194,9 +194,9 @@
 	</MBPartyTemplate>
 	<MBPartyTemplate id="br_bandit_party" >
 		<stacks>
-		  <PartyTemplateStack min_value="1" max_value="4" troop="NPCCharacter.tor_br_brettonnia_bandit_scout" />
-		  <PartyTemplateStack min_value="1" max_value="4" troop="NPCCharacter.tor_br_brettonnia_bandit" />
-		  <PartyTemplateStack min_value="1" max_value="1" troop="NPCCharacter.tor_br_brettonnia_bandit_leader" />
+		  <PartyTemplateStack min_value="6" max_value="20" troop="NPCCharacter.tor_br_bandit" />
+		  <PartyTemplateStack min_value="2" max_value="20" troop="NPCCharacter.tor_br_bandit_scout" />
+		  <PartyTemplateStack min_value="1" max_value="4" troop="NPCCharacter.tor_br_bandit_leader" />
 		</stacks>
 	</MBPartyTemplate>
 	<MBPartyTemplate id="chaos_cultists" >

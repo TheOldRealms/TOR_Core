@@ -2129,7 +2129,7 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_br_brettonnia_bandit">
+  <CharacterExtendedInfo id="tor_br_bandit">
     <Abilities />
     <Attributes>
       <string>Expendable</string>
@@ -2140,7 +2140,7 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_br_brettonnia_bandit_leader">
+  <CharacterExtendedInfo id="tor_br_bandit_leader">
     <Abilities />
     <Attributes />
     <Resistances />
@@ -2149,7 +2149,7 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_br_brettonnia_bandit_scout">
+  <CharacterExtendedInfo id="tor_br_bandit_scout">
     <Abilities />
     <Attributes />
     <Resistances />
