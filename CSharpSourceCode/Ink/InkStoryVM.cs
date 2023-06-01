@@ -31,7 +31,6 @@ namespace TOR_Core.Ink
         public override void RefreshValues()
         {
             if (_story == null) return;
-            var spellcraft = _story.GetVariable("spellcraft");
             //Get Sprite to display on the right
             PlaySound();
             if (_story.GetIllustration() != null)

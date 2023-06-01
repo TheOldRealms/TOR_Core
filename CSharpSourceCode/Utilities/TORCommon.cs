@@ -145,7 +145,7 @@ namespace TOR_Core.Utilities
         /// <param name="party"></param>
         /// <param name="radius"></param>
         /// <returns></returns>
-        public static Settlement FindNearestSettlement(MobileParty party, float radius)
+        public static Settlement FindNearestSettlement(MobileParty party, float radius, Func<Settlement, bool> condition = null)
         {
             LocatableSearchData<Settlement> locatableSearchData = Settlement.StartFindingLocatablesAroundPosition(party.Position2D, radius);
             List<Settlement> nearbySettlements = new List<Settlement>();
@@ -153,7 +153,11 @@ namespace TOR_Core.Utilities
             {
                 nearbySettlements.Add(settlement);
             }
-
+            if (condition != null)
+            {
+                nearbySettlements = nearbySettlements.FindAll(x => condition(x));
+            }
+            if (nearbySettlements.Count == 0) return null;
             // The list of nearbySettlements is unordered, thus we need to find the
             // settlement with minimum distance.
             return nearbySettlements.MinBy(

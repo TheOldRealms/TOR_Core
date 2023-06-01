@@ -15,9 +15,9 @@
                                     </Children>
                                 </Widget>
                                 <!-- CHOICES AREA-->
-                                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="100" VerticalAlignment="Bottom">
+                                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginBottom="20">
                                     <Children>
-                                        <ListPanel DataSource="{CurrentChoices}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalBottomToTop" HorizontalAlignment="Left" VerticalAlignment="Bottom" MarginRight="15">
+                                        <ListPanel DataSource="{CurrentChoices}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" HorizontalAlignment="Left" VerticalAlignment="Bottom" MarginRight="15">
                                             <ItemTemplate>
                                                 <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" Command.Click="ExecuteSelect" Brush="TorInkStoryButtonBrush">
                                                     <Children>

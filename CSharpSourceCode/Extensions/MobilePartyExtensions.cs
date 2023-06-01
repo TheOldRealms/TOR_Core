@@ -122,5 +122,52 @@ namespace TOR_Core.Extensions
         {
             return party.GetMemberHeroes().Where(x => x.IsSpellCaster()).ToList();
         }
+
+        public static int GetHighestSkillValue(this MobileParty party, SkillObject skill)
+        {
+            int skillValue = 0;
+            foreach(var hero in party.GetMemberHeroes())
+            {
+                var heroSkillvalue = hero.GetSkillValue(skill);
+                if (heroSkillvalue > skillValue) skillValue = heroSkillvalue;
+            }
+            return skillValue;
+        }
+
+        public static bool HasVampire(this MobileParty party)
+        {
+            foreach (var hero in party.GetMemberHeroes())
+            {
+                if (hero.IsVampire()) return true;
+            }
+            return false;
+        }
+
+        public static bool HasNecromancer(this MobileParty party)
+        {
+            foreach (var hero in party.GetMemberHeroes())
+            {
+                if (hero.IsNecromancer()) return true;
+            }
+            return false;
+        }
+
+        public static bool HasSpellcaster(this MobileParty party)
+        {
+            foreach (var hero in party.GetMemberHeroes())
+            {
+                if (hero.IsSpellCaster()) return true;
+            }
+            return false;
+        }
+
+        public static bool HasKnownLore(this MobileParty party, string lorename)
+        {
+            foreach (var hero in party.GetMemberHeroes())
+            {
+                if (hero.HasKnownLore(lorename)) return true;
+            }
+            return false;
+        }
     }
 }
