@@ -335,7 +335,9 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
         private void SessionLaunched(CampaignGameStarter starter)
         {
         }
-
-        public override void SyncData(IDataStore dataStore) => dataStore.SyncData("_kingdomDecisionsList", ref _kingdomDecisionsList);
+        
+        public override void SyncData(IDataStore dataStore)
+        {
+        }
     }
 }
