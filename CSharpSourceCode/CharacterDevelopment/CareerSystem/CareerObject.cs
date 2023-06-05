@@ -46,6 +46,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             MaxCharge = maxCharge;
             AbilityTemplateID = abilityID;
             AbilityScriptType = abilityScriptType;
+            IsReady = true;
         }
 
         public bool IsConditionsMet(Hero hero)
