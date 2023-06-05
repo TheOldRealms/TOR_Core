@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Settlements>
   <!--Custom Settlements-->
   <Settlement id="chaos_portal_01" name="{=!}Chaos Portal" owner="Faction.chaos_clan_1" posX="1421.178" posY="900.773" culture="Culture.chaos_culture" text="{=!}Chaos Portal">

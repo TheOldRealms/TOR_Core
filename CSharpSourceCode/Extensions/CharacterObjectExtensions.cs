@@ -189,6 +189,11 @@ namespace TOR_Core.Extensions
             return characterObject.Race == FaceGen.GetRaceOrDefault("chaos_ud_cultist");
         }
 
+        public static bool IsBloodDragon(this BasicCharacterObject characterObject)
+        {
+            return characterObject.GetAttributes().Contains("Blooddragon");
+        }
+
         public static bool IsReligiousUnit(this CharacterObject characterObject)
         {
             return ReligionObject.All.Any(x => x.ReligiousTroops.Contains(characterObject));
