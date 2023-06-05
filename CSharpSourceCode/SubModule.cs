@@ -119,6 +119,7 @@ namespace TOR_Core
                 starter.AddBehavior(new BountyMasterCampaignBehavior());
                 starter.AddBehavior(new HuntCultistsQuestCampaignBehavior());
                 starter.AddBehavior(new TORCareerPerkCampaignBehavior());
+                starter.AddBehavior(new TORRecruitmentCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
@@ -168,6 +169,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORTournamentModel());
                 gameStarterObject.AddModel(new TORDiplomacyModel());
                 gameStarterObject.AddModel(new TORRaidModel());
+                gameStarterObject.AddModel(new TORSettlementLoyaltyModel());
 
                 CampaignOptions.IsLifeDeathCycleDisabled = true;
             }

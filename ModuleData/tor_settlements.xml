@@ -4597,7 +4597,7 @@
     </CommonAreas>
   </Settlement>
   <!-- Blood Keep -->
-  <Settlement id="castle_BK1" name="{=Settlements.Settlement.name.castle_BK1}Blood Keep" owner="Faction.blooddragons_clan_1" posX="1280.048" posY="949.151" prosperity="800" culture="Culture.khuzait" gate_posX="1278.506" gate_posY="945.536" text="{=Settlements.Settlement.text.castle_BK1}Once the home of a valiant order of Knights known as the Order of the Blood Dragon, or the Ordo Draconis. One fateful night, a Vampire known as Walach Harkon challenged every Knight to single combat, eventually turning all who he deemed worthy into Vampires. The entirety of the Ordo Draconis was then wiped from existence and became known as the Blood Dragons.">
+  <Settlement id="castle_BK1" name="{=Settlements.Settlement.name.castle_BK1}Blood Keep" owner="Faction.blooddragons_clan_1" posX="1280.048" posY="949.151" prosperity="800" culture="Culture.blooddragons" gate_posX="1278.506" gate_posY="945.536" text="{=Settlements.Settlement.text.castle_BK1}Once the home of a valiant order of Knights known as the Order of the Blood Dragon, or the Ordo Draconis. One fateful night, a Vampire known as Walach Harkon challenged every Knight to single combat, eventually turning all who he deemed worthy into Vampires. The entirety of the Ordo Draconis was then wiped from existence and became known as the Blood Dragons.">
     <Components>
       <Town id="castle_comp_BK1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="vampire_city_background" gate_rotation="0.908" />
     </Components>

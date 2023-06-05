@@ -2999,19 +2999,25 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_blooddragons_factionleader">
     <Abilities />
-    <Attributes />
+    <Attributes>
+	<string>Blooddragon</string>
+	</Attributes> 
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_blooddragons_first_2">
     <Abilities />
-    <Attributes />
+	<Attributes>
+	<string>Blooddragon</string>
+	</Attributes> 
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_blooddragons_first_3">
-    <Abilities />
-    <Attributes />
+	<Attributes>
+	<string>Blooddragon</string>
+	</Attributes> 
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_blooddragons_first_4">
-    <Abilities />
-    <Attributes />
+	<Attributes>
+	<string>Blooddragon</string>
+	</Attributes> 
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_parravon_factionleader">
     <Abilities />
