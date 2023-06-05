@@ -49,6 +49,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             if(mutations != null) _mutations.AddRange(mutations);
             Passive = passiveEffect;
             if (isRootNode) OwnerCareer.RootNode = this;
+            IsReady = true;
         }
 
         public void MutateAbility(AbilityTemplate ability, Agent agent) => MutateObject(ability, agent);

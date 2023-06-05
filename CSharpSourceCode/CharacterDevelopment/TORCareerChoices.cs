@@ -24,7 +24,7 @@ namespace TOR_Core.CharacterDevelopment
             WarriorPriestCareerChoices = new WarriorPriestCareerChoices();
         }
 
-        public static CareerChoiceObject GetChoice(string id) => MBObjectManager.Instance.GetObject<CareerChoiceObject>(x => x.StringId == id);
+        public static CareerChoiceObject GetChoice(string id) => Game.Current.ObjectManager.GetObject<CareerChoiceObject>(x => x.StringId == id);
 
     }
 }
