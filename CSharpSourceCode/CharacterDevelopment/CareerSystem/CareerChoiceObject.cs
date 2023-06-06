@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +49,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             if(mutations != null) _mutations.AddRange(mutations);
             Passive = passiveEffect;
             if (isRootNode) OwnerCareer.RootNode = this;
-            IsReady = true;
+            AfterInitialized();
         }
 
         public void MutateAbility(AbilityTemplate ability, Agent agent) => MutateObject(ability, agent);
@@ -126,7 +126,16 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         {
             public float EffectMagnitude = 0f;
             public OperationType Operation = OperationType.None;
+            public PassiveEffectType PassiveEffectType = PassiveEffectType.Special;
             public bool InterpretAsPercentage = true;
+
+            public PassiveEffect(float effectValue, PassiveEffectType type = PassiveEffectType.Special, bool asPercent=false)
+            {
+                EffectMagnitude = effectValue;
+                Operation = OperationType.Add;
+                InterpretAsPercentage = asPercent;
+                PassiveEffectType = type;
+            }
         }
     }
 
@@ -142,5 +151,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         Multiply,
         Replace,
         None
+    }
+
+    public enum PassiveEffectType
+    {
+        Special,
+        Health,
+        HealthRegeneration,
+        Ammo,
+        WindsOfMagic
     }
 }

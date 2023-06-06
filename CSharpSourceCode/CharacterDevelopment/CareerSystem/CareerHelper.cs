@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
 
@@ -30,6 +31,23 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 }
             }
             return retVal;
+        }
+
+
+        public static void ApplyCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType)
+        {
+            var choices = hero.GetAllCareerChoices();
+            foreach (var choiceID in choices)
+            {
+                var choice =  TORCareerChoices.GetChoice(choiceID);
+                if(choice==null)
+                    continue;
+
+                if (choice.Passive != null&& choice.Passive.PassiveEffectType == passiveEffectType)
+                {
+                    number.Add(choice.Passive.EffectMagnitude, new TextObject(choice.BelongsToGroup.Name.ToString()));
+                }
+            }
         }
     }
 }

@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.StatusEffect;
@@ -55,6 +56,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             RegisterAll();
             InitializePassives();
             InitializeKeyStones();
+            
         }
 
         private void RegisterAll()
@@ -96,6 +98,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             _archLectorPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ArchLectorPassive2"));
             _archLectorPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ArchLectorPassive3"));
             _archLectorPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ArchLectorPassive4"));
+            
+         
         }
 
         private void InitializeKeyStones()
@@ -252,17 +256,17 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         private void InitializePassives()
         {
-            _bookOfSigmarPassive1.Initialize(TORCareers.WarriorPriest, "Increases hitpoints by 20.", "BookOfSigmar", false, ChoiceType.Passive, null);
+            _bookOfSigmarPassive1.Initialize(TORCareers.WarriorPriest, "Increases hitpoints by 20.", "BookOfSigmar", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
             _bookOfSigmarPassive2.Initialize(TORCareers.WarriorPriest, "Grants higher starting morale to troops.", "BookOfSigmar", false, ChoiceType.Passive, null);
             _bookOfSigmarPassive3.Initialize(TORCareers.WarriorPriest, "After battle, all critically wounded companions are restored to minimum 20% of their health.", "BookOfSigmar", false, ChoiceType.Passive, null);
-            _bookOfSigmarPassive4.Initialize(TORCareers.WarriorPriest, "Wounded troops in your party heal faster.", "BookOfSigmar", false, ChoiceType.Passive, null);
+            _bookOfSigmarPassive4.Initialize(TORCareers.WarriorPriest, "Wounded troops in your party heal faster.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
 
             _sigmarProclaimerPassive1.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "SigmarsProclaimer", false, ChoiceType.Passive, null);
             _sigmarProclaimerPassive2.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "SigmarsProclaimer", false, ChoiceType.Passive, null);
             _sigmarProclaimerPassive3.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "SigmarsProclaimer", false, ChoiceType.Passive, null);
             _sigmarProclaimerPassive4.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "SigmarsProclaimer", false, ChoiceType.Passive, null);
 
-            _relentlessFanaticPassive1.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "RelentlessFanatic", false, ChoiceType.Passive, null);
+            _relentlessFanaticPassive1.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "RelentlessFanatic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Health));
             _relentlessFanaticPassive2.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "RelentlessFanatic", false, ChoiceType.Passive, null);
             _relentlessFanaticPassive3.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "RelentlessFanatic", false, ChoiceType.Passive, null);
             _relentlessFanaticPassive4.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "RelentlessFanatic", false, ChoiceType.Passive, null);
@@ -282,5 +286,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             _archLectorPassive3.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "ArchLector", false, ChoiceType.Passive, null);
             _archLectorPassive4.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "ArchLector", false, ChoiceType.Passive, null);
         }
+        
+
     }
 }
