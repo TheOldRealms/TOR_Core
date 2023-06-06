@@ -45,7 +45,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
                 if (choice.Passive != null&& choice.Passive.PassiveEffectType == passiveEffectType)
                 {
-                    number.Add(choice.Passive.EffectMagnitude, new TextObject(choice.BelongsToGroup.Name.ToString()));
+                    var value = choice.Passive.EffectMagnitude;
+                    if (choice.Passive.InterpretAsPercentage)
+                    {
+                        value /= 100;
+                    }
+                    number.Add(value, new TextObject(choice.BelongsToGroup.Name.ToString()));
                 }
             }
         }

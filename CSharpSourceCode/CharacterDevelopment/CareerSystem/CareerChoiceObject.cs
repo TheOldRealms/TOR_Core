@@ -13,6 +13,7 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
@@ -128,6 +129,17 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             public OperationType Operation = OperationType.None;
             public PassiveEffectType PassiveEffectType = PassiveEffectType.Special;
             public bool InterpretAsPercentage = true;
+            public DamageProportionTuple DamageProportionTuple;
+            public DamageProportionTuple ResistanceProportionTuple = null;
+            
+            public PassiveEffect(float effectValue, PassiveEffectType type, DamageProportionTuple damageProportionTuple)
+            {
+                EffectMagnitude = effectValue;
+                Operation = OperationType.Add;
+                InterpretAsPercentage = true;
+                PassiveEffectType = type;
+                DamageProportionTuple = damageProportionTuple;
+            }
 
             public PassiveEffect(float effectValue, PassiveEffectType type = PassiveEffectType.Special, bool asPercent=false)
             {
@@ -158,7 +170,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         Special,
         Health,
         HealthRegeneration,
+        Damage,
+        Resistance,
+        TroopRegeneration,
+        TroopMorale,
         Ammo,
-        WindsOfMagic
+        WindsOfMagic,
+        
     }
 }

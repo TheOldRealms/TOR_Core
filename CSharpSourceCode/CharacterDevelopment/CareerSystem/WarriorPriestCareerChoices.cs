@@ -257,9 +257,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         private void InitializePassives()
         {
             _bookOfSigmarPassive1.Initialize(TORCareers.WarriorPriest, "Increases hitpoints by 20.", "BookOfSigmar", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
-            _bookOfSigmarPassive2.Initialize(TORCareers.WarriorPriest, "Grants higher starting morale to troops.", "BookOfSigmar", false, ChoiceType.Passive, null);
+            _bookOfSigmarPassive2.Initialize(TORCareers.WarriorPriest, "Higher  troop morale for all troops", "BookOfSigmar", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.TroopMorale));
             _bookOfSigmarPassive3.Initialize(TORCareers.WarriorPriest, "After battle, all critically wounded companions are restored to minimum 20% of their health.", "BookOfSigmar", false, ChoiceType.Passive, null);
-            _bookOfSigmarPassive4.Initialize(TORCareers.WarriorPriest, "Wounded troops in your party heal faster.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
+            _bookOfSigmarPassive4.Initialize(TORCareers.WarriorPriest, "Wounded troops in your party heal faster.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration));
 
             _sigmarProclaimerPassive1.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "SigmarsProclaimer", false, ChoiceType.Passive, null);
             _sigmarProclaimerPassive2.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "SigmarsProclaimer", false, ChoiceType.Passive, null);
