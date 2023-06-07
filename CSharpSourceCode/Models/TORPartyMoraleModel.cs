@@ -39,7 +39,7 @@ namespace TOR_Core.Models
             if(party.LeaderHero==null)return;
             if (party.LeaderHero.HasAnyCareer())
             {
-                CareerHelper.ApplyCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.TroopMorale);
+                CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.TroopMorale);
             }
         }
     }

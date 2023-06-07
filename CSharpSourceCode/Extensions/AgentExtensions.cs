@@ -11,6 +11,7 @@ using TaleWorlds.MountAndBlade.CustomBattle;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Models;
@@ -82,6 +83,26 @@ namespace TOR_Core.Extensions
         public static bool IsUndead(this Agent agent)
         {
             return agent.GetAttributes().Contains("Undead");
+        }
+
+        public static bool IsUnstopable(this Agent agent)
+        {
+            return agent.GetAttributes().Contains("Unstopable");
+        }
+
+        public static bool IsJuggernaut(this Agent agent)
+        {
+            if (agent.IsMainAgent && agent.GetHero().HasAnyCareer())
+            {
+                return agent.GetHero().GetAllCareerChoices().Contains("ProtectorOfTheWeakPassive4");
+            }
+
+            return false;
+        }
+
+        public static bool IsHeroic(this Agent agent)
+        {
+            return agent.GetHero().GetAllCareerChoices().Contains("ArchlectorPassive4");
         }
         
         public static bool ShouldNotBleed(this Agent agent)
@@ -399,11 +420,17 @@ namespace TOR_Core.Extensions
 
             if (Game.Current.GameType is Campaign)
             {
+                if (agent ==Agent.Main)
+                {
+                    result = CareerHelper.AddBasicCareerPassivesToPropertyContainer(agent,result,attackTypeMask);
+                }
                 var model = MissionGameModels.Current.AgentStatCalculateModel as TORAgentStatCalculateModel;
                 if(model != null)
                 {
                     result = model.AddPerkEffectsToAgentPropertyContainer(agent, propertyMask, attackTypeMask, result);
                 }
+                
+               
             }
 
             return result;
@@ -679,6 +706,8 @@ namespace TOR_Core.Extensions
         {
             agent.AgentVisuals?.SetVisible(true);
         }
+        
+        
 
         public static void Disappear(this Agent agent)
         {

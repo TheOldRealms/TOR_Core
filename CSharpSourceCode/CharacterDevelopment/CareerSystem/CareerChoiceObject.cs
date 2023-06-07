@@ -130,15 +130,16 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             public PassiveEffectType PassiveEffectType = PassiveEffectType.Special;
             public bool InterpretAsPercentage = true;
             public DamageProportionTuple DamageProportionTuple;
-            public DamageProportionTuple ResistanceProportionTuple = null;
+            public AttackTypeMask AttackTypeMask = AttackTypeMask.Melee;
             
-            public PassiveEffect(float effectValue, PassiveEffectType type, DamageProportionTuple damageProportionTuple)
+            public PassiveEffect(PassiveEffectType type, DamageProportionTuple damageProportionTuple, AttackTypeMask mask)
             {
-                EffectMagnitude = effectValue;
+                EffectMagnitude = 0;
                 Operation = OperationType.Add;
                 InterpretAsPercentage = true;
                 PassiveEffectType = type;
                 DamageProportionTuple = damageProportionTuple;
+                AttackTypeMask = mask;
             }
 
             public PassiveEffect(float effectValue, PassiveEffectType type = PassiveEffectType.Special, bool asPercent=false)
@@ -172,6 +173,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         HealthRegeneration,
         Damage,
         Resistance,
+        PartyMovementSpeed,
         TroopRegeneration,
         TroopMorale,
         Ammo,

@@ -201,7 +201,7 @@ namespace TOR_Core.Extensions
         public static bool HasCareerChoice(this Hero hero, string choiceID)
         {
             bool result = false;
-            if (hero != null && hero.GetExtendedInfo() != null)
+            if (hero != null && hero.GetExtendedInfo() != null&& hero.HasAnyCareer())
             {
                 return hero.GetExtendedInfo().CareerChoices.Contains(choiceID);
             }
@@ -270,7 +270,7 @@ namespace TOR_Core.Extensions
 
         public static bool HasAnyCareer(this Hero hero)
         {
-            if (!hero.IsHumanPlayerCharacter)
+            if (hero==null&& hero.HasAnyCareer())
                 return false;
             
             bool result = false;

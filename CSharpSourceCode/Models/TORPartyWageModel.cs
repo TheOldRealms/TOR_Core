@@ -1,5 +1,11 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using System.Linq;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
+using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
@@ -35,5 +41,60 @@ namespace TOR_Core.Models
                     return 40;
             }
         }
+
+        public override ExplainedNumber GetTotalWage(MobileParty mobileParty, bool includeDescriptions = false)
+        { 
+            var value = base.GetTotalWage(mobileParty, includeDescriptions);
+
+
+            
+            
+            for (int index = 0; index < mobileParty.MemberRoster.Count; ++index)
+            {
+                TroopRosterElement elementCopyAtIndex = mobileParty.MemberRoster.GetElementCopyAtIndex(index);
+                if (mobileParty.IsMainParty)
+                {
+                    var careerID = mobileParty.LeaderHero.GetCareer().StringId;
+                    value = AddCareerSpecifWagePerks(value, mobileParty.LeaderHero,careerID, elementCopyAtIndex);
+                }
+                
+                
+            }
+
+            return value;
+        }
+
+        private ExplainedNumber AddCareerSpecifWagePerks(ExplainedNumber resultValue, Hero hero, string CareerID, TroopRosterElement unit)
+        {
+            
+            //TODO Generalized perks?
+            
+            if (CareerID == CareerHelper.WARRIORRPRIEST)
+            {
+                var choices = hero.GetAllCareerChoices();
+
+                if (unit.Character.IsSoldier)
+                {
+                    if(unit.Character.IsDevotedToCult("cult_of_sigmar")||(!unit.Character.IsReligiousUnit()&&hero.GetAllCareerChoices().Contains("ArchLectorPassive4")))
+                    {
+                        if (hero.HasCareerChoice("SigmarsProclaimerPassive2"))
+                        {
+                            var choice = TORCareerChoices.GetChoice("SigmarsProclaimerPassive2");
+                            if (choice == null || choice.Passive==null) return resultValue;
+                            var effectMagnitude = choice.Passive.EffectMagnitude;
+                            if (choice.Passive.InterpretAsPercentage) effectMagnitude /= 100;
+                            var value = (unit.Character.TroopWage*unit.Number) * (1-effectMagnitude);
+                      
+                            resultValue.Add(-value*effectMagnitude, choice.BelongsToGroup.Name);
+                        }
+                    }
+                }
+               
+
+            }
+
+            return resultValue;
+        }
+        
     }
 }

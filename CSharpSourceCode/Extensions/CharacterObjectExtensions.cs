@@ -123,6 +123,14 @@ namespace TOR_Core.Extensions
         {
             return ReligionObject.All.Any(x => x.ReligiousTroops.Contains(characterObject));
         }
+
+        public static bool IsDevotedToCult(this CharacterObject characterObject, string cultId)
+        {
+            var cult = ReligionObject.All.FirstOrDefault(x => x.StringId==cultId);
+            return cult != null && cult.ReligiousTroops.Contains(characterObject);
+        }
+        
+        
         /// <summary>
         /// Access item objects from the equipment of the character
         /// Equipment Indexes can define the Range. Note that horses are not a valid item object to be accessed

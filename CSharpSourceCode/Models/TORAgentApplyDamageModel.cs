@@ -95,6 +95,7 @@ namespace TOR_Core.Models
                     result.AddFactor(TORPerks.SpellCraft.Dampener.SecondaryBonus);
                 }
                 SkillHelper.AddSkillBonusForCharacter(TORSkills.Faith, TORSkillEffects.FaithWardSave, victimCharacter, ref result, -1, false);
+                //TODO wardsave factor 
             }
             return result.ResultNumber;
         }

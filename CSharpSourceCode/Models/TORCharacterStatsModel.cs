@@ -83,7 +83,7 @@ namespace TOR_Core.Models
 
                 if (hero.HasAnyCareer())
                 {
-                    CareerHelper.ApplyCareerPassives(hero, ref number, PassiveEffectType.Health);
+                    CareerHelper.ApplyBasicCareerPassives(hero, ref number, PassiveEffectType.Health);
                 }
             }
             if (hero.GetPerkValue(TORPerks.Faith.Devotee))

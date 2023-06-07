@@ -306,6 +306,10 @@ namespace TOR_Core.Models
                             proportions[(int)DamageType.Physical] = 0;
                         }
                     }
+                    
+                    //TODO add Career perks
+                    
+                    //TODO Move Generalized Career perk logic
                 }
                 if(mask == PropertyMask.Defense || mask == PropertyMask.All)
                 {

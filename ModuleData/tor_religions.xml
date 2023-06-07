@@ -12,7 +12,7 @@
         <Followers>
         </Followers>
         <ReligiousTroops>
-            <ReligiousTroop id="NPCCharacter.tor_empire_recruit" />
+            <ReligiousTroop id="NPCCharacter.tor_empire_flagellant" />
         </ReligiousTroops>
     </Religion>
     <Religion id="cult_of_taal" Name="Cult of Taal" Culture="Culture.empire" Affinity="Order">
