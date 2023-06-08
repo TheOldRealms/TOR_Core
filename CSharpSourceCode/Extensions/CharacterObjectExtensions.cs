@@ -123,13 +123,22 @@ namespace TOR_Core.Extensions
         {
             return ReligionObject.All.Any(x => x.ReligiousTroops.Contains(characterObject));
         }
+        
+        public static bool IsReligiousUnit(this BasicCharacterObject characterObject)
+        {
+            return ReligionObject.All.Any(x => x.ReligiousTroops.Contains(characterObject));
+        }
 
-        public static bool IsDevotedToCult(this CharacterObject characterObject, string cultId)
+        public static bool UnitBelongsToCult(this CharacterObject characterObject, string cultId)
         {
             var cult = ReligionObject.All.FirstOrDefault(x => x.StringId==cultId);
             return cult != null && cult.ReligiousTroops.Contains(characterObject);
         }
-        
+        public static bool UnitBelongsToCult(this BasicCharacterObject characterObject, string cultId)
+        {
+            var cult = ReligionObject.All.FirstOrDefault(x => x.StringId==cultId);
+            return cult != null && cult.ReligiousTroops.Contains(characterObject);
+        }
         
         /// <summary>
         /// Access item objects from the equipment of the character

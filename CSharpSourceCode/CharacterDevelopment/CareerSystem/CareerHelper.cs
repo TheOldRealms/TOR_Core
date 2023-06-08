@@ -14,8 +14,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
     public static class CareerHelper
     {
-        public const string WARRIORRPRIEST = "WarriorPriest";
-
         public static float AddSkillEffectToValue(CareerChoiceObject careerChoice, Agent agent, List<SkillObject> relevantSkills, float scalingFactor, bool highestOnly = false)
         {
             float retVal = 0f;
@@ -65,14 +63,22 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         }
 
 
-        public static AgentPropertyContainer AddBasicCareerPassivesToPropertyContainer(Agent agent, AgentPropertyContainer propertyContainer, AttackTypeMask mask)
+        public static AgentPropertyContainer AddBasicCareerPassivesToPropertyContainerForMainAgent(Agent agent, AgentPropertyContainer propertyContainer, AttackTypeMask attackTypeMaskmask, PropertyMask mask)
         {
             if (!agent.GetHero().HasAnyCareer()) return propertyContainer;
             
             var  damageValues = propertyContainer.AdditionalDamagePercentages;
             var resistanceValues = propertyContainer.ResistancePercentages;
-            ApplyCareerPassivesForDamageValues(agent, ref damageValues, mask);
-            ApplyCareerPassivesForResistanceValues(agent, ref resistanceValues, mask);
+            if (mask == PropertyMask.Attack)
+            {
+                ApplyCareerPassivesForDamageValues(agent, ref damageValues, attackTypeMaskmask);
+            }
+            if (mask == PropertyMask.Defense)
+            {
+                ApplyCareerPassivesForResistanceValues(agent, ref resistanceValues, attackTypeMaskmask);
+            }
+            
+            
 
             return new AgentPropertyContainer(propertyContainer.DamageProportions, damageValues, resistanceValues, propertyContainer.AdditionalDamagePercentages);
         }
@@ -90,7 +96,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 {
                     var passive = choice.Passive;
                     var mask = passive.AttackTypeMask;
-                    if(attackMask != mask)
+                    if((mask & attackMask)==0) //if mask does NOT contains attackmask
                         continue;
                     
                     var damageType = passive.DamageProportionTuple.DamageType;
@@ -114,7 +120,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 {
                     var passive = choice.Passive;
                     var mask = passive.AttackTypeMask;
-                    if(attackMask != mask)
+                    if((mask&attackMask)==0)    //if mask does NOT contains attackmask
                         continue;
                     var damageType = passive.DamageProportionTuple.DamageType;
                     resistancePropotions[(int)damageType]+=(passive.DamageProportionTuple.Percent/100);

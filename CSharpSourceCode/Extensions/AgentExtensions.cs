@@ -75,7 +75,7 @@ namespace TOR_Core.Extensions
             return agent.GetAttributes().Contains("Unbreakable");
         }
 
-        public static bool IsHuman(this Agent agent)
+        public static bool IsHuman(this Agent agent)            //I think this is not really helpful
         {
             return agent.GetAttributes().Contains("Human");
         }
@@ -83,11 +83,6 @@ namespace TOR_Core.Extensions
         public static bool IsUndead(this Agent agent)
         {
             return agent.GetAttributes().Contains("Undead");
-        }
-
-        public static bool IsUnstopable(this Agent agent)
-        {
-            return agent.GetAttributes().Contains("Unstopable");
         }
 
         public static bool IsJuggernaut(this Agent agent)
@@ -100,11 +95,6 @@ namespace TOR_Core.Extensions
             return false;
         }
 
-        public static bool IsHeroic(this Agent agent)
-        {
-            return agent.GetHero().GetAllCareerChoices().Contains("ArchlectorPassive4");
-        }
-        
         public static bool ShouldNotBleed(this Agent agent)
         {
             return agent.GetAttributes().Contains("ClearBloodBurst");
@@ -420,17 +410,11 @@ namespace TOR_Core.Extensions
 
             if (Game.Current.GameType is Campaign)
             {
-                if (agent ==Agent.Main)
-                {
-                    result = CareerHelper.AddBasicCareerPassivesToPropertyContainer(agent,result,attackTypeMask);
-                }
                 var model = MissionGameModels.Current.AgentStatCalculateModel as TORAgentStatCalculateModel;
                 if(model != null)
                 {
                     result = model.AddPerkEffectsToAgentPropertyContainer(agent, propertyMask, attackTypeMask, result);
                 }
-                
-               
             }
 
             return result;

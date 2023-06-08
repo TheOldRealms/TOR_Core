@@ -1,6 +1,7 @@
 using System.Linq;
 using HarmonyLib;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
@@ -49,8 +50,19 @@ namespace TOR_Core.HarmonyPatches
                     var torModel = model as TORAgentApplyDamageModel;
                     wardSaveFactor = torModel.CalculateWardSaveFactor(victim, attackTypeMask);
                 }
+
+                if (attacker.GetOriginMobileParty()==MobileParty.MainParty)
+                {
+                    var choices = Hero.MainHero.GetAllCareerChoices();
+
+                    if (victim.Character.Race != 0 && choices.Contains("HolyPurgePassive3"))
+                    {
+                        additionalDamagePercentages[(int)DamageType.Physical] += 0.1f;
+                    }
+                        
+                }
             }
-            
+
             string abilityName = "";
             if (attackTypeMask==AttackTypeMask.Ranged)
             {
@@ -135,7 +147,6 @@ namespace TOR_Core.HarmonyPatches
             var originalDamage = b.InflictedDamage;
             b.InflictedDamage = resultDamage;
             b.BaseMagnitude = resultDamage;
-            if (victim.IsUnstopable()) b.BlowFlag |= BlowFlags.ShrugOff;
 
             if (victim.IsJuggernaut() && b.InflictedDamage < 15)
             {

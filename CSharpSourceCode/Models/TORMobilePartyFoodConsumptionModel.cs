@@ -53,7 +53,7 @@ namespace TOR_Core.Models
             
             if (choices.Contains("SigmarsProclaimerPassive3"))
             {
-                bool includeRegularTroops = choices.Contains("ArchLectorPassive4");
+                bool includeRegularTroops = choices.Contains("ArchLectorPassive2");
                 var choice = TORCareerChoices.GetChoice("SigmarsProclaimerPassive3");
                 var perkValue = AddSigmarsProclaimerPerk(values, party,choice,includeRegularTroops);
                 values.Add(perkValue, choice.BelongsToGroup.Name);
@@ -70,10 +70,13 @@ namespace TOR_Core.Models
 
             var troops = party.MemberRoster.GetTroopRoster();
             var sigmarRiteTroops = new MBList<TroopRosterElement>();
+            
             foreach (var troopRosterElement in troops.Where(troopRosterElement => troopRosterElement.Character.IsSoldier)) //could be all a nice query , doesn't work for whatever reason
             {
-                if (!troopRosterElement.Character.IsDevotedToCult("cult_of_sigmar"))
+                if (!troopRosterElement.Character.UnitBelongsToCult("cult_of_sigmar"))
                 {
+                    if(troopRosterElement.Character.IsReligiousUnit())
+                       continue; 
                     if (includeRegularTroops)
                     {
                         sigmarRiteTroops.Add(troopRosterElement);
@@ -89,7 +92,7 @@ namespace TOR_Core.Models
             if (perkChoice.Passive == null) return 0f;
             var effectMagnitude = perkChoice.Passive.EffectMagnitude;
             if (perkChoice.Passive.InterpretAsPercentage) effectMagnitude /= 100;
-            var basefoodConsumptionForRoster = count / NumberOfMenOnMapToEatOneFood;
+            float basefoodConsumptionForRoster =  ((float)count / NumberOfMenOnMapToEatOneFood);
             return basefoodConsumptionForRoster * effectMagnitude;
         }
     }

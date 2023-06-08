@@ -45,9 +45,6 @@ namespace TOR_Core.Models
         public override ExplainedNumber GetTotalWage(MobileParty mobileParty, bool includeDescriptions = false)
         { 
             var value = base.GetTotalWage(mobileParty, includeDescriptions);
-
-
-            
             
             for (int index = 0; index < mobileParty.MemberRoster.Count; ++index)
             {
@@ -55,7 +52,7 @@ namespace TOR_Core.Models
                 if (mobileParty.IsMainParty)
                 {
                     var careerID = mobileParty.LeaderHero.GetCareer().StringId;
-                    value = AddCareerSpecifWagePerks(value, mobileParty.LeaderHero,careerID, elementCopyAtIndex);
+                    value = AddCareerSpecifWagePerks(value, mobileParty.LeaderHero, elementCopyAtIndex);
                 }
                 
                 
@@ -64,37 +61,42 @@ namespace TOR_Core.Models
             return value;
         }
 
-        private ExplainedNumber AddCareerSpecifWagePerks(ExplainedNumber resultValue, Hero hero, string CareerID, TroopRosterElement unit)
+        private ExplainedNumber AddCareerSpecifWagePerks(ExplainedNumber resultValue, Hero hero, TroopRosterElement unit)
         {
             
             //TODO Generalized perks?
-            
-            if (CareerID == CareerHelper.WARRIORRPRIEST)
+            var choices = hero.GetAllCareerChoices();
+
+            if (choices.Contains("SigmarsProclaimerPassive2"))
             {
-                var choices = hero.GetAllCareerChoices();
-
-                if (unit.Character.IsSoldier)
-                {
-                    if(unit.Character.IsDevotedToCult("cult_of_sigmar")||(!unit.Character.IsReligiousUnit()&&hero.GetAllCareerChoices().Contains("ArchLectorPassive4")))
-                    {
-                        if (hero.HasCareerChoice("SigmarsProclaimerPassive2"))
-                        {
-                            var choice = TORCareerChoices.GetChoice("SigmarsProclaimerPassive2");
-                            if (choice == null || choice.Passive==null) return resultValue;
-                            var effectMagnitude = choice.Passive.EffectMagnitude;
-                            if (choice.Passive.InterpretAsPercentage) effectMagnitude /= 100;
-                            var value = (unit.Character.TroopWage*unit.Number) * (1-effectMagnitude);
-                      
-                            resultValue.Add(-value*effectMagnitude, choice.BelongsToGroup.Name);
-                        }
-                    }
-                }
-               
-
+                if (!unit.Character.IsSoldier) return resultValue;
+                var choice = TORCareerChoices.GetChoice("SigmarsProclaimerPassive2");
+                var includeRegularTroops = choices.Contains("ArchLectorPassive4");
+                var value = CalculateSigmarsProclaimerPerk(unit, includeRegularTroops, choice);
+                resultValue.Add(value, choice.BelongsToGroup.Name);
             }
 
             return resultValue;
         }
-        
+
+
+
+        private float CalculateSigmarsProclaimerPerk(TroopRosterElement unit, bool includeRegularTroops, CareerChoiceObject choice)
+        {
+            //TODO could be solved better, due to rounding issue : Troop Consumption Model is here more precise.
+            if (!unit.Character.UnitBelongsToCult("cult_of_sigmar"))
+            {
+                if (!includeRegularTroops)
+                {
+                    return 0f;
+                }
+            }
+            if (choice?.Passive == null) return 0;
+            var effectMagnitude = choice.Passive.EffectMagnitude;
+            if (choice.Passive.InterpretAsPercentage) effectMagnitude /= 100;
+            var value = -(unit.Character.TroopWage*unit.Number) * (effectMagnitude);
+            return value;
+        }
+
     }
 }

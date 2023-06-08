@@ -92,6 +92,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
     {
         Ranged = 1,
         Melee = 2,
-        Spell = 4
+        Spell = 4,
+        All = Ranged|Melee|Spell
     }
 }

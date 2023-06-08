@@ -425,6 +425,21 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             MobileParty.MainParty.AddBlessingToParty(component.Religion.StringId, _model.CalculateBlessingDurationForParty(MobileParty.MainParty));
             Hero.MainHero.AddReligiousInfluence(component.Religion, _model.CalculateDevotionIncreaseForPraying(Hero.MainHero));
             Hero.MainHero.AddSkillXp(TORSkills.Faith, _model.CalculateSkillXpForPraying(Hero.MainHero));
+            
+            if (component.Religion.StringId == "cult_of_sigmar")
+            {
+                if (Hero.MainHero.HasCareerChoice("SigmarProclaimerPassive4"))
+                {
+                    var choice = TORCareerChoices.GetChoice("SigmarProclaimerPassive4");
+                    if(choice==null||choice.Passive==null)return;
+                    foreach (var hero in Hero.MainHero.PartyBelongedTo.GetMemberHeroes())
+                    {
+                        var value =(int) choice.Passive.EffectMagnitude;
+                        hero.Heal(value,false);
+                    }
+                }
+            }
+            
         }
         #endregion
 

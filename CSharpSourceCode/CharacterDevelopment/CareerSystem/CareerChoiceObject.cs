@@ -168,16 +168,16 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
     public enum PassiveEffectType
     {
-        Special,
-        Health,
-        HealthRegeneration,
-        Damage,
-        Resistance,
-        PartyMovementSpeed,
-        TroopRegeneration,
-        TroopMorale,
-        Ammo,
-        WindsOfMagic,
+        Special,            //For everything that requires special implementation
+        Health,             //Player health points
+        HealthRegeneration, //player life regeneration
+        Damage,             //player damage, requires damage tuple
+        Resistance,         //player resistance requires damage tuple
+        PartyMovementSpeed, //general party speed
+        TroopRegeneration,  //troop generation
+        TroopMorale,        //Morale
+        Ammo,               //Player ammo
+        WindsOfMagic,       //player winds of magic
         
     }
 }

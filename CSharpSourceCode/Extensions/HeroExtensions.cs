@@ -270,9 +270,6 @@ namespace TOR_Core.Extensions
 
         public static bool HasAnyCareer(this Hero hero)
         {
-            if (hero==null&& hero.HasAnyCareer())
-                return false;
-            
             bool result = false;
             if (hero != null && hero.GetExtendedInfo() != null)
             {

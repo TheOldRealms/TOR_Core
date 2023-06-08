@@ -260,31 +260,32 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         {
             _bookOfSigmarPassive1.Initialize(TORCareers.WarriorPriest, "Increases hitpoints by 10.", "BookOfSigmar", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
             _bookOfSigmarPassive2.Initialize(TORCareers.WarriorPriest, "Higher  troop morale for all troops", "BookOfSigmar", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.TroopMorale));
-            _bookOfSigmarPassive3.Initialize(TORCareers.WarriorPriest, "After battle, all critically wounded companions restore 20 healthpoints", "BookOfSigmar", false, ChoiceType.Passive, null); // PostBattleCampaignBehavior 30
-            _bookOfSigmarPassive4.Initialize(TORCareers.WarriorPriest, "Wounded troops in your party heal faster.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration));
+            _bookOfSigmarPassive3.Initialize(TORCareers.WarriorPriest, "After battle, all critically wounded companions restore 20 hitpoints", "BookOfSigmar", false, ChoiceType.Passive, null); // PostBattleCampaignBehavior 30 //TODO REDO , take for other career
+            _bookOfSigmarPassive4.Initialize(TORCareers.WarriorPriest, "Wounded troops in your party heal faster.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration)); 
 
             _sigmarProclaimerPassive1.Initialize(TORCareers.WarriorPriest, "Extra Holy melee Damage(10%).", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy,10),AttackTypeMask.Melee));
             _sigmarProclaimerPassive2.Initialize(TORCareers.WarriorPriest, "Sigmarite troop wages reduced by 20%", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //TORPartyWageModel 82
             _sigmarProclaimerPassive3.Initialize(TORCareers.WarriorPriest, "Sigmarite troop food consumption is reduced by 20%", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //Foodconsumptionmodel 62
-            _sigmarProclaimerPassive4.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "SigmarsProclaimer", false, ChoiceType.Passive, null);
+            _sigmarProclaimerPassive4.Initialize(TORCareers.WarriorPriest, "Praying at a Sigmar shrine restores 50 Health for characters", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special));//TORCustomSettlementCampaignBehavior 429
 
             _relentlessFanaticPassive1.Initialize(TORCareers.WarriorPriest, "Increases hitpoints by 20.", "RelentlessFanatic", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Health));
-            _relentlessFanaticPassive2.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "RelentlessFanatic", false, ChoiceType.Passive, null);
-            _relentlessFanaticPassive3.Initialize(TORCareers.WarriorPriest, "Praying at a Sigmar shrine restores 50 Health", "RelentlessFanatic", false, ChoiceType.Passive, null); //TORCustomSettlementCampaignBehavior 429
+            _relentlessFanaticPassive2.Initialize(TORCareers.WarriorPriest, "Extra Holy melee Damage(10%).", "RelentlessFanatic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy,10),AttackTypeMask.Melee));
+            _relentlessFanaticPassive3.Initialize(TORCareers.WarriorPriest, "25% Physical Range Resistance for Flagellants", "RelentlessFanatic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special));      //TORAgentStatCalculateModel 345
             _relentlessFanaticPassive4.Initialize(TORCareers.WarriorPriest, "Increases Party Movementspeed by 1", "RelentlessFanatic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.PartyMovementSpeed));
 
             _protectorOfTheWeakPassive1.Initialize(TORCareers.WarriorPriest, "Increases hitpoints by 20.", "ProtectorOfTheWeak", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Health));
             _protectorOfTheWeakPassive2.Initialize(TORCareers.WarriorPriest, "Increases Physical Resistance for Melee Attacks by 15%", "ProtectorOfTheWeak", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical,15),AttackTypeMask.Melee));
             _protectorOfTheWeakPassive3.Initialize(TORCareers.WarriorPriest, "Increases Magical Resistance for Spell Attacks by 25%", "ProtectorOfTheWeak", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical,25),AttackTypeMask.Spell));
             _protectorOfTheWeakPassive4.Initialize(TORCareers.WarriorPriest, "Hits below 15 damage will not stagger character.", "ProtectorOfTheWeak", false, ChoiceType.Passive, null); //See DamagePatch 144
+            
             _holyPurgePassive1.Initialize(TORCareers.WarriorPriest, "Extra Holy melee Damage(10%).", "HolyPurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy,10),AttackTypeMask.Melee));
-            _holyPurgePassive2.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "HolyPurge", false, ChoiceType.Passive, null);
-            _holyPurgePassive3.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "HolyPurge", false, ChoiceType.Passive, null);
-            _holyPurgePassive4.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "HolyPurge", false, ChoiceType.Passive, null);
+            _holyPurgePassive2.Initialize(TORCareers.WarriorPriest, "Flagellants gain 10% Wardsave", "HolyPurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));      //TORAgentStatCalculateModel 345 
+            _holyPurgePassive3.Initialize(TORCareers.WarriorPriest, "Party deals 10% more melee Damage against non-human enemies", "HolyPurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special,true)); 
+            _holyPurgePassive4.Initialize(TORCareers.WarriorPriest, "All Simgarite Troops gain 10% Holy Damage.", "HolyPurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy,10),AttackTypeMask.All));
 
             _archLectorPassive1.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "ArchLector", false, ChoiceType.Passive, null);
-            _archLectorPassive2.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "ArchLector", false, ChoiceType.Passive, null);
-            _archLectorPassive3.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "ArchLector", false, ChoiceType.Passive, null);
+            _archLectorPassive2.Initialize(TORCareers.WarriorPriest, "All neutral Empire Units count as Sigmarite Units", "ArchLector", false, ChoiceType.Passive, null);
+            _archLectorPassive3.Initialize(TORCareers.WarriorPriest, "15% Wardsave", "ArchLector", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All,15),AttackTypeMask.All));
             _archLectorPassive4.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "ArchLector", false, ChoiceType.Passive, null);
         }
         
