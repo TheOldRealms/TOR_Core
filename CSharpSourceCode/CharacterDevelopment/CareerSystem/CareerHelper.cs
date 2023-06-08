@@ -129,5 +129,31 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                
             }
         }
+
+        public static bool StartWithPrayerReady(this Agent agent)
+        {
+            var hero = agent.GetHero();
+            if (hero == null) return false;
+
+            if (hero.HasCareerChoice("ArchLectorPassive1"))
+            {
+                return true;
+            }
+            
+            return false;
+        }
+        
+        public static bool PrayerCooldownIsNotShared(this Agent agent)
+        {
+            var hero = agent.GetHero();
+            if (hero == null) return false;
+
+            if (hero.HasCareerChoice("ArchLectorPassive4"))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

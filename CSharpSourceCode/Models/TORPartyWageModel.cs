@@ -51,8 +51,11 @@ namespace TOR_Core.Models
                 TroopRosterElement elementCopyAtIndex = mobileParty.MemberRoster.GetElementCopyAtIndex(index);
                 if (mobileParty.IsMainParty)
                 {
-                    var careerID = mobileParty.LeaderHero.GetCareer().StringId;
-                    value = AddCareerSpecifWagePerks(value, mobileParty.LeaderHero, elementCopyAtIndex);
+                    if (mobileParty.LeaderHero.HasAnyCareer())
+                    {
+                        var careerID = mobileParty.LeaderHero.GetCareer().StringId;
+                        value = AddCareerSpecifWagePerks(value, mobileParty.LeaderHero, elementCopyAtIndex);
+                    }
                 }
                 
                 

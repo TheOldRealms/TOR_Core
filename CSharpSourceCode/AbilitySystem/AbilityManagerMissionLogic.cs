@@ -528,7 +528,12 @@ namespace TOR_Core.AbilitySystem
                             if (info.CurrentWindsOfMagic > info.MaxWindsOfMagic) info.CurrentWindsOfMagic = info.MaxWindsOfMagic;
                         }
                     }
+                    
                 }
+
+                if (!(Game.Current.GameType is Campaign)) return;
+                if (hero.HasAnyCareer()&&hero.HasCareerChoice("ArchLectorPassive1")) return;
+                Agent.Main.GetComponent<AbilityComponent>().SetIntialPrayerCoolDown();
             }
         }
     }

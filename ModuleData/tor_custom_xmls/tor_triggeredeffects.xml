@@ -678,7 +678,7 @@
             DamageAmount="30" 
             Radius="5" 
             HasShockWave="true" 
-            TargetType="All" 
+            TargetType="Enemy" 
             ImbuedStatusEffectDuration="0" 
             DamageVariance="0.2" 
             ScriptNameToTrigger="none">

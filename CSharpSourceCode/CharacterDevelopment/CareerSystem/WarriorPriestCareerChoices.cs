@@ -283,10 +283,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             _holyPurgePassive3.Initialize(TORCareers.WarriorPriest, "Party deals 10% more melee Damage against non-human enemies", "HolyPurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special,true)); 
             _holyPurgePassive4.Initialize(TORCareers.WarriorPriest, "All Simgarite Troops gain 10% Holy Damage.", "HolyPurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy,10),AttackTypeMask.All));
 
-            _archLectorPassive1.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "ArchLector", false, ChoiceType.Passive, null);
+            _archLectorPassive1.Initialize(TORCareers.WarriorPriest, "Prayers are ready to use on start of the battle", "ArchLector", false, ChoiceType.Passive, null); // AbilityMissionLogic 534
             _archLectorPassive2.Initialize(TORCareers.WarriorPriest, "All neutral Empire Units count as Sigmarite Units", "ArchLector", false, ChoiceType.Passive, null);
             _archLectorPassive3.Initialize(TORCareers.WarriorPriest, "15% Wardsave", "ArchLector", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All,15),AttackTypeMask.All));
-            _archLectorPassive4.Initialize(TORCareers.WarriorPriest, "Lorem Ipsum dolor...", "ArchLector", false, ChoiceType.Passive, null);
+            _archLectorPassive4.Initialize(TORCareers.WarriorPriest, "Prayers don‘t share cooldown.", "ArchLector", false, ChoiceType.Passive, null);   //Ability 132
         }
         
 
