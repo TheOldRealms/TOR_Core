@@ -1,10 +1,12 @@
-﻿using System.Linq;
+using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
+using TaleWorlds.Localization;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -15,34 +17,24 @@ namespace TOR_Core.Models
     {
         public override ExplainedNumber CalculateDailyBaseFoodConsumptionf(MobileParty party, bool includeDescription = false)
         {
-            var eatingMemberRoster = party.Party.MemberRoster.GetTroopRoster().WhereQ(x => !x.Character.IsUndead());
-            int eatingMemberNum = 0;
-            foreach(var item in eatingMemberRoster)
-            {
-                eatingMemberNum += item.Number;
-            }
-
-            var eatingPrisonerRoster = party.Party.PrisonRoster.GetTroopRoster().WhereQ(x => !x.Character.IsUndead());
-            int eatingPrisonerNum = 0;
-            foreach (var item in eatingPrisonerRoster)
-            {
-                eatingPrisonerNum += item.Number;
-            }
-
-            float num = eatingMemberNum + eatingPrisonerNum / 2;
-
-            num = ((num < 1) ? 1 : num);
-            float resultNumber = -num / (float)NumberOfMenOnMapToEatOneFood;
+            var explainedNumber = base.CalculateDailyBaseFoodConsumptionf(party, includeDescription);
+            base.CalculateDailyFoodConsumptionf(party, explainedNumber);
             
+            var noneatingMemberRoster = party.Party.MemberRoster.GetTroopRoster().WhereQ(x => x.Character.IsUndead());
+            int noneatingMemberCount = noneatingMemberRoster.Sum(item => item.Number);
+            var totalMembers = party.Party.MemberRoster.Sum(item => item.Number);
+            var ratio= (double) noneatingMemberCount / totalMembers;
+            float  saving = (float)-(ratio * explainedNumber.ResultNumber);
             
-            var number = new ExplainedNumber(resultNumber, includeDescription, null);
+            explainedNumber.Add(saving, new TextObject("Saving from undead troops"));
+            explainedNumber.LimitMax(0);
             
             if (Hero.MainHero == party.Party.LeaderHero)
             {
-                AddCareerSpecificFoodPerks(ref number, party);
+                AddCareerSpecificFoodPerks(ref explainedNumber, party);
             }
-       
-            return number;
+            
+            return explainedNumber;
         }
         
         
