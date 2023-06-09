@@ -260,7 +260,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         {
             _bookOfSigmarPassive1.Initialize(TORCareers.WarriorPriest, "Increases hitpoints by 10.", "BookOfSigmar", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
             _bookOfSigmarPassive2.Initialize(TORCareers.WarriorPriest, "Higher  troop morale for all troops", "BookOfSigmar", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.TroopMorale));
-            _bookOfSigmarPassive3.Initialize(TORCareers.WarriorPriest, "After battle, all critically wounded companions restore 20 hitpoints", "BookOfSigmar", false, ChoiceType.Passive, null); // PostBattleCampaignBehavior 30 //TODO REDO , take for other career
+            _bookOfSigmarPassive3.Initialize(TORCareers.WarriorPriest, "After battle, all critically wounded companions restore 20 hitpoints", "BookOfSigmar", false, ChoiceType.Passive, null); // PostBattleCampaignBehavior 30 
             _bookOfSigmarPassive4.Initialize(TORCareers.WarriorPriest, "Wounded troops in your party heal faster.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration)); 
 
             _sigmarProclaimerPassive1.Initialize(TORCareers.WarriorPriest, "Extra Holy melee Damage(10%).", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy,10),AttackTypeMask.Melee));
