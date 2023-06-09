@@ -214,7 +214,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 Hero.MainHero.AddAttribute("Priest");
                 Hero.MainHero.AddAbility("HealingHand");
-                Hero.MainHero.AddAbility("CometOfSigmar");
                 Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 60);
             }
             else if (selectedOption.OptionText == "Novice Necromancer"||selectedOption.OptionText == "Necromancer")

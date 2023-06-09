@@ -1,4 +1,4 @@
-﻿using NLog;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,11 +73,6 @@ namespace TOR_Core.Extensions
         public static bool IsUnbreakable(this Agent agent)
         {
             return agent.GetAttributes().Contains("Unbreakable");
-        }
-
-        public static bool IsHuman(this Agent agent)            //I think this is not really helpful
-        {
-            return agent.GetAttributes().Contains("Human");
         }
 
         public static bool IsUndead(this Agent agent)
