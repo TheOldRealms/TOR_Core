@@ -74,6 +74,7 @@ namespace TOR_Core.AbilitySystem
                 var culture = team.Leader == null ? team.TeamAgents.FirstOrDefault().Character.Culture : team.Leader.Character.Culture;
                 _defenderSummoningCombatant = new SummonedCombatant(team, culture);
             }
+
             RefreshMaxArtilleryCountForTeam(team);
         }
 
@@ -82,7 +83,7 @@ namespace TOR_Core.AbilitySystem
             if (_artillerySlots.ContainsKey(team))
             {
                 _artillerySlots[team] = 0;
-                foreach(var agent in team.TeamAgents)
+                foreach (var agent in team.TeamAgents)
                 {
                     if (agent.CanPlaceArtillery())
                     {
@@ -109,6 +110,7 @@ namespace TOR_Core.AbilitySystem
             {
                 if (comp.CareerAbility != null && comp.CareerAbility.ChargeType == ChargeType.DamageDone) comp.CareerAbility.AddCharge(blow.InflictedDamage * DamagePortionForChargingCareerAbility);
             }
+
             var comp2 = affectedAgent.GetComponent<AbilityComponent>();
             if (comp2 != null)
             {
@@ -120,7 +122,7 @@ namespace TOR_Core.AbilitySystem
         {
             if (!_hasInitializedForMainAgent)
             {
-                if(Agent.Main != null)
+                if (Agent.Main != null)
                 {
                     SetUpCastStanceParticles();
                     AddPerkEffectsToStartingWindsOfMagic();
@@ -130,7 +132,7 @@ namespace TOR_Core.AbilitySystem
             else if (IsAbilityModeAvailableForMainAgent())
             {
                 CheckIfMainAgentHasPendingActivation();
-                
+
                 HandleInput();
 
                 UpdateWieldedItems();
@@ -146,10 +148,10 @@ namespace TOR_Core.AbilitySystem
 
         private void HandleAnimations()
         {
-            if(CurrentState != AbilityModeState.Off)
+            if (CurrentState != AbilityModeState.Off)
             {
                 var action = Agent.Main.GetCurrentAction(1);
-                if(CurrentState == AbilityModeState.Idle && action != _idleAnimation)
+                if (CurrentState == AbilityModeState.Idle && action != _idleAnimation)
                 {
                     Agent.Main.SetActionChannel(1, _idleAnimation);
                 }
@@ -158,7 +160,7 @@ namespace TOR_Core.AbilitySystem
 
         internal void OnCastComplete(Ability ability, Agent agent)
         {
-            if(ability is ItemBoundAbility && ability.Template.AbilityEffectType == AbilityEffectType.ArtilleryPlacement)
+            if (ability is ItemBoundAbility && ability.Template.AbilityEffectType == AbilityEffectType.ArtilleryPlacement)
             {
                 if (_artillerySlots.ContainsKey(agent.Team))
                 {
@@ -166,7 +168,7 @@ namespace TOR_Core.AbilitySystem
                 }
             }
 
-            if(agent == Agent.Main)
+            if (agent == Agent.Main)
             {
                 if (CurrentState == AbilityModeState.Casting) _currentState = AbilityModeState.Idle;
                 if (Game.Current.GameType is Campaign)
@@ -192,9 +194,9 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-        internal void OnCastStart(Ability ability, Agent agent) 
+        internal void OnCastStart(Ability ability, Agent agent)
         {
-            if(agent == Agent.Main)
+            if (agent == Agent.Main)
             {
                 if (CurrentState == AbilityModeState.Idle) _currentState = AbilityModeState.Casting;
             }
@@ -217,6 +219,7 @@ namespace TOR_Core.AbilitySystem
                     _shouldSheathWeapon = false;
                 }
             }
+
             if (_currentState == AbilityModeState.Off && _shouldWieldWeapon)
             {
                 if (Agent.Main.GetWieldedItemIndex(Agent.HandIndex.MainHand) != _mainHand)
@@ -237,35 +240,35 @@ namespace TOR_Core.AbilitySystem
         private void HandleInput()
         {
             //Turning ability mode on/off
-            
-            if(Input.IsKeyDown(InputKey.Tab))
-                return; 
+
+            if (Input.IsKeyDown(InputKey.Tab))
+                return;
 
             if (Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) ||
                 Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey))
             {
-                if( _abilityComponent != null && _abilityComponent.CareerAbility != null)
-                    if (_currentState == AbilityModeState.Off  &&
+                if (_abilityComponent != null && _abilityComponent.CareerAbility != null)
+                    if (_currentState == AbilityModeState.Off &&
                         IsCurrentCrossHairCompatible())
                     {
                         _abilityComponent.CareerAbility.TryCast(Agent.Main);
                     }
             }
-            
-            if(Input.IsKeyPressed(_nextAbilitySelection.KeyboardKey.InputKey)||Input.IsKeyPressed(_nextAbilitySelection.ControllerKey.InputKey))
+
+            if (Input.IsKeyPressed(_nextAbilitySelection.KeyboardKey.InputKey) || Input.IsKeyPressed(_nextAbilitySelection.ControllerKey.InputKey))
                 Agent.Main.SelectNextAbility();
-            
-            if(Input.IsKeyPressed(_previousAbilitySelection.KeyboardKey.InputKey)||Input.IsKeyPressed(_previousAbilitySelection.ControllerKey.InputKey))
+
+            if (Input.IsKeyPressed(_previousAbilitySelection.KeyboardKey.InputKey) || Input.IsKeyPressed(_previousAbilitySelection.ControllerKey.InputKey))
                 Agent.Main.SelectPreviousAbility();
 
             if (Input.IsKeyPressed(_quickCast.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCast.ControllerKey.InputKey))
             {
-                if(_abilityComponent != null && _abilityComponent.CurrentAbility.AbilityEffectType != AbilityEffectType.SeekerMissile)
+                if (_abilityComponent != null && _abilityComponent.CurrentAbility.AbilityEffectType != AbilityEffectType.SeekerMissile)
                     Agent.Main.CastCurrentAbility();
             }
-               
-            
-            if (Input.IsKeyPressed(_spellcastingModeKey.KeyboardKey.InputKey)||Input.IsKeyPressed(_spellcastingModeKey.ControllerKey.InputKey))
+
+
+            if (Input.IsKeyPressed(_spellcastingModeKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_spellcastingModeKey.ControllerKey.InputKey))
             {
                 switch (_currentState)
                 {
@@ -285,12 +288,13 @@ namespace TOR_Core.AbilitySystem
                             !_abilityComponent.CurrentAbility.Crosshair.IsVisible ||
                             _currentState != AbilityModeState.Idle ||
                             (_abilityComponent.CurrentAbility.Crosshair.CrosshairType == CrosshairType.SingleTarget &&
-                            !((SingleTargetCrosshair)_abilityComponent.CurrentAbility.Crosshair).IsTargetLocked);
+                             !((SingleTargetCrosshair)_abilityComponent.CurrentAbility.Crosshair).IsTargetLocked);
                 if (!flag)
                 {
                     Agent.Main.CastCurrentAbility();
                 }
-                if(_abilityComponent.CareerAbility != null && _abilityComponent.CareerAbility.IsActive) _abilityComponent.OnInterrupt();
+
+                if (_abilityComponent.CareerAbility != null && _abilityComponent.CareerAbility.IsActive) _abilityComponent.OnInterrupt();
             }
             else if (Input.IsKeyPressed(InputKey.RightMouseButton))
             {
@@ -335,7 +339,7 @@ namespace TOR_Core.AbilitySystem
         public override void EarlyStart()
         {
             base.EarlyStart();
-            _spellcastingModeKey=  HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("Spellcasting");
+            _spellcastingModeKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("Spellcasting");
             _nextAbilitySelection = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("NextAbility");
             _previousAbilitySelection = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("PreviousAbility");
             _quickCast = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("QuickCast");
@@ -345,9 +349,9 @@ namespace TOR_Core.AbilitySystem
         public bool IsCastingMission()
         {
             return !Mission.IsFriendlyMission &&
-                    Mission.CombatType != Mission.MissionCombatType.ArenaCombat &&
-                    Mission.CombatType != Mission.MissionCombatType.NoCombat;
-;
+                   Mission.CombatType != Mission.MissionCombatType.ArenaCombat &&
+                   Mission.CombatType != Mission.MissionCombatType.NoCombat;
+            ;
         }
 
         private bool IsAbilityModeAvailableForMainAgent()
@@ -361,7 +365,6 @@ namespace TOR_Core.AbilitySystem
                     Mission.Mode == MissionMode.Stealth) &&
                    _abilityComponent != null &&
                    _abilityComponent.CurrentAbility != null;
-                   
         }
 
         private void EnableAbilityMode()
@@ -376,6 +379,7 @@ namespace TOR_Core.AbilitySystem
             {
                 traitcomp.EnableAllParticles(false);
             }
+
             EnableCastStanceParticles(true);
         }
 
@@ -390,6 +394,7 @@ namespace TOR_Core.AbilitySystem
             {
                 _shouldWieldWeapon = true;
             }
+
             _currentState = AbilityModeState.Off;
             ChangeKeyBindings();
             var traitcomp = Agent.Main.GetComponent<ItemTraitAgentComponent>();
@@ -397,15 +402,17 @@ namespace TOR_Core.AbilitySystem
             {
                 traitcomp.EnableAllParticles(true);
             }
+
             EnableCastStanceParticles(false);
         }
+
         private void EnableCastStanceParticles(bool enable)
         {
-            if(_psys != null)
+            if (_psys != null)
             {
                 foreach (var psys in _psys)
                 {
-                    if(psys != null)
+                    if (psys != null)
                     {
                         psys.SetEnable(enable);
                     }
@@ -447,7 +454,7 @@ namespace TOR_Core.AbilitySystem
 
         public override void OnItemPickup(Agent agent, SpawnedItemEntity item)
         {
-            if(agent == Agent.Main) DisableAbilityMode(true);
+            if (agent == Agent.Main) DisableAbilityMode(true);
         }
 
         public SummonedCombatant GetSummoningCombatant(Team team)
@@ -464,9 +471,9 @@ namespace TOR_Core.AbilitySystem
             }
 
             var combatantToReturn =
-                team.Side == BattleSideEnum.Attacker ? _attackerSummoningCombatant 
-                : team.Side == BattleSideEnum.Defender ? _defenderSummoningCombatant 
-                    : null;
+                team.Side == BattleSideEnum.Attacker ? _attackerSummoningCombatant
+                : team.Side == BattleSideEnum.Defender ? _defenderSummoningCombatant
+                : null;
 
             if (combatantToReturn == null)
             {
@@ -504,31 +511,37 @@ namespace TOR_Core.AbilitySystem
         private void AddPerkEffectsToStartingWindsOfMagic()
         {
             var hero = Agent.Main?.GetHero();
-            if(hero != null)
+            if (hero != null)
             {
                 var info = hero.GetExtendedInfo();
-                if(info != null)
+                if (info != null)
                 {
                     if (hero.GetPerkValue(TORPerks.SpellCraft.Improvision) && info.CurrentWindsOfMagic < TORPerks.SpellCraft.Improvision.PrimaryBonus)
                     {
                         info.CurrentWindsOfMagic = TORPerks.SpellCraft.Improvision.PrimaryBonus;
                     }
+
                     if (hero.GetPerkValue(TORPerks.SpellCraft.Catalyst))
                     {
                         int magicItemCount = 0;
-                        for(int i = 0; i < (int)EquipmentIndex.NumEquipmentSetSlots; i++)
+                        for (int i = 0; i < (int)EquipmentIndex.NumEquipmentSetSlots; i++)
                         {
                             var equipmentElement = hero.BattleEquipment.GetEquipmentFromSlot((EquipmentIndex)i);
                             var equippedItem = equipmentElement.Item;
                             if (equippedItem != null && equippedItem.IsMagicalItem()) magicItemCount++;
                         }
-                        if(magicItemCount > 0)
+
+                        if (magicItemCount > 0)
                         {
                             info.CurrentWindsOfMagic += magicItemCount * TORPerks.SpellCraft.Catalyst.PrimaryBonus;
                             if (info.CurrentWindsOfMagic > info.MaxWindsOfMagic) info.CurrentWindsOfMagic = info.MaxWindsOfMagic;
                         }
                     }
                 }
+
+                if (!(Game.Current.GameType is Campaign)) return;
+                if (hero.HasAnyCareer() && hero.HasCareerChoice("ArchLectorPassive1")) return;
+                Agent.Main.GetComponent<AbilityComponent>().SetIntialPrayerCoolDown();
             }
         }
     }

@@ -263,7 +263,13 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-
+        public void SetIntialPrayerCoolDown()
+        {
+            foreach (var ability in _knownAbilitySystem.Where(ability => ability.Template.AbilityType == AbilityType.Prayer))
+            {
+                ability.SetCoolDown(ability.Template.CoolDown);
+            }
+        }
         public void SetPrayerCoolDown(int time)
         {
             foreach (var ability in _knownAbilitySystem)
@@ -277,6 +283,7 @@ namespace TOR_Core.AbilitySystem
                 }
             }
         }
+        
         public CareerAbility CareerAbility { get; private set; }
         public List<Ability> KnownAbilitySystem { get => _knownAbilitySystem; }
         public delegate void CurrentAbilityChangedHandler(AbilityCrosshair crosshair);

@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +13,7 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
@@ -49,7 +50,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             if(mutations != null) _mutations.AddRange(mutations);
             Passive = passiveEffect;
             if (isRootNode) OwnerCareer.RootNode = this;
-            IsReady = true;
+            AfterInitialized();
         }
 
         public void MutateAbility(AbilityTemplate ability, Agent agent) => MutateObject(ability, agent);
@@ -126,7 +127,28 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         {
             public float EffectMagnitude = 0f;
             public OperationType Operation = OperationType.None;
+            public PassiveEffectType PassiveEffectType = PassiveEffectType.Special;
             public bool InterpretAsPercentage = true;
+            public DamageProportionTuple DamageProportionTuple;
+            public AttackTypeMask AttackTypeMask = AttackTypeMask.Melee;
+            
+            public PassiveEffect(PassiveEffectType type, DamageProportionTuple damageProportionTuple, AttackTypeMask mask)
+            {
+                EffectMagnitude = 0;
+                Operation = OperationType.Add;
+                InterpretAsPercentage = true;
+                PassiveEffectType = type;
+                DamageProportionTuple = damageProportionTuple;
+                AttackTypeMask = mask;
+            }
+
+            public PassiveEffect(float effectValue, PassiveEffectType type = PassiveEffectType.Special, bool asPercent=false)
+            {
+                EffectMagnitude = effectValue;
+                Operation = OperationType.Add;
+                InterpretAsPercentage = asPercent;
+                PassiveEffectType = type;
+            }
         }
     }
 
@@ -142,5 +164,20 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         Multiply,
         Replace,
         None
+    }
+
+    public enum PassiveEffectType
+    {
+        Special,            //For everything that requires special implementation
+        Health,             //Player health points
+        HealthRegeneration, //player life regeneration
+        Damage,             //player damage, requires damage tuple
+        Resistance,         //player resistance requires damage tuple
+        PartyMovementSpeed, //general party speed
+        TroopRegeneration,  //troop generation
+        TroopMorale,        //Morale
+        Ammo,               //Player ammo
+        WindsOfMagic,       //player winds of magic
+        
     }
 }
