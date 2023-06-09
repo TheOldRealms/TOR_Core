@@ -86,6 +86,11 @@ namespace TOR_Core.Extensions
             return list;
         }
 
+        public static bool HasAnyCareer(this CharacterObject characterObject)
+        {
+            return characterObject.HeroObject ==null && characterObject.HeroObject.HasAnyCareer();
+        }
+
         public static bool IsUndead(this CharacterObject characterObject)
         {
             if (characterObject.IsHero)
@@ -118,6 +123,23 @@ namespace TOR_Core.Extensions
         {
             return ReligionObject.All.Any(x => x.ReligiousTroops.Contains(characterObject));
         }
+        
+        public static bool IsReligiousUnit(this BasicCharacterObject characterObject)
+        {
+            return ReligionObject.All.Any(x => x.ReligiousTroops.Contains(characterObject));
+        }
+
+        public static bool UnitBelongsToCult(this CharacterObject characterObject, string cultId)
+        {
+            var cult = ReligionObject.All.FirstOrDefault(x => x.StringId==cultId);
+            return cult != null && cult.ReligiousTroops.Contains(characterObject);
+        }
+        public static bool UnitBelongsToCult(this BasicCharacterObject characterObject, string cultId)
+        {
+            var cult = ReligionObject.All.FirstOrDefault(x => x.StringId==cultId);
+            return cult != null && cult.ReligiousTroops.Contains(characterObject);
+        }
+        
         /// <summary>
         /// Access item objects from the equipment of the character
         /// Equipment Indexes can define the Range. Note that horses are not a valid item object to be accessed

@@ -1,6 +1,7 @@
-﻿using System.Linq;
+using System.Linq;
 using HarmonyLib;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
@@ -35,7 +36,7 @@ namespace TOR_Core.HarmonyPatches
             var victimPropertyContainer = victim.GetProperties(PropertyMask.Defense, attackTypeMask);
             //attack properties;
             var damageProportions = attackerPropertyContainer.DamageProportions;
-            var damagePercentages = attackerPropertyContainer.DamagePercentages;
+            var damageAmplifications = attackerPropertyContainer.DamagePercentages;
             var additionalDamagePercentages = attackerPropertyContainer.AdditionalDamagePercentages;
             //defense properties
             var resistancePercentages = victimPropertyContainer.ResistancePercentages;
@@ -49,8 +50,19 @@ namespace TOR_Core.HarmonyPatches
                     var torModel = model as TORAgentApplyDamageModel;
                     wardSaveFactor = torModel.CalculateWardSaveFactor(victim, attackTypeMask);
                 }
+
+                if (attacker.GetOriginMobileParty()==MobileParty.MainParty)
+                {
+                    var choices = Hero.MainHero.GetAllCareerChoices();
+
+                    if (victim.Character.Race != 0 && choices.Contains("HolyPurgePassive3"))
+                    {
+                        additionalDamagePercentages[(int)DamageType.Physical] += 0.1f;
+                    }
+                        
+                }
             }
-            
+
             string abilityName = "";
             if (attackTypeMask==AttackTypeMask.Ranged)
             {
@@ -90,11 +102,8 @@ namespace TOR_Core.HarmonyPatches
                     damageCategories[damageType] = b.InflictedDamage;
                 }
                 
-                
-               
-               
-                damagePercentages[damageType] -= resistancePercentages[damageType];
-                damageCategories[damageType] *= 1 + damagePercentages[damageType];
+                damageAmplifications[damageType] -= resistancePercentages[damageType];
+                damageCategories[damageType] *= 1 + damageAmplifications[damageType];
                 resultDamage = (int)damageCategories[damageType];
                 
                 if(Game.Current.GameType is Campaign)
@@ -117,7 +126,7 @@ namespace TOR_Core.HarmonyPatches
                 b.InflictedDamage = resultDamage;
                 b.BaseMagnitude = resultDamage;
                 if (attacker == Agent.Main || victim == Agent.Main)
-                    TORDamageDisplay.DisplaySpellDamageResult((DamageType) damageType, resultDamage, damagePercentages[damageType]);                
+                    TORDamageDisplay.DisplaySpellDamageResult((DamageType) damageType, resultDamage, damageAmplifications[damageType]);                
                 return true;
             }
 
@@ -129,26 +138,30 @@ namespace TOR_Core.HarmonyPatches
                 damageCategories[i] += damageCategories[(int)DamageType.All] / (int)DamageType.All;
                 if (damageCategories[i] > 0)
                 {
-                    damagePercentages[i] -= resistancePercentages[i];
-                    damageCategories[i] *= 1 + damagePercentages[i];
+                    damageAmplifications[i] -= resistancePercentages[i];
+                    damageCategories[i] *= 1 + damageAmplifications[i];
                     resultDamage += (int)damageCategories[i];
                 }
             }
-            resultDamage = (int)(resultDamage * wardSaveFactor * (1 + damagePercentages[(int)DamageType.All]));
+            resultDamage = (int)(resultDamage * wardSaveFactor * (1 + damageAmplifications[(int)DamageType.All])); 
             var originalDamage = b.InflictedDamage;
             b.InflictedDamage = resultDamage;
             b.BaseMagnitude = resultDamage;
-            if (victim.GetAttributes().Contains("Unstoppable")) b.BlowFlag |= BlowFlags.ShrugOff;
+
+            if (victim.GetAttributes().Contains("Unstoppable")||(victim.IsJuggernaut() && b.InflictedDamage < 15))
+            {
+                b.BlowFlag |= BlowFlags.ShrugOff;
+            }
 
             if (b.InflictedDamage > 0)
             {
                 if (attacker == Agent.Main || victim == Agent.Main)
                 {
-                    TORDamageDisplay.DisplayDamageResult(resultDamage, damageCategories, damagePercentages);
+                    TORDamageDisplay.DisplayDamageResult(resultDamage, damageCategories, damageAmplifications);
                     if(attacker == Agent.Main)
                     {
                         double damageIncrease = 0f;
-                        if (originalDamage > 0) damageIncrease = (double)b.InflictedDamage / originalDamage;
+                        if (originalDamage > 0) damageIncrease = b.InflictedDamage / originalDamage;
                         TORCommon.Say(string.Format("Modified damage by {0}", damageIncrease.ToString("P")));
                     }
                     

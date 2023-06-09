@@ -1,3 +1,4 @@
+using System.Linq;
 using Helpers;
 using SandBox.GameComponents;
 using TaleWorlds.CampaignSystem;
@@ -12,6 +13,7 @@ using TOR_Core.BattleMechanics.Crosshairs;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 
@@ -316,7 +318,55 @@ namespace TOR_Core.Models
                 }
             }
 
-            return new AgentPropertyContainer(proportions, damageamps, resistances, damagebonuses);
+            var result =  new AgentPropertyContainer(proportions, damageamps, resistances, damagebonuses);
+            
+            
+            if (agent== Agent.Main)
+            {
+                if (!Agent.Main.GetHero().HasAnyCareer()) return result;
+                result = CareerHelper.AddBasicCareerPassivesToPropertyContainerForMainAgent(agent,result,attackMask, mask);
+            }
+            else if (agentLeader !=null&&agentLeader==CharacterObject.PlayerCharacter)
+            {
+                if (!Agent.Main.GetHero().HasAnyCareer()) return result;
+                
+                var choices = Agent.Main.GetHero().GetAllCareerChoices();
+
+                if (choices.Contains("RelentlessFanaticPassive3")&& mask == PropertyMask.Defense&&attackMask==AttackTypeMask.Ranged)
+                {
+                    if (agent.Character.UnitBelongsToCult("cult_of_sigmar"))
+                    {
+                        var choice = TORCareerChoices.GetChoice("RelentlessFanaticPassive3");
+                        if (choice == null || choice.Passive == null) return result;
+                        float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
+                        result.ResistancePercentages[(int) DamageType.Physical] += value;
+                    }
+                }
+                if (choices.Contains("HolyPurgePassive2") && mask == PropertyMask.Defense)
+                {
+                    if (agent.Character.UnitBelongsToCult("cult_of_sigmar"))
+                    {
+                        var choice = TORCareerChoices.GetChoice("HolyPurgePassive2");
+                        if (choice == null || choice.Passive == null) return result;
+                        float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
+                        result.ResistancePercentages[(int) DamageType.Physical] += value;
+                    }
+                }
+
+                if (choices.Contains("HolyPurgePassive4") && mask == PropertyMask.Attack)
+                {
+                    bool isSigmariteTroop= agent.Character.UnitBelongsToCult("cult_of_sigmar")|| (!agent.Character.IsReligiousUnit()&&choices.Contains("Archlector2"));
+                    if (isSigmariteTroop)
+                    {
+                        var choice = TORCareerChoices.GetChoice("HolyPurgePassive4");
+                        if (choice == null || choice.Passive == null) return result;
+                        float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
+                        result.ResistancePercentages[(int) DamageType.Holy] += value;
+                    }
+                }
+            }
+            return result;
         }
+        
     }
 }

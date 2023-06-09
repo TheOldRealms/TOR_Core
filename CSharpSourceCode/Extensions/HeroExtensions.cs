@@ -198,6 +198,16 @@ namespace TOR_Core.Extensions
             return false;
         }
 
+        public static bool HasCareerChoice(this Hero hero, string choiceID)
+        {
+            bool result = false;
+            if (hero != null && hero.GetExtendedInfo() != null&& hero.HasAnyCareer())
+            {
+                return hero.GetExtendedInfo().CareerChoices.Contains(choiceID);
+            }
+            return result;
+        }
+
         public static bool HasCareerChoice(this Hero hero, CareerChoiceObject choice)
         {
             bool result = false;
@@ -224,6 +234,14 @@ namespace TOR_Core.Extensions
                 }
             }
             return false;
+        }
+
+        public static List<string> GetAllCareerChoices(this Hero hero)
+        {
+            if (!hero.HasAnyCareer())
+                return new List<string>();
+
+            return hero.GetExtendedInfo().CareerChoices;
         }
 
         public static bool TryRemoveCareerChoice(this Hero hero, CareerChoiceObject choice)
