@@ -119,10 +119,8 @@ namespace TOR_Core.AbilitySystem
         {
             IsActivationPending = false;
             IsCasting = false;
-
             bool prayerCoolSeperated = false;
-
-
+            
             if (Game.Current.GameType is Campaign)
             {
                 prayerCoolSeperated = CareerHelper.PrayerCooldownIsNotShared(casterAgent);
@@ -133,7 +131,6 @@ namespace TOR_Core.AbilitySystem
             else
                 SetCoolDown(Template.CoolDown);
             
-           
             var frame = GetSpawnFrame(casterAgent); 
             
             GameEntity parentEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);

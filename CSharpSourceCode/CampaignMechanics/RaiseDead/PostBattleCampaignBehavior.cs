@@ -34,7 +34,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 var playerParty = mapEvent.PartiesOnSide(mapEvent.PlayerSide).FirstOrDefault(x => x.Party.LeaderHero == Hero.MainHero); //TODO Main party check might suffies
                 if (playerParty == null) return;
                 var heroes = playerParty.Party.MobileParty.GetMemberHeroes();
-                foreach (var hero in heroes.Where(hero => hero.IsWounded))  //TODO not applied if heal is low
+                foreach (var hero in heroes.Where(hero => !hero.IsHealthFull())) 
                 {
                     hero.Heal(20,false);
                 }
