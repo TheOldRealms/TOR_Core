@@ -334,7 +334,7 @@ namespace TOR_Core.Models
 
                 if (choices.Contains("RelentlessFanaticPassive3")&& mask == PropertyMask.Defense&&attackMask==AttackTypeMask.Ranged)
                 {
-                    if (agent.Character.StringId == "tor_empire_flagellant")
+                    if (agent.Character.UnitBelongsToCult("cult_of_sigmar"))
                     {
                         var choice = TORCareerChoices.GetChoice("RelentlessFanaticPassive3");
                         if (choice == null || choice.Passive == null) return result;
@@ -344,7 +344,7 @@ namespace TOR_Core.Models
                 }
                 if (choices.Contains("HolyPurgePassive2") && mask == PropertyMask.Defense)
                 {
-                    if (agent.Character.StringId == "tor_empire_flagellant")
+                    if (agent.Character.UnitBelongsToCult("cult_of_sigmar"))
                     {
                         var choice = TORCareerChoices.GetChoice("HolyPurgePassive2");
                         if (choice == null || choice.Passive == null) return result;

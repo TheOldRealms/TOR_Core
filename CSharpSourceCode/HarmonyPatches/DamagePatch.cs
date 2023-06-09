@@ -148,7 +148,7 @@ namespace TOR_Core.HarmonyPatches
             b.InflictedDamage = resultDamage;
             b.BaseMagnitude = resultDamage;
 
-            if (victim.IsJuggernaut() && b.InflictedDamage < 15)
+            if (victim.GetAttributes().Contains("Unstoppable")||(victim.IsJuggernaut() && b.InflictedDamage < 15)))
             {
                 b.BlowFlag |= BlowFlags.ShrugOff;
             }
