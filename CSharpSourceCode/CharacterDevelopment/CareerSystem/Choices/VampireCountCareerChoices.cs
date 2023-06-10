@@ -109,9 +109,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         protected override void InitializePassives()
         {
             _newBloodPassive1.Initialize(TORCareers.MinorVampire, "Increases hitpoints by 25.", "NewBlood", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
-            _newBloodPassive2.Initialize(TORCareers.MinorVampire, "Test", "NewBlood", false, ChoiceType.Passive, null);
+            _newBloodPassive2.Initialize(TORCareers.MinorVampire, "10% Wardsave at Night fights", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special,true));
             _newBloodPassive3.Initialize(TORCareers.MinorVampire, "Increases Healthregeneration by .", "NewBlood", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.HealthRegeneration));
-            _newBloodPassive4.Initialize(TORCareers.MinorVampire, "Test", "NewBlood", false, ChoiceType.Passive, null);
+            _newBloodPassive4.Initialize(TORCareers.MinorVampire, "Immune to sunlight speed malus", "NewBlood", false, ChoiceType.Passive, null);
             
             _arkaynePassive1.Initialize(TORCareers.MinorVampire, "Increases Winds of Magic by 10.", "Arkayne", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
             _arkaynePassive2.Initialize(TORCareers.MinorVampire, "Extra Magical Spell Damage(10%).", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical,10),AttackTypeMask.Spell));
@@ -123,7 +123,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _courtleyPassive3.Initialize(TORCareers.MinorVampire, "Extra Magical Spell and Ranged Damage(10%).", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell | AttackTypeMask.Ranged));
             _courtleyPassive4.Initialize(TORCareers.MinorVampire, "Test", "Courtley", false, ChoiceType.Passive, null);
             
-            _lordlyPassive1.Initialize(TORCareers.MinorVampire, "Test", "Lordly", false, ChoiceType.Passive, null);
+            _lordlyPassive1.Initialize(TORCareers.MinorVampire, "Test", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1.5f, PassiveEffectType.PartyMovementSpeed));
             _lordlyPassive2.Initialize(TORCareers.MinorVampire, "Increases hitpoints by 25.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
             _lordlyPassive3.Initialize(TORCareers.MinorVampire, "Test", "Lordly", false, ChoiceType.Passive, null);
             _lordlyPassive4.Initialize(TORCareers.MinorVampire, "Test", "Lordly", false, ChoiceType.Passive, null);
