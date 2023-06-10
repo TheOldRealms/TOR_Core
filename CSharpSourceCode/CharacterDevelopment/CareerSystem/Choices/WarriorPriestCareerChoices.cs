@@ -9,11 +9,12 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
+using TOR_Core.CampaignMechanics.Choices;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
-    public class WarriorPriestCareerChoices
+    public class WarriorPriestCareerChoices : TORCareerChoiceBase
     {
         private CareerChoiceObject _warriorPriestRoot;
 
@@ -53,15 +54,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         private CareerChoiceObject _archLectorPassive3;
         private CareerChoiceObject _archLectorPassive4;
 
-        public WarriorPriestCareerChoices()
-        {
-            RegisterAll();
-            InitializePassives();
-            InitializeKeyStones();
-            
-        }
 
-        private void RegisterAll()
+        protected override void RegisterAll()
         {
             _warriorPriestRoot = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("WarriorPriestRoot"));
 
@@ -104,7 +98,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
          
         }
 
-        private void InitializeKeyStones()
+        protected override  void InitializeKeyStones()
         {
             _warriorPriestRoot.Initialize(TORCareers.WarriorPriest, "root", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
@@ -256,7 +250,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 });
         }
 
-        private void InitializePassives()
+        protected override void InitializePassives()
         {
             _bookOfSigmarPassive1.Initialize(TORCareers.WarriorPriest, "Increases hitpoints by 10.", "BookOfSigmar", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
             _bookOfSigmarPassive2.Initialize(TORCareers.WarriorPriest, "Higher  troop morale for all troops", "BookOfSigmar", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.TroopMorale));

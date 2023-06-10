@@ -173,11 +173,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         HealthRegeneration, //player life regeneration
         Damage,             //player damage, requires damage tuple
         Resistance,         //player resistance requires damage tuple
+        WindsOfMagic,       //player Winds of Magic
         PartyMovementSpeed, //general party speed
         TroopRegeneration,  //troop generation
         TroopMorale,        //Morale
         Ammo,               //Player ammo
-        WindsOfMagic,       //player winds of magic
-        
+
     }
 }

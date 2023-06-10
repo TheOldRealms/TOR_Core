@@ -38,17 +38,18 @@ namespace TOR_Core.CharacterDevelopment
         private void RegisterAll()
         {
             //_grailKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("GrailKnight"));
-            //_minorVampire = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("MinorVampire"));
+            _minorVampire = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("MinorVampire"));
             _warriorPriest = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("WarriorPriest"));
             //_allCareers.Add(_grailKnight);
             //_allCareers.Add(_minorVampire);
             _allCareers.Add(_warriorPriest);
+            _allCareers.Add(_minorVampire);
         }
 
         private void InitializeAll()
         {
-            //_grailKnight.Initialize("Grail Knight", "Grail Knight career is for those...", hero => hero.Clan.Tier > 2, "ShadowStep", ChargeType.NumberOfKills);
-            //_minorVampire.Initialize("Minor Vampire", "Minor Vampire is ...", hero => hero.Clan.Tier > 2, "ShadowStep", ChargeType.DamageDone, 100, typeof(ShadowStepScript));
+            //_grailKnight.Initialize("Grail Knight", "Grail Knight career is for those...", hero => hero.Clan.Tier > 2, "ShadowStep", ChargeType.NumberOfKills);       //hero => hero.Clan.Tier > 2
+            _minorVampire.Initialize("Vampire Count", null, "ShadowStep", ChargeType.DamageDone, 100, typeof(ShadowStepScript));
             _warriorPriest.Initialize("Warrior Priest", (hero) => 
             {
                 return hero.Culture == MBObjectManager.Instance.GetObject<CultureObject>("empire") && hero.Clan.Tier >= 1;

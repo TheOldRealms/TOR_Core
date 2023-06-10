@@ -19,7 +19,15 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _protectorOfTheWeak;
         private CareerChoiceGroupObject _holyPurge;
         private CareerChoiceGroupObject _archLector;
-
+        
+        private CareerChoiceGroupObject _newBlood;
+        private CareerChoiceGroupObject _arkayne;
+        private CareerChoiceGroupObject _courtley;
+        private CareerChoiceGroupObject _lordly;
+        private CareerChoiceGroupObject _martialle;
+        private CareerChoiceGroupObject _masterOfDead;
+        
+        
         public TORCareerChoiceGroups()
         {
             Instance = this;
@@ -35,6 +43,14 @@ namespace TOR_Core.CharacterDevelopment
             _protectorOfTheWeak = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("ProtectorOfTheWeak"));
             _holyPurge = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("HolyPurge"));
             _archLector = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("ArchLector"));
+            
+            _newBlood = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("NewBlood"));
+            _arkayne = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Arkayne"));
+            _courtley = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Courtley"));
+            _lordly = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Lordly"));
+            _martialle = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Martialle"));
+            _masterOfDead = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("MasterOfDead"));
+            
         }
 
         private void InitializeAll()
@@ -65,6 +81,38 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.Clan.Tier >= 3;
             });
             _archLector.Initialize("Arch Lector", TORCareers.WarriorPriest, 3, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 5";
+                return hero.Clan.Tier >= 5;
+            });
+            
+            
+            _newBlood.Initialize("New Blood", TORCareers.MinorVampire, 1, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 1";
+                return hero.Clan.Tier >= 0;
+            });
+            _arkayne.Initialize("The Arkayne", TORCareers.MinorVampire, 2, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 1";
+                return hero.Clan.Tier >= 3;
+            });
+            _courtley.Initialize("The Courtley", TORCareers.MinorVampire, 2, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 3";
+                return hero.Clan.Tier >= 3;
+            });
+            _lordly.Initialize("The Lordly", TORCareers.MinorVampire, 2, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 3";
+                return hero.Clan.Tier >= 3;
+            });
+            _martialle.Initialize("The Martialle", TORCareers.MinorVampire, 3, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 5";
+                return hero.Clan.Tier >= 5;
+            });
+            _masterOfDead.Initialize("Master of Dead", TORCareers.MinorVampire, 3, (Hero hero, out string text) =>
             {
                 text = "Required renown: 5";
                 return hero.Clan.Tier >= 5;
