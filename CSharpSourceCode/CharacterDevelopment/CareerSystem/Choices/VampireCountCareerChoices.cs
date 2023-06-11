@@ -110,33 +110,33 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         {
             _newBloodPassive1.Initialize(TORCareers.MinorVampire, "Increases hitpoints by 25.", "NewBlood", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
             _newBloodPassive2.Initialize(TORCareers.MinorVampire, "10% Wardsave at Night fights", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special,true));
-            _newBloodPassive3.Initialize(TORCareers.MinorVampire, "Increases Healthregeneration by .", "NewBlood", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.HealthRegeneration));
+            _newBloodPassive3.Initialize(TORCareers.MinorVampire, "Increases Healthregeneration by 5.", "NewBlood", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.HealthRegeneration));
             _newBloodPassive4.Initialize(TORCareers.MinorVampire, "Immune to sunlight speed malus", "NewBlood", false, ChoiceType.Passive, null);
             
             _arkaynePassive1.Initialize(TORCareers.MinorVampire, "Increases Winds of Magic by 10.", "Arkayne", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
             _arkaynePassive2.Initialize(TORCareers.MinorVampire, "Extra Magical Spell Damage(10%).", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical,10),AttackTypeMask.Spell));
             _arkaynePassive3.Initialize(TORCareers.MinorVampire, "Extra Magical melee Damage(10%).", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical,10),AttackTypeMask.Melee));
-            _arkaynePassive4.Initialize(TORCareers.MinorVampire, "Test", "Arkayne", false, ChoiceType.Passive, null);
+            _arkaynePassive4.Initialize(TORCareers.MinorVampire, "10% Cost reduction for spells", "Arkayne", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsCostReduction,true));
             
-            _courtleyPassive1.Initialize(TORCareers.MinorVampire, "Test", "Courtley", false, ChoiceType.Passive, null);
-            _courtleyPassive2.Initialize(TORCareers.MinorVampire, "Increases hitpoints by 25.", "Courtley", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
+            _courtleyPassive1.Initialize(TORCareers.MinorVampire, "Increases positive relationship gains by 20%", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special,true));
+            _courtleyPassive2.Initialize(TORCareers.MinorVampire, "Increases hitpoints by 25.", "Courtley", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
             _courtleyPassive3.Initialize(TORCareers.MinorVampire, "Extra Magical Spell and Ranged Damage(10%).", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell | AttackTypeMask.Ranged));
-            _courtleyPassive4.Initialize(TORCareers.MinorVampire, "Test", "Courtley", false, ChoiceType.Passive, null);
+            _courtleyPassive4.Initialize(TORCareers.MinorVampire, "Killing Blows targeted to the Head replenish 3 Winds of Magic", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3));
             
-            _lordlyPassive1.Initialize(TORCareers.MinorVampire, "Test", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1.5f, PassiveEffectType.PartyMovementSpeed));
-            _lordlyPassive2.Initialize(TORCareers.MinorVampire, "Increases hitpoints by 25.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
-            _lordlyPassive3.Initialize(TORCareers.MinorVampire, "Test", "Lordly", false, ChoiceType.Passive, null);
-            _lordlyPassive4.Initialize(TORCareers.MinorVampire, "Test", "Lordly", false, ChoiceType.Passive, null);
+            _lordlyPassive1.Initialize(TORCareers.MinorVampire, "Movement Speed Increased by 1.5", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1.5f, PassiveEffectType.PartyMovementSpeed));
+            _lordlyPassive2.Initialize(TORCareers.MinorVampire, "Increases hitpoints by 25.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+            _lordlyPassive3.Initialize(TORCareers.MinorVampire, "Wages for Vampires are reduced by 15%", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special,true));
+            _lordlyPassive4.Initialize(TORCareers.MinorVampire, "Upgrade costs are halfed", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-0.5f, PassiveEffectType.TroopUpgradeCost));         //Not sure if this is the best way, still its a universal perk.
             
             _martiallePassive1.Initialize(TORCareers.MinorVampire, "Extra Melee Damage(10%).", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical,10),AttackTypeMask.Melee));
-            _martiallePassive2.Initialize(TORCareers.MinorVampire, "Increases hitpoints by 25.", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
-            _martiallePassive3.Initialize(TORCareers.MinorVampire, "Test", "Martialle", false, ChoiceType.Passive, null);
-            _martiallePassive4.Initialize(TORCareers.MinorVampire, "Test", "Martialle", false, ChoiceType.Passive, null);
+            _martiallePassive2.Initialize(TORCareers.MinorVampire, "Increases hitpoints by 25.", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+            _martiallePassive3.Initialize(TORCareers.MinorVampire, "10% Extra damage for all troops against humans", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10,PassiveEffectType.Special,true));
+            _martiallePassive4.Initialize(TORCareers.MinorVampire, "Melee attacks above 75 damage cut through multiple enemies. Threshold is reduced for every skillpoint in Weaponskill by 0.12", "Martialle", false, ChoiceType.Passive, null); //TODO needs testing 
             
-            _masterOfDeadPassive1.Initialize(TORCareers.MinorVampire, "Test", "MasterOfDead", false, ChoiceType.Passive, null);
-            _masterOfDeadPassive2.Initialize(TORCareers.MinorVampire, "Test", "MasterOfDead", false, ChoiceType.Passive, null);
-            _masterOfDeadPassive3.Initialize(TORCareers.MinorVampire, "Test", "MasterOfDead", false, ChoiceType.Passive, null);
-            _masterOfDeadPassive4.Initialize(TORCareers.MinorVampire, "Test", "MasterOfDead", false, ChoiceType.Passive, null);
+            _masterOfDeadPassive1.Initialize(TORCareers.MinorVampire, "100 XP every day for undead units in party", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100,PassiveEffectType.Special,false));
+            _masterOfDeadPassive2.Initialize(TORCareers.MinorVampire, "20% Higher chance for raised dead after battle", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20,PassiveEffectType.Special,true));
+            _masterOfDeadPassive3.Initialize(TORCareers.MinorVampire, "Undead units get 25% Wardsave Resistance", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25,PassiveEffectType.Special,true));    //Might be OP , I had fun, i would leave it for the playtest, can be adjusted
+            _masterOfDeadPassive4.Initialize(TORCareers.MinorVampire, "Tier 4 Undead troops can be  'wounded' with a 20% lower chance", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20,PassiveEffectType.Special,true));
             
             
         }

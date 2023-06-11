@@ -10,6 +10,7 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
@@ -175,6 +176,13 @@ namespace TOR_Core.Models
                 if (character.GetPerkValue(TORPerks.SpellCraft.EfficientSpellCaster))
                 {
                     cost.AddFactor(TORPerks.SpellCraft.EfficientSpellCaster.SecondaryBonus);
+                }
+                
+                if (character.IsPlayerCharacter)
+                {
+                    var player = Hero.MainHero;
+                    
+                    CareerHelper.ApplyBasicCareerPassives(player,ref cost,PassiveEffectType.WindsCostReduction, true);
                 }
             }
             return (int)cost.ResultNumber;

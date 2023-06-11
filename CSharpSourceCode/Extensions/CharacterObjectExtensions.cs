@@ -118,6 +118,11 @@ namespace TOR_Core.Extensions
         {
             return characterObject.Race == FaceGen.GetRaceOrDefault("vampire");
         }
+        
+        public static bool IsCultist(this BasicCharacterObject characterObject)
+        {
+            return characterObject.Race == FaceGen.GetRaceOrDefault("chaos_ud_cultist");
+        }
 
         public static bool IsReligiousUnit(this CharacterObject characterObject)
         {

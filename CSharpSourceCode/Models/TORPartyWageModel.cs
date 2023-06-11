@@ -72,11 +72,31 @@ namespace TOR_Core.Models
 
             if (choices.Contains("SigmarsProclaimerPassive2"))
             {
-                if (!unit.Character.IsSoldier) return resultValue;
-                var choice = TORCareerChoices.GetChoice("SigmarsProclaimerPassive2");
-                var includeRegularTroops = choices.Contains("ArchLectorPassive4");
-                var value = CalculateSigmarsProclaimerPerk(unit, includeRegularTroops, choice);
-                resultValue.Add(value, choice.BelongsToGroup.Name);
+                if (unit.Character.IsSoldier)
+                {
+                    var choice = TORCareerChoices.GetChoice("SigmarsProclaimerPassive2");
+                    var includeRegularTroops = choices.Contains("ArchLectorPassive4");
+                    var value = CalculateSigmarsProclaimerPerk(unit, includeRegularTroops, choice);
+                    resultValue.Add(value, choice.BelongsToGroup.Name);
+                }
+            }
+            
+            if (choices.Contains("LordlyPassive3"))
+            {
+                if (unit.Character.IsVampire()&&unit.Character != Hero.MainHero.CharacterObject)
+                {
+                    var choice = TORCareerChoices.GetChoice("LordlyPassive3");
+                    if (choice != null)
+                    {
+                        float effect = choice.GetPassiveValue();
+                        var wage = unit.Character.TroopWage;
+                        float value = (unit.Character.TroopWage*unit.Number) *effect;
+                        resultValue.Add(value, choice.BelongsToGroup.Name);
+                    }
+                    
+
+                }
+          
             }
 
             return resultValue;

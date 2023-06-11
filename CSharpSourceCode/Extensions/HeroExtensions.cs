@@ -29,7 +29,23 @@ namespace TOR_Core.Extensions
         /// <returns></returns>
         public static float GetRaiseDeadChance(this Hero hero)
         {
-            return hero.GetAttributeValue(DefaultCharacterAttributes.Intelligence) * 0.07f;
+            var explainedNumber = new ExplainedNumber();
+            var attributes = hero.GetAttributeValue(TORAttributes.Discipline); //was inteligence Intentional?
+           explainedNumber.Add(attributes * 0.07f);
+
+            if (hero.HasAnyCareer())
+            {
+                var choices = hero.GetAllCareerChoices();
+
+                if (choices.Contains("MasterOfDeadPassive2"))
+                {
+                    var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive2");
+                    if(choice!=null)
+                        explainedNumber.AddFactor(choice.GetPassiveValue());
+                }
+            }
+
+            return explainedNumber.ResultNumber;
         }
 
         public static float AddWindsOfMagic(this Hero hero, float amount)
@@ -57,7 +73,7 @@ namespace TOR_Core.Extensions
             return ExtendedInfoManager.Instance.GetHeroInfoFor(hero.GetInfoKey());
         }
 
-        public static int GetEffectiveWindsCostForSpell(this Hero hero, Spell spell)
+        public static int GetEffectiveWindsCostForSpell(this Hero hero, Spell spell)            
         {
             return hero.GetEffectiveWindsCostForSpell(spell.Template);
         }
@@ -177,6 +193,11 @@ namespace TOR_Core.Extensions
         public static bool IsVampire(this Hero hero)
         {
             return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("vampire");
+        }
+
+        public static bool IsCultist(this Hero hero)
+        {
+            return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("chaos_ud_cultist");
         }
         
         public static bool IsAICompanion(this Hero hero)

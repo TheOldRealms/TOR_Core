@@ -6,7 +6,10 @@ using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.BattleMechanics.SFX;
 using TOR_Core.BattleMechanics.TriggeredEffect;
+using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Models;
@@ -55,9 +58,25 @@ namespace TOR_Core.HarmonyPatches
                 {
                     var choices = Hero.MainHero.GetAllCareerChoices();
 
+                    if (victim.Character.Race == 0||victim.Character.IsCultist() && choices.Contains("MartiallePassive3"))        //other humans should be added if applicable
+                    {
+                        var choice = TORCareerChoices.GetChoice("MartiallePassive3");
+                        if (choice != null)
+                        {
+                            var value = choice.GetPassiveValue();
+                            additionalDamagePercentages[(int)DamageType.Physical] += value;
+                        }
+                    }
+                    
                     if (victim.Character.Race != 0 && choices.Contains("HolyPurgePassive3"))
                     {
-                        additionalDamagePercentages[(int)DamageType.Physical] += 0.1f;
+                        var choice = TORCareerChoices.GetChoice("HolyPurgePassive3");
+                        if (choice != null)
+                        {
+                            var value = choice.GetPassiveValue();
+                            additionalDamagePercentages[(int)DamageType.Physical] += value;
+                        }
+                        
                     }
                         
                 }
@@ -82,7 +101,7 @@ namespace TOR_Core.HarmonyPatches
             }
 
             //calculating spell damage
-            if (TORSpellBlowHelper.IsSpellBlow(b)|| (attackTypeMask ==AttackTypeMask.Spell&&abilityName!="") )
+            if (TORSpellBlowHelper.IsSpellBlow(b)|| (attackTypeMask ==AttackTypeMask.Spell&&abilityName!="") )      //checking the Attackmask should be enough IsSpellBlow is checked before!
             {
                 var abilityId="";
                 int damageType = 0;
@@ -153,6 +172,13 @@ namespace TOR_Core.HarmonyPatches
                 b.BlowFlag |= BlowFlags.ShrugOff;
             }
 
+            if (attackTypeMask == AttackTypeMask.Melee && IsMightyBlow(attacker, b.InflictedDamage, attacker.WieldedWeapon))
+            {
+                b.BlowFlag |= BlowFlags.CrushThrough;
+            }
+            
+            
+
             if (b.InflictedDamage > 0)
             {
                 if (attacker == Agent.Main || victim == Agent.Main)
@@ -168,6 +194,24 @@ namespace TOR_Core.HarmonyPatches
                 }
             }
             return true;
+        }
+        
+        
+        
+        public static bool IsMightyBlow(Agent agent, int damage, MissionWeapon weapon)
+        {
+            if (!agent.IsMainAgent || !agent.GetHero().HasAnyCareer()) return false;
+            if (!agent.GetHero().GetAllCareerChoices().Contains("MartiallePassive4")) return false;     //or other related skills
+                
+            var weaponSkill = weapon.Item.WeaponComponent.PrimaryWeapon.RelevantSkill;
+            if (weaponSkill == null) return false;
+            var threshold = 75 - damage - (agent.GetHero().GetSkillValue(weaponSkill)*0.12f);
+            if (threshold <= 0)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public static AttackTypeMask DetermineMask(Blow blow)

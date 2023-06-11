@@ -150,7 +150,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 PassiveEffectType = type;
             }
         }
+        
+        public float GetPassiveValue()
+        {
+            if (Passive == null)return 0;
+            return Passive.InterpretAsPercentage ? Passive.EffectMagnitude / 100 : Passive.EffectMagnitude;
+        } 
     }
+    
+    
 
     public enum ChoiceType
     {
@@ -174,9 +182,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         Damage,             //player damage, requires damage tuple
         Resistance,         //player resistance requires damage tuple
         WindsOfMagic,       //player Winds of Magic
+        WindsCostReduction, //player Winds of Magic cost reduction
         PartyMovementSpeed, //general party speed
         TroopRegeneration,  //troop generation
         TroopMorale,        //Morale
+        TroopUpgradeCost,
         Ammo,               //Player ammo
 
     }

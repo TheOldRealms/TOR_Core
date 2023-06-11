@@ -90,6 +90,8 @@ namespace TOR_Core.Extensions
             return false;
         }
 
+       
+
         public static bool ShouldNotBleed(this Agent agent)
         {
             return agent.GetAttributes().Contains("ClearBloodBurst");

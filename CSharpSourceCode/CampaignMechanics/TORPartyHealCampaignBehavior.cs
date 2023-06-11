@@ -6,7 +6,7 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics
 {
-    public class TORPartyHealCampaignBehavior : PartyHealCampaignBehavior
+    public class TORPartyHealCampaignBehavior : PartyHealCampaignBehavior       //Why does that need to be in a campaign behavior? There is a healing model already
     {
         public override void RegisterEvents()
         {

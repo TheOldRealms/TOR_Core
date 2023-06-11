@@ -371,6 +371,25 @@ namespace TOR_Core.Models
                         result.ResistancePercentages[(int)DamageType.Physical] += value;
                     }
                 }
+                
+                if (choices.Contains("HolyPurgePassive2") && mask == PropertyMask.Defense)
+                {
+                    if (agent.Character.UnitBelongsToCult("cult_of_sigmar"))
+                    {
+                        var choice = TORCareerChoices.GetChoice("HolyPurgePassive2");
+                        if (choice == null || choice.Passive == null) return result;
+                        float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
+                        result.ResistancePercentages[(int)DamageType.Physical] += value;
+                    }
+                }
+
+                if (agent.IsUndead()&&choices.Contains("MasterOfDeadPassive3") && mask == PropertyMask.Defense)
+                {
+                    var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive3");
+                    if (choice == null || choice.Passive == null) return result;
+                    float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
+                    result.ResistancePercentages[(int)DamageType.All] += value;
+                }
 
                 if (choices.Contains("HolyPurgePassive4") && mask == PropertyMask.Attack)
                 {

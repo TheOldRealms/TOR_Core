@@ -10,6 +10,9 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
 {
+    /**
+     * ONLY applies for campaign map related events!
+     */
     public class TORPartyHealingModel : DefaultPartyHealingModel
     {
         public override float GetSurvivalChance(PartyBase party, CharacterObject character, DamageTypes damageType, PartyBase enemyParty = null)
@@ -17,8 +20,25 @@ namespace TOR_Core.Models
             var result = base.GetSurvivalChance(party, character, damageType, enemyParty);
           
             if (result < 0.5f && party != null && party.LeaderHero != null && party.LeaderHero.GetPerkValue(TORPerks.Faith.Revival)) result = TORPerks.Faith.Revival.PrimaryBonus;
-            if (character.IsUndead()) result = 0;
-            return result;
+            if (!character.IsUndead()) return result;   //undead "survival chance"
+            
+            if (character.Tier < 4)
+            { 
+                return 0;
+            }
+
+            if (party.LeaderHero!=null&&party.LeaderHero==Hero.MainHero&&party.LeaderHero.HasAnyCareer())      
+            {
+                var choices = party.LeaderHero.GetAllCareerChoices();
+                if(choices.Contains("MasterOfDeadPassive4"))
+                {
+                    var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive4");
+                    if(choice!=null)
+                        return (result+choice.GetPassiveValue());
+                }
+            }
+
+            return 0;
         }
 
         public override ExplainedNumber GetDailyHealingForRegulars(MobileParty party, bool includeDescriptions = false)

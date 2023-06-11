@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <GameDir>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord</GameDir>
+    <GameDir>H:\Program Files (x86)\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord</GameDir>
   </PropertyGroup>
   <PropertyGroup>
     <StartAction>Program</StartAction>
@@ -436,6 +436,7 @@
     <Compile Include="BattleMechanics\Atmosphere\ForceAtmosphereMissionLogic.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerManager.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerMissionLogic.cs" />
+    <Compile Include="BattleMechanics\CareerPerkMissionBehavior.cs" />
     <Compile Include="BattleMechanics\CustomCrosshairMissionBehavior.cs" />
     <Compile Include="BattleMechanics\DamageSystem\DamageType.cs" />
     <Compile Include="BattleMechanics\Dismemberment\DismembermentMissionLogic.cs" />
@@ -488,6 +489,7 @@
     <Compile Include="BattleMechanics\TORBattleAgentLogic.cs" />
     <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCaptivityCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\TORCareerPerkCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORBaseSettlementComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORSettlementComponents.cs" />
@@ -507,7 +509,9 @@
     <Compile Include="CharacterDevelopment\CareerSystem\CareerScreenGameState.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerScreenVM.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CharacterDeveloperVMExtension.cs" />
-    <Compile Include="CharacterDevelopment\CareerSystem\WarriorPriestCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\TORCareerChoiceBase.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\VampireCountCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\WarriorPriestCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\TORAttributes.cs" />
     <Compile Include="CharacterDevelopment\TORCareerChoiceGroups.cs" />
     <Compile Include="CharacterDevelopment\TORCareerChoices.cs" />
@@ -602,6 +606,7 @@
     <Compile Include="Models\TORCompanionHiringPriceCalculationModel.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleAgentStatCalculateModel.cs" />
     <Compile Include="Models\TORDamageParticleModel.cs" />
+    <Compile Include="Models\TORDiplomacyModel.cs" />
     <Compile Include="Models\TORFaithModel.cs" />
     <Compile Include="Models\TORInventoryCapacityModel.cs" />
     <Compile Include="Models\TORMapVisibilityModel.cs" />

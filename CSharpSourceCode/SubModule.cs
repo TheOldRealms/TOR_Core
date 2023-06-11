@@ -117,6 +117,7 @@ namespace TOR_Core
                 starter.AddBehavior(new TORPartyUpgraderCampaignBehavior());
                 starter.AddBehavior(new InkStoryCampaignBehavior());
                 starter.AddBehavior(new ReligionCampaignBehavior());
+                starter.AddBehavior(new TORCareerPerkCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
@@ -164,6 +165,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORClanPoliticsModel());
                 gameStarterObject.AddModel(new TORMapVisibilityModel());
                 gameStarterObject.AddModel(new TORTournamentModel());
+                gameStarterObject.AddModel(new TORDiplomacyModel());
 
                 CampaignOptions.IsLifeDeathCycleDisabled = true;
             }
@@ -201,6 +203,8 @@ namespace TOR_Core
             mission.AddMissionBehavior(new UndeadMoraleMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new ForceAtmosphereMissionLogic());
+            mission.AddMissionBehavior(new CareerPerkMissionBehavior());
+            
             //mission.AddMissionBehavior(new BaseGameDebugMissionLogic());
 
             if (Game.Current.GameType is Campaign)
