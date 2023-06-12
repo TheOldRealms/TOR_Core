@@ -587,6 +587,7 @@
     <Compile Include="Items\IWeaponHitEffect.cs" />
     <Compile Include="Items\TorInventoryItemTupleWidget.cs" />
     <Compile Include="Items\TorItemMenuVM.cs" />
+    <Compile Include="Items\TorImageIdentifierWidget.cs" />
     <Compile Include="Items\TorItemTraitVM.cs" />
     <Compile Include="Items\WeaponEffectMissionLogic.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleMoraleModel.cs" />

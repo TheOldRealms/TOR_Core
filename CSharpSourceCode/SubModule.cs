@@ -65,9 +65,9 @@ namespace TOR_Core
         }
 
         protected override void OnSubModuleLoad()
-        { 
-            
-            CampaignTime startTime = CampaignTime.Years(2502)+CampaignTime.Weeks(4)+CampaignTime.Days(5);
+        {
+
+            CampaignTime startTime = CampaignTime.Years(2502) + CampaignTime.Weeks(4) + CampaignTime.Days(5) + CampaignTime.Hours(12);
             
             typeof(CampaignData).GetField("CampaignStartTime",BindingFlags.Static|BindingFlags.Public)?.SetValue(null,startTime);
             
