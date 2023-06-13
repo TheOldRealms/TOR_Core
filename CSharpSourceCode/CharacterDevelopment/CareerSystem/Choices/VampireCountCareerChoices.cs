@@ -198,14 +198,30 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"mistwalk_swingspeed"}).ToList(),
                         MutationType = OperationType.Replace
                     },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_mistwalk",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"mistwalk_swingspeed"}).ToList(),
+                        MutationType = OperationType.Replace
+                    },
                     
 
                 },new CareerChoiceObject.PassiveEffect(-40,PassiveEffectType.Special,true)); // 
 
 
-            _masterOfDeadKeystone.Initialize(TORCareers.MinorVampire, "You propergate effects of your mist form to your souroundings.", "MasterOfDead", false,
+            _masterOfDeadKeystone.Initialize(TORCareers.MinorVampire, "You propergate effects of your mist form to your souroundings. Requires 40% higher damage infliction.", "MasterOfDead", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "ShadowStep",
+                        PropertyName = "AbilityTargetType",
+                        PropertyValue = (choice, originalValue, agent) => (AbilityTargetType.AlliesInAOE),
+                        MutationType = OperationType.Replace
+                    },
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(TriggeredEffectTemplate),
@@ -214,15 +230,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         PropertyValue = (choice, originalValue, agent) => (TargetType.Friendly),
                         MutationType = OperationType.Replace
                     },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "ShadowStep",
-                        PropertyName = "TriggeredEffects",
-                        PropertyValue = (choice, originalValue, agent) =>  ((List<string>)originalValue).Concat(new []{"apply_mistwalk_area"}).ToList(),
-                        MutationType = OperationType.Replace
-                    },
-                });
+                },new CareerChoiceObject.PassiveEffect(-40,PassiveEffectType.Special,true));
 
         }
 

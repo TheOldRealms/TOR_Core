@@ -55,7 +55,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             StatusEffect effect = _currentEffects.Keys.Where(e => e.Template.StringID.Equals(effectId)).FirstOrDefault();
             if (effect != null)
             {
-                if (append) effect.CurrentDuration += duration;
+                if (append) effect.CurrentDuration += duration;     //i think this should be a set not an addition. I can't imagine a single usecase where its benefitical that it "adds up" with all the tick effects it introduces more side effects than beeing beneficial
             }
             else
             {

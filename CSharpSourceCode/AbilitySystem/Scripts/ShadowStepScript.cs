@@ -3,6 +3,7 @@ using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem.Scripts
 {
@@ -67,6 +68,7 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         protected override void OnTick(float dt)
         {
+           
             if (_ability == null) return;
             if (IsFading) return;
             _timeSinceLastTick += dt;
@@ -101,11 +103,13 @@ namespace TOR_Core.AbilitySystem.Scripts
                 }
             }
 
-            currentTick += dt;
-            if (dt >= effectTickIntervall)
+            
+            //_timeSinceLastTick += dt;
+            if (_timeSinceLastTick >= effectTickIntervall)
             {
                 TriggerEffects(_casterAgent.Position,-_casterAgent.Position.NormalizedCopy());
-                currentTick = 0f;
+                _timeSinceLastTick = 0f;
+                TORCommon.Say("Tick");
             }
             
         }
