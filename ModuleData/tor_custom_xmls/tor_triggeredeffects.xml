@@ -842,7 +842,7 @@
             DamageAmount="0" 
             Radius="1.5" 
             HasShockWave="false" 
-            TargetType="Enemy" 
+            TargetType="Self" 
             DamageVariance="0" 
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.KnockDownScript"/>
       
@@ -859,6 +859,35 @@
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>righteous_fury_effect</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+	  
+	  <TriggeredEffectTemplate StringID="apply_mistwalk" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="10" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="5" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+      </TriggeredEffectTemplate>
+	  
+	  <TriggeredEffectTemplate StringID="apply_mistwalk_area" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="2.1" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>mistwalk_healing_group</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
       
       <TriggeredEffectTemplate StringID="apply_righteous_fury_pulse" 

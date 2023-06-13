@@ -33,11 +33,18 @@ namespace TOR_Core.AbilitySystem
                 {
                     ChargeType = _career.ChargeType;
                     _maxCharge = _career.MaxCharge;
+                    var root = _career.RootNode;
+                    
                     Template = (AbilityTemplate)template.Clone(template.StringID + "*cloned*" + _ownerHero.StringId);
                     _career.MutateAbility(Template, agent);
                 }
             }
-            _currentCharge = _maxCharge;
+            
+            if (Agent.Main.GetHero().GetAllCareerChoices().Contains("CourtleyKeystone")||true)
+            {
+                _currentCharge = _maxCharge;
+            }
+           
         }
 
         protected override void AddExactBehaviour<TAbilityScript>(GameEntity parentEntity, Agent casterAgent)
@@ -63,7 +70,7 @@ namespace TOR_Core.AbilitySystem
 
         public override bool CanCast(Agent casterAgent)
         {
-            if (Template.StringID == "ShadowStep" && casterAgent.HasMount) return false;
+            if (Template.StringID.Contains("ShadowStep") && casterAgent.HasMount) return false;
             return !IsCasting &&
                    !IsOnCooldown() &&
                    IsCharged &&
@@ -74,9 +81,53 @@ namespace TOR_Core.AbilitySystem
         {
             if (!IsActive)
             {
-                _currentCharge += amount;
+                var modifiedAmount = ModifyChargeAmount(amount);
+                _currentCharge += modifiedAmount;
                 _currentCharge = Math.Min(_maxCharge, _currentCharge);
             }
+        }
+
+
+
+
+        private float ModifyChargeAmount(float baseChargeAmount)
+        {
+            ExplainedNumber number = new ExplainedNumber(baseChargeAmount);
+            if (Agent.Main.GetHero().HasAnyCareer())
+            {
+                if (Agent.Main.GetHero().GetAllCareerChoices().Contains("ArkayneKeystone"))
+                {
+                    var choice = TORCareerChoices.GetChoice("ArkayneKeystone");
+                    if(choice!=null)
+                    {
+                        var value = choice.GetPassiveValue();
+                        number.AddFactor(value);
+                    }
+                }
+                
+                if (Agent.Main.GetHero().GetAllCareerChoices().Contains("NewBloodKeystone"))
+                {
+                    var choice = TORCareerChoices.GetChoice("NewBloodKeystone");
+                    if(choice!=null)
+                    {
+                        var value = choice.GetPassiveValue();
+                        number.AddFactor(value);
+                    }
+                }
+                
+                if (Agent.Main.GetHero().GetAllCareerChoices().Contains("MartialleKeystone"))
+                {
+                    var choice = TORCareerChoices.GetChoice("MartialleKeystone");
+                    if(choice!=null)
+                    {
+                        var value = choice.GetPassiveValue();
+                        number.AddFactor(value);
+                    }
+                }
+               
+            }
+
+            return number.ResultNumber;
         }
     }
 

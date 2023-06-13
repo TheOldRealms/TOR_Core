@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.Religion;
@@ -12,6 +13,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
+using FaceGen = TaleWorlds.Core.FaceGen;
 
 namespace TOR_Core.Extensions
 {
@@ -64,6 +66,8 @@ namespace TOR_Core.Extensions
                     result = info.MaxWindsOfMagic - info.CurrentWindsOfMagic;
                     info.CurrentWindsOfMagic = info.MaxWindsOfMagic;
                 }
+
+                
             }
             return result;
         }

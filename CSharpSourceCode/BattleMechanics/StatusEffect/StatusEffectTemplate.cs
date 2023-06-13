@@ -38,6 +38,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         public enum EffectType
         {
             HealthOverTime,
+            WindsOverTime,
             DamageOverTime,
             DamageAmplification,
             Resistance,

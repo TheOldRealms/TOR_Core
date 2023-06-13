@@ -27,6 +27,34 @@
 		base_effect_value="20"
 		type="HealthOverTime"/>
 	<StatusEffectTemplate 
+		id="mistwalk_healing" 
+		particle_id="breath_of_darkness"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="3"
+		type="HealthOverTime"/>
+	<StatusEffectTemplate 
+		id="mistwalk_healing_group" 
+		particle_id="berzerk_effect"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="2"
+		type="HealthOverTime"/>
+	<StatusEffectTemplate 
+		id="mistwalk_wom" 
+		particle_id="breath_of_darkness"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="1"
+		type="WindsOverTime"/>
+	<StatusEffectTemplate 
+		id="mistwalk_swingspeed" 
+		particle_id="berzerk_effect"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.15"
+		type="AttackSpeedManipulation"/>
+	<StatusEffectTemplate 
 		id="fireball_dot" 
 		particle_id="torch_fire_sparks"
 		particle_intensity="High"

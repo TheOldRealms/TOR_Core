@@ -155,7 +155,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         {
             if (Passive == null)return 0;
             return Passive.InterpretAsPercentage ? Passive.EffectMagnitude / 100 : Passive.EffectMagnitude;
-        } 
+        }
+
+        public bool HasMutations()
+        {
+            return !_mutations.IsEmpty();
+        }
     }
     
     

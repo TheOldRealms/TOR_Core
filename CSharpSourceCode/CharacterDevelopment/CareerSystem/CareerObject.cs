@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
@@ -64,10 +65,16 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             if(casterAgent != null && casterAgent.GetHero()?.GetExtendedInfo() != null)
             {
                 var info = casterAgent.GetHero().GetExtendedInfo();
+                var root = casterAgent.GetHero().GetCareer().RootNode;
                 var choices = AllChoices.Where(x => info.CareerChoices.Contains(x.StringId));
-                foreach (var choice in choices)
+                List<CareerChoiceObject> modifications = new List<CareerChoiceObject>();
+
+                modifications.Add(root);
+                modifications.AddRange(choices);
+                foreach (var choice in modifications)
                 {
-                    choice.MutateAbility(ability, casterAgent);
+                    if(choice.HasMutations())
+                        choice.MutateAbility(ability, casterAgent);
                 }
             }
         }
@@ -82,7 +89,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     var choices = AllChoices.Where(x => info.CareerChoices.Contains(x.StringId));
                     foreach (var choice in choices)
                     {
-                        choice.MutateTriggeredEffect(effect, triggererAgent);
+                        if(choice.HasMutations())
+                            choice.MutateTriggeredEffect(effect, triggererAgent);
                     }
                 }
             }

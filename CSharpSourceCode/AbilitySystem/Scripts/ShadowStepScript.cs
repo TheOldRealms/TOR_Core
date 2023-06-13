@@ -8,6 +8,10 @@ namespace TOR_Core.AbilitySystem.Scripts
 {
     public class ShadowStepScript : CareerAbilityScript
     {
+
+        private float effectTickIntervall;
+        private float currentTick;
+
         public override void Initialize(Ability ability)
         {
             base.Initialize(ability);
@@ -17,6 +21,13 @@ namespace TOR_Core.AbilitySystem.Scripts
             sphere.EntityVisibilityFlags |= EntityVisibilityFlags.VisibleOnlyForEnvmap;
             GameEntity.AddChild(sphere);
             SaveKeyBindings();
+            _speed = 10;
+            if (Agent.Main.GetHero().GetAllCareerChoices().Contains("NewBloodKeystone"))
+            {
+                _speed *= 1.2f;
+            }
+
+            effectTickIntervall = ability.Template.TickInterval;
         }
 
         public override void SetAgent(Agent agent)
@@ -24,6 +35,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             base.SetAgent(agent);
             agent.Disappear();
             agent.ToggleInvulnerable();
+            TriggerEffects(agent.Position,agent.Position.NormalizedCopy());
             if(agent.IsPlayerControlled) DisbindKeyBindings();
             var frame = _casterAgent.Frame.Elevate(1f);
             GameEntity.SetGlobalFrame(frame);
@@ -59,6 +71,8 @@ namespace TOR_Core.AbilitySystem.Scripts
             if (IsFading) return;
             _timeSinceLastTick += dt;
             UpdateLifeTime(dt);
+            
+            
 
             if (_casterAgent != null && _casterAgent.Health > 0)
             {
@@ -72,6 +86,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                     }
                 }
             }
+            
 
             MBList<Agent> agents = new MBList<Agent>();
             agents = Mission.Current.GetNearbyAgents(_casterAgent.Position.AsVec2, 2, agents);
@@ -85,6 +100,14 @@ namespace TOR_Core.AbilitySystem.Scripts
                     agent.TeleportToPosition(agent.Position + pos);
                 }
             }
+
+            currentTick += dt;
+            if (dt >= effectTickIntervall)
+            {
+                TriggerEffects(_casterAgent.Position,-_casterAgent.Position.NormalizedCopy());
+                currentTick = 0f;
+            }
+            
         }
 
         private float GetDistance()

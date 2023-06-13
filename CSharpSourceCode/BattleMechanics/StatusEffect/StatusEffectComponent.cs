@@ -109,6 +109,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 {
                     Agent.Heal((int)_effectAggregate.HealthOverTime);
                 }
+                if (_effectAggregate.WindsOverTime > 0)
+                {
+                    if (Agent.IsHero && Agent.IsSpellCaster())
+                        Agent.GetHero().AddWindsOfMagic(_effectAggregate.WindsOverTime);
+                }
 
                 if (_effectAggregate == null) return;
 
@@ -320,6 +325,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         private class EffectAggregate
         {
+            public float WindsOverTime { get; set; } = 0;
             public float HealthOverTime { get; set; } = 0;
             public float DamageOverTime { get; set; } = 0;
             public Dictionary<AttackTypeMask, float[]> DamageAmplifications { get; }
@@ -350,6 +356,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                         break;
                     case StatusEffectTemplate.EffectType.HealthOverTime:
                         HealthOverTime += strength;
+                        break;
+                    case StatusEffectTemplate.EffectType.WindsOverTime:
+                        WindsOverTime += strength;
                         break;
                     case StatusEffectTemplate.EffectType.DamageAmplification:
                         AddDamageAmplification(template.DamageType, template.AttackTypeMask, strength);

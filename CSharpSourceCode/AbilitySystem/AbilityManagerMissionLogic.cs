@@ -108,7 +108,13 @@ namespace TOR_Core.AbilitySystem
             var comp = affectorAgent.GetComponent<AbilityComponent>();
             if (comp != null)
             {
-                if (comp.CareerAbility != null && comp.CareerAbility.ChargeType == ChargeType.DamageDone) comp.CareerAbility.AddCharge(blow.InflictedDamage * DamagePortionForChargingCareerAbility);
+                if(comp.CareerAbility==null)
+                    return;
+
+                var propotion = DamagePortionForChargingCareerAbility;
+                
+                
+                if (comp.CareerAbility.ChargeType == ChargeType.DamageDone) comp.CareerAbility.AddCharge(blow.InflictedDamage * DamagePortionForChargingCareerAbility);
             }
 
             var comp2 = affectedAgent.GetComponent<AbilityComponent>();

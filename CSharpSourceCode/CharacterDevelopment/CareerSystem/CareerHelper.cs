@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
@@ -14,8 +15,16 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
     public static class CareerHelper
     {
-        public static float AddSkillEffectToValue(CareerChoiceObject careerChoice, Agent agent, List<SkillObject> relevantSkills, float scalingFactor, bool highestOnly = false)
+        public static float AddSkillEffectToValue(CareerChoiceObject careerChoice, Agent agent, List<SkillObject> relevantSkills, float scalingFactor, bool highestOnly = false , bool onlyWielded=false)
         {
+            SkillObject wieldedWeaponSkill = null;
+            int skillValueWielded = 0;
+            if (agent.WieldedWeapon.Item != null)
+            {
+                wieldedWeaponSkill = agent.WieldedWeapon.Item?.PrimaryWeapon?.RelevantSkill;
+                skillValueWielded= agent.GetHero().GetSkillValue(wieldedWeaponSkill);
+            }
+             
             float retVal = 0f;
             if (agent != null && agent.IsHero && relevantSkills != null && relevantSkills.Count > 0)
             {
@@ -23,9 +32,16 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 {
                     int skillValue = agent.GetHero().GetSkillValue(skill);
                     var result = skillValue * scalingFactor;
+                    if (onlyWielded && skill == wieldedWeaponSkill)
+                    {
+                        retVal += skillValue;
+                        break;
+                    }
                     if (highestOnly && result > retVal) retVal = result;
                     else retVal += result;
                 }
+
+                
 
                 if (careerChoice == TORCareerChoices.GetChoice("ProtectorOfTheWeakKeyStone"))
                 {

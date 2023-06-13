@@ -2746,7 +2746,7 @@
 	</AbilityTemplate>
 	<!-- Career Abilities -->
 	<AbilityTemplate StringID="ShadowStep"
-       Name="Shadow Step"
+       Name="Mist Walk"
        SpriteName="windofdeath_icon"
        CoolDown="5"
        WindsOfMagicCost="0"
@@ -2756,7 +2756,7 @@
        AbilityType="CareerAbility"
        AbilityEffectType="CareerAbilityEffect"
        BaseMovementSpeed="0.6"
-       TickInterval="0.01"
+       TickInterval="2"
        TriggerType="EveryTick"
        HasLight="false"
        LightIntensity="0"
@@ -2768,6 +2768,7 @@
        ParticleEffectSizeModifier="1"
        SoundEffectToPlay="bats_loop"
        ShouldSoundLoopOverDuration="false"
+	   AbilityTargetType="Self"
        CastType="Instant"
        CastTime="0.5"
        AnimationActionName="none"
@@ -2783,7 +2784,7 @@
 				<z>255</z>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>shadow_step</TriggeredEffect>
+		<TriggeredEffect>apply_mistwalk</TriggeredEffect>
 	</AbilityTemplate>
 	<AbilityTemplate StringID="RighteousFury"
        Name="Righteous Fury"
