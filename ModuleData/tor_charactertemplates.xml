@@ -141,7 +141,7 @@
       <EquipmentSet id="tor_qnpc_masterengineer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_empire_6" default_group="infantry" name="{=str_tor_wanderer_empire_6}{HERO.FIRSTNAME} Priestess of Shallya" occupation="Wanderer" culture="Culture.empire" voice="curt" age="31" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_6" default_group="infantry" name="{=str_tor_wanderer_empire_6}{HERO.FIRSTNAME} Priestess of Shallya" occupation="Wanderer" culture="Culture.empire" voice="curt" age="31" is_female="true" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.townswoman_empire" />
     </face>
@@ -1026,7 +1026,7 @@
       <EquipmentSet id="tor_qnpc_engineerquest_goswin_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_witchhunterquesthero" default_group="infantry" name="{=str_tor_witchhunterquesthero}{=!}Witch Hunter" occupation="Special" culture="Culture.empire" voice="ironic" age="30" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_bountymaster_empire_0" default_group="infantry" name="{=str_tor_bountymaster_empire_0}{=!}Templar Witch Hunter" occupation="Special" culture="Culture.empire" voice="ironic" age="30" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>

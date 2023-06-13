@@ -28,6 +28,7 @@ using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.AICompanions;
 using TOR_Core.CampaignMechanics.Assimilation;
+using TOR_Core.CampaignMechanics.BountyMaster;
 using TOR_Core.CampaignMechanics.Chaos;
 using TOR_Core.CampaignMechanics.CustomDialogs;
 using TOR_Core.CampaignMechanics.CustomEncounterDialogs;
@@ -117,6 +118,7 @@ namespace TOR_Core
                 starter.AddBehavior(new TORPartyUpgraderCampaignBehavior());
                 starter.AddBehavior(new InkStoryCampaignBehavior());
                 starter.AddBehavior(new ReligionCampaignBehavior());
+                starter.AddBehavior(new BountyMasterCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
@@ -201,7 +203,6 @@ namespace TOR_Core
             mission.AddMissionBehavior(new UndeadMoraleMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new ForceAtmosphereMissionLogic());
-            //mission.AddMissionBehavior(new BaseGameDebugMissionLogic());
 
             if (Game.Current.GameType is Campaign)
             {

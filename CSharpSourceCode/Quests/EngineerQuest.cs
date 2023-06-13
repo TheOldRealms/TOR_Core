@@ -305,7 +305,6 @@ namespace TOR_Core.Quests
             List<PartyBase> list = new List<PartyBase>();
             list.Add(_targetParty.Party);
             AddTrackedObject(party);
-            ToggleTrackedObjects();
         }
     }
 

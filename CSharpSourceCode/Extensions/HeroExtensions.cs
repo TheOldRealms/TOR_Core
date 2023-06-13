@@ -7,7 +7,9 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics.BountyMaster;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -184,11 +186,24 @@ namespace TOR_Core.Extensions
             return hero.HasAttribute("AICompanion") && hero.Occupation == Occupation.Special;
         }
 
+        public static bool IsBountyMaster(this Hero hero)
+        {
+            var behavior = Campaign.Current.GetCampaignBehavior<BountyMasterCampaignBehavior>();
+            if (behavior != null)
+            {
+                return behavior.IsBountyMaster(hero);
+            }
+            else return false;
+        }
 
         public static bool IsSpellTrainer(this Hero hero)
         {
-            if (IsAICompanion(hero)) return false;            
-            return hero.Occupation == Occupation.Special && hero.Name.Contains("Magister");
+            var behavior = Campaign.Current.GetCampaignBehavior<SpellTrainerInTownBehavior>();
+            if (behavior != null)
+            {
+                return behavior.IsSpellTrainer(hero);
+            }
+            else return false;
         }
 
         public static bool IsMasterEngineer(this Hero hero)

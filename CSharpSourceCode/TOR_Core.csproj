@@ -396,7 +396,6 @@
     <Compile Include="AbilitySystem\Spells\SpellCastingLevel.cs" />
     <Compile Include="AbilitySystem\SummonedAgentOrigin.cs" />
     <Compile Include="BaseGameDebug\BaseGameDebugCampaignBehavior.cs" />
-    <Compile Include="BaseGameDebug\BaseGameDebugMissionLogic.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehaviorConfiguration.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehavior\AbstractAgentCastingBehavior.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehavior\AoEAdjacentCastingBehavior.cs" />
@@ -465,6 +464,7 @@
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectTemplate.cs" />
     <Compile Include="CampaignMechanics\AICompanions\TORAICompanionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\BountyMaster\BountyMasterCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissSceneNotificationItem.cs" />
@@ -627,6 +627,7 @@
     <Compile Include="Models\TORTournamentModel.cs" />
     <Compile Include="Models\TORVoiceOverModel.cs" />
     <Compile Include="Quests\EngineerQuest.cs" />
+    <Compile Include="Quests\HuntCultistsQuestCampaignBehavior.cs" />
     <Compile Include="Quests\QuestPartyComponent.cs" />
     <Compile Include="Quests\SpecializeLoreQuest.cs" />
     <Compile Include="Quests\TORQuestHelper.cs" />

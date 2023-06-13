@@ -84,7 +84,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
                 if (forceSpawn)
                 {
-                    LocationCharacter locationCharacter = new LocationCharacter(new AgentData(new SimpleAgentOrigin(trainer.CharacterObject, -1, null, default(UniqueTroopDescriptor))).Monster(Game.Current.DefaultMonster), new LocationCharacter.AddBehaviorsDelegate(SandBoxManager.Instance.AgentBehaviorManager.AddWandererBehaviors), "npc_common", true, LocationCharacter.CharacterRelations.Neutral, null, true, false, null, false, false, true);
+                    LocationCharacter locationCharacter = new LocationCharacter(new AgentData(new SimpleAgentOrigin(trainer.CharacterObject, -1, null, default(UniqueTroopDescriptor))).Monster(FaceGen.GetBaseMonsterFromRace(trainer.CharacterObject.Race)), new LocationCharacter.AddBehaviorsDelegate(SandBoxManager.Instance.AgentBehaviorManager.AddWandererBehaviors), "npc_common", true, LocationCharacter.CharacterRelations.Neutral, null, true, false, null, false, false, true);
                     collegeloc.AddCharacter(locationCharacter);
                 }
                 else
@@ -175,6 +175,11 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 .ForEach(item => roster.Add(new ItemRosterElement(item, MBRandom.RandomInt(1, 5))));
 
             InventoryManager.OpenScreenAsTrade(roster, Settlement.CurrentSettlement.Town);
+        }
+
+        public bool IsSpellTrainer(Hero hero)
+        {
+            return _settlementToTrainerMap.ContainsValue(hero.StringId);
         }
 
         private void AddDialogs(CampaignGameStarter obj)
