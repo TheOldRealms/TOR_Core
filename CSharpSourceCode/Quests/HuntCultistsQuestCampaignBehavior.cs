@@ -20,7 +20,19 @@ namespace TOR_Core.Quests
     {
         public override void RegisterEvents()
         {
-            CampaignEvents.OnCheckForIssueEvent.AddNonSerializedListener(this, OnCheckForIssue);
+            CampaignEvents.SettlementEntered.AddNonSerializedListener(this, OnSettlementEntered);
+        }
+
+        private void OnSettlementEntered(MobileParty party, Settlement settlement, Hero hero)
+        {
+            if(party == MobileParty.MainParty)
+            {
+                Hero master = settlement.HeroesWithoutParty.FirstOrDefault(x => x.IsBountyMaster());
+                if(master != null && master.Issue == null)
+                {
+                    Campaign.Current.IssueManager.CreateNewIssue(new PotentialIssueData(new PotentialIssueData.StartIssueDelegate(OnIssueSelected), typeof(HuntCultistsIssue), IssueBase.IssueFrequency.VeryCommon), master);
+                }
+            }
         }
 
         private void OnCheckForIssue(Hero hero)
@@ -86,7 +98,7 @@ namespace TOR_Core.Quests
             {
                 get
                 {
-                    TextObject textObject = new TextObject("{=!}You were tasked to travel to {TARGET_SETTLEMENT} and root out any cultist who may be hiding there.", null);
+                    TextObject textObject = new TextObject("{=!}Travel to target settlement and root out any cultist who may be hiding there.", null);
                     textObject.SetTextVariable("TARGET_SETTLEMENT", _targetSettlement.EncyclopediaLinkWithName);
                     return textObject;
                 }

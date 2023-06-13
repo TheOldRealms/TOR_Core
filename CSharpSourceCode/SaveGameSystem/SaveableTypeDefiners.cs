@@ -32,12 +32,14 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(RaidingPartyComponent), 12);
             AddClassDefinition(typeof(SpecializeLoreQuest), 13);
             AddClassDefinition(typeof(JoustTournamentGame), 14);
+            AddClassDefinition(typeof(HuntCultistsQuestCampaignBehavior.HuntCultistsIssue), 15);
+            AddClassDefinition(typeof(HuntCultistsQuestCampaignBehavior.HuntCultistsQuest), 16);
         }
 
         protected override void DefineEnumTypes()
         {
-            AddEnumDefinition(typeof(EngineerQuestStates), 15);
-            AddEnumDefinition(typeof(SpellCastingLevel), 16);
+            AddEnumDefinition(typeof(EngineerQuestStates), 17);
+            AddEnumDefinition(typeof(SpellCastingLevel), 18);
         }
 
         protected override void DefineContainerDefinitions()

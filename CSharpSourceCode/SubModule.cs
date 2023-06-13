@@ -50,6 +50,7 @@ using TOR_Core.Ink;
 using TOR_Core.Items;
 using TOR_Core.Models;
 using TOR_Core.Models.CustomBattleModels;
+using TOR_Core.Quests;
 using TOR_Core.Utilities;
 
 namespace TOR_Core
@@ -119,6 +120,7 @@ namespace TOR_Core
                 starter.AddBehavior(new InkStoryCampaignBehavior());
                 starter.AddBehavior(new ReligionCampaignBehavior());
                 starter.AddBehavior(new BountyMasterCampaignBehavior());
+                starter.AddBehavior(new HuntCultistsQuestCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
