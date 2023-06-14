@@ -870,7 +870,7 @@
             Radius="10" 
             HasShockWave="false" 
             TargetType="Self" 
-            ImbuedStatusEffectDuration="5" 
+            ImbuedStatusEffectDuration="3" 
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
       </TriggeredEffectTemplate>

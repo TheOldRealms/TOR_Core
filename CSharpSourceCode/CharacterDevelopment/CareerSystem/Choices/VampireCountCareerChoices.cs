@@ -113,7 +113,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
                 },new CareerChoiceObject.PassiveEffect(20,PassiveEffectType.Special,true));
             
-            _lordlyKeystone.Initialize(TORCareers.MinorVampire, "Mistform heals 3 Healthpoints per second.", "Lordly", false,         //TODO
+            _lordlyKeystone.Initialize(TORCareers.MinorVampire, "Mistform heals 3 Healthpoints per second. Your wielded weapon is counted towards the ability length", "Lordly", false,         //TODO
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -131,7 +131,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         PropertyName = "ImbuedStatusEffectDuration",
                         PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Athletics }, 0.03f),
                         MutationType = OperationType.Add
-                    }
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "ShadowStep",
+                        PropertyName = "Duration",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded,DefaultSkills.TwoHanded,DefaultSkills.Polearm }, 0.03f,false,true),
+                        MutationType = OperationType.Add
+                    },
 
                 },new CareerChoiceObject.PassiveEffect(20,PassiveEffectType.Special,true));
             
@@ -148,20 +156,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     },
                     new CareerChoiceObject.MutationObject()
                     {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_mistwalk",
-                        PropertyName = "ImbuedStatusEffectDuration",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Athletics }, 0.03f),
-                        MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_mistwalk",
-                        PropertyName = "ImbuedStatusEffectDuration",
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "ShadowStep",
+                        PropertyName = "Duration",
                         PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.SpellCraft }, 0.03f),
                         MutationType = OperationType.Add
                     }
+                    
 
                 },new CareerChoiceObject.PassiveEffect(-40,PassiveEffectType.Special,true));
             
@@ -170,48 +171,41 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 {
                     new CareerChoiceObject.MutationObject()
                     {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_mistwalk",
-                        PropertyName = "ImbuedStatusEffectDuration",
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "ShadowStep",
+                        PropertyName = "Duration",
                         PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Roguery }, 0.03f),
                         MutationType = OperationType.Add
                     }
-
-                }); // 
+                });         // cool down is reset on beginning
             
-            _martialleKeystone.Initialize(TORCareers.MinorVampire, "Your swing speed is increased by 20%, effects remain 50% longer active. Duration enhanced by wielded weapon. Requires 40% higher damage infliction." , "Martialle", false,
+            _martialleKeystone.Initialize(TORCareers.MinorVampire, "Swing speed is increased by 20%, StatusEffect are active after mistform. Requires 30% higher damage infliction." , "Martialle", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
+                    
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_mistwalk",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"mistwalk_swingspeed"}).ToList(),
+                        MutationType = OperationType.Replace
+                    },
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(TriggeredEffectTemplate),
                         MutationTargetOriginalId = "apply_mistwalk",
                         PropertyName = "ImbuedStatusEffectDuration",
-                        PropertyValue = (choice, originalValue, agent) => 1.5*CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded,DefaultSkills.TwoHanded,DefaultSkills.Polearm }, 0.12f,false,true),
+                        PropertyValue = (choice, originalValue, agent) => 10f,
                         MutationType = OperationType.Add
                     },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_mistwalk",
-                        PropertyName = "ImbuedStatusEffects",
-                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"mistwalk_swingspeed"}).ToList(),
-                        MutationType = OperationType.Replace
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_mistwalk",
-                        PropertyName = "ImbuedStatusEffects",
-                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"mistwalk_swingspeed"}).ToList(),
-                        MutationType = OperationType.Replace
-                    },
-                    
-
-                },new CareerChoiceObject.PassiveEffect(-40,PassiveEffectType.Special,true)); // 
 
 
-            _masterOfDeadKeystone.Initialize(TORCareers.MinorVampire, "You propergate effects of your mist form to your souroundings. Requires 40% higher damage infliction.", "MasterOfDead", false,
+
+                },new CareerChoiceObject.PassiveEffect(-30,PassiveEffectType.Special,true)); // 
+
+
+            _masterOfDeadKeystone.Initialize(TORCareers.MinorVampire, "You propergate all effects of your mist form to your souroundings. Requires 30% higher damage infliction.", "MasterOfDead", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -230,7 +224,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         PropertyValue = (choice, originalValue, agent) => (TargetType.Friendly),
                         MutationType = OperationType.Replace
                     },
-                },new CareerChoiceObject.PassiveEffect(-40,PassiveEffectType.Special,true));
+                },new CareerChoiceObject.PassiveEffect(-30,PassiveEffectType.Special,true));
 
         }
 
@@ -259,7 +253,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _martiallePassive1.Initialize(TORCareers.MinorVampire, "Extra Melee Damage(10%).", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical,10),AttackTypeMask.Melee));
             _martiallePassive2.Initialize(TORCareers.MinorVampire, "Increases hitpoints by 25.", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
             _martiallePassive3.Initialize(TORCareers.MinorVampire, "10% Extra damage for all troops against humans", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10,PassiveEffectType.Special,true));
-            _martiallePassive4.Initialize(TORCareers.MinorVampire, "Melee attacks above 75 damage cut through multiple enemies. Threshold is reduced for every skillpoint in Weaponskill by 0.12", "Martialle", false, ChoiceType.Passive, null); //TODO needs testing 
+            _martiallePassive4.Initialize(TORCareers.MinorVampire, "Melee attacks above 75 damage cut through multiple enemies. Threshold is reduced for every skillpoint in Weaponskill by 0.12", "Martialle", false, ChoiceType.Passive, null); //needs testing 
             
             _masterOfDeadPassive1.Initialize(TORCareers.MinorVampire, "100 XP every day for undead units in party", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100,PassiveEffectType.Special,false));
             _masterOfDeadPassive2.Initialize(TORCareers.MinorVampire, "20% Higher chance for raised dead after battle", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20,PassiveEffectType.Special,true));

@@ -1,4 +1,5 @@
-﻿using TaleWorlds.Engine;
+﻿using System.Collections.Generic;
+using TaleWorlds.Engine;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -136,6 +137,9 @@ namespace TOR_Core.AbilitySystem.Scripts
             RestoreKeyBindings();
             _casterAgent.Appear();
             _casterAgent.ToggleInvulnerable();
+            
+            TriggerEffects(_casterAgent.Position,-_casterAgent.Position.NormalizedCopy());
+            //this._casterAgent.ApplyStatusEffect(string effectId, Agent applierAgent, float duration = 5, bool append = true, bool isMutated = false);
         }
 
         protected override void OnRemoved(int removeReason)
