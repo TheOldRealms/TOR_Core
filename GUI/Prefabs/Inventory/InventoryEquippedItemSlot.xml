@@ -21,16 +21,13 @@
                 </BrushWidget>
                 <InventoryEquippedItemSlotWidget DataSource="*ItemDataSource" IsRightSide="*IsRightSide" TargetEquipmentIndex="*EquipmentIndex" ItemType="@TypeId" AcceptDrag="true" Command.PreviewItem="ExecutePreviewItem" Command.SellItem="ExecuteSellItem" Command.UnequipItem="ExecuteUnequipItem" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Background="..\Background" ImageIdentifier="ImageIdentifier">
                     <Children>
-                        <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4" Sprite="Inventory\portrait_cart">
+                        <BrushWidget Id="ColorableEquipmentSlot" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4" Sprite="Inventory\portrait_cart" />
+                        <TorImageIdentifierWidget Id="ImageIdentifier" DataSource="{ImageIdentifier}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4" ImageId="@Id" AdditionalArgs="@AdditionalArgs" ImageTypeCode="@ImageTypeCode" LoadingIconWidget="LoadingIconWidget">
                             <Children>
-                                <TorImageIdentifierWidget Id="ImageIdentifier" DataSource="{ImageIdentifier}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4" ImageId="@Id" AdditionalArgs="@AdditionalArgs" ImageTypeCode="@ImageTypeCode" LoadingIconWidget="LoadingIconWidget">
-                                    <Children>
-                                        <Standard.CircleLoadingWidget HorizontalAlignment="Center" VerticalAlignment="Center" Id="LoadingIconWidget"/>
-                                    </Children>
-                                </TorImageIdentifierWidget>
-                                <!--<HintWidget IsDisabled="true" DataSource="!HintDataSource" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent"/>-->
+                                <Standard.CircleLoadingWidget HorizontalAlignment="Center" VerticalAlignment="Center" Id="LoadingIconWidget"/>
                             </Children>
-                        </BrushWidget>
+                        </TorImageIdentifierWidget>
+                        <!--<HintWidget IsDisabled="true" DataSource="!HintDataSource" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent"/>-->
                     </Children>
                 </InventoryEquippedItemSlotWidget>
             </Children>

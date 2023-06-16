@@ -16,6 +16,7 @@ namespace TOR_Core.Items
     public class TorImageIdentifierWidget : ImageIdentifierWidget
     {
         private bool _isMagicItem = false;
+        private List<string> _relevantWidgetIds = new List<string> { "ColorableEquipmentSlot", "ColorableTooltip", "ColorableCompareTooltip" };
 
         public TorImageIdentifierWidget(UIContext context) : base(context)
         {
@@ -33,11 +34,16 @@ namespace TOR_Core.Items
 
         protected override void OnRender(TwoDimensionContext twoDimensionContext, TwoDimensionDrawContext drawContext)
         {
-            if (ParentWidget is BrushWidget)
+            BrushWidget targetWidget = null;
+            if (ParentWidget != null)
             {
-                var widget = ParentWidget as BrushWidget;
-                if (_isMagicItem) widget.Brush.Color = TaleWorlds.Library.Color.ConvertStringToColor("#FF39FFEB");
-                else widget.Brush.Color = TaleWorlds.Library.Color.White;
+                if (ParentWidget is BrushWidget && _relevantWidgetIds.Contains(ParentWidget.Id)) targetWidget = ParentWidget as BrushWidget;
+                else targetWidget = (BrushWidget)ParentWidget.AllChildren.FirstOrDefault(x => x is BrushWidget && _relevantWidgetIds.Contains(x.Id));
+            }
+            if(targetWidget != null)
+            {
+                if (_isMagicItem) targetWidget.Brush.Color = TaleWorlds.Library.Color.ConvertStringToColor("#FF39FFEB");
+                else targetWidget.Brush.Color = TaleWorlds.Library.Color.White;
             }
             base.OnRender(twoDimensionContext, drawContext);
         }
