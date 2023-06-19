@@ -73,6 +73,24 @@ namespace TOR_Core.Models
                 {
                     PerkHelper.AddPerkBonusFromCaptain(TORPerks.GunPowder.PackItIn, attackerCaptain, ref resultDamage);
                 }
+
+                WeaponComponentData weaponComponentData = weapon.CurrentUsageItem;
+                
+                if (attacker.IsHero&&attacker.HeroObject == Hero.MainHero)
+                {
+                    if (Hero.MainHero.HasAnyCareer())
+                    {
+                        var choices = Hero.MainHero.GetAllCareerChoices();
+
+                        if (baseDamage>50&& choices.Contains("MartiallePassive4"))
+                        {
+                            weaponComponentData.WeaponFlags |= WeaponFlags.CanPenetrateShield;
+                        }
+                    }
+                
+                
+                }
+                
             }
             return resultDamage.ResultNumber;
         }

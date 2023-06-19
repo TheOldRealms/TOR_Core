@@ -89,7 +89,6 @@ namespace TOR_Core.Models
                     if (choice != null)
                     {
                         float effect = choice.GetPassiveValue();
-                        var wage = unit.Character.TroopWage;
                         float value = (unit.Character.TroopWage*unit.Number) *effect;
                         resultValue.Add(value, choice.BelongsToGroup.Name);
                     }

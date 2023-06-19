@@ -26,8 +26,8 @@ namespace TOR_Core.Models
                 result.AddFactor(0.5f, new TextObject("Vampire bonus"));
                 if (Campaign.Current.IsNight)
                 {
-                    finalSpeed.AddFactor(0.25f, new TextObject("{=fAxjyMt5}Vampire nighttime bonus"));
-                    //result.Add(0.25f, new TextObject("Vampire nighttime bonus"));
+                    //finalSpeed.AddFactor(0.25f, new TextObject("{=fAxjyMt5}Vampire nighttime bonus"));
+                    result.Add(0.25f, new TextObject("Vampire nighttime bonus"));
                 }
             }
 
@@ -36,9 +36,9 @@ namespace TOR_Core.Models
                 if (MobileParty.MainParty.LeaderHero == Hero.MainHero && MobileParty.MainParty.LeaderHero.IsVampire())
                 {
                     if (Campaign.Current.IsNight)
-                    {
-                        finalSpeed.AddFactor(0.35f, new TextObject("{=fAxjyMt5}Vampire Nighttime Bonus"));
-                       // result.AddFactor(0.25f, new TextObject("Vampire Nighttime bonus"));
+                    { 
+                        //finalSpeed.AddFactor(0.25f, new TextObject("{=fAxjyMt5}Vampire Nighttime Bonus"));
+                       result.AddFactor(0.25f, new TextObject("Vampire Nighttime bonus"));
                     }
 
                     if (Campaign.Current.IsDay)

@@ -172,10 +172,10 @@ namespace TOR_Core.HarmonyPatches
                 b.BlowFlag |= BlowFlags.ShrugOff;
             }
 
-            if (attackTypeMask == AttackTypeMask.Melee && IsMightyBlow(attacker, b.InflictedDamage, attacker.WieldedWeapon))
+            /*if (attackTypeMask == AttackTypeMask.Melee && IsMightyBlow(attacker, b.InflictedDamage, attacker.WieldedWeapon))
             {
                 b.BlowFlag |= BlowFlags.CrushThrough;
-            }
+            }*/
             
             
 
