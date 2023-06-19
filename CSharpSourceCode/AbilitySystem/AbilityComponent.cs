@@ -81,7 +81,7 @@ namespace TOR_Core.AbilitySystem
                             }
                         }
                     }
-                    else
+                    else if(hero.Culture?.StringId == "empire")
                     {
                         var ability1 = (ItemBoundAbility)AbilityFactory.CreateNew("GreatCannonSpawner", agent);
                         if (ability1 != null)
@@ -101,26 +101,53 @@ namespace TOR_Core.AbilitySystem
                             _knownAbilitySystem.Add(ability2);
                         }
                     }
-                    
+                    else if (hero.Culture?.StringId == "vlandia")
+                    {
+                        var ability3 = (ItemBoundAbility)AbilityFactory.CreateNew("FieldTrebuchetSpawner", agent);
+                        if (ability3 != null)
+                        {
+                            ability3.OnCastStart += OnCastStart;
+                            ability3.OnCastComplete += OnCastComplete;
+                            ability3.SetChargeNum(2);
+                            _knownAbilitySystem.Add(ability3);
+                        }
+                    }
+
+
                 }
                 else if(Game.Current.GameType is CustomGame)
                 {
-                    var ability1 = (ItemBoundAbility)AbilityFactory.CreateNew("GreatCannonSpawner", agent);
-                    if (ability1 != null)
+                    var heroChar = Agent.Character;
+                    if (heroChar.Culture?.StringId == "empire")
                     {
-                        ability1.OnCastStart += OnCastStart;
-                        ability1.OnCastComplete += OnCastComplete;
-                        ability1.SetChargeNum(2);
-                        _knownAbilitySystem.Add(ability1);
-                    }
+                        var ability1 = (ItemBoundAbility)AbilityFactory.CreateNew("GreatCannonSpawner", agent);
+                        if (ability1 != null)
+                        {
+                            ability1.OnCastStart += OnCastStart;
+                            ability1.OnCastComplete += OnCastComplete;
+                            ability1.SetChargeNum(1);
+                            _knownAbilitySystem.Add(ability1);
+                        }
 
-                    var ability2 = (ItemBoundAbility)AbilityFactory.CreateNew("MortarSpawner", agent);
-                    if (ability2 != null)
+                        var ability2 = (ItemBoundAbility)AbilityFactory.CreateNew("MortarSpawner", agent);
+                        if (ability2 != null)
+                        {
+                            ability2.OnCastStart += OnCastStart;
+                            ability2.OnCastComplete += OnCastComplete;
+                            ability2.SetChargeNum(2);
+                            _knownAbilitySystem.Add(ability2);
+                        }
+                    }
+                    else if (heroChar.Culture?.StringId == "vlandia")
                     {
-                        ability2.OnCastStart += OnCastStart;
-                        ability2.OnCastComplete += OnCastComplete;
-                        ability2.SetChargeNum(2);
-                        _knownAbilitySystem.Add(ability2);
+                        var ability3 = (ItemBoundAbility)AbilityFactory.CreateNew("FieldTrebuchetSpawner", agent);
+                        if (ability3 != null)
+                        {
+                            ability3.OnCastStart += OnCastStart;
+                            ability3.OnCastComplete += OnCastComplete;
+                            ability3.SetChargeNum(2);
+                            _knownAbilitySystem.Add(ability3);
+                        }
                     }
                 }
             }

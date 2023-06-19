@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.Core;
@@ -516,7 +516,7 @@ namespace TOR_Core.AbilitySystem
 
         private void AddPerkEffectsToStartingWindsOfMagic()
         {
-            if (!IsCastingMission()) return;
+            if(!IsCastingMission()) return;
             var hero = Agent.Main?.GetHero();
             if (hero != null)
             {

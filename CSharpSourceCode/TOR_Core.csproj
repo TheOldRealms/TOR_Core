@@ -396,7 +396,6 @@
     <Compile Include="AbilitySystem\Spells\SpellCastingLevel.cs" />
     <Compile Include="AbilitySystem\SummonedAgentOrigin.cs" />
     <Compile Include="BaseGameDebug\BaseGameDebugCampaignBehavior.cs" />
-    <Compile Include="BaseGameDebug\BaseGameDebugMissionLogic.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehaviorConfiguration.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehavior\AbstractAgentCastingBehavior.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehavior\AoEAdjacentCastingBehavior.cs" />
@@ -412,7 +411,7 @@
     <Compile Include="BattleMechanics\AI\AgentBehavior\AgentTacticalBehavior\AoEAdjacentTacticalBehavior.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\AgentTacticalBehavior\AoEDirectionalTacticalBehavior.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\AgentTacticalBehavior\KeepSafeTacticalBehavior.cs" />
-    <Compile Include="BattleMechanics\AI\AgentBehavior\Components\ArtilleryAI.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\Components\FieldSiegeWeaponAI.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\Components\WizardAIComponent.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\SupportMissionLogic\QuerySystemExtensions.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\SupportMissionLogic\QuerySystemExtensionsMissionLogic.cs" />
@@ -432,7 +431,9 @@
     <Compile Include="BattleMechanics\Artillery\ArtilleryRangedSiegeWeapon.cs" />
     <Compile Include="BattleMechanics\Artillery\ArtilleryStandingPoint.cs" />
     <Compile Include="BattleMechanics\Artillery\Ballistics.cs" />
+    <Compile Include="BattleMechanics\Artillery\BaseFieldSiegeWeapon.cs" />
     <Compile Include="BattleMechanics\Artillery\CannonBallPile.cs" />
+    <Compile Include="BattleMechanics\Artillery\FieldTrebuchet.cs" />
     <Compile Include="BattleMechanics\Atmosphere\ForceAtmosphereMissionLogic.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerManager.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerMissionLogic.cs" />
@@ -464,6 +465,7 @@
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectTemplate.cs" />
     <Compile Include="CampaignMechanics\AICompanions\TORAICompanionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\BountyMaster\BountyMasterCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissSceneNotificationItem.cs" />
@@ -589,6 +591,7 @@
     <Compile Include="Items\IWeaponHitEffect.cs" />
     <Compile Include="Items\TorInventoryItemTupleWidget.cs" />
     <Compile Include="Items\TorItemMenuVM.cs" />
+    <Compile Include="Items\TorImageIdentifierWidget.cs" />
     <Compile Include="Items\TorItemTraitVM.cs" />
     <Compile Include="Items\WeaponEffectMissionLogic.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleMoraleModel.cs" />
@@ -629,6 +632,7 @@
     <Compile Include="Models\TORTournamentModel.cs" />
     <Compile Include="Models\TORVoiceOverModel.cs" />
     <Compile Include="Quests\EngineerQuest.cs" />
+    <Compile Include="Quests\HuntCultistsQuestCampaignBehavior.cs" />
     <Compile Include="Quests\QuestPartyComponent.cs" />
     <Compile Include="Quests\SpecializeLoreQuest.cs" />
     <Compile Include="Quests\TORQuestHelper.cs" />

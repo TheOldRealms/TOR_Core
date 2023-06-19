@@ -165,7 +165,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
 
         public bool IsArtilleryAtPosition(TacticalPosition position)
         {
-            return Mission.Current.GetActiveEntitiesWithScriptComponentOfType<ArtilleryRangedSiegeWeapon>()
+            return Mission.Current.GetActiveEntitiesWithScriptComponentOfType<BaseFieldSiegeWeapon>()
                 .Any(entity => entity.GlobalPosition.Distance(position.Position.GetGroundVec3()) < 30);
         }
 

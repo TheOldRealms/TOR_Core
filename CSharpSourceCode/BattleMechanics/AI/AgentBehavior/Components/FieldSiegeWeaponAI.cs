@@ -11,15 +11,15 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
 {
-    public class ArtilleryAI : UsableMachineAIBase
+    public class FieldSiegeWeaponAI : UsableMachineAIBase
     {
-        private readonly ArtilleryRangedSiegeWeapon _artillery;
+        private readonly BaseFieldSiegeWeapon _fieldSiegeWeapon;
         private Target _target;
         private List<Axis> targetDecisionFunctions;
 
-        public ArtilleryAI(ArtilleryRangedSiegeWeapon usableMachine) : base(usableMachine)
+        public FieldSiegeWeaponAI(BaseFieldSiegeWeapon usableMachine) : base(usableMachine)
         {
-            _artillery = usableMachine;
+            _fieldSiegeWeapon = usableMachine;
             targetDecisionFunctions = CreateTargetingFunctions();
         }
 
@@ -28,27 +28,27 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
         protected override void OnTick(Agent agentToCompareTo, Formation formationToCompareTo, Team potentialUsersTeam, float dt)
         {
             base.OnTick(agentToCompareTo, formationToCompareTo, potentialUsersTeam, dt);
-            if (_artillery.PilotAgent != null && _artillery.PilotAgent.IsAIControlled)
+            if (_fieldSiegeWeapon.PilotAgent != null && _fieldSiegeWeapon.PilotAgent.IsAIControlled)
             {
-                if (_artillery.State == RangedSiegeWeapon.WeaponState.Idle)
+                if (_fieldSiegeWeapon.State == RangedSiegeWeapon.WeaponState.Idle)
                 {
                     if (_target != null)
                     {
-                        if (_artillery.Target != _target)
+                        if (_fieldSiegeWeapon.Target != _target)
                         {
-                            _artillery.SetTarget(_target);
+                            _fieldSiegeWeapon.SetTarget(_target);
                         }
 
-                        if (_artillery.Target != null && _artillery.PilotAgent.Formation.FiringOrder.OrderType != OrderType.HoldFire)
+                        if (_fieldSiegeWeapon.Target != null && _fieldSiegeWeapon.PilotAgent.Formation.FiringOrder.OrderType != OrderType.HoldFire)
                         {
-                            var position = GetAdjustedTargetPosition(_artillery.Target);
-                            if (position != Vec3.Zero && _artillery.AimAtThreat(_artillery.Target) && _artillery.IsTargetInRange(position) && _artillery.IsSafeToFire())
+                            var position = GetAdjustedTargetPosition(_fieldSiegeWeapon.Target);
+                            if (position != Vec3.Zero && _fieldSiegeWeapon.AimAtThreat(_fieldSiegeWeapon.Target) && _fieldSiegeWeapon.IsTargetInRange(position) && _fieldSiegeWeapon.IsSafeToFire())
                             {
-                                _artillery.AiRequestsShoot();
+                                _fieldSiegeWeapon.AiRequestsShoot();
                                 _target = null;
                             }
 
-                            if (!_artillery.IsSafeToFire()) //Since safe to fi
+                            if (!_fieldSiegeWeapon.IsSafeToFire()) //Since safe to fi
                             {
                                 _target = null;
                             }
@@ -56,7 +56,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
                     }
                     else
                     {
-                        _artillery.ClearTarget();
+                        _fieldSiegeWeapon.ClearTarget();
                         _target = FindNewTarget();
                     }
                 }
@@ -73,7 +73,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
             target.Agent = targetAgent;
 
             Vec3 velocity = target.Formation.QuerySystem.CurrentVelocity.ToVec3();
-            float time = (UsableMachine as ArtilleryRangedSiegeWeapon).GetEstimatedCurrentFlightTime();
+            float time = _fieldSiegeWeapon.GetEstimatedCurrentFlightTime();
 
             target.SelectedWorldPosition = target.Position + velocity * time;
             return target.SelectedWorldPosition;
@@ -102,7 +102,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
             foreach (Formation formation in GetUnemployedEnemyFormations())
             {
                 Target targetFormation = GetTargetValueOfFormation(formation);
-                if (targetFormation.UtilityValue != -1f && _artillery.IsTargetInRange(targetFormation.GetPosition()))
+                if (targetFormation.UtilityValue != -1f && _fieldSiegeWeapon.IsTargetInRange(targetFormation.GetPosition()))
                 {
                     list.Add(targetFormation);
                 }
@@ -120,7 +120,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
 
         private IEnumerable<Formation> GetUnemployedEnemyFormations()
         {
-            return from f in (from t in Mission.Current.Teams where t.Side.GetOppositeSide() == _artillery.Side select t)
+            return from f in (from t in Mission.Current.Teams where t.Side.GetOppositeSide() == _fieldSiegeWeapon.Side select t)
                     .SelectMany((Team t) => t.GetFormationsIncludingSpecial())
                 where f.CountOfUnits > 0
                 select f;
@@ -129,8 +129,8 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
         private List<Axis> CreateTargetingFunctions()
         {
             var targetingFunctions = new List<Axis>();
-            targetingFunctions.Add(new Axis(0, 300, x => 0.7f - 3 * (float) Math.Pow(x - 0.3f, 3) + (float) Math.Pow(x, 2), CommonAIDecisionFunctions.DistanceToTarget(() => _artillery.GameEntity.GlobalPosition))); // 0.7 - 3(x-0.3)^3 + x^2
-            targetingFunctions.Add(new Axis(0, CommonAIDecisionFunctions.CalculateEnemyTotalPower(_artillery.Team), x => x, CommonAIDecisionFunctions.FormationPower()));
+            targetingFunctions.Add(new Axis(0, 300, x => 0.7f - 3 * (float) Math.Pow(x - 0.3f, 3) + (float) Math.Pow(x, 2), CommonAIDecisionFunctions.DistanceToTarget(() => _fieldSiegeWeapon.GameEntity.GlobalPosition))); // 0.7 - 3(x-0.3)^3 + x^2
+            targetingFunctions.Add(new Axis(0, CommonAIDecisionFunctions.CalculateEnemyTotalPower(_fieldSiegeWeapon.Team), x => x, CommonAIDecisionFunctions.FormationPower()));
             targetingFunctions.Add(new Axis(0, 70, x => x, CommonAIDecisionFunctions.UnitCount()));
             targetingFunctions.Add(new Axis(0, 10, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles()));
             return targetingFunctions;

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.BattleMechanics.Artillery;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
@@ -30,7 +31,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             entity.EntityFlags = (entity.EntityFlags | EntityFlags.DontSaveToScene);
             var frame = new MatrixFrame(rotation, position);
             entity.SetGlobalFrame(frame);
-            var artillery = entity.GetFirstScriptInFamilyDescending<Artillery.ArtilleryRangedSiegeWeapon>();
+            var artillery = entity.GetFirstScriptInFamilyDescending<BaseFieldSiegeWeapon>();
             if (artillery != null)
             {
                 artillery.SetSide(triggeredByAgent.Team.Side);

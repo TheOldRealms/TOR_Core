@@ -666,6 +666,18 @@
             DamageVariance="0" 
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.PrefabSpawnerScript" 
             SpawnPrefabName="tor_greatcannon"/>
+      <TriggeredEffectTemplate StringID="place_fieldtrebuchet" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="All" 
+            DamageVariance="0" 
+            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.PrefabSpawnerScript" 
+            SpawnPrefabName="tor_fieldtrebuchet"/>
 			
 			
 <!-- Sigmarite Prayers -->

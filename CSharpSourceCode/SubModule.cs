@@ -28,6 +28,7 @@ using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.AICompanions;
 using TOR_Core.CampaignMechanics.Assimilation;
+using TOR_Core.CampaignMechanics.BountyMaster;
 using TOR_Core.CampaignMechanics.Chaos;
 using TOR_Core.CampaignMechanics.CustomDialogs;
 using TOR_Core.CampaignMechanics.CustomEncounterDialogs;
@@ -49,6 +50,7 @@ using TOR_Core.Ink;
 using TOR_Core.Items;
 using TOR_Core.Models;
 using TOR_Core.Models.CustomBattleModels;
+using TOR_Core.Quests;
 using TOR_Core.Utilities;
 
 namespace TOR_Core
@@ -65,9 +67,9 @@ namespace TOR_Core
         }
 
         protected override void OnSubModuleLoad()
-        { 
-            
-            CampaignTime startTime = CampaignTime.Years(2502)+CampaignTime.Weeks(4)+CampaignTime.Days(5);
+        {
+
+            CampaignTime startTime = CampaignTime.Years(2502) + CampaignTime.Weeks(4) + CampaignTime.Days(5) + CampaignTime.Hours(12);
             
             typeof(CampaignData).GetField("CampaignStartTime",BindingFlags.Static|BindingFlags.Public)?.SetValue(null,startTime);
             
@@ -117,6 +119,8 @@ namespace TOR_Core
                 starter.AddBehavior(new TORPartyUpgraderCampaignBehavior());
                 starter.AddBehavior(new InkStoryCampaignBehavior());
                 starter.AddBehavior(new ReligionCampaignBehavior());
+                starter.AddBehavior(new BountyMasterCampaignBehavior());
+                starter.AddBehavior(new HuntCultistsQuestCampaignBehavior());
                 starter.AddBehavior(new TORCareerPerkCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
@@ -204,8 +208,6 @@ namespace TOR_Core
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new ForceAtmosphereMissionLogic());
             mission.AddMissionBehavior(new CareerPerkMissionBehavior());
-            
-            //mission.AddMissionBehavior(new BaseGameDebugMissionLogic());
 
             if (Game.Current.GameType is Campaign)
             {

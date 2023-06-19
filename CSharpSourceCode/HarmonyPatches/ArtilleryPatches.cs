@@ -20,14 +20,14 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(RangedSiegeWeapon), "ShootProjectileAux")]
         public static bool OverrideArtilleryShooting(RangedSiegeWeapon __instance, ItemObject missileItem, Agent ____lastShooterAgent)
         {
-            if(__instance is ArtilleryRangedSiegeWeapon)
+            if(__instance is BaseFieldSiegeWeapon)
             {
-                var artillery = __instance as ArtilleryRangedSiegeWeapon;
+                var fieldSiegeWeapon = __instance as BaseFieldSiegeWeapon;
                 Vec3 launchVec = Vec3.Zero;
-                float angle = artillery.GetTargetReleaseAngle(artillery.Target.SelectedWorldPosition, out launchVec);
+                float angle = fieldSiegeWeapon.GetTargetReleaseAngle(fieldSiegeWeapon.Target.SelectedWorldPosition, out launchVec);
                 if (angle == float.NegativeInfinity)
                 {
-                    TORCommon.Log("Tried to shoot artillery without a valid ballistics solution.", NLog.LogLevel.Error);
+                    TORCommon.Log("Tried to shoot field siege weapon without a valid ballistics solution.", NLog.LogLevel.Error);
                     return true;
                 }
 
@@ -39,13 +39,13 @@ namespace TOR_Core.HarmonyPatches
 				Agent lastShooterAgent = ____lastShooterAgent;
 				mission.AddCustomMissile(lastShooterAgent, 
                     new MissionWeapon(missileItem, null, null, 1), 
-                    artillery.ProjectileEntityCurrentGlobalPosition, 
+                    fieldSiegeWeapon.ProjectileEntityCurrentGlobalPosition, 
                     identity.f, 
                     identity, 
                     8f, 
-                    artillery.BaseMuzzleVelocity, 
+                    fieldSiegeWeapon.ProjectileVelocity, 
                     false, 
-                    artillery, 
+                    fieldSiegeWeapon, 
                     -1);
 				return false;
             }
