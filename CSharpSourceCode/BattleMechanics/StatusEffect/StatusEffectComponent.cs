@@ -102,6 +102,14 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             if (Agent.IsActive() && Agent != null && !Agent.IsFadingOut())
             {
                 if (_effectAggregate == null) return;
+                
+                if (_effectAggregate != null&&_effectAggregate.WindsOverTime > 0)
+                {
+                    if (Agent.IsHero && Agent.IsSpellCaster())
+                        Agent.GetHero().AddWindsOfMagic(_effectAggregate.WindsOverTime);
+                }
+
+                
                 if (_effectAggregate.DamageOverTime > 0)
                 {
                     Agent.ApplyDamage((int)_effectAggregate.DamageOverTime, Agent.Position, dotEffect.ApplierAgent, false, false);
@@ -110,13 +118,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 {
                     Agent.Heal((int)_effectAggregate.HealthOverTime);
                 }
-                if (_effectAggregate.WindsOverTime > 0)
-                {
-                    if (Agent.IsHero && Agent.IsSpellCaster())
-                        Agent.GetHero().AddWindsOfMagic(_effectAggregate.WindsOverTime);
-                }
-
-                //if (_effectAggregate == null) return;
+                
+                if (_effectAggregate == null) return;
 
                 ModifiedDrivenProperties = _effectAggregate.SpeedProperties != 0 || _effectAggregate.AttackSpeedProperties != 0;
 
