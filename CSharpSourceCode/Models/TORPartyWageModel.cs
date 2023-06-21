@@ -95,6 +95,22 @@ namespace TOR_Core.Models
                     
 
                 }
+            }
+            
+            if (choices.Contains("AvatarOfDeathPassive2"))
+            {
+                if (unit.Character.IsVampire()&&unit.Character != Hero.MainHero.CharacterObject)
+                {
+                    var choice = TORCareerChoices.GetChoice("AvatarOfDeathPassive2");
+                    if (choice != null)
+                    {
+                        float effect = choice.GetPassiveValue();
+                        float value = (unit.Character.TroopWage*unit.Number) *effect;
+                        resultValue.Add(value, choice.BelongsToGroup.Name);
+                    }
+                    
+
+                }
           
             }
 

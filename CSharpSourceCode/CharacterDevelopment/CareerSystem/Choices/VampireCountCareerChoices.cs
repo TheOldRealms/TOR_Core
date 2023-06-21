@@ -13,7 +13,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
     public class VampireCountCareerChoices : TORCareerChoiceBase
     {
 
-        private CareerChoiceObject _vampiretRoot;
+        private CareerChoiceObject _vampireRoot;
 
         private CareerChoiceObject _newBloodKeystone;
         private CareerChoiceObject _newBloodPassive1;
@@ -53,7 +53,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void RegisterAll()
         {
-            _vampiretRoot = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("VampireCountRoot"));
+            _vampireRoot = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("VampireCountRoot"));
 
             _newBloodKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NewBloodKeystone"));
             _newBloodPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NewBloodPassive1"));
@@ -94,7 +94,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _vampiretRoot.Initialize(TORCareers.MinorVampire, "root", null, true,
+            _vampireRoot.Initialize(TORCareers.MinorVampire, "root", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -245,7 +245,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _courtleyPassive3.Initialize(TORCareers.MinorVampire, "Extra Magical Spell and Ranged Damage(10%).", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell | AttackTypeMask.Ranged));
             _courtleyPassive4.Initialize(TORCareers.MinorVampire, "Killing Blows targeted to the Head replenish 3 Winds of Magic", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3));  //CareerPerkMissionBehavior 28
             
-            _lordlyPassive1.Initialize(TORCareers.MinorVampire, "Movement Speed Increased by 1.5", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1.5f, PassiveEffectType.PartyMovementSpeed));
+            _lordlyPassive1.Initialize(TORCareers.MinorVampire, "Partyspeed Increased by 1.5", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1.5f, PassiveEffectType.PartyMovementSpeed));
             _lordlyPassive2.Initialize(TORCareers.MinorVampire, "Increases Hitpoints by 25.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
             _lordlyPassive3.Initialize(TORCareers.MinorVampire, "Wages for Vampires are reduced by 15%", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.Special,true)); //TORPartyWageModel 85
             _lordlyPassive4.Initialize(TORCareers.MinorVampire, "Upgrade costs are halfed", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-0.5f, PassiveEffectType.TroopUpgradeCost));        
@@ -261,6 +261,4 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _masterOfDeadPassive4.Initialize(TORCareers.MinorVampire, "Tier 4 Undead troops can get 'wounded' with a 20% lower chance", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20,PassiveEffectType.Special,true));
         }
     }
-
-
 }

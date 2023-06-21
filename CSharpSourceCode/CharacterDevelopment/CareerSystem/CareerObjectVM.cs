@@ -35,8 +35,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             _career = career;
             _name = career.Name.ToString();
             _spriteName = "CareerSystem\\Illustrations\\" + career.StringId;
-            _abilitySpriteName = _career.GetAbilityTemplate().SpriteName;
-            _abilityName = _career.GetAbilityTemplate().Name;
+            _abilitySpriteName = _career.GetAbilityTemplate()?.SpriteName;      //in case no career ability is found deactivate this screen
+            _abilityName = _career.GetAbilityTemplate()?.Name;
             _abilityDescription = new MBBindingList<CareerAbilityEffectVM>();
             _career.GetAbilityEffectLines().ForEach(x => _abilityDescription.Add(new CareerAbilityEffectVM(x)));
             _description = _career.Description.ToString();

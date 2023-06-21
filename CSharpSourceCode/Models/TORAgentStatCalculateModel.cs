@@ -143,8 +143,34 @@ namespace TOR_Core.Models
 
         public override float GetEffectiveMaxHealth(Agent agent)
         {
-            if (agent.Origin is SummonedAgentOrigin) return agent.BaseHealthLimit;
-            else return base.GetEffectiveMaxHealth(agent);
+            if (agent.Origin is SummonedAgentOrigin) 
+                return agent.BaseHealthLimit;
+            
+            var explainedNumber = new ExplainedNumber(base.GetEffectiveMaxHealth(agent));
+            
+            if (agent.IsMount)
+            {
+                if (agent.RiderAgent!=null&&agent.RiderAgent.IsMainAgent)
+                {
+                    if (agent.RiderAgent.GetHero().HasAnyCareer())
+                    {
+                        var choices = agent.RiderAgent.GetHero().GetAllCareerChoices();
+                        
+                        if (choices.Contains("ControlledHungerPassive3"))
+                        {
+                            var choice = TORCareerChoices.GetChoice("ControlledHungerPassive3"); 
+                            explainedNumber.AddFactor(choice.GetPassiveValue());
+                        }
+                    }
+                }
+
+                var ratio = agent.Health / explainedNumber.BaseNumber;
+                agent.Health = explainedNumber.ResultNumber * ratio;
+
+                return explainedNumber.ResultNumber;
+            }
+            
+            return explainedNumber.ResultNumber;
         }
 
         private void UpdateAgentDrivenProperties(Agent agent, AgentDrivenProperties agentDrivenProperties)
@@ -386,6 +412,14 @@ namespace TOR_Core.Models
                 if (agent.IsUndead()&&choices.Contains("MasterOfDeadPassive3") && mask == PropertyMask.Defense)
                 {
                     var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive3");
+                    if (choice == null || choice.Passive == null) return result;
+                    float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
+                    result.ResistancePercentages[(int)DamageType.All] += value;
+                }
+                
+                if (!agent.IsHero&&agent.IsVampire()&&choices.Contains("ControlledHungerPassive4") && mask == PropertyMask.Defense)
+                {
+                    var choice = TORCareerChoices.GetChoice("ControlledHungerPassive4");
                     if (choice == null || choice.Passive == null) return result;
                     float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
                     result.ResistancePercentages[(int)DamageType.All] += value;

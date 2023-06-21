@@ -264,7 +264,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
             _relentlessFanaticPassive1.Initialize(TORCareers.WarriorPriest, "Increases hitpoints by 20.", "RelentlessFanatic", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Health));
             _relentlessFanaticPassive2.Initialize(TORCareers.WarriorPriest, "Extra Holy melee Damage(10%).", "RelentlessFanatic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy,10),AttackTypeMask.Melee));
-            _relentlessFanaticPassive3.Initialize(TORCareers.WarriorPriest, "25% Physical Range Resistance for Flagellants", "RelentlessFanatic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special));      //TORAgentStatCalculateModel 345
+            _relentlessFanaticPassive3.Initialize(TORCareers.WarriorPriest, "25% Physical Range Resistance for Sigmarite Units", "RelentlessFanatic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special));      //TORAgentStatCalculateModel 345
             _relentlessFanaticPassive4.Initialize(TORCareers.WarriorPriest, "Increases Party Movementspeed by 1", "RelentlessFanatic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.PartyMovementSpeed));
 
             _protectorOfTheWeakPassive1.Initialize(TORCareers.WarriorPriest, "Increases hitpoints by 20.", "ProtectorOfTheWeak", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Health));

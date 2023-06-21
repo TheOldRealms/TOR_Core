@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ink.Parsed;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
@@ -12,6 +13,7 @@ using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -91,6 +93,24 @@ namespace TOR_Core.Models
                 
                 }
                 
+            }
+
+            if (collisionData.IsHorseCharge)
+            {
+                if (attacker.IsMounted && attacker.IsPlayerCharacter)
+                {
+                    if (attacker.HeroObject.HasAnyCareer())
+                    {
+                        var choices = attacker.HeroObject.GetAllCareerChoices();
+
+                        if (choices.Contains("DreadKnightPassive2"))
+                        {
+                            var choice = TORCareerChoices.GetChoice("DreadKnightPassive2");
+                            if(choice!=null)
+                                resultDamage.AddFactor(choice.GetPassiveValue());
+                        }
+                    }
+                }
             }
             return resultDamage.ResultNumber;
         }

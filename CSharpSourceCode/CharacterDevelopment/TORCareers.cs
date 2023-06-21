@@ -19,9 +19,12 @@ namespace TOR_Core.CharacterDevelopment
         private CareerObject _grailKnight;
         private CareerObject _minorVampire;
         private CareerObject _warriorPriest;
+        private CareerObject _bloodKnight;
         public static CareerObject GrailKnight => Instance._grailKnight;
         public static CareerObject MinorVampire => Instance._minorVampire;
         public static CareerObject WarriorPriest => Instance._warriorPriest;
+
+        public static CareerObject BloodKnight => Instance._bloodKnight;
 
         private List<CareerObject> _allCareers = new List<CareerObject>();
         private MBReadOnlyList<CareerObject> _readonlyCareers;
@@ -40,15 +43,18 @@ namespace TOR_Core.CharacterDevelopment
             //_grailKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("GrailKnight"));
             _minorVampire = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("MinorVampire"));
             _warriorPriest = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("WarriorPriest"));
+            _bloodKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("BloodKnight"));
             //_allCareers.Add(_grailKnight);
             //_allCareers.Add(_minorVampire);
             _allCareers.Add(_warriorPriest);
             _allCareers.Add(_minorVampire);
+            _allCareers.Add(_bloodKnight);
         }
 
         private void InitializeAll()
         {
             //_grailKnight.Initialize("Grail Knight", "Grail Knight career is for those...", hero => hero.Clan.Tier > 2, "ShadowStep", ChargeType.NumberOfKills);       //hero => hero.Clan.Tier > 2
+            _bloodKnight.Initialize("Blood Knight", null, "BloodFury", ChargeType.NumberOfKills, 10);
             _minorVampire.Initialize("Vampire Count", null, "ShadowStep", ChargeType.DamageDone, 400, typeof(ShadowStepScript));
             _warriorPriest.Initialize("Warrior Priest", (hero) => 
             {

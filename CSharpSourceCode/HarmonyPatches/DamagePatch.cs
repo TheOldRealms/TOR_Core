@@ -78,8 +78,18 @@ namespace TOR_Core.HarmonyPatches
                         }
                         
                     }
+                    if (!attacker.IsHero&&attacker.HasMount&&choices.Contains("DreadKnightPassive3"))
+                    {
+                        var choice = TORCareerChoices.GetChoice("DreadKnightPassive3");
+                        if (choice != null)
+                        {
+                            var value = choice.GetPassiveValue();
+                            additionalDamagePercentages[(int)DamageType.Physical] += value;
+                        }
                         
+                    }    
                 }
+                
             }
 
             string abilityName = "";
@@ -167,7 +177,7 @@ namespace TOR_Core.HarmonyPatches
             b.InflictedDamage = resultDamage;
             b.BaseMagnitude = resultDamage;
 
-            if (victim.GetAttributes().Contains("Unstoppable")||(victim.IsJuggernaut() && b.InflictedDamage < 15))
+            if (victim.GetAttributes().Contains("Unstoppable")||(victim.IsDamageShruggedOff(b.InflictedDamage)))
             {
                 b.BlowFlag |= BlowFlags.ShrugOff;
             }

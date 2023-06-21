@@ -458,9 +458,14 @@
   <string id="career_choicegroup2_name.WarriorPriest" text="{=!}Warrior Priest" />
   <string id="career_choicegroup3_name.WarriorPriest" text="{=!}Arch Lector" />
   
-    <string id="career_choicegroup1_name.MinorVampire" text="{=!}New Blood" />
+  <string id="career_choicegroup1_name.MinorVampire" text="{=!}New Blood" />
   <string id="career_choicegroup2_name.MinorVampire" text="{=!}Vampire" />
   <string id="career_choicegroup3_name.MinorVampire" text="{=!}Exalted" />
+  
+    <string id="career_choicegroup1_name.BloodKnight" text="{=!}Blood Knight Initiate" />
+  <string id="career_choicegroup2_name.BloodKnight" text="{=!}Blood Knight" />
+  <string id="career_choicegroup3_name.BloodKnight" text="{=!}Exalted" />
+
 
   <string id="career_description.WarriorPriest" text="{=!}A Warrior Priest of Sigmar is a priest of the Cult of Sigmar who is a member of a warrior-sect whose duty is to both lead and inspire Imperial troops on the field of battle and also to minister to their spiritual needs when facing the Empire's foes." />
   <string id="careerchoice_description.WarriorPriestRoot" text="{=!}The Warrior Priest is unleashing the wrath of Sigmar which will make his and surrounding allies melee attacks stronger (20%) for 8 seconds. \n Troops with the effect can’t be staggered. \n For every points in Faith, the melee effect becomes 0.05% stronger and 0.05 seconds longer. \n Cooldown: take 50 points of damage." />

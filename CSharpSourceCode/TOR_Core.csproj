@@ -511,6 +511,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\CareerScreenGameState.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerScreenVM.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CharacterDeveloperVMExtension.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\BloodKnightCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\TORCareerChoiceBase.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\VampireCountCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\WarriorPriestCareerChoices.cs" />
@@ -626,6 +627,7 @@
     <Compile Include="Models\TORPartyWageModel.cs" />
     <Compile Include="Models\TORPersuasionModel.cs" />
     <Compile Include="Models\TORPrisonerRecruitmentCalculationModel.cs" />
+    <Compile Include="Models\TORRaidModel.cs" />
     <Compile Include="Models\TORSettlementMilitiaModel.cs" />
     <Compile Include="Models\TORAbilityModel.cs" />
     <Compile Include="Models\TORStrikeMagnitudeModel.cs" />

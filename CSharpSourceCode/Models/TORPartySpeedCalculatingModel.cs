@@ -41,10 +41,9 @@ namespace TOR_Core.Models
                        result.AddFactor(0.25f, new TextObject("Vampire Nighttime bonus"));
                     }
 
-                    if (Campaign.Current.IsDay)
+                    if (Campaign.Current.IsDay && !MobileParty.MainParty.LeaderHero.HasCareerChoice("NewBloodPassive4") && !MobileParty.MainParty.LeaderHero.HasCareerChoice("ControlledHungerPassive1"))
                     {
-                        if (!MobileParty.MainParty.LeaderHero.HasCareerChoice("NewBloodPassive4"))
-                            result.AddFactor(-0.2f, new TextObject("Suffering from sun light"));
+                        result.AddFactor(-0.2f, new TextObject("Suffering from sun light"));
                     }
                 }
             }

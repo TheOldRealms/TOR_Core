@@ -20,12 +20,15 @@ namespace TOR_Core.CharacterDevelopment
         public WarriorPriestCareerChoices WarriorPriestCareerChoices { get; private set; }
         
         public VampireCountCareerChoices VampireCountCareerChoices { get; private set; }
+        
+        public BloodKnightCareerChoices BloodKnightCareerChoices { get; private set; }
 
         public TORCareerChoices()
         {
             Instance = this;
             WarriorPriestCareerChoices = new WarriorPriestCareerChoices();
             VampireCountCareerChoices = new VampireCountCareerChoices();
+            BloodKnightCareerChoices = new BloodKnightCareerChoices();
         }
 
         public static CareerChoiceObject GetChoice(string id) => Game.Current.ObjectManager.GetObject<CareerChoiceObject>(x => x.StringId == id);

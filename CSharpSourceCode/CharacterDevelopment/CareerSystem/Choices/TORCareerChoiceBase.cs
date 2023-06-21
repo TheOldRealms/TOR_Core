@@ -1,4 +1,5 @@
 ﻿using TOR_Core.CharacterDevelopment;
+using TaleWorlds.Core;
 
 namespace TOR_Core.CampaignMechanics.Choices
 {

@@ -26,8 +26,14 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _lordly;
         private CareerChoiceGroupObject _martialle;
         private CareerChoiceGroupObject _masterOfDead;
-        
-        
+        private CareerChoiceGroupObject _peerlessWarrior;
+        private CareerChoiceGroupObject _bladeMaster;
+        private CareerChoiceGroupObject _doomRider;
+        private CareerChoiceGroupObject _controlledHunger;
+        private CareerChoiceGroupObject _avatarOfDeath;
+        private CareerChoiceGroupObject _dreadKnight;
+
+
         public TORCareerChoiceGroups()
         {
             Instance = this;
@@ -50,6 +56,13 @@ namespace TOR_Core.CharacterDevelopment
             _lordly = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Lordly"));
             _martialle = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Martialle"));
             _masterOfDead = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("MasterOfDead"));
+            
+            _peerlessWarrior = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("PeerlessWarrior"));
+            _bladeMaster = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("BladeMaster"));
+            _doomRider = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("DoomRider"));
+            _controlledHunger = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("ControlledHunger"));
+            _avatarOfDeath = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("AvatarOfDeath"));
+            _dreadKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("DreadKnight"));
             
         }
 
@@ -117,6 +130,39 @@ namespace TOR_Core.CharacterDevelopment
                 text = "Required renown: 5";
                 return hero.Clan.Tier >= 5;
             });
+            
+            //Blood Knight
+            _peerlessWarrior.Initialize("Peerless Warrior", TORCareers.BloodKnight, 1, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 1";
+                return hero.Clan.Tier >= 0;
+            });
+            _bladeMaster.Initialize("Blade master", TORCareers.BloodKnight, 2, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 1";
+                return hero.Clan.Tier >= 3;
+            });
+            _doomRider.Initialize("Doom rider", TORCareers.BloodKnight, 2, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 3";
+                return hero.Clan.Tier >= 3;
+            });
+            _controlledHunger.Initialize("Controlled Hunger", TORCareers.BloodKnight, 2, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 3";
+                return hero.Clan.Tier >= 3;
+            });
+            _avatarOfDeath.Initialize("Avatar of Death", TORCareers.BloodKnight, 3, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 5";
+                return hero.Clan.Tier >= 5;
+            });
+            _dreadKnight.Initialize("Dread Knight", TORCareers.BloodKnight, 3, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 5";
+                return hero.Clan.Tier >= 5;
+            });
+            
         }
     }
 }

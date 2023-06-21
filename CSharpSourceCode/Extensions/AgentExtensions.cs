@@ -80,11 +80,16 @@ namespace TOR_Core.Extensions
             return agent.GetAttributes().Contains("Undead");
         }
 
-        public static bool IsJuggernaut(this Agent agent)
+        public static bool IsDamageShruggedOff(this Agent agent, int inflictedDamge=0)
         {
+            if (inflictedDamge > 15) return false;
+            
             if (agent.IsMainAgent && agent.GetHero().HasAnyCareer())
             {
-                return agent.GetHero().GetAllCareerChoices().Contains("ProtectorOfTheWeakPassive4");
+                if (agent.GetHero().GetAllCareerChoices().Contains("ProtectorOfTheWeakPassive4"))
+                    return true;
+                if (agent.GetHero().GetAllCareerChoices().Contains("BladeMasterPassive3"))
+                    return true;
             }
 
             return false;

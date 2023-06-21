@@ -108,6 +108,11 @@ namespace TOR_Core.Extensions
             }
             return characterObject.Race == FaceGen.GetRaceOrDefault("vampire");
         }
+        
+        public static bool IsBeastman(this CharacterObject characterObject)     
+        {
+            return characterObject.Race == FaceGen.GetRaceOrDefault("ungor");
+        }
 
         public static bool IsUndead(this BasicCharacterObject characterObject)
         {
