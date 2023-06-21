@@ -34,7 +34,7 @@ namespace TOR_Core.Extensions
         public static float GetRaiseDeadChance(this Hero hero)
         {
             var explainedNumber = new ExplainedNumber();
-            var attributes = hero.GetAttributeValue(TORAttributes.Discipline); //was inteligence Intentional?
+            var attributes = hero.GetAttributeValue(TORAttributes.Discipline); //was intelligence Intentional?
            explainedNumber.Add(attributes * 0.07f);
 
             if (hero.HasAnyCareer())

@@ -55,6 +55,16 @@
 		base_effect_value="0.15"
 		type="AttackSpeedManipulation"/>
 	<StatusEffectTemplate 
+		id="redfury_effect" 
+		particle_id="berzerk_effect"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.45"
+		type="DamageAmplification"
+		damage_type="Physical"
+		applies_for_attack_type="Melee">
+	</StatusEffectTemplate> 
+	<StatusEffectTemplate 
 		id="fireball_dot" 
 		particle_id="torch_fire_sparks"
 		particle_intensity="High"

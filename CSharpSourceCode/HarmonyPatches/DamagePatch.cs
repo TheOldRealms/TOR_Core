@@ -32,6 +32,11 @@ namespace TOR_Core.HarmonyPatches
                 return true;
             }
 
+            if (attacker.IsMainAgent)
+            {
+                TORCommon.Say("hello"); //TODO Remove
+            }
+
             AttackTypeMask attackTypeMask = DetermineMask(b);
 
             float[] damageCategories = new float[(int)DamageType.All + 1];
@@ -58,7 +63,7 @@ namespace TOR_Core.HarmonyPatches
                 {
                     var choices = Hero.MainHero.GetAllCareerChoices();
 
-                    if (victim.Character.Race == 0||victim.Character.IsCultist() && choices.Contains("MartiallePassive3"))        //other humans should be added if applicable
+                    if ((victim.Character.Race == 0||victim.Character.IsCultist()) && choices.Contains("MartiallePassive3"))        //other humans should be added if applicable
                     {
                         var choice = TORCareerChoices.GetChoice("MartiallePassive3");
                         if (choice != null)
@@ -175,12 +180,38 @@ namespace TOR_Core.HarmonyPatches
             resultDamage = (int)(resultDamage * wardSaveFactor * (1 + damageAmplifications[(int)DamageType.All])); 
             var originalDamage = b.InflictedDamage;
             b.InflictedDamage = resultDamage;
-            b.BaseMagnitude = resultDamage;
+            //b.BaseMagnitude = resultDamage;       this shouldn't be the case
 
             if (victim.GetAttributes().Contains("Unstoppable")||(victim.IsDamageShruggedOff(b.InflictedDamage)))
             {
                 b.BlowFlag |= BlowFlags.ShrugOff;
             }
+            
+            /*if ( b.BaseMagnitude > 25f)
+            {
+                if (attacker.IsMainAgent)
+                {
+d                    var choices = attacker.GetHero().GetAllCareerChoices();
+                    if (!choices.IsEmpty())
+                    {
+                        if(choices.Contains("DreadKnightPassive4"))
+                        {
+                            if(victim.Character.GetBattleTier()<4)
+                            {
+                                b.BlowFlag |= BlowFlags.KnockDown;
+                                b.BlowFlag |= BlowFlags.CanDismount;
+                            }
+
+                            if (victim.Character.GetBattleTier() >4 &&victim.Character.GetBattleTier() < 8)
+                            {
+                                b.BlowFlag |= BlowFlags.MakesRear;
+                                b.BlowFlag |= BlowFlags.KnockBack;
+                            }
+                        }
+                        
+                    }
+                }
+            }*/
 
             /*if (attackTypeMask == AttackTypeMask.Melee && IsMightyBlow(attacker, b.InflictedDamage, attacker.WieldedWeapon))
             {
@@ -193,13 +224,21 @@ namespace TOR_Core.HarmonyPatches
             {
                 if (attacker == Agent.Main || victim == Agent.Main)
                 {
-                    TORDamageDisplay.DisplayDamageResult(resultDamage, damageCategories, damageAmplifications);
-                    if(attacker == Agent.Main)
+                    var isVictim = victim == Agent.Main;
+                    var resultBonus = damageAmplifications;
+                    
+                    for (int i = 0; i < resultBonus.Length; i++)
+                    {
+                        resultBonus[i] += additionalDamagePercentages[i];
+                    }
+                    
+                    TORDamageDisplay.DisplayDamageResult(resultDamage, damageCategories, resultBonus, isVictim);
+                    /*if(attacker == Agent.Main)
                     {
                         double damageIncrease = 0f;
                         if (originalDamage > 0) damageIncrease = b.InflictedDamage / originalDamage;
                         TORCommon.Say(string.Format("Modified damage by {0}", damageIncrease.ToString("P")));
-                    }
+                    }*/
                     
                 }
             }

@@ -39,7 +39,7 @@ namespace TOR_Core.Utilities
             InformationManager.DisplayMessage(new InformationMessage(resultDamage + "cast damage consisting of  " + " (" + displayDamageType + ") was applied " + "which was modified by " + (1 + damageAmplifier).ToString("##%", CultureInfo.InvariantCulture), displayColor));
         }
 
-        public static void DisplayDamageResult(int resultDamage, float[] categories, float[] percentages)
+        public static void DisplayDamageResult(int resultDamage, float[] categories, float[] percentages, bool isVictim)
         {
             var displaycolor = Color.White;
             var dominantAdditionalEffect = DamageType.Physical;
@@ -65,21 +65,29 @@ namespace TOR_Core.Utilities
                 }
             }
 
-            switch (dominantAdditionalEffect)
+            if (isVictim)
             {
-                case DamageType.Fire:
-                    displaycolor = Colors.Red;
-                    break;
-                case DamageType.Holy:
-                    displaycolor = Colors.Yellow;
-                    break;
-                case DamageType.Lightning:
-                    displaycolor = Colors.Blue;
-                    break;
-                case DamageType.Magical:
-                    displaycolor = Colors.Cyan;
-                    break;
+                displaycolor = Color.FromUint(9856100);
             }
+            else
+            {
+                switch (dominantAdditionalEffect)
+                {
+                    case DamageType.Fire:
+                        displaycolor = Colors.Red;
+                        break;
+                    case DamageType.Holy:
+                        displaycolor = Colors.Yellow;
+                        break;
+                    case DamageType.Lightning:
+                        displaycolor = Color.FromUint(5745663);
+                        break;
+                    case DamageType.Magical:
+                        displaycolor = Colors.Cyan;
+                        break;
+                }
+            }
+            
 
             var resultText = (int)resultDamage + " damage was dealt of which was " + (int)categories[1]+"["+percentages[1]+ "]" + " " + nameof(DamageType.Physical) + additionalDamageTypeText;     //TODO make prettier!
             InformationManager.DisplayMessage(new InformationMessage(resultText, displaycolor));

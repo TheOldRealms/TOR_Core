@@ -10,6 +10,7 @@ using TOR_Core.AbilitySystem.Scripts;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -81,6 +82,7 @@ namespace TOR_Core.AbilitySystem
         {
             if (!IsActive)
             {
+                TORCommon.Say(_currentCharge+amount+ " charged of " +_maxCharge);   //TODO Remove
                 var modifiedAmount = ModifyChargeAmount(amount);
                 _currentCharge += modifiedAmount;
                 _currentCharge = Math.Min(_maxCharge, _currentCharge);

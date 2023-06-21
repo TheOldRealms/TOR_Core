@@ -103,6 +103,21 @@ namespace TOR_Core.AbilitySystem
             BindWeaponKeys();
         }
 
+        public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
+        {
+           // base.OnAgentRemoved(affectedAgent, affectorAgent, agentState, blow);
+           if(affectorAgent==null)return;
+           var comp = affectorAgent.GetComponent<AbilityComponent>();
+           if (comp != null)
+           {
+               if(comp.CareerAbility==null)
+                   return;
+               
+               if (comp.CareerAbility.ChargeType == ChargeType.NumberOfKills) comp.CareerAbility.AddCharge(1);
+           }
+            
+        }
+
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
             var comp = affectorAgent.GetComponent<AbilityComponent>();

@@ -104,6 +104,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                     TORMissionHelper.ApplyStatusEffectToAgents(targets, effect.StringID, triggererAgent, statusEffectDuration, true, _isTemplateMutated);
                 }
             }
+           
             SpawnVisuals(position, normal);
             PlaySound(position);
             TriggerScript(position, triggererAgent, targets, statusEffectDuration);

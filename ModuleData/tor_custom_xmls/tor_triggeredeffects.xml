@@ -857,6 +857,8 @@
             TargetType="Self" 
             DamageVariance="0" 
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.KnockDownScript"/>
+			
+
       
       <TriggeredEffectTemplate StringID="apply_righteous_fury" 
             BurstParticleEffectPrefab="none" 
@@ -873,6 +875,21 @@
             <ImbuedStatusEffect>righteous_fury_effect</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
+      <TriggeredEffectTemplate StringID="apply_red_fury" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="3" 
+            HasShockWave="false" 
+            TargetType="Self" 
+            ImbuedStatusEffectDuration="2.1" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>redfury_effect</ImbuedStatusEffect>
+
+      </TriggeredEffectTemplate>
 	  <TriggeredEffectTemplate StringID="apply_mistwalk" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 

@@ -1,11 +1,7 @@
-﻿using System.Collections.Generic;
-using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.ComponentInterfaces;
+﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.Core;
-using TaleWorlds.Library;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 
@@ -31,8 +27,6 @@ namespace TOR_Core.Models
                         {
                             explainedNumber.AddFactor(choice.GetPassiveValue());
                         }
-                       
-                        
                     }
                 }
             }

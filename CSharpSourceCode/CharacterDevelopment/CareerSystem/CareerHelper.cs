@@ -10,6 +10,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
@@ -93,7 +94,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             {
                 ApplyCareerPassivesForResistanceValues(agent, ref resistanceValues, attackTypeMaskmask);
             }
-            return new AgentPropertyContainer(propertyContainer.DamageProportions, damageValues, resistanceValues, propertyContainer.AdditionalDamagePercentages);
+            return new AgentPropertyContainer(propertyContainer.DamageProportions, propertyContainer.DamagePercentages, resistanceValues, damageValues);
         }
 
         private static void ApplyCareerPassivesForDamageValues(Agent agent, ref float[] damageAmplifications, AttackTypeMask attackMask)
@@ -137,6 +138,27 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     resistancePropotions[(int)damageType] += (passive.DamageProportionTuple.Percent / 100);
                 }
             }
+        }
+
+
+        public static bool DecideMasterlyFighterPerkEffect(Agent attackerAgent, Agent victimAgent, AttackCollisionData collisionData,int threshold=20, int maximumTier = 4)
+        {
+            TORCommon.Say(collisionData.BaseMagnitude +" POWER");
+            if (collisionData.BaseMagnitude < threshold) return false;
+            var choices = attackerAgent.GetHero().GetAllCareerChoices();
+            if (!choices.IsEmpty())
+            {
+                if(choices.Contains("DreadKnightPassive4"))
+                {
+                    if(victimAgent.Character.GetBattleTier()<maximumTier)
+                    {
+                        return true;
+                    }
+                }
+                        
+            }
+
+            return false;
         }
 
         public static bool StartWithPrayerReady(this Agent agent)

@@ -54,7 +54,7 @@ namespace TOR_Core.CharacterDevelopment
         private void InitializeAll()
         {
             //_grailKnight.Initialize("Grail Knight", "Grail Knight career is for those...", hero => hero.Clan.Tier > 2, "ShadowStep", ChargeType.NumberOfKills);       //hero => hero.Clan.Tier > 2
-            _bloodKnight.Initialize("Blood Knight", null, "BloodFury", ChargeType.NumberOfKills, 10);
+            _bloodKnight.Initialize("Blood Knight", null, "RedFury", ChargeType.NumberOfKills,10);
             _minorVampire.Initialize("Vampire Count", null, "ShadowStep", ChargeType.DamageDone, 400, typeof(ShadowStepScript));
             _warriorPriest.Initialize("Warrior Priest", (hero) => 
             {

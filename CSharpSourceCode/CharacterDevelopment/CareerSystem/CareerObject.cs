@@ -106,7 +106,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     var choices = AllChoices.Where(x => info.CareerChoices.Contains(x.StringId));
                     foreach (var choice in choices)
                     {
-                        choice.MutateStatusEffect(effect, applierAgent);
+                        if(choice.HasMutations())
+                            choice.MutateStatusEffect(effect, applierAgent);
                     }
                 }
             }
