@@ -12,6 +12,7 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
@@ -103,12 +104,17 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 var info = applierAgent.GetHero().GetExtendedInfo();
                 if (info.CareerID == StringId)
                 {
-                    var choices = AllChoices.Where(x => info.CareerChoices.Contains(x.StringId));
+                    var choices = new List<CareerChoiceObject>(); 
+                    choices.Add(RootNode);
+                    choices.AddRange(AllChoices.Where(x => info.CareerChoices.Contains(x.StringId)));
+                    
                     foreach (var choice in choices)
                     {
                         if(choice.HasMutations())
                             choice.MutateStatusEffect(effect, applierAgent);
                     }
+
+                 
                 }
             }
         }

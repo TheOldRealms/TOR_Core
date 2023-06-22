@@ -887,9 +887,10 @@
             ImbuedStatusEffectDuration="2.1" 
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
-            <ImbuedStatusEffect>redfury_effect</ImbuedStatusEffect>
-
+            <ImbuedStatusEffect>redfury_effect_dmg</ImbuedStatusEffect>
+			<ImbuedStatusEffect>redfury_effect_res</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
+	  
 	  <TriggeredEffectTemplate StringID="apply_mistwalk" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 

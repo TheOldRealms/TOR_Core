@@ -14,6 +14,7 @@ using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
@@ -99,6 +100,22 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                                 {
                                     var value = traverse.Property(mutation.PropertyName).GetValue<float>();
                                     traverse.Property(mutation.PropertyName).SetValue(value + Convert.ToSingle(newValue));
+                                    
+                                    TORCommon.Say(newValue +"");
+                                }
+                                else if (propertyType == typeof(int))
+                                {
+                                    var value = traverse.Property(mutation.PropertyName).GetValue<int>();
+                                    traverse.Property(mutation.PropertyName).SetValue(value + Convert.ToInt32(newValue));
+                                }
+                                break;
+                            case OperationType.Remove:
+                                if (propertyType == typeof(float))
+                                {
+                                    var value = traverse.Property(mutation.PropertyName).GetValue<float>();
+                                    traverse.Property(mutation.PropertyName).SetValue(value + Convert.ToSingle(newValue));
+                                    
+                                    TORCommon.Say(newValue +"");
                                 }
                                 else if (propertyType == typeof(int))
                                 {
@@ -174,6 +191,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
     public enum OperationType
     {
         Add,
+        Remove,
         Multiply,
         Replace,
         None

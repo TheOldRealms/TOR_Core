@@ -2891,7 +2891,7 @@
        ShouldSoundLoopOverDuration="false"
        CastType="Instant"
        CastTime="0.5"
-       AnimationActionName="act_release_heavy_thrown"
+       AnimationActionName=""
        Offset="0"
        AbilityTargetType="Self"
        CrosshairType="Self"

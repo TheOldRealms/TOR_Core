@@ -55,7 +55,7 @@
 		base_effect_value="0.15"
 		type="AttackSpeedManipulation"/>
 	<StatusEffectTemplate 
-		id="redfury_effect" 
+		id="redfury_effect_dmg" 
 		particle_id="berzerk_effect"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
@@ -64,6 +64,32 @@
 		damage_type="Physical"
 		applies_for_attack_type="Melee">
 	</StatusEffectTemplate> 
+	<StatusEffectTemplate 
+		id="redfury_effect_res" 
+		particle_id=""
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.10"
+		type="Resistance"
+		damage_type="Physical"
+		applies_for_attack_type="Melee">
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="redfury_effect_ats" 
+		particle_id=""
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.10"
+		type="AttackSpeedManipulation">
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="redfury_effect_mov" 
+		particle_id=""
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.20"
+		type="MovementManipulation">
+	</StatusEffectTemplate>  	
 	<StatusEffectTemplate 
 		id="fireball_dot" 
 		particle_id="torch_fire_sparks"

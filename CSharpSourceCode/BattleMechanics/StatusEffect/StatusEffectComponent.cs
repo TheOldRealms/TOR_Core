@@ -40,6 +40,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             {
                 _baseValues.AddOrReplace(DrivenProperty.MaxSpeedMultiplier, this.Agent.AgentDrivenProperties.MaxSpeedMultiplier);
                 _baseValues.AddOrReplace(DrivenProperty.SwingSpeedMultiplier, this.Agent.AgentDrivenProperties.SwingSpeedMultiplier);
+                _baseValues.AddOrReplace(DrivenProperty.ThrustOrRangedReadySpeedMultiplier, this.Agent.AgentDrivenProperties.ThrustOrRangedReadySpeedMultiplier);
             }
 
             if (!this.Agent.HasMount) return;

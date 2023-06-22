@@ -107,6 +107,16 @@ namespace TOR_Core.AbilitySystem
                     }
                 }
                 
+                if (Agent.Main.GetHero().GetAllCareerChoices().Contains("DreadKnightKeystone"))
+                {
+                    var choice = TORCareerChoices.GetChoice("DreadKnightKeystone");
+                    if(choice!=null)
+                    {
+                        var value = choice.GetPassiveValue();
+                        number.AddFactor(value);
+                    }
+                }
+                
                 if (Agent.Main.GetHero().GetAllCareerChoices().Contains("NewBloodKeystone"))
                 {
                     var choice = TORCareerChoices.GetChoice("NewBloodKeystone");

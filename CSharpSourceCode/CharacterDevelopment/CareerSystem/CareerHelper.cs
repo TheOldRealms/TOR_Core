@@ -19,38 +19,39 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         public static float AddSkillEffectToValue(CareerChoiceObject careerChoice, Agent agent, List<SkillObject> relevantSkills, float scalingFactor, bool highestOnly = false , bool onlyWielded=false)
         {
             SkillObject wieldedWeaponSkill = null;
-            int skillValueWielded = 0;
-            if (agent.WieldedWeapon.Item != null)
-            {
-                wieldedWeaponSkill = agent.WieldedWeapon.Item?.PrimaryWeapon?.RelevantSkill;
-                skillValueWielded= agent.GetHero().GetSkillValue(wieldedWeaponSkill);
-            }
-             
-            float retVal = 0f;
+            
+            float skillValue=0f;
             if (agent != null && agent.IsHero && relevantSkills != null && relevantSkills.Count > 0)
             {
-                foreach (var skill in relevantSkills)
+                if (onlyWielded)
                 {
-                    int skillValue = agent.GetHero().GetSkillValue(skill);
-                    var result = skillValue * scalingFactor;
-                    if (onlyWielded && skill == wieldedWeaponSkill)
+                    int skillValueWielded = 0;
+                    if (agent.WieldedWeapon.Item != null)
                     {
-                        retVal += skillValue;
-                        break;
+                        wieldedWeaponSkill = agent.WieldedWeapon.Item?.PrimaryWeapon?.RelevantSkill;
+                        skillValueWielded= agent.GetHero().GetSkillValue(wieldedWeaponSkill);
                     }
-                    if (highestOnly && result > retVal) retVal = result;
-                    else retVal += result;
+                    skillValue= skillValueWielded;
                 }
-
+                else 
+                if (highestOnly)
+                {
+                    skillValue = relevantSkills.Max(x => agent.GetHero().GetSkillValue(x));
+                }
+                else
+                    foreach (var skill in relevantSkills)
+                    {
+                        skillValue += agent.GetHero().GetSkillValue(skill);
+                 
+                    }
                 
-
                 if (careerChoice == TORCareerChoices.GetChoice("ProtectorOfTheWeakKeyStone"))
                 {
                     if (agent.WieldedWeapon.Item?.PrimaryWeapon?.SwingDamageType != DamageTypes.Blunt) return 0f;
                 }
             }
 
-            return retVal;
+            return skillValue*scalingFactor;
         }
         
         public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, bool asFactor = false)

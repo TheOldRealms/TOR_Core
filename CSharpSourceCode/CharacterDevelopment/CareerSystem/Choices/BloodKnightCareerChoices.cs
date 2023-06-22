@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
@@ -57,7 +58,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void RegisterAll()
         {
-            _bloodKnightRoot = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("VampireCountRoot"));
+            _bloodKnightRoot = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BloodKnightRoot"));
             
             _peerlessWarriorKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("PeerlessWarriorKeystone"));
             _peerlessWarriorPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("PeerlessWarriorPassive1"));
@@ -99,19 +100,168 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _bloodKnightRoot.Initialize(TORCareers.BloodKnight, "root", null, true,
+            _bloodKnightRoot.Initialize(TORCareers.BloodKnight, "The Blood Knight is channeling focus and rage towards the enemies. For the next 6 seconds the melee damage is increased by 45%, physical resistance for 10%. Based on the wielded Weaponskill,for both, the ability strength is increased by 0.05%", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "redfury_effect",
+                        MutationTargetOriginalId = "redfury_effect_dmg",
                         PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded,DefaultSkills.TwoHanded,DefaultSkills.Polearm }, 0.05f, false,true),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded,DefaultSkills.TwoHanded,DefaultSkills.Polearm }, 0.0005f, false,true),
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                    MutationTargetType = typeof(StatusEffectTemplate),
+                    MutationTargetOriginalId = "redfury_effect_res",
+                    PropertyName = "BaseEffectValue",
+                    PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded,DefaultSkills.TwoHanded,DefaultSkills.Polearm }, 0.0005f, false,true),
+                    MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_ats",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded,DefaultSkills.TwoHanded,DefaultSkills.Polearm }, 0.0005f, false,true),
                         MutationType = OperationType.Add
                     }
                 });
-            /*_peerlessWarriorKeystone.Initialize(TORCareers.BloodKnight, "root", null, true,
+            _bladeMasterKeystone.Initialize(TORCareers.BloodKnight, "All melee weapon skills irrespective if the weapon is wielded or not, are counted towards the career ability modification.", "BladeMaster", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_dmg",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){  DefaultSkills.OneHanded,DefaultSkills.TwoHanded,DefaultSkills.Polearm }, 0.0005f,false,false ),
+                        MutationType = OperationType.Remove
+                    }, 
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_res",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){   DefaultSkills.OneHanded,DefaultSkills.TwoHanded,DefaultSkills.Polearm}, 0.0005f,false,false),
+                        MutationType = OperationType.Remove
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_ats",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){   DefaultSkills.OneHanded,DefaultSkills.TwoHanded,DefaultSkills.Polearm}, 0.0005f,false,false),
+                        MutationType = OperationType.Remove
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_dmg",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){  DefaultSkills.OneHanded,DefaultSkills.TwoHanded,DefaultSkills.Polearm }, 0.0005f,false,false ),
+                        MutationType = OperationType.Add
+                    }, 
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_res",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){   DefaultSkills.OneHanded,DefaultSkills.TwoHanded,DefaultSkills.Polearm}, 0.0005f,false,false),
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_ats",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){   DefaultSkills.OneHanded,DefaultSkills.TwoHanded,DefaultSkills.Polearm}, 0.0005f,false,false),
+                        MutationType = OperationType.Add
+                    }
+                });
+            _peerlessWarriorKeystone.Initialize(TORCareers.BloodKnight, "Athletics is counted towards the Career Ability. Movement speed is 20 increased during ability", "PeerlessWarrior", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_dmg",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){  DefaultSkills.Athletics }, 0.0005f),
+                        MutationType = OperationType.Add
+                    }, 
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_res",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){  DefaultSkills.Athletics }, 0.0005f),
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_ats",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){  DefaultSkills.Athletics }, 0.0005f,false,false ),
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_red_fury",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"redfury_effect_mov"}).ToList(),
+                        MutationType = OperationType.Replace
+                    },
+                    
+                });
+            _doomRiderKeystone.Initialize(TORCareers.BloodKnight, "Tactics is counted towards Career Ability. Units in proximity will also receive the red fury buff", "DoomRider", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_dmg",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){  DefaultSkills.Tactics }, 0.0005f,false,false ),
+                        MutationType = OperationType.Add
+                    }, 
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_res",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){  DefaultSkills.Tactics}, 0.0005f,false,false),
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_ats",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){  DefaultSkills.Tactics }, 0.0005f,false,false ),
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "RedFury",
+                        PropertyName = "AbilityTargetType",
+                        PropertyValue = (choice, originalValue, agent) => (AbilityTargetType.AlliesInAOE),
+                        MutationType = OperationType.Replace
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_red_fury",
+                        PropertyName = "TargetType",
+                        PropertyValue = (choice, originalValue, agent) => TargetType.Friendly,
+                        MutationType = OperationType.Replace
+                    },
+                });
+            _controlledHungerKeyStone.Initialize(TORCareers.BloodKnight, "Duration of Red Fury is doubled", "ControlledHunger", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -119,15 +269,65 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(AbilityTemplate),
                         MutationTargetOriginalId = "RedFury",
                         PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){  DefaultSkills.Athletics }, 0.03f),
+                        PropertyValue = (choice, originalValue, agent) => originalValue,
                         MutationType = OperationType.Add
+                    },
+                });
+            
+            _avatarOfDeathKeystone.Initialize(TORCareers.BloodKnight, "Red Fury also increases attack speed. Scales with skills like base effects.", "AvatarOfDeath", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_red_fury",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"redfury_effect_ats"}).ToList(),
+                        MutationType = OperationType.Replace
+                    },
+                });
+            _dreadKnightKeystone.Initialize(TORCareers.BloodKnight, "Riding skill is counted towards Career Ability. Red Fury resistance effect is now Wardsave. Ability is charged faster.", "DreadKnight", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_dmg",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Riding }, 0.0005f, false, false),
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_res",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Riding }, 0.0005f, false, false),
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_ats",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Riding }, 0.0005f, false, false),
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_res",
+                        PropertyName = "DamageType",
+                        PropertyValue = (choice, originalValue, agent) => DamageType.All,
+                        MutationType = OperationType.Replace,
                     }
-                });*/
+                }, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special, true));
+
         }
 
         protected override void InitializePassives()
         {
-            _peerlessWarriorPassive1.Initialize(TORCareers.BloodKnight, "Increases hitpoints by 25.", "PeerlessWarrior", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+            _peerlessWarriorPassive1.Initialize(TORCareers.BloodKnight, "Increases Hitpoints by 25.", "PeerlessWarrior", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
             _peerlessWarriorPassive2.Initialize(TORCareers.BloodKnight, "Extra Melee melee Damage(10%).", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical,10),AttackTypeMask.Melee));
             _peerlessWarriorPassive3.Initialize(TORCareers.BloodKnight, " For every Troop tier 4 and above, the gained XP is increased by 20% for kills.", "PeerlessWarrior", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special,true)); 
             _peerlessWarriorPassive4.Initialize(TORCareers.BloodKnight, "Everyday you gain randomly 100 xp in one of the melee combat skills", "PeerlessWarrior", false, ChoiceType.Passive,null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special,false));
@@ -156,8 +356,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _dreadKnightPassive2.Initialize(TORCareers.BloodKnight, "Horse charge damage is increased by 50%.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, true));
             _dreadKnightPassive3.Initialize(TORCareers.BloodKnight, "Mounted units damage is increased by 20%", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
             _dreadKnightPassive4.Initialize(TORCareers.BloodKnight, "Mighty Fighter: Melee hits allow more often for Knockdowns or dismounts. Depends on enemy tier and strike Magnitude", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All,15),AttackTypeMask.All));
-
-            
         }
     }
 }

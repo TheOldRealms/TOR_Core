@@ -94,7 +94,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _vampireRoot.Initialize(TORCareers.MinorVampire, "root", null, true,
+            _vampireRoot.Initialize(TORCareers.MinorVampire, "The Vampire transforms into a fog, that is impossible to catch and can fly wherever the player wants. The Ability lasts for 5 seconds. The duration can be increased for each point in athletics by 0.03 seconds. The Mistform can be deactivated at will, by pressing attack.", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -107,13 +107,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
             
-            _newBloodKeystone.Initialize(TORCareers.MinorVampire, "Ability needs 20% less damage to get charged. Flying Speed is increased by 20%.", "NewBlood", false,
+            _newBloodKeystone.Initialize(TORCareers.MinorVampire, "Ability needs 20% less damage to get charged. Flying Speed is increased by 20%.", "NewBlood", false,         // very hardcoded. I will continue on that after release 
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
 
                 },new CareerChoiceObject.PassiveEffect(20,PassiveEffectType.Special,true));
             
-            _lordlyKeystone.Initialize(TORCareers.MinorVampire, "Mistform heals 3 Healthpoints per second. Your wielded weapon is counted towards the ability length", "Lordly", false,         //TODO
+            _lordlyKeystone.Initialize(TORCareers.MinorVampire, "Mistform heals 3 Healthpoints per second. Your wielded weapon is counted towards the ability length", "Lordly", false,      
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
