@@ -62,11 +62,11 @@ namespace TOR_Core.HarmonyPatches
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(PropertyBasedTooltipVM), "Refresh")]
-        public static void AddExtrasToSettlementInfo(PropertyBasedTooltipVM __instance, Type ____shownType, object[] ____typeArgs)
+        public static void AddExtrasToSettlementInfo(PropertyBasedTooltipVM __instance, Type ____invokedType, object[] ____invokedArgs)
         {
-            if(____shownType == typeof(Settlement))
+            if(____invokedType == typeof(Settlement))
             {
-                var settlement = ____typeArgs[0] as Settlement;
+                var settlement = ____invokedArgs[0] as Settlement;
                 if (settlement.SettlementComponent is ShrineComponent)
                 {
                     var shrine = settlement.SettlementComponent as ShrineComponent;
@@ -79,9 +79,9 @@ namespace TOR_Core.HarmonyPatches
                     }
                 }
             }
-            else if(____shownType == typeof(MobileParty) && __instance.IsExtended)
+            else if(____invokedType == typeof(MobileParty) && __instance.IsExtended)
             {
-                var party = ____typeArgs[0] as MobileParty;
+                var party = ____invokedArgs[0] as MobileParty;
                 if(party != null)
                 {
                     var info = party.GetPartyInfo();

@@ -287,7 +287,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             if (list.IsEmpty()) return;
             
-            var inquirydata = new MultiSelectionInquiryData("Choose Lore", "Choose a lore to specialize in.", list, false, 1, "Confirm", "Cancel", OnChooseLore, OnCancel);
+            var inquirydata = new MultiSelectionInquiryData("Choose Lore", "Choose a lore to specialize in.", list, false, 1, 1, "Confirm", "Cancel", OnChooseLore, OnCancel);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
 
         }
@@ -315,7 +315,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             List<InquiryElement> list = new List<InquiryElement>();
             list.Add(new InquiryElement("generic_vampire", "Von Carstein Vampire", null));
             list.Add(new InquiryElement("blood_knight", "Blood Knight", null));
-            var inquirydata = new MultiSelectionInquiryData("Choose Bloodline", "Choose your vampiric bloodline.", list, false, 1, "Confirm", "Cancel", OnChooseBloodline, OnCancel);
+            var inquirydata = new MultiSelectionInquiryData("Choose Bloodline", "Choose your vampiric bloodline.", list, false, 1, 1, "Confirm", "Cancel", OnChooseBloodline, OnCancel);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
         }
 

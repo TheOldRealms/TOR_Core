@@ -14,6 +14,7 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(CaravanPartyComponent), "InitializeCaravanOnCreation")]
         public static bool CaravanLeaderOverride(MobileParty mobileParty, Hero caravanLeader, ItemRoster caravanItems, int troopToBeGiven, CaravanPartyComponent __instance)
         {
+            /*
             __instance.MobileParty.Aggressiveness = 0f;
 
             if (troopToBeGiven == 0)
@@ -66,6 +67,8 @@ namespace TOR_Core.HarmonyPatches
                 mobileParty.ItemRoster.Add(new ItemRosterElement(itemObject, (int)(mobileParty.MemberRoster.TotalManCount * 0.5f), null));
             }
             return false;
+            */
+            return true;
         }
     }
 }

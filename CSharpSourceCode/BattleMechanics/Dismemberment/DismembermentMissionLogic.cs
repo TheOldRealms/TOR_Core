@@ -174,7 +174,7 @@ namespace TOR_Core.BattleMechanics.Dismemberment
 
                 if (blow.InflictedDamage>80&&(attackerWeapon.Item != null&&attackerWeapon.Item.IsExplosiveAmmunition()))
                 { 
-                    InitializeBodyExplosion(victim,blow.Position);
+                    InitializeBodyExplosion(victim,blow.GlobalPosition);
                 }
             }
             catch(Exception exception)

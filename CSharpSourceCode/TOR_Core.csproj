@@ -83,10 +83,6 @@
       <HintPath>$(GameDir)\bin\Win64_Shipping_Client\TaleWorlds.AchievementSystem.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="TaleWorlds.BattlEye.Client.dll">
-      <HintPath>$(GameDir)\bin\Win64_Shipping_Client\TaleWorlds.BattlEye.Client.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="TaleWorlds.CampaignSystem.dll">
       <HintPath>$(GameDir)\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.dll</HintPath>
       <Private>False</Private>
@@ -213,6 +209,10 @@
     </Reference>
     <Reference Include="TaleWorlds.MountAndBlade.Launcher.Steam.dll">
       <HintPath>$(GameDir)\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.Launcher.Steam.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.Multiplayer">
+      <HintPath>..\..\Multiplayer\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.Multiplayer.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="TaleWorlds.MountAndBlade.ViewModelCollection.dll">
@@ -395,7 +395,6 @@
     <Compile Include="AbilitySystem\Spells\SpellBook\StatItemVM.cs" />
     <Compile Include="AbilitySystem\Spells\SpellCastingLevel.cs" />
     <Compile Include="AbilitySystem\SummonedAgentOrigin.cs" />
-    <Compile Include="BaseGameDebug\BaseGameDebugCampaignBehavior.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehaviorConfiguration.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehavior\AbstractAgentCastingBehavior.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehavior\AoEAdjacentCastingBehavior.cs" />

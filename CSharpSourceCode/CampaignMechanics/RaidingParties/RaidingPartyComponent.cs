@@ -41,7 +41,7 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
                 mobileParty.Party.MobileParty.InitializeMobilePartyAroundPosition(template, HomeSettlement.Position2D, 1f, troopNumberLimit: partySize);
                 mobileParty.ActualClan = ownerClan;
                 mobileParty.Aggressiveness = 2.0f;
-                mobileParty.Party.Visuals.SetMapIconAsDirty();
+                mobileParty.Party.SetVisualAsDirty();
                 mobileParty.ItemRoster.Add(new ItemRosterElement(DefaultItems.Meat, MBRandom.RandomInt(partySize, partySize * 2)));
                 mobileParty.SetPartyUsedByQuest(true);
             }

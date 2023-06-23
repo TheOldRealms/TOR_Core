@@ -594,7 +594,7 @@ namespace TOR_Core.Extensions
                     var blow = new Blow(damagerAgent.Index);
                     blow.DamageType = DamageTypes.Blunt;
                     blow.BoneIndex = agent.Monster.HeadLookDirectionBoneIndex;
-                    blow.Position = agent.GetChestGlobalPosition();
+                    blow.GlobalPosition = agent.GetChestGlobalPosition();
                     blow.BaseMagnitude = damageAmount;
                     blow.WeaponRecord.FillAsMeleeBlow(null, null, -1, -1);
                     blow.InflictedDamage = damageAmount;
@@ -645,7 +645,7 @@ namespace TOR_Core.Extensions
                         0.5f, 1f, 0f, 0f, 0f, 0f, 0f, 0f, 
                         Vec3.Up, 
                         blow.Direction, 
-                        blow.Position, 
+                        blow.GlobalPosition, 
                         Vec3.Zero, 
                         Vec3.Zero, 
                         agent.Velocity, 

@@ -306,6 +306,8 @@ namespace TOR_Core.Quests
             list.Add(_targetParty.Party);
             AddTrackedObject(party);
         }
+
+        protected override void HourlyTick() { }
     }
 
     public enum EngineerQuestStates

@@ -12,9 +12,9 @@ namespace TOR_Core.Models
 {
     public class TORPartyHealingModel : DefaultPartyHealingModel
     {
-        public override float GetSurvivalChance(PartyBase party, CharacterObject character, DamageTypes damageType, PartyBase enemyParty = null)
+        public override float GetSurvivalChance(PartyBase party, CharacterObject character, DamageTypes damageType, bool canDamageKillEvenIfBlunt, PartyBase enemyParty = null)
         {
-            var result = base.GetSurvivalChance(party, character, damageType, enemyParty);
+            var result = base.GetSurvivalChance(party, character, damageType, canDamageKillEvenIfBlunt, enemyParty);
           
             if (result < 0.5f && party != null && party.LeaderHero != null && party.LeaderHero.GetPerkValue(TORPerks.Faith.Revival)) result = TORPerks.Faith.Revival.PrimaryBonus;
             if (character.IsUndead()) result = 0;

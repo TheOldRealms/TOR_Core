@@ -14,7 +14,6 @@ using TaleWorlds.MountAndBlade.GauntletUI.Mission;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.SpellBook;
-using TOR_Core.BaseGameDebug;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.AI.TeamBehavior;
@@ -114,7 +113,6 @@ namespace TOR_Core
                 starter.AddBehavior(new MasterEngineerTownBehaviour());
                 starter.AddBehavior(new TORPerkHandlerCampaignBehavior());
                 starter.AddBehavior(new TORAICompanionCampaignBehavior());
-                starter.AddBehavior(new BaseGameDebugCampaignBehavior());
                 starter.AddBehavior(new BloodKissCampaignBehavior());
                 starter.AddBehavior(new TORPartyUpgraderCampaignBehavior());
                 starter.AddBehavior(new InkStoryCampaignBehavior());

@@ -98,9 +98,17 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
+        public override void OnBehaviorInitialize()
+        {
+            base.OnBehaviorInitialize();
+            Mission.OnItemPickUp += OnItemPickup;
+        }
+
         protected override void OnEndMission()
         {
+            base.OnEndMission();
             BindWeaponKeys();
+            Mission.OnItemPickUp -= OnItemPickup;
         }
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
@@ -452,7 +460,7 @@ namespace TOR_Core.AbilitySystem
             _keyContext.GetGameKey(21).KeyboardKey.ChangeKey(InputKey.Invalid);
         }
 
-        public override void OnItemPickup(Agent agent, SpawnedItemEntity item)
+        private void OnItemPickup(Agent agent, SpawnedItemEntity item)
         {
             if (agent == Agent.Main) DisableAbilityMode(true);
         }

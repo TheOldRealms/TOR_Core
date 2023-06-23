@@ -75,7 +75,6 @@ namespace TOR_Core.BattleMechanics.Artillery
         protected override float ShootingSpeed => BaseMuzzleVelocity;
         public override float ProjectileVelocity => ShootingSpeed;
         protected override Vec3 ShootingDirection => Projectile.GameEntity.GetGlobalFrame().rotation.f;
-        protected override Vec3 VisualizationShootingDirection => ShootingDirection;
         
         protected override float MaximumBallisticError => 0.2f;
 

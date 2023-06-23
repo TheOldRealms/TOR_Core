@@ -31,7 +31,6 @@
 			 armed_trader="NPCCharacter.tor_empire_caravan_ranged"
 			 caravan_guard="NPCCharacter.tor_empire_caravan_guard"
 			 veteran_caravan_guard="NPCCharacter.tor_empire_caravan_vetguard"
-			 duel_preset="NPCCharacter.empire_duel_preset"
 			 prison_guard="NPCCharacter.prison_guard_empire"
 			 guard="NPCCharacter.tor_empire_halberdier"
 			 blacksmith="NPCCharacter.blacksmith_empire"
@@ -72,6 +71,9 @@
 			 weapon_practice_stage_2="NPCCharacter.weapon_practice_stage_2_empire"
 			 weapon_practice_stage_3="NPCCharacter.weapon_practice_stage_3_empire"
 			 gear_dummy="NPCCharacter.gear_dummy_empire"
+			 default_battle_equipment_roster="EquipmentRoster.emp_civ_template_default"
+        	 default_civilian_equipment_roster="EquipmentRoster.emp_civ_template_default"
+           	 duel_preset_equipment_roster="EquipmentRoster.emp_duel_preset_template"
 			 board_game_type="Tablut">
 		<vassal_reward_items>
       		<item id="Item.justicier_2hsword" />
@@ -1434,7 +1436,6 @@
 			 armed_trader="NPCCharacter.tor_vc_caravan_ranged"
 			 caravan_guard="NPCCharacter.tor_vc_caravan_guard"
 			 veteran_caravan_guard="NPCCharacter.tor_vc_caravan_guard"
-			 duel_preset="NPCCharacter.empire_duel_preset"
 			 prison_guard="NPCCharacter.prison_guard_empire"
 			 guard="NPCCharacter.tor_vc_grave_guard"
 			 blacksmith="NPCCharacter.blacksmith_empire"
@@ -1475,6 +1476,9 @@
 			 weapon_practice_stage_2="NPCCharacter.weapon_practice_stage_2_empire"
 			 weapon_practice_stage_3="NPCCharacter.weapon_practice_stage_3_empire"
 			 gear_dummy="NPCCharacter.gear_dummy_empire"
+			 default_battle_equipment_roster="EquipmentRoster.emp_civ_template_default"
+           	 default_civilian_equipment_roster="EquipmentRoster.emp_civ_template_default"
+           	 duel_preset_equipment_roster="EquipmentRoster.emp_duel_preset_template"
 			 board_game_type="Tablut">
 		<vassal_reward_items>
 			<item id="Item.steppe_war_bow" />
@@ -2808,7 +2812,6 @@
             armed_trader="NPCCharacter.tor_br_caravan_ranged"
             caravan_guard="NPCCharacter.tor_br_caravan_guard"
             veteran_caravan_guard="NPCCharacter.tor_br_caravan_elite_ranged"
-            duel_preset="NPCCharacter.vlandia_duel_preset"
             prison_guard="NPCCharacter.tor_br_manatarms_halberd"
             guard="NPCCharacter.tor_br_manatarms_halberd"
             blacksmith="NPCCharacter.blacksmith_vlandia"
@@ -2849,6 +2852,9 @@
             weapon_practice_stage_2="NPCCharacter.weapon_practice_stage_2_vlandia"
             weapon_practice_stage_3="NPCCharacter.weapon_practice_stage_3_vlandia"
             gear_dummy="NPCCharacter.gear_dummy_vlandia"
+			default_battle_equipment_roster="EquipmentRoster.emp_civ_template_default"
+           	default_civilian_equipment_roster="EquipmentRoster.emp_civ_template_default"
+           	duel_preset_equipment_roster="EquipmentRoster.emp_duel_preset_template"
             board_game_type="MuTorere">
       <vassal_reward_items>
         <item id="Item.sentinel_2hsword" />
@@ -3128,7 +3134,6 @@
             armed_trader="NPCCharacter.tor_br_caravan_ranged"
             caravan_guard="NPCCharacter.tor_br_caravan_guard"
             veteran_caravan_guard="NPCCharacter.tor_br_caravan_elite_ranged"
-            duel_preset="NPCCharacter.vlandia_duel_preset"
             prison_guard="NPCCharacter.tor_br_manatarms_halberd"
             guard="NPCCharacter.tor_br_manatarms_halberd"
             blacksmith="NPCCharacter.blacksmith_vlandia"
@@ -3169,6 +3174,9 @@
             weapon_practice_stage_2="NPCCharacter.weapon_practice_stage_2_vlandia"
             weapon_practice_stage_3="NPCCharacter.weapon_practice_stage_3_vlandia"
             gear_dummy="NPCCharacter.gear_dummy_vlandia"
+			default_battle_equipment_roster="EquipmentRoster.emp_civ_template_default"
+           	default_civilian_equipment_roster="EquipmentRoster.emp_civ_template_default"
+           	duel_preset_equipment_roster="EquipmentRoster.emp_duel_preset_template"
             board_game_type="MuTorere">
       <vassal_reward_items>
         <item id="Item.sentinel_2hsword" />

@@ -102,29 +102,29 @@ namespace TOR_Core.Models
             }
         }
 
-        public override int GetEffectiveSkill(BasicCharacterObject agentCharacter, IAgentOriginBase agentOrigin, Formation agentFormation, SkillObject skill)
+        public override int GetEffectiveSkill(Agent agent, SkillObject skill)
         {
-            if (agentOrigin is SummonedAgentOrigin) return agentCharacter.GetSkillValue(skill);
-            var result = base.GetEffectiveSkill(agentCharacter, agentOrigin, agentFormation, skill);
+            if (agent.Origin is SummonedAgentOrigin) return agent.Character.GetSkillValue(skill);
+            var result = base.GetEffectiveSkill(agent, skill);
             ExplainedNumber resultNumber = new ExplainedNumber(result, false, null);
 
-            var partyBase = ((agentOrigin != null) ? agentOrigin.BattleCombatant : null) as PartyBase;
+            var partyBase = ((agent.Origin != null) ? agent.Origin.BattleCombatant : null) as PartyBase;
             if (partyBase != null && partyBase.IsMobile)
             {
                 var mobileParty = partyBase.MobileParty;
                 if (mobileParty != null)
                 {
-                    if (skill == TORSkills.GunPowder && agentCharacter.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
+                    if (skill == TORSkills.GunPowder && agent.Character.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
                     {
                         PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.RunAndGun, mobileParty, false, ref resultNumber);
                     }
 
-                    if (skill == DefaultSkills.OneHanded && agentCharacter.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
+                    if (skill == DefaultSkills.OneHanded && agent.Character.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
                     {
                         PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.CloseQuarters, mobileParty, false, ref resultNumber);
                     }
 
-                    if (skill == DefaultSkills.Riding && agentCharacter.IsMounted && agentCharacter.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
+                    if (skill == DefaultSkills.Riding && agent.Character.IsMounted && agent.Character.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
                     {
                         PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.MountedHeritage, mobileParty, false, ref resultNumber);
                     }
@@ -224,7 +224,7 @@ namespace TOR_Core.Models
             var captain = agent.GetCaptainCharacter();
             if (weapon != null && character != null)
             {
-                int effectiveSkill = GetEffectiveSkill(character, agent.Origin, agent.Formation, weapon.RelevantSkill);
+                int effectiveSkill = GetEffectiveSkill(agent, weapon.RelevantSkill);
                 ExplainedNumber reloadSpeed = new ExplainedNumber(agentDrivenProperties.ReloadSpeed);
                 if (weapon.RelevantSkill == TORSkills.GunPowder)
                 {

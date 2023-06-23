@@ -377,7 +377,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             {
                 if (item.ID != "MinorMagic" && !item.DisabledForCultures.Contains(CharacterObject.OneToOneConversationCharacter.Culture.StringId) && !Hero.MainHero.GetExtendedInfo().HasKnownLore(item.ID)) list.Add(new InquiryElement(item, item.Name, null));
             }
-            var inquirydata = new MultiSelectionInquiryData("Choose Lore", "Choose a lore to specialize in.", list, true, 1, "Confirm", "Cancel", OnChooseLore, OnCancelLore);
+            var inquirydata = new MultiSelectionInquiryData("Choose Lore", "Choose a lore to specialize in.", list, true, 1, 1, "Confirm", "Cancel", OnChooseLore, OnCancelLore);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
         }
 
