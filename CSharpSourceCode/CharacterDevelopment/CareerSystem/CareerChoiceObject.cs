@@ -149,6 +149,16 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             public DamageProportionTuple DamageProportionTuple;
             public AttackTypeMask AttackTypeMask = AttackTypeMask.Melee;
             
+            public PassiveEffect(float effectValue, PassiveEffectType type, AttackTypeMask mask)
+            {
+                EffectMagnitude = effectValue;
+                Operation = OperationType.Add;
+                InterpretAsPercentage = true;
+                PassiveEffectType = type;
+                AttackTypeMask = mask;
+            }
+
+            
             public PassiveEffect(PassiveEffectType type, DamageProportionTuple damageProportionTuple, AttackTypeMask mask)
             {
                 EffectMagnitude = 0;
@@ -204,6 +214,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         HealthRegeneration, //player life regeneration
         Damage,             //player damage, requires damage tuple
         Resistance,         //player resistance requires damage tuple
+        ArmorPenetration,   //player ignores armor with attack mask - this cant be Spells, will be ignored
         WindsOfMagic,       //player Winds of Magic
         WindsCostReduction, //player Winds of Magic cost reduction
         PartyMovementSpeed, //general party speed

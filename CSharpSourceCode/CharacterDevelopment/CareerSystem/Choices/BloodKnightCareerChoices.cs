@@ -337,10 +337,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _bladeMasterPassive3.Initialize(TORCareers.BloodKnight, "Hits below 15 damage will not stagger character.", "BladeMaster", false, ChoiceType.Passive, null); 
             _bladeMasterPassive4.Initialize(TORCareers.BloodKnight, "All troops are gaining XP(including Player) while raiding villages", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50));
             
-            _doomRiderPassive1.Initialize(TORCareers.BloodKnight, "Villageraids are 50% more efficient.", "DoomRider", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(50f,PassiveEffectType.Special,true )); 
-            _doomRiderPassive2.Initialize(TORCareers.BloodKnight, "Extra melee Damage(20%).", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical,20),AttackTypeMask.Melee));
-            _doomRiderPassive3.Initialize(TORCareers.BloodKnight, "Increases Hitpoints by 50.", "DoomRider", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
-            _doomRiderPassive4.Initialize(TORCareers.BloodKnight, "Partyspeed Increased by 2", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2.0f, PassiveEffectType.PartyMovementSpeed));
+           
+            _doomRiderPassive1.Initialize(TORCareers.BloodKnight, "Extra melee Damage(20%).", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical,20),AttackTypeMask.Melee));
+            _doomRiderPassive2.Initialize(TORCareers.BloodKnight, "Increases Hitpoints by 50.", "DoomRider", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
+            _doomRiderPassive3.Initialize(TORCareers.BloodKnight, "Partyspeed Increased by 2", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2.0f, PassiveEffectType.PartyMovementSpeed));
+            _doomRiderPassive4.Initialize(TORCareers.BloodKnight, "Defeated Units can be recruited with 15%(40% for >4Tier) chance to blood knight initates", "DoomRider", false, ChoiceType.Passive, null); 
             
             _controlledHungerPassive1.Initialize(TORCareers.BloodKnight, "immune to sunlight malus.", "ControlledHunger", false, ChoiceType.Passive, null); //TORPartySpeedCalculatingModel 46
             _controlledHungerPassive2.Initialize(TORCareers.BloodKnight, "Increases hitpoints by 50.", "ControlledHunger", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
@@ -350,12 +351,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _avatarOfDeathPassive1.Initialize(TORCareers.BloodKnight, "25% Physical damage reduction from Melee and Ranged attacks.", "AvatarOfDeath", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical,25),AttackTypeMask.Ranged|AttackTypeMask.Melee));
             _avatarOfDeathPassive2.Initialize(TORCareers.BloodKnight, "Vampire Wages are reduced by 35%.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-35, PassiveEffectType.Special,true)); //TORPartyWageModel 85
             _avatarOfDeathPassive3.Initialize(TORCareers.BloodKnight, "35%. Magical Damage reduction from Spells", "AvatarOfDeath", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical,35),AttackTypeMask.Spell));
-            _avatarOfDeathPassive4.Initialize(TORCareers.BloodKnight, "Defeated Units can be recruited with 15%(40% for >4Tier) chance to blood knight initates", "AvatarOfDeath", false, ChoiceType.Passive, null); 
+            _avatarOfDeathPassive4.Initialize(TORCareers.BloodKnight, "Attacks can penetrate shields", "AvatarOfDeath", false, ChoiceType.Passive, null); 
             
             _dreadKnightPassive1.Initialize(TORCareers.BloodKnight, "Increases hitpoints by 50.", "DreadKnight", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
             _dreadKnightPassive2.Initialize(TORCareers.BloodKnight, "Horse charge damage is increased by 50%.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, true));
             _dreadKnightPassive3.Initialize(TORCareers.BloodKnight, "Mounted units damage is increased by 20%", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
-            _dreadKnightPassive4.Initialize(TORCareers.BloodKnight, "Mighty Fighter: Melee hits allow more often for Knockdowns or dismounts. Depends on enemy tier and strike Magnitude", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All,15),AttackTypeMask.All));
+            _dreadKnightPassive4.Initialize(TORCareers.BloodKnight, "25% Melee Armor Penetration", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
         }
     }
 }

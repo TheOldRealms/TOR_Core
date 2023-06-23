@@ -189,38 +189,6 @@ namespace TOR_Core.HarmonyPatches
                 b.BlowFlag |= BlowFlags.ShrugOff;
             }
             
-            /*if ( b.BaseMagnitude > 25f)
-            {
-                if (attacker.IsMainAgent)
-                {
-d                    var choices = attacker.GetHero().GetAllCareerChoices();
-                    if (!choices.IsEmpty())
-                    {
-                        if(choices.Contains("DreadKnightPassive4"))
-                        {
-                            if(victim.Character.GetBattleTier()<4)
-                            {
-                                b.BlowFlag |= BlowFlags.KnockDown;
-                                b.BlowFlag |= BlowFlags.CanDismount;
-                            }
-
-                            if (victim.Character.GetBattleTier() >4 &&victim.Character.GetBattleTier() < 8)
-                            {
-                                b.BlowFlag |= BlowFlags.MakesRear;
-                                b.BlowFlag |= BlowFlags.KnockBack;
-                            }
-                        }
-                        
-                    }
-                }
-            }*/
-
-            /*if (attackTypeMask == AttackTypeMask.Melee && IsMightyBlow(attacker, b.InflictedDamage, attacker.WieldedWeapon))
-            {
-                b.BlowFlag |= BlowFlags.CrushThrough;
-            }*/
-            
-           
 
             if (b.InflictedDamage > 0)
             {
@@ -235,13 +203,7 @@ d                    var choices = attacker.GetHero().GetAllCareerChoices();
                     }
                     
                     TORDamageDisplay.DisplayDamageResult(resultDamage, damageCategories, resultBonus, isVictim);
-                    /*if(attacker == Agent.Main)
-                    {
-                        double damageIncrease = 0f;
-                        if (originalDamage > 0) damageIncrease = b.InflictedDamage / originalDamage;
-                        TORCommon.Say(string.Format("Modified damage by {0}", damageIncrease.ToString("P")));
-                    }*/
-                    
+
                 }
             }
             return true;
@@ -249,21 +211,6 @@ d                    var choices = attacker.GetHero().GetAllCareerChoices();
         
         
         
-        public static bool IsMightyBlow(Agent agent, int damage, MissionWeapon weapon)
-        {
-            if (!agent.IsMainAgent || !agent.GetHero().HasAnyCareer()) return false;
-            if (!agent.GetHero().GetAllCareerChoices().Contains("MartiallePassive4")) return false;     //or other related skills
-                
-            var weaponSkill = weapon.Item.WeaponComponent.PrimaryWeapon.RelevantSkill;
-            if (weaponSkill == null) return false;
-            var threshold = 75 - damage - (agent.GetHero().GetSkillValue(weaponSkill)*0.12f);
-            if (threshold <= 0)
-            {
-                return true;
-            }
-
-            return false;
-        }
 
         public static AttackTypeMask DetermineMask(Blow blow)
         {

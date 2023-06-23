@@ -98,10 +98,11 @@ namespace TOR_Core.Models
                     {
                         var choices = Hero.MainHero.GetAllCareerChoices();
 
-                        if (baseDamage>50&& choices.Contains("MartiallePassive4"))
+                        if (choices.Contains("MartiallePassive4")||choices.Contains("AvatarOfDeathPassive4"))
                         {
-                            weaponComponentData.WeaponFlags |= WeaponFlags.CanPenetrateShield;
+                            weaponComponentData.WeaponFlags |= WeaponFlags.BonusAgainstShield;
                         }
+                        
                     }
                 }
                 
@@ -127,42 +128,6 @@ namespace TOR_Core.Models
                 }
             }
             return resultDamage.ResultNumber;
-        }
-
-
-        public override bool DecideAgentDismountedByBlow(Agent attackerAgent, Agent victimAgent, in AttackCollisionData collisionData, WeaponComponentData attackerWeapon, in Blow blow)
-        {
-            if(attackerAgent.IsMainAgent && CareerHelper.DecideMasterlyFighterPerkEffect(attackerAgent,victimAgent,collisionData,25,6))
-            {
-                return true;
-            }
-            
-            return base.DecideAgentDismountedByBlow(attackerAgent, victimAgent, in collisionData, attackerWeapon, in blow);
-        }
-        
-        public override bool DecideAgentKnockedBackByBlow(Agent attackerAgent, Agent victimAgent, in AttackCollisionData collisionData, WeaponComponentData attackerWeapon, in Blow blow)
-        {
-            if(attackerAgent.IsMainAgent && CareerHelper.DecideMasterlyFighterPerkEffect(attackerAgent,victimAgent,collisionData,15,4))
-            {
-                return true;
-            }
-            
-            if(attackerAgent.IsMainAgent && CareerHelper.DecideMasterlyFighterPerkEffect(attackerAgent,victimAgent,collisionData,25,7))
-            {
-                return true;
-            }
-            return base.DecideAgentKnockedBackByBlow(attackerAgent, victimAgent, in collisionData, attackerWeapon, in blow);
-        }
-
-        public override bool DecideAgentKnockedDownByBlow(Agent attackerAgent, Agent victimAgent, in AttackCollisionData collisionData, WeaponComponentData attackerWeapon, in Blow blow)
-        { 
-            
-            if(attackerAgent.IsMainAgent && CareerHelper.DecideMasterlyFighterPerkEffect(attackerAgent,victimAgent,collisionData,20,4))
-            {
-                return true;
-            }
-
-            return base.DecideAgentKnockedDownByBlow(attackerAgent, victimAgent, in collisionData, attackerWeapon, in blow);
         }
 
         public float CalculateWardSaveFactor(Agent victim, AttackTypeMask attackTypeMask)

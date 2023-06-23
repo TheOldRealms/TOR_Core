@@ -20,9 +20,9 @@ namespace TOR_Core.Models
                 {
                     var choices = MobileParty.MainParty.LeaderHero.GetAllCareerChoices();
 
-                    if (choices.Contains("DoomRiderPassive4"))
+                    if (choices.Contains("BladeMasterPassive4"))
                     {
-                        var choice = TORCareerChoices.GetChoice("DoomRiderPassive4");
+                        var choice = TORCareerChoices.GetChoice("BladeMasterPassive4");
                         if (choice != null)
                         {
                             explainedNumber.AddFactor(choice.GetPassiveValue());

@@ -50,7 +50,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 var reduction = 0;
                 if (Hero.MainHero.HasAnyCareer())
                 {
-                    if (Hero.MainHero.GetAllCareerChoices().Contains("AvatarOfDeathPassive4"))
+                    if (Hero.MainHero.GetAllCareerChoices().Contains("DoomRiderPassive4"))
                     {
                         var bloodKnights = CalculateBloodKnightsCandidates(mapEvent, out reduction);
                         troops.AddRange(bloodKnights);

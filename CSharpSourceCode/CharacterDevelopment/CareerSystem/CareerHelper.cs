@@ -54,6 +54,38 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             return skillValue*scalingFactor;
         }
         
+        
+        public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, AttackTypeMask mask,bool asFactor = false)
+        {
+            var choices = hero.GetAllCareerChoices();
+            foreach (var choiceID in choices)
+            {
+                var choice = TORCareerChoices.GetChoice(choiceID);
+                if (choice == null)
+                    continue;
+
+                if (choice.Passive != null && choice.Passive.PassiveEffectType == passiveEffectType)
+                {
+                    var attackMask = choice.Passive.AttackTypeMask;
+                    if ((mask & attackMask) == 0) //if mask does NOT contains attackmask
+                        continue;
+                    
+                    
+                    var value = choice.Passive.EffectMagnitude;
+                    if (choice.Passive.InterpretAsPercentage)
+                    {
+                        value /= 100;
+                    }
+                    if (asFactor)
+                    {
+                        number.AddFactor(value, new TextObject(choice.BelongsToGroup.Name.ToString()));
+                        return;
+                    }
+                    number.Add(value, new TextObject(choice.BelongsToGroup.Name.ToString()));
+                }
+            }
+        }
+        
         public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, bool asFactor = false)
         {
             var choices = hero.GetAllCareerChoices();

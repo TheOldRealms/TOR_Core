@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Core;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
@@ -26,16 +27,7 @@ namespace TOR_Core.Models
             
             if(attacker != null && attacker.IsPlayerCharacter)
             {
-                var choices = attacker.HeroObject.GetAllCareerChoices();
-
-                if (weaponComponent.IsMeleeWeapon&&choices.Contains("KnightlyPassive4"))
-                {
-                    var choice = TORCareerChoices.GetChoice("KnightlyPassive4");
-                    if (choice != null)
-                    {
-                        resultArmor.AddFactor(choice.GetPassiveValue());
-                    }
-                }
+                CareerHelper.ApplyBasicCareerPassives(attacker.HeroObject, ref resultArmor, PassiveEffectType.ArmorPenetration, true);
             }
             return resultArmor.ResultNumber;
         }
