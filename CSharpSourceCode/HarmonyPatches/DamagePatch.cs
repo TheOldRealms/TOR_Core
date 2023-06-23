@@ -34,7 +34,7 @@ namespace TOR_Core.HarmonyPatches
 
             if (attacker.IsMainAgent)
             {
-                TORCommon.Say("hello"); //TODO Remove
+               // TORCommon.Say("hello"); //TODO Remove
             }
 
             AttackTypeMask attackTypeMask = DetermineMask(b);
@@ -164,6 +164,8 @@ namespace TOR_Core.HarmonyPatches
                 return true;
             }
 
+           
+
             //calculating non-spell damage
             for (int i = 0; i < damageCategories.Length - 1; i++)
             {
@@ -218,7 +220,7 @@ d                    var choices = attacker.GetHero().GetAllCareerChoices();
                 b.BlowFlag |= BlowFlags.CrushThrough;
             }*/
             
-            
+           
 
             if (b.InflictedDamage > 0)
             {

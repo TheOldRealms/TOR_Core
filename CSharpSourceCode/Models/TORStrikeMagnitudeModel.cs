@@ -23,6 +23,20 @@ namespace TOR_Core.Models
             {
                 PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.PiercingShots, attacker, true, ref resultArmor);
             }
+            
+            if(attacker != null && attacker.IsPlayerCharacter)
+            {
+                var choices = attacker.HeroObject.GetAllCareerChoices();
+
+                if (weaponComponent.IsMeleeWeapon&&choices.Contains("KnightlyPassive4"))
+                {
+                    var choice = TORCareerChoices.GetChoice("KnightlyPassive4");
+                    if (choice != null)
+                    {
+                        resultArmor.AddFactor(choice.GetPassiveValue());
+                    }
+                }
+            }
             return resultArmor.ResultNumber;
         }
     }

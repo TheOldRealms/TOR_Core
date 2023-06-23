@@ -328,21 +328,21 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         protected override void InitializePassives()
         {
             _peerlessWarriorPassive1.Initialize(TORCareers.BloodKnight, "Increases Hitpoints by 25.", "PeerlessWarrior", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
-            _peerlessWarriorPassive2.Initialize(TORCareers.BloodKnight, "Extra Melee melee Damage(10%).", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical,10),AttackTypeMask.Melee));
+            _peerlessWarriorPassive2.Initialize(TORCareers.BloodKnight, "Extra melee Damage(10%).", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical,10),AttackTypeMask.Melee));
             _peerlessWarriorPassive3.Initialize(TORCareers.BloodKnight, " For every Troop tier 4 and above, the gained XP is increased by 20% for kills.", "PeerlessWarrior", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special,true)); 
             _peerlessWarriorPassive4.Initialize(TORCareers.BloodKnight, "Everyday you gain randomly 100 xp in one of the melee combat skills", "PeerlessWarrior", false, ChoiceType.Passive,null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special,false));
             
-            _bladeMasterPassive1.Initialize(TORCareers.BloodKnight, "Extra Melee melee Damage(20%).", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical,10),AttackTypeMask.Melee));
+            _bladeMasterPassive1.Initialize(TORCareers.BloodKnight, "Extra melee Damage(20%).", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical,10),AttackTypeMask.Melee));
             _bladeMasterPassive2.Initialize(TORCareers.BloodKnight, "Increases health regeneration after battles by 5.", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.HealthRegeneration));
             _bladeMasterPassive3.Initialize(TORCareers.BloodKnight, "Hits below 15 damage will not stagger character.", "BladeMaster", false, ChoiceType.Passive, null); 
             _bladeMasterPassive4.Initialize(TORCareers.BloodKnight, "All troops are gaining XP(including Player) while raiding villages", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50));
             
             _doomRiderPassive1.Initialize(TORCareers.BloodKnight, "Villageraids are 50% more efficient.", "DoomRider", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(50f,PassiveEffectType.Special,true )); 
-            _doomRiderPassive2.Initialize(TORCareers.BloodKnight, "Extra Melee melee Damage(20%).", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical,20),AttackTypeMask.Melee));
+            _doomRiderPassive2.Initialize(TORCareers.BloodKnight, "Extra melee Damage(20%).", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical,20),AttackTypeMask.Melee));
             _doomRiderPassive3.Initialize(TORCareers.BloodKnight, "Increases Hitpoints by 50.", "DoomRider", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
             _doomRiderPassive4.Initialize(TORCareers.BloodKnight, "Partyspeed Increased by 2", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2.0f, PassiveEffectType.PartyMovementSpeed));
             
-            _controlledHungerPassive1.Initialize(TORCareers.BloodKnight, "immune to to sunlight malus.", "ControlledHunger", false, ChoiceType.Passive, null); //TORPartySpeedCalculatingModel 46
+            _controlledHungerPassive1.Initialize(TORCareers.BloodKnight, "immune to sunlight malus.", "ControlledHunger", false, ChoiceType.Passive, null); //TORPartySpeedCalculatingModel 46
             _controlledHungerPassive2.Initialize(TORCareers.BloodKnight, "Increases hitpoints by 50.", "ControlledHunger", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
             _controlledHungerPassive3.Initialize(TORCareers.BloodKnight, "Mount health is increased by 35%", "ControlledHunger",false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(35f,PassiveEffectType.Special,true ));
             _controlledHungerPassive4.Initialize(TORCareers.BloodKnight, "Wardsave for all vampire units.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));

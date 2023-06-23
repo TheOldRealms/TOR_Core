@@ -26,12 +26,21 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _lordly;
         private CareerChoiceGroupObject _martialle;
         private CareerChoiceGroupObject _masterOfDead;
+        
         private CareerChoiceGroupObject _peerlessWarrior;
         private CareerChoiceGroupObject _bladeMaster;
         private CareerChoiceGroupObject _doomRider;
         private CareerChoiceGroupObject _controlledHunger;
         private CareerChoiceGroupObject _avatarOfDeath;
         private CareerChoiceGroupObject _dreadKnight;
+
+        private CareerChoiceGroupObject _survivalist;
+        private CareerChoiceGroupObject _duelist;
+        private CareerChoiceGroupObject _headhunter;
+        private CareerChoiceGroupObject _knightly;
+        private CareerChoiceGroupObject _mercenaryLord;
+        private CareerChoiceGroupObject _commander;
+        
 
 
         public TORCareerChoiceGroups()
@@ -63,6 +72,13 @@ namespace TOR_Core.CharacterDevelopment
             _controlledHunger = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("ControlledHunger"));
             _avatarOfDeath = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("AvatarOfDeath"));
             _dreadKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("DreadKnight"));
+            
+            _survivalist = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Survivalist"));
+            _duelist = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Duelist"));
+            _headhunter = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Headhunter"));
+            _knightly = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Knightly"));
+            _mercenaryLord = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("MercenaryLord"));
+            _commander = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Commander"));
             
         }
 
@@ -161,6 +177,38 @@ namespace TOR_Core.CharacterDevelopment
             {
                 text = "Required renown: 5";
                 return hero.Clan.Tier >= 5;
+            });
+            
+            
+            _survivalist.Initialize("The Survivalist", TORCareers.Mercenary, 1, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 1";
+                return hero.Clan.Tier >= 0;
+            });
+            _duelist.Initialize("The Duelist", TORCareers.Mercenary, 1, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 1";
+                return hero.Clan.Tier >= 0;
+            });
+            _headhunter.Initialize("The Headhunter", TORCareers.Mercenary, 2, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 3";
+                return hero.Clan.Tier >= 2;
+            });
+            _knightly.Initialize("The Knightly", TORCareers.Mercenary, 2, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 3";
+                return hero.Clan.Tier >= 2;
+            });
+            _mercenaryLord.Initialize("The Mercenary Lord", TORCareers.Mercenary, 3, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 5";
+                return hero.Clan.Tier >= 4;
+            });
+            _commander.Initialize("The Commander", TORCareers.Mercenary, 3, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 5";
+                return hero.Clan.Tier >= 4;
             });
             
         }

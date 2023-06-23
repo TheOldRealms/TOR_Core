@@ -81,6 +81,38 @@ namespace TOR_Core.Models
                 }
             }
             
+            if (choices.Contains("DuelistPassive3"))
+            {
+                if (!unit.Character.IsMounted)
+                {
+                    var choice = TORCareerChoices.GetChoice("DuelistPassive3");
+                    if (choice != null)
+                    {
+                        float effect = choice.GetPassiveValue();
+                        float value = (unit.Character.TroopWage*unit.Number) *effect;
+                        resultValue.Add(value, choice.BelongsToGroup.Name);
+                    }
+                    
+
+                }
+            }
+            
+            if (choices.Contains("CommanderPassive1"))
+            {
+                if (unit.Character.Tier>4)
+                {
+                    var choice = TORCareerChoices.GetChoice("CommanderPassive1");
+                    if (choice != null)
+                    {
+                        float effect = choice.GetPassiveValue();
+                        float value = (unit.Character.TroopWage*unit.Number) *effect;
+                        resultValue.Add(value, choice.BelongsToGroup.Name);
+                    }
+                    
+
+                }
+            }
+            
             if (choices.Contains("LordlyPassive3"))
             {
                 if (unit.Character.IsVampire()&&unit.Character != Hero.MainHero.CharacterObject)

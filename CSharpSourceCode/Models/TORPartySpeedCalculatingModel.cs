@@ -7,6 +7,7 @@ using TaleWorlds.CampaignSystem.Party.PartyComponents;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 
@@ -33,6 +34,7 @@ namespace TOR_Core.Models
 
             if (mobileParty.Party != null && mobileParty == MobileParty.MainParty)
             {
+                TerrainType faceTerrainType = Campaign.Current.MapSceneWrapper.GetFaceTerrainType(mobileParty.CurrentNavigationFace);
                 if (MobileParty.MainParty.LeaderHero == Hero.MainHero && MobileParty.MainParty.LeaderHero.IsVampire())
                 {
                     if (Campaign.Current.IsNight)
@@ -41,10 +43,27 @@ namespace TOR_Core.Models
                        result.AddFactor(0.25f, new TextObject("Vampire Nighttime bonus"));
                     }
 
-                    if (Campaign.Current.IsDay && !MobileParty.MainParty.LeaderHero.HasCareerChoice("NewBloodPassive4") && !MobileParty.MainParty.LeaderHero.HasCareerChoice("ControlledHungerPassive1"))
+                    if (Campaign.Current.IsDay&&faceTerrainType != TerrainType.Forest && !MobileParty.MainParty.LeaderHero.HasCareerChoice("NewBloodPassive4") && !MobileParty.MainParty.LeaderHero.HasCareerChoice("ControlledHungerPassive1"))
                     {
                         result.AddFactor(-0.2f, new TextObject("Suffering from sun light"));
                     }
+                }
+
+                if (MobileParty.MainParty.LeaderHero == Hero.MainHero)
+                {
+                    var choices = Hero.MainHero.GetAllCareerChoices();
+
+                    if (faceTerrainType == TerrainType.Forest&&choices.Contains("SurvivalistPassive3"))
+                    {
+                        var choice = TORCareerChoices.GetChoice("SurvivalistPassive3");
+                        if (choice != null)
+                        {
+                            result.AddFactor(choice.GetPassiveValue(), new TextObject(choice.BelongsToGroup.ToString()));
+                        }
+                        
+                    }
+                 
+                   
                 }
             }
 

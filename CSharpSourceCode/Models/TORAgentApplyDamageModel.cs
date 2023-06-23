@@ -30,6 +30,19 @@ namespace TOR_Core.Models
                 {
                     missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
                 }
+                
+                
+                if (attackerAgent.IsMainAgent&&Hero.MainHero.HasAnyCareer())
+                {
+                    var choices = Hero.MainHero.GetAllCareerChoices();
+                    
+                    if (choices.Contains("MercenaryLordPassive4"))
+                    {
+                        missileWeaponFlags |= WeaponFlags.MultiplePenetration;
+                    }
+                }
+                
+               
             }
         }
 
@@ -90,9 +103,9 @@ namespace TOR_Core.Models
                             weaponComponentData.WeaponFlags |= WeaponFlags.CanPenetrateShield;
                         }
                     }
-                
-                
                 }
+                
+              
                 
             }
 

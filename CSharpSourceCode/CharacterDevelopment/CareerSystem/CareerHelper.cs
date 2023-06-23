@@ -144,7 +144,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public static bool DecideMasterlyFighterPerkEffect(Agent attackerAgent, Agent victimAgent, AttackCollisionData collisionData,int threshold=20, int maximumTier = 4)
         {
-            TORCommon.Say(collisionData.BaseMagnitude +" POWER");
             if (collisionData.BaseMagnitude < threshold) return false;
             var choices = attackerAgent.GetHero().GetAllCareerChoices();
             if (!choices.IsEmpty())

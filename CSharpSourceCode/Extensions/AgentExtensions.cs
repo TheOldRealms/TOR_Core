@@ -90,6 +90,8 @@ namespace TOR_Core.Extensions
                     return true;
                 if (agent.GetHero().GetAllCareerChoices().Contains("BladeMasterPassive3"))
                     return true;
+                if (agent.GetHero().GetAllCareerChoices().Contains("CommanderPassive3"))
+                    return true;
             }
 
             return false;
