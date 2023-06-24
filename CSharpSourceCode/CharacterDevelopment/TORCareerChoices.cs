@@ -24,6 +24,8 @@ namespace TOR_Core.CharacterDevelopment
         public BloodKnightCareerChoices BloodKnightCareerChoices { get; private set; }
         
         public MercenaryCareerChoices MercenaryCareerChoices { get; private set; }
+        
+        public GrailKnightCareerChoices GrailKnightCareerChoices { get; private set; }
 
         public TORCareerChoices()
         {
@@ -32,6 +34,7 @@ namespace TOR_Core.CharacterDevelopment
             VampireCountCareerChoices = new VampireCountCareerChoices();
             BloodKnightCareerChoices = new BloodKnightCareerChoices();
             MercenaryCareerChoices = new MercenaryCareerChoices();
+            GrailKnightCareerChoices = new GrailKnightCareerChoices(TORCareers.GrailKnight);
         }
 
         public static CareerChoiceObject GetChoice(string id) => Game.Current.ObjectManager.GetObject<CareerChoiceObject>(x => x.StringId == id);

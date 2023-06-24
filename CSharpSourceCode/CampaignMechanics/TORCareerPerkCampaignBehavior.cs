@@ -34,25 +34,37 @@ namespace TOR_Core.CampaignMechanics
             {
                 var party = Hero.MainHero.PartyBelongedTo;
                 var choices = Hero.MainHero.GetAllCareerChoices();
-
+                
                 if (choices.Contains("CommanderPassive4"))
                 {
                     var choice = TORCareerChoices.GetChoice("CommanderPassive4");
-                    for (int i = 0; i < amount; i++)
-                    {
-                        if (party.Party.PartySizeLimit- party.Party.NumberOfAllMembers+1 < 0)
-                        {
-                            break;
-                        }
-                        if (MBRandom.RandomFloatRanged(0, 1) < choice.GetPassiveValue())
-                        {
-                            party.AddElementToMemberRoster(characterObject, 1);
-                        }
-                    }
-                   
+                    if (choice != null)
+                        AddExtraTroopsWithChanceIfPossible(characterObject, amount, party, choice.GetPassiveValue());
+                }
+                if (choices.Contains("MonsterSlayerPassive3"))
+                {
+                    var choice = TORCareerChoices.GetChoice("MonsterSlayerPassive3");
+                    if (choice != null)
+                        AddExtraTroopsWithChanceIfPossible(characterObject, amount, party, choice.GetPassiveValue());
                 }
             }
 
+        }
+
+
+        private void AddExtraTroopsWithChanceIfPossible(CharacterObject troop, int originalAmount, MobileParty party, float chance)
+        {
+            for (int i = 0; i < originalAmount; i++)
+            {
+                if (party.Party.PartySizeLimit- party.Party.NumberOfAllMembers+1 < 0)
+                {
+                    break;
+                }
+                if (MBRandom.RandomFloatRanged(0, 1) < chance)
+                {
+                    party.AddElementToMemberRoster(troop, 1);
+                }
+            }
         }
 
         private void RaidingPartyEvent(MobileParty mobileParty, ItemRoster itemRoster)
@@ -129,6 +141,24 @@ namespace TOR_Core.CampaignMechanics
                     var skills = new List<SkillObject> { DefaultSkills.OneHanded, DefaultSkills.TwoHanded, DefaultSkills.Polearm };
                     var targetSkill = skills.GetRandomElement();
                     Hero.MainHero.AddSkillXp(targetSkill, choice.GetPassiveValue()); 
+                }
+            }
+            
+            if (choices.Contains("ErrantryWarPassive4"))
+            {
+                var memberList = mobileParty.MemberRoster.GetTroopRoster();
+                for (var index = 0; index < memberList.Count; index++)
+                {
+                    var member = memberList[index];
+                    if (!member.Character.IsRanged&&!member.Character.IsHero)
+                    {
+                        var choice = TORCareerChoices.GetChoice("ErrantryWarPassive4");
+                        if (choice != null)
+                        {
+                            mobileParty.MemberRoster.AddXpToTroopAtIndex((int)choice.GetPassiveValue(), index);
+                        }
+                    }
+                    
                 }
             }
 

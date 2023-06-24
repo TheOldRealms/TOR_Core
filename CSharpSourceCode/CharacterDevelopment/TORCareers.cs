@@ -43,13 +43,13 @@ namespace TOR_Core.CharacterDevelopment
 
         private void RegisterAll()
         {
-            //_grailKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("GrailKnight"));
+            _grailKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("GrailKnight"));
             _minorVampire = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("MinorVampire"));
             _warriorPriest = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("WarriorPriest"));
             _bloodKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("BloodKnight"));
             _mercenary = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Mercenary"));
-            //_allCareers.Add(_grailKnight);
-            //_allCareers.Add(_minorVampire);
+            
+            _allCareers.Add(_grailKnight);
             _allCareers.Add(_warriorPriest);
             _allCareers.Add(_minorVampire);
             _allCareers.Add(_bloodKnight);
@@ -58,7 +58,7 @@ namespace TOR_Core.CharacterDevelopment
 
         private void InitializeAll()
         {
-            //_grailKnight.Initialize("Grail Knight", "Grail Knight career is for those...", hero => hero.Clan.Tier > 2, "ShadowStep", ChargeType.NumberOfKills);       //hero => hero.Clan.Tier > 2
+            _grailKnight.Initialize("Grail Knight", null, "");   
             _bloodKnight.Initialize("Blood Knight", null, "RedFury", ChargeType.NumberOfKills,10);
             _minorVampire.Initialize("Vampire Count", null, "ShadowStep", ChargeType.DamageDone, 400, typeof(ShadowStepScript));
             _warriorPriest.Initialize("Warrior Priest", (hero) => 
@@ -66,7 +66,7 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.Culture == MBObjectManager.Instance.GetObject<CultureObject>("empire") && hero.Clan.Tier >= 1;
             }, "RighteousFury", ChargeType.DamageTaken, 50);
             
-            _mercenary.Initialize("Mercenary", null, "", ChargeType.NumberOfKills,10);
+            _mercenary.Initialize("Mercenary", null, "");
         }
     }
 }

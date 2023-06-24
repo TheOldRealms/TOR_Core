@@ -92,7 +92,8 @@ namespace TOR_Core.HarmonyPatches
                             additionalDamagePercentages[(int)DamageType.Physical] += value;
                         }
                         
-                    }    
+                    }
+                   
                 }
                 
             }
@@ -206,9 +207,9 @@ namespace TOR_Core.HarmonyPatches
 
                 }
             }
+            
             return true;
         }
-        
         
         
 

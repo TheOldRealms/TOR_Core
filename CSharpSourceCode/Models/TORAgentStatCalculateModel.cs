@@ -6,6 +6,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
@@ -149,11 +150,35 @@ namespace TOR_Core.Models
                     {
                         PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.MountedHeritage, mobileParty, false, ref resultNumber);
                     }
+
+                    if (mobileParty == MobileParty.MainParty)
+                    {
+                        if (mobileParty.LeaderHero.HasAnyCareer())
+                        {
+                            var choices = Agent.Main.GetHero().GetAllCareerChoices();
+
+                            if ((skill == DefaultSkills.OneHanded||skill == DefaultSkills.TwoHanded)&& choices.Contains("ErrantryWarPassive3")&&agentCharacter.IsKnightUnit())
+                            {
+                                var choice = TORCareerChoices.GetChoice("ErrantryWarPassive3");
+                                if(choice.Passive!=null)
+                                    resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                            }
+                            
+                            if (skill == DefaultSkills.Polearm&&choices.Contains("EnhancedHorseCombatPassive4")&&agentCharacter.IsKnightUnit())
+                            {
+                                var choice = TORCareerChoices.GetChoice("EnhancedHorseCombatPassive4");
+                                if(choice.Passive!=null)
+                                    resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                            }
+                        }
+                    }
                 }
             }
 
             return (int)resultNumber.ResultNumber;
         }
+        
+        
 
         public override string GetMissionDebugInfoForAgent(Agent agent)
         {
@@ -170,18 +195,10 @@ namespace TOR_Core.Models
             
             if (agent.IsMount)
             {
+                
                 if (agent.RiderAgent!=null&&agent.RiderAgent.IsMainAgent)
                 {
-                    if (agent.RiderAgent.GetHero().HasAnyCareer())
-                    {
-                        var choices = agent.RiderAgent.GetHero().GetAllCareerChoices();
-                        
-                        if (choices.Contains("ControlledHungerPassive3"))
-                        {
-                            var choice = TORCareerChoices.GetChoice("ControlledHungerPassive3"); 
-                            explainedNumber.AddFactor(choice.GetPassiveValue());
-                        }
-                    }
+                    CareerHelper.ApplyBasicCareerPassives(agent.RiderAgent.GetHero(),ref explainedNumber,PassiveEffectType.HorseHealth,true);
                 }
 
                 var ratio = agent.Health / explainedNumber.BaseNumber;
@@ -384,10 +401,23 @@ namespace TOR_Core.Models
                     if (isNight)
                     {
                         var choice = TORCareerChoices.GetChoice("NewBloodPassive2");
-                        if (choice == null || choice.Passive == null) return result;
-                        float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
-                        result.ResistancePercentages[(int)DamageType.All] += value;
+                        if (choice != null || choice.Passive != null)
+                        {
+                            float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
+                            result.ResistancePercentages[(int)DamageType.All] += value;
+                        }
                     }
+                }
+                
+                if (agent.HasMount&&choices.Contains("EnhancedHorseCombatPassive2") && mask == PropertyMask.Attack )
+                {
+                    var choice = TORCareerChoices.GetChoice("EnhancedHorseCombatPassive2");
+                    if (choice != null || choice.Passive != null)
+                    {
+                        float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
+                        result.AdditionalDamagePercentages[(int)DamageType.Physical] += value;
+                    }
+                    
                 }
             }
             else if (agentLeader != null && agentLeader == CharacterObject.PlayerCharacter)
@@ -462,6 +492,18 @@ namespace TOR_Core.Models
                     float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
                     result.DamagePercentages[(int)DamageType.Physical] += value;
                 }
+                
+                if (attackMask==AttackTypeMask.Melee&&mask == PropertyMask.Defense&&!agent.IsHero&&choices.Contains("QuestingVow3")&&agent.Character.IsKnightUnit())
+                {
+                    var choice = TORCareerChoices.GetChoice("QuestingVow3");
+                    if (choice != null)
+                    {
+                        var value = choice.GetPassiveValue();
+                        result.ResistancePercentages[(int)DamageType.Physical] += value;
+                    }
+                        
+                }
+                
                 
             }
 

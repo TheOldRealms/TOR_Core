@@ -10,6 +10,7 @@ using TaleWorlds.Core;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.Models
 {
@@ -27,7 +28,9 @@ namespace TOR_Core.Models
             
             if(attacker != null && attacker.IsPlayerCharacter)
             {
-                CareerHelper.ApplyBasicCareerPassives(attacker.HeroObject, ref resultArmor, PassiveEffectType.ArmorPenetration, true);
+                var attackMask = AttackTypeMask.Melee;
+                if (weaponComponent.IsRangedWeapon) attackMask = AttackTypeMask.Ranged;
+                CareerHelper.ApplyBasicCareerPassives(attacker.HeroObject, ref resultArmor, PassiveEffectType.ArmorPenetration,attackMask, true);
             }
             return resultArmor.ResultNumber;
         }

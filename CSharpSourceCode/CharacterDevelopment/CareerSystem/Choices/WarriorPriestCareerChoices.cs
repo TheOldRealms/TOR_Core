@@ -14,7 +14,7 @@ using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
-    public class WarriorPriestCareerChoices : TORCareerChoiceBase
+    public class WarriorPriestCareerChoices : TORCareerChoicesBase
     {
         private CareerChoiceObject _warriorPriestRoot;
 

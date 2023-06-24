@@ -215,6 +215,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         Damage,             //player damage, requires damage tuple
         Resistance,         //player resistance requires damage tuple
         ArmorPenetration,   //player ignores armor with attack mask - this cant be Spells, will be ignored
+        HorseHealth,        //only player, percentage based
+        HorseChargeDamage,  //Damage When Horse is raced into infantry.
         WindsOfMagic,       //player Winds of Magic
         WindsCostReduction, //player Winds of Magic cost reduction
         PartyMovementSpeed, //general party speed

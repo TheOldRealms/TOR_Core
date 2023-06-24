@@ -10,7 +10,7 @@ using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 {
-    public class VampireCountCareerChoices : TORCareerChoiceBase
+    public class VampireCountCareerChoices : TORCareerChoicesBase
     {
 
         private CareerChoiceObject _vampireRoot;

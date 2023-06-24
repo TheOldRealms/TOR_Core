@@ -13,33 +13,41 @@ namespace TOR_Core.CharacterDevelopment
     {
         public static TORCareerChoiceGroups Instance { get; private set; }
 
+        //Warrior Priest
         private CareerChoiceGroupObject _bookOfSigmar;
         private CareerChoiceGroupObject _sigmarProclaimer;
         private CareerChoiceGroupObject _relentlessFanatic;
         private CareerChoiceGroupObject _protectorOfTheWeak;
         private CareerChoiceGroupObject _holyPurge;
         private CareerChoiceGroupObject _archLector;
-        
+        //Minor Vampire
         private CareerChoiceGroupObject _newBlood;
         private CareerChoiceGroupObject _arkayne;
         private CareerChoiceGroupObject _courtley;
         private CareerChoiceGroupObject _lordly;
         private CareerChoiceGroupObject _martialle;
         private CareerChoiceGroupObject _masterOfDead;
-        
+        //Blood Knight
         private CareerChoiceGroupObject _peerlessWarrior;
         private CareerChoiceGroupObject _bladeMaster;
         private CareerChoiceGroupObject _doomRider;
         private CareerChoiceGroupObject _controlledHunger;
         private CareerChoiceGroupObject _avatarOfDeath;
         private CareerChoiceGroupObject _dreadKnight;
-
+        //Mercenary
         private CareerChoiceGroupObject _survivalist;
         private CareerChoiceGroupObject _duelist;
         private CareerChoiceGroupObject _headhunter;
         private CareerChoiceGroupObject _knightly;
         private CareerChoiceGroupObject _mercenaryLord;
         private CareerChoiceGroupObject _commander;
+        //Grail Knight
+        private CareerChoiceGroupObject _errantryWar;
+        private CareerChoiceGroupObject _enhancedHorseCombat;
+        private CareerChoiceGroupObject _questingVow;
+        private CareerChoiceGroupObject _monsterSlayer;
+        private CareerChoiceGroupObject _masterHorseman;
+        private CareerChoiceGroupObject _grailVow;
         
 
 
@@ -79,6 +87,13 @@ namespace TOR_Core.CharacterDevelopment
             _knightly = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Knightly"));
             _mercenaryLord = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("MercenaryLord"));
             _commander = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Commander"));
+            
+            _errantryWar = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("ErrantryWar"));
+            _enhancedHorseCombat = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("EnhancedHorseCombat"));; 
+            _questingVow = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("QuestingVow"));
+            _monsterSlayer = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("MonsterSlayer")); 
+            _masterHorseman = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("MasterHorseman")); 
+            _grailVow = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("GrailVow"));
             
         }
 
@@ -179,7 +194,7 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.Clan.Tier >= 5;
             });
             
-            
+            //Mercenary
             _survivalist.Initialize("The Survivalist", TORCareers.Mercenary, 1, (Hero hero, out string text) =>
             {
                 text = "Required renown: 1";
@@ -206,6 +221,39 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.Clan.Tier >= 4;
             });
             _commander.Initialize("The Commander", TORCareers.Mercenary, 3, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 5";
+                return hero.Clan.Tier >= 4;
+            });
+            
+            //Grail Knight
+            
+            _errantryWar.Initialize("Errantry War", TORCareers.GrailKnight, 1, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 1";
+                return hero.Clan.Tier >= 0;
+            });
+            _enhancedHorseCombat.Initialize("Enhanced Horse Combat", TORCareers.GrailKnight, 1, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 1";
+                return hero.Clan.Tier >= 0;
+            });
+            _questingVow.Initialize("Questing Vow", TORCareers.GrailKnight, 2, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 3";
+                return hero.Clan.Tier >= 2;
+            });
+            _monsterSlayer.Initialize("Monster Slayer", TORCareers.GrailKnight, 2, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 3";
+                return hero.Clan.Tier >= 2;
+            });
+            _masterHorseman.Initialize("Master Horseman", TORCareers.GrailKnight, 2, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 5";
+                return hero.Clan.Tier >= 4;
+            });
+            _grailVow.Initialize("Grail Vow", TORCareers.GrailKnight, 3, (Hero hero, out string text) =>
             {
                 text = "Required renown: 5";
                 return hero.Clan.Tier >= 4;

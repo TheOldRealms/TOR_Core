@@ -5,14 +5,14 @@ using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 {
-    public class MercenaryCareerChoices : TORCareerChoiceBase
+    public class MercenaryCareerChoices : TORCareerChoicesBase
     {
-        private CareerChoiceObject _MercenaryrootNode;
+        private CareerChoiceObject _MercenaryRootNode;
         
-        private CareerChoiceObject _survivivalistPassive1;
-        private CareerChoiceObject _survivivalistPassive2;
-        private CareerChoiceObject _survivivalistPassive3;
-        private CareerChoiceObject _survivivalistPassive4;
+        private CareerChoiceObject _survivalistPassive1;
+        private CareerChoiceObject _survivalistPassive2;
+        private CareerChoiceObject _survivalistPassive3;
+        private CareerChoiceObject _survivalistPassive4;
         
         private CareerChoiceObject _duelistPassive1;
         private CareerChoiceObject _duelistPassive2;
@@ -41,12 +41,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         
         protected override void RegisterAll()
         {
-            _MercenaryrootNode = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("MercenaryRoot"));
+            _MercenaryRootNode = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("MercenaryRoot"));
             
-            _survivivalistPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SurvivalistPassive1"));
-            _survivivalistPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SurvivalistPassive2"));
-            _survivivalistPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SurvivalistPassive3"));
-            _survivivalistPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SurvivalistPassive4"));
+            _survivalistPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SurvivalistPassive1"));
+            _survivalistPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SurvivalistPassive2"));
+            _survivalistPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SurvivalistPassive3"));
+            _survivalistPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SurvivalistPassive4"));
             
             _duelistPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("DuelistPassive1"));
             _duelistPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("DuelistPassive2"));
@@ -78,15 +78,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         {
             base.InitializeKeyStones();
             
-            _MercenaryrootNode.Initialize(TORCareers.Mercenary,"No Career Ability",null,true,ChoiceType.Keystone);
+            _MercenaryRootNode.Initialize(TORCareers.Mercenary,"No Career Ability",null,true,ChoiceType.Keystone);
         }
 
         protected override void InitializePassives()
         {
-            _survivivalistPassive1.Initialize(TORCareers.Mercenary, "5 extra Ammo.", "Survivalist", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Ammo));
-            _survivivalistPassive2.Initialize(TORCareers.Mercenary, "Extra ranged damage(10%).", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical,10),AttackTypeMask.Ranged));
-            _survivivalistPassive3.Initialize(TORCareers.Mercenary, "Increases MovementSpeed inside forests by 20%.", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
-            _survivivalistPassive4.Initialize(TORCareers.Mercenary, "Once per day, you go for a hunt. Your success is determined by your Scouting and ranged and polearm capabilities", "Survivalist", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(0));
+            _survivalistPassive1.Initialize(TORCareers.Mercenary, "5 extra Ammo.", "Survivalist", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Ammo));
+            _survivalistPassive2.Initialize(TORCareers.Mercenary, "Extra ranged damage(10%).", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical,10),AttackTypeMask.Ranged));
+            _survivalistPassive3.Initialize(TORCareers.Mercenary, "Increases MovementSpeed inside forests by 20%.", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
+            _survivalistPassive4.Initialize(TORCareers.Mercenary, "Once per day, you go for a hunt. Your success is determined by your Scouting and ranged and polearm capabilities", "Survivalist", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(0));
             
             _duelistPassive1.Initialize(TORCareers.Mercenary, "Increases Hitpoints by 20.", "Duelist", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Health));
             _duelistPassive2.Initialize(TORCareers.Mercenary, "extra melee damage(10%).", "Duelist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical,10),AttackTypeMask.Melee));

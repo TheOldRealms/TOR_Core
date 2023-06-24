@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -108,7 +109,58 @@ namespace TOR_Core.Extensions
             }
             return characterObject.Race == FaceGen.GetRaceOrDefault("vampire");
         }
+        
+        
 
+        public static bool IsKnightUnit(this BasicCharacterObject characterObject)
+        {
+            return  !characterObject.IsHero&&characterObject.IsMounted&&IsEliteTroop(characterObject);
+        }
+
+
+        public static bool IsEliteTroop(this CharacterObject characterObject)
+        {
+            var basicCharacterObject = (BasicCharacterObject)characterObject;
+            return IsEliteTroop(basicCharacterObject);
+        }
+        public static bool IsEliteTroop(this BasicCharacterObject character)
+        {
+            var cultures = MBObjectManager.Instance.GetObjectTypeList<CultureObject>();
+            bool result = false;
+            foreach(var culture in cultures)
+            {
+                var elite = culture.EliteBasicTroop;
+                if (elite == character)
+                {
+                    return true;
+                }
+
+                result= IsTroopInUpgradeTree(character, elite);
+                if(result)
+                    break;
+            }
+            return result;
+        }
+
+        private static bool IsTroopInUpgradeTree(this BasicCharacterObject character, CharacterObject basicCharacter)
+        {
+            bool result = false;
+            if (basicCharacter == character) result = true;
+            else if (basicCharacter.UpgradeTargets.Count() > 0)
+            {
+                foreach(var target in basicCharacter.UpgradeTargets)
+                {
+                    if(target == character)
+                    {
+                        result = true;
+                        break;
+                    } 
+                    
+                    result = IsTroopInUpgradeTree(character, target);
+                }
+            }
+            return result;
+        }
 
         public static CultureObject GetCultureObject(this BasicCharacterObject characterObject)
         {

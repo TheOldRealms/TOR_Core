@@ -145,6 +145,40 @@ namespace TOR_Core.Models
                 }
           
             }
+            
+            if (choices.Contains("MonsterSlayerPassive4"))
+            {
+                if (unit.Character != Hero.MainHero.CharacterObject&&!unit.Character.IsKnightUnit()&&unit.Character.Culture.StringId=="vlandia")
+                {
+                    var choice = TORCareerChoices.GetChoice("MonsterSlayerPassive4");
+                    if (choice != null)
+                    {
+                        float effect = choice.GetPassiveValue();
+                        float value = (unit.Character.TroopWage*unit.Number) *effect;
+                        resultValue.Add(value, choice.BelongsToGroup.Name);
+                    }
+                    
+
+                }
+          
+            }
+            
+            if (choices.Contains("MasterHorsemanPassive4"))
+            {
+                if (unit.Character != Hero.MainHero.CharacterObject&&unit.Character.IsKnightUnit())
+                {
+                    var choice = TORCareerChoices.GetChoice("MasterHorsemanPassive4");
+                    if (choice != null)
+                    {
+                        float effect = choice.GetPassiveValue();
+                        float value = (unit.Character.TroopWage*unit.Number) *effect;
+                        resultValue.Add(value, choice.BelongsToGroup.Name);
+                    }
+                    
+
+                }
+          
+            }
 
             return resultValue;
         }
