@@ -177,7 +177,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Roguery }, 0.03f),
                         MutationType = OperationType.Add
                     }
-                });         // cool down is reset on beginning
+                },new CareerChoiceObject.PassiveEffect(1,PassiveEffectType.Special));         // cool down is reset on beginning
             
             _martialleKeystone.Initialize(TORCareers.MinorVampire, "Swing speed is increased by 20%, StatusEffect are active after mistform. Requires 30% higher damage infliction." , "Martialle", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()

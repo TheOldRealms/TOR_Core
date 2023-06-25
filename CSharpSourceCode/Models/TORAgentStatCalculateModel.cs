@@ -196,15 +196,10 @@ namespace TOR_Core.Models
             if (agent.IsMount)
             {
                 
-                if (agent.RiderAgent!=null&&agent.RiderAgent.IsMainAgent)
+                if (agent.RiderAgent!=null&&agent.RiderAgent.IsHero&&agent.RiderAgent.GetHero()==Hero.MainHero)
                 {
                     CareerHelper.ApplyBasicCareerPassives(agent.RiderAgent.GetHero(),ref explainedNumber,PassiveEffectType.HorseHealth,true);
                 }
-
-                var ratio = agent.Health / explainedNumber.BaseNumber;
-                agent.Health = explainedNumber.ResultNumber * ratio;
-
-                return explainedNumber.ResultNumber;
             }
             
             return explainedNumber.ResultNumber;

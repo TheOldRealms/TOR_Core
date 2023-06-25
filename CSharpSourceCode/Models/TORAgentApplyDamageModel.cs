@@ -10,6 +10,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -132,26 +133,41 @@ namespace TOR_Core.Models
             var collisionReaction = base.DecidePassiveAttackCollisionReaction(attacker, defender, isFatalHit);
             if (collisionReaction == MeleeCollisionReaction.Bounced)
             {
-                if (attacker.Character.IsPlayerCharacter)
+                if (attacker.Character.IsPlayerCharacter||attacker.GetPartyLeaderCharacter()== CharacterObject.PlayerCharacter)
                 {
-                    var choices = attacker.GetHero().GetAllCareerChoices();
-
-                    if (choices.Contains("MasterHorsemanPassive3"))
+                    
+                    var component = attacker.GetComponent<StatusEffectComponent>();
+                    var steadinessModifier = 0f;
+                    if (component != null)
                     {
-                        var choice = TORCareerChoices.GetChoice("MasterHorsemanPassive3");
-                        if (choice != null&&choice.Passive!=null)
-                        {
-                            
-                            var chance = MBRandom.RandomFloatRanged(0, 1);
-                            if (chance < choice.GetPassiveValue())
-                            {
-                                collisionReaction=  MeleeCollisionReaction.SlicedThrough;
-                            }
-                        }
+                        steadinessModifier = component.GetLanceSteadinessModifier();
                     }
+
+                    if (steadinessModifier <= 0) return collisionReaction;
+                    
+                    var chance = MBRandom.RandomFloatRanged(0, 1);
+
+                    if (chance < steadinessModifier)
+                    {
+                        collisionReaction = MeleeCollisionReaction.SlicedThrough;
+                        return collisionReaction;
+                    }
+                    
                 }
             }
             return collisionReaction;
+        }
+
+        public override bool DecideMountRearedByBlow(Agent attackerAgent, Agent victimAgent, in AttackCollisionData collisionData, WeaponComponentData attackerWeapon, in Blow blow)
+        {
+            var value =base.DecideMountRearedByBlow(attackerAgent,victimAgent,collisionData,attackerWeapon,blow);
+
+            if (victimAgent.RiderAgent!=null&&victimAgent.RiderAgent.HasAttribute("HorseSteady"))
+            {
+                return false;
+            }
+
+            return value;
         }
         
         public override bool DecideCrushedThrough(

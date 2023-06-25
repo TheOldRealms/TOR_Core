@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Helpers;
 using TaleWorlds.CampaignSystem;
@@ -25,7 +25,6 @@ namespace TOR_Core.BattleMechanics
             {
                 var playerHero = affectorAgent.GetHero();
                 var choices = playerHero.GetAllCareerChoices();
-                //if(affectedAgent.Health >= 0&& affectedAgent.State!=AgentState.Killed) return;    //Kill perks
 
                 var hitBodyPart = blow.VictimBodyPart;
             

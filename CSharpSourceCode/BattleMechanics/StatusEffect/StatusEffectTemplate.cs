@@ -39,6 +39,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         {
             HealthOverTime,
             WindsOverTime,
+            LanceSteadiness,
             DamageOverTime,
             DamageAmplification,
             Resistance,

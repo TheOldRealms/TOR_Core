@@ -58,7 +58,7 @@ namespace TOR_Core.CharacterDevelopment
 
         private void InitializeAll()
         {
-            _grailKnight.Initialize("Grail Knight", null, "");   
+            _grailKnight.Initialize("Grail Knight", null, "KnightlyCharge",ChargeType.CooldownOnly,100);   
             _bloodKnight.Initialize("Blood Knight", null, "RedFury", ChargeType.NumberOfKills,10);
             _minorVampire.Initialize("Vampire Count", null, "ShadowStep", ChargeType.DamageDone, 400, typeof(ShadowStepScript));
             _warriorPriest.Initialize("Warrior Priest", (hero) => 

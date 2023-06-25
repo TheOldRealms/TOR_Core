@@ -114,8 +114,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                                 {
                                     var value = traverse.Property(mutation.PropertyName).GetValue<float>();
                                     traverse.Property(mutation.PropertyName).SetValue(value + Convert.ToSingle(newValue));
-                                    
-                                    TORCommon.Say(newValue +"");
                                 }
                                 else if (propertyType == typeof(int))
                                 {
@@ -201,7 +199,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
     public enum OperationType
     {
         Add,
-        Remove,
+        Remove,     //TODO is this true ? Memo i needed this because of a blood knight perk, that needed to replace the way how things are calculated. Replacement would have killed other additions.
         Multiply,
         Replace,
         None

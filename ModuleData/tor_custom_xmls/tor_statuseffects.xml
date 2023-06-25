@@ -55,6 +55,85 @@
 		base_effect_value="0.15"
 		type="AttackSpeedManipulation"/>
 	<StatusEffectTemplate 
+		id="knightly_charge_lsc" 
+		particle_id="shield_of_combat"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.2"
+		type= "LanceSteadiness"
+		damage_type="Physical"
+		applies_for_attack_type="Melee">
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="knightly_charge_phys_dmg" 
+		particle_id=""
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.1"
+		type= "DamageAmplification"
+		damage_type="Physical"
+		applies_for_attack_type="Melee">
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="knightly_charge_holy_dmg" 
+		particle_id=""
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.2"
+		type= "DamageAmplification"
+		damage_type="Holy"
+		applies_for_attack_type="Melee">
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="knightly_charge_speed" 
+		particle_id=""
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.2"
+		type= "MovementManipulation"
+		damage_type="Physical"
+		applies_for_attack_type="Melee">
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="knightly_charge_phys_res" 
+		particle_id=""
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.2"
+		type= "Resistance"
+		damage_type="Physical"
+		applies_for_attack_type="Melee">
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="knightly_charge_horse_steady" 
+		particle_id=""
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.2"
+		type= "TemporaryAttributeOnly"
+		damage_type="Physical"
+		applies_for_attack_type="Melee">
+		<temporary_attribute>HorseSteady</temporary_attribute>
+	</StatusEffectTemplate> 	
+	<StatusEffectTemplate 
+		id="knightly_charge_link" 
+		particle_id=""
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.2"
+		type= "TemporaryAttributeOnly"
+		damage_type="Physical"
+		applies_for_attack_type="Melee">
+		<temporary_attribute>HorseLink</temporary_attribute>
+	</StatusEffectTemplate> 
+	<StatusEffectTemplate 
+		id="knightly_charge_healing" 
+		particle_id="breath_of_darkness"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="5"
+		type="HealthOverTime"/>
+	<StatusEffectTemplate 
 		id="redfury_effect_dmg" 
 		particle_id="berzerk_effect"
 		particle_intensity="High"

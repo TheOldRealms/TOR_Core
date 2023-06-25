@@ -1,5 +1,10 @@
-﻿using TaleWorlds.Core;
+﻿using System.Collections.Generic;
+using System.Linq;
+using TaleWorlds.Core;
+using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 
@@ -92,7 +97,214 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _grailKnightRoot.Initialize(TORCareers.GrailKnight,"No Career Ability",null,true,ChoiceType.Keystone);
+            _grailKnightRoot.Initialize(CareerID,"No Career Ability",null,true,ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+            {
+                
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(StatusEffectTemplate),
+                    MutationTargetOriginalId = "knightly_charge_lsc",
+                    PropertyName = "BaseEffectValue",
+                    PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){  DefaultSkills.OneHanded }, 0.0007f),
+                    MutationType = OperationType.Add
+                },
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(StatusEffectTemplate),
+                    MutationTargetOriginalId = "knightly_charge_lsc",
+                    PropertyName = "BaseEffectValue",
+                    PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){  DefaultSkills.Riding }, 0.0007f),
+                    MutationType = OperationType.Add
+                },
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(StatusEffectTemplate),
+                    MutationTargetOriginalId = "knightly_charge_phys_res",
+                    PropertyName = "BaseEffectValue",
+                    PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){  DefaultSkills.Riding }, 0.0007f),
+                    MutationType = OperationType.Add
+                },
+            });
+
+            _errantryWarKeystone.Initialize(CareerID, "+10% Physical damage during Knightly Charge. One-handed weapon skill counts towards ability.", "ErrantryWar", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_knightly_charge",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"knightly_charge_phys_dmg"}).ToList(),
+                        MutationType = OperationType.Replace
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "knightly_charge_lsc",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){  DefaultSkills.OneHanded }, 0.0007f),
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "knightly_charge_phys_res",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){  DefaultSkills.OneHanded }, 0.0007f),
+                        MutationType = OperationType.Add
+                    }, 
+                });
+            _enhancedHorseCombatKeystone.Initialize(CareerID, "20% speed bonus during ability. Ability starts charged. Polearm counts towards careerAbility", "EnhancedHorseCombat", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_knightly_charge",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"knightly_charge_speed"}).ToList(),
+                        MutationType = OperationType.Replace
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "knightly_charge_lsc",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){  DefaultSkills.Polearm }, 0.0007f),
+                        MutationType = OperationType.Add
+                    }, 
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "knightly_charge_phys_res",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){  DefaultSkills.Polearm }, 0.0007f),
+                        MutationType = OperationType.Add
+                    }, 
+                },new CareerChoiceObject.PassiveEffect(1,PassiveEffectType.Special));
+            
+            _questingVowKeyStone.Initialize(CareerID, "Physical Resistance during Knightly Charge. Mount will not rear during ability", "QuestingVow", false,
+            ChoiceType.Keystone,new List<CareerChoiceObject.MutationObject>()
+            {
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(TriggeredEffectTemplate),
+                    MutationTargetOriginalId = "apply_knightly_charge",
+                    PropertyName = "ImbuedStatusEffects",
+                    PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"knightly_charge_phys_res"}).ToList(),
+                    MutationType = OperationType.Replace
+                },
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(TriggeredEffectTemplate),
+                    MutationTargetOriginalId = "apply_knightly_charge",
+                    PropertyName = "ImbuedStatusEffects",
+                    PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"knightly_charge_horse_steady"}).ToList(),
+                    MutationType = OperationType.Replace
+                },
+            });
+            
+            _monsterSlayerKeystone.Initialize(CareerID, "ability time  is prolonged by polearm and riding skill(0.025 seconds per point). Two-Handed skill counts towards ability", "MonsterSlayer", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "KnightlyCharge",
+                        PropertyName = "Duration",
+                        PropertyValue = (choice, originalValue, agent) =>  CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Polearm,DefaultSkills.Riding }, 0.025f),
+                        MutationType = OperationType.Add
+                    }, 
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "knightly_charge_lsc",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){  DefaultSkills.TwoHanded }, 0.0007f),
+                        MutationType = OperationType.Add
+                    }, 
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "knightly_charge_phys_res",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){  DefaultSkills.TwoHanded }, 0.0007f),
+                        MutationType = OperationType.Add
+                    }, 
+                });
+            _masterHorsemanKeystone.Initialize(CareerID, "Cooldown reduction for Knightly Charge by 30 seconds. During ability, the horse is affected by all healing effects of the character.", "MasterHorseman", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "KnightlyCharge",
+                        PropertyName = "CoolDown",
+                        PropertyValue = (choice, originalValue, agent) =>  -30,
+                        MutationType = OperationType.Add
+                    }, 
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_knightly_charge",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"knightly_charge_link"}).ToList(),
+                        MutationType = OperationType.Replace
+                    },
+                });
+            _grailVowKeystone.Initialize(CareerID, "+20% Holy damage during ability. Adds healing effect during ability. Prayer skill counts towards career ability. Ability is affecting allied troops around you. ", "GrailVow", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "knightly_charge_lsc",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){  TORSkills.Faith }, 0.0007f),
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_knightly_charge",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"knightly_charge_healing"}).ToList(),
+                        MutationType = OperationType.Replace
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_knightly_charge",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"knightly_charge_holy_dmg"}).ToList(),
+                        MutationType = OperationType.Replace
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "KnightlyCharge",
+                        PropertyName = "AbilityTargetType",
+                        PropertyValue = (choice, originalValue, agent) => (AbilityTargetType.AlliesInAOE),
+                        MutationType = OperationType.Replace
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_knightly_charge",
+                        PropertyName = "TargetType",
+                        PropertyValue = (choice, originalValue, agent) => TargetType.Friendly,
+                        MutationType = OperationType.Replace
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "knightly_charge_phys_res",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){  TORSkills.Faith }, 0.0007f),
+                        MutationType = OperationType.Add
+                    }, 
+                });
+            
         }
 
         protected override void InitializePassives()
@@ -103,7 +315,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _errantryWarPassive4.Initialize(CareerID, "All Melee Troops in the party gain 25 Xp per day.", "ErrantryWar", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special)); //
             
             _enhancedHorseCombatPassive1.Initialize(CareerID, "50% additional Horse health", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseHealth, true)); //
-            _enhancedHorseCombatPassive2.Initialize(CareerID, "Extra melee Damage(10%).", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true)); //
+            _enhancedHorseCombatPassive2.Initialize(CareerID, "Extra melee Damage(10%) while on horse.", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true)); //
             _enhancedHorseCombatPassive3.Initialize(CareerID, "Upgrade costs are 25% reduced", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopUpgradeCost, true)); //
             _enhancedHorseCombatPassive4.Initialize(CareerID, "All Knights have a 30 point higher polearm skill", "EnhancedHorseCombat",  false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special)); //
             

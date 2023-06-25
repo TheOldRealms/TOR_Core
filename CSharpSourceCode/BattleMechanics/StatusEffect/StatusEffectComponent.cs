@@ -118,6 +118,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 else if (_effectAggregate.HealthOverTime > 0)
                 {
                     Agent.Heal((int)_effectAggregate.HealthOverTime);
+
+                    if (Agent.HasMount && Agent.HasAttribute("HorseLink"))  //Might be overkill, we can also just check the status effect component for now
+                    {
+                        Agent.MountAgent.Heal(_effectAggregate.HealthOverTime);
+                    }
                 }
                 
                 if (_effectAggregate == null) return;
@@ -234,6 +239,12 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             return _effectAggregate.AttackSpeedProperties;
         }
 
+        public float GetLanceSteadinessModifier()
+        {
+            if (_effectAggregate == null) _effectAggregate = new EffectAggregate();
+            return _effectAggregate.LanceSteadinessChance;
+        }
+
         public float GetBaseValueForDrivenProperty(DrivenProperty property)
         {
             if (_baseValues == null)
@@ -337,6 +348,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             public Dictionary<AttackTypeMask, float[]> Resistances { get; }
             public float SpeedProperties;
             public float AttackSpeedProperties;
+            public float LanceSteadinessChance;
 
             public EffectAggregate()
             {
@@ -364,6 +376,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                         break;
                     case StatusEffectTemplate.EffectType.WindsOverTime:
                         WindsOverTime += strength;
+                        break;
+                    case StatusEffectTemplate.EffectType.LanceSteadiness:
+                        LanceSteadinessChance+= strength;
                         break;
                     case StatusEffectTemplate.EffectType.DamageAmplification:
                         AddDamageAmplification(template.DamageType, template.AttackTypeMask, strength);

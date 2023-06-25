@@ -22,7 +22,7 @@ namespace TOR_Core.AbilitySystem
         private float _currentCharge = 0;
         public ChargeType ChargeType { get; private set; } = ChargeType.CooldownOnly;
         public float ChargeLevel => _currentCharge / _maxCharge;
-        public bool IsCharged => _currentCharge >= _maxCharge;
+        public bool IsCharged => ChargeType==ChargeType.CooldownOnly||_currentCharge >= _maxCharge;
 
         public CareerAbility(AbilityTemplate template, Agent agent) : base(template)
         {
@@ -39,12 +39,18 @@ namespace TOR_Core.AbilitySystem
                     Template = (AbilityTemplate)template.Clone(template.StringID + "*cloned*" + _ownerHero.StringId);
                     _career.MutateAbility(Template, agent);
                 }
+                
+                if (Hero.MainHero.GetAllCareerChoices().Contains("CourtleyKeystone")||Hero.MainHero.GetAllCareerChoices().Contains("EnhancedHorseCombatKeystone"))
+                {
+                    _currentCharge = _maxCharge;
+                }
+                else
+                {
+                    SetCoolDown(Template.CoolDown);
+                }
             }
             
-            if (Agent.Main.GetHero().GetAllCareerChoices().Contains("CourtleyKeystone")||true)
-            {
-                _currentCharge = _maxCharge;
-            }
+            
            
         }
 
