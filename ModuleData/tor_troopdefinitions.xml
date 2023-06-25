@@ -558,8 +558,8 @@
       <upgrade_target id="NPCCharacter.tor_br_manatarms_militia" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_peasant_levy_template" />
+      <EquipmentSet id="tor_br_peasant_levy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_peasant_archer" default_group="ranged" level="11" name="{=str_tor_br_peasant_archer}Bretonnian Peasant Archer" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level11">
@@ -570,8 +570,8 @@
       <upgrade_target id="NPCCharacter.tor_br_longbowman" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_peasant_archer_template" />
+      <EquipmentSet id="tor_br_peasant_archer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_longbowman" default_group="ranged" level="16" name="{=str_tor_br_longbowman}Bretonnian Longbowman" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level16">
@@ -582,8 +582,8 @@
       <upgrade_target id="NPCCharacter.tor_br_villein" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_hunter_template" />
+      <EquipmentSet id="tor_br_hunter_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_villein" default_group="ranged" level="21" name="{=str_tor_br_villein}Bretonnian Villein" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21">
@@ -592,8 +592,8 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_villein_template" />
+      <EquipmentSet id="tor_br_villein_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_manatarms_militia" default_group="infantry" level="11" name="{=str_tor_br_manatarms_militia}Bretonnian Man-at-Arms militiaman" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level11">
@@ -604,8 +604,8 @@
       <upgrade_target id="NPCCharacter.tor_br_manatarms" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_manatarms_militia_template" />
+      <EquipmentSet id="tor_br_manatarms_militia_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_manatarms" default_group="infantry" level="16" name="{=str_tor_br_manatarms}Bretonnian Man-at-Arms" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level16">
@@ -618,8 +618,8 @@
       <upgrade_target id="NPCCharacter.tor_br_mounted_yeoman" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_manatarms_template" />
+      <EquipmentSet id="tor_br_manatarms_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_manatarms_halberd" default_group="infantry" level="21" name="{=str_tor_br_manatarms_halberd}Bretonnian Man-at-Arms Billman" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21">
@@ -628,8 +628,8 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_manatarms_billman_template" />
+      <EquipmentSet id="tor_br_manatarms_billman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_yeoman" default_group="infantry" level="21" name="{=str_tor_br_yeoman}Bretonnian Yeoman" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21">
@@ -641,8 +641,8 @@
       <upgrade_target id="NPCCharacter.tor_br_foot_squire" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_yeoman_template" />
+      <EquipmentSet id="tor_br_yeoman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_yeoman_warden" default_group="infantry" level="26" name="{=str_tor_br_yeoman_warden}Bretonnian Yeoman Warden" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26">
@@ -651,8 +651,8 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_yeoman_warden_template" />
+      <EquipmentSet id="tor_br_yeoman_warden_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_foot_squire" default_group="infantry" level="26" name="{=str_tor_br_foot_squire}Bretonnian Foot Squire" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26">
@@ -661,8 +661,8 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_foot_squire_template" />
+      <EquipmentSet id="tor_br_foot_squire_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_mounted_yeoman" default_group="cavalry" level="21" name="{=str_tor_br_mounted_yeoman}Bretonnian Mounted Yeoman" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21">
@@ -673,8 +673,8 @@
       <upgrade_target id="NPCCharacter.tor_br_mounted_warden" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_mounted_yeoman_template" />
+      <EquipmentSet id="tor_br_mounted_yeoman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_mounted_warden" default_group="cavalry" level="26" name="{=str_tor_br_mounted_warden}Bretonnian Mounted Yeoman Warden" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26">
@@ -683,8 +683,8 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_mounted_yeoman_warden_template" />
+      <EquipmentSet id="tor_br_mounted_yeoman_warden_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_noble" default_group="cavalry" level="11" name="{=str_tor_br_noble}Bretonnian Noble" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true">
