@@ -97,17 +97,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _grailKnightRoot.Initialize(CareerID,"No Career Ability",null,true,ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+            _grailKnightRoot.Initialize(CareerID,"The knight prepares a devastating charge with or without his horse for the next 6 seconds. Unmounted he is benefiting from modifications. Mounted, the knight will have a 20% Chance that his lance will not bounce off for a couched lance attack. The chance rises for every point in Riding by 0.07%.",null,true,ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
-                
-                new CareerChoiceObject.MutationObject()
-                {
-                    MutationTargetType = typeof(StatusEffectTemplate),
-                    MutationTargetOriginalId = "knightly_charge_lsc",
-                    PropertyName = "BaseEffectValue",
-                    PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){  DefaultSkills.OneHanded }, 0.0007f),
-                    MutationType = OperationType.Add
-                },
                 new CareerChoiceObject.MutationObject()
                 {
                     MutationTargetType = typeof(StatusEffectTemplate),
@@ -204,7 +195,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 },
             });
             
-            _monsterSlayerKeystone.Initialize(CareerID, "ability time  is prolonged by polearm and riding skill(0.025 seconds per point). Two-Handed skill counts towards ability", "MonsterSlayer", false,
+            _monsterSlayerKeystone.Initialize(CareerID, "ability time  is prolonged by polearm and riding skill (0.025 seconds per point). Two-Handed skill counts towards ability", "MonsterSlayer", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -252,9 +243,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Replace
                     },
                 });
-            _grailVowKeystone.Initialize(CareerID, "+20% Holy damage during ability. Adds healing effect during ability. Prayer skill counts towards career ability. Ability is affecting allied troops around you. ", "GrailVow", false,
+            _grailVowKeystone.Initialize(CareerID, "+20% holy damage and healing affect during ability. Ability affects nearby troops. Prayer skill counts towards career ability.", "GrailVow", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
+                    
+                    
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(StatusEffectTemplate),
@@ -273,10 +266,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     },
                     new CareerChoiceObject.MutationObject()
                     {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_knightly_charge",
-                        PropertyName = "ImbuedStatusEffects",
-                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"knightly_charge_holy_dmg"}).ToList(),
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "KnightlyCharge",
+                        PropertyName = "TriggeredEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"apply_holy_grail_lance_trait"}).ToList(),
                         MutationType = OperationType.Replace
                     },
                     new CareerChoiceObject.MutationObject()
@@ -331,14 +324,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             _masterHorsemanPassive1.Initialize(CareerID, "Horse charge damage is increased by 50%.", "MasterHorseman", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.HorseChargeDamage,true));
             _masterHorsemanPassive2.Initialize(CareerID, "Party movement speed is increased by 2", "MasterHorseman", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.PartyMovementSpeed));
-            _masterHorsemanPassive3.Initialize(CareerID, "Couched lance attacks have a 30% chance of not bouncing off (Calculated after other chances fail)", "MasterHorseman", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special,true));
+            _masterHorsemanPassive3.Initialize(CareerID, "+4 Health regeneration on campaign map", "MasterHorseman", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(4, PassiveEffectType.HealthRegeneration,true));
             _masterHorsemanPassive4.Initialize(CareerID, "All Knight unit wages are reduced by 25%", "MasterHorseman", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.Special,true));
             
             _grailVowPassive1.Initialize(CareerID, "Increases Hitpoints by 40.", "GrailVow", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Health));
-            _grailVowPassive2.Initialize(CareerID, "Extra holy melee Damage(20%).", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy,20),AttackTypeMask.Melee));
-            _grailVowPassive3.Initialize(CareerID, "15% Wardsave.", "GrailVow", false,ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All,15),AttackTypeMask.All));
-            _grailVowPassive4.Initialize(CareerID, "All  melee attacks can crush through.", "GrailVow", false, ChoiceType.Passive, null); 
-        }
+            _grailVowPassive2.Initialize(CareerID, "20% Extra holy damage for battle pilgrims.", "GrailVow", false, ChoiceType.Passive,  null,new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special,true));
+            _grailVowPassive3.Initialize(CareerID, "Extra holy melee Damage(20%).", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy,20),AttackTypeMask.Melee));
+            _grailVowPassive4.Initialize(CareerID, "15% Wardsave.", "GrailVow", false,ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All,15),AttackTypeMask.All));
+        }   
 
         
     }

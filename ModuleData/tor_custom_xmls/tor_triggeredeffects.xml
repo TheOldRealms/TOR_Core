@@ -873,6 +873,19 @@
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>knightly_charge_lsc</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
+	  
+		<TriggeredEffectTemplate StringID="apply_holy_grail_lance_trait" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="8" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="2.1" 
+            DamageVariance="0" 
+            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyHolyItemTraitScript" />
 			
 		<TriggeredEffectTemplate StringID="apply_red_fury" 
             BurstParticleEffectPrefab="none" 

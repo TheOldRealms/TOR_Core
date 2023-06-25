@@ -17,6 +17,7 @@ namespace TOR_Core.BattleMechanics
     {
         public override MissionBehaviorType BehaviorType { get; }
 
+        
 
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {

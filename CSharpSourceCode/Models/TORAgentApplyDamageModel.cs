@@ -169,31 +169,6 @@ namespace TOR_Core.Models
 
             return value;
         }
-        
-        public override bool DecideCrushedThrough(
-            Agent attackerAgent,
-            Agent defenderAgent,
-            float totalAttackEnergy,
-            Agent.UsageDirection attackDirection,
-            StrikeType strikeType,
-            WeaponComponentData defendItem,
-            bool isPassiveUsage)
-        {
-            if (attackerAgent.IsMainAgent&&attackerAgent.IsHero&&attackerAgent.GetHero() == Hero.MainHero)
-            {
-                if (Hero.MainHero.HasAnyCareer())
-                {
-                    var choices = Hero.MainHero.GetAllCareerChoices();
-
-                    if (choices.Contains("GrailVowPassive4"))
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return base.DecideCrushedThrough(attackerAgent, defenderAgent, totalAttackEnergy, attackDirection, strikeType, defendItem, isPassiveUsage);;
-        }
 
         public float CalculateWardSaveFactor(Agent victim, AttackTypeMask attackTypeMask)
         {

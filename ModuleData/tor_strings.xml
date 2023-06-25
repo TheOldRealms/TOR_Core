@@ -467,7 +467,7 @@
   <string id="career_choicegroup3_name.BloodKnight" text="{=!}Master" />
   
   <string id="career_choicegroup1_name.GrailKnight" text="{=!}Knight Errant" />
-  <string id="career_choicegroup2_name.GrailKnight" text="{=!}Blood Knight" />
+  <string id="career_choicegroup2_name.GrailKnight" text="{=!}Questing Knight" />
   <string id="career_choicegroup3_name.GrailKnight" text="{=!}Grail Knight" />
 
 

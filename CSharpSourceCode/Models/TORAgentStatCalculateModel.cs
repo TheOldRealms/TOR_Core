@@ -460,6 +460,17 @@ namespace TOR_Core.Models
                     result.ResistancePercentages[(int)DamageType.All] += value;
                 }
 
+                if (choices.Contains("GrailVowPassive2") && mask == PropertyMask.Attack)
+                {
+                    bool isbattlePilgrim = agent.Character.UnitBelongsToCult("cult_of_lady");   //might need more love later
+                    if (isbattlePilgrim)
+                    {
+                        var choice = TORCareerChoices.GetChoice("GrailVowPassive2");
+                        if (choice == null || choice.Passive == null) return result;
+                        float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
+                        result.DamagePercentages[(int)DamageType.Holy] += value;
+                    }
+                }
                 if (choices.Contains("HolyPurgePassive4") && mask == PropertyMask.Attack)
                 {
                     bool isSigmariteTroop = agent.Character.UnitBelongsToCult("cult_of_sigmar") || (!agent.Character.IsReligiousUnit() && choices.Contains("Archlector2"));
