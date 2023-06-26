@@ -30,10 +30,10 @@ namespace TOR_Core.CharacterDevelopment
         public TORCareerChoices()
         {
             Instance = this;
-            WarriorPriestCareerChoices = new WarriorPriestCareerChoices();
-            VampireCountCareerChoices = new VampireCountCareerChoices();
-            BloodKnightCareerChoices = new BloodKnightCareerChoices();
-            MercenaryCareerChoices = new MercenaryCareerChoices();
+            WarriorPriestCareerChoices = new WarriorPriestCareerChoices(TORCareers.WarriorPriest);
+            VampireCountCareerChoices = new VampireCountCareerChoices(TORCareers.MinorVampire);
+            BloodKnightCareerChoices = new BloodKnightCareerChoices(TORCareers.BloodKnight);
+            MercenaryCareerChoices = new MercenaryCareerChoices(TORCareers.Mercenary);
             GrailKnightCareerChoices = new GrailKnightCareerChoices(TORCareers.GrailKnight);
         }
 
