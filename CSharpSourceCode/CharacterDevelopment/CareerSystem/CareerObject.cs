@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -53,12 +53,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public bool IsConditionsMet(Hero hero)
         {
-            bool result = false;
-            if(_condition != null && _condition(hero))
-            {
-                result = true;
-            }
-            return result;
+            return _condition != null && _condition(hero);
         }
 
         public void MutateAbility(AbilityTemplate ability, Agent casterAgent)
@@ -72,10 +67,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
                 modifications.Add(root);
                 modifications.AddRange(choices);
-                foreach (var choice in modifications)
+                foreach (var choice in modifications.Where(choice => choice.HasMutations()))
                 {
-                    if(choice.HasMutations())
-                        choice.MutateAbility(ability, casterAgent);
+                    choice.MutateAbility(ability, casterAgent);
                 }
             }
         }
@@ -102,19 +96,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             if (applierAgent != null && applierAgent.GetHero()?.GetExtendedInfo() != null)
             {
                 var info = applierAgent.GetHero().GetExtendedInfo();
-                if (info.CareerID == StringId)
-                {
-                    var choices = new List<CareerChoiceObject>(); 
-                    choices.Add(RootNode);
-                    choices.AddRange(AllChoices.Where(x => info.CareerChoices.Contains(x.StringId)));
+                if (info.CareerID != StringId) return;
+                var choices = new List<CareerChoiceObject>(); 
+                choices.Add(RootNode);
+                choices.AddRange(AllChoices.Where(x => info.CareerChoices.Contains(x.StringId)));
                     
-                    foreach (var choice in choices)
-                    {
-                        if(choice.HasMutations())
-                            choice.MutateStatusEffect(effect, applierAgent);
-                    }
-
-                 
+                foreach (var choice in choices.Where(choice => choice.HasMutations()))
+                {
+                    choice.MutateStatusEffect(effect, applierAgent);
                 }
             }
         }

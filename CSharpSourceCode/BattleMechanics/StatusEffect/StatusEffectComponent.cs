@@ -56,7 +56,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             StatusEffect effect = _currentEffects.Keys.Where(e => e.Template.StringID.Equals(effectId)).FirstOrDefault();
             if (effect != null)
             {
-                if (append) effect.CurrentDuration += duration;  
+                if (append) effect.CurrentDuration += duration;
             }
             else
             {
@@ -103,14 +103,14 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             if (Agent.IsActive() && Agent != null && !Agent.IsFadingOut())
             {
                 if (_effectAggregate == null) return;
-                
-                if (_effectAggregate != null&&_effectAggregate.WindsOverTime > 0)
+
+                if (_effectAggregate != null && _effectAggregate.WindsOverTime > 0)
                 {
                     if (Agent.IsHero && Agent.IsSpellCaster())
                         Agent.GetHero().AddWindsOfMagic(_effectAggregate.WindsOverTime);
                 }
 
-                
+
                 if (_effectAggregate.DamageOverTime > 0)
                 {
                     Agent.ApplyDamage((int)_effectAggregate.DamageOverTime, Agent.Position, dotEffect.ApplierAgent, false, false);
@@ -119,12 +119,12 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 {
                     Agent.Heal((int)_effectAggregate.HealthOverTime);
 
-                    if (Agent.HasMount && Agent.HasAttribute("HorseLink"))  //Might be overkill, we can also just check the status effect component for now
+                    if (Agent.HasMount && Agent.HasAttribute("HorseLink"))
                     {
                         Agent.MountAgent.Heal(_effectAggregate.HealthOverTime);
                     }
                 }
-                
+
                 if (_effectAggregate == null) return;
 
                 ModifiedDrivenProperties = _effectAggregate.SpeedProperties != 0 || _effectAggregate.AttackSpeedProperties != 0;
@@ -182,9 +182,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         private void UpdateDummyEntity(float dt)
         {
-           // _dummyEntity; = Agent.GetChestGlobalPosition();
-           _dummyEntity?.SetGlobalFrameMT(new MatrixFrame(_dummyEntity.GetFrame().rotation,Agent.GetChestGlobalPosition()));
-          //  _dummyEntity?.SetGlobalFrameMT(new MatrixFrame(new Mat3(Agent.LookRotation.s, Agent.LookRotation.f, Vec3.Up), Agent.GetChestGlobalPosition()));
+            _dummyEntity?.SetGlobalFrameMT(new MatrixFrame(_dummyEntity.GetFrame().rotation, Agent.GetChestGlobalPosition()));
         }
 
         private void RemoveEffect(StatusEffect effect)
@@ -275,7 +273,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             return list;
         }
 
-        
 
         private void AddEffect(StatusEffect effect)
         {
@@ -287,12 +284,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 if (effect.Template.Rotation)
                 {
                     _dummyEntity.CreateAndAddScriptComponent("TORSpinner");
-                    _dummyEntity.GetFirstScriptOfType<TORSpinner>().RotationSpeed = effect.Template.RotationSpeed; 
+                    _dummyEntity.GetFirstScriptOfType<TORSpinner>().RotationSpeed = effect.Template.RotationSpeed;
                 }
-                
+
                 data = new EffectData(effect, new List<ParticleSystem> { psys }, null);
                 data.IsParticleAttachedToAgentSkeleton = false;
-
             }
             else
             {
@@ -301,7 +297,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 data = new EffectData(effect, particles, entities);
             }
 
-            
 
             _currentEffects.Add(effect, data);
         }
@@ -378,7 +373,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                         WindsOverTime += strength;
                         break;
                     case StatusEffectTemplate.EffectType.LanceSteadiness:
-                        LanceSteadinessChance+= strength;
+                        LanceSteadinessChance += strength;
                         break;
                     case StatusEffectTemplate.EffectType.DamageAmplification:
                         AddDamageAmplification(template.DamageType, template.AttackTypeMask, strength);

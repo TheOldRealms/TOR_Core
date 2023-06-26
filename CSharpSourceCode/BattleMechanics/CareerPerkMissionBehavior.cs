@@ -1,35 +1,26 @@
-using System;
-using System.Linq;
-using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
-using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics
 {
     public class CareerPerkMissionBehavior : MissionLogic
     {
-        public override MissionBehaviorType BehaviorType { get; }
-
-        
 
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
-            if(affectorAgent==null)return;
+            if (affectorAgent == null) return;
             if (affectorAgent.IsMainAgent)
             {
                 var playerHero = affectorAgent.GetHero();
                 var choices = playerHero.GetAllCareerChoices();
-
                 var hitBodyPart = blow.VictimBodyPart;
-            
-                if ((hitBodyPart == BoneBodyPartType.Head||hitBodyPart== BoneBodyPartType.Abdomen)&& choices.Contains("CourtleyPassive4"))
+
+                if ((hitBodyPart == BoneBodyPartType.Head || hitBodyPart == BoneBodyPartType.Abdomen) && choices.Contains("CourtleyPassive4"))
                 {
                     var choice = TORCareerChoices.GetChoice("CourtleyPassive4");
                     if (choice != null)
@@ -44,31 +35,27 @@ namespace TOR_Core.BattleMechanics
             {
                 var playerHero = affectorAgent.GetHero();
                 var choices = playerHero.GetAllCareerChoices();
-                
-                if ((choices.Contains("HeadhunterPassive3")))
+
+                if (choices.Contains("HeadhunterPassive3"))
                 {
                     var isHighValueTarget = false;
                     if (affectedAgent.Character.Culture.IsBandit)
                     {
-                        if(Mission.Current.Mode == MissionMode.Tournament) return;
-                        
+                        if (Mission.Current.Mode == MissionMode.Tournament) return;
+
                         var cultureObject = affectedAgent.Character.GetCultureObject();
-                        if (cultureObject != null && cultureObject.BanditBoss == affectedAgent.Character)
-                        {
+                        if (cultureObject != null && cultureObject.BanditBoss == affectedAgent.Character) 
                             isHighValueTarget = true;
-                        }
                     }
                     else
                     {
-                        if(playerHero.PartyBelongedTo.ActualClan.MapFaction.IsKingdomFaction&&playerHero.Clan.IsUnderMercenaryService && 
-                           affectedAgent.IsHero && affectedAgent.GetHero().Occupation == Occupation.Lord)
-                        {
+                        if (playerHero.PartyBelongedTo.ActualClan.MapFaction.IsKingdomFaction && playerHero.Clan.IsUnderMercenaryService &&
+                            affectedAgent.IsHero && affectedAgent.GetHero().Occupation == Occupation.Lord)
                             isHighValueTarget = true;
-                        }
                     }
-                    
-                    if(!isHighValueTarget)return;
-                    
+
+                    if (!isHighValueTarget) return;
+
                     var choice = TORCareerChoices.GetChoice("HeadhunterPassive3");
                     if (choice != null)
                     {

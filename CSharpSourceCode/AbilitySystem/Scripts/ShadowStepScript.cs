@@ -1,4 +1,3 @@
-﻿using System.Collections.Generic;
 using TaleWorlds.Engine;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
@@ -10,9 +9,13 @@ namespace TOR_Core.AbilitySystem.Scripts
 {
     public class ShadowStepScript : CareerAbilityScript
     {
+        private readonly InputKey[] _axisKeys = new InputKey[4];
+        private readonly GameKeyContext _keyContext = HotKeyManager.GetCategory("Generic");
+
+        private float _speed = 10f;
+        private float currentTick;
 
         private float effectTickIntervall;
-        private float currentTick;
 
         public override void Initialize(Ability ability)
         {
@@ -37,18 +40,15 @@ namespace TOR_Core.AbilitySystem.Scripts
             base.SetAgent(agent);
             agent.Disappear();
             agent.ToggleInvulnerable();
-            TriggerEffects(agent.Position,agent.Position.NormalizedCopy());
-            if(agent.IsPlayerControlled) DisbindKeyBindings();
+            TriggerEffects(agent.Position, agent.Position.NormalizedCopy());
+            if (agent.IsPlayerControlled) DisbindKeyBindings();
             var frame = _casterAgent.Frame.Elevate(1f);
             GameEntity.SetGlobalFrame(frame);
         }
 
         private void SaveKeyBindings()
         {
-            for (int i = 0; i < 4; i++)
-            {
-                _axisKeys[i] = _keyContext.GetGameKey(i).KeyboardKey.InputKey;
-            }
+            for (var i = 0; i < 4; i++) _axisKeys[i] = _keyContext.GetGameKey(i).KeyboardKey.InputKey;
         }
 
         private void RestoreKeyBindings()
@@ -61,71 +61,57 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         private void DisbindKeyBindings()
         {
-            for (int i = 0; i < 4; i++)
-            {
-                _keyContext.GetGameKey(i).KeyboardKey.ChangeKey(InputKey.Invalid);
-            }
+            for (var i = 0; i < 4; i++) _keyContext.GetGameKey(i).KeyboardKey.ChangeKey(InputKey.Invalid);
         }
 
         protected override void OnTick(float dt)
         {
-           
             if (_ability == null) return;
             if (IsFading) return;
             _timeSinceLastTick += dt;
             UpdateLifeTime(dt);
-            
-            
+
 
             if (_casterAgent != null && _casterAgent.Health > 0)
             {
                 UpdateSound(_casterAgent.Position);
                 var dist = GetDistance();
                 if (Input.IsKeyDown(InputKey.W) || Input.IsKeyPressed(InputKey.W))
-                {
                     if (dist > 3 || dist.Equals(float.NaN))
-                    {
                         Fly(dt);
-                    }
-                }
             }
-            
 
-            MBList<Agent> agents = new MBList<Agent>();
+
+            var agents = new MBList<Agent>();
             agents = Mission.Current.GetNearbyAgents(_casterAgent.Position.AsVec2, 2, agents);
-            foreach (Agent agent in agents)
-            {
+            foreach (var agent in agents)
                 if (agent != _casterAgent && MathF.Abs(_casterAgent.Position.Z - agent.Position.Z) < 1)
                 {
-                    Vec3 pos = agent.Position - _casterAgent.Position;
+                    var pos = agent.Position - _casterAgent.Position;
                     pos.Normalize();
                     pos.z = 0;
                     agent.TeleportToPosition(agent.Position + pos);
                 }
-            }
-
             
-            //_timeSinceLastTick += dt;
             if (_timeSinceLastTick >= effectTickIntervall)
             {
-                TriggerEffects(_casterAgent.Position,-_casterAgent.Position.NormalizedCopy());
+                TriggerEffects(_casterAgent.Position, -_casterAgent.Position.NormalizedCopy());
                 _timeSinceLastTick = 0f;
                 TORCommon.Say("Tick");
             }
-            
         }
 
         private float GetDistance()
         {
             float num;
-            Vec3 pos = _casterAgent.LookFrame.Advance(3).origin;
-            Mission.Current.Scene.RayCastForClosestEntityOrTerrain(_casterAgent.Position + new Vec3(0f, 0f, _casterAgent.GetEyeGlobalHeight(), -1f), pos, out num);
+            var pos = _casterAgent.LookFrame.Advance(3).origin;
+            Mission.Current.Scene.RayCastForClosestEntityOrTerrain(_casterAgent.Position + new Vec3(0f, 0f, _casterAgent.GetEyeGlobalHeight()), pos, out num);
             return num;
         }
-        
+
         private void Fly(float dt)
         {
-            MatrixFrame frame = GameEntity.GetGlobalFrame();
+            var frame = GameEntity.GetGlobalFrame();
             frame.rotation = _casterAgent.LookRotation;
             frame.Advance(_speed * dt);
             GameEntity.SetGlobalFrame(frame);
@@ -137,9 +123,8 @@ namespace TOR_Core.AbilitySystem.Scripts
             RestoreKeyBindings();
             _casterAgent.Appear();
             _casterAgent.ToggleInvulnerable();
-            
-            TriggerEffects(_casterAgent.Position,-_casterAgent.Position.NormalizedCopy());
-            //this._casterAgent.ApplyStatusEffect(string effectId, Agent applierAgent, float duration = 5, bool append = true, bool isMutated = false);
+
+            TriggerEffects(_casterAgent.Position, -_casterAgent.Position.NormalizedCopy());
         }
 
         protected override void OnRemoved(int removeReason)
@@ -147,9 +132,5 @@ namespace TOR_Core.AbilitySystem.Scripts
             RestoreKeyBindings();
             base.OnRemoved(removeReason);
         }
-
-        private float _speed = 10f;
-        private InputKey[] _axisKeys = new InputKey[4];
-        private GameKeyContext _keyContext = HotKeyManager.GetCategory("Generic");
     }
 }

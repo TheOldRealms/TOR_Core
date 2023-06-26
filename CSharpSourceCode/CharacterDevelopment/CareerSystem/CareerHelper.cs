@@ -54,7 +54,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             return skillValue*scalingFactor;
         }
         
-        
         public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, AttackTypeMask mask,bool asFactor = false)
         {
             var choices = hero.GetAllCareerChoices();
@@ -171,38 +170,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     resistancePropotions[(int)damageType] += (passive.DamageProportionTuple.Percent / 100);
                 }
             }
-        }
-
-
-        public static bool DecideMasterlyFighterPerkEffect(Agent attackerAgent, Agent victimAgent, AttackCollisionData collisionData,int threshold=20, int maximumTier = 4)
-        {
-            if (collisionData.BaseMagnitude < threshold) return false;
-            var choices = attackerAgent.GetHero().GetAllCareerChoices();
-            if (!choices.IsEmpty())
-            {
-                if(choices.Contains("DreadKnightPassive4"))
-                {
-                    if(victimAgent.Character.GetBattleTier()<maximumTier)
-                    {
-                        return true;
-                    }
-                }
-                        
-            }
-
-            return false;
-        }
-
-        public static bool StartWithPrayerReady(this Agent agent)
-        {
-            var hero = agent.GetHero();
-            if (hero == null) return false;
-
-            if (hero.HasCareerChoice("ArchLectorPassive1"))
-            {
-                return true;
-            }
-            return false;
         }
 
         public static bool PrayerCooldownIsNotShared(this Agent agent)
