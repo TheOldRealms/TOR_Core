@@ -23,8 +23,7 @@ namespace TOR_Core.Models
         private float vampireDaySpeedModificator = 1.1f;
         private float vampireNightSpeedModificator = 1.2f;
         private CustomCrosshairMissionBehavior _crosshairBehavior;
-
-
+        
         public override void InitializeAgentStats(Agent agent, Equipment spawnEquipment, AgentDrivenProperties agentDrivenProperties, AgentBuildData agentBuildData)
         {
             base.InitializeAgentStats(agent, spawnEquipment, agentDrivenProperties, agentBuildData);
@@ -393,10 +392,9 @@ namespace TOR_Core.Models
                     if (isNight)
                     {
                         var choice = TORCareerChoices.GetChoice("NewBloodPassive2");
-                        if (choice != null || choice.Passive != null)
+                        if (choice != null)
                         {
-                            float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
-                            result.ResistancePercentages[(int)DamageType.All] += value;
+                            result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
                         }
                     }
                 }
@@ -404,10 +402,9 @@ namespace TOR_Core.Models
                 if (agent.HasMount&&choices.Contains("EnhancedHorseCombatPassive2") && mask == PropertyMask.Attack )
                 {
                     var choice = TORCareerChoices.GetChoice("EnhancedHorseCombatPassive2");
-                    if (choice != null || choice.Passive != null)
+                    if (choice != null)
                     {
-                        float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
-                        result.AdditionalDamagePercentages[(int)DamageType.Physical] += value;
+                        result.AdditionalDamagePercentages[(int)DamageType.Physical] += choice.GetPassiveValue();
                     }
                     
                 }
@@ -423,38 +420,75 @@ namespace TOR_Core.Models
                     if (agent.Character.UnitBelongsToCult("cult_of_sigmar")||(!agent.Character.IsReligiousUnit() && choices.Contains("Archlector2")))
                     {
                         var choice = TORCareerChoices.GetChoice("RelentlessFanaticPassive3");
-                        if (choice == null || choice.Passive == null) return result;
-                        float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
-                        result.ResistancePercentages[(int)DamageType.Physical] += value;
+                        if (choice != null)
+                        {
+                            result.ResistancePercentages[(int)DamageType.Physical] += choice.GetPassiveValue();
+                        }
+                        
                     }
                 }
-                
                 
                 if (choices.Contains("HolyPurgePassive2") && mask == PropertyMask.Defense)
                 {
                     if (agent.Character.UnitBelongsToCult("cult_of_sigmar")||(!agent.Character.IsReligiousUnit() && choices.Contains("Archlector2")))
                     {
                         var choice = TORCareerChoices.GetChoice("HolyPurgePassive2");
-                        if (choice == null || choice.Passive == null) return result;
-                        float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
-                        result.ResistancePercentages[(int)DamageType.All] += value;
+                        if (choice != null)
+                        {
+                            result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                        }
+                        
+                    }
+                }
+                
+                if (choices.Contains("HolyPurgePassive4") && mask == PropertyMask.Attack)
+                {
+                    bool isSigmariteTroop = agent.Character.UnitBelongsToCult("cult_of_sigmar") || (!agent.Character.IsReligiousUnit() && choices.Contains("Archlector2"));
+                    if (isSigmariteTroop)
+                    {
+                        var choice = TORCareerChoices.GetChoice("HolyPurgePassive4");
+                        if (choice != null)
+                        {
+                            result.DamagePercentages[(int)DamageType.Holy] += choice.GetPassiveValue();
+                        }
+                    }
+                }
+                
+                if (choices.Contains("MercenaryLordPassive2") && mask == PropertyMask.Attack && attackMask == AttackTypeMask.Ranged)
+                {
+                    var choice = TORCareerChoices.GetChoice("MercenaryLordPassive2");
+                    if (choice!= null)
+                    {
+                        result.AdditionalDamagePercentages[(int)DamageType.Physical] += choice.GetPassiveValue();
+                    }
+                }
+                
+                if (choices.Contains("CommanderPassive2") && mask == PropertyMask.Attack && attackMask == AttackTypeMask.Melee)
+                {
+                    var choice = TORCareerChoices.GetChoice("MercenaryLordPassive2");
+                    if (choice!= null)
+                    {
+                        result.AdditionalDamagePercentages[(int)DamageType.Physical] += choice.GetPassiveValue();
                     }
                 }
 
                 if (agent.IsUndead()&&choices.Contains("MasterOfDeadPassive3") && mask == PropertyMask.Defense)
                 {
                     var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive3");
-                    if (choice == null || choice.Passive == null) return result;
-                    float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
-                    result.ResistancePercentages[(int)DamageType.All] += value;
+                    if (choice != null)
+                    {
+                        result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                    }
                 }
                 
                 if (!agent.IsHero&&agent.IsVampire()&&choices.Contains("ControlledHungerPassive4") && mask == PropertyMask.Defense)
                 {
                     var choice = TORCareerChoices.GetChoice("ControlledHungerPassive4");
-                    if (choice == null || choice.Passive == null) return result;
-                    float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
-                    result.ResistancePercentages[(int)DamageType.All] += value;
+                    if (choice != null)
+                    {
+                        result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                    }
+                    
                 }
 
                 if (choices.Contains("GrailVowPassive2") && mask == PropertyMask.Attack)
@@ -463,37 +497,11 @@ namespace TOR_Core.Models
                     if (isbattlePilgrim)
                     {
                         var choice = TORCareerChoices.GetChoice("GrailVowPassive2");
-                        if (choice == null || choice.Passive == null) return result;
-                        float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
-                        result.DamagePercentages[(int)DamageType.Holy] += value;
+                        if (choice != null)
+                        {
+                            result.DamagePercentages[(int)DamageType.Holy] += choice.GetPassiveValue();
+                        }
                     }
-                }
-                if (choices.Contains("HolyPurgePassive4") && mask == PropertyMask.Attack)
-                {
-                    bool isSigmariteTroop = agent.Character.UnitBelongsToCult("cult_of_sigmar") || (!agent.Character.IsReligiousUnit() && choices.Contains("Archlector2"));
-                    if (isSigmariteTroop)
-                    {
-                        var choice = TORCareerChoices.GetChoice("HolyPurgePassive4");
-                        if (choice == null || choice.Passive == null) return result;
-                        float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
-                        result.DamagePercentages[(int)DamageType.Holy] += value;
-                    }
-                }
-                
-                if (choices.Contains("MercenaryLordPassive4") && mask == PropertyMask.Attack && (attackMask == AttackTypeMask.Ranged))
-                {
-                    var choice = TORCareerChoices.GetChoice("MercenaryLordPassive4");
-                    if (choice == null || choice.Passive == null) return result;
-                    float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
-                    result.DamagePercentages[(int)DamageType.Physical] += value;
-                }
-                
-                if (choices.Contains("CommanderPassive4") && mask == PropertyMask.Attack && (attackMask == AttackTypeMask.Melee))
-                {
-                    var choice = TORCareerChoices.GetChoice("MercenaryLordPassive4");
-                    if (choice == null || choice.Passive == null) return result;
-                    float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
-                    result.DamagePercentages[(int)DamageType.Physical] += value;
                 }
                 
                 if (attackMask==AttackTypeMask.Melee&&mask == PropertyMask.Defense&&!agent.IsHero&&choices.Contains("QuestingVow3")&&agent.Character.IsKnightUnit())
@@ -501,8 +509,7 @@ namespace TOR_Core.Models
                     var choice = TORCareerChoices.GetChoice("QuestingVow3");
                     if (choice != null)
                     {
-                        var value = choice.GetPassiveValue();
-                        result.ResistancePercentages[(int)DamageType.Physical] += value;
+                        result.ResistancePercentages[(int)DamageType.Physical] += choice.GetPassiveValue();
                     }
                         
                 }

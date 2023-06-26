@@ -325,12 +325,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _peerlessWarriorPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
             _peerlessWarriorPassive2.Initialize(CareerID, "Extra melee Damage(10%).", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
             _peerlessWarriorPassive3.Initialize(CareerID, " For every Troop tier 4 and above, the gained XP is increased by 20% for kills.", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
-            _peerlessWarriorPassive4.Initialize(CareerID, "Everyday you gain randomly 100 xp in one of the melee combat skills", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special, false));
+            _peerlessWarriorPassive4.Initialize(CareerID, "Everyday you gain randomly 100 xp in one of the melee combat skills", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special, false));  // CareerChoicePerkCampaignBehavior 123
 
             _bladeMasterPassive1.Initialize(CareerID, "Extra melee Damage(20%).", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
             _bladeMasterPassive2.Initialize(CareerID, "Increases health regeneration after battles by 5.", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.HealthRegeneration));
-            _bladeMasterPassive3.Initialize(CareerID, "Hits below 15 damage will not stagger character.", "BladeMaster", false, ChoiceType.Passive, null);
-            _bladeMasterPassive4.Initialize(CareerID, "All troops are gaining XP(including Player) while raiding villages", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
+            _bladeMasterPassive3.Initialize(CareerID, "Hits below 15 damage will not stagger character.", "BladeMaster", false, ChoiceType.Passive, null); // Agent extension 83,
+            _bladeMasterPassive4.Initialize(CareerID, "All troops are gaining XP(including Player) while raiding villages", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //TorRaidModel 23  AND TorCareerPerkCampaignBehavior 73
 
 
             _doomRiderPassive1.Initialize(CareerID, "Extra melee Damage(20%).", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Melee));

@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TOR_Core.BattleMechanics.DamageSystem;
@@ -46,6 +47,8 @@ namespace TOR_Core.Utilities
             float dominantCategory = 0;
             string additionalDamageTypeText = "";
 
+            string sign = "";
+
             for (int i = 2; i < categories.Length; i++) //starting from first real additional damage type
             {
                 if (dominantCategory < categories[i])
@@ -56,12 +59,15 @@ namespace TOR_Core.Utilities
 
                 if (categories[i] > 0)
                 {
+                    var categorysign = "";
+                    if (percentages[i] > 0) categorysign = "+";
+                    
                     DamageType t = (DamageType)i;
-                    string s = ", " + (int)categories[i] + " was dealt in " + t + "["+percentages[i]+"]";
+                    string s = $", {(int)categories[i]} was dealt in {t} [{categorysign}{percentages[i].ToString(".%")}]";
                     if (additionalDamageTypeText == "")
                         additionalDamageTypeText = s;
                     else
-                        additionalDamageTypeText.Add(s, false);
+                        additionalDamageTypeText= additionalDamageTypeText.Add(s, false);
                 }
             }
 
@@ -87,9 +93,11 @@ namespace TOR_Core.Utilities
                         break;
                 }
             }
-            
 
-            var resultText = (int)resultDamage + " damage was dealt of which was " + (int)categories[1]+"["+percentages[1]+ "]" + " " + nameof(DamageType.Physical) + additionalDamageTypeText;     //TODO make prettier!
+            if (percentages[1] > 0)
+                sign = "+";
+
+            var resultText = $"{resultDamage} damage was dealt which was {(int)categories[1]}[{sign}{percentages[1].ToString(".%")}]{additionalDamageTypeText}";
             InformationManager.DisplayMessage(new InformationMessage(resultText, displaycolor));
 
 

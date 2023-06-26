@@ -311,7 +311,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _questingVowPassive1.Initialize(CareerID, "Increases Hitpoints by 40.", "QuestingVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Health)); //
             _questingVowPassive2.Initialize(CareerID, "15% Physical damage reduction from Melee and Ranged attacks.", "QuestingVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Ranged | AttackTypeMask.Melee));
             _questingVowPassive3.Initialize(CareerID, "All Knight troops gain 10% Physical resistance.", "QuestingVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));
-            _questingVowPassive4.Initialize(CareerID, "Hits below 15 damage will not stagger character.", "QuestingVow", false, ChoiceType.Passive, null); //
+            _questingVowPassive4.Initialize(CareerID, "Hits below 15 damage will not stagger character.", "QuestingVow", false, ChoiceType.Passive, null); // Agent extension 83,
 
             _monsterSlayerPassive1.Initialize(CareerID, "Extra melee fire damage(10%).", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 10), AttackTypeMask.Melee));
             _monsterSlayerPassive2.Initialize(CareerID, "20% Melee Armor Penetration", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));

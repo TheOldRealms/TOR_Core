@@ -73,6 +73,9 @@ namespace TOR_Core.HarmonyPatches
                         }
                     }
                     
+                    //Need to stay here because they need information about victim
+                    
+                    
                     if (victim.Character.Race != 0 && choices.Contains("HolyPurgePassive3"))
                     {
                         var choice = TORCareerChoices.GetChoice("HolyPurgePassive3");
@@ -81,7 +84,6 @@ namespace TOR_Core.HarmonyPatches
                             var value = choice.GetPassiveValue();
                             additionalDamagePercentages[(int)DamageType.Physical] += value;
                         }
-                        
                     }
                     if (!attacker.IsHero&&attacker.HasMount&&choices.Contains("DreadKnightPassive3"))
                     {

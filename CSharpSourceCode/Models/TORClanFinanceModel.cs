@@ -50,10 +50,10 @@ namespace TOR_Core.Models
             if (playerHero.HasAnyCareer())
             {
                 var choices = playerHero.GetAllCareerChoices();
-                if (choices.Contains("MercenaryLordPassive4"))
+                if (choices.Contains("MercenaryLordPassive3"))
                 {
-                    var choice = TORCareerChoices.GetChoice("MercenaryLordPassive4");
-                    int mercenaryAward = MathF.Ceiling(clan.Influence * (1f / Campaign.Current.Models.ClanFinanceModel.RevenueSmoothenFraction())) * clan.MercenaryAwardMultiplier; //vanilla calculation, it got too messy.
+                    var choice = TORCareerChoices.GetChoice("MercenaryLordPassive3");
+                    int mercenaryAward = MathF.Ceiling(clan.Influence * (1f / Campaign.Current.Models.ClanFinanceModel.RevenueSmoothenFraction())) * clan.MercenaryAwardMultiplier; //stolen vanilla calculation, it got too messy to redirect the income.
                     var skillFactor = ((float)playerHero.GetSkillValue(DefaultSkills.Trade)) /100f;
                     var bonus =  mercenaryAward * skillFactor;
                     income.Add((int)bonus,choice.BelongsToGroup.Name);
