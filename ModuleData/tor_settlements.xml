@@ -23,7 +23,7 @@
   </Settlement>
   <Settlement id="taal_shrine_01" name="{=!}Shrine of Taal" owner="Faction.talabecland_clan_1" posX="1428.681" posY="1104.84" culture="Culture.empire" prosperity="500" text="{=!}Shrine of Sigmar">
     <Components>
-      <Shrine id="taal_shrine_01" religion="cult_of_taal" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <Shrine id="taal_shrine_01" religion="cult_of_taal" background_crop_position="0.0" background_mesh="shrine_of_taal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="grove_of_the_lady_01" name="{=!}Grove of the Lady" owner="Faction.carcassonne_clan_1" posX="1016.4" posY="810.756" culture="Culture.vlandia" prosperity="500" text="{=!}Grove of the Lady">

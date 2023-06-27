@@ -40,6 +40,9 @@ namespace TOR_Core.Utilities
                 case "khuzait":
                     args.MenuContext.SetBackgroundMeshName("vampire_looted_village");
                     return;
+                case "vlandia":
+                    args.MenuContext.SetBackgroundMeshName("bretonnia_looted_village");
+                    return;
                 default:
                     args.MenuContext.SetBackgroundMeshName("wait_raiding_village");
                     return;
@@ -58,6 +61,11 @@ namespace TOR_Core.Utilities
                 if(settlement.Culture.StringId == "vlandia")
                 {
                     args.MenuContext.SetBackgroundMeshName("bretonnia_arena");
+                    return;
+                }
+                else if (settlement.Culture.StringId == "khuzait")
+                {
+                    args.MenuContext.SetBackgroundMeshName("vampire_arena");
                     return;
                 }
             }

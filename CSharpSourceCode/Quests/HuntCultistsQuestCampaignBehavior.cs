@@ -4,14 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Conversation;
 using TaleWorlds.CampaignSystem.Issues;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Ink;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Quests
@@ -46,8 +49,9 @@ namespace TOR_Core.Quests
         private IssueBase OnIssueSelected(in PotentialIssueData pid, Hero issueOwner)
         {
             PotentialIssueData potentialIssueData = pid;
-            Settlement targetSettlement = TORCommon.FindSettlementsAroundPosition(issueOwner.CurrentSettlement.Position2D, 100f, x => x.IsVillage).GetRandomElementInefficiently();
-            if (targetSettlement == null) targetSettlement = Settlement.FindAll(x => x.IsVillage).GetRandomElementInefficiently();
+            Settlement targetSettlement = TORCommon.FindSettlementsAroundPosition(issueOwner.CurrentSettlement.Position2D, 100f, x => x.IsVillage && x.Culture == issueOwner.Culture && !x.IsRaided && !x.IsUnderRaid).GetRandomElementInefficiently();
+            if (targetSettlement == null) targetSettlement = Settlement.FindAll(x => x.IsVillage && x.Culture == issueOwner.Culture && !x.IsRaided && !x.IsUnderRaid).GetRandomElementInefficiently();
+            if (targetSettlement == null) targetSettlement = Settlement.FindAll(x => x.IsVillage && !x.IsRaided && !x.IsUnderRaid).GetRandomElementInefficiently();
             return new HuntCultistsIssue(issueOwner, targetSettlement);
         }
 
@@ -144,6 +148,10 @@ namespace TOR_Core.Quests
         {
             [SaveableField(1)]
             Settlement _settlement;
+            [SaveableField(2)]
+            bool _storyPlayed;
+            [SaveableField(3)]
+            bool _dealtWithCultists;
 
             public HuntCultistsQuest(string questId, Hero questGiver, CampaignTime duration, int rewardGold, Settlement targetSettlement) : base(questId, questGiver, duration, rewardGold)
             {
@@ -179,7 +187,27 @@ namespace TOR_Core.Quests
 
             private void SettlementEntered(MobileParty party, Settlement settlement, Hero hero)
             {
-                return;
+                if(party == MobileParty.MainParty && settlement == _settlement && !_storyPlayed)
+                {
+                    if(settlement.IsUnderRaid || settlement.IsRaided)
+                    {
+                        InquiryData data = new InquiryData("Village Raided", "The village is raided, no chance to find any cultists now. Come back when the village is repopulated.", true, false, "OK", null, () => InformationManager.HideInquiry(), null);
+                        InformationManager.ShowInquiry(data);
+                    }
+                    else InkStoryManager.OpenStory("CultistInOurMidst", AfterStory);
+                }
+            }
+
+            private void AfterStory(InkStory story)
+            {
+                _storyPlayed = true;
+                bool.TryParse(story.GetVariable("DealtWithCultists"), out _dealtWithCultists);
+                if (_dealtWithCultists)
+                {
+                    AddLog(new TextObject("{=!}You were successful in uncovering the cultists."));
+                    CompleteQuestWithSuccess();
+                }
+                else CompleteQuestWithFail(new TextObject("{=!}Aligning yourself with the cultists, you can hardly expect payment from the Order. Best keep this dark secret to yourself."));
             }
 
             private void OnQuestAccepted()
@@ -188,6 +216,11 @@ namespace TOR_Core.Quests
                 var acceptLog = new TextObject("{=!}You were tasked to travel to {TARGET_SETTLEMENT} and root out any cultist who may be hiding there.");
                 acceptLog.SetTextVariable("TARGET_SETTLEMENT", _settlement.EncyclopediaLinkWithName);
                 AddLog(acceptLog);
+            }
+
+            protected override void OnCompleteWithSuccess()
+            {
+                GiveGoldAction.ApplyForQuestBetweenCharacters(QuestGiver, Hero.MainHero, RewardGold);
             }
         }
     }

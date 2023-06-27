@@ -469,6 +469,8 @@
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissSceneNotificationItem.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\CustomDialogCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\CustomEvents\CustomEvent.cs" />
+    <Compile Include="CampaignMechanics\CustomEvents\CustomEventsCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\MasterEngineer\MasterEngineerTownBehavior.cs" />
     <Compile Include="CampaignMechanics\RaidingParties\RaidingPartyComponent.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\CharacterCreationOption.cs" />

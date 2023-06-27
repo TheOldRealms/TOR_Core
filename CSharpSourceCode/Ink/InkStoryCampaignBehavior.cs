@@ -18,6 +18,7 @@ namespace TOR_Core.Ink
         private InkBookMapView _inkView;
         private MapScreen _mapScreen;
         private CampaignTimeControlMode _cachedSpeed = CampaignTimeControlMode.StoppablePlay;
+        public InkStory CurrentStory { get; private set; }
         public override void RegisterEvents() { }
 
         public void OpenStory(InkStory story) 
@@ -29,11 +30,13 @@ namespace TOR_Core.Ink
                 Campaign.Current.TimeControlMode = CampaignTimeControlMode.Stop;
                 _inkView = (InkBookMapView)_mapScreen.AddMapView<InkBookMapView>();
                 if(_inkView != null) _inkView.OpenStory(story);
+                CurrentStory = story;
             }
         }
 
         public void CloseStory()
         {
+            CurrentStory = null;
             _inkView.CloseStory();
             _mapScreen.RemoveMapView(_inkView);
             Campaign.Current.TimeControlMode = _cachedSpeed;
