@@ -33,7 +33,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         public CareerObjectVM(CareerObject career)
         {
             _career = career;
-            _name = career.Name.ToString();
+            _name = GameTexts.FindText("career_title", _career.StringId).ToString();
             _spriteName = "CareerSystem\\Illustrations\\" + career.StringId;
             _abilitySpriteName = _career.GetAbilityTemplate()?.SpriteName;      //in case no career ability is found deactivate this screen
             _abilityName = _career.GetAbilityTemplate()?.Name;

@@ -122,8 +122,6 @@ namespace TOR_Core.Models
                         float value = (unit.Character.TroopWage*unit.Number) *effect;
                         resultValue.Add(value, choice.BelongsToGroup.Name);
                     }
-                    
-
                 }
             }
             

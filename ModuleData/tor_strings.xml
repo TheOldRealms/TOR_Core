@@ -454,6 +454,13 @@
   <string id="tor_religion_blessing_name.cult_of_myrmidia" text="{=!}Blessing of Myrmidia" />
 
   <!-- Career related -->
+    <string id="career_title.WarriorPriest" text="{=!}Warrior Priest of Sigmar" />
+    <string id="career_title.MinorVampire" text="{=!}Vampire Nobility" />
+    <string id="career_title.GrailKnight" text="{=!}Knight of Bretonnia" />
+	    <string id="career_title.BloodKnight" text="{=!}Blood Knight" />
+	<string id="career_title.Mercenary" text="{=!}Mercenary" />
+	
+	
   <string id="career_choicegroup1_name.WarriorPriest" text="{=!}Cultist of Sigmar" />
   <string id="career_choicegroup2_name.WarriorPriest" text="{=!}Warrior Priest" />
   <string id="career_choicegroup3_name.WarriorPriest" text="{=!}Arch Lector" />
@@ -469,6 +476,10 @@
   <string id="career_choicegroup1_name.GrailKnight" text="{=!}Knight Errant" />
   <string id="career_choicegroup2_name.GrailKnight" text="{=!}Questing Knight" />
   <string id="career_choicegroup3_name.GrailKnight" text="{=!}Grail Knight" />
+  
+    <string id="career_choicegroup1_name.Mercenary" text="{=!}Recruit" />
+  <string id="career_choicegroup2_name.Mercenary" text="{=!}Sergeant" />
+  <string id="career_choicegroup3_name.Mercenary" text="{=!}Commander" />
 
 
   <string id="career_description.WarriorPriest" text="{=!}A Warrior Priest of Sigmar is a priest of the Cult of Sigmar who is a member of a warrior-sect whose duty is to both lead and inspire Imperial troops on the field of battle and also to minister to their spiritual needs when facing the Empire's foes." />
