@@ -96,8 +96,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                                 {
                                     var value = traverse.Property(mutation.PropertyName).GetValue<float>();
                                     traverse.Property(mutation.PropertyName).SetValue(value + Convert.ToSingle(newValue));
-                                    
-                                    TORCommon.Say(newValue +"");
                                 }
                                 else if (propertyType == typeof(int))
                                 {
