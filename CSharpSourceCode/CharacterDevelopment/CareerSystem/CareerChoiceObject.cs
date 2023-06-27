@@ -103,18 +103,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                                     traverse.Property(mutation.PropertyName).SetValue(value + Convert.ToInt32(newValue));
                                 }
                                 break;
-                            case OperationType.Remove:
-                                if (propertyType == typeof(float))
-                                {
-                                    var value = traverse.Property(mutation.PropertyName).GetValue<float>();
-                                    traverse.Property(mutation.PropertyName).SetValue(value + Convert.ToSingle(newValue));
-                                }
-                                else if (propertyType == typeof(int))
-                                {
-                                    var value = traverse.Property(mutation.PropertyName).GetValue<int>();
-                                    traverse.Property(mutation.PropertyName).SetValue(value + Convert.ToInt32(newValue));
-                                }
-                                break;
                             default:
                                 break;
                         }
@@ -193,7 +181,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
     public enum OperationType
     {
         Add,
-        Remove,     //TODO is this true ? Memo i needed this because of a blood knight perk, that needed to replace the way how things are calculated. Replacement would have killed other additions.
         Multiply,
         Replace,
         None

@@ -66,8 +66,6 @@ namespace TOR_Core.Models
 
         private ExplainedNumber AddCareerSpecifWagePerks(ExplainedNumber resultValue, Hero hero, TroopRosterElement unit)
         {
-            
-            //TODO Generalized perks?
             var choices = hero.GetAllCareerChoices();
 
             if (choices.Contains("SigmarsProclaimerPassive2"))
@@ -187,7 +185,6 @@ namespace TOR_Core.Models
 
         private float CalculateSigmarsProclaimerPerk(TroopRosterElement unit, bool includeRegularTroops, CareerChoiceObject choice)
         {
-            //TODO could be solved better, due to rounding issue : Troop Consumption Model is here more precise.
             if (!unit.Character.UnitBelongsToCult("cult_of_sigmar"))
             {
                 if (!includeRegularTroops)

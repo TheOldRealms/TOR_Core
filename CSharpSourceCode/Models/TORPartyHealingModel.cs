@@ -65,6 +65,12 @@ namespace TOR_Core.Models
             {
                 result = new ExplainedNumber(0, true, new TextObject("{=!}Inside a cursed region"));
             }
+
+            if (party != MobileParty.MainParty && party.LeaderHero != null && party.LeaderHero.IsVampire())
+            {
+                result.AddFactor(0.2f);
+            }
+            
             return result;
         }
 
