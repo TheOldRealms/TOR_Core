@@ -32,11 +32,6 @@ namespace TOR_Core.HarmonyPatches
                 return true;
             }
 
-            if (attacker.IsMainAgent)
-            {
-               // TORCommon.Say("hello"); //TODO Remove
-            }
-
             AttackTypeMask attackTypeMask = DetermineMask(b);
 
             float[] damageCategories = new float[(int)DamageType.All + 1];

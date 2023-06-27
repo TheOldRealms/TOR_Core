@@ -31,15 +31,9 @@ namespace TOR_Core.Models
                             values.AddFactor(value);
                         }
                     }
-                    
                 }
             }
-
-
             return values.ResultNumber;
-
-
-
         }
     }
 }
