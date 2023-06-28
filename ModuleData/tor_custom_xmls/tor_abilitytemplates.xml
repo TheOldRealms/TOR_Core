@@ -2786,7 +2786,7 @@
 	</AbilityTemplate>
 	<!-- Career Abilities -->
 	<AbilityTemplate StringID="ShadowStep"
-       Name="Mist Walk"
+       Name="Mist Form"
        SpriteName="windofdeath_icon"
        CoolDown="5"
        WindsOfMagicCost="0"
