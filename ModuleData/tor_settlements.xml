@@ -23,7 +23,7 @@
   </Settlement>
   <Settlement id="taal_shrine_01" name="{=!}Shrine of Taal" owner="Faction.talabecland_clan_1" posX="1428.681" posY="1104.84" culture="Culture.empire" prosperity="500" text="{=!}Shrine of Sigmar">
     <Components>
-      <Shrine id="taal_shrine_01" religion="cult_of_taal" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <Shrine id="taal_shrine_01" religion="cult_of_taal" background_crop_position="0.0" background_mesh="shrine_of_taal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="grove_of_the_lady_01" name="{=!}Grove of the Lady" owner="Faction.carcassonne_clan_1" posX="1016.4" posY="810.756" culture="Culture.vlandia" prosperity="500" text="{=!}Grove of the Lady">
@@ -3791,7 +3791,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AQ2" name="{=Settlements.Settlement.name.town_AQ2}Château D'Epee" owner="Faction.aquitaine_clan_1" posX="962.228" posY="909.745" culture="Culture.vlandia" prosperity="4500" gate_posX="961.2035" gate_posY="908.0606" text="{=Settlements.Settlement.text.town_AQ2}Standing as the pinnacle of Aquitainian fortification, Chateau D'Epee is an awe-inspiring castle situated near the border of Brionne. The castle's origins can be traced back to Lord D'Epee's great-grandfather, a legendary adventuring knight known for his involvement in numerous feuds and exploits not unusual for an Aquitainian. Harnessing his accumulated wealth, he constructed this very fortress that would soon stand to defy all assailants for decades to come.">
+  <Settlement id="town_AQ2" name="{=Settlements.Settlement.name.town_AQ2}Château D'Epee" owner="Faction.aquitaine_clan_1" posX="958.9382" posY="905.662" culture="Culture.vlandia" prosperity="4500" gate_posX="962.579" gate_posY="908.0557" text="{=Settlements.Settlement.text.town_AQ2}Standing as the pinnacle of Aquitainian fortification, Chateau D'Epee is an awe-inspiring castle situated near the border of Brionne. The castle's origins can be traced back to Lord D'Epee's great-grandfather, a legendary adventuring knight known for his involvement in numerous feuds and exploits not unusual for an Aquitainian. Harnessing his accumulated wealth, he constructed this very fortress that would soon stand to defy all assailants for decades to come.">
     <Components>
       <Town id="town_comp_AQ2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
