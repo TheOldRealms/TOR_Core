@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <NPCCharacters>
-  <NPCCharacter id="tor_wanderer_empire_0" default_group="ranged" name="{=str_tor_wanderer_empire_0}{HERO.FIRSTNAME} Bright Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="55" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_0" default_group="ranged" name="{=str_tor_wanderer_empire_0}{FIRSTNAME} Bright Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="55" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.brightwizard" />
       <hair_tags>
@@ -24,7 +24,7 @@
       <EquipmentSet id="tor_bright_wizard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_empire_1" default_group="infantry" name="{=str_tor_wanderer_empire_1}{HERO.FIRSTNAME} Warrior Priest" occupation="Wanderer" culture="Culture.empire" voice="curt" age="45" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_1" default_group="infantry" name="{=str_tor_wanderer_empire_1}{FIRSTNAME} Warrior Priest" occupation="Wanderer" culture="Culture.empire" voice="curt" age="45" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.warriorpriest" />
       <hair_tags>
@@ -47,7 +47,7 @@
       <EquipmentSet id="tor_warrior_priest_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_empire_2" default_group="infantry" name="{=str_tor_wanderer_empire_2}{HERO.FIRSTNAME} Witch Hunter" occupation="Wanderer" culture="Culture.empire" voice="curt" age="29" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_2" default_group="infantry" name="{=str_tor_wanderer_empire_2}{FIRSTNAME} Witch Hunter" occupation="Wanderer" culture="Culture.empire" voice="curt" age="29" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
       <hair_tags>
@@ -70,7 +70,7 @@
       <EquipmentSet id="tor_witch_hunter_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_empire_3" default_group="ranged" name="{=str_tor_wanderer_empire_3}{HERO.FIRSTNAME} Light Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="50" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_3" default_group="ranged" name="{=str_tor_wanderer_empire_3}{FIRSTNAME} Light Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="50" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
       <hair_tags>
@@ -94,7 +94,7 @@
       <EquipmentSet id="tor_light_wizard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_empire_4" default_group="ranged" name="{=str_tor_wanderer_empire_4}{HERO.FIRSTNAME} Celestial Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="50" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_4" default_group="ranged" name="{=str_tor_wanderer_empire_4}{FIRSTNAME} Celestial Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="50" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
       <hair_tags>
@@ -118,7 +118,7 @@
       <EquipmentSet id="tor_celestial_wizard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_empire_5" default_group="infantry" name="{=str_tor_wanderer_empire_5}{HERO.FIRSTNAME} Engineer" occupation="Wanderer" culture="Culture.empire" voice="curt" age="49" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_5" default_group="infantry" name="{=str_tor_wanderer_empire_5}{FIRSTNAME} Engineer" occupation="Wanderer" culture="Culture.empire" voice="curt" age="49" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
       <hair_tags>
@@ -141,7 +141,7 @@
       <EquipmentSet id="tor_qnpc_masterengineer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_empire_6" default_group="infantry" name="{=str_tor_wanderer_empire_6}{HERO.FIRSTNAME} Priestess of Shallya" occupation="Wanderer" culture="Culture.empire" voice="curt" age="31" is_female="true" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_6" default_group="infantry" name="{=str_tor_wanderer_empire_6}{FIRSTNAME} Priestess of Shallya" occupation="Wanderer" culture="Culture.empire" voice="curt" age="31" is_female="true" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.townswoman_empire" />
     </face>
@@ -157,7 +157,7 @@
       <EquipmentSet id="tor_priestess_of_shallya_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_empire_7" default_group="infantry" name="{=str_tor_wanderer_empire_7}{HERO.FIRSTNAME}Huntsman" occupation="Wanderer" culture="Culture.empire" voice="curt" age="42" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_7" default_group="infantry" name="{=str_tor_wanderer_empire_7}{FIRSTNAME}Huntsman" occupation="Wanderer" culture="Culture.empire" voice="curt" age="42" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -174,7 +174,7 @@
       <EquipmentSet id="tor_huntsman_wanderer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_bretonnia_0" default_group="infantry" name="{=str_tor_wanderer_bretonnia_0}{HERO.FIRSTNAME} Bretonnian Knight" occupation="Wanderer" culture="Culture.vlandia" voice="curt" age="30" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_bretonnia_0" default_group="infantry" name="{=str_tor_wanderer_bretonnia_0}{FIRSTNAME} Bretonnian Knight" occupation="Wanderer" culture="Culture.vlandia" voice="curt" age="30" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
       <hair_tags>
@@ -196,7 +196,7 @@
       <EquipmentSet id="tor_bretonnian_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_vampire_0" default_group="infantry" name="{=str_tor_wanderer_vampire_0}{HERO.FIRSTNAME} Necromancer" occupation="Wanderer" culture="Culture.khuzait" voice="ironic" age="55" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_vampire_0" default_group="infantry" name="{=str_tor_wanderer_vampire_0}{FIRSTNAME} Necromancer" occupation="Wanderer" culture="Culture.khuzait" voice="ironic" age="55" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
       <hair_tags>
@@ -220,7 +220,7 @@
       <EquipmentSet id="tor_necromancer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_vampire_1" default_group="cavalry" name="{=str_tor_wanderer_vampire_1}{HERO.FIRSTNAME} Vampire" occupation="Wanderer" culture="Culture.khuzait" voice="ironic" age="19" race="vampire" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_vampire_1" default_group="cavalry" name="{=str_tor_wanderer_vampire_1}{FIRSTNAME} Vampire" occupation="Wanderer" culture="Culture.khuzait" voice="ironic" age="19" race="vampire" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.vampire" />
       <hair_tags>
@@ -244,7 +244,7 @@
       <EquipmentSet id="tor_generic_vampire_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_vampire_2" default_group="infantry" name="{=str_tor_wanderer_vampire_2}{HERO.FIRSTNAME} Wight King" occupation="Wanderer" culture="Culture.khuzait" voice="curt" age="30" race="skeleton" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_vampire_2" default_group="infantry" name="{=str_tor_wanderer_vampire_2}{FIRSTNAME} Wight King" occupation="Wanderer" culture="Culture.khuzait" voice="curt" age="30" race="skeleton" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
