@@ -234,15 +234,17 @@ namespace TOR_Core.Ink
         {
             var troop = MBObjectManager.Instance.GetObject<CharacterObject>(troopId);
             int limit = MobileParty.MainParty.Party.PartySizeLimit;
+            int current = MobileParty.MainParty.MemberRoster.Count;
             if(troop == null)
             {
                 TORCommon.Say(string.Format("ERROR, troop with ID: {0} does not exist!", troopId));
                 return;
             }
-            else if(limit >= limit + count)
+            if(limit >= current + count)
             {
                 MobileParty.MainParty.MemberRoster.AddToCounts(troop, count);
             }
+            else TORCommon.Say("ERROR, Party maximum size exceeded.");
         }
 
         private object GetRandomNotableFromNearestSettlement(string settlementType)
