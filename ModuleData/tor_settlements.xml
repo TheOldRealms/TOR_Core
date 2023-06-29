@@ -3311,7 +3311,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BL1_2" name="{=Settlements.Settlement.name.village_BL1_2}Aigre" posX="925.4" posY="954.35" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BL1_2}Sitting on the road between Tureene and Bordeleaux is Aigre. Aigre is an idyllic place, the peasants here seem content most years and grain normally comes in abundance.">
+  <Settlement id="village_BL1_2" name="{=Settlements.Settlement.name.village_BL1_2}Aigre" posX="919.4146" posY="957.9412" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BL1_2}Sitting on the road between Tureene and Bordeleaux is Aigre. Aigre is an idyllic place, the peasants here seem content most years and grain normally comes in abundance.">
     <Components>
       <Village id="village_comp_BL1_2" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BL1" bound="Settlement.town_BL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3406,7 +3406,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_BL1_1" name="{=Settlements.Settlement.name.castle_village_BL1_1}Daglan" posX="925.869" posY="970.054" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BL1_1}Daglan is a small farming village that provides the nearby temple of Verena with most of its foodstuffs. The fruit grown here is known for its hardiness, and can make a decent vintage.">
+  <Settlement id="castle_village_BL1_1" name="{=Settlements.Settlement.name.castle_village_BL1_1}Daglan" posX="925.1071" posY="969.4374" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BL1_1}Daglan is a small farming village that provides the nearby temple of Verena with most of its foodstuffs. The fruit grown here is known for its hardiness, and can make a decent vintage.">
     <Components>
       <Village id="castle_village_comp_BL1_1" village_type="VillageType.vineyard" hearth="200" trade_bound="Settlement.castle_BL1" bound="Settlement.castle_BL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3791,7 +3791,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AQ2" name="{=Settlements.Settlement.name.town_AQ2}Château D'Epee" owner="Faction.aquitaine_clan_1" posX="958.9382" posY="905.662" culture="Culture.vlandia" prosperity="4500" gate_posX="962.579" gate_posY="908.0557" text="{=Settlements.Settlement.text.town_AQ2}Standing as the pinnacle of Aquitainian fortification, Chateau D'Epee is an awe-inspiring castle situated near the border of Brionne. The castle's origins can be traced back to Lord D'Epee's great-grandfather, a legendary adventuring knight known for his involvement in numerous feuds and exploits not unusual for an Aquitainian. Harnessing his accumulated wealth, he constructed this very fortress that would soon stand to defy all assailants for decades to come.">
+  <Settlement id="town_AQ2" name="{=Settlements.Settlement.name.town_AQ2}Château D'Epee" owner="Faction.aquitaine_clan_1" posX="958.938" posY="905.662" culture="Culture.vlandia" prosperity="4500" gate_posX="962.5784" gate_posY="908.0549" text="{=Settlements.Settlement.text.town_AQ2}Standing as the pinnacle of Aquitainian fortification, Chateau D'Epee is an awe-inspiring castle situated near the border of Brionne. The castle's origins can be traced back to Lord D'Epee's great-grandfather, a legendary adventuring knight known for his involvement in numerous feuds and exploits not unusual for an Aquitainian. Harnessing his accumulated wealth, he constructed this very fortress that would soon stand to defy all assailants for decades to come.">
     <Components>
       <Town id="town_comp_AQ2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" />
     </Components>
@@ -5127,7 +5127,7 @@
       <Hideout id="hideout_brettonnia_2" map_icon="bandit_hideout_d" scene_name="forest_hideout_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="hideout_brettonnia_3" name="{=Settlements.Settlement.name.hideout_mountain_1}Herrimault Hideout" type="Hideout" posX="985.35" posY="871.761" culture="Culture.sea_raiders">
+  <Settlement id="hideout_brettonnia_3" name="{=Settlements.Settlement.name.hideout_mountain_1}Herrimault Hideout" type="Hideout" posX="984.8939" posY="871.6777" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_brettonnia_3" map_icon="bandit_hideout_d" scene_name="mountain_hideout_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
