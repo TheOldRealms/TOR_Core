@@ -37,6 +37,8 @@ namespace TOR_Core.Extensions
             return list;
         }
 
+       
+
         public static List<string> GetAttributes(this BasicCharacterObject characterObject)
         {
             var list = new List<string>();

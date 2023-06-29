@@ -97,7 +97,6 @@ namespace TOR_Core.AbilitySystem.Scripts
             {
                 TriggerEffects(_casterAgent.Position, -_casterAgent.Position.NormalizedCopy());
                 _timeSinceLastTick = 0f;
-                TORCommon.Say("Tick");
             }
         }
 

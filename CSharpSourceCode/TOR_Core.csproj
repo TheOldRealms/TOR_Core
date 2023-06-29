@@ -497,7 +497,6 @@
     <Compile Include="Extensions\CharacterObjectExtensions.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Extensions\DebugMethods.cs" />
-    <Compile Include="Extensions\ExplainedNumberExtension.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\CharacterExtendedInfo.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\ExtendedInfoManager.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\ExtendedInfoMissionLogic.cs" />

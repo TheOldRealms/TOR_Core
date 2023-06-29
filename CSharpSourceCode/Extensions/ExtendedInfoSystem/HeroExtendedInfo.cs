@@ -89,6 +89,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                     }
                 }
                 list.AddRange(AcquiredAbilities);
+                
                 return list;
             }
         }

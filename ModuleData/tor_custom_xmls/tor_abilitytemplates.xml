@@ -2787,7 +2787,7 @@
 	<!-- Career Abilities -->
 	<AbilityTemplate StringID="ShadowStep"
        Name="Mist Form"
-       SpriteName="windofdeath_icon"
+       SpriteName="mistform_icon"
        CoolDown="5"
        WindsOfMagicCost="0"
        BaseMisCastChance="0.3"
@@ -2828,7 +2828,7 @@
 	</AbilityTemplate>
 	<AbilityTemplate StringID="RighteousFury"
        Name="Righteous Fury"
-       SpriteName="windofdeath_icon"
+       SpriteName="righteousfury_icon"
        CoolDown="10"
        WindsOfMagicCost="0"
        BaseMisCastChance="0"
@@ -2868,7 +2868,7 @@
 	
 	<AbilityTemplate StringID="RedFury"
        Name="Red Fury"
-       SpriteName="windofdeath_icon"
+       SpriteName="redfury_icon"
        CoolDown="10"
        WindsOfMagicCost="0"
        BaseMisCastChance="0"
@@ -2908,7 +2908,7 @@
 	
 	<AbilityTemplate StringID="KnightlyCharge"
        Name="Knightly Charge"
-       SpriteName="windofdeath_icon"
+       SpriteName="knightlycharge_icon"
        CoolDown="90"
        WindsOfMagicCost="0"
        BaseMisCastChance="0"

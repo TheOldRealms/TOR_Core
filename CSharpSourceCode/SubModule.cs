@@ -102,7 +102,7 @@ namespace TOR_Core
                 starter.AddBehavior(new TORCustomSettlementCampaignBehavior());
                 starter.AddBehavior(new RaidingPartyCampaignBehavior());
                 starter.AddBehavior(new CustomDialogCampaignBehavior());
-                starter.AddBehavior(new SpellBookMapIconCampaignBehavior());
+               // starter.AddBehavior(new SpellBookMapIconCampaignBehavior());
                 starter.AddBehavior(new PostBattleCampaignBehavior());
                 starter.AddBehavior(new RaiseDeadInTownBehavior());
                 starter.AddBehavior(new RORCampaignBehavior());
