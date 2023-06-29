@@ -238,7 +238,7 @@ namespace TOR_Core.Utilities
         [CommandLineFunctionality.CommandLineArgumentFunction("open_test_mission", "tor")]
         public static string OpenTestMission(List<string> arguments)
         {
-            var template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_patrol");
+            var template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("empire_outlaws");
             TorMissionManager.OpenQuestMission("TOR_Tower_001", template);
             return "Scene opened.";
         }

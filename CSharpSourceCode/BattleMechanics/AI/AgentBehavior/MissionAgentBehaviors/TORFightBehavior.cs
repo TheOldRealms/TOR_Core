@@ -22,7 +22,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.MissionAgentBehaviors
 
 		public override float GetAvailability(bool isSimulation)
 		{
-			if (!MissionFightHandler.IsAgentAggressive(base.OwnerAgent))
+			if (!MissionFightHandler.IsAgentAggressive(OwnerAgent))
 			{
 				return 0.1f;
 			}

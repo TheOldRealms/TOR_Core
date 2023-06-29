@@ -169,7 +169,7 @@ namespace TOR_Core.Utilities
 
 		public UsableMachine FindUnusedPointWithTagForAgent(Agent agent, string tag)
 		{
-			return this.FindUnusedPointForAgent(agent, _usablePoints, tag);
+			return FindUnusedPointForAgent(agent, _usablePoints, tag);
 		}
 
 		private UsableMachine FindUnusedPointForAgent(Agent agent, Dictionary<string, List<UsableMachine>> usableMachinesList, string primaryTag)
@@ -177,15 +177,7 @@ namespace TOR_Core.Utilities
 			List<UsableMachine> list;
 			if (usableMachinesList.TryGetValue(primaryTag, out list) && list.Count > 0)
 			{
-				int num = MBRandom.RandomInt(0, list.Count);
-				for (int i = 0; i < list.Count; i++)
-				{
-					UsableMachine usableMachine = list[(num + i) % list.Count];
-					if (!usableMachine.IsDisabled && !usableMachine.IsDestroyed && usableMachine.IsStandingPointAvailableForAgent(agent))
-					{
-						return usableMachine;
-					}
-				}
+				return list.GetRandomElementWithPredicate(x => !x.IsDisabled && !x.IsDestroyed && x.IsStandingPointAvailableForAgent(agent));
 			}
 			return null;
 		}

@@ -19,7 +19,6 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.MissionAgentBehaviors
     {
 		private readonly bool _isIndoor;
 		private UsableMachine _wanderTarget;
-		private UsableMachine _lastTarget;
 		private Timer _waitTimer;
 		private bool _indoorWanderingIsActive;
 		private bool _outdoorWanderingIsActive;
@@ -59,19 +58,15 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.MissionAgentBehaviors
             if (_wanderTarget == null || Navigator.TargetUsableMachine == null || _wanderTarget.IsDisabled || !_wanderTarget.IsStandingPointAvailableForAgent(OwnerAgent))
 			{
 				_wanderTarget = FindTarget();
-				_lastTarget = _wanderTarget;
 			}
             else if (Navigator.GetDistanceToTarget(_wanderTarget) < 5f)
 			{
-                bool flag = _wasSimulation && !isSimulation && _wanderTarget != null && _waitTimer != null && MBRandom.RandomFloat < (_isIndoor ? 0f : (Settlement.CurrentSettlement.IsVillage ? 0.6f : 0.1f));
+                bool flag = _wasSimulation && !isSimulation && _wanderTarget != null && _waitTimer != null;
 				if (_waitTimer == null)
 				{
-					if (!_wanderTarget.GameEntity.HasTag("npc_idle"))
-					{
-						AnimationPoint animationPoint = OwnerAgent.CurrentlyUsedGameObject as AnimationPoint;
-						float num = (animationPoint != null) ? animationPoint.GetRandomWaitInSeconds() : 10f;
-						_waitTimer = new Timer(Mission.CurrentTime, (num < 0f) ? 2.1474836E+09f : num, true);
-					}
+					AnimationPoint animationPoint = OwnerAgent.CurrentlyUsedGameObject as AnimationPoint;
+					float num = (animationPoint != null) ? animationPoint.GetRandomWaitInSeconds() : 5f;
+					_waitTimer = new Timer(Mission.CurrentTime, (num < 0f) ? 5f : num, true);
 				}
 				else if (_waitTimer.Check(Mission.CurrentTime) || flag)
 				{
@@ -82,12 +77,11 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.MissionAgentBehaviors
                         if (usableMachine == null || IsChildrenOfSameParent(usableMachine, _wanderTarget))
 						{
 							AnimationPoint animationPoint2 = OwnerAgent.CurrentlyUsedGameObject as AnimationPoint;
-							float duration = (animationPoint2 != null) ? animationPoint2.GetRandomWaitInSeconds() : 10f;
-							_waitTimer = new Timer(Mission.CurrentTime, duration, true);
+							float duration = (animationPoint2 != null) ? animationPoint2.GetRandomWaitInSeconds() : 5f;
+							_waitTimer = new Timer(Mission.CurrentTime, (duration < 0f) ? 5f : duration, true);
 						}
 						else
 						{
-							_lastTarget = _wanderTarget;
 							_wanderTarget = usableMachine;
 						}
 					}
@@ -96,10 +90,6 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.MissionAgentBehaviors
 						_waitTimer.Reset(100f);
 					}
 				}
-			}
-            if (OwnerAgent.CurrentlyUsedGameObject != null && Navigator.GetDistanceToTarget(_lastTarget) > 1f)
-			{
-                Navigator.SetTarget(_lastTarget, _lastTarget == _wanderTarget);
 			}
             Navigator.SetTarget(_wanderTarget, false);
 			_wasSimulation = isSimulation;
@@ -152,16 +142,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.MissionAgentBehaviors
 			{
 				return null;
 			}
-			string text = OwnerAgent.GetComponent<CampaignAgentComponent>().AgentNavigator.SpecialTargetTag;
-			if (text == null)
-			{
-				text = "npc_common";
-			}
-			else if (!_agentHandler.GetAllSpawnTags().Contains(text))
-			{
-				text = "npc_common_limited";
-			}
-			return _agentHandler.FindUnusedPointWithTagForAgent(OwnerAgent, text);
+			return _agentHandler.FindUnusedPointWithTagForAgent(OwnerAgent, "npc_common");
 		}
 
 		private UsableMachine FindTarget()

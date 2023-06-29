@@ -128,6 +128,25 @@ namespace TOR_Core.Utilities
 			Mission.DoesMissionRequireCivilianEquipment = false;
 			_missionAgentSpawnLogic.SpawnPlayer(false, true, false, true, true);
 			_missionAgentSpawnLogic.SpawnEnemies(_enemyPartyTemplate, _enemyCount);
+			foreach(var agent in Mission.Agents)
+            {
+				if(agent != Agent.Main && agent.IsHuman)
+                {
+					agent.SetWatchState(Agent.WatchState.Patrolling);
+                }
+            }
+		}
+
+        public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
+        {
+            base.OnAgentHit(affectedAgent, affectorAgent, affectorWeapon, blow, attackCollisionData);
+			foreach (var agent in Mission.Agents)
+			{
+				if (agent != Agent.Main && agent.IsHuman && agent.IsActive())
+				{
+					agent.SetWatchState(Agent.WatchState.Alarmed);
+				}
+			}
 		}
     }
 
