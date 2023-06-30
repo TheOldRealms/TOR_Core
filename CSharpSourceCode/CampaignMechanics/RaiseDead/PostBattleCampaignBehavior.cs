@@ -8,8 +8,10 @@ using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.RaiseDead
 {
@@ -20,8 +22,25 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         public override void RegisterEvents()
         {
             CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, InitializeRaiseableCharacters);
-            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, RaiseDead);
+            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, RaiseDead);                //Those events are never executed when the player lose a battle!
+            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, CheckWarriorPriestPerks);
         }
+        
+
+        private void CheckWarriorPriestPerks(MapEvent mapEvent)
+        {
+            if (Hero.MainHero.HasCareerChoice("BookOfSigmarPassive3"))
+            {
+                var playerParty = mapEvent.PartiesOnSide(mapEvent.PlayerSide).FirstOrDefault(x => x.Party.LeaderHero == Hero.MainHero); //TODO Main party check might suffies
+                if (playerParty == null) return;
+                var heroes = playerParty.Party.MobileParty.GetMemberHeroes();
+                foreach (var hero in heroes.Where(hero => !hero.IsHealthFull())) 
+                {
+                    hero.Heal(20,false);
+                }
+            }
+        }
+
 
         private void RaiseDead(MapEvent mapEvent)
         {

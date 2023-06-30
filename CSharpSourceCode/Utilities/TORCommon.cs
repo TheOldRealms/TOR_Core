@@ -260,5 +260,15 @@ namespace TOR_Core.Utilities
             var result = (value - minSource) / (maxSource - minSource) * (maxTarget - minTarget) + minTarget;
             return (ushort)result;
         }
+
+        public static uint ConvertColorToUint(TaleWorlds.Library.Color color)
+        {
+            var r = (int)color.Red & 0xFF;
+            var g = (int)color.Green & 0xFF;
+            var b = (int)color.Blue & 0xFF;
+            var a = (int)color.Alpha & 0xFF;
+
+            return (uint)((r << 24) + (g << 16) + (b << 8) + (a));
+        }
     }
 }

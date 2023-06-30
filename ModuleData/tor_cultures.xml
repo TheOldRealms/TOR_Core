@@ -3501,7 +3501,7 @@
 			 basic_troop="NPCCharacter.tor_br_brettonnia_bandit"
 			 is_bandit="true"
 			 can_have_settlement="true"
-			 encounter_background_mesh="bandit_encounter_background"
+			 encounter_background_mesh="bretonnia_bandits"
 			 bandit_boss_party_template="PartyTemplate.br_bandit_party" >
 		<banner_bearer_replacement_weapons>
 			<item id="Item.vlandia_sword_1_t2" />

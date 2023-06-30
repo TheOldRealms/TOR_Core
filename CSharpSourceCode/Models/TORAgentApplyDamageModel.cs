@@ -1,4 +1,4 @@
-﻿using Helpers;
+using Helpers;
 using SandBox.GameComponents;
 using System;
 using System.Collections.Generic;

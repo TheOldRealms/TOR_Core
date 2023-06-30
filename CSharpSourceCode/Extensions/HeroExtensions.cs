@@ -7,7 +7,9 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics.BountyMaster;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -184,11 +186,24 @@ namespace TOR_Core.Extensions
             return hero.HasAttribute("AICompanion") && hero.Occupation == Occupation.Special;
         }
 
+        public static bool IsBountyMaster(this Hero hero)
+        {
+            var behavior = Campaign.Current.GetCampaignBehavior<BountyMasterCampaignBehavior>();
+            if (behavior != null)
+            {
+                return behavior.IsBountyMaster(hero);
+            }
+            else return false;
+        }
 
         public static bool IsSpellTrainer(this Hero hero)
         {
-            if (IsAICompanion(hero)) return false;            
-            return hero.Occupation == Occupation.Special && hero.Name.Contains("Magister");
+            var behavior = Campaign.Current.GetCampaignBehavior<SpellTrainerInTownBehavior>();
+            if (behavior != null)
+            {
+                return behavior.IsSpellTrainer(hero);
+            }
+            else return false;
         }
 
         public static bool IsMasterEngineer(this Hero hero)
@@ -196,6 +211,16 @@ namespace TOR_Core.Extensions
             if(hero!=null)
                 return hero.Occupation == Occupation.Special&& hero.Name.Contains("Master Engineer");
             return false;
+        }
+
+        public static bool HasCareerChoice(this Hero hero, string choiceID)
+        {
+            bool result = false;
+            if (hero != null && hero.GetExtendedInfo() != null&& hero.HasAnyCareer())
+            {
+                return hero.GetExtendedInfo().CareerChoices.Contains(choiceID);
+            }
+            return result;
         }
 
         public static bool HasCareerChoice(this Hero hero, CareerChoiceObject choice)
@@ -224,6 +249,14 @@ namespace TOR_Core.Extensions
                 }
             }
             return false;
+        }
+
+        public static List<string> GetAllCareerChoices(this Hero hero)
+        {
+            if (!hero.HasAnyCareer())
+                return new List<string>();
+
+            return hero.GetExtendedInfo().CareerChoices;
         }
 
         public static bool TryRemoveCareerChoice(this Hero hero, CareerChoiceObject choice)

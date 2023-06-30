@@ -2,6 +2,8 @@ using System;
 using System.Linq;
 using TaleWorlds.MountAndBlade;
 using System.Timers;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Engine;
 using Timer = System.Timers.Timer;
@@ -10,6 +12,7 @@ using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.Extensions;
 using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
 using TOR_Core.BattleMechanics.AI.Decision;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -116,13 +119,18 @@ namespace TOR_Core.AbilitySystem
         {
             IsActivationPending = false;
             IsCasting = false;
+            bool prayerCoolSeperated = false;
             
-            if(Template.AbilityType == AbilityType.Prayer)
+            if (Game.Current.GameType is Campaign)
+            {
+                prayerCoolSeperated = CareerHelper.PrayerCooldownIsNotShared(casterAgent);
+            }
+            
+            if(Template.AbilityType == AbilityType.Prayer&&!prayerCoolSeperated)
                 casterAgent.GetComponent<AbilityComponent>().SetPrayerCoolDown(Template.CoolDown);
             else
                 SetCoolDown(Template.CoolDown);
             
-           
             var frame = GetSpawnFrame(casterAgent); 
             
             GameEntity parentEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);

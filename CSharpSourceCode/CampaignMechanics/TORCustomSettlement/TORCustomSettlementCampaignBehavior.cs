@@ -158,7 +158,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
             _model = Campaign.Current.Models.GetFaithModel();
-            AddChaosPortalMenus(starter);
+            AddRaidingSiteMenus(starter);
             AddShrineMenus(starter);
             AddCursedSiteMenus(starter);
             foreach(var entry in _customSettlementActiveStates)
@@ -208,18 +208,18 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         }
 
         #region ChaosPortal
-        public void AddChaosPortalMenus(CampaignGameStarter starter)
+        public void AddRaidingSiteMenus(CampaignGameStarter starter)
         {
-            starter.AddGameMenu("chaosportal_menu", "{LOCATION_DESCRIPTION}", ChaosMenuInit);
-            starter.AddGameMenuOption("chaosportal_menu", "dobattle", "{BATTLE_OPTION_TEXT}", ChaosBattleCondition, ChaosBattleConsequence);
-            starter.AddGameMenuOption("chaosportal_menu", "leave", "Leave...", delegate (MenuCallbackArgs args)
+            starter.AddGameMenu("raidingsite_menu", "{LOCATION_DESCRIPTION}", RaidingSiteMenuInit);
+            starter.AddGameMenuOption("raidingsite_menu", "dobattle", "{BATTLE_OPTION_TEXT}", RaidingSiteBattleCondition, RaidingSiteBattleConsequence);
+            starter.AddGameMenuOption("raidingsite_menu", "leave", "Leave...", delegate (MenuCallbackArgs args)
             {
                 args.optionLeaveType = GameMenuOption.LeaveType.Leave;
                 return true;
             }, (MenuCallbackArgs args) => PlayerEncounter.Finish(true), true);
         }
 
-        private void ChaosMenuInit(MenuCallbackArgs args)
+        private void RaidingSiteMenuInit(MenuCallbackArgs args)
         {
             var settlement = Settlement.CurrentSettlement;
             var component = settlement.SettlementComponent as TORBaseSettlementComponent;
@@ -228,7 +228,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             args.MenuContext.SetBackgroundMeshName(component.BackgroundMeshName);
         }
 
-        private bool ChaosBattleCondition(MenuCallbackArgs args)
+        private bool RaidingSiteBattleCondition(MenuCallbackArgs args)
         {
             var settlement = Settlement.CurrentSettlement;
             var component = settlement.SettlementComponent as TORBaseSettlementComponent;
@@ -243,13 +243,15 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             return component.IsActive;
         }
 
-        private void ChaosBattleConsequence(MenuCallbackArgs args)
+        private void RaidingSiteBattleConsequence(MenuCallbackArgs args)
         {
             var settlement = Settlement.CurrentSettlement;
-            var component = settlement.SettlementComponent as ChaosPortalComponent;
-            PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_patrol");
-            Clan chaosClan = Clan.FindFirst(x => x.StringId == "chaos_clan_1");
-            var party = RaidingPartyComponent.CreateRaidingParty(settlement.StringId + "_defender_party", settlement, "Portal Defenders", template, chaosClan, 250);
+            var component = settlement.SettlementComponent as BaseRaiderSpawnerComponent;
+            PartyTemplateObject template = settlement.Culture?.DefaultPartyTemplate;
+            if(template == null) template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_patrol");
+            Clan ownerClan = settlement.OwnerClan;
+            if(ownerClan == null) ownerClan = Clan.FindFirst(x => x.StringId == "chaos_clan_1");
+            var party = RaidingPartyComponent.CreateRaidingParty(settlement.StringId + "_defender_party", settlement, "Defenders", template, ownerClan, 250);
             PlayerEncounter.RestartPlayerEncounter(party.Party, PartyBase.MainParty, false);
             if (PlayerEncounter.Battle == null)
             {
@@ -425,6 +427,21 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             MobileParty.MainParty.AddBlessingToParty(component.Religion.StringId, _model.CalculateBlessingDurationForParty(MobileParty.MainParty));
             Hero.MainHero.AddReligiousInfluence(component.Religion, _model.CalculateDevotionIncreaseForPraying(Hero.MainHero));
             Hero.MainHero.AddSkillXp(TORSkills.Faith, _model.CalculateSkillXpForPraying(Hero.MainHero));
+            
+            if (component.Religion.StringId == "cult_of_sigmar")
+            {
+                if (Hero.MainHero.HasCareerChoice("SigmarProclaimerPassive4"))
+                {
+                    var choice = TORCareerChoices.GetChoice("SigmarProclaimerPassive4");
+                    if(choice==null||choice.Passive==null)return;
+                    foreach (var hero in Hero.MainHero.PartyBelongedTo.GetMemberHeroes())
+                    {
+                        var value =(int) choice.Passive.EffectMagnitude;
+                        hero.Heal(value,false);
+                    }
+                }
+            }
+            
         }
         #endregion
 

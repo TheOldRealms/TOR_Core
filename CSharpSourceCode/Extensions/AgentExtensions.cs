@@ -1,4 +1,4 @@
-﻿using NLog;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +11,7 @@ using TaleWorlds.MountAndBlade.CustomBattle;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Models;
@@ -74,16 +75,21 @@ namespace TOR_Core.Extensions
             return agent.GetAttributes().Contains("Unbreakable");
         }
 
-        public static bool IsHuman(this Agent agent)
-        {
-            return agent.GetAttributes().Contains("Human");
-        }
-
         public static bool IsUndead(this Agent agent)
         {
             return agent.GetAttributes().Contains("Undead");
         }
-        
+
+        public static bool IsJuggernaut(this Agent agent)
+        {
+            if (agent.IsMainAgent && agent.GetHero().HasAnyCareer())
+            {
+                return agent.GetHero().GetAllCareerChoices().Contains("ProtectorOfTheWeakPassive4");
+            }
+
+            return false;
+        }
+
         public static bool ShouldNotBleed(this Agent agent)
         {
             return agent.GetAttributes().Contains("ClearBloodBurst");
@@ -679,6 +685,8 @@ namespace TOR_Core.Extensions
         {
             agent.AgentVisuals?.SetVisible(true);
         }
+        
+        
 
         public static void Disappear(this Agent agent)
         {

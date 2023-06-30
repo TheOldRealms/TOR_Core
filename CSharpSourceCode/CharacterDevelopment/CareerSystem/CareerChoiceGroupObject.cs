@@ -27,6 +27,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             Tier = tier;
             _conditionDelegate = conditionDelegate;
             OwnerCareer.ChoiceGroups.Add(this);
+            AfterInitialized();
         }
 
         public bool IsActiveForHero(Hero hero)

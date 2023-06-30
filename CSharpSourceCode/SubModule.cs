@@ -50,6 +50,7 @@ using TOR_Core.Ink;
 using TOR_Core.Items;
 using TOR_Core.Models;
 using TOR_Core.Models.CustomBattleModels;
+using TOR_Core.Quests;
 using TOR_Core.Utilities;
 
 namespace TOR_Core
@@ -66,9 +67,9 @@ namespace TOR_Core
         }
 
         protected override void OnSubModuleLoad()
-        { 
-            
-            CampaignTime startTime = CampaignTime.Years(2502)+CampaignTime.Weeks(4)+CampaignTime.Days(5);
+        {
+
+            CampaignTime startTime = CampaignTime.Years(2502) + CampaignTime.Weeks(4) + CampaignTime.Days(5) + CampaignTime.Hours(12);
             
             typeof(CampaignData).GetField("CampaignStartTime",BindingFlags.Static|BindingFlags.Public)?.SetValue(null,startTime);
             
@@ -119,6 +120,8 @@ namespace TOR_Core
                 starter.AddBehavior(new InkStoryCampaignBehavior());
                 starter.AddBehavior(new ReligionCampaignBehavior());
                 starter.AddBehavior(new TORKingdomDecisionProposalBehavior());
+                starter.AddBehavior(new BountyMasterCampaignBehavior());
+                starter.AddBehavior(new HuntCultistsQuestCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
@@ -205,7 +208,6 @@ namespace TOR_Core
             mission.AddMissionBehavior(new UndeadMoraleMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new ForceAtmosphereMissionLogic());
-            //mission.AddMissionBehavior(new BaseGameDebugMissionLogic());
 
             if (Game.Current.GameType is Campaign)
             {
