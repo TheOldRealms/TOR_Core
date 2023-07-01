@@ -175,7 +175,32 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         PropertyName = "BaseEffectValue",
                         PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.OneHanded, DefaultSkills.TwoHanded, DefaultSkills.Polearm }, 0.0005f, false, false),
                         MutationType = OperationType.Add
-                    }
+                    },
+                    /*new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_dmg",
+                        PropertyName = "Rotation",
+                        PropertyValue = (choice, originalValue, agent) => true,
+                        MutationType = OperationType.Replace
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_dmg",
+                        PropertyName = "Rotatio nSpeed",
+                        PropertyValue = (choice, originalValue, agent) => 400,
+                        MutationType = OperationType.Replace
+                    },*/
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_dmg",
+                        PropertyName = "ParticleId",
+                        PropertyValue = (choice, originalValue, agent) => "redfury_rage_2",
+                        MutationType = OperationType.Replace
+                    },
+                    
                 });
             _peerlessWarriorKeystone.Initialize(CareerID, "Athletics is counted towards the Career Ability. Movement speed is 20 increased during ability", "PeerlessWarrior", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()

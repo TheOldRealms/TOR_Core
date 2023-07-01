@@ -95,7 +95,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _grailKnightRoot.Initialize(CareerID, "The knight prepares a devastating charge with or without his horse for the next 6 seconds. Unmounted he is benefiting from modifications. Mounted, the knight will have a 20% Chance that his lance will not bounce off for a couched lance attack. The chance rises for every point in Riding by 0.07%.", null,
+            _grailKnightRoot.Initialize(CareerID, "The knight prepares a devastating charge with or without his horse for the next 6 seconds. Unmounted he is benefiting from modifications. Mounted, the knight will have a 20% Chance that his lance will not bounce off for a couched lance attack. The chance rises for every point in Riding by 0.1%.", null,
                 true, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -103,7 +103,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(StatusEffectTemplate),
                         MutationTargetOriginalId = "knightly_charge_lsc",
                         PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Riding }, 0.0007f),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Riding }, 0.001f),
                         MutationType = OperationType.Add
                     },
                     new CareerChoiceObject.MutationObject()
@@ -111,7 +111,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(StatusEffectTemplate),
                         MutationTargetOriginalId = "knightly_charge_phys_res",
                         PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Riding }, 0.0007f),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Riding }, 0.001f),
                         MutationType = OperationType.Add
                     }
                 });
@@ -132,7 +132,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(StatusEffectTemplate),
                         MutationTargetOriginalId = "knightly_charge_lsc",
                         PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.OneHanded }, 0.0007f),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.OneHanded }, 0.001f),
                         MutationType = OperationType.Add
                     },
                     new CareerChoiceObject.MutationObject()
@@ -140,7 +140,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(StatusEffectTemplate),
                         MutationTargetOriginalId = "knightly_charge_phys_res",
                         PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.OneHanded }, 0.0007f),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.OneHanded }, 0.001f),
                         MutationType = OperationType.Add
                     }
                 });
@@ -160,7 +160,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(StatusEffectTemplate),
                         MutationTargetOriginalId = "knightly_charge_lsc",
                         PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Polearm }, 0.0007f),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Polearm }, 0.001f),
                         MutationType = OperationType.Add
                     },
                     new CareerChoiceObject.MutationObject()
@@ -168,7 +168,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(StatusEffectTemplate),
                         MutationTargetOriginalId = "knightly_charge_phys_res",
                         PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Polearm }, 0.0007f),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Polearm }, 0.001f),
                         MutationType = OperationType.Add
                     }
                 }, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.Special));
@@ -210,7 +210,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(StatusEffectTemplate),
                         MutationTargetOriginalId = "knightly_charge_lsc",
                         PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.TwoHanded }, 0.0007f),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.TwoHanded }, 0.001f),
                         MutationType = OperationType.Add
                     },
                     new CareerChoiceObject.MutationObject()
@@ -218,7 +218,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(StatusEffectTemplate),
                         MutationTargetOriginalId = "knightly_charge_phys_res",
                         PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.TwoHanded }, 0.0007f),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.TwoHanded }, 0.001f),
                         MutationType = OperationType.Add
                     }
                 });
@@ -250,7 +250,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(StatusEffectTemplate),
                         MutationTargetOriginalId = "knightly_charge_lsc",
                         PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { TORSkills.Faith }, 0.0007f),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { TORSkills.Faith }, 0.001f),
                         MutationType = OperationType.Add
                     },
                     new CareerChoiceObject.MutationObject()
@@ -290,7 +290,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(StatusEffectTemplate),
                         MutationTargetOriginalId = "knightly_charge_phys_res",
                         PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { TORSkills.Faith }, 0.0007f),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { TORSkills.Faith }, 0.001f),
                         MutationType = OperationType.Add
                     }
                 });

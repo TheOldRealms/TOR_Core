@@ -207,10 +207,11 @@ namespace TOR_Core
             mission.AddMissionBehavior(new UndeadMoraleMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new ForceAtmosphereMissionLogic());
-            mission.AddMissionBehavior(new CareerPerkMissionBehavior());
+   
 
             if (Game.Current.GameType is Campaign)
             {
+                mission.AddMissionBehavior(new CareerPerkMissionBehavior());
                 if (mission.GetMissionBehavior<BattleAgentLogic>() != null)
                 {
                     mission.RemoveMissionBehavior(mission.GetMissionBehavior<BattleAgentLogic>());
