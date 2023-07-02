@@ -44,6 +44,33 @@ Possible school (lore) of magic names (case sensitive!)
     Necromancy
 */
 
+===function limit100(number)===
+    ~ return "{number>100:100|{number}}"
+
+===function print_player_skill_chance(skillName, skillLevelForCertainty)===
+    ~ return "({skillName} check - success chance " + limit100(INT(((GetPlayerSkillValue(skillName) / skillLevelForCertainty) * 100))) + "%)"
+
+===function perform_player_skill_check(skillName, skillLevelToCheckAgainst)===
+    ~ return GetPlayerSkillValue(skillName) >= RANDOM(1,skillLevelToCheckAgainst)
+
+===function print_party_skill_chance(skillName, skillLevelForCertainty)===
+    ~ return "({skillName} check - success chance " + limit100(INT(((GetPartySkillValue(skillName) / skillLevelForCertainty) * 100))) + "%)"
+
+===function perform_party_skill_check(skillName, skillLevelToCheckAgainst)===
+    ~ return GetPartySkillValue(skillName) >= RANDOM(1,skillLevelToCheckAgainst)
+
+===function print_player_attribute_chance(attributeName, attributeLevelForCertainty)===
+    ~ return "({attributeName} check - success chance " + limit100(INT(((GetPlayerAttributeValue(attributeName) / attributeLevelForCertainty) * 100))) + "%)"
+
+===function perform_player_attribute_check(attributeName, attributeLevelForCertainty)===
+    ~ return GetPlayerAttributeValue(attributeName) >= RANDOM(1,attributeLevelForCertainty)
+
+===function print_party_attribute_chance(attributeName, attributeLevelForCertainty)===
+    ~ return "({attributeName} check - success chance " + limit100(INT(((GetPartyAttributeValue(attributeName) / attributeLevelForCertainty) * 100))) + "%)"
+
+===function perform_party_attribute_check(attributeName, attributeLevelForCertainty)===
+    ~ return GetPartyAttributeValue(attributeName) >= RANDOM(1,attributeLevelForCertainty)
+
 ===function came_from(-> x)===
     ~ return TURNS_SINCE(x) == 0
 
@@ -56,12 +83,29 @@ EXTERNAL GetPlayerSkillValue(skillname)
     ~return 100.0
 
 //Gets the current highest skill value of any hero member of the player's party (player or companions)
-//Takes the skill's name as argument
+//Takes the attribute's name as argument
 //The skillname is case sensitive string
 //returns the skill value as a float
 EXTERNAL GetPartySkillValue(skillname)
 ===function GetPartySkillValue(skillname)===
     ~return 100.0
+
+//Gets the current attribute value of the player
+//Takes the attribute's name as argument
+//The attributeName is case sensitive string
+//returns the attribute value as a float, return values are between 1-10
+EXTERNAL GetPlayerAttributeValue(attributeName)
+===function GetPlayerAttributeValue(attributeName)===
+    ~return 5.0
+
+//Gets the current highest attribute value of any hero member of the player's party (player or companions)
+//Takes the attribute's name as argument
+//The attributeName is case sensitive string
+//returns the attribute value as a float, return values are between 1-10
+EXTERNAL GetPartyAttributeValue(attributeName)
+===function GetPartyAttributeValue(attributeName)===
+    ~return 5.0
+
 
 //Gives skill experience to the player
 //Takes the skill's name and the amount of xp to give as arguments

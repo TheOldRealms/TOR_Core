@@ -1,25 +1,61 @@
 ﻿using SandBox;
+using SandBox.Conversation.MissionLogics;
 using SandBox.Missions.MissionLogics;
+using SandBox.View;
+using SandBox.View.Missions;
+using SandBox.View.Missions.Sound.Components;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.TroopSuppliers;
 using TaleWorlds.Core;
+using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.Missions.Handlers;
 using TaleWorlds.MountAndBlade.Source.Missions;
+using TaleWorlds.MountAndBlade.Source.Missions.Handlers;
 using TaleWorlds.MountAndBlade.Source.Missions.Handlers.Logic;
+using TaleWorlds.MountAndBlade.View;
+using TaleWorlds.MountAndBlade.View.MissionViews;
+using TaleWorlds.MountAndBlade.View.MissionViews.Sound;
+using TaleWorlds.MountAndBlade.View.MissionViews.Sound.Components;
 using static TaleWorlds.MountAndBlade.Mission;
-using static TaleWorlds.MountAndBlade.MissionAgentSpawnLogic;
 
 namespace TOR_Core.Utilities
 {
     [MissionManager]
 	public static class TorMissionManager
 	{
+		[MissionMethod]
+		public static Mission OpenQuestMission(string scene, PartyTemplateObject enemyPartyTemplate, int enemyCount = 8)
+		{
+			return MissionState.OpenNew("QuestFight", SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All), (Mission mission) => new MissionBehavior[]
+			{
+				new MissionOptionsComponent(),
+				new CampaignMissionComponent(),
+				new MissionBasicTeamLogic(),
+				new MissionAgentLookHandler(),
+				new BasicLeaveMissionLogic(true),
+				new LeaveMissionLogic(),
+				new AgentHumanAILogic(),
+				new MissionConversationLogic(),
+				new QuestFightMissionController(enemyPartyTemplate, enemyCount),
+				new TORMissionAgentHandler(),
+				new HeroSkillHandler(),
+				new MissionFightHandler(),
+				new MissionFacialAnimationHandler(),
+				new MissionDebugHandler(),
+				new MissionHardBorderPlacer(),
+				new MissionBoundaryPlacer(),
+				new MissionBoundaryCrossingHandler(),
+				new EquipmentControllerLeaveLogic()
+			}, true, true);
+		}
+
+
 		[MissionMethod]
 		public static Mission OpenGraveyardMission()
 		{
@@ -66,6 +102,54 @@ namespace TOR_Core.Utilities
 		}
 	}
 
+	public class QuestFightMissionController : MissionLogic
+	{
+		private TORMissionAgentHandler _missionAgentSpawnLogic;
+		private readonly PartyTemplateObject _enemyPartyTemplate;
+		private readonly int _enemyCount;
+
+		public QuestFightMissionController(PartyTemplateObject enemyPartyTemplate, int enemyCount)
+		{
+			_enemyPartyTemplate = enemyPartyTemplate;
+			_enemyCount = enemyCount;
+		}
+
+		public override void OnBehaviorInitialize()
+		{
+			base.OnBehaviorInitialize();
+			_missionAgentSpawnLogic = Mission.GetMissionBehavior<TORMissionAgentHandler>();
+		}
+
+		public override void AfterStart()
+		{
+            Mission.SetMissionMode(MissionMode.StartUp, true);
+            Mission.IsInventoryAccessible = false;
+            Mission.IsQuestScreenAccessible = true;
+			Mission.DoesMissionRequireCivilianEquipment = false;
+			_missionAgentSpawnLogic.SpawnPlayer(false, true, false, true, true);
+			_missionAgentSpawnLogic.SpawnEnemies(_enemyPartyTemplate, _enemyCount);
+			foreach(var agent in Mission.Agents)
+            {
+				if(agent != Agent.Main && agent.IsHuman)
+                {
+					agent.SetWatchState(Agent.WatchState.Patrolling);
+                }
+            }
+		}
+
+        public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
+        {
+            base.OnAgentHit(affectedAgent, affectorAgent, affectorWeapon, blow, attackCollisionData);
+			foreach (var agent in Mission.Agents)
+			{
+				if (agent != Agent.Main && agent.IsHuman && agent.IsActive())
+				{
+					agent.SetWatchState(Agent.WatchState.Alarmed);
+				}
+			}
+		}
+    }
+
 	public class GraveyardFightMissionController : MissionLogic
 	{
 		public override void OnBehaviorInitialize()
@@ -89,5 +173,41 @@ namespace TOR_Core.Utilities
 
 		private MissionAgentSpawnLogic _missionAgentSpawnLogic;
 		private MapEvent _mapEvent;
+	}
+
+	[ViewCreatorModule]
+	public class QuestFightViewCreatorModule
+	{
+		[ViewMethod("QuestFight")]
+		public static MissionView[] OpenVillageMission(Mission mission)
+		{
+			return new List<MissionView>
+			{
+				new MissionCampaignView(),
+				new MissionConversationCameraView(),
+				SandBoxViewCreator.CreateMissionConversationView(mission),
+				ViewCreator.CreateMissionSingleplayerEscapeMenu(CampaignOptions.IsIronmanMode),
+				ViewCreator.CreateOptionsUIHandler(),
+				ViewCreator.CreateMissionMainAgentEquipDropView(mission),
+				new MissionSingleplayerViewHandler(),
+				ViewCreator.CreateMissionAgentStatusUIHandler(mission),
+				ViewCreator.CreateMissionMainAgentEquipmentController(mission),
+				ViewCreator.CreateMissionAgentLockVisualizerView(mission),
+				new MusicMissionView(new MusicBaseComponent[]
+				{
+					new MusicMissionSettlementComponent(),
+					new MusicMissionAlleyFightComponent()
+				}),
+				SandBoxViewCreator.CreateMissionBarterView(),
+				ViewCreator.CreateMissionLeaveView(),
+				new MissionBoundaryWallView(),
+				SandBoxViewCreator.CreateMissionNameMarkerUIHandler(mission),
+				new MissionItemContourControllerView(),
+				new MissionAgentContourControllerView(),
+				new MissionCampaignBattleSpectatorView(),
+				ViewCreator.CreatePhotoModeView(),
+				ViewCreator.CreateSingleplayerMissionKillNotificationUIHandler()
+			}.ToArray();
+		}
 	}
 }

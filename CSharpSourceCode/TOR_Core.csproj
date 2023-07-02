@@ -377,6 +377,10 @@
     <Compile Include="BattleMechanics\AI\AgentBehavior\AgentTacticalBehavior\KeepSafeTacticalBehavior.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\Components\FieldSiegeWeaponAI.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\Components\WizardAIComponent.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\CustomMissionAgentBehaviors\TORAlarmedBehaviorGroup.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\CustomMissionAgentBehaviors\TORDailyBehaviorGroup.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\CustomMissionAgentBehaviors\TORFightBehavior.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\CustomMissionAgentBehaviors\TORWalkingBehavior.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\SupportMissionLogic\QuerySystemExtensions.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\SupportMissionLogic\QuerySystemExtensionsMissionLogic.cs" />
     <Compile Include="BattleMechanics\AI\Decision\Axis.cs" />
@@ -617,6 +621,7 @@
     <Compile Include="Utilities\TORGameMenuBackgroundSwitcher.cs" />
     <Compile Include="Utilities\TORGameStarterHelper.cs" />
     <Compile Include="Utilities\TORMassMaterialSwitcher.cs" />
+    <Compile Include="Utilities\TORMissionAgentHandler.cs" />
     <Compile Include="Utilities\TORMissionHelper.cs" />
     <Compile Include="Utilities\TORMissionManager.cs" />
     <Compile Include="Utilities\TORParticleSystem.cs" />

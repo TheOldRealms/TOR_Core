@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Helpers;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
@@ -231,6 +233,14 @@ namespace TOR_Core.Utilities
             InkStoryManager.ReloadStories();
 
             return "Ink Stories reloaded. \n";
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("open_test_mission", "tor")]
+        public static string OpenTestMission(List<string> arguments)
+        {
+            var template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("empire_outlaws");
+            TorMissionManager.OpenQuestMission("TOR_Tower_001", template);
+            return "Scene opened.";
         }
 
         private static string AggregateOutput(string topicHeader, List<string> matchedSpells) =>

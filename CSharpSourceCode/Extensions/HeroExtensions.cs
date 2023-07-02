@@ -308,15 +308,7 @@ namespace TOR_Core.Extensions
             return result;
         }
 
-        public static bool HasAnyCareer(this Hero hero)
-        {
-            bool result = false;
-            if (hero != null && hero.GetExtendedInfo() != null)
-            {
-                result = !string.IsNullOrEmpty(hero.GetExtendedInfo().CareerID);
-            }
-            return result;
-        }
+        public static bool HasAnyCareer(this Hero hero) => hero.GetCareer() != null;
 
         public static CareerObject GetCareer(this Hero hero)
         {

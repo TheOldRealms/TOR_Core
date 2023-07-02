@@ -119,6 +119,14 @@ namespace TOR_Core.Ink
             {
                 _story.BindExternalFunction<string>("GetPartySkillValue", GetPartySkillValue, true);
             }
+            if (!_story.TryGetExternalFunction("GetPlayerAttributeValue", out _))
+            {
+                _story.BindExternalFunction<string>("GetPlayerAttributeValue", GetPlayerAttributeValue, true);
+            }
+            if (!_story.TryGetExternalFunction("GetPartyAttributeValue", out _))
+            {
+                _story.BindExternalFunction<string>("GetPartyAttributeValue", GetPartyAttributeValue, true);
+            }
             if (!_story.TryGetExternalFunction("GiveSkillExperience", out _))
             {
                 _story.BindExternalFunction<string, int>("GiveSkillExperience", GiveSkillExperience, false);
@@ -171,6 +179,20 @@ namespace TOR_Core.Ink
             {
                 _story.BindExternalFunction<string, int>("ChangeTraitValue", ChangeTraitValue, false);
             }
+        }
+
+        private object GetPartyAttributeValue(string attributeName)
+        {
+            CharacterAttribute attribute = MBObjectManager.Instance.GetObject<CharacterAttribute>(attributeName);
+            if (attribute != null) return (float)Hero.MainHero.GetAttributeValue(attribute);
+            else return 0f;
+        }
+
+        private object GetPlayerAttributeValue(string attributeName)
+        {
+            CharacterAttribute attribute = MBObjectManager.Instance.GetObject<CharacterAttribute>(attributeName);
+            if (attribute != null) return (float)MobileParty.MainParty.GetHighestAttributeValue(attribute);
+            else return 0f;
         }
 
         private object GetRandomNotableFromSpecificSettlement(string settlementName)
