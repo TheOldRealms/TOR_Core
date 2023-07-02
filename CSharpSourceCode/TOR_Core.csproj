@@ -351,7 +351,6 @@
     <Compile Include="AbilitySystem\Spells\Spell.cs" />
     <Compile Include="AbilitySystem\Spells\LoreObject.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\LoreObjectVM.cs" />
-    <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookMapIconCampaignBehavior.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookMapIconVM.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookScreen.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookState.cs" />
