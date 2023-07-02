@@ -168,12 +168,12 @@ namespace TOR_Core.CharacterDevelopment
                 text = string.Empty;
                 return true;
             });
-            _bladeMaster.Initialize("Blade master", TORCareers.BloodKnight, 2, (Hero hero, out string text) =>
+            _bladeMaster.Initialize("Blade Master", TORCareers.BloodKnight, 2, (Hero hero, out string text) =>
             {
                 text = "Required renown: 3";
                 return hero.Clan.Tier >= 3;
             });
-            _doomRider.Initialize("Doom rider", TORCareers.BloodKnight, 2, (Hero hero, out string text) =>
+            _doomRider.Initialize("Doom Rider", TORCareers.BloodKnight, 2, (Hero hero, out string text) =>
             {
                 text = "Required renown: 3";
                 return hero.Clan.Tier >= 3;
