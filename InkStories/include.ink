@@ -207,7 +207,8 @@ EXTERNAL ChangeRelations(targetNPC, changeAmount)
 ===function ChangeRelations(targetNPC, changeAmount)===
     ~ return ""
 
-//Method to change the personality traits value of the player, this is subject to minimum and maximum values of trait levels in the base game (usually in the range of [-2, 2])
-EXTERNAL ChangeTraitValue(traitname, changeByAmount)
-===function ChangeTraitValue(traitname, changeByAmount)===
+//Method to add a value to influence the personality traits of the player
+//changeByAmount is an integer
+EXTERNAL AddTraitInfluence(traitname, changeByAmount)
+===function AddTraitInfluence(traitname, changeByAmount)===
     ~ return ""

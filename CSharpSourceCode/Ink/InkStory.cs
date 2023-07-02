@@ -175,9 +175,9 @@ namespace TOR_Core.Ink
             {
                 _story.BindExternalFunction<string, int>("ChangeRelations", ChangeRelations, false);
             }
-            if (!_story.TryGetExternalFunction("ChangeTraitValue", out _))
+            if (!_story.TryGetExternalFunction("AddTraitInfluence", out _))
             {
-                _story.BindExternalFunction<string, int>("ChangeTraitValue", ChangeTraitValue, false);
+                _story.BindExternalFunction<string, int>("AddTraitInfluence", AddTraitInfluence, false);
             }
         }
 
@@ -209,7 +209,7 @@ namespace TOR_Core.Ink
             }
         }
 
-        private void ChangeTraitValue(string traitname, int amount)
+        private void AddTraitInfluence(string traitname, int amount)
         {
             var trait = MBObjectManager.Instance.GetObject<TraitObject>(x=>x.StringId == traitname);
             if (trait == null)
@@ -219,8 +219,7 @@ namespace TOR_Core.Ink
             }
             else
             {
-                var value = Hero.MainHero.GetTraitLevel(trait);
-                Hero.MainHero.SetTraitLevel(trait, value + amount);
+                Campaign.Current.PlayerTraitDeveloper.AddTraitXp(trait, amount);
             }
         }
 
