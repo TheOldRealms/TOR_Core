@@ -56,8 +56,8 @@
 		type="AttackSpeedManipulation"/>
 	<StatusEffectTemplate 
 		id="knightly_charge_lsc" 
-		particle_id="shield_of_combat"
-		particle_intensity="High"
+		particle_id=""
+		particle_intensity="Low"
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="0.2"
 		type= "LanceSteadiness"
@@ -96,7 +96,7 @@
 	</StatusEffectTemplate>
 	<StatusEffectTemplate 
 		id="knightly_charge_phys_res" 
-		particle_id=""
+		particle_id="knightlycharge_res"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="0.2"
@@ -128,7 +128,7 @@
 	</StatusEffectTemplate> 
 	<StatusEffectTemplate 
 		id="knightly_charge_healing" 
-		particle_id="breath_of_darkness"
+		particle_id=""
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="5"
