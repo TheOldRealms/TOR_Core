@@ -12,7 +12,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
-using TOR_Core.BattleMechanics.AI.AgentBehavior.MissionAgentBehaviors;
+using TOR_Core.BattleMechanics.AI.AgentBehavior.CustomMissionAgentBehaviors;
 
 namespace TOR_Core.Utilities
 {

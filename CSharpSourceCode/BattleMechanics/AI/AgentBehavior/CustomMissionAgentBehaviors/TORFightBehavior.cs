@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 
-namespace TOR_Core.BattleMechanics.AI.AgentBehavior.MissionAgentBehaviors
+namespace TOR_Core.BattleMechanics.AI.AgentBehavior.CustomMissionAgentBehaviors
 {
     public class TORFightBehavior : SandBox.Missions.AgentBehaviors.AgentBehavior
     {

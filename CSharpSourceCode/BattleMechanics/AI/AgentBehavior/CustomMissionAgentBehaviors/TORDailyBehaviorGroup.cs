@@ -9,7 +9,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 
-namespace TOR_Core.BattleMechanics.AI.AgentBehavior.MissionAgentBehaviors
+namespace TOR_Core.BattleMechanics.AI.AgentBehavior.CustomMissionAgentBehaviors
 {
     public class TORDailyBehaviorGroup : AgentBehaviorGroup
     {

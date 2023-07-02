@@ -378,10 +378,10 @@
     <Compile Include="BattleMechanics\AI\AgentBehavior\AgentTacticalBehavior\KeepSafeTacticalBehavior.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\Components\FieldSiegeWeaponAI.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\Components\WizardAIComponent.cs" />
-    <Compile Include="BattleMechanics\AI\AgentBehavior\MissionAgentBehaviors\TORAlarmedBehaviorGroup.cs" />
-    <Compile Include="BattleMechanics\AI\AgentBehavior\MissionAgentBehaviors\TORDailyBehaviorGroup.cs" />
-    <Compile Include="BattleMechanics\AI\AgentBehavior\MissionAgentBehaviors\TORFightBehavior.cs" />
-    <Compile Include="BattleMechanics\AI\AgentBehavior\MissionAgentBehaviors\TORWalkingBehavior.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\CustomMissionAgentBehaviors\TORAlarmedBehaviorGroup.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\CustomMissionAgentBehaviors\TORDailyBehaviorGroup.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\CustomMissionAgentBehaviors\TORFightBehavior.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\CustomMissionAgentBehaviors\TORWalkingBehavior.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\SupportMissionLogic\QuerySystemExtensions.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\SupportMissionLogic\QuerySystemExtensionsMissionLogic.cs" />
     <Compile Include="BattleMechanics\AI\Decision\Axis.cs" />

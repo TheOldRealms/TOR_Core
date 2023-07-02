@@ -11,7 +11,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Utilities;
 
-namespace TOR_Core.BattleMechanics.AI.AgentBehavior.MissionAgentBehaviors
+namespace TOR_Core.BattleMechanics.AI.AgentBehavior.CustomMissionAgentBehaviors
 {
     public class TORAlarmedBehaviorGroup : AgentBehaviorGroup
     {

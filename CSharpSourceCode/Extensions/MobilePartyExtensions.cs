@@ -134,6 +134,17 @@ namespace TOR_Core.Extensions
             return skillValue;
         }
 
+        public static int GetHighestAttributeValue(this MobileParty party, CharacterAttribute attribute)
+        {
+            int value = 0;
+            foreach (var hero in party.GetMemberHeroes())
+            {
+                var heroValue = hero.GetAttributeValue(attribute);
+                if (heroValue > value) value = heroValue;
+            }
+            return value;
+        }
+
         public static bool HasVampire(this MobileParty party)
         {
             foreach (var hero in party.GetMemberHeroes())
