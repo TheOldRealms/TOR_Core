@@ -41,6 +41,9 @@ namespace TOR_Core.CharacterDevelopment
         private PerkObject _exchange;
 
         //Faith perks
+        private PerkObject _novicePrayers;
+        private PerkObject _adeptPrayers;
+        private PerkObject _grandPrayers;
         private PerkObject _devotee;
         private PerkObject _divineMission;
         private PerkObject _imperturbable;
@@ -93,6 +96,9 @@ namespace TOR_Core.CharacterDevelopment
             _exchange = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("Exchange"));
 
             //Faith perks
+            _novicePrayers = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("NovicePrayers"));
+            _adeptPrayers = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("AdeptPrayers"));
+            _grandPrayers = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("GrandPrayers"));
             _devotee = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("Devotee"));
             _divineMission = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("DivineMission"));
             _imperturbable = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("Imperturbable"));
@@ -232,6 +238,13 @@ namespace TOR_Core.CharacterDevelopment
                 "{=!}All physical damage done by your weapons is doubled and dealt again as magical damage.", 
                 SkillEffect.PerkRole.Personal, 2f, SkillEffect.EffectIncrementType.AddFactor);
 
+            _novicePrayers.Initialize("{=!}Novice Prayers", TORSkills.Faith, 25, null,
+                "{=!}Gain access to all novice level battle prayers.", SkillEffect.PerkRole.Personal, 0, SkillEffect.EffectIncrementType.Invalid);
+            _adeptPrayers.Initialize("{=!}Adept Prayers", TORSkills.Faith, 75, null,
+                "{=!}Gain access to all adept level battle prayers.", SkillEffect.PerkRole.Personal, 0, SkillEffect.EffectIncrementType.Invalid);
+            _grandPrayers.Initialize("{=!}Grand Prayers", TORSkills.Faith, 125, null,
+                "{=!}Gain access to all grand level battle prayers.", SkillEffect.PerkRole.Personal, 0, SkillEffect.EffectIncrementType.Invalid);
+
             _devotee.Initialize("{=!}Devotee", TORSkills.Faith, 50, _divineMission,
                 "{=!}You gain +3 hitpoints for every point in Discipline.",
                 SkillEffect.PerkRole.Personal, 3f, SkillEffect.EffectIncrementType.Add,
@@ -316,6 +329,9 @@ namespace TOR_Core.CharacterDevelopment
 
         public static class Faith
         {
+            public static PerkObject NovicePrayers => Instance._novicePrayers;
+            public static PerkObject AdeptPrayers => Instance._adeptPrayers;
+            public static PerkObject GrandPrayers => Instance._grandPrayers;
             public static PerkObject Devotee => Instance._devotee;
             public static PerkObject DivineMission => Instance._divineMission;
             public static PerkObject Imperturbable => Instance._imperturbable;

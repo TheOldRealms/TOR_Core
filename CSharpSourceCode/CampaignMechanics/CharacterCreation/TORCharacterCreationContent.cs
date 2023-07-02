@@ -221,6 +221,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 Hero.MainHero.AddAttribute("Priest");
                 Hero.MainHero.AddAbility("HealingHand");
+                var skill = Hero.MainHero.GetSkillValue(TORSkills.Faith);
+                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
+                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);
                 Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 60);
                 Hero.MainHero.AddCareer(TORCareers.WarriorPriest);
             }
