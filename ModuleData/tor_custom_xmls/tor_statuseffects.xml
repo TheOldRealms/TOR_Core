@@ -27,29 +27,29 @@
 		base_effect_value="20"
 		type="HealthOverTime"/>
 	<StatusEffectTemplate 
-		id="mistwalk_healing" 
-		particle_id="breath_of_darkness"
+		id="mistwalk_base" 
+		particle_id="mistform_smoke"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="3"
-		type="HealthOverTime"/>
+		base_effect_value="1"
+		type="TemporaryAttributeOnly"/>
 	<StatusEffectTemplate 
-		id="mistwalk_healing_group" 
-		particle_id="berzerk_effect"
+		id="mistwalk_healing" 
+		particle_id="mistform_heal"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="3"
 		type="HealthOverTime"/>
 	<StatusEffectTemplate 
 		id="mistwalk_wom" 
-		particle_id="breath_of_darkness"
+		particle_id="mistform_magic"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="1"
 		type="WindsOverTime"/>
 	<StatusEffectTemplate 
 		id="mistwalk_swingspeed" 
-		particle_id="berzerk_effect"
+		particle_id=""
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="0.15"

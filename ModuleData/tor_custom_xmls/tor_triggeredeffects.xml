@@ -930,6 +930,7 @@
             ImbuedStatusEffectDuration="3" 
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>mistwalk_base</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	  <TriggeredEffectTemplate StringID="apply_mistwalk_area" 

@@ -107,7 +107,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         PropertyName = "Duration",
                         PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Athletics }, 0.03f),
                         MutationType = OperationType.Add
-                    }
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_mistwalk",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "mistwalk_base" }).ToList(),
+                        MutationType = OperationType.Replace
+                    },
                 });
 
             _newBloodKeystone.Initialize(CareerID, "Ability needs 20% less damage to get charged. Flying Speed is increased by 20%.", "NewBlood", false, // very hardcoded. I will continue on that after release 

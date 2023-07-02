@@ -371,7 +371,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _avatarOfDeathPassive1.Initialize(CareerID, "25% Physical damage reduction from Melee and Ranged attacks.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 25), AttackTypeMask.Ranged | AttackTypeMask.Melee));
             _avatarOfDeathPassive2.Initialize(CareerID, "Vampire Wages are reduced by 35%.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-35, PassiveEffectType.Special, true)); //TORPartyWageModel 85
             _avatarOfDeathPassive3.Initialize(CareerID, "35%. Magical Damage reduction from Spells", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 35), AttackTypeMask.Spell));
-            _avatarOfDeathPassive4.Initialize(CareerID, "Attacks can penetrate shields", "AvatarOfDeath", false, ChoiceType.Passive, null);
+            _avatarOfDeathPassive4.Initialize(CareerID, "Attacks deal bonus damage against shields", "AvatarOfDeath", false, ChoiceType.Passive, null);
 
             _dreadKnightPassive1.Initialize(CareerID, "Increases hitpoints by 50.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
             _dreadKnightPassive2.Initialize(CareerID, "Horse charge damage is increased by 50%.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseChargeDamage, true));
