@@ -95,8 +95,8 @@
                                               <ItemTemplate >
                                                 <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="40" StackLayout.LayoutMethod="HorizontalLeftToRight">
                                                   <Children>
-                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="CareerSystem\skull_icon" Color="#B57F5CFF" IsVisible="@IsFreeToTake" />
-                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="CareerSystem\skull_icon" Color="#B5AA5CFF" IsVisible="@IsTaken" />
+													<Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="CareerSystem\skull_icon" Color="#7f695cFF" IsVisible="@IsFreeToTake" />
+                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="CareerSystem\skull_icon" Color="#dfc395FF" IsVisible="@IsTaken" />
                                                     <TextWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="20" SuggestedWidth="500" HorizontalAlignment="Left" MarginLeft="50" MarginTop="5" MarginBottom="5" Text="@Description" Brush="TorRoRSettlementBrush" Brush.FontSize="16" Brush.TextHorizontalAlignment="Left"/>
                                                   </Children>
                                                 </ListPanel>
@@ -137,8 +137,8 @@
                                               <ItemTemplate >
                                                 <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="40" StackLayout.LayoutMethod="HorizontalLeftToRight">
                                                   <Children>
-                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="CareerSystem\skull_icon" Color="#B57F5CFF" IsVisible="@IsFreeToTake" />
-                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="CareerSystem\skull_icon" Color="#B5AA5CFF" IsVisible="@IsTaken" />
+													<Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="CareerSystem\skull_icon" Color="#7f695cFF" IsVisible="@IsFreeToTake" />
+                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="CareerSystem\skull_icon" Color="#dfc395FF" IsVisible="@IsTaken" />
                                                     <TextWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="20" SuggestedWidth="500" HorizontalAlignment="Left" MarginLeft="50" MarginTop="5" MarginBottom="5" Text="@Description" Brush="TorRoRSettlementBrush" Brush.FontSize="16" Brush.TextHorizontalAlignment="Left"/>
                                                   </Children>
                                                 </ListPanel>
@@ -164,12 +164,13 @@
                             <!-- tier 3-->
                             <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="300" HorizontalAlignment="Center" VerticalAlignment="Top">
                               <Children>
+								<ImageWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" SuggestedHeight="300"  HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="CareerSystem\locked_chains" IsVisible="@IsActive" MarginLeft="10"  />
                                 <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="4" HorizontalAlignment="Center" Sprite="Clan\divider_mid" />
                                 <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="50" SuggestedWidth="200" Text="@ChoiceGroup3Name" Brush="TorRoRSettlementBrush"/>
                                 <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="50" SuggestedWidth="200" Text="@ChoiceGroup3Condition" MarginTop="30" Brush="TorRoRSettlementBrush" />
+								<ImageWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" SuggestedHeight="300"  HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="CareerSystem\locked_chains" IsVisible="@IsActive" MarginLeft="10"  />
                                 <ListPanel DataSource="{ChoiceGroupsTier3}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" StackLayout.LayoutMethod="HorizontalCentered">
                                   <ItemTemplate>
-
                                     <ListPanel HeightSizePolicy="CoverChildren" WidthSizePolicy="CoverChildren" StackLayout.LayoutMethod="HorizontalLeftToRight" MarginTop="35" MarginLeft="50" MarginRight="50" >
                                       <Children>
                                         <ImageWidget VisualDefinition="ExtendablePanel" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" VerticalAlignment="Center" MarginTop="5" Sprite="StdAssets\Popup\canvas">
@@ -179,8 +180,8 @@
                                               <ItemTemplate >
                                                 <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="40" StackLayout.LayoutMethod="HorizontalLeftToRight">
                                                   <Children>
-                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="CareerSystem\skull_icon" Color="#B57F5CFF" IsVisible="@IsFreeToTake" />
-                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="CareerSystem\skull_icon" Color="#B5AA5CFF" IsVisible="@IsTaken" />
+                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="CareerSystem\skull_icon" Color="#7f695cFF" IsVisible="@IsFreeToTake" />
+                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="CareerSystem\skull_icon" Color="#dfc395FF" IsVisible="@IsTaken" />
                                                     <TextWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="20" SuggestedWidth="500" HorizontalAlignment="Left" MarginLeft="50" MarginTop="5" MarginBottom="5" Text="@Description" Brush="TorRoRSettlementBrush" Brush.FontSize="16" Brush.TextHorizontalAlignment="Left"/>
                                                   </Children>
                                                 </ListPanel>
@@ -197,8 +198,8 @@
                                         </ListPanel>
                                       </Children>
                                     </ListPanel>
-
                                   </ItemTemplate>
+
                                 </ListPanel>
                               </Children>
                             </Widget>

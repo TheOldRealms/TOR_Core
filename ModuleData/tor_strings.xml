@@ -454,10 +454,40 @@
   <string id="tor_religion_blessing_name.cult_of_myrmidia" text="{=!}Blessing of Myrmidia" />
 
   <!-- Career related -->
+    <string id="career_title.WarriorPriest" text="{=!}Warrior Priest of Sigmar" />
+    <string id="career_title.MinorVampire" text="{=!}Vampire Nobility" />
+    <string id="career_title.GrailKnight" text="{=!}Knight of Bretonnia" />
+	    <string id="career_title.BloodKnight" text="{=!}Blood Knight" />
+	<string id="career_title.Mercenary" text="{=!}Mercenary" />
+	
+	
   <string id="career_choicegroup1_name.WarriorPriest" text="{=!}Cultist of Sigmar" />
   <string id="career_choicegroup2_name.WarriorPriest" text="{=!}Warrior Priest" />
   <string id="career_choicegroup3_name.WarriorPriest" text="{=!}Arch Lector" />
+  
+  <string id="career_choicegroup1_name.MinorVampire" text="{=!}New Blood" />
+  <string id="career_choicegroup2_name.MinorVampire" text="{=!}Vampire" />
+  <string id="career_choicegroup3_name.MinorVampire" text="{=!}Exalted" />
+  
+  <string id="career_choicegroup1_name.BloodKnight" text="{=!}Initiate" />
+  <string id="career_choicegroup2_name.BloodKnight" text="{=!}Blood Knight" />
+  <string id="career_choicegroup3_name.BloodKnight" text="{=!}Master" />
+  
+  <string id="career_choicegroup1_name.GrailKnight" text="{=!}Knight Errant" />
+  <string id="career_choicegroup2_name.GrailKnight" text="{=!}Questing Knight" />
+  <string id="career_choicegroup3_name.GrailKnight" text="{=!}Grail Knight" />
+  
+    <string id="career_choicegroup1_name.Mercenary" text="{=!}Recruit" />
+  <string id="career_choicegroup2_name.Mercenary" text="{=!}Sergeant" />
+  <string id="career_choicegroup3_name.Mercenary" text="{=!}Commander" />
 
-  <string id="career_description.WarriorPriest" text="{=!}A Warrior Priest of Sigmar is a priest of the Cult of Sigmar who is a member of a warrior-sect whose duty is to both lead and inspire Imperial troops on the field of battle and also to minister to their spiritual needs when facing the Empire's foes." />
+
+  <string id="career_description.WarriorPriest" text="{=!}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />
+  <string id="career_description.BloodKnight" text="{=!}Sired by Abhorash, the Blood Knight is a dark mockery of everything noble or virtuous that can be said about their mortal counterparts. Where before the Blood Kiss there was honour is now cruelty; faith turns to irreverence and duty falls to wanton ambition. This is true of all vampires but seems particularly tragic for the fallen knights of the Old World." />
+  <string id="career_description.MinorVampire" text="{=!}Known and feared by many names, Vampires are the night's dark master. Nighly anyone be they Man or Beast, Holy or Daemonic can face one and survive. All Vampires strive to be the only masters of their unlife, free from any obligations to religions or masters. This egomaniacal drive is what fuels them to greater and greater ambitions, so that one day they may be lord of all they observe." />
+  <string id="career_description.Mercenary" text="{=!}To be a Man in the 25th century is to be one of thousands. The Old World finds itself on the precipice of destruction and turmoil, of chaos and death. No one in this age can be weak; some use the times to their advantage and turn warfare into wealth, combat into glory and tragedy into destiny. Mercenary they may call you, whatever the name no one will control your fate." />
+ 
   <string id="careerchoice_description.WarriorPriestRoot" text="{=!}The Warrior Priest is unleashing the wrath of Sigmar which will make his and surrounding allies melee attacks stronger (20%) for 8 seconds. \n Troops with the effect can’t be staggered. \n For every points in Faith, the melee effect becomes 0.05% stronger and 0.05 seconds longer. \n Cooldown: take 50 points of damage." />
+  <string id="career_description.GrailKnight" text="{=!}To be a knight of Bretonnia is to strive for the blessing of the Lady and her holy grail. Any man deemed worthy to sup from her chalice becomes a holy warrior honored and respected across all of Bretonnia and yet farther. The road to that goal is difficult, so much so that most knights fail to accomplish despite all sharing the same dream." />
+  
 </strings>

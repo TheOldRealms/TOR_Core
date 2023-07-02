@@ -104,6 +104,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                     TORMissionHelper.ApplyStatusEffectToAgents(targets, effect.StringID, triggererAgent, statusEffectDuration, true, _isTemplateMutated);
                 }
             }
+           
             SpawnVisuals(position, normal);
             PlaySound(position);
             TriggerScript(position, triggererAgent, targets, statusEffectDuration);
@@ -112,7 +113,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         private void SpawnVisuals(Vec3 position, Vec3 normal)
         {
             //play visuals
-            if (_template.BurstParticleEffectPrefab != "none")
+            if (_template!=null&&_template.BurstParticleEffectPrefab != "none")
             {
                 var effect = GameEntity.CreateEmpty(Mission.Current.Scene);
                 MatrixFrame frame = MatrixFrame.Identity;
@@ -126,7 +127,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         private void PlaySound(Vec3 position)
         {
             //play sound
-            if (_template.SoundEffectId != "none")
+            if (_template!=null&&_template.SoundEffectId != "none")
             {
                 _soundIndex = SoundEvent.GetEventIdFromString(_template.SoundEffectId);
                 _sound = SoundEvent.CreateEvent(_soundIndex, Mission.Current.Scene);
@@ -139,7 +140,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
 
         private void TriggerScript(Vec3 position, Agent triggerer, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            if (_template.ScriptNameToTrigger != "none")
+            if (_template!=null&&_template.ScriptNameToTrigger != "none")
             {
                 try
                 {

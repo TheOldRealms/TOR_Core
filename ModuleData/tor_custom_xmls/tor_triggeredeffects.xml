@@ -854,10 +854,55 @@
             DamageAmount="0" 
             Radius="1.5" 
             HasShockWave="false" 
-            TargetType="Enemy" 
+            TargetType="Self" 
             DamageVariance="0" 
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.KnockDownScript"/>
-      
+
+
+		<TriggeredEffectTemplate StringID="apply_knightly_charge" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="8" 
+            HasShockWave="false" 
+            TargetType="Self" 
+            ImbuedStatusEffectDuration="2.1" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>knightly_charge_lsc</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+	  
+		<TriggeredEffectTemplate StringID="apply_holy_grail_lance_trait" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="8" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="2.1" 
+            DamageVariance="0" 
+            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyHolyItemTraitScript" />
+			
+		<TriggeredEffectTemplate StringID="apply_red_fury" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="3" 
+            HasShockWave="false" 
+            TargetType="Self" 
+            ImbuedStatusEffectDuration="2.1" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>redfury_effect_dmg</ImbuedStatusEffect>
+			<ImbuedStatusEffect>redfury_effect_res</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+	  
       <TriggeredEffectTemplate StringID="apply_righteous_fury" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
@@ -871,6 +916,36 @@
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>righteous_fury_effect</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+	  
+	  <TriggeredEffectTemplate StringID="apply_mistwalk" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="10" 
+            HasShockWave="false" 
+            TargetType="Self" 
+            ImbuedStatusEffectDuration="3" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>mistwalk_base</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+	  
+	  <TriggeredEffectTemplate StringID="apply_mistwalk_area" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="10" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="2.1" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>mistwalk_healing_group</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
       
       <TriggeredEffectTemplate StringID="apply_righteous_fury_pulse" 

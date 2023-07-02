@@ -40,7 +40,6 @@ namespace TOR_Core.Models
         
         private void AddCareerSpecificFoodPerks(ref ExplainedNumber values, MobileParty party)
         {
-            //TODO Generalized perks?
             var choices = party.LeaderHero.GetAllCareerChoices();
             
             if (choices.Contains("SigmarsProclaimerPassive3"))

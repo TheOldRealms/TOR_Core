@@ -80,15 +80,26 @@ namespace TOR_Core.Extensions
             return agent.GetAttributes().Contains("Undead");
         }
 
-        public static bool IsJuggernaut(this Agent agent)
+        public static bool IsDamageShruggedOff(this Agent agent, int inflictedDamge=0)
         {
+            if (inflictedDamge > 15) return false;
+            
             if (agent.IsMainAgent && agent.GetHero().HasAnyCareer())
             {
-                return agent.GetHero().GetAllCareerChoices().Contains("ProtectorOfTheWeakPassive4");
+                if (agent.GetHero().GetAllCareerChoices().Contains("ProtectorOfTheWeakPassive4"))
+                    return true;
+                if (agent.GetHero().GetAllCareerChoices().Contains("BladeMasterPassive3"))
+                    return true;
+                if (agent.GetHero().GetAllCareerChoices().Contains("CommanderPassive3"))
+                    return true;
+                if (agent.GetHero().GetAllCareerChoices().Contains("QuestingVowPassive4"))
+                    return true;
             }
 
             return false;
         }
+
+       
 
         public static bool ShouldNotBleed(this Agent agent)
         {
@@ -669,6 +680,8 @@ namespace TOR_Core.Extensions
             //Cap healing at the agent's max hit points
             agent.Health = Math.Min(agent.Health + healingAmount, agent.HealthLimit);
         }
+        
+
 
         public static void ApplyStatusEffect(this Agent agent, string effectId, Agent applierAgent, float duration = 5, bool append = true, bool isMutated = false)
         {

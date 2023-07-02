@@ -46,7 +46,19 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         {
             if (mapEvent.PlayerSide == mapEvent.WinningSide && Hero.MainHero.CanRaiseDead())
             {
-                var troops = CalculateTroops(mapEvent);
+                List<CharacterObject> troops = new List<CharacterObject>();
+                var reduction = 0;
+                if (Hero.MainHero.HasAnyCareer())
+                {
+                    if (Hero.MainHero.GetAllCareerChoices().Contains("DoomRiderPassive4"))
+                    {
+                        var bloodKnights = CalculateBloodKnightsCandidates(mapEvent, out reduction);
+                        troops.AddRange(bloodKnights);
+                    }
+                }
+                
+                var undeadTroops = CalculateRaiseDeadTroops(mapEvent, reduction);
+                troops.AddRange(undeadTroops);
                 for (int i = 0; i < troops.Count; i++)
                 {
                     PlayerEncounter.Current.RosterToReceiveLootMembers.AddToCounts(troops[i], 1);
@@ -65,10 +77,46 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             _raiseableCharacters = characters.Where(character => character.IsUndead() && character.IsBasicTroop).ToList();
         }
 
-        private List<CharacterObject> CalculateTroops(MapEvent mapEvent)
+        private List<CharacterObject> CalculateBloodKnightsCandidates(MapEvent mapEvent, out int reduced)
+        {
+            reduced = 0;
+            List<CharacterObject> elements = new List<CharacterObject>();
+
+            CharacterObject BloodKnightTemplate = MBObjectManager.Instance.GetObject<CharacterObject>("tor_ror_dragon_knight_initiate");        //I assume that needs change, beware
+
+            var partiesOnSide = mapEvent.PartiesOnSide(mapEvent.DefeatedSide);
+
+
+            foreach (var party in partiesOnSide)
+            {
+                var roster = party.Troops.Where(x => x.IsKilled);
+                foreach (var rosterMember in roster)
+                {
+                    if(rosterMember.Troop.IsUndead()||rosterMember.Troop.IsBeastman())
+                        continue;
+                    
+                    if (rosterMember.Troop.Tier<4)
+                    {
+                        if (MBRandom.RandomFloat >= 0.15f) continue;
+                        elements.Add(BloodKnightTemplate);
+                        reduced++;
+                    }
+                    else
+                    {
+                        if (MBRandom.RandomFloat >= 0.4f) continue;
+                        elements.Add(BloodKnightTemplate);
+                        reduced++;
+                    }
+                }
+            }
+            
+            return elements;
+        }
+
+        private List<CharacterObject> CalculateRaiseDeadTroops(MapEvent mapEvent, int reduction=0)
         {
             List<CharacterObject> elements = new List<CharacterObject>();
-            var num = mapEvent.GetMapEventSide(mapEvent.DefeatedSide).Casualties;
+            var num = mapEvent.GetMapEventSide(mapEvent.DefeatedSide).Casualties- reduction;
             double raiseDeadChance = Hero.MainHero.GetRaiseDeadChance();
             for (int i = 0; i <= num; i++)
             {

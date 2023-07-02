@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.BountyMaster;
@@ -14,6 +15,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
+using FaceGen = TaleWorlds.Core.FaceGen;
 
 namespace TOR_Core.Extensions
 {
@@ -31,7 +33,23 @@ namespace TOR_Core.Extensions
         /// <returns></returns>
         public static float GetRaiseDeadChance(this Hero hero)
         {
-            return hero.GetAttributeValue(DefaultCharacterAttributes.Intelligence) * 0.07f;
+            var explainedNumber = new ExplainedNumber();
+            var attributes = hero.GetAttributeValue(TORAttributes.Discipline); //was intelligence Intentional?
+           explainedNumber.Add(attributes * 0.07f);
+
+            if (hero.HasAnyCareer())
+            {
+                var choices = hero.GetAllCareerChoices();
+
+                if (choices.Contains("MasterOfDeadPassive2"))
+                {
+                    var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive2");
+                    if(choice!=null)
+                        explainedNumber.AddFactor(choice.GetPassiveValue());
+                }
+            }
+
+            return explainedNumber.ResultNumber;
         }
 
         public static float AddWindsOfMagic(this Hero hero, float amount)
@@ -50,6 +68,8 @@ namespace TOR_Core.Extensions
                     result = info.MaxWindsOfMagic - info.CurrentWindsOfMagic;
                     info.CurrentWindsOfMagic = info.MaxWindsOfMagic;
                 }
+
+                
             }
             return result;
         }
@@ -59,7 +79,7 @@ namespace TOR_Core.Extensions
             return ExtendedInfoManager.Instance.GetHeroInfoFor(hero.GetInfoKey());
         }
 
-        public static int GetEffectiveWindsCostForSpell(this Hero hero, Spell spell)
+        public static int GetEffectiveWindsCostForSpell(this Hero hero, Spell spell)            
         {
             return hero.GetEffectiveWindsCostForSpell(spell.Template);
         }
@@ -179,6 +199,11 @@ namespace TOR_Core.Extensions
         public static bool IsVampire(this Hero hero)
         {
             return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("vampire");
+        }
+
+        public static bool IsCultist(this Hero hero)
+        {
+            return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("chaos_ud_cultist");
         }
         
         public static bool IsAICompanion(this Hero hero)

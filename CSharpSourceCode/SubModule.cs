@@ -102,12 +102,11 @@ namespace TOR_Core
                 starter.AddBehavior(new TORCustomSettlementCampaignBehavior());
                 starter.AddBehavior(new RaidingPartyCampaignBehavior());
                 starter.AddBehavior(new CustomDialogCampaignBehavior());
-                starter.AddBehavior(new SpellBookMapIconCampaignBehavior());
+               // starter.AddBehavior(new SpellBookMapIconCampaignBehavior());
                 starter.AddBehavior(new PostBattleCampaignBehavior());
                 starter.AddBehavior(new RaiseDeadInTownBehavior());
                 starter.AddBehavior(new RORCampaignBehavior());
                 starter.AddBehavior(new TORCaptivityCampaignBehavior());
-                starter.AddBehavior(new TORPartyHealCampaignBehavior());
                 starter.AddBehavior(new AssimilationCampaignBehavior());
                 starter.AddBehavior(new TORWanderersCampaignBehavior());
                 starter.AddBehavior(new SpellTrainerInTownBehavior());
@@ -121,6 +120,7 @@ namespace TOR_Core
                 starter.AddBehavior(new ReligionCampaignBehavior());
                 starter.AddBehavior(new BountyMasterCampaignBehavior());
                 starter.AddBehavior(new HuntCultistsQuestCampaignBehavior());
+                starter.AddBehavior(new TORCareerPerkCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
@@ -168,6 +168,8 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORClanPoliticsModel());
                 gameStarterObject.AddModel(new TORMapVisibilityModel());
                 gameStarterObject.AddModel(new TORTournamentModel());
+                gameStarterObject.AddModel(new TORDiplomacyModel());
+                gameStarterObject.AddModel(new TORRaidModel());
 
                 CampaignOptions.IsLifeDeathCycleDisabled = true;
             }
@@ -205,9 +207,11 @@ namespace TOR_Core
             mission.AddMissionBehavior(new UndeadMoraleMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new ForceAtmosphereMissionLogic());
+   
 
             if (Game.Current.GameType is Campaign)
             {
+                mission.AddMissionBehavior(new CareerPerkMissionBehavior());
                 if (mission.GetMissionBehavior<BattleAgentLogic>() != null)
                 {
                     mission.RemoveMissionBehavior(mission.GetMissionBehavior<BattleAgentLogic>());

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -351,7 +351,6 @@
     <Compile Include="AbilitySystem\Spells\Spell.cs" />
     <Compile Include="AbilitySystem\Spells\LoreObject.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\LoreObjectVM.cs" />
-    <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookMapIconCampaignBehavior.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookMapIconVM.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookScreen.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookState.cs" />
@@ -402,6 +401,7 @@
     <Compile Include="BattleMechanics\Atmosphere\ForceAtmosphereMissionLogic.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerManager.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerMissionLogic.cs" />
+    <Compile Include="BattleMechanics\CareerPerkMissionBehavior.cs" />
     <Compile Include="BattleMechanics\CustomCrosshairMissionBehavior.cs" />
     <Compile Include="BattleMechanics\DamageSystem\DamageType.cs" />
     <Compile Include="BattleMechanics\Dismemberment\DismembermentMissionLogic.cs" />
@@ -457,11 +457,11 @@
     <Compile Include="BattleMechanics\TORBattleAgentLogic.cs" />
     <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCaptivityCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\TORCareerPerkCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORBaseSettlementComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORSettlementComponents.cs" />
     <Compile Include="CampaignMechanics\TORMapInfoVMExtension.cs" />
-    <Compile Include="CampaignMechanics\TORPartyHealCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORPartyUpgraderCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORWanderersCampaignBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerAbilityEffectVM.cs" />
@@ -476,7 +476,12 @@
     <Compile Include="CharacterDevelopment\CareerSystem\CareerScreenGameState.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerScreenVM.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CharacterDeveloperVMExtension.cs" />
-    <Compile Include="CharacterDevelopment\CareerSystem\WarriorPriestCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\BloodKnightCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\GrailKnightCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\MercenaryCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\TORCareerChoicesBase.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\VampireCountCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\WarriorPriestCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\TORAttributes.cs" />
     <Compile Include="CharacterDevelopment\TORCareerChoiceGroups.cs" />
     <Compile Include="CharacterDevelopment\TORCareerChoices.cs" />
@@ -572,6 +577,7 @@
     <Compile Include="Models\TORCompanionHiringPriceCalculationModel.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleAgentStatCalculateModel.cs" />
     <Compile Include="Models\TORDamageParticleModel.cs" />
+    <Compile Include="Models\TORDiplomacyModel.cs" />
     <Compile Include="Models\TORFaithModel.cs" />
     <Compile Include="Models\TORInventoryCapacityModel.cs" />
     <Compile Include="Models\TORMapVisibilityModel.cs" />
@@ -588,6 +594,7 @@
     <Compile Include="Models\TORPartyWageModel.cs" />
     <Compile Include="Models\TORPersuasionModel.cs" />
     <Compile Include="Models\TORPrisonerRecruitmentCalculationModel.cs" />
+    <Compile Include="Models\TORRaidModel.cs" />
     <Compile Include="Models\TORSettlementMilitiaModel.cs" />
     <Compile Include="Models\TORAbilityModel.cs" />
     <Compile Include="Models\TORStrikeMagnitudeModel.cs" />

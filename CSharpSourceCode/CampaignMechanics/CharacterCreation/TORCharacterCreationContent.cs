@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterCreationContent;
+using TaleWorlds.CampaignSystem.Conversation.Tags;
 using TaleWorlds.CampaignSystem.Extensions;
 using TaleWorlds.CampaignSystem.GameState;
 using TaleWorlds.CampaignSystem.Party;
@@ -210,11 +211,18 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
             }
+
+            if (selectedOption.OptionText == "Knight Errant")
+            {
+                Hero.MainHero.AddCareer(TORCareers.GrailKnight);
+            }
+            
             if (selectedOption.OptionText == "Priest Acolyte")
             {
                 Hero.MainHero.AddAttribute("Priest");
                 Hero.MainHero.AddAbility("HealingHand");
                 Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 60);
+                Hero.MainHero.AddCareer(TORCareers.WarriorPriest);
             }
             else if (selectedOption.OptionText == "Novice Necromancer"||selectedOption.OptionText == "Necromancer")
             {
@@ -233,6 +241,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddAttribute("Vampire");
                 Hero.MainHero.AddAttribute("Necromancer");
                 Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 60);
+            }
+
+            if (Hero.MainHero.GetCareer() == null)
+            {
+                Hero.MainHero.AddCareer(TORCareers.Mercenary);
             }
         }
 
@@ -333,8 +346,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
                 MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy and Dark Magic"), 0, CharacterObject.PlayerCharacter);
+                Hero.MainHero.AddCareer(TORCareers.MinorVampire);
             }
-            //TODO add careers here
+
+            if (choice == "blood_knight")
+            {
+                Hero.MainHero.AddCareer(TORCareers.BloodKnight);
+            }
         }
     }
 }
