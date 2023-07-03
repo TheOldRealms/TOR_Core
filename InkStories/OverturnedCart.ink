@@ -112,12 +112,12 @@ After lifting the cart the man {InjuryRoll == 0: gets up}{InjuryRoll == 1: barel
 ===Result===
 
     =noreward
-    {came_from(-> AfterLift.Bonus): {ChangeTraitValue("Mercy", 1)}}
+    {came_from(-> AfterLift.Bonus): {AddTraitInfluence("Mercy", 20)}}
     You continue your journey. ->END
     
     =takehorses
     {GiveItem("old_horse", 2)}
-    {ChangeTraitValue("Mercy", -2)}
+    {AddTraitInfluence("Mercy", -20)}
     You take two old work horses and leave. -> END
     
     =raisedead
@@ -129,9 +129,9 @@ After lifting the cart the man {InjuryRoll == 0: gets up}{InjuryRoll == 1: barel
         - Reward == "5 grain" : {GiveItem("grain", 5)}
         - Reward == "2 steel ingots" : {GiveItem("ironIngot4", 2)}
     }
-    {IsExtorted == true: {ChangeTraitValue("Mercy", -1)}}
-    {IsExtorted == false && came_from(-> AfterLift.Bonus): {ChangeTraitValue("Mercy", 1)}}
-    {came_from(-> raisedead): {ChangeTraitValue("Mercy", -3)} Looting the cart you find | You recieve } {Reward}. -> END
+    {IsExtorted == true: {AddTraitInfluence("Mercy", -20)}}
+    {IsExtorted == false && came_from(-> AfterLift.Bonus): {AddTraitInfluence("Mercy", 20)}}
+    {came_from(-> raisedead): {AddTraitInfluence("Mercy", -30)} Looting the cart you find | You recieve } {Reward}. -> END
     
     =relations
     {ChangeRelations(Notable, 2)}
