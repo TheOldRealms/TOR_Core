@@ -9,7 +9,7 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
-    public class TORRecruitmentCampaignBehavior : CampaignBehaviorBase
+    public class TORAIRecruitmentCampaignBehavior : CampaignBehaviorBase
     {
         public override void RegisterEvents()
         {
@@ -23,18 +23,8 @@ namespace TOR_Core.Models
         private void TORRecruitmentBehavior(Hero recruiter, Settlement settlement, Hero recruitmentSource, CharacterObject troop, int amount)
         {
             if(recruiter==null) return;
+            if (recruiter == Hero.MainHero) return;
             
-            /*if (recruiter.Culture != troop.Culture)
-            {
-                if (troop.IsBasicTroop)
-                {
-                    troop = recruiter.Culture.BasicTroop;
-                }
-                
-            }*/
-            
-            
-
             if (recruiter.CharacterObject.IsBloodDragon())
             {
                 if (troop.StringId == "tor_vc_vampire_newblood") return;
@@ -45,15 +35,13 @@ namespace TOR_Core.Models
                     if ((!troop.IsBasicTroop && random > 0.25f)||random > 0.75f)
                     {
                         
-                        var bloodKnightInitate = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_vampire_newblood");
+                        var bloodKnightInitate = MBObjectManager.Instance.GetObject<CharacterObject>("tor_ror_dragon_knight_initiate");
                         CampaignEventDispatcher.Instance.OnTroopRecruited(recruiter, settlement, recruitmentSource, bloodKnightInitate, 1);
-                        //recruiter.PartyBelongedTo.Party.AddMember(bloodKnightInitate, 1, 0);
                     }
                 }
                 if(recruitmentSource!=null)
                     recruitmentSource.SetPersonalRelation(recruiter, recruitmentSource.GetBaseHeroRelation(recruiter)-1);
                 recruiter.PartyBelongedTo.Party.AddMember(troop, -amount);
-                //recruiter.PartyBelongedTo.MemberRoster.RemoveTroop(troop, amount);
             }
         }
     }

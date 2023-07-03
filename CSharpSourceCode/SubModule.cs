@@ -119,7 +119,7 @@ namespace TOR_Core
                 starter.AddBehavior(new BountyMasterCampaignBehavior());
                 starter.AddBehavior(new HuntCultistsQuestCampaignBehavior());
                 starter.AddBehavior(new TORCareerPerkCampaignBehavior());
-                starter.AddBehavior(new TORRecruitmentCampaignBehavior());
+                starter.AddBehavior(new TORAIRecruitmentCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
