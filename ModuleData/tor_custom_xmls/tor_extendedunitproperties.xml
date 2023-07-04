@@ -3508,7 +3508,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wanderer_empire_1">
     <Abilities>
-      <string>HealingAOE</string>
+      <string>HealingLight</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
