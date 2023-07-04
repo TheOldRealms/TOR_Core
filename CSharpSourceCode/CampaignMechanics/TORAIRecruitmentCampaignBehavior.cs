@@ -28,15 +28,13 @@ namespace TOR_Core.Models
             if (recruiter.CharacterObject.IsBloodDragon())
             {
                 if (troop.StringId == "tor_vc_vampire_newblood") return;
-                
                 for (int i = 0; i < amount; i++)
                 {
                     var random = MBRandom.RandomFloat;
                     if ((!troop.IsBasicTroop && random > 0.25f)||random > 0.75f)
                     {
-                        
                         var bloodKnightInitate = MBObjectManager.Instance.GetObject<CharacterObject>("tor_ror_dragon_knight_initiate");
-                        CampaignEventDispatcher.Instance.OnTroopRecruited(recruiter, settlement, recruitmentSource, bloodKnightInitate, 1);
+                        recruiter.PartyBelongedTo.Party.AddMember(bloodKnightInitate, 1);
                     }
                 }
                 if(recruitmentSource!=null)
