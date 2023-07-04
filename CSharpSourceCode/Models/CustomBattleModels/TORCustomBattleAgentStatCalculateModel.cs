@@ -1,9 +1,15 @@
-﻿using TaleWorlds.MountAndBlade;
+﻿using SandBox.Missions.MissionLogics;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
+using TOR_Core.AbilitySystem;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics.Crosshairs;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models.CustomBattleModels
 {
@@ -24,6 +30,21 @@ namespace TOR_Core.Models.CustomBattleModels
             }
 
             return base.GetMaxCameraZoom(agent);
+        }
+
+        public override void InitializeMissionEquipment(Agent agent)
+        {
+            if (agent.Origin is SummonedAgentOrigin) return;
+            base.InitializeMissionEquipment(agent);
+            if (agent.IsHuman)
+            {
+                var character = agent.Character;
+                if (character != null)
+                {
+                    if(Mission.Current.IsSiegeBattle|| Mission.Current.IsFriendlyMission || Mission.Current.GetMissionBehavior<HideoutMissionController>()!=null )
+                        TOREquipmentHelper.RemoveLanceFromEquipment(agent);
+                }
+            }
         }
 
         public override void UpdateAgentStats(Agent agent, AgentDrivenProperties agentDrivenProperties)

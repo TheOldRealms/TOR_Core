@@ -1,5 +1,6 @@
 using Helpers;
 using SandBox.GameComponents;
+using SandBox.Missions.MissionLogics;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
@@ -15,6 +16,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -70,6 +72,17 @@ namespace TOR_Core.Models
             {
                 var character = agent.Character as CharacterObject;
                 var mobileParty = agent.GetOriginMobileParty();
+                
+                if (agent!=Agent.Main&& character != null)
+                {
+                    if (Mission.Current.IsSiegeBattle || Mission.Current.GetMissionBehavior<HideoutMissionController>() != null)
+                    {
+                        TOREquipmentHelper.RemoveLanceFromEquipment(agent);
+                    }
+                   
+                }
+                
+                
                 if (character != null && mobileParty != null)
                 {
                     MissionEquipment equipment = agent.Equipment;
@@ -80,6 +93,20 @@ namespace TOR_Core.Models
                         if (!missionWeapon.IsEmpty)
                         {
                             WeaponComponentData currentUsageItem = missionWeapon.CurrentUsageItem;
+                            if (agent.HasMount)
+                            {
+                                if (currentUsageItem != null && currentUsageItem.IsMeleeWeapon && currentUsageItem.IsPolearm)
+                                {
+                                    if (character.IsKnightUnit())
+                                    {
+                                        if (missionWeapon.Item.Name.Contains("lance"))
+                                        {
+                                        
+                                        }
+                                    }
+                                }
+                            }
+                           
                             if (currentUsageItem != null && currentUsageItem.IsAmmo && currentUsageItem.RelevantSkill != null)
                             {
                                 ExplainedNumber ammoCount = new ExplainedNumber(missionWeapon.Amount);
