@@ -1,8 +1,9 @@
-﻿using SandBox.Missions.MissionLogics;
+using SandBox.Missions.MissionLogics;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.Battle.CrosshairMissionBehavior;
@@ -41,8 +42,8 @@ namespace TOR_Core.Models.CustomBattleModels
                 var character = agent.Character;
                 if (character != null)
                 {
-                    if(Mission.Current.IsSiegeBattle|| Mission.Current.IsFriendlyMission || Mission.Current.GetMissionBehavior<HideoutMissionController>()!=null )
-                        TOREquipmentHelper.RemoveLanceFromEquipment(agent);
+                    if(Mission.Current.IsSiegeBattle)
+                        TOREquipmentHelper.RemoveLanceFromEquipment(agent, false);     //i would like to change that to knights not beeing in guard position anyhow
                 }
             }
         }

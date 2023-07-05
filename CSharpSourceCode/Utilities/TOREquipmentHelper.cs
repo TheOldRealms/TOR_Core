@@ -6,7 +6,8 @@ namespace TOR_Core.Utilities
 {
     public class TOREquipmentHelper
     {
-        public static void RemoveLanceFromEquipment(Agent agent)
+        
+        public static void RemoveLanceFromEquipment(Agent agent, bool replaceWithSpear)
         {
             MissionEquipment equipment = agent.Equipment;
 
@@ -19,22 +20,15 @@ namespace TOR_Core.Utilities
                 if (missionWeapon.Item.StringId.Contains("lance"))
                 {
                     agent.RemoveEquippedWeapon((EquipmentIndex)i);
+                    if (replaceWithSpear)
+                    {
+                        var spear = MBObjectManager.Instance.GetObject<ItemObject>("tor_empire_weapon_spear_003");
+                        var weapon = new MissionWeapon(spear,missionWeapon.ItemModifier, missionWeapon.Banner);
+                        agent.EquipWeaponWithNewEntity((EquipmentIndex) i, ref weapon);
+                    }
                 }
-            }
-        }
-        
-        public static void AddSpearEquipment(Agent agent)
-        {
-            MissionEquipment equipment = agent.Equipment;
-            for (int i = (int) EquipmentIndex.WeaponItemBeginSlot; i < (int) EquipmentIndex.NumAllWeaponSlots; i++)
-            {
-                EquipmentIndex equipmentIndex = (EquipmentIndex)i;
-                MissionWeapon wieldedWeapon = equipment[equipmentIndex];
-                if(!wieldedWeapon.IsEmpty )continue;
-                var item = MBObjectManager.Instance.GetObject<ItemObject>("tor_empire_weapon_halberd_001");
-                var missionWeapon = new MissionWeapon(item,wieldedWeapon.ItemModifier, wieldedWeapon.Banner);
-                agent.EquipWeaponWithNewEntity((EquipmentIndex) i, ref missionWeapon);
-                
+
+               
             }
         }
     }

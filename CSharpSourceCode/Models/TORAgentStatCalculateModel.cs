@@ -75,11 +75,9 @@ namespace TOR_Core.Models
                 
                 if (agent!=Agent.Main&& character != null)
                 {
-                    if (Mission.Current.IsSiegeBattle || Mission.Current.GetMissionBehavior<HideoutMissionController>() != null)
-                    {
-                        TOREquipmentHelper.RemoveLanceFromEquipment(agent);
-                    }
-                   
+                    //Lance removal Behavior
+                    if(Mission.Current.IsSiegeBattle|| Mission.Current.IsFriendlyMission || Mission.Current.GetMissionBehavior<HideoutMissionController>()!=null )
+                        TOREquipmentHelper.RemoveLanceFromEquipment(agent, Mission.Current.IsFriendlyMission);      //i would like to change that to knights not beeing in guard position anyhow
                 }
                 
                 
@@ -95,16 +93,8 @@ namespace TOR_Core.Models
                             WeaponComponentData currentUsageItem = missionWeapon.CurrentUsageItem;
                             if (agent.HasMount)
                             {
-                                if (currentUsageItem != null && currentUsageItem.IsMeleeWeapon && currentUsageItem.IsPolearm)
-                                {
-                                    if (character.IsKnightUnit())
-                                    {
-                                        if (missionWeapon.Item.Name.Contains("lance"))
-                                        {
-                                        
-                                        }
-                                    }
-                                }
+                                if(Mission.Current.IsSiegeBattle|| Mission.Current.IsFriendlyMission || Mission.Current.GetMissionBehavior<HideoutMissionController>()!=null )
+                                    TOREquipmentHelper.RemoveLanceFromEquipment(agent,  Mission.Current.IsFriendlyMission);   
                             }
                            
                             if (currentUsageItem != null && currentUsageItem.IsAmmo && currentUsageItem.RelevantSkill != null)
