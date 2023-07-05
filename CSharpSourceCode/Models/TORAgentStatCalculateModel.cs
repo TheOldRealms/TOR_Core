@@ -91,12 +91,6 @@ namespace TOR_Core.Models
                         if (!missionWeapon.IsEmpty)
                         {
                             WeaponComponentData currentUsageItem = missionWeapon.CurrentUsageItem;
-                            if (agent.HasMount)
-                            {
-                                if(Mission.Current.IsSiegeBattle|| Mission.Current.IsFriendlyMission || Mission.Current.GetMissionBehavior<HideoutMissionController>()!=null )
-                                    TOREquipmentHelper.RemoveLanceFromEquipment(agent,  Mission.Current.IsFriendlyMission);   
-                            }
-                           
                             if (currentUsageItem != null && currentUsageItem.IsAmmo && currentUsageItem.RelevantSkill != null)
                             {
                                 ExplainedNumber ammoCount = new ExplainedNumber(missionWeapon.Amount);
