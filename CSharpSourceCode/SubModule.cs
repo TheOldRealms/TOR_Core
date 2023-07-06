@@ -168,6 +168,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORTournamentModel());
                 gameStarterObject.AddModel(new TORDiplomacyModel());
                 gameStarterObject.AddModel(new TORRaidModel());
+                gameStarterObject.AddModel(new TORBattleBannerBearersModel());
 
                 CampaignOptions.IsLifeDeathCycleDisabled = true;
             }

@@ -8,9 +8,7 @@ using TOR_Core.Extensions;
 namespace TOR_Core.Models
 {
     public class TORRaidModel : DefaultRaidModel
-
     {
-        
         public override float CalculateHitDamage(MapEventSide attackerSide, float settlementHitPoints)
         {
             var explainedNumber= new ExplainedNumber(base.CalculateHitDamage(attackerSide, settlementHitPoints));
@@ -33,7 +31,5 @@ namespace TOR_Core.Models
 
             return explainedNumber.ResultNumber;
         }
-        
-        
     }
 }

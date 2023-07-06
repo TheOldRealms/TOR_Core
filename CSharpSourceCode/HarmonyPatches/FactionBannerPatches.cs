@@ -65,12 +65,5 @@ namespace TOR_Core.HarmonyPatches
 				__result = banner;
 			}
 		}
-
-		[HarmonyPostfix]
-		[HarmonyPatch(typeof(ItemObject), "IsBannerItem", MethodType.Getter)]
-		public static void DontRecognizeVisualBannersAsBanner(ref bool __result, ItemObject __instance)
-		{
-			__result = __instance.HasBannerComponent;
-		}
 	}
 }
