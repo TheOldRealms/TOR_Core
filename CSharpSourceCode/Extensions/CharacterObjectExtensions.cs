@@ -191,7 +191,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsBloodDragon(this BasicCharacterObject characterObject)
         {
-            return characterObject.GetAttributes().Contains("Blooddragon");
+            return characterObject.GetAttributes().Contains("BloodDragon");
         }
 
         public static bool IsReligiousUnit(this CharacterObject characterObject)
