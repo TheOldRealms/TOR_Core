@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
@@ -11,6 +12,7 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
@@ -51,12 +53,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public bool IsConditionsMet(Hero hero)
         {
-            bool result = false;
-            if(_condition != null && _condition(hero))
-            {
-                result = true;
-            }
-            return result;
+            return _condition != null && _condition(hero);
         }
 
         public void MutateAbility(AbilityTemplate ability, Agent casterAgent)
@@ -64,8 +61,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             if(casterAgent != null && casterAgent.GetHero()?.GetExtendedInfo() != null)
             {
                 var info = casterAgent.GetHero().GetExtendedInfo();
+                var root = casterAgent.GetHero().GetCareer().RootNode;
                 var choices = AllChoices.Where(x => info.CareerChoices.Contains(x.StringId));
-                foreach (var choice in choices)
+                List<CareerChoiceObject> modifications = new List<CareerChoiceObject>();
+
+                modifications.Add(root);
+                modifications.AddRange(choices);
+                foreach (var choice in modifications.Where(choice => choice.HasMutations()))
                 {
                     choice.MutateAbility(ability, casterAgent);
                 }
@@ -82,7 +84,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     var choices = AllChoices.Where(x => info.CareerChoices.Contains(x.StringId));
                     foreach (var choice in choices)
                     {
-                        choice.MutateTriggeredEffect(effect, triggererAgent);
+                        if(choice.HasMutations())
+                            choice.MutateTriggeredEffect(effect, triggererAgent);
                     }
                 }
             }
@@ -93,13 +96,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             if (applierAgent != null && applierAgent.GetHero()?.GetExtendedInfo() != null)
             {
                 var info = applierAgent.GetHero().GetExtendedInfo();
-                if (info.CareerID == StringId)
+                if (info.CareerID != StringId) return;
+                var choices = new List<CareerChoiceObject>(); 
+                choices.Add(RootNode);
+                choices.AddRange(AllChoices.Where(x => info.CareerChoices.Contains(x.StringId)));
+                    
+                foreach (var choice in choices.Where(choice => choice.HasMutations()))
                 {
-                    var choices = AllChoices.Where(x => info.CareerChoices.Contains(x.StringId));
-                    foreach (var choice in choices)
-                    {
-                        choice.MutateStatusEffect(effect, applierAgent);
-                    }
+                    choice.MutateStatusEffect(effect, applierAgent);
                 }
             }
         }

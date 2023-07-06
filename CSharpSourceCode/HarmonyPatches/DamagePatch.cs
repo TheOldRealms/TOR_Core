@@ -6,7 +6,10 @@ using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.BattleMechanics.SFX;
 using TOR_Core.BattleMechanics.TriggeredEffect;
+using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Models;
@@ -55,12 +58,41 @@ namespace TOR_Core.HarmonyPatches
                 {
                     var choices = Hero.MainHero.GetAllCareerChoices();
 
+                    if ((victim.Character.Race == 0||victim.Character.IsCultist()) && choices.Contains("MartiallePassive3"))        //other humans should be added if applicable
+                    {
+                        var choice = TORCareerChoices.GetChoice("MartiallePassive3");
+                        if (choice != null)
+                        {
+                            var value = choice.GetPassiveValue();
+                            additionalDamagePercentages[(int)DamageType.Physical] += value;
+                        }
+                    }
+                    
+                    //Need to stay here because they need information about victim
+                    
+                    
                     if (victim.Character.Race != 0 && choices.Contains("HolyPurgePassive3"))
                     {
-                        additionalDamagePercentages[(int)DamageType.Physical] += 0.1f;
+                        var choice = TORCareerChoices.GetChoice("HolyPurgePassive3");
+                        if (choice != null)
+                        {
+                            var value = choice.GetPassiveValue();
+                            additionalDamagePercentages[(int)DamageType.Physical] += value;
+                        }
                     }
+                    if (!attacker.IsHero&&attacker.HasMount&&choices.Contains("DreadKnightPassive3"))
+                    {
+                        var choice = TORCareerChoices.GetChoice("DreadKnightPassive3");
+                        if (choice != null)
+                        {
+                            var value = choice.GetPassiveValue();
+                            additionalDamagePercentages[(int)DamageType.Physical] += value;
+                        }
                         
+                    }
+                   
                 }
+                
             }
 
             string abilityName = "";
@@ -82,7 +114,7 @@ namespace TOR_Core.HarmonyPatches
             }
 
             //calculating spell damage
-            if (TORSpellBlowHelper.IsSpellBlow(b)|| (attackTypeMask ==AttackTypeMask.Spell&&abilityName!="") )
+            if (TORSpellBlowHelper.IsSpellBlow(b)|| (attackTypeMask ==AttackTypeMask.Spell&&abilityName!="") )      //checking the Attackmask should be enough IsSpellBlow is checked before!
             {
                 var abilityId="";
                 int damageType = 0;
@@ -130,6 +162,8 @@ namespace TOR_Core.HarmonyPatches
                 return true;
             }
 
+           
+
             //calculating non-spell damage
             for (int i = 0; i < damageCategories.Length - 1; i++)
             {
@@ -146,29 +180,35 @@ namespace TOR_Core.HarmonyPatches
             resultDamage = (int)(resultDamage * wardSaveFactor * (1 + damageAmplifications[(int)DamageType.All])); 
             var originalDamage = b.InflictedDamage;
             b.InflictedDamage = resultDamage;
-            b.BaseMagnitude = resultDamage;
+            //b.BaseMagnitude = resultDamage;       this shouldn't be the case
 
-            if (victim.GetAttributes().Contains("Unstoppable")||(victim.IsJuggernaut() && b.InflictedDamage < 15))
+            if (victim.GetAttributes().Contains("Unstoppable")||(victim.IsDamageShruggedOff(b.InflictedDamage)))
             {
                 b.BlowFlag |= BlowFlags.ShrugOff;
             }
+            
 
             if (b.InflictedDamage > 0)
             {
                 if (attacker == Agent.Main || victim == Agent.Main)
                 {
-                    TORDamageDisplay.DisplayDamageResult(resultDamage, damageCategories, damageAmplifications);
-                    if(attacker == Agent.Main)
+                    var isVictim = victim == Agent.Main;
+                    var resultBonus = damageAmplifications;
+                    
+                    for (int i = 0; i < resultBonus.Length; i++)
                     {
-                        double damageIncrease = 0f;
-                        if (originalDamage > 0) damageIncrease = b.InflictedDamage / originalDamage;
-                        TORCommon.Say(string.Format("Modified damage by {0}", damageIncrease.ToString("P")));
+                        resultBonus[i] += additionalDamagePercentages[i];
                     }
                     
+                    TORDamageDisplay.DisplayDamageResult(resultDamage, damageCategories, resultBonus, isVictim);
+
                 }
             }
+            
             return true;
         }
+        
+        
 
         public static AttackTypeMask DetermineMask(Blow blow)
         {

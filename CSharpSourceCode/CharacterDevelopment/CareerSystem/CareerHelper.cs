@@ -1,39 +1,88 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
     public static class CareerHelper
     {
-        public static float AddSkillEffectToValue(CareerChoiceObject careerChoice, Agent agent, List<SkillObject> relevantSkills, float scalingFactor, bool highestOnly = false)
+        public static float AddSkillEffectToValue(CareerChoiceObject careerChoice, Agent agent, List<SkillObject> relevantSkills, float scalingFactor, bool highestOnly = false , bool onlyWielded=false)
         {
-            float retVal = 0f;
+            SkillObject wieldedWeaponSkill = null;
+            
+            float skillValue=0f;
             if (agent != null && agent.IsHero && relevantSkills != null && relevantSkills.Count > 0)
             {
-                foreach (var skill in relevantSkills)
+                if (onlyWielded)
                 {
-                    int skillValue = agent.GetHero().GetSkillValue(skill);
-                    var result = skillValue * scalingFactor;
-                    if (highestOnly && result > retVal) retVal = result;
-                    else retVal += result;
+                    int skillValueWielded = 0;
+                    if (agent.WieldedWeapon.Item != null)
+                    {
+                        wieldedWeaponSkill = agent.WieldedWeapon.Item?.PrimaryWeapon?.RelevantSkill;
+                        skillValueWielded= agent.GetHero().GetSkillValue(wieldedWeaponSkill);
+                    }
+                    skillValue= skillValueWielded;
                 }
-
+                else 
+                if (highestOnly)
+                {
+                    skillValue = relevantSkills.Max(x => agent.GetHero().GetSkillValue(x));
+                }
+                else
+                    foreach (var skill in relevantSkills)
+                    {
+                        skillValue += agent.GetHero().GetSkillValue(skill);
+                 
+                    }
+                
                 if (careerChoice == TORCareerChoices.GetChoice("ProtectorOfTheWeakKeyStone"))
                 {
                     if (agent.WieldedWeapon.Item?.PrimaryWeapon?.SwingDamageType != DamageTypes.Blunt) return 0f;
                 }
             }
 
-            return retVal;
+            return skillValue*scalingFactor;
+        }
+        
+        public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, AttackTypeMask mask,bool asFactor = false)
+        {
+            var choices = hero.GetAllCareerChoices();
+            foreach (var choiceID in choices)
+            {
+                var choice = TORCareerChoices.GetChoice(choiceID);
+                if (choice == null)
+                    continue;
+
+                if (choice.Passive != null && choice.Passive.PassiveEffectType == passiveEffectType)
+                {
+                    var attackMask = choice.Passive.AttackTypeMask;
+                    if ((mask & attackMask) == 0) //if mask does NOT contains attackmask
+                        continue;
+                    
+                    
+                    var value = choice.Passive.EffectMagnitude;
+                    if (choice.Passive.InterpretAsPercentage)
+                    {
+                        value /= 100;
+                    }
+                    if (asFactor)
+                    {
+                        number.AddFactor(value, new TextObject(choice.BelongsToGroup.Name.ToString()));
+                        return;
+                    }
+                    number.Add(value, new TextObject(choice.BelongsToGroup.Name.ToString()));
+                }
+            }
         }
         
         public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, bool asFactor = false)
@@ -77,7 +126,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             {
                 ApplyCareerPassivesForResistanceValues(agent, ref resistanceValues, attackTypeMaskmask);
             }
-            return new AgentPropertyContainer(propertyContainer.DamageProportions, damageValues, resistanceValues, propertyContainer.AdditionalDamagePercentages);
+            return new AgentPropertyContainer(propertyContainer.DamageProportions, propertyContainer.DamagePercentages, resistanceValues, damageValues);
         }
 
         private static void ApplyCareerPassivesForDamageValues(Agent agent, ref float[] damageAmplifications, AttackTypeMask attackMask)
@@ -121,18 +170,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     resistancePropotions[(int)damageType] += (passive.DamageProportionTuple.Percent / 100);
                 }
             }
-        }
-
-        public static bool StartWithPrayerReady(this Agent agent)
-        {
-            var hero = agent.GetHero();
-            if (hero == null) return false;
-
-            if (hero.HasCareerChoice("ArchLectorPassive1"))
-            {
-                return true;
-            }
-            return false;
         }
 
         public static bool PrayerCooldownIsNotShared(this Agent agent)

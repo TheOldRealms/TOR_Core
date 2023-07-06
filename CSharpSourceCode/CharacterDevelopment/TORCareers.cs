@@ -19,12 +19,18 @@ namespace TOR_Core.CharacterDevelopment
         private CareerObject _grailKnight;
         private CareerObject _minorVampire;
         private CareerObject _warriorPriest;
+        private CareerObject _bloodKnight;
+        private CareerObject _mercenary;
         public static CareerObject GrailKnight => Instance._grailKnight;
         public static CareerObject MinorVampire => Instance._minorVampire;
         public static CareerObject WarriorPriest => Instance._warriorPriest;
+        public static CareerObject Mercenary => Instance._mercenary;
+
+        public static CareerObject BloodKnight => Instance._bloodKnight;
 
         private List<CareerObject> _allCareers = new List<CareerObject>();
         private MBReadOnlyList<CareerObject> _readonlyCareers;
+       
         public static MBReadOnlyList<CareerObject> All => Instance._readonlyCareers;
 
         public TORCareers()
@@ -37,22 +43,30 @@ namespace TOR_Core.CharacterDevelopment
 
         private void RegisterAll()
         {
-            //_grailKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("GrailKnight"));
-            //_minorVampire = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("MinorVampire"));
+            _grailKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("GrailKnight"));
+            _minorVampire = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("MinorVampire"));
             _warriorPriest = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("WarriorPriest"));
-            //_allCareers.Add(_grailKnight);
-            //_allCareers.Add(_minorVampire);
+            _bloodKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("BloodKnight"));
+            _mercenary = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Mercenary"));
+            
+            _allCareers.Add(_grailKnight);
             _allCareers.Add(_warriorPriest);
+            _allCareers.Add(_minorVampire);
+            _allCareers.Add(_bloodKnight);
+            _allCareers.Add(_mercenary);
         }
 
         private void InitializeAll()
         {
-            //_grailKnight.Initialize("Grail Knight", "Grail Knight career is for those...", hero => hero.Clan.Tier > 2, "ShadowStep", ChargeType.NumberOfKills);
-            //_minorVampire.Initialize("Minor Vampire", "Minor Vampire is ...", hero => hero.Clan.Tier > 2, "ShadowStep", ChargeType.DamageDone, 100, typeof(ShadowStepScript));
+            _grailKnight.Initialize("Grail Knight", null, "KnightlyCharge",ChargeType.CooldownOnly,100);   
+            _bloodKnight.Initialize("Blood Knight", null, "RedFury", ChargeType.NumberOfKills,10);
+            _minorVampire.Initialize("Vampire Count", null, "ShadowStep", ChargeType.DamageDone, 400, typeof(ShadowStepScript));
             _warriorPriest.Initialize("Warrior Priest", (hero) => 
             {
                 return hero.Culture == MBObjectManager.Instance.GetObject<CultureObject>("empire") && hero.Clan.Tier >= 1;
             }, "RighteousFury", ChargeType.DamageTaken, 50);
+            
+            _mercenary.Initialize("Mercenary", null, "");
         }
     }
 }

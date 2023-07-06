@@ -10,6 +10,7 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 
 namespace TOR_Core.Extensions.ExtendedInfoSystem
 {
@@ -38,6 +39,8 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                     if (BaseCharacter.HeroObject != null && BaseCharacter.HeroObject != Hero.MainHero && BaseCharacter.HeroObject.Occupation == Occupation.Lord && BaseCharacter.HeroObject.IsSpellCaster()) return 100f;
                     ExplainedNumber explainedNumber = new ExplainedNumber(10f, false, null);
                     SkillHelper.AddSkillBonusForCharacter(TORSkills.SpellCraft, TORSkillEffects.MaxWinds, BaseCharacter, ref explainedNumber);
+                    if(Hero.MainHero.HasAnyCareer())
+                        CareerHelper.ApplyBasicCareerPassives(Hero.MainHero,ref  explainedNumber, PassiveEffectType.WindsOfMagic,false);
                     return explainedNumber.ResultNumber;
                 }
             }
@@ -52,6 +55,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                     if (BaseCharacter.HeroObject != null && BaseCharacter.HeroObject != Hero.MainHero && BaseCharacter.HeroObject.Occupation == Occupation.Lord && BaseCharacter.HeroObject.IsSpellCaster()) return 2f;
                     ExplainedNumber explainedNumber = new ExplainedNumber(1f, false, null);
                     SkillHelper.AddSkillBonusForCharacter(TORSkills.SpellCraft, TORSkillEffects.WindsRechargeRate, BaseCharacter, ref explainedNumber);
+                    
                     return explainedNumber.ResultNumber;
                 }
             }
@@ -85,6 +89,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                     }
                 }
                 list.AddRange(AcquiredAbilities);
+                
                 return list;
             }
         }

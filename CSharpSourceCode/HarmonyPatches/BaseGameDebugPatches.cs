@@ -33,12 +33,5 @@ namespace TOR_Core.HarmonyPatches
             __instance.GameType.InitializeParameters();
             return false;
         }
-
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(BannerBearerLogic), "SetFormationBanner")]
-        public static bool PreventCrashForWhateverReason(Formation formation, ItemObject newBanner)
-        {
-            return false;
-        }
     }
 }

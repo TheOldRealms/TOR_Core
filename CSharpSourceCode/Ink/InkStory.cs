@@ -119,6 +119,14 @@ namespace TOR_Core.Ink
             {
                 _story.BindExternalFunction<string>("GetPartySkillValue", GetPartySkillValue, true);
             }
+            if (!_story.TryGetExternalFunction("GetPlayerAttributeValue", out _))
+            {
+                _story.BindExternalFunction<string>("GetPlayerAttributeValue", GetPlayerAttributeValue, true);
+            }
+            if (!_story.TryGetExternalFunction("GetPartyAttributeValue", out _))
+            {
+                _story.BindExternalFunction<string>("GetPartyAttributeValue", GetPartyAttributeValue, true);
+            }
             if (!_story.TryGetExternalFunction("GiveSkillExperience", out _))
             {
                 _story.BindExternalFunction<string, int>("GiveSkillExperience", GiveSkillExperience, false);
@@ -167,10 +175,24 @@ namespace TOR_Core.Ink
             {
                 _story.BindExternalFunction<string, int>("ChangeRelations", ChangeRelations, false);
             }
-            if (!_story.TryGetExternalFunction("ChangeTraitValue", out _))
+            if (!_story.TryGetExternalFunction("AddTraitInfluence", out _))
             {
-                _story.BindExternalFunction<string, int>("ChangeTraitValue", ChangeTraitValue, false);
+                _story.BindExternalFunction<string, int>("AddTraitInfluence", AddTraitInfluence, false);
             }
+        }
+
+        private object GetPartyAttributeValue(string attributeName)
+        {
+            CharacterAttribute attribute = MBObjectManager.Instance.GetObject<CharacterAttribute>(attributeName);
+            if (attribute != null) return (float)Hero.MainHero.GetAttributeValue(attribute);
+            else return 0f;
+        }
+
+        private object GetPlayerAttributeValue(string attributeName)
+        {
+            CharacterAttribute attribute = MBObjectManager.Instance.GetObject<CharacterAttribute>(attributeName);
+            if (attribute != null) return (float)MobileParty.MainParty.GetHighestAttributeValue(attribute);
+            else return 0f;
         }
 
         private object GetRandomNotableFromSpecificSettlement(string settlementName)
@@ -187,7 +209,7 @@ namespace TOR_Core.Ink
             }
         }
 
-        private void ChangeTraitValue(string traitname, int amount)
+        private void AddTraitInfluence(string traitname, int amount)
         {
             var trait = MBObjectManager.Instance.GetObject<TraitObject>(x=>x.StringId == traitname);
             if (trait == null)
@@ -197,8 +219,7 @@ namespace TOR_Core.Ink
             }
             else
             {
-                var value = Hero.MainHero.GetTraitLevel(trait);
-                Hero.MainHero.SetTraitLevel(trait, value + amount);
+                Campaign.Current.PlayerTraitDeveloper.AddTraitXp(trait, amount);
             }
         }
 

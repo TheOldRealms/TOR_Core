@@ -2786,8 +2786,8 @@
 	</AbilityTemplate>
 	<!-- Career Abilities -->
 	<AbilityTemplate StringID="ShadowStep"
-       Name="Shadow Step"
-       SpriteName="windofdeath_icon"
+       Name="Mist Form"
+       SpriteName="mistform_icon"
        CoolDown="5"
        WindsOfMagicCost="0"
        BaseMisCastChance="0.3"
@@ -2796,7 +2796,7 @@
        AbilityType="CareerAbility"
        AbilityEffectType="CareerAbilityEffect"
        BaseMovementSpeed="0.6"
-       TickInterval="0.01"
+       TickInterval="2"
        TriggerType="EveryTick"
        HasLight="false"
        LightIntensity="0"
@@ -2808,6 +2808,7 @@
        ParticleEffectSizeModifier="1"
        SoundEffectToPlay="bats_loop"
        ShouldSoundLoopOverDuration="false"
+	   AbilityTargetType="Self"
        CastType="Instant"
        CastTime="0.5"
        AnimationActionName="none"
@@ -2823,11 +2824,11 @@
 				<z>255</z>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>shadow_step</TriggeredEffect>
+		<TriggeredEffect>apply_mistwalk</TriggeredEffect>
 	</AbilityTemplate>
 	<AbilityTemplate StringID="RighteousFury"
        Name="Righteous Fury"
-       SpriteName="windofdeath_icon"
+       SpriteName="righteousfury_icon"
        CoolDown="10"
        WindsOfMagicCost="0"
        BaseMisCastChance="0"
@@ -2865,39 +2866,36 @@
 		<TriggeredEffect>apply_righteous_fury</TriggeredEffect>
 	</AbilityTemplate>
 	
-	
-	<!-- Sigmarite Prayers -->
-	
-	<AbilityTemplate StringID="HealingAOE" 
-      Name="Circle of Healing" 
-      SpriteName="healingprayer_icon" 
-      CoolDown="40" 
-      WindsOfMagicCost="0" 
-      BaseMisCastChance="0.3" 
-      Duration="9" 
-      Radius="0.1" 
-      AbilityType="Prayer" 
-      AbilityEffectType="Heal" 
-      BaseMovementSpeed="0" 
-      TickInterval="1" 
-      TriggerType="EveryTick" 
-      HasLight="true" 
-      LightIntensity="100" 
-      LightRadius="10" 
-      LightFlickeringMagnitude="0" 
-      LightFlickeringInterval="0" 
-      ShadowCastEnabled="false" 
-      ParticleEffectPrefab="healing_circle" 
-      ParticleEffectSizeModifier="1" 
-      SoundEffectToPlay="empire_heal" 
-      ShouldSoundLoopOverDuration="false"
-      CastType="Instant" 
-      CastTime="0" 
-      AnimationActionName="act_release_heavy_thrown" 
-      Offset="0"
-      AbilityTargetType="GroundAtPosition"
-      CrosshairType="TargetedAOE"
-      TargetCapturingRadius="5">
+	<AbilityTemplate StringID="RedFury"
+       Name="Red Fury"
+       SpriteName="redfury_icon"
+       CoolDown="10"
+       WindsOfMagicCost="0"
+       BaseMisCastChance="0"
+       Duration="6"
+       Radius="1"
+       AbilityType="CareerAbility"
+       AbilityEffectType="CareerAbilityEffect"
+       BaseMovementSpeed="0"
+       TickInterval="2"
+       TriggerType="EveryTick"
+       HasLight="false"
+       LightIntensity="0"
+       LightRadius="0"
+       LightFlickeringMagnitude="0"
+       LightFlickeringInterval="0"
+       ShadowCastEnabled="false"
+       ParticleEffectPrefab=""
+       ParticleEffectSizeModifier="0"
+       SoundEffectToPlay=""
+       ShouldSoundLoopOverDuration="false"
+       CastType="Instant"
+       CastTime="0.5"
+       AnimationActionName=""
+       Offset="0"
+       AbilityTargetType="Self"
+       CrosshairType="Self"
+       TargetCapturingRadius="4">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2905,12 +2903,55 @@
 				<z>255</z>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>healing_tick</TriggeredEffect>
+		<TriggeredEffect>apply_red_fury</TriggeredEffect>
 	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="KnightlyCharge"
+       Name="Knightly Charge"
+       SpriteName="knightlycharge_icon"
+       CoolDown="90"
+       WindsOfMagicCost="0"
+       BaseMisCastChance="0"
+       Duration="6"
+       Radius="1"
+       AbilityType="CareerAbility"
+       AbilityEffectType="CareerAbilityEffect"
+       BaseMovementSpeed="0"
+       TickInterval="2"
+       TriggerType="EveryTick"
+       HasLight="false"
+       LightIntensity="0"
+       LightRadius="0"
+       LightFlickeringMagnitude="0"
+       LightFlickeringInterval="0"
+       ShadowCastEnabled="false"
+       ParticleEffectPrefab=""
+       ParticleEffectSizeModifier="0"
+       SoundEffectToPlay=""
+       ShouldSoundLoopOverDuration="false"
+       CastType="Instant"
+       CastTime="0.5"
+       AnimationActionName=""
+       Offset="0"
+       AbilityTargetType="Self"
+       CrosshairType="Self"
+       TargetCapturingRadius="4">
+		<LightColorRGB x="255" y="255" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>apply_knightly_charge</TriggeredEffect>
+	</AbilityTemplate>
+	
+	
+	<!-- Sigmarite Prayers -->
 	
 	<AbilityTemplate StringID="CometOfSigmar" 
       Name="Comet of Sigmar" 
-      SpriteName="fireball_icon" 
+      SpriteName="comet_of_sigmar_icon" 
       CoolDown="30" 
       WindsOfMagicCost="15" 
       BaseMisCastChance="0.05" 
@@ -2939,7 +2980,7 @@
       AbilityTargetType="WorldPosition"
       SpellTier="3"
       BelongsToLoreID="SigmaritePrayers"
-      TooltipDescription="You throw a fiery missile that takes the form ofSigmar’s famed twin-tailed comet. A comet of Sigmar is a holy missile with 30 Damage. It can knock units down, or throw them off horse">
+      TooltipDescription="You throw a fiery missile that takes the form of Sigmar’s famed twin-tailed comet. A comet of Sigmar is a holy missile with 30 Damage. It can knock units down, or throw them off horse.">
 		<LightColorRGB x="245" y="247" z="129" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2951,7 +2992,7 @@
 	
 	<AbilityTemplate StringID="HealingHand" 
       Name="Healing Hand" 
-      SpriteName="healingprayer_icon" 
+      SpriteName="healinghand_icon" 
       CoolDown="50" 
       WindsOfMagicCost="0" 
       BaseMisCastChance="0.3" 
@@ -2993,7 +3034,7 @@
 	
 	<AbilityTemplate StringID="AmourOfRighteousness"
       Name="Amour of Righteousness"
-      SpriteName="barkskin_icon"
+      SpriteName="armorofrighteousness_icon"
       CoolDown="10"
       WindsOfMagicCost="6"
       BaseMisCastChance="0.05"
@@ -3036,7 +3077,7 @@
 	
 	<AbilityTemplate StringID="Vanquish"
       Name="Vanquish"
-      SpriteName="swordsofrhuin_icon"
+      SpriteName="vanquish_icon"
       CoolDown="100"
       WindsOfMagicCost="13"
       BaseMisCastChance="0.05"
@@ -3081,7 +3122,7 @@
 	
 	<AbilityTemplate StringID="AerialShield" 
       Name="Aerial Shield" 
-      SpriteName="ward_of_arrows_icon" 
+      SpriteName="aerial_shield_icon" 
       CoolDown="10" 
       WindsOfMagicCost="3" 
       BaseMisCastChance="0.05" 
@@ -3125,7 +3166,7 @@
 	
 		<AbilityTemplate StringID="AuraOfTheLady" 
       Name="Aura Of The Lady" 
-      SpriteName="ward_of_arrows_icon" 
+      SpriteName="auraofthelady_icon" 
       CoolDown="10" 
       WindsOfMagicCost="3" 
       BaseMisCastChance="0.05" 
@@ -3169,7 +3210,7 @@
 	
 	<AbilityTemplate StringID="ShieldOfCombat" 
       Name="Shield Of Combat" 
-      SpriteName="ward_of_arrows_icon" 
+      SpriteName="shieldofcombat_icon" 
       CoolDown="10" 
       WindsOfMagicCost="3" 
       BaseMisCastChance="0.05" 
@@ -3213,7 +3254,7 @@
 	
 	<AbilityTemplate StringID="LadysFavour"
       Name="Lady's Favour"
-      SpriteName="resistanceaura_icon"
+      SpriteName="ladys_favor_icon"
       CoolDown="5"
       WindsOfMagicCost="3"
       BaseMisCastChance="0.05"

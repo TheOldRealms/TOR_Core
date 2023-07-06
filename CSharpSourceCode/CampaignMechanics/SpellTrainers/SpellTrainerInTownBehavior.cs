@@ -40,7 +40,6 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
             CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, OnGameMenuOpened);
             CampaignEvents.BeforeMissionOpenedEvent.AddNonSerializedListener(this, OnBeforeMissionStart);
-            CampaignEvents.PerkOpenedEvent.AddNonSerializedListener(this, OnPerkPicked);
         }
 
         private void OnBeforeMissionStart() => SpawnTrainerIfNeeded();
@@ -138,29 +137,6 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                     var info = hero.GetExtendedInfo();
                     if (info == null || info.SpellCastingLevel == SpellCastingLevel.Master) continue;
                     hero.SetSpellCastingLevel(SpellCastingLevel.Master);
-                }
-            }
-        }
-
-        private void OnPerkPicked(Hero hero, PerkObject perk)
-        {
-            var info = hero.GetExtendedInfo();
-            if (hero.IsSpellCaster() && info != null)
-            {
-                if(perk == TORPerks.SpellCraft.EntrySpells)
-                {
-                    if (info.SpellCastingLevel < SpellCastingLevel.Entry)
-                        hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
-                }
-                else if (perk == TORPerks.SpellCraft.AdeptSpells)
-                {
-                    if (info.SpellCastingLevel < SpellCastingLevel.Adept)
-                        hero.SetSpellCastingLevel(SpellCastingLevel.Adept);
-                }
-                else if (perk == TORPerks.SpellCraft.MasterSpells)
-                {
-                    if (info.SpellCastingLevel < SpellCastingLevel.Master)
-                        hero.SetSpellCastingLevel(SpellCastingLevel.Master);
                 }
             }
         }

@@ -14,6 +14,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         private MBBindingList<CareerChoiceObjectVM> _choices;
         private string _groupName;
         private bool _isActive;
+        private bool _areButtonsVisible;
         private Action _choiceChangedAction;
 
         public CareerChoiceGroupObjectVM(CareerChoiceGroupObject choiceGroup, Action choiceChangedAction)
@@ -22,6 +23,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             _groupName = _choiceGroup.Name.ToString();
             _choiceChangedAction = choiceChangedAction;
             _isActive = _choiceGroup.IsActiveForHero(Hero.MainHero);
+            _areButtonsVisible = true;
             _choices = new MBBindingList<CareerChoiceObjectVM>();
             choiceGroup.Choices.ForEach(x => _choices.Add(new CareerChoiceObjectVM(x)));
         }
@@ -53,6 +55,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             }
             if (_choiceChangedAction != null) _choiceChangedAction();
         }
+
+        private void ExecuteBeginHover() => ButtonsVisible = false;
+        private void ExecuteEndHover() => ButtonsVisible = true;
 
         [DataSourceProperty]
         public string GroupName
@@ -101,6 +106,23 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 {
                     _choices = value;
                     OnPropertyChangedWithValue(value, "Choices");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public bool ButtonsVisible
+        {
+            get
+            {
+                return _areButtonsVisible;
+            }
+            set
+            {
+                if (value != _areButtonsVisible)
+                {
+                    _areButtonsVisible = value;
+                    OnPropertyChangedWithValue(value, "ButtonsVisible");
                 }
             }
         }

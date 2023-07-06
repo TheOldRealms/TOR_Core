@@ -28,7 +28,8 @@ namespace TOR_Core.AbilitySystem
                         CareerAbility = (CareerAbility)ability;
                         CareerAbility.OnCastStart += OnCastStart;
                         CareerAbility.OnCastComplete += OnCastComplete;
-                        _knownAbilitySystem.Add(CareerAbility);
+                        if(!agent.IsSpellCaster())
+                            _knownAbilitySystem.Add(CareerAbility);
                     }
                 }
             }

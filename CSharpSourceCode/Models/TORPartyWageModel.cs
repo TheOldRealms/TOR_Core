@@ -66,17 +66,114 @@ namespace TOR_Core.Models
 
         private ExplainedNumber AddCareerSpecifWagePerks(ExplainedNumber resultValue, Hero hero, TroopRosterElement unit)
         {
-            
-            //TODO Generalized perks?
             var choices = hero.GetAllCareerChoices();
 
             if (choices.Contains("SigmarsProclaimerPassive2"))
             {
-                if (!unit.Character.IsSoldier) return resultValue;
-                var choice = TORCareerChoices.GetChoice("SigmarsProclaimerPassive2");
-                var includeRegularTroops = choices.Contains("ArchLectorPassive4");
-                var value = CalculateSigmarsProclaimerPerk(unit, includeRegularTroops, choice);
-                resultValue.Add(value, choice.BelongsToGroup.Name);
+                if (unit.Character.IsSoldier)
+                {
+                    var choice = TORCareerChoices.GetChoice("SigmarsProclaimerPassive2");
+                    var includeRegularTroops = choices.Contains("ArchLectorPassive4");
+                    var value = CalculateSigmarsProclaimerPerk(unit, includeRegularTroops, choice);
+                    resultValue.Add(value, choice.BelongsToGroup.Name);
+                }
+            }
+            
+            if (choices.Contains("DuelistPassive3"))
+            {
+                if (!unit.Character.IsMounted)
+                {
+                    var choice = TORCareerChoices.GetChoice("DuelistPassive3");
+                    if (choice != null)
+                    {
+                        float effect = choice.GetPassiveValue();
+                        float value = (unit.Character.TroopWage*unit.Number) *effect;
+                        resultValue.Add(value, choice.BelongsToGroup.Name);
+                    }
+                    
+
+                }
+            }
+            
+            if (choices.Contains("CommanderPassive1"))
+            {
+                if (unit.Character.Tier>4)
+                {
+                    var choice = TORCareerChoices.GetChoice("CommanderPassive1");
+                    if (choice != null)
+                    {
+                        float effect = choice.GetPassiveValue();
+                        float value = (unit.Character.TroopWage*unit.Number) *effect;
+                        resultValue.Add(value, choice.BelongsToGroup.Name);
+                    }
+                    
+
+                }
+            }
+            
+            if (choices.Contains("LordlyPassive3"))
+            {
+                if (unit.Character.IsVampire()&&unit.Character != Hero.MainHero.CharacterObject)
+                {
+                    var choice = TORCareerChoices.GetChoice("LordlyPassive3");
+                    if (choice != null)
+                    {
+                        float effect = choice.GetPassiveValue();
+                        float value = (unit.Character.TroopWage*unit.Number) *effect;
+                        resultValue.Add(value, choice.BelongsToGroup.Name);
+                    }
+                }
+            }
+            
+            if (choices.Contains("AvatarOfDeathPassive2"))
+            {
+                if (unit.Character.IsVampire()&&unit.Character != Hero.MainHero.CharacterObject)
+                {
+                    var choice = TORCareerChoices.GetChoice("AvatarOfDeathPassive2");
+                    if (choice != null)
+                    {
+                        float effect = choice.GetPassiveValue();
+                        float value = (unit.Character.TroopWage*unit.Number) *effect;
+                        resultValue.Add(value, choice.BelongsToGroup.Name);
+                    }
+                    
+
+                }
+          
+            }
+            
+            if (choices.Contains("MonsterSlayerPassive4"))
+            {
+                if (unit.Character != Hero.MainHero.CharacterObject&&!unit.Character.IsKnightUnit()&&unit.Character.Culture.StringId=="vlandia")
+                {
+                    var choice = TORCareerChoices.GetChoice("MonsterSlayerPassive4");
+                    if (choice != null)
+                    {
+                        float effect = choice.GetPassiveValue();
+                        float value = (unit.Character.TroopWage*unit.Number) *effect;
+                        resultValue.Add(value, choice.BelongsToGroup.Name);
+                    }
+                    
+
+                }
+          
+            }
+            
+            if (choices.Contains("MasterHorsemanPassive4"))
+            {
+                if (unit.Character != Hero.MainHero.CharacterObject&&unit.Character.IsKnightUnit())
+                {
+                    var choice = TORCareerChoices.GetChoice("MasterHorsemanPassive4");
+                    if (choice != null)
+                    {
+                        float effect = choice.GetPassiveValue();
+                        float value = (unit.Character.TroopWage*unit.Number) *effect;
+                        resultValue.Add(value, choice.BelongsToGroup.Name);
+                    }
+                    
+
+                }
+          
             }
 
             return resultValue;
@@ -86,7 +183,6 @@ namespace TOR_Core.Models
 
         private float CalculateSigmarsProclaimerPerk(TroopRosterElement unit, bool includeRegularTroops, CareerChoiceObject choice)
         {
-            //TODO could be solved better, due to rounding issue : Troop Consumption Model is here more precise.
             if (!unit.Character.UnitBelongsToCult("cult_of_sigmar"))
             {
                 if (!includeRegularTroops)
