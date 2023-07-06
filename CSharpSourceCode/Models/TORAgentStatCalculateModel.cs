@@ -1,5 +1,6 @@
 using Helpers;
 using SandBox.GameComponents;
+using SandBox.Missions.MissionLogics;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
@@ -15,6 +16,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -70,6 +72,15 @@ namespace TOR_Core.Models
             {
                 var character = agent.Character as CharacterObject;
                 var mobileParty = agent.GetOriginMobileParty();
+                
+                if (agent!=Agent.Main&& character != null)
+                {
+                    //Lance removal Behavior
+                    if(Mission.Current.IsSiegeBattle|| Mission.Current.IsFriendlyMission || Mission.Current.GetMissionBehavior<HideoutMissionController>()!=null )
+                        TOREquipmentHelper.RemoveLanceFromEquipment(agent, Mission.Current.IsFriendlyMission);      //i would like to change that to knights not beeing in guard position anyhow
+                }
+                
+                
                 if (character != null && mobileParty != null)
                 {
                     MissionEquipment equipment = agent.Equipment;
