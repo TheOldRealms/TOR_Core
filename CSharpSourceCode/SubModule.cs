@@ -190,8 +190,8 @@ namespace TOR_Core
 
         public override void OnMissionBehaviorInitialize(Mission mission)
         {
-
-            mission.RemoveMissionBehavior(mission.GetMissionBehavior<MissionGauntletCrosshair>());
+            var toRemove = mission.GetMissionBehavior<MissionGauntletCrosshair>();
+            if(toRemove != null) mission.RemoveMissionBehavior(toRemove);
 
             mission.AddMissionBehavior(new StatusEffectMissionLogic());
             mission.AddMissionBehavior(new ExtendedInfoMissionLogic());
