@@ -2367,6 +2367,7 @@
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_br_bandit_scout" />
+      <upgrade_target id="NPCCharacter.tor_br_bandit_leader" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_empire_deserter_template" />
@@ -2387,9 +2388,7 @@
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_br_bandit_leader" />
-    </upgrade_targets>
+    <upgrade_targets />
     <Equipments>
       <EquipmentSet id="tor_empire_deserter_scout_template" />
       <EquipmentSet id="tor_empire_deserter_scout_template" civilian="true" />
