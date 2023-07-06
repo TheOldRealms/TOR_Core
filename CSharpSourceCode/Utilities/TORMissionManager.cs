@@ -3,7 +3,6 @@ using SandBox.Conversation.MissionLogics;
 using SandBox.Missions.MissionLogics;
 using SandBox.View;
 using SandBox.View.Missions;
-using SandBox.View.Missions.Sound.Components;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.MapEvents;
@@ -20,8 +19,6 @@ using TaleWorlds.MountAndBlade.Source.Missions.Handlers;
 using TaleWorlds.MountAndBlade.Source.Missions.Handlers.Logic;
 using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.MountAndBlade.View.MissionViews;
-using TaleWorlds.MountAndBlade.View.MissionViews.Sound;
-using TaleWorlds.MountAndBlade.View.MissionViews.Sound.Components;
 using static TaleWorlds.MountAndBlade.Mission;
 
 namespace TOR_Core.Utilities
@@ -47,7 +44,6 @@ namespace TOR_Core.Utilities
 				new HeroSkillHandler(),
 				new MissionFightHandler(),
 				new MissionFacialAnimationHandler(),
-				new MissionDebugHandler(),
 				new MissionHardBorderPlacer(),
 				new MissionBoundaryPlacer(),
 				new MissionBoundaryCrossingHandler(),
@@ -179,7 +175,7 @@ namespace TOR_Core.Utilities
 	public class QuestFightViewCreatorModule
 	{
 		[ViewMethod("QuestFight")]
-		public static MissionView[] OpenVillageMission(Mission mission)
+		public static MissionView[] OpenQuestFightMission(Mission mission)
 		{
 			return new List<MissionView>
 			{
@@ -193,11 +189,7 @@ namespace TOR_Core.Utilities
 				ViewCreator.CreateMissionAgentStatusUIHandler(mission),
 				ViewCreator.CreateMissionMainAgentEquipmentController(mission),
 				ViewCreator.CreateMissionAgentLockVisualizerView(mission),
-				new MusicMissionView(new MusicBaseComponent[]
-				{
-					new MusicMissionSettlementComponent(),
-					new MusicMissionAlleyFightComponent()
-				}),
+				ViewCreator.CreateMissionBoundaryCrossingView(),
 				SandBoxViewCreator.CreateMissionBarterView(),
 				ViewCreator.CreateMissionLeaveView(),
 				new MissionBoundaryWallView(),

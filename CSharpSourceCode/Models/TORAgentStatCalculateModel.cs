@@ -153,14 +153,14 @@ namespace TOR_Core.Models
                         {
                             var choices = Agent.Main.GetHero().GetAllCareerChoices();
 
-                            if ((skill == DefaultSkills.OneHanded||skill == DefaultSkills.TwoHanded)&& choices.Contains("ErrantryWarPassive3")&&agentCharacter.IsKnightUnit())
+                            if ((skill == DefaultSkills.OneHanded||skill == DefaultSkills.TwoHanded)&& choices.Contains("ErrantryWarPassive3") && agent.Character.IsKnightUnit())
                             {
                                 var choice = TORCareerChoices.GetChoice("ErrantryWarPassive3");
                                 if(choice.Passive!=null)
                                     resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
                             }
                             
-                            if (skill == DefaultSkills.Polearm&&choices.Contains("EnhancedHorseCombatPassive4")&&agentCharacter.IsKnightUnit())
+                            if (skill == DefaultSkills.Polearm&&choices.Contains("EnhancedHorseCombatPassive4") && agent.Character.IsKnightUnit())
                             {
                                 var choice = TORCareerChoices.GetChoice("EnhancedHorseCombatPassive4");
                                 if(choice.Passive!=null)
@@ -173,8 +173,6 @@ namespace TOR_Core.Models
 
             return (int)resultNumber.ResultNumber;
         }
-        
-        
 
         public override string GetMissionDebugInfoForAgent(Agent agent)
         {
