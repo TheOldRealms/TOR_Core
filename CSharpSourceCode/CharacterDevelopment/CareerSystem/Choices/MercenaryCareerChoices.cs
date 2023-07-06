@@ -1,7 +1,9 @@
-﻿using TaleWorlds.Core;
+﻿using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.CampaignMechanics.Choices;
+using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Models;
 
@@ -116,6 +118,35 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _commanderPassive2.Initialize(CareerID, "15% extra damage for all melee units.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special, true)); //TORAgentStatCalculateModel 467
             _commanderPassive3.Initialize(CareerID, "Damages below 15 points do not stagger character", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special)); // Agent extension 83
             _commanderPassive4.Initialize(CareerID, "There is a 40% chance when recruiting units to recruit another of the same type for free.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Special, true)); //TORCareerPerkCampaignBehavior 29
+        }
+        
+
+        protected override void UnlockRewardTier2()
+        {
+            if(Hero.MainHero.HasKnownLore("LoreOfLife"))
+            {
+                Hero.MainHero.AddKnownLore("LoreOfBeasts");     //Known lore check within method, cant be added twice
+                return;
+            }
+
+            if (Hero.MainHero.HasKnownLore("LoreOfBeasts"))
+            {
+                Hero.MainHero.AddKnownLore("LoreOfLife");
+                return;
+            }
+        }
+        
+        protected override void UnlockRewardTier3()
+        {
+            Hero.MainHero.AddKnownLore("LoreOfHeavens");
+        }
+
+
+        public override void ClearCareerRewards()
+        {
+            Hero.MainHero.TryRemoveToRemoveKnownLore("LoreOfLife");
+            Hero.MainHero.TryRemoveToRemoveKnownLore("LoreOfBeasts");
+            Hero.MainHero.TryRemoveToRemoveKnownLore("LoreOfHeavens");
         }
     }
 }

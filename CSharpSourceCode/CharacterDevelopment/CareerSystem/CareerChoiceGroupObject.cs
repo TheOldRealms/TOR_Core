@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,8 +32,18 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public bool IsActiveForHero(Hero hero)
         {
-            if (_conditionDelegate != null) return _conditionDelegate(hero, out _);
-            else return false;
+            var value = false;
+            if (_conditionDelegate != null)
+            {
+                value=  _conditionDelegate(hero, out _);
+            }
+
+            if (value)
+            {
+                TORCareerChoices.Instance.GetCareerChoices(OwnerCareer).UnlockRewards(Tier);
+            }
+            
+            return value;
         }
 
         public string GetConditionText(Hero hero)

@@ -284,6 +284,25 @@ namespace TOR_Core.Extensions
             return hero.GetExtendedInfo().CareerChoices;
         }
 
+        public static bool TryRemoveToRemoveKnownLore(this Hero hero, string lore)
+        {
+            var info = hero.GetExtendedInfo();
+            if (hero != null && info != null)
+            {
+                if (info.HasKnownLore(lore))
+                {
+                    info.RemoveKnownLore(lore);
+                    return true;
+                }
+
+                if (info.HasAnyKnownLore())
+                {
+                    info.AcquiredAttributes.Remove("Spellcaster");
+                }
+            }
+            return false;
+        }
+        
         public static bool TryRemoveCareerChoice(this Hero hero, CareerChoiceObject choice)
         {
             var info = hero.GetExtendedInfo();
@@ -327,8 +346,14 @@ namespace TOR_Core.Extensions
                 var info = hero.GetExtendedInfo();
                 if (info != null)
                 {
+                    if (hero.HasAnyCareer())
+                    {
+                        var careerObj = TORCareerChoices.Instance.GetCareerChoices(hero.GetCareer());
+                        careerObj.ClearCareerRewards();
+                        info.CareerChoices.Clear();
+                    }
+                    
                     info.CareerID = career.StringId;
-                    info.CareerChoices.Clear();
                     info.CareerChoices.Add(career.RootNode.StringId);
                 }
             }
