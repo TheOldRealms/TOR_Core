@@ -3032,8 +3032,8 @@
 	</AbilityTemplate>
 	
 	
-	<AbilityTemplate StringID="AmourOfRighteousness"
-      Name="Amour of Righteousness"
+	<AbilityTemplate StringID="ArmourOfRighteousness"
+      Name="Armour of Righteousness"
       SpriteName="armorofrighteousness_icon"
       CoolDown="10"
       WindsOfMagicCost="6"

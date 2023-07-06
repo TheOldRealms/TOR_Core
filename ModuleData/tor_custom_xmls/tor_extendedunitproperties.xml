@@ -2281,7 +2281,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_stirland_sigmarcult_1">
     <Abilities>
-      <string>HealingAOE</string>
+      <string>HealingHand</string>
+      <string>CometOfSigmar</string>
+      <string>ArmourOfRighteousness</string>
+      <string>Vanquish</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
@@ -2289,7 +2292,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_stirland_sigmarcult_2">
     <Abilities>
-      <string>HealingAOE</string>
+      <string>HealingHand</string>
+      <string>CometOfSigmar</string>
+      <string>ArmourOfRighteousness</string>
+      <string>Vanquish</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
@@ -2297,7 +2303,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_stirland_sigmarcult_3">
     <Abilities>
-      <string>HealingAOE</string>
+      <string>HealingHand</string>
+      <string>CometOfSigmar</string>
+      <string>ArmourOfRighteousness</string>
+      <string>Vanquish</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
@@ -3502,7 +3511,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wanderer_empire_1">
     <Abilities>
-      <string>HealingAOE</string>
+      <string>HealingHand</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
