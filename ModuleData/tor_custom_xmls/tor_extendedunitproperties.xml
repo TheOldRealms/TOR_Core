@@ -3263,23 +3263,23 @@
   <CharacterExtendedInfo id="tor_vc_lord_blooddragons_factionleader">
     <Abilities />
     <Attributes>
-	<string>Blooddragon</string>
+	<string>BloodDragon</string>
 	</Attributes> 
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_blooddragons_first_2">
     <Abilities />
 	<Attributes>
-	<string>Blooddragon</string>
+	<string>BloodDragon</string>
 	</Attributes> 
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_blooddragons_first_3">
 	<Attributes>
-	<string>Blooddragon</string>
+	<string>BloodDragon</string>
 	</Attributes> 
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_blooddragons_first_4">
 	<Attributes>
-	<string>Blooddragon</string>
+	<string>BloodDragon</string>
 	</Attributes> 
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_parravon_factionleader">
