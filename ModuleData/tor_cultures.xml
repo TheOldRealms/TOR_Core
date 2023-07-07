@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <SPCultures>
 	<Culture id="empire"
 			 name="{=empirefaction}Empire of Men"
@@ -2812,7 +2812,6 @@
 			 armed_trader="NPCCharacter.tor_vc_caravan_ranged"
 			 caravan_guard="NPCCharacter.tor_vc_caravan_guard"
 			 veteran_caravan_guard="NPCCharacter.tor_vc_caravan_guard"
-			 duel_preset="NPCCharacter.empire_duel_preset"
 			 prison_guard="NPCCharacter.tor_vc_blood_knight"
 			 guard="NPCCharacter.tor_vc_blood_knight"
 			 blacksmith="NPCCharacter.blacksmith_empire"
@@ -2853,6 +2852,7 @@
 			 weapon_practice_stage_2="NPCCharacter.weapon_practice_stage_2_empire"
 			 weapon_practice_stage_3="NPCCharacter.weapon_practice_stage_3_empire"
 			 gear_dummy="NPCCharacter.gear_dummy_empire"
+			 duel_preset_equipment_roster="EquipmentRoster.emp_duel_preset_template"
 			 board_game_type="Tablut">
 		<vassal_reward_items>
 			<item id="Item.steppe_war_bow" />
@@ -4478,6 +4478,7 @@
         <template name="NPCCharacter.tor_br_caravan_ranged" />
       </basic_mercenary_troops>
     </Culture>
+	
 	<Culture id="mousillion"
             name="{=mousillionfaction}Mousillion"
             is_main_culture="true"
@@ -4759,27 +4760,30 @@
         <icon id="315" />
       </possible_clan_banner_icon_ids>
       <notable_and_wanderer_templates>
-        <template name="NPCCharacter.tor_wanderer_bretonnia_0" />
-        <template name="NPCCharacter.spc_notable_bretonnia_merch1" />
-        <template name="NPCCharacter.spc_notable_bretonnia_merch2" />
-        <template name="NPCCharacter.spc_notable_bretonnia_merch3" />
-        <template name="NPCCharacter.spc_notable_bretonnia_merch4" />
-        <template name="NPCCharacter.spc_notable_bretonnia_merch5" />
-        <template name="NPCCharacter.spc_notable_bretonnia_1" />
-        <template name="NPCCharacter.spc_notable_bretonnia_1b" />
-        <template name="NPCCharacter.spc_notable_bretonnia_2" />
-        <template name="NPCCharacter.spc_notable_bretonnia_3" />
-        <template name="NPCCharacter.spc_bretonnia_gangleader_1" />
-        <template name="NPCCharacter.spc_bretonnia_gangleader_2" />
-        <template name="NPCCharacter.spc_bretonnia_gangleader_3" />
-        <template name="NPCCharacter.spc_notable_bretonnia_artisan_1" />
-        <template name="NPCCharacter.spc_notable_bretonnia_artisan_2" />
-        <template name="NPCCharacter.spc_notable_bretonnia_rural_1" />
-        <template name="NPCCharacter.spc_notable_bretonnia_rural_2" />
-        <template name="NPCCharacter.spc_bretonnia_headman_1" />
-        <template name="NPCCharacter.spc_bretonnia_headman_2" />
-        <template name="NPCCharacter.spc_bretonnia_headman_3" />
-      </notable_and_wanderer_templates>
+			<template name="NPCCharacter.tor_wanderer_vampire_0" />
+			<template name="NPCCharacter.tor_wanderer_vampire_1" />
+			<template name="NPCCharacter.tor_wanderer_vampire_2" />
+			<template name="NPCCharacter.tor_wanderer_bretonnia_0" />
+			<template name="NPCCharacter.spc_notable_mousillion_merch1" />
+			<template name="NPCCharacter.spc_notable_mousillion_merch2" />
+			<template name="NPCCharacter.spc_notable_mousillion_merch3" />
+			<template name="NPCCharacter.spc_notable_mousillion_merch4" />
+			<template name="NPCCharacter.spc_notable_mousillion_merch5" />
+			<template name="NPCCharacter.spc_notable_mousillion_1" />
+			<template name="NPCCharacter.spc_notable_mousillion_1b" />
+			<template name="NPCCharacter.spc_notable_mousillion_2" />
+			<template name="NPCCharacter.spc_notable_mousillion_3" />
+			<template name="NPCCharacter.spc_mousillion_gangleader_1" />
+			<template name="NPCCharacter.spc_mousillion_gangleader_2" />
+			<template name="NPCCharacter.spc_mousillion_gangleader_3" />
+			<template name="NPCCharacter.spc_notable_mousillion_artisan_1" />
+			<template name="NPCCharacter.spc_notable_mousillion_artisan_2" />
+			<template name="NPCCharacter.spc_notable_mousillion_rural_1" />
+			<template name="NPCCharacter.spc_notable_mousillion_rural_2" />
+			<template name="NPCCharacter.spc_mousillion_headman_1" />
+			<template name="NPCCharacter.spc_mousillion_headman_2" />
+			<template name="NPCCharacter.spc_mousillion_headman_3" />
+	  </notable_and_wanderer_templates>
       <lord_templates>
         <template name="NPCCharacter.tor_br_rogue_lord_0" />
       </lord_templates>
