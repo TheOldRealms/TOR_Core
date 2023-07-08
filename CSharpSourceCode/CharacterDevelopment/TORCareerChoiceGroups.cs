@@ -49,6 +49,13 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _masterHorseman;
         private CareerChoiceGroupObject _grailVow;
         
+        //Grail Damsel
+        private CareerChoiceGroupObject _feyEnchantment;
+        private CareerChoiceGroupObject _inspirationOfTheLady;
+        private CareerChoiceGroupObject _talesOfGiles;
+        private CareerChoiceGroupObject _vividVisions;
+        private CareerChoiceGroupObject _justCause;
+        private CareerChoiceGroupObject _secretsOfTheGrail;
 
 
         public TORCareerChoiceGroups()
@@ -94,6 +101,13 @@ namespace TOR_Core.CharacterDevelopment
             _monsterSlayer = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("MonsterSlayer")); 
             _masterHorseman = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("MasterHorseman")); 
             _grailVow = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("GrailVow"));
+            
+            _feyEnchantment = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("FeyEnchantment"));
+            _inspirationOfTheLady = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("InspirationOfTheLady")); 
+            _talesOfGiles = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("TalesOfGiles"));
+            _vividVisions = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("VividVisions")); 
+            _justCause = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("JustCause")); 
+            _secretsOfTheGrail = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("SecretsOfTheGrail"));
             
         }
 
@@ -254,6 +268,39 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.Clan.Tier >= 5;
             });
             _grailVow.Initialize("Grail Vow", TORCareers.GrailKnight, 3, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 5";
+                return hero.Clan.Tier >= 5;
+            });
+            
+            //Grail Damsel
+            
+            _feyEnchantment.Initialize("Fey Enchantment", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _inspirationOfTheLady.Initialize("Inspiration of the Lady", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _talesOfGiles.Initialize("Tales of Giles", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _vividVisions.Initialize("Vivid Visions", TORCareers.GrailDamsel, 2, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 3";
+                return hero.Clan.Tier >= 3;
+            });
+            _justCause.Initialize("A Just Cause", TORCareers.GrailDamsel, 2, (Hero hero, out string text) =>
+            {
+                text = "Required renown: 3";
+                return hero.Clan.Tier >= 3;
+            });
+            _secretsOfTheGrail.Initialize("Secrets of the Grail", TORCareers.GrailDamsel, 3, (Hero hero, out string text) =>
             {
                 text = "Required renown: 5";
                 return hero.Clan.Tier >= 5;

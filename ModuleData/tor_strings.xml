@@ -454,10 +454,11 @@
   <string id="tor_religion_blessing_name.cult_of_myrmidia" text="{=!}Blessing of Myrmidia" />
 
   <!-- Career related -->
+  	<string id="career_title.GrailDamsel" text="{=!}Damsel of the Lady" />
     <string id="career_title.WarriorPriest" text="{=!}Warrior Priest of Sigmar" />
     <string id="career_title.MinorVampire" text="{=!}Vampire Nobility" />
     <string id="career_title.GrailKnight" text="{=!}Knight of Bretonnia" />
-	    <string id="career_title.BloodKnight" text="{=!}Blood Knight" />
+	<string id="career_title.BloodKnight" text="{=!}Blood Knight" />
 	<string id="career_title.Mercenary" text="{=!}Mercenary" />
 	
 	
@@ -477,9 +478,14 @@
   <string id="career_choicegroup2_name.GrailKnight" text="{=!}Questing Knight" />
   <string id="career_choicegroup3_name.GrailKnight" text="{=!}Grail Knight" />
   
-    <string id="career_choicegroup1_name.Mercenary" text="{=!}Recruit" />
+  <string id="career_choicegroup1_name.Mercenary" text="{=!}Recruit" />
   <string id="career_choicegroup2_name.Mercenary" text="{=!}Sergeant" />
   <string id="career_choicegroup3_name.Mercenary" text="{=!}Commander" />
+  
+  <string id="career_choicegroup1_name.GrailDamsel" text="{=!}Grail Maid" />
+  <string id="career_choicegroup2_name.GrailDamsel" text="{=!}Grail Damsel" />
+  <string id="career_choicegroup3_name.GrailDamsel" text="{=!}Prophetess" />
+
 
 
   <string id="career_description.WarriorPriest" text="{=!}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />

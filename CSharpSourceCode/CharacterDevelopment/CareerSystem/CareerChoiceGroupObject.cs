@@ -40,7 +40,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
             if (value)
             {
-                TORCareerChoices.Instance.GetCareerChoices(OwnerCareer).UnlockRewards(Tier);
+                TORCareerChoices.Instance.GetCareerChoices(OwnerCareer).UnlockCareerBenefits(Tier);
             }
             
             return value;

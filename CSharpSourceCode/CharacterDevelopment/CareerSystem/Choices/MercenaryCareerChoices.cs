@@ -82,8 +82,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            base.InitializeKeyStones();
-
             _mercenaryRootNode.Initialize(CareerID, "No Career Ability", null, true, ChoiceType.Keystone);
         }
 
@@ -121,7 +119,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         }
         
 
-        protected override void UnlockRewardTier2()
+        protected override void UnlockCareerBenefitsTier2()
         {
             if(Hero.MainHero.HasKnownLore("LoreOfLife"))
             {
@@ -136,13 +134,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             }
         }
         
-        protected override void UnlockRewardTier3()
+        protected override void UnlockCareerBenefitsTier3()
         {
             Hero.MainHero.AddKnownLore("LoreOfHeavens");
         }
 
 
-        public override void ClearCareerRewards()
+        public override void ClearCareerBenefits()
         {
             Hero.MainHero.TryRemoveToRemoveKnownLore("LoreOfLife");
             Hero.MainHero.TryRemoveToRemoveKnownLore("LoreOfBeasts");

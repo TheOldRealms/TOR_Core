@@ -217,6 +217,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddCareer(TORCareers.GrailKnight);
             }
             
+            if(selectedOption.OptionText == "Damsel of the Lady")
+            {
+                Hero.MainHero.AddCareer(TORCareers.GrailDamsel);
+            }
+            
             if (selectedOption.OptionText == "Priest Acolyte")
             {
                 Hero.MainHero.AddAttribute("Priest");

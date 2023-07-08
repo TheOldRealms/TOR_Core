@@ -4,7 +4,7 @@ using TOR_Core.CharacterDevelopment.CareerSystem;
 
 namespace TOR_Core.CampaignMechanics.Choices
 {
-    public class TORCareerChoicesBase
+    public abstract class TORCareerChoicesBase
     {
         protected CareerObject CareerID=null;
 
@@ -28,34 +28,24 @@ namespace TOR_Core.CampaignMechanics.Choices
             InitializePassives();
             InitializeKeyStones();
         }
-
         
+        protected abstract void RegisterAll();
 
 
-        protected virtual void RegisterAll()
-        {
-            
-        }
+        protected abstract void InitializeKeyStones();
 
-        protected virtual void InitializeKeyStones()
-        {
-            
-        }
+        protected abstract void InitializePassives();
 
-        protected virtual void InitializePassives()
-        {
-            
-        }
 
-        public void UnlockRewards(int tier)
+        public void UnlockCareerBenefits(int tier)
         {
             switch (tier)
             {
-                case 1: UnlockRewardTier1();
+                case 1: UnlockCareerBenefitsTier1();
                     break;
-                case 2 : UnlockRewardTier2();
+                case 2 : UnlockCareerBenefitsTier2();
                     break;
-                case 3 : UnlockRewardTier3();
+                case 3 : UnlockCareerBenefitsTier3();
                     break;
             }
         }
@@ -63,7 +53,7 @@ namespace TOR_Core.CampaignMechanics.Choices
         /**
          * Allows to set special on achieving certain tiers. Will be invoked every time the career screen opens, therefore requires previous unlock checks. Will potentially only work for Attributes or similiar, that have inbuilt checks
          */
-        protected virtual void UnlockRewardTier1()
+        protected virtual void UnlockCareerBenefitsTier1()
         {
             
         }
@@ -71,7 +61,7 @@ namespace TOR_Core.CampaignMechanics.Choices
         /**
          * Allows to set special on achieving certain tiers. Will be invoked every time the career screen opens, therefore requires previous unlock checks. Will potentially only work for Attributes or similiar, that have inbuilt checks
          */
-        protected virtual void UnlockRewardTier2()
+        protected virtual void UnlockCareerBenefitsTier2()
         {
             
         }
@@ -79,14 +69,14 @@ namespace TOR_Core.CampaignMechanics.Choices
         /**
          * Allows to set special on achieving certain tiers. Will be invoked every time the career screen opens, therefore requires previous unlock checks. Will potentially only work for Attributes or similiar, that have inbuilt checks
          */
-        protected virtual void UnlockRewardTier3()
+        protected virtual void UnlockCareerBenefitsTier3()
         {
             
         }
 
-        public virtual void ClearCareerRewards()
+        public virtual void ClearCareerBenefits()
         {
-            
+            //this should only be meaningful in 
         }
 
 

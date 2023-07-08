@@ -349,7 +349,7 @@ namespace TOR_Core.Extensions
                     if (hero.HasAnyCareer())
                     {
                         var careerObj = TORCareerChoices.Instance.GetCareerChoices(hero.GetCareer());
-                        careerObj.ClearCareerRewards();
+                        careerObj.ClearCareerBenefits();
                         info.CareerChoices.Clear();
                     }
                     

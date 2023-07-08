@@ -28,6 +28,8 @@ namespace TOR_Core.CharacterDevelopment
         public MercenaryCareerChoices MercenaryCareerChoices { get; private set; }
         
         public GrailKnightCareerChoices GrailKnightCareerChoices { get; private set; }
+        
+        public GrailDamselCareerChoices GrailDamselCareerChoices { get; private set; }
 
         private List<TORCareerChoicesBase> _allCareers =new List<TORCareerChoicesBase>();
 
@@ -38,12 +40,14 @@ namespace TOR_Core.CharacterDevelopment
             VampireCountCareerChoices = new VampireCountCareerChoices(TORCareers.MinorVampire);
             BloodKnightCareerChoices = new BloodKnightCareerChoices(TORCareers.BloodKnight);
             MercenaryCareerChoices = new MercenaryCareerChoices(TORCareers.Mercenary);
+            GrailDamselCareerChoices = new GrailDamselCareerChoices(TORCareers.GrailDamsel);
             GrailKnightCareerChoices = new GrailKnightCareerChoices(TORCareers.GrailKnight);
             _allCareers.Add(WarriorPriestCareerChoices);
             _allCareers.Add(VampireCountCareerChoices);
             _allCareers.Add(BloodKnightCareerChoices);
             _allCareers.Add(MercenaryCareerChoices);
             _allCareers.Add(GrailKnightCareerChoices);
+            _allCareers.Add(GrailDamselCareerChoices);
         }
 
         public static CareerChoiceObject GetChoice(string id) => Game.Current.ObjectManager.GetObject<CareerChoiceObject>(x => x.StringId == id);
