@@ -119,32 +119,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         }
         
 
-        protected override void UnlockCareerBenefitsTier2()
-        {
-            if(Hero.MainHero.HasKnownLore("LoreOfLife"))
-            {
-                Hero.MainHero.AddKnownLore("LoreOfBeasts");     //Known lore check within method, cant be added twice
-                return;
-            }
-
-            if (Hero.MainHero.HasKnownLore("LoreOfBeasts"))
-            {
-                Hero.MainHero.AddKnownLore("LoreOfLife");
-                return;
-            }
-        }
-        
-        protected override void UnlockCareerBenefitsTier3()
-        {
-            Hero.MainHero.AddKnownLore("LoreOfHeavens");
-        }
-
-
-        public override void ClearCareerBenefits()
-        {
-            Hero.MainHero.TryRemoveToRemoveKnownLore("LoreOfLife");
-            Hero.MainHero.TryRemoveToRemoveKnownLore("LoreOfBeasts");
-            Hero.MainHero.TryRemoveToRemoveKnownLore("LoreOfHeavens");
-        }
+      
     }
 }

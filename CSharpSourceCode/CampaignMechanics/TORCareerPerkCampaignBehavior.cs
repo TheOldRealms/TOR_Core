@@ -25,10 +25,17 @@ namespace TOR_Core.CampaignMechanics
             {
                 var party = Hero.MainHero.PartyBelongedTo;
                 var choices = Hero.MainHero.GetAllCareerChoices();
-
+                
                 if (choices.Contains("CommanderPassive4"))
                 {
                     var choice = TORCareerChoices.GetChoice("CommanderPassive4");
+                    if (choice != null)
+                        AddExtraTroopsWithChanceIfPossible(characterObject, amount, party, choice.GetPassiveValue());
+                }
+
+                if (choices.Contains("InspirationOfTheLadyPassive1"))
+                {
+                    var choice = TORCareerChoices.GetChoice("InspirationOfTheLadyPassive1");
                     if (choice != null)
                         AddExtraTroopsWithChanceIfPossible(characterObject, amount, party, choice.GetPassiveValue());
                 }

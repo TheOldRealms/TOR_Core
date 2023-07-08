@@ -220,6 +220,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             if(selectedOption.OptionText == "Damsel of the Lady")
             {
                 Hero.MainHero.AddCareer(TORCareers.GrailDamsel);
+                var knight = MBObjectManager.Instance.GetObject<CharacterObject>("tor_br_realm_knight");
+                Hero.MainHero.PartyBelongedTo.Party.AddMember(knight, 1, 0);
             }
             
             if (selectedOption.OptionText == "Priest Acolyte")

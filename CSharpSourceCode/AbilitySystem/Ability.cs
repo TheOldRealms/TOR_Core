@@ -129,7 +129,16 @@ namespace TOR_Core.AbilitySystem
             if(Template.AbilityType == AbilityType.Prayer&&!prayerCoolSeperated)
                 casterAgent.GetComponent<AbilityComponent>().SetPrayerCoolDown(Template.CoolDown);
             else
-                SetCoolDown(Template.CoolDown);
+            {
+                ExplainedNumber Cooldown =new ExplainedNumber(Template.CoolDown);
+                if (casterAgent.IsMainAgent)
+                {
+                    var player = Hero.MainHero;
+                    CareerHelper.ApplyBasicCareerPassives(player,ref Cooldown,PassiveEffectType.WindsCooldownReduction, true);
+                }
+                SetCoolDown((int)Cooldown.ResultNumber);
+            }
+                
             
             var frame = GetSpawnFrame(casterAgent); 
             
