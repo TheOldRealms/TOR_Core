@@ -268,7 +268,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 case "vlandia":
                     position2D = new Vec2(998.96f, 830.02f);
                     break;
-                case "mousillion":
+                case "mousillon":
                     position2D = new Vec2(932.531f, 1049.944f);
                     break;
                 default:

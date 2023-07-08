@@ -60,7 +60,7 @@
             <HostileReligion id="Religion.chaos_undivided" />
         </HostileReligions>
         <Followers>
-		<FollowerClan stringId="mousillion_clan_1" />
+		    <FollowerClan stringId="mousillon_clan_1" />
         </Followers>
         <ReligiousTroops>
         </ReligiousTroops>
