@@ -1782,6 +1782,96 @@
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_m_tournament_template_one_participant_v1" culture="Culture.mousillon">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
+      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
+      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_m_tournament_template_two_participant_v1" culture="Culture.mousillon">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
+      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
+      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
+      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
+      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_m_tournament_template_four_participant_v1" culture="Culture.mousillon">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
+      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
+      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
+      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
+      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
+      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
+      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
+      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
+      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_vc_skeleton_template" culture="Culture.khuzait">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_skeleton_002" />
@@ -5576,7 +5666,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
     </EquipmentSet>
   </EquipmentRoster>
-  <EquipmentRoster id="tor_vc_von_carstein_countess_template" culture="Culture.khuzait">
+  <EquipmentRoster id="tor_vc_lahmian_countess_template" culture="Culture.khuzait">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_001" />
       <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_vampire_009" />
@@ -5754,116 +5844,6 @@
       <Equipment slot="Body" id="Item.imperial_padded_cloth" />
       <Equipment slot="Gloves" id="Item.padded_vambrace" />
       <Equipment slot="Leg" id="Item.wrapped_leather_boots" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
-      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
-      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
-    </EquipmentSet>
-  </EquipmentRoster>
-  <EquipmentRoster id="tor_bretonnia_tournament_template_one_participant_v1" culture="Culture.vlandia">
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
-      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
-      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
-      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
-      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
-      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
-      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
-      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
-      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
-      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
-      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
-      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
-      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
-      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
-      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
-      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
-      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_chaos_chaos_knight_template" culture="Culture.chaos_culture">

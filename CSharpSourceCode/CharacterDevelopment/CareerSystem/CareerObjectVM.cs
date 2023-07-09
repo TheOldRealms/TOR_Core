@@ -29,14 +29,17 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         private string _choiceGroup2Condition;
         private string _choiceGroup3Condition;
         private string _freeCareerPoints;
+        private bool _tier1Active;
+        private bool _tier2Active;
+        private bool _tier3Active;
 
         public CareerObjectVM(CareerObject career)
         {
             _career = career;
-            _name = career.Name.ToString();
+            _name = GameTexts.FindText("career_title", _career.StringId).ToString();
             _spriteName = "CareerSystem\\Illustrations\\" + career.StringId;
-            _abilitySpriteName = _career.GetAbilityTemplate().SpriteName;
-            _abilityName = _career.GetAbilityTemplate().Name;
+            _abilitySpriteName = _career.GetAbilityTemplate()?.SpriteName;      //in case no career ability is found deactivate this screen
+            _abilityName = _career.GetAbilityTemplate()?.Name;
             _abilityDescription = new MBBindingList<CareerAbilityEffectVM>();
             _career.GetAbilityEffectLines().ForEach(x => _abilityDescription.Add(new CareerAbilityEffectVM(x)));
             _description = _career.Description.ToString();
@@ -50,15 +53,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 {
                     case 1:
                         _choiceGroups1.Add(new CareerChoiceGroupObjectVM(group, RefreshValues));
-                        _choiceGroup1Condition = group.GetConditionText(Hero.MainHero);
+                        if(group.GetConditionText(Hero.MainHero) != _choiceGroup1Condition) _choiceGroup1Condition += group.GetConditionText(Hero.MainHero);
                         break;
                     case 2:
                         _choiceGroups2.Add(new CareerChoiceGroupObjectVM(group, RefreshValues));
-                        _choiceGroup2Condition = group.GetConditionText(Hero.MainHero);
+                        if (group.GetConditionText(Hero.MainHero) != _choiceGroup2Condition) _choiceGroup2Condition += group.GetConditionText(Hero.MainHero);
                         break;
                     case 3:
                         _choiceGroups3.Add(new CareerChoiceGroupObjectVM(group, RefreshValues));
-                        _choiceGroup3Condition = group.GetConditionText(Hero.MainHero);
+                        if (group.GetConditionText(Hero.MainHero) != _choiceGroup3Condition) _choiceGroup3Condition += group.GetConditionText(Hero.MainHero);
                         break;
                     default:
                         break;
@@ -67,6 +70,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             _choiceGroup1Name = GameTexts.FindText("career_choicegroup1_name", _career.StringId).ToString();
             _choiceGroup2Name = GameTexts.FindText("career_choicegroup2_name", _career.StringId).ToString();
             _choiceGroup3Name = GameTexts.FindText("career_choicegroup3_name", _career.StringId).ToString();
+            _tier1Active = !_career.ChoiceGroups.Where(x => x.Tier == 1).All(x => x.IsActiveForHero(Hero.MainHero));
+            _tier2Active = !_career.ChoiceGroups.Where(x => x.Tier == 2).All(x => x.IsActiveForHero(Hero.MainHero));
+            _tier3Active = !_career.ChoiceGroups.Where(x => x.Tier == 3).All(x => x.IsActiveForHero(Hero.MainHero));
             RefreshValues();
         }
 
@@ -348,6 +354,57 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 {
                     _freeCareerPoints = value;
                     OnPropertyChangedWithValue(value, "FreeCareerPoints");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public bool Tier1Active
+        {
+            get
+            {
+                return _tier1Active;
+            }
+            set
+            {
+                if (value != _tier1Active)
+                {
+                    _tier1Active = value;
+                    OnPropertyChangedWithValue(value, "Tier1Active");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public bool Tier2Active
+        {
+            get
+            {
+                return _tier2Active;
+            }
+            set
+            {
+                if (value != _tier2Active)
+                {
+                    _tier2Active = value;
+                    OnPropertyChangedWithValue(value, "Tier2Active");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public bool Tier3Active
+        {
+            get
+            {
+                return _tier3Active;
+            }
+            set
+            {
+                if (value != _tier3Active)
+                {
+                    _tier3Active = value;
+                    OnPropertyChangedWithValue(value, "Tier3Active");
                 }
             }
         }

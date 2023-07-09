@@ -2,9 +2,6 @@ using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
@@ -12,8 +9,8 @@ using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
-using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
@@ -132,6 +129,16 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             public DamageProportionTuple DamageProportionTuple;
             public AttackTypeMask AttackTypeMask = AttackTypeMask.Melee;
             
+            public PassiveEffect(float effectValue, PassiveEffectType type, AttackTypeMask mask)
+            {
+                EffectMagnitude = effectValue;
+                Operation = OperationType.Add;
+                InterpretAsPercentage = true;
+                PassiveEffectType = type;
+                AttackTypeMask = mask;
+            }
+
+            
             public PassiveEffect(PassiveEffectType type, DamageProportionTuple damageProportionTuple, AttackTypeMask mask)
             {
                 EffectMagnitude = 0;
@@ -150,7 +157,20 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 PassiveEffectType = type;
             }
         }
+        
+        public float GetPassiveValue()
+        {
+            if (Passive == null)return 0;
+            return Passive.InterpretAsPercentage ? Passive.EffectMagnitude / 100 : Passive.EffectMagnitude;
+        }
+
+        public bool HasMutations()
+        {
+            return !_mutations.IsEmpty();
+        }
     }
+    
+    
 
     public enum ChoiceType
     {
@@ -173,11 +193,16 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         HealthRegeneration, //player life regeneration
         Damage,             //player damage, requires damage tuple
         Resistance,         //player resistance requires damage tuple
+        ArmorPenetration,   //player ignores armor with attack mask - this cant be Spells, will be ignored
+        HorseHealth,        //only player, percentage based
+        HorseChargeDamage,  //Damage When Horse is raced into infantry.
+        WindsOfMagic,       //player Winds of Magic
+        WindsCostReduction, //player Winds of Magic cost reduction
         PartyMovementSpeed, //general party speed
         TroopRegeneration,  //troop generation
         TroopMorale,        //Morale
+        TroopUpgradeCost,
         Ammo,               //Player ammo
-        WindsOfMagic,       //player winds of magic
-        
+
     }
 }

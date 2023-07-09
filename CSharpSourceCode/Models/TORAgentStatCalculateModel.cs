@@ -1,6 +1,6 @@
-using System.Linq;
 using Helpers;
 using SandBox.GameComponents;
+using SandBox.Missions.MissionLogics;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
@@ -16,6 +16,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -24,8 +25,7 @@ namespace TOR_Core.Models
         private float vampireDaySpeedModificator = 1.1f;
         private float vampireNightSpeedModificator = 1.2f;
         private CustomCrosshairMissionBehavior _crosshairBehavior;
-
-
+        
         public override void InitializeAgentStats(Agent agent, Equipment spawnEquipment, AgentDrivenProperties agentDrivenProperties, AgentBuildData agentBuildData)
         {
             base.InitializeAgentStats(agent, spawnEquipment, agentDrivenProperties, agentBuildData);
@@ -72,6 +72,15 @@ namespace TOR_Core.Models
             {
                 var character = agent.Character as CharacterObject;
                 var mobileParty = agent.GetOriginMobileParty();
+                
+                if (agent!=Agent.Main&& character != null)
+                {
+                    //Lance removal Behavior
+                    if(Mission.Current.IsSiegeBattle|| Mission.Current.IsFriendlyMission || Mission.Current.GetMissionBehavior<HideoutMissionController>()!=null )
+                        TOREquipmentHelper.RemoveLanceFromEquipment(agent, Mission.Current.IsFriendlyMission);      //i would like to change that to knights not beeing in guard position anyhow
+                }
+                
+                
                 if (character != null && mobileParty != null)
                 {
                     MissionEquipment equipment = agent.Equipment;
@@ -85,6 +94,26 @@ namespace TOR_Core.Models
                             if (currentUsageItem != null && currentUsageItem.IsAmmo && currentUsageItem.RelevantSkill != null)
                             {
                                 ExplainedNumber ammoCount = new ExplainedNumber(missionWeapon.Amount);
+
+                                if (agent.IsMainAgent&&!missionWeapon.Item.IsSpecialAmmunitionItem())
+                                {
+                                    CareerHelper.ApplyBasicCareerPassives(character.HeroObject,ref ammoCount,PassiveEffectType.Ammo);
+                                }
+
+                                if (agent.IsMainAgent && character.HeroObject.HasAnyCareer())
+                                {
+                                    var choices = character.HeroObject.GetAllCareerChoices();
+
+                                    if (missionWeapon.Item.IsSpecialAmmunitionItem()&&choices.Contains("MercenaryLordPassive1"))
+                                    {
+                                        var choice = TORCareerChoices.GetChoice("MercenaryLordPassive1");
+                                        if (choice != null)
+                                        {
+                                            ammoCount.Add(choice.GetPassiveValue());
+                                        }
+                                    }
+                                }
+                                
                                 if (currentUsageItem.RelevantSkill == TORSkills.GunPowder && currentUsageItem.WeaponClass == WeaponClass.Cartridge)
                                 {
                                     PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.AmmoWagons, mobileParty, true, ref ammoCount);
@@ -102,31 +131,53 @@ namespace TOR_Core.Models
             }
         }
 
-        public override int GetEffectiveSkill(BasicCharacterObject agentCharacter, IAgentOriginBase agentOrigin, Formation agentFormation, SkillObject skill)
+        public override int GetEffectiveSkill(Agent agent, SkillObject skill)
         {
-            if (agentOrigin is SummonedAgentOrigin) return agentCharacter.GetSkillValue(skill);
-            var result = base.GetEffectiveSkill(agentCharacter, agentOrigin, agentFormation, skill);
+            if (agent.Origin is SummonedAgentOrigin) return agent.Character.GetSkillValue(skill);
+            var result = base.GetEffectiveSkill(agent, skill);
             ExplainedNumber resultNumber = new ExplainedNumber(result, false, null);
 
-            var partyBase = ((agentOrigin != null) ? agentOrigin.BattleCombatant : null) as PartyBase;
+            var partyBase = ((agent.Origin != null) ? agent.Origin.BattleCombatant : null) as PartyBase;
             if (partyBase != null && partyBase.IsMobile)
             {
                 var mobileParty = partyBase.MobileParty;
                 if (mobileParty != null)
                 {
-                    if (skill == TORSkills.GunPowder && agentCharacter.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
+                    if (skill == TORSkills.GunPowder && agent.Character.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
                     {
                         PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.RunAndGun, mobileParty, false, ref resultNumber);
                     }
 
-                    if (skill == DefaultSkills.OneHanded && agentCharacter.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
+                    if (skill == DefaultSkills.OneHanded && agent.Character.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
                     {
                         PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.CloseQuarters, mobileParty, false, ref resultNumber);
                     }
 
-                    if (skill == DefaultSkills.Riding && agentCharacter.IsMounted && agentCharacter.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
+                    if (skill == DefaultSkills.Riding && agent.Character.IsMounted && agent.Character.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
                     {
                         PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.MountedHeritage, mobileParty, false, ref resultNumber);
+                    }
+
+                    if (mobileParty == MobileParty.MainParty)
+                    {
+                        if (mobileParty.LeaderHero.HasAnyCareer())
+                        {
+                            var choices = Agent.Main.GetHero().GetAllCareerChoices();
+
+                            if ((skill == DefaultSkills.OneHanded||skill == DefaultSkills.TwoHanded)&& choices.Contains("ErrantryWarPassive3") && agent.Character.IsKnightUnit())
+                            {
+                                var choice = TORCareerChoices.GetChoice("ErrantryWarPassive3");
+                                if(choice.Passive!=null)
+                                    resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                            }
+                            
+                            if (skill == DefaultSkills.Polearm&&choices.Contains("EnhancedHorseCombatPassive4") && agent.Character.IsKnightUnit())
+                            {
+                                var choice = TORCareerChoices.GetChoice("EnhancedHorseCombatPassive4");
+                                if(choice.Passive!=null)
+                                    resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                            }
+                        }
                     }
                 }
             }
@@ -142,8 +193,21 @@ namespace TOR_Core.Models
 
         public override float GetEffectiveMaxHealth(Agent agent)
         {
-            if (agent.Origin is SummonedAgentOrigin) return agent.BaseHealthLimit;
-            else return base.GetEffectiveMaxHealth(agent);
+            if (agent.Origin is SummonedAgentOrigin) 
+                return agent.BaseHealthLimit;
+            
+            var explainedNumber = new ExplainedNumber(base.GetEffectiveMaxHealth(agent));
+            
+            if (agent.IsMount)
+            {
+                
+                if (agent.RiderAgent!=null&&agent.RiderAgent.IsHero&&agent.RiderAgent.GetHero()==Hero.MainHero)
+                {
+                    CareerHelper.ApplyBasicCareerPassives(agent.RiderAgent.GetHero(),ref explainedNumber,PassiveEffectType.HorseHealth,true);
+                }
+            }
+            
+            return explainedNumber.ResultNumber;
         }
 
         private void UpdateAgentDrivenProperties(Agent agent, AgentDrivenProperties agentDrivenProperties)
@@ -160,7 +224,7 @@ namespace TOR_Core.Models
                     {
                         modificator = vampireNightSpeedModificator;
                     }
-                    
+
                     agentDrivenProperties.TopSpeedReachDuration *= modificator;
                     agentDrivenProperties.MaxSpeedMultiplier *= modificator;
                     agentDrivenProperties.CombatMaxSpeedMultiplier *= modificator;
@@ -175,7 +239,7 @@ namespace TOR_Core.Models
             var statusEffectComponent = agent.IsMount ? agent.RiderAgent?.GetComponent<StatusEffectComponent>() : agent.GetComponent<StatusEffectComponent>();
             if (statusEffectComponent == null)
                 return;
-            
+
             if (!statusEffectComponent.AreBaseValuesInitialized() || !statusEffectComponent.ModifiedDrivenProperties) return;
             var speedModifier = statusEffectComponent.GetMovementSpeedModifier();
             if (speedModifier != 0f)
@@ -224,7 +288,7 @@ namespace TOR_Core.Models
             var captain = agent.GetCaptainCharacter();
             if (weapon != null && character != null)
             {
-                int effectiveSkill = GetEffectiveSkill(character, agent.Origin, agent.Formation, weapon.RelevantSkill);
+                int effectiveSkill = GetEffectiveSkill(agent, weapon.RelevantSkill);
                 ExplainedNumber reloadSpeed = new ExplainedNumber(agentDrivenProperties.ReloadSpeed);
                 if (weapon.RelevantSkill == TORSkills.GunPowder)
                 {
@@ -309,64 +373,160 @@ namespace TOR_Core.Models
                         }
                     }
                 }
-                if(mask == PropertyMask.Defense || mask == PropertyMask.All)
+
+                if (mask == PropertyMask.Defense || mask == PropertyMask.All)
                 {
-                    if(agentLeader != null && agentLeader.GetPerkValue(TORPerks.Faith.Imperturbable) && agentCharacter.IsReligiousUnit())
+                    if (agentLeader != null && agentLeader.GetPerkValue(TORPerks.Faith.Imperturbable) && agentCharacter.IsReligiousUnit())
                     {
                         resistances[(int)DamageType.Physical] += (TORPerks.Faith.Imperturbable.SecondaryBonus);
                     }
                 }
             }
 
-            var result =  new AgentPropertyContainer(proportions, damageamps, resistances, damagebonuses);
-            
-            
-            if (agent== Agent.Main)
+            var result = new AgentPropertyContainer(proportions, damageamps, resistances, damagebonuses);
+
+
+            if (agent == Agent.Main)
             {
                 if (!Agent.Main.GetHero().HasAnyCareer()) return result;
-                result = CareerHelper.AddBasicCareerPassivesToPropertyContainerForMainAgent(agent,result,attackMask, mask);
-            }
-            else if (agentLeader !=null&&agentLeader==CharacterObject.PlayerCharacter)
-            {
-                if (!Agent.Main.GetHero().HasAnyCareer()) return result;
-                
+                result = CareerHelper.AddBasicCareerPassivesToPropertyContainerForMainAgent(agent, result, attackMask, mask);
+
                 var choices = Agent.Main.GetHero().GetAllCareerChoices();
 
-                if (choices.Contains("RelentlessFanaticPassive3")&& mask == PropertyMask.Defense&&attackMask==AttackTypeMask.Ranged)
+                if (choices.Contains("NewBloodPassive2") && mask == PropertyMask.Defense)
                 {
-                    if (agent.Character.UnitBelongsToCult("cult_of_sigmar"))
+                    float daytime = CampaignTime.Hours(Campaign.CurrentTime).CurrentHourInDay;
+
+                    var isNight = daytime > 18 || daytime < 4;
+                    if (isNight)
+                    {
+                        var choice = TORCareerChoices.GetChoice("NewBloodPassive2");
+                        if (choice != null)
+                        {
+                            result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                        }
+                    }
+                }
+                
+                if (agent.HasMount&&choices.Contains("EnhancedHorseCombatPassive2") && mask == PropertyMask.Attack )
+                {
+                    var choice = TORCareerChoices.GetChoice("EnhancedHorseCombatPassive2");
+                    if (choice != null)
+                    {
+                        result.AdditionalDamagePercentages[(int)DamageType.Physical] += choice.GetPassiveValue();
+                    }
+                    
+                }
+            }
+            else if (agentLeader != null && agentLeader == CharacterObject.PlayerCharacter)
+            {
+                if (!Agent.Main.GetHero().HasAnyCareer()) return result;
+
+                var choices = Agent.Main.GetHero().GetAllCareerChoices();
+
+                if (choices.Contains("RelentlessFanaticPassive3") && mask == PropertyMask.Defense && attackMask == AttackTypeMask.Ranged)
+                {
+                    if (agent.Character.UnitBelongsToCult("cult_of_sigmar")||(!agent.Character.IsReligiousUnit() && choices.Contains("Archlector2")))
                     {
                         var choice = TORCareerChoices.GetChoice("RelentlessFanaticPassive3");
-                        if (choice == null || choice.Passive == null) return result;
-                        float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
-                        result.ResistancePercentages[(int) DamageType.Physical] += value;
+                        if (choice != null)
+                        {
+                            result.ResistancePercentages[(int)DamageType.Physical] += choice.GetPassiveValue();
+                        }
+                        
                     }
                 }
+                
                 if (choices.Contains("HolyPurgePassive2") && mask == PropertyMask.Defense)
                 {
-                    if (agent.Character.UnitBelongsToCult("cult_of_sigmar"))
+                    if (agent.Character.UnitBelongsToCult("cult_of_sigmar")||(!agent.Character.IsReligiousUnit() && choices.Contains("Archlector2")))
                     {
                         var choice = TORCareerChoices.GetChoice("HolyPurgePassive2");
-                        if (choice == null || choice.Passive == null) return result;
-                        float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
-                        result.ResistancePercentages[(int) DamageType.Physical] += value;
+                        if (choice != null)
+                        {
+                            result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                        }
+                        
                     }
                 }
-
+                
                 if (choices.Contains("HolyPurgePassive4") && mask == PropertyMask.Attack)
                 {
-                    bool isSigmariteTroop= agent.Character.UnitBelongsToCult("cult_of_sigmar")|| (!agent.Character.IsReligiousUnit()&&choices.Contains("Archlector2"));
+                    bool isSigmariteTroop = agent.Character.UnitBelongsToCult("cult_of_sigmar") || (!agent.Character.IsReligiousUnit() && choices.Contains("Archlector2"));
                     if (isSigmariteTroop)
                     {
                         var choice = TORCareerChoices.GetChoice("HolyPurgePassive4");
-                        if (choice == null || choice.Passive == null) return result;
-                        float value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
-                        result.ResistancePercentages[(int) DamageType.Holy] += value;
+                        if (choice != null)
+                        {
+                            result.DamagePercentages[(int)DamageType.Holy] += choice.GetPassiveValue();
+                        }
                     }
                 }
+                
+                if (choices.Contains("MercenaryLordPassive2") && mask == PropertyMask.Attack && attackMask == AttackTypeMask.Ranged)
+                {
+                    var choice = TORCareerChoices.GetChoice("MercenaryLordPassive2");
+                    if (choice!= null)
+                    {
+                        result.AdditionalDamagePercentages[(int)DamageType.Physical] += choice.GetPassiveValue();
+                    }
+                }
+                
+                if (choices.Contains("CommanderPassive2") && mask == PropertyMask.Attack && attackMask == AttackTypeMask.Melee)
+                {
+                    var choice = TORCareerChoices.GetChoice("MercenaryLordPassive2");
+                    if (choice!= null)
+                    {
+                        result.AdditionalDamagePercentages[(int)DamageType.Physical] += choice.GetPassiveValue();
+                    }
+                }
+
+                if (agent.IsUndead()&&choices.Contains("MasterOfDeadPassive3") && mask == PropertyMask.Defense)
+                {
+                    var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive3");
+                    if (choice != null)
+                    {
+                        result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                    }
+                }
+                
+                if (!agent.IsHero&&agent.IsVampire()&&choices.Contains("ControlledHungerPassive4") && mask == PropertyMask.Defense)
+                {
+                    var choice = TORCareerChoices.GetChoice("ControlledHungerPassive4");
+                    if (choice != null)
+                    {
+                        result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                    }
+                    
+                }
+
+                if (choices.Contains("GrailVowPassive2") && mask == PropertyMask.Attack)
+                {
+                    bool isbattlePilgrim = agent.Character.UnitBelongsToCult("cult_of_lady");   //might need more love later
+                    if (isbattlePilgrim)
+                    {
+                        var choice = TORCareerChoices.GetChoice("GrailVowPassive2");
+                        if (choice != null)
+                        {
+                            result.DamagePercentages[(int)DamageType.Holy] += choice.GetPassiveValue();
+                        }
+                    }
+                }
+                
+                if (attackMask==AttackTypeMask.Melee&&mask == PropertyMask.Defense&&!agent.IsHero&&choices.Contains("QuestingVow3")&&agent.Character.IsKnightUnit())
+                {
+                    var choice = TORCareerChoices.GetChoice("QuestingVow3");
+                    if (choice != null)
+                    {
+                        result.ResistancePercentages[(int)DamageType.Physical] += choice.GetPassiveValue();
+                    }
+                        
+                }
+                
+                
             }
+
             return result;
         }
-        
     }
 }

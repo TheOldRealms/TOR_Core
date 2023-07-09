@@ -32,65 +32,197 @@
 
     //Seed
         //~ SEED_RANDOM(100) //Uncomment to lock an RNG testing seed for the randomness. Change number inside () for different seed
-    VAR ReligionName = "Cult of Tzeench"
     VAR DealtWithCultists = false
-    //
-        
-//Variable Check (Use for sanity check. Uncomment variables to see what they are)
-
+    VAR CultName = "Cult of Tzeench"
+    VAR HardSkillCheckValue = 250
+    VAR NormalSkillCheckValue = 150
+    VAR EasySkillCheckValue = 80
+    VAR ElderState = 0
+        ~ ElderState = RANDOM(1,3) // 1 - normal, 2 - guilty, 3 - grumpy
+    VAR SymbolLeftBehind = 0
+        ~ SymbolLeftBehind = RANDOM(0,1)
 
 -> Start
 
 ===Start===
 Cultist in our midst #title #illustration: village
 
-The journey to the village has been treacherous, winding through dense forests and foggy valleys. As you approach, you notice the hustle and bustle of villagers going about their daily lives. However, there's an undercurrent of unease in the air, hidden behind forced smiles and hushed whispers.
-You decide to begin your investigation discreetly. Observing from the shadows, you notice a small group congregating near the village square, their demeanor suspiciously secretive. They exchange coded glances and speak in hushed tones.
+    The journey to the village has been treacherous, winding through dense forests and foggy valleys. As you approach, you notice the hustle and bustle of villagers going about their daily lives. However, there's an undercurrent of unease in the air, hidden behind forced smiles and hushed whispers.
+    You leave your party camped outside the village and decide to begin your investigation discreetly on your own. Observing from the shadows, you notice a small group congregating near the village square, their demeanor suspiciously secretive. They exchange coded glances and speak in hushed tones. -> choices
 
-*[Approach the group and listen in on their conversation.] -> ListenToGroup
-*[Gather information from the villagers without raising suspicion.] -> InvestigateVillagers
+    =choices
+    *[Approach the group and listen in on their conversation. {print_player_skill_chance("Roguery", NormalSkillCheckValue)}]
+        {perform_player_skill_check("Roguery", NormalSkillCheckValue): -> ListenToGroup.succeed | -> ListenToGroup.fail}
+    *[Gather information from the villagers without raising suspicion.] -> InvestigateVillagers
+
+
 
 === ListenToGroup ===
-You stealthily approach the group, careful not to draw attention to yourself. Standing at a distance, you strain your ears to catch snippets of their conversation.
 
-"...the summoning ritual must be performed soon," whispers one figure anxiously. "Our power grows stronger every day."
+    =succeed
+    (SUCCESS)
+    You stealthily approach the group, careful not to draw attention to yourself. Standing at a distance, you strain your ears to catch snippets of their conversation.
+    
+    "...the summoning ritual must be performed soon," whispers one figure anxiously. "Our power grows stronger every day."
+    
+    Another voice responds, "We must keep our true identities hidden. The Templar Order might be onto us. We don't want witch hunters all over the village, then all will be lost."
+    
+    The group disperses, each member disappearing into the crowd. The villagers continue their daily routines, seemingly oblivious to the hidden darkness lurking within their midst. -> Start.choices
+    
+    =fail
+    (FAIL)
+    You try to stealthily approach the group, careful not to draw attention to yourself, however stealth is not your strong suit and as you inch closer, a sudden creaking noise alerts them to your presence. 
+    They glance in your direction, their eyes narrowing with suspicion. They exchange a few quick words before disappearing into the crowd.
+    Your attempt to eavesdrop has failed, and you can't help but wonder if your element of suprise has just been compromised. -> Start.choices
 
-Another voice responds, "We must keep our true identities hidden. The Templar Order might be onto us. We don't want witch hunters all over the village, then all will be lost."
 
-The group disperses, each member disappearing into the crowd. The villagers continue their daily routines, seemingly oblivious to the hidden darkness lurking within their midst.
 
--> InvestigateVillagers
+
+
 
 === InvestigateVillagers ===
-You realize that the cultists are adept at hiding their true identities. To uncover their secrets, you decide to interact with the villagers and gather more information.
+    You realize that the cultists are adept at hiding their true identities. Finding out who they are is going to be no easy feat. You decide to interact with the villagers and gather more information.
+    Speaking to various individuals, you subtly inquire about recent strange occurrences, missing persons, or rumors of dark practices. Some villagers express unease, speaking of mysterious symbols etched in hidden corners, unexplained disappearances, missing livestock and strange lights appearing in the surrounding forest during the night.
+    ->choices
 
-Speaking to various individuals, you subtly inquire about recent strange occurrences, missing persons, or rumors of dark practices. Some villagers express unease, speaking of mysterious symbols etched in hidden corners, unexplained disappearances, and strange chanting during the night.
+    =choices
+    *[Seek out the village elder for questioning.] -> InterviewElder
+    *[Venture into the woods during the night to uncover the source of the strange lights.] -> Woods
+    *[Investigate the missing livestock.] -> Symbols
+    *[Look into the disappearances by talking to the relatives of the disappeared.] -> InvestigateDisappearances
+    *[Embark on a meticulous search for discreet symbols or markings throughout the village.] -> Symbols
+    * -> OutOfOptions
+    //*[Attend a village gathering and observe the behavior of the suspected cultists.] -> AttendGathering
 
-Slowly, a picture emerges: the cultists have cleverly embedded themselves within the village, concealing their true nature behind ordinary facades. To expose them, you must delve deeper into their activities.
 
-->choices
 
-=choices
-*[Interview the village elders for ancient legends and folklore.] -> InterviewElders
-*[Search for hidden symbols and artifacts in the villagers' homes.] -> SearchHomes
-*[Eavesdrop on conversations in the local tavern.] -> EavesdropTavern
-*[Attend a village gathering and observe the behavior of the suspected cultists.] -> AttendGathering
 
-=== InterviewElders ===
-You seek out the village elders, respected individuals with a wealth of knowledge about the village's history. They share ancient legends and folklore, hinting at possible connections to the cult's activities.
 
-Listening intently, you learn about ancient ruins in the nearby forest, rumored to hold great power. It becomes clear that the cultists are drawing upon the village's ancient secrets for their nefarious purposes.
 
-Armed with this information, you decide to venture into the forest and investigate further.
--> ExploreRuins
 
-=== SearchHomes ===
-Under the cover of darkness, you discreetly search the villagers' homes for hidden symbols and artifacts. It's a risky endeavor, but you're determined to find any evidence of the cult's presence.
 
-In one house, you discover a hidden compartment containing a weathered tome, filled with incantations and sinister rituals. The cultists have indeed infiltrated the village, using innocent homes as their hiding places for their dark artifacts.
+=== InterviewElder ===
+{ElderState == 3: ->grumpy | ->normal}
 
-Armed with this knowledge, you continue to search for the true identities of the cultists with renewed determination.
-->InvestigateVillagers.choices
+    =normal
+    The elder, a man of some means compared to the modest state of the village, resides in a comfortable cottage near the center of the village.
+    Knocking on the wooden door, the elder welcomes you inside with a warm smile. The cottage exudes a sense of coziness, with a crackling fireplace casting a comforting glow across the room. You take a seat by a small wooden table, ready to discuss your concerns about the strange occurrences in the village.
+    {ElderState == 1:As you confront the elder about the potential presence of a cult in the village, he listens attentively but with a skeptical expression on his face. He dismisses the notion of a cult, finding it absurd and far-fetched. He believes that the recent troubles can be attributed to mere coincidences or isolated incidents.}
+    {ElderState == 1:"I understand your concerns," he says, his voice tinged with a touch of condescension. "But I assure you, there is no cult in our village. These strange occurrences can be explained by natural causes or the overactive imagination of some villagers."}
+    {ElderState == 1:Frustrated by the elder's denial, you realize that convincing him to take action against the cult will be an uphill battle. It's clear that alternative approaches need to be explored to address the growing threat.}
+    {ElderState == 2: During the conversation, you observe the surroundings, paying attention to the subtle indications of the elder's relatively elevated wealth. The silverware glimmers in the soft candlelight, the paintings on the walls reveal scenes of serene landscapes and the elder's clothing exhibits a higher level of craftsmanship compared to the average villager.}
+    {ElderState == 2:As the discussion progresses, the elder admits to the village's troubles, but finds the idea of a cult operating within the village simply absurd. However, you sense a flicker of unease in his eyes, a hint of guilt that betrays more than his words convey.}
+    
+    ->choices
+    
+    =grumpy
+    The elder, a man known for his lackluster performance in maintaining order and resolving village issues, resides in a modest cottage at the heart of the village. As you approach, you notice signs of neglect in the surroundings—overgrown garden, peeling paint on the front door, and an overall air of disarray.
+    You knock on the wooden door, and the elder opens it with a slightly exasperated expression. "What do you want?" he grumbles, his tone reflecting a touch of annoyance. You explain the reason for your visit, expressing concerns about the strange occurrences in the village and the possible presence of a cult.
+    "You think there's a cult in our village?" he scoffs, his voice tinged with disbelief. "That's preposterous! We have enough problems with everyday life without such wild tales. Troubles? Yes, we have plenty. But a cult? No way."
+    As you press further, attempting to convince the elder of the seriousness of the situation, his temper flares up. "I have more pressing matters to attend to than listening to such nonsense!" he snaps, his frustration palpable. "If you want to investigate, go ahead. But don't come bothering me with your imaginary cults!"
+    With that, he slams the door in your face, the sound echoing through the quiet village streets.
+    Left with no choice, you must find alternative means to investigate without the elder's cooperation.
+    ->InvestigateVillagers.choices
+    
+    =choices
+    *{ElderState == 2}[Confront the elder about his apparent wealth accusing him of illicit activities. {print_player_skill_chance("Charm", HardSkillCheckValue)}]
+        {perform_player_skill_check("Charm", HardSkillCheckValue): -> InterviewElder.succeed | -> InterviewElder.fail}
+    * -> InvestigateVillagers.choices
+
+    
+    =succeed
+    (SUCCESS)
+    The elder's face twitches, caught off guard by the bluntness of your allegations.
+    In a moment of vulnerability, the elder confesses that he has been receiving small sums of money left anonymously at his doorstep. The source of the money remains a mystery to him, but he admits that he has turned a blind eye to the strange events in exchange for these bribes. Shame fills his voice as he explains that his financial struggles and the allure of a better life for his family had clouded his judgment.
+    He seems sincere. You are convinced he truly doesn't know more about the origin of the bribe money.
+    Despite his lack of knowledge, you implore the elder to take responsibility for his actions and sever ties with the anonymous benefactor. You emphasize the importance of restoring the village's safety and well-being, urging him to become an ally in the fight against the cult.
+    *[Lie in wait for the next drop of bribe money in order to follow the person who delivers it.] -> wait
+    *[Find other ways to continue your investigation.] -> InvestigateVillagers.choices
+    
+    =fail
+    (FAIL)
+     The elder vehemently denies any such accusations. With an air of indignation, he defends himself, claiming that his relatively improved circumstances are a result of shrewd financial management and investments made outside the village. 
+     The elder skillfully deflects your allegations, attributing them to rumors and jealousy among the villagers who are envious of his modest success. 
+     Despite your suspicions, he manages to maintain an outward appearance of innocence, leaving you with lingering doubts about his true intentions. -> InvestigateVillagers.choices
+    
+    =wait
+    Determined to uncover the mystery behind the bribe money, you devise a plan to stake out the elder's home and wait for the next drop. Days turn into nights as you patiently remain hidden, keeping a vigilant watch for any signs of the mysterious deliverer. But as time goes by, no one arrives, and the nights remain undisturbed.
+    Growing frustrated and exhausted, you start to doubt the effectiveness of this approach. Perhaps the briber has become aware of your presence or has changed their method of delivery. The lack of any significant leads or developments weighs heavily on your determination.
+    You decide to abandon the stakeout, acknowledging that this particular lead has reached a dead end.
+    -> InvestigateVillagers.choices
+
+
+
+
+
+
+
+=== Symbols ===
+    Under the cover of darkness, you discreetly search the villagers' homes for hidden symbols and artifacts. It's a risky endeavor, but you're determined to find any evidence of the cult's presence.
+    
+    In one house, you discover a hidden compartment containing a weathered tome, filled with incantations and sinister rituals. The cultists have indeed infiltrated the village, using innocent homes as their hiding places for their dark artifacts.
+    
+    Armed with this knowledge, you continue to search for the true identities of the cultists with renewed determination.
+    ->InvestigateVillagers.choices
+
+
+
+
+
+
+
+===Woods===
+    Intrigued by the mention of strange lights in the woods, you decide to delve into the depths of the forest during the cloak of night. With your senses sharpened and your weapon at the ready, you navigate through the dense foliage.
+    
+    As you make your way deeper into the woods, the glow of the lights becomes more intense and magical. It dances and flickers in patterns that seem orchestrated, almost intentional.
+    
+    To your surprise, you stumble upon several unusually large swarms of fireflies, their luminescent bodies creating a breathtaking spectacle. They flutter and twirl in mesmerizing unison, illuminating the surrounding trees with their enchanting glow.
+    
+    Realizing that these fireflies are the source of the mysterious lights, you watch in awe as they continue their nocturnal display. Though not the cultists you were seeking, their presence reminds you of the beauty and wonder that exists in the world.
+    
+    Feeling a sense of peace and tranquility, you take a moment to appreciate the natural marvel before continuing your investigation.
+    ->InvestigateVillagers.choices
+
+
+
+
+
+===InvestigateDisappearances===
+    Your first course of action is to approach the relatives of the disappeared individuals. You lend a sympathetic ear, offering comfort and support while discreetly gathering information. Each tale is filled with anguish and confusion, with common threads of unexplained circumstances. Dark rumors circulate, whispering of an unseen force lurking within the shadows of the village.
+    Driven by a sense of urgency, you delve deeper into the matter, searching for clues and connections. You map out the locations where the disappearances occurred, marking them on a makeshift investigation board. Patterns emerge, indicating a concentration of incidents near the outskirts of the village and the surrounding woods.
+    ->choices
+    
+    =search
+    With a determined focus on finding answers, you set out to investigate the homes of the disappeared individuals, hoping to uncover any clues that might shed light on their unsettling vanishing. As you enter each home, a sense of sadness and unease fills the air, reminding you of the lives that were abruptly interrupted.
+    Inside one of the homes, you come across signs of struggle—a knocked-over chair, a shattered vase, and belongings strewn about haphazardly. It's evident that something untoward occurred here, suggesting a forced departure rather than a voluntary one.
+    In another home, you discover personal belongings left behind — a cherished trinket, a half-finished letter, and a favorite book. These remnants of their lives hint at the suddenness and unexpected nature of their departure.
+    It becomes clear that the vanished individuals were victims, taken against their will.
+    {SymbolLeftBehind == 1: As you meticulously investigate the home with the signs of struggle, your sharp eye catches something amidst the chaos — an item left behind by the perpetrators. Carefully hidden beneath a toppled table, you discover a broken amulet with a torn chain, unmistakably belonging to the cult you have been seeking. -> identify_option}
+    {SymbolLeftBehind == 0: Despite your thorough investigation of the disappeared victims' homes, you find no further significant leads or breakthroughs. The signs of struggle and abandoned belongings only deepen the mystery, leaving you with more questions than answers. Frustration and a sense of helplessness start to settle in as you realize that the trail has gone cold. ->InvestigateVillagers.choices}
+    
+    =identify_option
+    *[Identify the symbol. {print_player_attribute_chance("Intelligence",7)}] -> identify_check
+    
+    =identify_check
+    {perform_player_attribute_check("Intelligence", 7): -> succeed | -> fail}
+    
+    =succeed
+    (SUCCESS)
+    You instantly recognize the distinct symbol of the {CultName}.
+    A chill runs down your spine as you recognize the significance of the item. It's a distinct piece of paraphernalia associated with the cult, confirming their direct involvement in the disappearances. Emboldened by this newfound evidence, you resolve to redouble your efforts in exposing the cult. ->InvestigateVillagers.choices
+    
+    =fail
+    (FAIL)
+    Despite your thorough examination of the symbol, you are unable to identify its meaning or significance. 
+    You find no further significant leads or breakthroughs. The enigmatic symbol, signs of struggle and abandoned belongings only deepen the mystery, leaving you with more questions than answers. Frustration and a sense of helplessness start to settle in as you realize that the trail has gone cold. ->InvestigateVillagers.choices
+    
+    =choices
+    *[Carefully search the homes of the disappeared.] -> search
+
+
+
+
+
 
 === EavesdropTavern ===
 You blend into the lively atmosphere of the local tavern, strategically positioning yourself to overhear conversations. The air is filled with laughter and merriment, providing the perfect cover for your investigation.
@@ -105,7 +237,7 @@ Deciding to follow one of the suspected cultists, you discreetly leave the taver
 === ExploreRuins ===
 You venture into the forgotten ruins on the outskirts of the village, the air thick with an eerie stillness. Within the crumbling walls, you discover hidden chambers adorned with forbidden symbols and traces of dark magic.
 
-Carefully examining the ruins, you unearth a concealed passage leading to an underground chamber. Inside, you find an altar surrounded by the paraphernalia of the {ReligionName}. This must be the heart of their operations.
+Carefully examining the ruins, you unearth a concealed passage leading to an underground chamber. Inside, you find an altar surrounded by the paraphernalia of the {CultName}. This must be the heart of their operations.
 
 Knowing you've uncovered their secret lair, you prepare yourself for a confrontation. With your sword in hand, you descend further into the depths, ready to face the cultists head-on.
 
@@ -175,3 +307,7 @@ In the days that follow, the village becomes a place of despair and suffering. T
 As you leave the village, you gaze upon the devastation you helped unleash and a hollow emptiness fills your heart. Was the power you were seeking truly worth all this? The world falls deeper into chaos and the light of justice dims.
 
 -> END 
+
+===OutOfOptions===
+the end?
+-> END

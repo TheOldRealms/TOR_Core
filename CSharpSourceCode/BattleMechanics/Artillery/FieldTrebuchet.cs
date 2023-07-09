@@ -147,8 +147,8 @@ namespace TOR_Core.BattleMechanics.Artillery
 			if (!GameNetwork.IsClientOrReplay)
 			{
 				this.SetActivationLoadAmmoPoint(false);
-				this.EnemyRangeToStopUsing = 9f;
-				this.MachinePositionOffsetToStopUsing = new Vec2(-2.05f, -1.9f);
+				this.EnemyRangeToStopUsing = 11f;
+				this.MachinePositionOffsetToStopUsingLocal = new Vec2(-2.05f, -1.9f);
 				this._sling.SetAnimationAtChannelSynched((base.State == RangedSiegeWeapon.WeaponState.Idle) ? this.IdleWithAmmoAnimation : this.IdleEmptyAnimation, 0, 1f);
 			}
 			this._missileBoneIndex = Skeleton.GetBoneIndexFromName(this._sling.GameEntity.Skeleton.GetName(), "bn_projectile_holder");
@@ -230,16 +230,6 @@ namespace TOR_Core.BattleMechanics.Artillery
 			{
 				Mat3 rotation = this.RotationObject.GameEntity.GetGlobalFrame().rotation;
 				rotation.RotateAboutSide(-this.currentReleaseAngle);
-				return rotation.TransformToParent(new Vec3(0f, -1f, 0f, -1f));
-			}
-		}
-
-		protected override Vec3 VisualizationShootingDirection
-		{
-			get
-			{
-				Mat3 rotation = this.RotationObject.GameEntity.GetGlobalFrame().rotation;
-				rotation.RotateAboutSide(-this.VisualizeReleaseTrajectoryAngle);
 				return rotation.TransformToParent(new Vec3(0f, -1f, 0f, -1f));
 			}
 		}

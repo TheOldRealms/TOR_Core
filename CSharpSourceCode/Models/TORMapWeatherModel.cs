@@ -6,16 +6,11 @@ namespace TOR_Core.Models
 {
     public class TORMapWeatherModel : DefaultMapWeatherModel
     {
-        public override AtmosphereInfo GetAtmosphereModel(CampaignTime timeOfYear, Vec3 pos)
+        public override AtmosphereInfo GetAtmosphereModel(Vec3 pos)
         {
-            var atmo = base.GetAtmosphereModel(timeOfYear, pos);
-            atmo.TimeInfo.Season = CampaignTime.Now.GetSeasonOfYear;
+            var atmo = base.GetAtmosphereModel(pos);
+            atmo.TimeInfo.Season = (int)CampaignTime.Now.GetSeasonOfYear;
             return atmo;
-        }
-
-        public override bool GetIsSnowTerrainInPos(Vec3 pos)
-        {
-            return false;
         }
     }
 }

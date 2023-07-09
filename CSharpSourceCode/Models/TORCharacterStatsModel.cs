@@ -76,7 +76,7 @@ namespace TOR_Core.Models
                 {
                     number.Add(300, new TextObject("Tier4"));
                 }
-                if (hero.IsVampire())
+                if (hero.IsVampire()&&!hero.IsHumanPlayerCharacter)
                 {
                     number.Add(100, new TextObject("Vampire body"));
                 }

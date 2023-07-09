@@ -24,12 +24,6 @@ namespace TOR_Core.Models
                 else if (settlement.SettlementComponent is ChaosPortalComponent) return "raidingsite_menu";
                 else if (settlement.SettlementComponent is HerdStoneComponent) return "raidingsite_menu";
                 else if (settlement.SettlementComponent is CursedSiteComponent) return "cursedsite_menu";
-                /*
-                {
-                    InkStoryManager.OpenStory("teststory", () => PlayerEncounter.Finish(true));
-                    return string.Empty;
-                }
-                */
                 else return string.Empty;
             }
             else return base.GetEncounterMenu(attackerParty, defenderParty, out startBattle, out joinBattle);

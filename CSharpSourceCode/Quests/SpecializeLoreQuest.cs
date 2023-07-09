@@ -30,6 +30,7 @@ namespace TOR_Core.Quests
             SetLogs();
         }
 
+        protected override void HourlyTick() { }
         protected override void InitializeQuestOnGameLoad() { }
 
         protected override void SetDialogs() { }

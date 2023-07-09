@@ -259,7 +259,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 PlayerEncounter.Update();
             }
             component.IsBattleUnderway = true;
-            CampaignMission.OpenBattleMission(component.BattleSceneName);
+            CampaignMission.OpenBattleMission(component.BattleSceneName, false);
         }
 
         private void OnMissionEnded(IMission obj)
@@ -284,7 +284,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                     var list = new List<InquiryElement>();
                     var item = MBObjectManager.Instance.GetObject<ItemObject>(comp.RewardItemId);
                     list.Add(new InquiryElement(item, item.Name.ToString(), new ImageIdentifier(item)));
-                    var inq = new MultiSelectionInquiryData("Victory!", "You are Victorious! Claim your reward!", list, false, 1, "OK", null, onRewardClaimed, null);
+                    var inq = new MultiSelectionInquiryData("Victory!", "You are Victorious! Claim your reward!", list, false, 1, 1, "OK", null, onRewardClaimed, null);
                     MBInformationManager.ShowMultiSelectionInquiry(inq);
                 }
                 else

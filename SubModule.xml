@@ -2,8 +2,7 @@
 	<Name value="The Old Realms Core Module" />
 	<Id value="TOR_Core" />
 	<Version value="v1.1.1" />
-	<SingleplayerModule value="true" />
-	<MultiplayerModule value="false" />
+	<ModuleCategory value="Singleplayer"/>
 	<DependedModules>
 		<DependedModule Id="Native" DependentVersion="v1.1.1" />
 		<DependedModule Id="SandBoxCore" DependentVersion="v1.1.1" />

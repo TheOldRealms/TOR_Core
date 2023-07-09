@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.Core;
@@ -98,9 +98,32 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
+        public override void OnBehaviorInitialize()
+        {
+            base.OnBehaviorInitialize();
+            Mission.OnItemPickUp += OnItemPickup;
+        }
+
         protected override void OnEndMission()
         {
+            base.OnEndMission();
             BindWeaponKeys();
+            Mission.OnItemPickUp -= OnItemPickup;
+        }
+
+        public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
+        {
+           // base.OnAgentRemoved(affectedAgent, affectorAgent, agentState, blow);
+           if(affectorAgent==null)return;
+           var comp = affectorAgent.GetComponent<AbilityComponent>();
+           if (comp != null)
+           {
+               if(comp.CareerAbility==null)
+                   return;
+               
+               if (comp.CareerAbility.ChargeType == ChargeType.NumberOfKills) comp.CareerAbility.AddCharge(1);
+           }
+            
         }
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
@@ -108,7 +131,13 @@ namespace TOR_Core.AbilitySystem
             var comp = affectorAgent.GetComponent<AbilityComponent>();
             if (comp != null)
             {
-                if (comp.CareerAbility != null && comp.CareerAbility.ChargeType == ChargeType.DamageDone) comp.CareerAbility.AddCharge(blow.InflictedDamage * DamagePortionForChargingCareerAbility);
+                if(comp.CareerAbility==null)
+                    return;
+
+                var propotion = DamagePortionForChargingCareerAbility;
+                
+                
+                if (comp.CareerAbility.ChargeType == ChargeType.DamageDone) comp.CareerAbility.AddCharge(blow.InflictedDamage * DamagePortionForChargingCareerAbility);
             }
 
             var comp2 = affectedAgent.GetComponent<AbilityComponent>();
@@ -452,7 +481,7 @@ namespace TOR_Core.AbilitySystem
             _keyContext.GetGameKey(21).KeyboardKey.ChangeKey(InputKey.Invalid);
         }
 
-        public override void OnItemPickup(Agent agent, SpawnedItemEntity item)
+        private void OnItemPickup(Agent agent, SpawnedItemEntity item)
         {
             if (agent == Agent.Main) DisableAbilityMode(true);
         }

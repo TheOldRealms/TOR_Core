@@ -1,4 +1,4 @@
-﻿using TaleWorlds.MountAndBlade;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.AbilitySystem.Spells

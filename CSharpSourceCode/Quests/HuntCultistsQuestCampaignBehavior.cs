@@ -142,6 +142,8 @@ namespace TOR_Core.Quests
             }
 
             protected override void OnGameLoad() { }
+
+            protected override void HourlyTick() { }
         }
 
         public class HuntCultistsQuest : QuestBase
@@ -163,6 +165,8 @@ namespace TOR_Core.Quests
             public override TextObject Title => new TextObject("{=!}A cultist in our midst");
 
             public override bool IsRemainingTimeHidden => false;
+
+            protected override void HourlyTick() { }
 
             protected override void InitializeQuestOnGameLoad()
             {

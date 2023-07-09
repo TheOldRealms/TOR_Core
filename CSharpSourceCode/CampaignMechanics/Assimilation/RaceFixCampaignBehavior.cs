@@ -4,15 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.Settlements;
-using TaleWorlds.Core;
-using TaleWorlds.SaveSystem;
-using TOR_Core.Extensions;
 
-namespace TOR_Core.BaseGameDebug
+namespace TOR_Core.CampaignMechanics.Assimilation
 {
-    public class BaseGameDebugCampaignBehavior : CampaignBehaviorBase
+    public class RaceFixCampaignBehavior : CampaignBehaviorBase
     {
         private Dictionary<string, int> _heroRaceMap = new Dictionary<string, int>();
 
@@ -20,25 +15,6 @@ namespace TOR_Core.BaseGameDebug
         {
             CampaignEvents.OnBeforeSaveEvent.AddNonSerializedListener(this, OnSave);
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionStart);
-            //CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, HourlyTick);
-        }
-
-        private void HourlyTick()
-        {
-            foreach(var hideout in Hideout.All)
-            {
-                var parties = hideout.Settlement.Parties.Where(x => x.IsBandit && x.IsActive && !x.IsDisbanding && !x.IsRaidingParty() && x.CurrentSettlement != null).ToList();
-                var num = parties.Count() - Campaign.Current.Models.BanditDensityModel.NumberOfMaximumBanditPartiesInEachHideout;
-                if(num > 0)
-                {
-                    for(var i = num; i >= 0; i--)
-                    {
-                        LeaveSettlementAction.ApplyForParty(parties[i]);
-                        parties[i].Aggressiveness = 1f - 0.2f * MBRandom.RandomFloat;
-                        SetPartyAiAction.GetActionForPatrollingAroundSettlement(parties[i], hideout.Settlement);
-                    }
-                }
-            }
         }
 
         private void OnSessionStart(CampaignGameStarter obj)
@@ -67,9 +43,9 @@ namespace TOR_Core.BaseGameDebug
             }
         }
 
-        public override void SyncData(IDataStore dataStore) 
+        public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData("_heroRaceMap", ref _heroRaceMap);
         }
-    }   
+    }
 }

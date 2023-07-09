@@ -180,6 +180,10 @@
       <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.Launcher.Steam.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.Multiplayer">
+      <HintPath>..\..\Multiplayer\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.Multiplayer.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="TaleWorlds.MountAndBlade.ViewModelCollection.dll">
       <HintPath>..\..\..\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.ViewModelCollection.dll</HintPath>
       <Private>False</Private>
@@ -351,7 +355,6 @@
     <Compile Include="AbilitySystem\Spells\Spell.cs" />
     <Compile Include="AbilitySystem\Spells\LoreObject.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\LoreObjectVM.cs" />
-    <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookMapIconCampaignBehavior.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookMapIconVM.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookScreen.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookState.cs" />
@@ -360,7 +363,6 @@
     <Compile Include="AbilitySystem\Spells\SpellBook\StatItemVM.cs" />
     <Compile Include="AbilitySystem\Spells\SpellCastingLevel.cs" />
     <Compile Include="AbilitySystem\SummonedAgentOrigin.cs" />
-    <Compile Include="BaseGameDebug\BaseGameDebugCampaignBehavior.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehaviorConfiguration.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehavior\AbstractAgentCastingBehavior.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehavior\AoEAdjacentCastingBehavior.cs" />
@@ -378,6 +380,10 @@
     <Compile Include="BattleMechanics\AI\AgentBehavior\AgentTacticalBehavior\KeepSafeTacticalBehavior.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\Components\FieldSiegeWeaponAI.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\Components\WizardAIComponent.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\CustomMissionAgentBehaviors\TORAlarmedBehaviorGroup.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\CustomMissionAgentBehaviors\TORDailyBehaviorGroup.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\CustomMissionAgentBehaviors\TORFightBehavior.cs" />
+    <Compile Include="BattleMechanics\AI\AgentBehavior\CustomMissionAgentBehaviors\TORWalkingBehavior.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\SupportMissionLogic\QuerySystemExtensions.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\SupportMissionLogic\QuerySystemExtensionsMissionLogic.cs" />
     <Compile Include="BattleMechanics\AI\Decision\Axis.cs" />
@@ -402,6 +408,7 @@
     <Compile Include="BattleMechanics\Atmosphere\ForceAtmosphereMissionLogic.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerManager.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerMissionLogic.cs" />
+    <Compile Include="BattleMechanics\CareerPerkMissionBehavior.cs" />
     <Compile Include="BattleMechanics\CustomCrosshairMissionBehavior.cs" />
     <Compile Include="BattleMechanics\DamageSystem\DamageType.cs" />
     <Compile Include="BattleMechanics\Dismemberment\DismembermentMissionLogic.cs" />
@@ -429,14 +436,13 @@
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectTemplate.cs" />
     <Compile Include="CampaignMechanics\AICompanions\TORAICompanionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\Assimilation\RaceFixCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\BountyMaster\BountyMasterCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissSceneNotificationItem.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\CustomDialogCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\TORDeclareWarDecision.cs" />
-    <Compile Include="CampaignMechanics\Diplomacy\TORDiplomacyModel.cs" />
-    <Compile Include="CampaignMechanics\Diplomacy\TORKingdomDecisionPermissionModel.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\TORKingdomDecisionProposalBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEvent.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEventsCampaignBehavior.cs" />
@@ -461,11 +467,11 @@
     <Compile Include="BattleMechanics\TORBattleAgentLogic.cs" />
     <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCaptivityCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\TORCareerPerkCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORBaseSettlementComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORSettlementComponents.cs" />
     <Compile Include="CampaignMechanics\TORMapInfoVMExtension.cs" />
-    <Compile Include="CampaignMechanics\TORPartyHealCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORPartyUpgraderCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORWanderersCampaignBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerAbilityEffectVM.cs" />
@@ -480,7 +486,12 @@
     <Compile Include="CharacterDevelopment\CareerSystem\CareerScreenGameState.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerScreenVM.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CharacterDeveloperVMExtension.cs" />
-    <Compile Include="CharacterDevelopment\CareerSystem\WarriorPriestCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\BloodKnightCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\GrailKnightCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\MercenaryCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\TORCareerChoicesBase.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\VampireCountCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\WarriorPriestCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\TORAttributes.cs" />
     <Compile Include="CharacterDevelopment\TORCareerChoiceGroups.cs" />
     <Compile Include="CharacterDevelopment\TORCareerChoices.cs" />
@@ -565,6 +576,7 @@
     <Compile Include="Models\TORAgentApplyDamageModel.cs" />
     <Compile Include="Models\TORAgentStatCalculateModel.cs" />
     <Compile Include="Models\TORBanditDensityModel.cs" />
+    <Compile Include="Models\TORBattleBannerBearersModel.cs" />
     <Compile Include="Models\TORBattleMoraleModel.cs" />
     <Compile Include="Models\TORCharacterDevelopmentModel.cs" />
     <Compile Include="Models\TORCharacterStatsModel.cs" />
@@ -576,8 +588,10 @@
     <Compile Include="Models\TORCompanionHiringPriceCalculationModel.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleAgentStatCalculateModel.cs" />
     <Compile Include="Models\TORDamageParticleModel.cs" />
+    <Compile Include="Models\TORDiplomacyModel.cs" />
     <Compile Include="Models\TORFaithModel.cs" />
     <Compile Include="Models\TORInventoryCapacityModel.cs" />
+    <Compile Include="Models\TORKingdomDecisionPermissionModel.cs" />
     <Compile Include="Models\TORMapVisibilityModel.cs" />
     <Compile Include="Models\TORPartyMoraleModel.cs" />
     <Compile Include="Models\TORPartySpeedCalculatingModel.cs" />
@@ -592,6 +606,7 @@
     <Compile Include="Models\TORPartyWageModel.cs" />
     <Compile Include="Models\TORPersuasionModel.cs" />
     <Compile Include="Models\TORPrisonerRecruitmentCalculationModel.cs" />
+    <Compile Include="Models\TORRaidModel.cs" />
     <Compile Include="Models\TORSettlementMilitiaModel.cs" />
     <Compile Include="Models\TORAbilityModel.cs" />
     <Compile Include="Models\TORStrikeMagnitudeModel.cs" />
@@ -610,10 +625,12 @@
     <Compile Include="Utilities\TORConsoleCommands.cs" />
     <Compile Include="Utilities\TORConstants.cs" />
     <Compile Include="Utilities\TORDamageDisplay.cs" />
+    <Compile Include="Utilities\TOREquipmentHelper.cs" />
     <Compile Include="Utilities\TORCampaignEvents.cs" />
     <Compile Include="Utilities\TORGameMenuBackgroundSwitcher.cs" />
     <Compile Include="Utilities\TORGameStarterHelper.cs" />
     <Compile Include="Utilities\TORMassMaterialSwitcher.cs" />
+    <Compile Include="Utilities\TORMissionAgentHandler.cs" />
     <Compile Include="Utilities\TORMissionHelper.cs" />
     <Compile Include="Utilities\TORMissionManager.cs" />
     <Compile Include="Utilities\TORParticleSystem.cs" />
