@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.AI.TeamBehavior;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.AI.FormationBehavior
 {
@@ -32,7 +33,7 @@ namespace TOR_Core.BattleMechanics.AI.FormationBehavior
 
         private Formation FindArtilleryFormation()
         {
-            return Formation.Team.FormationsIncludingSpecial.ToList().Find(formation => formation.Index == (int) TORFormationClass.Artillery);
+            return Formation.Team.GetFormationsIncludingSpecial().ToList().Find(formation => formation.Index == (int) TORFormationClass.Artillery);
         }
 
         protected override float GetAiWeight() => Formation.Index == (int) TORFormationClass.ArtilleryGuard && FindArtilleryFormation() != null ? 100f : 0.0f;

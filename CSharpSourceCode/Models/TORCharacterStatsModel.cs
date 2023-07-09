@@ -1,6 +1,8 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Localization;
+using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
@@ -20,7 +22,7 @@ namespace TOR_Core.Models
         {
             if (character.IsHero)
             {
-                return CalaculateHeroHealth(number, character.HeroObject);
+                return CalculateHeroHealth(number, character.HeroObject);
             }
             else
             {
@@ -53,7 +55,7 @@ namespace TOR_Core.Models
             return number;
         }
 
-        private ExplainedNumber CalaculateHeroHealth(ExplainedNumber number, Hero hero)
+        private ExplainedNumber CalculateHeroHealth(ExplainedNumber number, Hero hero)
         {
             var info = hero.GetExtendedInfo();
             if (info != null)
@@ -74,16 +76,30 @@ namespace TOR_Core.Models
                 {
                     number.Add(300, new TextObject("Tier4"));
                 }
-                if (hero.IsVampire())
+                if (hero.IsVampire()&&!hero.IsHumanPlayerCharacter)
                 {
                     number.Add(100, new TextObject("Vampire body"));
                 }
+
+                if (hero.HasAnyCareer())
+                {
+                    CareerHelper.ApplyBasicCareerPassives(hero, ref number, PassiveEffectType.Health);
+                }
             }
+            if (hero.GetPerkValue(TORPerks.Faith.Devotee))
+            {
+                number.Add(TORPerks.Faith.Devotee.PrimaryBonus * hero.GetAttributeValue(TORAttributes.Discipline), new TextObject("Perks"));
+            }
+            
+       
             if (Campaign.Current.CampaignStartTime.IsNow)
             {
                 hero.HitPoints = (int)number.ResultNumber;
             }
             return number;
         }
+
+
+        
     }
 }

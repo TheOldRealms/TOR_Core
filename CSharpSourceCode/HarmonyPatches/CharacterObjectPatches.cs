@@ -70,7 +70,7 @@ namespace TOR_Core.HarmonyPatches
 					}
 				}
 			}
-			bool flag2 = mobileParty.PaymentLimit > 0 && !mobileParty.UnlimitedWage && mobileParty.PaymentLimit < mobileParty.TotalWage;
+			bool flag2 = mobileParty.IsWageLimitExceeded();
 			if (mobileParty.Party.NumberOfAllMembers > mobileParty.LimitedPartySize || flag2)
 			{
 				int numberOfDeserters = Campaign.Current.Models.PartyDesertionModel.GetNumberOfDeserters(mobileParty);

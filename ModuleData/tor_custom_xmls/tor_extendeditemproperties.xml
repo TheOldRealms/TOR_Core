@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_neutral_head_helm_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_neutral_head_helm_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_head_helm_militia_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -222,6 +228,9 @@
   <ExtendedItemObjectProperties ItemStringId="tor_vc_head_helm_vampire_lord_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_blood_keep_grandmaster_helm">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_head_helm_blood_knight_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -294,6 +303,9 @@
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_head_helm_khorne_warrior_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_chaos_head_helm_khorne_warrior_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_head_hat_chaos_cultist_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -301,6 +313,18 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_head_hat_chaos_cultist_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_chaos_head_helm_tzeentch_warrior_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_greathelm_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_hood_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_head_helm_questing_knight_002">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_tilean_head_helm_knight_001">
@@ -530,7 +554,25 @@
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_shoulder_pauldron_khorne_warrior_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_chaos_shoulder_pauldron_khorne_warrior_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_chaos_shoulder_pauldron_tzeentch_warrior_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_shoulder_pauldron_knight_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_shoulder_pauldron_knight_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_shoulder_questing_knight_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_shoulder_questing_knight_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_shoulder_questing_knight_003">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_tilean_shoulder_pauldron_knight_001">
@@ -700,6 +742,12 @@
   <ExtendedItemObjectProperties ItemStringId="tor_empire_body_armor_lord_002">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_flagellant_armor_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_body_cloth_smith_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_body_breastplate_skeleton_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -775,6 +823,12 @@
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_body_armor_khorne_warrior_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_chaos_body_armor_khorne_warrior_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_chaos_body_armor_tzeentch_warrior_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_body_armor_nurgle_knight_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -785,6 +839,24 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_body_armor_knight_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_body_armor_knight_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_body_questing_knight_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_body_questing_knight_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_body_questing_knight_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_peasant_garments_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_manatarms_armor_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_tilean_body_armor_knight_001">
@@ -927,6 +999,9 @@
   <ExtendedItemObjectProperties ItemStringId="tor_empire_arm_gauntlet_lord_002">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_arm_gauntlet_smith_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_arm_gauntlet_vampire_lord_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -969,7 +1044,19 @@
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_arm_gauntlet_khorne_warrior_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_chaos_arm_gauntlet_khorne_warrior_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_chaos_arm_gauntlet_tzeentch_warrior_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_arm_gauntlet_hallow">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_arm_gauntlet_questing_knight_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_arm_gauntlet_questing_knight_002">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_tiliean_arm_gauntlet_knight_001">
@@ -994,9 +1081,6 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_leg_boots_greatsword_002">
-    <ItemTraits />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_empire_leg_boots_veteran">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_leg_boots_luthor_huss">
@@ -1124,6 +1208,9 @@
   <ExtendedItemObjectProperties ItemStringId="tor_empire_leg_boots_lord_002">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_leg_boots_smith_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_leg_boots_skeleton_warrior_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -1193,10 +1280,22 @@
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_leg_boots_khorne_warrior_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_chaos_leg_boots_khorne_warrior_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_chaos_leg_boots_tzeentch_warrior_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_leg_boots_hallow">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_leg_boots_knight_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_leg_boots_manatarms_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_leg_boots_questing_knight_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_tilean_leg_boots_knight_001">
@@ -1529,12 +1628,6 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_sword_003">
-    <ItemTraits />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_weapon_sword_ungor_001">
     <ItemTraits />
     <DamageProportions>
@@ -1572,6 +1665,12 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_weapon_thsword_vampire_001">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_thsword_001">
     <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -1673,6 +1772,42 @@
       <DamageProportionTuple DamageType="Holy" Percent="0.20" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_warrior_priest_002">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Holy Additional Damage" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% additional holy damage</ItemTraitDescription>
+        <AdditionalDamageTuple DamageType="Holy" Percent="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="0.80" />
+      <DamageProportionTuple DamageType="Holy" Percent="0.20" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_warrior_priest_003">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Holy Additional Damage" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% additional holy damage</ItemTraitDescription>
+        <AdditionalDamageTuple DamageType="Holy" Percent="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="0.80" />
+      <DamageProportionTuple DamageType="Holy" Percent="0.20" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_warrior_priest_004">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Holy Additional Damage" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% additional holy damage</ItemTraitDescription>
+        <AdditionalDamageTuple DamageType="Holy" Percent="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="0.80" />
+      <DamageProportionTuple DamageType="Holy" Percent="0.20" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_flagellant_001">
     <ItemTraits>
       <ItemTrait ItemTraitName="Holy Additional Damage" IconName="winds_icon_45">
@@ -1758,6 +1893,24 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_weapon_thmace_vampire_001">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_polehammer_warrior_priest_001">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_polehammer_warrior_priest_002">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_polehammer_warrior_priest_003">
     <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -1877,6 +2030,42 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_halberd_001">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_halberd_002">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_halberd_003">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_halberd_004">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_halberd_005">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_halberd_006">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_staff_bw_001">
     <ItemTraits>
       <ItemTrait ItemTraitName="Fire Resistance and Amplification" IconName="winds_icon_45">
@@ -1929,6 +2118,19 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_staff_lw_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="0.25" />
+      <DamageProportionTuple DamageType="Magical" Percent="0.75" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_staff_lw_002">
     <ItemTraits>
       <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
         <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
@@ -2242,6 +2444,15 @@
   <ExtendedItemObjectProperties ItemStringId="tor_empire_faction_banner_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_banner_t1_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_banner_t2_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_banner_t3_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_weapon_banner_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -2374,6 +2585,33 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_weapon_shield_nurgle_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_shield_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_shield_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_shield_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_shield_004">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_shield_005">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_shield_006">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_grail_knight_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_grail_knight_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_grail_knight_003">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_artillery_mortar_001">

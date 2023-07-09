@@ -1,4 +1,5 @@
-﻿using SandBox.Issues;
+﻿using SandBox.CampaignBehaviors;
+using SandBox.Issues;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace TOR_Core.Utilities
             starter.RemoveBehaviors<BackstoryCampaignBehavior>();
             starter.RemoveBehaviors<InitialChildGenerationCampaignBehavior>();
             starter.RemoveBehaviors<PartyUpgraderCampaignBehavior>();
+            starter.RemoveBehaviors<RetirementCampaignBehavior>();
             var issues = starter.CampaignBehaviors.Where(x => x.GetType().FullName.Contains("Issue")).ToList();
             foreach(var issue in issues)
             {

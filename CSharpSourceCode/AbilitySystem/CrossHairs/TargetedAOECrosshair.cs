@@ -27,7 +27,7 @@ namespace TOR_Core.AbilitySystem.Crosshairs
                 UpdatePosition();
                 if (Targets != null)
                 {
-                    _previousTargets = (Agent[])Targets.Clone();
+                    _previousTargets = new MBReadOnlyList<Agent>(Targets.ToList());
                 }
                 UpdateTargets();
                 UpdateAgentsGlow();
@@ -75,12 +75,12 @@ namespace TOR_Core.AbilitySystem.Crosshairs
             {
                 case AbilityTargetType.AlliesInAOE:
                     {
-                        Targets = _mission.GetNearbyAllyAgents(Position.AsVec2, _template.TargetCapturingRadius, _mission.PlayerTeam).ToArray();
+                        Targets = _mission.GetNearbyAllyAgents(Position.AsVec2, _template.TargetCapturingRadius, _mission.PlayerTeam, Targets);
                         break;
                     }
                 case AbilityTargetType.EnemiesInAOE:
                     {
-                        Targets = _mission.GetNearbyEnemyAgents(Position.AsVec2, _template.TargetCapturingRadius, _mission.PlayerTeam).ToArray();
+                        Targets = _mission.GetNearbyEnemyAgents(Position.AsVec2, _template.TargetCapturingRadius, _mission.PlayerTeam, Targets);
                         break;
                     }
             }
@@ -90,9 +90,8 @@ namespace TOR_Core.AbilitySystem.Crosshairs
         {
             if (Targets != null)
             {
-                for (int i = 0; i < Targets.Length; i++)
+                foreach(var agent in Targets)
                 {
-                    var agent = Targets[i];
                     if (agent.State == TaleWorlds.Core.AgentState.Active || agent.State == TaleWorlds.Core.AgentState.Routed)
                     {
                         switch (_targetType)
@@ -127,12 +126,12 @@ namespace TOR_Core.AbilitySystem.Crosshairs
                 foreach (Agent agent in _previousTargets.Except(Targets))
                     agent.AgentVisuals.GetEntity().Root.SetContourColor(colorLess, true);
             _previousTargets = null;
-            Targets = null;
+            Targets.Clear();
         }
 
-        public Agent[] Targets { get; private set; }
+        public MBList<Agent> Targets  = new MBList<Agent>();
 
-        private Agent[] _previousTargets;
+        private MBReadOnlyList<Agent> _previousTargets;
 
         private float _currentDistance;
 

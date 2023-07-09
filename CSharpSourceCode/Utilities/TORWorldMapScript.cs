@@ -101,9 +101,9 @@ namespace TOR_Core.Utilities
 			}
 		}
 
-		private List<TORWorldMapScript.TowSettlementRecord> LoadSettlementData(XmlDocument settlementDocument)
+		private List<TORWorldMapScript.ToRSettlementRecord> LoadSettlementData(XmlDocument settlementDocument)
 		{
-			List<TORWorldMapScript.TowSettlementRecord> list = new List<TORWorldMapScript.TowSettlementRecord>();
+			List<TORWorldMapScript.ToRSettlementRecord> list = new List<TORWorldMapScript.ToRSettlementRecord>();
 			base.GameEntity.RemoveAllChildren();
 			foreach (object obj in settlementDocument.DocumentElement.SelectNodes("Settlement"))
 			{
@@ -124,7 +124,7 @@ namespace TOR_Core.Utilities
 						flag = true;
 					}
 				}
-				list.Add(new TORWorldMapScript.TowSettlementRecord(value, value2, asVec, flag ? vec : asVec, xmlNode, flag));
+				list.Add(new TORWorldMapScript.ToRSettlementRecord(value, value2, asVec, flag ? vec : asVec, xmlNode, flag));
 			}
 			return list;
 		}
@@ -132,7 +132,7 @@ namespace TOR_Core.Utilities
 		private void SaveSettlementPositions()
 		{
 			XmlDocument xmlDocument = this.LoadXmlFile(TORWorldMapScript.SettlementsXmlPath);
-			foreach (TORWorldMapScript.TowSettlementRecord settlementRecord in this.LoadSettlementData(xmlDocument))
+			foreach (TORWorldMapScript.ToRSettlementRecord settlementRecord in this.LoadSettlementData(xmlDocument))
 			{
 				if (settlementRecord.Node.Attributes["posX"] == null)
 				{
@@ -171,7 +171,7 @@ namespace TOR_Core.Utilities
 			try
 			{
 				XmlDocument settlementDocument = this.LoadXmlFile(TORWorldMapScript.SettlementsXmlPath);
-				List<TORWorldMapScript.TowSettlementRecord> list = this.LoadSettlementData(settlementDocument);
+				List<TORWorldMapScript.ToRSettlementRecord> list = this.LoadSettlementData(settlementDocument);
 				base.Scene.SetAbilityOfFacesWithId(MapScene.GetNavigationMeshIndexOfTerrainType(TerrainType.Mountain), false);
 				base.Scene.SetAbilityOfFacesWithId(MapScene.GetNavigationMeshIndexOfTerrainType(TerrainType.Lake), false);
 				base.Scene.SetAbilityOfFacesWithId(MapScene.GetNavigationMeshIndexOfTerrainType(TerrainType.Water), false);
@@ -238,9 +238,9 @@ namespace TOR_Core.Utilities
 
 		public SimpleButton ComputeAndSaveSettlementDistanceCache;
 
-		private struct TowSettlementRecord
+		private struct ToRSettlementRecord
 		{
-			public TowSettlementRecord(string settlementName, string settlementId, Vec2 position, Vec2 gatePosition, XmlNode node, bool hasGate)
+			public ToRSettlementRecord(string settlementName, string settlementId, Vec2 position, Vec2 gatePosition, XmlNode node, bool hasGate)
 			{
 				this.SettlementName = settlementName;
 				this.SettlementId = settlementId;

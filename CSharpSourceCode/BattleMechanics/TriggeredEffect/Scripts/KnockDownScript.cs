@@ -7,7 +7,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
 {
     public class KnockDownScript : ITriggeredScript
     {
-        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents)
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
             foreach(Agent agent in triggeredAgents)
             {

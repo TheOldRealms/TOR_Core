@@ -1,0 +1,127 @@
+<Prefab>
+  <Constants>
+
+    <Constant Name="Encyclopedia.Canvas.Width" BrushName="Encyclopedia.Canvas" BrushLayer="Default" BrushValueType="Width"/>
+    <Constant Name="Encyclopedia.Canvas.Height" BrushName="Encyclopedia.Canvas" BrushLayer="Default" BrushValueType="Height"/>
+
+    <Constant Name="Encyclopedia.Width" Value="!Encyclopedia.Canvas.Width" Additive="-35"/>
+    <Constant Name="Encyclopedia.Height" Value="!Encyclopedia.Canvas.Height" Additive="-198"/>
+
+  </Constants>
+
+  <Window>
+    <BrushWidget HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true" Brush="Encyclopedia.Page.SoundBrush">
+      <Children>
+
+        <Widget HeightSizePolicy ="Fixed" WidthSizePolicy="Fixed" SuggestedHeight="!Encyclopedia.Height" SuggestedWidth="!Encyclopedia.Width" HorizontalAlignment="Center" VerticalAlignment="Center" MarginTop="155">
+          <Children>
+
+            <ListPanel HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true">
+              <Children>
+
+                <ScrollbarWidget HeightSizePolicy ="StretchToParent" WidthSizePolicy="Fixed" Id="RightSideScrollbar" SuggestedWidth="0" MinValue = "0" MaxValue = "100" MarginBottom="15" MarginTop="15" AlignmentAxis="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Handle = "RightSideScrollbarHandle">
+                  <Children>
+                    <Widget Id="RightSideScrollbarHandle" WidthSizePolicy = "StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="50" HorizontalAlignment = "Center"/>
+                  </Children>
+                </ScrollbarWidget>
+
+                <ScrollablePanel Id="RightSideScrollablePanel"  HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" InnerPanel="RightSideRect\RightSideList" ClipRect="RightSideRect" MouseScrollAxis="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalScrollbar="..\RightSideScrollbar" AutoHideScrollBars="true">
+                  <Children>
+
+                    <Widget Id="RightSideRect" HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true" ClipContents="true">
+                      <Children>
+
+                        <!--Bookmark Button-->
+                        <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="50" HorizontalAlignment="Left" VerticalAlignment="Top" MarginLeft="5" MarginTop="15" MarginBottom="10" Brush="Encyclopedia.Bookmark.Button" Command.Click="ExecuteSwitchBookmarkedState" IsSelected="@IsBookmarked">
+                          <Children>
+                            <HintWidget DataSource="{BookmarkHint}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint"/>
+                          </Children>
+                        </ButtonWidget>
+
+                        <ListPanel Id="RightSideList" HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true" MarginTop="15" MarginRight="10" MarginBottom="10" StackLayout.LayoutMethod="VerticalBottomToTop">
+                          <Children>
+
+                            <!--Religion Main-->
+                            <RichTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginLeft="60" MarginRight="30" MarginBottom="5" Brush="Encyclopedia.SubPage.Header.Text" Brush.TextHorizontalAlignment="Left" Text="@TitleText" />
+                            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="4" MarginLeft="2" MarginTop="10" Sprite="Encyclopedia\list_filters_divider" />
+                            <RichTextWidget HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" HorizontalAlignment="Left" MarginLeft="60" MarginRight="30" MarginTop="15" Text="@DescriptionText" Brush="EncyclopediaNavBar.Text" Brush.TextHorizontalAlignment="Left" Command.LinkClick="ExecuteLink"/>
+
+                            <!--Followers Divider-->
+                            <EncyclopediaDivider Id="FollowersDivider" MarginTop="50" MarginLeft="30" Parameter.Title="Followers" Parameter.ItemList="..\FollowersGrid" GamepadNavigationIndex="0"/>
+
+                            <!--Followers Grid-->
+                            <NavigatableGridWidget Id="FollowersGrid" DataSource="{Followers}" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "CoverChildren" SuggestedWidth="350" SuggestedHeight="350" DefaultCellWidth="100" DefaultCellHeight="100" HorizontalAlignment="Left" ColumnCount="7" MarginTop="10" MarginLeft="15" AutoScrollYOffset="35">
+                              <ItemTemplate>
+
+                                <!--Follower-->
+                                <EncyclopediaSubPageElement/>
+
+                              </ItemTemplate>
+                            </NavigatableGridWidget>
+
+                            <!--Troops Divider-->
+                            <EncyclopediaDivider Id="TroopsDivider" MarginTop="50" MarginLeft="30" Parameter.Title="Religious Troops" Parameter.ItemList="..\TroopsGrid" GamepadNavigationIndex="0"/>
+
+                            <!--Troops Grid-->
+                            <NavigatableGridWidget Id="TroopsGrid" DataSource="{ReligiousTroops}" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "CoverChildren" SuggestedWidth="350" SuggestedHeight="350" DefaultCellWidth="100" DefaultCellHeight="100" HorizontalAlignment="Left" ColumnCount="7" MarginTop="10" MarginLeft="15" MarginBottom="150" AutoScrollYOffset="35">
+                              <ItemTemplate>
+
+                                <!--Troop-->
+                                <ButtonWidget Command.Click="ExecuteLink" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="80" SuggestedWidth="110" HorizontalAlignment="Center" Brush="Encyclopedia.SubPage.Element">
+                                  <Children>
+
+                                    <!-- Troop Visual -->
+                                    <NavigationAutoScrollWidget TrackedWidget="..\ElementImage" ScrollYOffset="150" />
+                                    <NavigationScopeTargeter ScopeID="EncyclopediaUnitTreeItemScope" ScopeParent="..\ElementImage" />
+                                    <ImageIdentifierWidget Id="ElementImage" DataSource="{ImageIdentifier}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ImageId="@Id" AdditionalArgs="@AdditionalArgs" ImageTypeCode="@ImageTypeCode" HorizontalAlignment="Center" MarginRight="3" MarginLeft="3" MarginBottom="3" MarginTop="3" GamepadNavigationIndex="0"/>
+
+                                    <!-- Troop Tier -->
+                                    <Widget DataSource="{TierIconData}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Top" PositionXOffset="-2" PositionYOffset="5" Sprite="@Text">
+                                      <Children>
+                                        <HintWidget DataSource="{Hint}" DoNotAcceptEvents="true" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"/>
+                                      </Children>
+                                    </Widget>
+
+                                    <!-- Troop Type Icon -->
+                                    <Widget DataSource="{TypeIconData}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Left" VerticalAlignment="Top" PositionXOffset="6" PositionYOffset="5" Sprite="@Text">
+                                      <Children>
+                                        <HintWidget DataSource="{Hint}" DoNotAcceptEvents="true" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"/>
+                                      </Children>
+                                    </Widget>
+
+                                    <!-- Hint -->
+                                    <HintWidget DoNotAcceptEvents="true" HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint"/>
+
+                                    <!-- Selection Border -->
+                                    <Widget DoNotAcceptEvents="true" HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" Sprite="SelectionBorder@2x_9" IsVisible="@IsActiveUnit"/>
+
+                                  </Children>
+                                </ButtonWidget>
+
+                              </ItemTemplate>
+                            </NavigatableGridWidget>
+
+                          </Children>
+                        </ListPanel>
+
+                        <!--Bottom Shadow-->
+                        <BrushWidget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="150" MarginLeft="5" MarginRight="5" VerticalAlignment="Bottom" HorizontalAlignment="Center" Brush="Encyclopedia.Scroll.Shadow" Brush.VerticalFlip="false"/>
+
+                        <!--Previous And Next Buttons-->
+                        <EncyclopediaQuickNavigation/>
+
+                      </Children>
+                    </Widget>
+
+                  </Children>
+                </ScrollablePanel>
+
+              </Children>
+            </ListPanel>
+
+          </Children>
+        </Widget>
+      </Children>
+    </BrushWidget>
+  </Window>
+</Prefab>

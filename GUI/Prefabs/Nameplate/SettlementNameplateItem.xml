@@ -74,7 +74,7 @@
 
                 <TextWidget Id="SettlementNameTextWidget" WidthSizePolicy="CoverChildren" MinWidth="120" HeightSizePolicy="StretchToParent" MarginLeft="71" MarginRight="!Large.TrackerTextMargin" MarginTop="6" MarginBottom="6" Brush="GameMenu.Text" Brush.FontSize="30" Brush.TextHorizontalAlignment="Left" Brush.TextVerticalAlignment="Center" IsDisabled="true" Text="@Name" />
 
-                <MaskedTextureWidget Id="SettlementBannerWidget" DataSource="{Banner}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Large.BannerWidth" SuggestedHeight="!Large.BannerHeight" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="9" Brush="Nameplate.FlatBanner.Big" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsDisabled="true" OverlayTextureScale="2.1" PositionYOffset="9" />
+                <MaskedTextureWidget Id="SettlementBannerWidget" DataSource="{Banner}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Large.BannerWidth" SuggestedHeight="!Large.BannerHeight" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="9" Brush="Nameplate.FlatBanner.Big" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsDisabled="true" />
 
                 <ButtonWidget Id="TrackButton" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Large.TrackerWidthHeight" SuggestedHeight="!Large.TrackerWidthHeight" HorizontalAlignment="Right" VerticalAlignment="Center" MarginRight="10" Sprite="SPGeneral\Nameplates\hover_ring" Command.Click="ExecuteTrack">
                   <Children>
@@ -109,7 +109,7 @@
 
                     <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" IsHidden="true" IsVisible="@IsLord">
                       <Children>
-                        <MaskedTextureWidget DataSource="{Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="21" SuggestedHeight="16" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Settlement.Party.Banner" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" OverlayTextureScale="3"/>
+                        <MaskedTextureWidget DataSource="{Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="21" SuggestedHeight="16" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Settlement.Party.Banner" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode"/>
                       </Children>
                     </Widget>
                   </Children>
@@ -142,7 +142,7 @@
 
                 <TextWidget Id="SettlementNameTextWidget" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" MarginLeft="59" MarginRight="!Medium.TrackerTextMargin" MarginBottom="5" MarginTop="5" Brush="GameMenu.Text" Brush.FontSize="20" Brush.TextHorizontalAlignment="Left" IsDisabled="true" Text="@Name" MinWidth="119"  />
 
-                <MaskedTextureWidget Id="SettlementBannerWidget" DataSource="{Banner}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Medium.BannerWidth" SuggestedHeight="!Medium.BannerHeight" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="8" Brush="Nameplate.FlatBanner.Normal" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsDisabled="true" OverlayTextureScale="2.1" PositionYOffset="6"/>
+                <MaskedTextureWidget Id="SettlementBannerWidget" DataSource="{Banner}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Medium.BannerWidth" SuggestedHeight="!Medium.BannerHeight" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="8" Brush="Nameplate.FlatBanner.Normal" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsDisabled="true"/>
 
                 <ButtonWidget Id="TrackButton" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Medium.TrackerWidthHeight" SuggestedHeight="!Medium.TrackerWidthHeight" HorizontalAlignment="Right" VerticalAlignment="Center" MarginRight="8" Sprite="SPGeneral\Nameplates\hover_ring" Command.Click="ExecuteTrack">
                   <Children>
@@ -176,7 +176,7 @@
 
                     <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" IsHidden="true" IsVisible="@IsLord">
                       <Children>
-                        <MaskedTextureWidget DataSource="{Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="21" SuggestedHeight="16" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Settlement.Party.Banner" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" OverlayTextureScale="3"/>
+                        <MaskedTextureWidget DataSource="{Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="21" SuggestedHeight="16" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Settlement.Party.Banner" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode"/>
                       </Children>
                     </Widget>
                   </Children>
@@ -211,7 +211,7 @@
 
                 <TextWidget Id="SettlementNameTextWidget" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" MarginLeft="45" MarginRight="!Small.TrackerTextMargin" MarginBottom="5" MarginTop="5" Brush="GameMenu.Text" Brush.FontSize="17" Brush.TextHorizontalAlignment="Left" IsDisabled="true" Text="@Name" MinWidth="88" />
 
-                <MaskedTextureWidget Id="SettlementBannerWidget" DataSource="{Banner}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Small.BannerWidth" SuggestedHeight="!Small.BannerHeight" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="6" Brush="Nameplate.FlatBanner.Small" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsDisabled="true" OverlayTextureScale="2.1" PositionYOffset="5"/>
+                <MaskedTextureWidget Id="SettlementBannerWidget" DataSource="{Banner}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Small.BannerWidth" SuggestedHeight="!Small.BannerHeight" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="6" Brush="Nameplate.FlatBanner.Small" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsDisabled="true"/>
 
                 <ButtonWidget Id="TrackButton" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Small.TrackerWidthHeight" SuggestedHeight="!Small.TrackerWidthHeight" HorizontalAlignment="Right" VerticalAlignment="Center" MarginRight="6" Sprite="SPGeneral\Nameplates\hover_ring" Command.Click="ExecuteTrack">
                   <Children>
@@ -245,7 +245,7 @@
 
                     <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" IsHidden="true" IsVisible="@IsLord">
                       <Children>
-                        <MaskedTextureWidget DataSource="{Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="21" SuggestedHeight="16" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Settlement.Party.Banner" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" OverlayTextureScale="3"/>
+                        <MaskedTextureWidget DataSource="{Visual}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="21" SuggestedHeight="16" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Settlement.Party.Banner" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode"/>
                       </Children>
                     </Widget>
                   </Children>

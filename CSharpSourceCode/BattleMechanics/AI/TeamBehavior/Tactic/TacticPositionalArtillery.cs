@@ -34,41 +34,41 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
         private bool _hasBattleBeenJoined;
 
 
-        public TacticPositionalArtillery(Team team) : base(team)
+        public TacticPositionalArtillery(Team Team) : base(Team)
         {
-            _artilleryFormation = new Formation(this.team, (int) TORFormationClass.Artillery);
-            this.team.FormationsIncludingSpecialAndEmpty.Add(_artilleryFormation);
-            _guardFormation = new Formation(this.team, (int) TORFormationClass.ArtilleryGuard);
-            this.team.FormationsIncludingSpecialAndEmpty.Add(_guardFormation);
+            _artilleryFormation = new Formation(this.Team, (int) TORFormationClass.Artillery);
+            this.Team.FormationsIncludingSpecialAndEmpty.Add(_artilleryFormation);
+            _guardFormation = new Formation(this.Team, (int) TORFormationClass.ArtilleryGuard);
+            this.Team.FormationsIncludingSpecialAndEmpty.Add(_guardFormation);
 
             _artilleryPlacerComponents = new List<WizardAIComponent>();
 
             //TODO: Reminder, might need this if certain updates dont work.
-            // var method = Traverse.Create(this.team).Method("FormationAI_OnActiveBehaviorChanged").GetValue();
-            // _artilleryFormation.AI.OnActiveBehaviorChanged += new Action<Formation>(this.team.FormationAI_OnActiveBehaviorChanged);
-            // _guardFormation.AI.OnActiveBehaviorChanged += new Action<Formation>(this.team.FormationAI_OnActiveBehaviorChanged);
+            // var method = Traverse.Create(this.Team).Method("FormationAI_OnActiveBehaviorChanged").GetValue();
+            // _artilleryFormation.AI.OnActiveBehaviorChanged += new Action<Formation>(this.Team.FormationAI_OnActiveBehaviorChanged);
+            // _guardFormation.AI.OnActiveBehaviorChanged += new Action<Formation>(this.Team.FormationAI_OnActiveBehaviorChanged);
         }
 
 
         protected override float GetTacticWeight()
         {
-            if (team.GeneralAgent == null ||
-                !team.GeneralAgent.IsAbilityUser() ||
-                !team.GeneralAgent.GetComponent<AbilityComponent>().GetKnownAbilityTemplates().Exists(item => item.AbilityEffectType == AbilityEffectType.ArtilleryPlacement) ||
-                team.ActiveAgents.Select(agent => agent.HasAttribute("ArtilleryCrew")).Count() < 2 ||
-                team.GeneralAgent.Controller == Agent.ControllerType.Player)
+            if (Team.GeneralAgent == null ||
+                !Team.GeneralAgent.IsAbilityUser() ||
+                !Team.GeneralAgent.GetComponent<AbilityComponent>().GetKnownAbilityTemplates().Exists(item => item.AbilityEffectType == AbilityEffectType.ArtilleryPlacement) ||
+                Team.ActiveAgents.Select(agent => agent.HasAttribute("ArtilleryCrew")).Count() < 2 ||
+                Team.GeneralAgent.Controller == Agent.ControllerType.Player)
                 return 0.0f;
 
-            // if (!team.TeamAI.IsDefenseApplicable || !CheckAndDetermineFormation(ref _mainInfantry, f => f.QuerySystem.IsInfantryFormation))
+            // if (!Team.TeamAI.IsDefenseApplicable || !CheckAndDetermineFormation(ref _mainInfantry, f => f.QuerySystem.IsInfantryFormation))
             //     return 0.0f;
 
-            if (!team.TeamAI.IsCurrentTactic(this) || _mainDefensiveLinePosition == null)
+            if (!Team.TeamAI.IsCurrentTactic(this) || _mainDefensiveLinePosition == null)
                 DeterminePositions();
 
             if (_chosenArtilleryPosition != null && !float.IsNaN(_chosenArtilleryPosition.UtilityValue))
             {
-                var utility = (team.QuerySystem.InfantryRatio + team.QuerySystem.RangedRatio * 10) * 1.2f * _chosenArtilleryPosition.UtilityValue * 2.5f // * CalculateNotEngagingTacticalAdvantage(team.QuerySystem) 
-                              / MathF.Sqrt(team.QuerySystem.RemainingPowerRatio);
+                var utility = (Team.QuerySystem.InfantryRatio + Team.QuerySystem.RangedRatio * 10) * 1.2f * _chosenArtilleryPosition.UtilityValue * 2.5f // * CalculateNotEngagingTacticalAdvantage(Team.QuerySystem) 
+                              / MathF.Sqrt(Team.QuerySystem.RemainingPowerRatio);
                 if (IsArtilleryAtPosition(_chosenArtilleryPosition.TacticalPosition))
                     utility += 5;
 
@@ -82,8 +82,8 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
         {
             AssignTacticFormations1121();
 
-            var allFormations = team.FormationsIncludingSpecialAndEmpty.ToList();
-            var infantryFormations = team.Formations.ToList().FindAll(formation => formation.QuerySystem.IsInfantryFormation);
+            var allFormations = Team.FormationsIncludingSpecialAndEmpty.ToList();
+            var infantryFormations = Team.GetFormationsIncludingSpecial().ToList().FindAll(formation => formation.QuerySystem.IsInfantryFormation);
             var updatedFormations = new List<Formation>();
 
             allFormations.SelectMany(form => form.Arrangement.GetAllUnits()).ToList().Select(unit => (Agent) unit).ToList().ForEach(agent =>
@@ -127,9 +127,9 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
                 });
             }
 
-            updatedFormations.ForEach(formation => team.TriggerOnFormationsChanged(formation));
-            if (_artilleryFormation.CountOfUnits > 0) team.TeamAI.OnUnitAddedToFormationForTheFirstTime(_artilleryFormation);
-            if (_guardFormation.CountOfUnits > 0) team.TeamAI.OnUnitAddedToFormationForTheFirstTime(_guardFormation);
+            updatedFormations.ForEach(formation => Team.TriggerOnFormationsChanged(formation));
+            if (_artilleryFormation.CountOfUnits > 0) Team.TeamAI.OnUnitAddedToFormationForTheFirstTime(_artilleryFormation);
+            if (_guardFormation.CountOfUnits > 0) Team.TeamAI.OnUnitAddedToFormationForTheFirstTime(_guardFormation);
         }
 
         protected override void TickOccasionally()
@@ -165,7 +165,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
 
         public bool IsArtilleryAtPosition(TacticalPosition position)
         {
-            return Mission.Current.GetActiveEntitiesWithScriptComponentOfType<ArtilleryRangedSiegeWeapon>()
+            return Mission.Current.GetActiveEntitiesWithScriptComponentOfType<BaseFieldSiegeWeapon>()
                 .Any(entity => entity.GlobalPosition.Distance(position.Position.GetGroundVec3()) < 30);
         }
 
@@ -192,7 +192,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
             if (_chosenArtilleryPosition != null)
             {
                 var tp = _chosenArtilleryPosition.TacticalPosition;
-                var direction = (team.QuerySystem.AverageEnemyPosition - tp.Position.AsVec2).Normalized();
+                var direction = (Team.QuerySystem.AverageEnemyPosition - tp.Position.AsVec2).Normalized();
                 TacticalPosition primaryDefensivePosition = new TacticalPosition(
                     new WorldPosition(Mission.Current.Scene, tp.Position.GetGroundVec3() + direction.ToVec3() * 50),
                     direction, tp.Width, tp.Slope, tp.IsInsurmountable, tp.TacticalPositionType, tp.TacticalRegionMembership);
@@ -226,18 +226,18 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
 
         private List<TacticalPosition> GatherCandidatePositions()
         {
-            var teamAiAPositions = team.TeamAI.TacticalPositions;
+            var TeamAiAPositions = Team.TeamAI.TacticalPositions;
 
-            var extractedPositions = team.TeamAI.TacticalRegions
+            var extractedPositions = Team.TeamAI.TacticalRegions
                 .SelectMany(region => ExtractPossibleTacticalPositionsFromTacticalRegion(region));
 
-            TacticalPosition tacticalPosition1 = new TacticalPosition(team.QuerySystem.MedianPosition, (team.QuerySystem.AverageEnemyPosition - team.QuerySystem.MedianPosition.AsVec2).Normalized(), 50);
-            var averageEnemyPosition = team.QuerySystem.AverageEnemyPosition;
+            TacticalPosition tacticalPosition1 = new TacticalPosition(Team.QuerySystem.MedianPosition, (Team.QuerySystem.AverageEnemyPosition - Team.QuerySystem.MedianPosition.AsVec2).Normalized(), 50);
+            var averageEnemyPosition = Team.QuerySystem.AverageEnemyPosition;
 
             float height = 0.0f;
             Mission.Current.Scene.GetHeightAtPoint(averageEnemyPosition, BodyFlags.CommonCollisionExcludeFlagsForCombat, ref height);
             var enemyPosition = averageEnemyPosition.ToVec3(height);
-            var gatherCandidatePositions = teamAiAPositions
+            var gatherCandidatePositions = TeamAiAPositions
                 .Concat(extractedPositions)
                 .AddItem(tacticalPosition1)
                 .Where(position => LineOfSightAllowsArtillery(position, enemyPosition)).ToList();
@@ -253,23 +253,23 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
             enemyCorrected.z += 2.5f;
             if (position.TacticalRegionMembership == TacticalRegion.TacticalRegionTypeEnum.Forest || position.TacticalRegionMembership == TacticalRegion.TacticalRegionTypeEnum.DifficultTerrain)
             {
-                return (CommonAIFunctions.HasLineOfSight(posCorrected, enemyCorrected, team.TeamAI.IsDefenseApplicable ? 10 : 70) ||
-                        CommonAIFunctions.HasLineOfSight(enemyCorrected, posCorrected, team.TeamAI.IsDefenseApplicable ? 10 : 70));
+                return (CommonAIFunctions.HasLineOfSight(posCorrected, enemyCorrected, Team.TeamAI.IsDefenseApplicable ? 10 : 70) ||
+                        CommonAIFunctions.HasLineOfSight(enemyCorrected, posCorrected, Team.TeamAI.IsDefenseApplicable ? 10 : 70));
                 // && CommonAIFunctions.HasLineOfSight(posCorrected, posCorrected + position.Direction.Normalized().ToVec3()*15, 20);
             }
 
-            return CommonAIFunctions.HasLineOfSight(posCorrected, enemyCorrected, team.TeamAI.IsDefenseApplicable ? 70.0f : position.Position.GetGroundVec3().Distance(enemyCorrected) * 0.5f) ||
-                   CommonAIFunctions.HasLineOfSight(enemyCorrected, posCorrected, team.TeamAI.IsDefenseApplicable ? 70.0f : position.Position.GetGroundVec3().Distance(enemyCorrected) * 0.5f);
+            return CommonAIFunctions.HasLineOfSight(posCorrected, enemyCorrected, Team.TeamAI.IsDefenseApplicable ? 70.0f : position.Position.GetGroundVec3().Distance(enemyCorrected) * 0.5f) ||
+                   CommonAIFunctions.HasLineOfSight(enemyCorrected, posCorrected, Team.TeamAI.IsDefenseApplicable ? 70.0f : position.Position.GetGroundVec3().Distance(enemyCorrected) * 0.5f);
             //  && CommonAIFunctions.HasLineOfSight(posCorrected, posCorrected + position.Direction.Normalized().ToVec3()*15, 20);
         }
 
         private List<Axis> CreateArtilleryPositionAssessment()
         {
             var function = new List<Axis>();
-            var distance = team.QuerySystem.AveragePosition.Distance(team.QuerySystem.AverageEnemyPosition);
+            var distance = Team.QuerySystem.AveragePosition.Distance(Team.QuerySystem.AverageEnemyPosition);
             Mission.Current.Scene.GetTerrainMinMaxHeight(out float minHeight, out float maxHeight);
-            function.Add(new Axis(0, distance, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles(team)));
-            function.Add(new Axis(0, distance, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToOwnArmy(team)));
+            function.Add(new Axis(0, distance, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles(Team)));
+            function.Add(new Axis(0, distance, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToOwnArmy(Team)));
             function.Add(new Axis(0, 1, x => x, CommonAIDecisionFunctions.AssessPositionForArtillery()));
             function.Add(new Axis(minHeight, maxHeight, x => x, CommonAIDecisionFunctions.PositionHeight()));
             return function;
@@ -282,7 +282,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
             fromTacticalRegion.AddRange(tacticalRegion.LinkedTacticalPositions); //.Where(ltp => ltp.TacticalPositionType == TacticalPosition.TacticalPositionTypeEnum.HighGround);
             if (tacticalRegion.tacticalRegionType == TacticalRegion.TacticalRegionTypeEnum.Forest)
             {
-                Vec2 direction = (team.QuerySystem.AverageEnemyPosition - tacticalRegion.Position.AsVec2).Normalized();
+                Vec2 direction = (Team.QuerySystem.AverageEnemyPosition - tacticalRegion.Position.AsVec2).Normalized();
                 TacticalPosition tacticalPosition1 = new TacticalPosition(tacticalRegion.Position, direction, tacticalRegion.radius, tacticalRegionMembership: TacticalRegion.TacticalRegionTypeEnum.Forest);
                 fromTacticalRegion.Add(tacticalPosition1);
                 float num = tacticalRegion.radius * 0.87f;
@@ -310,7 +310,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
 
         protected override bool CheckAndSetAvailableFormationsChanged()
         {
-            var aiControlledFormationCount = Formations.Count(f => f.IsAIControlled);
+            var aiControlledFormationCount = FormationsIncludingSpecialAndEmpty.ToList().FindAll(form => form.CountOfUnits > 0).Count(f => f.IsAIControlled);
             if (aiControlledFormationCount != _AIControlledFormationCount)
             {
                 _AIControlledFormationCount = aiControlledFormationCount;
@@ -337,7 +337,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
 
         private void Defend()
         {
-            if (team.IsPlayerTeam && !team.IsPlayerGeneral && team.IsPlayerSergeant)
+            if (Team.IsPlayerTeam && !Team.IsPlayerGeneral && Team.IsPlayerSergeant)
                 SoundTacticalHorn(MoveHornSoundIndex);
 
 
@@ -353,7 +353,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
             {
                 _artilleryFormation.AI.ResetBehaviorWeights();
                 SetDefaultBehaviorWeights(_artilleryFormation);
-                var enemyDirection = (_chosenArtilleryPosition.TacticalPosition.Position.AsVec2 - team.QuerySystem.AverageEnemyPosition).Normalized();
+                var enemyDirection = (_chosenArtilleryPosition.TacticalPosition.Position.AsVec2 - Team.QuerySystem.AverageEnemyPosition).Normalized();
                 _artilleryFormation.AI.SetBehaviorWeight<BehaviorDefend>(15f).DefensePosition = new WorldPosition(Mission.Current.Scene, _chosenArtilleryPosition.TacticalPosition.Position.GetGroundVec3() + enemyDirection.ToVec3() * 12);
                 _artilleryFormation.AI.SetBehaviorWeight<BehaviorSkirmishLine>(1f);
                 _artilleryFormation.AI.SetBehaviorWeight<BehaviorScreenedSkirmish>(1f);
@@ -404,7 +404,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
 
         private void Engage()
         {
-            if (team.IsPlayerTeam && !team.IsPlayerGeneral && team.IsPlayerSergeant)
+            if (Team.IsPlayerTeam && !Team.IsPlayerGeneral && Team.IsPlayerSergeant)
                 SoundTacticalHorn(AttackHornSoundIndex);
             if (_mainInfantry != null)
             {

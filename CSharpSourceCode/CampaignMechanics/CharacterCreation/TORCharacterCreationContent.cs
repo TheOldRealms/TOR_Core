@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterCreationContent;
+using TaleWorlds.CampaignSystem.Conversation.Tags;
 using TaleWorlds.CampaignSystem.Extensions;
 using TaleWorlds.CampaignSystem.GameState;
 using TaleWorlds.CampaignSystem.Party;
@@ -13,6 +14,7 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -24,6 +26,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
     {
         private List<CharacterCreationOption> _options;
         private readonly int _maxStageNumber = 3;
+        private bool _isFemale = false;
 
         public TORCharacterCreationContent()
         {
@@ -110,7 +113,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     var relevantOptions = _options.FindAll(x => x.StageNumber == i && x.Culture.Equals(culture));
                     foreach (var option in relevantOptions)
                     {
-                        var effectedSkills = new List<SkillObject>();
+                        var effectedSkills = new MBList<SkillObject>();
                         foreach (var skillId in option.SkillsToIncrease)
                         {
                             effectedSkills.Add(Skills.All.FirstOrDefault(x => x.StringId == skillId));
@@ -139,6 +142,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             charInfo.IsPlayerAlone = true;
             charInfo.HasSecondaryCharacter = false;
             charInfo.ClearFaceGenMounts();
+            _isFemale = CharacterObject.PlayerCharacter.IsFemale;
         }
 
         private void OnOptionSelected(TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation charInfo, string optionId)
@@ -146,16 +150,21 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             var selectedOption = _options.Find(x => x.Id == optionId);
             charInfo.ClearFaceGenPrefab();
             int race = 0;
-            if (selectedOption.OptionText == "Vampiric Nobility")
+            Hero.MainHero.UpdatePlayerGender(_isFemale);
+            if (selectedOption.OptionText == "Vampiric Nobility"|| selectedOption.OptionText == "Vampire of Mousillon")
             {
                 race = FaceGen.GetRaceOrDefault("vampire");
             }
-            UpdateRace(race, charInfo);
+            else if(selectedOption.OptionText == "Damsel of the Lady" && !CharacterObject.PlayerCharacter.IsFemale)
+            {
+                Hero.MainHero.UpdatePlayerGender(true);
+            }
+            UpdateVisuals(race, charInfo);
             UpdateEquipment(selectedOption, charInfo);
             
         }
 
-        private void UpdateRace(int race, TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation charInfo)
+        private void UpdateVisuals(int race, TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation charInfo)
         {
             List<FaceGenChar> list = new List<FaceGenChar>();
             BodyProperties bodyProperties = CharacterObject.PlayerCharacter.GetBodyProperties(CharacterObject.PlayerCharacter.Equipment, -1);
@@ -191,28 +200,35 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         private void OnOptionFinalize(TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation charInfo, string id)
         {
+            Hero.MainHero.AddAttribute("AbilityUser");
             var selectedOption = _options.Find(x => x.Id == id);
-            if (selectedOption.OptionText == "Bright Order Initiate")
+            if (selectedOption.OptionText == "Magister Apprentice" || selectedOption.OptionText == "Damsel of the Lady")
             {
-                Hero.MainHero.AddAttribute("AbilityUser");
                 Hero.MainHero.AddAttribute("SpellCaster");
                 Hero.MainHero.AddAbility("Dart");
-                Hero.MainHero.AddAbility("BoltOfAqshy");
                 Hero.MainHero.AddKnownLore("MinorMagic");
-                Hero.MainHero.AddKnownLore("LoreOfFire");
                 var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
             }
-            if (selectedOption.OptionText == "Warrior Priest Acolyte")
+
+            if (selectedOption.OptionText == "Knight Errant")
             {
-                Hero.MainHero.AddAttribute("AbilityUser");
-                Hero.MainHero.AddAttribute("Priest");
-                Hero.MainHero.AddAbility("HealingAOE");
+                Hero.MainHero.AddCareer(TORCareers.GrailKnight);
             }
-            else if (selectedOption.OptionText == "Novice Necromancer")
+            
+            if (selectedOption.OptionText == "Priest Acolyte")
             {
-                Hero.MainHero.AddAttribute("AbilityUser");
+                Hero.MainHero.AddAttribute("Priest");
+                Hero.MainHero.AddAbility("HealingHand");
+                var skill = Hero.MainHero.GetSkillValue(TORSkills.Faith);
+                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
+                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);
+                Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 60);
+                Hero.MainHero.AddCareer(TORCareers.WarriorPriest);
+            }
+            else if (selectedOption.OptionText == "Novice Necromancer"||selectedOption.OptionText == "Necromancer")
+            {
                 Hero.MainHero.AddAttribute("SpellCaster");
                 Hero.MainHero.AddAttribute("Necromancer");
                 Hero.MainHero.AddAbility("SummonSkeleton");
@@ -221,19 +237,18 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 25);
             }
-            else if (selectedOption.OptionText == "Vampiric Nobility")
+            else if (selectedOption.OptionText == "Vampiric Nobility"||selectedOption.OptionText == "Vampire of Mousillon")
             {
                 Hero.MainHero.AddAttribute("Vampire");
                 Hero.MainHero.AddAttribute("Necromancer");
-                Hero.MainHero.AddAttribute("AbilityUser");
-                Hero.MainHero.AddAttribute("SpellCaster");
-                Hero.MainHero.AddAbility("NagashGaze");
-                Hero.MainHero.AddKnownLore("MinorMagic");
-                Hero.MainHero.AddKnownLore("Necromancy");
-                var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
-                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
-                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 60);
+            }
+
+            if (Hero.MainHero.GetCareer() == null)
+            {
+                Hero.MainHero.AddCareer(TORCareers.Mercenary);
             }
         }
 
@@ -250,6 +265,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 case "khuzait":
                     position2D = new Vec2(1617.54f, 969.70f);
                     break;
+                case "vlandia":
+                    position2D = new Vec2(998.96f, 830.02f);
+                    break;
+                case "mousillon":
+                    position2D = new Vec2(932.531f, 1049.944f);
+                    break;
                 default:
                     position2D = new Vec2(1420.97f, 981.37f);
                     break;
@@ -262,11 +283,79 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 mapState.Handler.TeleportCameraToMainParty();
             }
             SetHeroAge(25);
+            if (Hero.MainHero.IsSpellCaster()) PromptChooseLore();
+            if (Hero.MainHero.IsVampire()) PromptChooseBloodline();
         }
 
         protected void SetHeroAge(float age)
         {
             Hero.MainHero.SetBirthDay(CampaignTime.YearsFromNow(-age));
+        }
+
+        private void PromptChooseLore()
+        {
+            List<InquiryElement> list = new List<InquiryElement>();
+            var lores = LoreObject.GetAll();
+            foreach (var item in lores)
+            {
+                if (item.ID != "MinorMagic" && !item.DisabledForCultures.Contains(CharacterObject.PlayerCharacter.Culture.StringId) && !Hero.MainHero.GetExtendedInfo().HasKnownLore(item.ID)&&!item.IsRestrictedToVampires) list.Add(new InquiryElement(item, item.Name, null)) ;
+            }
+
+            if (list.IsEmpty()) return;
+            
+            var inquirydata = new MultiSelectionInquiryData("Choose Lore", "Choose a lore to specialize in.", list, false, 1, 1, "Confirm", "Cancel", OnChooseLore, OnCancel);
+            MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
+
+        }
+
+        private void OnChooseLore(List<InquiryElement> obj)
+        {
+            var choice = obj[0].Identifier as LoreObject;
+            var info = Hero.MainHero.GetExtendedInfo();
+            if (choice != null)
+            {
+                Hero.MainHero.AddKnownLore(choice.ID);
+                if (info.SpellCastingLevel < SpellCastingLevel.Entry) Hero.MainHero.SetSpellCastingLevel(SpellCastingLevel.Entry);
+                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned lore: " + choice.Name), 0, CharacterObject.PlayerCharacter);
+            }
+            InformationManager.HideInquiry();
+        }
+
+        private void OnCancel(List<InquiryElement> obj)
+        {
+            MBInformationManager.AddQuickInformation(new TextObject("You MUST choose."));
+        }
+
+        private void PromptChooseBloodline()
+        {
+            List<InquiryElement> list = new List<InquiryElement>();
+            list.Add(new InquiryElement("generic_vampire", "Von Carstein Vampire", null));
+            list.Add(new InquiryElement("blood_knight", "Blood Knight", null));
+            var inquirydata = new MultiSelectionInquiryData("Choose Bloodline", "Choose your vampiric bloodline.", list, false, 1, 1, "Confirm", "Cancel", OnChooseBloodline, OnCancel);
+            MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
+        }
+
+        private void OnChooseBloodline(List<InquiryElement> obj)
+        {
+            var choice = obj[0].Identifier as string;
+            if(choice == "generic_vampire")
+            {
+                Hero.MainHero.AddAttribute("SpellCaster");
+                Hero.MainHero.AddAbility("NagashGaze");
+                Hero.MainHero.AddKnownLore("MinorMagic");
+                Hero.MainHero.AddKnownLore("Necromancy");
+                Hero.MainHero.AddKnownLore("DarkMagic");
+                var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
+                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
+                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy and Dark Magic"), 0, CharacterObject.PlayerCharacter);
+                Hero.MainHero.AddCareer(TORCareers.MinorVampire);
+            }
+
+            if (choice == "blood_knight")
+            {
+                Hero.MainHero.AddCareer(TORCareers.BloodKnight);
+            }
         }
     }
 }

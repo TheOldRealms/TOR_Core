@@ -40,7 +40,6 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
             CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, OnGameMenuOpened);
             CampaignEvents.BeforeMissionOpenedEvent.AddNonSerializedListener(this, OnBeforeMissionStart);
-            CampaignEvents.PerkOpenedEvent.AddNonSerializedListener(this, OnPerkPicked);
         }
 
         private void OnBeforeMissionStart() => SpawnTrainerIfNeeded();
@@ -84,7 +83,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
                 if (forceSpawn)
                 {
-                    LocationCharacter locationCharacter = new LocationCharacter(new AgentData(new SimpleAgentOrigin(trainer.CharacterObject, -1, null, default(UniqueTroopDescriptor))).Monster(Game.Current.DefaultMonster), new LocationCharacter.AddBehaviorsDelegate(SandBoxManager.Instance.AgentBehaviorManager.AddWandererBehaviors), "npc_common", true, LocationCharacter.CharacterRelations.Neutral, null, true, false, null, false, false, true);
+                    LocationCharacter locationCharacter = new LocationCharacter(new AgentData(new SimpleAgentOrigin(trainer.CharacterObject, -1, null, default(UniqueTroopDescriptor))).Monster(FaceGen.GetBaseMonsterFromRace(trainer.CharacterObject.Race)), new LocationCharacter.AddBehaviorsDelegate(SandBoxManager.Instance.AgentBehaviorManager.AddWandererBehaviors), "npc_common", true, LocationCharacter.CharacterRelations.Neutral, null, true, false, null, false, false, true);
                     collegeloc.AddCharacter(locationCharacter);
                 }
                 else
@@ -142,29 +141,6 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             }
         }
 
-        private void OnPerkPicked(Hero hero, PerkObject perk)
-        {
-            var info = hero.GetExtendedInfo();
-            if (hero.IsSpellCaster() && info != null)
-            {
-                if(perk == TORPerks.SpellCraft.EntrySpells)
-                {
-                    if (info.SpellCastingLevel < SpellCastingLevel.Entry)
-                        hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
-                }
-                else if (perk == TORPerks.SpellCraft.AdeptSpells)
-                {
-                    if (info.SpellCastingLevel < SpellCastingLevel.Adept)
-                        hero.SetSpellCastingLevel(SpellCastingLevel.Adept);
-                }
-                else if (perk == TORPerks.SpellCraft.MasterSpells)
-                {
-                    if (info.SpellCastingLevel < SpellCastingLevel.Master)
-                        hero.SetSpellCastingLevel(SpellCastingLevel.Master);
-                }
-            }
-        }
-
         private void OpenScrollShop()
         {
             ItemRoster roster = new ItemRoster();
@@ -175,6 +151,11 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 .ForEach(item => roster.Add(new ItemRosterElement(item, MBRandom.RandomInt(1, 5))));
 
             InventoryManager.OpenScreenAsTrade(roster, Settlement.CurrentSettlement.Town);
+        }
+
+        public bool IsSpellTrainer(Hero hero)
+        {
+            return _settlementToTrainerMap.ContainsValue(hero.StringId);
         }
 
         private void AddDialogs(CampaignGameStarter obj)
@@ -299,7 +280,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             foreach (var item in LoreObject.GetAll())
             {
                 if (item.ID != "MinorMagic" &&
-                    !item.DisabledForTrainersWithCultures.Contains(partnerCulture) &&
+                    !item.DisabledForCultures.Contains(partnerCulture) &&
                     !info.HasKnownLore(item.ID) &&
                     !(item.IsRestrictedToVampires && !Hero.MainHero.IsVampire())) possibleLores.Add(item);
             }
@@ -370,9 +351,9 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             var lores = LoreObject.GetAll();
             foreach (var item in lores)
             {
-                if (item.ID != "MinorMagic" && !item.DisabledForTrainersWithCultures.Contains(CharacterObject.OneToOneConversationCharacter.Culture.StringId) && !Hero.MainHero.GetExtendedInfo().HasKnownLore(item.ID)) list.Add(new InquiryElement(item, item.Name, null));
+                if (item.ID != "MinorMagic" && !item.DisabledForCultures.Contains(CharacterObject.OneToOneConversationCharacter.Culture.StringId) && !Hero.MainHero.GetExtendedInfo().HasKnownLore(item.ID)) list.Add(new InquiryElement(item, item.Name, null));
             }
-            var inquirydata = new MultiSelectionInquiryData("Choose Lore", "Choose a lore to specialize in.", list, true, 1, "Confirm", "Cancel", OnChooseLore, OnCancelLore);
+            var inquirydata = new MultiSelectionInquiryData("Choose Lore", "Choose a lore to specialize in.", list, true, 1, 1, "Confirm", "Cancel", OnChooseLore, OnCancelLore);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
         }
 

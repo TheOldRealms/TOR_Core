@@ -1,4 +1,6 @@
-﻿using TaleWorlds.MountAndBlade;
+using System.Linq;
+using TaleWorlds.MountAndBlade;
+using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
@@ -7,7 +9,7 @@ namespace TOR_Core.Models
     {
         public override void GetMeleeAttackBloodParticles(Agent attacker, Agent victim, in Blow blow, in AttackCollisionData collisionData, out HitParticleResultData particleResultData)
         {
-            if (victim.IsUndead())
+            if (victim.IsUndead()||victim.ShouldNotBleed())
             {
                 particleResultData.ContinueHitParticleIndex = -1;
                 particleResultData.StartHitParticleIndex = -1;
@@ -37,7 +39,22 @@ namespace TOR_Core.Models
             {
                 return -1;
             }
+            if (victim.ShouldNotBleed())
+            {
+                HideMissleIfExists(blow.WeaponRecord.AffectorWeaponSlotOrMissileIndex);
+                return -1;
+            }
             return base.GetMissileAttackParticle(attacker, victim, blow, collisionData);
+        }
+
+
+
+
+        private void HideMissleIfExists(int index)
+        {
+            var missle = Mission.Current.Missiles.FirstOrDefault(x=> x.Index==index);
+            if(missle!=null)
+                missle.Entity.SetAlpha(0);
         }
     }
 }

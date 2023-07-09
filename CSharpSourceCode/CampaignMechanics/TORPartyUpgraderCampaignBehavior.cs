@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,7 +50,7 @@ namespace TOR_Core.CampaignMechanics
                     TroopRosterElement elementCopyAtIndex = memberRoster.GetElementCopyAtIndex(i);
                     if (partyTroopUpgradeModel.IsTroopUpgradeable(party, elementCopyAtIndex.Character))
                     {
-                        List<TORTroopUpgradeArgs> possibleUpgradeTargets = this.GetPossibleUpgradeTargets(party, elementCopyAtIndex);
+                        List<TORTroopUpgradeArgs> possibleUpgradeTargets = GetPossibleUpgradeTargets(party, elementCopyAtIndex);
                         if (possibleUpgradeTargets.Count > 0)
                         {
                             TORTroopUpgradeArgs upgradeArgs = SelectPossibleUpgrade(possibleUpgradeTargets);
@@ -78,12 +78,12 @@ namespace TOR_Core.CampaignMechanics
                     {
                         bool partyHasEnoughGold = false;
                         int upgradeGoldCost = character.GetUpgradeGoldCost(party, i);
-                        if (upgradeGoldCost <= 0 || (party.LeaderHero != null && upgradeGoldCost != 0 && num * upgradeGoldCost > party.LeaderHero.Gold)) partyHasEnoughGold = true;
+                        if (upgradeGoldCost <= 0 || (party.LeaderHero != null && upgradeGoldCost != 0 && num * upgradeGoldCost <= party.LeaderHero.Gold)) partyHasEnoughGold = true;
                         bool withinPaymentLimit = false;
                         if(upgradeTargetObject.Tier > character.Tier && 
-                            party.MobileParty.PaymentLimit > 0 && 
-                            !party.MobileParty.UnlimitedWage && 
-                            party.MobileParty.TotalWage + num * (partyWageModel.GetCharacterWage(upgradeTargetObject) - partyWageModel.GetCharacterWage(character)) > party.MobileParty.PaymentLimit)
+                            party.MobileParty.PaymentLimit > 0 &&
+                            party.MobileParty.CanPayMoreWage() && 
+                            party.MobileParty.TotalWage + num * (partyWageModel.GetCharacterWage(upgradeTargetObject) - partyWageModel.GetCharacterWage(character)) <= party.MobileParty.PaymentLimit)
                         {
                             withinPaymentLimit = true;
                         }

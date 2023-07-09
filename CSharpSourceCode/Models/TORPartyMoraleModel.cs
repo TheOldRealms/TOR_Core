@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.Core;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
 {
@@ -15,11 +18,29 @@ namespace TOR_Core.Models
         public override ExplainedNumber GetEffectivePartyMorale(MobileParty mobileParty, bool includeDescription = false)
         {
             var result = base.GetEffectivePartyMorale(mobileParty, includeDescription);
+
+            if (mobileParty.IsMainParty)
+            {
+                AddCareerPassivesForTroopMorale(mobileParty, ref result);
+            }
             if (mobileParty.HasPerk(TORPerks.SpellCraft.StoryTeller))
             {
                 result.Add(TORPerks.SpellCraft.StoryTeller.SecondaryBonus, TORPerks.SpellCraft.StoryTeller.Name);
             }
+            if (mobileParty.HasBlessing("cult_of_lady"))
+            {
+                result.Add(20, GameTexts.FindText("tor_religion_blessing_name", "cult_of_lady"));
+            }
             return result;
+        }
+        
+        private void AddCareerPassivesForTroopMorale(MobileParty party, ref ExplainedNumber explainedNumber)
+        {
+            if(party.LeaderHero==null)return;
+            if (party.LeaderHero.HasAnyCareer())
+            {
+                CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.TroopMorale);
+            }
         }
     }
 }

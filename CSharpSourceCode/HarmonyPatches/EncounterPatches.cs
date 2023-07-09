@@ -17,11 +17,11 @@ namespace TOR_Core.HarmonyPatches
             if (defenderParty.MapEvent != null && settlement != null && defenderParty != MobileParty.MainParty.Party && attackerParty == MobileParty.MainParty.Party)
             {
                 var mapEvent = defenderParty.MapEvent;
-                if (MapEventHelper.CanPartyJoinBattle(MobileParty.MainParty.Party, mapEvent, BattleSideEnum.Defender))
+                if (mapEvent.CanPartyJoinBattle(MobileParty.MainParty.Party, BattleSideEnum.Defender))
                 {
                     MobileParty.MainParty.Party.MapEventSide = mapEvent.DefenderSide;
                 }
-                else if (MapEventHelper.CanPartyJoinBattle(MobileParty.MainParty.Party, mapEvent, BattleSideEnum.Attacker))
+                else if (mapEvent.CanPartyJoinBattle(MobileParty.MainParty.Party, BattleSideEnum.Attacker))
                 {
                     MobileParty.MainParty.Party.MapEventSide = mapEvent.AttackerSide;
                 }

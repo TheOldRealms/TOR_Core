@@ -527,6 +527,475 @@
       <EquipmentSet id="tor_empire_caravan_ranged_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_empire_flagellant" default_group="infantry" level="6" name="{=str_tor_empire_flagellant}Empire Flagellant" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.warriorpriest" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_empire_flagellant_template" />
+      <EquipmentSet id="tor_empire_flagellant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_villager" default_group="infantry" level="1" name="{=str_tor_br_villager}Bretonnian Villager" occupation="Villager" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level1">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_br_peasant_levy" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_villager_template" />
+      <EquipmentSet id="tor_br_villager_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_peasant_levy" default_group="infantry" level="6" name="{=str_tor_br_peasant_levy}Bretonnian Peasant Levy" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_br_peasant_archer" />
+      <upgrade_target id="NPCCharacter.tor_br_manatarms_militia" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_levy_template" />
+      <EquipmentSet id="tor_br_peasant_levy_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_peasant_archer" default_group="ranged" level="11" name="{=str_tor_br_peasant_archer}Bretonnian Peasant Archer" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level11">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_br_longbowman" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_archer_template" />
+      <EquipmentSet id="tor_br_peasant_archer_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_longbowman" default_group="ranged" level="16" name="{=str_tor_br_longbowman}Bretonnian Longbowman" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level16">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_br_villein" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_hunter_template" />
+      <EquipmentSet id="tor_br_hunter_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_villein" default_group="ranged" level="21" name="{=str_tor_br_villein}Bretonnian Villein" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_br_villein_template" />
+      <EquipmentSet id="tor_br_villein_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_manatarms_militia" default_group="infantry" level="11" name="{=str_tor_br_manatarms_militia}Bretonnian Man-at-Arms militiaman" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level11">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_br_manatarms" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_manatarms_militia_template" />
+      <EquipmentSet id="tor_br_manatarms_militia_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_manatarms" default_group="infantry" level="16" name="{=str_tor_br_manatarms}Bretonnian Man-at-Arms" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level16">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_br_manatarms_halberd" />
+      <upgrade_target id="NPCCharacter.tor_br_yeoman" />
+      <upgrade_target id="NPCCharacter.tor_br_mounted_yeoman" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_manatarms_template" />
+      <EquipmentSet id="tor_br_manatarms_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_manatarms_halberd" default_group="infantry" level="21" name="{=str_tor_br_manatarms_halberd}Bretonnian Man-at-Arms Billman" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_br_manatarms_billman_template" />
+      <EquipmentSet id="tor_br_manatarms_billman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_yeoman" default_group="infantry" level="21" name="{=str_tor_br_yeoman}Bretonnian Yeoman" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_br_yeoman_warden" />
+      <upgrade_target id="NPCCharacter.tor_br_foot_squire" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_yeoman_template" />
+      <EquipmentSet id="tor_br_yeoman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_yeoman_warden" default_group="infantry" level="26" name="{=str_tor_br_yeoman_warden}Bretonnian Yeoman Warden" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_br_yeoman_warden_template" />
+      <EquipmentSet id="tor_br_yeoman_warden_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_foot_squire" default_group="infantry" level="26" name="{=str_tor_br_foot_squire}Bretonnian Foot Squire" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_br_foot_squire_template" />
+      <EquipmentSet id="tor_br_foot_squire_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_mounted_yeoman" default_group="cavalry" level="21" name="{=str_tor_br_mounted_yeoman}Bretonnian Mounted Yeoman" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_br_mounted_warden" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_mounted_yeoman_template" />
+      <EquipmentSet id="tor_br_mounted_yeoman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_mounted_warden" default_group="cavalry" level="26" name="{=str_tor_br_mounted_warden}Bretonnian Mounted Yeoman Warden" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_br_mounted_yeoman_warden_template" />
+      <EquipmentSet id="tor_br_mounted_yeoman_warden_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_noble" default_group="cavalry" level="11" name="{=str_tor_br_noble}Bretonnian Noble" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_br_knight_errant" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_template" />
+      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_knight_errant" default_group="cavalry" level="21" name="{=str_tor_br_knight_errant}Bretonnian Knight Errant" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_br_realm_knight" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_template" />
+      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_realm_knight" default_group="cavalry" level="31" name="{=str_tor_br_realm_knight}Bretonnian Knight of the Realm" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level31">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_br_quest_knight" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_template" />
+      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_quest_knight" default_group="cavalry" level="41" name="{=str_tor_br_quest_knight}Bretonnian Questing Knight" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level41">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_br_grail_knight" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_template" />
+      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_grail_knight" default_group="cavalry" level="46" name="{=str_tor_br_grail_knight}Bretonnian Grail Knight" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level46">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_template" />
+      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_caravan_guard" default_group="cavalry" level="21" name="{=str_tor_br_caravan_guard}Bretonnian Caravan Horseman" occupation="CaravanGuard" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_br_caravan_captain" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_template" />
+      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_caravan_ranged" default_group="ranged" level="21" name="{=str_tor_br_caravan_ranged}Bretonnian Caravan Bowman" occupation="CaravanGuard" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_br_caravan_elite_ranged" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_template" />
+      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_caravan_elite_ranged" default_group="ranged" level="26" name="{=str_tor_br_caravan_elite_ranged}Bretonnian Caravan Longbowman" occupation="CaravanGuard" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_template" />
+      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_caravan_captain" default_group="cavalry" level="26" name="{=str_tor_br_caravan_captain}Bretonnian Caravan Master" occupation="CaravanGuard" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_template" />
+      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_villager" default_group="infantry" level="1" name="{=str_tor_m_villager}Mousillon Villager" occupation="Villager" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level1">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_m_peasant_levy" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_villager_template" />
+      <EquipmentSet id="tor_br_villager_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_peasant_levy" default_group="infantry" level="6" name="{=str_tor_m_peasant_levy}Mousillon Peasant Levy" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_m_peasant_archer" />
+      <upgrade_target id="NPCCharacter.tor_m_manatarms_militia" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_levy_template" />
+      <EquipmentSet id="tor_br_peasant_levy_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_peasant_archer" default_group="ranged" level="11" name="{=str_tor_m_peasant_archer}Mousillon Peasant Archer" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level11">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_m_longbowman" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_archer_template" />
+      <EquipmentSet id="tor_br_peasant_archer_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_longbowman" default_group="ranged" level="16" name="{=str_tor_m_longbowman}Mousillon Longbowman" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level16">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_m_villein" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_hunter_template" />
+      <EquipmentSet id="tor_br_hunter_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_villein" default_group="ranged" level="21" name="{=str_tor_m_villein}Mousillon Villein" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_br_villein_template" />
+      <EquipmentSet id="tor_br_villein_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_manatarms_militia" default_group="infantry" level="11" name="{=str_tor_m_manatarms_militia}Mousillon Man-at-Arms militiaman" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level11">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_m_manatarms" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_manatarms_militia_template" />
+      <EquipmentSet id="tor_br_manatarms_militia_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_manatarms" default_group="infantry" level="16" name="{=str_tor_m_manatarms}Mousillon Man-at-Arms" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level16">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_m_manatarms_halberd" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_manatarms_template" />
+      <EquipmentSet id="tor_br_manatarms_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_manatarms_halberd" default_group="infantry" level="21" name="{=str_tor_m_manatarms_halberd}Mousillon Man-at-Arms Billman" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_m_mounted_yeoman" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_manatarms_billman_template" />
+      <EquipmentSet id="tor_br_manatarms_billman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_mounted_yeoman" default_group="cavalry" level="26" name="{=str_tor_m_mounted_yeoman}Mousillon Mounted Yeoman" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level26">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_br_mounted_yeoman_template" />
+      <EquipmentSet id="tor_br_mounted_yeoman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_illfated_squire" default_group="cavalry" level="11" name="{=str_tor_m_illfated_squire}Mousillon Ill-fated Squire" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_m_outcast_errant" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_template" />
+      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_outcast_errant" default_group="cavalry" level="21" name="{=str_tor_m_outcast_errant}Mousillon Outcast Errant" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_m_knight_of_misfortune" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_template" />
+      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_knight_of_misfortune" default_group="cavalry" level="31" name="{=str_tor_m_knight_of_misfortune}Mousillon Knight of Misfortune" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level31">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_m_doomed_questing_knight" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_template" />
+      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_doomed_questing_knight" default_group="cavalry" level="41" name="{=str_tor_m_doomed_questing_knight}Mousillon Doomed Questing Knight" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level41">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_m_knight_of_the_black_grail" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_template" />
+      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_knight_of_the_black_grail" default_group="cavalry" level="46" name="{=str_tor_m_knight_of_the_black_grail}Mousillon Knight of the Black Grail" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level46">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_template" />
+      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_caravan_guard" default_group="cavalry" level="21" name="{=str_tor_m_caravan_guard}Mousillon Caravan Horseman" occupation="CaravanGuard" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_m_caravan_captain" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_template" />
+      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_caravan_ranged" default_group="ranged" level="21" name="{=str_tor_m_caravan_ranged}Mousillon Caravan Bowman" occupation="CaravanGuard" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_m_caravan_elite_ranged" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_template" />
+      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_caravan_elite_ranged" default_group="ranged" level="26" name="{=str_tor_m_caravan_elite_ranged}Mousillon Caravan Longbowman" occupation="CaravanGuard" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level26">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_template" />
+      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_caravan_captain" default_group="infantry" level="26" name="{=str_tor_m_caravan_captain}Mousillon Caravan Master" occupation="CaravanGuard" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level26">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_template" />
+      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_vc_villager" default_group="infantry" level="1" name="{=str_tor_vc_villager}Sylvanian Peasant" occupation="Villager" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level1">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
@@ -660,65 +1129,38 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_vc_skeleton_champion" />
+      <upgrade_target id="NPCCharacter.tor_vc_skeleton_warrior" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_vc_skeleton_swordsman_template" />
       <EquipmentSet id="tor_vc_skeleton_swordsman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_skeleton_spearman" default_group="infantry" level="6" name="{=str_tor_vc_skeleton_spearman}Skeleton Spearman" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level6" race="skeleton">
+  <NPCCharacter id="tor_vc_skeleton_warrior" default_group="infantry" level="11" name="{=str_tor_vc_skeleton_warrior}Skeleton Warrior" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level11" race="skeleton">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_vc_skeleton_champion" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_vc_skeleton_spearman_template" />
-      <EquipmentSet id="tor_vc_skeleton_spearman_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_vc_skeleton_champion" default_group="infantry" level="11" name="{=str_tor_vc_skeleton_champion}Skeleton Champion" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level11" race="skeleton">
-    <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_vc_skeleton_crypt_guard" />
+      <upgrade_target id="NPCCharacter.tor_vc_crypt_warrior" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_vc_skeleton_champion_template" />
       <EquipmentSet id="tor_vc_skeleton_champion_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_skeleton_crypt_guard" default_group="infantry" level="16" name="{=str_tor_vc_skeleton_crypt_guard}Crypt Guard" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level16" race="skeleton">
+  <NPCCharacter id="tor_vc_crypt_warrior" default_group="infantry" level="16" name="{=str_tor_vc_crypt_warrior}Crypt Warrior" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level16" race="skeleton">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_vc_grave_guard" />
-      <upgrade_target id="NPCCharacter.tor_vc_spirit_host" />
-      <upgrade_target id="NPCCharacter.tor_vc_black_knight" />
+      <upgrade_target id="NPCCharacter.tor_vc_grave_guard_warrior" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_vc_crypt_guard_template" />
       <EquipmentSet id="tor_vc_crypt_guard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_spirit_host" default_group="infantry" level="21" name="{=str_tor_vc_spirit_host}Spirit Host" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level21" race="wraith">
-    <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_vc_cairn_wraith" />
-      <upgrade_target id="NPCCharacter.tor_vc_hex_wraith" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_vc_spirithost_template" />
-      <EquipmentSet id="tor_vc_spirithost_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_vc_grave_guard" default_group="infantry" level="21" name="{=str_tor_vc_grave_guard}Grave Guard" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level21" race="skeleton">
+  <NPCCharacter id="tor_vc_grave_guard_warrior" default_group="infantry" level="21" name="{=str_tor_vc_grave_guard_warrior}Grave Guard Warrior" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level21" race="skeleton">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -730,16 +1172,108 @@
       <EquipmentSet id="tor_vc_grave_guard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_grave_guard_seneschal" default_group="infantry" level="26" name="{=str_tor_vc_grave_guard_seneschal}Grave Guard Seneschal" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level26" race="skeleton">
+  <NPCCharacter id="tor_vc_grave_guard_seneschal" default_group="infantry" level="31" name="{=str_tor_vc_grave_guard_seneschal}Grave Guard Seneschal" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level31" race="skeleton">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_vc_grave_guard_seneschal_template" />
+      <EquipmentSet id="tor_vc_grave_guard_seneschal_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_skeleton_spearman" default_group="infantry" level="6" name="{=str_tor_vc_skeleton_spearman}Skeleton Spearman" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level6" race="skeleton">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_vc_drakenhof_guard" />
+      <upgrade_target id="NPCCharacter.tor_vc_skeleton_guard" />
     </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_vc_skeleton_spearman_template" />
+      <EquipmentSet id="tor_vc_skeleton_spearman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_skeleton_guard" default_group="infantry" level="11" name="{=str_tor_vc_skeleton_guard}Skeleton Guard" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level11" race="skeleton">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_vc_crypt_guard" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_vc_skeleton_champion_template" />
+      <EquipmentSet id="tor_vc_skeleton_champion_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_crypt_guard" default_group="infantry" level="16" name="{=str_tor_vc_crypt_guard}Crypt Guard" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level16" race="skeleton">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_vc_grave_guard_spearman" />
+      <upgrade_target id="NPCCharacter.tor_vc_black_knight" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_vc_crypt_guard_template" />
+      <EquipmentSet id="tor_vc_crypt_guard_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_grave_guard_spearman" default_group="infantry" level="21" name="{=str_tor_vc_grave_guard_spearman}Grave Guard Spearman" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level21" race="skeleton">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_vc_grave_guardian" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_vc_grave_guard_template" />
+      <EquipmentSet id="tor_vc_grave_guard_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_grave_guardian" default_group="infantry" level="31" name="{=str_tor_vc_grave_guardian}Grave Guardian" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level31" race="skeleton">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets />
     <Equipments>
       <EquipmentSet id="tor_vc_grave_guard_seneschal_template" />
       <EquipmentSet id="tor_vc_grave_guard_seneschal_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_black_knight" default_group="cavalry" level="21" name="{=str_tor_vc_black_knight}Black Knight" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level21" race="skeleton">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_vc_hell_knight" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_vc_black_knight_template" />
+      <EquipmentSet id="tor_vc_black_knight_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_hell_knight" default_group="cavalry" level="31" name="{=str_tor_vc_hell_knight}Hell Knight" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level31" race="skeleton">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_vc_hell_knight_template" />
+      <EquipmentSet id="tor_vc_hell_knight_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_spirit_host" default_group="infantry" level="21" name="{=str_tor_vc_spirit_host}Spirit Host" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true" race="wraith">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_vc_cairn_wraith" />
+      <upgrade_target id="NPCCharacter.tor_vc_hex_wraith" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_vc_spirithost_template" />
+      <EquipmentSet id="tor_vc_spirithost_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_vc_cairn_wraith" default_group="infantry" level="31" name="{=str_tor_vc_cairn_wraith}Cairn Wraith" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level31" race="wraith">
@@ -764,16 +1298,6 @@
       <EquipmentSet id="tor_vc_crypt_wraith_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_drakenhof_guard" default_group="infantry" level="36" name="{=str_tor_vc_drakenhof_guard}Drakenhof Guard" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level36" race="skeleton">
-    <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
-    </face>
-    <upgrade_targets />
-    <Equipments>
-      <EquipmentSet id="tor_vc_drakenhof_guard_template" />
-      <EquipmentSet id="tor_vc_drakenhof_guard_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
   <NPCCharacter id="tor_vc_hex_wraith" default_group="cavalry" level="31" name="{=str_tor_vc_hex_wraith}Hex Wraith" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level31" race="wraith">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
@@ -786,28 +1310,6 @@
       <EquipmentSet id="tor_vc_hex_wraith_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_black_knight" default_group="cavalry" level="26" name="{=str_tor_vc_black_knight}Black Knight" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level26" race="skeleton">
-    <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_vc_hell_knight" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_vc_black_knight_template" />
-      <EquipmentSet id="tor_vc_black_knight_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_vc_hell_knight" default_group="cavalry" level="36" name="{=str_tor_vc_hell_knight}Hell Knight" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level36" race="skeleton">
-    <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
-    </face>
-    <upgrade_targets />
-    <Equipments>
-      <EquipmentSet id="tor_vc_hell_knight_template" />
-      <EquipmentSet id="tor_vc_hell_knight_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
   <NPCCharacter id="tor_vc_hell_wraith" default_group="cavalry" level="36" name="{=str_tor_vc_hell_wraith}Hell Wraith" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level36" race="wraith">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
@@ -818,44 +1320,19 @@
       <EquipmentSet id="tor_vc_hell_wraith_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_vampire_newblood" default_group="infantry" level="21" name="{=str_tor_vc_vampire_newblood}Vampire Newblood" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true" race="vampire">
+  <NPCCharacter id="tor_vc_con_carstein_noble" default_group="infantry" level="21" name="{=str_tor_vc_con_carstein_noble}Von Carstein Noble" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true" race="vampire">
     <face>
       <face_key_template value="BodyProperty.vampire" />
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_vc_von_carstein" />
-      <upgrade_target id="NPCCharacter.tor_vc_von_carstein_sister" />
+      <upgrade_target id="NPCCharacter.tor_vc_von_carstein_knight" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_vc_vampire_newblood_template" />
       <EquipmentSet id="tor_vc_vampire_newblood_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_von_carstein" default_group="cavalry" level="26" name="{=str_tor_vc_von_carstein}Von Carstein Vampire" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level26" race="vampire">
-    <face>
-      <face_key_template value="BodyProperty.vampire" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_vc_blood_knight" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_vc_von_carstein_template" />
-      <EquipmentSet id="tor_vc_von_carstein_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_vc_von_carstein_sister" default_group="horsearcher" level="26" name="{=str_tor_vc_von_carstein_sister}Von Carstein Sister" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level26" is_female="true" race="vampire">
-    <face>
-      <face_key_template value="BodyProperty.vampire_female" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_vc_von_carstein_noblewoman" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_vc_von_carstein_sister_template" />
-      <EquipmentSet id="tor_vc_von_carstein_sister_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_vc_blood_knight" default_group="cavalry" level="31" name="{=str_tor_vc_blood_knight}Blood Knight" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level31" race="vampire">
+  <NPCCharacter id="tor_vc_von_carstein_knight" default_group="cavalry" level="26" name="{=str_tor_vc_von_carstein_knight}Von Carstein Knight" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level26" race="vampire">
     <face>
       <face_key_template value="BodyProperty.vampire" />
     </face>
@@ -863,23 +1340,11 @@
       <upgrade_target id="NPCCharacter.tor_vc_drakenhof_templar" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_vc_blood_knight_template" />
-      <EquipmentSet id="tor_vc_blood_knight_template" civilian="true" />
+      <EquipmentSet id="tor_vc_von_carstein_template" />
+      <EquipmentSet id="tor_vc_von_carstein_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_von_carstein_noblewoman" default_group="cavalry" level="31" name="{=str_tor_vc_von_carstein_noblewoman}Von Carstein Noblewoman" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level31" is_female="true" race="vampire">
-    <face>
-      <face_key_template value="BodyProperty.vampire_female" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_vc_von_carstein_countess" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_vc_von_carstein_noblewoman_template" />
-      <EquipmentSet id="tor_vc_von_carstein_noblewoman_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_vc_drakenhof_templar" default_group="cavalry" level="36" name="{=str_tor_vc_drakenhof_templar}Drakenhof Templar" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level36" race="vampire">
+  <NPCCharacter id="tor_vc_drakenhof_templar" default_group="cavalry" level="31" name="{=str_tor_vc_drakenhof_templar}Drakenhof Templar" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level31" race="vampire">
     <face>
       <face_key_template value="BodyProperty.vampire" />
     </face>
@@ -891,17 +1356,7 @@
       <EquipmentSet id="tor_vc_drakenhof_templar_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_von_carstein_countess" default_group="cavalry" level="41" name="{=str_tor_vc_von_carstein_countess}Von Carstein Countess" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level41" is_female="true" race="vampire">
-    <face>
-      <face_key_template value="BodyProperty.vampire_female" />
-    </face>
-    <upgrade_targets />
-    <Equipments>
-      <EquipmentSet id="tor_vc_von_carstein_countess_template" />
-      <EquipmentSet id="tor_vc_von_carstein_countess_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_vc_drakenhof_kastelan" default_group="cavalry" level="46" name="{=str_tor_vc_drakenhof_kastelan}Drakenhof Kastelan" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level46" race="vampire">
+  <NPCCharacter id="tor_vc_drakenhof_kastelan" default_group="cavalry" level="41" name="{=str_tor_vc_drakenhof_kastelan}Drakenhof Kastelan" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level41" race="vampire">
     <face>
       <face_key_template value="BodyProperty.vampire" />
     </face>
@@ -909,6 +1364,86 @@
     <Equipments>
       <EquipmentSet id="tor_vc_drakenhof_kastelan_template" />
       <EquipmentSet id="tor_vc_drakenhof_kastelan_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_bd_blooddragon_initiate" default_group="infantry" level="21" name="{=str_tor_bd_blooddragon_initiate}Blood Dragon Initiate" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true" race="vampire">
+    <face>
+      <face_key_template value="BodyProperty.vampire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_bd_blooddragon_knight" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_vc_vampire_newblood_template" />
+      <EquipmentSet id="tor_vc_vampire_newblood_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_bd_blooddragon_knight" default_group="cavalry" level="26" name="{=str_tor_bd_blooddragon_knight}Blood Dragon Knight" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level26" race="vampire">
+    <face>
+      <face_key_template value="BodyProperty.vampire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_bd_blooddragon_templar" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_vc_blood_knight_template" />
+      <EquipmentSet id="tor_vc_blood_knight_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_bd_blooddragon_templar" default_group="cavalry" level="31" name="{=str_tor_bd_blooddragon_templar}Blood Dragon Templar" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level31" race="vampire">
+    <face>
+      <face_key_template value="BodyProperty.vampire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_bd_blooddragon_kastelan" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_vc_blood_knight_template" />
+      <EquipmentSet id="tor_vc_blood_knight_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_bd_blooddragon_kastelan" default_group="cavalry" level="41" name="{=str_tor_bd_blooddragon_kastelan}Blood Dragon Kastelan" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level41" race="vampire">
+    <face>
+      <face_key_template value="BodyProperty.vampire" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_vc_blood_knight_template" />
+      <EquipmentSet id="tor_vc_blood_knight_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_lahmian_sister" default_group="horsearcher" level="21" name="{=str_tor_vc_lahmian_sister}Lahmian Sister" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level21" is_female="true" race="vampire">
+    <face>
+      <face_key_template value="BodyProperty.vampire_female" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_vc_lahmian_noblewoman" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_vc_von_carstein_sister_template" />
+      <EquipmentSet id="tor_vc_von_carstein_sister_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_lahmian_noblewoman" default_group="cavalry" level="26" name="{=str_tor_vc_lahmian_noblewoman}Lahmian Noblewoman" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level26" is_female="true" race="vampire">
+    <face>
+      <face_key_template value="BodyProperty.vampire_female" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_vc_lahmian_countess" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_vc_von_carstein_noblewoman_template" />
+      <EquipmentSet id="tor_vc_von_carstein_noblewoman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_lahmian_countess" default_group="cavalry" level="36" name="{=str_tor_vc_lahmian_countess}Lahmian Countess" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level36" is_female="true" race="vampire">
+    <face>
+      <face_key_template value="BodyProperty.vampire_female" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_vc_lahmian_countess_template" />
+      <EquipmentSet id="tor_vc_lahmian_countess_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_vc_caravan_captain" default_group="cavalry" level="26" name="{=str_tor_vc_caravan_captain}Sylvanian Caravan Captain" occupation="CaravanGuard" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level26">
@@ -941,7 +1476,7 @@
       <EquipmentSet id="tor_empire_caravan_ranged_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_nurgle_warrior" default_group="infantry" level="21" name="{=str_tor_chaos_nurgle_warrior}Putrid Blightking" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21">
+  <NPCCharacter id="tor_chaos_nurgle_warrior" default_group="infantry" level="21" name="{=str_tor_chaos_nurgle_warrior}Putrid Blightking" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
     <face>
       <face_key_template value="BodyProperty.brute" />
     </face>
@@ -951,7 +1486,7 @@
       <EquipmentSet id="tor_chaos_nurgle_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_nurgle_warrior_002" default_group="infantry" level="21" name="{=str_tor_chaos_nurgle_warrior_002}Nurgle Warrior" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21">
+  <NPCCharacter id="tor_chaos_nurgle_warrior_002" default_group="infantry" level="21" name="{=str_tor_chaos_nurgle_warrior_002}Nurgle Warrior" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
     <face>
       <face_key_template value="BodyProperty.brute" />
     </face>
@@ -961,7 +1496,7 @@
       <EquipmentSet id="tor_chaos_nurgle_warrior_002_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_nurgle_warrior_003" default_group="infantry" level="21" name="{=str_tor_chaos_nurgle_warrior_003}Nurgle Chosen" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21">
+  <NPCCharacter id="tor_chaos_nurgle_warrior_003" default_group="infantry" level="21" name="{=str_tor_chaos_nurgle_warrior_003}Nurgle Chosen" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
     <face>
       <face_key_template value="BodyProperty.brute" />
     </face>
@@ -971,7 +1506,7 @@
       <EquipmentSet id="tor_chaos_nurgle_warrior_003_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_chosen" default_group="infantry" level="21" name="{=str_tor_chaos_chosen}Chaos Chosen" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21">
+  <NPCCharacter id="tor_chaos_chosen" default_group="infantry" level="21" name="{=str_tor_chaos_chosen}Chaos Chosen" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
     <face>
       <face_key_template value="BodyProperty.brute" />
     </face>
@@ -981,7 +1516,7 @@
       <EquipmentSet id="tor_chaos_chosen_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_khorne_warrior" default_group="infantry" level="21" name="{=str_tor_chaos_khorne_warrior}Khorne Warrior" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21">
+  <NPCCharacter id="tor_chaos_khorne_warrior" default_group="infantry" level="21" name="{=str_tor_chaos_khorne_warrior}Khorne Warrior" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
     <face>
       <face_key_template value="BodyProperty.brute" />
     </face>
@@ -991,7 +1526,7 @@
       <EquipmentSet id="tor_chaos_khorne_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_chaos_knight" default_group="cavalry" level="21" name="{=str_tor_chaos_chaos_knight}Chaos Knight" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21">
+  <NPCCharacter id="tor_chaos_chaos_knight" default_group="cavalry" level="21" name="{=str_tor_chaos_chaos_knight}Chaos Knight" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
     <face>
       <face_key_template value="BodyProperty.brute" />
     </face>
@@ -2044,7 +2579,7 @@
       <EquipmentSet id="tor_vc_skeleton_swordsman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_outlaw" default_group="infantry" level="6" name="{=str_tor_empire_outlaw}Empire Outlaw" occupation="Bandit" culture="Culture.looters" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true">
+  <NPCCharacter id="tor_empire_outlaw" default_group="infantry" level="6" name="{=str_tor_empire_outlaw}Outlaw" occupation="Bandit" culture="Culture.looters" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -2056,7 +2591,7 @@
       <EquipmentSet id="tor_empire_outlaw_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_outlaw_leader" default_group="infantry" level="16" name="{=str_tor_empire_outlaw_leader}Empire Outlaw Captain" occupation="Bandit" culture="Culture.looters" skill_template="SkillSet.tor_skills_level16">
+  <NPCCharacter id="tor_empire_outlaw_leader" default_group="infantry" level="16" name="{=str_tor_empire_outlaw_leader}Outlaw Captain" occupation="Bandit" culture="Culture.looters" skill_template="SkillSet.tor_skills_level16">
     <face>
       <face_key_template value="BodyProperty.brute" />
     </face>
@@ -2090,6 +2625,39 @@
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_empire_deserter_scout" default_group="ranged" level="16" name="{=str_tor_empire_deserter_scout}Deserter Scout" occupation="Bandit" culture="Culture.mountain_bandits" skill_template="SkillSet.tor_skills_level16">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_empire_deserter_scout_template" />
+      <EquipmentSet id="tor_empire_deserter_scout_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_bandit" default_group="infantry" level="11" name="{=str_tor_br_bandit}Hood" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_br_bandit_scout" />
+      <upgrade_target id="NPCCharacter.tor_br_bandit_leader" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_empire_deserter_template" />
+      <EquipmentSet id="tor_empire_deserter_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_bandit_leader" default_group="infantry" level="16" name="{=str_tor_br_bandit_leader}Herrimault" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level16">
+    <face>
+      <face_key_template value="BodyProperty.brute" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_empire_deserter_sergeant_template" />
+      <EquipmentSet id="tor_empire_deserter_sergeant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_bandit_scout" default_group="ranged" level="16" name="{=str_tor_br_bandit_scout}Thief" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level16">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>

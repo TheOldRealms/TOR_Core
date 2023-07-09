@@ -43,7 +43,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
 
         protected override bool HaveLineOfSightToTarget(Target target)
         {
-            var activeEntitiesWithScriptComponentOfType = Mission.Current.GetActiveEntitiesWithScriptComponentOfType<ArtilleryRangedSiegeWeapon>();
+            var activeEntitiesWithScriptComponentOfType = Mission.Current.GetActiveEntitiesWithScriptComponentOfType<BaseFieldSiegeWeapon>();
             return !activeEntitiesWithScriptComponentOfType.Any(entity => entity.GlobalPosition.Distance(target.SelectedWorldPosition) < 5);
         }
 
@@ -56,7 +56,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
                 return behaviorOptions;
             }
 
-            var artilleryFormation = Agent.Team.FormationsIncludingSpecial.ToList().Find(formation => formation.Index == (int) TORFormationClass.Artillery);
+            var artilleryFormation = Agent.Team.GetFormationsIncludingSpecial().ToList().Find(formation => formation.Index == (int) TORFormationClass.Artillery);
 
             var artilleryPosition = CurrentTarget.TacticalPosition.Position.GetGroundVec3();
             CurrentTarget.UtilityValue = Mission.Current.GetArtillerySlotsLeftForTeam(Agent.Team) > 0 &&

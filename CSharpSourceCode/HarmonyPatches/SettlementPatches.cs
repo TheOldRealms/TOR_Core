@@ -5,7 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Core;
+using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.ObjectSystem;
@@ -22,15 +25,23 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(Settlement), "Deserialize")]
         public static void DeserializePostfix(MBObjectManager objectManager, XmlNode node, Settlement __instance)
         {
-            if (__instance.SettlementComponent is TORCustomSettlementComponent)
+            if (__instance.SettlementComponent is TORBaseSettlementComponent)
             {
-                string clanName = node.Attributes["owner"].Value;
-                clanName = clanName.Split('.')[1];
-                Clan clan = Clan.FindFirst(x => x.StringId == clanName);
+                Clan clan = null;
+                if (Campaign.Current.CampaignGameLoadingType == Campaign.GameLoadingType.NewCampaign)
+                {
+                    clan = MBObjectManager.Instance.ReadObjectReferenceFromXml<Clan>("owner", node);
+                }
+                else
+                {
+                    var value = node.Attributes["owner"].Value;
+                    var clanName = value.Split('.')[1];
+                    clan = Clan.All.FirstOrDefault(x=>x.StringId == clanName);
+                }
                 if (clan != null)
                 {
-                    var comp = __instance.SettlementComponent as TORCustomSettlementComponent;
-                    comp.SetClan(clan);
+                    var comp = __instance.SettlementComponent as TORBaseSettlementComponent;
+                    comp.OwnerClan = clan;
                 }
             }
         }
@@ -40,13 +51,47 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch("OwnerClan", MethodType.Getter)]
         public static bool OwnerClanPrefix(ref Clan __result, Settlement __instance)
         {
-            if (__instance.SettlementComponent is TORCustomSettlementComponent)
+            if (__instance.SettlementComponent is TORBaseSettlementComponent)
             {
-                var comp = __instance.SettlementComponent as TORCustomSettlementComponent;
+                var comp = __instance.SettlementComponent as TORBaseSettlementComponent;
                 __result = comp.OwnerClan;
                 return false;
             }
             return true;
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(PropertyBasedTooltipVM), "Refresh")]
+        public static void AddExtrasToSettlementInfo(PropertyBasedTooltipVM __instance, Type ____invokedType, object[] ____invokedArgs)
+        {
+            if(____invokedType == typeof(Settlement))
+            {
+                var settlement = ____invokedArgs[0] as Settlement;
+                if (settlement.SettlementComponent is ShrineComponent)
+                {
+                    var shrine = settlement.SettlementComponent as ShrineComponent;
+                    if (shrine.Religion != null)
+                    {
+                        var copy = __instance.TooltipPropertyList.Where(x => !string.IsNullOrWhiteSpace(x.ValueLabel)).ToList();
+                        copy.Insert(copy.Count - 1, new TooltipProperty("Affiliation", shrine.Religion.Name.ToString(), 0));
+                        __instance.TooltipPropertyList.Clear();
+                        foreach (var item in copy) __instance.TooltipPropertyList.Add(item);
+                    }
+                }
+            }
+            else if(____invokedType == typeof(MobileParty) && __instance.IsExtended)
+            {
+                var party = ____invokedArgs[0] as MobileParty;
+                if(party != null)
+                {
+                    var info = party.GetPartyInfo();
+                    if(info != null && info.CurrentBlessingRemainingDuration > 0 && !string.IsNullOrWhiteSpace(info.CurrentBlessingStringId))
+                    {
+                        var text = GameTexts.FindText("tor_religion_blessing_name", info.CurrentBlessingStringId);
+                        __instance.TooltipPropertyList.Add(new TooltipProperty("Blessing", text.ToString(), 0));
+                    }
+                }
+            }
         }
 
         [HarmonyPrefix]
@@ -62,14 +107,14 @@ namespace TOR_Core.HarmonyPatches
 
             foreach (Tuple<Settlement, GameEntity> tuple in enumerable)
             {
-                RoRSettlementNameplateVM item = new RoRSettlementNameplateVM(tuple.Item1, tuple.Item2, ____mapCamera, ____fastMoveCameraToPosition);
+                ToRSettlementNameplateVM item = new ToRSettlementNameplateVM(tuple.Item1, tuple.Item2, ____mapCamera, ____fastMoveCameraToPosition);
                 __instance.Nameplates.Add(item);
             }
             foreach (Tuple<Settlement, GameEntity> tuple2 in ____allHideouts)
             {
                 if (tuple2.Item1.Hideout.IsSpotted)
                 {
-                    RoRSettlementNameplateVM item2 = new RoRSettlementNameplateVM(tuple2.Item1, tuple2.Item2, ____mapCamera, ____fastMoveCameraToPosition);
+                    ToRSettlementNameplateVM item2 = new ToRSettlementNameplateVM(tuple2.Item1, tuple2.Item2, ____mapCamera, ____fastMoveCameraToPosition);
                     __instance.Nameplates.Add(item2);
                 }
             }

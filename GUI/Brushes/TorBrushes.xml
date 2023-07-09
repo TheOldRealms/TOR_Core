@@ -25,9 +25,42 @@
             </EventSounds>
         </SoundProperties>
     </Brush>
+    <Brush Name="TorInkStoryButtonBrush">
+        <Layers>
+            <BrushLayer Name="Default" Sprite="BlankWhiteSquare_9" Color="#40382fff" ColorFactor="1" AlphaFactor="0"/>
+        </Layers>
+        <Styles>
+            <Style Name="Default">
+                <BrushLayer Name="Default" ColorFactor="1" AlphaFactor="0"/>
+            </Style>
+            <Style Name="Hovered">
+                <BrushLayer Name="Default" ColorFactor="3" AlphaFactor="1"/>
+            </Style>
+            <Style Name="Pressed">
+                <BrushLayer Name="Default" ColorFactor="0.5" AlphaFactor="0"/>
+            </Style>
+            <Style Name="Selected">
+                <BrushLayer Name="Default" ColorFactor="0.9" AlphaFactor="0"/>
+            </Style>
+        </Styles>
+        <SoundProperties>
+            <StateSounds />
+            <EventSounds />
+        </SoundProperties>
+    </Brush>
     <Brush Name="TorRoRSettlementBrush" Font="CasablancaAntique" TextHorizontalAlignment="Center">
         <Styles>
             <Style Name="Default" FontColor="#FFFFFFFF" TextBlur="1" TextOutlineAmount="1" TextGlowRadius="0" FontSize="20" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorCareerScreenBrush" Font="CasablancaAntique" TextHorizontalAlignment="Left">
+        <Styles>
+            <Style Name="Default" FontColor="#FFFFFFFF" TextBlur="1" TextOutlineAmount="1" TextGlowRadius="0" FontSize="20" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorInkStoryBrush" Font="CasablancaAntique" TextHorizontalAlignment="Left">
+        <Styles>
+            <Style Name="Default" FontColor="#00000000" TextBlur="0" TextOutlineAmount="0" TextGlowRadius="0" FontSize="16" />
         </Styles>
     </Brush>
     <Brush Name="TorInventoryMagicItemBrush" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Center">

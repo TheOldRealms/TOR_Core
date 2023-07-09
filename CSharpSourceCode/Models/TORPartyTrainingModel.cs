@@ -9,6 +9,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
 {
@@ -23,6 +24,10 @@ namespace TOR_Core.Models
                 if(mobileParty.HasPerk(TORPerks.GunPowder.FiringDrills, true) && troop.Character.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
                 {
                     result.Add(TORPerks.GunPowder.FiringDrills.SecondaryBonus);
+                }
+                if (mobileParty.HasPerk(TORPerks.Faith.Blessed, true) && troop.Character.IsReligiousUnit() && mobileParty.HasAnyActiveBlessing())
+                {
+                    result.Add(TORPerks.Faith.Blessed.SecondaryBonus);
                 }
             }
             return result;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.Engine;
@@ -17,9 +17,9 @@ namespace TOR_Core.AbilitySystem.Scripts
         private SoundEvent _sound;
         protected Agent _casterAgent;
         protected float _abilityLife = -1;
-        protected bool _isFading;
+        public bool IsFading { get; protected set; }
         protected float _timeSinceLastTick = 0;
-        private bool _hasCollided;
+        protected bool _hasCollided;
         private bool _hasTickedOnce;
         protected bool _hasTriggered;
         protected Vec3 _previousFrameOrigin;
@@ -77,7 +77,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         {
             base.OnTick(dt);
             if (_ability == null) return;
-            if (_isFading) return;
+            if (IsFading) return;
             _timeSinceLastTick += dt;
             UpdateLifeTime(dt);
 
@@ -89,10 +89,15 @@ namespace TOR_Core.AbilitySystem.Scripts
             {
                 HandleCollision(frame.origin, frame.origin.NormalizedCopy());
             }
+            if(_ability.Template.TriggerType == TriggerType.EveryTick && !_hasTriggered)
+            {
+                TriggerEffects(frame.origin, frame.origin.NormalizedCopy());
+                _hasTriggered = true;
+            }
             if (_ability.Template.TriggerType == TriggerType.EveryTick && _timeSinceLastTick > _ability.Template.TickInterval)
             {
                 _timeSinceLastTick = 0;
-                TriggerEffect(frame.origin, frame.origin.NormalizedCopy());
+                TriggerEffects(frame.origin, frame.origin.NormalizedCopy());
             }
             else if (_ability.Template.TriggerType == TriggerType.TickOnce && _abilityLife > _ability.Template.TickInterval && !_hasTriggered)
             {
@@ -103,7 +108,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                     position = frame.Advance(_ability.Template.Offset).origin;
                     normal = frame.rotation.f.NormalizedCopy();
                 }
-                TriggerEffect(position, normal);
+                TriggerEffects(position, normal);
                 _hasTriggered = true;
             }
             _hasTickedOnce = true;
@@ -132,7 +137,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             else _abilityLife += dt;
             if (_ability != null)
             {
-                if (_abilityLife > _ability.Template.Duration && !_isFading)
+                if (_abilityLife > _ability.Template.Duration && !IsFading)
                 {
                     Stop();
                 }
@@ -177,9 +182,9 @@ namespace TOR_Core.AbilitySystem.Scripts
         protected virtual bool CollidedWithAgent()
         {
             var collisionRadius = _ability.Template.Radius + 1;
-            return Mission.Current
-                .GetAgentsInRange(GameEntity.GetGlobalFrame().origin.AsVec2, collisionRadius, true)
-                .Any(agent => agent != _casterAgent && Math.Abs(GameEntity.GetGlobalFrame().origin.Z - agent.Position.Z) < collisionRadius);
+            MBList<Agent> agents = new MBList<Agent>();
+            agents = Mission.Current.GetNearbyAgents(GameEntity.GetGlobalFrame().origin.AsVec2, collisionRadius, agents);
+            return agents.Any(agent => agent != _casterAgent && Math.Abs(GameEntity.GetGlobalFrame().origin.Z - agent.Position.Z) < collisionRadius);
         }
 
         protected override void OnPhysicsCollision(ref PhysicsContact contact)
@@ -197,27 +202,41 @@ namespace TOR_Core.AbilitySystem.Scripts
             if (!_hasCollided && position.IsValid && position.IsNonZero)
             {
                 GameEntity.FadeOut(0.05f, true);
-                _isFading = true;
-                TriggerEffect(position, normal);
+                IsFading = true;
+                TriggerEffects(position, normal);
                 _hasCollided = true;
             }
         }
 
-        protected void TriggerEffect(Vec3 position, Vec3 normal)
+        protected void TriggerEffects(Vec3 position, Vec3 normal)
         {
-            var effect = TriggeredEffectManager.CreateNew(_ability?.Template.TriggeredEffectID);
-            if (effect != null)
+            var effects = GetEffectsToTrigger();
+            foreach(var effect in effects)
             {
-                if(_ability.Template.AbilityTargetType == AbilityTargetType.Self)
+                if (effect != null)
                 {
-                    effect.Trigger(position, normal, _casterAgent, _ability.Template, new List<Agent>(1) { _casterAgent });
+                    if (_ability.Template.AbilityTargetType == AbilityTargetType.Self)
+                    {
+                        effect.Trigger(position, normal, _casterAgent, _ability.Template, new MBList<Agent>(1) { _casterAgent });
+                    }
+                    else if (IsSingleTarget() && _targetAgent != null)
+                    {
+                        effect.Trigger(position, normal, _casterAgent, _ability.Template, new MBList<Agent>(1) { _targetAgent });
+                    }
+                    else effect.Trigger(position, normal, _casterAgent, _ability.Template);
                 }
-                else if(IsSingleTarget() && _targetAgent != null)
-                {
-                    effect.Trigger(position, normal, _casterAgent, _ability.Template, new List<Agent>(1) { _targetAgent });
-                }
-                else effect.Trigger(position, normal, _casterAgent, _ability.Template);
             }
+        }
+
+        protected virtual List<TriggeredEffect> GetEffectsToTrigger()
+        {
+            List<TriggeredEffect> effects = new List<TriggeredEffect>();
+            if (_ability == null) return effects; 
+            foreach(var effect in _ability.Template.AssociatedTriggeredEffectTemplates)
+            {
+                effects.Add(new TriggeredEffect(effect));
+            }
+            return effects;
         }
 
         protected override void OnRemoved(int removeReason)
@@ -232,7 +251,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         public virtual void Stop()
         {
             GameEntity.FadeOut(0.05f, true);
-            _isFading = true;
+            IsFading = true;
         }
     }
 }

@@ -1,42 +1,51 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
+using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using static TOR_Core.Utilities.TORParticleSystem;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
 {
-    public class StatusEffectTemplate : IEquatable<StatusEffectTemplate>
+    public class StatusEffectTemplate : IEquatable<StatusEffectTemplate>, ITemplate
     {
         [XmlAttribute("id")]
-        public string Id { get; set; }
+        public string StringID { get; set; }
         [XmlAttribute("particle_id")]
         public string ParticleId { get; set; }
         [XmlAttribute("particle_intensity")]
         public ParticleIntensity ParticleIntensity { get; set; }
         [XmlAttribute("apply_particle_to_root_bone_only")]
         public bool ApplyToRootBoneOnly { get; set; } = false;
-        [XmlAttribute("health_over_time")]
-        public float HealthOverTime { get; set; } = 0;
-        [XmlAttribute("duration")]
-        public int BaseDuration { get; set; } = 0;
+        [XmlAttribute("do_not_attach_to_agent_skeleton")]
+        public bool DoNotAttachToAgentSkeleton { get; set; } = false;
+        [XmlAttribute("base_effect_value")]
+        public float BaseEffectValue { get; set; } = 0;
         [XmlAttribute("type")]
         public EffectType Type { get; set; } = EffectType.Invalid;
-        [XmlAttribute("damage_over_time")]
-        public float DamageOverTime { get; set; } = 0;
         [XmlAttribute("damage_type")]
         public DamageType DamageType { get; set; } = DamageType.Physical;
-        [XmlElement]
-        public AmplifierTuple DamageAmplifier { get; set; } = new AmplifierTuple();
-        [XmlElement]
-        public ResistanceTuple Resistance { get; set; } = new ResistanceTuple();
+        [XmlAttribute("applies_for_attack_type")]
+        public AttackTypeMask AttackTypeMask { get; set; } = AttackTypeMask.Melee | AttackTypeMask.Ranged | AttackTypeMask.Spell;
+        [XmlElement("temporary_attribute")]
+        public List<string> TemporaryAttributes { get; set; } = new List<string>();
+
+        [XmlAttribute("rotation")] public bool Rotation { get; set; } = false;
+        [XmlAttribute("rotation_speed")] public int RotationSpeed { get; set; } = 100;
+        
 
         public enum EffectType
         {
             HealthOverTime,
+            WindsOverTime,
+            LanceSteadiness,
             DamageOverTime,
             DamageAmplification,
             Resistance,
+            MovementManipulation,
+            AttackSpeedManipulation,
+            TemporaryAttributeOnly,
             Invalid
         };
 
@@ -44,7 +53,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         public override int GetHashCode()
         {
-            return Id.GetHashCode();
+            return StringID.GetHashCode();
         }
 
         public override bool Equals(object obj)
@@ -59,6 +68,22 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         public bool Equals(StatusEffectTemplate other)
         {
             return GetHashCode() == other.GetHashCode();
+        }
+
+        public ITemplate Clone(string newId)
+        {
+            return new StatusEffectTemplate()
+            {
+                StringID = newId,
+                ParticleId = ParticleId,
+                ParticleIntensity = ParticleIntensity,
+                ApplyToRootBoneOnly = ApplyToRootBoneOnly,
+                DoNotAttachToAgentSkeleton = DoNotAttachToAgentSkeleton,
+                BaseEffectValue = BaseEffectValue,
+                Type = Type,
+                DamageType = DamageType,
+                TemporaryAttributes = TemporaryAttributes
+            };
         }
     }
 }

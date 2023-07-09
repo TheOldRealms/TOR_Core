@@ -59,7 +59,7 @@
         </ElementNotificationWidget>
 
         <!--Center and Right Panel-->
-        <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="HorizontalRightToLeft" HorizontalAlignment="Left" MarginLeft="650" >
+        <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="HorizontalRightToLeft" HorizontalAlignment="Left" MarginLeft="650">
           <Children>
 
             <!--Right Panel-->
@@ -70,25 +70,25 @@
                 <CharacterTableauWidget DataSource="{CurrentCharacter\HeroCharacter}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="550" SuggestedHeight="1000" HorizontalAlignment="Center" VerticalAlignment="Center" BannerCodeText="@BannerCodeText" BodyProperties="@BodyProperties" CharStringId="@CharStringId" EquipmentCode="@EquipmentCode" IsFemale="@IsFemale" MountCreationKey="@MountCreationKey" StanceIndex="@StanceIndex" ArmorColor1="@ArmorColor1" ArmorColor2="@ArmorColor2" Race="@Race" IsEnabled="false" PositionXOffset="-50" DoNotUseCustomScale="true"/>
 
                 <!--Traits-->
-								<NavigationScopeTargeter ScopeID="TraitsScope" ScopeParent="..\Traits" ScopeMovements="Horizontal" LeftNavigationScope="SkillTabControlsScope" DownNavigationScope="None" />
+                <NavigationScopeTargeter ScopeID="TraitsScope" ScopeParent="..\Traits" ScopeMovements="Horizontal" LeftNavigationScope="SkillTabControlsScope" DownNavigationScope="None" />
                 <ListPanel Id="Traits" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="75" HorizontalAlignment="Center" MarginTop="130" MarginRight="30" StackLayout.LayoutMethod="VerticalBottomToTop">
                   <Children>
-                    
-                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center"  Brush="CharacterDeveloper.MainSkill.Name.Text" Brush.FontSize="28" Text="@TraitsText" />
 
-										<NavigatableListPanel DataSource="{CurrentCharacter\Traits}" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="75" HorizontalAlignment="Center">
-											<ItemTemplate>
-												<EncyclopediaHeroTraitVisualWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="74" SuggestedHeight="75" MarginLeft="-14" MarginRight="-14" TraitId="@TraitId" TraitValue="@Value">
-													<Children>
-														<HintWidget DataSource="{Hint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
-													</Children>
-												</EncyclopediaHeroTraitVisualWidget>
-											</ItemTemplate>
-										</NavigatableListPanel>
+                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" Brush="CharacterDeveloper.MainSkill.Name.Text" Brush.FontSize="28" Text="@TraitsText" />
+
+                    <NavigatableListPanel DataSource="{CurrentCharacter\Traits}" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="75" HorizontalAlignment="Center">
+                      <ItemTemplate>
+                        <EncyclopediaHeroTraitVisualWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="74" SuggestedHeight="75" MarginLeft="-14" MarginRight="-14" TraitId="@TraitId" TraitValue="@Value">
+                          <Children>
+                            <HintWidget DataSource="{Hint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                          </Children>
+                        </EncyclopediaHeroTraitVisualWidget>
+                      </ItemTemplate>
+                    </NavigatableListPanel>
                   </Children>
                 </ListPanel>
 
-                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom"  MarginRight="30" MarginBottom="150" Brush="CharacterDeveloper.MainSkill.Name.Text" Brush.FontSize="28" Text="@PartyRoleText" />
+                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginRight="30" MarginBottom="150" Brush="CharacterDeveloper.MainSkill.Name.Text" Brush.FontSize="28" Text="@PartyRoleText" />
 
                 <ListPanel DataSource="{CurrentCharacter\CharacterStats}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginRight="30" MarginBottom="125" StackLayout.LayoutMethod="VerticalBottomToTop" IsEnabled="false">
                   <ItemTemplate>
@@ -112,7 +112,7 @@
             </Widget>
 
             <!--Center Panel-->
-            <Widget  VisualDefinition="RightPanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center"  PositionXOffset="1400">
+            <Widget VisualDefinition="RightPanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" PositionXOffset="1400">
               <Children>
 
                 <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginLeft="20" MarginTop="150" StackLayout.LayoutMethod="VerticalBottomToTop">
@@ -165,7 +165,7 @@
                         </ListPanel>
 
                         <!--Skill Tab Control-->
-												<NavigationScopeTargeter ScopeID="SkillTabControlsScope" ScopeParent="..\TabControlsParent" ScopeMovements="Vertical" RightNavigationScope="TraitsScope" />
+                        <NavigationScopeTargeter ScopeID="SkillTabControlsScope" ScopeParent="..\TabControlsParent" ScopeMovements="Vertical" RightNavigationScope="TraitsScope" />
                         <DoubleTabControlListPanel Id="TabControlsParent" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Top" MarginLeft="12" MarginTop="20" FirstList="..\SkillPropertiesList\SkillHowToLearn" FirstListButton="CharacterListButton" StackLayout.LayoutMethod="VerticalBottomToTop" SecondList="..\SkillPropertiesList\SkillDescriptionAndEffects" SecondListButton="PartyListButton">
                           <Children>
                             <ButtonWidget Id="CharacterListButton" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="50" VerticalAlignment="Bottom" Brush="HowToLearnButtonToggleBrush" ButtonType="Radio" GamepadNavigationIndex="0">
@@ -208,7 +208,7 @@
                         </Widget>
 
                         <!--Full Learning Rate Sprite-->
-                        <Widget Id="FullLearningRateClipParent" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" IsEnabled="false" >
+                        <Widget Id="FullLearningRateClipParent" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" IsEnabled="false">
                           <Children>
                             <Widget Id="FullLearningRateClip" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true">
                               <Children>
@@ -216,7 +216,7 @@
                               </Children>
                             </Widget>
 
-                            <ValueBasedVisibilityWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="70" Sprite="CharacterDeveloper\indicator" Color="#ADAD49FF" IndexToBeVisibleFloat="1" WatchType="BiggerThanEqual" IndexToWatchFloat="@LearningRate"  PositionXOffset="19" PositionYOffset="46" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                            <ValueBasedVisibilityWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="70" Sprite="CharacterDeveloper\indicator" Color="#ADAD49FF" IndexToBeVisibleFloat="1" WatchType="BiggerThanEqual" IndexToWatchFloat="@LearningRate" PositionXOffset="19" PositionYOffset="46" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                           </Children>
                         </Widget>
 
@@ -243,14 +243,14 @@
                           </Children>
                         </Widget>
 
-												<CharacterDeveloperPerksContainerWidget Id="PerksList" DataSource="{Perks}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" DoNotAcceptEvents="true" FirstScopeID="PerksFirstScope" UpScopeID="SkillTabControlsScope" RightScopeID="None" DownScopeID="AddFocusPointsScope" LeftScopeID="SkillsScope" >
+                        <CharacterDeveloperPerksContainerWidget Id="PerksList" DataSource="{Perks}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" DoNotAcceptEvents="true" FirstScopeID="PerksFirstScope" UpScopeID="SkillTabControlsScope" RightScopeID="None" DownScopeID="AddFocusPointsScope" LeftScopeID="SkillsScope">
                           <ItemTemplate>
                             <PerkItemButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="30" SuggestedHeight="86" AlternativeType="@AlternativeType" Command.Click="ExecuteStartSelection" Command.AlternateClick="ExecuteShowPerkConcept" PerkState="@PerkState" Level="@Level" PerkVisualWidgetParent="PerkVisualWidgetParent" PerkVisualWidget="PerkVisualWidgetParent\PerkVisualWidget" NotEarnedPerkBrush="CharacterDeveloper.NotEarnedPerkBrush" EarnedNotSelectedPerkBrush="CharacterDeveloper.EarnedNotSelectedPerkBrush" InSelectionPerkBrush="CharacterDeveloper.InSelectionPerkBrush" EarnedActivePerkBrush="CharacterDeveloper.EarnedActivePerkBrush" EarnedNotActivePerkBrush="CharacterDeveloper.EarnedNotActivePerkBrush" EarnedPreviousPerkNotSelectedPerkBrush="CharacterDeveloper.EarnedNotSelectedFollowingPerk.Brush" UpdateChildrenStates="true" UseGlobalTimeForAnimation="true">
                               <Children>
 
                                 <BrushWidget Id="PerkVisualWidgetParent" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="80" SuggestedHeight="86" HorizontalAlignment="Center" VerticalAlignment="Center" UseGlobalTimeForAnimation="true">
                                   <Children>
-                                    <Widget Id="PerkVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="30" SuggestedHeight="30" HorizontalAlignment="Center" MarginTop="23"  Sprite="@PerkId" ValueFactor="-100" />
+                                    <Widget Id="PerkVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="30" SuggestedHeight="30" HorizontalAlignment="Center" MarginTop="23" Sprite="@PerkId" ValueFactor="-100" />
                                   </Children>
                                 </BrushWidget>
 
@@ -267,7 +267,7 @@
                 </Widget>
 
                 <!--Skill XP Bar per level-->
-                <Widget DataSource="{CurrentCharacter}" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="304" SuggestedHeight="17" HorizontalAlignment="Left" MarginLeft="157" VerticalAlignment="Center" PositionYOffset="133" >
+                <Widget DataSource="{CurrentCharacter}" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="304" SuggestedHeight="17" HorizontalAlignment="Left" MarginLeft="157" VerticalAlignment="Center" PositionYOffset="133">
                   <Children>
 
                     <!--Skill Progress Bar-->
@@ -301,7 +301,7 @@
 
                 <!--<TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="300" Brush="CharacterDeveloper.RightPanel.FreeFocus.Text.Prox" Brush.FontSize="40" Text="@SkillFocusText" />-->
 
-                <Widget DataSource="{CurrentCharacter}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="244" SuggestedHeight="145" HorizontalAlignment="Left" MarginLeft="189" VerticalAlignment="Bottom" MarginBottom="210" >
+                <Widget DataSource="{CurrentCharacter}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="244" SuggestedHeight="145" HorizontalAlignment="Left" MarginLeft="189" VerticalAlignment="Bottom" MarginBottom="210">
                   <Children>
 
                     <!--Current Learning Rate Text-->
@@ -335,11 +335,11 @@
                 </Widget>
 
                 <!--Add Focus Button Parent-->
-								<NavigationScopeTargeter ScopeID="AddFocusPointsScope" ScopeParent="..\AddFocusPointContainer" LeftNavigationScope="SkillsScope" />
+                <NavigationScopeTargeter ScopeID="AddFocusPointsScope" ScopeParent="..\AddFocusPointContainer" LeftNavigationScope="SkillsScope" />
                 <Widget Id="AddFocusPointContainer" DataSource="{CurrentCharacter}" WidthSizePolicy="Fixed" HorizontalAlignment="Left" VerticalAlignment="Bottom" HeightSizePolicy="Fixed" SuggestedWidth="426" SuggestedHeight="131" MarginLeft="95" MarginBottom="80">
                   <Children>
 
-                    <ButtonWidget  Id="AddFocusButton" DataSource="{CurrentSkill}" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HorizontalAlignment="Center" VerticalAlignment="Center" HeightSizePolicy="Fixed" SuggestedWidth="426" SuggestedHeight="130" Command.AlternateClick="ExecuteShowFocusConcept" Command.Click="ExecuteAddFocus" IsEnabled="@CanAddFocus" Brush="AddFocusButton.SoundBrush" UpdateChildrenStates="true" GamepadNavigationIndex="0" >
+                    <ButtonWidget Id="AddFocusButton" DataSource="{CurrentSkill}" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HorizontalAlignment="Center" VerticalAlignment="Center" HeightSizePolicy="Fixed" SuggestedWidth="426" SuggestedHeight="130" Command.AlternateClick="ExecuteShowFocusConcept" Command.Click="ExecuteAddFocus" IsEnabled="@CanAddFocus" Brush="AddFocusButton.SoundBrush" UpdateChildrenStates="true" GamepadNavigationIndex="0">
                       <Children>
                         <HintWidget DataSource="{AddFocusHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
                         <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="568" SuggestedHeight="168" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="AddFocusButtonBrush" />
@@ -360,121 +360,121 @@
         <Widget Id="TopPanelParent" VisualDefinition="TopPanel" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" PositionYOffset="-218">
           <Children>
 
-        <!--Top Panel Character Properties-->
-        <Widget DataSource="{CurrentCharacter}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="650" SuggestedHeight="76" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="74" Sprite="CharacterDeveloper\character_progress_panel">
-          <Children>
-
-            <Widget WidthSizePolich="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="575" HorizontalAlignment="Center" MarginTop="13" >
+            <!--Top Panel Character Properties-->
+            <Widget DataSource="{CurrentCharacter}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="650" SuggestedHeight="76" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="74" Sprite="CharacterDeveloper\character_progress_panel">
               <Children>
 
-                <!--Level Text-->
-										<RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginRight="450" MarginBottom="25" Brush="CharacterDeveloper.GridSkillName.Text" Brush.FontSize="16" Brush.TextHorizontalAlignment="Right" Text="@HeroLevelText" />
-
-                <!--Level Progress Bar-->
-										<Widget Id="LevelProgressBackground" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="300" SuggestedHeight="20" HorizontalAlignment="Center" VerticalAlignment="Center" MarginBottom="20" Sprite="BlankWhiteSquare_9" Color="#000000FF" AlphaFactor="0.7" >
+                <Widget WidthSizePolich="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="575" HorizontalAlignment="Center" MarginTop="13">
                   <Children>
-												<FillBarWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="321" SuggestedHeight="27" HorizontalAlignment="Center" VerticalAlignment="Center" ContainerWidget="ContainerWidget" FillWidget="FillBarParent\FillWidget" InitialAmount="@CurrentTotalSkill" MaxAmount="@SkillPointsRequiredForNextLevel">
-													<Children>
 
-                    <Widget Id="FillBarParent" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="300" SuggestedHeight="14" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="13" MarginRight="14">
+                    <!--Level Text-->
+                    <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginRight="450" MarginBottom="25" Brush="CharacterDeveloper.GridSkillName.Text" Brush.FontSize="16" Brush.TextHorizontalAlignment="Right" Text="@HeroLevelText" />
+
+                    <!--Level Progress Bar-->
+                    <Widget Id="LevelProgressBackground" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="300" SuggestedHeight="20" HorizontalAlignment="Center" VerticalAlignment="Center" MarginBottom="20" Sprite="BlankWhiteSquare_9" Color="#000000FF" AlphaFactor="0.7">
                       <Children>
-
-                        <!--Fill-->
-                        <Widget Id="FillWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="300" SuggestedHeight="14" Sprite="CharacterDeveloper\character_progress_bar">
+                        <FillBarWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="321" SuggestedHeight="27" HorizontalAlignment="Center" VerticalAlignment="Center" ContainerWidget="ContainerWidget" FillWidget="FillBarParent\FillWidget" InitialAmount="@CurrentTotalSkill" MaxAmount="@SkillPointsRequiredForNextLevel">
                           <Children>
-                            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Right" Sprite="CharacterDeveloper\character_progress_bar_glow" />
+
+                            <Widget Id="FillBarParent" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="300" SuggestedHeight="14" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="13" MarginRight="14">
+                              <Children>
+
+                                <!--Fill-->
+                                <Widget Id="FillWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="300" SuggestedHeight="14" Sprite="CharacterDeveloper\character_progress_bar">
+                                  <Children>
+                                    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Right" Sprite="CharacterDeveloper\character_progress_bar_glow" />
+                                  </Children>
+                                </Widget>
+
+                              </Children>
+                            </Widget>
+
+                            <!--Container-->
+                            <Widget Id="ContainerWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="CharacterDeveloper\character_progress_frame" />
+
                           </Children>
-                        </Widget>
+                        </FillBarWidget>
 
                       </Children>
                     </Widget>
 
-                    <!--Container-->
-                    <Widget Id="ContainerWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="CharacterDeveloper\character_progress_frame" />
 
+                    <!--Level Progress Text-->
+                    <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Bottom" MarginLeft="450" MarginBottom="25" Brush="CharacterDeveloper.GridSkillName.Text" Brush.FontSize="14" Brush.TextHorizontalAlignment="Left" Text="@LevelProgressText" />
                   </Children>
-                </FillBarWidget>
+                </Widget>
 
-											</Children>
-										</Widget>
-
-
-                <!--Level Progress Text-->
-										<RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Bottom" MarginLeft="450" MarginBottom="25" Brush="CharacterDeveloper.GridSkillName.Text" Brush.FontSize="14" Brush.TextHorizontalAlignment="Left" Text="@LevelProgressText" />
-              </Children>
-            </Widget>
-
-            <HintWidget DataSource="{LevelHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
-            <!--<Widget HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent">
+                <HintWidget DataSource="{LevelHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                <!--<Widget HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent">
               <Children>
               </Children>
             </Widget>-->
 
-          </Children>
-        </Widget>
+              </Children>
+            </Widget>
 
-        <!--Top Panel-->
-        <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="887" SuggestedHeight="156" HorizontalAlignment="Center" Sprite="StdAssets\tabbar_long">
-          <Children>
-
-            <!--Character Selection-->
-            <OptionsDropdownWidget Id="DropdownParent" DataSource="{CharacterList}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="434" SuggestedHeight="47" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="10" Button="DropdownButton" CurrentSelectedIndex="@SelectedIndex" ListPanel="DropdownClipWidget\DropdownContainerWidget\ScrollablePanel\ClipRect\PrimaryUsageSelectorList" DropdownContainerWidget="DropdownClipWidget\DropdownContainerWidget" DropdownClipWidget="DropdownClipWidget">
+            <!--Top Panel-->
+            <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="887" SuggestedHeight="156" HorizontalAlignment="Center" Sprite="StdAssets\tabbar_long">
               <Children>
 
-                <ButtonWidget Id="DropdownButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Character.Selection.Button" IsDisabled="@HasSingleItem">
-                  <Children>
-                    <ScrollingRichTextWidget DataSource="{..}" Id="SelectedTextWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="7" MarginRight="7" Brush="CharacterDeveloper.Title.Text" IsAutoScrolling="false" ScrollOnHoverWidget="..\..\DropdownButton" Text="@CurrentCharacterNameText"/>
-                    <Widget DataSource="{..}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="25" SuggestedHeight="25" HorizontalAlignment="Right" MarginRight="40" VerticalAlignment="Center" PositionYOffset="-4" Sprite="CharacterDeveloper\UnselectedPerksIcon" IsVisible="@HasUnopenedPerksForOtherCharacters" />
-                  </Children>
-                </ButtonWidget>
-
-                <!--Dropdown Visual-->
-                <Widget Id="DropdownClipWidget" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" ClipContents="true" WidgetToCopyHeightFrom="DropdownContainerWidget\ScrollablePanel">
+                <!--Character Selection-->
+                <OptionsDropdownWidget Id="DropdownParent" DataSource="{CharacterList}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="434" SuggestedHeight="47" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="10" Button="DropdownButton" CurrentSelectedIndex="@SelectedIndex" ListPanel="DropdownClipWidget\DropdownContainerWidget\ScrollablePanel\ClipRect\PrimaryUsageSelectorList" DropdownContainerWidget="DropdownClipWidget\DropdownContainerWidget" DropdownClipWidget="DropdownClipWidget">
                   <Children>
 
-                    <BrushWidget Id="DropdownContainerWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="434" SuggestedHeight="380" HorizontalAlignment="Center" VerticalAlignment="Bottom" Brush="!DropdownListBackgroundBrush">
+                    <ButtonWidget Id="DropdownButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Character.Selection.Button" IsDisabled="@HasSingleItem">
+                      <Children>
+                        <ScrollingRichTextWidget DataSource="{..}" Id="SelectedTextWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="7" MarginRight="7" Brush="CharacterDeveloper.Title.Text" IsAutoScrolling="false" ScrollOnHoverWidget="..\..\DropdownButton" Text="@CurrentCharacterNameText"/>
+                        <Widget DataSource="{..}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="25" SuggestedHeight="25" HorizontalAlignment="Right" MarginRight="40" VerticalAlignment="Center" PositionYOffset="-4" Sprite="CharacterDeveloper\UnselectedPerksIcon" IsVisible="@HasUnopenedPerksForOtherCharacters" />
+                      </Children>
+                    </ButtonWidget>
+
+                    <!--Dropdown Visual-->
+                    <Widget Id="DropdownClipWidget" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" ClipContents="true" WidgetToCopyHeightFrom="DropdownContainerWidget\ScrollablePanel">
                       <Children>
 
-                        <ScrollablePanel Id="ScrollablePanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginBottom="20" AutoHideScrollBars="true" ClipRect="ClipRect" InnerPanel="ClipRect\PrimaryUsageSelectorList" MaxHeight="355" VerticalScrollbar="..\VerticalScrollbar">
+                        <BrushWidget Id="DropdownContainerWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="434" SuggestedHeight="380" HorizontalAlignment="Center" VerticalAlignment="Bottom" Brush="!DropdownListBackgroundBrush">
                           <Children>
-                            <Widget Id="ClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" ClipContents="true" MaxHeight="355">
+
+                            <ScrollablePanel Id="ScrollablePanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginBottom="20" AutoHideScrollBars="true" ClipRect="ClipRect" InnerPanel="ClipRect\PrimaryUsageSelectorList" MaxHeight="355" VerticalScrollbar="..\VerticalScrollbar">
                               <Children>
+                                <Widget Id="ClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" ClipContents="true" MaxHeight="355">
+                                  <Children>
 
-                                <ListPanel Id="PrimaryUsageSelectorList" DataSource="{ItemList}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop">
+                                    <ListPanel Id="PrimaryUsageSelectorList" DataSource="{ItemList}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop">
 
-                                  <ItemTemplate>
-                                    <ButtonWidget Id="DropdownItemButton" DoNotUseCustomScale="true" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="29" MarginLeft="15" MarginRight="15" HorizontalAlignment="Center" VerticalAlignment="Bottom" ButtonType="Radio" UpdateChildrenStates="true" Brush="Standard.DropdownItem.SoundBrush">
-                                      <Children>
-                                        <ImageWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="5" MarginRight="5" Brush="Standard.DropdownItem" />
-                                        <RichTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="7" MarginRight="7" Brush="SPOptions.Dropdown.Item.Text" Text="@StringItem" IsAutoScrolling="false" ScrollOnHoverWidget="..\..\DropdownItemButton" />
-                                      </Children>
-                                    </ButtonWidget>
-                                  </ItemTemplate>
+                                      <ItemTemplate>
+                                        <ButtonWidget Id="DropdownItemButton" DoNotUseCustomScale="true" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="29" MarginLeft="15" MarginRight="15" HorizontalAlignment="Center" VerticalAlignment="Bottom" ButtonType="Radio" UpdateChildrenStates="true" Brush="Standard.DropdownItem.SoundBrush">
+                                          <Children>
+                                            <ImageWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="5" MarginRight="5" Brush="Standard.DropdownItem" />
+                                            <RichTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="7" MarginRight="7" Brush="SPOptions.Dropdown.Item.Text" Text="@StringItem" IsAutoScrolling="false" ScrollOnHoverWidget="..\..\DropdownItemButton" />
+                                          </Children>
+                                        </ButtonWidget>
+                                      </ItemTemplate>
 
-                                </ListPanel>
+                                    </ListPanel>
+                                  </Children>
+                                </Widget>
+
                               </Children>
-                            </Widget>
+                            </ScrollablePanel>
+
+                            <ScrollbarWidget Id="VerticalScrollbar" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="8" HorizontalAlignment="Right" VerticalAlignment="Center" MarginTop="15" MarginBottom="15" AlignmentAxis="Vertical" Handle="VerticalScrollbarHandle" IsVisible="false" MaxValue="100" MinValue="0">
+                              <Children>
+                                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="4" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" AlphaFactor="0.2" Color="#5a4033FF" />
+                                <ImageWidget Id="VerticalScrollbarHandle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="8" SuggestedHeight="10" HorizontalAlignment="Center" Brush="FaceGen.Scrollbar.Handle" />
+                              </Children>
+                            </ScrollbarWidget>
 
                           </Children>
-                        </ScrollablePanel>
-
-                        <ScrollbarWidget Id="VerticalScrollbar" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="8" HorizontalAlignment="Right" VerticalAlignment="Center" MarginTop="15" MarginBottom="15" AlignmentAxis="Vertical" Handle="VerticalScrollbarHandle" IsVisible="false" MaxValue="100" MinValue="0">
-                          <Children>
-                            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="4" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" AlphaFactor="0.2" Color="#5a4033FF" />
-                            <ImageWidget Id="VerticalScrollbarHandle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="8" SuggestedHeight="10" HorizontalAlignment="Center" Brush="FaceGen.Scrollbar.Handle" />
-                          </Children>
-                        </ScrollbarWidget>
-
+                        </BrushWidget>
                       </Children>
-                    </BrushWidget>
+                    </Widget>
                   </Children>
-                </Widget>
+                </OptionsDropdownWidget>
               </Children>
-            </OptionsDropdownWidget>
-          </Children>
-        </Widget>
+            </Widget>
 
-        <ButtonWidget Id="PreviousCharacterButton" DataSource="{CharacterList}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="30" SuggestedHeight="41" HorizontalAlignment="Center" VerticalAlignment="Top" PositionXOffset="-250" MarginTop="11" Brush="PreviousCharacterButtonBrush" Command.Click="ExecuteSelectPreviousItem" IsDisabled="@HasSingleItem">
+            <ButtonWidget Id="PreviousCharacterButton" DataSource="{CharacterList}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="30" SuggestedHeight="41" HorizontalAlignment="Center" VerticalAlignment="Top" PositionXOffset="-250" MarginTop="11" Brush="PreviousCharacterButtonBrush" Command.Click="ExecuteSelectPreviousItem" IsDisabled="@HasSingleItem">
               <Children>
                 <HintWidget DataSource="{..\PreviousCharacterHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
                 <InputKeyVisualWidget DataSource="{..\PreviousCharacterInputKey}" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="60" SuggestedHeight="60" HorizontalAlignment="Left" VerticalAlignment="Center" PositionXOffset="-55" KeyID="@KeyID" IsVisible="@IsVisible"/>
@@ -535,7 +535,7 @@
                 </ListPanel>
 
                 <!--Skills Text-->
-                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="CharacterDeveloper.RightPanel.Title.Text" Text="@SkillsText"  DoNotAcceptEvents="true"/>
+                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="CharacterDeveloper.RightPanel.Title.Text" Text="@SkillsText" DoNotAcceptEvents="true"/>
 
                 <ListPanel DataSource="{UnspentCharacterPointsHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Center" MarginRight="25" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" DoNotPassEventsToChildren="true">
                   <Children>
@@ -544,7 +544,7 @@
                     <!--Unspent Focus Number-->
                     <Widget DataSource="{..}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center">
                       <Children>
-                        <TextWidget DataSource="{CurrentCharacter}"  WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Center" PositionYOffset="-2" Brush="CharacterDeveloper.RightPanel.FreeFocus.Text.Prox" Brush.FontColor="#FAEBD4FF" Brush.FontSize="40" IntText="@UnspentCharacterPoints" />
+                        <TextWidget DataSource="{CurrentCharacter}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Center" PositionYOffset="-2" Brush="CharacterDeveloper.RightPanel.FreeFocus.Text.Prox" Brush.FontColor="#FAEBD4FF" Brush.FontSize="40" IntText="@UnspentCharacterPoints" />
                       </Children>
                     </Widget>
                   </Children>
@@ -556,7 +556,7 @@
             <ListPanel Id="InnerPanel" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" PositionYOffset="5" MarginTop="!TopBackground.Height">
               <Children>
 
-								<NavigationScopeTargeter ScopeID="AttributesScope" ScopeParent="..\AttributesList" ScopeMovements="Vertical" RightNavigationScope="SkillsScope" />
+                <NavigationScopeTargeter ScopeID="AttributesScope" ScopeParent="..\AttributesList" ScopeMovements="Vertical" RightNavigationScope="SkillsScope" />
                 <NavigatableListPanel Id="AttributesList" DataSource="{CurrentCharacter\Attributes}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
                   <ItemTemplate>
                     <AttributeListItem MarginBottom="6"/>
@@ -564,7 +564,7 @@
                 </NavigatableListPanel>
 
                 <!--Skills Grid-->
-								<NavigationScopeTargeter ScopeID="SkillsScope" ScopeParent="..\SkillsGrid" ScopeMovements="Horizontal" AlternateScopeMovements="Vertical" AlternateMovementStepSize="3" LeftNavigationScope="AttributesScope" RightNavigationScope="PerksFirstScope" />
+                <NavigationScopeTargeter ScopeID="SkillsScope" ScopeParent="..\SkillsGrid" ScopeMovements="Horizontal" AlternateScopeMovements="Vertical" AlternateMovementStepSize="3" LeftNavigationScope="AttributesScope" RightNavigationScope="PerksFirstScope" />
                 <NavigatableGridWidget Id="SkillsGrid" DataSource="{CurrentCharacter\Skills}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" DefaultCellWidth="178" DefaultCellHeight="130" ColumnCount="3" MarginLeft="11.558">
                   <ItemTemplate>
                     <SkillGridItem VerticalAlignment="Top" HorizontaAlignment="Center"/>
@@ -578,15 +578,15 @@
         </BrushWidget>
 
         <!--Perk Selection-->
-				<NavigationForcedScopeCollectionTargeter CollectionParent="..\PerkSelectionContainer" />
-				<NavigationScopeTargeter ScopeID="PerkSelectionPopupScope" ScopeParent="..\PerkSelectionContainer\PerksContainerListPanel" ScopeMovements="Vertical" HasCircularMovement="true" />
-        <CharacterDeveloperPerkSelectionWidget Id="PerkSelectionContainer" DataSource="{CurrentCharacter\PerkSelection}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsActive="@IsActive" Command.Deactivate="ExecuteDeactivate" PerksContainerListPanel="PerksContainerListPanel" >
+        <NavigationForcedScopeCollectionTargeter CollectionParent="..\PerkSelectionContainer" />
+        <NavigationScopeTargeter ScopeID="PerkSelectionPopupScope" ScopeParent="..\PerkSelectionContainer\PerksContainerListPanel" ScopeMovements="Vertical" HasCircularMovement="true" />
+        <CharacterDeveloperPerkSelectionWidget Id="PerkSelectionContainer" DataSource="{CurrentCharacter\PerkSelection}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsActive="@IsActive" Command.Deactivate="ExecuteDeactivate" PerksContainerListPanel="PerksContainerListPanel">
           <Children>
-						<NavigatableListPanel Id="PerksContainerListPanel" DataSource="{AvailablePerks}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+            <NavigatableListPanel Id="PerksContainerListPanel" DataSource="{AvailablePerks}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
               <ItemTemplate>
                 <CharacterDeveloperPerkSelectionItemButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="250" SuggestedHeight="340" Command.Click="ExecuteSelection" Brush="CharacterDeveloper.PerkSelection.Button" MarginTop="0" MarginBottom="0" DoNotPassEventsToChildren="true" UpdateChildrenStates="true" PerkSelectionIndicatorWidget="PerkSelectionIndicatorWidget">
                   <Children>
-                    <BrushWidget Id="PerkSelectionIndicatorWidget" WidthSizePolich="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="65" SuggestedHeight="72" HorizontalAlignment="Left" VerticalAlignment="Bottom" PositionXOffset="-81"  MarginBottom="3" Brush="CharacterDeveloper.PerkSelection.Indicator" MarginTop="5"/>
+                    <BrushWidget Id="PerkSelectionIndicatorWidget" WidthSizePolich="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="65" SuggestedHeight="72" HorizontalAlignment="Left" VerticalAlignment="Bottom" PositionXOffset="-81" MarginBottom="3" Brush="CharacterDeveloper.PerkSelection.Indicator" MarginTop="5"/>
                     <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalBottomToTop" MarginTop="5" MarginBottom="5" MarginRight="10" MarginLeft="10">
                       <Children>
                         <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" Brush="CharacterDeveloper.PerkSelection.Pick.Text" MarginTop="15" Text="@PickText"/>
@@ -609,6 +609,25 @@
 
         <!--Triple Dialog Buttons-->
         <Standard.TripleDialogCloseButtons VisualDefinition="BottomMenu" HorizontalAlignment="Center" VerticalAlignment="Bottom" PositionYOffset="100" Parameter.CancelButtonAction="ExecuteCancel" Parameter.CancelButtonText="@CancelLbl" Parameter.CancelInputKeyDataSource="{CancelInputKey}" Parameter.DoneButtonAction="ExecuteDone" Parameter.DoneButtonText="@DoneLbl" Parameter.DoneInputKeyDataSource="{DoneInputKey}" Parameter.ResetButtonAction="ExecuteReset" Parameter.ResetButtonHintDataSource="{ResetHint}" />
+
+        <!--Navigate to Careers screen-->
+        <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="HorizontalRightToLeft" HorizontaAlignment="Right" VerticalAlignment="Top" MarginTop="30" MarginRight="70">
+          <Children>
+
+            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="233" SuggestedHeight="75" MarginLeft="15" HorizontalAlignment="Right" Sprite="SPGeneral\career_button" Command.Click="ExecuteNavigateToCareers" IsVisible="@HasCareer">
+              <Children>
+                <HintWidget DataSource="{IconHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+              </Children>
+            </ButtonWidget>
+
+            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="233" SuggestedHeight="75" HorizontalAlignment="Right" Sprite="SPGeneral\spellbook_button" Command.Click="ExecuteOpenSpells" IsVisible="@IsSpellCaster">
+              <Children>
+                <HintWidget DataSource="{IconHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+              </Children>
+            </ButtonWidget>
+
+          </Children>
+        </ListPanel>
 
       </Children>
     </Widget>

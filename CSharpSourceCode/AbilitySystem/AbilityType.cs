@@ -6,11 +6,12 @@
         Spell,
         Prayer,
         ItemBound,
-        SpecialMove
+        CareerAbility
     }
 
     public enum AbilityEffectType
     {
+        Projectile,
         Missile,
         SeekerMissile,
         Wind,
@@ -22,7 +23,7 @@
         Bombardment,
         Blast,
         ArtilleryPlacement,
-        AgentMoving,
+        CareerAbilityEffect
     }
 
     public enum AbilityTargetType
@@ -57,6 +58,7 @@
         Enemy,
         All,
         FriendlyHero,
-        EnemyHero
+        EnemyHero,
+        Self
     }
 }
