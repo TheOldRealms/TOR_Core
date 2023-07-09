@@ -3,6 +3,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -83,46 +84,29 @@ namespace TOR_Core.Models
             {
                 if (!unit.Character.IsMounted)
                 {
-                    var choice = TORCareerChoices.GetChoice("DuelistPassive3");
-                    if (choice != null)
-                    {
-                        float effect = choice.GetPassiveValue();
-                        float value = (unit.Character.TroopWage*unit.Number) *effect;
-                        resultValue.Add(value, choice.BelongsToGroup.Name);
-                    }
-                    
-
+                    TextObject text;
+                    var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "DuelistPassive3", out text);
+                    resultValue.Add(value,text);
                 }
             }
             
             if (choices.Contains("CommanderPassive1"))
             {
-                if (unit.Character.Tier>4)
+                if (unit.Character.Tier>4&&!unit.Character.IsHero)
                 {
-                    var choice = TORCareerChoices.GetChoice("CommanderPassive1");
-                    if (choice != null)
-                    {
-                        float effect = choice.GetPassiveValue();
-                        float value = (unit.Character.TroopWage*unit.Number) *effect;
-                        resultValue.Add(value, choice.BelongsToGroup.Name);
-                    }
-                    
-
+                    TextObject text;
+                    var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "CommanderPassive1", out text);
+                    resultValue.Add(value,text);
                 }
             }
-            
             
             if (choices.Contains("LordlyPassive3"))
             {
                 if (unit.Character.IsVampire()&&unit.Character != Hero.MainHero.CharacterObject)
                 {
-                    var choice = TORCareerChoices.GetChoice("LordlyPassive3");
-                    if (choice != null)
-                    {
-                        float effect = choice.GetPassiveValue();
-                        float value = (unit.Character.TroopWage*unit.Number) *effect;
-                        resultValue.Add(value, choice.BelongsToGroup.Name);
-                    }
+                    TextObject text;
+                    var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "LordlyPassive3", out text);
+                    resultValue.Add(value,text);
                 }
             }
             
@@ -130,13 +114,9 @@ namespace TOR_Core.Models
             {
                 if (unit.Character.IsKnightUnit())
                 {
-                    var choice = TORCareerChoices.GetChoice("InspirationOfTheLadyPassive3");
-                    if (choice != null)
-                    {
-                        float effect = choice.GetPassiveValue();
-                        float value = (unit.Character.TroopWage*unit.Number) *effect;
-                        resultValue.Add(value, choice.BelongsToGroup.Name);
-                    }
+                    TextObject text;
+                    var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "LordlyPassive3", out text);
+                    resultValue.Add(value,text);
                 }
             }
             
@@ -144,52 +124,33 @@ namespace TOR_Core.Models
             {
                 if (unit.Character.IsVampire()&&unit.Character != Hero.MainHero.CharacterObject)
                 {
-                    var choice = TORCareerChoices.GetChoice("AvatarOfDeathPassive2");
-                    if (choice != null)
-                    {
-                        float effect = choice.GetPassiveValue();
-                        float value = (unit.Character.TroopWage*unit.Number) *effect;
-                        resultValue.Add(value, choice.BelongsToGroup.Name);
-                    }
-                    
-
+                    TextObject text;
+                    var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "AvatarOfDeathPassive2", out text);
+                    resultValue.Add(value,text);
                 }
-          
             }
             
             if (choices.Contains("MonsterSlayerPassive4"))
             {
                 if (unit.Character != Hero.MainHero.CharacterObject&&!unit.Character.IsKnightUnit()&&unit.Character.Culture.StringId=="vlandia")
                 {
-                    var choice = TORCareerChoices.GetChoice("MonsterSlayerPassive4");
-                    if (choice != null)
-                    {
-                        float effect = choice.GetPassiveValue();
-                        float value = (unit.Character.TroopWage*unit.Number) *effect;
-                        resultValue.Add(value, choice.BelongsToGroup.Name);
-                    }
-                    
-
+                    TextObject text;
+                    var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "MonsterSlayerPassive4", out text);
+                    resultValue.Add(value,text);
                 }
-          
             }
             
             if (choices.Contains("MasterHorsemanPassive4"))
             {
                 if (unit.Character != Hero.MainHero.CharacterObject&&unit.Character.IsKnightUnit())
                 {
-                    var choice = TORCareerChoices.GetChoice("MasterHorsemanPassive4");
-                    if (choice != null)
-                    {
-                        float effect = choice.GetPassiveValue();
-                        float value = (unit.Character.TroopWage*unit.Number) *effect;
-                        resultValue.Add(value, choice.BelongsToGroup.Name);
-                    }
-                    
-
+                    TextObject text;
+                    var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "MasterHorsemanPassive4", out text);
+                    resultValue.Add(value,text);
                 }
           
             }
+
 
             return resultValue;
         }
@@ -211,6 +172,7 @@ namespace TOR_Core.Models
             var value = -(unit.Character.TroopWage*unit.Number) * (effectMagnitude);
             return value;
         }
+        
 
     }
 }

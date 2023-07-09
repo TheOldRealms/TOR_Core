@@ -154,6 +154,23 @@ namespace TOR_Core.CampaignMechanics
                     }
                 }
             }
+            
+            if (choices.Contains("JustCausePassive2"))
+            {
+                var memberList = mobileParty.MemberRoster.GetTroopRoster();
+                for (var index = 0; index < memberList.Count; index++)
+                {
+                    var member = memberList[index];
+                    if (!member.Character.IsKnightUnit())
+                    {
+                        var choice = TORCareerChoices.GetChoice("JustCausePassive2");
+                        if (choice != null)
+                        {
+                            mobileParty.MemberRoster.AddXpToTroopAtIndex((int)choice.GetPassiveValue(), index);
+                        }
+                    }
+                }
+            }
         }
         
         private static void LaunchHuntingEvent(MobileParty mobileParty)

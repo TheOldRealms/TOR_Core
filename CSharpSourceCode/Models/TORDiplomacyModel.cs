@@ -15,7 +15,7 @@ namespace TOR_Core.Models
             var playerHero = hero1.IsHumanPlayerCharacter || hero2.IsHumanPlayerCharacter ? (hero1.IsHumanPlayerCharacter ? hero1 : hero2) : null;
             if (playerHero == null) return baseValue;
 
-
+            var conversationHero = !hero1.IsHumanPlayerCharacter || !hero2.IsHumanPlayerCharacter ? (!hero1.IsHumanPlayerCharacter ? hero1 : hero2) : null;
             if (playerHero.HasAnyCareer())
             {
                 var choices = playerHero.GetAllCareerChoices();
@@ -29,6 +29,22 @@ namespace TOR_Core.Models
                         {
                             var value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
                             values.AddFactor(value);
+                        }
+                    }
+                }
+                
+                if (choices.Contains("JustCausePassive4"))
+                {
+                    if (baseValue > 0)
+                    {
+                        if (conversationHero != null && conversationHero.Culture.StringId == "vlandia")
+                        {
+                            var choice = TORCareerChoices.GetChoice("JustCausePassive4");
+                            if (choice != null)
+                            {
+                                var value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
+                                values.AddFactor(value);
+                            } 
                         }
                     }
                 }

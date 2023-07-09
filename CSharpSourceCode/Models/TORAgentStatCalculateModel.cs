@@ -393,15 +393,31 @@ namespace TOR_Core.Models
 
                 var choices = Agent.Main.GetHero().GetAllCareerChoices();
                 
-                
+           
                 if (choices.Contains("InspirationOfTheLadyPassive4") && mask == PropertyMask.Defense)
                 {
                     var weight = agent.Character.Equipment.GetTotalWeightOfArmor(true);
-                    
-                    var choice = TORCareerChoices.GetChoice("InspirationOfTheLadyPassive4");
-                    if (choice != null)
+                    if (weight <= 4)
                     {
-                        result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                        var choice = TORCareerChoices.GetChoice("InspirationOfTheLadyPassive4");
+                        if (choice != null)
+                        {
+                            result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                        }
+                    }
+                }
+                
+                
+                if (choices.Contains("JustCausePassive3") && mask == PropertyMask.Defense)
+                {
+                    var weight = agent.Character.Equipment.GetTotalWeightOfArmor(true);
+                    if (weight <= 4)
+                    {
+                        var choice = TORCareerChoices.GetChoice("JustCausePassive3");
+                        if (choice != null)
+                        {
+                            result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                        }
                     }
                 }
 
@@ -449,11 +465,24 @@ namespace TOR_Core.Models
                     }
                 }
                 
-                if (choices.Contains("InspirationOfTheLadyPassive2") && mask == PropertyMask.Defense)
+                if (choices.Contains("FeyEntchantmentPassive4") && mask == PropertyMask.Defense)
                 {
                     if (agent.Character.IsKnightUnit())
                     {
-                        var choice = TORCareerChoices.GetChoice("InspirationOfTheLadyPassive2");
+                        var choice = TORCareerChoices.GetChoice("FeyEntchantmentPassive4");
+                        if (choice != null)
+                        {
+                            result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                        }
+                        
+                    }
+                }
+                
+                if (choices.Contains("TalesOfGilesPassive3") && mask == PropertyMask.Defense)
+                {
+                    if (agentCharacter.Culture.Name.ToString() =="vlandia")
+                    {
+                        var choice = TORCareerChoices.GetChoice("TalesOfGilesPassive3");
                         if (choice != null)
                         {
                             result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();

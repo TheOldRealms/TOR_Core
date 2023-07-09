@@ -9,6 +9,7 @@ using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Inventory;
 using TaleWorlds.CampaignSystem.Overlay;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -438,6 +439,25 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                     {
                         var value =(int) choice.Passive.EffectMagnitude;
                         hero.Heal(value,false);
+                    }
+                }
+            }
+            if (component.Religion.StringId == "cult_of_lady")
+            {
+                if (Hero.MainHero.HasCareerChoice("TalesOfGilesPassive3"))
+                {
+                    var choice = TORCareerChoices.GetChoice("TalesOfGilesPassive3");
+                    if(choice==null||choice.Passive==null)return;
+
+                    var list = Hero.MainHero.PartyBelongedTo.MemberRoster.GetTroopRoster();
+                    for (var index = 0; index < list.Count; index++)
+                    {
+                        var wounded = Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementWoundedNumber(index);
+                        if (wounded > 0)
+                        {
+                            Hero.MainHero.PartyBelongedTo.MemberRoster.AddToCountsAtIndex(index,0,-wounded);
+                        }
+                            
                     }
                 }
             }
