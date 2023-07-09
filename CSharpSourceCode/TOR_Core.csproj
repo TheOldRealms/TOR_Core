@@ -442,6 +442,8 @@
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissSceneNotificationItem.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\CustomDialogCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\TORDeclareWarDecision.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\TORKingdomDecisionProposalBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEvent.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEventsCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\MasterEngineer\MasterEngineerTownBehavior.cs" />
@@ -589,6 +591,7 @@
     <Compile Include="Models\TORDiplomacyModel.cs" />
     <Compile Include="Models\TORFaithModel.cs" />
     <Compile Include="Models\TORInventoryCapacityModel.cs" />
+    <Compile Include="Models\TORKingdomDecisionPermissionModel.cs" />
     <Compile Include="Models\TORMapVisibilityModel.cs" />
     <Compile Include="Models\TORPartyMoraleModel.cs" />
     <Compile Include="Models\TORPartySpeedCalculatingModel.cs" />

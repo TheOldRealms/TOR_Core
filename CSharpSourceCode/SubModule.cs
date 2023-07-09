@@ -31,6 +31,7 @@ using TOR_Core.CampaignMechanics.BountyMaster;
 using TOR_Core.CampaignMechanics.Chaos;
 using TOR_Core.CampaignMechanics.CustomDialogs;
 using TOR_Core.CampaignMechanics.CustomEncounterDialogs;
+using TOR_Core.CampaignMechanics.Diplomacy;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
@@ -114,6 +115,7 @@ namespace TOR_Core
                 starter.AddBehavior(new TORPartyUpgraderCampaignBehavior());
                 starter.AddBehavior(new InkStoryCampaignBehavior());
                 starter.AddBehavior(new ReligionCampaignBehavior());
+                starter.AddBehavior(new TORKingdomDecisionProposalBehavior());
                 starter.AddBehavior(new BountyMasterCampaignBehavior());
                 starter.AddBehavior(new HuntCultistsQuestCampaignBehavior());
                 starter.AddBehavior(new TORCareerPerkCampaignBehavior());
@@ -168,6 +170,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORDiplomacyModel());
                 gameStarterObject.AddModel(new TORRaidModel());
                 gameStarterObject.AddModel(new TORBattleBannerBearersModel());
+                gameStarterObject.AddModel(new TORKingdomDecisionPermissionModel());
 
                 CampaignOptions.IsLifeDeathCycleDisabled = true;
             }
