@@ -582,7 +582,7 @@
 		<OptionFlavourText>You were the apprentice of a Wall Warden for some time. You helped him evaluate damage and maintain the castle of your lord. When your master was killed during an assault on the castle walls, you became the Wall Warden. After a small mistake however, your lord has released you from your bond to find someone with more expertise.</OptionFlavourText>
 	</CharacterCreationOption> 
 	
-	<!-- Mousillion stage 1 -->
+	<!-- Mousillon stage 1 -->
 	<CharacterCreationOption Id="option46" Culture="mousillon" StageNumber="1" EquipmentSetId="tor_cc_bretonnian_nobility_1">
 		<SkillsToIncrease>
 			<string>Steward</string>
@@ -643,7 +643,7 @@
 		<OptionFlavourText>One of the most common professions of Mousillon, your family was a rough bunch, who used their strength and wits to take advantage of the many weak and foolish people you found yourself living amongst. </OptionFlavourText>
 	</CharacterCreationOption>
 
-	<!-- Mousillion stage 2 -->
+	<!-- Mousillon stage 2 -->
 	<CharacterCreationOption Id="option51" Culture="mousillon" StageNumber="2" EquipmentSetId="tor_cc_courtier_2">
 		<SkillsToIncrease>
 			<string>Riding</string>
@@ -652,7 +652,7 @@
 			<string>Leadership</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Social</AttributeToIncrease>
-		<OptionText>Mousillian Courtier</OptionText>
+		<OptionText>Mousillan Courtier</OptionText>
 		<OptionFlavourText>For years, you were groomed to be the best Mousillan noble you could be. This included lessons in manners, horsemanship and chivalry.</OptionFlavourText>
 	</CharacterCreationOption>
 
@@ -706,7 +706,7 @@
 	</CharacterCreationOption>
 
 
-	<!--  Mousillion stage 3 -->
+	<!--  Mousillon stage 3 -->
 	<CharacterCreationOption Id="option56" Culture="mousillon" StageNumber="3" EquipmentSetId="tor_cc_knight_errant_3">
 		<SkillsToIncrease>
 			<string>Polearm</string>
@@ -715,7 +715,7 @@
 			<string>Tactics</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
-		<OptionText>Mousillian Errant Knight</OptionText>
+		<OptionText>Mousillan Errant Knight</OptionText>
 		<OptionFlavourText> Nothing says that a man of Mousillon cannot walk the path of a Bretonnian Knight. Where that path leads is as always reliant on the will and purity of the individual who walks it.</OptionFlavourText>
 	</CharacterCreationOption>
 	
