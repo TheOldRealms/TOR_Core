@@ -77,7 +77,7 @@ namespace TOR_Core.Models
             return religionValue; // / factionToDeclareWarOn.Heroes.Count;
         }
 
-        private float DeterminePositiveEffect(Hero hero, ReligionObject religion, Hero enemy, ReligionObject comparedToReligion)
+        public static float DeterminePositiveEffect(Hero hero, ReligionObject religion, Hero enemy, ReligionObject comparedToReligion)
         {
             if (religion.HostileReligions.Contains(comparedToReligion))
                 return 0;
