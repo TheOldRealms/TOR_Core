@@ -120,6 +120,7 @@ namespace TOR_Core
                 starter.AddBehavior(new HuntCultistsQuestCampaignBehavior());
                 starter.AddBehavior(new TORCareerPerkCampaignBehavior());
                 starter.AddBehavior(new RaceFixCampaignBehavior());
+                starter.AddBehavior(new TORRecruitmentCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
@@ -171,6 +172,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORRaidModel());
                 gameStarterObject.AddModel(new TORBattleBannerBearersModel());
                 gameStarterObject.AddModel(new TORKingdomDecisionPermissionModel());
+                gameStarterObject.AddModel(new TORSettlementLoyaltyModel());
 
                 CampaignOptions.IsLifeDeathCycleDisabled = true;
             }
