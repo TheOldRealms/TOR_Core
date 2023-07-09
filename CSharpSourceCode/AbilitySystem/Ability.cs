@@ -120,22 +120,32 @@ namespace TOR_Core.AbilitySystem
             IsActivationPending = false;
             IsCasting = false;
             bool prayerCoolSeperated = false;
-            
+            ExplainedNumber Cooldown = new ExplainedNumber(Template.CoolDown);
             if (Game.Current.GameType is Campaign)
             {
-                prayerCoolSeperated = CareerHelper.PrayerCooldownIsNotShared(casterAgent);
-            }
-            
-            if(Template.AbilityType == AbilityType.Prayer&&!prayerCoolSeperated)
-                casterAgent.GetComponent<AbilityComponent>().SetPrayerCoolDown(Template.CoolDown);
-            else
-            {
-                ExplainedNumber Cooldown =new ExplainedNumber(Template.CoolDown);
                 if (casterAgent.IsMainAgent)
                 {
                     var player = Hero.MainHero;
-                    CareerHelper.ApplyBasicCareerPassives(player,ref Cooldown,PassiveEffectType.WindsCooldownReduction, true);
+                    prayerCoolSeperated = CareerHelper.PrayerCooldownIsNotShared(casterAgent);
+                    
+                    var type = Template.AbilityType;
+                    if (type == AbilityType.Spell)
+                    {
+                        CareerHelper.ApplyBasicCareerPassives(player, ref Cooldown, PassiveEffectType.WindsCooldownReduction, true);
+                    }
+
+                    if (type == AbilityType.Prayer)
+                    {
+                        CareerHelper.ApplyBasicCareerPassives(player, ref Cooldown, PassiveEffectType.PrayerCoolDownReduction, true);
+                    }
+                    
                 }
+            }
+            
+            if(Template.AbilityType == AbilityType.Prayer&&!prayerCoolSeperated)
+                casterAgent.GetComponent<AbilityComponent>().SetPrayerCoolDown((int) Cooldown.ResultNumber);
+            else
+            {
                 SetCoolDown((int)Cooldown.ResultNumber);
             }
                 

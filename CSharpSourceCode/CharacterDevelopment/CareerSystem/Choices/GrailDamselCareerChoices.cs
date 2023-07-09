@@ -101,7 +101,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _talesOfGilesPassive1.Initialize(CareerID, "Increases Hitpoints by 50.", "TalesOfGiles", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
             _talesOfGilesPassive2.Initialize(CareerID, "Bretonnian Units receive 10% Wardsave", "TalesOfGiles", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));
             _talesOfGilesPassive3.Initialize(CareerID, "Whenever praying at a shrine of the lady, all wounded troops get healed completely", "TalesOfGiles", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special, true));
-            _talesOfGilesPassive4.Initialize(CareerID, "20% spell cooldown reduction", "TalesOfGiles", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.WindsCooldownReduction, true)); 
+            _talesOfGilesPassive4.Initialize(CareerID, "20% spell cooldown reduction", "TalesOfGiles", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.WindsCooldownReduction, true)); 
             
             _vividVisionsPassive1.Initialize(CareerID, "Increases Winds of Magic by 10.", "VividVisions", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
             _vividVisionsPassive2.Initialize(CareerID, "Party Movement speed is increased by 1.5", "VividVisions", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1.5f, PassiveEffectType.PartyMovementSpeed));
@@ -112,8 +112,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _justCausePassive2.Initialize(CareerID, "100 XP every day for non-knightly units in party", "JustCause", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special, false)); //CareerPerkCampaign Behavior 101
             _justCausePassive3.Initialize(CareerID, "+15% Wardsave if your armor weight is not exceeding 4 weight", "JustCause", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special, true));
             _justCausePassive4.Initialize(CareerID, "Increases positive relationship gains by 20%", "JustCause", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //TorDiplomacy model 23
-
             
+            _secretsOFTheGrailPassive1.Initialize(CareerID, "Extra Lightning spell damage(30%).", "SecretsOfTheGrail", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 30), AttackTypeMask.Spell));
+            _secretsOFTheGrailPassive2.Initialize(CareerID, "20% cost redution for spells", "SecretsOfTheGrail", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.WindsCostReduction, true));
+            _secretsOFTheGrailPassive3.Initialize(CareerID, "Casting a prayer has a 50% chance to restore 15 Winds of magic", "SecretsOfTheGrail", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, true)); //AbilityMissionLogic, OnCastComplete
+            _secretsOFTheGrailPassive4.Initialize(CareerID, "30% Prayer cooldown reduction", "SecretsOfTheGrail", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-30, PassiveEffectType.PrayerCoolDownReduction, true));
+
         }
         
         protected override void UnlockCareerBenefitsTier2()

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.BountyMaster;
@@ -58,19 +59,10 @@ namespace TOR_Core.Extensions
             var info = hero.GetExtendedInfo();
             if(info != null)
             {
-                if((info.CurrentWindsOfMagic + amount) < info.MaxWindsOfMagic)
-                {
-                    result = amount;
-                    info.CurrentWindsOfMagic += amount;
-                }
-                else
-                {
-                    result = info.MaxWindsOfMagic - info.CurrentWindsOfMagic;
-                    info.CurrentWindsOfMagic = info.MaxWindsOfMagic;
-                }
-
-                
+                result= Mathf.Clamp(info.CurrentWindsOfMagic+amount, 0, info.MaxWindsOfMagic);
             }
+
+            hero.GetExtendedInfo().CurrentWindsOfMagic = result;
             return result;
         }
 
@@ -327,10 +319,11 @@ namespace TOR_Core.Extensions
             return result;
         }
 
-        public static bool HasAnyCareer(this Hero hero) => hero.GetCareer() != null;
+        public static bool HasAnyCareer(this Hero hero) => Game.Current.GameType is Campaign&& hero.GetCareer() != null;
 
         public static CareerObject GetCareer(this Hero hero)
         {
+           
             CareerObject result = null;
             if (hero != null && hero.GetExtendedInfo() != null && !string.IsNullOrEmpty(hero.GetExtendedInfo().CareerID))
             {

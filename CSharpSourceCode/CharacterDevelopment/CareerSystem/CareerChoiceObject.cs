@@ -199,6 +199,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         WindsOfMagic,       //player Winds of Magic
         WindsCostReduction, //player Winds of Magic cost reduction as Percentage
         WindsCooldownReduction, //player cooldown reduction as Percentage
+        PrayerCoolDownReduction, //player cooldown reduction as Percentage
         PartyMovementSpeed, //general party speed
         TroopRegeneration,  //troop generation
         TroopMorale,        //Morale

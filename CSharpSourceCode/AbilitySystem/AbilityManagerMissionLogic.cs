@@ -207,6 +207,7 @@ namespace TOR_Core.AbilitySystem
                     {
                         quest.IncrementCast();
                     }
+
                 }
             }
 
@@ -228,6 +229,29 @@ namespace TOR_Core.AbilitySystem
             if (agent == Agent.Main)
             {
                 if (CurrentState == AbilityModeState.Idle) _currentState = AbilityModeState.Casting;
+            }
+            
+            if (agent.GetHero().HasAnyCareer())
+            {
+                var playerHero = agent.GetHero();
+                var choices = playerHero.GetAllCareerChoices();
+
+                if (choices.Contains("SecretsOFTheGrailPassive3"))
+                {
+                    if (ability.Template.AbilityType == AbilityType.Prayer)
+                    {
+                        var choice = TORCareerChoices.GetChoice("SecretsOFTheGrailPassive3");
+                        if (choice != null)
+                        {
+                            float random = MBRandom.RandomFloatRanged(0, 1);
+                            if (random < choice.GetPassiveValue())
+                            {
+                                playerHero.AddWindsOfMagic(15);
+                            }
+                        }
+                                
+                    }
+                }
             }
         }
 
