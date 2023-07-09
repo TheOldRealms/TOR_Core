@@ -1144,8 +1144,8 @@
       <upgrade_target id="NPCCharacter.tor_vc_crypt_warrior" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_vc_skeleton_champion_template" />
-      <EquipmentSet id="tor_vc_skeleton_champion_template" civilian="true" />
+      <EquipmentSet id="tor_vc_skeleton_warrior_template" />
+      <EquipmentSet id="tor_vc_skeleton_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_vc_crypt_warrior" default_group="infantry" level="16" name="{=str_tor_vc_crypt_warrior}Crypt Warrior" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level16" race="skeleton">
@@ -1156,8 +1156,8 @@
       <upgrade_target id="NPCCharacter.tor_vc_grave_guard_warrior" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_vc_crypt_guard_template" />
-      <EquipmentSet id="tor_vc_crypt_guard_template" civilian="true" />
+      <EquipmentSet id="tor_vc_crypt_warrior_template" />
+      <EquipmentSet id="tor_vc_crypt_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_vc_grave_guard_warrior" default_group="infantry" level="21" name="{=str_tor_vc_grave_guard_warrior}Grave Guard Warrior" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level21" race="skeleton">
@@ -1168,8 +1168,8 @@
       <upgrade_target id="NPCCharacter.tor_vc_grave_guard_seneschal" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_vc_grave_guard_template" />
-      <EquipmentSet id="tor_vc_grave_guard_template" civilian="true" />
+      <EquipmentSet id="tor_vc_grave_guard_warrior_template" />
+      <EquipmentSet id="tor_vc_grave_guard_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_vc_grave_guard_seneschal" default_group="infantry" level="31" name="{=str_tor_vc_grave_guard_seneschal}Grave Guard Seneschal" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level31" race="skeleton">
@@ -1202,8 +1202,8 @@
       <upgrade_target id="NPCCharacter.tor_vc_crypt_guard" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_vc_skeleton_champion_template" />
-      <EquipmentSet id="tor_vc_skeleton_champion_template" civilian="true" />
+      <EquipmentSet id="tor_vc_skeleton_guard_template" />
+      <EquipmentSet id="tor_vc_skeleton_guard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_vc_crypt_guard" default_group="infantry" level="16" name="{=str_tor_vc_crypt_guard}Crypt Guard" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level16" race="skeleton">
@@ -1227,8 +1227,8 @@
       <upgrade_target id="NPCCharacter.tor_vc_grave_guardian" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_vc_grave_guard_template" />
-      <EquipmentSet id="tor_vc_grave_guard_template" civilian="true" />
+      <EquipmentSet id="tor_vc_grave_guard_spearman_template" />
+      <EquipmentSet id="tor_vc_grave_guard_spearman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_vc_grave_guardian" default_group="infantry" level="31" name="{=str_tor_vc_grave_guardian}Grave Guardian" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level31" race="skeleton">
@@ -1237,8 +1237,8 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_vc_grave_guard_seneschal_template" />
-      <EquipmentSet id="tor_vc_grave_guard_seneschal_template" civilian="true" />
+      <EquipmentSet id="tor_vc_grave_guardian_template" />
+      <EquipmentSet id="tor_vc_grave_guardian_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_vc_black_knight" default_group="cavalry" level="21" name="{=str_tor_vc_black_knight}Black Knight" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level21" race="skeleton">

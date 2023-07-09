@@ -27,6 +27,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private List<CharacterCreationOption> _options;
         private readonly int _maxStageNumber = 3;
         private bool _isFemale = false;
+        private int _originalRace = 0;
 
         public TORCharacterCreationContent()
         {
@@ -143,13 +144,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             charInfo.HasSecondaryCharacter = false;
             charInfo.ClearFaceGenMounts();
             _isFemale = CharacterObject.PlayerCharacter.IsFemale;
+            _originalRace = CharacterObject.PlayerCharacter.Race;
         }
 
         private void OnOptionSelected(TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation charInfo, string optionId)
         {
             var selectedOption = _options.Find(x => x.Id == optionId);
             charInfo.ClearFaceGenPrefab();
-            int race = 0;
+            var race = _originalRace;
             Hero.MainHero.UpdatePlayerGender(_isFemale);
             if (selectedOption.OptionText == "Vampiric Nobility"|| selectedOption.OptionText == "Vampire of Mousillon")
             {

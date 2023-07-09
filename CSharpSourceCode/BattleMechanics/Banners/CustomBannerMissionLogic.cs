@@ -60,7 +60,7 @@ namespace TOR_Core.BattleMechanics.Banners
                 for (int i = 0; i < 5; i++)
                 {
                     var equipment = agent.Equipment[i];
-                    if (!equipment.IsEmpty && equipment.Item != null && equipment.Item.IsUsingTableau)
+                    if (!equipment.IsEmpty && equipment.Item != null)
                     {
                         /* THIS DOES NOT WORK FOR SOME REASON
                         if (equipment.Item.IsBannerItem)
@@ -87,9 +87,38 @@ namespace TOR_Core.BattleMechanics.Banners
                         */
                         if(equipment.Item.ItemType == ItemTypeEnum.Shield)
                         {
-                            agent.RemoveEquippedWeapon((EquipmentIndex)i);
-                            var missionWeapon = new MissionWeapon(equipment.Item, equipment.ItemModifier, banner);
-                            agent.EquipWeaponWithNewEntity((EquipmentIndex)i, ref missionWeapon);
+                            if (equipment.Item.IsUsingTableau)
+                            {
+                                agent.RemoveEquippedWeapon((EquipmentIndex)i);
+                                var missionWeapon = new MissionWeapon(equipment.Item, equipment.ItemModifier, banner);
+                                agent.EquipWeaponWithNewEntity((EquipmentIndex)i, ref missionWeapon);
+                            }
+                            /* THIS BLOODY DOESNT WORK EITHER
+                            else if(equipment.Item.IsUsingTeamColor)
+                            {
+                                var multiMesh = equipment.GetMultiMesh(agent.IsFemale, false, true);
+
+                                if (multiMesh != null)
+                                {
+                                    for (int j = 0; j < multiMesh.MeshCount; j++)
+                                    {
+                                        var currentMesh = multiMesh.GetMeshAtIndex(j);
+
+                                        if (currentMesh != null)
+                                        {
+                                            currentMesh.Color = agent.Team.Color;
+                                            currentMesh.Color2 = agent.Team.Color2;
+                                            Material material = currentMesh.GetMaterial().CreateCopy();
+                                            material.AddMaterialShaderFlag("use_double_colormap_with_mask_texture", false);
+                                            currentMesh.SetMaterial(material);
+                                            //material.ManualInvalidate();
+                                            currentMesh.ManualInvalidate();
+                                        }
+                                    }
+                                    multiMesh.ManualInvalidate();
+                                }
+                            }
+                            */
                         }
                     }
                 }
