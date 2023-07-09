@@ -120,12 +120,6 @@ namespace TOR_Core.BattleMechanics.Banners
                             }
                             */
                         }
-                        if(equipment.Item.ItemType == ItemTypeEnum.Shield)
-                        {
-                            agent.RemoveEquippedWeapon((EquipmentIndex)i);
-                            var missionWeapon = new MissionWeapon(equipment.Item, equipment.ItemModifier, banner);
-                            agent.EquipWeaponWithNewEntity((EquipmentIndex)i, ref missionWeapon);
-                        }
                     }
                 }
                 
