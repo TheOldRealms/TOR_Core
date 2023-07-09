@@ -6,6 +6,8 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.Diplomacy
 {
+    // TODO: Not sure if its reasonable to have this. We could remove this and by extension TORKingdomDecisionProposalBehavior
+    // Then we only consider religion in the TORDiplomacy model. A lot cleaner!
     public class TORDeclareWarDecision : DeclareWarDecision
     {
         public TORDeclareWarDecision(Clan proposerClan, IFaction factionToDeclareWarOn) : base(proposerClan, factionToDeclareWarOn)
