@@ -1,5 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Election;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.SaveSystem;
 using TOR_Core.AbilitySystem.Spells;
@@ -51,6 +52,7 @@ namespace TOR_Core.SaveGameSystem
             ConstructContainerDefinition(typeof(Dictionary<string, HeroExtendedInfo>));
             ConstructContainerDefinition(typeof(Dictionary<string, MobilePartyExtendedInfo>));
             ConstructContainerDefinition(typeof(List<RaidingPartyComponent>));
+            ConstructContainerDefinition(typeof(List<KingdomDecision>));
             ConstructContainerDefinition(typeof(Dictionary<Settlement, Dictionary<CharacterObject, int>>));
         }
     }
