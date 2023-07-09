@@ -3312,7 +3312,7 @@
       <EquipmentSet id="tor_prophetess_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ms_lord_mousillion_factionleader" default_group="cavalry" name="{=str_tor_ms_lord_mousillion_factionleader}The Serpent of Mousillon" occupation="Lord" culture="Culture.mousillion" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_m_lord_mousillon_factionleader" default_group="cavalry" name="{=str_tor_m_lord_mousillon_factionleader}The Serpent of Mousillon" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="24" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
     </face>
@@ -3330,7 +3330,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ms_lord_mousillion_first_1" default_group="cavalry" name="{=str_tor_ms_lord_mousillion_first_1}Lord Rachard" occupation="Lord" culture="Culture.mousillion" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_m_lord_mousillon_first_1" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_1}Lord Rachard" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="24" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
     </face>
@@ -3348,7 +3348,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ms_lord_mousillion_first_2" default_group="cavalry" name="{=str_tor_ms_lord_mousillion_first_2}Lord Aucassin" occupation="Lord" culture="Culture.mousillion" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" race="vampire" is_hero="true">
+  <NPCCharacter id="tor_m_lord_mousillon_first_2" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_2}Lord Aucassin" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" race="vampire" is_hero="true">
     <face>
       <BodyProperties version="4" age="24" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
     </face>
@@ -3366,7 +3366,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ms_lord_mousillion_first_3" default_group="cavalry" name="{=str_tor_ms_lord_mousillion_first_3}Ser Cain Bettencourt" occupation="Lord" culture="Culture.mousillion" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_m_lord_mousillon_first_3" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_3}Ser Cain Bettencourt" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="24" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
     </face>
@@ -3384,7 +3384,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ms_lord_mousillion_first_4" default_group="cavalry" name="{=str_tor_ms_lord_mousillion_first_4}Gleb Marks" occupation="Lord" culture="Culture.mousillion" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_m_lord_mousillon_first_4" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_4}Gleb Marks" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="24" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
     </face>
@@ -3402,7 +3402,7 @@
       <EquipmentSet id="tor_necromancer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ms_lord_mousillion_first_5" default_group="cavalry" name="{=str_tor_ms_lord_mousillion_first_5}Ser Garreth of the Black Rose" occupation="Lord" culture="Culture.mousillion" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_m_lord_mousillon_first_5" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_5}Ser Garreth of the Black Rose" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="24" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
     </face>
@@ -3420,7 +3420,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ms_lord_mousillion_first_6" default_group="cavalry" name="{=str_tor_ms_lord_mousillion_first_6}Ser Agravain the Shadow" occupation="Lord" culture="Culture.mousillion" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_m_lord_mousillon_first_6" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_6}Ser Agravain the Shadow" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="24" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
     </face>
@@ -3438,7 +3438,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ms_lord_mousillion_first_7" default_group="cavalry" name="{=str_tor_ms_lord_mousillion_first_7}Ser Gaheris the Dreaded" occupation="Lord" culture="Culture.mousillion" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_m_lord_mousillon_first_7" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_7}Ser Gaheris the Dreaded" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="24" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
     </face>

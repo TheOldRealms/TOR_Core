@@ -89,49 +89,82 @@
   <string id="str_culture_rich_name.khuzait" text="{=!}Vampire Counts" />
   <string id="str_culture_rich_name.empire" text="{=!}Empire of Men" />
   <string id="str_culture_rich_name.vlandia" text="{=!}Bretonnia" />
-  <string id="str_culture_rich_name.mousillion" text="{=!}Mousillion" />
+  <string id="str_culture_rich_name.mousillon" text="{=!}Mousillon" />
+  
   <string id="str_culture_description.khuzait" text="{=!}The Vampire Counts are fiends without equal. They seek to topple the civilisations of the living and supplant them with an Undead empire. Each Vampire is a unique and majestic figure with his own personality, drive and ambition. In contrast, their minions are mindlessly obedient - rank after rank of ragged and dirt-encrusted cadavers forced back to life by their masters' necromantic power." />
   <string id="str_culture_description.empire" text="{=!}The Empire of Man, the sprawling nation of humans dominating the Old World, faces a daily struggle for survival. Guided by their Emperor, Karl Franz, its armies stand as a testament to unwavering discipline and unmatched martial skills. In a world teeming with brutal savages and bloodthirsty monsters, the Empire endures thanks to the renowned discipline of its armies, honed through rigorous training and fortified by their unyielding faith in Sigmar. A beacon of human resilience, the Empire's soldiers exemplify the indomitable spirit of man that prevails amidst its endless list of foes." />
   <string id="str_culture_description.vlandia" text="{=!}The Kingdom of Bretonnia is a land renowned for powerful Knights and their strong sense of Chivalry. Guided by the Fey Enchantress and the Damsels of the Lady, the peasants toil while their noble lords protect them from the many dangers threating their survival. In times of war the whole kingdom can join together, led in a crusade against their enemies by King Louen Leoncoeur, against which no foe has known victory." />
-  <string id="str_culture_description.mousillion" text="{=!}Mousillon, the accursed state nestled within the heart of Bretonnia, casts a dark and ominous shadow over the land. Once a proud dukedom, it now stands as a grim testament to the corruption that lingers in the shadows. Ruled by the Serpent of Mousillon, the realm of swamps and thickets contrasts against the vibrant setting of noble Bretonnia. Yet, even more tragic and unsettling are its mutated peasantry, ruled not by noble knights but the twisted undead, whose black knights evoke a chilling blend of traditional Bretonnian martial prowess and unholy power." />
+  <string id="str_culture_description.mousillon" text="{=!}Mousillon, the accursed state nestled within the heart of Bretonnia, casts a dark and ominous shadow over the land. Once a proud dukedom, it now stands as a grim testament to the corruption that lingers in the shadows. Ruled by the Serpent of Mousillon, the realm of swamps and thickets contrasts against the vibrant setting of noble Bretonnia. Yet, even more tragic and unsettling are its mutated peasantry, ruled not by noble knights but the twisted undead, whose black knights evoke a chilling blend of traditional Bretonnian martial prowess and unholy power." />
+  
   <string id="str_faction_official.empire" text="{=!}a count" />
   <string id="str_faction_official.empire_f" text="{=!}a countess" />
   <string id="str_faction_ruler.empire" text="{=!}elector count" />
   <string id="str_faction_ruler.empire_f" text="{=!}elector countess" />
-  <string id="str_faction_ruler_term_in_speech.empire" text="{=!}{RULER.NAME}" />
-  <string id="str_faction_ruler_name_with_title.empire" text="{=!}{RULER.NAME}" />
-  <string id="str_faction_noble_name_with_title.empire" text="{=!}{RULER.NAME}" />
-  <string id="str_faction_ruler_name_with_title.khuzait" text="{=!}{RULER.NAME}" />
-  <string id="str_faction_noble_name_with_title.khuzait" text="{=!}{RULER.NAME}" />
   <string id="str_faction_official.khuzait" text="{=!}a lord" />
   <string id="str_faction_official.khuzait_f" text="{=!}a lady" />
   <string id="str_faction_ruler.khuzait" text="{=!}Vampire Lord" />
   <string id="str_faction_ruler.khuzait_f" text="{=!}Vampire Lady" />
+  <string id="str_faction_official.vlandia" text="{=!}a lord" />
+  <string id="str_faction_official.vlandia_f" text="{=!}a lady" />
+  <string id="str_faction_ruler.vlandia" text="{=!}Duke" />
+  <string id="str_faction_ruler.vlandia_f" text="{=!}Duchess" />
+  <string id="str_faction_official.mousillon" text="{=!}a lord" />
+  <string id="str_faction_official.mousillon_f" text="{=!}a lady" />
+  <string id="str_faction_ruler.mousillon" text="{=!}Duke" />
+  <string id="str_faction_ruler.mousillon_f" text="{=!}Duchess" />
+
+  <string id="str_faction_ruler_term_in_speech.empire" text="{=!}{RULER.NAME}" />
   <string id="str_faction_ruler_term_in_speech.khuzait" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_ruler_term_in_speech.vlandia" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_ruler_term_in_speech.mousillon" text="{=!}{RULER.NAME}" />
+
+  <string id="str_faction_ruler_name_with_title.empire" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_noble_name_with_title.empire" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_ruler_name_with_title.khuzait" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_noble_name_with_title.khuzait" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_ruler_name_with_title.vlandia" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_noble_name_with_title.vlandia" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_ruler_name_with_title.mousillon" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_noble_name_with_title.mousillon" text="{=!}{RULER.NAME}" />
+
+
   <string id="str_adjective_for_faction.averland" text="{=!}Averland" />
   <string id="str_adjective_for_faction.stirland" text="{=!}Stirland" />
   <string id="str_adjective_for_faction.wissenland" text="{=!}Wissenland" />
   <string id="str_adjective_for_faction.talabecland" text="{=!}Talabecland" />
   <string id="str_adjective_for_faction.reikland" text="{=!}Reikland" />
   <string id="str_adjective_for_faction.moot" text="{=!}halfling" />
+  <string id="str_adjective_for_faction.mousillon" text="{=!}Mousillon" />
   <string id="str_adjective_for_faction.sylvania" text="{=!}vampire" />
+
   <string id="str_short_term_for_faction.averland" text="{=!}Averland" />
   <string id="str_short_term_for_faction.stirland" text="{=!}Stirland" />
   <string id="str_short_term_for_faction.wissenland" text="{=!}Wissenland" />
   <string id="str_short_term_for_faction.talabecland" text="{=!}Talabecland" />
   <string id="str_short_term_for_faction.reikland" text="{=!}Reikland" />
   <string id="str_short_term_for_faction.moot" text="{=!}halflings" />
-    <string id="str_short_term_for_faction.mousillion" text="{=!}mousillion" />
+  <string id="str_short_term_for_faction.mousillon" text="{=!}Mousillon" />
   <string id="str_short_term_for_faction.sylvania" text="{=!}vampires" />
+
   <string id="str_faction_formal_name_for_culture.khuzait" text="{=!}Sylvania" />
   <string id="str_faction_formal_name_for_culture.empire" text="{=!}Empire" />
+  <string id="str_faction_formal_name_for_culture.vlandia" text="{=!}Bretonnia" />
+  <string id="str_faction_formal_name_for_culture.mousillon" text="{=!}Mousillon" />
+
   <string id="str_faction_informal_name_for_culture.khuzait" text="{=!}Sylvania" />
-    <string id="str_faction_informal_name_for_culture.khuzait" text="{=!}Mousillion" />
+  <string id="str_faction_informal_name_for_culture.mousillon" text="{=!}Mousillon" />
   <string id="str_faction_informal_name_for_culture.empire" text="{=!}the Empire" />
+  <string id="str_faction_informal_name_for_culture.vlandia" text="{=!}Bretonnia" />
+  
   <string id="str_adjective_for_culture.khuzait" text="{=!}vampire" />
   <string id="str_adjective_for_culture.empire" text="{=!}imperial" />
+  <string id="str_adjective_for_culture.vlandia" text="{=!}bretonnian" />
+  <string id="str_adjective_for_culture.mousillon" text="{=!}mousillan" />
+
   <string id="str_neutral_term_for_culture.khuzait" text="{=!}sylvanians" />
   <string id="str_neutral_term_for_culture.empire" text="{=!}imperials" />
+  <string id="str_neutral_term_for_culture.vlandia" text="{=!}bretonnians" />
+  <string id="str_neutral_term_for_culture.mousillon" text="{=!}mousillans" />
 
   <string id="tor_feudal_oath_line1.averland" text="{=!}I hereby swear to serve the Grand County of Averland." />
   <string id="tor_feudal_oath_line2.averland" text="{=!}I proclaim the Elector Count, Marius Leitdorf as my rightful lord and better looking than Kurt Helboring." />
@@ -191,6 +224,27 @@
       <tag tag_name="KhuzaitTag" />
     </tags>
   </string>
+  <string id="str_liege_title.vlandia" text="{=!}Duke of Bretonnia">
+    <tags>
+      <tag tag_name="VlandiaTag" />
+    </tags>
+  </string>
+  <string id="str_liege_title_female.vlandia" text="{=!}Duchess of Bretonnia">
+    <tags>
+      <tag tag_name="VlandiaTag" />
+    </tags>
+  </string>
+  <string id="str_liege_title.mousillon" text="{=!}Duke of Mousillon">
+    <tags>
+    </tags>
+  </string>
+  <string id="str_liege_title_female.mousillon" text="{=!}Duchess of Mousillon">
+    <tags>
+    </tags>
+  </string>
+
+
+
   <string id="str_comment_noble_introduces_self.empire" text="{=!}I am {CONVERSATION_CHARACTER.LINK} of the house of {CLAN_NAME}.">
     <tags>
       <tag tag_name="EmpireTag" />
@@ -465,15 +519,15 @@
   <string id="career_choicegroup1_name.WarriorPriest" text="{=!}Cultist of Sigmar" />
   <string id="career_choicegroup2_name.WarriorPriest" text="{=!}Warrior Priest" />
   <string id="career_choicegroup3_name.WarriorPriest" text="{=!}Arch Lector" />
-  
+
   <string id="career_choicegroup1_name.MinorVampire" text="{=!}New Blood" />
   <string id="career_choicegroup2_name.MinorVampire" text="{=!}Vampire" />
   <string id="career_choicegroup3_name.MinorVampire" text="{=!}Exalted" />
-  
+
   <string id="career_choicegroup1_name.BloodKnight" text="{=!}Initiate" />
   <string id="career_choicegroup2_name.BloodKnight" text="{=!}Blood Knight" />
   <string id="career_choicegroup3_name.BloodKnight" text="{=!}Master" />
-  
+
   <string id="career_choicegroup1_name.GrailKnight" text="{=!}Knight Errant" />
   <string id="career_choicegroup2_name.GrailKnight" text="{=!}Questing Knight" />
   <string id="career_choicegroup3_name.GrailKnight" text="{=!}Grail Knight" />
@@ -492,8 +546,8 @@
   <string id="career_description.BloodKnight" text="{=!}Sired by Abhorash, the Blood Knight is a dark mockery of everything noble or virtuous that can be said about their mortal counterparts. Where before the Blood Kiss there was honour is now cruelty; faith turns to irreverence and duty falls to wanton ambition. This is true of all vampires but seems particularly tragic for the fallen knights of the Old World." />
   <string id="career_description.MinorVampire" text="{=!}Known and feared by many names, Vampires are the night's dark master. Nighly anyone be they Man or Beast, Holy or Daemonic can face one and survive. All Vampires strive to be the only masters of their unlife, free from any obligations to religions or masters. This egomaniacal drive is what fuels them to greater and greater ambitions, so that one day they may be lord of all they observe." />
   <string id="career_description.Mercenary" text="{=!}To be a Man in the 25th century is to be one of thousands. The Old World finds itself on the precipice of destruction and turmoil, of chaos and death. No one in this age can be weak; some use the times to their advantage and turn warfare into wealth, combat into glory and tragedy into destiny. Mercenary they may call you, whatever the name no one will control your fate." />
- 
+
   <string id="careerchoice_description.WarriorPriestRoot" text="{=!}The Warrior Priest is unleashing the wrath of Sigmar which will make his and surrounding allies melee attacks stronger (20%) for 8 seconds. \n Troops with the effect can’t be staggered. \n For every points in Faith, the melee effect becomes 0.05% stronger and 0.05 seconds longer. \n Cooldown: take 50 points of damage." />
   <string id="career_description.GrailKnight" text="{=!}To be a knight of Bretonnia is to strive for the blessing of the Lady and her holy grail. Any man deemed worthy to sup from her chalice becomes a holy warrior honored and respected across all of Bretonnia and yet farther. The road to that goal is difficult, so much so that most knights fail to accomplish despite all sharing the same dream." />
-  
+
 </strings>

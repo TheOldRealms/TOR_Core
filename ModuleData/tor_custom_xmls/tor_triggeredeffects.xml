@@ -582,7 +582,7 @@
             HasShockWave="false" 
             TargetType="All" 
             DamageVariance="0" 
-            TroopIdToSummon="tor_vc_grave_guard"
+            TroopIdToSummon="tor_vc_grave_guard_warrior"
             NumberToSummon="4"
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.SummonScript"/>
       <TriggeredEffectTemplate StringID="summon_gravecall" 
@@ -595,7 +595,7 @@
             HasShockWave="false" 
             TargetType="All" 
             DamageVariance="0" 
-            TroopIdToSummon="tor_vc_skeleton_champion"
+            TroopIdToSummon="tor_vc_skeleton_warrior"
             NumberToSummon="15"
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.SummonScript"/>
       <TriggeredEffectTemplate StringID="wind_of_death_tick" 
