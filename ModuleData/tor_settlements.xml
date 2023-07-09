@@ -72,8 +72,8 @@
       <Town id="town_comp_AV1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4000" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
-      <Location id="arena" scene_name="TOW_arena_empire_a" />
+      <Location id="center" scene_name="TOR_empire_city_averheim_02" scene_name_1="TOR_empire_city_averheim_02" scene_name_2="TOR_empire_city_averheim_02" scene_name_3="TOR_empire_city_averheim_02" />
+      <Location id="arena" scene_name="TOR_empire_arena_averheim_01" />
       <Location id="tavern" scene_name="TOR_empire_tavern_ninian_01" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
@@ -799,7 +799,7 @@
       <Village id="village_comp_SY1_1" village_type="VillageType.sheep_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_SY1" bound="Settlement.town_SY1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vampire_village_001" />
+      <Location id="village_center" scene_name="TOR_vampire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -812,7 +812,7 @@
       <Village id="village_comp_SY1_2" village_type="VillageType.iron_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_SY1" bound="Settlement.town_SY1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vampire_village_001" />
+      <Location id="village_center" scene_name="TOR_vampire_village_005" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
