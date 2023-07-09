@@ -1,4 +1,4 @@
-﻿using SandBox.CampaignBehaviors;
+using SandBox.CampaignBehaviors;
 using SandBox.Issues;
 using System;
 using System.Collections.Generic;

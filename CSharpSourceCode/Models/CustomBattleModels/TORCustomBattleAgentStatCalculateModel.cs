@@ -99,5 +99,6 @@ namespace TOR_Core.Models.CustomBattleModels
                 agentDrivenProperties.SetDynamicCombatProperties(statusEffectComponent, 1); //I have the feeling this call is not necessary given the many updates that are done per frame.
             }
         }
+  
     }
 }

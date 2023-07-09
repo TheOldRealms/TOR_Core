@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -119,6 +119,13 @@ namespace TOR_Core.BattleMechanics.Banners
                                 }
                             }
                             */
+                        }
+                        */
+                        if(equipment.Item.ItemType == ItemTypeEnum.Shield)
+                        {
+                            agent.RemoveEquippedWeapon((EquipmentIndex)i);
+                            var missionWeapon = new MissionWeapon(equipment.Item, equipment.ItemModifier, banner);
+                            agent.EquipWeaponWithNewEntity((EquipmentIndex)i, ref missionWeapon);
                         }
                     }
                 }

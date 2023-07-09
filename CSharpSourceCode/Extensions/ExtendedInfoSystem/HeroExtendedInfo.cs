@@ -161,7 +161,25 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             if (LoreObject.GetLore(loreId) != null && !_knownLores.Contains(loreId)) _knownLores.Add(loreId);
         }
+        
+        public void RemoveKnownLore(string loreId)
+        {
+            if (LoreObject.GetLore(loreId) != null && _knownLores.Contains(loreId))
+            {
+                foreach (var abilityID in AllAbilites)
+                {
+                    var ability = AbilityFactory.GetTemplate(abilityID);
+                    if (ability.BelongsToLoreID!=loreId)continue;
+                    _selectedAbilities.Remove(abilityID);
+                }
+                _knownLores.Remove(loreId);
+            }
+        }
 
+        public bool HasAnyKnownLore()
+        {
+            return !_knownLores.IsEmpty();
+        }
         public bool HasKnownLore(string loreId)
         {
             return _knownLores.Contains(loreId);

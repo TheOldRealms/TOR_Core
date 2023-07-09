@@ -392,6 +392,34 @@ namespace TOR_Core.Models
                 result = CareerHelper.AddBasicCareerPassivesToPropertyContainerForMainAgent(agent, result, attackMask, mask);
 
                 var choices = Agent.Main.GetHero().GetAllCareerChoices();
+                
+           
+                if (choices.Contains("InspirationOfTheLadyPassive4") && mask == PropertyMask.Defense)
+                {
+                    var weight = agent.Character.Equipment.GetTotalWeightOfArmor(true);
+                    if (weight <= 4)
+                    {
+                        var choice = TORCareerChoices.GetChoice("InspirationOfTheLadyPassive4");
+                        if (choice != null)
+                        {
+                            result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                        }
+                    }
+                }
+                
+                
+                if (choices.Contains("JustCausePassive3") && mask == PropertyMask.Defense)
+                {
+                    var weight = agent.Character.Equipment.GetTotalWeightOfArmor(true);
+                    if (weight <= 4)
+                    {
+                        var choice = TORCareerChoices.GetChoice("JustCausePassive3");
+                        if (choice != null)
+                        {
+                            result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                        }
+                    }
+                }
 
                 if (choices.Contains("NewBloodPassive2") && mask == PropertyMask.Defense)
                 {
@@ -437,6 +465,32 @@ namespace TOR_Core.Models
                     }
                 }
                 
+                if (choices.Contains("FeyEntchantmentPassive4") && mask == PropertyMask.Defense)
+                {
+                    if (agent.Character.IsKnightUnit())
+                    {
+                        var choice = TORCareerChoices.GetChoice("FeyEntchantmentPassive4");
+                        if (choice != null)
+                        {
+                            result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                        }
+                        
+                    }
+                }
+                
+                if (choices.Contains("TalesOfGilesPassive3") && mask == PropertyMask.Defense)
+                {
+                    if (agentCharacter.Culture.Name.ToString() =="vlandia")
+                    {
+                        var choice = TORCareerChoices.GetChoice("TalesOfGilesPassive3");
+                        if (choice != null)
+                        {
+                            result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                        }
+                        
+                    }
+                }
+                
                 if (choices.Contains("HolyPurgePassive2") && mask == PropertyMask.Defense)
                 {
                     if (agent.Character.UnitBelongsToCult("cult_of_sigmar")||(!agent.Character.IsReligiousUnit() && choices.Contains("Archlector2")))
@@ -460,6 +514,15 @@ namespace TOR_Core.Models
                         {
                             result.DamagePercentages[(int)DamageType.Holy] += choice.GetPassiveValue();
                         }
+                    }
+                }
+                
+                if (choices.Contains("FeyEntchantmentPassive3") && mask == PropertyMask.Attack && attackMask == AttackTypeMask.Ranged||attackMask == AttackTypeMask.Melee)
+                {
+                    var choice = TORCareerChoices.GetChoice("FeyEntchantmentPassive3");
+                    if (choice!= null)
+                    {
+                        result.AdditionalDamagePercentages[(int)DamageType.Magical] += choice.GetPassiveValue();
                     }
                 }
                 

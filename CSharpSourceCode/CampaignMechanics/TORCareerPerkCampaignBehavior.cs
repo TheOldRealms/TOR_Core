@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
@@ -25,10 +25,17 @@ namespace TOR_Core.CampaignMechanics
             {
                 var party = Hero.MainHero.PartyBelongedTo;
                 var choices = Hero.MainHero.GetAllCareerChoices();
-
+                
                 if (choices.Contains("CommanderPassive4"))
                 {
                     var choice = TORCareerChoices.GetChoice("CommanderPassive4");
+                    if (choice != null)
+                        AddExtraTroopsWithChanceIfPossible(characterObject, amount, party, choice.GetPassiveValue());
+                }
+
+                if (choices.Contains("InspirationOfTheLadyPassive1"))
+                {
+                    var choice = TORCareerChoices.GetChoice("InspirationOfTheLadyPassive1");
                     if (choice != null)
                         AddExtraTroopsWithChanceIfPossible(characterObject, amount, party, choice.GetPassiveValue());
                 }
@@ -140,6 +147,23 @@ namespace TOR_Core.CampaignMechanics
                     if (!member.Character.IsRanged && !member.Character.IsHero)
                     {
                         var choice = TORCareerChoices.GetChoice("ErrantryWarPassive4");
+                        if (choice != null)
+                        {
+                            mobileParty.MemberRoster.AddXpToTroopAtIndex((int)choice.GetPassiveValue(), index);
+                        }
+                    }
+                }
+            }
+            
+            if (choices.Contains("JustCausePassive2"))
+            {
+                var memberList = mobileParty.MemberRoster.GetTroopRoster();
+                for (var index = 0; index < memberList.Count; index++)
+                {
+                    var member = memberList[index];
+                    if (!member.Character.IsKnightUnit())
+                    {
+                        var choice = TORCareerChoices.GetChoice("JustCausePassive2");
                         if (choice != null)
                         {
                             mobileParty.MemberRoster.AddXpToTroopAtIndex((int)choice.GetPassiveValue(), index);

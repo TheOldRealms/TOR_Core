@@ -133,7 +133,8 @@ namespace TOR_Core.HarmonyPatches
                     abilityId = spellInfo.OriginAbilityTemplateId;
                     damageCategories[damageType] = b.InflictedDamage;
                 }
-                
+
+                damageAmplifications[damageType] += additionalDamagePercentages[damageType];
                 damageAmplifications[damageType] -= resistancePercentages[damageType];
                 damageCategories[damageType] *= 1 + damageAmplifications[damageType];
                 resultDamage = (int)damageCategories[damageType];

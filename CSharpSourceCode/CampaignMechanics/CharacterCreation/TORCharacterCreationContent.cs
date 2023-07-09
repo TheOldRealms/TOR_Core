@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -219,10 +219,19 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddCareer(TORCareers.GrailKnight);
             }
             
+            if(selectedOption.OptionText == "Damsel of the Lady")
+            {
+                Hero.MainHero.AddAttribute("Priest");
+                Hero.MainHero.AddCareer(TORCareers.GrailDamsel);
+                var skill = Hero.MainHero.GetSkillValue(TORSkills.Faith);
+                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
+                var knight = MBObjectManager.Instance.GetObject<CharacterObject>("tor_br_realm_knight");
+                Hero.MainHero.PartyBelongedTo.Party.AddMember(knight, 1, 0);
+            }
+            
             if (selectedOption.OptionText == "Priest Acolyte")
             {
                 Hero.MainHero.AddAttribute("Priest");
-                Hero.MainHero.AddAbility("HealingHand");
                 var skill = Hero.MainHero.GetSkillValue(TORSkills.Faith);
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);

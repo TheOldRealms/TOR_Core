@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +21,7 @@ namespace TOR_Core.CharacterDevelopment
         private void OnPerkPicked(Hero hero, PerkObject perk)
         {
             var info = hero.GetExtendedInfo();
-            if (hero != null && perk != null && !hero.GetPerkValue(perk))
+            if (hero != null && perk != null ) //!hero.GetPerkValue(perk) -> this does not get triggered for any of the perks, since all of them do have a value of 0!
             {
                 if(perk == TORPerks.GunPowder.FiringDrills)
                 {
@@ -60,16 +60,43 @@ namespace TOR_Core.CharacterDevelopment
                     {
                         if (perk == TORPerks.Faith.NovicePrayers)
                         {
-                            if (!hero.HasAbility("HealingHand")) hero.AddAbility("HealingHand");
+                            if (hero.HasCareer(TORCareers.WarriorPriest))
+                            {
+                                if (!hero.HasAbility("HealingHand")) hero.AddAbility("HealingHand");
+                            }
+
+                            if (hero.HasCareer(TORCareers.GrailDamsel))
+                            {
+                                if (!hero.HasAbility("AuraOfTheLady")) hero.AddAbility("AuraOfTheLady");
+                            }
+                            
                         }
                         if (perk == TORPerks.Faith.AdeptPrayers)
                         {
-                            if (!hero.HasAbility("AmourOfRighteousness")) hero.AddAbility("AmourOfRighteousness");
-                            if (!hero.HasAbility("Vanquish")) hero.AddAbility("Vanquish");
+                            if (hero.HasCareer(TORCareers.WarriorPriest))
+                            {
+                                if (!hero.HasAbility("AmourOfRighteousness")) hero.AddAbility("AmourOfRighteousness");
+                                if (!hero.HasAbility("Vanquish")) hero.AddAbility("Vanquish");
+                            }
+                            
+                            if (hero.HasCareer(TORCareers.GrailDamsel))
+                            {
+                                if (!hero.HasAbility("ShieldOfCombat")) hero.AddAbility("ShieldOfCombat");
+                                if (!hero.HasAbility("LadysFavour")) hero.AddAbility("LadysFavour");
+                   
+                            }
+                            
                         }
                         if (perk == TORPerks.Faith.GrandPrayers)
                         {
-                            if (!hero.HasAbility("CometOfSigmar")) hero.AddAbility("CometOfSigmar");
+                            if (hero.HasCareer(TORCareers.WarriorPriest))
+                            {
+                                if (!hero.HasAbility("CometOfSigmar")) hero.AddAbility("CometOfSigmar");
+                            }
+                            if (hero.HasCareer(TORCareers.GrailDamsel))
+                            {
+                                if (!hero.HasAbility("AerialShield")) hero.AddAbility("AerialShield");
+                            }
                         }
                     }
                 }
