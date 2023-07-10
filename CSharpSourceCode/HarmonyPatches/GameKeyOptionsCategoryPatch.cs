@@ -25,7 +25,6 @@ namespace TOR_Core.HarmonyPatches
         public static IEnumerable<string> Postfix( IEnumerable<string> __result)
         {
             return __result.AddItem(nameof(TORGameKeyContext));
-           
         }
     }
 }

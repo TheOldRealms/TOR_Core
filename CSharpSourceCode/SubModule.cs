@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 using HarmonyLib;
 using NLog;
@@ -78,8 +79,18 @@ namespace TOR_Core
             HarmonyInstance.PatchAll();
             ConfigureLogging();
             UIConfig.DoNotUseGeneratedPrefabs = true;
-            
-            TORKeyInputManager.Initialize();
+
+            try
+            {
+                TORKeyInputManager.Initialize();
+            }
+            catch(Exception ex)
+            {
+                TORCommon.Log(ex.Message, LogLevel.Error);
+                TORCommon.Log(ex.Source, LogLevel.Error);
+                TORCommon.Log(ex.StackTrace, LogLevel.Error);
+            }
+
             StatusEffectManager.LoadStatusEffects();
             TriggeredEffectManager.LoadTemplates();
             AbilityFactory.LoadTemplates();

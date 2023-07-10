@@ -372,10 +372,10 @@ namespace TOR_Core.AbilitySystem
             var categories = HotKeyManager.GetAllCategories();
             foreach (var category in categories)
             {
-                TORCommon.Log("category ID: " + category.GameKeyCategoryId, LogLevel.Error);
+                TORCommon.Log("category ID: " + category.GameKeyCategoryId, LogLevel.Debug);
                 foreach(var key in category.RegisteredGameKeys)
                 {
-                    if(key != null) TORCommon.Log("gamekey ID: " + key.StringId, LogLevel.Error);
+                    if(key != null) TORCommon.Log("gamekey ID: " + key.StringId, LogLevel.Debug);
                 }
             }
             _spellcastingModeKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("Spellcasting");
