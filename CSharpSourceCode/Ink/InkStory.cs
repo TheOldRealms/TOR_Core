@@ -183,15 +183,15 @@ namespace TOR_Core.Ink
 
         private object GetPartyAttributeValue(string attributeName)
         {
-            CharacterAttribute attribute = MBObjectManager.Instance.GetObject<CharacterAttribute>(attributeName);
-            if (attribute != null) return (float)Hero.MainHero.GetAttributeValue(attribute);
+            CharacterAttribute attribute = MBObjectManager.Instance.GetObject<CharacterAttribute>(attributeName.ToLowerInvariant());
+            if (attribute != null) return (float)MobileParty.MainParty.GetHighestAttributeValue(attribute);
             else return 0f;
         }
 
         private object GetPlayerAttributeValue(string attributeName)
         {
-            CharacterAttribute attribute = MBObjectManager.Instance.GetObject<CharacterAttribute>(attributeName);
-            if (attribute != null) return (float)MobileParty.MainParty.GetHighestAttributeValue(attribute);
+            CharacterAttribute attribute = MBObjectManager.Instance.GetObject<CharacterAttribute>(attributeName.ToLowerInvariant());
+            if (attribute != null) return (float)Hero.MainHero.GetAttributeValue(attribute);
             else return 0f;
         }
 
