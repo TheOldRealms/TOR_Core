@@ -1,8 +1,12 @@
 ﻿using HarmonyLib;
+using NLog;
+using System.Collections.Generic;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
+using TaleWorlds.InputSystem;
 using TaleWorlds.ModuleManager;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -32,6 +36,18 @@ namespace TOR_Core.HarmonyPatches
             ManagedParameters.Instance.Initialize(ModuleHelper.GetXmlPath("TOR_Core", "tor_managed_core_parameters"));
             __instance.GameType.InitializeParameters();
             return false;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(HotKeyManager), "RegisterInitialContexts")]
+        public static bool LogGamekeyContexts(IEnumerable<GameKeyContext> contexts, bool loadKeys)
+        {
+            TORCommon.Log("STARTING RegisterInitialContexts --------------------", LogLevel.Debug);
+            foreach (var context in contexts)
+            {
+                TORCommon.Log("Registering context: " + context.GameKeyCategoryId, LogLevel.Debug);
+            }
+            return true;
         }
     }
 }
