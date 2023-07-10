@@ -18,6 +18,7 @@ using TaleWorlds.CampaignSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.GameManagers;
 using TOR_Core.Quests;
+using NLog;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -368,6 +369,15 @@ namespace TOR_Core.AbilitySystem
         public override void EarlyStart()
         {
             base.EarlyStart();
+            var categories = HotKeyManager.GetAllCategories();
+            foreach (var category in categories)
+            {
+                TORCommon.Log("category ID: " + category.GameKeyCategoryId, LogLevel.Error);
+                foreach(var key in category.RegisteredGameKeys)
+                {
+                    if(key != null) TORCommon.Log("gamekey ID: " + key.StringId, LogLevel.Error);
+                }
+            }
             _spellcastingModeKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("Spellcasting");
             _nextAbilitySelection = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("NextAbility");
             _previousAbilitySelection = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("PreviousAbility");
