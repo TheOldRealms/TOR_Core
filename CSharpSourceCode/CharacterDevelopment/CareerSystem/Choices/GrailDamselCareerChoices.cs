@@ -141,11 +141,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         }
 
 
-        public override void ClearCareerBenefits()
-        {
-            Hero.MainHero.TryRemoveToRemoveKnownLore("LoreOfLife");
-            Hero.MainHero.TryRemoveToRemoveKnownLore("LoreOfBeasts");
-            Hero.MainHero.TryRemoveToRemoveKnownLore("LoreOfHeavens");
-        }
+       
     }
 }

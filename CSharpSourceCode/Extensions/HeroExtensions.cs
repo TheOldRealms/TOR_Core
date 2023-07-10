@@ -116,6 +116,14 @@ namespace TOR_Core.Extensions
             }
         }
 
+        public static void RemoveAttribute(this Hero hero, string attribute)
+        {
+            var info = hero.GetExtendedInfo();
+            if (info != null && info.AllAttributes.Contains(attribute))
+            {
+                info.AcquiredAttributes.Remove(attribute);
+            }
+        }
         public static void AddAttribute(this Hero hero, string attribute)
         {
             var info = hero.GetExtendedInfo();
@@ -341,13 +349,13 @@ namespace TOR_Core.Extensions
                 {
                     if (hero.HasAnyCareer())
                     {
-                        var careerObj = TORCareerChoices.Instance.GetCareerChoices(hero.GetCareer());
-                        careerObj.ClearCareerBenefits();
                         info.CareerChoices.Clear();
                     }
                     
                     info.CareerID = career.StringId;
                     info.CareerChoices.Add(career.RootNode.StringId);
+                    var careerObj = TORCareerChoices.Instance.GetCareerChoices(hero.GetCareer());
+                    careerObj.InitialCareerSetup();
                 }
             }
         }

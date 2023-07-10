@@ -1,11 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
+using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
+using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
@@ -260,6 +264,45 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _masterOfDeadPassive2.Initialize(CareerID, "20% Higher chance for raised dead after battle", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); // HeroExtension 44
             _masterOfDeadPassive3.Initialize(CareerID, "Undead units get 25% Wardsave Resistance", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true)); // AgentstatCalculator 444, Might be OP , I had fun, i would leave it for the playtest, can be adjusted
             _masterOfDeadPassive4.Initialize(CareerID, "Tier 4 Undead troops can get 'wounded' with a 20% lower chance", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.Special, true)); //HealingpartyModel 33
+        }
+        
+        public override void InitialCareerSetup()
+        {
+            var playerHero = Hero.MainHero;
+            
+            playerHero.ClearPerks();
+            playerHero.SetSkillValue(TORSkills.Faith, 0);
+            var toRemoveFaith= Hero.MainHero.HeroDeveloper.GetFocus(TORSkills.Faith);
+            Hero.MainHero.HeroDeveloper.RemoveFocus(TORSkills.Faith,toRemoveFaith);
+
+            if (playerHero.HasAttribute("Priest"))
+            {
+                playerHero.RemoveAttribute("Priest");
+                playerHero.GetExtendedInfo().RemoveAllPrayers();
+               
+            }
+            
+            List<string> allowedLores = new List<string>() { "MinorMagic", "Necromancy", "DarkMagic" };
+            foreach (var lore in LoreObject.GetAll())
+            {
+                if(allowedLores.Contains(lore.ID))
+                    continue;
+                
+                Hero.MainHero.GetExtendedInfo().RemoveKnownLore(lore.ID);
+            }
+            
+            var race = FaceGen.GetRaceOrDefault("vampire");
+            Hero.MainHero.CharacterObject.Race = race;
+                
+            var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
+            Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
+            
+            Hero.MainHero.AddKnownLore("Necromancy");
+        }
+        
+        protected override void UnlockCareerBenefitsTier2()
+        {
+            Hero.MainHero.AddKnownLore("DarkMagic");
         }
     }
 }

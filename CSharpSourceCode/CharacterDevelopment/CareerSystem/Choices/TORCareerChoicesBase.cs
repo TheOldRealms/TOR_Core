@@ -1,4 +1,4 @@
-using TOR_Core.CharacterDevelopment;
+﻿using TOR_Core.CharacterDevelopment;
 using TaleWorlds.Core;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 
@@ -74,7 +74,7 @@ namespace TOR_Core.CampaignMechanics.Choices
             
         }
 
-        public virtual void ClearCareerBenefits()
+        public virtual void InitialCareerSetup()
         {
             //this should only be meaningful in 
         }

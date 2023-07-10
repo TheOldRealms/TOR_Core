@@ -161,6 +161,18 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             if (LoreObject.GetLore(loreId) != null && !_knownLores.Contains(loreId)) _knownLores.Add(loreId);
         }
+
+
+        public void RemoveAllPrayers()
+        {
+            var prayers = AllAbilites.Where(x => AbilityFactory.GetTemplate(x).AbilityType == AbilityType.Prayer);
+
+
+            foreach (var prayer in prayers)
+            {
+                AcquiredAbilities.Remove(prayer);
+            }
+        }
         
         public void RemoveKnownLore(string loreId)
         {
