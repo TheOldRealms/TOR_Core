@@ -6,6 +6,7 @@ using TaleWorlds.Core;
 using TaleWorlds.InputSystem;
 using TaleWorlds.ModuleManager;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.GameManagers;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
@@ -48,6 +49,13 @@ namespace TOR_Core.HarmonyPatches
                 TORCommon.Log("Registering context: " + context.GameKeyCategoryId, LogLevel.Debug);
             }
             return true;
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(HotKeyManager), "RegisterInitialContexts")]
+        public static void ReinitializeGamekeyContexts(IEnumerable<GameKeyContext> contexts, bool loadKeys)
+        {
+            TORKeyInputManager.Initialize();
         }
     }
 }
