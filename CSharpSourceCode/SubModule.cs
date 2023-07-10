@@ -80,17 +80,7 @@ namespace TOR_Core
             ConfigureLogging();
             UIConfig.DoNotUseGeneratedPrefabs = true;
 
-            try
-            {
-                TORKeyInputManager.Initialize();
-            }
-            catch(Exception ex)
-            {
-                TORCommon.Log(ex.Message, LogLevel.Error);
-                TORCommon.Log(ex.Source, LogLevel.Error);
-                TORCommon.Log(ex.StackTrace, LogLevel.Error);
-            }
-
+            TORKeyInputManager.Initialize();
             StatusEffectManager.LoadStatusEffects();
             TriggeredEffectManager.LoadTemplates();
             AbilityFactory.LoadTemplates();

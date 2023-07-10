@@ -369,15 +369,6 @@ namespace TOR_Core.AbilitySystem
         public override void EarlyStart()
         {
             base.EarlyStart();
-            var categories = HotKeyManager.GetAllCategories();
-            foreach (var category in categories)
-            {
-                TORCommon.Log("category ID: " + category.GameKeyCategoryId, LogLevel.Debug);
-                foreach(var key in category.RegisteredGameKeys)
-                {
-                    if(key != null) TORCommon.Log("gamekey ID: " + key.StringId, LogLevel.Debug);
-                }
-            }
             _spellcastingModeKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("Spellcasting");
             _nextAbilitySelection = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("NextAbility");
             _previousAbilitySelection = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("PreviousAbility");
