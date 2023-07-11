@@ -25,7 +25,7 @@ namespace TOR_Core.Utilities
                     displayDamageType = "holy";
                     break;
                 case DamageType.Lightning:
-                    displayColor = Colors.Blue;
+                    displayColor = Color.FromUint(5745663);
                     displayDamageType = "lightning";
                     break;
                 case DamageType.Magical:
