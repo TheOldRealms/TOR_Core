@@ -150,8 +150,7 @@ namespace TOR_Core.Models
                 }
           
             }
-
-
+            
             return resultValue;
         }
 
@@ -173,6 +172,5 @@ namespace TOR_Core.Models
             return value;
         }
         
-
     }
 }

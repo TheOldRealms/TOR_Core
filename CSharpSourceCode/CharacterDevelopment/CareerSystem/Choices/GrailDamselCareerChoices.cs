@@ -10,10 +10,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
     public class GrailDamselCareerChoices : TORCareerChoicesBase
     {
         public GrailDamselCareerChoices(CareerObject id) : base(id) {}
-
-
         private CareerChoiceObject _grailDamselRootNode;
-        
         
         private CareerChoiceObject _feyEntchantmentPassive1;
         private CareerChoiceObject _feyEntchantmentPassive2;

@@ -25,16 +25,14 @@ namespace TOR_Core.Models
             {
                 if (party.LeaderHero.HasAnyCareer())
                 {
-                    AddCareerSpecifWagePerks(result, party.LeaderHero, party);
+                    AddCareerSpecificSpottingRangePerks(result, party.LeaderHero, party);
                 }
             }
             
             return result;
         }
-
-
-
-        private void AddCareerSpecifWagePerks(ExplainedNumber number, Hero mainHero, MobileParty party)
+        
+        private void AddCareerSpecificSpottingRangePerks(ExplainedNumber number, Hero mainHero, MobileParty party)
         {
             var choices = mainHero.GetAllCareerChoices();
 
