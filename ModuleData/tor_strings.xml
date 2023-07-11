@@ -511,6 +511,7 @@
   <string id="career_title.WarriorPriest" text="{=!}Warrior Priest of Sigmar" />
   <string id="career_title.MinorVampire" text="{=!}Vampire Nobility" />
   <string id="career_title.GrailKnight" text="{=!}Knight of Bretonnia" />
+    <string id="career_title.GrailDamsel" text="{=!}Damsel of the Lady" />
   <string id="career_title.BloodKnight" text="{=!}Blood Knight" />
   <string id="career_title.Mercenary" text="{=!}Mercenary" />
 

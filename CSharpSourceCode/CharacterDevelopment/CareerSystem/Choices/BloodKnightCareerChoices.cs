@@ -8,6 +8,7 @@ using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
@@ -396,8 +397,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             {
                 playerHero.RemoveAttribute("Priest");
                 playerHero.GetExtendedInfo().RemoveAllPrayers();
-               
             }
+
+            Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 99);
+            
             
 
             playerHero.SetSkillValue(TORSkills.SpellCraft,0);
@@ -407,6 +410,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             {
                 playerHero.GetExtendedInfo().RemoveKnownLore(lore.ID);
             }
+            
+            var race = FaceGen.GetRaceOrDefault("vampire");
+            Hero.MainHero.CharacterObject.Race = race;
 
             playerHero.RemoveAttribute("SpellCaster");
         }
