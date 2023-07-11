@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.InputSystem;
 using TaleWorlds.MountAndBlade;
@@ -22,7 +23,7 @@ namespace TOR_Core.GameManagers
             {
                 keyList.Add(item);
             }
-            keyList.Add(new TORGameKeyContext());
+            if(!keyList.Any(x => x is TORGameKeyContext)) keyList.Add(new TORGameKeyContext());
             HotKeyManager.RegisterInitialContexts(keyList, true);
 
             var context = nameof(TORGameKeyContext);

@@ -18,6 +18,7 @@ using TaleWorlds.CampaignSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.GameManagers;
 using TOR_Core.Quests;
+using NLog;
 
 namespace TOR_Core.AbilitySystem
 {
