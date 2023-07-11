@@ -33,7 +33,7 @@ namespace TOR_Core.Models
                     var random = MBRandom.RandomFloat;
                     if ((!troop.IsBasicTroop && random > 0.25f)||random > 0.75f)
                     {
-                        var bloodKnightInitate = MBObjectManager.Instance.GetObject<CharacterObject>("tor_ror_dragon_knight_initiate");
+                        var bloodKnightInitate = MBObjectManager.Instance.GetObject<CharacterObject>("tor_bd_blooddragon_initiate");
                         recruiter.PartyBelongedTo.Party.AddMember(bloodKnightInitate, 1);
                     }
                 }
