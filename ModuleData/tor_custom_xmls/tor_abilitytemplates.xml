@@ -2431,7 +2431,7 @@
       TargetCapturingRadius="4"
       MaxDistance="15"
       CrosshairType="TargetedAOE"
-      SpellTier="3"
+      SpellTier="2"
       BelongsToLoreID="LoreOfBeasts"
       TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
@@ -2474,7 +2474,7 @@
       AbilityTargetType="Self"
       CrosshairType="Self"
       TargetCapturingRadius="1"
-      SpellTier="1"
+      SpellTier="2"
       BelongsToLoreID="LoreOfBeasts"
       TooltipDescription="Adds 20% physical damage bonus for 15 seconds to the caster.">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
@@ -2563,7 +2563,7 @@
    TargetCapturingRadius="10"
    MaxDistance="75"
    CrosshairType="TargetedAOE"
-   SpellTier="4"
+   SpellTier="3"
     BelongsToLoreID="LoreOfBeasts"
     TooltipDescription="Enemies in the area experience a soul draining direct damage over time effect causing them to take 12 damage every second for 10 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
@@ -2607,7 +2607,7 @@
       TargetCapturingRadius="4"
       MaxDistance="20"
       CrosshairType="TargetedAOE"
-      SpellTier="1"
+      SpellTier="4"
       BelongsToLoreID="LoreOfBeasts"
       TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
