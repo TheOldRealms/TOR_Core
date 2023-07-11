@@ -542,7 +542,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 args.Tooltip = new TextObject("You can only perform this action once a day.");
                 args.IsEnabled = false;
             }
-            return Hero.MainHero.Culture.StringId == "khuzait" && component.IsActive;
+            return component.IsActive;
         }
 
         private void PurificationConsequence(MenuCallbackArgs args)

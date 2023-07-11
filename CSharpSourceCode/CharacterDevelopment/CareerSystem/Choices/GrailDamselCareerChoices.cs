@@ -124,7 +124,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         {
             if(Hero.MainHero.HasKnownLore("LoreOfLife"))
             {
-                Hero.MainHero.AddKnownLore("LoreOfBeasts");     //Known lore check within method, cant be added twice
+                Hero.MainHero.AddKnownLore("LoreOfBeasts");     //Known lore check within method, nothing gets added twice
                 return;
             }
 

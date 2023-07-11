@@ -9,6 +9,7 @@ using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 
@@ -290,6 +291,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 
                 Hero.MainHero.GetExtendedInfo().RemoveKnownLore(lore.ID);
             }
+            
+            Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 99);
             
             var race = FaceGen.GetRaceOrDefault("vampire");
             Hero.MainHero.CharacterObject.Race = race;
