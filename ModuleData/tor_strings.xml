@@ -536,7 +536,7 @@
   <string id="career_choicegroup2_name.Mercenary" text="{=!}Sergeant" />
   <string id="career_choicegroup3_name.Mercenary" text="{=!}Commander" />
   
-    <string id="career_choicegroup1_name.GrailDamsel" text="{=!}Grail Maid" />
+  <string id="career_choicegroup1_name.GrailDamsel" text="{=!}Grail Maid" />
   <string id="career_choicegroup2_name.GrailDamsel" text="{=!}Grail Damsel" />
   <string id="career_choicegroup3_name.GrailDamsel" text="{=!}Prophetess" />
 
