@@ -299,8 +299,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 
             var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
             Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
-            
+     
             Hero.MainHero.AddKnownLore("Necromancy");
+            Hero.MainHero.AddAbility("SummonSkeleton");
+            Hero.MainHero.AddKnownLore("MinorMagic");
+            Hero.MainHero.AddAbility("Dart");
+            
+            Hero.MainHero.AddAttribute("Necromancer");
+            Hero.MainHero.AddAttribute("SpellCaster");
         }
         
         protected override void UnlockCareerBenefitsTier2()

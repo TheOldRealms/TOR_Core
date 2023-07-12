@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -264,8 +264,8 @@ namespace TOR_Core.CharacterDevelopment
             });
             _masterHorseman.Initialize("Master Horseman", TORCareers.GrailKnight, 2, (Hero hero, out string text) =>
             {
-                text = "Required renown: 5";
-                return hero.Clan.Tier >= 5;
+                text = "Required renown: 3";
+                return hero.Clan.Tier >= 3;
             });
             _grailVow.Initialize("Grail Vow", TORCareers.GrailKnight, 3, (Hero hero, out string text) =>
             {

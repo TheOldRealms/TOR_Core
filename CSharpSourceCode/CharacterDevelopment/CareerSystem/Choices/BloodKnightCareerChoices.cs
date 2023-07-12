@@ -413,6 +413,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             var race = FaceGen.GetRaceOrDefault("vampire");
             Hero.MainHero.CharacterObject.Race = race;
+            
+            Hero.MainHero.AddAttribute("Necromancer");
 
             playerHero.RemoveAttribute("SpellCaster");
         }
