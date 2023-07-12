@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.SaveSystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.Jousting;
+using TOR_Core.CampaignMechanics.Diplomacy;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
@@ -35,12 +36,14 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(JoustTournamentGame), 14);
             AddClassDefinition(typeof(HuntCultistsQuestCampaignBehavior.HuntCultistsIssue), 15);
             AddClassDefinition(typeof(HuntCultistsQuestCampaignBehavior.HuntCultistsQuest), 16);
+            AddClassDefinition(typeof(TORDeclareWarDecision), 17);
+
         }
 
         protected override void DefineEnumTypes()
         {
-            AddEnumDefinition(typeof(EngineerQuestStates), 17);
-            AddEnumDefinition(typeof(SpellCastingLevel), 18);
+            AddEnumDefinition(typeof(EngineerQuestStates), 19);
+            AddEnumDefinition(typeof(SpellCastingLevel), 20);
         }
 
         protected override void DefineContainerDefinitions()
