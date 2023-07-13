@@ -355,11 +355,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddAbility("NagashGaze");
                 Hero.MainHero.AddKnownLore("MinorMagic");
                 Hero.MainHero.AddKnownLore("Necromancy");
-                Hero.MainHero.AddKnownLore("DarkMagic");
                 var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
-                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy and Dark Magic"), 0, CharacterObject.PlayerCharacter);
+                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
                 Hero.MainHero.AddCareer(TORCareers.MinorVampire);
             }
 

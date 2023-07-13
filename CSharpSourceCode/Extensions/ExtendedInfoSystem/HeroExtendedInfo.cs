@@ -187,6 +187,17 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 _knownLores.Remove(loreId);
             }
         }
+        
+        public void RemoveAllSpells()
+        {
+            var allSpells = AbilityFactory.GetAllSpellNamesAsList();
+
+            foreach (var spell in allSpells)
+            {
+                AcquiredAbilities.Remove(spell);
+            }
+
+        }
 
         public bool HasAnyKnownLore()
         {

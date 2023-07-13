@@ -3,6 +3,7 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Core;
+using TaleWorlds.Localization;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.DamageSystem;
@@ -408,18 +409,23 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             playerHero.SetSkillValue(TORSkills.SpellCraft,0);
             var toRemoveSpellcraft= Hero.MainHero.HeroDeveloper.GetFocus(TORSkills.SpellCraft);
             playerHero.HeroDeveloper.RemoveFocus(TORSkills.SpellCraft,toRemoveSpellcraft);
-            playerHero.HeroDeveloper.UnspentFocusPoints += toRemoveFaith;
+            playerHero.HeroDeveloper.UnspentFocusPoints += toRemoveSpellcraft;
+            
             foreach (var lore in LoreObject.GetAll())
             {
                 playerHero.GetExtendedInfo().RemoveKnownLore(lore.ID);
             }
-            
+
+            playerHero.GetExtendedInfo().RemoveAllSpells();
+
             var race = FaceGen.GetRaceOrDefault("vampire");
             Hero.MainHero.CharacterObject.Race = race;
             
             Hero.MainHero.AddAttribute("Necromancer");
 
             playerHero.RemoveAttribute("SpellCaster");
+            
+            MBInformationManager.AddQuickInformation(new TextObject(Hero.MainHero.Name+" became a Blood Knight Vampire"), 0, CharacterObject.PlayerCharacter);
         }
     }
 }

@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Localization;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.DamageSystem;
@@ -286,6 +287,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             }
             
             List<string> allowedLores = new List<string>() { "MinorMagic", "Necromancy", "DarkMagic" };
+            
             foreach (var lore in LoreObject.GetAll())
             {
                 if(allowedLores.Contains(lore.ID))
@@ -293,6 +295,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 
                 Hero.MainHero.GetExtendedInfo().RemoveKnownLore(lore.ID);
             }
+
+            Hero.MainHero.GetExtendedInfo().RemoveAllSpells();
             
             Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 99);
             
@@ -309,6 +313,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             Hero.MainHero.AddAttribute("Necromancer");
             Hero.MainHero.AddAttribute("SpellCaster");
+            
+            
+            MBInformationManager.AddQuickInformation(new TextObject(Hero.MainHero.Name+" became a Vampire"), 0, CharacterObject.PlayerCharacter);
         }
         
         protected override void UnlockCareerBenefitsTier2()
