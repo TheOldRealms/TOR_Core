@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfCharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_villager">
     <Abilities />
@@ -3263,24 +3263,26 @@
   <CharacterExtendedInfo id="tor_vc_lord_blooddragons_factionleader">
     <Abilities />
     <Attributes>
-	<string>BloodDragon</string>
-	</Attributes> 
+      <string>BloodDragon</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_blooddragons_first_2">
     <Abilities />
-	<Attributes>
-	<string>BloodDragon</string>
-	</Attributes> 
+    <Attributes>
+      <string>BloodDragon</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_blooddragons_first_3">
-	<Attributes>
-	<string>BloodDragon</string>
-	</Attributes> 
+    <Abilities />
+    <Attributes>
+      <string>BloodDragon</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_blooddragons_first_4">
-	<Attributes>
-	<string>BloodDragon</string>
-	</Attributes> 
+    <Abilities />
+    <Attributes>
+      <string>BloodDragon</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_parravon_factionleader">
     <Abilities />
