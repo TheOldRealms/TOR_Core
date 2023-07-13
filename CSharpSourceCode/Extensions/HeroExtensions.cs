@@ -336,6 +336,9 @@ namespace TOR_Core.Extensions
                     info.CareerID = career.StringId;
                     info.CareerChoices.Add(career.RootNode.StringId);
                     var careerObj = TORCareerChoices.Instance.GetCareerChoices(hero.GetCareer());
+                    RemoveAttribute(hero,"CareerTier"+1);
+                    RemoveAttribute(hero,"CareerTier"+2);
+                    RemoveAttribute(hero,"CareerTier"+3);
                     careerObj.InitialCareerSetup();
                 }
             }

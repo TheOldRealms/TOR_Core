@@ -57,26 +57,17 @@ namespace TOR_Core.CampaignMechanics.Choices
             mainhero.AddAttribute(tierText + tier);
   
         }
-        
-        /**
-         * Allows to set special on achieving certain tiers. Will be invoked every time the career screen opens, therefore requires previous unlock checks. Will potentially only work for Attributes or similiar, that have inbuilt checks
-         */
+
         protected virtual void UnlockCareerBenefitsTier1()
         {
           
         }
 
-        /**
-         * Allows to set special on achieving certain tiers. Will be invoked every time the career screen opens, therefore requires previous unlock checks. Will potentially only work for Attributes or similiar, that have inbuilt checks
-         */
         protected virtual void UnlockCareerBenefitsTier2()
         {
             
         }
 
-        /**
-         * Allows to set special on achieving certain tiers. Will be invoked every time the career screen opens, therefore requires previous unlock checks. Will potentially only work for Attributes or similiar, that have inbuilt checks
-         */
         protected virtual void UnlockCareerBenefitsTier3()
         {
             
