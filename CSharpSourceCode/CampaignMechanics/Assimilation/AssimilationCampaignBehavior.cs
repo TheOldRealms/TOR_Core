@@ -63,6 +63,9 @@ namespace TOR_Core.CampaignMechanics.Assimilation
 
         private void SettlementOwnerChanged(Settlement settlement, bool openToClaim, Hero newOwner, Hero oldOwner, Hero capturerHero, ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail detail)
         {
+            if(isSpecialSettlement(settlement))
+                return;
+            
             if(newOwner.MapFaction != null && oldOwner.MapFaction != null)
             {
                 if (newOwner.MapFaction.Culture != settlement.Culture)
@@ -85,6 +88,11 @@ namespace TOR_Core.CampaignMechanics.Assimilation
                     }
                 }
             }
+        }
+
+        private bool isSpecialSettlement(Settlement settlement)
+        {
+            return settlement.StringId == "castle_BK1";
         }
 
         public override void SyncData(IDataStore dataStore)
