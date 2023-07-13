@@ -473,6 +473,7 @@
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORSettlementComponents.cs" />
     <Compile Include="CampaignMechanics\TORMapInfoVMExtension.cs" />
     <Compile Include="CampaignMechanics\TORPartyUpgraderCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\TORAIRecruitmentCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORWanderersCampaignBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerAbilityEffectVM.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceGroupObject.cs" />
@@ -606,6 +607,7 @@
     <Compile Include="Models\TORPartyWageModel.cs" />
     <Compile Include="Models\TORPersuasionModel.cs" />
     <Compile Include="Models\TORPrisonerRecruitmentCalculationModel.cs" />
+    <Compile Include="Models\TORSettlementLoyaltyModel.cs" />
     <Compile Include="Models\TORRaidModel.cs" />
     <Compile Include="Models\TORSettlementMilitiaModel.cs" />
     <Compile Include="Models\TORAbilityModel.cs" />
