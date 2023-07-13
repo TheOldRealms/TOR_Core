@@ -1,6 +1,8 @@
-﻿using TOR_Core.CharacterDevelopment;
+﻿using TaleWorlds.CampaignSystem;
+using TOR_Core.CharacterDevelopment;
 using TaleWorlds.Core;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.Choices
 {
@@ -39,6 +41,10 @@ namespace TOR_Core.CampaignMechanics.Choices
 
         public void UnlockCareerBenefits(int tier)
         {
+            var mainhero = Hero.MainHero;
+            var tierText = "CareerTier";
+            if(mainhero.HasAttribute(tierText + tier))return;
+            
             switch (tier)
             {
                 case 1: UnlockCareerBenefitsTier1();
@@ -48,6 +54,8 @@ namespace TOR_Core.CampaignMechanics.Choices
                 case 3 : UnlockCareerBenefitsTier3();
                     break;
             }
+            mainhero.AddAttribute(tierText + tier);
+  
         }
         
         /**
@@ -55,7 +63,7 @@ namespace TOR_Core.CampaignMechanics.Choices
          */
         protected virtual void UnlockCareerBenefitsTier1()
         {
-            
+          
         }
 
         /**
