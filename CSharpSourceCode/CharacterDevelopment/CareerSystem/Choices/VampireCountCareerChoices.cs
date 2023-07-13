@@ -275,6 +275,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             playerHero.SetSkillValue(TORSkills.Faith, 0);
             var toRemoveFaith= Hero.MainHero.HeroDeveloper.GetFocus(TORSkills.Faith);
             Hero.MainHero.HeroDeveloper.RemoveFocus(TORSkills.Faith,toRemoveFaith);
+            
+            playerHero.HeroDeveloper.UnspentFocusPoints += toRemoveFaith;
 
             if (playerHero.HasAttribute("Priest"))
             {

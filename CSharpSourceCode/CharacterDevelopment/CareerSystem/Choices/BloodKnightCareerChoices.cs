@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
@@ -392,6 +393,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             playerHero.SetSkillValue(TORSkills.Faith, 0);
             var toRemoveFaith= Hero.MainHero.HeroDeveloper.GetFocus(TORSkills.Faith);
             playerHero.HeroDeveloper.RemoveFocus(TORSkills.Faith,toRemoveFaith);
+            playerHero.HeroDeveloper.UnspentFocusPoints += toRemoveFaith;
             
             if (playerHero.HasAttribute("Priest"))
             {
@@ -406,6 +408,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             playerHero.SetSkillValue(TORSkills.SpellCraft,0);
             var toRemoveSpellcraft= Hero.MainHero.HeroDeveloper.GetFocus(TORSkills.SpellCraft);
             playerHero.HeroDeveloper.RemoveFocus(TORSkills.SpellCraft,toRemoveSpellcraft);
+            playerHero.HeroDeveloper.UnspentFocusPoints += toRemoveFaith;
             foreach (var lore in LoreObject.GetAll())
             {
                 playerHero.GetExtendedInfo().RemoveKnownLore(lore.ID);

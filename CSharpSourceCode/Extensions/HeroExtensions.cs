@@ -60,9 +60,9 @@ namespace TOR_Core.Extensions
             if(info != null)
             {
                 result= Mathf.Clamp(info.CurrentWindsOfMagic+amount, 0, info.MaxWindsOfMagic);
+                hero.GetExtendedInfo().CurrentWindsOfMagic = result;
             }
-
-            hero.GetExtendedInfo().CurrentWindsOfMagic = result;
+            
             return result;
         }
 
@@ -284,25 +284,6 @@ namespace TOR_Core.Extensions
             return hero.GetExtendedInfo().CareerChoices;
         }
 
-        public static bool TryRemoveToRemoveKnownLore(this Hero hero, string lore)
-        {
-            var info = hero.GetExtendedInfo();
-            if (hero != null && info != null)
-            {
-                if (info.HasKnownLore(lore))
-                {
-                    info.RemoveKnownLore(lore);
-                    return true;
-                }
-
-                if (info.HasAnyKnownLore())
-                {
-                    info.AcquiredAttributes.Remove("Spellcaster");
-                }
-            }
-            return false;
-        }
-        
         public static bool TryRemoveCareerChoice(this Hero hero, CareerChoiceObject choice)
         {
             var info = hero.GetExtendedInfo();
