@@ -6,6 +6,6 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
 {
     public interface IRaidingParty
     {
-        void HourlyTick();
+        void HourlyTickAI(PartyThinkParams thinkParams);
     }
 }

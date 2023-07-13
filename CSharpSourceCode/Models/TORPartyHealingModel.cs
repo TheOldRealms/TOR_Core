@@ -27,14 +27,14 @@ namespace TOR_Core.Models
                 return 0;
             }
 
-            if (party.LeaderHero!=null&&party.LeaderHero==Hero.MainHero&&party.LeaderHero.HasAnyCareer())      
+            if (party != null && party.LeaderHero != null && party.LeaderHero == Hero.MainHero && party.LeaderHero.HasAnyCareer())
             {
                 var choices = party.LeaderHero.GetAllCareerChoices();
                 if(choices.Contains("MasterOfDeadPassive4"))
                 {
                     var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive4");
-                    if(choice!=null)
-                        return (result+choice.GetPassiveValue());
+                    if (choice != null)
+                        return result + choice.GetPassiveValue();
                 }
             }
 

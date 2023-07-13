@@ -15,10 +15,28 @@ namespace TOR_Core.Models
             var atmo = base.GetAtmosphereModel(pos);
 			ValueTuple<CampaignTime.Seasons, bool, float, float> data = GetSeasonRainAndSnowDataForOpeningMission(pos.AsVec2);
 			atmo.InterpolatedAtmosphereName = GetSelectedAtmosphereId(data.Item1, data.Item2, data.Item3, data.Item4);
+			atmo.TimeInfo.Season = (int)data.Item1;
             return atmo;
         }
 
-		private string GetSelectedAtmosphereId(CampaignTime.Seasons selectedSeason, bool isRaining, float rainValue, float snowValue)
+        public override WeatherEvent UpdateWeatherForPosition(Vec2 position, CampaignTime ct)
+        {
+            var weather = base.UpdateWeatherForPosition(position, ct);
+			return weather;
+        }
+
+        public override WeatherEvent GetWeatherEventInPosition(Vec2 pos)
+        {
+            var weather = base.GetWeatherEventInPosition(pos);
+			return weather;
+        }
+
+        public override WeatherEventEffectOnTerrain GetWeatherEffectOnTerrainForPosition(Vec2 pos)
+        {
+            return base.GetWeatherEffectOnTerrainForPosition(pos);
+        }
+
+        private string GetSelectedAtmosphereId(CampaignTime.Seasons selectedSeason, bool isRaining, float rainValue, float snowValue)
 		{
 			string result = "semicloudy_field_battle";
 			if (Settlement.CurrentSettlement != null && (Settlement.CurrentSettlement.IsFortification || Settlement.CurrentSettlement.IsVillage))
@@ -66,24 +84,10 @@ namespace TOR_Core.Models
 			bool isRaining = false;
 			switch (weatherEventInPosition)
 			{
-				case WeatherEvent.Clear:
-					if (seasons == CampaignTime.Seasons.Winter)
-					{
-						seasons = ((CampaignTime.Now.GetDayOfSeason > 10) ? CampaignTime.Seasons.Spring : CampaignTime.Seasons.Autumn);
-					}
-					break;
 				case WeatherEvent.LightRain:
-					if (seasons == CampaignTime.Seasons.Winter)
-					{
-						seasons = ((CampaignTime.Now.GetDayOfSeason > 10) ? CampaignTime.Seasons.Spring : CampaignTime.Seasons.Autumn);
-					}
 					rainDensity = 0.7f;
 					break;
 				case WeatherEvent.HeavyRain:
-					if (seasons == CampaignTime.Seasons.Winter)
-					{
-						seasons = ((CampaignTime.Now.GetDayOfSeason > 10) ? CampaignTime.Seasons.Spring : CampaignTime.Seasons.Autumn);
-					}
 					isRaining = true;
 					rainDensity = 0.85f + MBRandom.RandomFloatRanged(0f, 0.14999998f);
 					break;

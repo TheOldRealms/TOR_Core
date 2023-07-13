@@ -70,27 +70,28 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
             }
         }
 
-        public void HourlyTick()
+        public void HourlyTickAI(PartyThinkParams thinkParams)
         {
-            if(Target == null || Target.IsRaided || Target.IsUnderRaid || Target == HomeSettlement)
+            if(!TargetIsValid())
             {
                 FindNewTarget();
             }
-            else if(Party.MobileParty.ShortTermBehavior != AiBehavior.RaidSettlement)
+            AIBehaviorTuple item = new AIBehaviorTuple(Target, AiBehavior.RaidSettlement, false);
+            float score;
+            if (thinkParams.TryGetBehaviorScore(item, out score))
             {
-                ResumeRaiding();
+                thinkParams.SetBehaviorScore(item, score + 0.8f);
+                return;
             }
+            ValueTuple<AIBehaviorTuple, float> valueTuple = new ValueTuple<AIBehaviorTuple, float>(item, 0.8f);
+            thinkParams.AddBehaviorScore(valueTuple);
         }
+
+        private bool TargetIsValid() => Target != null && !Target.IsRaided && !Target.IsUnderRaid && Target != HomeSettlement;
 
         private void FindNewTarget()
         {
             Target = TORCommon.FindSettlementsAroundPosition(Party.Position2D, 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
-            SetPartyAiAction.GetActionForRaidingSettlement(Party.MobileParty, Target);
-        }
-
-        private void ResumeRaiding()
-        {
-            SetPartyAiAction.GetActionForRaidingSettlement(Party.MobileParty, Target);
         }
     }
 }
