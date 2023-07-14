@@ -238,7 +238,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         protected override void InitializePassives()
         {
             _newBloodPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
-            _newBloodPassive2.Initialize(CareerID, "10% Wardsave at night fights", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));
+            _newBloodPassive2.Initialize(CareerID, "Increaes Partysize by 25", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.PartySize, false));
             _newBloodPassive3.Initialize(CareerID, "Increases health regeneration after battles by 5.", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.HealthRegeneration));
             _newBloodPassive4.Initialize(CareerID, "Immune to sunlight speed malus", "NewBlood", false, ChoiceType.Passive, null); //TORPartySpeedCalculatingModel 46
 
@@ -253,18 +253,18 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _courtleyPassive4.Initialize(CareerID, "Killing Blows targeted to the Head replenish 3 Winds of Magic", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3)); //CareerPerkMissionBehavior 28
 
             _lordlyPassive1.Initialize(CareerID, "Partyspeed Increased by 1.5", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1.5f, PassiveEffectType.PartyMovementSpeed));
-            _lordlyPassive2.Initialize(CareerID, "Increases Hitpoints by 25.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+            _lordlyPassive2.Initialize(CareerID, "Increases Partysize by 75.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(75, PassiveEffectType.PartySize));
             _lordlyPassive3.Initialize(CareerID, "Wages for Vampires are reduced by 15%", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.Special, true)); //TORPartyWageModel 85
             _lordlyPassive4.Initialize(CareerID, "Upgrade costs are halfed", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-0.5f, PassiveEffectType.TroopUpgradeCost));
 
             _martiallePassive1.Initialize(CareerID, "Extra Melee Damage(10%).", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
-            _martiallePassive2.Initialize(CareerID, "Increases Hitpoints by 25.", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+            _martiallePassive2.Initialize(CareerID, "Increases Hitpoints by 50.", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
             _martiallePassive3.Initialize(CareerID, "10% Extra damage for all troops against humans", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true)); //68 Damage patch
             _martiallePassive4.Initialize(CareerID, "All attacks deal bonus damage against shields", "Martialle", false, ChoiceType.Passive, null); // TorAgentApplyDamageModel 83
 
-            _masterOfDeadPassive1.Initialize(CareerID, "100 XP every day for undead units in party", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special, false)); //CareerPerkCampaign Behavior 101
-            _masterOfDeadPassive2.Initialize(CareerID, "20% Higher chance for raised dead after battle", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); // HeroExtension 44
-            _masterOfDeadPassive3.Initialize(CareerID, "Undead units get 25% Wardsave Resistance", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true)); // AgentstatCalculator 444, Might be OP , I had fun, i would leave it for the playtest, can be adjusted
+            _masterOfDeadPassive1.Initialize(CareerID, "Increases Partysize by 100.", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.PartySize));
+            _masterOfDeadPassive2.Initialize(CareerID, "Undead units get 25% Wardsave Resistance", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true)); // AgentstatCalculator 444, Might be OP , I had fun, i would leave it for the playtest, can be adjusted
+            _masterOfDeadPassive3.Initialize(CareerID, "20% Higher chance for raised dead after battle", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); // HeroExtension 44
             _masterOfDeadPassive4.Initialize(CareerID, "Tier 4 Undead troops can get 'wounded' with a 20% lower chance", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.Special, true)); //HealingpartyModel 33
         }
         

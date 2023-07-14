@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
@@ -104,23 +104,6 @@ namespace TOR_Core.CampaignMechanics
 
             if (!MobileParty.MainParty.LeaderHero.HasAnyCareer()) return;
             var choices = MobileParty.MainParty.LeaderHero.GetAllCareerChoices();
-
-            if (choices.Contains("MasterOfDeadPassive1"))
-            {
-                var memberList = mobileParty.MemberRoster.GetTroopRoster();
-                for (var index = 0; index < memberList.Count; index++)
-                {
-                    var member = memberList[index];
-                    if (member.Character.IsUndead() && !member.Character.IsHero)
-                    {
-                        var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive1");
-                        if (choice != null)
-                        {
-                            mobileParty.MemberRoster.AddXpToTroopAtIndex((int)choice.GetPassiveValue(), index);
-                        }
-                    }
-                }
-            }
 
             if (choices.Contains("SurvivalistPassive4"))
             {

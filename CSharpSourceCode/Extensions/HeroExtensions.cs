@@ -42,7 +42,7 @@ namespace TOR_Core.Extensions
             {
                 var choices = hero.GetAllCareerChoices();
 
-                if (choices.Contains("MasterOfDeadPassive2"))
+                if (choices.Contains("MasterOfDeadPassive3"))
                 {
                     var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive2");
                     if(choice!=null)

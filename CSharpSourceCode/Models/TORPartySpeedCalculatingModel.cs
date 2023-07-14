@@ -42,8 +42,11 @@ namespace TOR_Core.Models
                         //finalSpeed.AddFactor(0.25f, new TextObject("{=fAxjyMt5}Vampire Nighttime Bonus"));
                        result.AddFactor(0.25f, new TextObject("Vampire Nighttime bonus"));
                     }
-
-                    if (Campaign.Current.IsDay&&faceTerrainType != TerrainType.Forest && !MobileParty.MainParty.LeaderHero.HasCareerChoice("NewBloodPassive4") && !MobileParty.MainParty.LeaderHero.HasCareerChoice("ControlledHungerPassive1"))
+                    
+                    float daytime = CampaignTime.Hours(Campaign.CurrentTime).CurrentHourInDay;
+                    var isNight = daytime > 18 || daytime < 6;
+                    
+                    if (!isNight&&faceTerrainType != TerrainType.Forest && !MobileParty.MainParty.LeaderHero.HasCareerChoice("NewBloodPassive4") && !MobileParty.MainParty.LeaderHero.HasCareerChoice("ControlledHungerPassive1"))
                     {
                         result.AddFactor(-0.2f, new TextObject("Suffering from sun light"));
                     }

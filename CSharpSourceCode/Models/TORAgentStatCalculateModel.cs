@@ -421,21 +421,6 @@ namespace TOR_Core.Models
                     }
                 }
 
-                if (choices.Contains("NewBloodPassive2") && mask == PropertyMask.Defense)
-                {
-                    float daytime = CampaignTime.Hours(Campaign.CurrentTime).CurrentHourInDay;
-
-                    var isNight = daytime > 18 || daytime < 4;
-                    if (isNight)
-                    {
-                        var choice = TORCareerChoices.GetChoice("NewBloodPassive2");
-                        if (choice != null)
-                        {
-                            result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
-                        }
-                    }
-                }
-                
                 if (agent.HasMount&&choices.Contains("EnhancedHorseCombatPassive2") && mask == PropertyMask.Attack )
                 {
                     var choice = TORCareerChoices.GetChoice("EnhancedHorseCombatPassive2");
@@ -544,9 +529,9 @@ namespace TOR_Core.Models
                     }
                 }
 
-                if (agent.IsUndead()&&choices.Contains("MasterOfDeadPassive3") && mask == PropertyMask.Defense)
+                if (agent.IsUndead()&&choices.Contains("MasterOfDeadPassive2") && mask == PropertyMask.Defense)
                 {
-                    var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive3");
+                    var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive2");
                     if (choice != null)
                     {
                         result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
