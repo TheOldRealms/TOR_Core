@@ -25,7 +25,6 @@ namespace TOR_Core.CharacterDevelopment
         public static CareerObject MinorVampire => Instance._minorVampire;
         public static CareerObject WarriorPriest => Instance._warriorPriest;
         public static CareerObject Mercenary => Instance._mercenary;
-
         public static CareerObject BloodKnight => Instance._bloodKnight;
 
         private List<CareerObject> _allCareers = new List<CareerObject>();
