@@ -179,6 +179,47 @@ namespace TOR_Core.Ink
             {
                 _story.BindExternalFunction<string, int>("AddTraitInfluence", AddTraitInfluence, false);
             }
+            if (!_story.TryGetExternalFunction("HealPartyToFull", out _))
+            {
+                _story.BindExternalFunction("HealPartyToFull", HealPartyToFull, false);
+            }
+            if (!_story.TryGetExternalFunction("GetTotalPartyMemberCount", out _))
+            {
+                _story.BindExternalFunction("GetTotalPartyMemberCount", GetTotalPartyMemberCount, true);
+            }
+            if (!_story.TryGetExternalFunction("GetTotalPartyWoundedCount", out _))
+            {
+                _story.BindExternalFunction("GetTotalPartyWoundedCount", GetTotalPartyWoundedCount, true);
+            }
+            if (!_story.TryGetExternalFunction("MakePartyDisorganized", out _))
+            {
+                _story.BindExternalFunction("MakePartyDisorganized", MakePartyDisorganized, false);
+            }
+        }
+
+        private void MakePartyDisorganized() => MobileParty.MainParty.SetDisorganized(true);
+        private object GetTotalPartyMemberCount() => MobileParty.MainParty.MemberRoster.TotalManCount;
+        private object GetTotalPartyWoundedCount() => MobileParty.MainParty.MemberRoster.TotalWounded;
+
+        private void HealPartyToFull()
+        {
+            var roster = MobileParty.MainParty.MemberRoster;
+            for(int i = 0; i < roster.Count; i++)
+            {
+                var character = roster.GetCharacterAtIndex(i);
+                if (character.IsHero && character.HeroObject != null)
+                {
+                    character.HeroObject.HitPoints = character.HeroObject.MaxHitPoints;
+                }
+                else if (character.IsRegular)
+                {
+                    int wounded = roster.GetElementWoundedNumber(i);
+                    if (wounded > 0)
+                    {
+                        roster.AddToCountsAtIndex(i, 0, -wounded, 0, true);
+                    }
+                }
+            }
         }
 
         private object GetPartyAttributeValue(string attributeName)
