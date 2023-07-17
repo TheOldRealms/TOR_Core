@@ -226,6 +226,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 var skill = Hero.MainHero.GetSkillValue(TORSkills.Faith);
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
                 var knight = MBObjectManager.Instance.GetObject<CharacterObject>("tor_br_realm_knight");
+                Hero.MainHero.AddAbility("AuraOfTheLady");
                 Hero.MainHero.PartyBelongedTo.Party.AddMember(knight, 1, 0);
             }
             
@@ -237,6 +238,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);
                 Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 60);
                 Hero.MainHero.AddCareer(TORCareers.WarriorPriest);
+                Hero.MainHero.AddAbility("HealingHand");
             }
             else if (selectedOption.OptionText == "Novice Necromancer"||selectedOption.OptionText == "Necromancer")
             {
