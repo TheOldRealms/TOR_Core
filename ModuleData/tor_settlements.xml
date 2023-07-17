@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Settlements>
   <!--Custom Settlements-->
   <Settlement id="chaos_portal_01" name="{=!}Chaos Portal" owner="Faction.chaos_clan_1" posX="1421.178" posY="900.773" culture="Culture.chaos_culture" text="{=!}Chaos Portal">
@@ -3024,7 +3024,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_PA2_1" name="{=Settlements.Settlement.name.castle_village_MO2_1}Lesevre" posX="1162.721" posY="951.267" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA2_1}Just south west of Castle Paravon lies the village of Lesevre, which hosts large deposits of Wood. Lesevre is very rich in wealth due to Castle Paravon needing coal to fuel the smithies for production of weapons and armour.">
+  <Settlement id="castle_village_PA2_1" name="{=Settlements.Settlement.name.castle_village_MO2_1}Lesevre" posX="1162.821" posY="951.1809" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA2_1}Just south west of Castle Paravon lies the village of Lesevre, which hosts large deposits of Wood. Lesevre is very rich in wealth due to Castle Paravon needing coal to fuel the smithies for production of weapons and armour.">
     <Components>
       <Village id="castle_village_comp_PA2_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.town_PA2" bound="Settlement.castle_PA2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3037,7 +3037,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_PA2_2" name="{=Settlements.Settlement.name.castle_village_PA2_2}Emilion" posX="1177.161" posY="951.731" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA1_2}Directly in Castle Parravon’s sights sits the hamlet of Emilion directly alongside the Grismerie river. Emilion is a very small knit community that stays afloat from trading fish and food to other villages and Castle Parravon.">
+  <Settlement id="castle_village_PA2_2" name="{=Settlements.Settlement.name.castle_village_PA2_2}Emilion" posX="1177.075" posY="951.3339" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_PA1_2}Directly in Castle Parravon’s sights sits the hamlet of Emilion directly alongside the Grismerie river. Emilion is a very small knit community that stays afloat from trading fish and food to other villages and Castle Parravon.">
     <Components>
       <Village id="castle_village_comp_PA2_2" village_type="VillageType.vineyard" hearth="200" trade_bound="Settlement.town_PA2" bound="Settlement.castle_PA2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3525,7 +3525,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BE1_1" name="{=Settlements.Settlement.name.village_BE1_1}Lourdes" posX="910.53" posY="859.481" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BE1_1}On the coast of the Great Ocean, the village of Lourdes ekes out a meagre existence as a fishing village. Delivering “fresh” fish directly to Castle Brionne.">
+  <Settlement id="village_BE1_1" name="{=Settlements.Settlement.name.village_BE1_1}Lourdes" posX="909.967" posY="859.837" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BE1_1}On the coast of the Great Ocean, the village of Lourdes ekes out a meagre existence as a fishing village. Delivering “fresh” fish directly to Castle Brionne.">
     <Components>
       <Village id="village_comp_BE1_1" village_type="VillageType.fisherman" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BE1" bound="Settlement.town_BE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3551,7 +3551,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BE1_3" name="{=Settlements.Settlement.name.village_BE1_3}Beaucaire" posX="928.486" posY="856.503" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BE1_3}A moderately rich farming village near Brionne, Beaucaire acts as a crossroads between the surrounding villages and Brionne so it sees a decent bit of traffic, thanks to the local toll booth the village is slightly more prosperous than the others, but still just as run down.">
+  <Settlement id="village_BE1_3" name="{=Settlements.Settlement.name.village_BE1_3}Beaucaire" posX="928.502" posY="855.647" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BE1_3}A moderately rich farming village near Brionne, Beaucaire acts as a crossroads between the surrounding villages and Brionne so it sees a decent bit of traffic, thanks to the local toll booth the village is slightly more prosperous than the others, but still just as run down.">
     <Components>
       <Village id="village_comp_BE1_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BE1" bound="Settlement.town_BE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3584,7 +3584,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BE2_1" name="{=Settlements.Settlement.name.village_BE2_1}Lunel" posX="971.168" posY="833.024" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BE2_1}Lunel sees many travellers pass by as they live close to the bridge that connects them with Carcassonne, be they adventuring knights or merchants. The village therefore is looked after more than others,  so passing  nobles can at least somewhat bear to look at it.">
+  <Settlement id="village_BE2_1" name="{=Settlements.Settlement.name.village_BE2_1}Lunel" posX="971.479" posY="834.725" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BE2_1}Lunel sees many travellers pass by as they live close to the bridge that connects them with Carcassonne, be they adventuring knights or merchants. The village therefore is looked after more than others,  so passing  nobles can at least somewhat bear to look at it.">
     <Components>
       <Village id="village_comp_BE2_1" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BE2" bound="Settlement.town_BE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3597,7 +3597,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BE2_2" name="{=Settlements.Settlement.name.village_BE2_1}Gaillac" posX="950.558" posY="839.581" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BE2_2}Gaillac doesn’t get many visitors, being so out of the way, yet caravans often leave to deliver crops to Chateau Frontière. Gaillac is one of the biggest food producers of Brionne.Gaillac, a remote location that often goes unnoticed, being so far away from the main roads. The village is a bustling hub for caravans that transport crops to Chateau Frontière. Gaillac holds a critical role in Brionne’s food production.">
+  <Settlement id="village_BE2_2" name="{=Settlements.Settlement.name.village_BE2_1}Gaillac" posX="946.957" posY="840.896" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BE2_2}Gaillac doesn’t get many visitors, being so out of the way, yet caravans often leave to deliver crops to Chateau Frontière. Gaillac is one of the biggest food producers of Brionne.Gaillac, a remote location that often goes unnoticed, being so far away from the main roads. The village is a bustling hub for caravans that transport crops to Chateau Frontière. Gaillac holds a critical role in Brionne’s food production.">
     <Components>
       <Village id="village_comp_BE2_2" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BE2" bound="Settlement.town_BE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3610,7 +3610,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BE2_3" name="{=Settlements.Settlement.name.village_BE2_1}Vauvert" posX="988.9399" posY="827.348" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BE2_2}Rows of grapevines run along the village of Vauvert. With fresh water nearby the grapes are very juicy and rich in taste; while it can’t compete with the wine of Bordeleaux it still quenches the thirst of the local nobility.">
+  <Settlement id="village_BE2_3" name="{=Settlements.Settlement.name.village_BE2_1}Vauvert" posX="990.2789" posY="827.391" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_BE2_2}Rows of grapevines run along the village of Vauvert. With fresh water nearby the grapes are very juicy and rich in taste; while it can’t compete with the wine of Bordeleaux it still quenches the thirst of the local nobility.">
     <Components>
       <Village id="village_comp_BE2_3" village_type="VillageType.vineyard" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BE2" bound="Settlement.town_BE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3669,7 +3669,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_BE2_1" name="{=Settlements.Settlement.name.castle_village_BE2_1}Foix" posX="1006.581" posY="822.911" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BE2_1}The bleating of the herds of local sheep drown out most of the noises during the day, Foix delivers copious amounts of cotton to Castle Hossegor to be used for bandages and cleaning materials.">
+  <Settlement id="castle_village_BE2_1" name="{=Settlements.Settlement.name.castle_village_BE2_1}Foix" posX="1006.639" posY="822.57" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BE2_1}The bleating of the herds of local sheep drown out most of the noises during the day, Foix delivers copious amounts of cotton to Castle Hossegor to be used for bandages and cleaning materials.">
     <Components>
       <Village id="castle_village_comp_BE2_1" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.castle_BE2" bound="Settlement.castle_BE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3682,7 +3682,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_BE2_2" name="{=Settlements.Settlement.name.castle_village_BE2_2}Colomier" posX="985.548" posY="854.242" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BE2_2}Nestled in the rolling hills and verdant fields, lies Colomier, where the air is always fragrant with the aroma of herbs. The village is a picturesque haven with neat rows of herbs that flourish under the warm rays of the sun. The villagers take great pride in their craft, carefully tending to their plants with love and care.">
+  <Settlement id="castle_village_BE2_2" name="{=Settlements.Settlement.name.castle_village_BE2_2}Colomier" posX="987.519" posY="855.072" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BE2_2}Nestled in the rolling hills and verdant fields, lies Colomier, where the air is always fragrant with the aroma of herbs. The village is a picturesque haven with neat rows of herbs that flourish under the warm rays of the sun. The villagers take great pride in their craft, carefully tending to their plants with love and care.">
     <Components>
       <Village id="castle_village_comp_BE2_2" village_type="VillageType.flax_plant" hearth="200" trade_bound="Settlement.castle_BE2" bound="Settlement.castle_BE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3705,7 +3705,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_BE3_1" name="{=Settlements.Settlement.name.castle_village_BE3_1}Billère" posX="907.101" posY="897.327" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BE3_1}The village of Billère is surrounded by fields and pastures, with castle Portet looming in the distance, a constant reminder of the feudal system that governs the life of the locals. The villagers are hardworking and resilient, eking out a living from the land and the trades they have honed over generations.">
+  <Settlement id="castle_village_BE3_1" name="{=Settlements.Settlement.name.castle_village_BE3_1}Billère" posX="908.5759" posY="896.087" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BE3_1}The village of Billère is surrounded by fields and pastures, with castle Portet looming in the distance, a constant reminder of the feudal system that governs the life of the locals. The villagers are hardworking and resilient, eking out a living from the land and the trades they have honed over generations.">
     <Components>
       <Village id="castle_village_comp_BE3_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_BE3" bound="Settlement.castle_BE3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3718,7 +3718,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_BE3_2" name="{=Settlements.Settlement.name.castle_village_BE3_2}Saverdun" posX="930.502" posY="869.368" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BE3_2}The village of Saverdun is a dusty and bustling place, with narrow streets and buildings. Despite the arduous and often dangerous nature of their work, these villagers are a tight-knit community, bound together by a shared sense of purpose and a deep respect for the land. They know the secrets of clay, how to shape it, and finding the best veins to mine.">
+  <Settlement id="castle_village_BE3_2" name="{=Settlements.Settlement.name.castle_village_BE3_2}Saverdun" posX="930.509" posY="869.368" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BE3_2}The village of Saverdun is a dusty and bustling place, with narrow streets and buildings. Despite the arduous and often dangerous nature of their work, these villagers are a tight-knit community, bound together by a shared sense of purpose and a deep respect for the land. They know the secrets of clay, how to shape it, and finding the best veins to mine.">
     <Components>
       <Village id="castle_village_comp_BE3_2" village_type="VillageType.clay_mine" hearth="200" trade_bound="Settlement.castle_BE3" bound="Settlement.castle_BE3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3811,7 +3811,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AQ2_1" name="{=Settlements.Settlement.name.village_AQ2_1}Derrevin Libre" posX="1010.879" posY="936.194" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_AQ2_1}Situated on the far northern fringes of Aquitaine's domain, Derrevin is marked by its proximity to the Forest of Châlons to its north. The village's once-thriving population has dwindled, its homes and streets displaying scars of past feuds.">
+  <Settlement id="village_AQ2_1" name="{=Settlements.Settlement.name.village_AQ2_1}Derrevin Libre" posX="1009.811" posY="935.672" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_AQ2_1}Situated on the far northern fringes of Aquitaine's domain, Derrevin is marked by its proximity to the Forest of Châlons to its north. The village's once-thriving population has dwindled, its homes and streets displaying scars of past feuds.">
     <Components>
       <Village id="village_comp_AQ2_1" village_type="VillageType.trapper" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AQ2" bound="Settlement.town_AQ2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3824,7 +3824,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AQ2_2" name="{=Settlements.Settlement.name.village_AQ2_2}Pessac" posX="991.8519" posY="924.397" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_AQ2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the aquitaines best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_AQ2_2" name="{=Settlements.Settlement.name.village_AQ2_2}Pessac" posX="989.817" posY="925.341" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_AQ2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the aquitaines best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
     <Components>
       <Village id="village_comp_AQ2_2" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AQ2" bound="Settlement.town_AQ2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3837,7 +3837,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AQ2_3" name="{=Settlements.Settlement.name.village_AQ2_3}Agen" posX="975.381" posY="915.539" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_AQ2_3}Agen stands as a bastion of agricultural resilience, proudly standing as one of the most fertile villages in the already fertile region. Its fertile farms yield an abundance of grains, providing sustenance for the entirety of the dukedom. The hard working peasants toil diligently to continue feeding the hungry people of Aquitaine.">
+  <Settlement id="village_AQ2_3" name="{=Settlements.Settlement.name.village_AQ2_3}Agen" posX="975.182" posY="916.45" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_AQ2_3}Agen stands as a bastion of agricultural resilience, proudly standing as one of the most fertile villages in the already fertile region. Its fertile farms yield an abundance of grains, providing sustenance for the entirety of the dukedom. The hard working peasants toil diligently to continue feeding the hungry people of Aquitaine.">
     <Components>
       <Village id="village_comp_AQ2_3" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AQ2" bound="Settlement.town_AQ2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3873,7 +3873,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_AQ1_2" name="{=Settlements.Settlement.name.castle_village_AQ1_2}Lormont" posX="913.262" posY="911.644" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AQ1_2}Perched on the northern outskirts of Castle Libourne, the village of Lormont presents a stark contrast between its more rustic charm compared to the rest of gentle Aquitaine. Home to a considerable number of butchers, the sound of livestock echoes through the narrow streets as the village continues its steady flow of meat for its hardy population.">
+  <Settlement id="castle_village_AQ1_2" name="{=Settlements.Settlement.name.castle_village_AQ1_2}Lormont" posX="913.525" posY="911.794" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AQ1_2}Perched on the northern outskirts of Castle Libourne, the village of Lormont presents a stark contrast between its more rustic charm compared to the rest of gentle Aquitaine. Home to a considerable number of butchers, the sound of livestock echoes through the narrow streets as the village continues its steady flow of meat for its hardy population.">
     <Components>
       <Village id="castle_village_comp_AQ1_2" village_type="VillageType.swine_farm" hearth="200" trade_bound="Settlement.castle_AQ1" bound="Settlement.castle_AQ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3896,7 +3896,7 @@
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_AQ2_1" name="{=Settlements.Settlement.name.castle_village_AQ2_2}Biarritz" posX="995.999" posY="857.796" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AQ2_1}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the aquitaine Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_AQ2_1" name="{=Settlements.Settlement.name.castle_village_AQ2_2}Biarritz" posX="996.135" posY="857.921" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AQ2_1}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the aquitaine Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
     <Components>
       <Village id="castle_village_comp_AQ2_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.castle_AQ2" bound="Settlement.castle_AQ2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3909,7 +3909,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_AQ2_2" name="{=Settlements.Settlement.name.castle_village_AQ2_2}Ayherre" posX="1009.446" posY="858.977" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AQ2_2}Compared to its sister village of Biarritz, the village of Ayherre serves as an idyllic retreat from the tumult of war, a sanctuary where weary adventurers find respite amidst the constant feuds of the dukedom. With fields of golden wheat stretching as far as the eye can see, Ayherre's economy thrives on agriculture, its diligent farmers reaping the fruits of their labour.">
+  <Settlement id="castle_village_AQ2_2" name="{=Settlements.Settlement.name.castle_village_AQ2_2}Ayherre" posX="1009.827" posY="859.915" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AQ2_2}Compared to its sister village of Biarritz, the village of Ayherre serves as an idyllic retreat from the tumult of war, a sanctuary where weary adventurers find respite amidst the constant feuds of the dukedom. With fields of golden wheat stretching as far as the eye can see, Ayherre's economy thrives on agriculture, its diligent farmers reaping the fruits of their labour.">
     <Components>
       <Village id="castle_village_comp_AQ2_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_AQ2" bound="Settlement.castle_AQ2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3945,7 +3945,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_AQ3_2" name="{=Settlements.Settlement.name.castle_village_AQ2_2}Bergerac" posX="1052.203" posY="890.048" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AQ3_2}Situated somewhat north of Castle Curemonte is the humble hamlet of Bergerac. While the village does not get as much trade as its neighbouring settlements, it still benefits from the dukedom's more peaceful setting. Most of its traffic comes from its prosperous mining community thanks to the discovery of a silver deposit nearby.">
+  <Settlement id="castle_village_AQ3_2" name="{=Settlements.Settlement.name.castle_village_AQ2_2}Bergerac" posX="1052.751" posY="890.032" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AQ3_2}Situated somewhat north of Castle Curemonte is the humble hamlet of Bergerac. While the village does not get as much trade as its neighbouring settlements, it still benefits from the dukedom's more peaceful setting. Most of its traffic comes from its prosperous mining community thanks to the discovery of a silver deposit nearby.">
     <Components>
       <Village id="castle_village_comp_AQ3_2" village_type="VillageType.silver_mine" hearth="200" trade_bound="Settlement.castle_AQ3" bound="Settlement.castle_AQ3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4245,7 +4245,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_QU1_1" name="{=Settlements.Settlement.name.village_QU1_1}Perrache" posX="1152.572" posY="826.288" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_QU1_1}Perrach is a small farming community on the road between Castle Quenelles and Merceaux Descloux. The peasants here nar to go towards the woods in any way, so in fear they are of the Fey who watch over them from the shade of the trees.">
+  <Settlement id="village_QU1_1" name="{=Settlements.Settlement.name.village_QU1_1}Perrache" posX="1151.93" posY="827.1649" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_QU1_1}Perrach is a small farming community on the road between Castle Quenelles and Merceaux Descloux. The peasants here nar to go towards the woods in any way, so in fear they are of the Fey who watch over them from the shade of the trees.">
     <Components>
       <Village id="village_comp_QU1_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU1" bound="Settlement.town_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4258,7 +4258,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_QU1_2" name="{=Settlements.Settlement.name.village_QU1_2}Nailloux" posX="1128.767" posY="830.808" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_QU1_2}In the flatlands of Quenelles, surrounded by a sea of grassgrasses and farmlands, is the village of Nailloux. The peasants here raise cattle on the fine grasses for most of the year. When it comes time to drive the cattle to market in Quenelles, the village becomes nearly uninhabited, as most of the population leaves along with their cattle.">
+  <Settlement id="village_QU1_2" name="{=Settlements.Settlement.name.village_QU1_2}Nailloux" posX="1128.224" posY="831.2803" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_QU1_2}In the flatlands of Quenelles, surrounded by a sea of grassgrasses and farmlands, is the village of Nailloux. The peasants here raise cattle on the fine grasses for most of the year. When it comes time to drive the cattle to market in Quenelles, the village becomes nearly uninhabited, as most of the population leaves along with their cattle.">
     <Components>
       <Village id="village_comp_QU1_2" village_type="VillageType.cattle_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU1" bound="Settlement.town_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4317,7 +4317,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_QU2_2" name="{=Settlements.Settlement.name.village_QU2_2}Gien" posX="1060.276" posY="875.809" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_QU2_2}Gien is an old timber enterprise, founded long ago to provide building material for the Dukedom. With only the fools willing to even step foot near the forest of the fey, Quenelles sought out a new source of wood. Despite the dangers present in the Forest of Chalons, it is far safer to deal with the cloven ones than anger the elves.">
+  <Settlement id="village_QU2_2" name="{=Settlements.Settlement.name.village_QU2_2}Gien" posX="1060.177" posY="876.0564" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_QU2_2}Gien is an old timber enterprise, founded long ago to provide building material for the Dukedom. With only the fools willing to even step foot near the forest of the fey, Quenelles sought out a new source of wood. Despite the dangers present in the Forest of Chalons, it is far safer to deal with the cloven ones than anger the elves.">
     <Components>
       <Village id="village_comp_QU2_2" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU2" bound="Settlement.town_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4330,7 +4330,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_QU2_3" name="{=Settlements.Settlement.name.village_QU2_3}Mont-Dore" posX="1102.904" posY="876.855" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_QU2_3}On Mont-Dore, is the village of Mont-Dore. The silver mine here is far older than any current human settlement. The village was built here a few years ago, after the older settlement was razed by greenskins.">
+  <Settlement id="village_QU2_3" name="{=Settlements.Settlement.name.village_QU2_3}Mont-Dore" posX="1103.049" posY="876.6785" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_QU2_3}On Mont-Dore, is the village of Mont-Dore. The silver mine here is far older than any current human settlement. The village was built here a few years ago, after the older settlement was razed by greenskins.">
     <Components>
       <Village id="village_comp_QU2_3" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_QU2" bound="Settlement.town_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4353,7 +4353,7 @@
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_QU1_1" name="{=Settlements.Settlement.name.castle_village_QUI_3}Merceaux Descloux" posX="1156.346" posY="915.696" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU1_1}Founded by Shallyan cultists, Merceaux Descloux has grown as those seeking cures for their ailments have begun to settle around the monastery in thanks. These supplicants have built small homes and tilled the land, providing for everything the cultists here need.">
+  <Settlement id="castle_village_QU1_1" name="{=Settlements.Settlement.name.castle_village_QUI_3}Merceaux Descloux" posX="1156.022" posY="915.6882" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU1_1}Founded by Shallyan cultists, Merceaux Descloux has grown as those seeking cures for their ailments have begun to settle around the monastery in thanks. These supplicants have built small homes and tilled the land, providing for everything the cultists here need.">
     <Components>
       <Village id="castle_village_comp_QU1_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU1" bound="Settlement.castle_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4366,7 +4366,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_QU1_2" name="{=Settlements.Settlement.name.castle_village_QU1_2}Montlac" posX="1138.555" posY="869.866" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU1_2}At the foot of Massif Orcal, is the hamlet of Montlac. Montlac uses the terraces on the hills around them to grow line after line of grape vines, which are harvested for the tables of Nobles.">
+  <Settlement id="castle_village_QU1_2" name="{=Settlements.Settlement.name.castle_village_QU1_2}Montlac" posX="1139.335" posY="869.8641" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU1_2}At the foot of Massif Orcal, is the hamlet of Montlac. Montlac uses the terraces on the hills around them to grow line after line of grape vines, which are harvested for the tables of Nobles.">
     <Components>
       <Village id="castle_village_comp_QU1_2" village_type="VillageType.vineyard" hearth="200" trade_bound="Settlement.castle_QU1" bound="Settlement.castle_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4415,7 +4415,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_QU2_2" name="{=Settlements.Settlement.name.castle_village_QU2_2}Labège" posX="1129.822" posY="801.283" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU2_2}On the river Brienne, Labège sits mostly undisturbed by either invaders or their own lords. The people here are known for their cheese, which is commonly exported out of the Kingdom.">
+  <Settlement id="castle_village_QU2_2" name="{=Settlements.Settlement.name.castle_village_QU2_2}Labège" posX="1130.129" posY="802.0023" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU2_2}On the river Brienne, Labège sits mostly undisturbed by either invaders or their own lords. The people here are known for their cheese, which is commonly exported out of the Kingdom.">
     <Components>
       <Village id="castle_village_comp_QU2_2" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.castle_QU2" bound="Settlement.castle_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4428,7 +4428,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_QU2_3" name="{=Settlements.Settlement.name.castle_village_QU2_3}Grasse" posX="1094.863" posY="812.291" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU2_3}Along the road to Brionne is the village of Grasse, named for the tall grasses that grow in this region of Bretonnia. The people here raise notably large cattle on the grasses.">
+  <Settlement id="castle_village_QU2_3" name="{=Settlements.Settlement.name.castle_village_QU2_3}Grasse" posX="1095.698" posY="813.6528" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU2_3}Along the road to Brionne is the village of Grasse, named for the tall grasses that grow in this region of Bretonnia. The people here raise notably large cattle on the grasses.">
     <Components>
       <Village id="castle_village_comp_QU2_3" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.castle_QU2" bound="Settlement.castle_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4451,7 +4451,7 @@
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_QU3_1" name="{=Settlements.Settlement.name.castle_village_QU3_1}Brusse" posX="1015.82" posY="831.971" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU3_1}On the river Brienne, sits the large farming village of Brusse. It was established by its lord as a plantation to grow flax for the industries in Quenelles.">
+  <Settlement id="castle_village_QU3_1" name="{=Settlements.Settlement.name.castle_village_QU3_1}Brusse" posX="1015.481" posY="831.482" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU3_1}On the river Brienne, sits the large farming village of Brusse. It was established by its lord as a plantation to grow flax for the industries in Quenelles.">
     <Components>
       <Village id="castle_village_comp_QU3_1" village_type="VillageType.flax_plant" hearth="200" trade_bound="Settlement.castle_QU3" bound="Settlement.castle_QU3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4477,7 +4477,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_QU3_3" name="{=Settlements.Settlement.name.castle_village_QU3_3}Borderouge" posX="1062.949" posY="814.659" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU3_3}Borderouge is the last stop on the road before the Quenellian - Brionnian border. There is a tavern in the village, catering to traveling knights and merchants.">
+  <Settlement id="castle_village_QU3_3" name="{=Settlements.Settlement.name.castle_village_QU3_3}Borderouge" posX="1063.109" posY="814.5518" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_QU3_3}Borderouge is the last stop on the road before the Quenellian - Brionnian border. There is a tavern in the village, catering to traveling knights and merchants.">
     <Components>
       <Village id="castle_village_comp_QU3_3" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU3" bound="Settlement.castle_QU3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -5117,12 +5117,12 @@
     </Components>
   </Settlement>
   <!-- Brettonnia Bandit Hideouts -->
-  <Settlement id="hideout_brettonnia_1" name="{=Settlements.Settlement.name.hideout_mountain_1}Herrimault Hideout" type="Hideout" posX="1132.458" posY="881.44" culture="Culture.sea_raiders">
+  <Settlement id="hideout_brettonnia_1" name="{=Settlements.Settlement.name.hideout_mountain_1}Herrimault Hideout" type="Hideout" posX="1132.435" posY="881.439" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_brettonnia_1" map_icon="bandit_hideout_d" scene_name="forest_hideout_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="hideout_brettonnia_2" name="{=Settlements.Settlement.name.hideout_mountain_1}Herrimault Hideout" type="Hideout" posX="1051.742" posY="897.235" culture="Culture.sea_raiders">
+  <Settlement id="hideout_brettonnia_2" name="{=Settlements.Settlement.name.hideout_mountain_1}Herrimault Hideout" type="Hideout" posX="1051.764" posY="897.2344" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_brettonnia_2" map_icon="bandit_hideout_d" scene_name="forest_hideout_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -5162,7 +5162,7 @@
       <Hideout id="hideout_brettonnia_9" map_icon="bandit_hideout_d" scene_name="forest_hideout_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="hideout_brettonnia_10" name="{=Settlements.Settlement.name.hideout_mountain_1}Herrimault Hideout" type="Hideout" posX="1088.838" posY="838.028" culture="Culture.sea_raiders">
+  <Settlement id="hideout_brettonnia_10" name="{=Settlements.Settlement.name.hideout_mountain_1}Herrimault Hideout" type="Hideout" posX="1088.838" posY="838.0197" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_brettonnia_10" map_icon="bandit_hideout_d" scene_name="forest_hideout_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>

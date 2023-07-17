@@ -4625,7 +4625,7 @@
     	</banner_bearer_replacement_weapons>
 	</Culture>
 	<Culture id="steppe_bandits"
-			 name="{=e6csp4ha}Ungor Warband"
+			 name="{=!}Ungor Warband"
 			 bandit_chief="NPCCharacter.tor_beast_ungor_chief"
 			 bandit_raider="NPCCharacter.tor_beast_ungor_raider"
 			 bandit_bandit="NPCCharacter.tor_beast_ungor"
@@ -4644,13 +4644,13 @@
     	</banner_bearer_replacement_weapons>
 	</Culture>
 	<Culture id="sea_raiders"
-			 name="{=e6csp4ha}Herrimaults"
-			 bandit_chief="NPCCharacter.tor_br_brettonnia_bandit_leader"
-			 bandit_raider="NPCCharacter.tor_br_brettonnia_bandit"
-			 bandit_bandit="NPCCharacter.tor_br_herrimault_scout"
-			 bandit_boss="NPCCharacter.tor_br_brettonnia_bandit_leader"
-			 elite_basic_troop="NPCCharacter.tor_br_herrimault_scout"
-			 basic_troop="NPCCharacter.tor_br_brettonnia_bandit"
+			 name="{=!}Herrimaults"
+			 bandit_chief="NPCCharacter.tor_br_bandit_leader"
+			 bandit_raider="NPCCharacter.tor_br_bandit_scout"
+			 bandit_bandit="NPCCharacter.tor_br_bandit"
+			 bandit_boss="NPCCharacter.tor_br_bandit_leader"
+			 elite_basic_troop="NPCCharacter.tor_br_bandit_scout"
+			 basic_troop="NPCCharacter.tor_br_bandit"
 			 is_bandit="true"
 			 can_have_settlement="true"
 			 encounter_background_mesh="bretonnia_bandits"

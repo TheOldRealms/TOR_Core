@@ -87,7 +87,7 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
             thinkParams.AddBehaviorScore(valueTuple);
         }
 
-        private bool TargetIsValid() => Target != null && !Target.IsRaided && !Target.IsUnderRaid && Target != HomeSettlement;
+        private bool TargetIsValid() => Target != null && !Target.IsRaided && !Target.IsUnderRaid && Target != HomeSettlement && Target.IsVillage;
 
         private void FindNewTarget()
         {

@@ -212,3 +212,23 @@ EXTERNAL ChangeRelations(targetNPC, changeAmount)
 EXTERNAL AddTraitInfluence(traitname, changeByAmount)
 ===function AddTraitInfluence(traitname, changeByAmount)===
     ~ return ""
+
+//Method to heal all hero members and all troops to full
+EXTERNAL HealPartyToFull()
+===function HealPartyToFull()===
+    ~ return ""
+    
+//Get the total member count of the main party including heros
+EXTERNAL GetTotalPartyMemberCount()
+===function GetTotalPartyMemberCount()===
+    ~ return 50
+
+//Get the total wounded count of the main party including heros
+EXTERNAL GetTotalPartyWoundedCount()
+===function GetTotalPartyWoundedCount()===
+    ~ return 20
+
+//Set the main party disorganized
+EXTERNAL MakePartyDisorganized()
+===function MakePartyDisorganized()===
+    ~ return ""
