@@ -321,7 +321,7 @@
   	   <TriggeredEffectTemplate StringID="dwellers_below_tick" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
-            SoundEffectLength="0" 
+            SoundEffectLength="8" 
             DamageType="Physical" 
             DamageAmount="10" 
             Radius="5" 
