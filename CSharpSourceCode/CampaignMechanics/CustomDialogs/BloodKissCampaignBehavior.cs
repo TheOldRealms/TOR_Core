@@ -74,7 +74,7 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
                !Clan.PlayerClan.IsUnderMercenaryService &&
                Clan.PlayerClan.Tier >= 2)
             {
-                return Hero.MainHero.GetCareer() != TORCareers.BloodKnight && Hero.MainHero.Clan.Kingdom.MapFaction == partner.MapFaction; 
+                return Hero.MainHero.GetCareer() == TORCareers.Mercenary && Hero.MainHero.Clan.Kingdom.MapFaction == partner.MapFaction; 
             }
             return false;
         }
