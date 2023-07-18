@@ -325,11 +325,12 @@
             DamageType="Physical" 
             DamageAmount="10" 
             Radius="5" 
-            HasShockWave="false" 
+            HasShockWave="true" 
             TargetType="Enemy" 
             ImbuedStatusEffectDuration="2.1" 
             ScriptNameToTrigger="none" >
             <ImbuedStatusEffect>dwellersbelow_impairment</ImbuedStatusEffect>
+			<ImbuedStatusEffect>dwellersbelow_dot</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	   <TriggeredEffectTemplate StringID="bark_skin" 
