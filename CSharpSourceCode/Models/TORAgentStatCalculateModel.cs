@@ -392,15 +392,14 @@ namespace TOR_Core.Models
                 result = CareerHelper.AddBasicCareerPassivesToPropertyContainerForMainAgent(agent, result, attackMask, mask);
 
                 var choices = Agent.Main.GetHero().GetAllCareerChoices();
-
-                if (choices.Contains("NewBloodPassive2") && mask == PropertyMask.Defense)
+                
+           
+                if (choices.Contains("InspirationOfTheLadyPassive4") && mask == PropertyMask.Defense)
                 {
-                    float daytime = CampaignTime.Hours(Campaign.CurrentTime).CurrentHourInDay;
-
-                    var isNight = daytime > 18 || daytime < 4;
-                    if (isNight)
+                    var weight = agent.Character.Equipment.GetTotalWeightOfArmor(true);
+                    if (weight <= 4)
                     {
-                        var choice = TORCareerChoices.GetChoice("NewBloodPassive2");
+                        var choice = TORCareerChoices.GetChoice("InspirationOfTheLadyPassive4");
                         if (choice != null)
                         {
                             result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
@@ -408,6 +407,20 @@ namespace TOR_Core.Models
                     }
                 }
                 
+                
+                if (choices.Contains("JustCausePassive3") && mask == PropertyMask.Defense)
+                {
+                    var weight = agent.Character.Equipment.GetTotalWeightOfArmor(true);
+                    if (weight <= 4)
+                    {
+                        var choice = TORCareerChoices.GetChoice("JustCausePassive3");
+                        if (choice != null)
+                        {
+                            result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                        }
+                    }
+                }
+
                 if (agent.HasMount&&choices.Contains("EnhancedHorseCombatPassive2") && mask == PropertyMask.Attack )
                 {
                     var choice = TORCareerChoices.GetChoice("EnhancedHorseCombatPassive2");
@@ -432,6 +445,32 @@ namespace TOR_Core.Models
                         if (choice != null)
                         {
                             result.ResistancePercentages[(int)DamageType.Physical] += choice.GetPassiveValue();
+                        }
+                        
+                    }
+                }
+                
+                if (choices.Contains("FeyEntchantmentPassive4") && mask == PropertyMask.Defense)
+                {
+                    if (agent.Character.IsKnightUnit())
+                    {
+                        var choice = TORCareerChoices.GetChoice("FeyEntchantmentPassive4");
+                        if (choice != null)
+                        {
+                            result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                        }
+                        
+                    }
+                }
+                
+                if (choices.Contains("TalesOfGilesPassive3") && mask == PropertyMask.Defense)
+                {
+                    if (agentCharacter.Culture.Name.ToString() =="vlandia")
+                    {
+                        var choice = TORCareerChoices.GetChoice("TalesOfGilesPassive3");
+                        if (choice != null)
+                        {
+                            result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
                         }
                         
                     }
@@ -463,6 +502,15 @@ namespace TOR_Core.Models
                     }
                 }
                 
+                if (choices.Contains("FeyEntchantmentPassive3") && mask == PropertyMask.Attack && attackMask == AttackTypeMask.Ranged||attackMask == AttackTypeMask.Melee)
+                {
+                    var choice = TORCareerChoices.GetChoice("FeyEntchantmentPassive3");
+                    if (choice!= null)
+                    {
+                        result.AdditionalDamagePercentages[(int)DamageType.Magical] += choice.GetPassiveValue();
+                    }
+                }
+                
                 if (choices.Contains("MercenaryLordPassive2") && mask == PropertyMask.Attack && attackMask == AttackTypeMask.Ranged)
                 {
                     var choice = TORCareerChoices.GetChoice("MercenaryLordPassive2");
@@ -481,9 +529,9 @@ namespace TOR_Core.Models
                     }
                 }
 
-                if (agent.IsUndead()&&choices.Contains("MasterOfDeadPassive3") && mask == PropertyMask.Defense)
+                if (agent.IsUndead()&&choices.Contains("MasterOfDeadPassive2") && mask == PropertyMask.Defense)
                 {
-                    var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive3");
+                    var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive2");
                     if (choice != null)
                     {
                         result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();

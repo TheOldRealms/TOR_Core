@@ -25,7 +25,7 @@ namespace TOR_Core.Utilities
                     displayDamageType = "holy";
                     break;
                 case DamageType.Lightning:
-                    displayColor = Colors.Blue;
+                    displayColor = Color.FromUint(5745663);
                     displayDamageType = "lightning";
                     break;
                 case DamageType.Magical:
@@ -97,7 +97,7 @@ namespace TOR_Core.Utilities
             if (percentages[1] > 0)
                 sign = "+";
 
-            var resultText = $"{resultDamage} damage was dealt which was {(int)categories[1]}{sign}{(percentages[1] != 0 ? "("+percentages[1].ToString(".%")+")": "")}{DamageType.Physical}{additionalDamageTypeText}";
+            var resultText = $"{resultDamage} damage was dealt which was {(int)categories[1]}{sign}{(percentages[1] != 0 ? "("+percentages[1].ToString(".%")+")": "")} {DamageType.Physical}{additionalDamageTypeText}";
             InformationManager.DisplayMessage(new InformationMessage(resultText, displaycolor));
 
 

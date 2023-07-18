@@ -2083,7 +2083,7 @@
       TargetCapturingRadius="4"
       MaxDistance="50"
       CrosshairType="TargetedAOE"
-      SpellTier="3"
+      SpellTier="4"
       BelongsToLoreID="LoreOfLife"
       TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
@@ -2125,7 +2125,7 @@
       Offset="0.5"
       CrosshairType="Missile"
       AbilityTargetType="WorldPosition"
-      SpellTier="2"
+      SpellTier="3"
       BelongsToLoreID="LoreOfLife"
       TooltipDescription="Launch a small number of stones at the enemy - Monthy Python style.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
@@ -2168,7 +2168,7 @@
       TargetCapturingRadius="4"
       MaxDistance="0.5"
       CrosshairType="TargetedAOE"
-      SpellTier="1"
+      SpellTier="3"
       BelongsToLoreID="LoreOfLife"
       TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
@@ -2211,7 +2211,7 @@
       TargetCapturingRadius="4"
       MaxDistance="50"
       CrosshairType="TargetedAOE"
-      SpellTier="3"
+      SpellTier="2"
       BelongsToLoreID="LoreOfLife"
       TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
@@ -2254,7 +2254,7 @@
 	TargetCapturingRadius="4"
 	MaxDistance="20"
 	CrosshairType="TargetedAOE"
-	SpellTier="1"
+	SpellTier="3"
 	BelongsToLoreID="LoreOfLife"
 	TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
@@ -2298,7 +2298,7 @@
    TargetCapturingRadius="5"
    MaxDistance="20"
    CrosshairType="TargetedAOE"
-   SpellTier="4"
+   SpellTier="2"
     BelongsToLoreID="LoreOfLife"
     TooltipDescription="Enemies in the area experience a soul draining direct damage over time effect causing them to take 12 damage every second for 10 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
@@ -2342,7 +2342,7 @@
 	TargetCapturingRadius="4"
 	MaxDistance="20"
 	CrosshairType="TargetedAOE"
-	SpellTier="1"
+	SpellTier="4"
 	BelongsToLoreID="LoreOfLife"
 	TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
 		<LightColorRGB x="50" y="255" z="50" w="-1">
@@ -2431,7 +2431,7 @@
       TargetCapturingRadius="4"
       MaxDistance="15"
       CrosshairType="TargetedAOE"
-      SpellTier="3"
+      SpellTier="2"
       BelongsToLoreID="LoreOfBeasts"
       TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
@@ -2474,7 +2474,7 @@
       AbilityTargetType="Self"
       CrosshairType="Self"
       TargetCapturingRadius="1"
-      SpellTier="1"
+      SpellTier="2"
       BelongsToLoreID="LoreOfBeasts"
       TooltipDescription="Adds 20% physical damage bonus for 15 seconds to the caster.">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
@@ -2563,7 +2563,7 @@
    TargetCapturingRadius="10"
    MaxDistance="75"
    CrosshairType="TargetedAOE"
-   SpellTier="4"
+   SpellTier="3"
     BelongsToLoreID="LoreOfBeasts"
     TooltipDescription="Enemies in the area experience a soul draining direct damage over time effect causing them to take 12 damage every second for 10 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
@@ -2607,7 +2607,7 @@
       TargetCapturingRadius="4"
       MaxDistance="20"
       CrosshairType="TargetedAOE"
-      SpellTier="1"
+      SpellTier="4"
       BelongsToLoreID="LoreOfBeasts"
       TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
@@ -3123,12 +3123,12 @@
 	<AbilityTemplate StringID="AerialShield" 
       Name="Aerial Shield" 
       SpriteName="aerial_shield_icon" 
-      CoolDown="10" 
+      CoolDown="120" 
       WindsOfMagicCost="3" 
       BaseMisCastChance="0.05" 
       Duration="45" 
       Radius="8" 
-      AbilityType="Spell" 
+      AbilityType="Prayer" 
       AbilityEffectType="Augment" 
       BaseMovementSpeed="0" 
       TickInterval="1" 
@@ -3151,7 +3151,7 @@
       CrosshairType="TargetedAOE"
 	  MaxDistance="3"
       TargetCapturingRadius="8"
-      SpellTier="1"
+      SpellTier="3"
       BelongsToLoreID="PowerOfLady"
       TooltipDescription="Adds 40% physical resistance against ranged damage for 15 seconds to the caster.">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
@@ -3167,12 +3167,12 @@
 		<AbilityTemplate StringID="AuraOfTheLady" 
       Name="Aura Of The Lady" 
       SpriteName="auraofthelady_icon" 
-      CoolDown="10" 
+      CoolDown="60" 
       WindsOfMagicCost="3" 
       BaseMisCastChance="0.05" 
       Duration="0" 
       Radius="8" 
-      AbilityType="Spell" 
+      AbilityType="Prayer" 
       AbilityEffectType="Augment" 
       BaseMovementSpeed="0" 
       TickInterval="-1" 
@@ -3211,12 +3211,12 @@
 	<AbilityTemplate StringID="ShieldOfCombat" 
       Name="Shield Of Combat" 
       SpriteName="shieldofcombat_icon" 
-      CoolDown="10" 
+      CoolDown="60" 
       WindsOfMagicCost="3" 
       BaseMisCastChance="0.05" 
       Duration="0" 
       Radius="8" 
-      AbilityType="Spell" 
+      AbilityType="Prayer" 
       AbilityEffectType="Augment" 
       BaseMovementSpeed="0" 
       TickInterval="-1" 
@@ -3239,7 +3239,7 @@
       CrosshairType="TargetedAOE"
 	  MaxDistance="20"
       TargetCapturingRadius="8"
-      SpellTier="1"
+      SpellTier="2"
       BelongsToLoreID="PowerOfLady"
       TooltipDescription="Adds 40% physical resistance against ranged damage for 15 seconds to the caster.">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
@@ -3255,12 +3255,12 @@
 	<AbilityTemplate StringID="LadysFavour"
       Name="Lady's Favour"
       SpriteName="ladys_favor_icon"
-      CoolDown="5"
+      CoolDown="60"
       WindsOfMagicCost="3"
       BaseMisCastChance="0.05"
       Duration="10"
       Radius="6"
-      AbilityType="Spell"
+      AbilityType="Prayer"
       AbilityEffectType="Augment"
       BaseMovementSpeed="0"
       TickInterval="2"
@@ -3283,7 +3283,7 @@
       TargetCapturingRadius="4"
       MaxDistance="20"
       CrosshairType="TargetedAOE"
-      SpellTier="1"
+      SpellTier="2"
       BelongsToLoreID="PowerOfLady"
       TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">

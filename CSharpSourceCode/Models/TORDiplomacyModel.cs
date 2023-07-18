@@ -1,9 +1,9 @@
-﻿using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
-using TOR_Core.CharacterDevelopment;
-using TOR_Core.Extensions;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.CharacterDevelopment;
+using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
@@ -18,7 +18,7 @@ namespace TOR_Core.Models
             var playerHero = hero1.IsHumanPlayerCharacter || hero2.IsHumanPlayerCharacter ? (hero1.IsHumanPlayerCharacter ? hero1 : hero2) : null;
             if (playerHero == null) return baseValue;
 
-
+            var conversationHero = !hero1.IsHumanPlayerCharacter || !hero2.IsHumanPlayerCharacter ? (!hero1.IsHumanPlayerCharacter ? hero1 : hero2) : null;
             if (playerHero.HasAnyCareer())
             {
                 var choices = playerHero.GetAllCareerChoices();
@@ -35,11 +35,27 @@ namespace TOR_Core.Models
                         }
                     }
                 }
+                
+                if (choices.Contains("JustCausePassive4"))
+                {
+                    if (baseValue > 0)
+                    {
+                        if (conversationHero != null && conversationHero.Culture.StringId == "vlandia")
+                        {
+                            var choice = TORCareerChoices.GetChoice("JustCausePassive4");
+                            if (choice != null)
+                            {
+                                var value = choice.Passive.InterpretAsPercentage ? choice.Passive.EffectMagnitude / 100 : choice.Passive.EffectMagnitude;
+                                values.AddFactor(value);
+                            } 
+                        }
+                    }
+                }
             }
             return values.ResultNumber;
         }
         
-         public override float GetScoreOfDeclaringWar(IFaction factionDeclaresWar, IFaction factionDeclaredWar, IFaction evaluatingClan, out TextObject warReason)
+        public override float GetScoreOfDeclaringWar(IFaction factionDeclaresWar, IFaction factionDeclaredWar, IFaction evaluatingClan, out TextObject warReason)
         {
             float scoreOfDeclaringWar = base.GetScoreOfDeclaringWar(factionDeclaresWar, factionDeclaredWar, evaluatingClan, out warReason);
             float determineEffectOfReligion = DetermineEffectOfReligion(factionDeclaresWar, factionDeclaredWar, (Clan)evaluatingClan);
@@ -247,6 +263,5 @@ namespace TOR_Core.Models
 
             return value;
         }
-
     }
 }

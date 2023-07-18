@@ -29,7 +29,7 @@ namespace TOR_Core.Models
             
 
          
-            if(!MobileParty.MainParty.LeaderHero.HasAnyCareer()) return;
+            if(party != PartyBase.MainParty&&!MobileParty.MainParty.LeaderHero.HasAnyCareer()) return;
             
             ExplainedNumber number = new ExplainedNumber();
             number.Add(xpAmount);

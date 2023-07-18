@@ -162,6 +162,47 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             if (LoreObject.GetLore(loreId) != null && !_knownLores.Contains(loreId)) _knownLores.Add(loreId);
         }
 
+
+        public void RemoveAllPrayers()
+        {
+            var prayers = AllAbilites.Where(x => AbilityFactory.GetTemplate(x).AbilityType == AbilityType.Prayer);
+
+
+            foreach (var prayer in prayers)
+            {
+                AcquiredAbilities.Remove(prayer);
+            }
+        }
+        
+        public void RemoveKnownLore(string loreId)
+        {
+            if (LoreObject.GetLore(loreId) != null && _knownLores.Contains(loreId))
+            {
+                foreach (var abilityID in AllAbilites)
+                {
+                    var ability = AbilityFactory.GetTemplate(abilityID);
+                    if (ability.BelongsToLoreID!=loreId)continue;
+                    _selectedAbilities.Remove(abilityID);
+                }
+                _knownLores.Remove(loreId);
+            }
+        }
+        
+        public void RemoveAllSpells()
+        {
+            var allSpells = AbilityFactory.GetAllSpellNamesAsList();
+
+            foreach (var spell in allSpells)
+            {
+                AcquiredAbilities.Remove(spell);
+            }
+
+        }
+
+        public bool HasAnyKnownLore()
+        {
+            return !_knownLores.IsEmpty();
+        }
         public bool HasKnownLore(string loreId)
         {
             return _knownLores.Contains(loreId);

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -219,15 +219,26 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddCareer(TORCareers.GrailKnight);
             }
             
+            if(selectedOption.OptionText == "Damsel of the Lady")
+            {
+                Hero.MainHero.AddAttribute("Priest");
+                Hero.MainHero.AddCareer(TORCareers.GrailDamsel);
+                var skill = Hero.MainHero.GetSkillValue(TORSkills.Faith);
+                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
+                var knight = MBObjectManager.Instance.GetObject<CharacterObject>("tor_br_realm_knight");
+                Hero.MainHero.AddAbility("AuraOfTheLady");
+                Hero.MainHero.PartyBelongedTo.Party.AddMember(knight, 1, 0);
+            }
+            
             if (selectedOption.OptionText == "Priest Acolyte")
             {
                 Hero.MainHero.AddAttribute("Priest");
-                Hero.MainHero.AddAbility("HealingHand");
                 var skill = Hero.MainHero.GetSkillValue(TORSkills.Faith);
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);
                 Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 60);
                 Hero.MainHero.AddCareer(TORCareers.WarriorPriest);
+                Hero.MainHero.AddAbility("HealingHand");
             }
             else if (selectedOption.OptionText == "Novice Necromancer"||selectedOption.OptionText == "Necromancer")
             {
@@ -346,11 +357,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddAbility("NagashGaze");
                 Hero.MainHero.AddKnownLore("MinorMagic");
                 Hero.MainHero.AddKnownLore("Necromancy");
-                Hero.MainHero.AddKnownLore("DarkMagic");
                 var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
-                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy and Dark Magic"), 0, CharacterObject.PlayerCharacter);
+                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
                 Hero.MainHero.AddCareer(TORCareers.MinorVampire);
             }
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Helpers;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
@@ -171,6 +172,24 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 }
             }
         }
+
+
+        public static float CalculateTroopWageCareerPerkEffect(TroopRosterElement troop, string careerPerkID, out TextObject description)
+        {
+            float value = 0;
+            description = new TextObject();
+            var choice = TORCareerChoices.GetChoice(careerPerkID);
+            if (choice != null)
+            {
+                float effect = choice.GetPassiveValue();
+                value = (troop.Character.TroopWage*troop.Number) *effect;
+                description = choice.BelongsToGroup.Name;
+            }
+
+            return value;
+        }
+        
+        
 
         public static bool PrayerCooldownIsNotShared(this Agent agent)
         {

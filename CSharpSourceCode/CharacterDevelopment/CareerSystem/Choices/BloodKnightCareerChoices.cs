@@ -1,12 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Core;
+using TaleWorlds.Localization;
 using TOR_Core.AbilitySystem;
+using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
+using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 {
@@ -377,6 +384,48 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _dreadKnightPassive2.Initialize(CareerID, "Horse charge damage is increased by 50%.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseChargeDamage, true));
             _dreadKnightPassive3.Initialize(CareerID, "Mounted units damage is increased by 20%", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
             _dreadKnightPassive4.Initialize(CareerID, "25% Melee Armor Penetration", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
+        }
+        
+        public override void InitialCareerSetup()
+        {
+            var playerHero = Hero.MainHero;
+            
+            playerHero.ClearPerks();
+            playerHero.SetSkillValue(TORSkills.Faith, 0);
+            var toRemoveFaith= Hero.MainHero.HeroDeveloper.GetFocus(TORSkills.Faith);
+            playerHero.HeroDeveloper.RemoveFocus(TORSkills.Faith,toRemoveFaith);
+            playerHero.HeroDeveloper.UnspentFocusPoints += toRemoveFaith;
+            
+            if (playerHero.HasAttribute("Priest"))
+            {
+                playerHero.RemoveAttribute("Priest");
+                playerHero.GetExtendedInfo().RemoveAllPrayers();
+            }
+
+            Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 99);
+            
+            
+
+            playerHero.SetSkillValue(TORSkills.SpellCraft,0);
+            var toRemoveSpellcraft= Hero.MainHero.HeroDeveloper.GetFocus(TORSkills.SpellCraft);
+            playerHero.HeroDeveloper.RemoveFocus(TORSkills.SpellCraft,toRemoveSpellcraft);
+            playerHero.HeroDeveloper.UnspentFocusPoints += toRemoveSpellcraft;
+            
+            foreach (var lore in LoreObject.GetAll())
+            {
+                playerHero.GetExtendedInfo().RemoveKnownLore(lore.ID);
+            }
+
+            playerHero.GetExtendedInfo().RemoveAllSpells();
+
+            var race = FaceGen.GetRaceOrDefault("vampire");
+            Hero.MainHero.CharacterObject.Race = race;
+            
+            Hero.MainHero.AddAttribute("Necromancer");
+
+            playerHero.RemoveAttribute("SpellCaster");
+            
+            MBInformationManager.AddQuickInformation(new TextObject(Hero.MainHero.Name+" became a Blood Knight Vampire"), 0, CharacterObject.PlayerCharacter);
         }
     }
 }

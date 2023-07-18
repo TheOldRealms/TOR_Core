@@ -1,4 +1,4 @@
-﻿using NLog;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +10,7 @@ using TOR_Core.AbilitySystem.Scripts;
 using TOR_Core.Utilities;
 using TOR_Core.Extensions;
 using TaleWorlds.CampaignSystem;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -269,7 +270,16 @@ namespace TOR_Core.AbilitySystem
         {
             foreach (var ability in _knownAbilitySystem.Where(ability => ability.Template.AbilityType == AbilityType.Prayer))
             {
-                ability.SetCoolDown(ability.Template.CoolDown);
+                ExplainedNumber cooldown = new ExplainedNumber(ability.Template.CoolDown);
+                if (this.Agent.IsMainAgent)
+                {
+                    if (Game.Current.GameType is Campaign)
+                    {
+                        CareerHelper.ApplyBasicCareerPassives(Agent.GetHero(), ref cooldown, PassiveEffectType.PrayerCoolDownReduction, true);
+                    }
+                }
+                
+                ability.SetCoolDown((int)cooldown.ResultNumber);
             }
         }
         public void SetPrayerCoolDown(int time)

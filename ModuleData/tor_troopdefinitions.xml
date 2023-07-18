@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <NPCCharacters>
   <NPCCharacter id="tor_empire_villager" default_group="infantry" level="1" name="{=str_tor_empire_villager}Empire Villager" occupation="Villager" culture="Culture.empire" skill_template="SkillSet.tor_skills_level1">
     <face>

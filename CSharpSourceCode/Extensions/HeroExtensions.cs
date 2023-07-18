@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.BountyMaster;
@@ -41,7 +42,7 @@ namespace TOR_Core.Extensions
             {
                 var choices = hero.GetAllCareerChoices();
 
-                if (choices.Contains("MasterOfDeadPassive2"))
+                if (choices.Contains("MasterOfDeadPassive3"))
                 {
                     var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive2");
                     if(choice!=null)
@@ -58,19 +59,10 @@ namespace TOR_Core.Extensions
             var info = hero.GetExtendedInfo();
             if(info != null)
             {
-                if((info.CurrentWindsOfMagic + amount) < info.MaxWindsOfMagic)
-                {
-                    result = amount;
-                    info.CurrentWindsOfMagic += amount;
-                }
-                else
-                {
-                    result = info.MaxWindsOfMagic - info.CurrentWindsOfMagic;
-                    info.CurrentWindsOfMagic = info.MaxWindsOfMagic;
-                }
-
-                
+                result= Mathf.Clamp(info.CurrentWindsOfMagic+amount, 0, info.MaxWindsOfMagic);
+                hero.GetExtendedInfo().CurrentWindsOfMagic = result;
             }
+            
             return result;
         }
 
@@ -124,6 +116,14 @@ namespace TOR_Core.Extensions
             }
         }
 
+        public static void RemoveAttribute(this Hero hero, string attribute)
+        {
+            var info = hero.GetExtendedInfo();
+            if (info != null && info.AllAttributes.Contains(attribute))
+            {
+                info.AcquiredAttributes.Remove(attribute);
+            }
+        }
         public static void AddAttribute(this Hero hero, string attribute)
         {
             var info = hero.GetExtendedInfo();
@@ -308,10 +308,11 @@ namespace TOR_Core.Extensions
             return result;
         }
 
-        public static bool HasAnyCareer(this Hero hero) => hero.GetCareer() != null;
+        public static bool HasAnyCareer(this Hero hero) => Game.Current.GameType is Campaign&& hero.GetCareer() != null;
 
         public static CareerObject GetCareer(this Hero hero)
         {
+           
             CareerObject result = null;
             if (hero != null && hero.GetExtendedInfo() != null && !string.IsNullOrEmpty(hero.GetExtendedInfo().CareerID))
             {
@@ -327,9 +328,18 @@ namespace TOR_Core.Extensions
                 var info = hero.GetExtendedInfo();
                 if (info != null)
                 {
+                    if (hero.HasAnyCareer())
+                    {
+                        info.CareerChoices.Clear();
+                    }
+                    
                     info.CareerID = career.StringId;
-                    info.CareerChoices.Clear();
                     info.CareerChoices.Add(career.RootNode.StringId);
+                    var careerObj = TORCareerChoices.Instance.GetCareerChoices(hero.GetCareer());
+                    RemoveAttribute(hero,"CareerTier"+1);
+                    RemoveAttribute(hero,"CareerTier"+2);
+                    RemoveAttribute(hero,"CareerTier"+3);
+                    careerObj.InitialCareerSetup();
                 }
             }
         }
