@@ -54,7 +54,7 @@ namespace TOR_Core.BattleMechanics.SFX
 
 
 
-                TORCommon.Say("Init");
+                //TORCommon.Say("Init");
                 _init = true;
             }
         }
