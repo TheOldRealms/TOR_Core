@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Xml.Serialization;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
@@ -102,6 +102,7 @@ namespace TOR_Core.AbilitySystem
         [XmlAttribute]
         public bool ShouldRotateVisuals { get; set; } = false;
         [XmlAttribute]
+        public bool DoNotAlignWithGround { get; set; } = false;
         public float VisualsRotationVelocity { get; set; } = 0f;
         [XmlIgnore]
         public SeekerParameters SeekerParameters { get; set; }

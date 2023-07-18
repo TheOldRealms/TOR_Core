@@ -124,7 +124,7 @@ namespace TOR_Core.HarmonyPatches
                     var triggeredEffectTemplate = TriggeredEffectManager.GetTemplateWithId(template.TriggeredEffects[0]);
                     abilityId = abilityName;
                     damageType = triggeredEffectTemplate==null? (int)DamageType.Physical:(int) triggeredEffectTemplate.DamageType;
-                    damageCategories[damageType] = triggeredEffectTemplate.DamageAmount * b.BaseMagnitude;
+                    damageCategories[damageType] = triggeredEffectTemplate.DamageAmount * (b.BaseMagnitude/20);
                 }
                 else
                 {
