@@ -145,6 +145,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                         PropertyValue = (choice, originalValue, agent) => (float)originalValue * 2,
                         MutationType = OperationType.Replace
                     },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_righteous_fury_pulse",
+                        PropertyName = "Radius",
+                        PropertyValue = (choice, originalValue, agent) => (float)originalValue * 2,
+                        MutationType = OperationType.Replace
+                    },
                 });
             _relentlessFanaticKeystone.Initialize(CareerID, "Leadership skill also counts towards the effectiveness of Righteous Fury. Troops affected are unbreakable for the duration.", "RelentlessFanatic", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
@@ -163,6 +171,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                         MutationTargetOriginalId = "righteous_fury_effect",
                         PropertyName = "BaseEffectValue",
                         PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership }, 0.0005f),
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_righteous_fury_pulse",
+                        PropertyName = "Duration",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership }, 0.05f),
                         MutationType = OperationType.Add
                     },
                     new CareerChoiceObject.MutationObject()
@@ -196,6 +212,22 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_righteous_fury_pulse",
+                        PropertyName = "Radius",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded, DefaultSkills.TwoHanded, DefaultSkills.Polearm }, 0.0005f, true),
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_righteous_fury_pulse",
+                        PropertyName = "Duration",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded, DefaultSkills.TwoHanded, DefaultSkills.Polearm }, 0.05f, true),
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
                         MutationTargetOriginalId = "apply_righteous_fury",
                         PropertyName = "ImbuedStatusEffects",
                         PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"physical_resistance_20"}).ToList(),
@@ -223,30 +255,22 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                         MutationTargetOriginalId = "RighteousFury",
                         PropertyName = "TriggeredEffects",
                         PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"apply_righteous_fury_pulse"}).ToList(),
-                        MutationType = OperationType.Add
+                        MutationType = OperationType.Replace
                     },
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_righteous_fury",
-                        PropertyName = "Radius",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded, DefaultSkills.TwoHanded, DefaultSkills.Polearm }, 0.01f, true),
-                        MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_righteous_fury",
-                        PropertyName = "Radius",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership }, 0.01f),
-                        MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_righteous_fury",
+                        MutationTargetOriginalId = "apply_righteous_fury_pulse",
                         PropertyName = "Radius",
                         PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.01f),
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "RighteousFury",
+                        PropertyName = "Duration",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.05f),
                         MutationType = OperationType.Add
                     },
                 });

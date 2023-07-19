@@ -950,18 +950,17 @@
       </TriggeredEffectTemplate>
       
       <TriggeredEffectTemplate StringID="apply_righteous_fury_pulse" 
-            BurstParticleEffectPrefab="none" 
+            BurstParticleEffectPrefab="righteous_fury_dmg_pulse" 
             SoundEffectId="none" 
-            SoundEffectLength="0" 
-            DamageType="Invalid" 
-            DamageAmount="0" 
+            SoundEffectLength="1.98" 
+            DamageType="Holy" 
+            DamageAmount="7" 
             Radius="3" 
             HasShockWave="false" 
-            TargetType="Self" 
+            TargetType="Enemy" 
             ImbuedStatusEffectDuration="1.98" 
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
-            <ImbuedStatusEffect>righteous_fury_pulsevisual</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
       
 	  <TriggeredEffectTemplate StringID="apply_fury_sword_trait" 

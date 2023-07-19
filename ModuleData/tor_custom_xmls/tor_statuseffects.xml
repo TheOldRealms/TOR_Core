@@ -231,7 +231,7 @@
   	</StatusEffectTemplate>
 	<StatusEffectTemplate
 		id="righteous_fury_effect"
-		particle_id="berzerk_effect"
+		particle_id="righteous_fury"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
     	base_effect_value="0.2"
@@ -240,6 +240,7 @@
 		applies_for_attack_type="Melee">
 		<temporary_attribute>Unstoppable</temporary_attribute>
   	</StatusEffectTemplate>
+
 	<StatusEffectTemplate
 		id="dwellersbelow_impairment"
 		particle_id="dwellers_below"
@@ -329,11 +330,12 @@
   	</StatusEffectTemplate>
 	<StatusEffectTemplate 
 		id="righteous_fury_regeneration" 
-		particle_id="healing_regeneration"
+		particle_id="healing_hand"
 		particle_intensity="High"
 		base_effect_value="5"
 		do_not_attach_to_agent_skeleton="true"
 		type="HealthOverTime"/>
+	
 	<StatusEffectTemplate 
 		id="righteous_fury_pulsevisual" 
 		particle_id="righteousfury_pulse"
