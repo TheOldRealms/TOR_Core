@@ -233,7 +233,8 @@
             ScriptNameToTrigger="none" 
             HasShockWave="false" />
       <TriggeredEffectTemplate StringID="comet_explosion" 
-            BurstParticleEffectPrefab="comet_explosion" 
+            BurstParticleEffectPrefab="comet_explosion"
+			DoNotAlignParticleEffectPrefabOnImpact="true"			
             SoundEffectId="fireball_explosion" 
             SoundEffectLength="2.5" 
             DamageType="Magical" 
@@ -245,7 +246,8 @@
             ScriptNameToTrigger="none"/>
 			
       <TriggeredEffectTemplate StringID="doom_bolt_explosion" 
-            BurstParticleEffectPrefab="doom_bolt_explosion" 
+            BurstParticleEffectPrefab="doom_bolt_explosion"
+			DoNotAlignParticleEffectPrefabOnImpact="true"			
             SoundEffectId="fireball_explosion" 
             SoundEffectLength="2.5" 
             DamageType="Magical" 

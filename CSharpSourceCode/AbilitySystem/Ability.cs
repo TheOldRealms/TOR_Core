@@ -152,7 +152,7 @@ namespace TOR_Core.AbilitySystem
             
             var frame = GetSpawnFrame(casterAgent);
 
-            if (Template.DoNotAlignWithGround)
+            if (Template.DoNotAlignParticleEffectPrefab)
             {
                 frame = new MatrixFrame(Mat3.CreateMat3WithForward(Vec3.Forward), frame.origin);
             }

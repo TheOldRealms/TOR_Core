@@ -15,6 +15,8 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         [XmlAttribute]
         public string BurstParticleEffectPrefab { get; set; } = "none";
         [XmlAttribute]
+        public bool DoNotAlignParticleEffectPrefabOnImpact { get; set; } = false;
+        [XmlAttribute]
         public string SoundEffectId { get; set; } = "none";
         [XmlAttribute]
         public float SoundEffectLength { get; set; } = 2.5f;
