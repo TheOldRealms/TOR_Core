@@ -2994,7 +2994,7 @@
 	<AbilityTemplate StringID="HealingHand" 
       Name="Healing Hand" 
       SpriteName="healinghand_icon"
-	  DoNotAlignParticleEffectPrefabOnImpact="true"		  
+	  DoNotAlignParticleEffectPrefab="true"		  
       CoolDown="50" 
       WindsOfMagicCost="0" 
       BaseMisCastChance="0.3" 
