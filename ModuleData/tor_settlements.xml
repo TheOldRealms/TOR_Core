@@ -2287,7 +2287,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_RL3_2" name="{=Settlements.Settlement.name.village_RL3_2}Morlenfurt" posX="1226.971" posY="1025.689" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL3_2}Morlenfurt is a small village near the headwaters of the river Bogen. The town is known for its silver mines and the small community of Dwarfs which contribute to the silver trade within the Reikland.">
+  <Settlement id="village_RL3_2" name="{=Settlements.Settlement.name.village_RL3_2}Morlenfurt" posX="1226.665" posY="1025.294" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL3_2}Morlenfurt is a small village near the headwaters of the river Bogen. The town is known for its silver mines and the small community of Dwarfs which contribute to the silver trade within the Reikland.">
     <Components>
       <Village id="village_comp_RL3_2" village_type="VillageType.silver_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL3" bound="Settlement.town_RL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2346,7 +2346,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_RL5" name="{=Settlements.Settlement.name.town_RL5}Ubersreik" owner="Faction.reikland_clan_2" posX="1268.837" posY="998.256" culture="Culture.empire" gate_posX="1268.471" gate_posY="997.0253" text="{=!}Ubersreik is one of the most important trade centers in Reikland. It sits astride and important bridge on the road from from Bögenhafen to Dunkelburg. Trade flows along the road as well as downriver to Auerswald, Grünburg, Kemperbad, and Altdorf. In addition, because it is located near Grey Lady Pass, Ubersreik is the ideal location for merchants travelling over the Grey Mountains to move their wares from the river to overland transportation, and vice versa.">
+  <Settlement id="town_RL5" name="{=Settlements.Settlement.name.town_RL5}Ubersreik" owner="Faction.reikland_clan_2" posX="1262.283" posY="997.596" culture="Culture.empire" gate_posX="1267.872" gate_posY="996.6942" text="{=!}Ubersreik is one of the most important trade centers in Reikland. It sits astride and important bridge on the road from from Bögenhafen to Dunkelburg. Trade flows along the road as well as downriver to Auerswald, Grünburg, Kemperbad, and Altdorf. In addition, because it is located near Grey Lady Pass, Ubersreik is the ideal location for merchants travelling over the Grey Mountains to move their wares from the river to overland transportation, and vice versa.">
     <Components>
       <Town id="town_comp_RL5" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -2366,7 +2366,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_RL5_1" name="{=Settlements.Settlement.name.village_RL5_1}Greissbach " posX="1260.401" posY="1005.038" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL5_1}Geissbach is a forest village just north of Ubersreik. The people here carefully timber the woods nearby and grow what crops they can in the clearings around the village. For a long time there have been rumors and worries about a dark estate just east of the village, which is said to house great evil.">
+  <Settlement id="village_RL5_1" name="{=Settlements.Settlement.name.village_RL5_1}Greissbach " posX="1259.883" posY="1006.502" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL5_1}Geissbach is a forest village just north of Ubersreik. The people here carefully timber the woods nearby and grow what crops they can in the clearings around the village. For a long time there have been rumors and worries about a dark estate just east of the village, which is said to house great evil.">
     <Components>
       <Village id="village_comp_RL5_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL5" bound="Settlement.town_RL5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2379,7 +2379,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_RL5_2" name="{=Settlements.Settlement.name.village_RL5_2}Tallerhof" posX="1253.312" posY="996.028" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL1_2}Tallerhof is a small village that sits where the Grey Lady Road meets the Dwarf Road. It astrides the river Teufel and marks the highest place where the river is still navigable by barge. If it were not for the dwarf trade passing through from Karak Azgaraz for Ubersreik, the village would have long been abandoned.">
+  <Settlement id="village_RL5_2" name="{=Settlements.Settlement.name.village_RL5_2}Tallerhof" posX="1252.939" posY="995.636" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL1_2}Tallerhof is a small village that sits where the Grey Lady Road meets the Dwarf Road. It astrides the river Teufel and marks the highest place where the river is still navigable by barge. If it were not for the dwarf trade passing through from Karak Azgaraz for Ubersreik, the village would have long been abandoned.">
     <Components>
       <Village id="village_comp_RL5_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL5" bound="Settlement.town_RL5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2405,7 +2405,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_RL6" name="{=Settlements.Settlement.name.town_RL6}Dunkelberg" owner="Faction.reikland_clan_1" posX="1305.575" posY="960.061" culture="Culture.empire" gate_posX="1306.372" gate_posY="959.0239" text="{=!}On the northern bank of the River Grissen is the market town of Dunkelburg. Dunkelburg benefits from being along the Stimmigen canal, which allows access to many of the market towns in Reikland’s southern region. The town is known for its rustic feel which seems to be preserved in the town despite its continued increase in size. Unfortunately, Dunkelburg’s proximity to the Grey Mountains has doomed it to be plagued by Goblins, who regularly raid the town. One of the results of these raids is that the town has a much higher population of Orphans than many other parts of the Empire. These orphans are provided for by the von Wallensteins however, as long as they work in the town’s several Bleachfields that is.">
+  <Settlement id="town_RL6" name="{=Settlements.Settlement.name.town_RL6}Dunkelberg" owner="Faction.reikland_clan_1" posX="1305.603" posY="955.925" culture="Culture.empire" gate_posX="1307.828" gate_posY="952.9712" text="{=!}On the northern bank of the River Grissen is the market town of Dunkelburg. Dunkelburg benefits from being along the Stimmigen canal, which allows access to many of the market towns in Reikland’s southern region. The town is known for its rustic feel which seems to be preserved in the town despite its continued increase in size. Unfortunately, Dunkelburg’s proximity to the Grey Mountains has doomed it to be plagued by Goblins, who regularly raid the town. One of the results of these raids is that the town has a much higher population of Orphans than many other parts of the Empire. These orphans are provided for by the von Wallensteins however, as long as they work in the town’s several Bleachfields that is.">
     <Components>
       <Town id="town_comp_RL6" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -3932,7 +3932,7 @@
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_AQ3_1" name="{=Settlements.Settlement.name.castle_village_AQ2_2}Gradignan" posX="1037.004" posY="917.1838" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AQ3_1}Just a stone's throw away from the formidable walls of Castle Curemonte lies the village of Bergerac. While relatively unremarkable, life in Gradignan is a delicate balance, as the peasants navigate the thin line between sustenance and boredom, no doubt thanks to its rather safe position.">
+  <Settlement id="castle_village_AQ3_1" name="{=Settlements.Settlement.name.castle_village_AQ2_2}Gradignan" posX="1037.004" posY="917.184" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AQ3_1}Just a stone's throw away from the formidable walls of Castle Curemonte lies the village of Bergerac. While relatively unremarkable, life in Gradignan is a delicate balance, as the peasants navigate the thin line between sustenance and boredom, no doubt thanks to its rather safe position.">
     <Components>
       <Village id="castle_village_comp_AQ3_1" village_type="VillageType.silk_plant" hearth="200" trade_bound="Settlement.castle_AQ3" bound="Settlement.castle_AQ3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4754,7 +4754,7 @@
       <Hideout id="hideout_forest_29" map_icon="bandit_hideout_b" scene_name="bandit_forest" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="hideout_forest_30" name="{=Settlements.Settlement.name.hideout_forest_30}Cultist Hideout" type="Hideout" posX="1250.813" posY="1034.252" culture="Culture.forest_bandits">
+  <Settlement id="hideout_forest_30" name="{=Settlements.Settlement.name.hideout_forest_30}Cultist Hideout" type="Hideout" posX="1250.813" posY="1034.242" culture="Culture.forest_bandits">
     <Components>
       <Hideout id="hideout_forest_30" map_icon="bandit_hideout_b" scene_name="mountain_hideout_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
@@ -4885,12 +4885,12 @@
       <Hideout id="hideout_mountain_22" map_icon="bandit_hideout_d" scene_name="forest_hideout_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="hideout_mountain_23" name="{=Settlements.Settlement.name.hideout_mountain_23}Deserter Hideout" type="Hideout" posX="1241.87" posY="1004.802" culture="Culture.mountain_bandits">
+  <Settlement id="hideout_mountain_23" name="{=Settlements.Settlement.name.hideout_mountain_23}Deserter Hideout" type="Hideout" posX="1241.074" posY="1006.139" culture="Culture.mountain_bandits">
     <Components>
       <Hideout id="hideout_mountain_23" map_icon="bandit_hideout_d" scene_name="forest_hideout_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="hideout_mountain_24" name="{=Settlements.Settlement.name.hideout_mountain_24}Deserter Hideout" type="Hideout" posX="1271.058" posY="1029.559" culture="Culture.mountain_bandits">
+  <Settlement id="hideout_mountain_24" name="{=Settlements.Settlement.name.hideout_mountain_24}Deserter Hideout" type="Hideout" posX="1271.052" posY="1029.559" culture="Culture.mountain_bandits">
     <Components>
       <Hideout id="hideout_mountain_24" map_icon="bandit_hideout_d" scene_name="forest_hideout_003" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
