@@ -201,6 +201,51 @@
   <string id="tor_feudal_oath_line3.sylvania" text="{=!}May thine enemies tremble at the sight of me and mine undead legions." />
   <string id="tor_feudal_oath_line4.sylvania" text="{=!}I shall join thine court and follow thee deep into the lands of the empire." />
 
+<string id="tor_feudal_oath_line1.aquitaine" text="{=!}With honour, I swear allegiance to the majestic Dukedom of Aquitaine." />
+<string id="tor_feudal_oath_line2.aquitaine" text="{=!}I shall follow the guidance of the esteemed Duke Armand, a paragon of chivalry and virtue." />
+<string id="tor_feudal_oath_line3.aquitaine" text="{=!}I dedicate my sword to protect Aquitaine's fertile fields, its people, and the rich traditions of chivalry." />
+<string id="tor_feudal_oath_line4.aquitaine" text="{=!}As a loyal knight, I shall stand tall against any foe, preserving the honour and grace that defines Aquitaine." />
+
+<string id="tor_feudal_oath_line1.bastonne" text="{=!}With honour and humility, I pledge my service to the noble Dukedom of Bastonne." />
+<string id="tor_feudal_oath_line2.bastonne" text="{=!}I declare my loyalty to the honourable Duke Bohemond, a beacon of courage and chivalry." />
+<string id="tor_feudal_oath_line3.bastonne" text="{=!}I shall defend the land of Bastonne, its brave knights, and the legendary lands hold sacred by our Lady of the Lake." />
+<string id="tor_feudal_oath_line4.bastonne" text="{=!}As a true knight of Bastonne, I shall uphold the virtues of chivalry and valour, safeguarding the realm and its cherished traditions." />
+
+<string id="tor_feudal_oath_line1.bordeleaux" text="{=!}With great honour, pledge my unwavering loyalty to the majestic Dukedom of Bordeleaux." />
+<string id="tor_feudal_oath_line2.bordeleaux" text="{=!}I proclaim my allegiance to Duke Alberic, a visionary leader whose passion for prosperity and warfare knows no equal under our Lady." /> 
+<string id="tor_feudal_oath_line3.bordeleaux" text="{=!}I vow to protect the fertile vineyards of Bordeleaux, its people, and its wine." /> 
+<string id="tor_feudal_oath_line4.bordeleaux" text="{=!}In the name of chivalry and valour, I shall ride forth as a true knight of Bordeleaux, defending our lands with my life." />
+
+<string id="tor_feudal_oath_line1.brionne" text="{=!}With honour and humility, I swear fealty to the noble Dukedom of Brionne." />
+<string id="tor_feudal_oath_line2.brionne" text="{=!}I declare my loyalty to Duke Theodoric, a wise and just ruler beloved by his subjects." /> 
+<string id="tor_feudal_oath_line3.brionne" text="{=!}I shall safeguard the beautiful lands of Brionne, its people, and the magnificant castles that grace the countryside." />
+ <string id="tor_feudal_oath_line4.brionne" text="{=!}As a true knight of Brionne, I shall uphold the virtues of honour and loyalty, protecting our dukdom from any who would threaten its beauty and arts." />
+
+<string id="tor_feudal_oath_line1.carcassonne" text="{=!}I hereby pledge my undying loyalty to the valiant Dukedom of Carcassonne." />
+<string id="tor_feudal_oath_line2.carcassonne" text="{=!}I proclaim my allegiance to Duke Huebald, a gallant leader whose deeds inspire us all." /> 
+<string id="tor_feudal_oath_line3.carcassonne" text="{=!}I vow to protect the fields of Carcassonne, its brave knights, and its adept armies." /> 
+<string id="tor_feudal_oath_line4.carcassonne" text="{=!}As a loyal defender of Carcassonne, I shall stand steadfast in preserving the honour and valour of our beloved realm." />
+
+<string id="tor_feudal_oath_line1.montfort" text="{=!}I pledge my unwavering loyalty to the noble Dukedom of Montfort." />
+<string id="tor_feudal_oath_line2.montfort" text="{=!}I proclaim my allegiance to Duke Folcard, a courageous leader whose valour is as hardy as the many mountains he rules over." /> 
+<string id="tor_feudal_oath_line3.montfort" text="{=!}I vow to protect the majestic lands of Montfort, its people, and the towering castles that stand as symbols of our strength." /> 
+<string id="tor_feudal_oath_line4.montfort" text="{=!}With unwavering dedication, I shall serve as a true knight of Montfort, defending our realm's honour and sovereignty with every breath." />
+
+<string id="tor_feudal_oath_line1.parravon" text="{=!}I hereby swear fealty to the illustrious Dukedom of Parravon." />
+<string id="tor_feudal_oath_line2.parravon" text="{=!}I pledge my loyalty to Duke Cassyon, the valiant defender of our mountains and forests." /> 
+<string id="tor_feudal_oath_line3.parravon" text="{=!}I shall safeguard the sacred lands of Parravon, its people, and its beloved pegasi." /> 
+<string id="tor_feudal_oath_line4.parravon" text="{=!}As a devoted knight of Parravon, I shall stand as a beacon of hope, defending our realm and upholding our dukedom's legacy." />
+
+<string id="tor_feudal_oath_line1.quenelles" text="{=!}With honour and humility, I swear allegiance to the noble Dukedom of Quenelles." />
+<string id="tor_feudal_oath_line2.quenelles" text="{=!}I declare my loyalty to Duke Tancred II, a wise and resolute leader who inspires us all." /> 
+<string id="tor_feudal_oath_line3.quenelles" text="{=!}I vow to protect the lands of Quenelles, its people, and the sacred shrines that honour the Lady of the Lake." /> 
+<string id="tor_feudal_oath_line4.quenelles" text="{=!}As a true knight of Quenelles, I shall embrace the ideals of chivalry, defending our realm and preserving its timeless grace and beauty." />
+
+<string id="tor_feudal_oath_line1.mousillon" text="{=!}I, a humble knight, pledge my unwavering loyalty to the realm of Mousillon." />
+<string id="tor_feudal_oath_line2.mousillon" text="{=!}I vow to serve the Dukedom's ruler, the Serpent, and embrace the shadows that shroud this land." />
+<string id="tor_feudal_oath_line3.mousillon" text="{=!}I shall defend the people of Mousillon and the forgotten spirits that linger amidst the darkness." />
+<string id="tor_feudal_oath_line4.mousillon" text="{=!}I recognise you, my sovereign lord, and will stand resolute in the face of the world's disdain for our home, united under your banner." />
+
   <string id="tor_player_accept_vassalage.empire" text="{=!}I proclaim you a noble of the Empire. Your life and property shall be protected by our laws, and shall not be taken from you except by law. You may serve as an official over towns and villages and as a general over armies, if we call upon you to do so." />
   <string id="tor_player_accept_vassalage.khuzait" text="{=!}I proclaim you a noble of the Sylvania and a servant of the von Carsteins. You are expected to carry out our bidding and bear arms in times of war. " />
 
