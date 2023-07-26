@@ -88,7 +88,6 @@ Cultist in our midst #title #illustration: village
     =choices
     *[Seek out the village elder for questioning.] -> InterviewElder
     *[Venture into the woods during the night to uncover the source of the strange lights.] -> Woods
-    *[Investigate the missing livestock.] -> Symbols
     *[Look into the disappearances by talking to the relatives of the disappeared.] -> InvestigateDisappearances
     *[Embark on a meticulous search for discreet symbols or markings throughout the village.] -> Symbols
     * -> OutOfOptions
