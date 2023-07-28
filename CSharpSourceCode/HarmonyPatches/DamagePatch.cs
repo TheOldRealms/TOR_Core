@@ -35,8 +35,14 @@ namespace TOR_Core.HarmonyPatches
             AttackTypeMask attackTypeMask = DetermineMask(b);
 
             float[] damageCategories = new float[(int)DamageType.All + 1];
-            var attackerPropertyContainer = attacker.GetProperties(PropertyMask.Attack, attackTypeMask);
-            var victimPropertyContainer = victim.GetProperties(PropertyMask.Defense, attackTypeMask);
+            var attackerPropertyContainer = AgentPropertyContainer.InitNew();
+            var victimPropertyContainer = AgentPropertyContainer.InitNew();
+            if (!Mission.Current.IsArenaMission())
+            { 
+                attackerPropertyContainer = attacker.GetProperties(PropertyMask.Attack, attackTypeMask); 
+                victimPropertyContainer = victim.GetProperties(PropertyMask.Defense, attackTypeMask);
+            }
+ 
             //attack properties;
             var damageProportions = attackerPropertyContainer.DamageProportions;
             var damageAmplifications = attackerPropertyContainer.DamagePercentages;

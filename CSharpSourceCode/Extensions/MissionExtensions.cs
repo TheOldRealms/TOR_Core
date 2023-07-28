@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
+using SandBox.Missions.MissionLogics.Arena;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 
@@ -37,6 +38,11 @@ namespace TOR_Core.Extensions
             {
                 mission.RemoveMissionBehavior(behavior);
             }
+        }
+
+        public static bool IsArenaMission(this Mission mission)
+        {
+            return mission.GetMissionBehavior<ArenaPracticeFightMissionController>() != null || Mission.Current.CombatType == Mission.MissionCombatType.ArenaCombat;
         }
 
         public static int GetArtillerySlotsLeftForTeam(this Mission mission, Team team)
