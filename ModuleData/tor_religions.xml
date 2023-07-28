@@ -30,7 +30,7 @@
             <FollowerClan stringId="talabecland_clan_3" />
         </Followers>
         <ReligiousTroops>
-            <ReligiousTroop id="NPCCharacter.tor_empire_recruit" />
+            <ReligiousTroop id="NPCCharacter.tor_ror_ward_of_taal" />
         </ReligiousTroops>
     </Religion>
     <Religion id="cult_of_lady" Name="Cult of The Lady" Culture="Culture.vlandia" Affinity="Order">
@@ -45,7 +45,7 @@
         <Followers>
         </Followers>
         <ReligiousTroops>
-            <ReligiousTroop id="NPCCharacter.tor_br_peasant_levy" />
+            <ReligiousTroop id="NPCCharacter.tor_br_battle_pilgrim" />
         </ReligiousTroops>
     </Religion>
     <Religion id="cult_of_nagash" Name="Children of Nagash" Culture="Culture.khuzait" Affinity="Vampire">

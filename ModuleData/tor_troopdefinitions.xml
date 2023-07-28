@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <NPCCharacters>
   <NPCCharacter id="tor_empire_villager" default_group="infantry" level="1" name="{=str_tor_empire_villager}Empire Villager" occupation="Villager" culture="Culture.empire" skill_template="SkillSet.tor_skills_level1">
     <face>
@@ -527,7 +527,7 @@
       <EquipmentSet id="tor_empire_caravan_ranged_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_flagellant" default_group="infantry" level="6" name="{=str_tor_empire_flagellant}Empire Flagellant" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true">
+  <NPCCharacter id="tor_empire_flagellant" default_group="infantry" level="16" name="{=str_tor_empire_flagellant}Empire Flagellant" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.warriorpriest" />
     </face>
@@ -547,6 +547,16 @@
     <Equipments>
       <EquipmentSet id="tor_br_villager_template" />
       <EquipmentSet id="tor_br_villager_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_battle_pilgrim" default_group="infantry" level="16" name="{=str_tor_br_battle_pilgrim}Battle Pilgrim" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_br_battle_pilgrim_template" />
+      <EquipmentSet id="tor_br_battle_pilgrim_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_peasant_levy" default_group="infantry" level="6" name="{=str_tor_br_peasant_levy}Bretonnian Peasant Levy" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true">
@@ -695,8 +705,8 @@
       <upgrade_target id="NPCCharacter.tor_br_knight_errant" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_noble_template" />
+      <EquipmentSet id="tor_br_noble_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_knight_errant" default_group="cavalry" level="21" name="{=str_tor_br_knight_errant}Bretonnian Knight Errant" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21">
@@ -707,8 +717,8 @@
       <upgrade_target id="NPCCharacter.tor_br_realm_knight" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_knight_errant_template" />
+      <EquipmentSet id="tor_br_knight_errant_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_realm_knight" default_group="cavalry" level="31" name="{=str_tor_br_realm_knight}Bretonnian Knight of the Realm" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level31">
@@ -719,8 +729,8 @@
       <upgrade_target id="NPCCharacter.tor_br_quest_knight" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_realm_knight_template" />
+      <EquipmentSet id="tor_br_realm_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_quest_knight" default_group="cavalry" level="41" name="{=str_tor_br_quest_knight}Bretonnian Questing Knight" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level41">
@@ -731,8 +741,8 @@
       <upgrade_target id="NPCCharacter.tor_br_grail_knight" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_quest_knight_template" />
+      <EquipmentSet id="tor_br_quest_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_grail_knight" default_group="cavalry" level="46" name="{=str_tor_br_grail_knight}Bretonnian Grail Knight" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level46">
@@ -741,8 +751,8 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_grail_knight_template" />
+      <EquipmentSet id="tor_br_grail_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_caravan_guard" default_group="cavalry" level="21" name="{=str_tor_br_caravan_guard}Bretonnian Caravan Horseman" occupation="CaravanGuard" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21">
@@ -753,8 +763,8 @@
       <upgrade_target id="NPCCharacter.tor_br_caravan_captain" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_mounted_yeoman_template" />
+      <EquipmentSet id="tor_br_mounted_yeoman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_caravan_ranged" default_group="ranged" level="21" name="{=str_tor_br_caravan_ranged}Bretonnian Caravan Bowman" occupation="CaravanGuard" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21">
@@ -765,8 +775,8 @@
       <upgrade_target id="NPCCharacter.tor_br_caravan_elite_ranged" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_peasant_archer_template" />
+      <EquipmentSet id="tor_br_peasant_archer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_caravan_elite_ranged" default_group="ranged" level="26" name="{=str_tor_br_caravan_elite_ranged}Bretonnian Caravan Longbowman" occupation="CaravanGuard" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26">
@@ -775,18 +785,18 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_hunter_template" />
+      <EquipmentSet id="tor_br_hunter_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_caravan_captain" default_group="cavalry" level="26" name="{=str_tor_br_caravan_captain}Bretonnian Caravan Master" occupation="CaravanGuard" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26">
+  <NPCCharacter id="tor_br_caravan_captain" default_group="infantry" level="26" name="{=str_tor_br_caravan_captain}Bretonnian Caravan Master" occupation="CaravanGuard" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_manatarms_template" />
+      <EquipmentSet id="tor_br_manatarms_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_m_villager" default_group="infantry" level="1" name="{=str_tor_m_villager}Mousillon Villager" occupation="Villager" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level1">
@@ -902,8 +912,8 @@
       <upgrade_target id="NPCCharacter.tor_m_outcast_errant" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_foot_squire_template" />
+      <EquipmentSet id="tor_br_foot_squire_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_m_outcast_errant" default_group="cavalry" level="21" name="{=str_tor_m_outcast_errant}Mousillon Outcast Errant" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21">
@@ -914,8 +924,8 @@
       <upgrade_target id="NPCCharacter.tor_m_knight_of_misfortune" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_knight_errant_template" />
+      <EquipmentSet id="tor_br_knight_errant_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_m_knight_of_misfortune" default_group="cavalry" level="31" name="{=str_tor_m_knight_of_misfortune}Mousillon Knight of Misfortune" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level31">
@@ -926,8 +936,8 @@
       <upgrade_target id="NPCCharacter.tor_m_doomed_questing_knight" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_realm_knight_template" />
+      <EquipmentSet id="tor_br_realm_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_m_doomed_questing_knight" default_group="cavalry" level="41" name="{=str_tor_m_doomed_questing_knight}Mousillon Doomed Questing Knight" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level41">
@@ -938,8 +948,8 @@
       <upgrade_target id="NPCCharacter.tor_m_knight_of_the_black_grail" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_quest_knight_template" />
+      <EquipmentSet id="tor_br_quest_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_m_knight_of_the_black_grail" default_group="cavalry" level="46" name="{=str_tor_m_knight_of_the_black_grail}Mousillon Knight of the Black Grail" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level46">
@@ -948,8 +958,8 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_grail_knight_template" />
+      <EquipmentSet id="tor_br_grail_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_m_caravan_guard" default_group="cavalry" level="21" name="{=str_tor_m_caravan_guard}Mousillon Caravan Horseman" occupation="CaravanGuard" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21">
@@ -960,8 +970,8 @@
       <upgrade_target id="NPCCharacter.tor_m_caravan_captain" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_mounted_yeoman_template" />
+      <EquipmentSet id="tor_br_mounted_yeoman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_m_caravan_ranged" default_group="ranged" level="21" name="{=str_tor_m_caravan_ranged}Mousillon Caravan Bowman" occupation="CaravanGuard" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21">
@@ -972,8 +982,8 @@
       <upgrade_target id="NPCCharacter.tor_m_caravan_elite_ranged" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_peasant_archer_template" />
+      <EquipmentSet id="tor_br_peasant_archer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_m_caravan_elite_ranged" default_group="ranged" level="26" name="{=str_tor_m_caravan_elite_ranged}Mousillon Caravan Longbowman" occupation="CaravanGuard" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level26">
@@ -982,8 +992,8 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_hunter_template" />
+      <EquipmentSet id="tor_br_hunter_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_m_caravan_captain" default_group="infantry" level="26" name="{=str_tor_m_caravan_captain}Mousillon Caravan Master" occupation="CaravanGuard" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level26">
@@ -992,8 +1002,8 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_br_peasant_template" />
-      <EquipmentSet id="tor_br_peasant_template" civilian="true" />
+      <EquipmentSet id="tor_br_manatarms_template" />
+      <EquipmentSet id="tor_br_manatarms_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_vc_villager" default_group="infantry" level="1" name="{=str_tor_vc_villager}Sylvanian Peasant" occupation="Villager" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level1">
