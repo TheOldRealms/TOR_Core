@@ -116,9 +116,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 }
                 normal = Vec3.Forward;
             }
-            
-            
-            Mission.Current.GetAveragePositionOfAgents(targets);
 
             SpawnVisuals(position, normal);
             PlaySound(position);
