@@ -48,7 +48,6 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _monsterSlayer;
         private CareerChoiceGroupObject _masterHorseman;
         private CareerChoiceGroupObject _grailVow;
-        
         //Grail Damsel
         private CareerChoiceGroupObject _feyEnchantment;
         private CareerChoiceGroupObject _inspirationOfTheLady;
@@ -115,13 +114,13 @@ namespace TOR_Core.CharacterDevelopment
         {
             _bookOfSigmar.Initialize("Book of Sigmar", TORCareers.WarriorPriest, 1, (Hero hero, out string text) =>
             {
-                text = "Required renown: 1";
-                return hero.Clan.Tier >= 1;
+                text = string.Empty;
+                return true;
             });
             _sigmarProclaimer.Initialize("Sigmar's Proclaimer", TORCareers.WarriorPriest, 1, (Hero hero, out string text) =>
             {
-                text = "Required renown: 1";
-                return hero.Clan.Tier >= 1;
+                text = string.Empty;
+                return true;
             });
             _relentlessFanatic.Initialize("Relentless Fanatic", TORCareers.WarriorPriest, 2, (Hero hero, out string text) =>
             {

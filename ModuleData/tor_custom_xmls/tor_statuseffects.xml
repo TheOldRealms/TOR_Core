@@ -96,7 +96,7 @@
 	</StatusEffectTemplate>
 	<StatusEffectTemplate 
 		id="knightly_charge_phys_res" 
-		particle_id="knightlycharge_res"
+		particle_id="knightlycharge_res2"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="0.2"
@@ -231,7 +231,7 @@
   	</StatusEffectTemplate>
 	<StatusEffectTemplate
 		id="righteous_fury_effect"
-		particle_id="berzerk_effect"
+		particle_id="righteous_fury"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
     	base_effect_value="0.2"
@@ -242,11 +242,20 @@
   	</StatusEffectTemplate>
 	<StatusEffectTemplate
 		id="dwellersbelow_impairment"
-		particle_id="harmonic_convergence"
+		particle_id="dwellers_below"
 		particle_intensity="High"
 		apply_particle_to_root_bone_only="true"
     	base_effect_value="-0.8"
 		type="MovementManipulation"
+		damage_type="Physical">
+  	</StatusEffectTemplate>
+	<StatusEffectTemplate
+		id="dwellersbelow_dot"
+		particle_id=""
+		particle_intensity="High"
+		apply_particle_to_root_bone_only="true"
+    	base_effect_value="5"
+		type="DamageOverTime"
 		damage_type="Physical">
   	</StatusEffectTemplate>
 	<StatusEffectTemplate
@@ -320,11 +329,12 @@
   	</StatusEffectTemplate>
 	<StatusEffectTemplate 
 		id="righteous_fury_regeneration" 
-		particle_id="healing_regeneration"
+		particle_id="healing_hand"
 		particle_intensity="High"
 		base_effect_value="5"
 		do_not_attach_to_agent_skeleton="true"
 		type="HealthOverTime"/>
+	
 	<StatusEffectTemplate 
 		id="righteous_fury_pulsevisual" 
 		particle_id="righteousfury_pulse"

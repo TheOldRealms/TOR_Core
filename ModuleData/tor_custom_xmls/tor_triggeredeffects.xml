@@ -233,7 +233,8 @@
             ScriptNameToTrigger="none" 
             HasShockWave="false" />
       <TriggeredEffectTemplate StringID="comet_explosion" 
-            BurstParticleEffectPrefab="comet_explosion" 
+            BurstParticleEffectPrefab="comet_explosion"
+			DoNotAlignParticleEffectPrefabOnImpact="true"			
             SoundEffectId="fireball_explosion" 
             SoundEffectLength="2.5" 
             DamageType="Magical" 
@@ -245,7 +246,8 @@
             ScriptNameToTrigger="none"/>
 			
       <TriggeredEffectTemplate StringID="doom_bolt_explosion" 
-            BurstParticleEffectPrefab="doom_bolt_explosion" 
+            BurstParticleEffectPrefab="doom_bolt_explosion"
+			DoNotAlignParticleEffectPrefabOnImpact="true"			
             SoundEffectId="fireball_explosion" 
             SoundEffectLength="2.5" 
             DamageType="Magical" 
@@ -321,15 +323,16 @@
   	   <TriggeredEffectTemplate StringID="dwellers_below_tick" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
-            SoundEffectLength="0" 
+            SoundEffectLength="8" 
             DamageType="Physical" 
             DamageAmount="10" 
             Radius="5" 
-            HasShockWave="false" 
+            HasShockWave="true" 
             TargetType="Enemy" 
             ImbuedStatusEffectDuration="2.1" 
             ScriptNameToTrigger="none" >
             <ImbuedStatusEffect>dwellersbelow_impairment</ImbuedStatusEffect>
+			<ImbuedStatusEffect>dwellersbelow_dot</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	   <TriggeredEffectTemplate StringID="bark_skin" 
@@ -949,18 +952,17 @@
       </TriggeredEffectTemplate>
       
       <TriggeredEffectTemplate StringID="apply_righteous_fury_pulse" 
-            BurstParticleEffectPrefab="none" 
+            BurstParticleEffectPrefab="righteous_fury_dmg_pulse" 
             SoundEffectId="none" 
-            SoundEffectLength="0" 
-            DamageType="Invalid" 
-            DamageAmount="0" 
+            SoundEffectLength="1.98" 
+            DamageType="Holy" 
+            DamageAmount="7" 
             Radius="3" 
             HasShockWave="false" 
-            TargetType="Self" 
+            TargetType="Enemy" 
             ImbuedStatusEffectDuration="1.98" 
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
-            <ImbuedStatusEffect>righteous_fury_pulsevisual</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
       
 	  <TriggeredEffectTemplate StringID="apply_fury_sword_trait" 

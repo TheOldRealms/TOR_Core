@@ -71,6 +71,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         public readonly float[] DamagePercentages;
         public readonly float[] ResistancePercentages;
         public readonly float[] AdditionalDamagePercentages;
+       
         public AgentPropertyContainer(float[] damageProportions, float[] damagePercentages, float[] resistancePercentages, float[] additionalDamagePercentages)
         {
             DamageProportions = damageProportions;
@@ -78,6 +79,17 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             ResistancePercentages = resistancePercentages;
             AdditionalDamagePercentages = additionalDamagePercentages;
         }
+
+        public static AgentPropertyContainer InitNew()
+        { 
+            float[] damageProportions= new float[(int)DamageType.All+1];
+            damageProportions[(int)DamageType.Physical] = 1;
+            float[] damagePercentages= new float[(int)DamageType.All+1];  
+            float[] resistancePercentages= new float[(int)DamageType.All+1]; 
+            float[] additionalDamagePercentages= new float[(int)DamageType.All+1];
+            return new AgentPropertyContainer(damageProportions, damagePercentages, resistancePercentages, additionalDamagePercentages);
+        }
+        
     }
 
     public enum PropertyMask : int

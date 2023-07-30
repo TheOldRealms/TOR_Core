@@ -150,7 +150,12 @@ namespace TOR_Core.AbilitySystem
             }
                 
             
-            var frame = GetSpawnFrame(casterAgent); 
+            var frame = GetSpawnFrame(casterAgent);
+
+            if (Template.DoNotAlignParticleEffectPrefab)
+            {
+                frame = new MatrixFrame(Mat3.CreateMat3WithForward(Vec3.Forward), frame.origin);
+            }
             
             GameEntity parentEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
             parentEntity.SetGlobalFrame(frame);
