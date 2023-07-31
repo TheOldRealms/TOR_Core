@@ -3,6 +3,7 @@ using SandBox.Conversation.MissionLogics;
 using SandBox.Missions.MissionLogics;
 using SandBox.View;
 using SandBox.View.Missions;
+using System;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.MapEvents;
@@ -10,22 +11,50 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.TroopSuppliers;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
+using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.Missions.Handlers;
+using TaleWorlds.MountAndBlade.Objects;
 using TaleWorlds.MountAndBlade.Source.Missions;
 using TaleWorlds.MountAndBlade.Source.Missions.Handlers;
 using TaleWorlds.MountAndBlade.Source.Missions.Handlers.Logic;
 using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.MountAndBlade.View.MissionViews;
+using TaleWorlds.ObjectSystem;
 using static TaleWorlds.MountAndBlade.Mission;
 
-namespace TOR_Core.Utilities
+namespace TOR_Core.Missions
 {
     [MissionManager]
 	public static class TorMissionManager
 	{
+		[MissionMethod]
+		public static Mission OpenDuelMission(Action<bool> onMissionEnd)
+		{
+			return MissionState.OpenNew("InkDuelFight", SandBoxMissions.CreateSandBoxMissionInitializerRecord("TOR_duel_001", "", false, DecalAtlasGroup.All), (Mission mission) => new MissionBehavior[]
+			{
+				new MissionOptionsComponent(),
+				new CampaignMissionComponent(),
+				new MissionBasicTeamLogic(),
+				new MissionAgentLookHandler(),
+				new BasicLeaveMissionLogic(false),
+				new LeaveMissionLogic(),
+				new AgentHumanAILogic(),
+				new MissionConversationLogic(),
+				new InkDuelFightMissionController(onMissionEnd),
+				new TORMissionAgentHandler(),
+				new HeroSkillHandler(),
+				new MissionFightHandler(),
+				new MissionFacialAnimationHandler(),
+				new MissionHardBorderPlacer(),
+				new MissionBoundaryPlacer(),
+				new MissionBoundaryCrossingHandler(),
+				new EquipmentControllerLeaveLogic()
+			}, true, true);
+		}
+
 		[MissionMethod]
 		public static Mission OpenQuestMission(string scene, PartyTemplateObject enemyPartyTemplate, int enemyCount = 8)
 		{
@@ -98,84 +127,43 @@ namespace TOR_Core.Utilities
 		}
 	}
 
-	public class QuestFightMissionController : MissionLogic
-	{
-		private TORMissionAgentHandler _missionAgentSpawnLogic;
-		private readonly PartyTemplateObject _enemyPartyTemplate;
-		private readonly int _enemyCount;
-
-		public QuestFightMissionController(PartyTemplateObject enemyPartyTemplate, int enemyCount)
-		{
-			_enemyPartyTemplate = enemyPartyTemplate;
-			_enemyCount = enemyCount;
-		}
-
-		public override void OnBehaviorInitialize()
-		{
-			base.OnBehaviorInitialize();
-			_missionAgentSpawnLogic = Mission.GetMissionBehavior<TORMissionAgentHandler>();
-		}
-
-		public override void AfterStart()
-		{
-            Mission.SetMissionMode(MissionMode.StartUp, true);
-            Mission.IsInventoryAccessible = false;
-            Mission.IsQuestScreenAccessible = true;
-			Mission.DoesMissionRequireCivilianEquipment = false;
-			_missionAgentSpawnLogic.SpawnPlayer(false, true, false, true, true);
-			_missionAgentSpawnLogic.SpawnEnemies(_enemyPartyTemplate, _enemyCount);
-			foreach(var agent in Mission.Agents)
-            {
-				if(agent != Agent.Main && agent.IsHuman)
-                {
-					agent.SetWatchState(Agent.WatchState.Patrolling);
-                }
-            }
-		}
-
-        public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
-        {
-            base.OnAgentHit(affectedAgent, affectorAgent, affectorWeapon, blow, attackCollisionData);
-			foreach (var agent in Mission.Agents)
-			{
-				if (agent != Agent.Main && agent.IsHuman && agent.IsActive())
-				{
-					agent.SetWatchState(Agent.WatchState.Alarmed);
-				}
-			}
-		}
-    }
-
-	public class GraveyardFightMissionController : MissionLogic
-	{
-		public override void OnBehaviorInitialize()
-		{
-			base.OnBehaviorInitialize();
-			_missionAgentSpawnLogic = Mission.GetMissionBehavior<MissionAgentSpawnLogic>();
-			_mapEvent = MapEvent.PlayerMapEvent;
-		}
-
-		public override void AfterStart()
-		{
-			int numDefender = MathF.Min(_mapEvent.GetNumberOfInvolvedMen(BattleSideEnum.Defender), 4);
-			int numAttacker = _mapEvent.GetNumberOfInvolvedMen(BattleSideEnum.Attacker);
-			int defenderInitialSpawn = numDefender;
-			int attackerInitialSpawn = numAttacker;
-			Mission.DoesMissionRequireCivilianEquipment = false;
-			_missionAgentSpawnLogic.SetSpawnHorses(BattleSideEnum.Defender, false);
-			_missionAgentSpawnLogic.SetSpawnHorses(BattleSideEnum.Attacker, false);
-			_missionAgentSpawnLogic.InitWithSinglePhase(numDefender, numAttacker, defenderInitialSpawn, attackerInitialSpawn, true, true, MissionSpawnSettings.CreateDefaultSpawnSettings());
-		}
-
-		private MissionAgentSpawnLogic _missionAgentSpawnLogic;
-		private MapEvent _mapEvent;
-	}
-
 	[ViewCreatorModule]
 	public class QuestFightViewCreatorModule
 	{
 		[ViewMethod("QuestFight")]
 		public static MissionView[] OpenQuestFightMission(Mission mission)
+		{
+			return new List<MissionView>
+			{
+				new MissionCampaignView(),
+				new MissionConversationCameraView(),
+				SandBoxViewCreator.CreateMissionConversationView(mission),
+				ViewCreator.CreateMissionSingleplayerEscapeMenu(CampaignOptions.IsIronmanMode),
+				ViewCreator.CreateOptionsUIHandler(),
+				ViewCreator.CreateMissionMainAgentEquipDropView(mission),
+				new MissionSingleplayerViewHandler(),
+				ViewCreator.CreateMissionAgentStatusUIHandler(mission),
+				ViewCreator.CreateMissionMainAgentEquipmentController(mission),
+				ViewCreator.CreateMissionAgentLockVisualizerView(mission),
+				ViewCreator.CreateMissionBoundaryCrossingView(),
+				SandBoxViewCreator.CreateMissionBarterView(),
+				ViewCreator.CreateMissionLeaveView(),
+				new MissionBoundaryWallView(),
+				SandBoxViewCreator.CreateMissionNameMarkerUIHandler(mission),
+				new MissionItemContourControllerView(),
+				new MissionAgentContourControllerView(),
+				new MissionCampaignBattleSpectatorView(),
+				ViewCreator.CreatePhotoModeView(),
+				ViewCreator.CreateSingleplayerMissionKillNotificationUIHandler()
+			}.ToArray();
+		}
+	}
+
+	[ViewCreatorModule]
+	public class InkDuelFightViewCreatorModule
+	{
+		[ViewMethod("InkDuelFight")]
+		public static MissionView[] OpenInkDuelFightMission(Mission mission)
 		{
 			return new List<MissionView>
 			{

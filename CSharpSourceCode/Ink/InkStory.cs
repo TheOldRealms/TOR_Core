@@ -16,6 +16,7 @@ using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.Missions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Ink
@@ -195,6 +196,27 @@ namespace TOR_Core.Ink
             {
                 _story.BindExternalFunction("MakePartyDisorganized", MakePartyDisorganized, false);
             }
+            if (!_story.TryGetExternalFunction("OpenDuelMission", out _))
+            {
+                _story.BindExternalFunction("OpenDuelMission", OpenDuelMission, false);
+            }
+            if (!_story.TryGetExternalFunction("GetPlayerHasCustomTag", out _))
+            {
+                _story.BindExternalFunction<string>("GetPlayerHasCustomTag", GetPlayerHasCustomTag, true);
+            }
+            if (!_story.TryGetExternalFunction("SetPlayerCustomTag", out _))
+            {
+                _story.BindExternalFunction<string>("SetPlayerCustomTag", SetPlayerCustomTag, false);
+            }
+        }
+
+        private void SetPlayerCustomTag(string tag) => Hero.MainHero.AddAttribute(tag);
+
+        private object GetPlayerHasCustomTag(string tag) => Hero.MainHero.HasAttribute(tag);
+
+        private void OpenDuelMission()
+        {
+            TorMissionManager.OpenDuelMission((playerVictory) => SetVariable("PlayerWin", playerVictory));
         }
 
         private void MakePartyDisorganized() => MobileParty.MainParty.SetDisorganized(true);

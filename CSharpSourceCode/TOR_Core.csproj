@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -574,6 +574,9 @@
     <Compile Include="Items\TorImageIdentifierWidget.cs" />
     <Compile Include="Items\TorItemTraitVM.cs" />
     <Compile Include="Items\WeaponEffectMissionLogic.cs" />
+    <Compile Include="Missions\GraveyardFightMissionController.cs" />
+    <Compile Include="Missions\InkDuelFightMissionController.cs" />
+    <Compile Include="Missions\QuestFightMissionController.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleMoraleModel.cs" />
     <Compile Include="Models\TORAgentApplyDamageModel.cs" />
     <Compile Include="Models\TORAgentStatCalculateModel.cs" />
@@ -633,9 +636,9 @@
     <Compile Include="Utilities\TORGameMenuBackgroundSwitcher.cs" />
     <Compile Include="Utilities\TORGameStarterHelper.cs" />
     <Compile Include="Utilities\TORMassMaterialSwitcher.cs" />
-    <Compile Include="Utilities\TORMissionAgentHandler.cs" />
+    <Compile Include="Missions\TORMissionAgentHandler.cs" />
     <Compile Include="Utilities\TORMissionHelper.cs" />
-    <Compile Include="Utilities\TORMissionManager.cs" />
+    <Compile Include="Missions\TORMissionManager.cs" />
     <Compile Include="Utilities\TORParticleSystem.cs" />
     <Compile Include="Utilities\TORPaths.cs" />
     <Compile Include="Utilities\TORSpellBlowHelper.cs" />

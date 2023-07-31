@@ -10952,7 +10952,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_warrior_priest_template" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_warrior_priest_001" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_warrior_priest_003" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_warrior_priest_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_warrior_priest_001" />
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_warrior_priest_001" />
@@ -10960,7 +10960,57 @@
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_warrior_priest_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_warrior_priest_001" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_warrior_priest_003" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_warrior_priest_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_warrior_priest_001" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_warrior_priest_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_warrior_priest_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_warrior_priest_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_warrior_priest_004" />
+      <Equipment slot="Item1" id="item.tor_empire_weapon_shield_warrior_priest_002" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_warrior_priest_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_warrior_priest_001" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_warrior_priest_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_warrior_priest_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_warrior_priest_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_warrior_priest_004" />
+      <Equipment slot="Item1" id="item.tor_empire_weapon_shield_warrior_priest_002" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_warrior_priest_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_warrior_priest_001" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_warrior_priest_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_warrior_priest_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_warrior_priest_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_thmace_warrior_priest_002" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_warrior_priest_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_warrior_priest_001" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_warrior_priest_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_warrior_priest_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_warrior_priest_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_thmace_warrior_priest_002" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_warrior_priest_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_warrior_priest_001" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_warrior_priest_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_warrior_priest_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_warrior_priest_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_polehammer_warrior_priest_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_warrior_priest_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_warrior_priest_001" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_warrior_priest_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_warrior_priest_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_warrior_priest_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_polehammer_warrior_priest_001" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_warrior_priest_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_warrior_priest_001" />
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_warrior_priest_001" />
@@ -12194,15 +12244,15 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_bretonnian_nobility_1" culture="Culture.vlandia">
     <EquipmentSet>
-      <Equipment slot="Head" id="Item.tor_bretonnian_greathelm_001" />
-      <Equipment slot="Body" id="Item.tor_bretonnia_manatarms_armor_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_greathelm_001" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_001" />
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.reinforced_mail_mitten" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Head" id="Item.tor_bretonnian_greathelm_001" />
-      <Equipment slot="Body" id="Item.tor_bretonnia_manatarms_armor_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_greathelm_001" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_001" />
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.reinforced_mail_mitten" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_003" />
@@ -12210,13 +12260,13 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_peasants_1" culture="Culture.vlandia">
     <EquipmentSet>
-      <Equipment slot="Head" id="Item.tor_bretonnian_hood_001" />
-      <Equipment slot="Body" id="Item.tor_bretonnia_peasant_garments_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_hood_001" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_peasant_001" />
       <Equipment slot="Leg" id="Item.wrapped_shoes" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Head" id="Item.tor_bretonnian_hood_001" />
-      <Equipment slot="Body" id="Item.tor_bretonnia_peasant_garments_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_hood_001" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_peasant_001" />
       <Equipment slot="Leg" id="Item.wrapped_shoes" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -12510,6 +12560,22 @@
       <Equipment slot="Body" id="Item.tor_empire_body_armor_witch_hunter_001" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_greatsword_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_ti_vittorio_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_rapier_001" />
+      <Equipment slot="Head" id="Item.tor_tilean_head_helm_knight_003" />
+      <Equipment slot="Body" id="Item.tor_tilean_body_armor_knight_003" />
+      <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_002" />
+      <Equipment slot="Leg" id="Item.mail_cavalier_boots" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_rapier_001" />
+      <Equipment slot="Head" id="Item.tor_tilean_head_helm_knight_003" />
+      <Equipment slot="Body" id="Item.tor_tilean_body_armor_knight_003" />
+      <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_002" />
+      <Equipment slot="Leg" id="Item.mail_cavalier_boots" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_qnpc_collegemagister_template" culture="Culture.empire">

@@ -11,6 +11,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.Missions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.AI.AgentBehavior.CustomMissionAgentBehaviors

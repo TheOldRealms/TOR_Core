@@ -2677,4 +2677,14 @@
       <EquipmentSet id="tor_empire_deserter_scout_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_ti_vittorio" default_group="infantry" level="46" name="{=str_tor_ti_vittorio}Vittorio de Luca" occupation="Bandit" culture="Culture.empire" skill_template="SkillSet.tor_skills_level46">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_ti_vittorio_template" />
+      <EquipmentSet id="tor_ti_vittorio_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
 </NPCCharacters>

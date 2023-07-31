@@ -12,6 +12,7 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Ink;
+using TOR_Core.Missions;
 using TOR_Core.Quests;
 
 namespace TOR_Core.Utilities

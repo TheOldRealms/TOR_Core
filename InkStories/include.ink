@@ -232,3 +232,18 @@ EXTERNAL GetTotalPartyWoundedCount()
 EXTERNAL MakePartyDisorganized()
 ===function MakePartyDisorganized()===
     ~ return ""
+    
+//Opens the duel mission
+EXTERNAL OpenDuelMission()
+===function OpenDuelMission()===
+    ~ return ""
+
+//Opens the duel mission
+EXTERNAL GetPlayerHasCustomTag(tag)
+===function GetPlayerHasCustomTag(tag)===
+    ~ return false
+    
+//Opens the duel mission
+EXTERNAL SetPlayerCustomTag(tag)
+===function SetPlayerCustomTag(tag)===
+    ~ return ""
