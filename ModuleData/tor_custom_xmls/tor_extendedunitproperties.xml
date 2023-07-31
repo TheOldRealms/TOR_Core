@@ -1395,6 +1395,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+      <string>Unstoppable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -1406,6 +1407,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+      <string>Unstoppable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -1417,6 +1419,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+      <string>Unstoppable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -2427,7 +2430,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ti_vittorio">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Unbreakable</string>
+      <string>Unstoppable</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>

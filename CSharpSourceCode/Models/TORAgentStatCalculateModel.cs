@@ -212,6 +212,18 @@ namespace TOR_Core.Models
 
         private void UpdateAgentDrivenProperties(Agent agent, AgentDrivenProperties agentDrivenProperties)
         {
+            //Specific settings for the tilean duelist
+            if(agent.Character != null && agent.Character.StringId == "tor_ti_vittorio")
+            {
+                agentDrivenProperties.TopSpeedReachDuration = 0.8f;
+                agentDrivenProperties.MaxSpeedMultiplier = 1.5f;
+                agentDrivenProperties.CombatMaxSpeedMultiplier = 1.5f;
+                agentDrivenProperties.AIEstimateStunDurationPrecision = 0.95f;
+                agentDrivenProperties.KickStunDurationMultiplier = 0.1f;
+                agentDrivenProperties.ShieldBashStunDurationMultiplier = 0.1f;
+                agentDrivenProperties.AiMovementDelayFactor = 0.5f;
+                return;
+            }
             if (agent.IsHuman)
             {
                 AddSkillEffectsForAgent(agent, agentDrivenProperties);

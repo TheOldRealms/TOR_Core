@@ -40,8 +40,10 @@ namespace TOR_Core.Missions
 			_missionAgentSpawnLogic.SpawnPlayer(false, true, false, true, false, true);
 			_duelAgent = _missionAgentSpawnLogic.SpawnEnemyDuelist();
 			SpawnHorses();
-			SpawnSpectators();
+			//SpawnSpectators();
 		}
+
+		
 
         private void SpawnSpectators()
         {

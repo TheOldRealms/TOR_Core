@@ -1,5 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <SkillSets>
+	<!--Duelist-->
+	<SkillSet id="tor_skills_duelist">
+		<skill id="Athletics"
+			   value="330" />
+		<skill id="Riding"
+			   value="300" />
+		<skill id="OneHanded"
+			   value="330" />
+		<skill id="TwoHanded"
+			   value="300" />
+		<skill id="Polearm"
+			   value="300" />
+		<skill id="Bow"
+			   value="200" />
+		<skill id="Crossbow"
+			   value="200" />
+		<skill id="Gunpowder"
+			   value="200" />
+		<skill id="Throwing"
+			   value="90" />
+		<skill id="Steward"
+			   value="260" />
+		<skill id="Tactics"
+			   value="280" />
+		<skill id="Faith"
+			   value="200" />
+		<skill id="Spellcraft"
+			   value="10" />
+	</SkillSet>
 	<!--Warrior Lords-->
 	<SkillSet id="tor_skills_warrior_lord">
 		<skill id="Athletics"

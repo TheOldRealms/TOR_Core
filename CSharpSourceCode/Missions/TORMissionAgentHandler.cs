@@ -161,7 +161,7 @@ namespace TOR_Core.Missions
 			if(character != null)
             {
 				var agent = SpawnEnemy(character, "npc_duel_enemy", true);
-				agent.Defensiveness = 5;
+				agent.Defensiveness = 3;
 				return agent;
             }
 			return null;
