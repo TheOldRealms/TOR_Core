@@ -413,6 +413,8 @@
     <Compile Include="BattleMechanics\DamageSystem\DamageType.cs" />
     <Compile Include="BattleMechanics\Dismemberment\DismembermentMissionLogic.cs" />
     <Compile Include="BattleMechanics\Firearms\FirearmsMissionLogic.cs" />
+    <Compile Include="BattleMechanics\Jousting\JoustLaneEndVolumeBox.cs" />
+    <Compile Include="BattleMechanics\Jousting\JoustTournamentBehavior.cs" />
     <Compile Include="BattleMechanics\Jousting\JoustTournamentGame.cs" />
     <Compile Include="BattleMechanics\Morale\UndeadMoraleAgentComponent.cs" />
     <Compile Include="BattleMechanics\Morale\UndeadMoraleMissionLogic.cs" />
@@ -576,6 +578,7 @@
     <Compile Include="Items\WeaponEffectMissionLogic.cs" />
     <Compile Include="Missions\GraveyardFightMissionController.cs" />
     <Compile Include="Missions\InkDuelFightMissionController.cs" />
+    <Compile Include="Missions\JoustFightMissionController.cs" />
     <Compile Include="Missions\QuestFightMissionController.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleMoraleModel.cs" />
     <Compile Include="Models\TORAgentApplyDamageModel.cs" />

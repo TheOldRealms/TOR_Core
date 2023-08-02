@@ -11,11 +11,13 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics.Crosshairs;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.BattleMechanics.Jousting;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Missions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
@@ -73,10 +75,10 @@ namespace TOR_Core.Models
                 var character = agent.Character as CharacterObject;
                 var mobileParty = agent.GetOriginMobileParty();
                 
-                if (agent!=Agent.Main&& character != null)
+                if (agent != Agent.Main && character != null)
                 {
                     //Lance removal Behavior
-                    if(Mission.Current.IsSiegeBattle|| Mission.Current.IsFriendlyMission || Mission.Current.GetMissionBehavior<HideoutMissionController>()!=null )
+                    if(Mission.Current.IsSiegeBattle || (Mission.Current.IsFriendlyMission && Mission.Current.GetMissionBehavior<JoustTournamentBehavior>() == null) || Mission.Current.GetMissionBehavior<HideoutMissionController>() != null)
                         TOREquipmentHelper.RemoveLanceFromEquipment(agent, Mission.Current.IsFriendlyMission);      //i would like to change that to knights not beeing in guard position anyhow
                 }
                 
@@ -212,6 +214,21 @@ namespace TOR_Core.Models
 
         private void UpdateAgentDrivenProperties(Agent agent, AgentDrivenProperties agentDrivenProperties)
         {
+            if (Mission.Current != null && Mission.Current.GetMissionBehavior<JoustFightMissionController>() != null)
+            {
+                if (agent.IsMount)
+                {
+                    agentDrivenProperties.TopSpeedReachDuration = 0.8f;
+                    agentDrivenProperties.MaxSpeedMultiplier = 1.5f;
+                    agentDrivenProperties.CombatMaxSpeedMultiplier = 1.5f;
+                }
+                else if (agent.IsHuman && !agent.IsPlayerControlled)
+                {
+                    agentDrivenProperties.AttributeRiding = 350;
+                    agentDrivenProperties.AIHoldingReadyMaxDuration = 0.8f;
+                    agentDrivenProperties.AiChargeHorsebackTargetDistFactor = 2f;
+                }
+            }
             //Specific settings for the tilean duelist
             if(agent.Character != null && agent.Character.StringId == "tor_ti_vittorio")
             {

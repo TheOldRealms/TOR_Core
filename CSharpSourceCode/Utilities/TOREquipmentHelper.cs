@@ -27,8 +27,6 @@ namespace TOR_Core.Utilities
                         agent.EquipWeaponWithNewEntity((EquipmentIndex) i, ref weapon);
                     }
                 }
-
-               
             }
         }
     }

@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.CampaignSystem.Settlements.Locations;
 using TaleWorlds.CampaignSystem.TournamentGames;
 using TaleWorlds.SaveSystem;
+using TOR_Core.Missions;
 
 namespace TOR_Core.BattleMechanics.Jousting
 {
@@ -21,8 +23,8 @@ namespace TOR_Core.BattleMechanics.Jousting
 
         public override void OpenMission(Settlement settlement, bool isPlayerParticipating)
         {
-            //TODO open a different mission here if we want to
-            base.OpenMission(settlement, isPlayerParticipating);
+            int upgradeLevel = settlement.IsTown ? settlement.Town.GetWallLevel() : 1;
+            TorMissionManager.OpenJoustingFightMission(LocationComplex.Current.GetScene("arena", upgradeLevel), this, settlement, settlement.Culture, isPlayerParticipating);
         }
     }
 }

@@ -1,13 +1,16 @@
 ﻿using SandBox;
 using SandBox.Conversation.MissionLogics;
 using SandBox.Missions.MissionLogics;
+using SandBox.Missions.MissionLogics.Arena;
 using SandBox.View;
 using SandBox.View.Missions;
+using SandBox.View.Missions.Sound.Components;
 using System;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.TroopSuppliers;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
@@ -23,6 +26,7 @@ using TaleWorlds.MountAndBlade.Source.Missions.Handlers.Logic;
 using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.MountAndBlade.View.MissionViews;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.BattleMechanics.Jousting;
 using static TaleWorlds.MountAndBlade.Mission;
 
 namespace TOR_Core.Missions
@@ -30,6 +34,31 @@ namespace TOR_Core.Missions
     [MissionManager]
 	public static class TorMissionManager
 	{
+		[MissionMethod]
+		public static Mission OpenJoustingFightMission(string scene, JoustTournamentGame tournamentGame, Settlement settlement, CultureObject culture, bool isPlayerParticipating)
+		{
+			return MissionState.OpenNew("JoustFight", SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.Town), delegate (Mission missionController)
+			{
+				JoustFightMissionController joustFightMissionController = new JoustFightMissionController(culture);
+				return new MissionBehavior[]
+				{
+					new CampaignMissionComponent(),
+					new EquipmentControllerLeaveLogic(),
+					joustFightMissionController,
+					new JoustTournamentBehavior(tournamentGame, settlement, joustFightMissionController, isPlayerParticipating),
+					new AgentVictoryLogic(),
+					new MissionAgentPanicHandler(),
+					new AgentHumanAILogic(),
+					new ArenaAgentStateDeciderLogic(),
+					new MissionHardBorderPlacer(),
+					new MissionBoundaryPlacer(),
+					new MissionOptionsComponent(),
+					new HighlightsController(),
+					new SandboxHighlightsController()
+				};
+			}, true, true);
+		}
+
 		[MissionMethod]
 		public static Mission OpenDuelMission(Action<bool> onMissionEnd)
 		{
@@ -187,6 +216,38 @@ namespace TOR_Core.Missions
 				new MissionCampaignBattleSpectatorView(),
 				ViewCreator.CreatePhotoModeView(),
 				ViewCreator.CreateSingleplayerMissionKillNotificationUIHandler()
+			}.ToArray();
+		}
+	}
+
+	[ViewCreatorModule]
+	public class JoustFightViewCreatorModule
+	{
+		[ViewMethod("JoustFight")]
+		public static MissionView[] OpenJoustFightMission(Mission mission)
+		{
+			return new List<MissionView>
+			{
+				new MissionCampaignView(),
+				new MissionConversationCameraView(),
+				ViewCreator.CreateMissionSingleplayerEscapeMenu(CampaignOptions.IsIronmanMode),
+				ViewCreator.CreateOptionsUIHandler(),
+				ViewCreator.CreateMissionMainAgentEquipDropView(mission),
+				SandBoxViewCreator.CreateMissionTournamentView(),
+				new MissionAudienceHandler(0.4f + MBRandom.RandomFloat * 0.6f),
+				ViewCreator.CreateMissionAgentStatusUIHandler(mission),
+				ViewCreator.CreateMissionMainAgentEquipmentController(mission),
+				ViewCreator.CreateMissionMainAgentCheerBarkControllerView(mission),
+				ViewCreator.CreateMissionAgentLockVisualizerView(mission),
+				ViewCreator.CreateMissionSpectatorControlView(mission),
+				new MusicTournamentMissionView(),
+				new MissionSingleplayerViewHandler(),
+				ViewCreator.CreateSingleplayerMissionKillNotificationUIHandler(),
+				ViewCreator.CreateMissionAgentLabelUIHandler(mission),
+				new MissionItemContourControllerView(),
+				new MissionCampaignBattleSpectatorView(),
+				ViewCreator.CreatePhotoModeView(),
+				new MissionCameraFadeView()
 			}.ToArray();
 		}
 	}
