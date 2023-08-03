@@ -20,6 +20,7 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View.MissionViews;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.BattleMechanics.Jousting;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.Missions
 {
@@ -351,6 +352,7 @@ namespace TOR_Core.Missions
 			{
 				agent.Health = character.HeroObject.HitPoints;
                 Mission.PlayerTeam = team;
+                agent.ApplyStatusEffect("initialArenaImpairment",agent,2);
 			}
 			else
 			{
