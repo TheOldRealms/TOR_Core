@@ -217,6 +217,11 @@ namespace TOR_Core.Missions
 							agent.TeleportToPosition(_team1MountedSpawn.GlobalPosition);
 							agent.LookDirection = _team1MountedSpawn.GetFrame().rotation.f;
 						}
+
+						if (agent.IsMainAgent)
+						{
+							agent.ApplyStatusEffect("ArenaImpairment",agent,1.5f);
+						}
 					}
 				}
 			}

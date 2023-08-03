@@ -250,6 +250,15 @@
 		damage_type="Physical">
   	</StatusEffectTemplate>
 	<StatusEffectTemplate
+		id="ArenaImpairment"
+		particle_id=""
+		particle_intensity="High"
+		apply_particle_to_root_bone_only="true"
+    	base_effect_value="-0.6"
+		type="MovementManipulation"
+		damage_type="Physical">
+  	</StatusEffectTemplate>
+	<StatusEffectTemplate
 		id="dwellersbelow_impairment"
 		particle_id="dwellers_below"
 		particle_intensity="High"
