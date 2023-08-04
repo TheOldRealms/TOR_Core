@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.AgentOrigins;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
@@ -16,13 +17,17 @@ using TaleWorlds.CampaignSystem.Settlements.Locations;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.SkillBooks;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 using TOR_Core.Extensions;
 using TOR_Core.Quests;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.SpellTrainers
 {
@@ -30,6 +35,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
     {
         private readonly string _empireTrainerId = "tor_spelltrainer_empire_0";
         private readonly string _vampireTrainerId = "tor_spelltrainer_vc_0";
+        private readonly string _prophetessTrainerId = "tor_spelltrainer_vlandia_0";
         private string _testResult = "";
         private Dictionary<string, string> _settlementToTrainerMap = new Dictionary<string, string>();
         private readonly float _testSuccessChance = 1f;
@@ -109,8 +115,11 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         private void CreateTrainer(Settlement settlement)
         {
             CharacterObject template = null;
+            if (settlement.Culture.StringId == "vlandia") template = MBObjectManager.Instance.GetObject<CharacterObject>(_prophetessTrainerId);
             if (settlement.Culture.StringId == "khuzait") template = MBObjectManager.Instance.GetObject<CharacterObject>(_vampireTrainerId);
-            else template = MBObjectManager.Instance.GetObject<CharacterObject>(_empireTrainerId);
+            
+            if(template==null)
+                template = MBObjectManager.Instance.GetObject<CharacterObject>(_empireTrainerId);
 
             if (template != null)
             {
@@ -119,7 +128,17 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 hero.SetName(new TextObject(hero.FirstName.ToString() + " " + template.Name.ToString()), hero.FirstName);
                 HeroHelper.SpawnHeroForTheFirstTime(hero, settlement);
                 _settlementToTrainerMap.Add(settlement.StringId, hero.StringId);
+                hero.CharacterObject.HiddenInEncylopedia = true;
+                hero.Culture = settlement.Culture;
+                
+                if (hero.Culture.StringId == "vlandia")
+                {
+                   hero.UpdatePlayerGender(true);
+                   hero.SetName(template.Name, template.Name);
+                }
             }
+
+           
         }
 
         private void OnSessionLaunched(CampaignGameStarter obj)
@@ -160,17 +179,45 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
         private void AddDialogs(CampaignGameStarter obj)
         {
+            obj.AddDialogLine("trainer_prophetesse_start", "start", "choices_prophetesse", "The Lady bless you.", isMorganaLeFay, null, 200, null);
+            obj.AddPlayerLine("trainer_learnspells", "choices_prophetesse", "openbook", "I have come seeking further knowledge of the Lady.", () => MobileParty.MainParty.HasSpellCasterMember()&&damselCondition(), null, 200, null);
+            obj.AddPlayerLine("trainer_scrollShop", "choices_prophetesse", "start", "I would like to buy Scrolls", null, OpenScrollShop, 200, null);
+            obj.AddPlayerLine("trainer_playergoodbye", "choices_prophetesse", "saygoodbye", "I seek you later.", null, null, 200, null);
+            obj.AddDialogLine("trainer_goodbye", "saygoodbye", "close_window", "May the Lady Guide you on all your ways.", isMorganaLeFay, null, 200, null);
+            
             obj.AddDialogLine("trainer_start", "start", "choices", "Do I know you? What do you need, be quick I am a busy.", spelltrainerstartcondition, null, 200, null);
             obj.AddPlayerLine("trainer_test", "choices", "magictest", "{TEST_QUESTION}", magictestcondition, null, 200, null);
             obj.AddDialogLine("trainer_testoutcome", "magictest", "testoutcome", "{TEST_PROMPT}", filltextfortestprompt, determinetestoutcome, 200, null);
             obj.AddDialogLine("trainer_testresult", "testoutcome", "start", "{TEST_RESULT}", testresultcondition, null, 200, null);
+            
             obj.AddPlayerLine("trainer_learnspells", "choices", "openbook", "I have come seeking further knowledge.", () => MobileParty.MainParty.HasSpellCasterMember(), null, 200, null);
             obj.AddPlayerLine("trainer_scrollShop", "choices", "start", "Do you sell any scrolls?", null, OpenScrollShop, 200, null);
+            
             obj.AddDialogLine("trainer_afterlearnspells", "openbook", "start", "Hmm, come then. I will teach you what I can.", null, openbookconsequence, 200, null);
             obj.AddPlayerLine("trainer_specialize", "choices", "specializelore", "{SPECALIZE_QUESTION}", specializelorecondition, null, 200, null);
             obj.AddDialogLine("trainer_chooselore", "specializelore", "start", "{SPECIALIZE_PROMPT}.", fillchooseloretext, chooseloreconsequence, 200, null);
             obj.AddPlayerLine("trainer_playergoodbye", "choices", "saygoodbye", "Farewell Magister.", null, null, 200, null);
+            
+            
             obj.AddDialogLine("trainer_goodbye", "saygoodbye", "close_window", "Hmm, yes. Farewell.", null, null, 200, null);
+        }
+
+        private bool isMorganaLeFay()
+        {
+            if(!spelltrainerstartcondition()) return false;
+            var partner = CharacterObject.OneToOneConversationCharacter;
+            if (partner.HeroObject!=null&& partner.HeroObject.Template.StringId == _prophetessTrainerId)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool damselCondition()
+        {
+            if (Hero.MainHero.HasCareer(TORCareers.GrailDamsel)||(Hero.MainHero.PartyBelongedTo!=null&& Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.Culture.StringId == "vlandia"&& x.IsSpellCaster()))) return true;
+            return false;
         }
 
         private bool spelltrainerstartcondition()
@@ -182,6 +229,9 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
         private bool magictestcondition()
         {
+            if (isMorganaLeFay()) return false;
+            if (!CareerHelper.PlayerOwnsMagicCareer()) return false;
+            
             var flag = false;
             flag = !Hero.MainHero.IsVampire() && !Hero.MainHero.IsSpellCaster() && !Hero.MainHero.HasAttribute("Priest") && _testResult == "";
             if (flag)
@@ -218,12 +268,12 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             {
                 case "empire":
                     {
-                        text = "Hmm. To understand the Winds of magic you must have the aethyric senses. Let me perform an experiment on you to determine your potential... (30% Chance)";
+                        text = "Hmm. To understand the Winds of magic you must have the aethyric senses. Let me perform an experiment on you to determine your potential...";
                         break;
                     }
                 case "khuzait":
                     {
-                        text = "I can sense the you might have some grasp on the Winds of magic. Let me subject you to an examination to see your potential...  (30% Chance)";
+                        text = "I can sense the you might have some grasp on the Winds of magic. Let me subject you to an examination to see your potential...";
                         break;
                     }
                 default:
