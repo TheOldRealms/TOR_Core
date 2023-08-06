@@ -2000,6 +2000,10 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_holy_hammer">
     <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="0.20" />
+      <DamageProportionTuple DamageType="Holy" Percent="0.80" />
+    </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_flagellant_002">
     <ItemTraits>
