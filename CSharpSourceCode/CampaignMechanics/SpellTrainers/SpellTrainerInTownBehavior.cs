@@ -115,11 +115,10 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         private void CreateTrainer(Settlement settlement)
         {
             CharacterObject template = null;
-            if (settlement.Culture.StringId == "vlandia") template = MBObjectManager.Instance.GetObject<CharacterObject>(_prophetessTrainerId);
-            if (settlement.Culture.StringId == "khuzait") template = MBObjectManager.Instance.GetObject<CharacterObject>(_vampireTrainerId);
-            
-            if(template==null)
-                template = MBObjectManager.Instance.GetObject<CharacterObject>(_empireTrainerId);
+            if (settlement.Culture.StringId == "vlandia"&& settlement.StringId == "town_BA1") template = MBObjectManager.Instance.GetObject<CharacterObject>(_prophetessTrainerId);
+            if (settlement.Culture.StringId == "khuzait"||settlement.Culture.StringId == "mousillon") template = MBObjectManager.Instance.GetObject<CharacterObject>(_vampireTrainerId);
+            if(settlement.Culture.StringId == "empire") template = MBObjectManager.Instance.GetObject<CharacterObject>(_empireTrainerId);
+
 
             if (template != null)
             {
@@ -182,8 +181,8 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             obj.AddDialogLine("trainer_prophetesse_start", "start", "choices_prophetesse", "The Lady bless you.", isMorganaLeFay, null, 200, null);
             obj.AddPlayerLine("trainer_learnspells", "choices_prophetesse", "openbook", "I have come seeking further knowledge of the Lady.", () => MobileParty.MainParty.HasSpellCasterMember()&&damselCondition(), null, 200, null);
             obj.AddPlayerLine("trainer_scrollShop", "choices_prophetesse", "start", "I would like to buy Scrolls", null, OpenScrollShop, 200, null);
-            obj.AddPlayerLine("trainer_playergoodbye", "choices_prophetesse", "saygoodbye", "I seek you later.", null, null, 200, null);
-            obj.AddDialogLine("trainer_goodbye", "saygoodbye", "close_window", "May the Lady Guide you on all your ways.", isMorganaLeFay, null, 200, null);
+            obj.AddPlayerLine("trainer_playergoodbye", "choices_prophetesse", "saygoodbye", "I'll seek you later.", null, null, 200, null);
+            obj.AddDialogLine("trainer_goodbye", "saygoodbye", "close_window", "May the Lady guide you on all your ways.", isMorganaLeFay, null, 200, null);
             
             obj.AddDialogLine("trainer_start", "start", "choices", "Do I know you? What do you need, be quick I am a busy.", spelltrainerstartcondition, null, 200, null);
             obj.AddPlayerLine("trainer_test", "choices", "magictest", "{TEST_QUESTION}", magictestcondition, null, 200, null);
@@ -246,6 +245,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                             break;
                         }
                     case "khuzait":
+                    case "mousillon":
                         {
                             text = "I need the power to escape death, to rule over this world as something more. Can you teach me the ways of your power?";
                             break;
@@ -272,6 +272,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                         break;
                     }
                 case "khuzait":
+                case "mousillon":
                     {
                         text = "I can sense the you might have some grasp on the Winds of magic. Let me subject you to an examination to see your potential...";
                         break;
