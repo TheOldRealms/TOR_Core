@@ -15,10 +15,6 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentTacticalBehavior
         public override void Tick()
         {
             var behavior = Agent.Formation?.AI?.ActiveBehavior;
-            if (Agent.Team.GeneralAgent == Agent && Agent.Team.HasTeamAi && behavior != null && behavior.GetType() == typeof(BehaviorCharge))
-            {
-                Agent.Formation.AI.SetBehaviorWeight<BehaviorCharge>(0);
-            }
         }
 
         public override void Terminate()
@@ -28,6 +24,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentTacticalBehavior
         public override void ApplyBehaviorParams()
         {
             var currentOrderType = GetMovementOrderType();
+            Agent.SetAutomaticTargetSelection(false);
             if (currentOrderType != null && (currentOrderType == OrderType.Charge || currentOrderType == OrderType.ChargeWithTarget))
             {
                 // AIComponent.SetDefaultBehaviorParams();
@@ -51,6 +48,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentTacticalBehavior
 
         public override void SetCurrentTarget(Target target)
         {
+           // Agent.SetTargetAgent(target.Agent);
         }
 
 
