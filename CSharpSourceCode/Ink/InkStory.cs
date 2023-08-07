@@ -14,6 +14,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.CampaignMechanics.CustomEvents;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Missions;
@@ -24,19 +25,47 @@ namespace TOR_Core.Ink
     public class InkStory
     {
         private Story _story;
+        public readonly string Title;
+        public readonly CustomEventFrequency Frequency;
+        public readonly bool IsDevelopmentVersion;
+        public readonly string StringId;
 
-        public InkStory(string inkFilePath)
+        public InkStory(string id, string file)
         {
-            if (File.Exists(inkFilePath))
+            if (File.Exists(file))
             {
-                using (var reader = File.OpenText(inkFilePath))
+                StringId = id;
+                using (var reader = File.OpenText(file))
                 {
                     var ink = reader.ReadToEnd();
                     var compiler = new Compiler(ink);
                     _story = compiler.Compile();
                     //_story.allowExternalFunctionFallbacks = true;
                 }
+                Title = GetValueOfGlobalTag("title");
+                if (Title == null) Title = "Invalid title, bad tag settings";
+                if (!Enum.TryParse<CustomEventFrequency>(GetValueOfGlobalTag("frequency"), out Frequency))
+                {
+                    Frequency = CustomEventFrequency.Invalid;
+                }
+                if (!bool.TryParse(GetValueOfGlobalTag("development"), out IsDevelopmentVersion))
+                {
+                    IsDevelopmentVersion = true;
+                }
             }
+        }
+
+        private string GetValueOfGlobalTag(string tag)
+        {
+            if (_story == null || _story.globalTags == null || _story.globalTags.Count < 1) return null;
+            foreach(var item in _story.globalTags)
+            {
+                if (item.ToLowerInvariant().Contains(tag.ToLowerInvariant()))
+                {
+                    return item.Split(':').Last();
+                }
+            }
+            return null;
         }
 
         public void ChooseChoice(int index) => _story.ChooseChoiceIndex(index);

@@ -38,6 +38,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
         Rare = 1,
         Uncommon,
         Common,
-        Abundant
+        Abundant,
+        Special
     }
 }

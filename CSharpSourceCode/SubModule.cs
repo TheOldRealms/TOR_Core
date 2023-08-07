@@ -32,6 +32,7 @@ using TOR_Core.CampaignMechanics.BountyMaster;
 using TOR_Core.CampaignMechanics.Chaos;
 using TOR_Core.CampaignMechanics.CustomDialogs;
 using TOR_Core.CampaignMechanics.CustomEncounterDialogs;
+using TOR_Core.CampaignMechanics.CustomEvents;
 using TOR_Core.CampaignMechanics.Diplomacy;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
@@ -122,6 +123,7 @@ namespace TOR_Core
                 starter.AddBehavior(new TORCareerPerkCampaignBehavior());
                 starter.AddBehavior(new RaceFixCampaignBehavior());
                 starter.AddBehavior(new TORAIRecruitmentCampaignBehavior());
+                starter.AddBehavior(new CustomEventsCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
