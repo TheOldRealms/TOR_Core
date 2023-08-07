@@ -30,18 +30,13 @@ namespace TOR_Core.Ink
 
         public override void RefreshValues()
         {
+            Title = _story.Title;
             if (_story == null) return;
             //Get Sprite to display on the right
             PlaySound();
             if (_story.GetIllustration() != null)
             {
                 SpritePath = _story.GetIllustration();
-            }
-            //Detect title
-            if (_story.HasTag("title"))
-            {
-                Title = _story.GetLine();
-                _story.Continue(out _);
             }
             //Calc if the current text is too long
             if(CurrentText.Count() > _maxChars)

@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TOR_Core.Extensions;
 using TOR_Core.Ink;
 
 namespace TOR_Core.CampaignMechanics.CustomEvents
 {
     public class CustomEventsCampaignBehavior : CampaignBehaviorBase
     {
-        private const float RareChance = 0.5f;
-        private const float UncommonChance = 1f;
-        private const float CommonChance = 3f;
-        private const float AbundantChance = 10f;
+        private const float RareChance = 1f;
+        private const float UncommonChance = 5f;
+        private const float CommonChance = 10f;
+        private const float AbundantChance = 15f;
 
         List<CustomEvent> _events = new List<CustomEvent>();
 
@@ -28,7 +29,11 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
         private void OnSessionStart(CampaignGameStarter starter)
         {
             _events.Clear();
-            _events.Add(new CustomEvent("OverturnedCart", CustomEventFrequency.Common, () => MobileParty.MainParty.IsMoving, () => InkStoryManager.OpenStory("OverturnedCart")));
+            foreach (var item in InkStoryManager.AllStories.Where(x => !x.IsDevelopmentVersion && x.Frequency != CustomEventFrequency.Invalid && x.Frequency != CustomEventFrequency.Special))
+            {
+                _events.Add(new CustomEvent(item.StringId, item.Frequency, () => MobileParty.MainParty.IsMoving && MobileParty.MainParty.Army == null && !Hero.MainHero.IsPrisoner, () => InkStoryManager.OpenStory(item.StringId)));
+            }
+            _events.Add(new CustomEvent("Duel", CustomEventFrequency.Uncommon, () => MobileParty.MainParty.IsMoving && MobileParty.MainParty.Army == null && !Hero.MainHero.IsPrisoner && !Hero.MainHero.HasAttribute("DefeatedVittorio"), () => InkStoryManager.OpenStory("Duel")));
         }
 
         private void HourlyTick(MobileParty party)
@@ -36,7 +41,8 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             if (party != MobileParty.MainParty) return;
             if(GetRandomFrequency(out CustomEventFrequency chosenFrequency))
             {
-                var chosenEvent = _events.GetRandomElementWithPredicate(x => x.Frequency == chosenFrequency && x.DoesConditionHold());
+                var chosenEvent = _events.GetRandomElementWithPredicate(x => x.Frequency == chosenFrequency && x.DoesConditionHold() && x.StringId != InkStoryManager.LastStoryId);
+                if(chosenEvent == null) chosenEvent = _events.GetRandomElementWithPredicate(x => x.Frequency == chosenFrequency && x.DoesConditionHold());
                 if (chosenEvent != null) chosenEvent.Trigger();
             }
         }

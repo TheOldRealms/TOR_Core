@@ -74,7 +74,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             {
                 var info = c.GetAttributes();
             }
-            _raiseableCharacters = characters.Where(character => character.IsUndead() && character.IsBasicTroop).ToList();
+            _raiseableCharacters = characters.Where(character => character.IsUndead() && character.IsBasicTroop && character.Race == TaleWorlds.Core.FaceGen.GetRaceOrDefault("skeleton")).ToList();
         }
 
         private List<CharacterObject> CalculateBloodKnightsCandidates(MapEvent mapEvent, out int reduced)
