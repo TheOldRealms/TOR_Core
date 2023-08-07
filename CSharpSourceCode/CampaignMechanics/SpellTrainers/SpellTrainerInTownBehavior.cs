@@ -178,11 +178,14 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
         private void AddDialogs(CampaignGameStarter obj)
         {
-            obj.AddDialogLine("trainer_prophetesse_start", "start", "choices_prophetesse", "The Lady bless you.", isMorganaLeFay, null, 200, null);
-            obj.AddPlayerLine("trainer_learnspells", "choices_prophetesse", "openbook", "I have come seeking further knowledge of the Lady.", () => MobileParty.MainParty.HasSpellCasterMember()&&damselCondition(), null, 200, null);
-            obj.AddPlayerLine("trainer_scrollShop", "choices_prophetesse", "start", "I would like to buy Scrolls", null, OpenScrollShop, 200, null);
-            obj.AddPlayerLine("trainer_playergoodbye", "choices_prophetesse", "saygoodbye", "I'll seek you later.", null, null, 200, null);
-            obj.AddDialogLine("trainer_goodbye", "saygoodbye", "close_window", "May the Lady guide you on all your ways.", isMorganaLeFay, null, 200, null);
+            obj.AddDialogLine("trainer_prophetesse_start", "start", "choices_prophetesse", "Welcome, child of Bretonnia. The Lady has guided you to my presence. Speak, and let your intentions unfold.", isMorgianaLeFay, null, 200, null);
+            obj.AddDialogLine("trainer_prophetesse_start", "hub_prophetesse", "choices_prophetesse", "Is there more you seek? Speak your desires.", isMorgianaLeFay, null, 200, null);
+            obj.AddPlayerLine("trainer_prophetesse_learnspells", "choices_prophetesse", "openbook_prophetesse", "Revered Fay Enchantress, share with me some of your magic teachings.", () => MobileParty.MainParty.HasSpellCasterMember()&&damselCondition(), null, 200, null);
+            obj.AddPlayerLine("trainer_prophetesse_scrollShop", "choices_prophetesse", "start", "Gracious Enchantress, I ask you for the tomes and scrolls that hold the keys to the Lady's wisdom.", null, OpenScrollShop, 200, null);
+            obj.AddPlayerLine("trainer_prophetesse_playergoodbye", "choices_prophetesse", "saygoodbye", "Until we meet again, my Fay Enchantress.", null, null, 200, null);
+            obj.AddDialogLine("trainer_prophetesse_goodbye", "saygoodbye", "close_window", "Go forth, and may the Lady's grace illuminate your path.", isMorgianaLeFay, null, 200, null);
+            obj.AddDialogLine("trainer_prophetesse_afterlearnspells", "openbook_prophetesse", "hub_prophetesse", "You have grasped this weave with prowess. Carry this knowledge, and may it serve you well, as a beacon of the Lady's blessings.", null, openbookconsequence, 200, null);
+            
             
             obj.AddDialogLine("trainer_start", "start", "choices", "Do I know you? What do you need, be quick I am a busy.", spelltrainerstartcondition, null, 200, null);
             obj.AddPlayerLine("trainer_test", "choices", "magictest", "{TEST_QUESTION}", magictestcondition, null, 200, null);
@@ -201,7 +204,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             obj.AddDialogLine("trainer_goodbye", "saygoodbye", "close_window", "Hmm, yes. Farewell.", null, null, 200, null);
         }
 
-        private bool isMorganaLeFay()
+        private bool isMorgianaLeFay()
         {
             if(!spelltrainerstartcondition()) return false;
             var partner = CharacterObject.OneToOneConversationCharacter;
@@ -228,7 +231,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
         private bool magictestcondition()
         {
-            if (isMorganaLeFay()) return false;
+            if (isMorgianaLeFay()) return false;
             if (!CareerHelper.PlayerOwnsMagicCareer()) return false;
             
             var flag = false;
