@@ -105,7 +105,7 @@
       <Village id="village_comp_AV1_2" village_type="VillageType.fisherman" hearth="560" gate_rotation="0.008" trade_bound="Settlement.town_AV1" bound="Settlement.town_AV1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_001" />
+      <Location id="village_center" scene_name="TOR_empire_village_001" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -118,7 +118,7 @@
       <Village id="village_comp_AV1_3" village_type="VillageType.wheat_farm" hearth="320" gate_rotation="0.008" trade_bound="Settlement.town_AV1" bound="Settlement.town_AV1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_003" />
+      <Location id="village_center" scene_name="TOR_empire_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -131,7 +131,7 @@
       <Village id="village_comp_AV1_4" village_type="VillageType.europe_horse_ranch" hearth="420" gate_rotation="0.008" trade_bound="Settlement.town_AV1" bound="Settlement.town_AV1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -154,7 +154,7 @@
       <Village id="castle_village_comp_AV2_1" village_type="VillageType.europe_horse_ranch" hearth="200" trade_bound="Settlement.town_AV1" bound="Settlement.castle_AV2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_001" />
+      <Location id="village_center" scene_name="TOR_empire_village_001" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -180,7 +180,7 @@
       <Village id="castle_village_comp_AV2_3" village_type="VillageType.cattle_farm" hearth="400" trade_bound="Settlement.town_AV1" bound="Settlement.castle_AV2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -213,7 +213,7 @@
       <Village id="village_comp_AV3_1" village_type="VillageType.iron_mine" hearth="400" trade_bound="Settlement.town_AV3" bound="Settlement.town_AV3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_001" />
+      <Location id="village_center" scene_name="TOR_empire_village_001" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -226,7 +226,7 @@
       <Village id="village_comp_AV3_2" village_type="VillageType.sheep_farm" hearth="300" trade_bound="Settlement.town_AV3" bound="Settlement.town_AV3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -249,7 +249,7 @@
       <Village id="castle_village_comp_AV4_1" village_type="VillageType.wheat_farm" hearth="300" trade_bound="Settlement.town_AV3" bound="Settlement.castle_AV4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -262,7 +262,7 @@
       <Village id="castle_village_comp_AV4_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_AV3" bound="Settlement.castle_AV4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_003" />
+      <Location id="village_center" scene_name="TOR_empire_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -296,7 +296,7 @@
       <Village id="village_comp_ST1_1" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ST1" bound="Settlement.town_ST1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_003" />
+      <Location id="village_center" scene_name="TOR_empire_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -309,7 +309,7 @@
       <Village id="village_comp_ST1_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ST1" bound="Settlement.town_ST1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -322,7 +322,7 @@
       <Village id="village_comp_ST1_3" village_type="VillageType.fisherman" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ST1" bound="Settlement.town_ST1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_001" />
+      <Location id="village_center" scene_name="TOR_empire_village_001" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -335,7 +335,7 @@
       <Village id="village_comp_ST1_4" village_type="VillageType.flax_plant" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ST1" bound="Settlement.town_ST1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -358,7 +358,7 @@
       <Village id="castle_village_comp_ST1_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ST1" bound="Settlement.castle_ST1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -371,7 +371,7 @@
       <Village id="castle_village_comp_ST1_2" village_type="VillageType.trapper" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ST1" bound="Settlement.castle_ST1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_003" />
+      <Location id="village_center" scene_name="TOR_empire_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -407,7 +407,7 @@
       <Village id="castle_village_comp_ST2_2" village_type="VillageType.swine_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ST1" bound="Settlement.castle_ST2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_002" />
+      <Location id="village_center" scene_name="TOR_empire_village_002" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -430,7 +430,7 @@
       <Village id="castle_village_comp_ST3_1" village_type="VillageType.sheep_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ST1" bound="Settlement.castle_ST3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_003" />
+      <Location id="village_center" scene_name="TOR_empire_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -443,7 +443,7 @@
       <Village id="castle_village_comp_ST3_2" village_type="VillageType.vineyard" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ST1" bound="Settlement.castle_ST3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -476,7 +476,7 @@
       <Village id="village_comp_ST2_1" village_type="VillageType.sheep_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ST2" bound="Settlement.town_ST2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_003" />
+      <Location id="village_center" scene_name="TOR_empire_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -489,7 +489,7 @@
       <Village id="village_comp_ST2_2" village_type="VillageType.cattle_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ST2" bound="Settlement.town_ST2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -502,7 +502,7 @@
       <Village id="village_comp_ST2_3" village_type="VillageType.silver_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ST2" bound="Settlement.town_ST2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_003" />
+      <Location id="village_center" scene_name="TOR_empire_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -535,7 +535,7 @@
       <Village id="village_comp_ST3_1" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ST3" bound="Settlement.town_ST3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_003" />
+      <Location id="village_center" scene_name="TOR_empire_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -581,7 +581,7 @@
       <Village id="village_comp_ST4_1" village_type="VillageType.iron_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ST4" bound="Settlement.town_ST4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_002" />
+      <Location id="village_center" scene_name="TOR_empire_village_002" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -594,7 +594,7 @@
       <Village id="village_comp_ST4_2" village_type="VillageType.silver_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ST4" bound="Settlement.town_ST4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -607,7 +607,7 @@
       <Village id="village_comp_ST4_3" village_type="VillageType.sheep_farm" hearth="400" gate_rotation="0.008" trade_bound="Settlement.town_ST4" bound="Settlement.town_ST4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_002" />
+      <Location id="village_center" scene_name="TOR_empire_village_002" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -643,7 +643,7 @@
       <Village id="castle_village_comp_ST4_1" village_type="VillageType.vineyard" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ST2" bound="Settlement.castle_ST4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_003" />
+      <Location id="village_center" scene_name="TOR_empire_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -656,7 +656,7 @@
       <Village id="castle_village_comp_ST4_2" village_type="VillageType.sheep_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ST2" bound="Settlement.castle_ST4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -679,7 +679,7 @@
       <Village id="castle_village_comp_ST5_1" village_type="VillageType.sheep_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ST2" bound="Settlement.castle_ST5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -692,7 +692,7 @@
       <Village id="castle_village_comp_ST5_2" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ST2" bound="Settlement.castle_ST5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_001" />
+      <Location id="village_center" scene_name="TOR_empire_village_001" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -726,7 +726,7 @@
       <Village id="village_comp_MT1_1" village_type="VillageType.sheep_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MT1" bound="Settlement.town_MT1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -739,7 +739,7 @@
       <Village id="village_comp_MT1_2" village_type="VillageType.sheep_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MT1" bound="Settlement.town_MT1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_002" />
+      <Location id="village_center" scene_name="TOR_empire_village_002" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -765,7 +765,7 @@
       <Village id="village_comp_MT1_4" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MT1" bound="Settlement.town_MT1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_003" />
+      <Location id="village_center" scene_name="TOR_empire_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1330,7 +1330,7 @@
       <Village id="village_comp_WI1_2" village_type="VillageType.silver_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WI1" bound="Settlement.town_WI1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1343,7 +1343,7 @@
       <Village id="village_comp_WI1_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WI1" bound="Settlement.town_WI1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_001" />
+      <Location id="village_center" scene_name="TOR_empire_village_001" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1356,7 +1356,7 @@
       <Village id="village_comp_WI1_4" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WI1" bound="Settlement.town_WI1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_003" />
+      <Location id="village_center" scene_name="TOR_empire_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1382,7 +1382,7 @@
       <Village id="village_comp_WI2_2" village_type="VillageType.fisherman" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WI2" bound="Settlement.town_WI2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_002" />
+      <Location id="village_center" scene_name="TOR_empire_village_002" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1395,7 +1395,7 @@
       <Village id="village_comp_WI2_3" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WI2" bound="Settlement.town_WI2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_001" />
+      <Location id="village_center" scene_name="TOR_empire_village_001" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1408,7 +1408,7 @@
       <Village id="village_comp_WI2_4" village_type="VillageType.fisherman" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WI2" bound="Settlement.town_WI2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1421,7 +1421,7 @@
       <Village id="village_comp_WI3_1" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WI3" bound="Settlement.town_WI3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_002" />
+      <Location id="village_center" scene_name="TOR_empire_village_002" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1447,7 +1447,7 @@
       <Village id="village_comp_WI4_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WI4" bound="Settlement.town_WI4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_002" />
+      <Location id="village_center" scene_name="TOR_empire_village_002" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1460,7 +1460,7 @@
       <Village id="village_comp_WI4_2" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WI4" bound="Settlement.town_WI4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_002" />
+      <Location id="village_center" scene_name="TOR_empire_village_002" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1473,7 +1473,7 @@
       <Village id="village_comp_WI4_3" village_type="VillageType.iron_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WI4" bound="Settlement.town_WI4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1499,7 +1499,7 @@
       <Village id="village_comp_WI5_1" village_type="VillageType.vineyard" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WI5" bound="Settlement.town_WI5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1512,7 +1512,7 @@
       <Village id="village_comp_WI5_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WI5" bound="Settlement.town_WI5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1525,7 +1525,7 @@
       <Village id="village_comp_WI5_3" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WI5" bound="Settlement.town_WI5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_003" />
+      <Location id="village_center" scene_name="TOR_empire_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1538,7 +1538,7 @@
       <Village id="village_comp_WI6_1" village_type="VillageType.clay_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WI6" bound="Settlement.town_WI6" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_002" />
+      <Location id="village_center" scene_name="TOR_empire_village_002" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1551,7 +1551,7 @@
       <Village id="village_comp_WI6_2" village_type="VillageType.swine_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WI6" bound="Settlement.town_WI6" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1564,7 +1564,7 @@
       <Village id="village_comp_WI6_3" village_type="VillageType.fisherman" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WI6" bound="Settlement.town_WI6" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_001" />
+      <Location id="village_center" scene_name="TOR_empire_village_001" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1577,7 +1577,7 @@
       <Village id="castle_village_comp_WI1_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_WI3" bound="Settlement.castle_WI1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_001" />
+      <Location id="village_center" scene_name="TOR_empire_village_001" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1590,7 +1590,7 @@
       <Village id="castle_village_comp_WI1_2" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.town_WI3" bound="Settlement.castle_WI1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_003" />
+      <Location id="village_center" scene_name="TOR_empire_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1603,7 +1603,7 @@
       <Village id="castle_village_comp_WI2_1" village_type="VillageType.vineyard" hearth="200" trade_bound="Settlement.town_WI5" bound="Settlement.castle_WI2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_002" />
+      <Location id="village_center" scene_name="TOR_empire_village_002" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1616,7 +1616,7 @@
       <Village id="castle_village_comp_WI2_2" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.town_WI5" bound="Settlement.castle_WI2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_003" />
+      <Location id="village_center" scene_name="TOR_empire_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1629,7 +1629,7 @@
       <Village id="castle_village_comp_WI3_1" village_type="VillageType.iron_mine" hearth="200" trade_bound="Settlement.town_WI3" bound="Settlement.castle_WI3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_002" />
+      <Location id="village_center" scene_name="TOR_empire_village_002" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1655,7 +1655,7 @@
       <Village id="castle_village_comp_WI4_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_WI6" bound="Settlement.castle_WI4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1668,7 +1668,7 @@
       <Village id="castle_village_comp_WI4_2" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_WI6" bound="Settlement.castle_WI4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_003" />
+      <Location id="village_center" scene_name="TOR_empire_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1694,7 +1694,7 @@
       <Village id="castle_village_comp_WI5_1" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.town_WI6" bound="Settlement.castle_WI5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1707,7 +1707,7 @@
       <Village id="castle_village_comp_WI5_2" village_type="VillageType.europe_horse_ranch" hearth="200" trade_bound="Settlement.town_WI6" bound="Settlement.castle_WI5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_002" />
+      <Location id="village_center" scene_name="TOR_empire_village_002" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1720,7 +1720,7 @@
       <Village id="castle_village_comp_WI5_3" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_WI6" bound="Settlement.castle_WI5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_003" />
+      <Location id="village_center" scene_name="TOR_empire_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1733,7 +1733,7 @@
       <Village id="castle_village_comp_WI6_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.town_WI4" bound="Settlement.castle_WI6" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_003" />
+      <Location id="village_center" scene_name="TOR_empire_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1759,7 +1759,7 @@
       <Village id="castle_village_comp_WI6_3" village_type="VillageType.fisherman" hearth="200" trade_bound="Settlement.town_WI2" bound="Settlement.castle_WI6" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_001" />
+      <Location id="village_center" scene_name="TOR_empire_village_001" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2019,7 +2019,7 @@
       <Village id="castle_village_comp_TB1_1" village_type="VillageType.lumberjack" hearth="180" trade_bound="Settlement.town_TB4" bound="Settlement.castle_TB1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2032,7 +2032,7 @@
       <Village id="castle_village_comp_TB1_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_TB4" bound="Settlement.castle_TB1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2055,7 +2055,7 @@
       <Village id="castle_village_comp_TB2_1" village_type="VillageType.europe_horse_ranch" hearth="180" trade_bound="Settlement.town_TB3" bound="Settlement.castle_TB2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2068,7 +2068,7 @@
       <Village id="castle_village_comp_TB2_2" village_type="VillageType.fisherman" hearth="200" trade_bound="Settlement.town_TB3" bound="Settlement.castle_TB2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2091,7 +2091,7 @@
       <Village id="castle_village_comp_TB3_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_TB2" bound="Settlement.castle_TB3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2104,7 +2104,7 @@
       <Village id="castle_village_comp_TB3_2" village_type="VillageType.trapper" hearth="200" trade_bound="Settlement.town_TB2" bound="Settlement.castle_TB3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2127,7 +2127,7 @@
       <Village id="castle_village_comp_TB4_1" village_type="VillageType.iron_mine" hearth="200" trade_bound="Settlement.town_TB1" bound="Settlement.castle_TB4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2140,7 +2140,7 @@
       <Village id="castle_village_comp_TB4_2" village_type="VillageType.fisherman" hearth="200" trade_bound="Settlement.town_TB1" bound="Settlement.castle_TB4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2466,7 +2466,7 @@
       <Village id="castle_village_comp_RL1_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_RL6" bound="Settlement.castle_RL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2479,7 +2479,7 @@
       <Village id="castle_village_comp_RL1_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_RL6" bound="Settlement.castle_RL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2502,7 +2502,7 @@
       <Village id="castle_village_comp_RL2_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_RL5" bound="Settlement.castle_RL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2515,7 +2515,7 @@
       <Village id="castle_village_comp_RL2_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_RL5" bound="Settlement.castle_RL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2538,7 +2538,7 @@
       <Village id="castle_village_comp_RL3_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_RL1" bound="Settlement.castle_RL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2551,7 +2551,7 @@
       <Village id="castle_village_comp_RL3_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_RL1" bound="Settlement.castle_RL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2574,7 +2574,7 @@
       <Village id="castle_village_comp_RL4_1" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.town_RL1" bound="Settlement.castle_RL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2587,7 +2587,7 @@
       <Village id="castle_village_comp_RL4_2" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.town_RL1" bound="Settlement.castle_RL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2610,7 +2610,7 @@
       <Village id="castle_village_comp_RL5_1" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.town_RL2" bound="Settlement.castle_RL5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2623,7 +2623,7 @@
       <Village id="castle_village_comp_RL5_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_RL2" bound="Settlement.castle_RL5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2766,7 +2766,7 @@
       <Village id="castle_village_comp_MO1_1" village_type="VillageType.europe_horse_ranch" hearth="200" trade_bound="Settlement.town_MO1" bound="Settlement.castle_MO1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2779,7 +2779,7 @@
       <Village id="castle_village_comp_MO1_2" village_type="VillageType.swine_farm" hearth="200" trade_bound="Settlement.town_MO1" bound="Settlement.castle_MO1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2802,7 +2802,7 @@
       <Village id="castle_village_comp_MO2_1" village_type="VillageType.flax_plant" hearth="200" trade_bound="Settlement.town_MO2" bound="Settlement.castle_MO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2815,7 +2815,7 @@
       <Village id="castle_village_comp_MO2_2" village_type="VillageType.salt_mine" hearth="200" trade_bound="Settlement.town_MO2" bound="Settlement.castle_MO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2838,7 +2838,7 @@
       <Village id="castle_village_comp_MO3_1" village_type="VillageType.fisherman" hearth="200" trade_bound="Settlement.town_MO1" bound="Settlement.castle_MO3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2851,7 +2851,7 @@
       <Village id="castle_village_comp_MO3_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_MO1" bound="Settlement.castle_MO3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -2993,7 +2993,7 @@
       <Village id="castle_village_comp_PA1_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.town_PA1" bound="Settlement.castle_PA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3006,7 +3006,7 @@
       <Village id="castle_village_comp_PA1_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_PA1" bound="Settlement.castle_PA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3029,7 +3029,7 @@
       <Village id="castle_village_comp_PA2_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.town_PA2" bound="Settlement.castle_PA2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3042,7 +3042,7 @@
       <Village id="castle_village_comp_PA2_2" village_type="VillageType.vineyard" hearth="200" trade_bound="Settlement.town_PA2" bound="Settlement.castle_PA2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3184,7 +3184,7 @@
       <Village id="castle_village_comp_BA1_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.castle_BA1" bound="Settlement.castle_BA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3197,7 +3197,7 @@
       <Village id="castle_village_comp_BA1_2" village_type="VillageType.europe_horse_ranch" hearth="200" trade_bound="Settlement.castle_BA1" bound="Settlement.castle_BA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3220,7 +3220,7 @@
       <Village id="castle_village_comp_BA2_1" village_type="VillageType.salt_mine" hearth="200" trade_bound="Settlement.castle_BA2" bound="Settlement.castle_BA2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3233,7 +3233,7 @@
       <Village id="castle_village_comp_BA2_2" village_type="VillageType.wheat_farm" hearth="300" trade_bound="Settlement.castle_BA2" bound="Settlement.castle_BA2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3256,7 +3256,7 @@
       <Village id="castle_village_comp_BA3_1" village_type="VillageType.swine_farm" hearth="200" trade_bound="Settlement.castle_BA3" bound="Settlement.castle_BA3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3269,7 +3269,7 @@
       <Village id="castle_village_comp_BA3_2" village_type="VillageType.silk_plant" hearth="200" trade_bound="Settlement.castle_BA3" bound="Settlement.castle_BA3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3303,7 +3303,7 @@
       <Village id="village_comp_BL1_1" village_type="VillageType.fisherman" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BL1" bound="Settlement.town_BL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_empire_village_005" />
+      <Location id="village_center" scene_name="TOR_bretonnia_village_coast_002" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3362,7 +3362,7 @@
       <Village id="village_comp_BL2_1" village_type="VillageType.salt_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BL2" bound="Settlement.town_BL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_empire_village_005" />
+      <Location id="village_center" scene_name="TOR_bretonnia_village_coast_001" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3388,7 +3388,7 @@
       <Village id="village_comp_BL2_3" village_type="VillageType.salt_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BL2" bound="Settlement.town_BL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_empire_village_005" />
+      <Location id="village_center" scene_name="TOR_bretonnia_village_coast_001" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3411,7 +3411,7 @@
       <Village id="castle_village_comp_BL1_1" village_type="VillageType.vineyard" hearth="200" trade_bound="Settlement.castle_BL1" bound="Settlement.castle_BL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3424,7 +3424,7 @@
       <Village id="castle_village_comp_BL1_2" village_type="VillageType.fisherman" hearth="200" trade_bound="Settlement.castle_BL1" bound="Settlement.castle_BL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3447,7 +3447,7 @@
       <Village id="castle_village_comp_BL2_1" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.castle_BL2" bound="Settlement.castle_BL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3460,7 +3460,7 @@
       <Village id="castle_village_comp_BL2_2" village_type="VillageType.europe_horse_ranch" hearth="200" trade_bound="Settlement.castle_BL2" bound="Settlement.castle_BL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3483,7 +3483,7 @@
       <Village id="castle_village_comp_BL3_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.castle_BL3" bound="Settlement.castle_BL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3496,7 +3496,7 @@
       <Village id="castle_village_comp_BL3_2" village_type="VillageType.clay_mine" hearth="200" trade_bound="Settlement.castle_BL3" bound="Settlement.castle_BL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3530,7 +3530,7 @@
       <Village id="village_comp_BE1_1" village_type="VillageType.fisherman" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_BE1" bound="Settlement.town_BE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_empire_village_005" />
+      <Location id="village_center" scene_name="TOR_bretonnia_village_coast_002" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3638,7 +3638,7 @@
       <Village id="castle_village_comp_BE1_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_BE1" bound="Settlement.castle_BE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3651,7 +3651,7 @@
       <Village id="castle_village_comp_BE1_2" village_type="VillageType.olive_trees" hearth="200" trade_bound="Settlement.castle_BE1" bound="Settlement.castle_BE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3674,7 +3674,7 @@
       <Village id="castle_village_comp_BE2_1" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.castle_BE2" bound="Settlement.castle_BE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3687,7 +3687,7 @@
       <Village id="castle_village_comp_BE2_2" village_type="VillageType.flax_plant" hearth="200" trade_bound="Settlement.castle_BE2" bound="Settlement.castle_BE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3710,7 +3710,7 @@
       <Village id="castle_village_comp_BE3_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_BE3" bound="Settlement.castle_BE3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_bretonnia_village_coast_002" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3723,7 +3723,7 @@
       <Village id="castle_village_comp_BE3_2" village_type="VillageType.clay_mine" hearth="200" trade_bound="Settlement.castle_BE3" bound="Settlement.castle_BE3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3865,7 +3865,7 @@
       <Village id="castle_village_comp_AQ1_1" village_type="VillageType.vineyard" hearth="200" trade_bound="Settlement.castle_AQ1" bound="Settlement.castle_AQ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3878,7 +3878,7 @@
       <Village id="castle_village_comp_AQ1_2" village_type="VillageType.swine_farm" hearth="200" trade_bound="Settlement.castle_AQ1" bound="Settlement.castle_AQ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3901,7 +3901,7 @@
       <Village id="castle_village_comp_AQ2_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.castle_AQ2" bound="Settlement.castle_AQ2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3914,7 +3914,7 @@
       <Village id="castle_village_comp_AQ2_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_AQ2" bound="Settlement.castle_AQ2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3937,7 +3937,7 @@
       <Village id="castle_village_comp_AQ3_1" village_type="VillageType.silk_plant" hearth="200" trade_bound="Settlement.castle_AQ3" bound="Settlement.castle_AQ3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3950,7 +3950,7 @@
       <Village id="castle_village_comp_AQ3_2" village_type="VillageType.silver_mine" hearth="200" trade_bound="Settlement.castle_AQ3" bound="Settlement.castle_AQ3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4092,7 +4092,7 @@
       <Village id="castle_village_comp_CC1_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.castle_CC1" bound="Settlement.castle_CC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4105,7 +4105,7 @@
       <Village id="castle_village_comp_CC1_2" village_type="VillageType.iron_mine" hearth="200" trade_bound="Settlement.castle_CC1" bound="Settlement.castle_CC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4118,7 +4118,7 @@
       <Village id="castle_village_comp_CC1_3" village_type="VillageType.europe_horse_ranch" hearth="200" trade_bound="Settlement.castle_CC1" bound="Settlement.castle_CC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4141,7 +4141,7 @@
       <Village id="castle_village_comp_CC2_1" village_type="VillageType.olive_trees" hearth="200" trade_bound="Settlement.castle_CC2" bound="Settlement.castle_CC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4154,7 +4154,7 @@
       <Village id="castle_village_comp_CC2_2" village_type="VillageType.iron_mine" hearth="200" trade_bound="Settlement.castle_CC2" bound="Settlement.castle_CC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4167,7 +4167,7 @@
       <Village id="castle_village_comp_CC2_3" village_type="VillageType.flax_plant" hearth="300" trade_bound="Settlement.castle_CC2" bound="Settlement.castle_CC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4190,7 +4190,7 @@
       <Village id="castle_village_comp_CC3_1" village_type="VillageType.swine_farm" hearth="200" trade_bound="Settlement.castle_CC3" bound="Settlement.castle_CC3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4203,7 +4203,7 @@
       <Village id="castle_village_comp_CC3_2" village_type="VillageType.clay_mine" hearth="200" trade_bound="Settlement.castle_CC3" bound="Settlement.castle_CC3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4216,7 +4216,7 @@
       <Village id="castle_village_comp_CC3_3" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.castle_CC3" bound="Settlement.castle_CC3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4358,7 +4358,7 @@
       <Village id="castle_village_comp_QU1_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU1" bound="Settlement.castle_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4371,7 +4371,7 @@
       <Village id="castle_village_comp_QU1_2" village_type="VillageType.vineyard" hearth="200" trade_bound="Settlement.castle_QU1" bound="Settlement.castle_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4384,7 +4384,7 @@
       <Village id="castle_village_comp_QU1_3" village_type="VillageType.clay_mine" hearth="200" trade_bound="Settlement.castle_QU1" bound="Settlement.castle_QU1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4407,7 +4407,7 @@
       <Village id="castle_village_comp_QU2_1" village_type="VillageType.fisherman" hearth="200" trade_bound="Settlement.castle_QU2" bound="Settlement.castle_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4420,7 +4420,7 @@
       <Village id="castle_village_comp_QU2_2" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.castle_QU2" bound="Settlement.castle_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4433,7 +4433,7 @@
       <Village id="castle_village_comp_QU2_3" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.castle_QU2" bound="Settlement.castle_QU2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4456,7 +4456,7 @@
       <Village id="castle_village_comp_QU3_1" village_type="VillageType.flax_plant" hearth="200" trade_bound="Settlement.castle_QU3" bound="Settlement.castle_QU3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4469,7 +4469,7 @@
       <Village id="castle_village_comp_QU3_2" village_type="VillageType.silk_plant" hearth="200" trade_bound="Settlement.castle_QU3" bound="Settlement.castle_QU3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4482,7 +4482,7 @@
       <Village id="castle_village_comp_QU3_3" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_QU3" bound="Settlement.castle_QU3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4529,7 +4529,7 @@
       <Village id="village_comp_MS1_2" village_type="VillageType.fisherman" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_MS1" bound="Settlement.town_MS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_empire_village_005" />
+      <Location id="village_center" scene_name="TOR_bretonnian_village_001" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4565,7 +4565,7 @@
       <Village id="castle_village_comp_MS1_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.castle_MS1" bound="Settlement.castle_MS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4588,7 +4588,7 @@
       <Village id="castle_village_comp_MS2_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_MS2" bound="Settlement.castle_MS2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOW_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
