@@ -1395,7 +1395,6 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
-      <string>Unstoppable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -1407,7 +1406,6 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
-      <string>Unstoppable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -1419,7 +1417,6 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
-      <string>Unstoppable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -2422,18 +2419,6 @@
   <CharacterExtendedInfo id="tor_br_bandit_scout">
     <Abilities />
     <Attributes />
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ti_vittorio">
-    <Abilities />
-    <Attributes>
-      <string>Unbreakable</string>
-      <string>Unstoppable</string>
-    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -4108,6 +4093,10 @@
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_spelltrainer_vc_0">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_spelltrainer_bretonnia_0">
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>

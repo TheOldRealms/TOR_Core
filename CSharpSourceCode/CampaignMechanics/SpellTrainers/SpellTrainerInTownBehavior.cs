@@ -35,7 +35,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
     {
         private readonly string _empireTrainerId = "tor_spelltrainer_empire_0";
         private readonly string _vampireTrainerId = "tor_spelltrainer_vc_0";
-        private readonly string _prophetessTrainerId = "tor_spelltrainer_vlandia_0";
+        private readonly string _prophetessTrainerId = "tor_spelltrainer_bretonnia_0";
         private string _testResult = "";
         private Dictionary<string, string> _settlementToTrainerMap = new Dictionary<string, string>();
         private readonly float _testSuccessChance = 1f;

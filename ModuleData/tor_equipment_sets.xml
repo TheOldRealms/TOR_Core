@@ -11434,6 +11434,24 @@
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_vc_wight_king_001" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_fay_enchantress_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_staff_proph_001" />
+      <Equipment slot="Item1" id="Item.seax_blunt" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_valten" />
+      <Equipment slot="Body" id="Item.vlandian_corset_dress" />
+      <Equipment slot="Cape" id="Item.wrapped_scarf" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_bracers_prophetess_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_staff_proph_001" />
+      <Equipment slot="Item1" id="Item.seax_blunt" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_valten" />
+      <Equipment slot="Body" id="Item.vlandian_corset_dress" />
+      <Equipment slot="Cape" id="Item.wrapped_scarf" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_bracers_prophetess_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_bretonnian_knight_template" culture="Culture.vlandia">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_001" />
