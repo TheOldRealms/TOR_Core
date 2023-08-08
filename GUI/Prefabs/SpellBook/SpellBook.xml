@@ -103,9 +103,11 @@
                                         </ButtonWidget>
                                       </Children>
                                     </Widget>
+									<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" VerticalAlignment="Center" HorizontalAlignment="Center" SuggestedHeight="112" SuggestedWidth="112" MarginBottom="-2" MarginLeft="-2" MarginRight="-2" MarginTop="-2" Sprite="frame" ColorFactor="1" IsVisible="@IsDisabled"/>
                                     <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="@SpellSpriteName" IsVisible="@IsKnown" Command.Click="ExecuteSelectSpell">
                                       <Children>
-                                        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginBottom="-2" MarginLeft="-2" MarginRight="-2" MarginTop="-2" Sprite="selectionframe" Color="#590009FF" ColorFactor="1" IsVisible="@IsSelected" />
+										<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" VerticalAlignment="Center" HorizontalAlignment="Center" SuggestedHeight="112" SuggestedWidth="112" MarginBottom="-2" MarginLeft="-2" MarginRight="-2" MarginTop="-2" Sprite="frame" ColorFactor="1" IsNotVisible="@IsSelected"/>
+                                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" VerticalAlignment="Center" HorizontalAlignment="Center" SuggestedHeight="112" SuggestedWidth="112" MarginBottom="-2" MarginLeft="-2" MarginRight="-2" MarginTop="-2" Sprite="selectionframe" ColorFactor="1" IsVisible="@IsSelected" />
                                       </Children>
                                     </ButtonWidget>
                                   </Children>

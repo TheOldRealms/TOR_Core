@@ -7,6 +7,7 @@ using TaleWorlds.Library;
 using TOR_Core.Utilities;
 using TOR_Core.Extensions;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CharacterDevelopment;
 
 namespace TOR_Core.AbilitySystem.SpellBook
 {
@@ -73,6 +74,10 @@ namespace TOR_Core.AbilitySystem.SpellBook
                     if (info.KnownLores.Contains(lore)) LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero));
                 }
                 else if(!lore.DisabledForCultures.Contains(_trainerCulture))
+                {
+                    LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
+                }
+                else if (_isTrainerMode && Hero.MainHero.HasCareer(TORCareers.GrailDamsel)&& Hero.MainHero.HasKnownLore(lore.ID) && CharacterObject.OneToOneConversationCharacter != null && _trainerCulture == "vlandia")
                 {
                     LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
                 }
