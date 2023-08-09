@@ -46,12 +46,12 @@
       <HerdStone id="herdstone_02" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="haunted_site_01" name="{=!}Hunger Woods" owner="Faction.sylvania_clan_1" posX="1608.94" posY="1006.724" culture="Culture.khuzait" text="{=!}Cursed Site">
+  <Settlement id="haunted_site_01" name="{=!}Hunger Woods" owner="Faction.sylvania_clan_1" posX="1582.078" posY="1016.387" culture="Culture.khuzait" text="{=!}Cursed Site">
     <Components>
       <CursedSite id="haunted_site_01" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="haunted_site_02" name="{=!}Cursed Site" owner="Faction.sylvania_clan_1" posX="1578.651" posY="954.083" culture="Culture.khuzait" text="{=!}Cursed Site">
+  <Settlement id="haunted_site_02" name="{=!}Cursed Site" owner="Faction.sylvania_clan_1" posX="1648.43" posY="1018.036" culture="Culture.khuzait" text="{=!}Cursed Site">
     <Components>
       <CursedSite id="haunted_site_02" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
