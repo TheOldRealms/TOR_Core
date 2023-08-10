@@ -217,6 +217,7 @@ namespace TOR_Core.Quests
             private void OnQuestAccepted()
             {
                 StartQuest();
+                this.QuestDueTime = CampaignTime.Now + CampaignTime.Days(20);
                 var acceptLog = new TextObject("{=!}You were tasked to travel to {TARGET_SETTLEMENT} and root out any cultist who may be hiding there.");
                 acceptLog.SetTextVariable("TARGET_SETTLEMENT", _settlement.EncyclopediaLinkWithName);
                 AddLog(acceptLog);
