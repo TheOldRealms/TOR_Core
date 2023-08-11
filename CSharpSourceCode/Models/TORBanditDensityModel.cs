@@ -11,22 +11,22 @@ namespace TOR_Core.Models
             {
                 if (Campaign.Current.CampaignStartTime.ElapsedDaysUntilNow < 10)
                 {
-                    return 100;
+                    return 200;
                 }
                 else if(Campaign.Current.CampaignStartTime.ElapsedDaysUntilNow < 20)
                 {
-                    return 200;
+                    return 400;
                 }
                 else
                 {
-                    return 300;
+                    return 600;
                 }
             }
         }
 
         public override int NumberOfMaximumBanditPartiesAroundEachHideout => 6;
         public override int NumberOfMaximumBanditPartiesInEachHideout => 3;
-        public override int NumberOfInitialHideoutsAtEachBanditFaction => 20;
-        public override int NumberOfMaximumHideoutsAtEachBanditFaction => 30;
+        public override int NumberOfInitialHideoutsAtEachBanditFaction => 40;
+        public override int NumberOfMaximumHideoutsAtEachBanditFaction => 80;
     }
 }

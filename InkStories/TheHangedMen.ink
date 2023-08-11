@@ -29,64 +29,34 @@
         //Take skulls option for chaos
         //Change skeleton to zombie
         //Defile corpses
-        
-//Data Import/Export Section
-    //Make sure you include this in all ink files to get access to integration functions
-        INCLUDE include.ink
-        
-    //List of Data Being Imported (use this to help keep track of what data you are importing; will help with troubleshooting and testing.)
-    
-        //Party can raise departed
-            VAR PartyCanRaiseDead = false
-                ~ PartyCanRaiseDead = PartyHasNecromancer(false)
-                
-        //Spellcraft (Highest In Party)
-            VAR PartySpellcraftCheckText = 0 //Not important initial value
-                //~ PartySpellcraftCheckText = print_party_skill_chance("Spellcraft", RaiseDeadDifficulty) [Variable Update]
-                
-            VAR PartySpellcraftCheckTest = 0 //Not important initial value
-                //~ PartySpellcraftCheckTest = perform_party_skill_check("Spellcraft", RaiseDeadDifficulty) [Variable Update]
-        
-    //Data Exported (use this to help keep track of what data you are exporting; will help with troubleshooting and testing.)
-        
-        //Mercy change
-            //AddTraitInfluence("Mercy", changeByAmount)
-            
-        //Give Items
-            //Rags
-            //Sword
-                VAR HaveSword = false
-                VAR TookSword = false
-                
-            //Armour
-                VAR LootedBody = false
-            
+
+INCLUDE include.ink
+
 //Variables setup
-    //IMPORTANT! Initial values are mandatory, but they can only be primitives (number, string, boolean). If we want to assign the return value of a function to the variable, we must do it on a separate line, see one line below
 
-    //Seed
-        //~ SEED_RANDOM(100) //Uncomment to lock an RNG testing seed for the randomness. Change number inside () for different seed
-        
+    //Party can raise departed
+        VAR PartyCanRaiseDead = false
+            ~ PartyCanRaiseDead = PartyHasNecromancer(false)
+                
+    //Spellcraft (Highest In Party)
+        VAR PartySpellcraftCheckText = 0 //Not important initial value
+            ~ PartySpellcraftCheckText = print_party_skill_chance("Spellcraft", RaiseDeadDifficulty)
+                
+        VAR PartySpellcraftCheckTest = 0 //Not important initial value
+            ~ PartySpellcraftCheckTest = perform_party_skill_check("Spellcraft", RaiseDeadDifficulty)
+                
+    //Give Items
+        VAR HaveSword = false
+        VAR TookSword = false
+        VAR LootedBody = false
+
     //Raise Dead
-        VAR RaiseDeadDifficulty = 2 //Must start at least greater than 1
-            //Skeleton
-                //Spellcraft >= 25 for 100% chance
-                VAR SkeletonSuccess = false
-            //Skeleton Crypt Guard
-                //Spellcraft >= 100 for 100% chance
-                VAR CryptGuardSuccess = false
+        VAR RaiseDeadDifficulty = 50
+        VAR SkeletonSuccess = false
 
-        
     //Grave Interaction
         VAR DugUpGrave = false
-
-
-//Variable Update
-    //~ PartySpellcraftCheckText = print_party_skill_chance("Spellcraft", RaiseDeadDifficulty)
-    //~ PartySpellcraftCheckTest = perform_party_skill_check("Spellcraft", RaiseDeadDifficulty)
-
-
-//Variable Check (Use for sanity check. Uncomment variables to see what they are)
+        VAR CryptGuardSuccess = false
 
 
 -> Start
@@ -96,55 +66,33 @@
 
     //What to do with the hanging bodies
     =choice1
-            //Variable update
-            ~ RaiseDeadDifficulty = 25
-
         What will your party do with the hanging bodies?
         
-        //Do nothing
             *[Do nothing]
                 You decide to do nothing with the hanging bodies.
-                
-            ->choice1to2Intermission
+                ->choice1to2Intermission
         
-        //Cut down the bodies and bury them
             *[Bury the hanging bodies (Mercy+)]
                 You cut down the bodies and lay them to rest.
-                    
-                    //Mercy change
-                        {AddTraitInfluence("Mercy", 20)}
-            
-            ->choice1to2Intermission
+                ~ AddTraitInfluence("Mercy", 20)
+                ->choice1to2Intermission
         
-        //Cut down the bodies and loot them
-            *[Loot the hanging bodies (3 sets of ragged clothes, Mercy-)]
+            *[Loot the hanging bodies (Mercy-)]
                 You cut down the bodies and loot the corpses, taking the tattered rags they were executed in.
-                
-                    //Mercy change 
-                        {AddTraitInfluence("Mercy", -20)}
-                
-                    //Give Loot (Rags)
-                        {GiveItem("wrapped_headcloth",3)}
-                        {GiveItem("ragged_robes",3)}
-                        {GiveItem("leather_shoes",3)}
-            ->choice1to2Intermission
+                ~ AddTraitInfluence("Mercy", -20)
+                ~ GiveItem("wrapped_headcloth",3)
+                ~ GiveItem("ragged_robes",3)
+                ~ GiveItem("leather_shoes",3)
+                ->choice1to2Intermission
             
         //Raise the hanging bodies as skeletons
-            *{PartyCanRaiseDead == true}[Raise the hanging bodies as skeletons (+3 zombies, Mercy--){print_party_skill_chance("Spellcraft", RaiseDeadDifficulty)}]
-                
-                //Mercy change 
-                    {AddTraitInfluence("Mercy", -50)}  
-                
-                //Raise Dead skeletons
-                    {perform_party_skill_check("Spellcraft", RaiseDeadDifficulty):
-                        -true:
-                            {ChangePartyTroopCount("tor_vc_skeleton",3)}
-                            ~ SkeletonSuccess = true
-                        -false:
-                    }
-                
-                
-                
+            *{PartyCanRaiseDead}[Raise the hanging bodies as skeletons (Mercy--) {print_party_skill_chance("Spellcraft", RaiseDeadDifficulty)}]
+                ~ AddTraitInfluence("Mercy", -50)
+                {perform_party_skill_check("Spellcraft", RaiseDeadDifficulty):
+                    -true:
+                        ~ ChangePartyTroopCount("tor_vc_skeleton",3)
+                        ~ SkeletonSuccess = true
+                }
                 Your party attempts to resurrect the corpses as skeletons {SkeletonSuccess: and succeeds. ->choice1to2Intermission | and fails.->choice1}
 
 
@@ -155,86 +103,73 @@
         
     //What to do with the buried body
     =choice2
-            //Variable Update
-                ~ RaiseDeadDifficulty = 100
-        What will you do with the grave?
         
+        //Variable Update
+        ~ RaiseDeadDifficulty = 100
+        What will you do with the grave?
         *[Leave this place (Leave)]
             ->Leave
             
-        //Offer a Prayer
         *[Offer a prayer (Mercy+)]
             You say a prayer for the departed hoping they can find peace.
-            
-                //Mercy change 
-                    {AddTraitInfluence("Mercy", 20)}
-                
+            ~ AddTraitInfluence("Mercy", 20)
             ->Leave
 
 
         *[Take the sword (1 tier 3 sword, Mercy-)]
             You take the sword into your hands.
-            
-                //Mercy change 
-                    {AddTraitInfluence("Mercy", -20)}
-                    
-                //Have Sword change
-                    ~ HaveSword = true
-                    ~ TookSword = true
+            ~ AddTraitInfluence("Mercy", -20)
+            ~ HaveSword = true
+            ~ TookSword = true
             ->choice2
             
         *[Dig up the grave (Mercy-)]
             You did up the grave to find a warrior buried in some armour. You can see some of the armour is damaged, most likely from the "traitors".
-            
-                //Mercy change 
-                    {AddTraitInfluence("Mercy", -20)}
-                    
-                //Dug up grave
-                    ~ DugUpGrave = true
+            ~ AddTraitInfluence("Mercy", -20)
+            ~ DugUpGrave = true
             ->choice2
         
         *{DugUpGrave == true}[Loot the buried body (2 pieces of tier 3 armour, Mercy-)]
             You strip the body of all the armour that is still intact.
+            ~LootedBody = true
+            ~AddTraitInfluence("Mercy", -20)
             
-                ~LootedBody = true
-                
-                //Mercy change 
-                    {AddTraitInfluence("Mercy", -20)}
-                    
                 //Loot Rolls
                     {RANDOM(0,1):
-                        -0: {GiveItem("roundkettle_over_imperial_leather",1)}
-                        -1: {GiveItem("imperial_padded_cloth",1)}
+                        -0: 
+                            ~GiveItem("roundkettle_over_imperial_leather",1)
+                        -1: 
+                            ~GiveItem("imperial_padded_cloth",1)
                     }
                     {RANDOM(0,1):
-                        -0: {GiveItem("mail_mitten",1)}
-                        -1: {GiveItem("mail_chausses",1)}
+                        -0: 
+                            ~GiveItem("mail_mitten",1)
+                        -1: 
+                            ~GiveItem("mail_chausses",1)
                     }
 
             ->choice2
-        *{DugUpGrave == true}{PartyCanRaiseDead == true}{LootedBody == false}[Resurrect the buried body as a wight (+1 Crypt Guard, Mercy--){print_party_skill_chance("Spellcraft", RaiseDeadDifficulty)}]
-        
-                //Mercy change 
-                    {AddTraitInfluence("Mercy", -50)}  
+            
+        *{DugUpGrave && PartyCanRaiseDead && not LootedBody}[Resurrect the buried body as a wight (+1 Crypt Guard, Mercy--) {print_party_skill_chance("Spellcraft", RaiseDeadDifficulty)}]
+            ~AddTraitInfluence("Mercy", -50)
                 
-                //Raise Dead skeletons
+                //Raise Dead
                     {perform_party_skill_check("Spellcraft", RaiseDeadDifficulty):
                         -true:
-                            {ChangePartyTroopCount("tor_vc_skeleton_crypt_guard",1)}
+                            ~ ChangePartyTroopCount("tor_vc_skeleton_crypt_guard",1)
                             ~ CryptGuardSuccess = true
                             ~ HaveSword = false
                         -false:
                     }
-                
-                
-                
-                Your party attempts to resurrect the corpse as a wight {CryptGuardSuccess: and succeed. The wight stands up {TookSword: and holds out its hand as if to ask for its sword back. You give back the weapon} then it marches off to join the rest of your forces. ->Leave | and fail.->choice2}
 
+                Your party attempts to resurrect the corpse as a wight {CryptGuardSuccess: and succeed. The wight stands up {TookSword: and holds out its hand as if to ask for its sword back. You give back the weapon} then it marches off to join the rest of your forces. ->Leave | and fail.->choice2}
             ->Leave
+
 ===Leave===
     Having made your decisions you go on your way.
-    {HaveSword == true: {GiveItem("vlandia_sword_1_t2",1)}}
-
+    {HaveSword: 
+        ~GiveItem("vlandia_sword_1_t2",1)
+    }
 -> END
 
 
