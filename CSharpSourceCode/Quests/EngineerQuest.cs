@@ -153,7 +153,8 @@ namespace TOR_Core.Quests
             if (!_targetParty.IsActive) return;
             if (!_skipImprisonment) return;
             if (Current.CurrentConversationContext != ConversationContext.CapturedLord) return;
-            Current.ConversationManager.EndConversation();
+            //Current.ConversationManager.EndConversation();
+            Current.ConversationManager.ClearCurrentOptions();
             Current.ConversationManager.AddDialogLineMultiAgent("start", "start", "close_window",
                 new TextObject("Your victory here is meaningless...you will never find what we took..."),
                 () => _skipImprisonment && _currentActiveLog == EngineerQuestStates.HandInCultisthunt, RemoveSkip, 0, 1,
@@ -163,7 +164,7 @@ namespace TOR_Core.Quests
                 new TextObject("You have no idea what you are interfering with..."),
                 () => _skipImprisonment && _currentActiveLog == EngineerQuestStates.HandInRogueEngineerHunt, RemoveSkip,
                 0, 1, 200, null);
-            Current.ConversationManager.ClearCurrentOptions();
+           
         }
 
         private void RemoveSkip()
