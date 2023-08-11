@@ -583,7 +583,7 @@
 	</CharacterCreationOption> 
 	
 	<!-- Mousillon stage 1 -->
-	<CharacterCreationOption Id="option46" Culture="mousillon" StageNumber="1" EquipmentSetId="tor_cc_bretonnian_nobility_1">
+	<CharacterCreationOption Id="option46" Culture="mousillon" StageNumber="1" EquipmentSetId="tor_cc_mousillon_nobility_1">
 		<SkillsToIncrease>
 			<string>Steward</string>
 			<string>Leadership</string>
@@ -595,7 +595,7 @@
 		<OptionFlavourText>You parents were of the ‘Nobility’ in Mousillon, if they can be called that. Nobles here are mostly made up of outlawed Bretonnian nobles, exiles and rouges from other nations, vampires, mummies and other varied monstrosities. While certainly at the top of Mousillan society, outside of the blighted land they are looked down upon the same as anyone else from here. </OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option47" Culture="mousillon" StageNumber="1" EquipmentSetId="tor_cc_yeoman_warden_3">
+	<CharacterCreationOption Id="option47" Culture="mousillon" StageNumber="1" EquipmentSetId="tor_cc_mousillon_yeoman_1">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>Athletics</string>
@@ -607,7 +607,7 @@
 		<OptionFlavourText>Your father was a Yeoman for one of the lords in the cursed dukedom. His position was one of the few that ensured your family dry lodgings and decent food, most of the time. When he was not on campaign he would do his best to teach you some fighting skills.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option48" Culture="mousillon" StageNumber="1" EquipmentSetId="tor_cc_sailors_1">
+	<CharacterCreationOption Id="option48" Culture="mousillon" StageNumber="1" EquipmentSetId="tor_cc_bog_smuggler_1">
 		<SkillsToIncrease>
 			<string>Trade</string>
 			<string>Roguery</string>
@@ -619,7 +619,7 @@
 		<OptionFlavourText>Trade in and out of Mousillon is nearly impossible due to the Cordon Sanitaire. Despite this, your family became skilled at smuggling goods past the gates and their guards. While not wealthy by most standards, for Mousillon you certainly were born with a silver spoon.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option49" Culture="mousillon" StageNumber="1" EquipmentSetId="tor_cc_outlaws_1">
+	<CharacterCreationOption Id="option49" Culture="mousillon" StageNumber="1" EquipmentSetId="tor_cc_peat_farmer_1">
 		<SkillsToIncrease>
 			<string>Steward</string>
 			<string>Throwing</string>
@@ -631,7 +631,7 @@
 		<OptionFlavourText>Somehow, your family broke one of the oath bonds to your lord and has since been branded as outlaws. Constantly on the run and living at the fringe of society, your family makes due with what they can poach from the forests.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option50" Culture="mousillon" StageNumber="1" EquipmentSetId="tor_cc_bretonnian_merchants_1">
+	<CharacterCreationOption Id="option50" Culture="mousillon" StageNumber="1" EquipmentSetId="tor_cc_outlaws_1">
 		<SkillsToIncrease>
 			<string>Roguery</string>
 			<string>Throwing</string>
@@ -644,7 +644,7 @@
 	</CharacterCreationOption>
 
 	<!-- Mousillon stage 2 -->
-	<CharacterCreationOption Id="option51" Culture="mousillon" StageNumber="2" EquipmentSetId="tor_cc_courtier_2">
+	<CharacterCreationOption Id="option51" Culture="mousillon" StageNumber="2" EquipmentSetId="tor_cc_mousillon_courtier_2">
 		<SkillsToIncrease>
 			<string>Riding</string>
 			<string>Steward</string>
@@ -656,7 +656,7 @@
 		<OptionFlavourText>For years, you were groomed to be the best Mousillan noble you could be. This included lessons in manners, horsemanship and chivalry.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option52" Culture="mousillon" StageNumber="2" EquipmentSetId="tor_cc_men_at_arms_2">
+	<CharacterCreationOption Id="option52" Culture="mousillon" StageNumber="2" EquipmentSetId="tor_cc_student_of_witchcraft_2">
 		<SkillsToIncrease>
 			<string>Spellcraft</string>
 			<string>Medicine</string>
@@ -668,7 +668,7 @@
 		<OptionFlavourText>Witchcraft and Magic is rife in Mousillon. You became a student of one of these practitioners and worked on brews and potions until you were trusted to learn more arcane knowledge.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option53" Culture="mousillon" StageNumber="2" EquipmentSetId="tor_cc_shephard_2">
+	<CharacterCreationOption Id="option53" Culture="mousillon" StageNumber="2" EquipmentSetId="tor_cc_man_at_arms_2">
 		<SkillsToIncrease>
 			<string>Polearm</string>
 			<string>Throwing</string>
@@ -681,7 +681,7 @@
 	</CharacterCreationOption>
 
 
-	<CharacterCreationOption Id="option54" Culture="mousillon" StageNumber="2" EquipmentSetId="tor_cc_highwayman_2">
+	<CharacterCreationOption Id="option54" Culture="mousillon" StageNumber="2" EquipmentSetId="tor_cc_swampaire_2">
 		<SkillsToIncrease>
 			<string>Polearm</string>
 			<string>Throwing</string>
@@ -693,7 +693,7 @@
 		<OptionFlavourText>You spent your time hunting frogs and snails in the swamps and bogs to support your family. It is a tricky task that requires some skill and quickness to your fingers but snails and frogs are one of the few resources that your land is rich in.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option55" Culture="mousillon" StageNumber="2" EquipmentSetId="tor_cc_apprentice_craftsmen_2">
+	<CharacterCreationOption Id="option55" Culture="mousillon" StageNumber="2" EquipmentSetId="tor_cc_brigand_2">
 		<SkillsToIncrease>
 			<string>Bow</string>
 			<string>Tactics</string>
@@ -707,7 +707,7 @@
 
 
 	<!--  Mousillon stage 3 -->
-	<CharacterCreationOption Id="option56" Culture="mousillon" StageNumber="3" EquipmentSetId="tor_cc_knight_errant_3">
+	<CharacterCreationOption Id="option56" Culture="mousillon" StageNumber="3" EquipmentSetId="tor_cc_mousillon_knight_errant_3">
 		<SkillsToIncrease>
 			<string>Polearm</string>
 			<string>Riding</string>
@@ -719,7 +719,7 @@
 		<OptionFlavourText> Nothing says that a man of Mousillon cannot walk the path of a Bretonnian Knight. Where that path leads is as always reliant on the will and purity of the individual who walks it.</OptionFlavourText>
 	</CharacterCreationOption>
 	
-	<CharacterCreationOption Id="option57" Culture="mousillon" StageNumber="3" EquipmentSetId="tor_cc_damsel_3">
+	<CharacterCreationOption Id="option57" Culture="mousillon" StageNumber="3" EquipmentSetId="tor_cc_vampire_of_mousillon_3">
 		<SkillsToIncrease>
 			<string>Athletics</string>
 			<string>Athletics</string>
@@ -731,7 +731,7 @@
 		<OptionFlavourText>The swamps prevent the land of chivalry from exerting their control over the cursed dukedom, as a result many nerdowells find a kind of sanctuary in Mousillon, even the lords of the night.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option58" Culture="mousillon" StageNumber="3" EquipmentSetId="tor_cc_yeoman_warden_3">
+	<CharacterCreationOption Id="option58" Culture="mousillon" StageNumber="3" EquipmentSetId="tor_cc_necromancer_3">
 		<SkillsToIncrease>
 			<string>Polearm</string>
 			<string>Medicine</string>
@@ -743,7 +743,7 @@
 		<OptionFlavourText>Witches and Warlocks, Hedgefolk and Daemonologists, Wisewomen and Strigany; In a nearly lawless and accursed land such as Mousillon, what's one more who defies the will of Morr?</OptionFlavourText>
 	</CharacterCreationOption> 
 
-	<CharacterCreationOption Id="option59" Culture="mousillon" StageNumber="3" EquipmentSetId="tor_cc_freemen_3">
+	<CharacterCreationOption Id="option59" Culture="mousillon" StageNumber="3" EquipmentSetId="tor_cc_cordon_runner_3">
 		<SkillsToIncrease>
 			<string>Athletics</string>
 			<string>Roguery</string>
@@ -755,7 +755,7 @@
 		<OptionFlavourText>Things arrive in Mousillon that would be confiscated in any other port of the Oldworld. Wyrdstone, strange drugs, slaves, stolen goods, pirated ships and much much more and far darker. Someone has to take these items to their arranged buyers, who are almost always located outside of Mousillon. That means, you need someone who can get these items past the Cordon Sanitaire</OptionFlavourText>
 	</CharacterCreationOption> 
 
-	<CharacterCreationOption Id="option60" Culture="mousillon" StageNumber="3" EquipmentSetId="tor_cc_wall_warden_3">
+	<CharacterCreationOption Id="option60" Culture="mousillon" StageNumber="3" EquipmentSetId="tor_cc_bog_pirate_3">
 		<SkillsToIncrease>
 			<string>Engineering</string>
 			<string>Crossbow</string>
