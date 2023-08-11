@@ -409,6 +409,12 @@
 
   <string id="customsettlement_intro.haunted_site_01" text="{=!}You are deep within the Hunger Woods - a spirit infested cursed forest." />
   <string id="customsettlement_disabled.haunted_site_01" text="{=!}You shouldn't see this." />
+  <string id="customsettlement_intro.haunted_site_02" text="{=!}You are deep within the Hunger Woods - a spirit infested cursed forest." />
+  <string id="customsettlement_disabled.haunted_site_02" text="{=!}You shouldn't see this." />
+  <string id="customsettlement_intro.haunted_site_03" text="{=!}You are deep within the Hunger Woods - a spirit infested cursed forest." />
+  <string id="customsettlement_disabled.haunted_site_03" text="{=!}You shouldn't see this." />
+  <string id="customsettlement_intro.haunted_site_04" text="{=!}You are deep within the Hunger Woods - a spirit infested cursed forest." />
+  <string id="customsettlement_disabled.haunted_site_04" text="{=!}You shouldn't see this." />
 
   <!--wanderer stories-->
   <string id="prebackstory.tor_wanderer_empire_0" text="{=!}My story? Sure, I can share it." />

@@ -14,6 +14,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
     public class CustomEventsCampaignBehavior : CampaignBehaviorBase
     {
         private const float RareChance = 1f;
+        private const float SpecialChance = 3f;
         private const float UncommonChance = 5f;
         private const float CommonChance = 10f;
         private const float AbundantChance = 15f;
@@ -53,6 +54,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             chosenFrequency = CustomEventFrequency.Invalid;
             if (roll > AbundantChance) return false;
             else if (roll < RareChance) chosenFrequency = CustomEventFrequency.Rare;
+            else if (roll < SpecialChance) chosenFrequency = CustomEventFrequency.Special;
             else if (roll < UncommonChance) chosenFrequency = CustomEventFrequency.Uncommon;
             else if (roll < CommonChance) chosenFrequency = CustomEventFrequency.Common;
             else if (roll <= AbundantChance) chosenFrequency = CustomEventFrequency.Abundant;

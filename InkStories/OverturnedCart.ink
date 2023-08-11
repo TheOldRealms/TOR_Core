@@ -1,140 +1,305 @@
-//Make sure you include this in all ink files to get access to integration functions
+//Global story tags
+# title: Roadside Accident
+# frequency: Common
+# development: false
+# illustration: cart_accident
+
 INCLUDE include.ink
 
-
-//Variables setup
-//IMPORTANT! Initial values are mandatory, but they can only be primitives (number, string, boolean). If we want to assign the return value of a function to the variable, we must do it on a separate line, see one line below
-    
-    // Determines the severity of the injury
-    VAR InjuryRoll = 0 //not important initial value
-        ~ InjuryRoll = RANDOM(0,2) 
-    
-    // Gets the name of the nearest settlement and stores it in the Settlement variable
-    VAR Settlement = "DOESNTMATTER" //not important initial value
-        ~ Settlement = GetNearestSettlement("town") 
-
-    //Gets a random notable from Settlement !!!NOTE: the argument being passed in to the function is a variable itself
-    VAR Notable = "DOESNTMATTER" //not important initial value
-        ~ Notable = GetRandomNotableFromSpecificSettlement(Settlement) 
-
-    //sets up a random chance whether horses are around or not
-    VAR HorsesAround = "DOESNTMATTER" // not important initial value
-        ~ HorsesAround = "{~true|false}" 
-
-    //sets up a random chance for the profession of the injured man from a finite list
-    VAR Profession = "DOESNTMATTER" // not important initial value
-        ~ Profession = "{~merchant|farmer|blacksmith}"
-
-    //Variable that changes to true if you choose to extort the man under the cart
-    VAR IsExtorted = false //!!!NOTE: this is actually an important initial value that we are going to use (because its primitive, the assignment can be done on one line)
-    
-    //Variable that changes if you asked the stuck man for more information
-    VAR IsAsked = false //important initial value
+        VAR InjuryDifficulty = 2
+            {InjuryRoll:
+                -1: 
+                    ~InjuryDifficulty = 100
+                -2: 
+                    ~InjuryDifficulty = 250
+            }
         
-    //Variable for the rewards based on the profession of the injured man.
-    VAR Reward = "DOESNTMATTER" 
-        {
-            - Profession == "merchant" : 
-                ~ Reward = "500 gold"
-            - Profession == "farmer" :
-                ~ Reward = "5 grain"
-            - Profession == "blacksmith" :
-                ~ Reward = "2 steel ingots"
-        }
+        VAR Settlement = ""
+            ~ Settlement = GetNearestSettlement("town")
+                
+        VAR Notable = ""
+            ~ Notable = GetRandomNotableFromSpecificSettlement(Settlement)
+                
+        VAR NotableChange = false
+                
+        VAR PartyCanRaiseDead = false
+            ~ PartyCanRaiseDead = PartyHasNecromancer(false)
+                
+        VAR RaiseDeadSkillCheckText = ""
+            ~ RaiseDeadSkillCheckText = print_party_skill_chance("Spellcraft", 25)
+                
+        VAR RaiseDeadSkillCheckTest = false
+            ~ RaiseDeadSkillCheckTest = perform_party_skill_check("Spellcraft", 25)
+                
+        VAR MedicineSkillCheckText = ""
+            ~ MedicineSkillCheckText = print_party_skill_chance("Medicine", InjuryDifficulty)
+                
+        VAR MedicineSkillCheckTest = false
+            ~ MedicineSkillCheckTest = perform_party_skill_check("Medicine", InjuryDifficulty)
+                
+        VAR SpellcraftSkillCheckText = ""
+            ~ SpellcraftSkillCheckText = print_party_skill_chance("Spellcraft", InjuryDifficulty)
+                
+        VAR SpellcraftSkillCheckTest = false
+            ~ SpellcraftSkillCheckTest = perform_party_skill_check("Spellcraft", InjuryDifficulty)
+                
+        VAR LoreOfLifeInParty = false
+                ~ LoreOfLifeInParty = DoesPartyKnowSchoolOfMagic(false, "LoreOfLife")
+
+        VAR InjuryRoll = 2
+            ~ InjuryRoll = RANDOM(0,2)
+            
+        VAR InjuryText1 = ""
+            {InjuryRoll:
+                -0: 
+                    ~InjuryText1 = "uninjured"
+                -1: 
+                    ~InjuryText1 = "mildly injured"
+                -2: 
+                    ~InjuryText1 = "severely injured"
+            }
+        
+        VAR InjuryText2 = ""
+            {InjuryRoll:
+                -0: 
+                    ~InjuryText2 = "asks"
+                -1: 
+                    ~InjuryText2 = "begs"
+                -2: 
+                    ~InjuryText2 = "gasps"
+            }
+        
+        VAR InjuryText3 = ""
+            {InjuryRoll:
+                -0: 
+                    ~InjuryText3 = "gets up"
+                -1: 
+                    ~InjuryText3 = "barely gets up"
+                -2: 
+                    ~InjuryText3 = "lays there trying not to die"
+            }
+            
+        VAR InjuryText4 = ""
+            {InjuryRoll:
+                -0: 
+                    ~InjuryText4 = ""
+                -1: 
+                    ~InjuryText4 = "seems to get a bit depressed knowing that he will be crippled for at least some time"
+                -2: 
+                    ~InjuryText4 = "dies"
+            }
+    
+        VAR HorsesAround = 0
+            ~HorsesAround = RANDOM(0,1)
+
+        //Ask for info
+        VAR HasAsked = false
+        
+        //Profession of the stuck man
+        VAR ProfessionRoll = 0
+            ~ ProfessionRoll = RANDOM(0,2)
+            
+        VAR Profession = ""
+            {ProfessionRoll:
+                -0: 
+                    ~Profession = "merchant"
+                -1: 
+                    ~Profession = "farmer"
+                -2: 
+                    ~Profession = "blacksmith"
+            }
+        
+        VAR RewardText = ""
+            {ProfessionRoll:
+                -0: 
+                    ~RewardText = "500 gold"
+                -1: 
+                    ~RewardText = "5 grain"
+                -2: 
+                    ~RewardText = "2 steel ingots"
+            }
+
+        VAR HasExtorted = false
+        
+        //Bonus Reward
+        VAR BonusRoll = 0
+
+        VAR ManAlive = true
 
 -> Start
 
 ===Start===
-Roadside accident #title #illustration: cart_accident
+    As your party is travelling along you see a cart in the distance.
+    As you get closer you can see that it had broken down and tipped over. 
+    {HorsesAround: You can also see some horses grazing on grass in a nearby field, presumably these were pulling the cart prior to the incident.}
 
-In the distance you see a cart.
+    *[Approach the cart]->Approach
+    *[Go on your way] You decide to ignore the overturned cart and continue your journey. ->END
 
-As you approach the cart you can see that it is overturned{HorsesAround == true: and that the horses that were pulling it are grazing on some nearby grass}.
+===Approach===
 
-*[Approach the cart.] ->Approach
-*[Go in another direction. (Leave)] ->Result.noreward
-
-=== Approach ===
-
-You approach the cart and find a man trying to get unstuck. When he sees you approaching he begs you for help.
-
-You notice that the man trapped under the cart is {InjuryRoll == 0: uninjured}{InjuryRoll == 1: mildly injured}{InjuryRoll == 2: severly injured}.
-
-When you approach he {InjuryRoll == 0: says}{InjuryRoll == 1: says}{InjuryRoll == 2: gasps}, "Please help me." ->choices
-
+    You approach the cart and find a man stuck underneath. When he sees you approaching he calls out for help.
+    You notice that the man trapped under the cart is {InjuryText1}.
+    As you get close he {InjuryText2} to you, "Please help me". 
+    What will you do?
+    ->choices
+    
     =choices
-    *[Help him (+Mercy, +Relations with {Notable})] ->AfterLift
-    *[Ask what he can do for you if you help him.] ->MoreInfo
-    *{HorsesAround == true}[Take the horses and leave(+2 low tier horses; --Mercy)] ->Result.takehorses
-    *{IsAsked == true}[Extort for a reward ({Reward}; -Mercy)] ->Extortion
-    *{IsAsked == true && HorsesAround == true}[Demand one of the horses in exchange for your help (+1 low tier horse; -Mercy)] ->Extortion
-    *{PartyHasNecromancer(false) == true}[Kill the man, raise his corpse as a zombie, and loot his cart (+1 zombie, {Reward}, ---Mercy)]->Result.raisedead
-    *[Leave him to his fate.] ->Result.noreward
+        *[Ask what he can do for you if you help him]
+            You ask the man what he can do for you.
+            The man replies, "I am just a simple {Profession} from {Settlement}, I cannot give you a reward other than my thanks."
+            After a moment he says, "I am a friend of {Notable} and I will put in a good word for you."
+            While he is talking you can't help but notice there still seems to be some cargo in the cart.
+            ~HasAsked = true
+            ->choices
+        
+            *{not HasAsked}[Help him (Mercy++)]
+                You decide to help him.
+                ~ AddTraitInfluence("Mercy", 40)
+                ->AfterLift
+                
+            *{HasAsked}[Help him (+Relations with {Notable}, Mercy+)]
+                You decide to help him.
+                ~ AddTraitInfluence("Mercy", 20)
+                ~ NotableChange = true
+                ->AfterLift
+        
+            *{HasAsked}[Extort him for a reward (Mercy-)]
+                You tell the {Profession} that he shouldn't be so modest. He is clearly a man of some means and can easily spare {RewardText} as compensation for the assistance.
+                The man, believing he has no other option, agrees.
+                ~ AddTraitInfluence("Mercy", -20)
+                ~ HasExtorted = true
+                ->AfterLift
+            
+            *{HasAsked && HorsesAround}[Demand one of the horses (Mercy-)]
+                You say that since he is clearly incapable of controlling two horses and therefore should be fine giving you one as payment.
+                The man, seeing as he has no other option, agrees.
+                ~ AddTraitInfluence("Mercy", -20)
+                ~ HasExtorted = true
+                ->AfterLift
+        
+            *{HorsesAround}[Take the horses and leave (Mercy--)]
+                You decide that rather than help the man you would rather go and tame the two horses, as they are clearly wild horses, who in no way have had any previous owner this is perfectly legal.
+                After you have gotten a handle on the horses and are heading off, you can hear the cries of the trapped man begging you to come back and help, fade into the distance. 
+                ~ AddTraitInfluence("Mercy", -40)
+                ~ GiveItem("old_horse",2)
+                ->END
+                
+        //Necromancer option
+            *{PartyCanRaiseDead}[Kill the man, raise his corpse as a skeleton, {HorsesAround: take the horses,} and loot his cart (Mercy---) {RaiseDeadSkillCheckText}]
+                A brilliant idea comes to your mind. Since the man is clearly worthless as a cart driver, perhaps he can find value by becoming one of your undead minions.
+                In one swift motion you kill the man and go about raising him as a skeleton. Your party makes an attempt and {RaiseDeadSkillCheckTest: succeeds| fails}.
+                {RaiseDeadSkillCheckTest: -> raiseSucceed | -> raiseFail}
     
-    =MoreInfo
-    ~IsAsked = true
-    He replies, "I am just a simple {Profession} from {Settlement}, I cannot give you a reward other than my thanks."
-    After a moment he says, "I am a friend of {Notable} and can put in a good word for you."
-    ->Approach.choices
+    =raiseSucceed
+    Having successfully raised the dead, you decide to celebrate by taking all the man's possessions.
+        {ProfessionRoll:
+            -0: 
+                ~GiveGold(500)
+            -1: 
+                ~GiveItem("grain", 5)
+            -2: 
+                ~GiveItem("ironIngot4", 2)
+        }
+        {HorsesAround: {GiveItem("old_horse",2)}}
+        ~ ChangePartyTroopCount("tor_vc_skeleton",1)
+        -> END
     
-    =Extortion
-    ~IsExtorted = true
-    ->AfterLift
+    =raiseFail
+    Having failed you decide to take all the dead man's possessions as compensation for wasting your time.
+        {ProfessionRoll:
+            -0: 
+                ~GiveGold(500)
+            -1: 
+                ~GiveItem("grain", 5)
+            -2: 
+                ~GiveItem("ironIngot4", 2)
+        }
+        {HorsesAround: {GiveItem("old_horse",2)}}
+        -> END
 
 ===AfterLift===
+    Your party lifts the cart off the man and he {InjuryText3}.
 
-After lifting the cart the man {InjuryRoll == 0: gets up}{InjuryRoll == 1: barely stands up}{InjuryRoll == 2: lays there trying not to die}.
-*{InjuryRoll == 0}[Talk to the uninjured man] ->succeed
-*{InjuryRoll == 1}[Treat the man with medicine. (Medicine {(GetPartySkillValue("Medicine") / 100) * 100}%)]-> MildRecover
-*{InjuryRoll == 1}{DoesPartyKnowSchoolOfMagic(false, "LoreOfLife") == true}[Treat the man with magic. (Spellcraft {(GetPartySkillValue("Spellcraft") / 100) * 100}%)]-> MildRecover
-*{InjuryRoll == 2}[Treat the man with medicine. (Medicine {(GetPartySkillValue("Medicine") / 250) * 100}%)]-> SeverRecover
-*{InjuryRoll == 2}{DoesPartyKnowSchoolOfMagic(false, "LoreOfLife") == true}[Treat the man with magic. (Spellcraft {(GetPartySkillValue("Spellcraft") / 250) * 100}%)]-> SeverRecover
+    //Is Injured?
+        {InjuryRoll:
+            -0:     ->Reward
+            -else:  ->Injury
+        }
 
-    =MildRecover
-    {GetPartySkillValue("Medicine") >= RANDOM(1,100): -> succeed | -> fail1}
-    {GetPartySkillValue("Spellcraft") >= RANDOM(1,100): -> succeed | -> fail1}
-    
-    =SeverRecover
-    {GetPartySkillValue("Medicine") >= RANDOM(1,250): -> succeed | -> fail2}
-    {GetPartySkillValue("Spellcraft") >= RANDOM(1,250): -> succeed | -> fail2}
+        =Injury
+            How will you treat his injury?
+                *[Treat him with medicine {MedicineSkillCheckText}]
+                    Your best doctor goes to work attempting to fix the man up.
+                        {MedicineSkillCheckTest: ->Success | ->Fail}
+                        
+                *{LoreOfLifeInParty}[Treat him with magic {SpellcraftSkillCheckText}]
+                    A spellcaster in your party calls upon the winds of Ghyran to mend the man's wounds.
+                        {SpellcraftSkillCheckTest: ->Success | ->Fail}
+                    
+        =Success
+            Your treatment succeeds and the man will now be fine.
+                ~ BonusRoll = RANDOM(0,100)
+                ->Reward
+            
+        =Fail
+            Your treatment fails and the man {InjuryText4}.
+                {InjuryRoll:
+                    -2:
+                        ~ ManAlive = false
+                }
+            ->Reward
+            
+===Reward===
 
-    =succeed
-    You succeed in treating the man. He {IsExtorted == true: begrudingly} thanks you for your help {IsExtorted == true: and gives you the promised reward -> Result.givereward | -> Bonus}.
-    =fail1
-    You fail in completely treating the man. He is dissapointed as he will probably limp for the rest of his life, but {IsExtorted == true: begrudingly} thanks you nevertheless {IsExtorted == true: and gives you the promised money -> Result.givereward | {IsAsked == true: -> Result.relations | -> Result.noreward}}.
-    =fail2
-    Despite your best effort, the man dies. There is nothing more to do. ->Result.noreward
-    
-    =Bonus
-    ~ temp BonusChance = RANDOM(0,100)
-    {BonusChance >= 50: He also offers you a reward for your help! ({Reward}) -> Result.givereward | {IsAsked == true: -> Result.relations | -> Result.noreward}} 
+    {ManAlive:->LiveReward|->DeadReward}
 
-===Result===
-
-    =noreward
-    {came_from(-> AfterLift.Bonus): {AddTraitInfluence("Mercy", 20)}}
-    You continue your journey. ->END
-    
-    =takehorses
-    {GiveItem("old_horse", 2)}
-    {AddTraitInfluence("Mercy", -20)}
-    You take two old work horses and leave. -> END
-    
-    =raisedead
-    {ChangePartyTroopCount("tor_vc_skeleton", 1)} -> givereward
-    
-    =givereward
-    {
-        - Reward == "500 gold" : {GiveGold(500)}
-        - Reward == "5 grain" : {GiveItem("grain", 5)}
-        - Reward == "2 steel ingots" : {GiveItem("ironIngot4", 2)}
-    }
-    {IsExtorted == true: {AddTraitInfluence("Mercy", -20)}}
-    {IsExtorted == false && came_from(-> AfterLift.Bonus): {AddTraitInfluence("Mercy", 20)}}
-    {came_from(-> raisedead): {AddTraitInfluence("Mercy", -30)} Looting the cart you find | You recieve } {Reward}. -> END
-    
-    =relations
-    {ChangeRelations(Notable, 2)}
-    Words about your good deed will reach {Notable}. -> END
-    
--> END
+    =LiveReward
+        Having been saved, the man {HasExtorted: begrudgingly} thanks you for your help{HasExtorted: and gives you the promised reward}.
+        {NotableChange: As he starts gathering his things he says, "I will tell {Notable} of your deeds as soon as I am home."}
+        {HasExtorted == false && BonusRoll >=50: The man pausing for a moment says, "I know I said I didn't have much but please take this ({RewardText}). It's the least I can do for your kindness."}
+        
+        {HasExtorted || (not HasExtorted && BonusRoll >=50):
+            -true:
+                {ProfessionRoll:
+                    -0: 
+                        ~GiveGold(500)
+                    -1: 
+                        ~GiveItem("grain", 5)
+                    -2: 
+                        ~GiveItem("ironIngot4", 2)
+                }
+        }
+        {NotableChange: {ChangeRelations(Notable, 5)}}
+        ->END
+        
+    =DeadReward
+        What will your party do next?
+            *[Bury the man (Mercy+)]
+                You decide to bury the man, hoping that he can find peace.
+                {AddTraitInfluence("Mercy", 40)}
+                ->DeadReward
+            *[Loot the cart {HorsesAround: and take the horses} ({RewardText}{HorsesAround:, +2 tier 0 horses})]
+                Now that the man has passed he obviously will not need the supplies anymore.
+                {ProfessionRoll:
+                    -0: 
+                        ~GiveGold(500)
+                    -1: 
+                        ~GiveItem("grain", 5)
+                    -2: 
+                        ~GiveItem("ironIngot4", 2)
+                }
+                {HorsesAround: {GiveItem("old_horse",2)}}
+                ->DeadReward
+            *{PartyCanRaiseDead}[Raise him as a skeleton (+1 skeleton){RaiseDeadSkillCheckText}]
+                Since a dead man has no use for his body you decide to raise it as a skeleton.
+                Yout party makes an attempt and {RaiseDeadSkillCheckTest: succeeds| fails}.
+                
+                {RaiseDeadSkillCheckTest:
+                    -true: The man's body stands up and shambles off to join the rest of your army.
+                        ~ ChangePartyTroopCount("tor_vc_skeleton",1)
+                }
+                ->DeadReward
+            *[Move along (leave)]
+                You decide that it is time to move on and continue your journey.
+                ->END
