@@ -247,3 +247,8 @@ EXTERNAL GetPlayerHasCustomTag(tag)
 EXTERNAL SetPlayerCustomTag(tag)
 ===function SetPlayerCustomTag(tag)===
     ~ return ""
+    
+//Opens a random invetory as trade
+EXTERNAL OpenInventoryAsTrade()
+===function OpenInventoryAsTrade()===
+    ~ return ""

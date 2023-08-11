@@ -4,13 +4,17 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HarmonyLib;
 using Ink;
 using Ink.Runtime;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.Extensions;
+using TaleWorlds.CampaignSystem.GameState;
+using TaleWorlds.CampaignSystem.Inventory;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
@@ -237,6 +241,36 @@ namespace TOR_Core.Ink
             {
                 _story.BindExternalFunction<string>("SetPlayerCustomTag", SetPlayerCustomTag, false);
             }
+            if (!_story.TryGetExternalFunction("OpenInventoryAsTrade", out _))
+            {
+                _story.BindExternalFunction("OpenInventoryAsTrade", OpenInventoryAsTrade, false);
+            }
+        }
+
+        private void OpenInventoryAsTrade()
+        {
+            AccessTools.Field(typeof(InventoryManager), "_currentMode").SetValue(InventoryManager.Instance, InventoryMode.Trade);
+            var logic = new InventoryLogic(null);
+            ItemRoster roster = new ItemRoster();
+            var items = MBObjectManager.Instance.GetObjectTypeList<ItemObject>().Where(x => (x.HasWeaponComponent || x.HasArmorComponent) && x.StringId.StartsWith("tor_") && !x.NotMerchandise);
+            var foods = MBObjectManager.Instance.GetObjectTypeList<ItemObject>().Where(x => x.HasFoodComponent);
+            var selectedItems = items.TakeRandom(20);
+            var selectedFoods = foods.TakeRandom(5);
+            foreach (var item in selectedItems)
+            {
+                roster.Add(new ItemRosterElement(item, 1));
+            }
+            foreach (var food in selectedFoods)
+            {
+                roster.Add(new ItemRosterElement(food, MBRandom.RandomInt(1, 10)));
+            }
+            AccessTools.Field(typeof(InventoryManager), "_inventoryLogic").SetValue(InventoryManager.Instance, logic);
+            logic.Initialize(roster, PartyBase.MainParty.ItemRoster, PartyBase.MainParty.MemberRoster, true, true, CharacterObject.PlayerCharacter, InventoryManager.InventoryCategoryType.All, new InkFakeMarketData(), true);
+
+            InventoryState inventoryState = Game.Current.GameStateManager.CreateState<InventoryState>();
+            inventoryState.InitializeLogic(logic);
+            Game.Current.GameStateManager.PushState(inventoryState, 0);
+            inventoryState.Handler.FilterInventoryAtOpening(InventoryManager.InventoryCategoryType.All);
         }
 
         private void SetPlayerCustomTag(string tag) => Hero.MainHero.AddAttribute(tag);
