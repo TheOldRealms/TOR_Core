@@ -958,8 +958,8 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_br_grail_knight_template" />
-      <EquipmentSet id="tor_br_grail_knight_template" civilian="true" />
+      <EquipmentSet id="tor_m_black_grail_knight_template" />
+      <EquipmentSet id="tor_m_black_grail_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_m_caravan_guard" default_group="cavalry" level="21" name="{=str_tor_m_caravan_guard}Mousillon Caravan Horseman" occupation="CaravanGuard" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21">
@@ -2653,8 +2653,8 @@
       <upgrade_target id="NPCCharacter.tor_br_bandit_leader" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_empire_deserter_template" />
-      <EquipmentSet id="tor_empire_deserter_template" civilian="true" />
+      <EquipmentSet id="tor_br_bandit_template" />
+      <EquipmentSet id="tor_br_bandit_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_bandit_leader" default_group="infantry" level="16" name="{=str_tor_br_bandit_leader}Herrimault" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level16">
@@ -2663,8 +2663,8 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_empire_deserter_sergeant_template" />
-      <EquipmentSet id="tor_empire_deserter_sergeant_template" civilian="true" />
+      <EquipmentSet id="tor_br_bandit_leader_template" />
+      <EquipmentSet id="tor_br_bandit_leader_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_bandit_scout" default_group="ranged" level="16" name="{=str_tor_br_bandit_scout}Thief" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level16">
@@ -2673,8 +2673,8 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_empire_deserter_scout_template" />
-      <EquipmentSet id="tor_empire_deserter_scout_template" civilian="true" />
+      <EquipmentSet id="tor_br_bandit_scout_template" />
+      <EquipmentSet id="tor_br_bandit_scout_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_ti_vittorio" default_group="infantry" level="46" name="{=str_tor_ti_vittorio}Vittorio de Luca" occupation="Special" culture="Culture.empire" skill_template="SkillSet.tor_skills_duelist">
