@@ -14,7 +14,7 @@ namespace TOR_Core.Models
     {
         public override TournamentGame CreateTournament(Town town)
         {
-            if(town.Culture.StringId == "vlandia")
+            if(town.Culture.StringId == "vlandia" || town.Culture.StringId == "mousillon")
             {
                 return new JoustTournamentGame(town);
             }
@@ -23,7 +23,7 @@ namespace TOR_Core.Models
 
         public override float GetTournamentStartChance(Town town)
         {
-            //return 0.8f; //DEBUG
+            //return 1f; //DEBUG
             return base.GetTournamentStartChance(town);
         }
     }
