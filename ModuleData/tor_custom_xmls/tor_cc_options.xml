@@ -409,7 +409,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 		<OptionText>Bretonnian Nobility</OptionText>
-		<OptionFlavourText>Your family can trace its various roots and relations nearly as far back as the time of Giles. You were born into the nobility of Bretonnia; and everyone knows it by the way you dress, the way you talk and the way you order the peasants about.</OptionFlavourText>
+		<OptionFlavourText>Your family can trace its various roots and relations nearly as far back as the time of Gilles. You were born into the nobility of Bretonnia; and everyone knows it by the way you dress, the way you talk and the way you order the peasants about.</OptionFlavourText>
 	</CharacterCreationOption>
 
 	<CharacterCreationOption Id="option32" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_peasants_1">
