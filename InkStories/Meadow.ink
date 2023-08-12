@@ -1,7 +1,7 @@
 //Global story tags
 # title: A Place to Rest: Meadow
 # frequency: Common
-# development: true
+# development: false
 # illustration: meadow
 
 //Important Irregular Characters

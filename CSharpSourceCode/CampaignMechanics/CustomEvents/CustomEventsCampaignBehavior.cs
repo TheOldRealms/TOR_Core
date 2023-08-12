@@ -34,9 +34,14 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             _events.Clear();
             foreach (var item in InkStoryManager.AllStories.Where(x => !x.IsDevelopmentVersion && x.Frequency != CustomEventFrequency.Invalid && x.Frequency != CustomEventFrequency.Special))
             {
-                _events.Add(new CustomEvent(item.StringId, item.Frequency, item.Cooldown, () => MobileParty.MainParty.IsMoving && MobileParty.MainParty.Army == null && !Hero.MainHero.IsPrisoner, () => InkStoryManager.OpenStory(item.StringId)));
+                _events.Add(new CustomEvent(item.StringId, item.Frequency, item.Cooldown, StandardMovingCheck, () => InkStoryManager.OpenStory(item.StringId)));
             }
-            _events.Add(new CustomEvent("Duel", CustomEventFrequency.Special, 168, () => MobileParty.MainParty.IsMoving && MobileParty.MainParty.Army == null && !Hero.MainHero.IsPrisoner && !Hero.MainHero.HasAttribute("DefeatedVittorio"), () => InkStoryManager.OpenStory("Duel")));
+            _events.Add(new CustomEvent("Duel", CustomEventFrequency.Special, 168, () => StandardMovingCheck() && !Hero.MainHero.HasAttribute("DefeatedVittorio"), () => InkStoryManager.OpenStory("Duel")));
+        }
+
+        private bool StandardMovingCheck()
+        {
+            return MobileParty.MainParty.IsMoving && MobileParty.MainParty.Army == null && !Hero.MainHero.IsPrisoner && MobileParty.MainParty.MemberRoster.Count > 10;
         }
 
         private void HourlyTick(MobileParty party)
