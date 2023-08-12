@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaleWorlds.CampaignSystem;
 
 namespace TOR_Core.CampaignMechanics.CustomEvents
 {
@@ -10,12 +11,16 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
     {
         public string StringId { get; private set; }
         public CustomEventFrequency Frequency { get; private set; }
+        public int Cooldown { get; private set; }
+        public CampaignTime LastTriggerTime { get; set; }
         private Func<bool> _condition;
         private Action _consequence;
-        public CustomEvent(string stringId, CustomEventFrequency frequency, Func<bool> condition, Action consequence)
+        public CustomEvent(string stringId, CustomEventFrequency frequency, int cooldown, Func<bool> condition, Action consequence)
         {
             StringId = stringId;
             Frequency = frequency;
+            Cooldown = cooldown;
+            LastTriggerTime = CampaignTime.Now;
             _condition = condition;
             _consequence = consequence;
         }

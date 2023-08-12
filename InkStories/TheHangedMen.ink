@@ -124,7 +124,7 @@ INCLUDE include.ink
             ->choice2
             
         *[Dig up the grave (Mercy-)]
-            You did up the grave to find a warrior buried in some armour. You can see some of the armour is damaged, most likely from the "traitors".
+            You dig up the grave to find a warrior buried in some armour. You can see some of the armour is damaged, most likely from the "traitors".
             ~ AddTraitInfluence("Mercy", -20)
             ~ DugUpGrave = true
             ->choice2

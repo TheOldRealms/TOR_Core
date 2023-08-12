@@ -33,6 +33,7 @@ namespace TOR_Core.Ink
         public readonly CustomEventFrequency Frequency;
         public readonly bool IsDevelopmentVersion;
         public readonly string StringId;
+        public readonly int Cooldown;
 
         public InkStory(string id, string file)
         {
@@ -55,6 +56,10 @@ namespace TOR_Core.Ink
                 if (!bool.TryParse(GetValueOfGlobalTag("development"), out IsDevelopmentVersion))
                 {
                     IsDevelopmentVersion = true;
+                }
+                if (!int.TryParse(GetValueOfGlobalTag("cooldown"), out Cooldown))
+                {
+                    Cooldown = 72;
                 }
             }
         }

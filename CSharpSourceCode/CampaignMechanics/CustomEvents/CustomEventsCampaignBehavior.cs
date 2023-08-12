@@ -13,18 +13,20 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
 {
     public class CustomEventsCampaignBehavior : CampaignBehaviorBase
     {
-        private const float RareChance = 1f;
-        private const float SpecialChance = 3f;
-        private const float UncommonChance = 5f;
-        private const float CommonChance = 10f;
-        private const float AbundantChance = 15f;
+        private const float RareChance = 0.5f;
+        private const float SpecialChance = 1f;
+        private const float UncommonChance = 2f;
+        private const float CommonChance = 3f;
+        private const float AbundantChance = 5f;
+        private const int CoolDown = 12;
+        private int _hoursCountSinceLastEvent = 0;
 
         List<CustomEvent> _events = new List<CustomEvent>();
 
         public override void RegisterEvents()
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionStart);
-            CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, HourlyTick);
+            CampaignEvents.HourlyTickPartyEvent.AddNonSerializedListener(this, HourlyTick);
         }
 
         private void OnSessionStart(CampaignGameStarter starter)
@@ -32,20 +34,29 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             _events.Clear();
             foreach (var item in InkStoryManager.AllStories.Where(x => !x.IsDevelopmentVersion && x.Frequency != CustomEventFrequency.Invalid && x.Frequency != CustomEventFrequency.Special))
             {
-                _events.Add(new CustomEvent(item.StringId, item.Frequency, () => MobileParty.MainParty.IsMoving && MobileParty.MainParty.Army == null && !Hero.MainHero.IsPrisoner, () => InkStoryManager.OpenStory(item.StringId)));
+                _events.Add(new CustomEvent(item.StringId, item.Frequency, item.Cooldown, () => MobileParty.MainParty.IsMoving && MobileParty.MainParty.Army == null && !Hero.MainHero.IsPrisoner, () => InkStoryManager.OpenStory(item.StringId)));
             }
-            _events.Add(new CustomEvent("Duel", CustomEventFrequency.Uncommon, () => MobileParty.MainParty.IsMoving && MobileParty.MainParty.Army == null && !Hero.MainHero.IsPrisoner && !Hero.MainHero.HasAttribute("DefeatedVittorio"), () => InkStoryManager.OpenStory("Duel")));
+            _events.Add(new CustomEvent("Duel", CustomEventFrequency.Special, 168, () => MobileParty.MainParty.IsMoving && MobileParty.MainParty.Army == null && !Hero.MainHero.IsPrisoner && !Hero.MainHero.HasAttribute("DefeatedVittorio"), () => InkStoryManager.OpenStory("Duel")));
         }
 
-        private void HourlyTick()
+        private void HourlyTick(MobileParty party)
         {
-            if(GetRandomFrequency(out CustomEventFrequency chosenFrequency))
+            if (party != MobileParty.MainParty) return;
+            if (GetRandomFrequency(out CustomEventFrequency chosenFrequency) && HasCooldownExpired())
             {
-                var chosenEvent = _events.GetRandomElementWithPredicate(x => x.Frequency == chosenFrequency && x.DoesConditionHold() && x.StringId != InkStoryManager.LastStoryId);
-                if(chosenEvent == null) chosenEvent = _events.GetRandomElementWithPredicate(x => x.Frequency == chosenFrequency && x.DoesConditionHold());
-                if (chosenEvent != null) chosenEvent.Trigger();
+                var chosenEvent = _events.GetRandomElementWithPredicate(x => x.Frequency == chosenFrequency && x.DoesConditionHold() && x.StringId != InkStoryManager.LastStoryId && x.Cooldown < (CampaignTime.Now.ToHours - x.LastTriggerTime.ToHours));
+                if (chosenEvent == null) chosenEvent = _events.GetRandomElementWithPredicate(x => x.Frequency == chosenFrequency && x.DoesConditionHold() && x.Cooldown < (CampaignTime.Now.ToHours - x.LastTriggerTime.ToHours));
+                if (chosenEvent != null)
+                {
+                    chosenEvent.Trigger();
+                    chosenEvent.LastTriggerTime = CampaignTime.Now;
+                    _hoursCountSinceLastEvent = 0;
+                }
             }
+            else _hoursCountSinceLastEvent++;
         }
+
+        private bool HasCooldownExpired() => _hoursCountSinceLastEvent > CoolDown;
 
         private bool GetRandomFrequency(out CustomEventFrequency chosenFrequency)
         {

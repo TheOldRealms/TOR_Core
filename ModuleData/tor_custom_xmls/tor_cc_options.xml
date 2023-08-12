@@ -188,7 +188,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>Priest Acolyte</OptionText>
-		<OptionFlavourText>Dedicating your life to the cult of your patron god, you seek the path of righteousness in line with your faith. To be an Acolyte is to temper yourself against evil, the unnatural and the monstrous. (Gains access to Prayers, but cannot learn Spells. Prompt to pick your Imperial Cult will occur at game start)</OptionFlavourText>
+		<OptionFlavourText>Dedicating your life to the cult of your patron god, you seek the path of righteousness in line with your faith. To be an Acolyte is to temper yourself against evil, the unnatural and the monstrous. (Gains access to Prayers, but cannot learn Spells.)</OptionFlavourText>
 	</CharacterCreationOption> 
 
 	<CharacterCreationOption Id="option14" Culture="empire" StageNumber="3" EquipmentSetId="tor_cc_trainee_templar_3">

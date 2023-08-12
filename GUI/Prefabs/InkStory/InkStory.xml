@@ -2,10 +2,10 @@
     <Window>
         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" IsVisible="@IsVisible">
             <Children>
-                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="900" SuggestedHeight="600" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="InkStories\Background\book">
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="1200" SuggestedHeight="800" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="InkStories\Background\book">
                     <Children>
                         <!-- left side - STORY AREA-->
-                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="380" HorizontalAlignment="Left" MarginTop="30" MarginBottom="30" MarginLeft="85">
+                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="510" HorizontalAlignment="Left" MarginTop="50" MarginBottom="30" MarginLeft="100">
                             <Children>
                                 <!-- TEXT AREA-->
                                 <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="500" VerticalAlignment="Top" HorizontalAlignment="Left">
@@ -31,7 +31,7 @@
                             </Children>
                         </Widget>
                         <!-- right side - ILLUSTRATION AREA-->
-                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="400" HorizontalAlignment="Right" MarginTop="30" MarginBottom="30" MarginLeft="30" MarginRight="30" Sprite="@SpritePath" />
+                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="510" HorizontalAlignment="Right" MarginTop="40" MarginBottom="40" MarginRight="60" Sprite="@SpritePath" />
                     </Children>
                 </Widget>
             </Children>

@@ -170,14 +170,19 @@
             <Style Name="Default" FontColor="#FFFFFFFF" TextBlur="1" TextOutlineAmount="1" TextGlowRadius="0" FontSize="20" />
         </Styles>
     </Brush>
-    <Brush Name="TorCareerScreenBrush" Font="CasablancaAntique" TextHorizontalAlignment="Left">
+    <Brush Name="TorCareerScreenBrush" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Left">
         <Styles>
-            <Style Name="Default" FontColor="#FFFFFFFF" TextBlur="1" TextOutlineAmount="1" TextGlowRadius="0" FontSize="20" />
+            <Style Name="Default" FontColor="#FFFFFFFF" TextBlur="0" TextOutlineAmount="0" TextGlowRadius="0" FontSize="20" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorCareerChoiceBrush" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Left">
+        <Styles>
+            <Style Name="Default" FontColor="#FFFFFFFF" TextBlur="0" TextOutlineAmount="0" TextGlowRadius="0" FontSize="20" />
         </Styles>
     </Brush>
     <Brush Name="TorInkStoryBrush" Font="CasablancaAntique" TextHorizontalAlignment="Left">
         <Styles>
-            <Style Name="Default" FontColor="#00000000" TextBlur="0" TextOutlineAmount="0" TextGlowRadius="0" FontSize="16" />
+            <Style Name="Default" FontColor="#00000000" TextBlur="0" TextOutlineAmount="0" TextGlowRadius="0" FontSize="20" />
         </Styles>
     </Brush>
     <Brush Name="TorInventoryMagicItemBrush" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Center">
