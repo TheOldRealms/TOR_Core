@@ -24,7 +24,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
         public override void RegisterEvents()
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionStart);
-            CampaignEvents.HourlyTickPartyEvent.AddNonSerializedListener(this, HourlyTick);
+            CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, HourlyTick);
         }
 
         private void OnSessionStart(CampaignGameStarter starter)
@@ -37,9 +37,8 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             _events.Add(new CustomEvent("Duel", CustomEventFrequency.Uncommon, () => MobileParty.MainParty.IsMoving && MobileParty.MainParty.Army == null && !Hero.MainHero.IsPrisoner && !Hero.MainHero.HasAttribute("DefeatedVittorio"), () => InkStoryManager.OpenStory("Duel")));
         }
 
-        private void HourlyTick(MobileParty party)
+        private void HourlyTick()
         {
-            if (party != MobileParty.MainParty) return;
             if(GetRandomFrequency(out CustomEventFrequency chosenFrequency))
             {
                 var chosenEvent = _events.GetRandomElementWithPredicate(x => x.Frequency == chosenFrequency && x.DoesConditionHold() && x.StringId != InkStoryManager.LastStoryId);
