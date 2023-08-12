@@ -2640,8 +2640,8 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -2699,8 +2699,8 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
-      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_02" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="tavern" scene_name="TOR_bretonnia_taverne_02" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -2867,8 +2867,8 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
-      <Location id="tavern" scene_name="vlandia_tavern_interior_a" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -2926,8 +2926,8 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
-      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_02" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="tavern" scene_name="TOR_bretonnia_taverne_02" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -3058,8 +3058,8 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -3117,8 +3117,8 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="tavern" scene_name="TOR_bretonnia_taverne_02" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -3285,8 +3285,8 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -3344,8 +3344,8 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="tavern" scene_name="TOR_bretonnia_taverne_02" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -3512,8 +3512,8 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -3571,8 +3571,8 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="tavern" scene_name="TOR_bretonnia_taverne_02" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -3739,8 +3739,8 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
-      <Location id="tavern" scene_name="vlandia_tavern_interior_a" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="vlandia_house_d_interior_house" />
@@ -3798,8 +3798,8 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
-      <Location id="tavern" scene_name="vlandia_tavern_interior_a" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="tavern" scene_name="TOR_bretonnia_taverne_02" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="vlandia_house_d_interior_house" />
@@ -3966,8 +3966,8 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -4025,8 +4025,8 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="tavern" scene_name="TOR_bretonnia_taverne_02" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -4232,8 +4232,8 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
-      <Location id="tavern" scene_name="vlandia_tavern_interior_a" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="vlandia_house_d_interior_house" />
@@ -4291,8 +4291,8 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
-      <Location id="tavern" scene_name="vlandia_tavern_interior_a" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="tavern" scene_name="TOR_bretonnia_taverne_02" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="vlandia_house_d_interior_house" />
@@ -4498,8 +4498,8 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_a" scene_name_1="vlandia_town_a" scene_name_2="vlandia_town_a" scene_name_3="vlandia_town_a" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
-      <Location id="tavern" scene_name="vlandia_tavern_interior_a" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="vlandia_house_d_interior_house" />
