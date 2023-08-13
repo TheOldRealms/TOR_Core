@@ -434,7 +434,7 @@
 		id="flock_of_doom_dot"
 		particle_id="flock_of_doom"
 		particle_intensity="High"
-    	base_effect_value="10"
+    	base_effect_value="5"
 		do_not_attach_to_agent_skeleton="true"
 		type="DamageOverTime"
 		damage_type="Physical"/>
@@ -453,7 +453,7 @@
 		particle_id="beast_unleashed"
 		particle_intensity="High"
 		apply_particle_to_root_bone_only="true"
-		base_effect_value="0.5"
+		base_effect_value="0.25"
 		type="AttackSpeedManipulation"
 		damage_type="Physical"/>
 		

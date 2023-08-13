@@ -538,7 +538,7 @@
       TargetCapturingRadius="1"
       SpellTier="2"
       BelongsToLoreID="LoreOfFire"
-      TooltipDescription="[TODO]">
+      TooltipDescription="The caster is wrapping himself into a cloak of fire, that will protect him from physical and fire damage">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1306,7 +1306,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="LoreOfLight"
-      TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
+      TooltipDescription="The wizard catches enemies inside an area, impairing their movement.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2086,7 +2086,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="4"
       BelongsToLoreID="LoreOfLife"
-      TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
+      TooltipDescription="Tendrils from the underground reaching out and attack enemies passing the area. Knocks down or dismount enemies, slows them down(0.8%) and deals 5 damage per second">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2128,7 +2128,7 @@
       AbilityTargetType="WorldPosition"
       SpellTier="3"
       BelongsToLoreID="LoreOfLife"
-      TooltipDescription="Launch a small number of stones at the enemy - Monthy Python style.">
+      TooltipDescription="Caster merges eyes into a single glowing green eye, gazing a beam of deadly energy. Shoots a fast penetrating projectile, that hits multiple targets">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2171,7 +2171,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="LoreOfLife"
-      TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
+      TooltipDescription="Hardens the skin of targets, making them tougher, provding 35% physical resistance">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2214,7 +2214,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="2"
       BelongsToLoreID="LoreOfLife"
-      TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
+      TooltipDescription="Causes a small area to expierence unbearable heat causing fatigue impairing their movevementspeed by 50% and make them more vunerable for fire damage by 25%">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2257,7 +2257,7 @@
 	CrosshairType="TargetedAOE"
 	SpellTier="3"
 	BelongsToLoreID="LoreOfLife"
-	TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
+	TooltipDescription="Allies in a 3 meter radius gain 5 health points per second.">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2301,7 +2301,7 @@
    CrosshairType="TargetedAOE"
    SpellTier="2"
     BelongsToLoreID="LoreOfLife"
-    TooltipDescription="Enemies in the area experience a soul draining direct damage over time effect causing them to take 12 damage every second for 10 seconds.">
+    TooltipDescription="Drains the life essence from an enemy, dealing 5 damage per second">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2345,7 +2345,7 @@
 	CrosshairType="TargetedAOE"
 	SpellTier="4"
 	BelongsToLoreID="LoreOfLife"
-	TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
+	TooltipDescription="Raw Energy flows across the field, renewing lost vigour and mending wounds, directly heals 30 health points and heal all friendly targets inside the area for 10 health per second.">
 		<LightColorRGB x="50" y="255" z="50" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2391,7 +2391,7 @@
       AbilityTargetType="WorldPosition"
       SpellTier="2"
       BelongsToLoreID="LoreOfBeasts"
-      TooltipDescription="Launch a small number of stones at the enemy - Monthy Python style.">
+      TooltipDescription="magical amberish glowing  projectile shot in the direction of the enemy, that can penetrate multiple targets">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2434,7 +2434,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="2"
       BelongsToLoreID="LoreOfBeasts"
-      TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
+      TooltipDescription="Roots erupt from the ground preventing enemies from moving">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2477,7 +2477,7 @@
       TargetCapturingRadius="1"
       SpellTier="2"
       BelongsToLoreID="LoreOfBeasts"
-      TooltipDescription="Adds 20% physical damage bonus for 15 seconds to the caster.">
+      TooltipDescription="A magical Pelt  surrounds the caster, protecting him from physical damage">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2523,7 +2523,7 @@
       TargetCapturingRadius="6"
       SpellTier="3"
       BelongsToLoreID="LoreOfBeasts"
-      TooltipDescription="A black cloud looms over the targeted area striking those below with arcane lightning bolts.">
+      TooltipDescription="A Storm of Stones is falling down your enemies dealing physical damage">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2566,7 +2566,7 @@
    CrosshairType="TargetedAOE"
    SpellTier="3"
     BelongsToLoreID="LoreOfBeasts"
-    TooltipDescription="Enemies in the area experience a soul draining direct damage over time effect causing them to take 12 damage every second for 10 seconds.">
+    TooltipDescription="Summons a flock of crows in the target area attacking enemies. The enemy will suffer from a damage over time effect(5/s) and the physical resistance is reduced(20%).">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2610,7 +2610,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="4"
       BelongsToLoreID="LoreOfBeasts"
-      TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
+      TooltipDescription="Allies in a 3 meter radius will deal 25% more physical damage and attack 25% faster.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2653,7 +2653,7 @@
    CrosshairType="TargetedAOE"
    SpellTier="4"
     BelongsToLoreID="LoreOfBeasts"
-    TooltipDescription="Enemies in the area experience a soul draining direct damage over time effect causing them to take 12 damage every second for 10 seconds.">
+    TooltipDescription="Enemies in the area experience will be peskered by Nature spirits, reducing their movement(35%) and attack speed(50%) and let them suffer for from damage over time (3/s).">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
