@@ -191,6 +191,8 @@ namespace TOR_Core.Missions
 					var agentData = GetAgentBuildData(character, matrixFrame);
 
 					var agent = Mission.SpawnAgent(agentData);
+					AnimationSystemData animationSystemData = agentData.AgentMonster.FillAnimationSystemData(MBGlobals.GetActionSetWithSuffix(agentData.AgentMonster, agentData.AgentIsFemale, ActionSetCode.HideoutBanditActionSetSuffix), character.GetStepSize(), false);
+					agent.SetActionSet(ref animationSystemData);
 					var agentNavigator = agent.GetComponent<CampaignAgentComponent>().CreateAgentNavigator();
 					var daily = agentNavigator.AddBehaviorGroup<TORDailyBehaviorGroup>();
 					daily.AddBehavior<TORWalkingBehavior>().SetIndoorWandering(false);
