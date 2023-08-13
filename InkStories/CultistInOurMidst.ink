@@ -33,7 +33,7 @@
     //Seed
         //~ SEED_RANDOM(100) //Uncomment to lock an RNG testing seed for the randomness. Change number inside () for different seed
     VAR DealtWithCultists = false
-    VAR CultName = "Cult of Tzeench"
+    VAR CultName = "Cult of Khorne"
     VAR HardSkillCheckValue = 250
     VAR NormalSkillCheckValue = 150
     VAR EasySkillCheckValue = 80
@@ -82,7 +82,7 @@ Cultist in our midst #title #illustration: village
 
 === InvestigateVillagers ===
     You realize that the cultists are adept at hiding their true identities. Finding out who they are is going to be no easy feat. You decide to interact with the villagers and gather more information.
-    Speaking to various individuals, you subtly inquire about recent strange occurrences, missing persons, or rumors of dark practices. Some villagers express unease, speaking of mysterious symbols etched in hidden corners, unexplained disappearances, missing livestock and strange lights appearing in the surrounding forest during the night.
+    Speaking to various individuals, you subtly inquire about recent strange occurrences, missing persons, or rumors of dark practices. Some villagers express unease, speaking of mysterious symbols etched in hidden corners, unexplained disappearances and strange lights appearing in the surrounding forest during the night.
     ->choices
 
     =choices
@@ -92,8 +92,6 @@ Cultist in our midst #title #illustration: village
     *[Embark on a meticulous search for discreet symbols or markings throughout the village.] -> Symbols
     * -> OutOfOptions
     //*[Attend a village gathering and observe the behavior of the suspected cultists.] -> AttendGathering
-
-
 
 
 
@@ -154,8 +152,6 @@ Cultist in our midst #title #illustration: village
 
 
 
-
-
 === Symbols ===
     Under the cover of darkness, you discreetly search the villagers' homes for hidden symbols and artifacts. It's a risky endeavor, but you're determined to find any evidence of the cult's presence.
     
@@ -163,8 +159,6 @@ Cultist in our midst #title #illustration: village
     
     Armed with this knowledge, you continue to search for the true identities of the cultists with renewed determination.
     ->InvestigateVillagers.choices
-
-
 
 
 

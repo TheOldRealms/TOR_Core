@@ -116,7 +116,11 @@ namespace TOR_Core.Missions
                 {
 					foreach(var agent in _currentTournamentAgents)
                     {
-						if (!agent.IsPlayerControlled) agent.DisableScriptedMovement();
+						if (!agent.IsPlayerControlled) 
+						{ 
+							agent.DisableScriptedMovement(); 
+							agent.ToggleInvulnerable();
+						}
                     }
 					_currentState = JoustFightState.FootCombat;
 
@@ -431,12 +435,16 @@ namespace TOR_Core.Missions
 				_currentState = JoustFightState.Transition;
 				foreach(var agent in _currentTournamentAgents)
                 {
-					agent.DropItem(EquipmentIndex.Weapon0);
+					if(agent.GetWieldedItemIndex(Agent.HandIndex.MainHand) == EquipmentIndex.Weapon0 && 
+						!agent.WieldedWeapon.IsEmpty &&
+						agent.WieldedWeapon.Item != null &&
+						agent.WieldedWeapon.Item.StringId.Contains("lance")) agent.DropItem(EquipmentIndex.Weapon0);
                     if (!agent.IsPlayerControlled)
                     {
 						var spawnpoint = GetSpawnPointForTeam(agent.Team.TeamIndex, false);
 						WorldPosition pos = new WorldPosition(Mission.Scene, spawnpoint.GlobalPosition);
 						agent.SetScriptedPosition(ref pos, true, Agent.AIScriptedFrameFlags.GoWithoutMount | Agent.AIScriptedFrameFlags.NoAttack);
+						agent.ToggleInvulnerable();
                     }
                 }
             }

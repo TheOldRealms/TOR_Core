@@ -143,6 +143,8 @@ namespace TOR_Core.Missions
         {
 			int count = 0;
 			if (template == null) return;
+			int maxCount = GetAllUsablePointsWithTag("npc_common").Count;
+			if (maxCount < enemyCount) enemyCount = maxCount;
 			List<CharacterObject> enemies = new List<CharacterObject>();
 			foreach(var stack in template.Stacks)
             {
