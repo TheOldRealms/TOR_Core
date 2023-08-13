@@ -2252,7 +2252,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_parravon_first_2" default_group="cavalry" name="{=str_tor_br_lord_parravon_first_2}Ser Philippe Antoine" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="27" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="27" weight="0.5" build="0.5" key="0010AC081700008F2969BA9B971F7295537D86629811023BDA738E5D8A844667007776030712B59100000000000000000000000000000000000000003EFC5000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -2270,7 +2270,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_parravon_first_3" default_group="cavalry" name="{=str_tor_br_lord_parravon_first_3}Ser Alderic Le Doré" occupation="Lord" culture="Culture.vlandia" voice="curt" age="19" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="19" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="19" weight="0.2083" build="0.1713" key="000D600200000002A525B3518D28257612DABA97A783643BEBA45F298582812000933603095845400000000000000000000000000000000000000000553C6140" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -2288,7 +2288,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_parravon_first_4" default_group="cavalry" name="{=str_tor_br_lord_parravon_first_4}Ser Gaultier Monstre-Fleau" occupation="Lord" culture="Culture.vlandia" voice="curt" age="26" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="26" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="26" weight="0.7423" build="0.9522" key="001BD40D9EFC280C6968B8376207928E537D864BD85116166CB755258A84F66700DEB6030D44B195000000000000000000000000000000000000000063AC9000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -2306,7 +2306,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_parravon_first_5" default_group="cavalry" name="{=str_tor_br_lord_parravon_first_5}Ser Audric de Parravon" occupation="Lord" culture="Culture.vlandia" voice="curt" age="29" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="29" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="35.14" weight="0.7793" build="0.1433" key="0013440D80583740B68483985767A84837827552A7AB6D8916BBB6C6966547BB0282C62408956732000000000000000000000000000000000000000045143100" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -2324,7 +2324,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_parravon_first_6" default_group="cavalry" name="{=str_tor_br_lord_parravon_first_6}Ser Lukas de l’abbaye de Maisontaal" occupation="Lord" culture="Culture.vlandia" voice="curt" age="22" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="22.1" weight="0.841" build="0.3843" key="0013D406C070300C98529BB86AB8E77B9C8E60536996082288965789AD9BE4780086D6030866B58400000000000000000000000000000000000000004B149000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -2342,7 +2342,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_parravon_first_7" default_group="cavalry" name="{=str_tor_br_lord_parravon_first_7}Ser Pierre le Fer" occupation="Lord" culture="Culture.vlandia" voice="curt" age="26" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="26" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="26.19" weight="0.7855" build="0.7886" key="001530098E8812C82C554A6C570ABBC9962949690866096B93B77EE68A467577017CC61307416333000000000000000000000000000000000000000040E430C0" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -2648,7 +2648,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_bordeleaux_first_2" default_group="cavalry" name="{=str_tor_br_lord_bordeleaux_first_2}Ser Guieffroy Ragnier" occupation="Lord" culture="Culture.vlandia" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="24" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="24" weight="1" build="0.1096" key="000564009C0020488DD6C4D7DFCF00003C6686629511320B88538FAC8BB8C5B500B2F6030B2B044300000000000000000000000000000000000000003F6C4040" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -2666,7 +2666,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_bordeleaux_first_3" default_group="cavalry" name="{=str_tor_br_lord_bordeleaux_first_3}Ser Bonpre Lapart" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="30" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="30" weight="0.5188" build="1" key="0010300A578815CC1B54221B75D706FFC99AA9788FC0140D599EA3A366754985002F86030247B6170000000000000000000000000000000000000000125470C0" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="6" />
@@ -2684,7 +2684,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_bordeleaux_first_4" default_group="cavalry" name="{=str_tor_br_lord_bordeleaux_first_4}Ser Gyeffroy l' Épéiste" occupation="Lord" culture="Culture.vlandia" voice="curt" age="29" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="29" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="22" weight="0.3582" build="0.5602" key="0008900980FC30899AE74B66529B754756B9FB2859C29B7BE33949A676C9238700B856030B19C898000000000000000000000000000000000000000039645000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="8" />
@@ -2702,7 +2702,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_bordeleaux_first_5" default_group="cavalry" name="{=str_tor_br_lord_bordeleaux_first_5}Ser Gundehar of Raisol" occupation="Lord" culture="Culture.vlandia" voice="curt" age="33" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="33" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="33" weight="0.7485" build="0.9738" key="0013500E5DCC07C1C6F566969985454CD04F8C5656E1D87BEA757254FFAC86A600BFB6030B5488960000000000000000000000000000000000000000397C3080" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -2720,7 +2720,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_bordeleaux_first_6" default_group="cavalry" name="{=str_tor_br_lord_bordeleaux_first_6}Ser Foguelin de Oiseau" occupation="Lord" culture="Culture.vlandia" voice="curt" age="39" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="39" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="39" weight="0.5805" build="0.1836" key="001E5C0800A0118D6B86888A75B770A22BACC34B56C34C8C125D4AB37F6884AE009396030913C99C0000000000000000000000000000000000000000493430C0" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -3332,7 +3332,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_m_lord_mousillon_first_1" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_1}Lord Rachard" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="24" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="62" weight="0.0293" build="0.1235" key="00005C0D000017436C601A8FF0F1888A75E486C8C0C1E60EC4B64A398F95A03700A206030AA7497300000000000000000000000000000000000000002B647000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -3350,7 +3350,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_m_lord_mousillon_first_2" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_2}Lord Aucassin" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="24" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="24" weight="0.5" build="0.8009" key="0000B8014000015C7C78688FE7838072FAE7866254C69643C4B647398095A037009C760309A96973000000000000000000000000000000000000000029342000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -3368,7 +3368,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_m_lord_mousillon_first_3" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_3}Ser Cain Bettencourt" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="24" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="24" weight="0.1771" build="0.6465" key="0002A40F1AB435C4D957AA4996750A3848F55B12B5C08478C788B85AD6B7767900AA36030A8D491700000000000000000000000000000000000000003D443040" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -3386,7 +3386,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_m_lord_mousillon_first_4" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_4}Gleb Marks" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="24" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="63" weight="0" build="0" key="0000540F002C1480EE94456EB7900AC5C796C64EFF82FA768DB84B399DA98D6D00B006030BA54A95000000000000000000000000000000000000000059642000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />

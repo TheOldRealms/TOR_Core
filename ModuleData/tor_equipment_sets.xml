@@ -6376,6 +6376,68 @@
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_m_doomed_questing_knight_template" culture="Culture.mousillon">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_thsword_vampire_001" />
+      <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_questing_knight_001" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_thsword_vampire_001" />
+      <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_questing_knight_001" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_questing_knight_002" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_questing_knight_003" />
+      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_hell_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_questing_knight_002" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_questing_knight_003" />
+      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_hell_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_001" />
+      <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_questing_knight_002" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_002" />
+      <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_001" />
+      <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_questing_knight_002" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_002" />
+      <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_m_knight_of_misfortune_template" culture="Culture.mousillon">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
@@ -6385,6 +6447,8 @@
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
       <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
       <Equipment slot="Leg" id="Item.strapped_mail_chausses" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
@@ -6394,6 +6458,8 @@
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
       <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
       <Equipment slot="Leg" id="Item.strapped_mail_chausses" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
@@ -6403,6 +6469,8 @@
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
       <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
@@ -6412,6 +6480,8 @@
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
       <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_m_black_grail_knight_template" culture="Culture.mousillon">
@@ -11725,15 +11795,23 @@
   <EquipmentRoster id="tor_bretonnian_knight_template" culture="Culture.vlandia">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_001" />
-      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_knight_001" />
-      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_001" />
-      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_knight_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_kotr_002" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_questing_knight_003" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_questing_knight_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_004" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_001" />
-      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_knight_001" />
-      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_001" />
-      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_knight_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_kotr_002" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_questing_knight_003" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_questing_knight_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_004" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_prophetess_template" culture="Culture.vlandia">
@@ -11754,6 +11832,30 @@
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_prophetess_001" />
       <Equipment slot="Horse" id="Item.t2_vlandia_horse" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_fallen_knight" culture="Culture.mousillon">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_001" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_lance_knight_003" />
+      <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
+      <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
+      <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
+      <Equipment slot="Leg" id="Item.strapped_mail_chausses" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_001" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_lance_knight_003" />
+      <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
+      <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
+      <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
+      <Equipment slot="Leg" id="Item.strapped_mail_chausses" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_archaon_template" culture="Culture.chaos_culture">
