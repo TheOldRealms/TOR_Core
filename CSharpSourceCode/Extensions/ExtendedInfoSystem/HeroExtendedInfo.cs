@@ -121,6 +121,11 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             }
         }
 
+        public List<string> GetAllPrayers()
+        {
+            return AllAbilites.Where(x => AbilityFactory.GetTemplate(x).AbilityType == AbilityType.Prayer).ToList();
+        }
+
         public ReligionObject DominantReligion
         {
             get
