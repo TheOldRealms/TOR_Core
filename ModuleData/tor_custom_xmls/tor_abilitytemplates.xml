@@ -2981,7 +2981,7 @@
       AbilityTargetType="WorldPosition"
       SpellTier="3"
       BelongsToLoreID="SigmaritePrayers"
-      TooltipDescription="You throw a fiery missile that takes the form of Sigmar’s famed twin-tailed comet. A comet of Sigmar is a holy missile with 30 Damage. It can knock units down, or throw them off horse.">
+      TooltipDescription="You throw a fiery missile that takes the form of Sigmar’s famed twin-tailed comet. A comet of Sigmar is a holy missile with 30 Damage. It can knock units down, or throw them off horse. Only affects enemies">
 		<LightColorRGB x="245" y="247" z="129" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -3038,7 +3038,7 @@
 	<AbilityTemplate StringID="ArmourOfRighteousness"
       Name="Armour of Righteousness"
       SpriteName="armorofrighteousness_icon"
-      CoolDown="10"
+      CoolDown="70"
       WindsOfMagicCost="0"
       BaseMisCastChance="0.05"
       Duration="0"
@@ -3068,7 +3068,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="1"
       BelongsToLoreID="SigmaritePrayers"
-      TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
+      TooltipDescription="Allies in a 3 meter radius gain 35% physical resistance for 8 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>

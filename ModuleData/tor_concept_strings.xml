@@ -116,7 +116,11 @@ Choosing any other career start for your campaign will result in the same experi
 	Across the campaign map, there are a number of features we have dubbed ‘cursed locations’, a primary example of this would be the swamps found in Sylvania and Moussilon. These locations will cause attrition, troops in your party, 
 	and your hero suffer from attrition spending time in this location and you are unable to heal while you are in this area. and they can gradually get worse if you spend too long inside of these locations.{newline}
 	{newline}
-	Certain races, or factions, have immunity depending on the location or type of cursed location. As a Vampire, Necromancer or vassal of Sylvania, you will have immunity to the damaging effects of the swamps for example.
+	Certain races, or factions, have immunity depending on the location or type of cursed location. As a Vampire, Necromancer or vassal of Sylvania, you will have immunity to the damaging effects of the swamps for example. 	{newline}
+	{newline}
+	The Player party can perform a ritual of wardening against Cursed regions. This will temporarily prevent the curse effect of that region.{newline}
+	{newline}
+	{newline}
   " />
   <Concept title="{=aIkffnN6}Damage System" id="str_tor_damagesystem" group="The Old Realms" link_id="TOR_DAMAGESYSTEM" text=
   "
@@ -202,7 +206,7 @@ Choosing any other career start for your campaign will result in the same experi
  {newline}
  Necromancy: {newline}
  Necromancy provides an extra dynamic alongside all of the above, the ability to ‘raise the dead. Having access to this magics means that you will have the option to raise the dead after battles, to bolster your armies, 
- as well as visit specific locations on the campaign map to recruit higher-tier undead units, such as wraiths. See {TOR_RAISEDEAD}.{newline}
+ as well as visit specific locations on the campaign map to recruit higher-tier undead units, such as wraiths. (See{TOR_RAISEDEAD} ) .{newline}
  {newline}
  {newline}
  The Spell Book: {newline}
@@ -251,7 +255,7 @@ Choosing any other career start for your campaign will result in the same experi
   {newline}
   Faith {newline}
   Faith is restricted to all believing people in the old world. Necromancers, and Vampires are excluded from this skill. 
-  Faith can be increased upon praying at a shrine ( see religious Locations) or in case of some priest careers, by performing prayers during battles. Faith increases the duration for blessings.{newline}
+  Faith can be increased upon praying at a shrine ( see TOR_RELIGION) or in case of some priest careers, by performing prayers during battles. Faith increases the duration for blessings.{newline}
   
   {newline}
   {newline}
@@ -270,12 +274,18 @@ Choosing any other career start for your campaign will result in the same experi
   
   <Concept title="{=aIkffnN6}Religious Locations" id="str_tor_religion" group="The Old Realms" link_id="TOR_RELIGION" text=
   "
-  Around the world, several locations can be found for Characters to receive blessings of the gods. The blessings provide buffs for the whole party. 
-  Praying at a shrine will attract religious units, like flagellants and battle pilgrims, which join the praying party. 
-  Note that the player as well as other Lords will be provided effects from praying at a shrine. Additionally, your devotion for a god rises whenever you pray at a shrine.{newline}
+  Around the world, several locations can be found for Characters to receive blessings of the gods. The blessings provide buffs for the whole party. Praying at a shrine will attract religious units, like flagellants and battle pilgrims, which join the praying party. Note that the player as well as other Lords will be provided effects from praying at a shrine. Additionally, your devotion for a god rises whenever you pray at a shrine.{newline}
   {newline}
   In the current state 3 gods are implemented, which provide their respective blessings. {newline}
-  
+  {newline}
+  Taal, the All-father of the human gods, the god of hunters, provides a movement buff inside of forests for the party.{newline}
+  {newline}
+  Sigmar, the Uniter of mankind, provides a  health regeneration buff for heroes in parties.{newline}
+  {newline}
+  The Lady of the Lake provides a morale buff for all units within a party.{newline}
+  {newline}
+  Praying at a shrine is attached to the Faith skill and a higher faith skill will prolong the effects. New functions can also be unlocked, like “donations” which allow the player to increase renown by donating items to a shrine.{newline}
+  {newline}
   {newline}
   {newline}
   " />
@@ -323,7 +333,21 @@ Choosing any other career start for your campaign will result in the same experi
   {newline}
   Prayers are very powerful, to balance this the ability cooldown is shared across all prayers and is usually both long, and not immediately available.  
   Of course, vampires and necromancers will also be blocked from access to such abilities.  {newline}
-  
+  {newline}
+  In the current state 8 prayers are accessible:{newline}
+  {newline}
+  Sigmar:{newline}
+  - Healing hand: Troops inside an area get healed for 5 healthpoints per second for a total duration of 9 seconds.{newline}
+  - Armour of the Righteous: Allies in a 3 meter target radius gain 35% physical resistance for 8 seconds.{newline}
+  - Vanquish: Allies in a target radius gain a burning weapon trait, that ignites enemies and deals fire damage.{newline}
+  - Comet of Sigmar: A projectile is launched at the enemy, dealing about 30 holy damage. The explosion can knock down enemies and dismount riders.{newline}
+  {newline}
+  {newline}
+  Lady of the Lake{newline}
+  - Aura of the Lady: Protects allies from magic fire and Lighnting Spell damage by 80% {newline}
+  - Shield Of Combat: Adds 40% physical resistance against ranged damage for 15 seconds to the caster and surrounding friendly units.{newline}
+  - Lady's Favour: Increaes attack speed for units inside an area by 25%. {newline}
+  - Aerial Shield: Protects allies inside an area from ranged damage completely. {newline}
   {newline}
   {newline}
   " />
