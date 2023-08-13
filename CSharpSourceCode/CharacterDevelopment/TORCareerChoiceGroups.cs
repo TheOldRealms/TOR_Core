@@ -284,7 +284,7 @@ namespace TOR_Core.CharacterDevelopment
                 text = string.Empty;
                 return true;
             });
-            _talesOfGiles.Initialize("Tales of Giles", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
+            _talesOfGiles.Initialize("Tales of Gilles", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;

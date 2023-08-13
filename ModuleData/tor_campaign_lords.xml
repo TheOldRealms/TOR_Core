@@ -2234,7 +2234,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_parravon_factionleader" default_group="cavalry" name="{=str_tor_br_lord_parravon_factionleader}Duke Cassyon de Parravon" occupation="Lord" culture="Culture.vlandia" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="24" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="22" weight="0.4171" build="0.2463" key="0018A80800E406426878689A6A663846254B954647B16C6C62648798A27351340054860305A67A59000000000000000000000000000000000000000052A43142" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -2360,7 +2360,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_montfort_factionleader" default_group="cavalry" name="{=str_tor_br_lord_montfort_factionleader}Folcard de Montfort" occupation="Lord" culture="Culture.vlandia" voice="curt" age="31" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="31" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="22" weight="0.7946" build="0.5927" key="0010700F0088020EAA5B4BCA68A232D65738A5A8C7575869664B876857B754940049C60304D7779B00000000000000000000000000000000000000004C846102" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -2486,7 +2486,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_bastonne_factionleader" default_group="cavalry" name="{=str_tor_br_lord_bastonne_factionleader}Bohemond Beastslayer" occupation="Lord" culture="Culture.vlandia" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="35" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="22" weight="0.6267" build="0.7855" key="0010780540003601BB5733977454756A4FD5AC625ADC5645A48DB7A65974F398009C96030977996700000000000000000000000000000000000000003F2C4085" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -2630,7 +2630,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_bordeleaux_factionleader" default_group="cavalry" name="{=str_tor_br_lord_bordeleaux_factionleader}Duke Alberic de Bordeleaux" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="37" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="34" weight="0.0556" build="0.2361" key="00022404D40021C56376648B6752888E9FB1A66B5875A643C4B6B73B8795AC2702C416240CA74A1421000000000000000000000000000018000000003B943002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -2756,7 +2756,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_carcassonne_factionleader" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_factionleader}Duke Huebald of Carcassonne" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="30" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="22" weight="0.1497" build="0.4645" key="0013F00F1714118B28CCAA5A653B1A76578BAC6265E25D00B5E820879AB4B307007726030778E88B000000000000000000000000000000000000000052DC8004" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -2900,7 +2900,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_brionne_factionleader" default_group="cavalry" name="{=str_tor_br_lord_brionne_factionleader}Duke Theodoric of Brionne" occupation="Lord" culture="Culture.vlandia" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="24" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="22" weight="0.2191" build="0.6265" key="0000A80FC000160E257664710448F782999686598E785A76555853988A84566600A936030A0F8E590000000000000000000000000000000000000000015C3000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -3026,7 +3026,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_aquitaine_factionleader" default_group="cavalry" name="{=str_tor_br_lord_aquitaine_factionleader}Duke Armand d’ Aquitaine" occupation="Lord" culture="Culture.vlandia" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="24" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="22" weight="0.4171" build="0.4327" key="0010A80D80B415C83826588869A85268CFDA96453BBBCB25683977737BC67A2500566603058B6988000000000000000000000000000000000000000032A48142" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -3170,7 +3170,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_quenelles_factionleader" default_group="cavalry" name="{=str_tor_br_lord_quenelles_factionleader}Duke Tancred II de Quenelles" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="37" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="50" weight="0.3981" build="0.9792" key="000254001400118FB911506E2932A4A4537A766693A5323BA824110A8A845667048F66460844FF16000000000000000000000000000000000000000009044002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="8" />
@@ -3314,7 +3314,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_m_lord_mousillon_factionleader" default_group="cavalry" name="{=str_tor_m_lord_mousillon_factionleader}The Serpent of Mousillon" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="24" weight="1" build="0.9" key="0020C40FD400315BFFF7607F78E8FF98C74957A47298170E09FF608DBA69A5EA00FFF6030FFF5EB8000000000000000000000000000000000000000007FC9044" />
+      <BodyProperties version="4" age="22" weight="0.2284" build="0.713" key="0002500F170012457C70638A76C1136A6DC98666F4C19600C4B640398A95A03600BB36030BA7A40500000000000000000000000000000000000000003B743080" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
