@@ -3292,24 +3292,28 @@
     <Abilities />
     <Attributes>
       <string>BloodDragon</string>
+      <string>Necromancer</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_blooddragons_first_2">
     <Abilities />
     <Attributes>
       <string>BloodDragon</string>
+      <string>Necromancer</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_blooddragons_first_3">
     <Abilities />
     <Attributes>
       <string>BloodDragon</string>
+      <string>Necromancer</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_blooddragons_first_4">
     <Abilities />
     <Attributes>
       <string>BloodDragon</string>
+      <string>Necromancer</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_parravon_factionleader">
@@ -3627,6 +3631,31 @@
   <CharacterExtendedInfo id="tor_m_lord_mousillon_first_7">
     <Abilities />
     <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_m_lord_mousillon_first_8">
+    <Abilities>
+      <string>NagashGaze</string>
+      <string>SummonSkeleton</string>
+      <string>Shadowblood</string>
+      <string>Morkharn</string>
+      <string>CurseOfYears</string>
+      <string>Kandorak</string>
+      <string>ScreamingSkull</string>
+      <string>WindOfDeath</string>
+      <string>GraveCall</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+      <string>Necromancer</string>
+      <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_m_lord_mousillon_first_9">
+    <Abilities />
+    <Attributes>
+      <string>AICompanion</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_chaos_lord_factionleader">
     <Abilities>
