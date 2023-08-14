@@ -238,6 +238,10 @@ namespace TOR_Core.Ink
             {
                 _story.BindExternalFunction("OpenDuelMission", OpenDuelMission, false);
             }
+            if (!_story.TryGetExternalFunction("OpenCultistLairMission", out _))
+            {
+                _story.BindExternalFunction("OpenCultistLairMission", OpenCultistLairMission, false);
+            }
             if (!_story.TryGetExternalFunction("GetPlayerHasCustomTag", out _))
             {
                 _story.BindExternalFunction<string>("GetPlayerHasCustomTag", GetPlayerHasCustomTag, true);
@@ -250,6 +254,12 @@ namespace TOR_Core.Ink
             {
                 _story.BindExternalFunction("OpenInventoryAsTrade", OpenInventoryAsTrade, false);
             }
+        }
+
+        private void OpenCultistLairMission()
+        {
+            var template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_cultists");
+            TorMissionManager.OpenQuestMission("TOR_cultist_lair_001", template, 5, (playerVictory) => SetVariable("DealtWithCultists", playerVictory));
         }
 
         private void OpenInventoryAsTrade()

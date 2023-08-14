@@ -16,7 +16,7 @@ namespace TOR_Core.Ink
         private bool _isVisible = false;
         private string _title = "Title";
         private string _currentText = string.Empty;
-        private int _maxChars = 800;
+        private int _maxChars = 1200;
         private string _spritePath = string.Empty;
 
         public void SetStory(InkStory story)

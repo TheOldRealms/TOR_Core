@@ -238,6 +238,11 @@ EXTERNAL OpenDuelMission()
 ===function OpenDuelMission()===
     ~ return ""
 
+//Opens the cultist lair mission
+EXTERNAL OpenCultistLairMission()
+===function OpenCultistLairMission()===
+    ~ return ""
+
 //Opens the duel mission
 EXTERNAL GetPlayerHasCustomTag(tag)
 ===function GetPlayerHasCustomTag(tag)===

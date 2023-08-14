@@ -43,8 +43,6 @@ namespace TOR_Core.Missions
 			//SpawnSpectators();
 		}
 
-		
-
         private void SpawnSpectators()
         {
             throw new NotImplementedException();

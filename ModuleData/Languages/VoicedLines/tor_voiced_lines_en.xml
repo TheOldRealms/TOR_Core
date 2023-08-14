@@ -49,5 +49,8 @@
     <VoiceOver id="beastmen_trample">
       <Voice path="VoicedLines/EN/$PLATFORM/beastmen_trample" />
     </VoiceOver>
+    <VoiceOver id="khorne_cultist_mission">
+      <Voice path="VoicedLines/EN/$PLATFORM/khorne_cultist_mission" />
+    </VoiceOver>
   </VoiceOvers>
 </Base>

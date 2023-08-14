@@ -85,7 +85,7 @@ namespace TOR_Core.Missions
 		}
 
 		[MissionMethod]
-		public static Mission OpenQuestMission(string scene, PartyTemplateObject enemyPartyTemplate, int enemyCount = 8)
+		public static Mission OpenQuestMission(string scene, PartyTemplateObject enemyPartyTemplate, int enemyCount = 8, Action<bool> onMissionEnd = null)
 		{
 			return MissionState.OpenNew("QuestFight", SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All), (Mission mission) => new MissionBehavior[]
 			{
@@ -93,11 +93,11 @@ namespace TOR_Core.Missions
 				new CampaignMissionComponent(),
 				new MissionBasicTeamLogic(),
 				new MissionAgentLookHandler(),
-				new BasicLeaveMissionLogic(true),
+				new BasicLeaveMissionLogic(false),
 				new LeaveMissionLogic(),
 				new AgentHumanAILogic(),
 				new MissionConversationLogic(),
-				new QuestFightMissionController(enemyPartyTemplate, enemyCount),
+				new QuestFightMissionController(enemyPartyTemplate, enemyCount, onMissionEnd),
 				new TORMissionAgentHandler(),
 				new HeroSkillHandler(),
 				new MissionFightHandler(),
