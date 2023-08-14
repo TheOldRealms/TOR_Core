@@ -11774,6 +11774,228 @@
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_vc_wight_king_001" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_bretonnian_generic_lord_template_realm_1" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_kotr_001" />
+      <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_003" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_kotr_001" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_kotr_002" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_kotr_001" />
+      <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_003" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_kotr_001" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_kotr_002" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_bretonnian_generic_lord_template_realm_2" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_kotr_003" />
+      <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_002" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_kotr_003" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_kotr_002" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_kotr_003" />
+      <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_002" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_kotr_003" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_kotr_002" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_bretonnian_generic_lord_template_realm_3" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_kotr_001" />
+      <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_kotr_002" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_kotr_002" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_kotr_001" />
+      <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_kotr_002" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_kotr_002" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_bretonnian_generic_lord_template_quest_1" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_003" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_questing_knight_002" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_questing_knight_001" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_004" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_003" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_questing_knight_002" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_questing_knight_001" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_004" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_bretonnian_generic_lord_template_quest_2" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_003" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_questing_knight_001" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_002" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_questing_knight_001" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_005" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_003" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_questing_knight_001" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_002" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_questing_knight_001" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_005" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_bretonnian_generic_lord_template_quest_3" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_003" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_questing_knight_003" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_questing_knight_001" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_003" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_questing_knight_003" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_questing_knight_001" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_bretonnian_generic_lord_template_grail_1" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_kotr_001" />
+      <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_003" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_kotr_001" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_questing_knight_002" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_002" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_kotr_001" />
+      <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_003" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_kotr_001" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_questing_knight_002" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_002" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_bretonnian_generic_lord_template_grail_2" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_kotr_001" />
+      <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_002" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_kotr_003" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_kotr_001" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_003" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_004" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_kotr_001" />
+      <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_002" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_kotr_003" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_kotr_001" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_003" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_004" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_bretonnian_generic_lord_template_grail_3" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_noble_001" />
+      <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_kotr_002" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_questing_knight_001" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_questing_knight_001" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_005" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_noble_001" />
+      <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_kotr_002" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_questing_knight_001" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_questing_knight_001" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_005" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_fay_enchantress_template" culture="Culture.vlandia">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_staff_proph_001" />
@@ -11832,6 +12054,48 @@
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_prophetess_001" />
       <Equipment slot="Horse" id="Item.t2_vlandia_horse" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_pitre_fonce_template" culture="Culture.mousillon">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_001" />
+      <Equipment slot="Head" id="Item.thinhide_coif" />
+      <Equipment slot="Body" id="Item.tor_vc_body_robe_necromancer_001" />
+      <Equipment slot="Cape" id="Item.tor_vc_shoulder_cape_necromancer_001" />
+      <Equipment slot="Leg" id="Item.tor_vc_leg_boots_necromancer" />
+      <Equipment slot="Horse" id="Item.tor_vc_mount_horse_skeleton_horse_001" />
+      <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_scythe_001" />
+      <Equipment slot="Head" id="Item.thinhide_coif" />
+      <Equipment slot="Body" id="Item.tor_vc_body_robe_necromancer_001" />
+      <Equipment slot="Cape" id="Item.tor_vc_shoulder_cape_necromancer_001" />
+      <Equipment slot="Leg" id="Item.tor_vc_leg_boots_necromancer" />
+      <Equipment slot="Horse" id="Item.tor_vc_mount_horse_skeleton_horse_001" />
+      <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_black_duke_template" culture="Culture.mousillon">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_thsword_grave_guard_001" />
+      <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
+      <Equipment slot="Body" id="Item.tor_vc_body_breastplate_grave_guard_006" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
+      <Equipment slot="Leg" id="Item.tor_vc_leg_boots_vc_hell_knight_001" />
+      <Equipment slot="Horse" id="Item.tor_vc_mount_horse_skeleton_horse_001" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_thsword_grave_guard_001" />
+      <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
+      <Equipment slot="Body" id="Item.tor_vc_body_breastplate_grave_guard_006" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
+      <Equipment slot="Leg" id="Item.tor_vc_leg_boots_vc_hell_knight_001" />
+      <Equipment slot="Horse" id="Item.tor_vc_mount_horse_skeleton_horse_001" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_fallen_knight" culture="Culture.mousillon">

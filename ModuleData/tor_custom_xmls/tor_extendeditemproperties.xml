@@ -1901,7 +1901,9 @@
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_comet_flail">
     <ItemTraits />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.40" />
+      <DamageProportionTuple DamageType="Holy" Percent="0.40" />
+      <DamageProportionTuple DamageType="Fire" Percent="0.40" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_warrior_priest_001">
