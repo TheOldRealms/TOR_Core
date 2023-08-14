@@ -3326,8 +3326,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
-      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+      <EquipmentSet id="tor_m_black_grail_knight_template" />
+      <EquipmentSet id="tor_m_black_grail_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_m_lord_mousillon_first_1" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_1}Lord Rachard" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
@@ -3344,8 +3344,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
-      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+      <EquipmentSet id="tor_m_black_grail_knight_template" />
+      <EquipmentSet id="tor_m_black_grail_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_m_lord_mousillon_first_2" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_2}Lord Aucassin" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" race="vampire" is_hero="true">
@@ -3362,8 +3362,8 @@
       <Trait id="Generosity" value="-5" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
-      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+      <EquipmentSet id="tor_m_black_grail_knight_template" />
+      <EquipmentSet id="tor_m_black_grail_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_m_lord_mousillon_first_3" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_3}Ser Cain Bettencourt" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
@@ -3380,8 +3380,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
-      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+      <EquipmentSet id="tor_m_knight_of_misfortune_template" />
+      <EquipmentSet id="tor_m_knight_of_misfortune_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_m_lord_mousillon_first_4" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_4}Gleb Marks" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
@@ -3416,8 +3416,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
-      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+      <EquipmentSet id="tor_m_black_grail_knight_template" />
+      <EquipmentSet id="tor_m_black_grail_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_m_lord_mousillon_first_6" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_6}Ser Agravain the Shadow" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
@@ -3434,8 +3434,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
-      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+      <EquipmentSet id="tor_m_knight_of_misfortune_template" />
+      <EquipmentSet id="tor_m_knight_of_misfortune_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_m_lord_mousillon_first_7" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_7}Ser Gaheris the Dreaded" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
@@ -3452,8 +3452,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
-      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+      <EquipmentSet id="tor_m_black_grail_knight_template" />
+      <EquipmentSet id="tor_m_black_grail_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_m_lord_mousillon_first_8" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_8}Pitre Fonce" occupation="Special" culture="Culture.mousillon" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
