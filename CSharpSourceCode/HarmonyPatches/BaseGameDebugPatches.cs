@@ -2,6 +2,7 @@
 using NLog;
 using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.InputSystem;
@@ -32,10 +33,39 @@ namespace TOR_Core.HarmonyPatches
         }
 
         [HarmonyPrefix]
+        [HarmonyPatch(typeof(TroopRoster), "WoundNumberOfTroopsRandomly")]
+        public static bool PreventDeadlock(int numberOfMen, TroopRoster __instance, int ____totalRegulars, int ____totalWoundedRegulars)
+        {
+            for (int i = 0; i < numberOfMen; i++)
+            {
+                CharacterObject characterObject = null;
+                int num = ____totalRegulars - ____totalWoundedRegulars;
+                bool flag = num > 0;
+                int counter = 0;
+                while (flag && counter < 50)
+                {
+                    flag = false;
+                    int indexOfTroop = MBRandom.RandomInt(num);
+                    characterObject = __instance.GetManAtIndexFromFlattenedRosterWithFilter(indexOfTroop, true, false);
+                    if (characterObject == null || characterObject.IsHero)
+                    {
+                        flag = true;
+                        counter++;
+                    }
+                }
+                if (characterObject != null)
+                {
+                    __instance.WoundTroop(characterObject, 1, default(UniqueTroopDescriptor));
+                }
+            }
+            return false;
+        }
+
+        [HarmonyPrefix]
         [HarmonyPatch(typeof(Game), "InitializeParameters")]
         public static bool LoadTORManagedParameters(Game __instance)
         {
-            ManagedParameters.Instance.Initialize(ModuleHelper.GetXmlPath("TOR_Core", "tor_managed_core_parameters"));
+            TaleWorlds.Core.ManagedParameters.Instance.Initialize(ModuleHelper.GetXmlPath("TOR_Core", "tor_managed_core_parameters"));
             __instance.GameType.InitializeParameters();
             return false;
         }
