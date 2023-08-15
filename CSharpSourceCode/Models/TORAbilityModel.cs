@@ -58,6 +58,10 @@ namespace TOR_Core.Models
 
         public int GetSkillXpForCastingAbility(AbilityTemplate ability)
         {
+            if (ability.AbilityType == AbilityType.Prayer)
+            {
+                return ability.CoolDown * 2;
+            }
             return ability.WindsOfMagicCost * 20;
         }
 

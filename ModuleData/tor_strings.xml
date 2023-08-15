@@ -534,14 +534,14 @@
   <string id="backstory_d.tor_wanderer_bretonnia_0" text="{=!}Right." />
   <string id="generic_backstory.tor_wanderer_bretonnia_0" text="{=!}I am a questing Knight, devoted in life to the Lady and Bretonnia. " />
 
-  <string id="prebackstory.tor_wanderer_bretonnia_1" text="{=!}You'd like to hear my story traveller? Of course." />
-  <string id="backstory_a.tor_wanderer_bretonnia_1" text="{=!}I was gifted with the winds when I was but a young girl, soon I was whisked away into a grail chapel to learn about the lady." />
-  <string id="backstory_b.tor_wanderer_bretonnia_1" text="{=!}Years upon years passed until I had the right to take my troth of protection, to swear upon the lands of Brettonia." />
-  <string id="backstory_c.tor_wanderer_bretonnia_1" text="{=!}And now, I wait for a hero to come, so I can protect them with all my magical might." />
-  <string id="response_1.tor_wanderer_bretonnia_1" text="{=!}Very interesting." />
-  <string id="response_2.tor_wanderer_bretonnia_1" text="{=!}Okay.. ." />
+  <string id="prebackstory.tor_wanderer_bretonnia_1" text="{=!}Who I am is second to what I do, I tend to those in need." />
+  <string id="backstory_a.tor_wanderer_bretonnia_1" text="{=!}It has always been my calling to help the sick and wounded, and like many others, I was rescued and trained for my affinity with the winds of magic." />
+  <string id="backstory_b.tor_wanderer_bretonnia_1" text="{=!}I dedicated my life to the Lady, in return I have been given a gift for aiding her knights." />
+  <string id="backstory_c.tor_wanderer_bretonnia_1" text="{=!}Since then I have been travelling the lands, looking to where my skills are needed most and tending to peasant and soldier alike." />
+  <string id="response_1.tor_wanderer_bretonnia_1" text="{=!}I see." />
+  <string id="response_2.tor_wanderer_bretonnia_1" text="{=!}I understand." />
   <string id="backstory_d.tor_wanderer_bretonnia_1" text="{=!}Right." />
-  <string id="generic_backstory.tor_wanderer_bretonnia_1" text="{=!}I am a Damsel in waiting, sworn to protect whoever would like to bring me. Your well-being is my duty " />
+
   
   <string id="prebackstory.tor_wanderer_mousillon_0" text="{=!}Hmmph. You'd like to hear my story?" />
   <string id="backstory_a.tor_wanderer_mousillon_0" text="{=!}I was one of those questing knights a long time ago, dedicating my entire life for that damned Lady." />
