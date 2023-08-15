@@ -132,7 +132,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Add
                     }
                 });
-            _bladeMasterKeystone.Initialize(CareerID, "All melee weapon skills irrespective if the weapon is wielded or not, are counted towards the career ability modification.", "BladeMaster", false,
+            _bladeMasterKeystone.Initialize(CareerID, "All melee weapon skills, wielded or not, count towards the career ability effects.", "BladeMaster", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -314,7 +314,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Replace
                     }
                 });
-            _dreadKnightKeystone.Initialize(CareerID, "Riding skill is counted towards Career Ability. Red Fury resistance effect is now Wardsave. Ability is charged faster.", "DreadKnight", false,
+            _dreadKnightKeystone.Initialize(CareerID, "Red Fury effect scales with Riding and its resistance effect is now Ward save. Recharges faster.", "DreadKnight", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()

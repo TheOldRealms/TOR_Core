@@ -90,7 +90,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _survivalistPassive1.Initialize(CareerID, "5 extra Ammo.", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Ammo));
             _survivalistPassive2.Initialize(CareerID, "Extra ranged damage(10%).", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Ranged));
             _survivalistPassive3.Initialize(CareerID, "Increases MovementSpeed inside forests by 20%.", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //TORspeedcalculationmodel 58
-            _survivalistPassive4.Initialize(CareerID, "Once per day, you go for a hunt. Your success is determined by your Scouting and ranged and polearm capabilities", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0)); //TORCareerPerkCampaignBehavior 118 
+            _survivalistPassive4.Initialize(CareerID, "Go for a hunt once a day (success chance based on Scouting, Polearm and ranged).", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0)); //TORCareerPerkCampaignBehavior 118 
 
             _duelistPassive1.Initialize(CareerID, "Increases Hitpoints by 20.", "Duelist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Health));
             _duelistPassive2.Initialize(CareerID, "extra melee damage(10%).", "Duelist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
@@ -99,7 +99,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _headhunterPassive1.Initialize(CareerID, "10 extra Ammo.", "Headhunter", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Ammo));
             _headhunterPassive2.Initialize(CareerID, "Extra ranged Damage(10%).", "Headhunter", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Ranged));
-            _headhunterPassive3.Initialize(CareerID, "You earn 500 gold from high values targets(Lords, Bandit bosses), if you or your party eliminates it.", "Headhunter", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(500, PassiveEffectType.Special)); //CareerPerkMissionBehavior  39
+            _headhunterPassive3.Initialize(CareerID, "Earn 500 gold for every lord or a bandit leader captured or killed.", "Headhunter", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(500, PassiveEffectType.Special)); //CareerPerkMissionBehavior  39
             _headhunterPassive4.Initialize(CareerID, "15% Ranged Damage Resistance.", "Headhunter", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Ranged));
 
             _knightlyPassive1.Initialize(CareerID, "extra melee damage(15%)", "Knightly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Melee));
@@ -109,7 +109,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _mercenaryLordPassive1.Initialize(CareerID, "4 extra special ammunition grenades or buckshots.", "MercenaryLord", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(4, PassiveEffectType.Special, false));  //TORAgentStatCalculateModel 97
             _mercenaryLordPassive2.Initialize(CareerID, "15% extra damage for all ranged units.", "MercenaryLord", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special, true));          //TORAgentStatCalculateModel 458
-            _mercenaryLordPassive3.Initialize(CareerID, "Payment in a mercenary contract are higher, while less  influence is lost. The effect can be enhanced by a higher Merchant skill.", "MercenaryLord", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special, true)); // TOR_Core.Models.TORClanFinanceModel. 53
+            _mercenaryLordPassive3.Initialize(CareerID, "Higher mercenary contract payment, lower influence loss. Scales with Trade skill.", "MercenaryLord", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special, true)); // TOR_Core.Models.TORClanFinanceModel. 53
             _mercenaryLordPassive4.Initialize(CareerID, "Shots can penetrate multiple targets", "MercenaryLord", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special)); //TORAgentApplyDamage 29
 
             _commanderPassive1.Initialize(CareerID, "Wages for Tier 4 Units and higher are reduced by 20%", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.Special, true)); //TORWageModel 100

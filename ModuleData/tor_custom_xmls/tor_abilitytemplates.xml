@@ -2086,7 +2086,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="4"
       BelongsToLoreID="LoreOfLife"
-      TooltipDescription="Tendrils from the underground reaching out and attack enemies passing the area. Knocks down or dismount enemies, slows them down(0.8%) and deals 5 damage per second">
+      TooltipDescription="Tendrils emerge from the ground reaching out and attacking enemies passing the area. Knocks down and dismounts enemies, slows (0.8%) and deals 5 dmg per second for (insert spell duration).">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2128,7 +2128,7 @@
       AbilityTargetType="WorldPosition"
       SpellTier="3"
       BelongsToLoreID="LoreOfLife"
-      TooltipDescription="Caster merges eyes into a single glowing green eye, gazing a beam of deadly energy. Shoots a fast penetrating projectile, that hits multiple targets">
+      TooltipDescription="Caster merges their eyes, firing a single fast, penetrating projectile in the aimed direction.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2214,7 +2214,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="2"
       BelongsToLoreID="LoreOfLife"
-      TooltipDescription="Causes a small area to expierence unbearable heat causing fatigue impairing their movevementspeed by 50% and make them more vunerable for fire damage by 25%">
+      TooltipDescription="Causes a small area to radiate unbearable heat, causing fatigue, impairing movement by 50%, and making them vulnerable to fire damage by 25% for  seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2257,7 +2257,7 @@
 	CrosshairType="TargetedAOE"
 	SpellTier="3"
 	BelongsToLoreID="LoreOfLife"
-	TooltipDescription="Allies in a 3 meter radius gain 5 health points per second.">
+	TooltipDescription="Allies in a 3 meter radius gain 5 health points per second. Lasts 12 seconds">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2345,7 +2345,7 @@
 	CrosshairType="TargetedAOE"
 	SpellTier="4"
 	BelongsToLoreID="LoreOfLife"
-	TooltipDescription="Raw Energy flows across the field, renewing lost vigour and mending wounds, directly heals 30 health points and heal all friendly targets inside the area for 10 health per second.">
+	TooltipDescription="Raw energy flows across the battlefield, renewing lost vigour and mending wounds. Heals 30 hitpoints flat, and 10 hitpoints of all friendly targets inside the area for  seconds.">
 		<LightColorRGB x="50" y="255" z="50" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2391,7 +2391,7 @@
       AbilityTargetType="WorldPosition"
       SpellTier="2"
       BelongsToLoreID="LoreOfBeasts"
-      TooltipDescription="magical amberish glowing  projectile shot in the direction of the enemy, that can penetrate multiple targets">
+      TooltipDescription="The caster throws a javelin like amber spear in the targeted direction that penetrates multiple targets.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2434,7 +2434,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="2"
       BelongsToLoreID="LoreOfBeasts"
-      TooltipDescription="Roots erupt from the ground preventing enemies from moving">
+      TooltipDescription="A storm of stones falls from the skies, dealing damage (how much dmg) in an area.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2477,7 +2477,7 @@
       TargetCapturingRadius="1"
       SpellTier="2"
       BelongsToLoreID="LoreOfBeasts"
-      TooltipDescription="A magical Pelt  surrounds the caster, protecting him from physical damage">
+      TooltipDescription="Allies in a 3 meter radius will deal 25% more physical damage and attack 25% faster">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2566,7 +2566,7 @@
    CrosshairType="TargetedAOE"
    SpellTier="3"
     BelongsToLoreID="LoreOfBeasts"
-    TooltipDescription="Summons a flock of crows in the target area attacking enemies. The enemy will suffer from a damage over time effect(5/s) and the physical resistance is reduced(20%).">
+    TooltipDescription="Summons a nightmare of crows in the targeted area. Enemies caught in the area suffer damage over time for 5 sec and their physical resist is reduced by 20%">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2653,7 +2653,7 @@
    CrosshairType="TargetedAOE"
    SpellTier="4"
     BelongsToLoreID="LoreOfBeasts"
-    TooltipDescription="Enemies in the area experience will be peskered by Nature spirits, reducing their movement(35%) and attack speed(50%) and let them suffer for from damage over time (3/s).">
+    TooltipDescription="Woodland sprites hinder all enemies caught in an area for  secodnds, reducing movement (35%) and attack speed (50%) and causing a small damage over time (how much dmg) for (3/s)">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>

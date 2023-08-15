@@ -154,7 +154,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                         MutationType = OperationType.Replace
                     },
                 });
-            _relentlessFanaticKeystone.Initialize(CareerID, "Leadership skill also counts towards the effectiveness of Righteous Fury. Troops affected are unbreakable for the duration", "RelentlessFanatic", false,
+            _relentlessFanaticKeystone.Initialize(CareerID, "Righteous Fury scales with Leadership. Troops affected get unbreakable for the duration.", "RelentlessFanatic", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -190,7 +190,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                         MutationType = OperationType.Replace
                     },
                 });
-            _protectorOfTheWeakKeystone.Initialize(CareerID, "The highest of One Handed, Two Handed or Polearm skills also count towards the effectiveness of Righteous Fury. Adds 20% physical resistance", "ProtectorOfTheWeak", false,
+            _protectorOfTheWeakKeystone.Initialize(CareerID, "Righteous Fury scales with the highest melee weapon skill. Adds 20% physical resistance.", "ProtectorOfTheWeak", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -246,7 +246,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                         MutationType = OperationType.Replace
                     },
                 });
-            _archLectorKeystone.Initialize(CareerID, "Righteous Fury adds a holy aura to the player that damages enemies periodically. Aura radius is increased by 0.01 meters for each skillpoint in the relevant skilltrees", "ArchLector", false,
+            _archLectorKeystone.Initialize(CareerID, "Righteous Fury adds a damaging aura. Its radius increases slightly when raising relevant skills.", "ArchLector", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()

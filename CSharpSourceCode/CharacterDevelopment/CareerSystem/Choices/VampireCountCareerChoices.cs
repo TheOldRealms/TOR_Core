@@ -129,7 +129,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 {
                 }, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
 
-            _lordlyKeystone.Initialize(CareerID, "Mistform heals 3 Healthpoints per second. Your wielded weapon is counted towards the ability length", "Lordly", false,
+            _lordlyKeystone.Initialize(CareerID, "Mistform heals 3 HP per second. Your wielded weapon is counted towards the ability duration.", "Lordly", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -158,7 +158,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 }, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //charge reduction
 
-            _arkayneKeystone.Initialize(CareerID, "During the Mistform Winds of Magic is recharged (1/s). Spellcraft is counted towards the Mistform enhancement. Requires 40% additional damage infliction. ", "Arkayne", false,
+            _arkayneKeystone.Initialize(CareerID, "Mistform scales with Spellcraft and recharges Winds (1/s). Requires extra 40% damage dealt.", "Arkayne", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -192,7 +192,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 }, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.Special)); // cool down is reset on beginning
 
-            _martialleKeystone.Initialize(CareerID, "Swing speed is increased by 20%, StatusEffect are active after mistform. Requires 30% higher damage infliction.", "Martialle", false,
+            _martialleKeystone.Initialize(CareerID, "Swing speed increases by 20%, buffs are active after Mistform. Requires extra 30% damage.", "Martialle", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -213,7 +213,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 }, new CareerChoiceObject.PassiveEffect(-30, PassiveEffectType.Special, true)); //charge increase
             
-            _masterOfDeadKeystone.Initialize(CareerID, "You propergate all effects of your mist form to your souroundings. Requires 30% higher damage infliction.", "MasterOfDead", false,
+            _masterOfDeadKeystone.Initialize(CareerID, "All buffs are propagated when leaving Mistform. Requires extra 30% damage dealt.", "MasterOfDead", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()

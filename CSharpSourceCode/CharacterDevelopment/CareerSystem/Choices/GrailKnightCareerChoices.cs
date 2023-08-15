@@ -194,7 +194,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _monsterSlayerKeystone.Initialize(CareerID, "ability time  is prolonged by polearm and riding skill (0.025 seconds per point). Two-Handed skill counts towards ability", "MonsterSlayer", false,
+            _monsterSlayerKeystone.Initialize(CareerID, "Ability duration slightly scales with Polearm and Riding. Two Handed counts towards ability.", "MonsterSlayer", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -222,7 +222,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Add
                     }
                 });
-            _masterHorsemanKeystone.Initialize(CareerID, "Cooldown reduction for Knightly Charge by 30 seconds. During ability, the horse is affected by all healing effects of the character.", "MasterHorseman", false,
+            _masterHorsemanKeystone.Initialize(CareerID, "Reduces cooldown of Knightly Charge by 30s. During the ability, all healing affects the horse.", "MasterHorseman", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -242,7 +242,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Replace
                     }
                 });
-            _grailVowKeystone.Initialize(CareerID, "+20% holy damage and healing affect during ability. Ability affects nearby troops. Prayer skill counts towards career ability.", "GrailVow", false,
+            _grailVowKeystone.Initialize(CareerID, "Ability scales with Faith, affects nearby allies. When active, get +20% holy damage and regen.", "GrailVow", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
