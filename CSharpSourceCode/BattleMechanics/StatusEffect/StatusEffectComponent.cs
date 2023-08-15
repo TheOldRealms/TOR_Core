@@ -30,6 +30,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             _currentEffects = new Dictionary<StatusEffect, EffectData>();
             _effectAggregate = new EffectAggregate();
             _dummyEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
+            _dummyEntity.Name = "_dummyEntity_" + Agent.Index;
             _baseValues = new Dictionary<DrivenProperty, float>();
         }
 
@@ -78,6 +79,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         }
 
         public override void OnAgentRemoved() => CleanUp();
+        public override void OnComponentRemoved() => CleanUp();
 
         public void OnElapsed(float dt)
         {
@@ -194,12 +196,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 foreach (var entity in data.Entities)
                 {
                     entity.RemoveAllParticleSystems();
+                    Agent.AgentVisuals.RemoveChildEntity(entity, 0);
+                    entity.FadeOut(1, true);
                 }
             }
-            else
-            {
-                _dummyEntity.RemoveAllParticleSystems();
-            }
+            _dummyEntity.RemoveAllParticleSystems();
 
             _currentEffects.Remove(effect);
             foreach (var currEffect in _currentEffects.Keys)
@@ -297,7 +298,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 data = new EffectData(effect, particles, entities);
             }
 
-
             _currentEffects.Add(effect, data);
         }
 
@@ -310,7 +310,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
             _currentEffects.Clear();
             _effectAggregate = null;
-            _dummyEntity?.FadeOut(0.1f, true);
+            _dummyEntity?.FadeOut(1, true);
             _dummyEntity = null;
         }
 

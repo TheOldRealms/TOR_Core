@@ -261,7 +261,7 @@ Amidst the chaos of the village square, your determination ignites a spark of ac
 
 The horrific scene at the village square transforms into one of organization and defiance as the villagers rally to your command. Their makeshift weapons, combined with the barriers they've created, form a defensive line that stands as a formidable challenge to the cultists' daggers. 
 
-As the cultists' advance is met with this unexpected resistance, their determination begin to falter. They pause, held at bay by the villagers' united front and the strategic advantage they've taken. The realization dawns upon them that the element of surprise has been thwarted, replaced by a defiant strength that they hadn't anticipated.
+As the cultists' advance is met with this unexpected resistance, their determination begins to falter. They pause, held at bay by the villagers' united front and the strategic advantage they've taken. The realization dawns upon them that the element of surprise has been thwarted, replaced by a defiant strength that they hadn't anticipated.
 
 In a swift decision, the cultists begin to withdraw, their footsteps retreating as they fade into the background.
 ->choices
@@ -271,7 +271,7 @@ In a swift decision, the cultists begin to withdraw, their footsteps retreating 
     
 ===ChaseCultist===
 Driven by a relentless determination, you choose to give chase as the cultists retreat from the village square. The winding streets and narrow alleys become a blur as you navigate the labyrinthine paths, driven by a thirst for answers and justice.
-Your pursuit eventually leads you to a building that stands apart from the others — an abandoned and partly ruined structure marred by time and neglect. The entrance, concealed by a tattered curtain of vines, hints at the darkness that lies within. The cultist's footsteps fade as they disappear through this ominous entrance.
+Your pursuit eventually leads you to a building that stands apart from the others — an abandoned and partly ruined structure marred by time and neglect. The entrance, concealed by a tattered curtain of vines, hints at the darkness that lies within. The cultists' footsteps fade as they disappear through this ominous entrance.
 Sword in hand, you decide to enter after them.
 ->EnterHideout
 

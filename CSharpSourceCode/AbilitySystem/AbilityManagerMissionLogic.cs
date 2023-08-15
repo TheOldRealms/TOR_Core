@@ -324,16 +324,19 @@ namespace TOR_Core.AbilitySystem
 
             if (Input.IsKeyPressed(_spellcastingModeKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_spellcastingModeKey.ControllerKey.InputKey))
             {
-                switch (_currentState)
+                if(_abilityComponent.KnownAbilitySystem.Count > 1 || _abilityComponent.CurrentAbility.Template.IsSpell)
                 {
-                    case AbilityModeState.Off:
-                        EnableAbilityMode();
-                        break;
-                    case AbilityModeState.Idle:
-                        DisableAbilityMode(false);
-                        break;
-                    default:
-                        break;
+                    switch (_currentState)
+                    {
+                        case AbilityModeState.Off:
+                            EnableAbilityMode();
+                            break;
+                        case AbilityModeState.Idle:
+                            DisableAbilityMode(false);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
             else if (Input.IsKeyPressed(InputKey.LeftMouseButton))
@@ -356,11 +359,11 @@ namespace TOR_Core.AbilitySystem
             }
             else if (Input.IsKeyPressed(InputKey.MouseScrollUp) && _currentState != AbilityModeState.Off)
             {
-                Agent.Main.SelectNextAbility();
+                if(_abilityComponent.KnownAbilitySystem.Count > 1) Agent.Main.SelectNextAbility();
             }
             else if (Input.IsKeyPressed(InputKey.MouseScrollDown) && _currentState != AbilityModeState.Off)
             {
-                Agent.Main.SelectPreviousAbility();
+                if (_abilityComponent.KnownAbilitySystem.Count > 1) Agent.Main.SelectPreviousAbility();
             }
         }
 

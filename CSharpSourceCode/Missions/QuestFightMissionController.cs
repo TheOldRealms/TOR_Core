@@ -68,10 +68,6 @@ namespace TOR_Core.Missions
         public override void OnMissionTick(float dt)
         {
 			if (Mission.SceneName != "TOR_cultist_lair_001" || _missionConversationLogic == null) return;
-			if(Mission.MissionResult != null && Mission.MissionResult.BattleResolved == true && Mission.MissionResult.PlayerVictory)
-            {
-				Mission.EndMission();
-            }
             if (!_conversationFired && !_battleStarted)
             {
 				foreach (Agent agent in Mission.Agents.Where(x => x.IsHuman && x != Agent.Main))
@@ -115,8 +111,8 @@ namespace TOR_Core.Missions
 
 		public override InquiryData OnEndMissionRequest(out bool canLeave)
 		{
-			canLeave = false;
-			if (!canLeave) MBInformationManager.AddQuickInformation(new TextObject("You may not leave until having dealt with the cultists."));
+			canLeave = Mission.MissionResult != null && Mission.MissionResult.BattleResolved == true && Mission.MissionResult.PlayerVictory;
+            if (!canLeave) MBInformationManager.AddQuickInformation(new TextObject("You may not leave until finishing the quest scenario."));
 			return null;
 		}
 

@@ -1,8 +1,8 @@
 //Global story tags
-# title: The Meadow
+# title: The Pond
 # frequency: Common
 # development: false
-# illustration: meadow
+# illustration: pond
 
 //Important Irregular Characters
     //| (Vertical Bar)
@@ -19,28 +19,29 @@
     
     //Scenario Explanation (explain the main scenario and any major variations that you are planning to build in. If a variation is different enough consider making it its own file.)
     
-        //Main: You are travelling and come across a meadow.
+        //Main: You are travelling and come across a pond.
 
-        //Alt: If encountered while in a chaos area it gets weird.
+        //Alts:
+            //If encountered while in a chaos area it gets weird.
+            //Something comes out of the water and attacks. (River troll or River troll hag for a mini boss fight)
+        
         
     //Future Options/Additions
         //Make it so the player does not have to click through each time they do a loop.
         //More options
-            //Search for animals (capture animals like horses)
-            //If a lore of life wizard is present they can channel to regain some magic
+            //Search for animals (capture geese)
             //Spend some time training
         //Add choices/effects for nature gods
-            //Hunting success chance improved by Priest of Tall
+            //Fishing success chance improved by Priest of Manaan
             //Healing success chance improved by Pries of Rhya or Shallya
             //Foraging success chance improved by Priest of Rhya
         //Add choices/effects for wizards (Lore of Life, Lore of Beasts, ...)
-            //Hunting success chance improved by lore of beasts
-            //Healing success chance improved by Lore of Life
-            //Foraging improved by lore of Life
-        //?Add olives as a future option
+            //Lore of Beast for fishing Bonus?
         //Add randomness to the amount of plant and animal life as well as the difficulty of success
             //Randomize elements of Foraging
-            //Randomize elements of Hunting
+            //Randomize elements of Fishing
+        //Add scavenging option
+            //can find jewerly that was lost in the pond
         
 //Data Import/Export Section
     //Make sure you include this in all ink files to get access to integration functions
@@ -49,12 +50,12 @@
     //List of Data Being Imported (use this to help keep track of what data you are importing; will help with troubleshooting and testing.)
     
         //Scouting Highest In party
-            //Used in hunting skill check
+            //Used in Fishing skill check
                 VAR PartyScoutingCheckText = 0
-                    //~ PartyScoutingCheckText = print_party_skill_chance("Scouting", HuntDifficulty) [Variable Update]
+                    //~ PartyScoutingCheckText = print_party_skill_chance("Scouting", FishDifficulty) [Variable Update]
                 
                 VAR PartyScoutingCheckTest = 0
-                    //~ PartyScoutingCheckTest = perform_party_skill_check("Scouting", HuntDifficulty) [Variable Update]
+                    //~ PartyScoutingCheckTest = perform_party_skill_check("Scouting", FishDifficulty) [Variable Update]
         //Medicine (Highest in Party)
             //Used in party recovery skill check
                 VAR WoundedCount = 1
@@ -144,15 +145,15 @@
     //Seed
         //~ SEED_RANDOM(100) //Uncomment to lock an RNG testing seed for the randomness. Change number inside () for different seed
         
-    //Hunt
-        VAR HuntDifficulty = 150
+    //Fish
+        VAR FishDifficulty = 50
             
-        VAR HuntLoops = 3
+        VAR FishLoops = 3
         
         VAR HideSuccessful = false
         
     //Forage
-        VAR ForageDifficulty = 50
+        VAR ForageDifficulty = 75
         
         VAR ForageLoops = 5
         
@@ -164,11 +165,11 @@
         
 
 //Variable Update (Update any variables here)
-    ~ PartyScoutingCheckText = print_party_skill_chance("Scouting", HuntDifficulty)
+    ~ PartyScoutingCheckText = print_party_skill_chance("Scouting", FishDifficulty)
                 
-    //~ PartyScoutingCheckTest = perform_party_skill_check("Scouting", HuntDifficulty) Needs to be done each loop
+    //~ PartyScoutingCheckTest = perform_party_skill_check("Scouting", FishDifficulty) Needs to be done each loop
 
-    ~ PartyRangedSkillCheckText = print_party_skill_chance(SkillTextFinal, HuntDifficulty*2)
+    ~ PartyRangedSkillCheckText = print_party_skill_chance(SkillTextFinal, FishDifficulty*2)
     
 //Variable Check (Use for sanity check. Uncomment variables to see what they are)
 
@@ -176,12 +177,12 @@
 
 ===Start===
 
-    As your party is on the march they come across a nice looking meadow.
+    As your party is on the march you come across a refreshing looking pond.
         ->choice1
         
     =choice1
         What will you have your party do?
-            *[Forage for wild plants (Multiple attempts at {LoreOfLifeInParty: 75% chance (Improved by Lore of Life)| 50% chance} to succeed at harvesting various wild plants; Party will enter Disorganized State)] You order your party to forage amongst the plants of the meadow.
+            *[Forage for wild plants (Multiple attempts at {LoreOfLifeInParty: 50% chance (Improved by Lore of Life)| 25% chance} to succeed at harvesting various wild plants; Party will enter Disorganized State)] You order your party to forage amongst the plants of the forest.
             
                 //Lore of Life in Party Increases success chance
                     {LoreOfLifeInParty:
@@ -194,27 +195,9 @@
                     
                 ->ForageLoop
 
-            *[Hunt animals (Multiple chances to get meat, hide, and or fur {PartyRangedSkillCheckText}; Party will enter Disorganized State)]
+            *[Fish (Multiple chances to get Fish (50% success chance); Party will enter Disorganized State)] You have your men go fishing.
                 
-                //Bonus Attempts from Lore of Beasts
-                    {LoreOfBeastsInParty:
-                        -true: 
-                            A mage in your party calls upon the Wind of Ghur to aid your men in their search. (+1 attempt)
-                            ~ HuntLoops = HuntLoops + 1
-                        -false:
-                        -else: ERROR
-                    }
-                    
-                //Bonus attempt from Scouting
-                    {perform_party_skill_check("Scouting", HuntDifficulty):
-                        -true: 
-                            Your scouts manage to locate some extra animals. (Scouting)(+1 Attempt)
-                            ~HuntLoops = HuntLoops + 1
-                        -false:
-                        -else: ERROR
-                    }
-                    
-                ->HuntLoop
+                ->FishLoop
                 
             *[Have your men rest (All companions healed and all wounded troops recovered {PartyMedicineCheckText}; Party will enter Disorganized State)]
                 
@@ -227,7 +210,7 @@
                     -else: "ERROR"
                 }
                 
-                {PartyMedicineCheckTest: Your party takes advantage of the break to take care of the wounded.| Unfortunately just as the men start to try and rest, a large storm comes through and forces your party to try and move to find shelter.}
+                {PartyMedicineCheckTest: Your party takes advantage of the break to take care of the wounded.| Unfortunately just as the men start to tend to the wounded, the pond gurgles and starts becoming a sink hole. You rush your men away as fast as you can.}
                 
                 ->Leave
                 
@@ -249,7 +232,7 @@
         //Reward if successful
             {AttemptSuccessful:
                 -true:
-                    ~ RewardRoll = RANDOM(1,4)
+                    ~ RewardRoll = 1
                 -false:
                     ~ RewardRoll = 0
             }
@@ -258,17 +241,8 @@
                 -0:
                     Your men find nothing.
                 -1:
-                    Your men find some wild grain. (+1 Grain)
+                    Your men find some wild rice. (+1 Grain)
                     ~ GiveItem("grain",1)
-                -2:
-                    Your men find some wild berries. (+1 Grapes)
-                    ~ GiveItem("grape",1)
-                -3:
-                    Your men find some wild flax. (+1 Flax)
-                    ~ GiveItem("flax",1)
-                -4:
-                    Your men find some wild spices. (+1 Spice)
-                    ~ GiveItem("spice",1)
             }
             
         //End of Loop
@@ -276,62 +250,37 @@
         
     ->END
     
-    =HuntLoop
+    =FishLoop
         //Decrease number of loops remaining
-            ~HuntLoops = HuntLoops - 1
-        
-        //Trouble assistance shooting each loop
-            //{FinalComparison}
-            //{print_party_skill_chance("Scouting", HuntDifficulty)}
-            //{perform_party_skill_check("Scouting", HuntDifficulty)}
+            ~ FishLoops = FishLoops - 1
         
         //Was attempt successful
-            {perform_party_skill_check(SkillTextFinal, HuntDifficulty):
+            {RANDOM(0,100)>=ForageDifficulty:
                 -true:
                     ~ AttemptSuccessful = true
                 -false:
                     ~ AttemptSuccessful = false
                 -else: ERROR
             }
-            
-            //Roll for bonus hide
-                ~ HideSuccessful = perform_party_skill_check(SkillTextFinal, HuntDifficulty*2)
-            
-                {HideSuccessful:
-                    -true:
-                        ~ RewardRoll = RANDOM(1,2)
-                    -false:
-                        ~ RewardRoll = 0
-                }
-            
+
         //Reward
             {
-                - AttemptSuccessful == true && RewardRoll == 0:
-                    Your men get some meat. (+1 Meat)
-                    ~ GiveItem("meat",1)
-                    ~ GiveItem("hides",1)
-                - AttemptSuccessful == true && RewardRoll == 1:
-                    Your men get some meat and hide. (+1 Meat, +1 Hide)
-                    ~ GiveItem("meat",1)
-                    ~ GiveItem("hides",1)
-                - AttemptSuccessful == true && RewardRoll == 2:
-                    Your men get some meat and fur. (+1 Meat, +1 Fur)
-                    ~ GiveItem("meat",1)
-                    ~ GiveItem("fur",1)
+                - AttemptSuccessful == true:
+                    Your men catch some fish
+                    ~ GiveItem("fish",1)
                 - AttemptSuccessful == false:
-                     Your men get nothing.
+                     Your men catch nothing.
                 -else: ERROR
             }
                     
         //End of Loop
-            {HuntLoops > 0 : ->HuntLoop | ->Leave}
+            {FishLoops > 0 : ->FishLoop | ->Leave}
         
     ->END
     
 ===Leave===
-    Having spent your time in the meadow you decide to head off.
+    Having spent your time by the pond you decide to head off.
 
     ~ MakePartyDisorganized()
     
 -> END
-

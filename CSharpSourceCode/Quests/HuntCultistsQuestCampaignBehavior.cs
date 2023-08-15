@@ -225,7 +225,7 @@ namespace TOR_Core.Quests
 
             protected override void OnCompleteWithSuccess()
             {
-                GiveGoldAction.ApplyForQuestBetweenCharacters(QuestGiver, Hero.MainHero, RewardGold);
+                GiveGoldAction.ApplyForQuestBetweenCharacters(null, Hero.MainHero, RewardGold);
             }
         }
     }

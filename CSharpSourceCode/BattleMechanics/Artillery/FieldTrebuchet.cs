@@ -10,6 +10,8 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
+using TOR_Core.BattleMechanics.AI.TeamBehavior;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.Artillery
 {
@@ -315,7 +317,8 @@ namespace TOR_Core.BattleMechanics.Artillery
 		{
 			base.OnTick(dt);
 			ForceAmmoPointUsage();
-			if (!base.GameEntity.IsVisibleIncludeParents())
+			HandleAITeamUsage();
+            if (!base.GameEntity.IsVisibleIncludeParents())
 			{
 				return;
 			}
@@ -576,7 +579,19 @@ namespace TOR_Core.BattleMechanics.Artillery
 			}
 		}
 
-		protected override void SetActivationLoadAmmoPoint(bool activate)
+        private void HandleAITeamUsage()
+        {
+            if (Team != null)
+            {
+                if (UserFormations.Count == 0)
+                {
+                    var form = Team.GetFormations().ToList().FirstOrDefault(x => x.CountOfDetachableNonplayerUnits >= 2);
+                    if (form != null) form.StartUsingMachine(this, true);
+                }
+            }
+        }
+
+        protected override void SetActivationLoadAmmoPoint(bool activate)
 		{
 			foreach (StandingPointWithWeaponRequirement standingPointWithWeaponRequirement in this._ammoLoadPoints)
 			{
