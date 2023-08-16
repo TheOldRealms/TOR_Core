@@ -45,7 +45,7 @@ namespace TOR_Core.HarmonyPatches
         public static bool VoiceVariationPatch(Agent __instance, SkinVoiceManager.SkinVoiceType voiceType)
         {
             
-            if (__instance == null || !__instance.IsHuman || __instance.Controller != Agent.ControllerType.Player) return true;
+            if (__instance == null || !__instance.IsHuman || !__instance.IsHero || __instance.Controller != Agent.ControllerType.Player) return true;
 
             string className = __instance.Monster.SoundAndCollisionInfoClassName;
             if (className != "human") return true;
@@ -54,7 +54,7 @@ namespace TOR_Core.HarmonyPatches
                 int count = SkinVoiceManager.GetVoiceDefinitionCountWithMonsterSoundAndCollisionInfoClassName(className);
                 int[] array = new int[count];
                 SkinVoiceManager.GetVoiceDefinitionListWithMonsterSoundAndCollisionInfoClassName(className, array);
-                __instance.AgentVisuals.SetVoiceDefinitionIndex(GetRandomVoiceIndexForCulture(__instance.Character.Culture.StringId), 0);
+                __instance.AgentVisuals.SetVoiceDefinitionIndex(GetRandomVoiceIndexForCulture(__instance.GetHero().Culture.StringId), 0);
             }
             
             return true;
@@ -63,7 +63,7 @@ namespace TOR_Core.HarmonyPatches
         private static bool ShouldGetRandomizedVoice(Agent agent)
         {
             if (agent == null || !agent.IsHuman || agent.Character == null || agent.Character.Culture == null || agent.IsFemale) return false;
-            var cultureId = agent.Character?.Culture?.StringId;
+            var cultureId = agent.GetHero().Culture.StringId;
             return cultureId == "khuzait" || cultureId == "vlandia" || cultureId == "empire";
         }
 
