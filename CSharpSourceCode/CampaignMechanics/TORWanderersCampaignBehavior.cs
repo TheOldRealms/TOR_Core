@@ -9,6 +9,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 
@@ -24,6 +25,21 @@ namespace TOR_Core.CampaignMechanics
             CampaignEvents.OnGameLoadFinishedEvent.AddNonSerializedListener(this, CheckPlayerCurrentSettlement);
             CampaignEvents.DailyTickHeroEvent.AddNonSerializedListener(this, AddDailySkillXpToCompanions);
             CampaignEvents.CanHeroDieEvent.AddNonSerializedListener(this, CanHeroDie);
+            CampaignEvents.OnHeroJoinedPartyEvent.AddNonSerializedListener(this,WandererSetup);
+        }
+
+        private void WandererSetup(Hero hero, MobileParty mobileParty)
+        {
+            if(mobileParty!=null&&mobileParty.LeaderHero!=Hero.MainHero) return;
+            
+            //Seems only to happen when a hero joins the player not anywhere else
+            if (hero.IsWanderer)
+            {
+                if (hero.Culture.StringId == "khuzait" || hero.Culture.StringId == "mousillon")
+                {
+                    hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 60, false);
+                }
+            }
         }
 
         private void CanHeroDie(Hero hero, KillCharacterAction.KillCharacterActionDetail detail, ref bool result)
