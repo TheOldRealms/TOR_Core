@@ -4018,7 +4018,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_CC2" name="{=Settlements.Settlement.name.town_CC2}Turin" owner="Faction.carcassonne_clan_2" posX="1077.753" posY="766.645" culture="Culture.vlandia" gate_posX="1078.517" gate_posY="768.9257" text="{=Settlements.Settlement.text.town_CC2}Located in the Vaults , the City of Turin is the capital of the Barony of Savoie. The region is influenced heavily by nearby Tilea, despite this the city and people are steadfastly loyal to Bretonnia. Holding the famed relic, the “Shroud of Gilles le Breton” the City of Turin is a Pilgrimage site to all who follow the Lady of the Lake, and all who seek visions of the Lady.">
+  <Settlement id="town_CC2" name="{=Settlements.Settlement.name.town_CC2}Turin" owner="Faction.carcassonne_clan_1" posX="1077.753" posY="766.645" culture="Culture.vlandia" gate_posX="1078.517" gate_posY="768.9257" text="{=Settlements.Settlement.text.town_CC2}Located in the Vaults , the City of Turin is the capital of the Barony of Savoie. The region is influenced heavily by nearby Tilea, despite this the city and people are steadfastly loyal to Bretonnia. Holding the famed relic, the “Shroud of Gilles le Breton” the City of Turin is a Pilgrimage site to all who follow the Lady of the Lake, and all who seek visions of the Lady.">
     <Components>
       <Town id="town_comp_CC2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -4051,7 +4051,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_CC2_2" name="{=Settlements.Settlement.name.village_CC2_2}Chanaz" posX="1099.842" posY="786.582" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CC2_2}Sitting south of the Quenelles border and the river Brienne, the village of Castre is a small farming community that provides its grain to the City of Turin.">
+  <Settlement id="village_CC2_2" name="{=Settlements.Settlement.name.village_CC2_2}Chanaz" posX="1099.842" posY="786.582" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CC2_2}Sitting south of the Quenelles border and the river Brienne, the village of Chanaz is a small farming community that provides its grain to the City of Turin.">
     <Components>
       <Village id="village_comp_CC2_2" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CC2" bound="Settlement.town_CC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4064,7 +4064,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_CC2_3" name="{=Settlements.Settlement.name.village_CC2_3}Montmélian" posX="1074.992" posY="806.451" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CC2_3}Just west of Castre, along the Breinne river, the small land is home to many olive fields, worked tirelessly by the Tilean influenced Bretonnian peasants.">
+  <Settlement id="village_CC2_3" name="{=Settlements.Settlement.name.village_CC2_3}Montmélian" posX="1074.992" posY="806.451" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CC2_3}Just west of Chanaz, along the Breinne river, the small land is home to many olive fields, worked tirelessly by the Tilean influenced Bretonnian peasants.">
     <Components>
       <Village id="village_comp_CC2_3" village_type="VillageType.olive_trees" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CC2" bound="Settlement.town_CC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4087,7 +4087,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_CC1_1" name="{=Settlements.Settlement.name.castle_village_CC1_2}Auch" posX="932.4709" posY="802.891" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CC1_1}Condom is a timber village located in the most north western part of Carcassonne, that borders Estalia and the Duchy of Brionne.">
+  <Settlement id="castle_village_CC1_1" name="{=Settlements.Settlement.name.castle_village_CC1_2}Condom" posX="932.4709" posY="802.891" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CC1_1}Condom is a timber village located in the most north western part of Carcassonne, that borders Estalia and the Duchy of Brionne.">
     <Components>
       <Village id="castle_village_comp_CC1_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.castle_CC1" bound="Settlement.castle_CC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4126,7 +4126,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_CC2" name="{=Settlements.Settlement.name.castle_CC2}Chambéry" owner="Faction.carcassonne_clan_1" posX="1119.17" posY="741.966" culture="Culture.vlandia" gate_posX="1118.484" gate_posY="742.3027" text="{=Settlements.Settlement.text.castle_CC2}A small fortress settlement on the Southern Reach of Bretonnia near the Tilean border. Once besieged by the armies of Tilea, the siege turned to a massacre when Ser Der Raker broke the assailants single handedly.">
+  <Settlement id="castle_CC2" name="{=Settlements.Settlement.name.castle_CC2}Lovarre" owner="Faction.carcassonne_clan_1" posX="1119.17" posY="741.966" culture="Culture.vlandia" gate_posX="1118.484" gate_posY="742.3027" text="{=Settlements.Settlement.text.castle_CC2}A small fortress settlement on the Southern Reach of Bretonnia near the Tilean border. Once besieged by the armies of Tilea, the siege turned to a massacre when Ser Der Raker broke the assailants single handedly.">
     <Components>
       <Town id="castle_comp_CC2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4136,7 +4136,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_CC2_1" name="{=Settlements.Settlement.name.castle_village_CC2_1}Yenne" posX="1124.701" posY="763.281" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CC2_1}In the eastern plains of Carcassonne, Narbonne sits just opposite of the village Perpignan on the river Pou. Just outside of Narbonne lies the Burial Mound of Grundsnik, an orc warboss who was defeated many centuries ago. Orcs occasionally come here, seeking to reclaim Grundsnik’s treasure.">
+  <Settlement id="castle_village_CC2_1" name="{=Settlements.Settlement.name.castle_village_CC2_1}Yenne" posX="1124.701" posY="763.281" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CC2_1}In the eastern plains of Carcassonne, Yenne sits just opposite of the village Perpignan on the river Pou. Just outside of Yenne lies the Burial Mound of Grundsnik, an orc warboss who was defeated many centuries ago. Orcs occasionally come here, seeking to reclaim Grundsnik’s treasure.">
     <Components>
       <Village id="castle_village_comp_CC2_1" village_type="VillageType.olive_trees" hearth="200" trade_bound="Settlement.castle_CC2" bound="Settlement.castle_CC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4162,7 +4162,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_CC2_3" name="{=Settlements.Settlement.name.castle_village_CC2_2}Novalaise" posX="1119.018" posY="775.926" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CC_3}At the crossing of the river Brienne and the river Pou, Escalquens grows flax for the city of Turin. Because of their Tilean lineage, Escalquens is quite prosperous and rich compared to the surrounding villages.">
+  <Settlement id="castle_village_CC2_3" name="{=Settlements.Settlement.name.castle_village_CC2_2}Escalquens" posX="1119.018" posY="775.926" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CC_3}At the crossing of the river Brienne and the river Pou, Escalquens grows flax for the city of Turin. Because of their Tilean lineage, Escalquens is quite prosperous and rich compared to the surrounding villages.">
     <Components>
       <Village id="castle_village_comp_CC2_3" village_type="VillageType.flax_plant" hearth="300" trade_bound="Settlement.castle_CC2" bound="Settlement.castle_CC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4175,7 +4175,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_CC3" name="{=Settlements.Settlement.name.castle_CC3}Annecy" owner="Faction.carcassonne_clan_1" posX="1154.454" posY="731.598" culture="Culture.vlandia" gate_posX="1155.286" gate_posY="733.4717" text="{=Settlements.Settlement.text.castle_CC3}Located near the borders of the Loren Forrest, Castle Gaudaron is an ever watchful eye that stands at the base of the Vaults mountain range. Castle Gaudaron is a key position for maintaining Bretonnian rule over the northern end of the Novalone Pass, as well as for guarding the Loren highway.">
+  <Settlement id="castle_CC3" name="{=Settlements.Settlement.name.castle_CC3}Castle Gaudaron" owner="Faction.carcassonne_clan_2" posX="1154.454" posY="731.598" culture="Culture.vlandia" gate_posX="1155.286" gate_posY="733.4717" text="{=Settlements.Settlement.text.castle_CC3}Located near the borders of the Loren Forrest, Castle Gaudaron is an ever watchful eye that stands at the base of the Vaults mountain range. Castle Gaudaron is a key position for maintaining Bretonnian rule over the northern end of the Novalone Pass, as well as for guarding the Loren highway.">
     <Components>
       <Town id="castle_comp_CC3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4187,7 +4187,7 @@
   </Settlement>
   <Settlement id="castle_village_CC3_1" name="{=Settlements.Settlement.name.castle_village_CC3_1}Salignac La Rouge" posX="1182.247" posY="728.827" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CC3_1}Salignac La Rouge is the last Bretonnian settlement along the Loren Highway. Travelers heading towards Kreutzhafen will typically pick up anything they need for the long journey there from the peasants here. The people here feel uncomfortably close to the Fey of Cavaroc, but relations with Athel Loren remain as amicable as possible.">
     <Components>
-      <Village id="castle_village_comp_CC3_1" village_type="VillageType.swine_farm" hearth="200" trade_bound="Settlement.castle_CC3" bound="Settlement.castle_CC3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_CC3_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.castle_CC3" bound="Settlement.castle_CC3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_bretonnia_village_004" />
@@ -4211,9 +4211,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_CC3_3" name="{=Settlements.Settlement.name.castle_village_CC3_3}Alby-sur-Chéran" posX="1146.258" posY="758.849" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CC3_3}On the coast of the river Pou, near where the tributary feeds into the Brienne, sits the village of Perpignan. Perpignan being so close to the Novalone Pass has a large Tilean influence on the people here.">
+  <Settlement id="castle_village_CC3_3" name="{=Settlements.Settlement.name.castle_village_CC3_3}Perpignan" posX="1146.258" posY="758.849" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CC3_3}On the coast of the river Pou, near where the tributary feeds into the Brienne, sits the village of Perpignan. Perpignan being so close to the Novalone Pass has a large Tilean influence on the people here.">
     <Components>
-      <Village id="castle_village_comp_CC3_3" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.castle_CC3" bound="Settlement.castle_CC3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_CC3_3" village_type="VillageType.swine_farm" hearth="200" trade_bound="Settlement.castle_CC3" bound="Settlement.castle_CC3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_bretonnia_village_006" />
