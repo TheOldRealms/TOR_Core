@@ -2792,7 +2792,7 @@
       <Town id="castle_comp_MO2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_bretonnia_castle_002" scene_name_1="TOR_bretonnia_castle_002" scene_name_2="TOR_bretonnia_castle_002" scene_name_3="empire_siege_001"></Location>
+      <Location id="center" scene_name="TOR_bretonnia_castle_005" scene_name_1="TOR_bretonnia_castle_005" scene_name_2="TOR_bretonnia_castle_005" scene_name_3="TOR_bretonnia_castle_005"></Location>
       <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -2828,7 +2828,7 @@
       <Town id="castle_comp_MO3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_bretonnia_castle_002" scene_name_1="TOR_bretonnia_castle_002" scene_name_2="TOR_bretonnia_castle_002" scene_name_3="TOR_bretonnia_castle_002" />
+      <Location id="center" scene_name="TOR_bretonnia_castle_005" scene_name_1="TOR_bretonnia_castle_005" scene_name_2="TOR_bretonnia_castle_005" scene_name_3="TOR_bretonnia_castle_005" />
       <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -2983,7 +2983,7 @@
       <Town id="castle_comp_PA1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_bretonnia_castle_002" scene_name_1="TOR_bretonnia_castle_002" scene_name_2="TOR_bretonnia_castle_002" scene_name_3="TOR_bretonnia_castle_002" />
+      <Location id="center" scene_name="TOR_bretonnia_castle_005" scene_name_1="TOR_bretonnia_castle_005" scene_name_2="TOR_bretonnia_castle_005" scene_name_3="TOR_bretonnia_castle_005" />
       <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -3175,7 +3175,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_002" scene_name_1="TOR_bretonnia_castle_002" scene_name_2="TOR_bretonnia_castle_002" scene_name_3="TOR_bretonnia_castle_002" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -3211,7 +3211,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_003" scene_name_1="TOR_bretonnia_castle_003" scene_name_2="TOR_bretonnia_castle_003" scene_name_3="TOR_bretonnia_castle_003" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -3247,7 +3247,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_003" scene_name_1="TOR_bretonnia_castle_003" scene_name_2="TOR_bretonnia_castle_003" scene_name_3="TOR_bretonnia_castle_003" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -3401,8 +3401,8 @@
       <Town id="castle_comp_BL1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_bretonnia_castle_001" scene_name_1="TOR_bretonnia_castle_001" scene_name_2="TOR_bretonnia_castle_001" scene_name_3="empire_siege_001" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_bretonnia_castle_001" scene_name_1="TOR_bretonnia_castle_001" scene_name_2="TOR_bretonnia_castle_001" scene_name_3="TOR_bretonnia_castle_001" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -3437,8 +3437,8 @@
       <Town id="castle_comp_BL2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_bretonnia_castle_002" scene_name_1="TOR_bretonnia_castle_002" scene_name_2="TOR_bretonnia_castle_002" scene_name_3="empire_siege_001" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_bretonnia_castle_002" scene_name_1="TOR_bretonnia_castle_002" scene_name_2="TOR_bretonnia_castle_002" scene_name_3="TOR_bretonnia_castle_002" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -3474,7 +3474,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_002" scene_name_1="TOR_bretonnia_castle_002" scene_name_2="TOR_bretonnia_castle_002" scene_name_3="TOR_bretonnia_castle_002" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -3665,7 +3665,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_002" scene_name_1="TOR_bretonnia_castle_002" scene_name_2="TOR_bretonnia_castle_002" scene_name_3="TOR_bretonnia_castle_002" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -3701,7 +3701,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_003" scene_name_1="TOR_bretonnia_castle_003" scene_name_2="TOR_bretonnia_castle_003" scene_name_3="TOR_bretonnia_castle_003" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -3855,8 +3855,8 @@
       <Town id="castle_comp_AQ1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_bretonnia_castle_004" scene_name_1="TOR_bretonnia_castle_004" scene_name_2="TOR_bretonnia_castle_004" scene_name_3="vlandia_siege_001" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_bretonnia_castle_004" scene_name_1="TOR_bretonnia_castle_004" scene_name_2="TOR_bretonnia_castle_004" scene_name_3="TOR_bretonnia_castle_004" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
@@ -3892,7 +3892,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_002" scene_name_1="TOR_bretonnia_castle_002" scene_name_2="TOR_bretonnia_castle_002" scene_name_3="TOR_bretonnia_castle_002" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOR_bretonnia_keep_01" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
@@ -3928,7 +3928,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_003" scene_name_1="TOR_bretonnia_castle_003" scene_name_2="TOR_bretonnia_castle_003" scene_name_3="TOR_bretonnia_castle_003" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
@@ -4082,8 +4082,8 @@
       <Town id="castle_comp_CC1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_bretonnia_castle_003" scene_name_1="TOR_bretonnia_castle_003" scene_name_2="TOR_bretonnia_castle_003" scene_name_3="empire_siege_001"></Location>
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_bretonnia_castle_003" scene_name_1="TOR_bretonnia_castle_003" scene_name_2="TOR_bretonnia_castle_003" scene_name_3="TOR_bretonnia_castle_003"></Location>
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -4131,8 +4131,8 @@
       <Town id="castle_comp_CC2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_bretonnia_castle_003" scene_name_1="TOR_bretonnia_castle_003" scene_name_2="TOR_bretonnia_castle_003" scene_name_3="TOR_bretonnia_castle_003" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_bretonnia_castle_005" scene_name_1="TOR_bretonnia_castle_005" scene_name_2="TOR_bretonnia_castle_005" scene_name_3="TOR_bretonnia_castle_005" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -4348,7 +4348,7 @@
       <Town id="castle_comp_QU1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_bretonnia_castle_002" scene_name_1="TOR_bretonnia_castle_002" scene_name_2="TOR_bretonnia_castle_002" scene_name_3="TOR_bretonnia_castle_002" />
+      <Location id="center" scene_name="TOR_bretonnia_castle_005" scene_name_1="TOR_bretonnia_castle_005" scene_name_2="TOR_bretonnia_castle_005" scene_name_3="TOR_bretonnia_castle_005" />
       <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
