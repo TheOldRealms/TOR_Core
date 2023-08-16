@@ -14,11 +14,11 @@ namespace TOR_Core.CampaignMechanics.Assimilation
 
         public static CultureObject GetOriginalCultureForSettlement(Settlement settlement)
         {
-            if (Campaign.Current == null || Campaign.Current.GetCampaignBehavior<AssimilationCampaignBehavior>() == null) return null;
+            if (Campaign.Current == null || Campaign.Current.GetCampaignBehavior<AssimilationCampaignBehavior>() == null) return settlement.Culture;
             
             var instance = Campaign.Current.GetCampaignBehavior<AssimilationCampaignBehavior>();
             if (instance._originalSettlementCulturePairs.ContainsKey(settlement)) return instance._originalSettlementCulturePairs[settlement];
-            else return null;
+            else return settlement.Culture;
         }
 
         public override void RegisterEvents()
