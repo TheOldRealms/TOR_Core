@@ -181,7 +181,7 @@
         
     =choice1
         What will you have your party do?
-            *[Forage for wild plants (Multiple attempts at {LoreOfLifeInParty: 75% chance (Improved by Lore of Life)| 50% chance} to succeed at harvesting various wild plants; Party will enter Disorganized State)] You order your party to forage amongst the plants of the meadow.
+            *[Forage for wild plants (Multiple attempts at {LoreOfLifeInParty: 75% chance (Improved by Lore of Life)| 50% chance} to succeed at harvesting various wild plants)] You order your party to forage amongst the plants of the meadow.
             
                 //Lore of Life in Party Increases success chance
                     {LoreOfLifeInParty:
@@ -194,7 +194,7 @@
                     
                 ->ForageLoop
 
-            *[Hunt animals (Multiple chances to get meat, hide, and or fur {PartyRangedSkillCheckText}; Party will enter Disorganized State)]
+            *[Hunt animals (Multiple chances to get meat, hide, and or fur {PartyRangedSkillCheckText})]
                 
                 //Bonus Attempts from Lore of Beasts
                     {LoreOfBeastsInParty:
@@ -216,7 +216,7 @@
                     
                 ->HuntLoop
                 
-            *[Have your men rest (All companions healed and all wounded troops recovered {PartyMedicineCheckText}; Party will enter Disorganized State)]
+            *[Have your men rest (All companions healed and all wounded troops recovered {PartyMedicineCheckText})]
                 
                 You try to give your men a break hoping that the brief respite will help them get better.
                 
@@ -231,7 +231,7 @@
                 
                 ->Leave
                 
-            *[Leave immediately (Leave)] You decide your party has no time to rest and set out immediately.->END
+            *[Leave] You decide your party has no time to rest and set out immediately.->END
 
     =ForageLoop
         //Decrease number of loops remaining
