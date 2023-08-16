@@ -3169,7 +3169,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BA1" name="{=Settlements.Settlement.name.castle_BA1}Castle Garamont" owner="Faction.bastonne_clan_1" posX="995.262" posY="989.388" culture="Culture.vlandia" gate_posX="993.6954" gate_posY="988.9298" text="{=Settlements.Settlement.text.castle_BA1}Castle Garamont holds the southern border of Bastonne from the western border of Bordeleaux, and provides a watchful lookout of the forest of Chȃlons and the feet of the mountains of Massif Orcal. The garrison has held off many Greenskin invaders.">
+  <Settlement id="castle_BA1" name="{=Settlements.Settlement.name.castle_BA1}Castle Garamont" owner="Faction.bastonne_clan_2" posX="995.262" posY="989.388" culture="Culture.vlandia" gate_posX="993.6954" gate_posY="988.9298" text="{=Settlements.Settlement.text.castle_BA1}Castle Garamont holds the southern border of Bastonne from the western border of Bordeleaux, and provides a watchful lookout of the forest of Chȃlons and the feet of the mountains of Massif Orcal. The garrison has held off many Greenskin invaders.">
     <Components>
       <Town id="castle_comp_BA1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4018,7 +4018,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_CC2" name="{=Settlements.Settlement.name.town_CC2}Turin" owner="Faction.carcassonne_clan_1" posX="1077.753" posY="766.645" culture="Culture.vlandia" gate_posX="1078.517" gate_posY="768.9257" text="{=Settlements.Settlement.text.town_CC2}Located in the Vaults , the City of Turin is the capital of the Barony of Savoie. The region is influenced heavily by nearby Tilea, despite this the city and people are steadfastly loyal to Bretonnia. Holding the famed relic, the “Shroud of Gilles le Breton” the City of Turin is a Pilgrimage site to all who follow the Lady of the Lake, and all who seek visions of the Lady.">
+  <Settlement id="town_CC2" name="{=Settlements.Settlement.name.town_CC2}Turin" owner="Faction.carcassonne_clan_2" posX="1077.753" posY="766.645" culture="Culture.vlandia" gate_posX="1078.517" gate_posY="768.9257" text="{=Settlements.Settlement.text.town_CC2}Located in the Vaults , the City of Turin is the capital of the Barony of Savoie. The region is influenced heavily by nearby Tilea, despite this the city and people are steadfastly loyal to Bretonnia. Holding the famed relic, the “Shroud of Gilles le Breton” the City of Turin is a Pilgrimage site to all who follow the Lady of the Lake, and all who seek visions of the Lady.">
     <Components>
       <Town id="town_comp_CC2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>

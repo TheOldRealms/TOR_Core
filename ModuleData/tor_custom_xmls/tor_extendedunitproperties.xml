@@ -3318,7 +3318,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_parravon_factionleader">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_parravon_first_2">
     <Abilities />
@@ -3346,7 +3349,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_montfort_factionleader">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_montfort_first_2">
     <Abilities />
@@ -3374,7 +3380,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_bastonne_factionleader">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_bastonne_first_2">
     <Abilities />
@@ -3400,13 +3409,32 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_br_lord_bastonne_first_8">
+  <CharacterExtendedInfo id="tor_br_lord_bastonne_second_1">
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lord_bastonne_second_2">
+    <Abilities>
+      <string>DwellersBelow</string>
+      <string>TheGreenEye</string>
+      <string>Barkskin</string>
+      <string>SummerHeat</string>
+      <string>Regrowth</string>
+      <string>DrainLife</string>
+      <string>StormOfRenewal</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+      <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_bordeleaux_factionleader">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_bordeleaux_first_2">
     <Abilities />
@@ -3434,7 +3462,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_carcassonne_factionleader">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_carcassonne_first_2">
     <Abilities />
@@ -3460,13 +3491,48 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_br_lord_carcassonne_first_8">
+  <CharacterExtendedInfo id="tor_br_lord_carcassonne_second_1">
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lord_carcassonne_second_2">
+    <Abilities>
+      <string>DwellersBelow</string>
+      <string>TheGreenEye</string>
+      <string>Barkskin</string>
+      <string>SummerHeat</string>
+      <string>Regrowth</string>
+      <string>DrainLife</string>
+      <string>StormOfRenewal</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+      <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lord_carcassonne_second_3">
+    <Abilities>
+      <string>DwellersBelow</string>
+      <string>TheGreenEye</string>
+      <string>Barkskin</string>
+      <string>SummerHeat</string>
+      <string>Regrowth</string>
+      <string>DrainLife</string>
+      <string>StormOfRenewal</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+      <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_brionne_factionleader">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_brionne_first_2">
     <Abilities />
@@ -3494,7 +3560,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_aquitaine_factionleader">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_aquitaine_first_2">
     <Abilities />
@@ -3526,7 +3595,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_quenelles_factionleader">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_quenelles_first_2">
     <Abilities />
@@ -3655,6 +3727,7 @@
     <Abilities />
     <Attributes>
       <string>AICompanion</string>
+      <string>Undead</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_chaos_lord_factionleader">
