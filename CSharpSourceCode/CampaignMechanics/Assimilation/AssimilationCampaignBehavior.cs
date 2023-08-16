@@ -10,6 +10,16 @@ namespace TOR_Core.CampaignMechanics.Assimilation
     public class AssimilationCampaignBehavior : CampaignBehaviorBase
     {
         private Dictionary<Settlement, CultureObject> _settlementCulturePairs = new Dictionary<Settlement, CultureObject>();
+        private Dictionary<Settlement, CultureObject> _originalSettlementCulturePairs = new Dictionary<Settlement, CultureObject>();
+
+        public static CultureObject GetOriginalCultureForSettlement(Settlement settlement)
+        {
+            if (Campaign.Current == null || Campaign.Current.GetCampaignBehavior<AssimilationCampaignBehavior>() == null) return null;
+            
+            var instance = Campaign.Current.GetCampaignBehavior<AssimilationCampaignBehavior>();
+            if (instance._originalSettlementCulturePairs.ContainsKey(settlement)) return instance._originalSettlementCulturePairs[settlement];
+            else return null;
+        }
 
         public override void RegisterEvents()
         {
@@ -26,6 +36,7 @@ namespace TOR_Core.CampaignMechanics.Assimilation
                 foreach (var settlement in Settlement.All)
                 {
                     _settlementCulturePairs.Add(settlement, settlement.Culture);
+                    _originalSettlementCulturePairs.Add(settlement, settlement.Culture);
                 }
             }
         }
@@ -98,6 +109,7 @@ namespace TOR_Core.CampaignMechanics.Assimilation
         public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData("_settlementCulturePairs", ref _settlementCulturePairs);
+            dataStore.SyncData("_originalSettlementCulturePairs", ref _originalSettlementCulturePairs);
         }
     }
 }
