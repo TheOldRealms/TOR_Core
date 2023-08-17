@@ -407,13 +407,13 @@
   <string id="customsettlement_intro.grove_of_the_lady_02" text="{=!}You arrive at a grove of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the Lady of the Lake." />
   <string id="customsettlement_disabled.grove_of_the_lady_02" text="{=!}The shrine lies in ruins. There is nothing to do here." />
 
-  <string id="customsettlement_intro.haunted_site_01" text="{=!}You are deep within the Hunger Woods - a spirit infested cursed forest." />
+  <string id="customsettlement_intro.haunted_site_01" text="{=!}Verhungern by local Slyvanians, this dispersed land is a ghoul, and likely spirit, infested maze of briars and bogs. Only the insane or desperate would venture into its boughs. " />
   <string id="customsettlement_disabled.haunted_site_01" text="{=!}You shouldn't see this." />
-  <string id="customsettlement_intro.haunted_site_02" text="{=!}You are deep within the Hunger Woods - a spirit infested cursed forest." />
+  <string id="customsettlement_intro.haunted_site_02" text="{=!}Destroyed by unholy fire that rained from the skies eons ago, Hel Fenn is likely the most cursed area in the whole Reik Basin. Molded buildings, rotting trees and tar covered corpses dot the desolate landscape. This was also the site of Mannfred von Carsteins defeat and the end of the Vampire Wars. " />
   <string id="customsettlement_disabled.haunted_site_02" text="{=!}You shouldn't see this." />
-  <string id="customsettlement_intro.haunted_site_03" text="{=!}You are deep within the Hunger Woods - a spirit infested cursed forest." />
+  <string id="customsettlement_intro.haunted_site_03" text="{=!}Long have the hills southeast of Talabheim been cursed. Strangeness and tragedy are no stranger to that land. Despite this, no one knows what the cause of the miasma is; though not for lack of trying. " />
   <string id="customsettlement_disabled.haunted_site_03" text="{=!}You shouldn't see this." />
-  <string id="customsettlement_intro.haunted_site_04" text="{=!}You are deep within the Hunger Woods - a spirit infested cursed forest." />
+  <string id="customsettlement_intro.haunted_site_04" text="{=!}Centuries ago, the hills outside of Mousillon were used as a mass grave to bury the thousands who died of Red Pox. So many victims were there that to this day the soil covering their pits is visible from the city walls. The air here is sometimes poisonous and like the rest of the cursed land the long dead rest uneasily." />
   <string id="customsettlement_disabled.haunted_site_04" text="{=!}You shouldn't see this." />
 
   <!--wanderer stories-->
