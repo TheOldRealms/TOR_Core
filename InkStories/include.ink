@@ -257,3 +257,13 @@ EXTERNAL SetPlayerCustomTag(tag)
 EXTERNAL OpenInventoryAsTrade()
 ===function OpenInventoryAsTrade()===
     ~ return ""
+
+//Checks whether the current time of day is night
+EXTERNAL IsNight()
+===function IsNight()===
+    ~ return false
+
+//Checks whether player has the indicated amount of gold
+EXTERNAL HasEnoughGold(number)
+===function HasEnoughGold(number)===
+    ~ return true

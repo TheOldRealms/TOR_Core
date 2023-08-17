@@ -254,7 +254,19 @@ namespace TOR_Core.Ink
             {
                 _story.BindExternalFunction("OpenInventoryAsTrade", OpenInventoryAsTrade, false);
             }
+            if (!_story.TryGetExternalFunction("IsNight", out _))
+            {
+                _story.BindExternalFunction("IsNight", IsNight, true);
+            }
+            if (!_story.TryGetExternalFunction("HasEnoughGold", out _))
+            {
+                _story.BindExternalFunction<int>("HasEnoughGold", HasEnoughGold, true);
+            }
         }
+
+        private object HasEnoughGold(int amount) => Hero.MainHero.Gold >= amount;
+
+        private object IsNight() => CampaignTime.Now.IsNightTime;
 
         private void OpenCultistLairMission()
         {

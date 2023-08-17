@@ -1,125 +1,120 @@
+//Global story tags
+# title: A Fair in the Woods
+# frequency: Uncommon
+# development: false
+# illustration: trader
+
+INCLUDE include.ink
+
+VAR HorsePrice = 2000
+VAR FoodPrice = 10
+VAR HorseBetPrice = 500
+VAR WinHorseRace = 0
+    ~ WinHorseRace = RANDOM(0,1)
+VAR TurnipPrice = 50
+
 -> Start
 
-=== Start ===
-A Fair in the Woods #title #illustration: fair_warhammer
-
+===Start===
 As your army travels, a sudden clearing reveals a surprising sight – a bustling fair known as the Morrslieb Revelry. Tents stand proud, colors dancing in the dappled sunlight. Laughter mingles with the snorts of horses, the heart of this joyous gathering.
 
 Merchants beckon, their eyes alight with mischief, hawking horses at a discount from the standard rates you'd find in the scrolls. The air carries the tempting scents of roasted meat, frothy ale, and tangy wine. Amidst the merry crowd, a farmer grins, offering a turnip that oddly resembles the famed twin-tailed comet. Yours for a mere penny, a chance to possess this curious marvel.
+    ->choices
 
-* [Join the crowd at the horse market.]->HorseStalls
-* [Savor the flavors of the fair.]->FoodStalls
-* [Test your luck at the horse races.]->HorseRaces
-* [Examine the peculiar turnip.]->Turnip
-* [Continue your journey through the woods.]->Leave
+    =choices
+    * [Join the crowd at the horse market.]->HorseStalls
+    * [Savor the flavors of the fair.]->FoodStalls
+    * [Test your luck at the horse races.]->HorseRaces
+    * [Examine the peculiar turnip.]->Turnip
+    * [Continue your journey through the woods.]->Leave
 
-=== HorseStalls ===
-The fair's heart beats strongest at the horse market. Proud stallions prance, their eyes fierce and wild.
+===HorseStalls===
+The fair's heart beats strongest at the horse market. Proud stallions prance, their eyes fierce and wild. One horse, in particular, captures your attention. It has a sleek, ebony coat that glistens in the sunlight, and its eyes seem to hold a knowing glint. 
+    ->choices
 
-* [Take his deal for a horse.]->BuyHorse
-* [Persuade the merchant to lower the price.]->PersuadeMerchant
-* [Return to the fair's heart.]->Start
+    =choices
+    + [Take the merchant's deal for the horse. ({HorsePrice} gold)]->BuyHorse
+    * [Persuade the merchant to lower the price. {print_player_skill_chance("Charm",150)}]->PersuadeMerchant
+    * [Return to the fair's heart.]->Start.choices
 
-=== BuyHorse ===
-You secure yourself a brand new steed, a fine Imperial warhorse.
+===BuyHorse===
+{HasEnoughGold(HorsePrice): You strike a deal with the merchant. You exchange coins for a sturdy saddle and reins. With a surge of anticipation, you mount the horse. The connection between you is immediate, the horse seems to respond to your touch with trust and eagerness. {GiveGold(-HorsePrice)} | You don't have enough gold.}
 
-* [Return to the revelry]->Start
+* [Return to the revelry]->Start.choices
 
-=== PersuadeMerchant ===
-You decide to use your charm and haggling skills to lower the price of the horse.
+===PersuadeMerchant===
+{perform_player_skill_check("Charm",150): -> success | -> fail}
 
-(CharmSkillCheckText)
-* (CharmSkillCheckSuccess)[Successfully persuade the merchant to lower the price]->SuccessfulPersuasion
-* (CharmSkillCheckFail)[Fail to persuade the merchant, pay full price]->ReturnToStalls
+    =success
+    Your words work their magic, and the merchant agrees to lower the price by 25%. The merchant grumbles but respects your negotiating skills.
+    ~HorsePrice = 1500
+    ->HorseStalls.choices
 
-=== SuccessfulPersuasion ===
-Your words work their magic, and the merchant agrees to lower the price by 25%. The merchant grumbles but respects your negotiating skills.
+    =fail
+    Despite your best attempts to haggle, the merchant remains firm on the price.
+    ->HorseStalls.choices
+    
 
-* [Purchase a horse.]->Start
-* [Do not purchase a horse.]->Start
-
-=== ReturnToStalls ===
-Despite your best attempts to haggle, the merchant remains firm on the price. Do you still wish to purchase a horse from him?
-
-* [Purchase a horse.]->Start
-* [Do not purchase a horse.]->Start
-
-=== FoodStalls ===
+===FoodStalls===
 Scents swirl and tempt, guiding you to a feast of flavors. Meats sizzle and ale froths – a carnival for the senses. There's plenty of food available, and it's your choice to partake.
 
-* [Indulge in the fair's feast.]->BuyFood
-* [Haggle with the food vendor for a better deal.]->HaggleFood
+* [Indulge in the fair's feast. ({FoodPrice} gold)]->BuyFood
 * [Carry on, resisting the temptation.]->Start
 
-=== BuyFood ===
-Indulgence wins. You feast, the fair's flavors a delightful symphony on your tongue. Merchants nod their approval as you partake.
+===BuyFood===
+{HasEnoughGold(FoodPrice): Indulgence wins. You feast, the fair's flavors a delightful symphony on your tongue. Merchants nod their approval as you partake. {GiveGold(-FoodPrice)} | You don't have enough gold.}
 
-* [Return to the merriment.]->Start
+* [Return to the merriment.]->Start.choices
 
-=== HaggleFood ===
-You decide to use your trade skills to haggle with the food vendor for a better deal.
-
-(TradeSkillCheckText)
-* (TradeSkillCheckSuccess)[Successfully haggle for a discount]->SuccessfulHaggling
-* (TradeSkillCheckFail)[Fail to haggle, pay full price]->ReturnToFeast
-
-=== SuccessfulHaggling ===
-Your trading skills shine as you negotiate a discount on the feast. The vendor begrudgingly accepts your offer.
-
-* [Return to the merriment.]->Start
-
-=== ReturnToFeast ===
-The vendor remains firm on the price, and you decide to move on.
-
-* [Return to the merriment.]->Start
-
-=== HorseRaces ===
+===HorseRaces===
 Cheers erupt from an amphitheater. Horses thunder, riders urging them to glory.
+->choices
 
-* [Place a wager on a racing horse.]->PlaceBetWin
-* [Place a wager on a racing horse.]->PlaceBetLose
-* [Observe from the outskirts.]->Start
+    =choices
+    * [Place a wager on a racing horse. ({HorseBetPrice} gold - payout 5x on win)]->PlaceBet
+    * [You decide that you shouldn't test your luck.]->Start.choices
 
-=== PlaceBetWin ===
-Your heart races as you place your wager. The horse you chose surges forward, and luck dances in your favor. Laughter and clinking coins surround you.
+===PlaceBet===
+{not HasEnoughGold(HorseBetPrice): You don't have enough gold. -> HorseRaces.choices}
+~GiveGold(-HorseBetPrice)
+{WinHorseRace: ->success | ->fail}
+    =success
+    Your heart races as you place your wager. The horse you chose surges forward, and luck dances in your favor. Laughter and clinking coins surround you.
+    
+    * [Return to the merry crowd.]->Start.choices
 
-* [Return to the merry crowd.]->Start
+    =fail
+    Your heart races as you place your wager. The horse you chose quickly surges forward at first, but the other riders soon catch up. Eventually, your horse slows down to the point of only earning a late place. Laughter and clinking coins surround you.
+    
+    * [Return to the merry crowd.]->Start.choices
 
-=== PlaceBetLose ===
-Your heart races as you place your wager. The horse you chose quickly surges forward at first, but the other riders soon catch up. Eventually, your horse slows down to the point of only earning a late place. Laughter and clinking coins surround you.
-
-* [Return to the merry crowd.]->Start
-
-=== Turnip ===
+===Turnip===
 Intrigue tugs at your senses as you gaze upon the comet-shaped turnip – a whimsical marvel. A farmer grins, inviting you to join a raffle.
+    ->choices
 
-* [Try your luck with a raffle ticket.]->BuyTicket
-* [Use your perception to find hidden clues about the turnip]->PerceiveTurnip
-* [Move on, leaving the curious turnip behind.]->Start
+    =choices
+    * [Try your luck with a raffle ticket. ({TurnipPrice} gold)]->BuyTicket
+    * [Use your perception to find hidden clues about the turnip. {print_player_skill_chance("Roguery", 80)}]->PerceiveTurnip
+    * [Move on, leaving the curious turnip behind.]->Start.choices
 
-=== BuyTicket ===
-With a coin and a smile, you secure your chance at the raffle. Who knows? The comet-kissed turnip might be yours after all.
+===BuyTicket===
+{HasEnoughGold(TurnipPrice): With a coin and a smile, you secure your chance at the raffle. Who knows? The comet-kissed turnip might be yours after all. {GiveGold(-TurnipPrice)} | You don't have enough gold. -> Turnip.choices}
 
-* [Return to the mirthful revelry.]->Start
+With anticipation in the air, the raffle commences, and as the announcer calls out the winning ticket number, you hold your breath. However, luck is not on your side this time. The winning number isn't yours, and a twinge of disappointment washes over you.
+
+* [Return to the mirthful revelry.]->Start.choices
 
 === PerceiveTurnip ===
-You decide to use your keen perception to examine the turnip more closely.
+{perform_player_skill_check("Roguery", 80): -> success | ->fail}
 
-(PerceptionSkillCheckText)
-* (PerceptionSkillCheckSuccess)[Notice hidden details about the turnip]->SuccessfulPerception
-* (PerceptionSkillCheckFail)[Fail to perceive anything unusual]->ContinueExamination
+    =success
+    Your sharp eyes pick up on subtle details that others might miss. The turnip seems to have no strange markings that hint at its significance. It's completely ordinary.
+    ->Turnip.choices
+    
+    =fail
+    Your examination doesn't reveal anything unusual about the turnip.
+    ->Turnip.choices
 
-=== SuccessfulPerception ===
-Your sharp eyes pick up on subtle details that others might miss. The turnip seems to have no strange markings that hint at its significance. It's completely ordinary.
-
-* [Return to the mirthful revelry.]->Start
-
-=== ContinueExamination ===
-Your examination doesn't reveal anything unusual about the turnip.
-
-* [Return to the mirthful revelry.]->Start
-
-=== Leave ===
+===Leave===
 As the fair's merriment fades, you step back into the embrace of the wilderness, leaving the laughter of the fair's revelry behind.
-
-* [Continue your path.]->END
+->END

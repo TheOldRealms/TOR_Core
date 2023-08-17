@@ -15,9 +15,9 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
     {
         private const float RareChance = 0.5f;
         private const float SpecialChance = 1f;
-        private const float UncommonChance = 2f;
-        private const float CommonChance = 3f;
-        private const float AbundantChance = 5f;
+        private const float UncommonChance = 3f;
+        private const float CommonChance = 5f;
+        private const float AbundantChance = 7f;
         private const int CoolDown = 12;
         private int _hoursCountSinceLastEvent = 0;
 

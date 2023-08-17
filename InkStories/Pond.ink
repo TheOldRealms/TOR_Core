@@ -177,12 +177,19 @@
 
 ===Start===
 
-    As your party is on the march you come across a refreshing looking pond.
+    As your party is traveling you come across a tranquil scene that steals your breath away. Before you stretches a serene pond, a hidden gem amidst the wilderness. The water is calm and clear, reflecting the azure sky above. Lush vegetation surrounds the pond, offering a peaceful sanctuary.
+    {IsNight(): Silver moonlight | Golden sunlight} filters through the trees, casting a glow on the water's surface. The air carries the gentle scent of nature, a soothing balm for your weary senses. Birds sing melodious tunes, contributing to the serene atmosphere.
+
+    As you stand there, captivated by the sight, your men catch up to you. Their faces, etched with exhaustion, light up with wonder and relief. Even the typically reserved member of your group manages a small smile.
+    
+    Your second places a hand on your shoulder, their voice carrying a rare note of lightness. "A moment of respite by the pond. What do you say?"
         ->choice1
         
     =choice1
         What will you have your party do?
-            *[Forage for wild plants (Multiple attempts at {LoreOfLifeInParty: 50% chance (Improved by Lore of Life)| 25% chance} to succeed at harvesting various wild plants; Party will enter Disorganized State)] You order your party to forage amongst the plants of the forest.
+            *[Forage for wild plants (Multiple attempts at {LoreOfLifeInParty: 50% chance (Improved by Lore of Life)| 25% chance} to succeed at harvesting various wild plants)] 
+                
+                You order your party to forage for wild plants.
             
                 //Lore of Life in Party Increases success chance
                     {LoreOfLifeInParty:
@@ -195,11 +202,13 @@
                     
                 ->ForageLoop
 
-            *[Fish (Multiple chances to get Fish (50% success chance); Party will enter Disorganized State)] You have your men go fishing.
+            *[Fish (Multiple chances to get Fish (50% success chance))] 
+            
+            You have your men go fishing.
                 
                 ->FishLoop
                 
-            *[Have your men rest (All companions healed and all wounded troops recovered {PartyMedicineCheckText}; Party will enter Disorganized State)]
+            *[Have your men rest (All companions healed and all wounded troops recovered {PartyMedicineCheckText})]
                 
                 You try to give your men a break hoping that the brief respite will help them get better.
                 
@@ -210,11 +219,11 @@
                     -else: "ERROR"
                 }
                 
-                {PartyMedicineCheckTest: Your party takes advantage of the break to take care of the wounded.| Unfortunately just as the men start to tend to the wounded, the pond gurgles and starts becoming a sink hole. You rush your men away as fast as you can.}
+                {PartyMedicineCheckTest: Your party takes advantage of the break to take care of the wounded.| Just as the men start to tend to the wounded, the ground suddenly shakes beneath you, and a roar fills the air. A cascade of earth and rocks crashes into the pond, caused by a landslide along the shore. The water churns, swallowing a part of the land it had eroded over time.}
                 
                 ->Leave
                 
-            *[Leave immediately (Leave)] You decide your party has no time to rest and set out immediately.->END
+            *[Leave] You decide your party has no time to rest and set out immediately.->END
 
     =ForageLoop
         //Decrease number of loops remaining
@@ -239,7 +248,7 @@
             
             {RewardRoll:
                 -0:
-                    Your men find nothing.
+                    Foraging yields no results, your men return empty handed.
                 -1:
                     Your men find some wild rice. (+1 Grain)
                     ~ GiveItem("grain",1)
@@ -266,7 +275,7 @@
         //Reward
             {
                 - AttemptSuccessful == true:
-                    Your men catch some fish
+                    Your men catch some fish (+1 Fish).
                     ~ GiveItem("fish",1)
                 - AttemptSuccessful == false:
                      Your men catch nothing.

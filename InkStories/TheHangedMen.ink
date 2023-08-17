@@ -156,7 +156,7 @@ INCLUDE include.ink
                 //Raise Dead
                     {perform_party_skill_check("Spellcraft", RaiseDeadDifficulty):
                         -true:
-                            ~ ChangePartyTroopCount("tor_vc_skeleton_crypt_guard",1)
+                            ~ ChangePartyTroopCount("tor_vc_crypt_guard",1)
                             ~ CryptGuardSuccess = true
                             ~ HaveSword = false
                         -false:

@@ -176,7 +176,9 @@
 
 ===Start===
 
-    As your party is on the march they come across a nice looking meadow.
+    You and your party have been trudging along a winding path, when the landscape gradually shifts. The air becomes gentler, the sounds more peaceful.
+    And then, you step into a clearing, and a gasp escapes your lips. Before you stretches a meadow unlike any you've seen in a long while. The grass is a rich tapestry of green, waving softly in the breeze. A multitude of wildflowers paints the scene with vibrant hues of red, purple, and yellow.
+    {IsNight(): Silver moonlight | Golden sunlight } filters through the tree canopy, bathing the meadow in warmth. A gentle aroma of blooming flowers perfumes the air. Birds serenade with their melodies, filling the clearing with a symphony that feels like a balm to your weary spirit.
         ->choice1
         
     =choice1
@@ -218,7 +220,7 @@
                 
             *[Have your men rest (All companions healed and all wounded troops recovered {PartyMedicineCheckText})]
                 
-                You try to give your men a break hoping that the brief respite will help them get better.
+                You try to give your men a break hoping that the brief respite will help them get better. You set up a makeshift camp at the meadow's edge. 
                 
                 {PartyMedicineCheckTest:
                     -true: 
@@ -256,7 +258,7 @@
             
             {RewardRoll:
                 -0:
-                    Your men find nothing.
+                    Foraging yields no results, your men return empty handed.
                 -1:
                     Your men find some wild grain. (+1 Grain)
                     ~ GiveItem("grain",1)
@@ -307,19 +309,19 @@
         //Reward
             {
                 - AttemptSuccessful == true && RewardRoll == 0:
-                    Your men get some meat. (+1 Meat)
+                    Your men are successful, they return with some pheasants. (+1 Meat)
                     ~ GiveItem("meat",1)
                     ~ GiveItem("hides",1)
                 - AttemptSuccessful == true && RewardRoll == 1:
-                    Your men get some meat and hide. (+1 Meat, +1 Hide)
+                    Your men are successful, they return with a deer. (+1 Meat, +1 Hide)
                     ~ GiveItem("meat",1)
                     ~ GiveItem("hides",1)
                 - AttemptSuccessful == true && RewardRoll == 2:
-                    Your men get some meat and fur. (+1 Meat, +1 Fur)
+                    Your men are successful, they return with a wild boar. (+1 Meat, +1 Fur)
                     ~ GiveItem("meat",1)
                     ~ GiveItem("fur",1)
                 - AttemptSuccessful == false:
-                     Your men get nothing.
+                     Wild game eludes you, your men return empty handed.
                 -else: ERROR
             }
                     
