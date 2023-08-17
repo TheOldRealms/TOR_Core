@@ -4583,7 +4583,7 @@
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_MS2_1" name="{=Settlements.Settlement.name.castle_village_MS1_3}Yremy" posX="948.58" posY="1065.14" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MS2_1}A small hamlet that is isolated from most of Mousillon itself, Yremy is home to a great number of humans, rather than mutants. Many of the peasants residing in the village work for Lord Aucassin and work in his kitchen at Chateau Hane. Yremy does get some trade because of its closeness to Grenouille Gate however.">
+  <Settlement id="castle_village_MS2_1" name="{=Settlements.Settlement.name.castle_village_MS1_3}Yremy" posX="948.58" posY="1065.14" culture="Culture.mousillon" text="{=Settlements.Settlement.text.castle_village_MS2_1}A small hamlet that is isolated from most of Mousillon itself, Yremy is home to a great number of humans, rather than mutants. Many of the peasants residing in the village work for Lord Aucassin and work in his kitchen at Chateau Hane. Yremy does get some trade because of its closeness to Grenouille Gate however.">
     <Components>
       <Village id="castle_village_comp_MS2_1" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.castle_MS2" bound="Settlement.castle_MS2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
