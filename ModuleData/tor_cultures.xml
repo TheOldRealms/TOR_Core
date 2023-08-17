@@ -1437,7 +1437,7 @@
 			 caravan_guard="NPCCharacter.tor_vc_caravan_guard"
 			 veteran_caravan_guard="NPCCharacter.tor_vc_caravan_guard"
 			 prison_guard="NPCCharacter.prison_guard_empire"
-			 guard="NPCCharacter.tor_vc_grave_guard"
+			 guard="NPCCharacter.tor_vc_grave_guardian"
 			 blacksmith="NPCCharacter.blacksmith_empire"
 			 weaponsmith="NPCCharacter.weaponsmith_empire"
 			 townswoman="NPCCharacter.townswoman_empire"
