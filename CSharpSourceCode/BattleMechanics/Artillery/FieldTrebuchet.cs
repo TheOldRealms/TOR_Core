@@ -585,10 +585,20 @@ namespace TOR_Core.BattleMechanics.Artillery
             {
                 if (UserFormations.Count == 0)
                 {
-                    var form = Team.GetFormations().ToList().FirstOrDefault(x => x.CountOfDetachableNonplayerUnits >= 2);
+                    var form = Team.GetFormations().ToList().FirstOrDefault(x => x.CountOfDetachableNonplayerUnits >= 4);
+                    if (form != null) form.StartUsingMachine(this, true);
+                }
+				else if(!HasAnyUser())
+				{
+                    var form = Team.GetFormations().ToList().FirstOrDefault(x => x.CountOfDetachableNonplayerUnits >= 4 && !UserFormations.Contains(x));
                     if (form != null) form.StartUsingMachine(this, true);
                 }
             }
+        }
+
+		private bool HasAnyUser()
+		{
+			return StandingPoints.Any(x => x.HasUser || x.HasAIMovingTo);
         }
 
         protected override void SetActivationLoadAmmoPoint(bool activate)

@@ -17,7 +17,7 @@ namespace TOR_Core.BattleMechanics.AI.FormationBehavior
             if (artillery == null) return;
             
             var closestEnemyFormation = artillery.QuerySystem.ClosestEnemyFormation;
-            if (closestEnemyFormation != null && closestEnemyFormation.AveragePosition.Distance(artillery.QuerySystem.AveragePosition) < 10)
+            if (closestEnemyFormation != null && closestEnemyFormation.AveragePosition.Distance(artillery.QuerySystem.AveragePosition) < 30)
             {
                 CurrentOrder = MovementOrder.MovementOrderChargeToTarget(closestEnemyFormation.Formation);
                 Formation.SetMovementOrder(CurrentOrder);

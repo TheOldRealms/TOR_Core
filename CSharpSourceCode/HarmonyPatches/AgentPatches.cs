@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -54,7 +55,7 @@ namespace TOR_Core.HarmonyPatches
                 int count = SkinVoiceManager.GetVoiceDefinitionCountWithMonsterSoundAndCollisionInfoClassName(className);
                 int[] array = new int[count];
                 SkinVoiceManager.GetVoiceDefinitionListWithMonsterSoundAndCollisionInfoClassName(className, array);
-                __instance.AgentVisuals.SetVoiceDefinitionIndex(GetRandomVoiceIndexForCulture(__instance.GetHero().Culture.StringId), 0);
+                __instance.AgentVisuals.SetVoiceDefinitionIndex(GetRandomVoiceIndexForCulture(__instance.GetHero()), 0);
             }
             
             return true;
@@ -64,15 +65,15 @@ namespace TOR_Core.HarmonyPatches
         {
             if (agent == null || !agent.IsHuman || agent.Character == null || agent.Character.Culture == null || agent.IsFemale) return false;
             var cultureId = agent.GetHero().Culture.StringId;
-            return cultureId == "khuzait" || cultureId == "vlandia" || cultureId == "empire";
+            return cultureId == "vlandia" || cultureId == "empire" || agent.IsVampire();
         }
 
-        private static int GetRandomVoiceIndexForCulture(string cultureId)
+        private static int GetRandomVoiceIndexForCulture(Hero hero)
         {
-            switch (cultureId)
+            if(hero.IsVampire()) return MBRandom.RandomInt(TORConstants.VAMPIRE_VOICE_INDEX_START, TORConstants.VAMPIRE_VOICE_INDEX_START + (TORConstants.VAMPIRE_VOICES_COUNT));
+
+            switch (hero.Culture.StringId)
             {
-                case "khuzait":
-                    return MBRandom.RandomInt(TORConstants.VAMPIRE_VOICE_INDEX_START, TORConstants.VAMPIRE_VOICE_INDEX_START + (TORConstants.VAMPIRE_VOICES_COUNT));
                 case "vlandia":
                     return MBRandom.RandomInt(TORConstants.BRETONNIA_VOICE_INDEX_START, TORConstants.BRETONNIA_VOICE_INDEX_START + (TORConstants.BRETONNIA_VOICES_COUNT));
                 case "empire":
