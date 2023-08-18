@@ -239,8 +239,8 @@ EXTERNAL OpenDuelMission()
     ~ return ""
 
 //Opens the cultist lair mission
-EXTERNAL OpenCultistLairMission()
-===function OpenCultistLairMission()===
+EXTERNAL OpenCultistLairMission(missionName)
+===function OpenCultistLairMission(missionName)===
     ~ return ""
 
 //Opens the duel mission

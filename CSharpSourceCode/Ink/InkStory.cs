@@ -255,7 +255,7 @@ namespace TOR_Core.Ink
             }
             if (!_story.TryGetExternalFunction("OpenCultistLairMission", out _))
             {
-                _story.BindExternalFunction("OpenCultistLairMission", OpenCultistLairMission, false);
+                _story.BindExternalFunction<string>("OpenCultistLairMission", OpenCultistLairMission, false);
             }
             if (!_story.TryGetExternalFunction("GetPlayerHasCustomTag", out _))
             {
@@ -298,10 +298,10 @@ namespace TOR_Core.Ink
 
         private object IsNight() => CampaignTime.Now.IsNightTime;
 
-        private void OpenCultistLairMission()
+        private void OpenCultistLairMission(string missionName)
         {
             var template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_cultists");
-            TorMissionManager.OpenQuestMission("TOR_cultist_lair_001", template, 5, (playerVictory) => SetVariable("DealtWithCultists", playerVictory));
+            TorMissionManager.OpenQuestMission(missionName, template, 5, (playerVictory) => SetVariable("DealtWithCultists", playerVictory));
         }
 
         private void OpenInventoryAsTrade()

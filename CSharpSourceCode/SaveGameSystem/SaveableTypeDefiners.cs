@@ -36,14 +36,16 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(JoustTournamentGame), 14);
             AddClassDefinition(typeof(HuntCultistsQuestCampaignBehavior.HuntCultistsIssue), 15);
             AddClassDefinition(typeof(HuntCultistsQuestCampaignBehavior.HuntCultistsQuest), 16);
-            AddClassDefinition(typeof(TORDeclareWarDecision), 17);
+            AddClassDefinition(typeof(PlaguedVillageQuestCampaignBehavior.PlaguedVillageIssue), 17);
+            AddClassDefinition(typeof(PlaguedVillageQuestCampaignBehavior.PlaguedVillageQuest), 18);
+            AddClassDefinition(typeof(TORDeclareWarDecision), 19);
 
         }
 
         protected override void DefineEnumTypes()
         {
-            AddEnumDefinition(typeof(EngineerQuestStates), 19);
-            AddEnumDefinition(typeof(SpellCastingLevel), 20);
+            AddEnumDefinition(typeof(EngineerQuestStates), 20);
+            AddEnumDefinition(typeof(SpellCastingLevel), 21);
         }
 
         protected override void DefineContainerDefinitions()

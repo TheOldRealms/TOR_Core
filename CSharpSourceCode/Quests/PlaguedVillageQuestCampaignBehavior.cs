@@ -205,7 +205,7 @@ namespace TOR_Core.Quests
             private void AfterStory(InkStory story)
             {
                 _storyPlayed = true;
-                bool.TryParse(story.GetVariable("playerVictory"), out _dealtWithCultists);
+                bool.TryParse(story.GetVariable("DealtWithCultists"), out _dealtWithCultists);
                 if (_dealtWithCultists)
                 {
                     AddLog(new TextObject("{=!}You were successful in lifting the plague."));

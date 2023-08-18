@@ -267,16 +267,16 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         {
             var battleSettlement = Settlement.FindFirst(delegate (Settlement settlement)
             {
-                if(settlement.SettlementComponent is ChaosPortalComponent)
+                if(settlement.SettlementComponent is BaseRaiderSpawnerComponent)
                 {
-                    var comp = settlement.SettlementComponent as ChaosPortalComponent;
+                    var comp = settlement.SettlementComponent as BaseRaiderSpawnerComponent;
                     return comp.IsBattleUnderway;
                 }
                 return false;
             });
             if(battleSettlement != null)
             {
-                var comp = battleSettlement.SettlementComponent as ChaosPortalComponent;
+                var comp = battleSettlement.SettlementComponent as BaseRaiderSpawnerComponent;
                 comp.IsBattleUnderway = false;
                 var mission = obj as Mission;
                 if (mission.MissionResult != null && mission.MissionResult.BattleResolved && mission.MissionResult.PlayerVictory)

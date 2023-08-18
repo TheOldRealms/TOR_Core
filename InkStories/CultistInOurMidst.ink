@@ -280,7 +280,7 @@ Sword in hand, you decide to enter after them.
 ->END
 
 ===EnterHideout===
-~ OpenCultistLairMission()
+~ OpenCultistLairMission("TOR_cultist_lair_001")
 ...
 {DealtWithCultists: As the last cultist falls beneath the weight of your blade, a deafening silence descends upon the chamber. The air is thick with the scent of victory and the echoes of battle. You stand amidst the fallen cultists, the sword in your hand a testament to your unwavering determination and skill.}
 {DealtWithCultists && MassacreHappened: As you step out of the underground chamber, your heart sinks at the sight that awaits you in the village square. The once vibrant heart of the village now lies transformed into a scene of unspeakable horror. Bodies of villagers and cultists alike litter the ground, their lives snuffed out in the violent clash that has taken place.}
