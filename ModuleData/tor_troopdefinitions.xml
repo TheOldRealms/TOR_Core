@@ -2431,6 +2431,108 @@
       <EquipmentSet id="tor_konigstein_spear_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_ror_peasant_squire" default_group="infantry" level="16" name="{=str_tor_ror_peasant_squire}Wainfleet Peasant Squires" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_peasant_squight" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_ror_peasant_squire_template" />
+      <EquipmentSet id="tor_ror_peasant_squire_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_peasant_squight" default_group="infantry" level="36" name="{=str_tor_ror_peasant_squight}Wainfleet Peasant Squight" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level36" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_peasant_knight" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_ror_peasant_squight_template" />
+      <EquipmentSet id="tor_ror_peasant_squight_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_peasant_knight" default_group="infantry" level="46" name="{=str_tor_ror_peasant_knight}Wainfleet Peasant Knight" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level46" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_ror_peasant_knight" />
+      <EquipmentSet id="tor_ror_peasant_knight" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_maisontaal_cultist" default_group="infantry" level="16" name="{=str_tor_ror_maisontaal_cultist}La Maisontaal Cultist" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_maisontaal_acetic" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_ror_maisontaal_cultist_template" />
+      <EquipmentSet id="tor_ror_maisontaal_cultist_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_maisontaal_acetic" default_group="infantry" level="36" name="{=str_tor_ror_maisontaal_acetic}La Maisontaal  Acetic" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level36" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_maisontaal_warden" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_ror_maisontaal_acetic_template" />
+      <EquipmentSet id="tor_ror_maisontaal_acetic_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_maisontaal_warden" default_group="infantry" level="46" name="{=str_tor_ror_maisontaal_warden}Holy Warden of La Maisontaal" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level46" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_ror_maisontaal_warden_template" />
+      <EquipmentSet id="tor_ror_maisontaal_warden_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_bergerac_herrimault" default_group="infantry" level="16" name="{=str_tor_ror_bergerac_herrimault}Honorable Herrimault" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_bergerac_ranger" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_ror_bergerac_herrimault_template" />
+      <EquipmentSet id="tor_ror_bergerac_herrimault_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_bergerac_ranger" default_group="infantry" level="16" name="{=str_tor_ror_bergerac_ranger}Bergerac Ranger" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_bergerac_bowman" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_ror_bergerac_ranger_template" />
+      <EquipmentSet id="tor_ror_bergerac_ranger_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_bergerac_bowman" default_group="infantry" level="16" name="{=str_tor_ror_bergerac_bowman}Bowman of Bergerac" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_ror_bergerac_bowman_template" />
+      <EquipmentSet id="tor_ror_bergerac_bowman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_chaos_cult_acolyte" default_group="infantry" level="11" name="{=str_tor_chaos_cult_acolyte}Cultist of Chaos" occupation="Bandit" culture="Culture.forest_bandits" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="chaos_ud_cultist">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />

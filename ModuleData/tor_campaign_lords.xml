@@ -2630,7 +2630,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_bastonne_second_2" default_group="cavalry" name="{=str_tor_br_lord_bastonne_second_2}Lady Anara of Garamont" occupation="Special" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" is_hero="true">
     <face>
-      <BodyProperties version="4" age="25" weight="0.2" build="0.1" key="001B900000B430157279D168465B5B774BC879C47BA98A488748E8A9857B5A9801A136130A77758A00000000000000000000000000000000000000001F4C30C3" />
+      <BodyProperties version="4" age="25" weight="0.4939" build="0.2338" key="0023740080441005AC6AA1658C89BAA66938CBBBBDC77A9959A2B97689C73E6301A476130A847B5400000000000000000000000000000000000000003F4C1003" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -2642,8 +2642,8 @@
       <Trait id="Generosity" value="3" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_prophetess_template" />
-      <EquipmentSet id="tor_prophetess_template" civilian="true" />
+      <EquipmentSet id="tor_damsel_template_3" />
+      <EquipmentSet id="tor_damsel_template_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_bordeleaux_factionleader" default_group="cavalry" name="{=str_tor_br_lord_bordeleaux_factionleader}Duke Alberic de Bordeleaux" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
@@ -2918,7 +2918,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_carcassonne_second_2" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_second_2}Lady Giulia de Turín" occupation="Special" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" is_hero="true">
     <face>
-      <BodyProperties version="4" age="25" weight="0.2" build="0.1" key="001B900000B430157279D168465B5B774BC879C47BA98A488748E8A9857B5A9801A136130A77758A00000000000000000000000000000000000000001F4C30C3" />
+      <BodyProperties version="4" age="27" weight="0.1296" build="0.173" key="0010500E40A0100E969A618D88E9689AB998868B8747945774BC397C863D595801C326130C7D5C16000000000000000000000000000000000000000045A42003" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -2930,13 +2930,13 @@
       <Trait id="Generosity" value="3" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_prophetess_template" />
-      <EquipmentSet id="tor_prophetess_template" civilian="true" />
+      <EquipmentSet id="tor_damsel_template_1" />
+      <EquipmentSet id="tor_damsel_template_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_carcassonne_second_3" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_second_3}Lady Margherita de Turín" occupation="Special" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" is_hero="true">
     <face>
-      <BodyProperties version="4" age="25" weight="0.2" build="0.1" key="001B900000B430157279D168465B5B774BC879C47BA98A488748E8A9857B5A9801A136130A77758A00000000000000000000000000000000000000001F4C30C3" />
+      <BodyProperties version="4" age="27" weight="0.1296" build="0.173" key="0010500E40A0100B969A618D88E9689AB998868B8747945774BC397C863D595801C326130C7D5C16000000000000000000000000000000000000000045A42003" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -2948,8 +2948,8 @@
       <Trait id="Generosity" value="3" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_prophetess_template" />
-      <EquipmentSet id="tor_prophetess_template" civilian="true" />
+      <EquipmentSet id="tor_damsel_template_2" />
+      <EquipmentSet id="tor_damsel_template_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_brionne_factionleader" default_group="cavalry" name="{=str_tor_br_lord_brionne_factionleader}Duke Theodoric of Brionne" occupation="Lord" culture="Culture.vlandia" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">

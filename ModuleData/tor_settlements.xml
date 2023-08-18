@@ -3873,7 +3873,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_AQ1_2" name="{=Settlements.Settlement.name.castle_village_AQ1_2}Lormont" posX="913.525" posY="911.794" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AQ1_2}Perched on the northern outskirts of Castle Libourne, the village of Lormont presents a stark contrast between its more rustic charm compared to the rest of gentle Aquitaine. Home to a considerable number of butchers, the sound of livestock echoes through the narrow streets as the village continues its steady flow of meat for its hardy population.">
+  <Settlement id="castle_village_AQ1_2" name="{=Settlements.Settlement.name.castle_village_AQ1_2}Wainfleet" posX="913.525" posY="911.794" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AQ1_2}Perched on  the northern outskirts of Castle Libourne, the village of Wainfleet presents a clear break in societal norms compared to the rest of Aquitaine. Wainfleet is where the pesant Grail Knight Ser Geg makes his court, and where numerous peasants flock to to become his... 'Squights.'">
     <Components>
       <Village id="castle_village_comp_AQ1_2" village_type="VillageType.swine_farm" hearth="200" trade_bound="Settlement.castle_AQ1" bound="Settlement.castle_AQ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>

@@ -104,4 +104,28 @@
         RegimentName="Knights Griffon"
         RegimentHQName="Cathedral of Sigmar"
     />
+	<RORSettlementTemplate
+        SettlementId="castle_village_AQ3_2"
+        BaseTroopId="tor_ror_bergerac_herrimault"
+        MenuHeaderText="Around Bergerac, you notice the camp of the famous Bowman of Bergerac"
+        MenuBackgroundImageId="invalid"
+        RegimentName="Bowman of Bergerac"
+        RegimentHQName="Camp of the Bergerac Bowman"
+    />
+	<RORSettlementTemplate
+        SettlementId="village_PA2_3"
+        BaseTroopId="tor_ror_maisontaal_cultist"
+        MenuHeaderText="Inside the Abby of Maisontaal you find the Taal devoted cultists of maisontaal"
+        MenuBackgroundImageId="invalid"
+        RegimentName="Cultists of Maisontaal"
+        RegimentHQName="Maisontaal abby"
+    />
+	<RORSettlementTemplate
+        SettlementId="castle_village_AQ1_2"
+        BaseTroopId="tor_ror_peasant_squire"
+        MenuHeaderText="Inside the Abby of Maisontaal you find the Taal devoted cultists of maisontaal"
+        MenuBackgroundImageId="invalid"
+        RegimentName="Cultists of Maisontaal"
+        RegimentHQName="Maisontaal abby"
+    />
 </ArrayOfRORSettlementTemplate>

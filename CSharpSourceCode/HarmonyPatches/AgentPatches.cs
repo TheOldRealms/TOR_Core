@@ -64,7 +64,7 @@ namespace TOR_Core.HarmonyPatches
         private static bool ShouldGetRandomizedVoice(Agent agent)
         {
             if (agent == null || !agent.IsHuman || agent.Character == null || agent.Character.Culture == null || agent.IsFemale) return false;
-            var cultureId = agent.GetHero().Culture.StringId;
+            var cultureId = agent.Character.Culture.StringId;
             return cultureId == "vlandia" || cultureId == "empire" || agent.IsVampire();
         }
 
