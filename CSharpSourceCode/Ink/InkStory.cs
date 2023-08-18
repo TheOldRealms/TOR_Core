@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using HarmonyLib;
 using Ink;
 using Ink.Runtime;
+using psai.net;
+using SandBox;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
@@ -17,6 +19,8 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.Engine;
+using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.CustomEvents;
 using TOR_Core.CharacterDevelopment;
@@ -62,6 +66,17 @@ namespace TOR_Core.Ink
                     Cooldown = 72;
                 }
             }
+        }
+
+        public void CleanUp()
+        {
+            if(TORAudio.IsPlaying)
+            {
+                TORAudio.StopAudio();
+            }
+            TORAudio.CleanUp();
+            MBMusicManager.Current.UnpauseMusicManagerSystem();
+            MBMusicManager.Current.ActivateCampaignMode();
         }
 
         private string GetValueOfGlobalTag(string tag)
@@ -240,7 +255,7 @@ namespace TOR_Core.Ink
             }
             if (!_story.TryGetExternalFunction("OpenCultistLairMission", out _))
             {
-                _story.BindExternalFunction("OpenCultistLairMission", OpenCultistLairMission, false);
+                _story.BindExternalFunction<string>("OpenCultistLairMission", OpenCultistLairMission, false);
             }
             if (!_story.TryGetExternalFunction("GetPlayerHasCustomTag", out _))
             {
@@ -262,16 +277,31 @@ namespace TOR_Core.Ink
             {
                 _story.BindExternalFunction<int>("HasEnoughGold", HasEnoughGold, true);
             }
+            if (!_story.TryGetExternalFunction("PlayMusic", out _))
+            {
+                _story.BindExternalFunction<string>("PlayMusic", PlayMusic, false);
+            }
+        }
+
+        private void PlayMusic(string songName)
+        {
+            var file = TORPaths.TORArmoryModuleRootPath + "ModuleSounds/" + songName + ".ogg";
+            if(File.Exists(file))
+            {
+                MBMusicManager.Current.DeactivateCurrentMode();
+                MBMusicManager.Current.PauseMusicManagerSystem();
+                TORAudio.PlayAudio(file);
+            }
         }
 
         private object HasEnoughGold(int amount) => Hero.MainHero.Gold >= amount;
 
         private object IsNight() => CampaignTime.Now.IsNightTime;
 
-        private void OpenCultistLairMission()
+        private void OpenCultistLairMission(string missionName)
         {
             var template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_cultists");
-            TorMissionManager.OpenQuestMission("TOR_cultist_lair_001", template, 5, (playerVictory) => SetVariable("DealtWithCultists", playerVictory));
+            TorMissionManager.OpenQuestMission(missionName, template, 5, (playerVictory) => SetVariable("DealtWithCultists", playerVictory));
         }
 
         private void OpenInventoryAsTrade()

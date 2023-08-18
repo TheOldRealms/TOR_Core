@@ -239,8 +239,8 @@ EXTERNAL OpenDuelMission()
     ~ return ""
 
 //Opens the cultist lair mission
-EXTERNAL OpenCultistLairMission()
-===function OpenCultistLairMission()===
+EXTERNAL OpenCultistLairMission(missionName)
+===function OpenCultistLairMission(missionName)===
     ~ return ""
 
 //Opens the duel mission
@@ -267,3 +267,8 @@ EXTERNAL IsNight()
 EXTERNAL HasEnoughGold(number)
 ===function HasEnoughGold(number)===
     ~ return true
+    
+//Plays a music from the sounds.xml
+EXTERNAL PlayMusic(musicname)
+===function PlayMusic(musicname)===
+    ~ return ""

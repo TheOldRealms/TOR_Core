@@ -4,22 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.Conversation;
 using TaleWorlds.CampaignSystem.Issues;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
-using TaleWorlds.Library;
+using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
-using TOR_Core.Extensions;
+using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.Library;
 using TOR_Core.Ink;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.Quests
 {
-    public class HuntCultistsQuestCampaignBehavior : CampaignBehaviorBase
+    public class PlaguedVillageQuestCampaignBehavior : CampaignBehaviorBase
     {
         public override void RegisterEvents()
         {
@@ -28,13 +27,13 @@ namespace TOR_Core.Quests
 
         private void OnSettlementEntered(MobileParty party, Settlement settlement, Hero hero)
         {
-            if(party == MobileParty.MainParty)
+            if (party == MobileParty.MainParty)
             {
                 Hero master = settlement.HeroesWithoutParty.FirstOrDefault(x => x.IsBountyMaster());
                 int rng = MBRandom.RandomInt(0, 100);
                 if (master != null && master.Issue == null && rng < TORConstants.BOUNTY_QUEST_CHANCE)
                 {
-                    Campaign.Current.IssueManager.CreateNewIssue(new PotentialIssueData(new PotentialIssueData.StartIssueDelegate(OnIssueSelected), typeof(HuntCultistsIssue), IssueBase.IssueFrequency.VeryCommon), master);
+                    Campaign.Current.IssueManager.CreateNewIssue(new PotentialIssueData(new PotentialIssueData.StartIssueDelegate(OnIssueSelected), typeof(PlaguedVillageIssue), IssueBase.IssueFrequency.VeryCommon), master);
                 }
             }
         }
@@ -43,7 +42,7 @@ namespace TOR_Core.Quests
         {
             if (ConditionsHold(hero))
             {
-                Campaign.Current.IssueManager.AddPotentialIssueData(hero, new PotentialIssueData(new PotentialIssueData.StartIssueDelegate(OnIssueSelected), typeof(HuntCultistsIssue), IssueBase.IssueFrequency.VeryCommon));
+                Campaign.Current.IssueManager.AddPotentialIssueData(hero, new PotentialIssueData(new PotentialIssueData.StartIssueDelegate(OnIssueSelected), typeof(PlaguedVillageIssue), IssueBase.IssueFrequency.VeryCommon));
             }
         }
 
@@ -53,7 +52,7 @@ namespace TOR_Core.Quests
             Settlement targetSettlement = TORCommon.FindSettlementsAroundPosition(issueOwner.CurrentSettlement.Position2D, 100f, x => x.IsVillage && x.Culture == issueOwner.Culture && !x.IsRaided && !x.IsUnderRaid).GetRandomElementInefficiently();
             if (targetSettlement == null) targetSettlement = Settlement.FindAll(x => x.IsVillage && x.Culture == issueOwner.Culture && !x.IsRaided && !x.IsUnderRaid).GetRandomElementInefficiently();
             if (targetSettlement == null) targetSettlement = Settlement.FindAll(x => x.IsVillage && !x.IsRaided && !x.IsUnderRaid).GetRandomElementInefficiently();
-            return new HuntCultistsIssue(issueOwner, targetSettlement);
+            return new PlaguedVillageIssue(issueOwner, targetSettlement);
         }
 
         private bool ConditionsHold(Hero issueGiver)
@@ -63,19 +62,19 @@ namespace TOR_Core.Quests
 
         public override void SyncData(IDataStore dataStore) { }
 
-        public class HuntCultistsIssue : IssueBase
+        public class PlaguedVillageIssue : IssueBase
         {
             [SaveableField(0)]
             private Settlement _targetSettlement;
 
-            public HuntCultistsIssue(Hero issueOwner, Settlement targetSettlement) : base(issueOwner, CampaignTime.DaysFromNow(30f))
+            public PlaguedVillageIssue(Hero issueOwner, Settlement targetSettlement) : base(issueOwner, CampaignTime.DaysFromNow(30f))
             {
                 _targetSettlement = targetSettlement;
             }
 
             protected override int RewardGold => 2500;
 
-            public override TextObject IssueBriefByIssueGiver => new TextObject("{=!}As a matter of fact, I have a lead on a potential cultist. A grave accusation that needs investigating.");
+            public override TextObject IssueBriefByIssueGiver => new TextObject("{=!}As a matter of fact, I have a lead on potential cultist activity. A village is struck by a terrible, unnatural plague. A grave matter that needs investigating.");
 
             public override TextObject IssueAcceptByPlayer => new TextObject("{=!}What needs to be done?");
 
@@ -83,7 +82,7 @@ namespace TOR_Core.Quests
             {
                 get
                 {
-                    TextObject textObject = new TextObject("{=!}I need you to travel to {TARGET_SETTLEMENT}. Investigate the local populace and root out any cultists. On successful completion, the order will pay you {REWARD}{GOLD_ICON}.", null);
+                    TextObject textObject = new TextObject("{=!}I need you to travel to {TARGET_SETTLEMENT}. Investigate the situation and find root cause of the plague. On successful completion, the order will pay you {REWARD}{GOLD_ICON}.", null);
                     textObject.SetTextVariable("TARGET_SETTLEMENT", _targetSettlement.EncyclopediaLinkWithName);
                     textObject.SetTextVariable("REWARD", RewardGold);
                     textObject.SetTextVariable("GOLD_ICON", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"8\">");
@@ -97,13 +96,13 @@ namespace TOR_Core.Quests
 
             public override bool IsThereLordSolution => false;
 
-            public override TextObject Title => new TextObject("{=!}A cultist in our midst");
+            public override TextObject Title => new TextObject("{=!}The plague ridden village");
 
             public override TextObject Description
             {
                 get
                 {
-                    TextObject textObject = new TextObject("{=!}Travel to target settlement and root out any cultist who may be hiding there.", null);
+                    TextObject textObject = new TextObject("{=!}Travel to target settlement and find the cause of the unnatural epidemic that plagues the village.", null);
                     textObject.SetTextVariable("TARGET_SETTLEMENT", _targetSettlement.EncyclopediaLinkWithName);
                     return textObject;
                 }
@@ -139,7 +138,7 @@ namespace TOR_Core.Quests
 
             protected override QuestBase GenerateIssueQuest(string questId)
             {
-                return new HuntCultistsQuest("hunt_cultists_quest_" + CampaignTime.Now.ElapsedSecondsUntilNow, IssueOwner, CampaignTime.DaysFromNow(30f), RewardGold, _targetSettlement);
+                return new PlaguedVillageQuest("plagued_village_quest_" + CampaignTime.Now.ElapsedSecondsUntilNow, IssueOwner, CampaignTime.DaysFromNow(30f), RewardGold, _targetSettlement);
             }
 
             protected override void OnGameLoad() { }
@@ -147,7 +146,7 @@ namespace TOR_Core.Quests
             protected override void HourlyTick() { }
         }
 
-        public class HuntCultistsQuest : QuestBase
+        public class PlaguedVillageQuest : QuestBase
         {
             [SaveableField(1)]
             Settlement _settlement;
@@ -156,14 +155,14 @@ namespace TOR_Core.Quests
             [SaveableField(3)]
             bool _dealtWithCultists;
 
-            public HuntCultistsQuest(string questId, Hero questGiver, CampaignTime duration, int rewardGold, Settlement targetSettlement) : base(questId, questGiver, duration, rewardGold)
+            public PlaguedVillageQuest(string questId, Hero questGiver, CampaignTime duration, int rewardGold, Settlement targetSettlement) : base(questId, questGiver, duration, rewardGold)
             {
                 _settlement = targetSettlement;
                 SetDialogs();
                 InitializeQuestOnCreation();
             }
 
-            public override TextObject Title => new TextObject("{=!}A cultist in our midst");
+            public override TextObject Title => new TextObject("{=!}The plague ridden village");
 
             public override bool IsRemainingTimeHidden => false;
 
@@ -182,7 +181,7 @@ namespace TOR_Core.Quests
 
             protected override void OnTimedOut()
             {
-                AddLog(new TextObject("{=!}You failed to complete the investigation in time. Any potential cultists are surely in the wind now."));
+                AddLog(new TextObject("{=!}You failed to complete the investigation in time."));
             }
 
             protected override void RegisterEvents()
@@ -192,14 +191,14 @@ namespace TOR_Core.Quests
 
             private void SettlementEntered(MobileParty party, Settlement settlement, Hero hero)
             {
-                if(party == MobileParty.MainParty && settlement == _settlement && !_storyPlayed)
+                if (party == MobileParty.MainParty && settlement == _settlement && !_storyPlayed)
                 {
-                    if(settlement.IsUnderRaid || settlement.IsRaided)
+                    if (settlement.IsUnderRaid || settlement.IsRaided)
                     {
                         InquiryData data = new InquiryData("Village Raided", "The village is raided, no chance to find any cultists now. Come back when the village is repopulated.", true, false, "OK", null, () => InformationManager.HideInquiry(), null);
                         InformationManager.ShowInquiry(data);
                     }
-                    else InkStoryManager.OpenStory("CultistInOurMidst", AfterStory);
+                    else InkStoryManager.OpenStory("NurgleCultists", AfterStory);
                 }
             }
 
@@ -209,17 +208,17 @@ namespace TOR_Core.Quests
                 bool.TryParse(story.GetVariable("DealtWithCultists"), out _dealtWithCultists);
                 if (_dealtWithCultists)
                 {
-                    AddLog(new TextObject("{=!}You were successful in uncovering the cultists."));
+                    AddLog(new TextObject("{=!}You were successful in lifting the plague."));
                     CompleteQuestWithSuccess();
                 }
-                else CompleteQuestWithFail(new TextObject("{=!}The cultists escaped."));
+                else CompleteQuestWithFail(new TextObject("{=!}You abandoned the mission."));
             }
 
             private void OnQuestAccepted()
             {
                 StartQuest();
                 this.QuestDueTime = CampaignTime.Now + CampaignTime.Days(20);
-                var acceptLog = new TextObject("{=!}You were tasked to travel to {TARGET_SETTLEMENT} and root out any cultist who may be hiding there.");
+                var acceptLog = new TextObject("{=!}You were tasked to travel to {TARGET_SETTLEMENT} and investigate the epidemic that plagues it.");
                 acceptLog.SetTextVariable("TARGET_SETTLEMENT", _settlement.EncyclopediaLinkWithName);
                 AddLog(acceptLog);
             }

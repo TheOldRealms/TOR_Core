@@ -19,6 +19,7 @@ namespace TOR_Core.Utilities
         public const int DEFAULT_CURSE_WOUND_STRENGTH = 1;
         public const int DEFAULT_PRAYING_FAITH_XP = 300;
         public const int DEFAULT_CURSE_RADIUS = 25;
+        public const int BOUNTY_QUEST_CHANCE = 25;
         public const int SKELETON_VOICE_INDEX = 24;
         public const int SKELETON_VOICES_COUNT = 1;
         public const int VAMPIRE_VOICE_INDEX_START = 25;

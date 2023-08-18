@@ -8,6 +8,7 @@ VAR suspicious = false
 VAR found_passage = false
 VAR met_healer = false
 VAR found_age = false
+VAR DealtWithCultists = false
 
 ->START
 
@@ -136,14 +137,8 @@ Sensing the weight of your suspicions, the healer's face contorts with a mix of 
     
 
 ===Descend===
-As you venture deeper, the eerie ambiance intensifies, guiding you towards the heart of the cult's malevolence. The passage leads you into a massive chamber, adorned with grotesque carvings venerating the loathsome glory of Nurgle. An unsettling greenish glow emanates from the eerie torches, casting ghastly shadows on the walls.
-To your astonishment, you discover not only the healer but a congregation of cult members, donned in tattered robes. Their eyes gleam with an unholy fervor, reflecting their fanatical devotion to the chaos god.
-At the center of the chamber rests a large cauldron, its contents seething with a putrid liquid akin to the vial you found earlier. The noxious stench fills the air, betraying the malevolence of the concoction. It becomes evident that this cauldron holds the malefic source of the plaguing torment that has befallen the village.
-As the cult leader, once masquerading as the healer, steps forward, his true intentions unveil before you. He proclaims his allegiance to Nurgle, promising the congregation an eldritch boon — the gift of eternal youth and resolute health in exchange for disseminating the accursed plague. 
-The cult members join in an unholy chant, the malefic melody pulsating with ominous power. They believe in the perverse grandeur of Nurgle's supposed benevolence, as though they have willingly surrendered their souls to the deity of rot and decay. -> choices
+~ OpenCultistLairMission("TOR_nurgle_lair_001")
+...
 
-    =choices
-    *[Engage in conversation with the cultists.] -> Descend
-    *[Engage the cultists in battle determined to rid the village of the chaos corruption.] -> Descend
 
 ->END

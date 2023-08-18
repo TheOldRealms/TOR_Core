@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TOR_Core.Extensions;
 using TOR_Core.Ink;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.CustomEvents
 {
@@ -37,11 +38,21 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
                 _events.Add(new CustomEvent(item.StringId, item.Frequency, item.Cooldown, StandardMovingCheck, () => InkStoryManager.OpenStory(item.StringId)));
             }
             _events.Add(new CustomEvent("Duel", CustomEventFrequency.Special, 168, () => StandardMovingCheck() && !Hero.MainHero.HasAttribute("DefeatedVittorio"), () => InkStoryManager.OpenStory("Duel")));
+            _events.Add(new CustomEvent("CampFireLearning", CustomEventFrequency.Abundant, 72, () => StandardMovingCheck() && CampaignTime.Now.IsNightTime, () => InkStoryManager.OpenStory("CampFireLearning")));
+            _events.Add(new CustomEvent("Minstrel", CustomEventFrequency.Abundant, 48,
+                () => StandardMovingCheck() &&
+                !CampaignTime.Now.IsNightTime &&
+                TORCommon.FindNearestSettlement(MobileParty.MainParty, 100f, x => x.IsTown).Culture.StringId == "vlandia", () => InkStoryManager.OpenStory("Minstrel")));
         }
 
         private bool StandardMovingCheck()
         {
-            return MobileParty.MainParty.IsMoving && MobileParty.MainParty.Army == null && !Hero.MainHero.IsPrisoner && MobileParty.MainParty.MemberRoster.Count > 10;
+            return MobileParty.MainParty.IsMoving && 
+                MobileParty.MainParty.Army == null && 
+                !Hero.MainHero.IsPrisoner && 
+                MobileParty.MainParty.MemberRoster.Count > 10 && 
+                MobileParty.MainParty.CurrentSettlement == null && 
+                MobileParty.MainParty.BesiegedSettlement == null;
         }
 
         private void HourlyTick(MobileParty party)
