@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Reflection;
 using HarmonyLib;
 using NLog;
@@ -70,6 +71,8 @@ namespace TOR_Core
 
         protected override void OnSubModuleLoad()
         {
+            AppDomain currentDomain = AppDomain.CurrentDomain;
+            currentDomain.AssemblyResolve += new ResolveEventHandler(ResolveDllPath);
 
             CampaignTime startTime = CampaignTime.Years(2502) + CampaignTime.Weeks(4) + CampaignTime.Days(5) + CampaignTime.Hours(12);
             
@@ -81,6 +84,7 @@ namespace TOR_Core
             ConfigureLogging();
             UIConfig.DoNotUseGeneratedPrefabs = true;
 
+            TORAudio.Initialize();
             TORKeyInputManager.Initialize();
             StatusEffectManager.LoadStatusEffects();
             TriggeredEffectManager.LoadTemplates();
@@ -89,6 +93,16 @@ namespace TOR_Core
             CustomBannerManager.LoadXML();
             RORManager.LoadTemplates();
             InkStoryManager.Initialize();
+        }
+
+        private Assembly ResolveDllPath(object sender, ResolveEventArgs args)
+        {
+            var dllPath = TORPaths.TORCoreModuleRootPath + "bin/Win64_Shipping_Client/" + new AssemblyName(args.Name).Name + ".dll";
+            if (File.Exists(dllPath))
+            {
+                return Assembly.LoadFrom(dllPath);
+            }
+            else return null;
         }
 
         protected override void InitializeGameStarter(Game game, IGameStarter starterObject)
@@ -124,6 +138,7 @@ namespace TOR_Core
                 starter.AddBehavior(new RaceFixCampaignBehavior());
                 starter.AddBehavior(new TORAIRecruitmentCampaignBehavior());
                 starter.AddBehavior(new CustomEventsCampaignBehavior());
+                starter.AddBehavior(new PlaguedVillageQuestCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
@@ -176,6 +191,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORBattleBannerBearersModel());
                 gameStarterObject.AddModel(new TORKingdomDecisionPermissionModel());
                 gameStarterObject.AddModel(new TORSettlementLoyaltyModel());
+                gameStarterObject.AddModel(new TORBattleRewardModel());
 
                 CampaignOptions.IsLifeDeathCycleDisabled = true;
             }

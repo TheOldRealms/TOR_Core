@@ -55,7 +55,7 @@ namespace TOR_Core.HarmonyPatches
                 int count = SkinVoiceManager.GetVoiceDefinitionCountWithMonsterSoundAndCollisionInfoClassName(className);
                 int[] array = new int[count];
                 SkinVoiceManager.GetVoiceDefinitionListWithMonsterSoundAndCollisionInfoClassName(className, array);
-                __instance.AgentVisuals.SetVoiceDefinitionIndex(GetRandomVoiceIndexForCulture(__instance.GetHero()), 0);
+                __instance.AgentVisuals.SetVoiceDefinitionIndex(GetRandomVoiceIndexForAgent(__instance), 0);
             }
             
             return true;
@@ -64,15 +64,25 @@ namespace TOR_Core.HarmonyPatches
         private static bool ShouldGetRandomizedVoice(Agent agent)
         {
             if (agent == null || !agent.IsHuman || agent.Character == null || agent.Character.Culture == null || agent.IsFemale) return false;
-            var cultureId = agent.GetHero().Culture.StringId;
+            var cultureId = agent.Character.Culture.StringId;
+            if(Game.Current.GameType is Campaign)
+            {
+                cultureId = agent.GetHero().Culture.StringId;
+            }
             return cultureId == "vlandia" || cultureId == "empire" || agent.IsVampire();
         }
 
-        private static int GetRandomVoiceIndexForCulture(Hero hero)
+        private static int GetRandomVoiceIndexForAgent(Agent agent)
         {
-            if(hero.IsVampire()) return MBRandom.RandomInt(TORConstants.VAMPIRE_VOICE_INDEX_START, TORConstants.VAMPIRE_VOICE_INDEX_START + (TORConstants.VAMPIRE_VOICES_COUNT));
+            if(agent.IsVampire()) return MBRandom.RandomInt(TORConstants.VAMPIRE_VOICE_INDEX_START, TORConstants.VAMPIRE_VOICE_INDEX_START + (TORConstants.VAMPIRE_VOICES_COUNT));
 
-            switch (hero.Culture.StringId)
+            var cultureId = agent.Character.Culture.StringId;
+            if (Game.Current.GameType is Campaign)
+            {
+                cultureId = agent.GetHero().Culture.StringId;
+            }
+
+            switch (cultureId)
             {
                 case "vlandia":
                     return MBRandom.RandomInt(TORConstants.BRETONNIA_VOICE_INDEX_START, TORConstants.BRETONNIA_VOICE_INDEX_START + (TORConstants.BRETONNIA_VOICES_COUNT));

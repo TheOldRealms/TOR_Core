@@ -9,6 +9,7 @@ INCLUDE include.ink
 VAR HorsePrice = 2000
 VAR FoodPrice = 10
 VAR HorseBetPrice = 500
+VAR HorseBetPayout = 2500
 VAR WinHorseRace = 0
     ~ WinHorseRace = RANDOM(0,1)
 VAR TurnipPrice = 50
@@ -80,7 +81,7 @@ Cheers erupt from an amphitheater. Horses thunder, riders urging them to glory.
 {WinHorseRace: ->success | ->fail}
     =success
     Your heart races as you place your wager. The horse you chose surges forward, and luck dances in your favor. Laughter and clinking coins surround you.
-    
+    ~ GiveGold(HorseBetPayout)
     * [Return to the merry crowd.]->Start.choices
 
     =fail

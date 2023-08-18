@@ -8,6 +8,7 @@ VAR suspicious = false
 VAR found_passage = false
 VAR met_healer = false
 VAR found_age = false
+VAR playerVictory = false
 
 ->START
 
@@ -143,7 +144,7 @@ As the cult leader, once masquerading as the healer, steps forward, his true int
 The cult members join in an unholy chant, the malefic melody pulsating with ominous power. They believe in the perverse grandeur of Nurgle's supposed benevolence, as though they have willingly surrendered their souls to the deity of rot and decay. -> choices
 
     =choices
-    *[Engage in conversation with the cultists.] -> Descend
-    *[Engage the cultists in battle determined to rid the village of the chaos corruption.] -> Descend
+    *[Engage in conversation with the cultists.] -> END
+    *[Engage the cultists in battle determined to rid the village of the chaos corruption.] -> END
 
 ->END

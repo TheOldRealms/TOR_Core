@@ -251,6 +251,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             if(template == null) template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_patrol");
             Clan ownerClan = settlement.OwnerClan;
             if(ownerClan == null) ownerClan = Clan.FindFirst(x => x.StringId == "chaos_clan_1");
+            template = ownerClan.DefaultPartyTemplate;
             var party = RaidingPartyComponent.CreateRaidingParty(settlement.StringId + "_defender_party", settlement, "Defenders", template, ownerClan, 250);
             PlayerEncounter.RestartPlayerEncounter(party.Party, PartyBase.MainParty, false);
             if (PlayerEncounter.Battle == null)

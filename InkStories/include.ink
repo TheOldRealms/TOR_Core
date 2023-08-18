@@ -267,3 +267,8 @@ EXTERNAL IsNight()
 EXTERNAL HasEnoughGold(number)
 ===function HasEnoughGold(number)===
     ~ return true
+    
+//Plays a music from the sounds.xml
+EXTERNAL PlayMusic(musicname)
+===function PlayMusic(musicname)===
+    ~ return ""
