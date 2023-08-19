@@ -48,7 +48,7 @@ namespace TOR_Core.Models
                     number.Add(character.Tier * 10);
                     break;
             }
-            if (character.IsUndead())
+            if (character.IsUndead()&&!character.IsHero)
             {
                 number.Add(-50);
             }

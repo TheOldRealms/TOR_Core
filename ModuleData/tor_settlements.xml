@@ -38,32 +38,33 @@
   </Settlement>
   <Settlement id="herdstone_01" name="{=!}Beastmen Herdstone" owner="Faction.beastmen_clan_1" posX="1472.928" posY="1069.09" culture="Culture.chaos_culture" text="{=!}Beastmen Herdstone">
     <Components>
-      <HerdStone id="herdstone_01" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <HerdStone id="herdstone_01" background_crop_position="0.0" background_mesh="beastman_heardstone" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="herdstone_02" name="{=!}Beastmen Herdstone" owner="Faction.beastmen_clan_1" posX="885.572" posY="803.756" culture="Culture.chaos_culture" text="{=!}Beastmen Herdstone">
     <Components>
-      <HerdStone id="herdstone_02" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <HerdStone id="herdstone_02" background_crop_position="0.0" background_mesh="beastman_heardstone" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
+   <!--haunted sites-->
   <Settlement id="haunted_site_01" name="{=!}Hunger Woods" owner="Faction.sylvania_clan_1" posX="1582.078" posY="1016.387" culture="Culture.khuzait" text="{=!}Called Verhungern by local Slyvanians, this dispersed land is a ghoul, and likely spirit, infested maze of briars and bogs. Only the insane or desperate would venture into its boughs.">
     <Components>
-      <CursedSite id="haunted_site_01" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <CursedSite id="haunted_site_01" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="cursed_swamp" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="haunted_site_02" name="{=!}Hel Fenn" owner="Faction.sylvania_clan_1" posX="1648.43" posY="1018.036" culture="Culture.khuzait" text="{=!}Destroyed by unholy fire that rained from the skies eons ago, Hel Fenn is likely the most cursed area in the whole Reik Basin. Molded buildings, rotting trees and tar covered corpses dot the desolate landscape. This was also the site of Mannfred von Carsteins defeat and the end of the Vampire Wars.">
     <Components>
-      <CursedSite id="haunted_site_02" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <CursedSite id="haunted_site_02" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="cursed_swamp" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="haunted_site_03" name="{=!}The Barren Hills" owner="Faction.sylvania_clan_1" posX="1505.873" posY="1086.675" culture="Culture.khuzait" text="{=!}Long have the hills southeast of Talabheim been cursed. Strangeness and tragedy are no stranger to that land. Despite this, no one knows what the cause of the miasma is; though not for lack of trying. ">
     <Components>
-      <CursedSite id="haunted_site_03" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <CursedSite id="haunted_site_03" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="cursed_battlesite" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="haunted_site_04" name="{=!}The Charnel Hills" owner="Faction.mousillon_clan_1" posX="904.914" posY="1032.623" culture="Culture.mousillon" text="{=!}Centuries ago, the hills outside of Mousillon were used as a mass grave to bury the thousands who died of Red Pox. So many victims were there that to this day the soil covering their pits is visible from the city walls. The air here is sometimes poisonous and like the rest of the cursed land the long dead rest uneasily.">
     <Components>
-      <CursedSite id="haunted_site_04" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <CursedSite id="haunted_site_04" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="cursed_battlesite" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <!-- Averland 2 Towns 11 villages 2 castles -->

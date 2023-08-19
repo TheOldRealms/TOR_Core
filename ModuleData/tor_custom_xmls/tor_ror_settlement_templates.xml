@@ -121,11 +121,12 @@
         RegimentHQName="Maisontaal abby"
     />
 	<RORSettlementTemplate
-        SettlementId="castle_village_AQ1_2"
+		SettlementId="castle_village_AQ1_2"
         BaseTroopId="tor_ror_peasant_squire"
-        MenuHeaderText="Inside the Abby of Maisontaal you find the Taal devoted cultists of maisontaal"
+        MenuHeaderText="As you approach what resembles a shack, you see the less than regal Peasant Knights of Wainfleet"
         MenuBackgroundImageId="invalid"
-        RegimentName="Cultists of Maisontaal"
-        RegimentHQName="Maisontaal abby"
+        RegimentName="Peasant Knights of Wainfleet'"
+        RegimentHQName="Geg's Manor"
     />
+        
 </ArrayOfRORSettlementTemplate>

@@ -117,7 +117,9 @@
 			 title="{=!}Reikland"
 			 ruler_title="{=!}Emperor"
 			text="{=!}The Grand Principality of Reikland is a major and founding Imperial Province. It is located in the southwestern Empire in the centre of the Old World continent. Reikland has been the most important state of the Empire for nearly one hundred years, for it surrounds Altdorf, the current Imperial capital city, and its state armies are those under the command of the Emperor Karl Franz himself.">
-		<relationships />
+		<relationships>
+		<relationship kingdom="Kingdom.wissenland" value="-1" isAtWar="true" />
+		</relationships>
 		<policies>
 			<policy id="policy_senate" />
 			<policy id="policy_feudal_inheritance" />
@@ -422,6 +424,9 @@
 			 title="{=!}Mousillon"
 			 ruler_title="{=!}Duke"
 			text="{=!}The dukedom of Mousillon is a haggard and dreaded land, full of swamps and cursed bogs. An impoverished land constantly plagued by disease, which many of its inhabitants have grown accustomed to. As such, many Mousillians are considered to be mutants and freaks compared to normal Bretonnian peasants. The villages and castles are at the point of collapse, while the nights are haunted by apparitions and vile beasts. Only fools and deadmen leave their homes at night. ">
+		<relationships>
+			<relationship kingdom="Kingdom.bordeleaux" value="-1" isAtWar="true" />
+		</relationships>
 		<policies>
 			<policy id="policy_grazing_rights" />
 			<policy id="policy_sacred_majesty" />
