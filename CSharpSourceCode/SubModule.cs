@@ -132,6 +132,7 @@ namespace TOR_Core
                 starter.AddBehavior(new InkStoryCampaignBehavior());
                 starter.AddBehavior(new ReligionCampaignBehavior());
                 starter.AddBehavior(new TORKingdomDecisionProposalBehavior());
+                starter.AddBehavior(new TORIntitalCampaignRelationBehavior());
                 starter.AddBehavior(new BountyMasterCampaignBehavior());
                 starter.AddBehavior(new HuntCultistsQuestCampaignBehavior());
                 starter.AddBehavior(new TORCareerPerkCampaignBehavior());
