@@ -15,6 +15,9 @@ using TaleWorlds.SaveSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Library;
 using TOR_Core.Ink;
+using TaleWorlds.MountAndBlade;
+using TaleWorlds.CampaignSystem.Conversation;
+using TOR_Core.Missions;
 
 namespace TOR_Core.Quests
 {
@@ -154,6 +157,7 @@ namespace TOR_Core.Quests
             bool _storyPlayed;
             [SaveableField(3)]
             bool _dealtWithCultists;
+            bool _madeDeal;
 
             public PlaguedVillageQuest(string questId, Hero questGiver, CampaignTime duration, int rewardGold, Settlement targetSettlement) : base(questId, questGiver, duration, rewardGold)
             {
@@ -177,6 +181,14 @@ namespace TOR_Core.Quests
             {
                 OfferDialogFlow = DialogFlow.CreateDialogFlow("issue_classic_quest_start", 100).NpcLine(new TextObject("{=!}Excellent. Do not underestimate the ruinous powers, unwavering vigilance is required on your quest!", null), null, null).Condition(() => Hero.OneToOneConversationHero == QuestGiver).Consequence(OnQuestAccepted).CloseDialog();
                 DiscussDialogFlow = DialogFlow.CreateDialogFlow("quest_discuss", 100).NpcLine(new TextObject("{=!}It was good doing business with you.", null), null, null).Condition(() => Hero.OneToOneConversationHero == QuestGiver).CloseDialog();
+                Campaign.Current.ConversationManager.AddDialogFlow(DialogFlow.CreateDialogFlow("start", 199).NpcLine("{=nurgle_cultist_start}Wait, wait, wait... There is no need for violence!").Condition(() => Mission.Current != null || Mission.Current.SceneName == "TOR_nurgle_lair_001")
+                    .NpcLine("{=nurgle_cultist_continue}Papa Nurgle takes care of his own... his Gift is yours if you accept it. (+20 maximum hit points permanently)")
+                    .BeginPlayerOptions()
+                    .PlayerOption("{=nurgle_gift_accept}I accept the Gift.")
+                    .NpcLine("{=nurgle_gift_accepted}Welcome to the fold brother.").Consequence(HandleAccept).CloseDialog()
+                    .PlayerOption("{=nurgle_gift_deny}Your vile schemes end here. The cries of this suffering village calls out for justice. Die!")
+                    .NpcLine("{=nurgle_gift_denied}You will regret this.").Consequence(TurnHostile).CloseDialog()
+                    .EndPlayerOptions());
             }
 
             protected override void OnTimedOut()
@@ -187,6 +199,53 @@ namespace TOR_Core.Quests
             protected override void RegisterEvents()
             {
                 CampaignEvents.AfterSettlementEntered.AddNonSerializedListener(this, SettlementEntered);
+                CampaignEvents.MissionTickEvent.AddNonSerializedListener(this, MissionTick);
+            }
+
+            private void MissionTick(float dt)
+            {
+                if (Mission.Current.SceneName == "TOR_nurgle_lair_001" && _madeDeal)
+                {
+                    var logic = Mission.Current.GetMissionBehavior<QuestFightMissionController>();
+                    if(logic != null)
+                    {
+                        logic.PlayerCanLeave = true;
+                        _madeDeal = false;
+                    }
+                }
+            }
+
+            private void HandleAccept()
+            {
+                _madeDeal = true;
+                foreach (var agent in Mission.Current.Agents)
+                {
+                    if (agent.IsAIControlled && agent.IsHuman && agent.IsActive())
+                    {
+                        agent.ToggleInvulnerable();
+                    }
+                }
+                if (Campaign.Current != null && Campaign.Current.GetCampaignBehavior<InkStoryCampaignBehavior>() != null)
+                {
+                    var currentStory = Campaign.Current.GetCampaignBehavior<InkStoryCampaignBehavior>().CurrentStory;
+                    if(currentStory != null)
+                    {
+                        currentStory.SetVariable("MadeDealWithCultists", true);
+                    }
+                }
+                Hero.MainHero.AddAttribute("GiftOfNurgle");
+            }
+
+            private void TurnHostile()
+            {
+                Mission.Current.SetMissionMode(MissionMode.Battle, false);
+                foreach (var agent in Mission.Current.Agents)
+                {
+                    if (agent.IsAIControlled && agent.IsHuman && agent.IsActive())
+                    {
+                        agent.SetWatchState(Agent.WatchState.Alarmed);
+                    }
+                }
             }
 
             private void SettlementEntered(MobileParty party, Settlement settlement, Hero hero)

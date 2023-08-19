@@ -35,14 +35,6 @@ namespace TOR_Core.CampaignMechanics.CustomEncounterDialogs
             obj.AddDialogLine("secondflesh_die", "start", "close_window", "Today, death. Tomorrow, rebirth. The cycle cannot be stopped!", () => EncounteredPartyMatch("chs_cult_3") && HeroIsWounded(), null, 199);
 
             obj.AddDialogLine("undead_notalk", "start", "close_window", "...", () => CharacterObject.OneToOneConversationCharacter.IsUndead() && CharacterObject.OneToOneConversationCharacter.HeroObject == null, null, 199);
-
-            obj.AddDialogLine("khorne_cultist_mission", "start", "close_window", "{=khorne_cultist_mission}This vessel is mine. Don't interfere with my plans!", KhorneMissionCondition, null, 199);
-        }
-
-        private bool KhorneMissionCondition()
-        {
-            if (Mission.Current == null || Mission.Current.SceneName != "TOR_cultist_lair_001") return false;
-            else return true;
         }
 
         private bool EncounteredPartyMatch(string clanId)

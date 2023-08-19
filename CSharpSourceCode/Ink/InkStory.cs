@@ -146,7 +146,7 @@ namespace TOR_Core.Ink
             else return varName + " not found";
         }
 
-        private void SetVariable(string varName, object varValue)
+        public void SetVariable(string varName, object varValue)
         {
             if (_story.variablesState.GlobalVariableExistsWithName(varName))
             {
