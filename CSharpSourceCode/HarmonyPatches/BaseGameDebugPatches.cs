@@ -3,6 +3,7 @@ using NLog;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.InputSystem;
@@ -59,6 +60,18 @@ namespace TOR_Core.HarmonyPatches
                 }
             }
             return false;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(MobilePartyAi), "DoAiPathMode")]
+        public static bool PreventCrash(MobilePartyAi __instance, ref bool ____aiPathMode, ref object variables)
+        {
+            if(__instance.Path.Size == 128)
+            {
+                ____aiPathMode = false;
+                return false;
+            }
+            return true;
         }
 
         [HarmonyPrefix]

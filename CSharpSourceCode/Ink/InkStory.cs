@@ -23,6 +23,7 @@ using TaleWorlds.Engine;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.CustomEvents;
+using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Missions;
@@ -284,6 +285,19 @@ namespace TOR_Core.Ink
             if (!_story.TryGetExternalFunction("GiveMiracleItem", out _))
             {
                 _story.BindExternalFunction("GiveMiracleItem", GiveMiracleItem, false);
+            }
+            if (!_story.TryGetExternalFunction("ResetRaiderSites", out _))
+            {
+                _story.BindExternalFunction("ResetRaiderSites", ResetRaiderSites, false);
+            }
+        }
+
+        private void ResetRaiderSites()
+        {
+            foreach (var site in Settlement.All.Where(x => x.SettlementComponent is BaseRaiderSpawnerComponent))
+            {
+                var component = site.SettlementComponent as BaseRaiderSpawnerComponent;
+                component.IsActive = true;
             }
         }
 

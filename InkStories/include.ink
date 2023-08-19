@@ -277,3 +277,8 @@ EXTERNAL PlayMusic(musicname)
 EXTERNAL GiveMiracleItem()
 ===function GiveMiracleItem()===
     ~ return ""
+    
+//Resets all raiding sites (e.g. herdstones and chaos portal)
+EXTERNAL ResetRaiderSites()
+===function ResetRaiderSites()===
+    ~ return ""

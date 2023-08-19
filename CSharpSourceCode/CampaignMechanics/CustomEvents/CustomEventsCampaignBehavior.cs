@@ -29,6 +29,12 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionStart);
             CampaignEvents.HourlyTickPartyEvent.AddNonSerializedListener(this, HourlyTick);
+            CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, DailyTick);
+        }
+
+        private void DailyTick()
+        {
+            if (CampaignTime.Now.GetDayOfYear == 1) InkStoryManager.OpenStory("MorrsliebWaxes");
         }
 
         private void OnSessionStart(CampaignGameStarter starter)
@@ -40,7 +46,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             }
             _events.Add(new CustomEvent("Duel", CustomEventFrequency.Uncommon, 168, () => StandardMovingCheck() && !Hero.MainHero.HasAttribute("DefeatedVittorio"), () => InkStoryManager.OpenStory("Duel")));
             _events.Add(new CustomEvent("CampFireLearning", CustomEventFrequency.Abundant, 72, () => StandardMovingCheck() && CampaignTime.Now.IsNightTime, () => InkStoryManager.OpenStory("CampFireLearning")));
-            _events.Add(new CustomEvent("Minstrel", CustomEventFrequency.Common, 48,
+            _events.Add(new CustomEvent("Minstrel", CustomEventFrequency.Common, 96,
                 () => StandardMovingCheck() &&
                 !CampaignTime.Now.IsNightTime &&
                 TORCommon.FindNearestSettlement(MobileParty.MainParty, 100f, x => x.IsTown)?.Culture.StringId == "vlandia", () => InkStoryManager.OpenStory("Minstrel")));
