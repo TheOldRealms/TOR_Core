@@ -4560,7 +4560,7 @@
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_MS1_1" name="{=Settlements.Settlement.name.castle_village_MSI_3}Le Rosier Noir" posX="916.1219" posY="1067.388" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MS1_1}Not so much a village but more of a Tavern surrounded by makeshift homes, Le Rosier Noir is a small gathering hub for many unwanted vagrants and shifty wanderers. Indeed it is remarkable the small village houses mostly humans and not any mutants. The few houses surrounding the village are home to the manystaff at Le Rosier Noir.">
+  <Settlement id="castle_village_MS1_1" name="{=Settlements.Settlement.name.castle_village_MSI_3}Le Rosier Noir" posX="916.1219" posY="1067.388" culture="Culture.mousillon" text="{=Settlements.Settlement.text.castle_village_MS1_1}Not so much a village but more of a Tavern surrounded by makeshift homes, Le Rosier Noir is a small gathering hub for many unwanted vagrants and shifty wanderers. Indeed it is remarkable the small village houses mostly humans and not any mutants. The few houses surrounding the village are home to the manystaff at Le Rosier Noir.">
     <Components>
       <Village id="castle_village_comp_MS1_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.castle_MS1" bound="Settlement.castle_MS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
