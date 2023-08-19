@@ -10,6 +10,12 @@ namespace TOR_Core.Extensions
 {
     public static class SettlementExtensions
     {
+
+        public static bool IsBloodKeep(this Settlement settlement)
+        {
+            return settlement.StringId == "castle_BK1";
+        }
+        
         public static bool IsRoRSettlement(this Settlement settlement)
         {
             return RORManager.GetTemplateFor(settlement.StringId) != null;
