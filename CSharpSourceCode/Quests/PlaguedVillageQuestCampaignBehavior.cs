@@ -181,7 +181,7 @@ namespace TOR_Core.Quests
             {
                 OfferDialogFlow = DialogFlow.CreateDialogFlow("issue_classic_quest_start", 100).NpcLine(new TextObject("{=!}Excellent. Do not underestimate the ruinous powers, unwavering vigilance is required on your quest!", null), null, null).Condition(() => Hero.OneToOneConversationHero == QuestGiver).Consequence(OnQuestAccepted).CloseDialog();
                 DiscussDialogFlow = DialogFlow.CreateDialogFlow("quest_discuss", 100).NpcLine(new TextObject("{=!}It was good doing business with you.", null), null, null).Condition(() => Hero.OneToOneConversationHero == QuestGiver).CloseDialog();
-                Campaign.Current.ConversationManager.AddDialogFlow(DialogFlow.CreateDialogFlow("start", 199).NpcLine("{=nurgle_cultist_start}Wait, wait, wait... There is no need for violence!").Condition(() => Mission.Current != null || Mission.Current.SceneName == "TOR_nurgle_lair_001")
+                Campaign.Current.ConversationManager.AddDialogFlow(DialogFlow.CreateDialogFlow("start", 199).NpcLine("{=nurgle_cultist_start}Wait, wait, wait... There is no need for violence!").Condition(() => Mission.Current != null && Mission.Current.SceneName == "TOR_nurgle_lair_001")
                     .NpcLine("{=nurgle_cultist_continue}Papa Nurgle takes care of his own... his Gift is yours if you accept it. (+20 maximum hit points permanently)")
                     .BeginPlayerOptions()
                     .PlayerOption("{=nurgle_gift_accept}I accept the Gift.")
