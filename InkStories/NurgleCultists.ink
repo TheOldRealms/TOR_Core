@@ -1,3 +1,9 @@
+//Global story tags
+# title: The plague ridden village
+# frequency: Special
+# development: false
+# illustration: village
+
 INCLUDE include.ink
 
 VAR EXTREMESKILLCHECK = 1500
@@ -9,12 +15,12 @@ VAR found_passage = false
 VAR met_healer = false
 VAR found_age = false
 VAR DealtWithCultists = false
+VAR MadeDealWithCultists = false
 
 ->START
 
 
 ===START===
-The plague ridden village #title #illustration: village
 You leave your party camped at the edge of the village and decide to enter alone, wearing simple commoner's clothes to avoid attention. As you step into the village, a foul stench assaults your senses. The air hangs heavy with the scent of decay, mingled with the lingering odor of despair. Narrow, deserted streets wind through dilapidated buildings, their facades worn and battered by time and neglect. The villagers, once vibrant and lively, now shuffle along like haunted specters, their vitality snuffed out by the merciless grip of an unkown plague.
 
 A sickly haze blankets the village, casting a pallor upon everything it touches. Doors creak on rusty hinges, their once vibrant colors faded and peeling. Shuttered windows betray the fear that resides within, as if the villagers have locked themselves away. Here and there, flickering lanterns cast feeble light upon desperate symbols of protection scrawled on walls - crude sigils etched in blood and ash, futile attempts to ward off the contagion.
@@ -139,6 +145,18 @@ Sensing the weight of your suspicions, the healer's face contorts with a mix of 
 ===Descend===
 ~ OpenCultistLairMission("TOR_nurgle_lair_001")
 ...
-
+{MadeDealWithCultists && not DealtWithCultists: The cult leader's eyes gleam with a mixture of triumph and satisfaction as he senses your acquiescence. His chant takes on a hypnotic quality, resonating within your being as if weaving an irrevocable connection. The sensation that envelops you is strange and unsettling, as if an otherworldly force begins to weave itself into your very essence. }
+{MadeDealWithCultists && not DealtWithCultists: An ineffable transformation begins, like the unfolding of a dream woven from reality. A surge of energy courses through your veins, invigorating your body and banishing fatigue. Aches and wounds seem to mend, leaving behind a renewed sense of vitality.}
+{MadeDealWithCultists && not DealtWithCultists: With the Gift accepted, you depart the chamber, the weight of your decision hanging heavily upon you. The village recedes into the distance, the muted cries of its afflicted residents echoing in your ears as you walk away.}
+{MadeDealWithCultists && not DealtWithCultists: Your journey continues, haunted by the echoes of your decision. The Gift of Nurgle has granted you strength and vitality, but it has also bound you to a future uncertain and tinged with remorse.}
+{not DealtWithCultists && not MadeDealWithCultists: Your strikes are parried and your defenses are rendered futile. The cult leader's malefic prowess is beyond anything you anticipated, and with a final, devastating blow, your strength fails you. Darkness claims your senses as consciousness fades into oblivion.}
+{not DealtWithCultists && not MadeDealWithCultists: Hours, or perhaps an eternity, later, you awaken amidst the clamor of the afflicted. Your body aches, broken and battered, the echoes of your defeat resonating through every fiber of your being. Disoriented and wounded, you find yourself among the very villagers you sought to save.}
+{not DealtWithCultists && not MadeDealWithCultists: Crawling weakly through the desolation, you navigate the landscape of suffering souls, each moan and gasp a testament to the plague's merciless grip. The realization of your failure weighs heavily upon you, the taste of defeat bitter on your tongue.}
+{not DealtWithCultists && not MadeDealWithCultists: Eventually, you manage to escape the pitiable scene, your broken body leading you back to the camp where your party has taken refuge. Your comrades' eyes meet yours, filled with a mix of concern and empathy, as they comprehend the extent of your defeat.}
+{not DealtWithCultists && not MadeDealWithCultists: Without a word, you gather what remains of your strength and determination, leaving the village and its tortured populace behind. The memory of your confrontation with the cult leader, your failure to thwart the plague, haunts your every step.}
+{not DealtWithCultists && not MadeDealWithCultists: As you depart, the village recedes from view, its legacy of suffering forever etched in your mind. The weight of defeat presses upon you, an indelible reminder of the darkness that you were unable to dispel.}
+{DealtWithCultists && not MadeDealWithCultists: The cult leader's defeat reverberates through the underground lair, its impact reaching the very heart of the plague-stricken village above. As you step outside, you're greeted by the sight of the afflicted villagers emerging from their hovels, their expressions a mix of disbelief and newfound hope.}
+{DealtWithCultists && not MadeDealWithCultists: The village begins to heal, its residents slowly but surely recovering from the torment that once bound them. As your party reunites with you, their faces mirror the collective gratitude of the village.}
+{DealtWithCultists && not MadeDealWithCultists: Your mission accomplished, you depart the village, leaving behind a community on the path to recovery. The memory of your victory, of the battle against darkness, remains etched in the villagers' hearts as a testament to the strength of the human spirit.}
 
 ->END

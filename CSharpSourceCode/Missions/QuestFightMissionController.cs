@@ -23,6 +23,7 @@ namespace TOR_Core.Missions
 		private Action<bool> _onMissionEnd;
 		private bool _conversationFired;
 		private bool _battleStarted;
+		public bool PlayerCanLeave { get; set; } = false;
 
 		public QuestFightMissionController(PartyTemplateObject enemyPartyTemplate, int enemyCount, Action<bool> onMissionEnd = null)
 		{
@@ -36,16 +37,6 @@ namespace TOR_Core.Missions
 			base.OnBehaviorInitialize();
 			_missionAgentSpawnLogic = Mission.GetMissionBehavior<TORMissionAgentHandler>();
 			_missionConversationLogic = Mission.GetMissionBehavior<MissionConversationLogic>();
-			if(_missionConversationLogic != null)
-            {
-				Campaign.Current.ConversationManager.ConversationEnd += ConversationManager_ConversationEnd;
-			}
-		}
-
-        private void ConversationManager_ConversationEnd()
-        {
-			StartBattle();
-			Campaign.Current.ConversationManager.ConversationEnd -= ConversationManager_ConversationEnd;
 		}
 
         public override void AfterStart()
@@ -67,7 +58,7 @@ namespace TOR_Core.Missions
 
         public override void OnMissionTick(float dt)
         {
-			if (Mission.SceneName != "TOR_cultist_lair_001" || _missionConversationLogic == null) return;
+			if (!IsConversationMission() || _missionConversationLogic == null) return;
             if (!_conversationFired && !_battleStarted)
             {
 				foreach (Agent agent in Mission.Agents.Where(x => x.IsHuman && x != Agent.Main))
@@ -82,12 +73,18 @@ namespace TOR_Core.Missions
 			}
         }
 
+		private bool IsConversationMission()
+		{
+			return Mission.SceneName != "TOR_cultist_lair_001" || Mission.SceneName != "TOR_nurgle_lair_001";
+
+        }
+
 		private void StartBattle()
         {
 			Mission.SetMissionMode(MissionMode.Battle, false);
 			foreach (var agent in Mission.Agents)
 			{
-				if (agent != Agent.Main && agent.IsHuman && agent.IsActive())
+				if (agent.IsAIControlled && agent.IsHuman && agent.IsActive())
 				{
 					agent.SetWatchState(Agent.WatchState.Alarmed);
 				}
@@ -111,7 +108,7 @@ namespace TOR_Core.Missions
 
 		public override InquiryData OnEndMissionRequest(out bool canLeave)
 		{
-			canLeave = Mission.MissionResult != null && Mission.MissionResult.BattleResolved == true && Mission.MissionResult.PlayerVictory;
+			canLeave = (Mission.MissionResult != null && Mission.MissionResult.BattleResolved == true && Mission.MissionResult.PlayerVictory) || PlayerCanLeave;
             if (!canLeave) MBInformationManager.AddQuickInformation(new TextObject("You may not leave until finishing the quest scenario."));
 			return null;
 		}
