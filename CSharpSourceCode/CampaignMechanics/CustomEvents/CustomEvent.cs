@@ -12,7 +12,6 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
         public string StringId { get; private set; }
         public CustomEventFrequency Frequency { get; private set; }
         public int Cooldown { get; private set; }
-        public CampaignTime LastTriggerTime { get; set; }
         private Func<bool> _condition;
         private Action _consequence;
         public CustomEvent(string stringId, CustomEventFrequency frequency, int cooldown, Func<bool> condition, Action consequence)
@@ -20,7 +19,6 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             StringId = stringId;
             Frequency = frequency;
             Cooldown = cooldown;
-            LastTriggerTime = CampaignTime.Now;
             _condition = condition;
             _consequence = consequence;
         }

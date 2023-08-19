@@ -21,7 +21,9 @@ namespace TOR_Core.BattleMechanics.Artillery
 
 		public override float ProjectileVelocity => ShootingSpeed;
 
-		public override TextObject GetActionTextForStandingPoint(UsableMissionObject usableGameObject)
+        protected override float MaximumBallisticError => 0.1f;
+
+        public override TextObject GetActionTextForStandingPoint(UsableMissionObject usableGameObject)
 		{
 			TextObject textObject;
 			if (usableGameObject.GameEntity.HasTag(this.AmmoPickUpTag))

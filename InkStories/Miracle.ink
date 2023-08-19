@@ -1,8 +1,8 @@
 //Global story tags
 # title: A miracle of faith
 # frequency: Special
-# development: true
-# illustration: treasure_chest
+# development: false
+# illustration: tresure_chest
 
 
 INCLUDE include.ink
@@ -10,20 +10,11 @@ INCLUDE include.ink
 ->START
 
 ===START===
-
-
-*[Clap and applaud] -> Applaud
-*[Express your appreciation] -> Appreciate
-
-===Applaud===
-Caught up in the magic of the moment, you find yourself clapping along with the gathered crowd, an unspoken acknowledgement of the beauty you've all just experienced.
-->Leave
-
-===Appreciate===
-Your heart full of gratitude, you express your deep appreciation for the troubadours' performance. They exchange a knowing glance, their smiles warm and genuine.
-->Leave
-
-===Leave===
-With a final nod of appreciation, you leave the troubadours to continue their musical journey, carrying the memory of their impromptu performance with you as you resume your own path. 
-(Clicking on "End" will stop the music if it's still playing.)
+~ GiveMiracleItem()
+You stand before the altar of the deity you have long revered, feeling a mix of reverence and anticipation. The air is thick with a sense of ancient power, and you can't help but feel a tinge of excitement.
+As you kneel before the altar, you close your eyes and utter a heartfelt prayer. You recount your commitment and your unwavering faith. The words flow from your lips like a melody, carrying your devotion to the heavens.
+A warm and gentle presence envelops you, as if the very air itself is responding to your devotion. You open your eyes to see a radiant light descending from above, bathing you in its ethereal glow. The light forms into a shimmering figure.
+With a graceful gesture, the figure extends a hand toward you, palm open. In their hand, you see a radiant, pulsating artifact — a divine gift
+You feel a mixture of awe and gratitude as you reach out and take the item from the figure's hand. Its warmth surges through you, filling you with a sense of empowerment and purpose.
+As you leave the shrine, the world around you seems brighter, as if the very essence of your deity's blessing has illuminated your path. With the divine gift in your possession, you step into the future with confidence, ready to face whatever challenges may come, knowing that you are not alone.
 ->END

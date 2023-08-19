@@ -20,6 +20,7 @@ using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.Ink;
 using TOR_Core.Models;
 using TOR_Core.Utilities;
 
@@ -328,6 +329,13 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             starter.AddGameMenuOption("shrine_menu_pray_result", "return_to_root", "Continue", delegate (MenuCallbackArgs args)
             {
                 args.optionLeaveType = GameMenuOption.LeaveType.Continue;
+
+                if (Hero.MainHero.GetDominantReligion() != null && Hero.MainHero.GetPerkValue(TORPerks.Faith.Miracle) && MBRandom.RandomInt(0, 100) <= TORConstants.MIRACLE_CHANCE)
+                {
+                    var religion = Hero.MainHero.GetDominantReligion();
+                    if (religion.ReligiousArtifacts.Count > 0) InkStoryManager.OpenStory("Miracle");
+                }
+
                 return true;
             }, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("shrine_menu"), true);
         }

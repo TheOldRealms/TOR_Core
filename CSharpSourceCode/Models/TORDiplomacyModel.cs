@@ -59,7 +59,7 @@ namespace TOR_Core.Models
         {
             float scoreOfDeclaringWar = base.GetScoreOfDeclaringWar(factionDeclaresWar, factionDeclaredWar, evaluatingClan, out warReason);
             float determineEffectOfReligion = DetermineEffectOfReligion(factionDeclaresWar, factionDeclaredWar, (Clan)evaluatingClan);
-            TORCommon.Say("War support Score: " + scoreOfDeclaringWar + " + Religion effect:" + determineEffectOfReligion);
+            //TORCommon.Say("War support Score: " + scoreOfDeclaringWar + " + Religion effect:" + determineEffectOfReligion);
             return scoreOfDeclaringWar + determineEffectOfReligion;
         }
 

@@ -14,6 +14,10 @@
         <ReligiousTroops>
             <ReligiousTroop id="NPCCharacter.tor_empire_flagellant" />
         </ReligiousTroops>
+        <ReligiousArtifacts>
+            <ArtifactItem id="Item.tor_empire_weapon_mace_comet_flail" />
+            <ArtifactItem id="Item.tor_empire_weapon_mace_holy_hammer" />
+        </ReligiousArtifacts>
     </Religion>
     <Religion id="cult_of_taal" Name="Cult of Taal" Culture="Culture.empire" Affinity="Order">
         <HostileReligions>
@@ -32,6 +36,9 @@
         <ReligiousTroops>
             <ReligiousTroop id="NPCCharacter.tor_ror_ward_of_taal" />
         </ReligiousTroops>
+        <ReligiousArtifacts>
+            <ArtifactItem id="Item.tor_empire_weapon_thaxe_taal" />
+        </ReligiousArtifacts>
     </Religion>
     <Religion id="cult_of_lady" Name="Cult of The Lady" Culture="Culture.vlandia" Affinity="Order">
         <HostileReligions>
@@ -47,6 +54,9 @@
         <ReligiousTroops>
             <ReligiousTroop id="NPCCharacter.tor_br_battle_pilgrim" />
         </ReligiousTroops>
+        <ReligiousArtifacts>
+            <ArtifactItem id="Item.tor_bretonnia_weapon_thsword_de_lyonesse" />
+        </ReligiousArtifacts>
     </Religion>
     <Religion id="cult_of_nagash" Name="Children of Nagash" Culture="Culture.khuzait" Affinity="Vampire">
         <HostileReligions>

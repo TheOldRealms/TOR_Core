@@ -272,3 +272,8 @@ EXTERNAL HasEnoughGold(number)
 EXTERNAL PlayMusic(musicname)
 ===function PlayMusic(musicname)===
     ~ return ""
+
+//Give an artifact item based on player's religion
+EXTERNAL GiveMiracleItem()
+===function GiveMiracleItem()===
+    ~ return ""

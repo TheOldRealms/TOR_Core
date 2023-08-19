@@ -281,6 +281,41 @@ namespace TOR_Core.Ink
             {
                 _story.BindExternalFunction<string>("PlayMusic", PlayMusic, false);
             }
+            if (!_story.TryGetExternalFunction("GiveMiracleItem", out _))
+            {
+                _story.BindExternalFunction("GiveMiracleItem", GiveMiracleItem, false);
+            }
+        }
+
+        private void GiveMiracleItem()
+        {
+            bool gaveItem = false;
+            var religion = Hero.MainHero.GetDominantReligion();
+            var inventory = MobileParty.MainParty.ItemRoster;
+            foreach (var item in religion.ReligiousArtifacts)
+            {
+                bool found = false;
+                for (int i = 0; i < inventory.Count; i++)
+                {
+                    var itemInventory = inventory.GetItemAtIndex(i);
+                    if (item.StringId == itemInventory.StringId)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found) continue;
+                else
+                {
+                    inventory.Add(new ItemRosterElement(item, 1));
+                    gaveItem = true;
+                    break;
+                }
+            }
+            if(!gaveItem)
+            {
+                inventory.Add(new ItemRosterElement(religion.ReligiousArtifacts.TakeRandom(1).FirstOrDefault(), 1));
+            }
         }
 
         private void PlayMusic(string songName)

@@ -23,6 +23,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
         private int _hoursCountSinceLastEvent = 0;
 
         List<CustomEvent> _events = new List<CustomEvent>();
+        Dictionary<string, double> _triggerTimes = new Dictionary<string, double>();
 
         public override void RegisterEvents()
         {
@@ -37,12 +38,12 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             {
                 _events.Add(new CustomEvent(item.StringId, item.Frequency, item.Cooldown, StandardMovingCheck, () => InkStoryManager.OpenStory(item.StringId)));
             }
-            _events.Add(new CustomEvent("Duel", CustomEventFrequency.Special, 168, () => StandardMovingCheck() && !Hero.MainHero.HasAttribute("DefeatedVittorio"), () => InkStoryManager.OpenStory("Duel")));
+            _events.Add(new CustomEvent("Duel", CustomEventFrequency.Uncommon, 168, () => StandardMovingCheck() && !Hero.MainHero.HasAttribute("DefeatedVittorio"), () => InkStoryManager.OpenStory("Duel")));
             _events.Add(new CustomEvent("CampFireLearning", CustomEventFrequency.Abundant, 72, () => StandardMovingCheck() && CampaignTime.Now.IsNightTime, () => InkStoryManager.OpenStory("CampFireLearning")));
-            _events.Add(new CustomEvent("Minstrel", CustomEventFrequency.Abundant, 48,
+            _events.Add(new CustomEvent("Minstrel", CustomEventFrequency.Common, 48,
                 () => StandardMovingCheck() &&
                 !CampaignTime.Now.IsNightTime &&
-                TORCommon.FindNearestSettlement(MobileParty.MainParty, 100f, x => x.IsTown).Culture.StringId == "vlandia", () => InkStoryManager.OpenStory("Minstrel")));
+                TORCommon.FindNearestSettlement(MobileParty.MainParty, 100f, x => x.IsTown)?.Culture.StringId == "vlandia", () => InkStoryManager.OpenStory("Minstrel")));
         }
 
         private bool StandardMovingCheck()
@@ -50,7 +51,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             return MobileParty.MainParty.IsMoving && 
                 MobileParty.MainParty.Army == null && 
                 !Hero.MainHero.IsPrisoner && 
-                MobileParty.MainParty.MemberRoster.Count > 10 && 
+                MobileParty.MainParty.MemberRoster.TotalManCount > 10 && 
                 MobileParty.MainParty.CurrentSettlement == null && 
                 MobileParty.MainParty.BesiegedSettlement == null;
         }
@@ -60,16 +61,23 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             if (party != MobileParty.MainParty) return;
             if (GetRandomFrequency(out CustomEventFrequency chosenFrequency) && HasCooldownExpired())
             {
-                var chosenEvent = _events.GetRandomElementWithPredicate(x => x.Frequency == chosenFrequency && x.DoesConditionHold() && x.StringId != InkStoryManager.LastStoryId && x.Cooldown < (CampaignTime.Now.ToHours - x.LastTriggerTime.ToHours));
-                if (chosenEvent == null) chosenEvent = _events.GetRandomElementWithPredicate(x => x.Frequency == chosenFrequency && x.DoesConditionHold() && x.Cooldown < (CampaignTime.Now.ToHours - x.LastTriggerTime.ToHours));
+                var chosenEvent = _events.GetRandomElementWithPredicate(x => x.Frequency == chosenFrequency && x.DoesConditionHold() && x.StringId != InkStoryManager.LastStoryId && !_triggerTimes.ContainsKey(x.StringId));
+                if (chosenEvent == null) chosenEvent = _events.GetRandomElementWithPredicate(x => x.Frequency == chosenFrequency && x.DoesConditionHold() && x.Cooldown < GetElapsedTimeSinceLastTrigger(x));
                 if (chosenEvent != null)
                 {
                     chosenEvent.Trigger();
-                    chosenEvent.LastTriggerTime = CampaignTime.Now;
+                    if (_triggerTimes.ContainsKey(chosenEvent.StringId)) _triggerTimes[chosenEvent.StringId] = CampaignTime.Now.ToHours;
+                    else _triggerTimes.Add(chosenEvent.StringId, CampaignTime.Now.ToHours);
                     _hoursCountSinceLastEvent = 0;
                 }
             }
             else _hoursCountSinceLastEvent++;
+        }
+
+        private int GetElapsedTimeSinceLastTrigger(CustomEvent x)
+        {
+            if (_triggerTimes.ContainsKey(x.StringId)) return (int)(CampaignTime.Now.ToHours - _triggerTimes[x.StringId]);
+            else return 999;
         }
 
         private bool HasCooldownExpired() => _hoursCountSinceLastEvent > CoolDown;
@@ -87,6 +95,9 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             return true;
         }
 
-        public override void SyncData(IDataStore dataStore) { }
+        public override void SyncData(IDataStore dataStore)
+        {
+            dataStore.SyncData("_triggerTimes", ref _triggerTimes);
+        }
     }
 }
