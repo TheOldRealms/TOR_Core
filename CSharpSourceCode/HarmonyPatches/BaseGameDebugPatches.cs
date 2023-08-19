@@ -3,12 +3,16 @@ using NLog;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.InputSystem;
+using TaleWorlds.Localization;
 using TaleWorlds.ModuleManager;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.Extensions;
 using TOR_Core.GameManagers;
 using TOR_Core.Utilities;
 
@@ -72,6 +76,31 @@ namespace TOR_Core.HarmonyPatches
                 return false;
             }
             return true;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(TavernEmployeesCampaignBehavior), "conversation_talk_bard_on_condition")]
+        public static bool PreventCrash2(TavernEmployeesCampaignBehavior __instance, ref bool __result)
+        {
+            if (CharacterObject.OneToOneConversationCharacter.Occupation == Occupation.Musician)
+            {
+                List<string> list = new List<string>();
+                List<Settlement> list2 = (from x in Settlement.All where x.IsTown && x != Settlement.CurrentSettlement select x).ToList();
+                Settlement settlement = list2.TakeRandom(1).FirstOrDefault();
+                if(settlement != null) MBTextManager.SetTextVariable("RANDOM_TOWN", settlement.Name, false);
+                list.Add("{=3n1KRLpZ}'My love is far \n I know not where \n Perhaps the winds shall tell me'");
+                list.Add("{=NQOQb0C9}'And many thousand bodies lay a-rotting in the sun \n But things like that must be you know for kingdoms to be won'");
+                list.Add("{=bs8ayCGX}'A warrior brave you might surely be \n With your blade and your helm and your bold fiery steed \n But I'll give you a warning you'd be wise to heed \n Don't toy with the fishwives of {RANDOM_TOWN}'");
+                list.Add("{=3n1KRLpZ}'My love is far \n I know not where \n Perhaps the winds shall tell me'");
+                list.Add("{=YequZz6U}'Oh the maidens of {RANDOM_TOWN} are merry and fair \n Plotting their mischief with flowers in their hair \n Were I still a young man I sure would be there \n But now I'll take warmth over trouble'");
+                list.Add("{=CM8Tr3lL}'Oh my pocket's been picked \n And my shirt's drenched with sick \n And my head feels like it's come a fit to bursting'");
+                list.Add("{=2fbLBXtT}'O'er the whale-road she sped \n She were manned by the dead  \n And the clouds followed black in her wake'");
+                string value = list.TakeRandom(1).FirstOrDefault();
+                MBTextManager.SetTextVariable("LYRIC_SCRAP", new TextObject(value, null), false);
+                __result = true;
+            }
+            else __result = false;
+            return false;
         }
 
         [HarmonyPrefix]
