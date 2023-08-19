@@ -75,7 +75,7 @@
       <Location id="center" scene_name="TOR_empire_city_averheim_02" scene_name_1="TOR_empire_city_averheim_02" scene_name_2="TOR_empire_city_averheim_02" scene_name_3="TOR_empire_city_averheim_02" />
       <Location id="arena" scene_name="TOR_empire_arena_averheim_01" />
       <Location id="tavern" scene_name="TOR_empire_tavern_ninian_01" />
-      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l3" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -144,7 +144,7 @@
       <Town id="castle_comp_AV2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="empire_castle_g" scene_name_1="empire_castle_g" scene_name_2="empire_castle_g" scene_name_3="empire_castle_g" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -193,7 +193,7 @@
       <Town id="town_comp_AV3" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4000" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="vlandia_town_e" scene_name_1="vlandia_town_e" scene_name_2="vlandia_town_e" scene_name_3="vlandia_town_e" />
+      <Location id="center" scene_name="TOR_empire_city_001" scene_name_1="TOR_empire_city_001" scene_name_2="TOR_empire_city_001" scene_name_3="TOR_empire_city_001" />
       <Location id="arena" scene_name="TOW_arena_empire_a" />
       <Location id="tavern" scene_name="empire_tavern_01" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
@@ -348,7 +348,7 @@
       <Town id="castle_comp_ST1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="empire_castle_f" scene_name_1="empire_castle_f" scene_name_2="empire_castle_f" scene_name_3="empire_castle_f" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -384,7 +384,7 @@
       <Town id="castle_comp_ST2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -561,7 +561,7 @@
       <Town id="town_comp_ST4" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4000" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="vlandia_town_f" scene_name_1="vlandia_town_f" scene_name_2="vlandia_town_f" scene_name_3="vlandia_town_f" />
+      <Location id="center" scene_name="TOR_empire_city_001" scene_name_1="TOR_empire_city_001" scene_name_2="TOR_empire_city_001" scene_name_3="TOR_empire_city_001"></Location>
       <Location id="arena" scene_name="TOW_arena_empire_a" />
       <Location id="tavern" scene_name="TOR_empire_tavern_ninian_02" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
@@ -633,7 +633,7 @@
       <Town id="castle_comp_ST4" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -851,7 +851,7 @@
       <Town id="castle_comp_SY1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="vampire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_vampire_castle_001" scene_name_1="TOR_vampire_castle_001" scene_name_2="TOR_vampire_castle_001" scene_name_3="TOR_vampire_castle_001" />
       <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -959,7 +959,7 @@
       <Town id="castle_comp_SY2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="vampire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_vampire_castle_001" scene_name_1="TOR_vampire_castle_001" scene_name_2="TOR_vampire_castle_001" scene_name_3="TOR_vampire_castle_001" />
       <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -982,7 +982,7 @@
       <Town id="castle_comp_SY3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="vampire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_vampire_castle_001" scene_name_1="TOR_vampire_castle_001" scene_name_2="TOR_vampire_castle_001" scene_name_3="TOR_vampire_castle_001" />
       <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -1018,7 +1018,7 @@
       <Town id="castle_comp_SY4" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="vampire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_vampire_castle_001" scene_name_1="TOR_vampire_castle_001" scene_name_2="TOR_vampire_castle_001" scene_name_3="TOR_vampire_castle_001" />
       <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -1041,7 +1041,7 @@
       <Town id="castle_comp_SY5" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="vampire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_vampire_castle_001" scene_name_1="TOR_vampire_castle_001" scene_name_2="TOR_vampire_castle_001" scene_name_3="TOR_vampire_castle_001" />
       <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -1064,7 +1064,7 @@
       <Town id="castle_comp_SY6" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="vampire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_vampire_castle_001" scene_name_1="TOR_vampire_castle_001" scene_name_2="TOR_vampire_castle_001" scene_name_3="TOR_vampire_castle_001" />
       <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -1100,7 +1100,7 @@
       <Town id="castle_comp_SY7" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="vampire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_vampire_castle_001" scene_name_1="TOR_vampire_castle_001" scene_name_2="TOR_vampire_castle_001" scene_name_3="TOR_vampire_castle_001" />
       <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -1177,7 +1177,7 @@
       <Town id="town_comp_WI3" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4000" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="vlandia_town_h" scene_name_1="vlandia_town_h" scene_name_2="vlandia_town_h" scene_name_3="vlandia_town_h" />
+      <Location id="center" scene_name="TOR_empire_city_001" scene_name_1="TOR_empire_city_001" scene_name_2="TOR_empire_city_001" scene_name_3="TOR_empire_city_001" />
       <Location id="arena" scene_name="TOW_arena_empire_a" />
       <Location id="tavern" scene_name="empire_tavern_01" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
@@ -1257,7 +1257,7 @@
       <Town id="castle_comp_WI1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -1267,7 +1267,7 @@
       <Town id="castle_comp_WI2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="empire_castle_f" scene_name_1="empire_castle_f" scene_name_2="empire_castle_f" scene_name_3="empire_castle_f" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -1277,7 +1277,7 @@
       <Town id="castle_comp_WI3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="empire_castle_g" scene_name_1="empire_castle_g" scene_name_2="empire_castle_g" scene_name_3="empire_castle_g" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -1297,7 +1297,7 @@
       <Town id="castle_comp_WI5" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -1307,7 +1307,7 @@
       <Town id="castle_comp_WI6" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -1845,7 +1845,7 @@
       <Town id="town_comp_TB2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4000" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="vlandia_town_e" scene_name_1="vlandia_town_e" scene_name_2="vlandia_town_e" scene_name_3="vlandia_town_e" />
+      <Location id="center" scene_name="TOR_empire_city_001" scene_name_1="TOR_empire_city_001" scene_name_2="TOR_empire_city_001" scene_name_3="TOR_empire_city_001" />
       <Location id="arena" scene_name="TOW_arena_empire_a" />
       <Location id="tavern" scene_name="empire_tavern_01" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
@@ -2009,7 +2009,7 @@
       <Town id="castle_comp_TB1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -2045,7 +2045,7 @@
       <Town id="castle_comp_TB2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="empire_castle_f" scene_name_1="empire_castle_f" scene_name_2="empire_castle_f" scene_name_3="empire_castle_f" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -2117,7 +2117,7 @@
       <Town id="castle_comp_TB4" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="empire_castle_g" scene_name_1="empire_castle_g" scene_name_2="empire_castle_g" scene_name_3="empire_castle_g" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -2213,7 +2213,7 @@
       <Town id="town_comp_RL2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="vlandia_town_f" scene_name_1="vlandia_town_f" scene_name_2="vlandia_town_f" scene_name_3="vlandia_town_f" />
+      <Location id="center" scene_name="TOR_empire_city_001" scene_name_1="TOR_empire_city_001" scene_name_2="TOR_empire_city_001" scene_name_3="TOR_empire_city_001" />
       <Location id="arena" scene_name="TOW_arena_empire_a" />
       <Location id="tavern" scene_name="TOR_empire_tavern_ninian_02" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
@@ -2456,7 +2456,7 @@
       <Town id="castle_comp_RL1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -2528,7 +2528,7 @@
       <Town id="castle_comp_RL3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -2564,7 +2564,7 @@
       <Town id="castle_comp_RL4" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="empire_castle_f" scene_name_1="empire_castle_f" scene_name_2="empire_castle_f" scene_name_3="empire_castle_f" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -2600,7 +2600,7 @@
       <Town id="castle_comp_RL5" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="empire_castle_g" scene_name_1="empire_castle_g" scene_name_2="empire_castle_g" scene_name_3="empire_castle_g"></Location>
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -4560,7 +4560,7 @@
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_MS1_1" name="{=Settlements.Settlement.name.castle_village_MSI_3}Le Rosier Noir" posX="916.1219" posY="1067.388" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_MS1_1}Not so much a village but more of a Tavern surrounded by makeshift homes, Le Rosier Noir is a small gathering hub for many unwanted vagrants and shifty wanderers. Indeed it is remarkable the small village houses mostly humans and not any mutants. The few houses surrounding the village are home to the manystaff at Le Rosier Noir.">
+  <Settlement id="castle_village_MS1_1" name="{=Settlements.Settlement.name.castle_village_MSI_3}Le Rosier Noir" posX="916.1219" posY="1067.388" culture="Culture.mousillon" text="{=Settlements.Settlement.text.castle_village_MS1_1}Not so much a village but more of a Tavern surrounded by makeshift homes, Le Rosier Noir is a small gathering hub for many unwanted vagrants and shifty wanderers. Indeed it is remarkable the small village houses mostly humans and not any mutants. The few houses surrounding the village are home to the manystaff at Le Rosier Noir.">
     <Components>
       <Village id="castle_village_comp_MS1_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.castle_MS1" bound="Settlement.castle_MS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
