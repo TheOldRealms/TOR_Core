@@ -109,6 +109,7 @@ namespace TOR_Core.CampaignMechanics.Religion
                             {
                                 if (!hero.HasAnyReligion()) hero.AddReligiousInfluence(religion, MBRandom.RandomInt(30, 90), false);
                             }
+                            
                         }
                     }
                 }
@@ -120,6 +121,8 @@ namespace TOR_Core.CampaignMechanics.Religion
             foreach(var hero in Hero.AllAliveHeroes)
             {
                 if (hero.IsLord && !hero.HasAnyReligion()) DetermineReligionForHero(hero);
+
+                SetIntialReligionBasedRelationDrift(hero);
             }
             //ensure mutual entries for hostile religions
             foreach(var religion in ReligionObject.All)
@@ -176,6 +179,37 @@ namespace TOR_Core.CampaignMechanics.Religion
         public void Dispose()
         {
             TORCampaignEvents.Instance.DevotionLevelChanged -= OnDevotionLevelChanged;
+        }
+        
+        
+         private void SetIntialReligionBasedRelationDrift(Hero hero)
+        {
+            foreach (var otherHero in Campaign.Current.AliveHeroes.Where(x=> x!=hero))
+            {
+                if (hero.GetDominantReligion() == null) continue;
+                if (otherHero.GetDominantReligion() == null) continue;
+                var currentRelation = hero.GetRelation(otherHero);
+                if (hero.GetDominantReligion().Name == otherHero.GetDominantReligion().Name)
+                {
+                    var bonus = MBRandom.RandomInt(25, 50);
+                    hero.SetPersonalRelation(otherHero,currentRelation+bonus);
+                    continue;
+                }
+
+                if (hero.GetDominantReligion().Affinity ==  otherHero.GetDominantReligion().Affinity )
+                {
+                    var bonus = MBRandom.RandomInt(0, 25);
+                    hero.SetPersonalRelation(otherHero, currentRelation+bonus);
+                    continue;
+                }
+
+                if (hero.GetDominantReligion().HostileReligions.Contains(otherHero.GetDominantReligion()))
+                {
+                    var malus = MBRandom.RandomInt(25, 75);
+                    hero.SetPersonalRelation(otherHero,currentRelation-malus);
+                    continue;
+                }
+            }
         }
     }
 }

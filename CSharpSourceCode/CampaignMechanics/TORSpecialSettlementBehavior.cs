@@ -37,7 +37,6 @@ namespace TOR_Core.CampaignMechanics
 
         public override void SyncData(IDataStore dataStore)
         {
-            throw new System.NotImplementedException();
         }
     }
 }
