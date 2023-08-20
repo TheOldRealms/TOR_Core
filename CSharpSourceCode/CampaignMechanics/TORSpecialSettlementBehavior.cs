@@ -40,7 +40,7 @@ namespace TOR_Core.CampaignMechanics
             {
                 var bloodDragon = MBObjectManager.Instance.GetObject<CharacterObject>("tor_bd_blooddragon_templar");
                 bloodKeep.MilitiaPartyComponent.Party.AddMember(bloodDragon, 500);
-                bloodKeep.SetGarrisonWagePaymentLimit(20000);
+                bloodKeep.SetGarrisonWagePaymentLimit(800000);
             }
         }
 

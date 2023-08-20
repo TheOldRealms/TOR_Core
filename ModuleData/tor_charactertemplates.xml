@@ -214,7 +214,7 @@
       <EquipmentSet id="tor_prophetess_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_mousillon_0" default_group="infantry" name="{=str_tor_wanderer_mousillon_0}{FIRSTNAME} the Fallen Knight" occupation="Wanderer" culture="Culture.vlandia" voice="curt" age="38" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_mousillon_0" default_group="infantry" name="{=str_tor_wanderer_mousillon_0}{FIRSTNAME} the Fallen Knight" occupation="Wanderer" culture="Culture.mousillon" voice="curt" age="38" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
       <hair_tags>
@@ -286,7 +286,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_wanderer_vampire_2" default_group="infantry" name="{=str_tor_wanderer_vampire_2}{FIRSTNAME} the Wight King" occupation="Wanderer" culture="Culture.khuzait" voice="curt" age="30" race="skeleton" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.skeleton" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="8" />
@@ -492,7 +492,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_empire_dog2_lord_0" default_group="infantry" name="{=str_tor_empire_dog2_lord_0}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" race="skeleton" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.skeleton" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="8" />
@@ -508,7 +508,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_empire_dog2_lord_1" default_group="infantry" name="{=str_tor_empire_dog2_lord_1}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" race="skeleton" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.skeleton" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="8" />
@@ -524,7 +524,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_empire_dog2_lord_2" default_group="infantry" name="{=str_tor_empire_dog2_lord_2}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" race="skeleton" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.skeleton" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="8" />
@@ -540,7 +540,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_empire_dog2_lord_3" default_group="infantry" name="{=str_tor_empire_dog2_lord_3}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" race="skeleton" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.skeleton" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="8" />
