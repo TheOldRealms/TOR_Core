@@ -127,6 +127,8 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             var list = new List<string>();
             foreach (var ability in AllAbilites)
             {
+                if(list.Contains(ability)) continue;    //shouldn't happen, yet better save then sorry
+                
                 var t  = AbilityFactory.GetTemplate(ability);
                 if (t!=null&&t.AbilityType == AbilityType.Prayer)
                 {
@@ -178,7 +180,13 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             if (LoreObject.GetLore(loreId) != null && !_knownLores.Contains(loreId)) _knownLores.Add(loreId);
         }
 
-
+        public void RemoveAbility(string abilityID)
+        {
+            if (AcquiredAbilities.Contains(abilityID))
+            {
+                AcquiredAbilities.Remove(abilityID);
+            }
+        }
         public void RemoveAllPrayers()
         {
             var prayers = AllAbilites.Where(x => AbilityFactory.GetTemplate(x).AbilityType == AbilityType.Prayer);
