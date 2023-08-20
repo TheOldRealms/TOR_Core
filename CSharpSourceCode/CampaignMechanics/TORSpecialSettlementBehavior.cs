@@ -10,7 +10,7 @@ namespace TOR_Core.CampaignMechanics
     {
         public override void RegisterEvents()
         {
-            CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this,ExtraFood);    
+            CampaignEvents.HourlyTickSettlementEvent.AddNonSerializedListener(this,ExtraFood);    
             CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this,AfterNewGameStart);
         }
 
@@ -18,9 +18,10 @@ namespace TOR_Core.CampaignMechanics
         {
             if (settlement.IsBloodKeep())
             {
-                if (settlement.ItemRoster.TotalFood < 100)
+                if (settlement.ItemRoster.TotalFood < 500)
                 {
-                    settlement.ItemRoster.AddToCounts(DefaultItems.Meat, 50);
+                    settlement.ItemRoster.AddToCounts(DefaultItems.Meat, 100);
+                    settlement.ItemRoster.AddToCounts(DefaultItems.Grain, 100);
                 }
             }
         }
