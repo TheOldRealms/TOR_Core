@@ -13,7 +13,7 @@ namespace TOR_Core.Models
     {
         public override void RegisterEvents()
         {
-            CampaignEvents.OnTroopRecruitedEvent.AddNonSerializedListener(this,TORRecruitmentBehavior );
+            CampaignEvents.OnTroopRecruitedEvent.AddNonSerializedListener(this, TORRecruitmentBehavior);
         }
 
         public override void SyncData(IDataStore dataStore)
@@ -43,7 +43,4 @@ namespace TOR_Core.Models
             }
         }
     }
-    
-    
-    
 }

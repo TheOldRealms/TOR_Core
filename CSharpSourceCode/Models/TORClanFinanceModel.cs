@@ -19,7 +19,7 @@ namespace TOR_Core.Models
             var num = base.CalculateClanGoldChange(clan, includeDescriptions, applyWithdrawals, includeDetails);
             AddCareerPerkBenefits(clan, ref num);
             
-            if(clan.Kingdom != null && clan.Kingdom.RulingClan != clan && clan != Clan.PlayerClan && !clan.IsMinorFaction && num.ResultNumber < 0 && clan.Gold < 100000)
+            if(num.ResultNumber < 0 && clan.Kingdom != null && clan != Clan.PlayerClan && !clan.IsMinorFaction && num.ResultNumber < 0 && clan.Gold < 100000)
             {
                 AdjustIncomeForAI(ref num);
             }
