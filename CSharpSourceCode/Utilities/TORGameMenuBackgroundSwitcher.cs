@@ -58,6 +58,12 @@ namespace TOR_Core.Utilities
 
             if(settlement != null)
             {
+                
+                if(settlement.Culture.StringId == "mousillon")
+                {
+                    args.MenuContext.SetBackgroundMeshName("bretonnia_arena");
+                    return;
+                }
                 if(settlement.Culture.StringId == "vlandia")
                 {
                     args.MenuContext.SetBackgroundMeshName("bretonnia_arena");
@@ -103,10 +109,56 @@ namespace TOR_Core.Utilities
                 case "vlandia":
                     args.MenuContext.SetBackgroundMeshName("bretonnia_captive");
                     return;
+                case "mousillon":
+                    args.MenuContext.SetBackgroundMeshName("bretonnia_captive");
+                    return;
                 default:
                     args.MenuContext.SetBackgroundMeshName("wait_captive_male");
                     return;
             }
         }
+        [GameMenuInitializationHandler("town_backstreet")]
+        private static void wait_menu_ui_town_backstreet_on_init_tor(MenuCallbackArgs args)
+        {
+            var settlement= Settlement.CurrentSettlement;
+            
+            if(settlement==null) return;
+            
+            
+            if (settlement.Culture == null)
+            {
+                args.MenuContext.SetBackgroundMeshName("vlandia_backstreet");
+                return;
+            }
+
+            switch (settlement.Culture.StringId)
+            {
+                case "mousillon":
+                    args.MenuContext.SetBackgroundMeshName("vlandia_tavern");
+                    return;
+            }
+        }
+        
+        [GameMenuInitializationHandler("town_keep")]
+        private static void wait_menu_ui_town_keep_on_init_tor(MenuCallbackArgs args)
+        {
+            var culture = Hero.MainHero.Culture;
+            if (culture == null)
+            {
+                args.MenuContext.SetBackgroundMeshName("bretonnia_city");
+                return;
+            }
+
+            switch (culture.StringId)
+            {
+                case "mousillon":
+                    args.MenuContext.SetBackgroundMeshName("bretonnia_city_background");
+                    return;
+            }
+        }
+        
+        
+        
+        
     }
 }
