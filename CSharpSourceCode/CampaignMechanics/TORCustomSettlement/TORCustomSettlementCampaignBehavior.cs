@@ -30,6 +30,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
     {
         private CampaignTime _startWaitTime = CampaignTime.Now;
         private int _numberOfTroops = 0;
+        private int _minimumDaysBetweenRaisingGhosts = 3;
         [SaveableField(0)] private Dictionary<string, bool> _customSettlementActiveStates = new Dictionary<string, bool>();
         [SaveableField(1)] private Dictionary<string, int> _cursedSiteWardDurationLeft = new Dictionary<string, int>();
         [SaveableField(2)] private Dictionary<string, int> _lastGhostRecruitmentTime = new Dictionary<string, int>();
@@ -107,7 +108,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 var troop = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_spirit_host");
                 var freeSlots = party.Party.PartySizeLimit - party.MemberRoster.TotalManCount;
                 int raisePower = Math.Max(1, (int)party.LeaderHero.GetExtendedInfo().SpellCastingLevel);
-                var count = MBRandom.RandomInt(0, 8);
+                var count = MBRandom.RandomInt(0, 4);
                 count *= raisePower;
                 if (freeSlots > 0)
                 {
@@ -681,7 +682,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 !party.Ai.IsDisabled &&
                 party.LeaderHero != null &&
                 (party.LeaderHero.IsNecromancer() || party.LeaderHero.IsVampire()) &&
-                (!_lastGhostRecruitmentTime.ContainsKey(party.LeaderHero.StringId) || _lastGhostRecruitmentTime[party.LeaderHero.StringId] < (int)CampaignTime.Now.ToDays);
+                party.PartySizeRatio < 0.8f &&
+                (!_lastGhostRecruitmentTime.ContainsKey(party.LeaderHero.StringId) || (_lastGhostRecruitmentTime[party.LeaderHero.StringId] + _minimumDaysBetweenRaisingGhosts) < (int)CampaignTime.Now.ToDays);
         }
     }
 }
