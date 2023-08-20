@@ -37,8 +37,6 @@ namespace TOR_Core.Extensions
             return list;
         }
 
-       
-
         public static List<string> GetAttributes(this BasicCharacterObject characterObject)
         {
             var list = new List<string>();
@@ -48,6 +46,11 @@ namespace TOR_Core.Extensions
                 list.AddRange(info.CharacterAttributes);
             }
             return list;
+        }
+
+        public static bool HasAttribute(this BasicCharacterObject characterObject, string attributeName)
+        {
+            return characterObject.GetAttributes().Contains(attributeName);
         }
 
         public static List<ResistanceTuple> GetDefenseProperties(this BasicCharacterObject characterObject)
@@ -111,8 +114,6 @@ namespace TOR_Core.Extensions
             }
             return characterObject.Race == FaceGen.GetRaceOrDefault("vampire");
         }
-        
-        
 
         public static bool IsKnightUnit(this BasicCharacterObject characterObject)
         {

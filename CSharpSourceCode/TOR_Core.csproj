@@ -659,6 +659,7 @@
     <Compile Include="Models\TORAbilityModel.cs" />
     <Compile Include="Models\TORStrikeMagnitudeModel.cs" />
     <Compile Include="Models\TORTournamentModel.cs" />
+    <Compile Include="Models\TORTroopSupplierModel.cs" />
     <Compile Include="Models\TORVoiceOverModel.cs" />
     <Compile Include="Quests\EngineerQuest.cs" />
     <Compile Include="Quests\HuntCultistsQuestCampaignBehavior.cs" />
