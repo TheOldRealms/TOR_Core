@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Ink.Parsed;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
@@ -123,7 +124,17 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
         public List<string> GetAllPrayers()
         {
-            return AllAbilites.Where(x => AbilityFactory.GetTemplate(x).AbilityType == AbilityType.Prayer).ToList();
+            var list = new List<string>();
+            foreach (var ability in AllAbilites)
+            {
+                var t  = AbilityFactory.GetTemplate(ability);
+                if (t!=null&&t.AbilityType == AbilityType.Prayer)
+                {
+                    list.Add(ability);
+                }
+            }
+
+            return list;
         }
 
         public ReligionObject DominantReligion

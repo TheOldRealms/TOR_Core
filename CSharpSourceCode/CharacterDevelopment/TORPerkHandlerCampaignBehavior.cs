@@ -75,7 +75,7 @@ namespace TOR_Core.CharacterDevelopment
                         {
                             if (hero.HasCareer(TORCareers.WarriorPriest))
                             {
-                                if (!hero.HasAbility("AmourOfRighteousness")) hero.AddAbility("AmourOfRighteousness");
+                                if (!hero.HasAbility("ArmourOfRighteousness")) hero.AddAbility("ArmourOfRighteousness");
                                 if (!hero.HasAbility("Vanquish")) hero.AddAbility("Vanquish");
                             }
                             
