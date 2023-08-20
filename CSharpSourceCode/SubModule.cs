@@ -194,6 +194,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORKingdomDecisionPermissionModel());
                 gameStarterObject.AddModel(new TORSettlementLoyaltyModel());
                 gameStarterObject.AddModel(new TORBattleRewardModel());
+                gameStarterObject.AddModel(new TORSettlementFoodModel());
 
                 CampaignOptions.IsLifeDeathCycleDisabled = true;
             }

@@ -637,6 +637,7 @@
     <Compile Include="Models\TORDamageParticleModel.cs" />
     <Compile Include="Models\TORDiplomacyModel.cs" />
     <Compile Include="Models\TORFaithModel.cs" />
+    <Compile Include="Models\TORSettlementFoodModel.cs" />
     <Compile Include="Models\TORInventoryCapacityModel.cs" />
     <Compile Include="Models\TORKingdomDecisionPermissionModel.cs" />
     <Compile Include="Models\TORMapVisibilityModel.cs" />
