@@ -529,7 +529,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_empire_flagellant" default_group="infantry" level="16" name="{=str_tor_empire_flagellant}Empire Flagellant" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
     <face>
-      <face_key_template value="BodyProperty.warriorpriest" />
+      <face_key_template value="BodyProperty.flagellant" />
     </face>
     <upgrade_targets />
     <Equipments>
@@ -2457,7 +2457,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_ror_peasant_knight" default_group="infantry" level="46" name="{=str_tor_ror_peasant_knight}Wainfleet Peasant Knight" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level46" is_basic_troop="true">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
     <upgrade_targets />
     <Equipments>
@@ -2499,7 +2499,7 @@
       <EquipmentSet id="tor_ror_maisontaal_warden_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ror_bergerac_herrimault" default_group="infantry" level="16" name="{=str_tor_ror_bergerac_herrimault}Honorable Herrimault" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
+  <NPCCharacter id="tor_ror_bergerac_herrimault" default_group="infantry" level="16" name="{=str_tor_ror_bergerac_herrimault}Honourable Herrimault" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -2511,7 +2511,7 @@
       <EquipmentSet id="tor_ror_bergerac_herrimault_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ror_bergerac_ranger" default_group="infantry" level="16" name="{=str_tor_ror_bergerac_ranger}Bergerac Ranger" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
+  <NPCCharacter id="tor_ror_bergerac_ranger" default_group="infantry" level="36" name="{=str_tor_ror_bergerac_ranger}Bergerac Ranger" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level36" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -2523,7 +2523,7 @@
       <EquipmentSet id="tor_ror_bergerac_ranger_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ror_bergerac_bowman" default_group="infantry" level="16" name="{=str_tor_ror_bergerac_bowman}Bowman of Bergerac" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
+  <NPCCharacter id="tor_ror_bergerac_bowman" default_group="infantry" level="46" name="{=str_tor_ror_bergerac_bowman}Bowman of Bergerac" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level46" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>

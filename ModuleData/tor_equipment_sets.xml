@@ -4318,7 +4318,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.t2_empire_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.imperial_riding_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4330,7 +4330,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.t2_empire_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.imperial_riding_harness" />
     </EquipmentSet>
     <EquipmentSet>
@@ -4342,7 +4342,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.t2_empire_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.imperial_riding_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4354,7 +4354,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.t2_empire_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.imperial_riding_harness" />
     </EquipmentSet>
     <EquipmentSet>
@@ -4366,7 +4366,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.t2_empire_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.imperial_riding_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4378,7 +4378,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.t2_empire_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.imperial_riding_harness" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -4393,7 +4393,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_pistolier_001" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.t2_empire_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.imperial_riding_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4406,7 +4406,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_pistolier_001" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.t2_empire_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.imperial_riding_harness" />
     </EquipmentSet>
     <EquipmentSet>
@@ -4418,7 +4418,7 @@
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_pistolier_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_pistolier_003" />
-      <Equipment slot="Horse" id="Item.t2_empire_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.imperial_riding_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4430,7 +4430,7 @@
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_pistolier_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_pistolier_003" />
-      <Equipment slot="Horse" id="Item.t2_empire_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.imperial_riding_harness" />
     </EquipmentSet>
     <EquipmentSet>
@@ -4443,7 +4443,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_pistolier_001" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_pistolier_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_pistolier_003" />
-      <Equipment slot="Horse" id="Item.t2_empire_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.imperial_riding_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4456,7 +4456,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_pistolier_001" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_pistolier_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_pistolier_003" />
-      <Equipment slot="Horse" id="Item.t2_empire_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.imperial_riding_harness" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -4470,7 +4470,7 @@
       <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_warrior_priest_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4482,7 +4482,7 @@
       <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_warrior_priest_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet>
@@ -4494,7 +4494,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_greatsword_002" />
       <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_warrior_priest_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4506,7 +4506,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_greatsword_002" />
       <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_warrior_priest_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet>
@@ -4518,7 +4518,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_witch_hunter_001" />
       <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_plate_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4530,7 +4530,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_witch_hunter_001" />
       <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_plate_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -4544,7 +4544,7 @@
       <Equipment slot="Cape" id="Item.a_battania_cloak_a" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4556,7 +4556,7 @@
       <Equipment slot="Cape" id="Item.a_battania_cloak_a" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
     <EquipmentSet>
@@ -4568,7 +4568,7 @@
       <Equipment slot="Cape" id="Item.a_battania_cloak_a" />
       <Equipment slot="Gloves" id="Item.leather_gloves" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4580,7 +4580,7 @@
       <Equipment slot="Cape" id="Item.a_battania_cloak_a" />
       <Equipment slot="Gloves" id="Item.leather_gloves" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
     <EquipmentSet>
@@ -4591,7 +4591,7 @@
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_002" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4602,7 +4602,7 @@
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_002" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.storm_charger" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -4616,7 +4616,7 @@
       <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_volkmar" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_004" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4628,7 +4628,7 @@
       <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_volkmar" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_004" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet>
@@ -4640,7 +4640,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_witch_hunter_001" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_volkmar" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_003" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4652,7 +4652,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_witch_hunter_001" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_volkmar" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_003" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet>
@@ -4664,7 +4664,7 @@
       <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_volkmar" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4676,7 +4676,7 @@
       <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_volkmar" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -4690,7 +4690,7 @@
       <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4702,7 +4702,7 @@
       <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet>
@@ -4714,7 +4714,7 @@
       <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_004" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4726,7 +4726,7 @@
       <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_004" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet>
@@ -4738,7 +4738,7 @@
       <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_002" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4750,7 +4750,7 @@
       <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_002" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -4839,7 +4839,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4852,7 +4852,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
     <EquipmentSet>
@@ -4865,7 +4865,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4878,7 +4878,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
     <EquipmentSet>
@@ -4891,7 +4891,7 @@
       <Equipment slot="Cape" id="Item.a_battania_cloak_a" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4904,7 +4904,7 @@
       <Equipment slot="Cape" id="Item.a_battania_cloak_a" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -4919,7 +4919,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4932,7 +4932,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
     <EquipmentSet>
@@ -4945,7 +4945,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4958,7 +4958,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
     <EquipmentSet>
@@ -4971,7 +4971,7 @@
       <Equipment slot="Cape" id="Item.a_battania_cloak_a" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -4984,7 +4984,7 @@
       <Equipment slot="Cape" id="Item.a_battania_cloak_a" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -4998,7 +4998,7 @@
       <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_002" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -5010,7 +5010,7 @@
       <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_002" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet>
@@ -5022,7 +5022,7 @@
       <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_002" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -5034,7 +5034,7 @@
       <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_002" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet>
@@ -5046,7 +5046,7 @@
       <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_002" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -5058,7 +5058,7 @@
       <Equipment slot="Cape" id="Item.tor_tilean_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_002" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -5145,7 +5145,7 @@
       <Equipment slot="Cape" id="Item.a_battania_cloak_a" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.t2_vlandia_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -5156,7 +5156,7 @@
       <Equipment slot="Cape" id="Item.a_battania_cloak_a" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.t2_vlandia_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet>
@@ -5167,7 +5167,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_greatsword_002" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.t2_vlandia_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -5178,7 +5178,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_greatsword_002" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.t2_vlandia_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -5191,7 +5191,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_002" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.t2_vlandia_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -5202,7 +5202,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_002" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.t2_vlandia_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
     <EquipmentSet>
@@ -5213,7 +5213,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_001" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.t2_vlandia_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -5224,7 +5224,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_001" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.t2_vlandia_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -5237,7 +5237,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.t2_vlandia_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -5248,7 +5248,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.t2_vlandia_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet>
@@ -5259,7 +5259,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.t2_vlandia_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -5270,7 +5270,7 @@
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
-      <Equipment slot="Horse" id="Item.t2_vlandia_horse" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -5880,7 +5880,7 @@
       <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_vampire_009" />
       <Equipment slot="Body" id="Item.tor_vc_body_armor_vampire_lord_001" />
       <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_vampire_lord_001" />
-      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_blood_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_vampire_lord_001" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_vampire_lord_001" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_zombie_horse_001" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_vampire_001" />
@@ -5890,7 +5890,7 @@
       <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_vampire_009" />
       <Equipment slot="Body" id="Item.tor_vc_body_armor_vampire_lord_001" />
       <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_vampire_lord_001" />
-      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_blood_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_vampire_lord_001" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_vampire_lord_001" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_zombie_horse_001" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_vampire_001" />
@@ -5900,7 +5900,7 @@
       <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_vampire_006" />
       <Equipment slot="Body" id="Item.tor_vc_body_armor_vampire_lord_001" />
       <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_vampire_lord_001" />
-      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_blood_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_vampire_lord_001" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_vampire_lord_001" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_zombie_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_vampire_001" />
@@ -5910,7 +5910,7 @@
       <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_vampire_006" />
       <Equipment slot="Body" id="Item.tor_vc_body_armor_vampire_lord_001" />
       <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_vampire_lord_001" />
-      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_blood_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_vampire_lord_001" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_vampire_lord_001" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_zombie_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_vampire_001" />
@@ -5976,7 +5976,7 @@
       <Equipment slot="Cape" id="Item.empire_cape_a" />
       <Equipment slot="Gloves" id="Item.lordly_mail_mitten" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
-      <Equipment slot="Horse" id="Item.hunter" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -5988,7 +5988,7 @@
       <Equipment slot="Cape" id="Item.empire_cape_a" />
       <Equipment slot="Gloves" id="Item.lordly_mail_mitten" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
-      <Equipment slot="Horse" id="Item.hunter" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6000,7 +6000,7 @@
       <Equipment slot="Cape" id="Item.green_hood" />
       <Equipment slot="Gloves" id="Item.lordly_mail_mitten" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
-      <Equipment slot="Horse" id="Item.hunter" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6012,7 +6012,7 @@
       <Equipment slot="Cape" id="Item.green_hood" />
       <Equipment slot="Gloves" id="Item.lordly_mail_mitten" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
-      <Equipment slot="Horse" id="Item.hunter" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6024,7 +6024,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
-      <Equipment slot="Horse" id="Item.hunter" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6036,7 +6036,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
-      <Equipment slot="Horse" id="Item.hunter" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -6050,7 +6050,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
       <Equipment slot="Gloves" id="Item.mail_mitten" />
       <Equipment slot="Leg" id="Item.mail_chausses" />
-      <Equipment slot="Horse" id="Item.hunter" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6062,7 +6062,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
       <Equipment slot="Gloves" id="Item.mail_mitten" />
       <Equipment slot="Leg" id="Item.mail_chausses" />
-      <Equipment slot="Horse" id="Item.hunter" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6074,7 +6074,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.reinforced_padded_mitten" />
       <Equipment slot="Leg" id="Item.strapped_mail_chausses" />
-      <Equipment slot="Horse" id="Item.hunter" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6086,7 +6086,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.reinforced_padded_mitten" />
       <Equipment slot="Leg" id="Item.strapped_mail_chausses" />
-      <Equipment slot="Horse" id="Item.hunter" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6098,7 +6098,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
       <Equipment slot="Gloves" id="Item.mail_mitten" />
       <Equipment slot="Leg" id="Item.strapped_mail_chausses" />
-      <Equipment slot="Horse" id="Item.hunter" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6110,7 +6110,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
       <Equipment slot="Gloves" id="Item.mail_mitten" />
       <Equipment slot="Leg" id="Item.strapped_mail_chausses" />
-      <Equipment slot="Horse" id="Item.hunter" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -6124,7 +6124,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.lordly_mail_mitten" />
       <Equipment slot="Leg" id="Item.mail_chausses" />
-      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6136,7 +6136,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.lordly_mail_mitten" />
       <Equipment slot="Leg" id="Item.mail_chausses" />
-      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6148,7 +6148,7 @@
       <Equipment slot="Cape" id="Item.a_battania_cloak_a" />
       <Equipment slot="Gloves" id="Item.lordly_mail_mitten" />
       <Equipment slot="Leg" id="Item.mail_chausses" />
-      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6160,7 +6160,7 @@
       <Equipment slot="Cape" id="Item.a_battania_cloak_a" />
       <Equipment slot="Gloves" id="Item.lordly_mail_mitten" />
       <Equipment slot="Leg" id="Item.mail_chausses" />
-      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -6174,7 +6174,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
       <Equipment slot="Gloves" id="Item.lordly_mail_mitten" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_plate_001" />
-      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_002" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6186,7 +6186,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
       <Equipment slot="Gloves" id="Item.lordly_mail_mitten" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_plate_001" />
-      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_002" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6198,7 +6198,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.lordly_mail_mitten" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_plate_001" />
-      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6210,7 +6210,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.lordly_mail_mitten" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_plate_001" />
-      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -6223,7 +6223,7 @@
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_kotr_002" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_004" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6234,7 +6234,7 @@
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_kotr_002" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_004" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6245,7 +6245,7 @@
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_kotr_001" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_005" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6256,7 +6256,31 @@
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_kotr_001" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_002" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_005" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_jousting_003" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_noble_001" />
+      <Equipment slot="Item2" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_questing_knight_002" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_kotr_001" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_grail_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_002" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_005" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_jousting_003" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_noble_001" />
+      <Equipment slot="Item2" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_questing_knight_002" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_kotr_001" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_grail_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_005" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -6268,7 +6292,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_questing_knight_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_004" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6278,7 +6302,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_questing_knight_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_004" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6288,7 +6312,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_002" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_questing_knight_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_002" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6298,7 +6322,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_002" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_questing_knight_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_002" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6308,7 +6332,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_questing_knight_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_004" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6318,7 +6342,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_questing_knight_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_004" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6328,7 +6352,7 @@
       <Equipment slot="Cape" id="Item.battanian_chainmail_shoulder_b" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_questing_knight_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_004" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6338,7 +6362,7 @@
       <Equipment slot="Cape" id="Item.battanian_chainmail_shoulder_b" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_questing_knight_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_004" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -6352,7 +6376,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_003" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6364,7 +6388,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_003" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6376,7 +6400,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_003" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6388,7 +6412,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_003" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6400,7 +6424,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_003" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6412,7 +6436,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_003" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6424,7 +6448,7 @@
       <Equipment slot="Cape" id="Item.empire_cape_a" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6436,7 +6460,7 @@
       <Equipment slot="Cape" id="Item.empire_cape_a" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6448,7 +6472,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_grail_knight_001" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6460,8 +6484,34 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_grail_knight_001" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_jousting_003" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_noble_001" />
+      <Equipment slot="Item2" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item3" id="Item.tor_bretonnia_weapon_thsword_001" />
+      <Equipment slot="Head" id="Item.tor_mousillon_head_helm_kotr_001" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_kotr_001" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_grail_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_005" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_jousting_003" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_noble_001" />
+      <Equipment slot="Item2" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item3" id="Item.tor_bretonnia_weapon_thsword_001" />
+      <Equipment slot="Head" id="Item.tor_mousillon_head_helm_kotr_001" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_kotr_001" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_grail_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_005" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_m_doomed_questing_knight_template" culture="Culture.mousillon">
@@ -6472,7 +6522,7 @@
       <Equipment slot="Cape" id="Item.wrapped_scarf" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6482,7 +6532,7 @@
       <Equipment slot="Cape" id="Item.wrapped_scarf" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6492,7 +6542,7 @@
       <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_hell_knight_001" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_002" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6502,7 +6552,7 @@
       <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_hell_knight_001" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_002" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6512,7 +6562,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_002" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6522,7 +6572,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_002" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -6535,7 +6585,7 @@
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_kotr_001" />
       <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_kotr_001" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_kotr_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6546,7 +6596,7 @@
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_kotr_001" />
       <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_kotr_001" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_kotr_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6557,7 +6607,7 @@
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_kotr_001" />
       <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_kotr_001" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_kotr_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6568,7 +6618,7 @@
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_kotr_001" />
       <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_kotr_001" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_kotr_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6580,7 +6630,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_001" />
       <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_vc_mount_horse_skeleton_horse_001" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6592,7 +6642,31 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_001" />
       <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_vc_mount_horse_skeleton_horse_001" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_001" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_lance_knight_003" />
+      <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
+      <Equipment slot="Body" id="Item.tor_mousillon_body_armor_kotr_001" />
+      <Equipment slot="Cape" id="Item.tor_mousillon_shoulder_grail_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
+      <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
+      <Equipment slot="Horse" id="Item.tor_vc_mount_horse_zombie_horse_002" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_001" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_lance_knight_003" />
+      <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
+      <Equipment slot="Body" id="Item.tor_mousillon_body_armor_kotr_001" />
+      <Equipment slot="Cape" id="Item.tor_mousillon_shoulder_grail_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
+      <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
+      <Equipment slot="Horse" id="Item.tor_vc_mount_horse_zombie_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -6606,7 +6680,7 @@
       <Equipment slot="Cape" id="Item.tor_mousillon_shoulder_pauldron_bgk_001" />
       <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6618,7 +6692,7 @@
       <Equipment slot="Cape" id="Item.tor_mousillon_shoulder_pauldron_bgk_001" />
       <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6630,7 +6704,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6642,7 +6716,7 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
       <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6654,7 +6728,7 @@
       <Equipment slot="Cape" id="Item.fur_cloak_b" />
       <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6666,7 +6740,7 @@
       <Equipment slot="Cape" id="Item.fur_cloak_b" />
       <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6678,7 +6752,7 @@
       <Equipment slot="Cape" id="Item.fur_cloak_b" />
       <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6690,7 +6764,7 @@
       <Equipment slot="Cape" id="Item.fur_cloak_b" />
       <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
     </EquipmentSet>
     <EquipmentSet>
@@ -6702,7 +6776,7 @@
       <Equipment slot="Cape" id="Item.empire_cape_a" />
       <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -6714,7 +6788,7 @@
       <Equipment slot="Cape" id="Item.empire_cape_a" />
       <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
       <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
-      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -12634,6 +12708,32 @@
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_prophetess_001" />
       <Equipment slot="Horse" id="Item.t2_vlandia_horse" />
       <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_m_lord_serpent" culture="Culture.mousillon">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_006" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+      <Equipment slot="Item2" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Head" id="Item.tor_mousillon_head_helm_kotr_001" />
+      <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
+      <Equipment slot="Cape" id="Item.tor_mousillon_shoulder_grail_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
+      <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_006" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+      <Equipment slot="Item2" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Head" id="Item.tor_mousillon_head_helm_kotr_001" />
+      <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
+      <Equipment slot="Cape" id="Item.tor_mousillon_shoulder_grail_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_mousillon_arm_gauntlet_bgk_001" />
+      <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_pitre_fonce_template" culture="Culture.mousillon">
