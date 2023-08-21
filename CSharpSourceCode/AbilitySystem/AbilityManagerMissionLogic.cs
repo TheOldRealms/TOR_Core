@@ -144,7 +144,18 @@ namespace TOR_Core.AbilitySystem
             var comp2 = affectedAgent.GetComponent<AbilityComponent>();
             if (comp2 != null)
             {
-                if (comp2.CareerAbility != null && comp2.CareerAbility.ChargeType == ChargeType.DamageTaken) comp2.CareerAbility.AddCharge(blow.InflictedDamage * DamagePortionForChargingCareerAbility);
+                if (comp2.CareerAbility != null && comp2.CareerAbility.ChargeType == ChargeType.DamageTaken)
+                {
+                    
+                    var percentage = blow.InflictedDamage / affectedAgent.HealthLimit;
+                    
+                    if (attackCollisionData.CollisionResult == CombatCollisionResult.Blocked)
+                    {
+                        percentage *= 0.05f;
+                    }
+                    
+                    comp2.CareerAbility.AddCharge(percentage * DamagePortionForChargingCareerAbility);
+                }
             }
         }
 

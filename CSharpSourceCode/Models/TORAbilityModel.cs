@@ -60,7 +60,7 @@ namespace TOR_Core.Models
         {
             if (ability.AbilityType == AbilityType.Prayer)
             {
-                return ability.CoolDown * 2;
+                return ability.CoolDown * 4;
             }
             return ability.WindsOfMagicCost * 20;
         }

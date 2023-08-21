@@ -280,7 +280,7 @@ namespace TOR_Core.AbilitySystem
                     }
                 }
                 
-                ability.SetCoolDown((int)cooldown.ResultNumber);
+                ability.SetCoolDown((int)cooldown.ResultNumber-15);
             }
         }
         public void SetPrayerCoolDown(int time)
