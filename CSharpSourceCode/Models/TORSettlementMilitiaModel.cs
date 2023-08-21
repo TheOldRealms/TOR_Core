@@ -21,7 +21,7 @@ namespace TOR_Core.Models
             var result = base.CalculateMilitiaChange(settlement, includeDescriptions);
             if (settlement.IsCastle)
             {
-                if (settlement.IsBloodKeep() && settlement.Owner.IsVampire())
+                if (settlement.IsBloodKeep() && settlement.Owner.IsVampire()&&!settlement.IsUnderSiege)
                 {
                     if (settlement.Militia < 2000)
                     {
