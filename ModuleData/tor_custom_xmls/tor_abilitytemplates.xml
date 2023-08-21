@@ -2434,7 +2434,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="2"
       BelongsToLoreID="LoreOfBeasts"
-      TooltipDescription="A storm of stones falls from the skies, dealing damage (how much dmg) in an area.">
+      TooltipDescription="Roots erupt from the ground preventing all enemies from moving for (4/s).">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2477,7 +2477,7 @@
       TargetCapturingRadius="1"
       SpellTier="2"
       BelongsToLoreID="LoreOfBeasts"
-      TooltipDescription="Allies in a 3 meter radius will deal 25% more physical damage and attack 25% faster">
+      TooltipDescription="A magical skin surrounds the caster protecting him from physical damage (35%) for  seconds.">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2566,7 +2566,7 @@
    CrosshairType="TargetedAOE"
    SpellTier="3"
     BelongsToLoreID="LoreOfBeasts"
-    TooltipDescription="Summons a nightmare of crows in the targeted area. Enemies caught in the area suffer damage over time for 5 sec and their physical resist is reduced by 20%">
+    TooltipDescription="Summons a nightmare of crows in the targeted area. Enemies caught in the area suffer damage over time for 5 sec and their physical resist is reduced by 20%.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2653,7 +2653,7 @@
    CrosshairType="TargetedAOE"
    SpellTier="4"
     BelongsToLoreID="LoreOfBeasts"
-    TooltipDescription="Woodland sprites hinder all enemies caught in an area for  secodnds, reducing movement (35%) and attack speed (50%) and causing a small damage over time (how much dmg) for (3/s)">
+    TooltipDescription="Woodland sprites hinder all enemies caught in an area for  secounds, reducing movement (35%) and attack speed (50%) and causing 3 damage per secound for a total duration of 11 secounds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
