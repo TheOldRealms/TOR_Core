@@ -174,7 +174,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior
             {
                 return new List<Axis>
                 {
-                    new Axis(0, 1, x => x, target => 0.4f)
+                    new Axis(0, 1, x => (float)Math.Min(0.4, 1 - x), CommonAIDecisionFunctions.WindsOfMagicRemainingRatio(behavior.Agent))
                 };
             };
         }

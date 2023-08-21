@@ -14,10 +14,5 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
         {
             //Do nothing. I am hoping that we will add some sort of "Channeling" which allows us to restore magic over time later on.
         }
-
-        protected override float CalculateUtility(Target target)
-        {
-            return 0.4f;
-        }
     }
 }
