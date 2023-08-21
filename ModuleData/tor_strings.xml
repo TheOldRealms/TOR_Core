@@ -248,6 +248,8 @@
 
   <string id="tor_player_accept_vassalage.empire" text="{=!}I proclaim you a noble of the Empire. Your life and property shall be protected by our laws, and shall not be taken from you except by law. You may serve as an official over towns and villages and as a general over armies, if we call upon you to do so." />
   <string id="tor_player_accept_vassalage.khuzait" text="{=!}I proclaim you a noble of the Sylvania and a servant of the von Carsteins. You are expected to carry out our bidding and bear arms in times of war. " />
+  <string id="tor_player_accept_vassalage.mousillon" text="{=!}I have great hopes for you {PLAYER.NAME}. I know you shall prove yourself worthy of the trust I have placed in you." />
+
 
   <string id="str_liege_title.empire" text="{=!}Elector Count of one of the Provinces of the Empire">
     <tags>
@@ -271,20 +273,23 @@
   </string>
   <string id="str_liege_title.vlandia" text="{=!}Duke of Bretonnia">
     <tags>
-      <tag tag_name="VlandiaTag" />
+      <tag tag_name="VlandianTag" />
     </tags>
   </string>
   <string id="str_liege_title_female.vlandia" text="{=!}Duchess of Bretonnia">
     <tags>
-      <tag tag_name="VlandiaTag" />
+      <tag tag_name="VlandianTag" />
     </tags>
   </string>
   <string id="str_liege_title.mousillon" text="{=!}Duke of Mousillon">
-    <tags>
+	<tags>
+      <tag tag_name="MousillonTag" />
     </tags>
   </string>
+  
   <string id="str_liege_title_female.mousillon" text="{=!}Duchess of Mousillon">
-    <tags>
+  	<tags>
+      <tag tag_name="MousillonTag" />
     </tags>
   </string>
 
@@ -346,6 +351,78 @@
   <string id="str_comment_noble_introduces_self_and_clan.khuzait" text="{=!}I am {CONVERSATION_CHARACTER.LINK}, of the {CLAN_NAME}. Our clan has loyally served the von Carsteins for generations.">
     <tags>
       <tag tag_name="KhuzaitTag" />
+    </tags>
+  </string>
+  
+   <string id="str_comment_noble_introduces_self.vlandia" text="{=!}Well met, I am {CONVERSATION_CHARACTER.LINK} of {CLAN_NAME}.">
+    <tags>
+      <tag tag_name="VlandianTag" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self_and_clan.vlandia" text="{=!}Well met, I am {CONVERSATION_CHARACTER.LINK}, of {CLAN_NAME}. My family has served the people of Bretonnia and the Lady for generations">
+    <tags>
+      <tag tag_name="VlandianTag" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self_and_clan.vlandia_honor" text="{=!}I am {CONVERSATION_CHARACTER.LINK}, of {CLAN_NAME}. Come, be ye friend or foe come and let me hear what you have to say.">
+    <tags>
+      <tag tag_name="VlandianTag" />
+      <tag tag_name="HonorTag" weight="1" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self_and_clan.vlandia_mercy" text="{=!}I am {CONVERSATION_CHARACTER.LINK}, of {CLAN_NAME}. My lord instructs me to show mercy to no one, yet you do not seem like a threat to my cause.">
+    <tags>
+      <tag tag_name="VlandianTag" />
+      <tag tag_name="MercyTag" weight="1" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self_and_clan.vlandia_boasting" text="{=!}I am {CONVERSATION_CHARACTER.LINK}, of {CLAN_NAME}. Speak quickly, I have no patience for those with little ambition. ">
+    <tags>
+      <tag tag_name="VlandianTag" />
+      <tag tag_name="UncharitableTag" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self_and_clan.vlandia_boasting_cruel" text="{=!}Who dares to come before {CONVERSATION_CHARACTER.LINK}, of {CLAN_NAME}. Peons, beggars and cowards have no right to tread the ground I walk on. Speak or be slain.">
+    <tags>
+      <tag tag_name="VlandianTag" />
+      <tag tag_name="UncharitableTag" />
+      <tag tag_name="CruelTag" weight="1" />
+    </tags>
+  </string> 
+  
+   <string id="str_comment_noble_introduces_self.mousillon" text="{=!}I am {CONVERSATION_CHARACTER.LINK} of the house of {CLAN_NAME}.">
+    <tags>
+      <tag tag_name="MousillonTag" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self_and_clan.mousillon" text="{=!}You come before {CONVERSATION_CHARACTER.LINK} of {CLAN_NAME}">
+    <tags>
+      <tag tag_name="MousillonTag" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self_and_clan.mousillon_honor" text="{=!}You come before {CONVERSATION_CHARACTER.LINK}, of {CLAN_NAME}. You seem a capable foe, well met.">
+    <tags>
+      <tag tag_name="MousillonTag" />
+      <tag tag_name="HonorTag" weight="1" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self_and_clan.mousillon_mercy" text="{=!}I am {CONVERSATION_CHARACTER.LINK}, of {CLAN_NAME}. My lord instructs me to show mercy to no one, yet you do not seem like a threat to my cause.">
+    <tags>
+      <tag tag_name="MousillonTag" />
+      <tag tag_name="MercyTag" weight="1" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self_and_clan.mousillon_boasting" text="{=!}I am {CONVERSATION_CHARACTER.LINK}, of {CLAN_NAME}. Speak quickly, I have no patience for those with little ambition. ">
+    <tags>
+      <tag tag_name="MousillonTag" />
+      <tag tag_name="UncharitableTag" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self_and_clan.mousillon_boasting_cruel" text="{=!}Who dares to come before {CONVERSATION_CHARACTER.LINK}, of {CLAN_NAME}. Peons, beggars and cowards have no right to tread the ground I walk on. Speak or be slain.">
+    <tags>
+      <tag tag_name="MousillonTag" />
+      <tag tag_name="UncharitableTag" />
+      <tag tag_name="CruelTag" weight="1" />
     </tags>
   </string>
 
