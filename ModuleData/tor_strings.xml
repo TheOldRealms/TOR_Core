@@ -288,8 +288,6 @@
     </tags>
   </string>
 
-
-
   <string id="str_comment_noble_introduces_self.empire" text="{=!}I am {CONVERSATION_CHARACTER.LINK} of the house of {CLAN_NAME}.">
     <tags>
       <tag tag_name="EmpireTag" />

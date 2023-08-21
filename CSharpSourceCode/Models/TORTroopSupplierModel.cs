@@ -53,7 +53,7 @@ namespace TOR_Core.Models
                     }
                     else
                     {
-                        num = MBRandom.RandomFloatRanged(1f, element.Troop.Tier);
+                        num = 10;
                         if (element.Troop.HasAttribute("ArtilleryCrew") && priorityList.Where(x => x.Item1.Troop.HasAttribute("ArtilleryCrew")).Count() < 6)
                         {
                             num *= 15;
@@ -79,7 +79,7 @@ namespace TOR_Core.Models
                     }
                 }
             }
-
+            var sortedList = priorityList.OrderByDescending(x => x.Item3);
         }
 
         private bool CanTroopJoinBattle(FlattenedTroopRosterElement troopRoster, bool includePlayer)
