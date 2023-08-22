@@ -103,7 +103,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _vampireRoot.Initialize(CareerID, "> The player transforms into fog, which is impossible to catch and can fly in every direction. The ability lasts 5 seconds and the duration increases by 0.03 seconds for each point in Athletics.Mist Form can be deactivated at will by pressing attack.", null, true,
+            _vampireRoot.Initialize(CareerID, "The player transforms into fog, which is impossible to catch and can fly in every direction. The ability lasts 5 seconds and the duration increases by 0.03 seconds for each point in Athletics. Mist Form can be deactivated at will by pressing attack.", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -252,7 +252,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _courtleyPassive3.Initialize(CareerID, "10% extra Magical spell and ranged damage.", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell | AttackTypeMask.Ranged));
             _courtleyPassive4.Initialize(CareerID, "Killing blows in the head replenish 3 Winds of Magic.", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3)); //CareerPerkMissionBehavior 28
 
-            _lordlyPassive1.Initialize(CareerID, " Party movement speed is increased by 1.5.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1.5f, PassiveEffectType.PartyMovementSpeed));
+            _lordlyPassive1.Initialize(CareerID, "Party movement speed is increased by 1.5.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1.5f, PassiveEffectType.PartyMovementSpeed,false));
             _lordlyPassive2.Initialize(CareerID, "Party size is increased by 75.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(75, PassiveEffectType.PartySize));
             _lordlyPassive3.Initialize(CareerID, "All Vampire troops wages are reduced by 15%.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.Special, true)); //TORPartyWageModel 85
             _lordlyPassive4.Initialize(CareerID, "Upgrade costs are halved.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-0.5f, PassiveEffectType.TroopUpgradeCost));
