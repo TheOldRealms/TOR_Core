@@ -153,7 +153,8 @@ namespace TOR_Core.AbilitySystem
                     {
                         percentage *= 0.05f;
                     }
-                    
+
+                    percentage *= 100;
                     comp2.CareerAbility.AddCharge(percentage * DamagePortionForChargingCareerAbility);
                 }
             }
