@@ -8393,7 +8393,7 @@
   <EquipmentRoster id="tor_ror_son_of_altdorf_template" culture="Culture.empire">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_reiksguard_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_halberd_004" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_burgonet_002" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_004" />
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_003" />
@@ -8402,7 +8402,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_reiksguard_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_halberd_004" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_burgonet_002" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_004" />
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_003" />
@@ -8413,7 +8413,7 @@
   <EquipmentRoster id="tor_ror_altdorf_companyman_template" culture="Culture.empire">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_reiksguard_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_halberd_004" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_burgonet_002" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_004" />
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
@@ -8422,7 +8422,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_reiksguard_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_halberd_004" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_burgonet_002" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_004" />
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_004" />
@@ -8433,7 +8433,7 @@
   <EquipmentRoster id="tor_ror_altdorf_company_sergeant_template" culture="Culture.empire">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_reiksguard_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_halberd_004" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_lion_003" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_greatsword_001" />
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_greatsword_002" />
@@ -8442,7 +8442,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_reiksguard_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_halberd_004" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_lion_003" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_greatsword_001" />
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_greatsword_002" />
@@ -11288,7 +11288,7 @@
       <Equipment slot="Item1" id="Item.tor_empire_weapon_banner_001" />
       <Equipment slot="Head" id="Item.tor_empire_head_hat_greatsword_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_swadian_plate_001" />
-      <Equipment slot="Cape" id="Item.tor_empire_body_armor_general_002" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_general_002" />
       <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_plate_001" />
       <Equipment slot="Horse" id="Item.noble_horse" />
@@ -11299,7 +11299,7 @@
       <Equipment slot="Item1" id="Item.tor_empire_weapon_banner_001" />
       <Equipment slot="Head" id="Item.tor_empire_head_hat_greatsword_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_swadian_plate_001" />
-      <Equipment slot="Cape" id="Item.tor_empire_body_armor_general_002" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_general_002" />
       <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_plate_001" />
       <Equipment slot="Horse" id="Item.noble_horse" />
@@ -11722,7 +11722,7 @@
       <Equipment slot="Item3" id="Item.tor_empire_weapon_shield_003" />
       <Equipment slot="Head" id="Item.tor_empire_head_hat_sergeant_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_halberdier_001" />
-      <Equipment slot="Cape" id="Item.tor_empire_body_armor_general_002" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_general_002" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_greatsword_001" />
       <Equipment slot="Horse" id="Item.noble_horse" />
@@ -11735,7 +11735,7 @@
       <Equipment slot="Item3" id="Item.tor_empire_weapon_shield_003" />
       <Equipment slot="Head" id="Item.tor_empire_head_hat_sergeant_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_halberdier_001" />
-      <Equipment slot="Cape" id="Item.tor_empire_body_armor_general_002" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_general_002" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_greatsword_001" />
       <Equipment slot="Horse" id="Item.noble_horse" />
@@ -11800,7 +11800,7 @@
       <Equipment slot="Item3" id="Item.tor_empire_weapon_shield_003" />
       <Equipment slot="Head" id="Item.tor_empire_head_hat_sergeant_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_halberdier_001" />
-      <Equipment slot="Cape" id="Item.tor_empire_body_armor_general_002" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_general_002" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_greatsword_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
       <Equipment slot="Horse" id="Item.noble_horse" />
@@ -11813,7 +11813,7 @@
       <Equipment slot="Item3" id="Item.tor_empire_weapon_shield_003" />
       <Equipment slot="Head" id="Item.tor_empire_head_hat_sergeant_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_halberdier_001" />
-      <Equipment slot="Cape" id="Item.tor_empire_body_armor_general_002" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_general_002" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_greatsword_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
       <Equipment slot="Horse" id="Item.noble_horse" />
