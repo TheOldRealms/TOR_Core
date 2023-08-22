@@ -520,15 +520,15 @@ namespace TOR_Core.Ink
             Settlement settlement = null;
             if (settlementType.ToLowerInvariant() == "town")
             {
-                settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 50f, x => x.IsTown);
+                settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 150f, x => x.IsTown);
             }
             else if (settlementType.ToLowerInvariant() == "village")
             {
-                settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 50f, x => x.IsVillage);
+                settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 150f, x => x.IsVillage);
             }
             else if (settlementType.ToLowerInvariant() == "castle")
             {
-                settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 50f, x => x.IsCastle);
+                settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 150f, x => x.IsCastle);
             }
             if (settlement != null) return settlement.Name.ToString();
             return "ERROR: invalid settlement type";
