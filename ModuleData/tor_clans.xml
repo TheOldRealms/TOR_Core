@@ -83,7 +83,7 @@
 			 settlement_banner_mesh="none"
 			 is_bandit="true"
 			 is_outlaw="true"
-			 name="{=e6csp4ha}Bretonnia Bandits"
+			 name="{=e6csp4ha}'Bretonnian Outlaws"
 			 tier="1" />
 	<!--Averland faction-->
 	<Faction id="averland_clan_1"

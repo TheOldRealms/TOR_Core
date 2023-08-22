@@ -19,7 +19,7 @@ namespace TOR_Core.Models
         {
             var result = base.CalculateFinalSpeed(mobileParty, finalSpeed);
             if(mobileParty == MobileParty.MainParty)
-                AddCareerPassivesForPartySpeed(mobileParty, ref finalSpeed);
+                AddCareerPassivesForPartySpeed(mobileParty, ref result);
             
             if(mobileParty != null &&mobileParty!=MobileParty.MainParty&& mobileParty.Party.Culture.StringId == "khuzait")
             {
