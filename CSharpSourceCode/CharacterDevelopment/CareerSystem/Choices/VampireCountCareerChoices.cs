@@ -213,7 +213,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 }, new CareerChoiceObject.PassiveEffect(-30, PassiveEffectType.Special, true)); //charge increase
             
-            _masterOfDeadKeystone.Initialize(CareerID, "All buffs are propagated when leaving Mist Form (requires extra 30% damage dealt).", "MasterOfDead", false,
+            _masterOfDeadKeystone.Initialize(CareerID, "All buffs are propagated while remaining in Mist Form (requires extra 30% damage dealt).", "MasterOfDead", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
