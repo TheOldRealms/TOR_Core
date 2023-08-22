@@ -2086,7 +2086,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="4"
       BelongsToLoreID="LoreOfLife"
-      TooltipDescription="Tendrils emerge from the ground reaching out and attacking enemies passing the area. Knocks down and dismounts enemies, slows (0.8%) and deals 5 dmg per second for 16 secounds.">
+      TooltipDescription="Tendrils emerge from the ground reaching out and attacking enemies passing the area. Knocks down and dismounts enemies, slows (0.8%) and deals 5 dmg per second for 16 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2171,7 +2171,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="LoreOfLife"
-      TooltipDescription="Hardens the skin of targets, making them tougher, providing 35% physical resistance for total duration of 8 secounds">
+      TooltipDescription="Hardens the skin of targets, making them tougher, providing 35% physical resistance for total duration of 8 secouds">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2214,7 +2214,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="2"
       BelongsToLoreID="LoreOfLife"
-      TooltipDescription="Causes a small area to radiate unbearable heat, causing fatigue, impairing movement by 50%, and making the enemies vulnerable to fire damage by 25% for  secounds 8.">
+      TooltipDescription="Causes a small area to radiate unbearable heat, causing fatigue, impairing movement by 50%, and making the enemies vulnerable to fire damage by 25% for  seconds 8.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2301,7 +2301,7 @@
    CrosshairType="TargetedAOE"
    SpellTier="2"
     BelongsToLoreID="LoreOfLife"
-    TooltipDescription="Drains the life essence from an enemy, dealing 5 damage per second for total duration of 10 secounds.">
+    TooltipDescription="Drains the life essence from an enemy, dealing 5 damage per second for total duration of 10 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2345,7 +2345,7 @@
 	CrosshairType="TargetedAOE"
 	SpellTier="4"
 	BelongsToLoreID="LoreOfLife"
-	TooltipDescription="Raw energy flows across the battlefield, renewing lost vigour and mending wounds. Heals 30 hitpoints flat, and 10 hitpoints of all friendly targets inside the area for 12 secounds.">
+	TooltipDescription="Raw energy flows across the battlefield, renewing lost vigour and mending wounds. Heals 30 hitpoints flat, and 10 hitpoints of all friendly targets inside the area for 12 seconds.">
 		<LightColorRGB x="50" y="255" z="50" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2434,7 +2434,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="2"
       BelongsToLoreID="LoreOfBeasts"
-      TooltipDescription="Roots erupt from the ground preventing all enemies from moving for 4 secounds.">
+      TooltipDescription="Roots erupt from the ground preventing all enemies from moving for 4 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2653,7 +2653,7 @@
    CrosshairType="TargetedAOE"
    SpellTier="4"
     BelongsToLoreID="LoreOfBeasts"
-    TooltipDescription="Woodland sprites hinder all enemies caught in an area for 11 secounds, reducing movement (35%) and attack speed (50%) and causing 3 damage per secound.">
+    TooltipDescription="Woodland sprites hinder all enemies caught in an area for 11 seconds, reducing movement (35%) and attack speed (50%) and causing 3 damage per second.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>

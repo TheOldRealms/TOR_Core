@@ -467,11 +467,11 @@
   <string id="customsettlement_disabled.chaos_portal_01" text="{=!}The portal lies dormant. Come back at a later time." />
   <string id="customsettlement_battle.chaos_portal_01" text="{=!}Attempt to defeat the chaos forces present and close the portal." />
 
-  <string id="customsettlement_intro.herdstone_01" text="{=!}You arrive at a bestmen herdstone. A raging signal fire is lit to gather warbands to the warherd gathering here." />
+  <string id="customsettlement_intro.herdstone_01" text="{=!}You arrive at a beastmen herdstone. A raging signal fire is lit to gather warbands to the warherd gathering here." />
   <string id="customsettlement_disabled.herdstone_01" text="{=!}The herdstone camp is empty, come back at a later time." />
   <string id="customsettlement_battle.herdstone_01" text="{=!}Attempt to defeat the bestmen warherd in the heart of their bloodgrounds." />
 
-  <string id="customsettlement_intro.herdstone_02" text="{=!}You arrive at a bestmen herdstone. A raging signal fire is lit to gather warbands to the warherd gathering here." />
+  <string id="customsettlement_intro.herdstone_02" text="{=!}You arrive at a beastmen herdstone. A raging signal fire is lit to gather warbands to the warherd gathering here." />
   <string id="customsettlement_disabled.herdstone_02" text="{=!}The herdstone camp is empty, come back at a later time." />
   <string id="customsettlement_battle.herdstone_02" text="{=!}Attempt to defeat the bestmen warherd in the heart of their bloodgrounds." />
 

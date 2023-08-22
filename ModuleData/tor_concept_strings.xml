@@ -1,55 +1,46 @@
 <Concepts>
 <!-- #The Old Realms -->
-  <Concept title="{=aIkffnN6}Blood Kiss" id="str_tor_bloodkiss" group="The Old Realms" link_id="TOR_BLOODKISS" text=
-  "The Blood Kiss is a mechanic that allows a ‘Human’ player to turn himself into a Vampire, bringing with it all the benefits and detriments of the transformation.{newline}
+  <Concept title="{=!}Blood Kiss" id="str_tor_bloodkiss" group="The Old Realms" link_id="TOR_BLOODKISS" text=
+  "The Blood Kiss is a mechanic that allows a ‘Human’ player to turn himself into a {TOR_VAMPIRE}, bringing with it all the benefits and detriments of the transformation.{newline}
   {newline}
-  To receive the Blood Kiss you must join the Vampire Counts faction and once you have enough renown speak to the faction leader and he will have the option to turn you into a Vampire."/>
-  <Concept title="{=aIkffnN6}Character Creation" id="str_tor_charactercreation" group="The Old Realms" link_id="TOR_CHARACTERCREATION" text=
-  "Vampire:{newline}
-  If you wish to start the game as a Vampire, you must choose the ‘Vampire Nobility’ option during character creation, this should be your final choice before loading into the campaign map. It will allow to choose your blood line. You either become a Vampire Count or start your adventure as a 
-Blood Knight. {newline}
-{newline}
-Being a Vampire  provides a unique set of bonuses and abilities, from the very start of your playthrough: 
-You will start with the ability to raise the dead, you can move faster at night. You are more agile than humans{newline}
-{newline}
-Note that you also will be facing some disadvantages, for example you travel at day times slower
-As a Vampire you will start your playthrough hated by the Empire and most other living factions.{newline}
-{newline}
+  To receive the Blood Kiss you must join a Vampire faction and once you have enough renown speak to the faction leader and he will have the option to turn you into a Vampire."/>
+  <Concept title="{=!}Character Creation" id="str_tor_charactercreation" group="The Old Realms" link_id="TOR_CHARACTERCREATION" text=
+  "Vampire:{newline}If you wish to start the game as a Vampire, you must choose the ‘Vampire Nobility’ option during character creation, this should be your final choice before loading into the campaign map. It will allow to choose your blood line. You either become a Vampire Count or start your adventure as a Blood Knight. {newline}
+  {newline}
+Being a Vampire  provides a unique set of bonuses and abilities, from the very start of your playthrough: You will start with the ability to raise the dead, you can move faster at night. You are more agile than humans{newline} Note that you also will be facing some disadvantages, for example you travel at day times slower. As a Vampire you will start your playthrough hated by the Empire and most other living factions.{newline}
 {newline}
 Necromancer:{newline}
 If you wish to start the game as a Necromancer, you must choose the Novice Necromancer option during character creation, this should be one of the final options given to you. Once selected you will load into the map with access to Necromancy magic and the ability to raise the dead after battles to supplement your army.{newline}
 {newline}
-{newline}
 Wizard/Magic Caster:{newline}
 To start the game as a magic caster, and this is applicable across most factions, you must select the correct final option during character creation, which will contain ‘+allows for the use of magic’ in the description.{newline}
 {newline}
-For example within the Empire, choosing to be a college acolyte upon game start, you will load into the game with access to magic. Once loaded into the campaign map a window will open to choose the lore of magic you want to specialise in, from this point onward you are free to play the campaign as normal with access to a number of starting spells. Note: You CANNOT learn more than one lore of magic as a human.{newline}
-{newline}
+For example within the Empire, choosing to be a college acolyte upon game start, you will load into the game with access to magic. Once loaded into the campaign map a window will open to choose the lore of magic you want to specialise in, from this point onward you are free to play the campaign as normal with access to a number of starting spells. Note: You CANNOT learn more than one lore of magic as a human (unless you are Damsel, see {TOR_CAREERS}) .{newline}
 {newline}
 Priest and Damsel of the Lady:{newline}
-Priest careers can be selected upon starting the game. They provide strong battle prayers(see Priests and Prayers). {newline}
+Priest careers can be selected upon starting the game. They provide strong battle prayers(see {TOR_PRAYERS}). 
+{newline}
 {newline}
 {newline}
 Knight Errants:{newline}
-Knights of Bretonnia will be provided the Knight of Bretonnia Career.{newline}
+The Knight of Bretonnia is one of the  unique {TOR_CAREERS} you can start with when playing as Bretonnia.{newline}
 {newline}
 {newline}
 Standard options: {newline}
-Choosing any other career start for your campaign will result in the same experience to Vanilla Bannerlord, you will load into the game with gear based on your choice and the freedom to make your own story from scratch. When no career is chosen at the beginning, you will instead start with the  Mercenary career. {newline}
+Choosing any other career start for your campaign will result in a similar experience as Vanilla Bannerlord, you will load into the game with gear based on your choice and the freedom to make your own story from scratch. When no career is chosen at the beginning, you will instead start with the  Mercenary career which provides some advantages(see {TOR_CAREERS}).{newline}
 {newline}
 {newline}
 "/>
-  <Concept title="{=aIkffnN6}Careers" id="str_tor_careers" group="The Old Realms" link_id="TOR_CAREERS" text=
-  "Careers are a system you can engage with for both roleplaying and character development, providing unique skills and bonuses depending on what you choose to specialise in. These ‘careers’ are similar to skill trees that require specific feats to be achieved to allow for progression, such as additional health points, increased damage, tor party buffs related to the career in question.{newline}
+  <Concept title="{=!}Careers" id="str_tor_careers" group="The Old Realms" link_id="TOR_CAREERS" text=
+  "Careers are a system you can engage with for both roleplaying and character development, providing unique skills and bonuses depending on what you choose to specialise in. These ‘careers’ are similar to skill trees that require specific feats to be achieved to allow for progression, such as additional health points, increased damage, or party buffs related to the career in question.{newline}
   {newline}
   Skill Points, which are used to advance through a career,  are acquired by leveling up with the base bannerlord system. For every level your character gains one Career point.{newline}
   {newline}
-  Within a playthrough you are supposed to specialise in a single career choice however there will be an option to change between careers but with penalties, such as losing all your progress and abilities earned. You will have your skill points returned to you so that you can advance in your new career choice. {newline}
+  Within a playthrough you are supposed to specialise in a single career choice however there will be an option to change between careers but with penalties, such as losing all your progress and abilities earned. You will have your skill points returned to you so that you can advance in your new career choice.{newline}
   {newline}
-  Note: Switching careers may of course result in the loss of magic, prayers or abilities that can reduce your overall battle strength.  {newline}
+  Note: Switching careers may of course result in the loss of magic, prayers or abilities that can reduce your overall battle strength. In the current state switching is only possible by receiving a {TOR_BLOODKISS} as Mercenary.{newline}
   {newline}
-  The current Career skill trees that we have in-game include Grail Knight, Blood Knight, Warriorpriest, Mercenary, the Vampire lord and the Damsel. 
-  Each accompanied with their own unique and appropriately themed progression, via their unique Career Skill tree found on the Character screen, in the upper right corner.{newline}
+  The current Career skill trees that we have in-game include Grail Knight, Blood Knight, Warriorpriest, Mercenary, the Vampire lord and the Damsel. Each accompanied with their own unique and appropriately themed progression, via their unique Career Skill tree found on the Character screen, in the upper right corner.{newline}
   {newline}
   Every career is divided into 3 ranks, each allowing you to pick special perks. The benefits from these perks vary from simple passive buffs to more advanced and unique benefits for the specific career.{newline}
   {newline}
@@ -101,46 +92,36 @@ Choosing any other career start for your campaign will result in the same experi
    {newline}
   " />
   
-  <Concept title="{=aIkffnN6}Companions" id="str_tor_companions" group="The Old Realms" link_id="TOR_COMPANIONS" text=
-  "Companions within our mod have been changed to be better suited to our setting, however, at this time the recruitment and interaction with these Companion NPCs remain primarily unchanged. 
-  They are found in taverns and recruited with a single payment, exactly as in Vanilla Bannerlord. {newline}
+  <Concept title="{=!}Companions" id="str_tor_companions" group="The Old Realms" link_id="TOR_COMPANIONS" text=
+  "Companions within our mod have been changed to be better suited to our setting, however, at this time the recruitment and interaction with these Companion NPCs remain primarily unchanged. They are found in taverns and recruited with a single payment, exactly as in Vanilla Bannerlord.{newline}
   {newline}
   Also like Vanilla, these companions are generic and their differences will be in their equipment, skills and ‘special’ abilities, such as access to magic or prayers which only the relevant companion type will have.{newline}
   {newline}
-  The one notable difference is that faction-specific companions, such as Vampires, will be found solely in their appropriate territory. Such as Vampire companions being found in Sylvanian taverns, Warrior Priests within the Empire. {newline}
+  The one notable difference is that faction-specific companions, such as Vampires, will be found solely in their appropriate territory. Such as Vampire companions being found in Sylvanian taverns, Warrior Priests within the Empire.{newline}
   {newline}
-  The companion types at the moment can include Warrior Priests, Knights, Magic Casters, Vampires and more. {newline}" />
+  The companion types at the moment can include Warrior Priests, Knights, Magic Casters, Vampires and more.{newline}" />
   
-  <Concept title="{=aIkffnN6}Cursed Locations" id="str_tor_cursed_locations" group="The Old Realms" link_id="TOR_CURSEDLOCATIONS" text=
-  "
-	Across the campaign map, there are a number of features we have dubbed ‘cursed locations’, a primary example of this would be the swamps found in Sylvania and Moussilon. These locations will cause attrition, troops in your party, 
-	and your hero suffer from attrition spending time in this location and you are unable to heal while you are in this area. and they can gradually get worse if you spend too long inside of these locations.{newline}
+  <Concept title="{=!}Cursed Locations" id="str_tor_cursed_locations" group="The Old Realms" link_id="TOR_CURSEDLOCATIONS" text=
+  "As a Vampire or Necromancer, you can interact with certain ‘cursed’ locations on the campaign map, these will allow you to summon undead units but the ritual can only be performed once a day. A primary example of a cursed location would be within the swamps of Sylvania or Mousillon, these locations will cause attrition (damage to the troops/heroes) to the travelling party and healing won’t be possible until the area has been left. Over time these negative effects will grow stronger.{newline}
 	{newline}
-	Certain races, or factions, have immunity depending on the location or type of cursed location. As a Vampire, Necromancer or vassal of Sylvania, you will have immunity to the damaging effects of the swamps for example. 	{newline}
-	{newline}
-	The Player party can perform a ritual of wardening against Cursed regions. This will temporarily prevent the curse effect of that region.{newline}
-	{newline}
-	{newline}
-  " />
-  <Concept title="{=aIkffnN6}Damage System" id="str_tor_damagesystem" group="The Old Realms" link_id="TOR_DAMAGESYSTEM" text=
-  "
-	We have implemented our own damage system which takes into account a variety of factors during battles, such as unit types and the damage or resistance modifiers being used by individual characters. 
-	The damage system works in exchange with the base bannerlord physics based damage system. 
-	A mighty well timed blow, will be further enhanced by magical and other non-physical effects. On the other side, magical resistances, like ethereal units taking less damage from non-magic weapons.{newline}
+	As a non-vampire or necromancer character, you can interact with these locations in a different way by conducting a warding ritual. This ritual will, temporarily, stop the recruitment of undead units by undead factions and will remove the negative penalties to the player, and any ‘good’ factions, related to the cursed location. To perform this ritual your party must have 9 people and some will take damage during the process.{newline}
+	{newline}" />
+	
+  <Concept title="{=!}Damage System" id="str_tor_damagesystem" group="The Old Realms" link_id="TOR_DAMAGESYSTEM" text=
+  "We have implemented our own damage system which takes into account a variety of factors during battles, such as unit types and the damage or resistance modifiers being used by individual characters. The damage system works in exchange with the base Bannerlord physics-based damage system. A mighty well-timed blow will be further enhanced by magical and other non-physical effects. On the other side, magical resistances, like ethereal units take less damage from non-magic weapons.{newline}
 	{newline}
 	Damage types{newline}
 	- Physical - regular damage dealt from any weapon and sometimes spells. {newline}
     - Magical - most spells deal magical damage. {newline}
     - Fire - dealt by special guns and most bright wizard spells. {newline}
-    - Holy damage applies for most prayer abilities, or even certain holy warriors. {newline}
-    - Lighting - Heaven wizards and higher damsels make use of this damage type. {newline}
+    - Holy damage applies for most prayer abilities, or even certain holy warriors.{newline}
+    - Lighting - Heaven wizards and higher damsels make use of this damage type.{newline}
 	{newline}
 	Damage proportions{newline}
 	If a certain weapon or unit type is in possession of non-physical damage effects, their damage can be split into categories, for example spells deal full damage, aligned to the element of the magic in use.{newline}
 	{newline}
 	Buffs, Debuffs and resistances{newline}
-	Certain magical gear or abilities can enhance damage dealt, reduce damage taken or enhance a particular damage type. In a playthrough you may be able to both enhance the use of fire magic while also reducing damage taken from dark magic. 
-	It is important to note that resistances and damage buffs must match the damage type they are blocking or enhancing.{newline}
+	Certain magical gear or abilities can enhance damage dealt, reduce damage taken or enhance a particular damage type. In a playthrough you may be able to both enhance the use of fire magic while also reducing damage taken from dark magic. It is important to note that resistances and damage buffs must match the damage type they are blocking or enhancing.{newline}
 	{newline}
 	Attack types{newline}
 	Certain buffs and spells  are only beneficial for certain attack types, which can be Spell damage, melee damage, or ranged damage. Only benefits that match the attack type, will be considered for the hit. {newline}
@@ -154,38 +135,53 @@ Choosing any other career start for your campaign will result in the same experi
 	 {newline}
   " />
   
-  <Concept title="{=aIkffnN6}Engineering, Gunpowder and Cannons" id="str_tor_engineeringgunpowder" group="The Old Realms" link_id="TOR_ENGINEERINGGUNPOWDER" text=
+  <Concept title="{=!}Engineering" id="str_tor_engineeringgunpowder" group="The Old Realms" link_id="TOR_ENGINEERING" text=
+  "One of the major features in our mod is the use of artillery in battles, this has been tied to the Engineering skill of players. Levelling your engineering skill will give you access to the acquiring and use of artillery on the field, once the player reaches level 50 Engineering they are able to purchase artillery from their respective faction. Every additional 50 levels of Engineering allow the player to field an additional piece of artillery.{newline}
+  {newline}
+  The location, or means, of acquiring {TOR_ARTILLERY} will differ between each faction.{newline}
+  {newline}
+  " />
+  <Concept title="{=!}Artillery" id="str_tor_artillery" group="The Old Realms" link_id="TOR_ARTILLERY" text=
   "
-  One of the major features in our mod is the use of gunpowder weaponry for factions such as the Empire and Dwarfs, there are methods to both access weapons but also field artillery depending on your faction.{newline}
+  
+  Cannons:{newline}
+  The player can acquire Cannons from the Imperial city of Nuln, after speaking to the Master Engineer NPC found in the city.  Cannons are only available for the Empire and have a number of requirements, to access the purchase screen alone a quest must first be completed, given by the Master Engineer. To buy and use the cannons the player must then have 50 engineering, must be part of an Imperial faction and must have artillery crew in their party. Every additional 50 levels of Engineering allow the player to field an additional Cannon.{newline}
   {newline}
-  In our current version, to access black powder weapons you must speak to the Master Engineer based in Nuln, after receiving and completing a small quest chain from him you will have the ability to buy guns and cannons directly from him.{newline}
+  Field Trebuchets:{newline}
+  The player can acquire Field Trebuchets in Bretonnian towns with Wood Workshops by accessing the Trade menu. This powerful piece of artillery requires the player to have at least 50 Engineering and some artillery crew in the party. The crew needs to be assigned to a placed Trebuchet during the battle to properly operate siege weaponry. Every additional 50 levels of Engineering allow the player to field an additional Trebuchet.{newline}
   {newline}
-  However there are requirements to access the Master Engineer as well, you must first be a member of the Empire Faction, such as Stirland or Reikland, and you must have at least 50 Engineering. 
-  Furthermore, every further 50 levels of engineering you will be able to buy and maintain another single artillery piece.  {newline}
   {newline}
-  To train this you must make use of gunpowder weapons in battles, finding and looting lower quality versions of these weapons will be something we add to make this process easier.{newline}
   " />
   
-  <Concept title="{=aIkffnN6}Magic/Necromancy" id="str_tor_magic" group="The Old Realms" link_id="TOR_MAGIC" text=
-  "
-  Magic and Necromancy share many similar features, they can both be accessed during character creation by selecting the relevant choices and they can also both be accessed by a non-magic character during a playthrough.{newline}
+  <Concept title="{=!}Gunpowder" id="str_tor_guwpowder" group="The Old Realms" link_id="TOR_GUNPOWDER" text=
+  "One of our {TOR_ATTRIBUTES}, Gunpowder, is of course tied to the use of weapons like handguns, the player must use handguns or other black-powder weapons in battles to level up their Gunpowder skill. Purchasing these weapons can be done once the player joins an imperial faction, hits level 50 in Engineering and completes the quest given by the Master Engineer in Nuln or the normal trade menu in cities.{newline}
+  {newline}
+  Finding and looting lower-quality guns is an excellent way to begin this process early on.
+  {newline}
+  " />
+  
+  <Concept title="{=!}Magic Introduction" id="str_tor_magic" group="The Old Realms" link_id="TOR_MAGICINTRODUCTION" text=
+  "Magic and Necromancy share many similar features, they can both be accessed during character creation by selecting the relevant choices and they can also both be accessed by a non-magic character during a playthrough.{newline}
   {newline}
   To do this, a player must speak to a magister/dark magister and request a ‘magic test’, which will essentially ‘test’ the player's aptitude for the winds of magic and allow you to make use of magic from then onwards.{newline}
   {newline}
-  Magic and necromancy have tiers and progression, to grow stronger and access stronger spells you must use magic in battles and then speak to the magister relevant to your faction, 
-  for Necromancers or Dark magic users that would be the ‘Dark Magister’ whereas for Empire factions it would simply be ‘Magister’. They can be found in cities and locations such as the College of Magic in Altdorf. 
+  Magic and necromancy have tiers and progression, to grow stronger and access stronger spells you must use magic in battles and then speak to the magister relevant to your faction, for Necromancers or Dark magic users that would be the ‘Dark Magister’ whereas for Empire factions it would simply be ‘Magister’. They can be found in cities and locations such as the College of Magic in Altdorf.  
   {newline}
+  Related Topics:{newline}
+  {TOR_NECROMANCY}
+  {TOR_MAGIC}
+  {TOR_SPELLBOOK}
+  {TOR_SPELLSELECTION}
+  {TOR_ATTRIBUTES}
   {newline}
-  Magic:{newline}
-  To use magic in battle you simply have to, assuming you have chosen a magic path, press Q (which can be remapped at your convenience) and you will equip your magic, providing you with an aiming reticule or outline dependent on the spell. 
-  Using the mouse wheel will scroll through your available spells, the one you have selected at any given time is seen at the bottom left of your screen.{newline}
+  "/>
+  <Concept title="{=!}Magic" id="str_tor_magic" group="The Old Realms" link_id="TOR_MAGIC" text="
+  To use magic in battle you simply have to, assuming you have chosen a magic path, press Q (which can be remapped at your convenience) and you will equip your magic, providing you with an aiming reticule or outline dependent on the spell. Using the mouse wheel will scroll through your available spells, the one you have selected at any given time is seen at the bottom left of your screen.{newline} 
   {newline}
-  We have also implemented our own ‘quick-cast’ system, which by default is the middle mouse button, and skip the aiming process when desired. 
-  What you can cast, as well as how often you can cast, is entirely dependent on your Winds of Magic (mana) and the individual cooldown of each spell you have.{newline}
+  We have also implemented our own ‘quick-cast’ system, which by default is the middle mouse button, and skip the aiming process when desired. What you can cast, as well as how often you can cast, is entirely dependent on your Winds of Magic (mana) and the individual cooldown of each spell you have. {newline}
   {newline}
   Winds of Magic{newline}
-  All spell abilities cost winds of magic. Winds of magic is recharged by letting time pass in the game. 
-  The current amount of winds of magic can be found in the lower right corner on the campaign map, and on the left corner inside a battle . In battles, the resource is depleted for every casted spell. {newline}
+  All spell abilities cost winds of magic. Winds of magic is recharged by letting time pass in the game. The current amount of winds of magic can be found in the lower right corner on the campaign map, and on the left corner inside a battle. In battles, the resource is depleted for every casted spell.{newline}
   {newline}
   Lores of Magic:{newline}
   There are currently 7 lores of magic in our mod:{newline}
@@ -197,33 +193,34 @@ Choosing any other career start for your campaign will result in the same experi
   - Life {newline}
   - Beast {newline}
  {newline}
- Players will have access to all of these, however, there are restrictions. Not every character can master multiple lores. 
- Some vampires can for example master Dark and Necromancy, whereas Damsels can master up to 3 lores. Based on certain careers, race and the faction you join the potential school selection and amount varies. {newline}
+ Players will have access to all of these, however, there are restrictions. Not every character can master multiple lores. Some vampires can for example master Dark and Necromancy, whereas Damsels can master up to 3 lores. Based on certain {TOR_CAREERS}, races and the faction you join the potential school selection and amount varies.  
  {newline}
- Each of these lores has its own progression with a range of unique spells all of which are tied to our custom-made Spellcraft skill. 
- Adding points to the Spellcraft skill raises your winds of magic capacity as well as its regeneration rate on the campaign map.{newline}
+ Each of these lores has its own progression with a range of unique spells all of which are tied to our custom-made Spellcraft skill. Adding points to the Spellcraft skill raises your winds of magic capacity as well as its regeneration rate on the campaign map.{newline}
  {newline}
  {newline}
- Necromancy: {newline}
- Necromancy provides an extra dynamic alongside all of the above, the ability to ‘raise the dead. Having access to this magics means that you will have the option to raise the dead after battles, to bolster your armies, 
- as well as visit specific locations on the campaign map to recruit higher-tier undead units, such as wraiths. (See{TOR_RAISEDEAD} ) .{newline}
- {newline}
- {newline}
- The Spell Book: {newline}
- Accessed via the character screen the spell book stores all knowledge of magic, this includes companions in your party. There is information on screen showing characters magic abilities, such as their maximum winds of magic.{newline}
- {newline}
- All known and learnable spells are listed under their appropriate lore inside the spell book, which can be selected via the book mark on the left side.{newline}
-{newline}
- The spell description can be read via hovering the mouse over the spells.{newline}
- {newline}
- {newline}
- Selection of spells: {newline}
- When clicking on the spells it is possible to add them to your selected combat spells, which will be usable the next time you are in combat. 
- All other spells will not be visible during the fight, if no spell is selected then all spells are available.{newline}
- {newline}
- {newline}
-  " />
-  <Concept title="{=aIkffnN6}Raise Dead" id="str_tor_raise_dead" group="The Old Realms" link_id="TOR_RAISEDEAD" text=
+"
+/>
+  <Concept title="{=!}Necromancy" id="str_tor_necromancy" group="The Old Realms" link_id="TOR_NECROMANCY" text=
+  "Necromancy: {newline}
+  Necromancy provides an extra dynamic alongside all of the above, the ability to ‘raise the dead. Having access to these magics means that you will have the option to raise the dead after battles, to bolster your armies, as well as visit specific locations ( like {TOR_CURSEDLOCATIONS}) on the campaign map to recruit higher-tier undead units, such as wraiths. See{TOR_RAISEDEAD}).{newline}
+  "/>
+  
+  <Concept title="{=!}Spell Book" id="str_tor_spellbook" group="The Old Realms" link_id="TOR_SPELLBOOK" text=
+  "The Spell Book: {newline}
+  Accessed via the character screen the spell book stores all knowledge of magic, this includes companions in your party. There is information on the screen showing a characters' magic abilities, such as their maximum winds of magic.{newline}
+  {newline}
+  All known and learnable spells are listed under their appropriate lore inside the spell book, which can be selected via the bookmark on the left side.{newline}
+  {newline}
+  The spell description can be read by hovering the mouse over the spells.
+  "/>
+  
+  <Concept title="{=!}Spell Selection" id="str_tor_spellselection" group="The Old Realms" link_id="TOR_SPELLSELECTION" text=
+  "When clicking on the spells inside the {TOR_SPELLBOOK} it is possible to add them to your selected combat spells, which will be usable the next time you are in combat. All other spells will not be visible during the fight, if no spell is selected then all spells are available.{newline}" />
+  
+  <Concept title="{=!}Magic- and Holy Items" id="str_tor_magicitems" group="The Old Realms" link_id="TOR_MAGICITEMS" text=
+  "Usually with a purple background, magic items come with a special effect, which can be read by hovering over the blue icon at the bottom of a tooltip. Those magic items often amplify the wearer’s magical abilities or offer additional protection. The player can acquire them by visiting vendors around the Old World or winning battles against owners of such items.{newline}"/>
+  
+  <Concept title="{=!}Raise Dead" id="str_tor_raise_dead" group="The Old Realms" link_id="TOR_RAISEDEAD" text=
   "
   Certain characters and factions are able to raise the dead, or offer characters the ability to become undead.  The player can access this by being a necromancer or playing as a vampire. {newline}
   {newline}
@@ -231,37 +228,29 @@ Choosing any other career start for your campaign will result in the same experi
   Based on your inteligence level there is a chance that every living creature that died in a battle will become lesser undead warriors and join your army.{newline}
   {newline}
   Raiding Tombs{newline}
-  As a necromancer you can also try your luck to resurrect undead in a local graveyard, found as a new option within villages. 
-  Of course this has some risk, as most of the ‘good’ factions will immediately dislike you, furthermore if you choose to try and raise undead in towns or villages, you may be caught by the locals and will have to fight to survive. {newline}
+  As a necromancer you can also try your luck to resurrect undead in a local graveyard, found as a new option within villages. Of course this has some risk, as most of the ‘good’ factions will immediately dislike you, furthermore if you choose to try and raise undead in towns or villages, you may be caught by the locals and will have to fight to survive. {newline}
   {newline}
   Priests, and other careers are excluded from performing necromancy.
   {newline}
-  Cursed sites{newline}
-  As a follower of nagash, you can bind the cursed souls of certain Cursed sites to your will. You can only perform this ritual once a day.
   " />
   
-  <Concept title="{=aIkffnN6}New Attribute and  Skills" id="str_tor_attributes" group="The Old Realms" link_id="TOR_ATTRIBUTES" text=
+  <Concept title="{=!}New Attribute and  Skills" id="str_tor_attributes" group="The Old Realms" link_id="TOR_ATTRIBUTES" text=
   "
-  Discipline is the new attribute in The old realms, that contains 3 new skills.{newline}
+  Discipline is an attribute made specifically for TOR, it contains three new core skills.{newline}
   {newline}
-  Gunpowder {newline}
-  The Gunpowder skill accounts for weapons like pistols, handguns or even grenade launching blunderbusses. For learning this skill, use gunpowder weapons, or read according books (Skill books) to obtain the minimal requirement for most guns. 
-  Characters and gunpowder units inside a party will benefit from several perks and benefits directed to this new weapon type. {newline}
-  Note, that for better artillery weapon capacities like cannons, the player needs to target Engineering instead of gunpowder.  See {TOR_ENGINEERINGGUNPOWDER}{newline}
+  Gunpowder:{newline}
+  The Gunpowder skill accounts for weapons like pistols, handguns or even grenade-launching blunderbusses. For learning this skill, use gunpowder weapons, or read according to books (see {TOR_SKILLBOOKS}) to obtain the minimal requirement for most guns. Characters and gunpowder units inside a party will benefit from several perks and benefits directed to this new weapon type. Note, that for better artillery weapon capacities like cannons, the player needs to target Engineering instead of gunpowder.{newline}
   {newline}
-  Spellcraft {newline}
-  The Spellcraft skill is restricted to all characters that are able to perform magic. Several perks will increase the characters magic capabilities or his use of the knowledge about it. 
-  Skills are obtained via fighting with - and using magic in combat. New spells can be learned from spell trainers.{newline}
+  Spellcraft:{newline}
+  The Spellcraft skill is restricted to all characters that are able to perform magic. Several perks will increase the character's magic capabilities or his use of knowledge about it. Skills are obtained via fighting with - and using magic in combat. New spells can be learned from spell trainers.{newline}
   {newline}
-  Faith {newline}
-  Faith is restricted to all believing people in the old world. Necromancers, and Vampires are excluded from this skill. 
-  Faith can be increased upon praying at a shrine ( see TOR_RELIGION) or in case of some priest careers, by performing prayers during battles. Faith increases the duration for blessings.{newline}
-  
+  Faith:{newline}
+  Faith is restricted to all believing people in the old world. Necromancers and Vampires are excluded from this skill. Faith can be increased by praying at a shrine ( see religious Locations) or in the case of some priest careers, by performing prayers during battles. Faith increases the duration of blessings. {newline}
   {newline}
   {newline}
   "/>
   
-  <Concept title="{=aIkffnN6}Regiments of Renown" id="str_tor_attributes" group="The Old Realms" link_id="TOR_ROR" text=
+  <Concept title="{=!}Regiments of Renown" id="str_tor_attributes" group="The Old Realms" link_id="TOR_ROR" text=
   "
   Regiments of Renown(RoR) are unique factional troops that can only be recruited from specific locations and settlements on the campaign map, marked with an ‘RoR’ symbol. Once you enter the settlement that has the RoR, there will be an option that you can select on the settlement menu.{newline}
   {newline}
@@ -272,11 +261,11 @@ Choosing any other career start for your campaign will result in the same experi
   
   
   
-  <Concept title="{=aIkffnN6}Religious Locations" id="str_tor_religion" group="The Old Realms" link_id="TOR_RELIGION" text=
+  <Concept title="{=!}Religious Locations" id="str_tor_religion" group="The Old Realms" link_id="TOR_RELIGION" text=
   "
   Around the world, several locations can be found for Characters to receive blessings of the gods. The blessings provide buffs for the whole party. Praying at a shrine will attract religious units, like flagellants and battle pilgrims, which join the praying party. Note that the player as well as other Lords will be provided effects from praying at a shrine. Additionally, your devotion for a god rises whenever you pray at a shrine.{newline}
   {newline}
-  In the current state 3 gods are implemented, which provide their respective blessings. {newline}
+  In the current state 3 gods are implemented, which each provide their own unique blessings. {newline}
   {newline}
   Taal, the All-father of the human gods, the god of hunters, provides a movement buff inside of forests for the party.{newline}
   {newline}
@@ -290,15 +279,13 @@ Choosing any other career start for your campaign will result in the same experi
   {newline}
   " />
   
-  <Concept title="{=aIkffnN6}Skill Books" id="str_tor_skillbooks" group="The Old Realms" link_id="TOR_SKILLBOOKS" text=
+  <Concept title="{=!}Skill Books" id="str_tor_skillbooks" group="The Old Realms" link_id="TOR_SKILLBOOKS" text=
   "
   Skill books are another feature we have alongside the magisters, magister will sell them and very similar to Warband, you will passively read the book as you travel or rest and it will provide you with skill points at the end. 
   They are sold for a fair amount so they aren’t easily accessed from the start of the game. {newline}
   {newline}
   To read them you must have the book inside your inventory. {newline}
-  Hover your mouse until the full text appear. In the lower right corner a magnifying glass is visible. 
-  If you have not already read the book, a text will appear that will explain that you selected the book for reading. If you already know the book, it will inform you that you know the book already. 
-  If you let time pass ( move around or wait) you will read the contents of the books and your skill in the appropriate skill will be increased.{newline}
+  Hover your mouse until the full text appear. In the lower right corner a magnifying glass is visible. If you have not already read the book, a text will appear that will explain that you selected the book for reading. If you already know the book, it will inform you that you know the book already. If you let time pass ( move around or wait) you will read the contents of the books and your skill in the appropriate skill will be increased.{newline}
   {newline}
   Books cannot be read twice. {newline}
   {newline}
@@ -307,32 +294,27 @@ Choosing any other career start for your campaign will result in the same experi
   
   
   
-  <Concept title="{=aIkffnN6}Vampire" id="str_tor_vampire" group="The Old Realms" link_id="TOR_VAMPIRE" text=
+  <Concept title="{=!}Vampire" id="str_tor_vampire" group="The Old Realms" link_id="TOR_VAMPIRE" text=
   "
   To start the game as a Vampire, you must choose the ‘Vampire nobility’ option during the character creation stage. 
   When you load onto the campaign map your character will have the skin and powers of a vampire, such as access to magic, necromancy and in the future other abilities.{newline}
   {newline}
-  If you want to become a Vampire after starting a game as a regular human, you will have to join the Vampire Counts and speak to Mannfred once you have enough Renown and enough standing with him. 
-  Alternatively, you have to be part of the Order of the Blood Dragon, and ask Walach Harkon to become a Blood Knight.
-  Doing so will provide an option for you to ‘receive the blood kiss’ which will then change your character into a Vampire and gain a  Blood Line Career.
+  If you want to become a Vampire after starting a game as a regular human, you will have to join the Vampire Counts and speak to Mannfred once you have enough Renown and enough standing with him. Alternatively, you have to be part of the Order of the Blood Dragon, and ask Walach Harkon to become a Blood Knight. Doing so will provide an option for you to ‘receive the blood kiss’ which will then change your character into a Vampire and gain a  Blood Line Career.
   {newline}
   Vampires learn new magic through Dark Magister NPC’s found in settlements, similar to normal magic users.{newline}
   {newline}
   {newline}
   " />
   
-  <Concept title="{=aIkffnN6}Priests and Prayers" id="str_tor_prayers" group="The Old Realms" link_id="TOR_PRAYERS" text=
+  <Concept title="{=!}Priests and Prayers" id="str_tor_prayers" group="The Old Realms" link_id="TOR_PRAYERS" text=
   "
   Priest Careers and  prayers{newline}
   Starting as a priest acolyte, or as a damsel of the lady, will make the player representative of the beliefs in the old world. They are the only careers and people that have access to prayers or battle prayers.{newline}
   {newline}
   {newline}
-  Other than spells, prayers are directly unlocked upon reaching a certain skill level in the “Faith” skill. 
-  Starting with the adapt skill at the “Novice Prayer” prayer perk up to the “Grand prayer” perk at skill 125, new prayers will be unlocked. 
-  Non Priest career types, cannot unlock any prayers for combat but can receive the blessings from Religious Locations. {newline}
+  Other than spells, prayers are directly unlocked upon reaching a certain skill level in the “Faith” skill. Starting with the adapt skill at the “Novice Prayer” prayer perk up to the “Grand prayer” perk at skill 125, new prayers will be unlocked. Non Priest career types, cannot unlock any prayers for combat but can receive the blessings from Religious Locations. {newline}
   {newline}
-  Prayers are very powerful, to balance this the ability cooldown is shared across all prayers and is usually both long, and not immediately available.  
-  Of course, vampires and necromancers will also be blocked from access to such abilities.  {newline}
+  Prayers are very powerful, to balance this the ability cooldown is shared across all prayers and is usually both long, and not immediately available. Of course, vampires and necromancers will also be blocked from access to such abilities.  {newline}
   {newline}
   In the current state 8 prayers are accessible:{newline}
   {newline}
@@ -352,13 +334,19 @@ Choosing any other career start for your campaign will result in the same experi
   {newline}
   " />
   
-  <Concept title="{=aIkffnN6}Text adventures" id="str_tor_text_adventures" group="The Old Realms" link_id="TOR_TEXTADVENTURES" text=
+  <Concept title="{=!}Text adventures" id="str_tor_text_adventures" group="The Old Realms" link_id="TOR_TEXTADVENTURES" text=
   "
   From time to time while travelling through the world, events can occur that need the action of the player. During the events, the game can’t be saved and the story has to be finished before the game continues. {newline}
   {newline}
   Based on character skills and other attributes, like being a necromancer or vampire, the choices and approaches in the situation differ, as well the Chance of a positive outcome vary. The Outcome of the events can affect the world.{newline}
   {newline}
   These Events are triggered randomly and sometimes based on situations and the surrounding of the player. {newline}
+  {newline}
+  {newline}
+  " />
+  
+  <Concept title="{=!}Special Mounts" id="str_tor_text_adventures" group="The Old Realms" link_id="TOR_TEXTADVENTURES" text=
+  "The Old World is a home of many extraordinary creatures, some of which will also act as mounts for the player. As of now, our mod features only two of such creatures: Demigryphs of the Empire and Zombie/Ghost Horses of the Vampire Counts. These unique mounts can only be acquired as battle loot or cheats for now but we are planning to implement specific quests, which would award the player with these mounts.{newline}
   {newline}
   {newline}
   " />
