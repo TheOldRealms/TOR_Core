@@ -3380,7 +3380,7 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_m_black_grail_knight_template" />
+      <EquipmentSet id="tor_m_lord_serpent" />
       <EquipmentSet id="tor_m_lord_serpent" civilian="true" />
     </Equipments>
   </NPCCharacter>
