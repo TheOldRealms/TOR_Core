@@ -95,7 +95,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _grailKnightRoot.Initialize(CareerID, "The knight prepares a devastating charge with or without his horse for the next 6 seconds. Unmounted he is benefiting from modifications. Mounted, the knight will have a 20% Chance that his lance will not bounce off for a couched lance attack. The chance rises for every point in Riding by 0.1%.", null,
+            _grailKnightRoot.Initialize(CareerID, "The knight prepares a devastating charge, mounted or on foot, for the next 6 seconds.  When mounted, the knight receives perk buffs as well as a 20% chance of his lance not bouncing off after a couched lance attack. Mounted, The couched lance attack chance increases by 0.1% for every point in Riding. When on foot, the knight only receives perk buffs.", null,
                 true, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -116,7 +116,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _errantryWarKeystone.Initialize(CareerID, "+10% Physical damage during Knightly Charge. One-handed weapon skill counts towards ability.", "ErrantryWar", false,
+            _errantryWarKeystone.Initialize(CareerID, "10% extra physical damage during Knightly Charge. The ability scales with the One Handed skill.", "ErrantryWar", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -144,7 +144,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Add
                     }
                 });
-            _enhancedHorseCombatKeystone.Initialize(CareerID, "20% speed bonus during ability. Ability starts charged. Polearm counts towards careerAbility", "EnhancedHorseCombat", false,
+            _enhancedHorseCombatKeystone.Initialize(CareerID, "+20% speed during the ability, which now scales with the Polearm skill and starts recharged.", "EnhancedHorseCombat", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -173,7 +173,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 }, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.Special));
 
-            _questingVowKeyStone.Initialize(CareerID, "Physical Resistance during Knightly Charge. Mount will not rear during ability", "QuestingVow", false,
+            _questingVowKeyStone.Initialize(CareerID, "Knightly Charge grants 20% physical resistance. Mount will not rear during the ability.", "QuestingVow", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -194,7 +194,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _monsterSlayerKeystone.Initialize(CareerID, "Ability duration slightly scales with Polearm and Riding. Two Handed counts towards ability.", "MonsterSlayer", false,
+            _monsterSlayerKeystone.Initialize(CareerID, "Ability duration scales with Polearm and Riding. The lance attack scales with Two Handed.", "MonsterSlayer", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -298,35 +298,35 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializePassives()
         {
-            _errantryWarPassive1.Initialize(CareerID, "Extra melee Damage(10%).", "ErrantryWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee)); //
+            _errantryWarPassive1.Initialize(CareerID, "10% extra melee damage.", "ErrantryWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee)); //
             _errantryWarPassive2.Initialize(CareerID, "Increases Hitpoints by 40.", "ErrantryWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Health)); // 
-            _errantryWarPassive3.Initialize(CareerID, "One handed and Two handed weapon skill of Knight units is increased by 20", "ErrantryWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special)); //
-            _errantryWarPassive4.Initialize(CareerID, "All Melee Troops in the party gain 25 Xp per day.", "ErrantryWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special)); //
+            _errantryWarPassive3.Initialize(CareerID, "All Knight troops receive 20 bonus points in One and Two Handed skills.", "ErrantryWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special)); //
+            _errantryWarPassive4.Initialize(CareerID, "All melee troops in the party gain 25 exp per day", "ErrantryWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special)); //
 
-            _enhancedHorseCombatPassive1.Initialize(CareerID, "50% additional Horse health", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseHealth, true)); //
-            _enhancedHorseCombatPassive2.Initialize(CareerID, "Extra melee Damage(10%) while on horse.", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true)); //
-            _enhancedHorseCombatPassive3.Initialize(CareerID, "Upgrade costs are 25% reduced", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopUpgradeCost, true)); //
-            _enhancedHorseCombatPassive4.Initialize(CareerID, "All Knights have a 30 point higher polearm skill", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special)); //
+            _enhancedHorseCombatPassive1.Initialize(CareerID, "50% additional Hitpoints for the player's mount", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseHealth, true)); //
+            _enhancedHorseCombatPassive2.Initialize(CareerID, " 10% extra melee damage while on horseback.", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true)); //
+            _enhancedHorseCombatPassive3.Initialize(CareerID, "Upgrade costs are reduced by 25%.", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopUpgradeCost, true)); //
+            _enhancedHorseCombatPassive4.Initialize(CareerID, "All Knight troops receive 30 bonus points in their Polearm skill.", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special)); //
 
             _questingVowPassive1.Initialize(CareerID, "Increases Hitpoints by 40.", "QuestingVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Health)); //
-            _questingVowPassive2.Initialize(CareerID, "15% Physical damage reduction from Melee and Ranged attacks.", "QuestingVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Ranged | AttackTypeMask.Melee));
-            _questingVowPassive3.Initialize(CareerID, "All Knight troops gain 10% Physical resistance.", "QuestingVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));
-            _questingVowPassive4.Initialize(CareerID, "Hits below 15 damage will not stagger character.", "QuestingVow", false, ChoiceType.Passive, null); // Agent extension 83,
+            _questingVowPassive2.Initialize(CareerID, "Gain 15% physical resistance to melee and ranged attacks.", "QuestingVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Ranged | AttackTypeMask.Melee));
+            _questingVowPassive3.Initialize(CareerID, "All Knight troops gain 10% physical resistance.", "QuestingVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));
+            _questingVowPassive4.Initialize(CareerID, "Hits below 15 damage will not stagger the player.", "QuestingVow", false, ChoiceType.Passive, null); // Agent extension 83,
 
-            _monsterSlayerPassive1.Initialize(CareerID, "Extra melee fire damage(10%).", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 10), AttackTypeMask.Melee));
-            _monsterSlayerPassive2.Initialize(CareerID, "20% Melee Armor Penetration", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
-            _monsterSlayerPassive3.Initialize(CareerID, "40% Chance to recruit free extra troops on recruitment.", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Special, true));
-            _monsterSlayerPassive4.Initialize(CareerID, "75% wage reduction for peasant units", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-75, PassiveEffectType.Special, true));
+            _monsterSlayerPassive1.Initialize(CareerID, "10% extra melee fire damage.", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 10), AttackTypeMask.Melee));
+            _monsterSlayerPassive2.Initialize(CareerID, "20% extra armor penetration of melee attacks.", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
+            _monsterSlayerPassive3.Initialize(CareerID, " 40% chance to recruit an extra unit of the same type free of charge.", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Special, true));
+            _monsterSlayerPassive4.Initialize(CareerID, " All Peasant troops wages are reduced by 75%.", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-75, PassiveEffectType.Special, true));
 
             _masterHorsemanPassive1.Initialize(CareerID, "Horse charge damage is increased by 50%.", "MasterHorseman", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.HorseChargeDamage, true));
-            _masterHorsemanPassive2.Initialize(CareerID, "Party movement speed is increased by 2", "MasterHorseman", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.PartyMovementSpeed));
-            _masterHorsemanPassive3.Initialize(CareerID, "+4 Health regeneration on campaign map", "MasterHorseman", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(4, PassiveEffectType.HealthRegeneration, true));
-            _masterHorsemanPassive4.Initialize(CareerID, "All Knight unit wages are reduced by 25%", "MasterHorseman", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.Special, true));
+            _masterHorsemanPassive2.Initialize(CareerID, "Party movement speed is increased by 2.", "MasterHorseman", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.PartyMovementSpeed));
+            _masterHorsemanPassive3.Initialize(CareerID, "+4 health regeneration on the campaign map.", "MasterHorseman", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(4, PassiveEffectType.HealthRegeneration, true));
+            _masterHorsemanPassive4.Initialize(CareerID, "All Knight troops wages are reduced by 25%.", "MasterHorseman", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.Special, true));
 
             _grailVowPassive1.Initialize(CareerID, "Increases Hitpoints by 40.", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Health));
-            _grailVowPassive2.Initialize(CareerID, "20% Extra holy damage for battle pilgrims.", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
-            _grailVowPassive3.Initialize(CareerID, "Extra holy melee Damage(20%).", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 20), AttackTypeMask.Melee));
-            _grailVowPassive4.Initialize(CareerID, "15% Wardsave.", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.All));
+            _grailVowPassive2.Initialize(CareerID, "20% extra holy damage for Battle pilgrim troops.", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
+            _grailVowPassive3.Initialize(CareerID, "20% extra melee holy damage.", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 20), AttackTypeMask.Melee));
+            _grailVowPassive4.Initialize(CareerID, "Gain 15% Ward save.", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.All));
         }
     }
 }

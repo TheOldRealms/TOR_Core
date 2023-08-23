@@ -209,7 +209,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     },
                     
                 });
-            _peerlessWarriorKeystone.Initialize(CareerID, "Career Ability scales with Athletics. Movement speed increased by 20% when the ability is active.", "PeerlessWarrior", false,
+            _peerlessWarriorKeystone.Initialize(CareerID, "Career Ability scales with Athletics. Speed increased by 20% when the ability is active.", "PeerlessWarrior", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -366,13 +366,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
 
             _doomRiderPassive1.Initialize(CareerID, "20% extra melee damage.", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Melee));
-            _doomRiderPassive2.Initialize(CareerID, "Increases Hitpoints by 50", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
+            _doomRiderPassive2.Initialize(CareerID, "Increases Hitpoints by 50.", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
             _doomRiderPassive3.Initialize(CareerID, "Party speed increases by 2.", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2.0f, PassiveEffectType.PartyMovementSpeed));
             _doomRiderPassive4.Initialize(CareerID, "Recruit defeated units as Blood Knights with a chance of 15% (40% for Tier >4).", "DoomRider", false, ChoiceType.Passive, null);
 
             _controlledHungerPassive1.Initialize(CareerID, "Immune to sunlight malus.", "ControlledHunger", false, ChoiceType.Passive, null); //TORPartySpeedCalculatingModel 46
-            _controlledHungerPassive2.Initialize(CareerID, "Increases hitpoints by 50.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
-            _controlledHungerPassive3.Initialize(CareerID, "Mount health is increased by 35%", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(35f, PassiveEffectType.HorseHealth, true));
+            _controlledHungerPassive2.Initialize(CareerID, "Increases Hitpoints by 50.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
+            _controlledHungerPassive3.Initialize(CareerID, "Mount health is increased by 35%.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(35f, PassiveEffectType.HorseHealth, true));
             _controlledHungerPassive4.Initialize(CareerID, "Ward save for all vampire units.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
 
             _avatarOfDeathPassive1.Initialize(CareerID, "Gain 25% physical resistance to melee and ranged attacks.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 25), AttackTypeMask.Ranged | AttackTypeMask.Melee));
