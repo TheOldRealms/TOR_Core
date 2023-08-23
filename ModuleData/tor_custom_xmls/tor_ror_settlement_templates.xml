@@ -50,7 +50,7 @@
     />
     <RORSettlementTemplate
         SettlementId="town_SY2"
-        BaseTroopId="tor_ror_dragon_knight_initiate"
+        BaseTroopId="tor_bd_blooddragon_initiate"
         MenuHeaderText="A small Chapter House of the Knighthood Order, for members to rest and resupply."
         MenuBackgroundImageId="invalid"
         RegimentName="Blood Dragons"

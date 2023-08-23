@@ -1408,8 +1408,8 @@
       <upgrade_target id="NPCCharacter.tor_bd_blooddragon_kastelan" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_vc_blood_knight_template" />
-      <EquipmentSet id="tor_vc_blood_knight_template" civilian="true" />
+      <EquipmentSet id="tor_blooddragon_templar_template" />
+      <EquipmentSet id="tor_blooddragon_templar_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_bd_blooddragon_kastelan" default_group="cavalry" level="41" name="{=str_tor_bd_blooddragon_kastelan}Blood Dragon Kastelan" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level41" race="vampire">
@@ -1418,8 +1418,8 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_vc_blood_knight_template" />
-      <EquipmentSet id="tor_vc_blood_knight_template" civilian="true" />
+      <EquipmentSet id="tor_blooddragon_templar_template" />
+      <EquipmentSet id="tor_blooddragon_templar_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lahmian_sister" default_group="horsearcher" level="21" name="{=str_tor_vc_lahmian_sister}Lahmian Sister" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level21" is_female="true" race="vampire">
@@ -2362,40 +2362,6 @@
     <Equipments>
       <EquipmentSet id="tor_sternieste_vereks_reaver_template" />
       <EquipmentSet id="tor_sternieste_vereks_reaver_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_dragon_knight_initiate" default_group="cavalry" level="31" name="{=str_tor_ror_dragon_knight_initiate}Blood Dragon Initiate" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level31" is_basic_troop="true" race="vampire">
-    <face>
-      <face_key_template value="BodyProperty.vampire" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_ror_dragon_knight" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_blooddragon_initiate_template" />
-      <EquipmentSet id="tor_blooddragon_initiate_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_dragon_knight" default_group="cavalry" level="36" name="{=str_tor_ror_dragon_knight}Blood Dragon Knight" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level36" race="vampire">
-    <face>
-      <face_key_template value="BodyProperty.vampire" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_ror_dragon_templar" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_blooddragon_knight_template" />
-      <EquipmentSet id="tor_blooddragon_knight_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_dragon_templar" default_group="cavalry" level="46" name="{=str_tor_ror_dragon_templar}Blood Dragon Templar" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level46" race="vampire">
-    <face>
-      <face_key_template value="BodyProperty.vampire" />
-    </face>
-    <upgrade_targets />
-    <Equipments>
-      <EquipmentSet id="tor_blooddragon_templar_template" />
-      <EquipmentSet id="tor_blooddragon_templar_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_ror_konigstein_skeleton" default_group="infantry" level="11" name="{=str_tor_ror_konigstein_skeleton}Konigstein Stalker" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level11" race="skeleton">

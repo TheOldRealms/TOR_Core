@@ -82,7 +82,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             reduced = 0;
             List<CharacterObject> elements = new List<CharacterObject>();
 
-            CharacterObject BloodKnightTemplate = MBObjectManager.Instance.GetObject<CharacterObject>("tor_ror_dragon_knight_initiate");        //I assume that needs change, beware
+            CharacterObject BloodKnightTemplate = MBObjectManager.Instance.GetObject<CharacterObject>("tor_bd_blooddragon_initiate");        //I assume that needs change, beware
 
             var partiesOnSide = mapEvent.PartiesOnSide(mapEvent.DefeatedSide);
 

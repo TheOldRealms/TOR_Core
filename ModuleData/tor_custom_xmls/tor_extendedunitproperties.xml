@@ -2137,39 +2137,6 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_dragon_knight_initiate">
-    <Abilities />
-    <Attributes>
-      <string>Unbreakable</string>
-    </Attributes>
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_dragon_knight">
-    <Abilities />
-    <Attributes>
-      <string>Unbreakable</string>
-    </Attributes>
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_dragon_templar">
-    <Abilities />
-    <Attributes>
-      <string>Unbreakable</string>
-    </Attributes>
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_konigstein_skeleton">
     <Abilities />
     <Attributes>
