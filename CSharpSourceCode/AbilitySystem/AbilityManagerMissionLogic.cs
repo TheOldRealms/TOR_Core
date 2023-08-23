@@ -151,7 +151,7 @@ namespace TOR_Core.AbilitySystem
                     
                     if (attackCollisionData.CollisionResult == CombatCollisionResult.Blocked)
                     {
-                        percentage *= 0.05f;
+                        percentage *= 0.1f;
                     }
 
                     percentage *= 100;
