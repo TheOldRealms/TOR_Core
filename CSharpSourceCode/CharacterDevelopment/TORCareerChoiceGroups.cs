@@ -169,7 +169,7 @@ namespace TOR_Core.CharacterDevelopment
                 text = "Required renown: 5";
                 return hero.Clan.Tier >= 5;
             });
-            _masterOfDead.Initialize("Master of Dead", TORCareers.MinorVampire, 3, (Hero hero, out string text) =>
+            _masterOfDead.Initialize("Master of the Dead", TORCareers.MinorVampire, 3, (Hero hero, out string text) =>
             {
                 text = "Required renown: 5";
                 return hero.Clan.Tier >= 5;
