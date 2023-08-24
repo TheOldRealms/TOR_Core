@@ -1803,7 +1803,12 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_thsword_de_lyonesse">
-    <ItemTraits />
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Holy Additional Damage" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% additional holy damage</ItemTraitDescription>
+        <AdditionalDamageTuple DamageType="Holy" Percent="0.10" />
+      </ItemTrait>
+    </ItemTraits>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1887,7 +1892,12 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_thaxe_taal">
-    <ItemTraits />
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Holy Additional Damage" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% additional holy damage</ItemTraitDescription>
+        <AdditionalDamageTuple DamageType="Holy" Percent="0.10" />
+      </ItemTrait>
+    </ItemTraits>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1923,7 +1933,12 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_comet_flail">
-    <ItemTraits />
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Holy Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% holy damage amplification</ItemTraitDescription>
+        <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.10" />
+      </ItemTrait>
+    </ItemTraits>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.40" />
       <DamageProportionTuple DamageType="Holy" Percent="0.40" />
@@ -2052,7 +2067,12 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_holy_hammer">
-    <ItemTraits />
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Holy Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% holy damage amplification</ItemTraitDescription>
+        <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.10" />
+      </ItemTrait>
+    </ItemTraits>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.20" />
       <DamageProportionTuple DamageType="Holy" Percent="0.80" />
@@ -2060,9 +2080,9 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_flagellant_002">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Holy Additional Damage" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% additional holy damage</ItemTraitDescription>
-        <AdditionalDamageTuple DamageType="Holy" Percent="0.10" />
+      <ItemTrait ItemTraitName="Holy Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% holy damage amplification</ItemTraitDescription>
+        <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
     <DamageProportions>
@@ -2072,9 +2092,9 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_thmace_warrior_priest_001">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Holy Additional Damage" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% additional holy damage</ItemTraitDescription>
-        <AdditionalDamageTuple DamageType="Holy" Percent="0.10" />
+      <ItemTrait ItemTraitName="Holy Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% holy damage amplification</ItemTraitDescription>
+        <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
     <DamageProportions>
@@ -2084,9 +2104,9 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_thmace_warrior_priest_002">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Holy Additional Damage" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% additional holy damage</ItemTraitDescription>
-        <AdditionalDamageTuple DamageType="Holy" Percent="0.10" />
+      <ItemTrait ItemTraitName="Holy Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% holy damage amplification</ItemTraitDescription>
+        <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
     <DamageProportions>
@@ -2096,9 +2116,9 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_thmace_warrior_priest_003">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Holy Additional Damage" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% additional holy damage</ItemTraitDescription>
-        <AdditionalDamageTuple DamageType="Holy" Percent="0.10" />
+      <ItemTrait ItemTraitName="Holy Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% holy damage amplification</ItemTraitDescription>
+        <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
     <DamageProportions>
@@ -2114,25 +2134,25 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_polehammer_warrior_priest_001">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Holy Additional Damage" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% additional holy damage</ItemTraitDescription>
-        <AdditionalDamageTuple DamageType="Holy" Percent="0.10" />
+      <ItemTrait ItemTraitName="Holy Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% holy damage amplification</ItemTraitDescription>
+        <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_polehammer_warrior_priest_002">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Holy Additional Damage" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% additional holy damage</ItemTraitDescription>
-        <AdditionalDamageTuple DamageType="Holy" Percent="0.10" />
+      <ItemTrait ItemTraitName="Holy Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% holy damage amplification</ItemTraitDescription>
+        <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_polehammer_warrior_priest_003">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Holy Additional Damage" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% additional holy damage</ItemTraitDescription>
-        <AdditionalDamageTuple DamageType="Holy" Percent="0.10" />
+      <ItemTrait ItemTraitName="Holy Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% holy damage amplification</ItemTraitDescription>
+        <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
