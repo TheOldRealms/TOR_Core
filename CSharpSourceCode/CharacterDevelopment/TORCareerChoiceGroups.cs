@@ -124,23 +124,23 @@ namespace TOR_Core.CharacterDevelopment
             });
             _relentlessFanatic.Initialize("Relentless Fanatic", TORCareers.WarriorPriest, 2, (Hero hero, out string text) =>
             {
-                text = "Required renown: 3";
-                return hero.Clan.Tier >= 3;
+                text = "Required renown: 2";
+                return hero.Clan.Tier >= 2;
             });
             _protectorOfTheWeak.Initialize("Protector of the Weak", TORCareers.WarriorPriest, 2, (Hero hero, out string text) =>
             {
-                text = "Required renown: 3";
-                return hero.Clan.Tier >= 3;
+                text = "Required renown: 2";
+                return hero.Clan.Tier >= 2;
             });
             _holyPurge.Initialize("Holy Purge", TORCareers.WarriorPriest, 2, (Hero hero, out string text) =>
             {
-                text = "Required renown: 3";
-                return hero.Clan.Tier >= 3;
+                text = "Required renown: 2";
+                return hero.Clan.Tier >= 2;
             });
             _archLector.Initialize("Arch Lector", TORCareers.WarriorPriest, 3, (Hero hero, out string text) =>
             {
-                text = "Required renown: 5";
-                return hero.Clan.Tier >= 5;
+                text = "Required renown: 4";
+                return hero.Clan.Tier >= 4;
             });
             
             
@@ -151,28 +151,28 @@ namespace TOR_Core.CharacterDevelopment
             });
             _arkayne.Initialize("The Arkayne", TORCareers.MinorVampire, 2, (Hero hero, out string text) =>
             {
-                text = "Required renown: 3";
-                return hero.Clan.Tier >= 3;
+                text = "Required renown: 2";
+                return hero.Clan.Tier >= 2;
             });
             _courtley.Initialize("The Courtley", TORCareers.MinorVampire, 2, (Hero hero, out string text) =>
             {
-                text = "Required renown: 3";
-                return hero.Clan.Tier >= 3;
+                text = "Required renown: 2";
+                return hero.Clan.Tier >= 2;
             });
             _lordly.Initialize("The Lordly", TORCareers.MinorVampire, 2, (Hero hero, out string text) =>
             {
-                text = "Required renown: 3";
-                return hero.Clan.Tier >= 3;
+                text = "Required renown: 2";
+                return hero.Clan.Tier >= 2;
             });
             _martialle.Initialize("The Martialle", TORCareers.MinorVampire, 3, (Hero hero, out string text) =>
             {
-                text = "Required renown: 5";
-                return hero.Clan.Tier >= 5;
+                text = "Required renown: 4";
+                return hero.Clan.Tier >= 4;
             });
             _masterOfDead.Initialize("Master of the Dead", TORCareers.MinorVampire, 3, (Hero hero, out string text) =>
             {
-                text = "Required renown: 5";
-                return hero.Clan.Tier >= 5;
+                text = "Required renown: 4";
+                return hero.Clan.Tier >= 4;
             });
             
             //Blood Knight
@@ -183,28 +183,28 @@ namespace TOR_Core.CharacterDevelopment
             });
             _bladeMaster.Initialize("Blade Master", TORCareers.BloodKnight, 2, (Hero hero, out string text) =>
             {
-                text = "Required renown: 3";
-                return hero.Clan.Tier >= 3;
+                text = "Required renown: 2";
+                return hero.Clan.Tier >= 2;
             });
             _doomRider.Initialize("Doom Rider", TORCareers.BloodKnight, 2, (Hero hero, out string text) =>
             {
-                text = "Required renown: 3";
-                return hero.Clan.Tier >= 3;
+                text = "Required renown: 2";
+                return hero.Clan.Tier >= 2;
             });
             _controlledHunger.Initialize("Controlled Hunger", TORCareers.BloodKnight, 2, (Hero hero, out string text) =>
             {
-                text = "Required renown: 3";
-                return hero.Clan.Tier >= 3;
+                text = "Required renown: 2";
+                return hero.Clan.Tier >= 2;
             });
             _avatarOfDeath.Initialize("Avatar of Death", TORCareers.BloodKnight, 3, (Hero hero, out string text) =>
             {
-                text = "Required renown: 5";
-                return hero.Clan.Tier >= 5;
+                text = "Required renown: 4";
+                return hero.Clan.Tier >= 4;
             });
             _dreadKnight.Initialize("Dread Knight", TORCareers.BloodKnight, 3, (Hero hero, out string text) =>
             {
-                text = "Required renown: 5";
-                return hero.Clan.Tier >= 5;
+                text = "Required renown: 4";
+                return hero.Clan.Tier >= 4;
             });
             
             //Mercenary
@@ -253,23 +253,23 @@ namespace TOR_Core.CharacterDevelopment
             });
             _questingVow.Initialize("Questing Vow", TORCareers.GrailKnight, 2, (Hero hero, out string text) =>
             {
-                text = "Required renown: 3";
-                return hero.Clan.Tier >= 3;
+                text = "Required renown: 2";
+                return hero.Clan.Tier >= 2;
             });
             _monsterSlayer.Initialize("Monster Slayer", TORCareers.GrailKnight, 2, (Hero hero, out string text) =>
             {
-                text = "Required renown: 3";
-                return hero.Clan.Tier >= 3;
+                text = "Required renown: 2";
+                return hero.Clan.Tier >= 2;
             });
             _masterHorseman.Initialize("Master Horseman", TORCareers.GrailKnight, 2, (Hero hero, out string text) =>
             {
-                text = "Required renown: 3";
-                return hero.Clan.Tier >= 3;
+                text = "Required renown: 2";
+                return hero.Clan.Tier >= 2;
             });
             _grailVow.Initialize("Grail Vow", TORCareers.GrailKnight, 3, (Hero hero, out string text) =>
             {
-                text = "Required renown: 5";
-                return hero.Clan.Tier >= 5;
+                text = "Required renown: 4";
+                return hero.Clan.Tier >= 4;
             });
             
             //Grail Damsel
@@ -301,8 +301,8 @@ namespace TOR_Core.CharacterDevelopment
             });
             _secretsOfTheGrail.Initialize("Secrets of the Grail", TORCareers.GrailDamsel, 3, (Hero hero, out string text) =>
             {
-                text = "Required renown: 5";
-                return hero.Clan.Tier >= 5;
+                text = "Required renown: 4";
+                return hero.Clan.Tier >= 4;
             });
             
         }
