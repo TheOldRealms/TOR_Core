@@ -6017,8 +6017,8 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_sword_001" />
-      <Equipment slot="Item1" id="Item.vlandia_lance_1_t3" />
-      <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_noble_003" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_noble_003" />
+      <Equipment slot="Item2" id="Item.vlandia_lance_1_t3" />
       <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_005" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_002" />
       <Equipment slot="Cape" id="Item.hood" />
@@ -6029,8 +6029,8 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_sword_001" />
-      <Equipment slot="Item1" id="Item.vlandia_lance_1_t3" />
-      <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_noble_003" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_noble_003" />
+      <Equipment slot="Item2" id="Item.vlandia_lance_1_t3" />
       <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_005" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_002" />
       <Equipment slot="Cape" id="Item.hood" />
@@ -6488,9 +6488,9 @@
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_jousting_003" />
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_noble_001" />
-      <Equipment slot="Item2" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_003" />
       <Equipment slot="Item3" id="Item.tor_bretonnia_weapon_thsword_001" />
       <Equipment slot="Head" id="Item.tor_mousillon_head_helm_kotr_001" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_kotr_001" />
@@ -6501,9 +6501,9 @@
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_005" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_jousting_003" />
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_noble_001" />
-      <Equipment slot="Item2" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_003" />
       <Equipment slot="Item3" id="Item.tor_bretonnia_weapon_thsword_001" />
       <Equipment slot="Head" id="Item.tor_mousillon_head_helm_kotr_001" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_kotr_001" />
