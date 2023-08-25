@@ -46,7 +46,7 @@ namespace TOR_Core.HarmonyPatches
         public static bool VoiceVariationPatch(Agent __instance, SkinVoiceManager.SkinVoiceType voiceType)
         {
             
-            if (__instance == null || !__instance.IsHuman || !__instance.IsHero || __instance.Controller != Agent.ControllerType.Player) return true;
+            if (__instance == null || !__instance.IsHuman || __instance.Controller != Agent.ControllerType.Player) return true;
 
             string className = __instance.Monster.SoundAndCollisionInfoClassName;
             if (className != "human") return true;
@@ -65,7 +65,7 @@ namespace TOR_Core.HarmonyPatches
         {
             if (agent == null || !agent.IsHuman || agent.Character == null || agent.Character.Culture == null || agent.IsFemale) return false;
             var cultureId = agent.Character.Culture.StringId;
-            if(Game.Current.GameType is Campaign)
+            if(Game.Current.GameType is Campaign && agent.IsHero)
             {
                 cultureId = agent.GetHero().Culture.StringId;
             }
