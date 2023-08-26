@@ -59,19 +59,19 @@ namespace TOR_Core.Models
                         {
                             num *= 15;
                         }
-                        else if(element.Troop.GetFormationClass() == FormationClass.Infantry && CalculateRatioOfFormationClass(FormationClass.Infantry, priorityList) < DesiredInfantryRatio)
+                        else if(element.Troop.DefaultFormationClass == FormationClass.Infantry && CalculateRatioOfFormationClass(FormationClass.Infantry, priorityList) < DesiredInfantryRatio)
                         {
                             num *= 10;
                         }
-                        else if (element.Troop.GetFormationClass() == FormationClass.Ranged && CalculateRatioOfFormationClass(FormationClass.Ranged, priorityList) < DesiredRangedRatio)
+                        else if (element.Troop.DefaultFormationClass == FormationClass.Ranged && CalculateRatioOfFormationClass(FormationClass.Ranged, priorityList) < DesiredRangedRatio)
                         {
                             num *= 10;
                         }
-                        else if (element.Troop.GetFormationClass() == FormationClass.Cavalry && CalculateRatioOfFormationClass(FormationClass.Cavalry, priorityList) < DesiredCavalryRatio)
+                        else if (element.Troop.DefaultFormationClass == FormationClass.Cavalry && CalculateRatioOfFormationClass(FormationClass.Cavalry, priorityList) < DesiredCavalryRatio)
                         {
                             num *= 10;
                         }
-                        else if (element.Troop.GetFormationClass() == FormationClass.HorseArcher && CalculateRatioOfFormationClass(FormationClass.HorseArcher, priorityList) < DesiredRangedCavalryRatio)
+                        else if (element.Troop.DefaultFormationClass == FormationClass.HorseArcher && CalculateRatioOfFormationClass(FormationClass.HorseArcher, priorityList) < DesiredRangedCavalryRatio)
                         {
                             num *= 10;
                         }
@@ -80,7 +80,6 @@ namespace TOR_Core.Models
                     }
                 }
             }
-            var sortedList = priorityList.OrderByDescending(x => x.Item3);
         }
 
         private bool CanTroopJoinBattle(FlattenedTroopRosterElement troopRoster, bool includePlayer)
@@ -91,7 +90,7 @@ namespace TOR_Core.Models
         private float CalculateRatioOfFormationClass(FormationClass formationClass, List<(FlattenedTroopRosterElement, MapEventParty, float)> priorityList)
         {
             if (priorityList.Count == 0) return 0f;
-            return priorityList.WhereQ(x => x.Item1.Troop.GetFormationClass() == formationClass).Count() / priorityList.Count;
+            return priorityList.WhereQ(x => x.Item1.Troop.DefaultFormationClass == formationClass).Count() / priorityList.Count;
         }
     }
 }
