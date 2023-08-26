@@ -3879,7 +3879,7 @@
       <Village id="castle_village_comp_AQ1_2" village_type="VillageType.swine_farm" hearth="200" trade_bound="Settlement.castle_AQ1" bound="Settlement.castle_AQ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_bretonnia_village_coast_002" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
