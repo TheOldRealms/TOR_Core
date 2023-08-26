@@ -40,8 +40,10 @@ namespace TOR_Core.Models
                 unitSpawnPrioritizations = Game.Current.UnitSpawnPrioritization;
             }
 
+            
             var list = battleParty.Troops.ToList();
             bool partyHasArtilleryCrew = list.AnyQ(x => x.Troop.HasAttribute("ArtilleryCrew"));
+            var crewMembers=0;
             list.Shuffle();
 
             foreach(var element in list)
@@ -58,15 +60,13 @@ namespace TOR_Core.Models
                     else
                     {
                         num = 10;
-                        if (partyHasArtilleryCrew)
+                        if (partyHasArtilleryCrew&&crewMembers <= 6)
                         {
                             if (element.Troop.HasAttribute("ArtilleryCrew") && priorityList.Where(x => x.Item1.Troop.HasAttribute("ArtilleryCrew")).Count() < 6)
                             {
                                 num *= 15;
-                                if (priorityList.Where(x => x.Item1.Troop.HasAttribute("ArtilleryCrew")).Count() < 6)
-                                {
-                                    partyHasArtilleryCrew = false;
-                                }
+                                crewMembers++;
+                                
                                 goto skip;
                             }
                         }
