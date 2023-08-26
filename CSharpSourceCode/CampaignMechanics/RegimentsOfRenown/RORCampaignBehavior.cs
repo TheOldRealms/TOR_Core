@@ -149,6 +149,7 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                 mobileParty != MobileParty.MainParty &&
                 !mobileParty.IsDisbanding && 
                 mobileParty.LeaderHero != null && 
+                mobileParty.LeaderHero.Culture == settlement.Culture &&
                 !mobileParty.Party.IsStarving &&
                 mobileParty.MapFaction.IsKingdomFaction &&
                 settlement.IsRoRSettlement() &&
@@ -182,6 +183,7 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                 !mobileParty.IsDisbanding &&
                 mobileParty.LeaderHero != null &&
                 mobileParty.LeaderHero.CanPlaceArtillery() &&
+                mobileParty.LeaderHero.Culture.StringId == "empire" &&
                 !mobileParty.Party.IsStarving &&
                 mobileParty.MapFaction.IsKingdomFaction &&
                 mobileParty.Party.NumberOfAllMembers < mobileParty.LimitedPartySize &&
