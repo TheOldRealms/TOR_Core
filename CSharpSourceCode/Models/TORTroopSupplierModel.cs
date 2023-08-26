@@ -9,6 +9,7 @@ using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
+using TaleWorlds.LinQuick;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
@@ -90,7 +91,7 @@ namespace TOR_Core.Models
         private float CalculateRatioOfFormationClass(FormationClass formationClass, List<(FlattenedTroopRosterElement, MapEventParty, float)> priorityList)
         {
             if (priorityList.Count == 0) return 0f;
-            return priorityList.Where(x => x.Item1.Troop.GetFormationClass() == formationClass).Count() / priorityList.Count;
+            return priorityList.WhereQ(x => x.Item1.Troop.GetFormationClass() == formationClass).Count() / priorityList.Count;
         }
     }
 }
