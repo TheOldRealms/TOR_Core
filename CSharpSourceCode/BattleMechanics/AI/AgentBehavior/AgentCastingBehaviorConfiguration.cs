@@ -66,7 +66,8 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior
         {
             if (abilityTemplate.AbilityTargetType == AbilityTargetType.AlliesInAOE ||
                 abilityTemplate.AbilityEffectType == AbilityEffectType.Heal ||
-                abilityTemplate.AbilityTargetType == AbilityTargetType.SingleAlly)
+                abilityTemplate.AbilityTargetType == AbilityTargetType.SingleAlly ||
+                abilityTemplate.AssociatedTriggeredEffectTemplates.Count > 0 && abilityTemplate.AssociatedTriggeredEffectTemplates[0].TargetType == TargetType.Friendly)
                 return agent.Team.GetAllyTeams()
                     .SelectMany(team => team.GetFormations())
                     .Select(form => new Target {Formation = form})
