@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.MapEvents;
@@ -25,7 +26,8 @@ namespace TOR_Core.Models
             FlattenedTroopRoster priorityTroops, bool includePlayer, int sizeOfSide, bool forcePriorityTroops, 
             List<(FlattenedTroopRosterElement, MapEventParty, float)> priorityList)
         {
-            if(forcePriorityTroops || (priorityTroops != null && priorityTroops.Count() > 0))
+            bool isLordParty = (bool)(battleParty.Party?.MobileParty?.IsLordParty);
+            if (forcePriorityTroops || (priorityTroops != null && priorityTroops.Count() > 0) || !isLordParty)
             {
                 base.EnqueueTroopSpawnProbabilitiesAccordingToUnitSpawnPrioritization(battleParty, priorityTroops, includePlayer, sizeOfSide, forcePriorityTroops, priorityList);
                 return;
@@ -39,6 +41,7 @@ namespace TOR_Core.Models
             }
 
             var list = battleParty.Troops.ToList();
+            bool partyHasArtilleryCrew = list.AnyQ(x => x.Troop.HasAttribute("ArtilleryCrew"));
             list.Shuffle();
 
             foreach(var element in list)
@@ -55,11 +58,15 @@ namespace TOR_Core.Models
                     else
                     {
                         num = 10;
-                        if (element.Troop.HasAttribute("ArtilleryCrew") && priorityList.Where(x => x.Item1.Troop.HasAttribute("ArtilleryCrew")).Count() < 6)
+                        if (partyHasArtilleryCrew)
                         {
-                            num *= 15;
+                            if (element.Troop.HasAttribute("ArtilleryCrew") && priorityList.Where(x => x.Item1.Troop.HasAttribute("ArtilleryCrew")).Count() < 6)
+                            {
+                                num *= 15;
+                                goto skip;
+                            }
                         }
-                        else if(element.Troop.DefaultFormationClass == FormationClass.Infantry && CalculateRatioOfFormationClass(FormationClass.Infantry, priorityList) < DesiredInfantryRatio)
+                        if(element.Troop.DefaultFormationClass == FormationClass.Infantry && CalculateRatioOfFormationClass(FormationClass.Infantry, priorityList) < DesiredInfantryRatio)
                         {
                             num *= 10;
                         }
@@ -75,6 +82,7 @@ namespace TOR_Core.Models
                         {
                             num *= 10;
                         }
+                        skip:
                         num *= MBRandom.RandomFloatRanged(0.9f, 1.1f);
                         priorityList.Add(new ValueTuple<FlattenedTroopRosterElement, MapEventParty, float>(element, battleParty, num));
                     }
