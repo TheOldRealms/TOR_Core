@@ -26,7 +26,7 @@ namespace TOR_Core.Models
             FlattenedTroopRoster priorityTroops, bool includePlayer, int sizeOfSide, bool forcePriorityTroops, 
             List<(FlattenedTroopRosterElement, MapEventParty, float)> priorityList)
         {
-            bool isLordParty = (bool)(battleParty.Party!=null&&battleParty.Party.MobileParty!=null&&battleParty.Party.MobileParty.IsLordParty);
+            bool isLordParty = (bool)(battleParty.Party != null && battleParty.Party.MobileParty != null && battleParty.Party.MobileParty.IsLordParty);
             if (forcePriorityTroops || (priorityTroops != null && priorityTroops.Count() > 0) || !isLordParty)
             {
                 base.EnqueueTroopSpawnProbabilitiesAccordingToUnitSpawnPrioritization(battleParty, priorityTroops, includePlayer, sizeOfSide, forcePriorityTroops, priorityList);
@@ -43,7 +43,7 @@ namespace TOR_Core.Models
             
             var list = battleParty.Troops.ToList();
             bool partyHasArtilleryCrew = list.AnyQ(x => x.Troop.HasAttribute("ArtilleryCrew"));
-            var crewMembers=0;
+            var crewMembers = 0;
             list.Shuffle();
 
             foreach(var element in list)
@@ -60,9 +60,9 @@ namespace TOR_Core.Models
                     else
                     {
                         num = 10;
-                        if (partyHasArtilleryCrew&&crewMembers <= 6)
+                        if (partyHasArtilleryCrew && crewMembers <= 6)
                         {
-                            if (element.Troop.HasAttribute("ArtilleryCrew") && priorityList.Where(x => x.Item1.Troop.HasAttribute("ArtilleryCrew")).Count() < 6)
+                            if (element.Troop.HasAttribute("ArtilleryCrew"))
                             {
                                 num *= 15;
                                 crewMembers++;
