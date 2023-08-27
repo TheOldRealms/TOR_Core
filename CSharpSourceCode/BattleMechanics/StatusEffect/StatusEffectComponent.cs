@@ -200,15 +200,13 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             {
                 foreach (var entity in data.Entities)
                 {
-                    if (_isEndMission)
-                    {
-                        entity.RemoveAllParticleSystems();
-                        entity.FadeOut(1, true);
-                        continue;
-                    }
+                    
+                  
                     entity.RemoveAllParticleSystems();
-                    Agent.AgentVisuals.RemoveChildEntity(entity, 0);
+                    
                     entity.FadeOut(1, true);
+                    
+                    if (!_isEndMission) Agent.AgentVisuals.RemoveChildEntity(entity, 0);
                 }
             }
             _dummyEntity.RemoveAllParticleSystems();
@@ -446,7 +444,12 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             _isEndMission = true;
             CleanUp();
         }
-        
+
+        public void OnMissionModeChange(MissionMode oldMissionMode, bool atStart)
+        {
+            
+        }
+
         public void OnEquipItemsFromSpawnEquipmentBegin(Agent agent, Agent.CreationType creationType)
         {
             
@@ -454,14 +457,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         public void OnEquipItemsFromSpawnEquipment(Agent agent, Agent.CreationType creationType)
         {
+            
         }
-
         
-
-        public void OnMissionModeChange(MissionMode oldMissionMode, bool atStart)
-        {
-        }
-
         public void OnConversationCharacterChanged()
         {
         }

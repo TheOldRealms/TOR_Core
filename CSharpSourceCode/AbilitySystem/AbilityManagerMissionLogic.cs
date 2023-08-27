@@ -19,6 +19,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.GameManagers;
 using TOR_Core.Quests;
 using NLog;
+using TaleWorlds.Library;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -98,7 +99,7 @@ namespace TOR_Core.AbilitySystem
                 RefreshMaxArtilleryCountForTeam(team);
             }
         }
-
+        
         public override void OnBehaviorInitialize()
         {
             base.OnBehaviorInitialize();
@@ -519,6 +520,22 @@ namespace TOR_Core.AbilitySystem
             _keyContext.GetGameKey(19).KeyboardKey.ChangeKey(InputKey.Invalid);
             _keyContext.GetGameKey(20).KeyboardKey.ChangeKey(InputKey.Invalid);
             _keyContext.GetGameKey(21).KeyboardKey.ChangeKey(InputKey.Invalid);
+        }
+        
+        public override void OnMissionResultReady(MissionResult missionResult)
+        {
+            DisableAbilityMode(true);
+            TORCommon.Say("Lol");
+            
+            if (missionResult.PlayerVictory)
+            {
+                var abilities = Agent.Main.GetComponent<AbilityComponent>().KnownAbilitySystem;
+
+                foreach (var ability in abilities)
+                {
+                    ability.DeactivateAbility();
+                }
+            }
         }
 
         private void OnItemPickup(Agent agent, SpawnedItemEntity item)
