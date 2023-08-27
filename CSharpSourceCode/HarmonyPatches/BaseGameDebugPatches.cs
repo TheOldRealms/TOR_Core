@@ -79,6 +79,25 @@ namespace TOR_Core.HarmonyPatches
         }
 
         [HarmonyPrefix]
+        [HarmonyPatch(typeof(VassalAndMercenaryOfferCampaignBehavior), "VassalKingdomSelectionConditionsHold")]
+        public static bool PreventCrash2(Kingdom kingdom, ref bool __result)
+        {
+            if(kingdom.IsEliminated || kingdom.Leader == null || !kingdom.Leader.IsActive)
+            {
+                __result = false; 
+                return false;
+            }
+            return true;
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(VassalAndMercenaryOfferCampaignBehavior), "ClearKingdomOffer")]
+        public static void PreventCrash3(Kingdom kingdom, Dictionary<Kingdom, CampaignTime> ____vassalOffers)
+        {
+            if(____vassalOffers.ContainsKey(kingdom)) ____vassalOffers.Remove(kingdom);
+        }
+
+        [HarmonyPrefix]
         [HarmonyPatch(typeof(TavernEmployeesCampaignBehavior), "conversation_talk_bard_on_condition")]
         public static bool PreventCrash2(TavernEmployeesCampaignBehavior __instance, ref bool __result)
         {
