@@ -206,7 +206,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     
                     entity.FadeOut(1, true);
                     
-                    if (!_isEndMission) Agent.AgentVisuals.RemoveChildEntity(entity, 0);
+                    Agent.AgentVisuals.RemoveChildEntity(entity, 0);
                 }
             }
             _dummyEntity.RemoveAllParticleSystems();
