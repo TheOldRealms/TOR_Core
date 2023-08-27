@@ -9,11 +9,12 @@ using TaleWorlds.Library;
 using TaleWorlds.Core;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using System;
+using System.Diagnostics.Tracing;
 using TOR_Core.BattleMechanics.SFX;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
 {
-    public class StatusEffectComponent : AgentComponent, IDisposable
+    public class StatusEffectComponent : AgentComponent, IDisposable, IMissionListener
     {
         private GameEntity _dummyEntity;
         private float _updateFrequency = 1;
@@ -24,6 +25,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         private bool _restoredBaseValues;
         private bool _initBaseValues;
         private Dictionary<DrivenProperty, float> _baseValues;
+       
 
         public StatusEffectComponent(Agent agent) : base(agent)
         {
@@ -32,6 +34,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             _dummyEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
             _dummyEntity.Name = "_dummyEntity_" + Agent.Index;
             _baseValues = new Dictionary<DrivenProperty, float>();
+            Mission.Current.AddListener(this);
+     
         }
 
         public void SynchronizeBaseValues(bool mountOnly = false)
@@ -427,6 +431,43 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     DamageAmplifications[AttackTypeMask.Melee][(int)damageType] += value;
                 }
             }
+        }
+
+        
+        public void OnEndMission()
+        {
+            var list = this._currentEffects.Keys.ToList();
+            foreach (var effect in list)
+            {
+                RemoveEffect(effect);
+            }
+        }
+        
+        public void OnEquipItemsFromSpawnEquipmentBegin(Agent agent, Agent.CreationType creationType)
+        {
+        }
+
+        public void OnEquipItemsFromSpawnEquipment(Agent agent, Agent.CreationType creationType)
+        {
+        }
+
+        
+
+        public void OnMissionModeChange(MissionMode oldMissionMode, bool atStart)
+        {
+        }
+
+        public void OnConversationCharacterChanged()
+        {
+        }
+
+        public void OnResetMission()
+        {
+        }
+
+        public void OnInitialDeploymentPlanMade(BattleSideEnum battleSide, bool isFirstPlan)
+        {
+            
         }
     }
 }
