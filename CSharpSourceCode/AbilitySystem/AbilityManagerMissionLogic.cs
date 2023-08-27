@@ -20,6 +20,7 @@ using TOR_Core.GameManagers;
 using TOR_Core.Quests;
 using NLog;
 using TaleWorlds.Library;
+using TOR_Core.BattleMechanics.StatusEffect;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -524,16 +525,25 @@ namespace TOR_Core.AbilitySystem
         
         public override void OnMissionResultReady(MissionResult missionResult)
         {
-            DisableAbilityMode(true);
-            TORCommon.Say("Lol");
             
             if (missionResult.PlayerVictory)
             {
+                DisableAbilityMode(true);
                 var abilities = Agent.Main.GetComponent<AbilityComponent>().KnownAbilitySystem;
 
                 foreach (var ability in abilities)
                 {
                     ability.DeactivateAbility();
+                }
+
+                var agents = Mission.Current.Agents;
+                foreach (var agent in agents)
+                {
+                    var comp = agent.GetComponent<StatusEffectComponent>();
+                    if (comp != null)
+                    {
+                        comp.Dispose();
+                    }
                 }
             }
         }
