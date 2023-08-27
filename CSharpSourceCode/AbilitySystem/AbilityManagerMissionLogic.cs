@@ -546,6 +546,19 @@ namespace TOR_Core.AbilitySystem
                     }
                 }
             }
+
+            if (missionResult.PlayerDefeated)
+            {
+                var agents = Mission.Current.Agents;
+                foreach (var agent in agents)
+                {
+                    var comp = agent.GetComponent<StatusEffectComponent>();
+                    if (comp != null)
+                    {
+                        comp.Dispose();
+                    }
+                }
+            }
         }
 
         private void OnItemPickup(Agent agent, SpawnedItemEntity item)
