@@ -90,9 +90,21 @@ namespace TOR_Core.HarmonyPatches
             return true;
         }
 
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(VassalAndMercenaryOfferCampaignBehavior), "MercenaryKingdomSelectionConditionsHold")]
+        public static bool PreventCrash3(Kingdom kingdom, ref bool __result)
+        {
+            if (kingdom.IsEliminated || kingdom.Leader == null || !kingdom.Leader.IsActive)
+            {
+                __result = false;
+                return false;
+            }
+            return true;
+        }
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(VassalAndMercenaryOfferCampaignBehavior), "ClearKingdomOffer")]
-        public static void PreventCrash3(Kingdom kingdom, Dictionary<Kingdom, CampaignTime> ____vassalOffers)
+        public static void PreventCrash4(Kingdom kingdom, Dictionary<Kingdom, CampaignTime> ____vassalOffers)
         {
             if(____vassalOffers.ContainsKey(kingdom)) ____vassalOffers.Remove(kingdom);
         }
