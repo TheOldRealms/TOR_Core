@@ -445,6 +445,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         
         public void OnEquipItemsFromSpawnEquipmentBegin(Agent agent, Agent.CreationType creationType)
         {
+            
         }
 
         public void OnEquipItemsFromSpawnEquipment(Agent agent, Agent.CreationType creationType)
