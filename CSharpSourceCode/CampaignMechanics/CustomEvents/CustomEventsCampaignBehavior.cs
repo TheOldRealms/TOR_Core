@@ -19,8 +19,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
         private const float UncommonChance = 3f;
         private const float CommonChance = 5f;
         private const float AbundantChance = 7f;
-        private const int CoolDown = 12;
-        private int _hoursCountSinceLastEvent = 0;
+        private const int CoolDown = 168;
 
         List<CustomEvent> _events = new List<CustomEvent>();
         Dictionary<string, double> _triggerTimes = new Dictionary<string, double>();
@@ -44,9 +43,9 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             {
                 _events.Add(new CustomEvent(item.StringId, item.Frequency, item.Cooldown, StandardMovingCheck, () => InkStoryManager.OpenStory(item.StringId)));
             }
-            _events.Add(new CustomEvent("Duel", CustomEventFrequency.Uncommon, 168, () => StandardMovingCheck() && !Hero.MainHero.HasAttribute("DefeatedVittorio"), () => InkStoryManager.OpenStory("Duel")));
-            _events.Add(new CustomEvent("CampFireLearning", CustomEventFrequency.Abundant, 72, () => StandardMovingCheck() && CampaignTime.Now.IsNightTime, () => InkStoryManager.OpenStory("CampFireLearning")));
-            _events.Add(new CustomEvent("Minstrel", CustomEventFrequency.Common, 96,
+            _events.Add(new CustomEvent("Duel", CustomEventFrequency.Uncommon, 900, () => StandardMovingCheck() && !Hero.MainHero.HasAttribute("DefeatedVittorio"), () => InkStoryManager.OpenStory("Duel")));
+            _events.Add(new CustomEvent("CampFireLearning", CustomEventFrequency.Abundant, 300, () => StandardMovingCheck() && CampaignTime.Now.IsNightTime, () => InkStoryManager.OpenStory("CampFireLearning")));
+            _events.Add(new CustomEvent("Minstrel", CustomEventFrequency.Common, 1000,
                 () => StandardMovingCheck() &&
                 !CampaignTime.Now.IsNightTime &&
                 TORCommon.FindNearestSettlement(MobileParty.MainParty, 100f, x => x.IsTown)?.Culture.StringId == "vlandia", () => InkStoryManager.OpenStory("Minstrel")));
@@ -65,6 +64,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
         private void HourlyTick(MobileParty party)
         {
             if (party != MobileParty.MainParty) return;
+            if (!_triggerTimes.ContainsKey("Global")) _triggerTimes.Add("Global", 9999);
             if (GetRandomFrequency(out CustomEventFrequency chosenFrequency) && HasCooldownExpired())
             {
                 var chosenEvent = _events.GetRandomElementWithPredicate(x => x.Frequency == chosenFrequency && x.DoesConditionHold() && x.StringId != InkStoryManager.LastStoryId && !_triggerTimes.ContainsKey(x.StringId));
@@ -74,10 +74,9 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
                     chosenEvent.Trigger();
                     if (_triggerTimes.ContainsKey(chosenEvent.StringId)) _triggerTimes[chosenEvent.StringId] = CampaignTime.Now.ToHours;
                     else _triggerTimes.Add(chosenEvent.StringId, CampaignTime.Now.ToHours);
-                    _hoursCountSinceLastEvent = 0;
+                    _triggerTimes["Global"] = CampaignTime.Now.ToHours;
                 }
             }
-            else _hoursCountSinceLastEvent++;
         }
 
         private int GetElapsedTimeSinceLastTrigger(CustomEvent x)
@@ -86,7 +85,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             else return 999;
         }
 
-        private bool HasCooldownExpired() => _hoursCountSinceLastEvent > CoolDown;
+        private bool HasCooldownExpired() => CampaignTime.Now.ToHours - _triggerTimes["Global"] > CoolDown;
 
         private bool GetRandomFrequency(out CustomEventFrequency chosenFrequency)
         {

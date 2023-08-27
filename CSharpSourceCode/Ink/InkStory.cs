@@ -64,7 +64,7 @@ namespace TOR_Core.Ink
                 }
                 if (!int.TryParse(GetValueOfGlobalTag("cooldown"), out Cooldown))
                 {
-                    Cooldown = 72;
+                    Cooldown = 300;
                 }
             }
         }
