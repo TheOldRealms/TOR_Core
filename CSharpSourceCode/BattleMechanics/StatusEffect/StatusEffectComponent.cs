@@ -14,7 +14,7 @@ using TOR_Core.BattleMechanics.SFX;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
 {
-    public class StatusEffectComponent : AgentComponent, IDisposable, IMissionListener
+    public class StatusEffectComponent : AgentComponent, IDisposable
     {
         private GameEntity _dummyEntity;
         private float _updateFrequency = 1;
@@ -24,7 +24,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         public bool ModifiedDrivenProperties;
         private bool _restoredBaseValues;
         private bool _initBaseValues;
-        private bool _isEndMission;
         private Dictionary<DrivenProperty, float> _baseValues;
        
 
@@ -200,12 +199,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             {
                 foreach (var entity in data.Entities)
                 {
-                    
-                  
                     entity.RemoveAllParticleSystems();
-                    
                     entity.FadeOut(1, true);
-                    
                     Agent.AgentVisuals.RemoveChildEntity(entity, 0);
                 }
             }
@@ -437,36 +432,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 }
             }
         }
-
         
-        public void OnEndMission()
-        {
-            _isEndMission = true;
-            CleanUp();
-        }
-
-        public void OnMissionModeChange(MissionMode oldMissionMode, bool atStart)
-        {
-            
-        }
-
-        public void OnEquipItemsFromSpawnEquipmentBegin(Agent agent, Agent.CreationType creationType)
-        {
-            
-        }
-
-        public void OnEquipItemsFromSpawnEquipment(Agent agent, Agent.CreationType creationType)
-        {
-            
-        }
         
-        public void OnConversationCharacterChanged()
-        {
-        }
-
-        public void OnResetMission()
-        {
-        }
 
         public void OnInitialDeploymentPlanMade(BattleSideEnum battleSide, bool isFirstPlan)
         {
