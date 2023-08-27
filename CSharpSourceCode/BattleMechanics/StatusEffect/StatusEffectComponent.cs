@@ -34,7 +34,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             _dummyEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
             _dummyEntity.Name = "_dummyEntity_" + Agent.Index;
             _baseValues = new Dictionary<DrivenProperty, float>();
-            //Mission.Current.AddListener(this);
      
         }
 
@@ -431,13 +430,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     DamageAmplifications[AttackTypeMask.Melee][(int)damageType] += value;
                 }
             }
-        }
-        
-        
-
-        public void OnInitialDeploymentPlanMade(BattleSideEnum battleSide, bool isFirstPlan)
-        {
-            
         }
     }
 }
