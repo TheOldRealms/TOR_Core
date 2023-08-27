@@ -28,12 +28,12 @@
   </Settlement>
   <Settlement id="grove_of_the_lady_01" name="{=!}Grove of the Lady" owner="Faction.carcassonne_clan_1" posX="1016.4" posY="810.756" culture="Culture.vlandia" text="{=!}Grove of the Lady">
     <Components>
-      <Shrine id="grove_of_the_lady_01" religion="cult_of_lady" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <Shrine id="grove_of_the_lady_01" religion="cult_of_lady" background_crop_position="0.0" background_mesh="shrine_of_lady" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="grove_of_the_lady_02" name="{=!}Grove of the Lady" owner="Faction.bastonne_clan_1" posX="1038.792" posY="1070.953" culture="Culture.vlandia" text="{=!}Grove of the Lady">
     <Components>
-      <Shrine id="grove_of_the_lady_02" religion="cult_of_lady" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <Shrine id="grove_of_the_lady_02" religion="cult_of_lady" background_crop_position="0.0" background_mesh="shrine_of_lady" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="herdstone_01" name="{=!}Beastmen Herdstone" owner="Faction.beastmen_clan_1" posX="1472.928" posY="1069.09" culture="Culture.chaos_culture" text="{=!}Beastmen Herdstone">
