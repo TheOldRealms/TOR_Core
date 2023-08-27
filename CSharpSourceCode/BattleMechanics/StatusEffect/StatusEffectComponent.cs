@@ -24,6 +24,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         public bool ModifiedDrivenProperties;
         private bool _restoredBaseValues;
         private bool _initBaseValues;
+        private bool _isEndMission;
         private Dictionary<DrivenProperty, float> _baseValues;
        
 
@@ -199,6 +200,12 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             {
                 foreach (var entity in data.Entities)
                 {
+                    if (_isEndMission)
+                    {
+                        entity.RemoveAllParticleSystems();
+                        entity.FadeOut(1, true);
+                        continue;
+                    }
                     entity.RemoveAllParticleSystems();
                     Agent.AgentVisuals.RemoveChildEntity(entity, 0);
                     entity.FadeOut(1, true);
@@ -436,11 +443,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         
         public void OnEndMission()
         {
-            var list = this._currentEffects.Keys.ToList();
-            foreach (var effect in list)
-            {
-                RemoveEffect(effect);
-            }
+            _isEndMission = true;
+            CleanUp();
         }
         
         public void OnEquipItemsFromSpawnEquipmentBegin(Agent agent, Agent.CreationType creationType)
