@@ -43,8 +43,6 @@ namespace TOR_Core.Missions
 		private List<TournamentTeam> _aliveTeams;
 		private List<Agent> _currentTournamentAgents;
 		private List<Agent> _currentTournamentMountAgents;
-		private const float XpShareForKill = 0.5f;
-		private const float XpShareForDamage = 0.5f;
 		private MissionCameraFadeView _cameraView;
 		private JoustFightState _currentState = JoustFightState.MountedCombat;
 
