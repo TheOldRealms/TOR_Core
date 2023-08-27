@@ -35,7 +35,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             _dummyEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
             _dummyEntity.Name = "_dummyEntity_" + Agent.Index;
             _baseValues = new Dictionary<DrivenProperty, float>();
-            Mission.Current.AddListener(this);
+            //Mission.Current.AddListener(this);
      
         }
 
