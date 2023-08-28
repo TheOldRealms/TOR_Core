@@ -10,6 +10,7 @@ using TaleWorlds.Core;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using System;
 using System.Diagnostics.Tracing;
+using TaleWorlds.TwoDimension;
 using TOR_Core.BattleMechanics.SFX;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
@@ -205,6 +206,14 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
             _dummyEntity.RemoveAllParticleSystems();
 
+            if (data.Effect.Template.Type == StatusEffectTemplate.EffectType.MovementManipulation)
+            {
+                if (Mathf.Abs(GetMovementSpeedModifier() - effect.Template.BaseEffectValue) - 0.00001f <= 0f)
+                {
+                    this.Agent.UpdateAgentProperties();
+                }
+            }
+            
             _currentEffects.Remove(effect);
             foreach (var currEffect in _currentEffects.Keys)
             {
@@ -215,6 +224,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     _currentEffects[currEffect].Particles.Add(ParticleSystem.CreateParticleSystemAttachedToEntity(currEffect.Template.ParticleId, _dummyEntity, ref frame));
                 }
             }
+
+            
         }
 
         public float[] GetAmplifiers(AttackTypeMask mask)
