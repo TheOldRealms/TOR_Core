@@ -19,6 +19,8 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.GameManagers;
 using TOR_Core.Quests;
 using NLog;
+using TaleWorlds.Library;
+using TOR_Core.BattleMechanics.StatusEffect;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -98,7 +100,7 @@ namespace TOR_Core.AbilitySystem
                 RefreshMaxArtilleryCountForTeam(team);
             }
         }
-
+        
         public override void OnBehaviorInitialize()
         {
             base.OnBehaviorInitialize();
@@ -519,6 +521,37 @@ namespace TOR_Core.AbilitySystem
             _keyContext.GetGameKey(19).KeyboardKey.ChangeKey(InputKey.Invalid);
             _keyContext.GetGameKey(20).KeyboardKey.ChangeKey(InputKey.Invalid);
             _keyContext.GetGameKey(21).KeyboardKey.ChangeKey(InputKey.Invalid);
+        }
+        
+        public override void OnMissionResultReady(MissionResult missionResult)
+        {
+            if (missionResult.PlayerDefeated || missionResult.PlayerVictory)
+            {
+                var agents = Mission.Current.Agents;
+                foreach (var agent in agents)
+                {
+                    if (agent.IsMainAgent&&agent.IsActive())
+                    {
+                        DisableAbilityMode(true);
+                    }
+
+                    var abilityComponent = agent.GetComponent<AbilityComponent>();
+                    if (abilityComponent != null)
+                    {
+                        var abilities = abilityComponent.KnownAbilitySystem;
+                        foreach (var ability in abilities)
+                        {
+                            ability.DeactivateAbility();
+                        }
+                    }
+                    
+                    var comp = agent.GetComponent<StatusEffectComponent>();
+                    if (comp != null)
+                    {
+                        comp.Dispose();
+                    }
+                }
+            }
         }
 
         private void OnItemPickup(Agent agent, SpawnedItemEntity item)

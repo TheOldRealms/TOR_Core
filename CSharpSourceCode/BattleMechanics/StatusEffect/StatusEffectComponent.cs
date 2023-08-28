@@ -9,6 +9,8 @@ using TaleWorlds.Library;
 using TaleWorlds.Core;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using System;
+using System.Diagnostics.Tracing;
+using TaleWorlds.TwoDimension;
 using TOR_Core.BattleMechanics.SFX;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
@@ -24,6 +26,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         private bool _restoredBaseValues;
         private bool _initBaseValues;
         private Dictionary<DrivenProperty, float> _baseValues;
+       
 
         public StatusEffectComponent(Agent agent) : base(agent)
         {
@@ -32,6 +35,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             _dummyEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
             _dummyEntity.Name = "_dummyEntity_" + Agent.Index;
             _baseValues = new Dictionary<DrivenProperty, float>();
+     
         }
 
         public void SynchronizeBaseValues(bool mountOnly = false)
@@ -195,13 +199,21 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             {
                 foreach (var entity in data.Entities)
                 {
+                    entity.FadeOut(1, true);
                     entity.RemoveAllParticleSystems();
                     Agent.AgentVisuals.RemoveChildEntity(entity, 0);
-                    entity.FadeOut(1, true);
                 }
             }
             _dummyEntity.RemoveAllParticleSystems();
 
+            if (data.Effect.Template.Type == StatusEffectTemplate.EffectType.MovementManipulation)
+            {
+                if (Mathf.Abs(GetMovementSpeedModifier() - effect.Template.BaseEffectValue) - 0.00001f <= 0f)
+                {
+                    this.Agent.UpdateAgentProperties();
+                }
+            }
+            
             _currentEffects.Remove(effect);
             foreach (var currEffect in _currentEffects.Keys)
             {
@@ -212,6 +224,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     _currentEffects[currEffect].Particles.Add(ParticleSystem.CreateParticleSystemAttachedToEntity(currEffect.Template.ParticleId, _dummyEntity, ref frame));
                 }
             }
+
+            
         }
 
         public float[] GetAmplifiers(AttackTypeMask mask)
