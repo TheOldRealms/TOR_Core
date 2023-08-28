@@ -525,22 +525,26 @@ namespace TOR_Core.AbilitySystem
         
         public override void OnMissionResultReady(MissionResult missionResult)
         {
-            
-            if (missionResult.PlayerVictory&&Agent.Main != null)
-            {
-                    DisableAbilityMode(true);
-                    var abilities = Agent.Main.GetComponent<AbilityComponent>().KnownAbilitySystem;
-                    foreach (var ability in abilities)
-                    {
-                        ability.DeactivateAbility();
-                    }
-            }
-
-            if (missionResult.PlayerDefeated||missionResult.PlayerVictory)
+            if (missionResult.PlayerDefeated || missionResult.PlayerVictory)
             {
                 var agents = Mission.Current.Agents;
                 foreach (var agent in agents)
                 {
+                    if (agent.IsMainAgent&&agent.IsActive())
+                    {
+                        DisableAbilityMode(true);
+                    }
+
+                    var abilityComponent = agent.GetComponent<AbilityComponent>();
+                    if (abilityComponent != null)
+                    {
+                        var abilities = abilityComponent.KnownAbilitySystem;
+                        foreach (var ability in abilities)
+                        {
+                            ability.DeactivateAbility();
+                        }
+                    }
+                    
                     var comp = agent.GetComponent<StatusEffectComponent>();
                     if (comp != null)
                     {

@@ -198,8 +198,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             {
                 foreach (var entity in data.Entities)
                 {
-                    entity.RemoveAllParticleSystems();
                     entity.FadeOut(1, true);
+                    entity.RemoveAllParticleSystems();
                     Agent.AgentVisuals.RemoveChildEntity(entity, 0);
                 }
             }
