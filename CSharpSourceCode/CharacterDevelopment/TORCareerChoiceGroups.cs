@@ -292,12 +292,12 @@ namespace TOR_Core.CharacterDevelopment
             _vividVisions.Initialize("Vivid Visions", TORCareers.GrailDamsel, 2, (Hero hero, out string text) =>
             {
                 text = "Required renown: 3";
-                return hero.Clan.Tier >= 3;
+                return hero.Clan.Tier >= 2;
             });
             _justCause.Initialize("A Just Cause", TORCareers.GrailDamsel, 2, (Hero hero, out string text) =>
             {
                 text = "Required renown: 3";
-                return hero.Clan.Tier >= 3;
+                return hero.Clan.Tier >= 2;
             });
             _secretsOfTheGrail.Initialize("Secrets of the Grail", TORCareers.GrailDamsel, 3, (Hero hero, out string text) =>
             {

@@ -95,7 +95,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _grailKnightRoot.Initialize(CareerID, "The knight prepares a devastating charge, mounted or on foot, for the next 6 seconds. When mounted, the knight receives perk buffs as well as a 20% chance of his lance not bouncing off after a couched lance attack. Mounted the couched lance attack chance increases by 0.1% for every point in Riding. When on foot, the knight only receives perk buffs.", null,
+            _grailKnightRoot.Initialize(CareerID, "The knight prepares a devastating charge, mounted or on foot, for the next 6 seconds. When mounted, the knight receives perk buffs as well as a 20% chance of his lance not bouncing off after a couched lance attack. The couched lance attack chance increases by 0.1% for every point in Riding. When on foot, the knight only receives perk buffs.", null,
                 true, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -301,9 +301,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _errantryWarPassive1.Initialize(CareerID, "10% extra melee damage.", "ErrantryWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee)); //
             _errantryWarPassive2.Initialize(CareerID, "Increases Hitpoints by 40.", "ErrantryWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Health)); // 
             _errantryWarPassive3.Initialize(CareerID, "All Knight troops receive 20 bonus points in One and Two Handed skills.", "ErrantryWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special)); //
-            _errantryWarPassive4.Initialize(CareerID, "All melee troops in the party gain 25 exp per day", "ErrantryWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special)); //
+            _errantryWarPassive4.Initialize(CareerID, "All melee troops in the party gain 25 exp per day.", "ErrantryWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special)); //
 
-            _enhancedHorseCombatPassive1.Initialize(CareerID, "50% additional Hitpoints for the player's mount.#", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseHealth, true)); //
+            _enhancedHorseCombatPassive1.Initialize(CareerID, "50% additional Hitpoints for the player's mount.", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseHealth, true)); //
             _enhancedHorseCombatPassive2.Initialize(CareerID, " 10% extra melee damage while on horseback.", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true)); //
             _enhancedHorseCombatPassive3.Initialize(CareerID, "Upgrade costs are reduced by 25%.", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopUpgradeCost, true)); //
             _enhancedHorseCombatPassive4.Initialize(CareerID, "All Knight troops receive 30 bonus points in their Polearm skill.", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special)); //

@@ -89,7 +89,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         {
             _survivalistPassive1.Initialize(CareerID, "5 extra ammo", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Ammo));
             _survivalistPassive2.Initialize(CareerID, "Increases ranged damage by 10%.", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Ranged));
-            _survivalistPassive3.Initialize(CareerID, "Party movement speed is increased by 1.5 in forest terrain.", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //TORspeedcalculationmodel 58
+            _survivalistPassive3.Initialize(CareerID, "Party movement speed is increased by 20% in forest terrain.", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //TORspeedcalculationmodel 58
             _survivalistPassive4.Initialize(CareerID, "Go for a hunt once a day (success chance based on Scouting, Polearm and ranged skills).", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0)); //TORCareerPerkCampaignBehavior 118 
 
             _duelistPassive1.Initialize(CareerID, "Increases Hitpoints by 20.", "Duelist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Health));

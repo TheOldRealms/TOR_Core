@@ -713,6 +713,6 @@
 
 
   
-  <string id="careerchoice_description.WarriorPriestRoot" text="{=!}The Warrior Priest unleashes Sigmar's wrath for 8 seconds, which empowers him and the surrounding allies with 20% stronger melee attacks.  Every point in Faith increases the melee effect by 0.05% and the duration by 0.05 seconds. The ability recharges by taking 50 points of damage." />
+  <string id="careerchoice_description.WarriorPriestRoot" text="{=!}The Warrior Priest unleashes Sigmar's wrath for 8 seconds, which empowers him and the surrounding allies with 20% stronger melee attacks.  Every point in Faith increases the melee effect by 0.05% and the duration by 0.05 seconds. The ability recharges by taking 50% of damage of total health. Blocked damage counts as 10% of the damage taken." />
 
 </strings>
