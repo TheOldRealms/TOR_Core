@@ -46,7 +46,7 @@
       <HerdStone id="herdstone_02" background_crop_position="0.0" background_mesh="beastman_heardstone" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-   <!--haunted sites-->
+  <!--haunted sites-->
   <Settlement id="haunted_site_01" name="{=!}Hunger Woods" owner="Faction.sylvania_clan_1" posX="1582.078" posY="1016.387" culture="Culture.khuzait" text="{=!}Called Verhungern by local Slyvanians, this dispersed land is a ghoul, and likely spirit, infested maze of briars and bogs. Only the insane or desperate would venture into its boughs.">
     <Components>
       <CursedSite id="haunted_site_01" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="cursed_swamp" wait_mesh="wait_empire_village" gate_rotation="0.0" />
@@ -562,7 +562,8 @@
       <Town id="town_comp_ST4" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4000" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_empire_city_001" scene_name_1="TOR_empire_city_001" scene_name_2="TOR_empire_city_001" scene_name_3="TOR_empire_city_001"></Location>
+      <Location id="center" scene_name="TOR_empire_city_001" scene_name_1="TOR_empire_city_001" scene_name_2="TOR_empire_city_001" scene_name_3="TOR_empire_city_001">
+      </Location>
       <Location id="arena" scene_name="TOW_arena_empire_a" />
       <Location id="tavern" scene_name="TOR_empire_tavern_ninian_02" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
@@ -780,7 +781,8 @@
       <Town id="town_comp_SY1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="vampire_city_background" gate_rotation="0.908" prosperity="4000" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="vlandia_town_g" scene_name_1="vlandia_town_g" scene_name_2="vlandia_town_g" scene_name_3="vlandia_town_g"></Location>
+      <Location id="center" scene_name="vlandia_town_g" scene_name_1="vlandia_town_g" scene_name_2="vlandia_town_g" scene_name_3="vlandia_town_g">
+      </Location>
       <Location id="arena" scene_name="TOR_Arena_Vampire_a_forceatmo" />
       <Location id="tavern" scene_name="TOW_Vampire_Tavern_01" />
       <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
@@ -2306,7 +2308,8 @@
       <Town id="town_comp_RL4" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="vlandia_town_c" scene_name_1="vlandia_town_c" scene_name_2="vlandia_town_c" scene_name_3="vlandia_town_c"></Location>
+      <Location id="center" scene_name="vlandia_town_c" scene_name_1="vlandia_town_c" scene_name_2="vlandia_town_c" scene_name_3="vlandia_town_c">
+      </Location>
       <Location id="arena" scene_name="TOW_arena_empire_a" />
       <Location id="tavern" scene_name="TOR_empire_tavern_ninian_01" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
@@ -2352,7 +2355,8 @@
       <Town id="town_comp_RL5" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="vlandia_town_d" scene_name_1="vlandia_town_d" scene_name_2="vlandia_town_d" scene_name_3="vlandia_town_d"></Location>
+      <Location id="center" scene_name="vlandia_town_d" scene_name_1="vlandia_town_d" scene_name_2="vlandia_town_d" scene_name_3="vlandia_town_d">
+      </Location>
       <Location id="arena" scene_name="TOW_arena_empire_a" />
       <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
@@ -2601,7 +2605,8 @@
       <Town id="castle_comp_RL5" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_g" scene_name_1="empire_castle_g" scene_name_2="empire_castle_g" scene_name_3="empire_castle_g"></Location>
+      <Location id="center" scene_name="empire_castle_g" scene_name_1="empire_castle_g" scene_name_2="empire_castle_g" scene_name_3="empire_castle_g">
+      </Location>
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -2758,7 +2763,8 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_002" scene_name_1="TOR_bretonnia_castle_002" scene_name_2="TOR_bretonnia_castle_002" scene_name_3="TOR_bretonnia_castle_002" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01"></Location>
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01">
+      </Location>
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -2793,7 +2799,8 @@
       <Town id="castle_comp_MO2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_bretonnia_castle_005" scene_name_1="TOR_bretonnia_castle_005" scene_name_2="TOR_bretonnia_castle_005" scene_name_3="TOR_bretonnia_castle_005"></Location>
+      <Location id="center" scene_name="TOR_bretonnia_castle_005" scene_name_1="TOR_bretonnia_castle_005" scene_name_2="TOR_bretonnia_castle_005" scene_name_3="TOR_bretonnia_castle_005">
+      </Location>
       <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -4083,7 +4090,8 @@
       <Town id="castle_comp_CC1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_bretonnia_castle_003" scene_name_1="TOR_bretonnia_castle_003" scene_name_2="TOR_bretonnia_castle_003" scene_name_3="TOR_bretonnia_castle_003"></Location>
+      <Location id="center" scene_name="TOR_bretonnia_castle_003" scene_name_1="TOR_bretonnia_castle_003" scene_name_2="TOR_bretonnia_castle_003" scene_name_3="TOR_bretonnia_castle_003">
+      </Location>
       <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -4093,7 +4101,7 @@
       <Village id="castle_village_comp_CC1_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.castle_CC1" bound="Settlement.castle_CC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_bretonnia_village_002" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
