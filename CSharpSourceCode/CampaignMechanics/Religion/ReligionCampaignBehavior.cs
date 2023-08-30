@@ -114,9 +114,10 @@ namespace TOR_Core.CampaignMechanics.Religion
                     }
                 }
             }
+            SetIntialReliationForAllNPCCharacters();
         }
 
-        private void OnSessionStart(CampaignGameStarter starter)
+        private void SetIntialReliationForAllNPCCharacters()
         {
             foreach(var hero in Hero.AllAliveHeroes)
             {
@@ -124,6 +125,11 @@ namespace TOR_Core.CampaignMechanics.Religion
 
                 SetIntialReligionBasedRelationDrift(hero);
             }
+        }
+
+        private void OnSessionStart(CampaignGameStarter starter)
+        {
+            
             //ensure mutual entries for hostile religions
             foreach(var religion in ReligionObject.All)
             {
