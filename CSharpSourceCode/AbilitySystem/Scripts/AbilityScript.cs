@@ -213,7 +213,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             var effects = GetEffectsToTrigger();
             foreach(var effect in effects)
             {
-                if (effect != null)
+                if (effect != null&& !IsFading)
                 {
                     if (_ability.Template.AbilityTargetType == AbilityTargetType.Self)
                     {
@@ -250,6 +250,7 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         public virtual void Stop()
         {
+            if(IsFading) return;
             GameEntity.FadeOut(0.05f, true);
             IsFading = true;
         }

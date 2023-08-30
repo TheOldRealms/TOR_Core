@@ -22,7 +22,7 @@ namespace TOR_Core.AbilitySystem
         private Timer _timer = null;
         private float _cooldown_end_time;
 
-        private bool _isLocked=false;
+        protected bool _isLocked=false;
         public bool IsCasting { get; private set; }
         public string StringID { get; }
         public AbilityTemplate Template { get; protected set; }
@@ -120,6 +120,7 @@ namespace TOR_Core.AbilitySystem
         public virtual void DeactivateAbility()
         {
             _isLocked = true;
+            AbilityScript?.Stop();
         }
         public virtual void ActivateAbility(Agent casterAgent)
         {
