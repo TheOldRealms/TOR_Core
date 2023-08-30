@@ -13,6 +13,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
     {
         public delegate bool ConditionDelegate(Hero hero, out string text);
         private ConditionDelegate _conditionDelegate;
+        
+        public delegate bool UnlockDelegate(Hero hero, out string text);
+        private UnlockDelegate _unlockDelegate;
         public CareerObject OwnerCareer { get; private set; }
         public int Tier { get; private set; }
         public List<CareerChoiceObject> Choices { get; private set; } = new List<CareerChoiceObject>();
@@ -20,12 +23,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public CareerChoiceGroupObject(string stringId) : base(stringId) { }
 
-        public void Initialize(string name, CareerObject ownerCareer, int tier, ConditionDelegate conditionDelegate)
+        public void Initialize(string name, CareerObject ownerCareer, int tier, ConditionDelegate conditionDelegate, UnlockDelegate unlockDelegate=null)
         {
             base.Initialize(new TextObject(name), new TextObject("Choice group for " + name));
             OwnerCareer = ownerCareer;
             Tier = tier;
             _conditionDelegate = conditionDelegate;
+            _unlockDelegate = unlockDelegate;
             OwnerCareer.ChoiceGroups.Add(this);
             AfterInitialized();
         }
@@ -36,6 +40,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             if (_conditionDelegate != null)
             {
                 value=  _conditionDelegate(hero, out _);
+            }
+            
+            if (_unlockDelegate != null)
+            {
+                value=  _unlockDelegate(hero, out _);
             }
 
             if (value)
@@ -51,6 +60,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             string reason = "Condition not found.";
             if (_conditionDelegate != null) _ = _conditionDelegate(hero, out reason);
             return reason;
+        }
+        
+        public string GetUnlockText(Hero hero)
+        {
+            string unlockText = "";
+            if (_unlockDelegate != null) _ = _unlockDelegate(hero, out unlockText);
+            return unlockText;
         }
     }
 }

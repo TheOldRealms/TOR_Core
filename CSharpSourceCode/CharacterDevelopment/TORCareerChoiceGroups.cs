@@ -153,6 +153,10 @@ namespace TOR_Core.CharacterDevelopment
             {
                 text = "Required renown: 2";
                 return hero.Clan.Tier >= 2;
+            },(Hero hero, out string unlockText) =>
+            {
+                unlockText = "Unlocks Dark Magic";
+                return hero.Clan.Tier >= 2;
             });
             _courtley.Initialize("The Courtley", TORCareers.MinorVampire, 2, (Hero hero, out string text) =>
             {
@@ -298,10 +302,18 @@ namespace TOR_Core.CharacterDevelopment
             {
                 text = "Required renown: 2";
                 return hero.Clan.Tier >= 2;
+            },(Hero hero, out string unlockText) =>
+            {
+                unlockText = "Unlocks 2nd Lore";
+                return hero.Clan.Tier >= 2;
             });
             _secretsOfTheGrail.Initialize("Secrets of the Grail", TORCareers.GrailDamsel, 3, (Hero hero, out string text) =>
             {
                 text = "Required renown: 4";
+                return hero.Clan.Tier >= 4;
+            },(Hero hero, out string unlockText) =>
+            {
+                unlockText = "Unlocks Lore of Heavens";
                 return hero.Clan.Tier >= 4;
             });
             

@@ -82,7 +82,8 @@
                               <Children>
                                 <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="4" HorizontalAlignment="Center" Sprite="Clan\divider_mid" />
                                 <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="50" SuggestedWidth="200" Text="@ChoiceGroup1Name" Brush="TorRoRSettlementBrush" />
-                                <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="50" SuggestedWidth="200" Text="@ChoiceGroup1Condition" MarginTop="30" Brush="TorRoRSettlementBrush" />
+                                <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="50" SuggestedWidth="200" Text="@ChoiceGroup1Condition" MarginTop="25" Brush="TorRoRSettlementBrush" />
+								<TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="50" SuggestedWidth="200" Text="@ChoiceGroup1Unlock" MarginTop="50" Brush="TorRoRSettlementBrush" />
                                 <ListPanel DataSource="{ChoiceGroupsTier1}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" StackLayout.LayoutMethod="HorizontalCentered">
                                   <ItemTemplate>
 
@@ -127,8 +128,9 @@
                               <Children>
                                 <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="4" HorizontalAlignment="Center" Sprite="Clan\divider_mid" />
                                 <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="50" SuggestedWidth="200" Text="@ChoiceGroup2Name" Brush="TorRoRSettlementBrush"/>
-                                <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="50" SuggestedWidth="200" Text="@ChoiceGroup2Condition" MarginTop="30" Brush="TorRoRSettlementBrush" />
-                                <ListPanel DataSource="{ChoiceGroupsTier2}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" StackLayout.LayoutMethod="HorizontalCentered">
+                                <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="50" SuggestedWidth="200" Text="@ChoiceGroup2Condition" MarginTop="25" Brush="TorRoRSettlementBrush" />
+                                <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="50" SuggestedWidth="200" Text="@ChoiceGroup2Unlock" MarginTop="50" Brush="TorRoRSettlementBrush" />
+								<ListPanel DataSource="{ChoiceGroupsTier2}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" StackLayout.LayoutMethod="HorizontalCentered">
                                   <ItemTemplate>
 
                                     <ListPanel HeightSizePolicy="CoverChildren" WidthSizePolicy="CoverChildren" StackLayout.LayoutMethod="HorizontalLeftToRight" MarginTop="35" MarginLeft="50" MarginRight="50">
@@ -172,8 +174,9 @@
                               <Children>
                                 <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="4" HorizontalAlignment="Center" Sprite="Clan\divider_mid" />
                                 <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="50" SuggestedWidth="200" Text="@ChoiceGroup3Name" Brush="TorRoRSettlementBrush"/>
-                                <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="50" SuggestedWidth="200" Text="@ChoiceGroup3Condition" MarginTop="30" Brush="TorRoRSettlementBrush" />
-                                <ListPanel DataSource="{ChoiceGroupsTier3}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" StackLayout.LayoutMethod="HorizontalCentered">
+                                <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="50" SuggestedWidth="200" Text="@ChoiceGroup3Condition" MarginTop="25" Brush="TorRoRSettlementBrush" />
+                                <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="50" SuggestedWidth="200" Text="@ChoiceGroup3Unlock" MarginTop="50" Brush="TorRoRSettlementBrush" />
+								<ListPanel DataSource="{ChoiceGroupsTier3}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" StackLayout.LayoutMethod="HorizontalCentered">
                                   <ItemTemplate>
 
                                     <ListPanel HeightSizePolicy="CoverChildren" WidthSizePolicy="CoverChildren" StackLayout.LayoutMethod="HorizontalLeftToRight" MarginTop="35" MarginLeft="50" MarginRight="50">
