@@ -246,9 +246,17 @@
 <string id="tor_feudal_oath_line3.mousillon" text="{=!}I shall defend the people of Mousillon and the forgotten spirits that linger amidst the darkness." />
 <string id="tor_feudal_oath_line4.mousillon" text="{=!}I recognise you, my sovereign lord, and will stand resolute in the face of the world's disdain for our home, united under your banner." />
 
+<string id="tor_feudal_oath_line1.blooddragons" text="{=!}I hereby swear loyalty to Wallach Harkon, the Ordo Draconis and my fellow knights." />
+<string id="tor_feudal_oath_line2.blooddragons" text="{=!}I hereby swear my blade to the complete destruction of humankind and any other who opposes the power of the vampires." />
+<string id="tor_feudal_oath_line3.blooddragons" text="{=!}May I always sate my sword’s thirst for blood and seek out the greatest of our foes." />
+<string id="tor_feudal_oath_line4.blooddragons" text="{=!}I will never retreat from battle and I will be loyal to you or suffer the consequences of betrayal." />
+
+
+
   <string id="tor_player_accept_vassalage.empire" text="{=!}I proclaim you a noble of the Empire. Your life and property shall be protected by our laws, and shall not be taken from you except by law. You may serve as an official over towns and villages and as a general over armies, if we call upon you to do so." />
   <string id="tor_player_accept_vassalage.khuzait" text="{=!}I proclaim you a noble of the Sylvania and a servant of the von Carsteins. You are expected to carry out our bidding and bear arms in times of war. " />
   <string id="tor_player_accept_vassalage.mousillon" text="{=!}I have great hopes for you {PLAYER.NAME}. I know you shall prove yourself worthy of the trust I have placed in you." />
+  <string id="tor_player_accept_vassalage.blooddragons" text="{=!}Welcome to the Ordo Draconis {PLAYER.NAME}. Here are some of my followers, may they aid you in battle. Take this blade." />
 
 
   <string id="str_liege_title.empire" text="{=!}Elector Count of one of the Provinces of the Empire">
@@ -260,6 +268,12 @@
     <tags>
       <tag tag_name="EmpireTag" />
     </tags>
+  </string>
+  <string id="str_liege_title.blooddragons" text="{=!}Grandmaster of the Blood Dragons">
+   <tags>
+      <tag tag_name="KhuzaitTag" />
+	  <tag tag_name="BloodDragonTag" />
+   </tags>
   </string>
   <string id="str_liege_title.khuzait" text="{=!}Ruler of the province of Sylvania">
     <tags>
@@ -328,6 +342,7 @@
       <tag tag_name="CruelTag" weight="1" />
     </tags>
   </string>
+  
   <string id="str_comment_intro.cruel_khuzait" text="{=!}Know that if you ever cross me, you'll wind up as undead fodder in our armies.">
     <tags>
       <tag tag_name="CruelTag" weight="1" />
@@ -353,7 +368,34 @@
       <tag tag_name="KhuzaitTag" />
     </tags>
   </string>
-  
+  <string id="str_comment_noble_introduces_self_and_clan.khuzait_boasting" text="{=!}I am {CONVERSATION_CHARACTER.LINK}, of {CLAN_NAME}. I stay mine hand only due to personal ideals, speak quickly.">
+    <tags>
+      <tag tag_name="HonorTag" weight="1" />
+      <tag tag_name="KhuzaitTag" />
+	  <tag tag_name="BloodDragonTag" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self_and_clan.khuzait_boasting" text="{=!}You seem weak, I am {CONVERSATION_CHARACTER.LINK}, of {CLAN_NAME}. Are you ready to die?">
+    <tags>
+      <tag tag_name="UncharitableTag" />
+      <tag tag_name="KhuzaitTag" />
+	  <tag tag_name="BloodDragonTag" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self_and_clan.khuzait" text="{=!}You find yourself before {CONVERSATION_CHARACTER.LINK}, of {CLAN_NAME}, What trifling mongrel comes to me? Speak! Or I will have thine corpse splayed on the battlements of Blood Keep.">
+    <tags>
+      <tag tag_name="KhuzaitTag" />
+	  <tag tag_name="BloodDragonTag" />
+	  <tag tag_name="CruelTag" weight="1" />
+    </tags>
+  </string>
+  <string id="str_comment_noble_introduces_self_and_clan.khuzait" text="{=!}Weakling, my lord Walach would bade me to slaughter you. I am {CONVERSATION_CHARACTER.LINK}, of {CLAN_NAME}. Speak quickly before I perform my duties.">
+    <tags>
+      <tag tag_name="KhuzaitTag" />
+	  <tag tag_name="BloodDragonTag" />
+	  <tag tag_name="MercyTag" weight="1" />
+    </tags>
+  </string>
    <string id="str_comment_noble_introduces_self.vlandia" text="{=!}Well met, I am {CONVERSATION_CHARACTER.LINK} of {CLAN_NAME}.">
     <tags>
       <tag tag_name="VlandianTag" />
