@@ -213,7 +213,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             var effects = GetEffectsToTrigger();
             foreach(var effect in effects)
             {
-                if (effect != null&& !IsFading)
+                if (effect != null)
                 {
                     if (_ability.Template.AbilityTargetType == AbilityTargetType.Self)
                     {
