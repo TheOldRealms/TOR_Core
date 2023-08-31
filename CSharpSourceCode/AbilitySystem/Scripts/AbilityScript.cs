@@ -250,6 +250,7 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         public virtual void Stop()
         {
+            if(IsFading) return;
             GameEntity.FadeOut(0.05f, true);
             IsFading = true;
         }
