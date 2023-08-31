@@ -25,6 +25,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         public bool ModifiedDrivenProperties;
         private bool _restoredBaseValues;
         private bool _initBaseValues;
+        private bool _disabled;
         private Dictionary<DrivenProperty, float> _baseValues;
        
 
@@ -57,6 +58,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         public void RunStatusEffect(string effectId, Agent applierAgent, float duration, bool append, bool isMutated)
         {
             if (Agent == null) return;
+            if(_disabled) return;
 
             StatusEffect effect = _currentEffects.Keys.Where(e => e.Template.StringID.Equals(effectId)).FirstOrDefault();
             if (effect != null)
@@ -327,6 +329,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             _effectAggregate = null;
             _dummyEntity?.FadeOut(1, true);
             _dummyEntity = null;
+            _disabled = true;
         }
 
         public void Dispose()
