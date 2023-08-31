@@ -538,7 +538,7 @@
       TargetCapturingRadius="1"
       SpellTier="2"
       BelongsToLoreID="LoreOfFire"
-      TooltipDescription="The caster is wrapping himself into a cloak of fire, that will protect him from physical and fire damage">
+      TooltipDescription="The caster wraps himself in a cloak of magical flame that's shielding him from physical (30%) and fire (70%) damage for 15 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1306,7 +1306,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="LoreOfLight"
-      TooltipDescription="The wizard catches enemies inside an area, impairing their movement.">
+      TooltipDescription="The wizard conjures an arcane net in the selected area. Any foe caught in the spell is halted for 15 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1734,7 +1734,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="Necromancy"
-      TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
+      TooltipDescription="The caster utters an ancient curse, which causes the foe to age at a horrific rate. Reduces enemy attack and movement speed by 50% for 15 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1828,7 +1828,7 @@
       VisualsRotationVelocity="1"
       SpellTier="4"
       BelongsToLoreID="DarkMagic"
-      TooltipDescription="A large meteor strikes the area killing all below in a giant shockwave.">
+      TooltipDescription="The wizard rips open the sky and calls down a bolt burning with dark flames on the foe.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
