@@ -293,7 +293,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         private void AddEffect(StatusEffect effect)
         {
-            TORCommon.Say ("triggered"+Mission.Current.MissionTimeTracker.NumberOfTicks);
             EffectData data;
             if (effect.Template.DoNotAttachToAgentSkeleton)
             {
