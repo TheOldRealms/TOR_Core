@@ -20,13 +20,13 @@ namespace TOR_Core.Models
             var value =  base.GetGoldCostForUpgrade(party, characterObject, upgradeTarget);
 
             var explainedNumber = new ExplainedNumber();
-
+            
+            explainedNumber.Add(value);
+            
             if (party.LeaderHero != null && party.LeaderHero == Hero.MainHero)
             {
                 CareerHelper.ApplyBasicCareerPassives(party.LeaderHero,ref explainedNumber,PassiveEffectType.TroopUpgradeCost, true);
             }
-
-            explainedNumber.Add(value);
           
             return (int) explainedNumber.ResultNumber;
         }
