@@ -81,7 +81,7 @@
 				<z>255</z>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>physical_ranged_resistance_40</TriggeredEffect>
+		<TriggeredEffect>ward_of_arrows</TriggeredEffect>
 	</AbilityTemplate>
 	<AbilityTemplate StringID="MinorHeal" 
       Name="Petty Heal" 
