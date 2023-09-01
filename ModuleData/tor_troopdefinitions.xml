@@ -876,6 +876,8 @@
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_m_manatarms_halberd" />
+      <upgrade_target id="NPCCharacter.tor_m_yeoman" />
+      <upgrade_target id="NPCCharacter.tor_m_mounted_yeoman" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_br_manatarms_template" />
@@ -886,12 +888,20 @@
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_m_mounted_yeoman" />
-    </upgrade_targets>
+    <upgrade_targets />
     <Equipments>
       <EquipmentSet id="tor_br_manatarms_billman_template" />
       <EquipmentSet id="tor_br_manatarms_billman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_yeoman" default_group="infantry" level="21" name="{=str_tor_m_yeoman}Mousillon Yeoman" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_br_yeoman_template" />
+      <EquipmentSet id="tor_br_yeoman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_m_mounted_yeoman" default_group="cavalry" level="26" name="{=str_tor_m_mounted_yeoman}Mousillon Mounted Yeoman" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level26">

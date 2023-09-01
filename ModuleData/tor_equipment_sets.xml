@@ -1099,6 +1099,30 @@
       <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_002" />
       <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
     </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_flail_001" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_flail_001" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_flail_002" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_flail_002" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_flail_003" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_flail_003" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
+    </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_empire_tournament_template_one_participant_v1" culture="Culture.empire">
     <EquipmentSet>
@@ -4227,8 +4251,8 @@
   <EquipmentRoster id="tor_br_villein_template" culture="Culture.vlandia">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
-      <Equipment slot="Item1" id="Item.piercing_arrows" />
-      <Equipment slot="Item2" id="Item.piercing_arrows" />
+      <Equipment slot="Item1" id="Item.bodkin_arrows_b" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
       <Equipment slot="Item3" id="Item.tor_bretonnia_weapon_sword_002" />
       <Equipment slot="Head" id="Item.cervelliere_over_cloth_headwrap" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_002" />
@@ -4238,8 +4262,8 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
-      <Equipment slot="Item1" id="Item.piercing_arrows" />
-      <Equipment slot="Item2" id="Item.piercing_arrows" />
+      <Equipment slot="Item1" id="Item.bodkin_arrows_b" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
       <Equipment slot="Item3" id="Item.tor_bretonnia_weapon_sword_002" />
       <Equipment slot="Head" id="Item.cervelliere_over_cloth_headwrap" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_002" />
@@ -4249,8 +4273,8 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
-      <Equipment slot="Item1" id="Item.piercing_arrows" />
-      <Equipment slot="Item2" id="Item.piercing_arrows" />
+      <Equipment slot="Item1" id="Item.bodkin_arrows_b" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
       <Equipment slot="Item3" id="Item.tor_bretonnia_weapon_sword_002" />
       <Equipment slot="Head" id="Item.pilgrim_hood" />
       <Equipment slot="Body" id="Item.banded_leather_over_mail" />
@@ -4259,8 +4283,8 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
-      <Equipment slot="Item1" id="Item.piercing_arrows" />
-      <Equipment slot="Item2" id="Item.piercing_arrows" />
+      <Equipment slot="Item1" id="Item.bodkin_arrows_b" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
       <Equipment slot="Item3" id="Item.tor_bretonnia_weapon_sword_002" />
       <Equipment slot="Head" id="Item.pilgrim_hood" />
       <Equipment slot="Body" id="Item.banded_leather_over_mail" />
@@ -4269,8 +4293,8 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
-      <Equipment slot="Item1" id="Item.piercing_arrows" />
-      <Equipment slot="Item2" id="Item.piercing_arrows" />
+      <Equipment slot="Item1" id="Item.bodkin_arrows_b" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
       <Equipment slot="Item3" id="Item.tor_bretonnia_weapon_sword_002" />
       <Equipment slot="Head" id="Item.kettle_helmet_over_laced_coif" />
       <Equipment slot="Body" id="Item.layered_leather_tunic" />
@@ -4279,8 +4303,8 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
-      <Equipment slot="Item1" id="Item.piercing_arrows" />
-      <Equipment slot="Item2" id="Item.piercing_arrows" />
+      <Equipment slot="Item1" id="Item.bodkin_arrows_b" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
       <Equipment slot="Item3" id="Item.tor_bretonnia_weapon_sword_002" />
       <Equipment slot="Head" id="Item.kettle_helmet_over_laced_coif" />
       <Equipment slot="Body" id="Item.layered_leather_tunic" />
@@ -4289,8 +4313,8 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
-      <Equipment slot="Item1" id="Item.piercing_arrows" />
-      <Equipment slot="Item2" id="Item.piercing_arrows" />
+      <Equipment slot="Item1" id="Item.bodkin_arrows_b" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
       <Equipment slot="Item3" id="Item.tor_bretonnia_weapon_sword_002" />
       <Equipment slot="Head" id="Item.kettle_helmet_over_arming_coif" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_003" />
@@ -4299,8 +4323,8 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
-      <Equipment slot="Item1" id="Item.piercing_arrows" />
-      <Equipment slot="Item2" id="Item.piercing_arrows" />
+      <Equipment slot="Item1" id="Item.bodkin_arrows_b" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
       <Equipment slot="Item3" id="Item.tor_bretonnia_weapon_sword_002" />
       <Equipment slot="Head" id="Item.kettle_helmet_over_arming_coif" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_003" />
@@ -12128,22 +12152,28 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_harkon_template" culture="Culture.khuzait">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_vc_weapon_thaxe_vampire_002" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_sword_vampire_009" />
-      <Equipment slot="Body" id="Item.tor_vc_body_armor_blood_knight_001" />
-      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_blood_knight_001" />
-      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_blood_knight_001" />
-      <Equipment slot="Leg" id="Item.tor_chaos_leg_boots_hallow" />
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_lance_black_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_thaxe_vampire_001" />
+      <Equipment slot="Item2" id="Item.tor_vc_weapon_shield_vampire_009" />
+      <Equipment slot="Item3" id="Item.tor_vc_weapon_sword_vampire_001" />
+      <Equipment slot="Head" id="Item.tor_vc_blood_keep_grandmaster_helm" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_red_duke" />
+      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_red_duke" />
+      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_red_duke" />
+      <Equipment slot="Leg" id="Item.tor_vc_leg_boots_red_duke" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_zombie_horse_001" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_vampire_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_vc_weapon_thaxe_vampire_002" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_sword_vampire_009" />
-      <Equipment slot="Body" id="Item.tor_vc_body_armor_blood_knight_001" />
-      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_blood_knight_001" />
-      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_blood_knight_001" />
-      <Equipment slot="Leg" id="Item.tor_chaos_leg_boots_hallow" />
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_lance_black_knight_001" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_thaxe_vampire_001" />
+      <Equipment slot="Item2" id="Item.tor_vc_weapon_shield_vampire_009" />
+      <Equipment slot="Item3" id="Item.tor_vc_weapon_sword_vampire_001" />
+      <Equipment slot="Head" id="Item.tor_vc_blood_keep_grandmaster_helm" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_red_duke" />
+      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_red_duke" />
+      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_red_duke" />
+      <Equipment slot="Leg" id="Item.tor_vc_leg_boots_red_duke" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_zombie_horse_001" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_vampire_001" />
     </EquipmentSet>
@@ -12176,7 +12206,6 @@
       <Equipment slot="Head" id="Item.tor_vc_head_hat_necromancer_001" />
       <Equipment slot="Body" id="Item.tor_vc_body_robe_necromancer_001" />
       <Equipment slot="Cape" id="Item.tor_vc_shoulder_cape_necromancer_001" />
-      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_warrior_priest_001" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_necromancer" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_zombie_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_vampire_001" />
@@ -12186,7 +12215,6 @@
       <Equipment slot="Head" id="Item.tor_vc_head_hat_necromancer_001" />
       <Equipment slot="Body" id="Item.tor_vc_body_robe_necromancer_001" />
       <Equipment slot="Cape" id="Item.tor_vc_shoulder_cape_necromancer_001" />
-      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_warrior_priest_001" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_necromancer" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_zombie_horse_002" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_vampire_001" />
