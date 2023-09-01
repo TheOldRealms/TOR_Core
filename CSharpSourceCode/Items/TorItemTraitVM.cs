@@ -20,8 +20,9 @@ namespace TOR_Core.Items
         {
 			var vm = new TorItemTraitVM();
 			vm._hintText = new HintViewModel(new TaleWorlds.Localization.TextObject("This item deals elemental damage."));
-            vm._icon = "<img src=winds_icon_45 />";
-			return vm;
+			vm._icon = "<img src=\"winds_icon_45\"/>";
+
+            return vm;
         }
 
         [DataSourceProperty]
