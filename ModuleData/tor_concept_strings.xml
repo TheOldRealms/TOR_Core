@@ -202,7 +202,7 @@ Choosing any other career start for your campaign will result in a similar exper
 />
   <Concept title="{=!}Necromancy" id="str_tor_necromancy" group="The Old Realms" link_id="TOR_NECROMANCY" text=
   "Necromancy: {newline}
-  Necromancy provides an extra dynamic alongside all of the above, the ability to ‘raise the dead. Having access to these magics means that you will have the option to raise the dead after battles, to bolster your armies, as well as visit specific locations ( like {TOR_CURSEDLOCATIONS}) on the campaign map to recruit higher-tier undead units, such as wraiths. See{TOR_RAISEDEAD}).{newline}
+  Necromancy provides an extra dynamic alongside all of the above, the ability to ‘raise the dead. Having access to these magics means that you will have the option to raise the dead after battles, to bolster your armies, as well as visit specific locations (like {TOR_CURSEDLOCATIONS}) on the campaign map to recruit higher-tier undead units, such as wraiths. See ({TOR_RAISEDEAD})).{newline}
   "/>
   
   <Concept title="{=!}Spell Book" id="str_tor_spellbook" group="The Old Realms" link_id="TOR_SPELLBOOK" text=
@@ -225,7 +225,7 @@ Choosing any other career start for your campaign will result in a similar exper
   Certain characters and factions are able to raise the dead, or offer characters the ability to become undead.  The player can access this by being a necromancer or playing as a vampire. {newline}
   {newline}
   Post battle resurrection{newline}
-  Based on your inteligence level there is a chance that every living creature that died in a battle will become lesser undead warriors and join your army.{newline}
+  Based on your Discipline level (see {TOR_ATTRIBUTES}) there is a chance that every living creature that died in a battle will become lesser undead warriors and join your army.{newline}
   {newline}
   Raiding Tombs{newline}
   As a necromancer you can also try your luck to resurrect undead in a local graveyard, found as a new option within villages. Of course this has some risk, as most of the ‘good’ factions will immediately dislike you, furthermore if you choose to try and raise undead in towns or villages, you may be caught by the locals and will have to fight to survive. {newline}
@@ -250,7 +250,7 @@ Choosing any other career start for your campaign will result in a similar exper
   {newline}
   "/>
   
-  <Concept title="{=!}Regiments of Renown" id="str_tor_attributes" group="The Old Realms" link_id="TOR_ROR" text=
+  <Concept title="{=!}Regiments of Renown" id="str_tor_ror" group="The Old Realms" link_id="TOR_ROR" text=
   "
   Regiments of Renown(RoR) are unique factional troops that can only be recruited from specific locations and settlements on the campaign map, marked with an ‘RoR’ symbol. Once you enter the settlement that has the RoR, there will be an option that you can select on the settlement menu.{newline}
   {newline}

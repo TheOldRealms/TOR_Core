@@ -39,6 +39,7 @@ namespace TOR_Core.BattleMechanics
                 if (choices.Contains("HeadhunterPassive3"))
                 {
                     if(affectedAgent.IsMount) return;
+                    if(affectedAgent.Team == affectorAgent.Team) return;
                     
                     var isHighValueTarget = false;
                     if (affectedAgent.Character.Culture.IsBandit)
