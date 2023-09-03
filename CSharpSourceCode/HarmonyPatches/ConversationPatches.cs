@@ -93,7 +93,7 @@ namespace TOR_Core.HarmonyPatches
 		public static bool OverrideVampireVoicedLines()
 		{
 			var hero = Hero.OneToOneConversationHero;
-			if(hero != null && hero.IsVampire())
+			if(hero != null && hero.IsVampire() && !hero.IsFemale)
             {
 				StringHelpers.SetCharacterProperties("PLAYER", Hero.MainHero.CharacterObject, null, false);
 				MBTextManager.SetTextVariable("STR_SALUTATION", Campaign.Current.ConversationManager.FindMatchingTextOrNull("str_salutation", Hero.OneToOneConversationHero.CharacterObject), false);

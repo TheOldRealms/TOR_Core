@@ -8,7 +8,7 @@ namespace TaleWorlds.CampaignSystem.Conversation.Tags
         public override string StringId => nameof (BloodDragonTag);
         public override bool IsApplicableTo(CharacterObject character)
         {
-            return character.Culture.StringId == "khuzait"&& character.IsBloodDragon();
+            return character.IsVampire() && character.IsBloodDragon();
         }
     }
 }

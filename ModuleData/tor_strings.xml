@@ -272,7 +272,7 @@
   <string id="str_liege_title.blooddragons" text="{=!}Grandmaster of the Blood Dragons">
    <tags>
       <tag tag_name="KhuzaitTag" />
-	  <tag tag_name="BloodDragonTag" />
+	    <tag tag_name="BloodDragonTag" />
    </tags>
   </string>
   <string id="str_liege_title.khuzait" text="{=!}Ruler of the province of Sylvania">
@@ -372,28 +372,28 @@
     <tags>
       <tag tag_name="HonorTag" weight="1" />
       <tag tag_name="KhuzaitTag" />
-	  <tag tag_name="BloodDragonTag" />
+	    <tag tag_name="BloodDragonTag" />
     </tags>
   </string>
   <string id="str_comment_noble_introduces_self_and_clan.khuzait_boasting" text="{=!}You seem weak, I am {CONVERSATION_CHARACTER.LINK}, of {CLAN_NAME}. Are you ready to die?">
     <tags>
       <tag tag_name="UncharitableTag" />
       <tag tag_name="KhuzaitTag" />
-	  <tag tag_name="BloodDragonTag" />
+	    <tag tag_name="BloodDragonTag" />
     </tags>
   </string>
   <string id="str_comment_noble_introduces_self_and_clan.khuzait" text="{=!}You find yourself before {CONVERSATION_CHARACTER.LINK}, of {CLAN_NAME}, What trifling mongrel comes to me? Speak! Or I will have thine corpse splayed on the battlements of Blood Keep.">
     <tags>
       <tag tag_name="KhuzaitTag" />
-	  <tag tag_name="BloodDragonTag" />
-	  <tag tag_name="CruelTag" weight="1" />
+	    <tag tag_name="BloodDragonTag" />
+	    <tag tag_name="CruelTag" weight="1" />
     </tags>
   </string>
   <string id="str_comment_noble_introduces_self_and_clan.khuzait" text="{=!}Weakling, my lord Walach would bade me to slaughter you. I am {CONVERSATION_CHARACTER.LINK}, of {CLAN_NAME}. Speak quickly before I perform my duties.">
     <tags>
       <tag tag_name="KhuzaitTag" />
-	  <tag tag_name="BloodDragonTag" />
-	  <tag tag_name="MercyTag" weight="1" />
+	    <tag tag_name="BloodDragonTag" />
+	    <tag tag_name="MercyTag" weight="1" />
     </tags>
   </string>
    <string id="str_comment_noble_introduces_self.vlandia" text="{=!}Well met, I am {CONVERSATION_CHARACTER.LINK} of {CLAN_NAME}.">
