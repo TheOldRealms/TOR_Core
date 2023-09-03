@@ -338,7 +338,7 @@ namespace TOR_Core.AbilitySystem
 
             if (Input.IsKeyPressed(_spellcastingModeKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_spellcastingModeKey.ControllerKey.InputKey))
             {
-                if(_abilityComponent.KnownAbilitySystem.Count > 1 || _abilityComponent.CurrentAbility.Template.IsSpell)
+                if (_abilityComponent.KnownAbilitySystem.Count > 1 || _abilityComponent.CurrentAbility.Template.AbilityTargetType != AbilityTargetType.Self)
                 {
                     switch (_currentState)
                     {
