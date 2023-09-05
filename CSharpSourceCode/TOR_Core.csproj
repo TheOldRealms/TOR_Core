@@ -639,6 +639,7 @@
     <Compile Include="Models\CustomBattleModels\TORCustomBattleAgentStatCalculateModel.cs" />
     <Compile Include="Models\TORDamageParticleModel.cs" />
     <Compile Include="Models\TORDiplomacyModel.cs" />
+    <Compile Include="Models\TOREquipmentSelectionModel.cs" />
     <Compile Include="Models\TORFaithModel.cs" />
     <Compile Include="Models\TORSettlementFoodModel.cs" />
     <Compile Include="Models\TORInventoryCapacityModel.cs" />
