@@ -186,7 +186,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 var site = settlement.SettlementComponent as CursedSiteComponent;
                 if (site.IsActive)
                 {
-                    var affectedParties = TORCommon.FindPartiesAroundPosition(settlement.Position2D, TORConstants.DEFAULT_CURSE_RADIUS, x => x.IsLordParty && x.LeaderHero != null && x.LeaderHero.GetDominantReligion() != site.Religion);
+                    var affectedParties = TORCommon.FindPartiesAroundPosition(settlement.Position2D, 
+                        TORConstants.DEFAULT_CURSE_RADIUS, x =>  (x.IsLordParty && x.LeaderHero != null && x.LeaderHero.GetDominantReligion() != site.Religion) || (x.IsLordParty && x.LeaderHero != null && x.LeaderHero.Culture.StringId !="mousillon"));
                     foreach (var party in affectedParties)
                     {
                         if (party.IsActive && !party.IsDisbanding && party.MapEvent == null && party.BesiegedSettlement == null && party.CurrentSettlement == null)
