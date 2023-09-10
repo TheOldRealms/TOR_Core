@@ -10,7 +10,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
 {
     public class ApplyFlamingItemTraitScript : ITriggeredScript
     {
-        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents)
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
             if(triggeredAgents.Count() > 0)
             {
@@ -32,7 +32,37 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     var comp = agent.GetComponent<ItemTraitAgentComponent>();
                     if(comp != null)
                     {
-                        comp.AddTraitToWieldedWeapon(trait, 20);
+                        comp.AddTraitToWieldedWeapon(trait, duration);
+                    }
+                }
+            }
+        }
+    }
+    
+    public class ApplyHolyItemTraitScript : ITriggeredScript
+    {
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
+        {
+            if(triggeredAgents.Count() > 0)
+            {
+                var trait = new ItemTrait();
+                var additionalDamage = new DamageProportionTuple();
+
+                additionalDamage.DamageType = DamageType.Holy;
+                additionalDamage.Percent = 0.30f;
+                
+                trait.ItemTraitName = "Holy Weapon Enchantment";
+                trait.ItemTraitDescription = "This sword is on fire. It deals fire damage and applies the burning damage over time effect.";
+                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_holy_weapon" };
+                trait.AdditionalDamageTuple = additionalDamage;
+                trait.OnHitScriptName = "none";
+
+                foreach (Agent agent in triggeredAgents)
+                {
+                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
+                    if(comp != null)
+                    {
+                        comp.AddTraitToWieldedWeapon(trait, duration);
                     }
                 }
             }
@@ -41,7 +71,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
 
     public class EnchantWeaponScript : ITriggeredScript
     {
-        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents)
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
             if (triggeredAgents.Count() > 0)
             {
@@ -63,7 +93,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     var comp = agent.GetComponent<ItemTraitAgentComponent>();
                     if (comp != null)
                     {
-                        comp.AddTraitToWieldedWeapon(trait, 20);
+                        comp.AddTraitToWieldedWeapon(trait, duration);
                     }
                 }
             }

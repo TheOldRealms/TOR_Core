@@ -10,6 +10,16 @@ namespace TOR_Core.CampaignMechanics.Assimilation
     public class AssimilationCampaignBehavior : CampaignBehaviorBase
     {
         private Dictionary<Settlement, CultureObject> _settlementCulturePairs = new Dictionary<Settlement, CultureObject>();
+        private Dictionary<Settlement, CultureObject> _originalSettlementCulturePairs = new Dictionary<Settlement, CultureObject>();
+
+        public static CultureObject GetOriginalCultureForSettlement(Settlement settlement)
+        {
+            if (Campaign.Current == null || Campaign.Current.GetCampaignBehavior<AssimilationCampaignBehavior>() == null) return settlement.Culture;
+            
+            var instance = Campaign.Current.GetCampaignBehavior<AssimilationCampaignBehavior>();
+            if (instance._originalSettlementCulturePairs.ContainsKey(settlement)) return instance._originalSettlementCulturePairs[settlement];
+            else return settlement.Culture;
+        }
 
         public override void RegisterEvents()
         {
@@ -26,6 +36,7 @@ namespace TOR_Core.CampaignMechanics.Assimilation
                 foreach (var settlement in Settlement.All)
                 {
                     _settlementCulturePairs.Add(settlement, settlement.Culture);
+                    _originalSettlementCulturePairs.Add(settlement, settlement.Culture);
                 }
             }
         }
@@ -63,6 +74,9 @@ namespace TOR_Core.CampaignMechanics.Assimilation
 
         private void SettlementOwnerChanged(Settlement settlement, bool openToClaim, Hero newOwner, Hero oldOwner, Hero capturerHero, ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail detail)
         {
+            if(isSpecialSettlement(settlement))
+                return;
+            
             if(newOwner.MapFaction != null && oldOwner.MapFaction != null)
             {
                 if (newOwner.MapFaction.Culture != settlement.Culture)
@@ -87,19 +101,15 @@ namespace TOR_Core.CampaignMechanics.Assimilation
             }
         }
 
+        private bool isSpecialSettlement(Settlement settlement)
+        {
+            return settlement.StringId == "castle_BK1";
+        }
+
         public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData("_settlementCulturePairs", ref _settlementCulturePairs);
-        }
-    }
-
-    public class AssimilationSaveableTypeDefiner : SaveableTypeDefiner
-    {
-        public AssimilationSaveableTypeDefiner() : base(519011) { }
-
-        protected override void DefineContainerDefinitions()
-        {
-            ConstructContainerDefinition(typeof(Dictionary<Settlement, CultureObject>));
+            dataStore.SyncData("_originalSettlementCulturePairs", ref _originalSettlementCulturePairs);
         }
     }
 }

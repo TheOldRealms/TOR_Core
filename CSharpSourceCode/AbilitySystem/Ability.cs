@@ -2,6 +2,8 @@ using System;
 using System.Linq;
 using TaleWorlds.MountAndBlade;
 using System.Timers;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Engine;
 using Timer = System.Timers.Timer;
@@ -10,6 +12,7 @@ using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.Extensions;
 using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
 using TOR_Core.BattleMechanics.AI.Decision;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -19,13 +22,17 @@ namespace TOR_Core.AbilitySystem
         private Timer _timer = null;
         private float _cooldown_end_time;
 
+        protected bool _isLocked=false;
         public bool IsCasting { get; private set; }
         public string StringID { get; }
-        public AbilityTemplate Template { get; private set; }
-        public AbilityScript AbilityScript { get; private set; }
+        public AbilityTemplate Template { get; protected set; }
+        public AbilityScript AbilityScript { get; protected set; }
         public AbilityCrosshair Crosshair { get; private set; }
         public bool IsActivationPending { get; private set; }
-        public virtual AbilityEffectType AbilityEffectType => Template.AbilityEffectType;
+
+        public bool IsActive => IsCasting || IsActivationPending || (AbilityScript != null && !AbilityScript.IsFading);
+
+        public AbilityEffectType AbilityEffectType => Template.AbilityEffectType;
         public bool IsOnCooldown() => _timer.Enabled;
         public int GetCoolDownLeft() => _coolDownLeft;
         private bool IsSingleTarget() => Template.AbilityTargetType == AbilityTargetType.SingleAlly || Template.AbilityTargetType == AbilityTargetType.SingleEnemy;
@@ -37,6 +44,7 @@ namespace TOR_Core.AbilitySystem
         public delegate void OnCastStartHandler(Ability ability);
 
         public event OnCastStartHandler OnCastStart;
+        
 
         public Ability(AbilityTemplate template)
         {
@@ -78,7 +86,7 @@ namespace TOR_Core.AbilitySystem
 
         public virtual bool CanCast(Agent casterAgent)
         {
-            return !IsCasting &&
+            return !_isLocked&&!IsCasting &&
                    !IsOnCooldown() &&
                    ((casterAgent.IsPlayerControlled && IsRightAngleToCast()) ||
                     (casterAgent.IsActive() && casterAgent.Health > 0 && casterAgent.GetMorale() > 1 && casterAgent.IsAbilityUser()));
@@ -101,15 +109,60 @@ namespace TOR_Core.AbilitySystem
                 timer.Start();
             }
         }
-        
+
+        public void SetCoolDown(int cooldownTime)
+        {
+            _coolDownLeft =cooldownTime;
+            _cooldown_end_time = Mission.Current.CurrentTime + _coolDownLeft + 0.8f; //Adjustment was needed for natural tick on UI
+            _timer.Start();
+        }
+
+        public virtual void DeactivateAbility()
+        {
+            _isLocked = true;
+            AbilityScript?.Stop();
+        }
         public virtual void ActivateAbility(Agent casterAgent)
         {
             IsActivationPending = false;
             IsCasting = false;
-            _coolDownLeft = Template.CoolDown;
-            _cooldown_end_time = Mission.Current.CurrentTime + _coolDownLeft + 0.8f; //Adjustment was needed for natural tick on UI
-            _timer.Start();
-            var frame = GetSpawnFrame(casterAgent); 
+            bool prayerCoolSeperated = false;
+            ExplainedNumber Cooldown = new ExplainedNumber(Template.CoolDown);
+            if (Game.Current.GameType is Campaign)
+            {
+                if (casterAgent.IsMainAgent)
+                {
+                    var player = Hero.MainHero;
+                    prayerCoolSeperated = CareerHelper.PrayerCooldownIsNotShared(casterAgent);
+                    
+                    var type = Template.AbilityType;
+                    if (type == AbilityType.Spell)
+                    {
+                        CareerHelper.ApplyBasicCareerPassives(player, ref Cooldown, PassiveEffectType.WindsCooldownReduction, true);
+                    }
+
+                    if (type == AbilityType.Prayer)
+                    {
+                        CareerHelper.ApplyBasicCareerPassives(player, ref Cooldown, PassiveEffectType.PrayerCoolDownReduction, true);
+                    }
+                    
+                }
+            }
+            
+            if(Template.AbilityType == AbilityType.Prayer&&!prayerCoolSeperated)
+                casterAgent.GetComponent<AbilityComponent>().SetPrayerCoolDown((int) Cooldown.ResultNumber);
+            else
+            {
+                SetCoolDown((int)Cooldown.ResultNumber);
+            }
+                
+            
+            var frame = GetSpawnFrame(casterAgent);
+
+            if (Template.DoNotAlignParticleEffectPrefab)
+            {
+                frame = new MatrixFrame(Mat3.CreateMat3WithForward(Vec3.Forward), frame.origin);
+            }
             
             GameEntity parentEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
             parentEntity.SetGlobalFrame(frame);
@@ -198,10 +251,10 @@ namespace TOR_Core.AbilitySystem
                         Mission.Current.Scene.GetHeightAtPoint(pos.AsVec2, BodyFlags.CommonCollisionExcludeFlagsForCombat, ref height);
                         pos.z = height;
 
+                        MBList<Agent> targets = new MBList<Agent>();
+                        targets = Mission.Current.GetNearbyAgents(pos.AsVec2, 5, targets);
 
-                        var target= Mission.Current.GetAgentsInRange(pos.AsVec2,5);
-
-                        foreach (var agent in target)
+                        foreach (var agent in targets)
                         {
                             if (agent.Team != Mission.Current.Teams.PlayerEnemy) continue;
                             frame.origin = agent.Frame.origin;
@@ -243,7 +296,9 @@ namespace TOR_Core.AbilitySystem
                         frame.rotation =  Agent.Main.LookFrame.rotation;
                         break;
                     }
-                    case AbilityEffectType.AgentMoving:
+                    case AbilityEffectType.CareerAbilityEffect:
+                        frame.origin = Agent.Main.GetChestGlobalPosition();
+                        frame.rotation = Agent.Main.LookFrame.rotation;
                         break;
                     default: 
                         break;
@@ -279,9 +334,10 @@ namespace TOR_Core.AbilitySystem
                     frame.rotation = casterAgent.Frame.rotation;
                     break;
                 }
-                case AbilityEffectType.AgentMoving:
+                case AbilityEffectType.CareerAbilityEffect:
                 {
-                    frame = casterAgent.LookFrame;
+                    frame.origin = casterAgent.GetChestGlobalPosition();
+                    frame.rotation = casterAgent.LookFrame.rotation;
                     break;
                 }
                 case AbilityEffectType.ArtilleryPlacement:
@@ -333,9 +389,10 @@ namespace TOR_Core.AbilitySystem
                     frame.rotation = casterAgent.Frame.rotation;
                     break;
                 }
-                case AbilityEffectType.AgentMoving:
+                case AbilityEffectType.CareerAbilityEffect:
                 {
-                    frame = casterAgent.LookFrame;
+                    frame.origin = casterAgent.GetChestGlobalPosition();
+                    frame.rotation = casterAgent.LookFrame.rotation;
                     break;
                 }
                 case AbilityEffectType.ArtilleryPlacement:
@@ -369,7 +426,7 @@ namespace TOR_Core.AbilitySystem
             return frame;
         }
 
-        private GameEntity SpawnEntity()
+        protected GameEntity SpawnEntity()
         {
             GameEntity entity = null;
             if (Template.ParticleEffectPrefab != "none")
@@ -409,10 +466,13 @@ namespace TOR_Core.AbilitySystem
             entity.SetPhysicsState(true, false);
         }
 
-        private void AddBehaviour(ref GameEntity entity, Agent casterAgent)
+        protected void AddBehaviour(ref GameEntity entity, Agent casterAgent)
         {
             switch (Template.AbilityEffectType)
             {
+                case AbilityEffectType.Projectile:
+                    AddExactBehaviour<ProjectileScript>(entity,casterAgent);
+                    break;
                 case AbilityEffectType.SeekerMissile:
                 case AbilityEffectType.Missile:
                     AddExactBehaviour<MissileScript>(entity, casterAgent);
@@ -429,8 +489,8 @@ namespace TOR_Core.AbilitySystem
                 case AbilityEffectType.Summoning:
                     AddExactBehaviour<SummoningScript>(entity, casterAgent);
                     break;
-                case AbilityEffectType.AgentMoving:
-                    AddExactBehaviour<ShadowStepScript>(entity, casterAgent);
+                case AbilityEffectType.CareerAbilityEffect:
+                    AddExactBehaviour<CareerAbilityScript>(entity, casterAgent);
                     break;
                 case AbilityEffectType.Hex:
                     AddExactBehaviour<HexScript>(entity, casterAgent);
@@ -486,7 +546,7 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-        private void AddExactBehaviour<TAbilityScript>(GameEntity parentEntity, Agent casterAgent)
+        protected virtual void AddExactBehaviour<TAbilityScript>(GameEntity parentEntity, Agent casterAgent)
             where TAbilityScript : AbilityScript
         {
             parentEntity.CreateAndAddScriptComponent(typeof(TAbilityScript).Name);

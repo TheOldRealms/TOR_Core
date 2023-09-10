@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 using TaleWorlds.ModuleManager;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
@@ -25,21 +26,30 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 var list = ser.Deserialize(File.OpenRead(path)) as List<StatusEffectTemplate>;
                 foreach (var effect in list)
                 {
-                    _idToStatusEffect.Add(effect.Id, effect);
+                    _idToStatusEffect.Add(effect.StringID, effect);
                 }
             }
         }
 
-        public static StatusEffectTemplate GetStatusEffectTemplateWithId(string effectId)
+        public static List<StatusEffectTemplate> GetStatusEffectTemplatesWithIds(List<string> effectIds)
         {
-            StatusEffectTemplate result = null;
-            _idToStatusEffect.TryGetValue(effectId, out result);
+            List<StatusEffectTemplate> result = new List<StatusEffectTemplate>();
+            foreach(var item in effectIds)
+            {
+                StatusEffectTemplate effect = null;
+                if(_idToStatusEffect.TryGetValue(item, out effect))
+                {
+                    result.Add(effect);
+                }
+            }
             return result;
         }
 
-        public static StatusEffect CreateNewStatusEffect(string effectId)
+        public static StatusEffect CreateNewStatusEffect(string effectId, Agent applierAgent, bool requestClone)
         {
-            return new StatusEffect(_idToStatusEffect[effectId]);
+            StatusEffectTemplate template = _idToStatusEffect[effectId];
+            if (requestClone) template = (StatusEffectTemplate)template.Clone(effectId + "*cloned*" + applierAgent.Index);
+            return new StatusEffect(template, applierAgent);
         }
     }
 }

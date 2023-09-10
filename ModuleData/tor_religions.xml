@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Religions>
+    <Religion id="cult_of_sigmar" Name="Cult of Sigmar" Culture="Culture.empire" Affinity="Order">
+        <HostileReligions>
+            <HostileReligion id="Religion.cult_of_nagash" /> 
+            <HostileReligion id="Religion.cult_of_slaanesh" /> 
+            <HostileReligion id="Religion.cult_of_nurgle" /> 
+            <HostileReligion id="Religion.cult_of_khorne" /> 
+            <HostileReligion id="Religion.cult_of_tzeentch" /> 
+            <HostileReligion id="Religion.chaos_undivided" /> 
+        </HostileReligions>
+        <Followers>
+        </Followers>
+        <ReligiousTroops>
+            <ReligiousTroop id="NPCCharacter.tor_empire_flagellant" />
+        </ReligiousTroops>
+        <ReligiousArtifacts>
+            <ArtifactItem id="Item.tor_empire_weapon_mace_comet_flail" />
+            <ArtifactItem id="Item.tor_empire_weapon_mace_holy_hammer" />
+        </ReligiousArtifacts>
+    </Religion>
+    <Religion id="cult_of_taal" Name="Cult of Taal" Culture="Culture.empire" Affinity="Order">
+        <HostileReligions>
+            <HostileReligion id="Religion.cult_of_nagash" /> 
+            <HostileReligion id="Religion.cult_of_slaanesh" /> 
+            <HostileReligion id="Religion.cult_of_nurgle" /> 
+            <HostileReligion id="Religion.cult_of_khorne" /> 
+            <HostileReligion id="Religion.cult_of_tzeentch" /> 
+            <HostileReligion id="Religion.chaos_undivided" />
+        </HostileReligions>
+        <Followers>
+            <FollowerClan stringId="talabecland_clan_1" />
+            <FollowerClan stringId="talabecland_clan_2" />
+            <FollowerClan stringId="talabecland_clan_3" />
+        </Followers>
+        <ReligiousTroops>
+            <ReligiousTroop id="NPCCharacter.tor_ror_ward_of_taal" />
+        </ReligiousTroops>
+        <ReligiousArtifacts>
+            <ArtifactItem id="Item.tor_empire_weapon_thaxe_taal" />
+        </ReligiousArtifacts>
+    </Religion>
+    <Religion id="cult_of_lady" Name="Cult of The Lady" Culture="Culture.vlandia" Affinity="Order">
+        <HostileReligions>
+            <HostileReligion id="Religion.cult_of_nagash" /> 
+            <HostileReligion id="Religion.cult_of_slaanesh" /> 
+            <HostileReligion id="Religion.cult_of_nurgle" /> 
+            <HostileReligion id="Religion.cult_of_khorne" /> 
+            <HostileReligion id="Religion.cult_of_tzeentch" /> 
+            <HostileReligion id="Religion.chaos_undivided" />
+        </HostileReligions>
+        <Followers>
+        </Followers>
+        <ReligiousTroops>
+            <ReligiousTroop id="NPCCharacter.tor_br_battle_pilgrim" />
+        </ReligiousTroops>
+        <ReligiousArtifacts>
+            <ArtifactItem id="Item.tor_bretonnia_weapon_thsword_de_lyonesse" />
+        </ReligiousArtifacts>
+    </Religion>
+    <Religion id="cult_of_nagash" Name="Children of Nagash" Culture="Culture.khuzait" Affinity="Vampire">
+        <HostileReligions>
+            <HostileReligion id="Religion.cult_of_sigmar" /> 
+            <HostileReligion id="Religion.cult_of_taal" /> 
+            <HostileReligion id="Religion.cult_of_lady" /> 
+            <HostileReligion id="Religion.cult_of_slaanesh" /> 
+            <HostileReligion id="Religion.cult_of_nurgle" /> 
+            <HostileReligion id="Religion.cult_of_khorne" /> 
+            <HostileReligion id="Religion.cult_of_tzeentch" /> 
+            <HostileReligion id="Religion.chaos_undivided" />
+        </HostileReligions>
+        <Followers>
+		    <FollowerClan stringId="mousillon_clan_1" />
+        </Followers>
+        <ReligiousTroops>
+        </ReligiousTroops>
+    </Religion>
+    <Religion id="chaos_undivided" Name="Chaos Undivided" Culture="Culture.chaos_culture" Affinity="Chaos">
+        <HostileReligions>
+            <HostileReligion id="Religion.cult_of_sigmar" /> 
+            <HostileReligion id="Religion.cult_of_taal" /> 
+            <HostileReligion id="Religion.cult_of_lady" /> 
+            <HostileReligion id="Religion.cult_of_nagash" /> 
+        </HostileReligions>
+        <Followers>
+            <FollowerClan stringId="chaos_clan_1" />
+            <FollowerClan stringId="beastmen_clan_1" />
+        </Followers>
+        <ReligiousTroops>
+        </ReligiousTroops>
+    </Religion>
+    <Religion id="cult_of_slaanesh" Name="Cult of Slaanesh" Culture="Culture.chaos_culture" Affinity="Chaos">
+        <HostileReligions>
+            <HostileReligion id="Religion.cult_of_sigmar" /> 
+            <HostileReligion id="Religion.cult_of_taal" /> 
+            <HostileReligion id="Religion.cult_of_lady" /> 
+            <HostileReligion id="Religion.cult_of_nagash" /> 
+        </HostileReligions>
+        <Followers>
+        </Followers>
+        <ReligiousTroops>
+        </ReligiousTroops>
+    </Religion>
+    <Religion id="cult_of_nurgle" Name="Cult of Nurgle" Culture="Culture.chaos_culture" Affinity="Chaos">
+        <HostileReligions>
+            <HostileReligion id="Religion.cult_of_sigmar" /> 
+            <HostileReligion id="Religion.cult_of_taal" /> 
+            <HostileReligion id="Religion.cult_of_lady" /> 
+            <HostileReligion id="Religion.cult_of_nagash" /> 
+        </HostileReligions>
+        <Followers>
+            <FollowerClan stringId="chs_cult_3" />
+        </Followers>
+        <ReligiousTroops>
+        </ReligiousTroops>
+    </Religion>
+    <Religion id="cult_of_khorne" Name="Cult of Khorne" Culture="Culture.chaos_culture" Affinity="Chaos">
+        <HostileReligions>
+            <HostileReligion id="Religion.cult_of_sigmar" /> 
+            <HostileReligion id="Religion.cult_of_taal" /> 
+            <HostileReligion id="Religion.cult_of_lady" /> 
+            <HostileReligion id="Religion.cult_of_nagash" /> 
+        </HostileReligions>
+        <Followers>
+        </Followers>
+        <ReligiousTroops>
+        </ReligiousTroops>
+    </Religion>
+    <Religion id="cult_of_tzeentch" Name="Cult of Tzeentch" Culture="Culture.chaos_culture" Affinity="Chaos">
+        <HostileReligions>
+            <HostileReligion id="Religion.cult_of_sigmar" /> 
+            <HostileReligion id="Religion.cult_of_taal" /> 
+            <HostileReligion id="Religion.cult_of_lady" /> 
+            <HostileReligion id="Religion.cult_of_nagash" /> 
+        </HostileReligions>
+        <Followers>
+            <FollowerClan stringId="chs_cult_1" />
+            <FollowerClan stringId="chs_cult_2" />
+        </Followers>
+        <ReligiousTroops>
+        </ReligiousTroops>
+    </Religion>
+</Religions>

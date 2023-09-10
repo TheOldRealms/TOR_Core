@@ -24,7 +24,6 @@ namespace TOR_Core.Quests
         [SaveableField(5)] private JournalLog _task4 = null;
         [SaveableField(6)] private MobileParty _targetParty = null;
         [SaveableField(7)] private bool _failstate;
-        private bool _initAfterReload;
         private bool _skipImprisonment;
         private const string QuestName = "Runaway Parts";
         private const string CultistFactionId = "forest_bandits";
@@ -39,8 +38,6 @@ namespace TOR_Core.Quests
         private const string RogueEngineerLeaderTemplateId = "tor_engineerquesthero";
         public EngineerQuestStates CurrentActiveLog => (EngineerQuestStates)_currentActiveLog;
         private List<JournalLog> _logs;
-        private CharacterObject _cultistLeader;
-        private string _cityId = "town_WI1";
 
         private delegate void InializeVisuals(MobileParty party);
 
@@ -156,7 +153,8 @@ namespace TOR_Core.Quests
             if (!_targetParty.IsActive) return;
             if (!_skipImprisonment) return;
             if (Current.CurrentConversationContext != ConversationContext.CapturedLord) return;
-            Current.ConversationManager.EndConversation();
+            //Current.ConversationManager.EndConversation();
+            Current.ConversationManager.ClearCurrentOptions();
             Current.ConversationManager.AddDialogLineMultiAgent("start", "start", "close_window",
                 new TextObject("Your victory here is meaningless...you will never find what we took..."),
                 () => _skipImprisonment && _currentActiveLog == EngineerQuestStates.HandInCultisthunt, RemoveSkip, 0, 1,
@@ -166,7 +164,7 @@ namespace TOR_Core.Quests
                 new TextObject("You have no idea what you are interfering with..."),
                 () => _skipImprisonment && _currentActiveLog == EngineerQuestStates.HandInRogueEngineerHunt, RemoveSkip,
                 0, 1, 200, null);
-            Current.ConversationManager.ClearCurrentOptions();
+           
         }
 
         private void RemoveSkip()
@@ -184,7 +182,6 @@ namespace TOR_Core.Quests
 
         protected override void OnStartQuest()
         {
-            Settlement targetSettlement = null;
             SpawnQuestParty(CultistLeaderTemplateId, CultistPartyTemplateId, CultistFactionId, CultistPartyLeaderName,
                 CultistPartyDisplayName);
         }
@@ -309,8 +306,9 @@ namespace TOR_Core.Quests
             List<PartyBase> list = new List<PartyBase>();
             list.Add(_targetParty.Party);
             AddTrackedObject(party);
-            ToggleTrackedObjects();
         }
+
+        protected override void HourlyTick() { }
     }
 
     public enum EngineerQuestStates
@@ -320,18 +318,5 @@ namespace TOR_Core.Quests
         HandInCultisthunt = 1,
         RogueEngineerhunt = 2,
         HandInRogueEngineerHunt = 3
-    }
-
-    public class RogueEngineerQuestTypeDefiner : SaveableTypeDefiner
-    {
-        public RogueEngineerQuestTypeDefiner() : base(701792)
-        {
-        }
-
-        protected override void DefineClassTypes()
-        {
-            AddClassDefinition(typeof(EngineerQuest), 1);
-            AddEnumDefinition(typeof(EngineerQuestStates), 2);
-        }
     }
 }

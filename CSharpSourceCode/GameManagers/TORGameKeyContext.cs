@@ -16,7 +16,7 @@ namespace TOR_Core.GameManagers
         public const int SelectPreviousAbility = (int)TorKeyMap.SelectPreviousAbility;
         public const int QuickCast = (int)TorKeyMap.QuickCast;
         public const int SpecialMove = (int)TorKeyMap.SpecialMove;
-        public TORGameKeyContext() :  base(nameof(TORGameKeyContext),120) // I don't exactly why they do it, but they seem to cast the id enums of "GameKey" to strings, and then read them out. So the first 108 positions are blocked since their names are predefined of the GameKey enum.
+        public TORGameKeyContext() :  base(nameof(TORGameKeyContext),120) // I don't exactly know why they do it, but they seem to cast the id enums of "GameKey" to strings, and then read them out. So the first 108 positions are blocked since their names are predefined of the GameKey enum.
         {
             this.RegisterGameKey(new GameKey(Spellcasting, "Spellcasting", nameof(TORGameKeyContext), InputKey.Q,nameof(TORGameKeyContext)));
             this.RegisterGameKey(new GameKey(SelectPreviousAbility, "PreviousAbility", nameof(TORGameKeyContext), InputKey.X2MouseButton,nameof(TORGameKeyContext)));

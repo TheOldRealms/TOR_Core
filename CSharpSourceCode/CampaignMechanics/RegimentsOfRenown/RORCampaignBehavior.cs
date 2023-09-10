@@ -149,11 +149,12 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                 mobileParty != MobileParty.MainParty &&
                 !mobileParty.IsDisbanding && 
                 mobileParty.LeaderHero != null && 
+                mobileParty.LeaderHero.Culture == settlement.Culture &&
                 !mobileParty.Party.IsStarving &&
                 mobileParty.MapFaction.IsKingdomFaction &&
                 settlement.IsRoRSettlement() &&
                 mobileParty.Party.NumberOfAllMembers < mobileParty.LimitedPartySize &&
-                (mobileParty.UnlimitedWage || mobileParty.PaymentLimit >= mobileParty.TotalWage) &&
+                mobileParty.CanPayMoreWage() &&
                 mobileParty.LeaderHero.Gold > HeroHelper.StartRecruitingMoneyLimit(mobileParty.LeaderHero) && 
                 (mobileParty.LeaderHero == mobileParty.LeaderHero.Clan.Leader || mobileParty.LeaderHero.Clan.Gold > HeroHelper.StartRecruitingMoneyLimitForClanLeader(mobileParty.LeaderHero)))
             {
@@ -182,10 +183,11 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                 !mobileParty.IsDisbanding &&
                 mobileParty.LeaderHero != null &&
                 mobileParty.LeaderHero.CanPlaceArtillery() &&
+                mobileParty.LeaderHero.Culture.StringId == "empire" &&
                 !mobileParty.Party.IsStarving &&
                 mobileParty.MapFaction.IsKingdomFaction &&
                 mobileParty.Party.NumberOfAllMembers < mobileParty.LimitedPartySize &&
-                (mobileParty.UnlimitedWage || mobileParty.PaymentLimit >= mobileParty.TotalWage) &&
+                mobileParty.CanPayMoreWage() &&
                 mobileParty.LeaderHero.Gold > HeroHelper.StartRecruitingMoneyLimit(mobileParty.LeaderHero) &&
                 (mobileParty.LeaderHero == mobileParty.LeaderHero.Clan.Leader || mobileParty.LeaderHero.Clan.Gold > HeroHelper.StartRecruitingMoneyLimitForClanLeader(mobileParty.LeaderHero)))
             {
@@ -310,16 +312,6 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                     GameMenu.ExitToLast();
                 }
             }
-        }
-    }
-
-    public class RoRSaveableTypeDefiner : SaveableTypeDefiner
-    {
-        public RoRSaveableTypeDefiner() : base(516023) { }
-
-        protected override void DefineContainerDefinitions()
-        {
-            ConstructContainerDefinition(typeof(Dictionary<Settlement, Dictionary<CharacterObject, int>>));
         }
     }
 }

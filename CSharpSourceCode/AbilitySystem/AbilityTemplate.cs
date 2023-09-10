@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Xml.Serialization;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
@@ -9,100 +9,110 @@ using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.Utilities;
 using TOR_Core.Extensions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TOR_Core.AbilitySystem
 {
+    public interface ITemplate
+    {
+        string StringID { get; }
+        ITemplate Clone(string newId);
+    }
+
     [Serializable]
-    public class AbilityTemplate
+    public class AbilityTemplate : ITemplate
     {
         [XmlAttribute]
-        public string StringID = "";
+        public string StringID { get; set; } = "";
         [XmlAttribute]
-        public string Name = "";
+        public string Name { get; set; } = "";
         [XmlAttribute]
-        public string SpriteName  = "";
+        public string SpriteName { get; set; } = "";
         [XmlAttribute]
-        public int CoolDown = 10;
+        public int CoolDown { get; set; } = 10;
         [XmlAttribute]
-        public int WindsOfMagicCost = 0; //spell only
+        public int WindsOfMagicCost { get; set; } = 0; //spell only
         [XmlAttribute]
-        public float BaseMisCastChance = 0.3f; //spell only
+        public float BaseMisCastChance { get; set; } = 0.3f; //spell only
         [XmlAttribute]
-        public float Duration = 3;
+        public float Duration { get; set; } = 3;
         [XmlAttribute]
-        public float Radius = 0.8f;
+        public float Radius { get; set; } = 0.8f;
         [XmlAttribute]
-        public AbilityType AbilityType = AbilityType.Spell;
+        public AbilityType AbilityType { get; set; } = AbilityType.Spell;
         [XmlAttribute]
-        public AbilityEffectType AbilityEffectType = AbilityEffectType.Missile;
+        public AbilityEffectType AbilityEffectType { get; set; } = AbilityEffectType.Missile;
         [XmlAttribute]
-        public float BaseMovementSpeed = 35f;
+        public float BaseMovementSpeed { get; set; } = 35f;
         [XmlAttribute]
-        public float TickInterval = 1f;
+        public float TickInterval { get; set; } = 1f;
         [XmlAttribute]
-        public TriggerType TriggerType = TriggerType.OnCollision;
+        public TriggerType TriggerType { get; set; } = TriggerType.OnCollision;
+        [XmlElement("TriggeredEffect")]
+        public List<string> TriggeredEffects { get; set; } = new List<string>();
         [XmlAttribute]
-        public string TriggeredEffectID = "";
+        public bool HasLight { get; set; } = true;
         [XmlAttribute]
-        public bool HasLight = true;
+        public float LightIntensity { get; set; } = 5f;
         [XmlAttribute]
-        public float LightIntensity = 5f;
+        public float LightRadius { get; set; } = 5f;
+        [XmlElement]
+        public Vec3 LightColorRGB { get; set; } = new Vec3(255, 170, 0);
         [XmlAttribute]
-        public float LightRadius = 5f;
-        public Vec3 LightColorRGB = new Vec3(255, 170, 0);
+        public float LightFlickeringMagnitude { get; set; } = 1;
         [XmlAttribute]
-        public float LightFlickeringMagnitude = 1;
+        public float LightFlickeringInterval { get; set; } = 0.2f;
         [XmlAttribute]
-        public float LightFlickeringInterval = 0.2f;
+        public bool ShadowCastEnabled { get; set; } = true;
         [XmlAttribute]
-        public bool ShadowCastEnabled = true;
+        public string ParticleEffectPrefab { get; set; } = "";
         [XmlAttribute]
-        public string ParticleEffectPrefab = "";
+        public float ParticleEffectSizeModifier { get; set; } = 1;
         [XmlAttribute]
-        public float ParticleEffectSizeModifier = 1;
+        public string SoundEffectToPlay { get; set; } = "";
         [XmlAttribute]
-        public string SoundEffectToPlay = "";
+        public bool ShouldSoundLoopOverDuration { get; set; } = true;
         [XmlAttribute]
-        public bool ShouldSoundLoopOverDuration = true;
+        public CastType CastType { get; set; } = CastType.Instant;
         [XmlAttribute]
-        public CastType CastType = CastType.Instant;
+        public float CastTime { get; set; } = 0;
         [XmlAttribute]
-        public float CastTime = 0;
+        public string AnimationActionName { get; set; } = "";
         [XmlAttribute]
-        public string AnimationActionName = "";
+        public AbilityTargetType AbilityTargetType { get; set; } = AbilityTargetType.EnemiesInAOE;
         [XmlAttribute]
-        public AbilityTargetType AbilityTargetType = AbilityTargetType.EnemiesInAOE;
+        public float Offset { get; set; } = 1.0f;
         [XmlAttribute]
-        public float Offset = 1.0f;
+        public CrosshairType CrosshairType { get; set; } = CrosshairType.Self;
         [XmlAttribute]
-        public CrosshairType CrosshairType = CrosshairType.Self;
+        public float MinDistance { get; set; } = 1.0f;
         [XmlAttribute]
-        public float MinDistance = 1.0f;
+        public float MaxDistance { get; set; } = 1.0f;
         [XmlAttribute]
-        public float MaxDistance = 1.0f;
+        public float TargetCapturingRadius { get; set; } = 0;
         [XmlAttribute]
-        public float TargetCapturingRadius = 0;
+        public int SpellTier { get; set; } = 0; //spell only, max 3 (0-1-2-3)
         [XmlAttribute]
-        public int SpellTier = 0; //spell only, max 3 (0-1-2-3)
+        public string BelongsToLoreID { get; set; } = ""; //spell only
         [XmlAttribute]
-        public string BelongsToLoreID = ""; //spell only
+        public string TooltipDescription { get; set; } = "default";
         [XmlAttribute]
-        public string TooltipDescription = "default";
+        public float MaxRandomDeviation { get; set; } = 0;
         [XmlAttribute]
-        public float MaxRandomDeviation = 0;
+        public bool ShouldRotateVisuals { get; set; } = false;
         [XmlAttribute]
-        public bool ShouldRotateVisuals = false;
-        [XmlAttribute]
-        public float VisualsRotationVelocity = 0f;
-
-        public SeekerParameters SeekerParameters;
-        
-        public AbilityTemplate() { }
-        public AbilityTemplate(string id) => StringID = id;
-
+        public bool DoNotAlignParticleEffectPrefab { get; set; } = false;
+        public float VisualsRotationVelocity { get; set; } = 0f;
+        [XmlIgnore]
+        public SeekerParameters SeekerParameters { get; set; }
+        [XmlIgnore]
         public bool IsSpell => AbilityType == AbilityType.Spell;
-        public TriggeredEffectTemplate AssociatedTriggeredEffectTemplate => TriggeredEffectManager.GetTemplateWithId(TriggeredEffectID);
-        public bool DoesDamage => AssociatedTriggeredEffectTemplate?.DamageType != DamageType.Invalid && AssociatedTriggeredEffectTemplate?.DamageAmount > 0;
+        [XmlIgnore]
+        public List<TriggeredEffectTemplate> AssociatedTriggeredEffectTemplates => TriggeredEffectManager.GetTemplatesWithIds(TriggeredEffects);
+        [XmlIgnore]
+        public bool DoesDamage => AssociatedTriggeredEffectTemplates.Any(x=> x.DamageType != DamageType.Invalid && x.DamageAmount > 0);
+        [XmlIgnore]
         public int GoldCost
         {
             get
@@ -117,7 +127,8 @@ namespace TOR_Core.AbilitySystem
                 }
             }
         }
-
+        public AbilityTemplate() { }
+        public AbilityTemplate(string id) => StringID = id;
         public MBBindingList<StatItemVM> GetStats(Hero hero, AbilityTemplate spellTemplate)
         {
             MBBindingList<StatItemVM> list = new MBBindingList<StatItemVM>();
@@ -130,6 +141,52 @@ namespace TOR_Core.AbilitySystem
                 list.Add(new StatItemVM("Cooldown: ", CoolDown.ToString()+" seconds"));
             }
             return list;
+        }
+
+        public ITemplate Clone(string newId)
+        {
+            return new AbilityTemplate(newId)
+            {
+                Name = Name,
+                SpriteName  = SpriteName,
+                CoolDown = CoolDown,
+                WindsOfMagicCost = WindsOfMagicCost,
+                BaseMisCastChance = BaseMisCastChance,
+                Duration = Duration,
+                Radius = Radius,
+                AbilityType = AbilityType,
+                AbilityEffectType = AbilityEffectType,
+                BaseMovementSpeed = BaseMovementSpeed,
+                TickInterval = TickInterval,
+                TriggerType = TriggerType,
+                TriggeredEffects = TriggeredEffects,
+                HasLight = HasLight,
+                LightIntensity = LightIntensity,
+                LightRadius = LightRadius,
+                LightColorRGB = LightColorRGB,
+                LightFlickeringMagnitude = LightFlickeringMagnitude,
+                LightFlickeringInterval = LightFlickeringInterval,
+                ShadowCastEnabled = ShadowCastEnabled,
+                ParticleEffectPrefab = ParticleEffectPrefab,
+                ParticleEffectSizeModifier = ParticleEffectSizeModifier,
+                SoundEffectToPlay = SoundEffectToPlay,
+                ShouldSoundLoopOverDuration = ShouldSoundLoopOverDuration,
+                CastType = CastType,
+                CastTime = CastTime,
+                AnimationActionName = AnimationActionName,
+                AbilityTargetType = AbilityTargetType,
+                Offset = Offset,
+                CrosshairType = CrosshairType,
+                MinDistance = MinDistance,
+                MaxDistance = MaxDistance,
+                TargetCapturingRadius = TargetCapturingRadius,
+                SpellTier = SpellTier,
+                BelongsToLoreID = BelongsToLoreID,
+                TooltipDescription = TooltipDescription,
+                MaxRandomDeviation = MaxRandomDeviation,
+                ShouldRotateVisuals = ShouldRotateVisuals,
+                VisualsRotationVelocity = VisualsRotationVelocity
+            };
         }
     }
 }

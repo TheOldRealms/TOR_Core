@@ -1,15 +1,12 @@
-﻿using Helpers;
+using Helpers;
 using SandBox.GameComponents;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 
@@ -21,11 +18,18 @@ namespace TOR_Core.Models
         {
             base.DecideMissileWeaponFlags(attackerAgent, missileWeapon, ref missileWeaponFlags);
             var character = attackerAgent.Character as CharacterObject;
-            if(character != null && !missileWeapon.IsEmpty)
+            if (character != null && !missileWeapon.IsEmpty)
             {
-                if(missileWeapon.CurrentUsageItem.WeaponClass == WeaponClass.Cartridge && character.GetPerkValue(TORPerks.GunPowder.PiercingShots))
+                if (missileWeapon.CurrentUsageItem.WeaponClass == WeaponClass.Cartridge && character.GetPerkValue(TORPerks.GunPowder.PiercingShots)) missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
+
+                if (attackerAgent.IsMainAgent && Hero.MainHero.HasAnyCareer())
                 {
-                    missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
+                    var choices = Hero.MainHero.GetAllCareerChoices();
+
+                    if (choices.Contains("MercenaryLordPassive4"))
+                    {
+                        missileWeaponFlags |= WeaponFlags.MultiplePenetration;
+                    }
                 }
             }
         }
@@ -38,64 +42,120 @@ namespace TOR_Core.Models
             var defender = (attackInformation.IsVictimAgentMount ? attackInformation.VictimRiderAgentCharacter : attackInformation.VictimAgentCharacter) as CharacterObject;
             var defenderCaptain = attackInformation.VictimCaptainCharacter as CharacterObject;
 
-            ExplainedNumber resultDamage = new ExplainedNumber(result);
+            var resultDamage = new ExplainedNumber(result);
             if (attacker != null && defender != null && !weapon.IsEmpty)
             {
                 if (attacker.GetPerkValue(TORPerks.GunPowder.CloseQuarters) && weapon.CurrentUsageItem.WeaponClass == WeaponClass.Cartridge)
                 {
                     var shotLength = (collisionData.CollisionGlobalPosition - collisionData.MissileStartingPosition).Length;
-                    if(shotLength <= 7)
-                    {
+                    if (shotLength <= 7)
                         PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.CloseQuarters, attacker, true, ref resultDamage);
-                    }
                 }
-                if(weapon.Item.StringId.Contains("longrifle") && attacker.GetPerkValue(TORPerks.GunPowder.DeadEye))
+
+                if (weapon.Item.StringId.Contains("longrifle") && attacker.GetPerkValue(TORPerks.GunPowder.DeadEye))
                 {
                     PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.DeadEye, attacker, true, ref resultDamage);
                 }
-                if(weapon.Item.IsSmallArmsAmmunition() && defender.GetPerkValue(TORPerks.GunPowder.BulletProof))
+
+                if (weapon.Item.IsSmallArmsAmmunition() && defender.GetPerkValue(TORPerks.GunPowder.BulletProof))
                 {
                     PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.BulletProof, defender, true, ref resultDamage);
-                    if(defenderCaptain != null && defenderCaptain.GetPerkValue(TORPerks.GunPowder.BulletProof))
-                    {
+                    if (defenderCaptain != null && defenderCaptain.GetPerkValue(TORPerks.GunPowder.BulletProof))
                         PerkHelper.AddPerkBonusFromCaptain(TORPerks.GunPowder.BulletProof, defenderCaptain, ref resultDamage);
-                    }
                 }
-                if(weapon.Item.IsExplosiveAmmunition() && defender.GetPerkValue(TORPerks.GunPowder.BombingSuit))
+
+                if (weapon.Item.IsExplosiveAmmunition() && defender.GetPerkValue(TORPerks.GunPowder.BombingSuit))
                 {
                     PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.BombingSuit, defender, true, ref resultDamage);
                     if (defenderCaptain != null && defenderCaptain.GetPerkValue(TORPerks.GunPowder.BombingSuit))
-                    {
                         PerkHelper.AddPerkBonusFromCaptain(TORPerks.GunPowder.BombingSuit, defenderCaptain, ref resultDamage);
+                }
+
+                if (weapon.Item.IsExplosiveAmmunition() && attackerCaptain != null && attackerCaptain.GetPerkValue(TORPerks.GunPowder.PackItIn)) PerkHelper.AddPerkBonusFromCaptain(TORPerks.GunPowder.PackItIn, attackerCaptain, ref resultDamage);
+
+                var weaponComponentData = weapon.CurrentUsageItem;
+
+                if (attacker.IsHero && attacker.HeroObject == Hero.MainHero)
+                    if (Hero.MainHero.HasAnyCareer())
+                    {
+                        var choices = Hero.MainHero.GetAllCareerChoices();
+
+                        if (choices.Contains("MartiallePassive4") || choices.Contains("AvatarOfDeathPassive4"))
+                        {
+                            weaponComponentData.WeaponFlags |= WeaponFlags.BonusAgainstShield;
+                        }
                     }
-                }
-                if (weapon.Item.IsExplosiveAmmunition() && attackerCaptain != null && attackerCaptain.GetPerkValue(TORPerks.GunPowder.PackItIn))
-                {
-                    PerkHelper.AddPerkBonusFromCaptain(TORPerks.GunPowder.PackItIn, attackerCaptain, ref resultDamage);
-                }
             }
+
+            if (collisionData.IsHorseCharge && attacker != null && attacker.IsMounted && attacker.IsPlayerCharacter && attacker.HeroObject.HasAnyCareer())
+            {
+                CareerHelper.ApplyBasicCareerPassives(attacker.HeroObject, ref resultDamage, PassiveEffectType.HorseChargeDamage);
+            }
+             
             return resultDamage.ResultNumber;
         }
 
-        public float CalculateWardSaveFactor(Agent victim)
+
+        public override MeleeCollisionReaction DecidePassiveAttackCollisionReaction(
+            Agent attacker,
+            Agent defender,
+            bool isFatalHit)
         {
-            float result = 1f;
-            var victimCharacter = victim.Character as CharacterObject;
-            if(victimCharacter != null)
+            var collisionReaction = base.DecidePassiveAttackCollisionReaction(attacker, defender, isFatalHit);
+            if (collisionReaction == MeleeCollisionReaction.Bounced)
+                if (attacker.Character.IsPlayerCharacter || attacker.GetPartyLeaderCharacter() == CharacterObject.PlayerCharacter)
+                {
+                    var component = attacker.GetComponent<StatusEffectComponent>();
+                    var steadinessModifier = 0f;
+                    if (component != null) steadinessModifier = component.GetLanceSteadinessModifier();
+
+                    if (steadinessModifier <= 0) return collisionReaction;
+
+                    var chance = MBRandom.RandomFloatRanged(0, 1);
+
+                    if (chance < steadinessModifier)
+                    {
+                        collisionReaction = MeleeCollisionReaction.SlicedThrough;
+                        return collisionReaction;
+                    }
+                }
+
+            return collisionReaction;
+        }
+
+        public override bool DecideMountRearedByBlow(Agent attackerAgent, Agent victimAgent, in AttackCollisionData collisionData, WeaponComponentData attackerWeapon, in Blow blow)
+        {
+            var value = base.DecideMountRearedByBlow(attackerAgent, victimAgent, collisionData, attackerWeapon, blow);
+
+            if (victimAgent.RiderAgent != null && victimAgent.RiderAgent.HasAttribute("HorseSteady"))
             {
-                var container = victim.GetProperties(PropertyMask.Defense);
+                return false;
+            }
+
+            return value;
+        }
+
+        public float CalculateWardSaveFactor(Agent victim, AttackTypeMask attackTypeMask)
+        {
+            var result = new ExplainedNumber(1f);
+            var victimCharacter = victim.Character as CharacterObject;
+            if (victimCharacter != null)
+            {
+                var container = victim.GetProperties(PropertyMask.Defense, attackTypeMask);
 
                 if (container.ResistancePercentages[(int)DamageType.All] > 0)
                 {
-                    result -= container.ResistancePercentages[(int)DamageType.All] / 100;
+                    result.Add(-container.ResistancePercentages[(int)DamageType.All] / 100);
                 }
 
                 if (victimCharacter.GetPerkValue(TORPerks.SpellCraft.Dampener))
                 {
-                    result += TORPerks.SpellCraft.Dampener.SecondaryBonus * 0.01f;
+                    result.AddFactor(TORPerks.SpellCraft.Dampener.SecondaryBonus);
                 }
+                SkillHelper.AddSkillBonusForCharacter(TORSkills.Faith, TORSkillEffects.FaithWardSave, victimCharacter, ref result, -1, false);
             }
-            return result;
+
+            return result.ResultNumber;
         }
     }
 }

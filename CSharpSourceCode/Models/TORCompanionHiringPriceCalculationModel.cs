@@ -15,7 +15,15 @@ namespace TOR_Core.Models
         {
             if (companion.Template.IsTORTemplate() && companion.IsWanderer)
             {
-                return 2000;
+                if (companion.IsSpellCaster())
+                {
+                    return 20000;
+                }
+                else if(companion.BattleEquipment.GetHumanBodyArmorSum() > 40) 
+                {
+                    return 15000;
+                }
+                return 10000;
             }
             else return base.GetCompanionHiringPrice(companion);
         }

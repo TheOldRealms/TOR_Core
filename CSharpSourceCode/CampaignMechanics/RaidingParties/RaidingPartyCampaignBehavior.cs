@@ -16,16 +16,15 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
         {
             CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, DailyTickSettlement);
             CampaignEvents.TickEvent.AddNonSerializedListener(this, Tick);
-            CampaignEvents.HourlyTickPartyEvent.AddNonSerializedListener(this, HourlyPartyTick);
+            CampaignEvents.AiHourlyTickEvent.AddNonSerializedListener(this, HourlyPartyTick);
         }
 
-        private void HourlyPartyTick(MobileParty party)
+        private void HourlyPartyTick(MobileParty party, PartyThinkParams thinkParams)
         {
             if (party.IsRaidingParty())
             {
                 var component = (IRaidingParty)party.PartyComponent;
-                component.HourlyTick();
-                party.Ai.SetDoNotMakeNewDecisions(false);
+                component.HourlyTickAI(thinkParams);
             }
         }
 
@@ -41,10 +40,10 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
 
         private void DailyTickSettlement(Settlement settlement)
         {
-            if(settlement.SettlementComponent is TORCustomSettlementComponent)
+            if(settlement.SettlementComponent is BaseRaiderSpawnerComponent)
             {
-                var component = settlement.SettlementComponent as TORCustomSettlementComponent;
-                if (component.SettlementType.IsRaidingPartySpawner && component.RaidingPartyCount < 5) component.SettlementType.SpawnNewParty();
+                var component = settlement.SettlementComponent as BaseRaiderSpawnerComponent;
+                if (component.RaidingPartyCount < 5) component.SpawnNewParty();
             }
         }
 

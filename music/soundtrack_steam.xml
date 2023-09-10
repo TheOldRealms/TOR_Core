@@ -12860,7 +12860,7 @@
         </Group>
       </Groups>
     </Theme>
-    <Theme>
+	<Theme>
       <Name>Khuzait Campaign A</Name>
       <Id>32</Id>
       <ThemeTypeInt>1</ThemeTypeInt>
@@ -12890,14 +12890,14 @@
               <AudioData>
                 <_prebeatLengthInSamplesEnteredManually>67507</_prebeatLengthInSamplesEnteredManually>
                 <_postbeatLengthInSamplesEnteredManually>253150</_postbeatLengthInSamplesEnteredManually>
-                <Path>../../../../../../common/Mount &amp; Blade II Bannerlord/music/PC/MBII_LOC_Kuzait_Master_080520.wav</Path>
+                <Path>vampire_ambient_theme.ogg</Path>
                 <Bpm>100</Bpm>
                 <PreBeats>1</PreBeats>
                 <PostBeats>4</PostBeats>
                 <CalculatePostAndPrebeatLengthBasedOnBeats>false</CalculatePostAndPrebeatLengthBasedOnBeats>
                 <PreBeatLengthInSamples>67507</PreBeatLengthInSamples>
                 <PostBeatLengthInSamples>253150</PostBeatLengthInSamples>
-                <TotalLengthInSamples>6024962</TotalLengthInSamples>
+                <TotalLengthInSamples>14664922</TotalLengthInSamples>
                 <SampleRate>44100</SampleRate>
               </AudioData>
               <CalculatePostAndPrebeatLengthBasedOnBeats>false</CalculatePostAndPrebeatLengthBasedOnBeats>
@@ -24957,7 +24957,7 @@
                 <CalculatePostAndPrebeatLengthBasedOnBeats>false</CalculatePostAndPrebeatLengthBasedOnBeats>
                 <PreBeatLengthInSamples>1750</PreBeatLengthInSamples>
                 <PostBeatLengthInSamples>127834</PostBeatLengthInSamples>
-                <TotalLengthInSamples>5316588</TotalLengthInSamples>
+                <TotalLengthInSamples>18165009</TotalLengthInSamples>
                 <SampleRate>44100</SampleRate>
               </AudioData>
               <CalculatePostAndPrebeatLengthBasedOnBeats>false</CalculatePostAndPrebeatLengthBasedOnBeats>
@@ -25019,7 +25019,7 @@
                 <CalculatePostAndPrebeatLengthBasedOnBeats>false</CalculatePostAndPrebeatLengthBasedOnBeats>
                 <PreBeatLengthInSamples>1750</PreBeatLengthInSamples>
                 <PostBeatLengthInSamples>127834</PostBeatLengthInSamples>
-                <TotalLengthInSamples>5316588</TotalLengthInSamples>
+                <TotalLengthInSamples>14576312</TotalLengthInSamples>
                 <SampleRate>44100</SampleRate>
               </AudioData>
               <CalculatePostAndPrebeatLengthBasedOnBeats>false</CalculatePostAndPrebeatLengthBasedOnBeats>

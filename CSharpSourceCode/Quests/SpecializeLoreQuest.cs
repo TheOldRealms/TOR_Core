@@ -30,6 +30,7 @@ namespace TOR_Core.Quests
             SetLogs();
         }
 
+        protected override void HourlyTick() { }
         protected override void InitializeQuestOnGameLoad() { }
 
         protected override void SetDialogs() { }
@@ -52,15 +53,6 @@ namespace TOR_Core.Quests
             {
                 _task2 = AddLog(new TextObject("Visit a spell trainer to specialize in a lore."));
             }
-        }
-    }
-
-    public class PracticeMagicQuestTypeDefiner : SaveableTypeDefiner
-    {
-        public PracticeMagicQuestTypeDefiner() : base(701791) { }
-        protected override void DefineClassTypes()
-        {
-            AddClassDefinition(typeof(SpecializeLoreQuest), 1);
         }
     }
 }

@@ -1,4 +1,121 @@
 <Brushes>
+
+    <Brush Name="TorCulture.Banner.Layer.4">
+        <Layers>
+            <BrushLayer Name="Default" />
+        </Layers>
+        <Styles>
+            <Style Name="battania">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\battania_4" />
+            </Style>
+            <Style Name="empire">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\empire_4" />
+            </Style>
+            <Style Name="sturgia">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\sturgia_4" />
+            </Style>
+            <Style Name="aserai">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\aserai_4" />
+            </Style>
+            <Style Name="khuzait">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\khuzait_4" />
+            </Style>
+            <Style Name="vlandia">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\vlandia_4" />
+            </Style>
+            <Style Name="mousillon">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\mousillon_4" />
+            </Style>
+        </Styles>
+    </Brush>
+
+    <Brush Name="TorCulture.Banner.Layer.3">
+        <Layers>
+            <BrushLayer Name="Default" />
+        </Layers>
+        <Styles>
+            <Style Name="battania">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\battania_3" />
+            </Style>
+            <Style Name="empire">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\empire_3" />
+            </Style>
+            <Style Name="sturgia">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\sturgia_3" />
+            </Style>
+            <Style Name="aserai">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\aserai_3" />
+            </Style>
+            <Style Name="khuzait">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\khuzait_3" />
+            </Style>
+            <Style Name="vlandia">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\vlandia_3" />
+            </Style>
+            <Style Name="mousillon">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\mousillon_3" />
+            </Style>
+        </Styles>
+    </Brush>
+
+    <Brush Name="TorCulture.Banner.Layer.2">
+        <Layers>
+            <BrushLayer Name="Default" />
+        </Layers>
+        <Styles>
+            <Style Name="battania">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\battania_2" />
+            </Style>
+            <Style Name="empire">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\empire_2" />
+            </Style>
+            <Style Name="sturgia">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\sturgia_2" />
+            </Style>
+            <Style Name="aserai">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\aserai_2" />
+            </Style>
+            <Style Name="khuzait">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\khuzait_2" />
+            </Style>
+            <Style Name="vlandia">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\vlandia_2" />
+            </Style>
+            <Style Name="mousillon">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\mousillon_2" />
+            </Style>
+        </Styles>
+    </Brush>
+
+    <Brush Name="TorCulture.Banner.Layer.1">
+        <Layers>
+            <BrushLayer Name="Default" />
+        </Layers>
+        <Styles>
+            <Style Name="battania">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\battania_1" />
+            </Style>
+            <Style Name="empire">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\empire_1" />
+            </Style>
+            <Style Name="sturgia">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\sturgia_1" />
+            </Style>
+            <Style Name="aserai">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\aserai_1" />
+            </Style>
+            <Style Name="khuzait">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\khuzait_1" />
+            </Style>
+            <Style Name="vlandia">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\vlandia_1" />
+            </Style>
+            <Style Name="mousillon">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\mousillon_1" />
+            </Style>
+        </Styles>
+    </Brush>
+
     <Brush Name="TorInitialMenuButtonBrush" FontColor="#F4E1C4FF" Font="CasablancaAntique" TransitionDuration="0.2">
         <Layers>
             <BrushLayer Name="Default" Color="#FFFFFFFF" />
@@ -25,9 +142,47 @@
             </EventSounds>
         </SoundProperties>
     </Brush>
+    <Brush Name="TorInkStoryButtonBrush">
+        <Layers>
+            <BrushLayer Name="Default" Sprite="BlankWhiteSquare_9" Color="#40382fff" ColorFactor="1" AlphaFactor="0"/>
+        </Layers>
+        <Styles>
+            <Style Name="Default">
+                <BrushLayer Name="Default" ColorFactor="1" AlphaFactor="0"/>
+            </Style>
+            <Style Name="Hovered">
+                <BrushLayer Name="Default" ColorFactor="3" AlphaFactor="1"/>
+            </Style>
+            <Style Name="Pressed">
+                <BrushLayer Name="Default" ColorFactor="0.5" AlphaFactor="0"/>
+            </Style>
+            <Style Name="Selected">
+                <BrushLayer Name="Default" ColorFactor="0.9" AlphaFactor="0"/>
+            </Style>
+        </Styles>
+        <SoundProperties>
+            <StateSounds />
+            <EventSounds />
+        </SoundProperties>
+    </Brush>
     <Brush Name="TorRoRSettlementBrush" Font="CasablancaAntique" TextHorizontalAlignment="Center">
         <Styles>
             <Style Name="Default" FontColor="#FFFFFFFF" TextBlur="1" TextOutlineAmount="1" TextGlowRadius="0" FontSize="20" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorCareerScreenBrush" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Left">
+        <Styles>
+            <Style Name="Default" FontColor="#FFFFFFFF" TextBlur="0" TextOutlineAmount="0" TextGlowRadius="0" FontSize="20" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorCareerChoiceBrush" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Left">
+        <Styles>
+            <Style Name="Default" FontColor="#FFFFFFFF" TextBlur="0" TextOutlineAmount="0" TextGlowRadius="0" FontSize="20" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorInkStoryBrush" Font="CasablancaAntique" TextHorizontalAlignment="Left">
+        <Styles>
+            <Style Name="Default" FontColor="#00000000" TextBlur="0" TextOutlineAmount="0" TextGlowRadius="0" FontSize="20" />
         </Styles>
     </Brush>
     <Brush Name="TorInventoryMagicItemBrush" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Center">

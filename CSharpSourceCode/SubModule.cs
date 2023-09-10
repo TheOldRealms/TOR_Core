@@ -1,5 +1,6 @@
-using System.Collections.Generic;
-using System.Linq;
+using System;
+using System.IO;
+using System.Reflection;
 using HarmonyLib;
 using NLog;
 using NLog.Config;
@@ -9,22 +10,14 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Engine.GauntletUI;
-using TaleWorlds.Engine.InputSystem;
-using TaleWorlds.InputSystem;
-using TaleWorlds.Library;
-using TaleWorlds.ModuleManager;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.CustomBattle;
-using TaleWorlds.MountAndBlade.GameKeyCategory;
 using TaleWorlds.MountAndBlade.GauntletUI.Mission;
-using TaleWorlds.MountAndBlade.Source.Missions;
-using TaleWorlds.ScreenSystem;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.SpellBook;
-using TOR_Core.BaseGameDebug;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics;
-using TOR_Core.BattleMechanics.AI;
 using TOR_Core.BattleMechanics.AI.TeamBehavior;
 using TOR_Core.BattleMechanics.Atmosphere;
 using TOR_Core.BattleMechanics.Banners;
@@ -34,24 +27,33 @@ using TOR_Core.BattleMechanics.Morale;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics;
+using TOR_Core.CampaignMechanics.AICompanions;
 using TOR_Core.CampaignMechanics.Assimilation;
+using TOR_Core.CampaignMechanics.BountyMaster;
 using TOR_Core.CampaignMechanics.Chaos;
 using TOR_Core.CampaignMechanics.CustomDialogs;
 using TOR_Core.CampaignMechanics.CustomEncounterDialogs;
+using TOR_Core.CampaignMechanics.CustomEvents;
+using TOR_Core.CampaignMechanics.Diplomacy;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.SkillBooks;
 using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignSupport.TownBehaviours;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Extensions.UI;
 using TOR_Core.GameManagers;
+using TOR_Core.Ink;
 using TOR_Core.Items;
 using TOR_Core.Models;
 using TOR_Core.Models.CustomBattleModels;
+using TOR_Core.Quests;
 using TOR_Core.Utilities;
 
 namespace TOR_Core
@@ -60,6 +62,7 @@ namespace TOR_Core
     {
         private static float _tick = 0f;
         private static int _num = -1;
+        public static Harmony HarmonyInstance { get; private set; }
 
         protected override void OnBeforeInitialModuleScreenSetAsRoot()
         {
@@ -68,19 +71,38 @@ namespace TOR_Core
 
         protected override void OnSubModuleLoad()
         {
-            Harmony harmony = new Harmony("mod.harmony.theoldrealms");
-            harmony.PatchAll();
+            AppDomain currentDomain = AppDomain.CurrentDomain;
+            currentDomain.AssemblyResolve += new ResolveEventHandler(ResolveDllPath);
+
+            CampaignTime startTime = CampaignTime.Years(2502) + CampaignTime.Weeks(4) + CampaignTime.Days(5) + CampaignTime.Hours(12);
+            
+            typeof(CampaignData).GetField("CampaignStartTime",BindingFlags.Static|BindingFlags.Public)?.SetValue(null,startTime);
+            
+            ViewModelExtensionManager.Initialize(); //has to happen before harmony PatchAll
+            HarmonyInstance = new Harmony("mod.harmony.theoldrealms");
+            HarmonyInstance.PatchAll();
             ConfigureLogging();
             UIConfig.DoNotUseGeneratedPrefabs = true;
-            
-            TORKeyInputManager.Initialize();
 
+            TORAudio.Initialize();
+            TORKeyInputManager.Initialize();
             StatusEffectManager.LoadStatusEffects();
             TriggeredEffectManager.LoadTemplates();
             AbilityFactory.LoadTemplates();
             ExtendedItemObjectManager.LoadXML();
             CustomBannerManager.LoadXML();
             RORManager.LoadTemplates();
+            InkStoryManager.Initialize();
+        }
+
+        private Assembly ResolveDllPath(object sender, ResolveEventArgs args)
+        {
+            var dllPath = TORPaths.TORCoreModuleRootPath + "bin/Win64_Shipping_Client/" + new AssemblyName(args.Name).Name + ".dll";
+            if (File.Exists(dllPath))
+            {
+                return Assembly.LoadFrom(dllPath);
+            }
+            else return null;
         }
 
         protected override void InitializeGameStarter(Game game, IGameStarter starterObject)
@@ -95,20 +117,30 @@ namespace TOR_Core
                 starter.AddBehavior(new TORCustomSettlementCampaignBehavior());
                 starter.AddBehavior(new RaidingPartyCampaignBehavior());
                 starter.AddBehavior(new CustomDialogCampaignBehavior());
-                starter.AddBehavior(new SpellBookMapIconCampaignBehavior());
                 starter.AddBehavior(new PostBattleCampaignBehavior());
                 starter.AddBehavior(new RaiseDeadInTownBehavior());
                 starter.AddBehavior(new RORCampaignBehavior());
                 starter.AddBehavior(new TORCaptivityCampaignBehavior());
-                starter.AddBehavior(new TORPartyHealCampaignBehavior());
                 starter.AddBehavior(new AssimilationCampaignBehavior());
                 starter.AddBehavior(new TORWanderersCampaignBehavior());
                 starter.AddBehavior(new SpellTrainerInTownBehavior());
                 starter.AddBehavior(new MasterEngineerTownBehaviour());
                 starter.AddBehavior(new TORPerkHandlerCampaignBehavior());
-                starter.AddBehavior(new BaseGameDebugCampaignBehavior());
+                starter.AddBehavior(new TORAICompanionCampaignBehavior());
                 starter.AddBehavior(new BloodKissCampaignBehavior());
                 starter.AddBehavior(new TORPartyUpgraderCampaignBehavior());
+                starter.AddBehavior(new InkStoryCampaignBehavior());
+                starter.AddBehavior(new ReligionCampaignBehavior());
+                starter.AddBehavior(new TORKingdomDecisionProposalBehavior());
+
+                starter.AddBehavior(new BountyMasterCampaignBehavior());
+                starter.AddBehavior(new HuntCultistsQuestCampaignBehavior());
+                starter.AddBehavior(new TORCareerPerkCampaignBehavior());
+                starter.AddBehavior(new RaceFixCampaignBehavior());
+                starter.AddBehavior(new TORAIRecruitmentCampaignBehavior());
+                starter.AddBehavior(new TORSpecialSettlementBehavior());
+                starter.AddBehavior(new CustomEventsCampaignBehavior());
+                starter.AddBehavior(new PlaguedVillageQuestCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
@@ -142,7 +174,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORPartyWageModel());
                 gameStarterObject.AddModel(new TORPrisonerRecruitmentCalculationModel());
                 gameStarterObject.AddModel(new TORSettlementMilitiaModel());
-                gameStarterObject.AddModel(new TORSpellcraftModel());
+                gameStarterObject.AddModel(new TORAbilityModel());
                 gameStarterObject.AddModel(new TORCharacterDevelopmentModel());
                 gameStarterObject.AddModel(new TORPartyTrainingModel());
                 gameStarterObject.AddModel(new TORInventoryCapacityModel());
@@ -152,11 +184,25 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORPartyMoraleModel());
                 gameStarterObject.AddModel(new TORPersuasionModel());
                 gameStarterObject.AddModel(new TORVoiceOverModel());
+                gameStarterObject.AddModel(new TORFaithModel());
+                gameStarterObject.AddModel(new TORClanPoliticsModel());
+                gameStarterObject.AddModel(new TORMapVisibilityModel());
+                gameStarterObject.AddModel(new TORTournamentModel());
+                gameStarterObject.AddModel(new TORDiplomacyModel());
+                gameStarterObject.AddModel(new TORRaidModel());
+                gameStarterObject.AddModel(new TORBattleBannerBearersModel());
+                gameStarterObject.AddModel(new TORKingdomDecisionPermissionModel());
+                gameStarterObject.AddModel(new TORSettlementLoyaltyModel());
+                gameStarterObject.AddModel(new TORBattleRewardModel());
+                gameStarterObject.AddModel(new TORTroopSupplierModel());
+                gameStarterObject.AddModel(new TORSettlementFoodModel());
+                gameStarterObject.AddModel (new TOREquipmentSelectionModel());
 
                 CampaignOptions.IsLifeDeathCycleDisabled = true;
             }
             else if (Game.Current.GameType is CustomGame && gameStarterObject is BasicGameStarter)
             {
+                gameStarterObject.AddModel(new TORDamageParticleModel());
                 gameStarterObject.AddModel(new TORCustomBattleMoraleModel());
                 gameStarterObject.AddModel(new TORCustomBattleAgentStatCalculateModel());
             }
@@ -174,8 +220,8 @@ namespace TOR_Core
 
         public override void OnMissionBehaviorInitialize(Mission mission)
         {
-
-            mission.RemoveMissionBehavior(mission.GetMissionBehavior<MissionGauntletCrosshair>());
+            var toRemove = mission.GetMissionBehavior<MissionGauntletCrosshair>();
+            if(toRemove != null) mission.RemoveMissionBehavior(toRemove);
 
             mission.AddMissionBehavior(new StatusEffectMissionLogic());
             mission.AddMissionBehavior(new ExtendedInfoMissionLogic());
@@ -188,10 +234,11 @@ namespace TOR_Core
             mission.AddMissionBehavior(new UndeadMoraleMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new ForceAtmosphereMissionLogic());
-            //mission.AddMissionBehavior(new BaseGameDebugMissionLogic());
+   
 
             if (Game.Current.GameType is Campaign)
             {
+                mission.AddMissionBehavior(new CareerPerkMissionBehavior());
                 if (mission.GetMissionBehavior<BattleAgentLogic>() != null)
                 {
                     mission.RemoveMissionBehavior(mission.GetMissionBehavior<BattleAgentLogic>());
@@ -203,7 +250,22 @@ namespace TOR_Core
 
         public override void BeginGameStart(Game game)
         {
-            game.ObjectManager.RegisterType<TORCustomSettlementComponent>("TORCustomSettlementComponent", "TORCustomSettlementComponents", 99U, true);
+            if(game.GameType is Campaign)
+            {
+                game.ObjectManager.RegisterType<ShrineComponent>("Shrine", "Components", 99U, true);
+                game.ObjectManager.RegisterType<ChaosPortalComponent>("ChaosPortal", "Components", 100U, true);
+                game.ObjectManager.RegisterType<HerdStoneComponent>("HerdStone", "Components", 101U, true);
+                game.ObjectManager.RegisterType<CursedSiteComponent>("CursedSite", "Components", 102U, true);
+                game.ObjectManager.RegisterType<CareerObject>("Career", "Careers", 103U, true);
+                game.ObjectManager.RegisterType<CareerChoiceObject>("CareerChoice", "CareerChoices", 104U, true);
+                game.ObjectManager.RegisterType<CareerChoiceGroupObject>("CareerChoiceGroup", "CareerChoiceGroups", 105U, true);
+                game.ObjectManager.RegisterType<ReligionObject>("Religion", "Religions", 106U, true);
+                _ = new TORCareers();
+                _ = new TORCareerChoiceGroups();
+                _ = new TORCareerChoices();
+                _ = new TORCampaignEvents();
+                MBObjectManager.Instance.LoadXML("Religions", false);
+            }
         }
 
         private static void ConfigureLogging()

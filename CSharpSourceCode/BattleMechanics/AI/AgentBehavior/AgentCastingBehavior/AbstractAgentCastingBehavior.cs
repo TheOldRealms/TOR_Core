@@ -110,7 +110,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
                     target.UtilityValue = CalculateUtility(target);
                     return target;
                 })
-                .Select(target => new BehaviorOption {Target = target, Behavior = this})
+                .Select(target => new BehaviorOption {Target = target, Behavior = this, UtilityValue = target.UtilityValue})
                 .ToList();
 
             return LatestScores;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
@@ -7,41 +8,66 @@ using TOR_Core.BattleMechanics.StatusEffect;
 namespace TOR_Core.BattleMechanics.TriggeredEffect
 {
     [Serializable]
-    public class TriggeredEffectTemplate
+    public class TriggeredEffectTemplate : ITemplate
     {
         [XmlAttribute]
-        public string StringID = "";
+        public string StringID { get; set; } = "";
         [XmlAttribute]
-        public string BurstParticleEffectPrefab = "none";
+        public string BurstParticleEffectPrefab { get; set; } = "none";
         [XmlAttribute]
-        public string SoundEffectId = "none";
+        public bool DoNotAlignParticleEffectPrefabOnImpact { get; set; } = false;
         [XmlAttribute]
-        public float SoundEffectLength = 2.5f;
+        public string SoundEffectId { get; set; } = "none";
         [XmlAttribute]
-        public DamageType DamageType = DamageType.Fire;
+        public float SoundEffectLength { get; set; } = 2.5f;
         [XmlAttribute]
-        public int DamageAmount = 50;
+        public DamageType DamageType { get; set; } = DamageType.Fire;
         [XmlAttribute]
-        public float Radius = 5;
+        public int DamageAmount { get; set; } = 50;
         [XmlAttribute]
-        public bool HasShockWave = false;
+        public float Radius { get; set; } = 5;
         [XmlAttribute]
-        public TargetType TargetType = TargetType.Enemy;
+        public bool HasShockWave { get; set; } = false;
         [XmlAttribute]
-        public string ImbuedStatusEffectID = "none";
+        public TargetType TargetType { get; set; } = TargetType.Enemy;
         [XmlAttribute]
-        public float ImbuedStatusEffectDuration = 5f;
+        public float ImbuedStatusEffectDuration { get; set; } = 5f;
         [XmlAttribute]
-        public float DamageVariance = 0.2f;
+        public float DamageVariance { get; set; } = 0.2f;
         [XmlAttribute]
-        public string ScriptNameToTrigger = "none";
+        public string ScriptNameToTrigger { get; set; } = "none";
         [XmlAttribute]
-        public string SpawnPrefabName = "none";
+        public string SpawnPrefabName { get; set; } = "none";
         [XmlAttribute]
-        public string TroopIdToSummon = "none";
+        public string TroopIdToSummon { get; set; } = "none";
         [XmlAttribute]
-        public int NumberToSummon = 0;
+        public int NumberToSummon { get; set; } = 0;
+        [XmlElement("ImbuedStatusEffect")]
+        public List<string> ImbuedStatusEffects { get; set; } = new List<string>();
+        [XmlIgnore]
+        public List<StatusEffectTemplate> AssociatedStatusEffects => StatusEffectManager.GetStatusEffectTemplatesWithIds(ImbuedStatusEffects);
 
-        public StatusEffectTemplate AssociatedStatusEffect => StatusEffectManager.GetStatusEffectTemplateWithId(ImbuedStatusEffectID);
+        public ITemplate Clone(string newId)
+        {
+            return new TriggeredEffectTemplate()
+            {
+                StringID = newId,
+                BurstParticleEffectPrefab = BurstParticleEffectPrefab,
+                SoundEffectId = SoundEffectId,
+                SoundEffectLength = SoundEffectLength,
+                DamageType = DamageType,
+                DamageAmount = DamageAmount,
+                Radius = Radius,
+                HasShockWave = HasShockWave,
+                TargetType = TargetType,
+                ImbuedStatusEffects = ImbuedStatusEffects,
+                ImbuedStatusEffectDuration = ImbuedStatusEffectDuration,
+                DamageVariance = DamageVariance,
+                ScriptNameToTrigger = ScriptNameToTrigger,
+                SpawnPrefabName = SpawnPrefabName,
+                TroopIdToSummon = TroopIdToSummon,
+                NumberToSummon = NumberToSummon
+            };
+        }
     }
 }

@@ -1,5 +1,10 @@
-﻿using TaleWorlds.CampaignSystem.GameComponents;
+﻿using System.Collections.Generic;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TOR_Core.CharacterDevelopment;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
 {
@@ -12,5 +17,37 @@ namespace TOR_Core.Models
             if (baseResult != null) result = baseResult;
             return result;
         }
+
+
+        public override void GetXpFromHit(CharacterObject attackerTroop, CharacterObject captain, CharacterObject attackedTroop, PartyBase party, int damage, bool isFatal, MissionTypeEnum missionType, out int xpAmount)
+        {
+            xpAmount = 0;
+   
+            base.GetXpFromHit(attackerTroop, captain, attackedTroop, party, damage, isFatal, missionType, out xpAmount);
+
+            if(missionType != MissionTypeEnum.Battle) return;
+            
+
+         
+            if(party != PartyBase.MainParty&&!MobileParty.MainParty.LeaderHero.HasAnyCareer()) return;
+            
+            ExplainedNumber number = new ExplainedNumber();
+            number.Add(xpAmount);
+            var choices = MobileParty.MainParty.LeaderHero.GetAllCareerChoices();
+
+            if (isFatal&&attackerTroop.Tier>3&&party.MobileParty == MobileParty.MainParty&&choices.Contains("PeerlessWarriorPassive3"))
+            {
+                var choice = TORCareerChoices.GetChoice("PeerlessWarriorPassive3");
+                if (choice != null)
+                {
+                    number.AddFactor(choice.GetPassiveValue());
+                }
+            }
+            xpAmount = (int) number.ResultNumber;
+        }
+
+
+        
+        
     }
 }

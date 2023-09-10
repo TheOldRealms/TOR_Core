@@ -1,4 +1,4 @@
-﻿using TaleWorlds.Library;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.Engine;
 using System;
@@ -22,13 +22,15 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         private SoundEvent _sound;
         private Timer _timer;
         private object _sync = new object();
+        private bool _isTemplateMutated;
 
-        public TriggeredEffect(TriggeredEffectTemplate template)
+        public TriggeredEffect(TriggeredEffectTemplate template, bool isTemplateMutated = false)
         {
             _template = template;
+            _isTemplateMutated = isTemplateMutated;
         }
         
-        public void Trigger(Vec3 position, Vec3 normal, Agent triggererAgent, AbilityTemplate originAbilityTemplate = null, IEnumerable<Agent> targets = null)
+        public void Trigger(Vec3 position, Vec3 normal, Agent triggererAgent, AbilityTemplate originAbilityTemplate = null, MBList<Agent> targets = null)
         {
             if (_template == null) return;
             _timer = new Timer(2000);
@@ -48,34 +50,39 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             _timer.Start();
 
             float damageMultiplier = 1f;
-            float durationMultiplier = 1f;
+            float statusEffectDuration = _template.ImbuedStatusEffectDuration;
             if(Game.Current.GameType is Campaign && originAbilityTemplate != null)
             {
-                var model = Campaign.Current.Models.GetSpellcraftModel();
+                var model = Campaign.Current.Models.GetAbilityModel();
                 var character = triggererAgent.Character as CharacterObject;
                 if(model != null && character != null)
                 {
                     damageMultiplier = model.GetSkillEffectivenessForAbilityDamage(character, originAbilityTemplate);
-                    durationMultiplier = model.GetSkillEffectivenessForAbilityDuration(character, originAbilityTemplate);
-                    if(character.IsHero) durationMultiplier *= model.GetPerkEffectsOnAbilityDuration(character, originAbilityTemplate);
+                    statusEffectDuration = model.CalculateStatusEffectDurationForAbility(character, originAbilityTemplate, statusEffectDuration);
                 }
             }
-            //Cause Damage
+            //Determine targets
             if (targets == null && triggererAgent != null)
             {
-                if (_template.TargetType == TargetType.Enemy)
+                targets = new MBList<Agent>();
+                if(_template.TargetType == TargetType.Self)
                 {
-                    targets = Mission.Current.GetNearbyEnemyAgents(position.AsVec2, _template.Radius, triggererAgent.Team);
+                    targets.Add(triggererAgent);
+                }
+                else if (_template.TargetType == TargetType.Enemy)
+                {
+                    targets = Mission.Current.GetNearbyEnemyAgents(position.AsVec2, _template.Radius, triggererAgent.Team, targets);
                 }
                 else if (_template.TargetType == TargetType.Friendly)
                 {
-                    targets = Mission.Current.GetNearbyAllyAgents(position.AsVec2, _template.Radius, triggererAgent.Team);
+                    targets = Mission.Current.GetNearbyAllyAgents(position.AsVec2, _template.Radius, triggererAgent.Team, targets);
                 }
                 else if (_template.TargetType == TargetType.All)
                 {
-                    targets = Mission.Current.GetNearbyAgents(position.AsVec2, _template.Radius);
+                    targets = Mission.Current.GetNearbyAgents(position.AsVec2, _template.Radius, targets);
                 }
             }
+            //Cause Damage
             if (_template.DamageAmount > 0)
             {
                 TORMissionHelper.DamageAgents(targets, (int)(_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType, _template, _template.DamageType, _template.HasShockWave, position, originAbilityTemplate);
@@ -85,24 +92,40 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 TORMissionHelper.HealAgents(targets, (int)(-_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(-_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType, originAbilityTemplate);
             }
             //Apply status effects
-            if (_template.ImbuedStatusEffectID != "none" && _template.AssociatedStatusEffect != null)
+            if (_template.AssociatedStatusEffects != null && _template.AssociatedStatusEffects.Count > 0)
             {
                 var triggererCharacter = triggererAgent.Character as CharacterObject;
-                if(triggererCharacter != null && triggererCharacter.GetPerkValue(TORPerks.SpellCraft.ArcaneLink) && _template.AssociatedStatusEffect.IsBuffEffect)
+                foreach (var effect in _template.AssociatedStatusEffects)
                 {
-                    if(!targets.Contains(triggererAgent)) targets.Append(triggererAgent);
+                    if (triggererCharacter != null && triggererCharacter.GetPerkValue(TORPerks.SpellCraft.ArcaneLink) && effect.IsBuffEffect)
+                    {
+                        if (!targets.Contains(triggererAgent)) targets.Append(triggererAgent);
+                    }
+                    TORMissionHelper.ApplyStatusEffectToAgents(targets, effect.StringID, triggererAgent, statusEffectDuration, true, _isTemplateMutated);
                 }
-                TORMissionHelper.ApplyStatusEffectToAgents(targets, _template.ImbuedStatusEffectID, triggererAgent, durationMultiplier, _template.TargetType);
             }
+
+            if (_template.DoNotAlignParticleEffectPrefabOnImpact)
+            {
+                var groundPos = new Vec3(position.x,position.y,position.z-5f);
+                float distance=0f;
+                Mission.Current.Scene.RayCastForClosestEntityOrTerrain(position,groundPos,out distance,0.01f,BodyFlags.CommonCollisionExcludeFlagsForAgent);
+                if (distance >= 0.0000001f)
+                {
+                    position = new Vec3(position.x,position.y,position.z-distance);
+                }
+                normal = Vec3.Forward;
+            }
+
             SpawnVisuals(position, normal);
             PlaySound(position);
-            TriggerScript(position, triggererAgent, targets);
+            TriggerScript(position, triggererAgent, targets, statusEffectDuration);
         }
 
         private void SpawnVisuals(Vec3 position, Vec3 normal)
         {
             //play visuals
-            if (_template.BurstParticleEffectPrefab != "none")
+            if (_template!=null&&_template.BurstParticleEffectPrefab != "none")
             {
                 var effect = GameEntity.CreateEmpty(Mission.Current.Scene);
                 MatrixFrame frame = MatrixFrame.Identity;
@@ -116,7 +139,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         private void PlaySound(Vec3 position)
         {
             //play sound
-            if (_template.SoundEffectId != "none")
+            if (_template!=null&&_template.SoundEffectId != "none")
             {
                 _soundIndex = SoundEvent.GetEventIdFromString(_template.SoundEffectId);
                 _sound = SoundEvent.CreateEvent(_soundIndex, Mission.Current.Scene);
@@ -127,9 +150,9 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             }
         }
 
-        private void TriggerScript(Vec3 position, Agent triggerer, IEnumerable<Agent> triggeredAgents)
+        private void TriggerScript(Vec3 position, Agent triggerer, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            if (_template.ScriptNameToTrigger != "none")
+            if (_template!=null&&_template.ScriptNameToTrigger != "none")
             {
                 try
                 {
@@ -147,7 +170,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                     if (obj is ITriggeredScript)
                     {
                         var script = obj as ITriggeredScript;
-                        script.OnTrigger(position, triggerer, triggeredAgents);
+                        script.OnTrigger(position, triggerer, triggeredAgents, duration);
                     }
                 }
                 catch (Exception)

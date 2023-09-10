@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <SPCultures>
 	<Culture id="empire"
 			 name="{=empirefaction}Empire of Men"
@@ -31,7 +31,6 @@
 			 armed_trader="NPCCharacter.tor_empire_caravan_ranged"
 			 caravan_guard="NPCCharacter.tor_empire_caravan_guard"
 			 veteran_caravan_guard="NPCCharacter.tor_empire_caravan_vetguard"
-			 duel_preset="NPCCharacter.empire_duel_preset"
 			 prison_guard="NPCCharacter.prison_guard_empire"
 			 guard="NPCCharacter.tor_empire_halberdier"
 			 blacksmith="NPCCharacter.blacksmith_empire"
@@ -72,6 +71,9 @@
 			 weapon_practice_stage_2="NPCCharacter.weapon_practice_stage_2_empire"
 			 weapon_practice_stage_3="NPCCharacter.weapon_practice_stage_3_empire"
 			 gear_dummy="NPCCharacter.gear_dummy_empire"
+			 default_battle_equipment_roster="EquipmentRoster.emp_civ_template_default"
+        	 default_civilian_equipment_roster="EquipmentRoster.emp_civ_template_default"
+           	 duel_preset_equipment_roster="EquipmentRoster.emp_duel_preset_template"
 			 board_game_type="Tablut">
 		<vassal_reward_items>
       		<item id="Item.justicier_2hsword" />
@@ -1295,24 +1297,7 @@
 			<name name="{=empire_female_393}Zena" />
 		</female_names>
 		<clan_names>
-			<name name="{=pRA9EzNv}Acapanos" />
-			<name name="{=ogq9oxDn}Angarys" />
-			<name name="{=MgDUudOx}Balastisos" />
-			<name name="{=Rvww4Kxi}Corstases" />
-			<name name="{=kWiQaFLM}Delicos" />
-			<name name="{=DiB4ukeK}Elysos" />
-			<name name="{=pUvrTrHT}Gessios" />
-			<name name="{=fsOUhzLv}Jalos" />
-			<name name="{=CuocGtTq}Lestharos" />
-			<name name="{=FVl3D2qT}Meones" />
-			<name name="{=fAKa9JfU}Nathanys" />
-			<name name="{=RhwPmahK}Opynates" />
-			<name name="{=OL6fbZRY}Paltos" />
-			<name name="{=HPrHkie6}Phenigos" />
-			<name name="{=DYdI0faN}Stracanasthes" />
-			<name name="{=g7etVhSO}Sumessos" />
-			<name name="{=oGf1fUpP}Therycos" />
-			<name name="{=AeNqteUX}Zebales" />
+			<name name="{=empire_generic_clan_name}von {ORIGIN_SETTLEMENT}" />
 		</clan_names>
 		<cultural_feats>
       		<feat id="empire_decreased_garrison_wage" />
@@ -1366,6 +1351,9 @@
 			<template name="NPCCharacter.tor_wanderer_empire_2" />
 			<template name="NPCCharacter.tor_wanderer_empire_3" />
 			<template name="NPCCharacter.tor_wanderer_empire_4" />
+			<template name="NPCCharacter.tor_wanderer_empire_5" />
+			<template name="NPCCharacter.tor_wanderer_empire_6" />
+			<template name="NPCCharacter.tor_wanderer_empire_7" />
 			<template name="NPCCharacter.tor_notable_empire_0" />
 			<template name="NPCCharacter.tor_notable_empire_0b" />
 			<template name="NPCCharacter.tor_notable_empire_1" />
@@ -1419,11 +1407,11 @@
     	</basic_mercenary_troops>
 	</Culture>
 	<Culture id="khuzait"
-			 name="{=sZLd6VHi}Vampire Counts"
+			 name="{=vampirefaction}Vampire Counts"
 			 is_main_culture="true"
 			 color="0xFF303030"
 			 color2="0xFF1c0d14"
-			 elite_basic_troop="NPCCharacter.tor_vc_vampire_newblood"
+			 elite_basic_troop="NPCCharacter.tor_vc_con_carstein_noble"
 			 basic_troop="NPCCharacter.tor_vc_empire_recruit"
 			 melee_militia_troop="NPCCharacter.tor_vc_empire_state_troop"
 			 ranged_militia_troop="NPCCharacter.tor_vc_empire_archer"
@@ -1448,9 +1436,8 @@
 			 armed_trader="NPCCharacter.tor_vc_caravan_ranged"
 			 caravan_guard="NPCCharacter.tor_vc_caravan_guard"
 			 veteran_caravan_guard="NPCCharacter.tor_vc_caravan_guard"
-			 duel_preset="NPCCharacter.empire_duel_preset"
 			 prison_guard="NPCCharacter.prison_guard_empire"
-			 guard="NPCCharacter.tor_vc_grave_guard"
+			 guard="NPCCharacter.tor_vc_grave_guardian"
 			 blacksmith="NPCCharacter.blacksmith_empire"
 			 weaponsmith="NPCCharacter.weaponsmith_empire"
 			 townswoman="NPCCharacter.townswoman_empire"
@@ -1489,6 +1476,9 @@
 			 weapon_practice_stage_2="NPCCharacter.weapon_practice_stage_2_empire"
 			 weapon_practice_stage_3="NPCCharacter.weapon_practice_stage_3_empire"
 			 gear_dummy="NPCCharacter.gear_dummy_empire"
+			 default_battle_equipment_roster="EquipmentRoster.emp_civ_template_default"
+           	 default_civilian_equipment_roster="EquipmentRoster.emp_civ_template_default"
+           	 duel_preset_equipment_roster="EquipmentRoster.emp_duel_preset_template"
 			 board_game_type="Tablut">
 		<vassal_reward_items>
 			<item id="Item.steppe_war_bow" />
@@ -2713,17 +2703,7 @@
 			<name name="{=vampire_counts_female_393}Zena" />
 		</female_names>
 		<clan_names>
-			<name name="{=qJprzW1N}Airit" />
-			<name name="{=4833ZS9c}Aldusunit" />
-			<name name="{=tPG5uf4C}Bochit" />
-			<name name="{=J1s05Ovk}Charait" />
-			<name name="{=3apHdqU7}Ingchit" />
-			<name name="{=5zxaCgd6}Maranjit" />
-			<name name="{=tDaWbJlY}Oranarit" />
-			<name name="{=lhiAWoFw}Sunit" />
-			<name name="{=MjZumz0j}Tokhit" />
-			<name name="{=LipFTLvz}Ubchit" />
-			<name name="{=ZwOT9J49}Yujit" />
+			<name name="{=vampire_counts_generic_clan_name}von {ORIGIN_SETTLEMENT}" />
 		</clan_names>
 		<cultural_feats>
 			<feat id="khuzait_cheaper_recruits_mounted" />
@@ -2750,6 +2730,7 @@
 			<template name="NPCCharacter.tor_wanderer_vampire_0" />
 			<template name="NPCCharacter.tor_wanderer_vampire_1" />
 			<template name="NPCCharacter.tor_wanderer_vampire_2" />
+			<template name="NPCCharacter.tor_wanderer_vampire_3" />
 			<template name="NPCCharacter.tor_notable_sylvania_0" />
 			<template name="NPCCharacter.tor_notable_sylvania_0b" />
 			<template name="NPCCharacter.tor_notable_sylvania_1" />
@@ -2802,6 +2783,1793 @@
       		<template name="NPCCharacter.tor_merc_free_company_volunteer" />
     	</basic_mercenary_troops>
 	</Culture>
+	<Culture id="blooddragons"
+			 name="{=vampirefaction}Blood Dragons"
+			 is_main_culture="false"
+			 color="0xFF303030"
+			 color2="0xFF1c0d14"
+			 elite_basic_troop="NPCCharacter.tor_bd_blooddragon_knight"
+			 basic_troop="NPCCharacter.tor_bd_blooddragon_initiate"
+			 melee_militia_troop="NPCCharacter.tor_bd_blooddragon_knight"
+			 ranged_militia_troop="NPCCharacter.tor_vc_empire_archer"
+			 melee_elite_militia_troop="NPCCharacter.tor_bd_blooddragon_knight"
+			 ranged_elite_militia_troop="NPCCharacter.tor_bd_blooddragon_knight"
+			 can_have_settlement="true"
+			 town_edge_number="4"
+			 villager_party_template="PartyTemplate.vc_villager_template"
+			 default_party_template="PartyTemplate.vampire_lordparty_template"
+			 encounter_background_mesh="vampire_necroparty"
+			 elite_caravan_party_template="PartyTemplate.sylvanian_elite_caravan_template"
+			 caravan_party_template="PartyTemplate.sylvanian_caravan_template"
+			 militia_party_template="PartyTemplate.sylvania_militia_template"
+			 rebels_party_template="PartyTemplate.empire_deserters"
+			 vassal_reward_party_template="PartyTemplate.vampire_lordparty_template"
+			 faction_banner_key="11.116.148.14020.11010.764.764.0.1.0.505.145.149.669.604.811.801.0.1.12.426.116.149.118.385.705.588.0.1.116.426.116.149.32.208.573.716.0.1.154.426.116.149.15.65.549.822.0.1.187.427.116.149.53.65.615.794.0.1.183.427.116.149.98.56.690.734.0.1.212.426.116.149.42.109.646.797.0.1.331.426.116.149.46.77.846.610.0.0.325.426.116.149.46.77.891.596.0.0.249.503.116.149.55.88.588.836.0.1.143.426.116.149.46.148.891.554.0.0.249.426.116.149.51.137.914.591.0.1.80.426.116.149.76.105.697.777.0.1.131.426.116.149.84.112.975.911.0.1.324.427.116.149.51.68.744.825.0.1.227.427.116.149.46.60.866.980.0.1.63.426.116.149.154.124.931.1003.0.1.340.426.116.149.32.124.828.1026.0.1.246.426.116.149.32.124.746.966.0.1.48.426.116.149.8.79.792.1000.0.1.224.426.116.149.25.114.772.874.0.1.234.426.116.149.25.129.932.802.0.1.51.426.116.149.16.86.972.846.0.1.26.426.116.149.10.96.796.841.0.1.43.426.116.149.10.96.881.914.0.1.232.426.116.149.10.124.815.854.0.1.46.426.116.149.10.46.929.936.0.1.268.426.116.149.10.110.904.835.0.1.55.427.116.149.36.39.934.876.0.1.55.426.116.149.13.110.884.856.0.1.227.426.116.149.13.136.804.792.0.1.56.426.116.149.13.56.742.762.0.1.81.426.116.149.13.103.873.922.0.1.61.426.116.149.13.103.805.892.0.1.245.426.116.149.6.111.826.943.0.1.66.426.116.149.13.111.738.907.0.1.239.426.116.149.41.111.683.838.0.1.187.426.116.149.25.98.820.975.0.1.232.426.116.149.12.98.762.929.0.1.49.426.116.149.12.98.686.922.0.1.66.426.116.149.21.77.675.887.0.1.84.426.116.149.6.55.631.898.0.1.123.426.116.149.20.55.635.913.0.1.85.426.116.149.15.146.820.788.0.1.237.427.116.149.69.92.843.718.0.1.245.426.116.149.16.122.884.769.0.1.248.427.116.149.72.47.739.731.0.1.131.426.116.149.9.33.762.742.0.1.207.426.116.149.9.125.882.823.0.1.60.426.116.149.25.77.854.654.0.1.234.410.145.145.59.77.756.647.0.1.234.426.116.149.40.63.969.673.0.1.234.426.116.149.11.63.944.673.0.1.68.426.116.149.21.63.905.649.0.1.217.426.116.149.9.63.881.642.0.1.207.426.116.149.9.63.886.625.0.1.180.426.116.149.21.56.896.637.0.1.207.426.116.149.7.37.879.666.0.1.270.426.116.149.8.31.995.701.0.1.215.426.116.149.8.25.989.688.0.1.274.426.116.149.5.46.1016.715.0.1.245.426.116.149.10.33.1030.732.0.1.26.426.116.149.5.45.1017.740.0.1.71.426.116.149.8.29.985.736.0.1.265.426.116.149.3.26.959.736.0.1.104.426.116.149.4.47.962.746.0.1.71.426.116.149.3.11.984.754.0.1.255.426.116.149.5.16.993.753.0.1.212.426.116.149.5.9.987.752.0.1.322.426.116.149.1.25.996.759.0.1.227.426.116.149.3.36.990.773.0.1.301.426.116.149.2.8.979.777.0.1.348.426.116.149.9.51.962.763.0.1.60.426.116.149.9.51.924.749.0.1.248.426.116.149.9.51.893.721.0.1.36.426.116.149.8.35.881.668.0.1.273.503.116.149.71.72.859.727.0.1.230.503.116.149.59.93.764.843.0.1.230.503.116.149.59.93.793.865.0.1.230.503.116.149.43.81.912.859.0.1.230.503.116.149.39.76.882.838.0.1.230.503.116.149.53.76.619.813.0.1.193.503.116.149.59.110.712.741.0.1.100.503.116.149.39.110.664.800.0.1.159.503.116.149.41.110.692.756.0.1.133.503.116.149.41.65.684.751.0.1.97.503.116.149.28.47.739.747.0.1.73.503.116.149.50.79.845.971.0.1.73.503.116.149.50.79.658.834.0.1.22.503.116.149.68.108.622.861.0.1.108.503.116.149.38.71.662.869.0.1.76.426.116.149.38.71.620.904.0.1.133.503.116.149.38.71.605.892.0.1.133.503.116.149.157.283.686.995.0.1.55.503.116.149.157.438.601.1030.0.1.14.503.116.149.157.438.477.815.0.1.14.503.116.149.157.438.494.726.0.1.330.503.116.149.157.438.595.560.0.1.284.503.116.149.41.116.808.869.0.1.236.503.116.149.43.116.825.961.0.1.237.503.116.149.83.571.794.1086.0.1.275.503.116.149.46.313.808.1040.0.1.246.503.116.149.15.76.801.942.0.1.246.503.116.149.7.38.777.929.0.1.246.503.116.149.21.57.836.894.0.1.246.503.116.149.21.57.813.889.0.1.246.503.116.149.346.489.1140.905.0.1.184.503.116.149.346.489.1102.529.0.1.184.503.116.149.346.489.954.412.0.1.90.503.116.149.132.188.1002.573.0.1.46.503.116.149.47.66.878.739.0.1.327.503.116.149.157.222.1001.1012.0.1.327.503.116.149.86.124.1002.937.0.1.327.503.116.149.39.58.942.954.0.1.237.505.116.149.13.173.918.944.0.1.237.505.116.149.4.68.932.936.0.1.275.505.116.149.9.131.804.784.0.1.237.505.116.149.9.131.823.797.0.1.237.505.116.149.9.131.639.817.0.1.149.503.116.149.16.30.763.757.0.1.63.503.116.149.16.30.856.821.0.1.63.503.116.149.66.122.984.660.0.1.63.503.116.149.66.122.1032.695.0.1.63.503.116.149.66.122.1052.706.0.1.6.503.116.149.87.102.949.631.0.1.6.503.116.149.78.90.925.625.0.1.6.503.116.149.57.80.857.629.0.1.6.503.116.149.26.37.876.654.0.1.35.503.116.149.35.50.872.603.0.1.348.503.116.149.35.50.914.596.0.1.249.503.116.149.49.50.896.605.0.1.249.503.116.149.49.50.864.642.0.1.249.503.116.149.19.20.883.663.0.1.249.503.116.149.102.105.1014.830.0.1.249.503.116.149.33.120.902.765.0.1.249.503.116.149.33.120.959.802.0.1.225.503.116.149.17.64.953.767.0.1.243.503.116.149.17.64.909.750.0.1.248.503.116.149.17.42.897.743.0.1.186.503.116.149.17.42.935.796.0.1.227.503.116.149.17.42.889.854.0.1.227.503.116.149.29.48.1020.753.0.1.234.503.116.149.29.48.1050.760.0.1.234.503.116.149.29.69.966.788.0.1.234.503.116.149.29.69.1008.781.0.1.122.505.116.149.29.69.1004.781.0.1.122.503.116.149.10.22.994.747.0.1.6.503.116.149.10.22.984.746.0.1.6.503.116.149.10.20.974.742.0.1.6.503.116.149.10.15.966.740.0.1.6.503.116.149.41.15.979.745.0.1.337.503.116.149.41.15.1009.746.0.1.337.503.116.149.41.15.1011.760.0.1.337.503.116.149.41.15.1002.748.0.1.331.504.116.149.11.16.957.739.0.1.92.504.116.149.32.12.955.701.0.1.148.503.145.149.103.24.870.703.0.1.336.426.145.149.114.373.733.600.0.1.117.426.145.149.91.299.573.793.0.1.167.426.145.149.232.488.617.742.0.1.151.426.145.149.121.254.734.592.0.1.114.503.116.149.91.191.579.887.0.1.158.503.116.149.50.86.597.808.0.1.331.505.116.149.63.109.624.920.0.1.88.505.145.149.26.65.655.924.0.1.65.505.145.149.57.135.631.894.0.1.65.427.116.149.31.40.677.931.0.1"
+			 default_face_key="000fa92e90004202aced5d976886573d5d679585a376fdd605877a7764b8987c00000000000007520000037f0000000f00000037049140010000000000000000"
+			 text="{=v5bWtXj1}Culture description. Not sure where you see this. If you see this pls report with exact location!"
+			 tournament_master="NPCCharacter.tournament_master_empire"
+			 villager="NPCCharacter.tor_vc_villager"
+			 caravan_master="NPCCharacter.tor_vc_caravan_captain"
+			 armed_trader="NPCCharacter.tor_vc_caravan_ranged"
+			 caravan_guard="NPCCharacter.tor_vc_caravan_guard"
+			 veteran_caravan_guard="NPCCharacter.tor_vc_caravan_guard"
+			 prison_guard="NPCCharacter.tor_bd_blooddragon_knight"
+			 guard="NPCCharacter.tor_bd_blooddragon_knight"
+			 blacksmith="NPCCharacter.blacksmith_empire"
+			 weaponsmith="NPCCharacter.weaponsmith_empire"
+			 townswoman="NPCCharacter.townswoman_empire"
+			 townswoman_infant="NPCCharacter.townswoman_infant_empire"
+			 townswoman_child="NPCCharacter.townswoman_child_empire"
+			 townswoman_teenager="NPCCharacter.townswoman_teenager_empire"
+			 townsman="NPCCharacter.tor_townsman_villager"
+			 townsman_infant="NPCCharacter.townsman_infant_empire"
+			 townsman_child="NPCCharacter.townsman_child_empire"
+			 village_woman="NPCCharacter.village_woman_empire"
+			 villager_male_child="NPCCharacter.villager_child_empire"
+			 villager_male_teenager="NPCCharacter.villager_teenager_empire"
+			 villager_female_child="NPCCharacter.village_woman_child_empire"
+			 villager_female_teenager="NPCCharacter.village_woman_teenager_empire"
+			 townsman_teenager="NPCCharacter.townsman_teenager_empire"
+			 ransom_broker="NPCCharacter.ransom_broker_empire"
+			 gangleader_bodyguard="NPCCharacter.gangleader_bodyguard_empire"
+			 merchant_notary="NPCCharacter.merchant_notary_empire"
+			 artisan_notary="NPCCharacter.artisan_notary_empire"
+			 preacher_notary="NPCCharacter.preacher_notary_empire"
+			 rural_notable_notary="NPCCharacter.rural_notable_notary_empire"
+			 shop_worker="NPCCharacter.shop_worker_empire"
+			 tavernkeeper="NPCCharacter.tavernkeeper_empire"
+			 taverngamehost="NPCCharacter.taverngamehost_empire"
+			 musician="NPCCharacter.musician_empire"
+			 tavern_wench="NPCCharacter.tavern_wench_empire"
+			 armorer="NPCCharacter.armorer_empire"
+			 horseMerchant="NPCCharacter.horseMerchant_empire"
+			 barber="NPCCharacter.barber_empire"
+			 merchant="NPCCharacter.tor_merchant_empire"
+			 beggar="NPCCharacter.beggar_empire"
+			 female_beggar="NPCCharacter.female_beggar_empire"
+			 female_dancer="NPCCharacter.female_dancer_empire"
+			 gear_practice_dummy="NPCCharacter.gear_practice_dummy_empire"
+			 weapon_practice_stage_1="NPCCharacter.weapon_practice_stage_1_empire"
+			 weapon_practice_stage_2="NPCCharacter.weapon_practice_stage_2_empire"
+			 weapon_practice_stage_3="NPCCharacter.weapon_practice_stage_3_empire"
+			 gear_dummy="NPCCharacter.gear_dummy_empire"
+			 duel_preset_equipment_roster="EquipmentRoster.emp_duel_preset_template"
+			 board_game_type="Tablut">
+		<vassal_reward_items>
+			<item id="Item.steppe_war_bow" />
+		</vassal_reward_items>
+		<banner_bearer_replacement_weapons>
+			<item id="Item.vlandia_sword_1_t2" />
+			<item id="Item.vlandia_sword_2_t3" />
+			<item id="Item.vlandia_sword_3_t4" />
+			<item id="Item.vlandia_sword_5_t5" />
+    	</banner_bearer_replacement_weapons>
+		<default_policies>
+			<policy id="policy_grazing_rights" />
+			<policy id="policy_sacred_majesty" />
+		</default_policies>
+		<male_names>
+			<name name="{=vampire_counts_male_1}Abelhardt" />
+			<name name="{=vampire_counts_male_2}Abelheim" />
+			<name name="{=vampire_counts_male_3}Adam" />
+			<name name="{=vampire_counts_male_4}Adelbert" />
+			<name name="{=vampire_counts_male_5}Adelhard" />
+			<name name="{=vampire_counts_male_6}Adelmann" />
+			<name name="{=vampire_counts_male_7}Admund" />
+			<name name="{=vampire_counts_male_8}Adolf" />
+			<name name="{=vampire_counts_male_9}Adolphus" />
+			<name name="{=vampire_counts_male_10}Adred" />
+			<name name="{=vampire_counts_male_11}Adric" />
+			<name name="{=vampire_counts_male_12}Agilward" />
+			<name name="{=vampire_counts_male_13}Agis" />
+			<name name="{=vampire_counts_male_14}Alard" />
+			<name name="{=vampire_counts_male_15}Alaric" />
+			<name name="{=vampire_counts_male_16}Alberich" />
+			<name name="{=vampire_counts_male_17}Albert" />
+			<name name="{=vampire_counts_male_18}Albrecht" />
+			<name name="{=vampire_counts_male_19}Aldebrandt" />
+			<name name="{=vampire_counts_male_20}Aldfreid" />
+			<name name="{=vampire_counts_male_21}Aldheim" />
+			<name name="{=vampire_counts_male_22}Aldred" />
+			<name name="{=vampire_counts_male_23}Aldric" />
+			<name name="{=vampire_counts_male_24}Alexander" />
+			<name name="{=vampire_counts_male_25}Alexei" />
+			<name name="{=vampire_counts_male_26}Alexis" />
+			<name name="{=vampire_counts_male_27}Alfricht" />
+			<name name="{=vampire_counts_male_28}Alfried" />
+			<name name="{=vampire_counts_male_29}Aloysis" />
+			<name name="{=vampire_counts_male_30}Altmar" />
+			<name name="{=vampire_counts_male_31}Anderlin" />
+			<name name="{=vampire_counts_male_32}Anders" />
+			<name name="{=vampire_counts_male_33}Andirke" />
+			<name name="{=vampire_counts_male_34}Andreas" />
+			<name name="{=vampire_counts_male_35}Andred" />
+			<name name="{=vampire_counts_male_36}Andric" />
+			<name name="{=vampire_counts_male_37}Andris" />
+			<name name="{=vampire_counts_male_38}Anshelm" />
+			<name name="{=vampire_counts_male_39}Anthony" />
+			<name name="{=vampire_counts_male_40}Aponymous" />
+			<name name="{=vampire_counts_male_41}Arnest" />
+			<name name="{=vampire_counts_male_42}Arnold" />
+			<name name="{=vampire_counts_male_43}Arnulf" />
+			<name name="{=vampire_counts_male_44}Arthur" />
+			<name name="{=vampire_counts_male_45}Asman" />
+			<name name="{=vampire_counts_male_46}Asoborn" />
+			<name name="{=vampire_counts_male_47}Assmus" />
+			<name name="{=vampire_counts_male_48}Athren" />
+			<name name="{=vampire_counts_male_49}Augustus" />
+			<name name="{=vampire_counts_male_50}Austein" />
+			<name name="{=vampire_counts_male_51}Axelbrand" />
+			<name name="{=vampire_counts_male_52}Baldekin" />
+			<name name="{=vampire_counts_male_53}Baldewin" />
+			<name name="{=vampire_counts_male_54}Baldred" />
+			<name name="{=vampire_counts_male_55}Baldric" />
+			<name name="{=vampire_counts_male_56}Balthasar" />
+			<name name="{=vampire_counts_male_57}Baltzer" />
+			<name name="{=vampire_counts_male_58}Barnabas" />
+			<name name="{=vampire_counts_male_59}Barthelm" />
+			<name name="{=vampire_counts_male_60}Barthelm" />
+			<name name="{=vampire_counts_male_61}Bartil" />
+			<name name="{=vampire_counts_male_62}Bartisch" />
+			<name name="{=vampire_counts_male_63}Bartke" />
+			<name name="{=vampire_counts_male_64}Bartolf" />
+			<name name="{=vampire_counts_male_65}Bartomar" />
+			<name name="{=vampire_counts_male_66}Bartschval" />
+			<name name="{=vampire_counts_male_67}Bartusch" />
+			<name name="{=vampire_counts_male_68}Bastian" />
+			<name name="{=vampire_counts_male_69}Bechtold" />
+			<name name="{=vampire_counts_male_70}Bella" />
+			<name name="{=vampire_counts_male_71}Benedict" />
+			<name name="{=vampire_counts_male_72}Bengt" />
+			<name name="{=vampire_counts_male_73}Benisch" />
+			<name name="{=vampire_counts_male_74}Benusch" />
+			<name name="{=vampire_counts_male_75}Berchtoldt" />
+			<name name="{=vampire_counts_male_76}Bernhardt" />
+			<name name="{=vampire_counts_male_77}Bernolt" />
+			<name name="{=vampire_counts_male_78}Berold" />
+			<name name="{=vampire_counts_male_79}Berteram" />
+			<name name="{=vampire_counts_male_80}Bertholdt" />
+			<name name="{=vampire_counts_male_81}Berthuld" />
+			<name name="{=vampire_counts_male_82}Bertolf" />
+			<name name="{=vampire_counts_male_83}Berwic" />
+			<name name="{=vampire_counts_male_84}Blasius" />
+			<name name="{=vampire_counts_male_85}Bogusch" />
+			<name name="{=vampire_counts_male_86}Borchardt" />
+			<name name="{=vampire_counts_male_87}Boris" />
+			<name name="{=vampire_counts_male_88}Brigund" />
+			<name name="{=vampire_counts_male_89}Brocuff" />
+			<name name="{=vampire_counts_male_90}Bruno" />
+			<name name="{=vampire_counts_male_91}Burchardt" />
+			<name name="{=vampire_counts_male_92}Burghardt" />
+			<name name="{=vampire_counts_male_93}Burgmann" />
+			<name name="{=vampire_counts_male_94}Burgold" />
+			<name name="{=vampire_counts_male_95}Burgolf" />
+			<name name="{=vampire_counts_male_96}Burgolt" />
+			<name name="{=vampire_counts_male_97}Burkhardt" />
+			<name name="{=vampire_counts_male_98}Calvin" />
+			<name name="{=vampire_counts_male_99}Carl" />
+			<name name="{=vampire_counts_male_100}Carolus" />
+			<name name="{=vampire_counts_male_101}Carolus" />
+			<name name="{=vampire_counts_male_102}Casimir" />
+			<name name="{=vampire_counts_male_103}Caspar" />
+			<name name="{=vampire_counts_male_104}Cedred" />
+			<name name="{=vampire_counts_male_105}Cheruse" />
+			<name name="{=vampire_counts_male_106}Claude" />
+			<name name="{=vampire_counts_male_107}Claus" />
+			<name name="{=vampire_counts_male_108}Conrad" />
+			<name name="{=vampire_counts_male_109}Constantin" />
+			<name name="{=vampire_counts_male_110}Corvin" />
+			<name name="{=vampire_counts_male_111}Dagmar" />
+			<name name="{=vampire_counts_male_112}Dankmar" />
+			<name name="{=vampire_counts_male_113}Dankred" />
+			<name name="{=vampire_counts_male_114}Dekmar" />
+			<name name="{=vampire_counts_male_115}Detlef" />
+			<name name="{=vampire_counts_male_116}Dider" />
+			<name name="{=vampire_counts_male_117}Diebold" />
+			<name name="{=vampire_counts_male_118}Diefried" />
+			<name name="{=vampire_counts_male_119}Diehl" />
+			<name name="{=vampire_counts_male_120}Dieterich" />
+			<name name="{=vampire_counts_male_121}Dietl" />
+			<name name="{=vampire_counts_male_122}Dietmar" />
+			<name name="{=vampire_counts_male_123}Dietmund" />
+			<name name="{=vampire_counts_male_124}Dietrich" />
+			<name name="{=vampire_counts_male_125}Dippelt" />
+			<name name="{=vampire_counts_male_126}Dirk" />
+			<name name="{=vampire_counts_male_127}Dirske" />
+			<name name="{=vampire_counts_male_128}Ditherich" />
+			<name name="{=vampire_counts_male_129}Ditl" />
+			<name name="{=vampire_counts_male_130}Ditmarus" />
+			<name name="{=vampire_counts_male_131}Ditrich" />
+			<name name="{=vampire_counts_male_132}Ditwin" />
+			<name name="{=vampire_counts_male_133}Dominicus" />
+			<name name="{=vampire_counts_male_134}Dompnig" />
+			<name name="{=vampire_counts_male_135}Donatus" />
+			<name name="{=vampire_counts_male_136}Durnhelm" />
+			<name name="{=vampire_counts_male_137}Eberhardtus" />
+			<name name="{=vampire_counts_male_138}Eberhart" />
+			<name name="{=vampire_counts_male_139}Eberlinus" />
+			<name name="{=vampire_counts_male_140}Eckehardt" />
+			<name name="{=vampire_counts_male_141}Eckehart" />
+			<name name="{=vampire_counts_male_142}Eckel" />
+			<name name="{=vampire_counts_male_143}Edgar" />
+			<name name="{=vampire_counts_male_144}Edmund" />
+			<name name="{=vampire_counts_male_145}Edwin" />
+			<name name="{=vampire_counts_male_146}Egidius" />
+			<name name="{=vampire_counts_male_147}Ehrhardt" />
+			<name name="{=vampire_counts_male_148}Ehrl" />
+			<name name="{=vampire_counts_male_149}Ehrmann" />
+			<name name="{=vampire_counts_male_150}Ehrwig" />
+			<name name="{=vampire_counts_male_151}Elbel" />
+			<name name="{=vampire_counts_male_152}Eldred" />
+			<name name="{=vampire_counts_male_153}Elgast" />
+			<name name="{=vampire_counts_male_154}Elger" />
+			<name name="{=vampire_counts_male_155}Elmeric" />
+			<name name="{=vampire_counts_male_156}Emil" />
+			<name name="{=vampire_counts_male_157}Emmerich" />
+			<name name="{=vampire_counts_male_158}Endal" />
+			<name name="{=vampire_counts_male_159}Enderlin" />
+			<name name="{=vampire_counts_male_160}Enewalt" />
+			<name name="{=vampire_counts_male_161}Engelbert" />
+			<name name="{=vampire_counts_male_162}Engelbrecht" />
+			<name name="{=vampire_counts_male_163}Engelgerus" />
+			<name name="{=vampire_counts_male_164}Engelusch" />
+			<name name="{=vampire_counts_male_165}Eodred" />
+			<name name="{=vampire_counts_male_166}Eomund" />
+			<name name="{=vampire_counts_male_167}Erasmus" />
+			<name name="{=vampire_counts_male_168}Erdman" />
+			<name name="{=vampire_counts_male_169}Erdred" />
+			<name name="{=vampire_counts_male_170}Erich" />
+			<name name="{=vampire_counts_male_171}Erkenbrand" />
+			<name name="{=vampire_counts_male_172}Erlemannus" />
+			<name name="{=vampire_counts_male_173}Ermanrich" />
+			<name name="{=vampire_counts_male_174}Ermelaus" />
+			<name name="{=vampire_counts_male_175}Ermenrich" />
+			<name name="{=vampire_counts_male_176}Ernestus" />
+			<name name="{=vampire_counts_male_177}Ernko" />
+			<name name="{=vampire_counts_male_178}Esmer" />
+			<name name="{=vampire_counts_male_179}Eugen" />
+			<name name="{=vampire_counts_male_180}Eustasius" />
+			<name name="{=vampire_counts_male_181}Everwin" />
+			<name name="{=vampire_counts_male_182}Ewald" />
+			<name name="{=vampire_counts_male_183}Fabian" />
+			<name name="{=vampire_counts_male_184}Fasolt" />
+			<name name="{=vampire_counts_male_185}Faustmann" />
+			<name name="{=vampire_counts_male_186}Faustus" />
+			<name name="{=vampire_counts_male_187}Felix" />
+			<name name="{=vampire_counts_male_188}Felkel" />
+			<name name="{=vampire_counts_male_189}Ferdinand" />
+			<name name="{=vampire_counts_male_190}Fickuld" />
+			<name name="{=vampire_counts_male_191}Fleugweiner" />
+			<name name="{=vampire_counts_male_192}Fosten" />
+			<name name="{=vampire_counts_male_193}Franz" />
+			<name name="{=vampire_counts_male_194}Fredemann" />
+			<name name="{=vampire_counts_male_195}Frederich" />
+			<name name="{=vampire_counts_male_196}Fridebraht" />
+			<name name="{=vampire_counts_male_197}Fridelinus" />
+			<name name="{=vampire_counts_male_198}Fridericus" />
+			<name name="{=vampire_counts_male_199}Friebald" />
+			<name name="{=vampire_counts_male_200}Friedebert" />
+			<name name="{=vampire_counts_male_201}Friederich" />
+			<name name="{=vampire_counts_male_202}Friederik" />
+			<name name="{=vampire_counts_male_203}Friediger" />
+			<name name="{=vampire_counts_male_204}Fritschold" />
+			<name name="{=vampire_counts_male_205}Fritzsche" />
+			<name name="{=vampire_counts_male_206}Gabriel" />
+			<name name="{=vampire_counts_male_207}Gawinus" />
+			<name name="{=vampire_counts_male_208}Gebehardt" />
+			<name name="{=vampire_counts_male_209}Gelfrat" />
+			<name name="{=vampire_counts_male_210}Gelfrid" />
+			<name name="{=vampire_counts_male_211}George" />
+			<name name="{=vampire_counts_male_212}Georgius" />
+			<name name="{=vampire_counts_male_213}Gerber" />
+			<name name="{=vampire_counts_male_214}Gereke" />
+			<name name="{=vampire_counts_male_215}Gerhardt" />
+			<name name="{=vampire_counts_male_216}Gerhart" />
+			<name name="{=vampire_counts_male_217}Gerlach" />
+			<name name="{=vampire_counts_male_218}Gerlacus" />
+			<name name="{=vampire_counts_male_219}Gernandt" />
+			<name name="{=vampire_counts_male_220}Gernar" />
+			<name name="{=vampire_counts_male_221}Gernot" />
+			<name name="{=vampire_counts_male_222}Gerold" />
+			<name name="{=vampire_counts_male_223}Gerunch" />
+			<name name="{=vampire_counts_male_224}Gerung" />
+			<name name="{=vampire_counts_male_225}Gilbrecht" />
+			<name name="{=vampire_counts_male_226}Girlach" />
+			<name name="{=vampire_counts_male_227}Girnot" />
+			<name name="{=vampire_counts_male_228}Giselbertus" />
+			<name name="{=vampire_counts_male_229}Giselbrecht" />
+			<name name="{=vampire_counts_male_230}Giselher" />
+			<name name="{=vampire_counts_male_231}Gislerus" />
+			<name name="{=vampire_counts_male_232}Gismar" />
+			<name name="{=vampire_counts_male_233}Glockrian" />
+			<name name="{=vampire_counts_male_234}Glogrian" />
+			<name name="{=vampire_counts_male_235}Gobel" />
+			<name name="{=vampire_counts_male_236}Godebert" />
+			<name name="{=vampire_counts_male_237}Godefridus" />
+			<name name="{=vampire_counts_male_238}Godeke" />
+			<name name="{=vampire_counts_male_239}Goffhilf" />
+			<name name="{=vampire_counts_male_240}Goran" />
+			<name name="{=vampire_counts_male_241}Gosbert" />
+			<name name="{=vampire_counts_male_242}Goswinus" />
+			<name name="{=vampire_counts_male_243}Gotboldtus" />
+			<name name="{=vampire_counts_male_244}Gotchalcus" />
+			<name name="{=vampire_counts_male_245}Gotschalg" />
+			<name name="{=vampire_counts_male_246}Gotsche" />
+			<name name="{=vampire_counts_male_247}Gottfriedus" />
+			<name name="{=vampire_counts_male_248}Gotthardus" />
+			<name name="{=vampire_counts_male_249}Gottlieb" />
+			<name name="{=vampire_counts_male_250}Gottolf" />
+			<name name="{=vampire_counts_male_251}Gottzsche" />
+			<name name="{=vampire_counts_male_252}Gotwin" />
+			<name name="{=vampire_counts_male_253}Gozwinus" />
+			<name name="{=vampire_counts_male_254}Greger" />
+			<name name="{=vampire_counts_male_255}Gregor" />
+			<name name="{=vampire_counts_male_256}Greimold" />
+			<name name="{=vampire_counts_male_257}Greimolt" />
+			<name name="{=vampire_counts_male_258}Grimmel" />
+			<name name="{=vampire_counts_male_259}Grimwold" />
+			<name name="{=vampire_counts_male_260}Griswold" />
+			<name name="{=vampire_counts_male_261}Groger" />
+			<name name="{=vampire_counts_male_262}Grolmes" />
+			<name name="{=vampire_counts_male_263}Guido" />
+			<name name="{=vampire_counts_male_264}Gumpert" />
+			<name name="{=vampire_counts_male_265}Gumprecht" />
+			<name name="{=vampire_counts_male_266}Gundel" />
+			<name name="{=vampire_counts_male_267}Gunderam" />
+			<name name="{=vampire_counts_male_268}Gundolf" />
+			<name name="{=vampire_counts_male_269}Gundram" />
+			<name name="{=vampire_counts_male_270}Gundred" />
+			<name name="{=vampire_counts_male_271}Gunnar" />
+			<name name="{=vampire_counts_male_272}Gunthar" />
+			<name name="{=vampire_counts_male_273}Gunther" />
+			<name name="{=vampire_counts_male_274}Guntram" />
+			<name name="{=vampire_counts_male_275}Gurge" />
+			<name name="{=vampire_counts_male_276}Gustaf" />
+			<name name="{=vampire_counts_male_277}Gustavus" />
+			<name name="{=vampire_counts_male_278}Gutsche" />
+			<name name="{=vampire_counts_male_279}Gutwin" />
+			<name name="{=vampire_counts_male_280}Hadred" />
+			<name name="{=vampire_counts_male_281}Hadwin" />
+			<name name="{=vampire_counts_male_282}Hagar" />
+			<name name="{=vampire_counts_male_283}Hagen" />
+			<name name="{=vampire_counts_male_284}Hainrich" />
+			<name name="{=vampire_counts_male_285}Haldred" />
+			<name name="{=vampire_counts_male_286}Halman" />
+			<name name="{=vampire_counts_male_287}Halmut" />
+			<name name="{=vampire_counts_male_288}Halpern" />
+			<name name="{=vampire_counts_male_289}Halpert" />
+			<name name="{=vampire_counts_male_290}Hals" />
+			<name name="{=vampire_counts_male_291}Hamlin" />
+			<name name="{=vampire_counts_male_292}Hanco" />
+			<name name="{=vampire_counts_male_293}Hanke" />
+			<name name="{=vampire_counts_male_294}Hanmann" />
+			<name name="{=vampire_counts_male_295}Hannes" />
+			<name name="{=vampire_counts_male_296}Hannos" />
+			<name name="{=vampire_counts_male_297}Hannus" />
+			<name name="{=vampire_counts_male_298}Hantsche" />
+			<name name="{=vampire_counts_male_299}Hanusch" />
+			<name name="{=vampire_counts_male_300}Harbrand" />
+			<name name="{=vampire_counts_male_301}Hardrat" />
+			<name name="{=vampire_counts_male_302}Hardtmann" />
+			<name name="{=vampire_counts_male_303}Hartlib" />
+			<name name="{=vampire_counts_male_304}Hartlip" />
+			<name name="{=vampire_counts_male_305}Hartmann" />
+			<name name="{=vampire_counts_male_306}Hartmundus" />
+			<name name="{=vampire_counts_male_307}Hartnid" />
+			<name name="{=vampire_counts_male_308}Hartrad" />
+			<name name="{=vampire_counts_male_309}Hartungus" />
+			<name name="{=vampire_counts_male_310}Hartusch" />
+			<name name="{=vampire_counts_male_311}Hartwicus" />
+			<name name="{=vampire_counts_male_312}Hartwig" />
+			<name name="{=vampire_counts_male_313}Haug" />
+			<name name="{=vampire_counts_male_314}Heidenrich" />
+			<name name="{=vampire_counts_male_315}Heidric" />
+			<name name="{=vampire_counts_male_316}Heimar" />
+			<name name="{=vampire_counts_male_317}Heindel" />
+			<name name="{=vampire_counts_male_318}Heinel" />
+			<name name="{=vampire_counts_male_319}Heineman" />
+			<name name="{=vampire_counts_male_320}Heinfried" />
+			<name name="{=vampire_counts_male_321}Heinich" />
+			<name name="{=vampire_counts_male_322}Heinke" />
+			<name name="{=vampire_counts_male_323}Heinmann" />
+			<name name="{=vampire_counts_male_324}Heinricus" />
+			<name name="{=vampire_counts_male_325}Heintze" />
+			<name name="{=vampire_counts_male_326}Heinusch" />
+			<name name="{=vampire_counts_male_327}Heinutsch" />
+			<name name="{=vampire_counts_male_328}Heironymous" />
+			<name name="{=vampire_counts_male_329}Helembertus" />
+			<name name="{=vampire_counts_male_330}Hellenboldus" />
+			<name name="{=vampire_counts_male_331}Hellenbrecht" />
+			<name name="{=vampire_counts_male_332}Helmut" />
+			<name name="{=vampire_counts_male_333}Helwig" />
+			<name name="{=vampire_counts_male_334}Hempel" />
+			<name name="{=vampire_counts_male_335}Henil" />
+			<name name="{=vampire_counts_male_336}Henke" />
+			<name name="{=vampire_counts_male_337}Henlin" />
+			<name name="{=vampire_counts_male_338}Henneke" />
+			<name name="{=vampire_counts_male_339}Hennel" />
+			<name name="{=vampire_counts_male_340}Henning" />
+			<name name="{=vampire_counts_male_341}Henrich" />
+			<name name="{=vampire_counts_male_342}Henricus" />
+			<name name="{=vampire_counts_male_343}Henroth" />
+			<name name="{=vampire_counts_male_344}Henschel" />
+			<name name="{=vampire_counts_male_345}Hensel" />
+			<name name="{=vampire_counts_male_346}Hensil" />
+			<name name="{=vampire_counts_male_347}Henslo" />
+			<name name="{=vampire_counts_male_348}Hentschel" />
+			<name name="{=vampire_counts_male_349}Hentschil" />
+			<name name="{=vampire_counts_male_350}Herbil" />
+			<name name="{=vampire_counts_male_351}Herbord" />
+			<name name="{=vampire_counts_male_352}Herbort" />
+			<name name="{=vampire_counts_male_353}Herdan" />
+			<name name="{=vampire_counts_male_354}Herdegen" />
+			<name name="{=vampire_counts_male_355}Herdeinus" />
+			<name name="{=vampire_counts_male_356}Hergard" />
+			<name name="{=vampire_counts_male_357}Hermann" />
+			<name name="{=vampire_counts_male_358}Hermenchin" />
+			<name name="{=vampire_counts_male_359}Herpin" />
+			<name name="{=vampire_counts_male_360}Hertel" />
+			<name name="{=vampire_counts_male_361}Herterich" />
+			<name name="{=vampire_counts_male_362}Hertil" />
+			<name name="{=vampire_counts_male_363}Hertwig" />
+			<name name="{=vampire_counts_male_364}Herwin" />
+			<name name="{=vampire_counts_male_365}Hieronymous" />
+			<name name="{=vampire_counts_male_366}Hildebart" />
+			<name name="{=vampire_counts_male_367}Hildebrandtus" />
+			<name name="{=vampire_counts_male_368}Hildemar" />
+			<name name="{=vampire_counts_male_369}Hildenmund" />
+			<name name="{=vampire_counts_male_370}Hildiger" />
+			<name name="{=vampire_counts_male_371}Hildred" />
+			<name name="{=vampire_counts_male_372}Hildric" />
+			<name name="{=vampire_counts_male_373}Hinric" />
+			<name name="{=vampire_counts_male_374}Holger" />
+			<name name="{=vampire_counts_male_375}Horst" />
+			<name name="{=vampire_counts_male_376}Huge" />
+			<name name="{=vampire_counts_male_377}Hugo" />
+			<name name="{=vampire_counts_male_378}Hultz" />
+			<name name="{=vampire_counts_male_379}Humfried" />
+			<name name="{=vampire_counts_male_380}Hunold" />
+			<name name="{=vampire_counts_male_381}Igor" />
+			<name name="{=vampire_counts_male_382}Ingwald" />
+			<name name="{=vampire_counts_male_383}Iwan" />
+			<name name="{=vampire_counts_male_384}Iwein" />
+			<name name="{=vampire_counts_male_385}Jacob" />
+			<name name="{=vampire_counts_male_386}Jacub" />
+			<name name="{=vampire_counts_male_387}Jakob" />
+			<name name="{=vampire_counts_male_388}Jakusch" />
+			<name name="{=vampire_counts_male_389}Janderke" />
+			<name name="{=vampire_counts_male_390}Janke" />
+			<name name="{=vampire_counts_male_391}Janusch" />
+			<name name="{=vampire_counts_male_392}Jeckel" />
+			<name name="{=vampire_counts_male_393}Jekil" />
+			<name name="{=vampire_counts_male_394}Jekli" />
+			<name name="{=vampire_counts_male_395}Jenchin" />
+			<name name="{=vampire_counts_male_396}Jeronymus" />
+			<name name="{=vampire_counts_male_397}Jeschke" />
+			<name name="{=vampire_counts_male_398}Jesco" />
+			<name name="{=vampire_counts_male_399}Joachim" />
+			<name name="{=vampire_counts_male_400}Jocob" />
+			<name name="{=vampire_counts_male_401}Jocoff" />
+			<name name="{=vampire_counts_male_402}Jocop" />
+			<name name="{=vampire_counts_male_403}Jodocus" />
+			<name name="{=vampire_counts_male_404}Jodokus" />
+			<name name="{=vampire_counts_male_405}Joerg" />
+			<name name="{=vampire_counts_male_406}Johannes" />
+			<name name="{=vampire_counts_male_407}Jokodus" />
+			<name name="{=vampire_counts_male_408}Jokoff" />
+			<name name="{=vampire_counts_male_409}Jonas" />
+			<name name="{=vampire_counts_male_410}Jone" />
+			<name name="{=vampire_counts_male_411}Jordan" />
+			<name name="{=vampire_counts_male_412}Jorge" />
+			<name name="{=vampire_counts_male_413}Jorgl" />
+			<name name="{=vampire_counts_male_414}Jorn" />
+			<name name="{=vampire_counts_male_415}Josef" />
+			<name name="{=vampire_counts_male_416}Jost" />
+			<name name="{=vampire_counts_male_417}Jurgen" />
+			<name name="{=vampire_counts_male_418}Karl" />
+			<name name="{=vampire_counts_male_419}Karolus" />
+			<name name="{=vampire_counts_male_420}Kasmir" />
+			<name name="{=vampire_counts_male_421}Kaspar" />
+			<name name="{=vampire_counts_male_422}Kastar" />
+			<name name="{=vampire_counts_male_423}Kastor" />
+			<name name="{=vampire_counts_male_424}Kirstan" />
+			<name name="{=vampire_counts_male_425}Kirsten" />
+			<name name="{=vampire_counts_male_426}Kitan" />
+			<name name="{=vampire_counts_male_427}Kite" />
+			<name name="{=vampire_counts_male_428}Klaude" />
+			<name name="{=vampire_counts_male_429}Klaus" />
+			<name name="{=vampire_counts_male_430}Kleber" />
+			<name name="{=vampire_counts_male_431}Klemens" />
+			<name name="{=vampire_counts_male_432}Klemet" />
+			<name name="{=vampire_counts_male_433}Klosel" />
+			<name name="{=vampire_counts_male_434}Knud" />
+			<name name="{=vampire_counts_male_435}Knut" />
+			<name name="{=vampire_counts_male_436}Konradin" />
+			<name name="{=vampire_counts_male_437}Konrat" />
+			<name name="{=vampire_counts_male_438}Kraft" />
+			<name name="{=vampire_counts_male_439}Kristof" />
+			<name name="{=vampire_counts_male_440}Krugar" />
+			<name name="{=vampire_counts_male_441}Kunemann" />
+			<name name="{=vampire_counts_male_442}Kuno" />
+			<name name="{=vampire_counts_male_443}Kurdt" />
+			<name name="{=vampire_counts_male_444}Kurlass" />
+			<name name="{=vampire_counts_male_445}Lambertus" />
+			<name name="{=vampire_counts_male_446}Lampertus" />
+			<name name="{=vampire_counts_male_447}Lamprecht" />
+			<name name="{=vampire_counts_male_448}Lanfried" />
+			<name name="{=vampire_counts_male_449}Lanric" />
+			<name name="{=vampire_counts_male_450}Lanwin" />
+			<name name="{=vampire_counts_male_451}Laurencius" />
+			<name name="{=vampire_counts_male_452}Laureyn" />
+			<name name="{=vampire_counts_male_453}Lazarus" />
+			<name name="{=vampire_counts_male_454}Lehenhard" />
+			<name name="{=vampire_counts_male_455}Leonardus" />
+			<name name="{=vampire_counts_male_456}Leonhard" />
+			<name name="{=vampire_counts_male_457}Leopold" />
+			<name name="{=vampire_counts_male_458}Leupold" />
+			<name name="{=vampire_counts_male_459}Leuter" />
+			<name name="{=vampire_counts_male_460}Leuthold" />
+			<name name="{=vampire_counts_male_461}Leutke" />
+			<name name="{=vampire_counts_male_462}Levin" />
+			<name name="{=vampire_counts_male_463}Lewpold" />
+			<name name="{=vampire_counts_male_464}Libincko" />
+			<name name="{=vampire_counts_male_465}Libingus" />
+			<name name="{=vampire_counts_male_466}Libniko" />
+			<name name="{=vampire_counts_male_467}Liebert" />
+			<name name="{=vampire_counts_male_468}Liebink" />
+			<name name="{=vampire_counts_male_469}Liebrecht" />
+			<name name="{=vampire_counts_male_470}Liebwin" />
+			<name name="{=vampire_counts_male_471}Lienhart" />
+			<name name="{=vampire_counts_male_472}Linus" />
+			<name name="{=vampire_counts_male_473}Liphardus" />
+			<name name="{=vampire_counts_male_474}Liutpold" />
+			<name name="{=vampire_counts_male_475}Lodewig" />
+			<name name="{=vampire_counts_male_476}Lorenz" />
+			<name name="{=vampire_counts_male_477}Lothar" />
+			<name name="{=vampire_counts_male_478}Lucas" />
+			<name name="{=vampire_counts_male_479}Lucius" />
+			<name name="{=vampire_counts_male_480}Ludevicus" />
+			<name name="{=vampire_counts_male_481}Ludolf" />
+			<name name="{=vampire_counts_male_482}Ludovicus" />
+			<name name="{=vampire_counts_male_483}Ludwig" />
+			<name name="{=vampire_counts_male_484}Luitpoldus" />
+			<name name="{=vampire_counts_male_485}Lukas" />
+			<name name="{=vampire_counts_male_486}Luppolt" />
+			<name name="{=vampire_counts_male_487}Lupus" />
+			<name name="{=vampire_counts_male_488}Lutherius" />
+			<name name="{=vampire_counts_male_489}Luthold" />
+			<name name="{=vampire_counts_male_490}Lutke" />
+			<name name="{=vampire_counts_male_491}Lutolf" />
+			<name name="{=vampire_counts_male_492}Mach" />
+			<name name="{=vampire_counts_male_493}Magnus" />
+			<name name="{=vampire_counts_male_494}Mandred" />
+			<name name="{=vampire_counts_male_495}Manegold" />
+			<name name="{=vampire_counts_male_496}Manfred" />
+			<name name="{=vampire_counts_male_497}Marcus" />
+			<name name="{=vampire_counts_male_498}Marius" />
+			<name name="{=vampire_counts_male_499}Markus" />
+			<name name="{=vampire_counts_male_500}Markwardt" />
+			<name name="{=vampire_counts_male_501}Markwart" />
+			<name name="{=vampire_counts_male_502}Martin" />
+			<name name="{=vampire_counts_male_503}Marx" />
+			<name name="{=vampire_counts_male_504}Maternus" />
+			<name name="{=vampire_counts_male_505}Matheus" />
+			<name name="{=vampire_counts_male_506}Mathewelin" />
+			<name name="{=vampire_counts_male_507}Matthias" />
+			<name name="{=vampire_counts_male_508}Matzke" />
+			<name name="{=vampire_counts_male_509}Maximillian" />
+			<name name="{=vampire_counts_male_510}Mechtfrid" />
+			<name name="{=vampire_counts_male_511}Meffrid" />
+			<name name="{=vampire_counts_male_512}Meiner" />
+			<name name="{=vampire_counts_male_513}Meingot" />
+			<name name="{=vampire_counts_male_514}Meinhardtus" />
+			<name name="{=vampire_counts_male_515}Meinhart" />
+			<name name="{=vampire_counts_male_516}Meinolf" />
+			<name name="{=vampire_counts_male_517}Mekel" />
+			<name name="{=vampire_counts_male_518}Melched" />
+			<name name="{=vampire_counts_male_519}Melchior" />
+			<name name="{=vampire_counts_male_520}Mengot" />
+			<name name="{=vampire_counts_male_521}Menogoth" />
+			<name name="{=vampire_counts_male_522}Merboth" />
+			<name name="{=vampire_counts_male_523}Merkel" />
+			<name name="{=vampire_counts_male_524}Meroge" />
+			<name name="{=vampire_counts_male_525}Mertein" />
+			<name name="{=vampire_counts_male_526}Mertin" />
+			<name name="{=vampire_counts_male_527}Mertt" />
+			<name name="{=vampire_counts_male_528}Metrious" />
+			<name name="{=vampire_counts_male_529}Michahel" />
+			<name name="{=vampire_counts_male_530}Mikusch" />
+			<name name="{=vampire_counts_male_531}Moritz" />
+			<name name="{=vampire_counts_male_532}Nanker" />
+			<name name="{=vampire_counts_male_533}Nathandar" />
+			<name name="{=vampire_counts_male_534}Neidhart" />
+			<name name="{=vampire_counts_male_535}Neithart" />
+			<name name="{=vampire_counts_male_536}Nenker" />
+			<name name="{=vampire_counts_male_537}Nickel" />
+			<name name="{=vampire_counts_male_538}Nickil" />
+			<name name="{=vampire_counts_male_539}Nicklas" />
+			<name name="{=vampire_counts_male_540}Nicklos" />
+			<name name="{=vampire_counts_male_541}Niclas" />
+			<name name="{=vampire_counts_male_542}Niclawes" />
+			<name name="{=vampire_counts_male_543}Nicodemus" />
+			<name name="{=vampire_counts_male_544}Nicolai" />
+			<name name="{=vampire_counts_male_545}Nicolaus" />
+			<name name="{=vampire_counts_male_546}Nikkel" />
+			<name name="{=vampire_counts_male_547}Niklos" />
+			<name name="{=vampire_counts_male_548}Nikolaus" />
+			<name name="{=vampire_counts_male_549}Nikusch" />
+			<name name="{=vampire_counts_male_550}Nimandus" />
+			<name name="{=vampire_counts_male_551}Nithart" />
+			<name name="{=vampire_counts_male_552}Nitschke" />
+			<name name="{=vampire_counts_male_553}Odmar" />
+			<name name="{=vampire_counts_male_554}Odwin" />
+			<name name="{=vampire_counts_male_555}Olaf" />
+			<name name="{=vampire_counts_male_556}Olbrecht" />
+			<name name="{=vampire_counts_male_557}Oldred" />
+			<name name="{=vampire_counts_male_558}Oldric" />
+			<name name="{=vampire_counts_male_559}Orban" />
+			<name name="{=vampire_counts_male_560}Ortel" />
+			<name name="{=vampire_counts_male_561}Ortlieb" />
+			<name name="{=vampire_counts_male_562}Ortlip" />
+			<name name="{=vampire_counts_male_563}Ortlouf" />
+			<name name="{=vampire_counts_male_564}Ortolf" />
+			<name name="{=vampire_counts_male_565}Ortolphus" />
+			<name name="{=vampire_counts_male_566}Ortwin" />
+			<name name="{=vampire_counts_male_567}Oskar" />
+			<name name="{=vampire_counts_male_568}Osprant" />
+			<name name="{=vampire_counts_male_569}Osric" />
+			<name name="{=vampire_counts_male_570}Ostagoth" />
+			<name name="{=vampire_counts_male_571}Oswald" />
+			<name name="{=vampire_counts_male_572}Oswin" />
+			<name name="{=vampire_counts_male_573}Otfried" />
+			<name name="{=vampire_counts_male_574}Otmar" />
+			<name name="{=vampire_counts_male_575}Otnand" />
+			<name name="{=vampire_counts_male_576}Ottel" />
+			<name name="{=vampire_counts_male_577}Otto" />
+			<name name="{=vampire_counts_male_578}Otwin" />
+			<name name="{=vampire_counts_male_579}Pancracius" />
+			<name name="{=vampire_counts_male_580}Pankratz" />
+			<name name="{=vampire_counts_male_581}Partschfall" />
+			<name name="{=vampire_counts_male_582}Parzival" />
+			<name name="{=vampire_counts_male_583}Paschalis" />
+			<name name="{=vampire_counts_male_584}Paschke" />
+			<name name="{=vampire_counts_male_585}Patrice" />
+			<name name="{=vampire_counts_male_586}Pauelus" />
+			<name name="{=vampire_counts_male_587}Paulo" />
+			<name name="{=vampire_counts_male_588}Pauwel" />
+			<name name="{=vampire_counts_male_589}Pawel" />
+			<name name="{=vampire_counts_male_590}Pawil" />
+			<name name="{=vampire_counts_male_591}Pecolt" />
+			<name name="{=vampire_counts_male_592}Peregrinus" />
+			<name name="{=vampire_counts_male_593}Peschel" />
+			<name name="{=vampire_counts_male_594}Peschke" />
+			<name name="{=vampire_counts_male_595}Pesold" />
+			<name name="{=vampire_counts_male_596}Pessolt" />
+			<name name="{=vampire_counts_male_597}Petir" />
+			<name name="{=vampire_counts_male_598}Petran" />
+			<name name="{=vampire_counts_male_599}Petrusch" />
+			<name name="{=vampire_counts_male_600}Petschel" />
+			<name name="{=vampire_counts_male_601}Petschmann" />
+			<name name="{=vampire_counts_male_602}Philipps" />
+			<name name="{=vampire_counts_male_603}Philippus" />
+			<name name="{=vampire_counts_male_604}Pietermann" />
+			<name name="{=vampire_counts_male_605}Piter" />
+			<name name="{=vampire_counts_male_606}Poppe" />
+			<name name="{=vampire_counts_male_607}Prokop" />
+			<name name="{=vampire_counts_male_608}Prospero" />
+			<name name="{=vampire_counts_male_609}Quintus" />
+			<name name="{=vampire_counts_male_610}Ragen" />
+			<name name="{=vampire_counts_male_611}Ralf" />
+			<name name="{=vampire_counts_male_612}Rambrecht" />
+			<name name="{=vampire_counts_male_613}Ramung" />
+			<name name="{=vampire_counts_male_614}Ramvoldus" />
+			<name name="{=vampire_counts_male_615}Ramwold" />
+			<name name="{=vampire_counts_male_616}Randolph" />
+			<name name="{=vampire_counts_male_617}Randulf" />
+			<name name="{=vampire_counts_male_618}Ranfeld" />
+			<name name="{=vampire_counts_male_619}Raphael" />
+			<name name="{=vampire_counts_male_620}Ratbot" />
+			<name name="{=vampire_counts_male_621}Regimius" />
+			<name name="{=vampire_counts_male_622}Reichel" />
+			<name name="{=vampire_counts_male_623}Reikert" />
+			<name name="{=vampire_counts_male_624}Reikhardt" />
+			<name name="{=vampire_counts_male_625}Reinald" />
+			<name name="{=vampire_counts_male_626}Reiner" />
+			<name name="{=vampire_counts_male_627}Reinfried" />
+			<name name="{=vampire_counts_male_628}Reinhardt" />
+			<name name="{=vampire_counts_male_629}Reinhold" />
+			<name name="{=vampire_counts_male_630}Reinolt" />
+			<name name="{=vampire_counts_male_631}Reintsch" />
+			<name name="{=vampire_counts_male_632}Reinwald" />
+			<name name="{=vampire_counts_male_633}Reiprecht" />
+			<name name="{=vampire_counts_male_634}Reuban" />
+			<name name="{=vampire_counts_male_635}Richart" />
+			<name name="{=vampire_counts_male_636}Richel" />
+			<name name="{=vampire_counts_male_637}Richolf" />
+			<name name="{=vampire_counts_male_638}Richter" />
+			<name name="{=vampire_counts_male_639}Rigo" />
+			<name name="{=vampire_counts_male_640}Rilker" />
+			<name name="{=vampire_counts_male_641}Ripertus" />
+			<name name="{=vampire_counts_male_642}Robb" />
+			<name name="{=vampire_counts_male_643}Robert" />
+			<name name="{=vampire_counts_male_644}Roderic" />
+			<name name="{=vampire_counts_male_645}Roland" />
+			<name name="{=vampire_counts_male_646}Rolf" />
+			<name name="{=vampire_counts_male_647}Ropot" />
+			<name name="{=vampire_counts_male_648}Roprecht" />
+			<name name="{=vampire_counts_male_649}Ruben" />
+			<name name="{=vampire_counts_male_650}Rudeger" />
+			<name name="{=vampire_counts_male_651}Rudeloff" />
+			<name name="{=vampire_counts_male_652}Rudiger" />
+			<name name="{=vampire_counts_male_653}Rudlinus" />
+			<name name="{=vampire_counts_male_654}Rudlo" />
+			<name name="{=vampire_counts_male_655}Rudolf" />
+			<name name="{=vampire_counts_male_656}Rudusch" />
+			<name name="{=vampire_counts_male_657}Rufus" />
+			<name name="{=vampire_counts_male_658}Ruland" />
+			<name name="{=vampire_counts_male_659}Rulant" />
+			<name name="{=vampire_counts_male_660}Rule" />
+			<name name="{=vampire_counts_male_661}Rumpolt" />
+			<name name="{=vampire_counts_male_662}Rupert" />
+			<name name="{=vampire_counts_male_663}Ruppel" />
+			<name name="{=vampire_counts_male_664}Ruprecht" />
+			<name name="{=vampire_counts_male_665}Rutiger" />
+			<name name="{=vampire_counts_male_666}Rutschel" />
+			<name name="{=vampire_counts_male_667}Salomon" />
+			<name name="{=vampire_counts_male_668}Samuel" />
+			<name name="{=vampire_counts_male_669}Sander" />
+			<name name="{=vampire_counts_male_670}Schimko" />
+			<name name="{=vampire_counts_male_671}Sebastian" />
+			<name name="{=vampire_counts_male_672}Seel" />
+			<name name="{=vampire_counts_male_673}Segehart" />
+			<name name="{=vampire_counts_male_674}Segemund" />
+			<name name="{=vampire_counts_male_675}Seibke" />
+			<name name="{=vampire_counts_male_676}Seibot" />
+			<name name="{=vampire_counts_male_677}Seidel" />
+			<name name="{=vampire_counts_male_678}Seidelman" />
+			<name name="{=vampire_counts_male_679}Seiffrid" />
+			<name name="{=vampire_counts_male_680}Semund" />
+			<name name="{=vampire_counts_male_681}Sepp" />
+			<name name="{=vampire_counts_male_682}Setanta" />
+			<name name="{=vampire_counts_male_683}Sieger" />
+			<name name="{=vampire_counts_male_684}Siegfried" />
+			<name name="{=vampire_counts_male_685}Siegmund" />
+			<name name="{=vampire_counts_male_686}Siffridus" />
+			<name name="{=vampire_counts_male_687}Sifrit" />
+			<name name="{=vampire_counts_male_688}Sigfrid" />
+			<name name="{=vampire_counts_male_689}Sigismund" />
+			<name name="{=vampire_counts_male_690}Sothelin" />
+			<name name="{=vampire_counts_male_691}Stafke" />
+			<name name="{=vampire_counts_male_692}Stanislaus" />
+			<name name="{=vampire_counts_male_693}Steffan" />
+			<name name="{=vampire_counts_male_694}Steffen" />
+			<name name="{=vampire_counts_male_695}Stehmahr" />
+			<name name="{=vampire_counts_male_696}Stephan" />
+			<name name="{=vampire_counts_male_697}Stephke" />
+			<name name="{=vampire_counts_male_698}Sweideger" />
+			<name name="{=vampire_counts_male_699}Syman" />
+			<name name="{=vampire_counts_male_700}Symon" />
+			<name name="{=vampire_counts_male_701}Taleute" />
+			<name name="{=vampire_counts_male_702}Tancred" />
+			<name name="{=vampire_counts_male_703}Tankred" />
+			<name name="{=vampire_counts_male_704}Temil" />
+			<name name="{=vampire_counts_male_705}Teutoge" />
+			<name name="{=vampire_counts_male_706}Thaddeus" />
+			<name name="{=vampire_counts_male_707}Thamme" />
+			<name name="{=vampire_counts_male_708}Thankmar" />
+			<name name="{=vampire_counts_male_709}Theoderic" />
+			<name name="{=vampire_counts_male_710}Theodosius" />
+			<name name="{=vampire_counts_male_711}Theodricus" />
+			<name name="{=vampire_counts_male_712}Theophilus" />
+			<name name="{=vampire_counts_male_713}Thiemo" />
+			<name name="{=vampire_counts_male_714}Thietmarus" />
+			<name name="{=vampire_counts_male_715}Thomas" />
+			<name name="{=vampire_counts_male_716}Thomel" />
+			<name name="{=vampire_counts_male_717}Thomke" />
+			<name name="{=vampire_counts_male_718}Thorgad" />
+			<name name="{=vampire_counts_male_719}Thuring" />
+			<name name="{=vampire_counts_male_720}Thyrus" />
+			<name name="{=vampire_counts_male_721}Tristram" />
+			<name name="{=vampire_counts_male_722}Trubald" />
+			<name name="{=vampire_counts_male_723}Trubert" />
+			<name name="{=vampire_counts_male_724}Truchtlip" />
+			<name name="{=vampire_counts_male_725}Trutwin" />
+			<name name="{=vampire_counts_male_726}Tschepan" />
+			<name name="{=vampire_counts_male_727}Tyle" />
+			<name name="{=vampire_counts_male_728}Tylo" />
+			<name name="{=vampire_counts_male_729}Udos" />
+			<name name="{=vampire_counts_male_730}Ulein" />
+			<name name="{=vampire_counts_male_731}Ulfman" />
+			<name name="{=vampire_counts_male_732}Ulfred" />
+			<name name="{=vampire_counts_male_733}Ulher" />
+			<name name="{=vampire_counts_male_734}Ulli" />
+			<name name="{=vampire_counts_male_735}Ulman" />
+			<name name="{=vampire_counts_male_736}Ulrichus" />
+			<name name="{=vampire_counts_male_737}Ulusch" />
+			<name name="{=vampire_counts_male_738}Unberoge" />
+			<name name="{=vampire_counts_male_739}Urban" />
+			<name name="{=vampire_counts_male_740}Uto" />
+			<name name="{=vampire_counts_male_741}Valdred" />
+			<name name="{=vampire_counts_male_742}Valdric" />
+			<name name="{=vampire_counts_male_743}Valentin" />
+			<name name="{=vampire_counts_male_744}Valgeit" />
+			<name name="{=vampire_counts_male_745}Valmir" />
+			<name name="{=vampire_counts_male_746}Valten" />
+			<name name="{=vampire_counts_male_747}Van" />
+			<name name="{=vampire_counts_male_748}Varl" />
+			<name name="{=vampire_counts_male_749}Veit" />
+			<name name="{=vampire_counts_male_750}Verspasian" />
+			<name name="{=vampire_counts_male_751}Viggo" />
+			<name name="{=vampire_counts_male_752}Volkhard" />
+			<name name="{=vampire_counts_male_753}Volkin" />
+			<name name="{=vampire_counts_male_754}Volkrad" />
+			<name name="{=vampire_counts_male_755}Volkwin" />
+			<name name="{=vampire_counts_male_756}Voltz" />
+			<name name="{=vampire_counts_male_757}Vorster" />
+			<name name="{=vampire_counts_male_758}Vridel" />
+			<name name="{=vampire_counts_male_759}Vridil" />
+			<name name="{=vampire_counts_male_760}Wabirske" />
+			<name name="{=vampire_counts_male_761}Walbrecht" />
+			<name name="{=vampire_counts_male_762}Waldemar" />
+			<name name="{=vampire_counts_male_763}Waldor" />
+			<name name="{=vampire_counts_male_764}Waldred" />
+			<name name="{=vampire_counts_male_765}Waliwan" />
+			<name name="{=vampire_counts_male_766}Waltherus" />
+			<name name="{=vampire_counts_male_767}Warmund" />
+			<name name="{=vampire_counts_male_768}Weigandt" />
+			<name name="{=vampire_counts_male_769}Weigel" />
+			<name name="{=vampire_counts_male_770}Weiker" />
+			<name name="{=vampire_counts_male_771}Wenzel" />
+			<name name="{=vampire_counts_male_772}Wernherus" />
+			<name name="{=vampire_counts_male_773}Wernike" />
+			<name name="{=vampire_counts_male_774}Wernusch" />
+			<name name="{=vampire_counts_male_775}Wicher" />
+			<name name="{=vampire_counts_male_776}Wichman" />
+			<name name="{=vampire_counts_male_777}Wigandus" />
+			<name name="{=vampire_counts_male_778}Wigant" />
+			<name name="{=vampire_counts_male_779}Wigel" />
+			<name name="{=vampire_counts_male_780}Wigher" />
+			<name name="{=vampire_counts_male_781}Wiglas" />
+			<name name="{=vampire_counts_male_782}Wikert" />
+			<name name="{=vampire_counts_male_783}Willusch" />
+			<name name="{=vampire_counts_male_784}Wilreich" />
+			<name name="{=vampire_counts_male_785}Wilricus" />
+			<name name="{=vampire_counts_male_786}Winandus" />
+			<name name="{=vampire_counts_male_787}Winlind" />
+			<name name="{=vampire_counts_male_788}Winrich" />
+			<name name="{=vampire_counts_male_789}Winricus" />
+			<name name="{=vampire_counts_male_790}Wiprecht" />
+			<name name="{=vampire_counts_male_791}Witche" />
+			<name name="{=vampire_counts_male_792}Wittich" />
+			<name name="{=vampire_counts_male_793}Woldred" />
+			<name name="{=vampire_counts_male_794}Wolfel" />
+			<name name="{=vampire_counts_male_795}Wolferam" />
+			<name name="{=vampire_counts_male_796}Wolfgang" />
+			<name name="{=vampire_counts_male_797}Wolfhard" />
+			<name name="{=vampire_counts_male_798}Wolfhart" />
+			<name name="{=vampire_counts_male_799}Wolfila" />
+			<name name="{=vampire_counts_male_800}Wolfker" />
+			<name name="{=vampire_counts_male_801}Wolfram" />
+			<name name="{=vampire_counts_male_802}Wolmar" />
+			<name name="{=vampire_counts_male_803}Wolveram" />
+			<name name="{=vampire_counts_male_804}Wortwin" />
+			<name name="{=vampire_counts_male_805}Wuder" />
+			<name name="{=vampire_counts_male_806}Wulf" />
+			<name name="{=vampire_counts_male_807}Xavier" />
+			<name name="{=vampire_counts_male_808}Ytel" />
+			<name name="{=vampire_counts_male_809}Zacharias" />
+			<name name="{=vampire_counts_male_810}Zeidl" />
+			<name name="{=vampire_counts_male_811}Zifridus" />
+			<name name="{=vampire_counts_male_812}Zobeslaus" />
+		</male_names>
+		<female_names>
+			<name name="{=vampire_counts_female_1}Abbie" />
+			<name name="{=vampire_counts_female_2}Abighild" />
+			<name name="{=vampire_counts_female_3}Abigund" />
+			<name name="{=vampire_counts_female_4}Ada" />
+			<name name="{=vampire_counts_female_5}Adel" />
+			<name name="{=vampire_counts_female_6}Adelind" />
+			<name name="{=vampire_counts_female_7}Adelle" />
+			<name name="{=vampire_counts_female_8}Adelyn" />
+			<name name="{=vampire_counts_female_9}Agathe" />
+			<name name="{=vampire_counts_female_10}Agnes" />
+			<name name="{=vampire_counts_female_11}Agneta" />
+			<name name="{=vampire_counts_female_12}Agnete" />
+			<name name="{=vampire_counts_female_13}Agnetta" />
+			<name name="{=vampire_counts_female_14}Agnetz" />
+			<name name="{=vampire_counts_female_15}Agnise" />
+			<name name="{=vampire_counts_female_16}Aldreda" />
+			<name name="{=vampire_counts_female_17}Aleid" />
+			<name name="{=vampire_counts_female_18}Alette" />
+			<name name="{=vampire_counts_female_19}Alexa" />
+			<name name="{=vampire_counts_female_20}Alfreda" />
+			<name name="{=vampire_counts_female_21}Alfrida" />
+			<name name="{=vampire_counts_female_22}Alice" />
+			<name name="{=vampire_counts_female_23}Alicia" />
+			<name name="{=vampire_counts_female_24}Alke" />
+			<name name="{=vampire_counts_female_25}Allane" />
+			<name name="{=vampire_counts_female_26}Almala" />
+			<name name="{=vampire_counts_female_27}Althea" />
+			<name name="{=vampire_counts_female_28}Alusch" />
+			<name name="{=vampire_counts_female_29}Amalie" />
+			<name name="{=vampire_counts_female_30}Amalyn" />
+			<name name="{=vampire_counts_female_31}Andrea" />
+			<name name="{=vampire_counts_female_32}Anhilda" />
+			<name name="{=vampire_counts_female_33}Anika" />
+			<name name="{=vampire_counts_female_34}Anja" />
+			<name name="{=vampire_counts_female_35}Anna" />
+			<name name="{=vampire_counts_female_36}Annabel" />
+			<name name="{=vampire_counts_female_37}Anne" />
+			<name name="{=vampire_counts_female_38}Anthea" />
+			<name name="{=vampire_counts_female_39}Anya" />
+			<name name="{=vampire_counts_female_40}Apollonia" />
+			<name name="{=vampire_counts_female_41}Arabel" />
+			<name name="{=vampire_counts_female_42}Astrid" />
+			<name name="{=vampire_counts_female_43}Aver" />
+			<name name="{=vampire_counts_female_44}Aythe" />
+			<name name="{=vampire_counts_female_45}Barbara" />
+			<name name="{=vampire_counts_female_46}Beate" />
+			<name name="{=vampire_counts_female_47}Beatrix" />
+			<name name="{=vampire_counts_female_48}Bechilda" />
+			<name name="{=vampire_counts_female_49}Bella" />
+			<name name="{=vampire_counts_female_50}Bendicta" />
+			<name name="{=vampire_counts_female_51}Benusch" />
+			<name name="{=vampire_counts_female_52}Berchte" />
+			<name name="{=vampire_counts_female_53}Berlinda" />
+			<name name="{=vampire_counts_female_54}Berlyn" />
+			<name name="{=vampire_counts_female_55}Berta" />
+			<name name="{=vampire_counts_female_56}Berthilda" />
+			<name name="{=vampire_counts_female_57}Bertradis" />
+			<name name="{=vampire_counts_female_58}Bertrod" />
+			<name name="{=vampire_counts_female_59}Bess" />
+			<name name="{=vampire_counts_female_60}Beth" />
+			<name name="{=vampire_counts_female_61}Bianka" />
+			<name name="{=vampire_counts_female_62}Birgit" />
+			<name name="{=vampire_counts_female_63}Brigitte" />
+			<name name="{=vampire_counts_female_64}Brita" />
+			<name name="{=vampire_counts_female_65}Britt" />
+			<name name="{=vampire_counts_female_66}Broncea" />
+			<name name="{=vampire_counts_female_67}Brunhilda" />
+			<name name="{=vampire_counts_female_68}Brunhilde" />
+			<name name="{=vampire_counts_female_69}Camilla" />
+			<name name="{=vampire_counts_female_70}Carina" />
+			<name name="{=vampire_counts_female_71}Carla" />
+			<name name="{=vampire_counts_female_72}Carlinda" />
+			<name name="{=vampire_counts_female_73}Carlotta" />
+			<name name="{=vampire_counts_female_74}Carmilla" />
+			<name name="{=vampire_counts_female_75}Casarea" />
+			<name name="{=vampire_counts_female_76}Cecilia" />
+			<name name="{=vampire_counts_female_77}Charlotte" />
+			<name name="{=vampire_counts_female_78}Christine" />
+			<name name="{=vampire_counts_female_79}Cilicia" />
+			<name name="{=vampire_counts_female_80}Cilie" />
+			<name name="{=vampire_counts_female_81}Clare" />
+			<name name="{=vampire_counts_female_82}Claudia" />
+			<name name="{=vampire_counts_female_83}Clora" />
+			<name name="{=vampire_counts_female_84}Clothilda" />
+			<name name="{=vampire_counts_female_85}Connie" />
+			<name name="{=vampire_counts_female_86}Constance" />
+			<name name="{=vampire_counts_female_87}Constanza" />
+			<name name="{=vampire_counts_female_88}Cordelia" />
+			<name name="{=vampire_counts_female_89}Cunne" />
+			<name name="{=vampire_counts_female_90}Dagmar" />
+			<name name="{=vampire_counts_female_91}Dema" />
+			<name name="{=vampire_counts_female_92}Demut" />
+			<name name="{=vampire_counts_female_93}Desdemona" />
+			<name name="{=vampire_counts_female_94}Dora" />
+			<name name="{=vampire_counts_female_95}Dorothie" />
+			<name name="{=vampire_counts_female_96}Dorthilda" />
+			<name name="{=vampire_counts_female_97}Drachena" />
+			<name name="{=vampire_counts_female_98}Drachilda" />
+			<name name="{=vampire_counts_female_99}Edhilda" />
+			<name name="{=vampire_counts_female_100}Edith" />
+			<name name="{=vampire_counts_female_101}Edyth" />
+			<name name="{=vampire_counts_female_102}Edythe" />
+			<name name="{=vampire_counts_female_103}Eleanor" />
+			<name name="{=vampire_counts_female_104}Elena" />
+			<name name="{=vampire_counts_female_105}Elene" />
+			<name name="{=vampire_counts_female_106}Elfrida" />
+			<name name="{=vampire_counts_female_107}Elinor" />
+			<name name="{=vampire_counts_female_108}Elisabeth" />
+			<name name="{=vampire_counts_female_109}Elise" />
+			<name name="{=vampire_counts_female_110}Elisinda" />
+			<name name="{=vampire_counts_female_111}Elke" />
+			<name name="{=vampire_counts_female_112}Ella" />
+			<name name="{=vampire_counts_female_113}Ellene" />
+			<name name="{=vampire_counts_female_114}Ellinde" />
+			<name name="{=vampire_counts_female_115}Eloise" />
+			<name name="{=vampire_counts_female_116}Elsabeth" />
+			<name name="{=vampire_counts_female_117}Elsbeth" />
+			<name name="{=vampire_counts_female_118}Else" />
+			<name name="{=vampire_counts_female_119}Elsina" />
+			<name name="{=vampire_counts_female_120}Elyn" />
+			<name name="{=vampire_counts_female_121}Elzebeth" />
+			<name name="{=vampire_counts_female_122}Emagunda" />
+			<name name="{=vampire_counts_female_123}Emelia" />
+			<name name="{=vampire_counts_female_124}Emerlinde" />
+			<name name="{=vampire_counts_female_125}Emerlyn" />
+			<name name="{=vampire_counts_female_126}Emilie" />
+			<name name="{=vampire_counts_female_127}Emmalyn" />
+			<name name="{=vampire_counts_female_128}Emmanuel" />
+			<name name="{=vampire_counts_female_129}Emme" />
+			<name name="{=vampire_counts_female_130}Enede" />
+			<name name="{=vampire_counts_female_131}Engel" />
+			<name name="{=vampire_counts_female_132}Engeltrud" />
+			<name name="{=vampire_counts_female_133}Ennelein" />
+			<name name="{=vampire_counts_female_134}Erica" />
+			<name name="{=vampire_counts_female_135}Erika" />
+			<name name="{=vampire_counts_female_136}Ermegart" />
+			<name name="{=vampire_counts_female_137}Ermel" />
+			<name name="{=vampire_counts_female_138}Ermina" />
+			<name name="{=vampire_counts_female_139}Erminlind" />
+			<name name="{=vampire_counts_female_140}Ermintrude" />
+			<name name="{=vampire_counts_female_141}Esmaralda" />
+			<name name="{=vampire_counts_female_142}Esmeralda" />
+			<name name="{=vampire_counts_female_143}Esmerelda" />
+			<name name="{=vampire_counts_female_144}Esmerelde" />
+			<name name="{=vampire_counts_female_145}Estelle" />
+			<name name="{=vampire_counts_female_146}Esther" />
+			<name name="{=vampire_counts_female_147}Etheldreda" />
+			<name name="{=vampire_counts_female_148}Ethelind" />
+			<name name="{=vampire_counts_female_149}Ethelka" />
+			<name name="{=vampire_counts_female_150}Ethelreda" />
+			<name name="{=vampire_counts_female_151}Eufemia" />
+			<name name="{=vampire_counts_female_152}Eva" />
+			<name name="{=vampire_counts_female_153}Fay" />
+			<name name="{=vampire_counts_female_154}Femeke" />
+			<name name="{=vampire_counts_female_155}Franziska" />
+			<name name="{=vampire_counts_female_156}Freya" />
+			<name name="{=vampire_counts_female_157}Frieda" />
+			<name name="{=vampire_counts_female_158}Friedhilda" />
+			<name name="{=vampire_counts_female_159}Friedrica" />
+			<name name="{=vampire_counts_female_160}Friedrun" />
+			<name name="{=vampire_counts_female_161}Fronika" />
+			<name name="{=vampire_counts_female_162}Gabby" />
+			<name name="{=vampire_counts_female_163}Gabi" />
+			<name name="{=vampire_counts_female_164}Gabrielle" />
+			<name name="{=vampire_counts_female_165}Galina" />
+			<name name="{=vampire_counts_female_166}Gele" />
+			<name name="{=vampire_counts_female_167}Gena" />
+			<name name="{=vampire_counts_female_168}Genevieve" />
+			<name name="{=vampire_counts_female_169}Genovega" />
+			<name name="{=vampire_counts_female_170}Gerberga" />
+			<name name="{=vampire_counts_female_171}Gerda" />
+			<name name="{=vampire_counts_female_172}Gerdrut" />
+			<name name="{=vampire_counts_female_173}Gerke" />
+			<name name="{=vampire_counts_female_174}Gerlinde" />
+			<name name="{=vampire_counts_female_175}Gertie" />
+			<name name="{=vampire_counts_female_176}Gertrud" />
+			<name name="{=vampire_counts_female_177}Gerusch" />
+			<name name="{=vampire_counts_female_178}Gilda" />
+			<name name="{=vampire_counts_female_179}Gina" />
+			<name name="{=vampire_counts_female_180}Girdrud" />
+			<name name="{=vampire_counts_female_181}Girlin" />
+			<name name="{=vampire_counts_female_182}Gitta" />
+			<name name="{=vampire_counts_female_183}Greta" />
+			<name name="{=vampire_counts_female_184}Gretchen" />
+			<name name="{=vampire_counts_female_185}Gretel" />
+			<name name="{=vampire_counts_female_186}Grite" />
+			<name name="{=vampire_counts_female_187}Grizelda" />
+			<name name="{=vampire_counts_female_188}Grunhilda" />
+			<name name="{=vampire_counts_female_189}Gudradis" />
+			<name name="{=vampire_counts_female_190}Gudrun" />
+			<name name="{=vampire_counts_female_191}Gudryn" />
+			<name name="{=vampire_counts_female_192}Gutel" />
+			<name name="{=vampire_counts_female_193}Hanna" />
+			<name name="{=vampire_counts_female_194}Hedwig" />
+			<name name="{=vampire_counts_female_195}Heidi" />
+			<name name="{=vampire_counts_female_196}Heidrun" />
+			<name name="{=vampire_counts_female_197}Heile" />
+			<name name="{=vampire_counts_female_198}Heilwig" />
+			<name name="{=vampire_counts_female_199}Helena" />
+			<name name="{=vampire_counts_female_200}Helene" />
+			<name name="{=vampire_counts_female_201}Helga" />
+			<name name="{=vampire_counts_female_202}Helusch" />
+			<name name="{=vampire_counts_female_203}Herburg" />
+			<name name="{=vampire_counts_female_204}Herlinde" />
+			<name name="{=vampire_counts_female_205}Herwig" />
+			<name name="{=vampire_counts_female_206}Heske" />
+			<name name="{=vampire_counts_female_207}Hezke" />
+			<name name="{=vampire_counts_female_208}Hildegard" />
+			<name name="{=vampire_counts_female_209}Hildegart" />
+			<name name="{=vampire_counts_female_210}Hildegund" />
+			<name name="{=vampire_counts_female_211}Hille" />
+			<name name="{=vampire_counts_female_212}Hilusch" />
+			<name name="{=vampire_counts_female_213}Honoria" />
+			<name name="{=vampire_counts_female_214}Hunni" />
+			<name name="{=vampire_counts_female_215}Ida" />
+			<name name="{=vampire_counts_female_216}Ilg" />
+			<name name="{=vampire_counts_female_217}Ilsa" />
+			<name name="{=vampire_counts_female_218}Ilse" />
+			<name name="{=vampire_counts_female_219}Inga" />
+			<name name="{=vampire_counts_female_220}Ingrid" />
+			<name name="{=vampire_counts_female_221}Ingrun" />
+			<name name="{=vampire_counts_female_222}Irene" />
+			<name name="{=vampire_counts_female_223}Irina" />
+			<name name="{=vampire_counts_female_224}Irmegard" />
+			<name name="{=vampire_counts_female_225}Irmel" />
+			<name name="{=vampire_counts_female_226}Irmeltrud" />
+			<name name="{=vampire_counts_female_227}Irmine" />
+			<name name="{=vampire_counts_female_228}Irmusch" />
+			<name name="{=vampire_counts_female_229}Isabella" />
+			<name name="{=vampire_counts_female_230}Isadora" />
+			<name name="{=vampire_counts_female_231}Isentrud" />
+			<name name="{=vampire_counts_female_232}Isolde" />
+			<name name="{=vampire_counts_female_233}Janna" />
+			<name name="{=vampire_counts_female_234}Jarla" />
+			<name name="{=vampire_counts_female_235}Jocelin" />
+			<name name="{=vampire_counts_female_236}Johanna" />
+			<name name="{=vampire_counts_female_237}Josie" />
+			<name name="{=vampire_counts_female_238}Juliana" />
+			<name name="{=vampire_counts_female_239}Julianne" />
+			<name name="{=vampire_counts_female_240}Jutte" />
+			<name name="{=vampire_counts_female_241}Karelia" />
+			<name name="{=vampire_counts_female_242}Karina" />
+			<name name="{=vampire_counts_female_243}Karmilla" />
+			<name name="{=vampire_counts_female_244}Karoline" />
+			<name name="{=vampire_counts_female_245}Kasarea" />
+			<name name="{=vampire_counts_female_246}Katharina" />
+			<name name="{=vampire_counts_female_247}Katharine" />
+			<name name="{=vampire_counts_female_248}Katherina" />
+			<name name="{=vampire_counts_female_249}Katherine" />
+			<name name="{=vampire_counts_female_250}Katheryn" />
+			<name name="{=vampire_counts_female_251}Katia" />
+			<name name="{=vampire_counts_female_252}Katrina" />
+			<name name="{=vampire_counts_female_253}Katusch" />
+			<name name="{=vampire_counts_female_254}Keterlind" />
+			<name name="{=vampire_counts_female_255}Keterlyn" />
+			<name name="{=vampire_counts_female_256}Kethe" />
+			<name name="{=vampire_counts_female_257}Kirstan" />
+			<name name="{=vampire_counts_female_258}Kirsten" />
+			<name name="{=vampire_counts_female_259}Kirstin" />
+			<name name="{=vampire_counts_female_260}Kirstyn" />
+			<name name="{=vampire_counts_female_261}Kitty" />
+			<name name="{=vampire_counts_female_262}Klara" />
+			<name name="{=vampire_counts_female_263}Klare" />
+			<name name="{=vampire_counts_female_264}Konusch" />
+			<name name="{=vampire_counts_female_265}Kristena" />
+			<name name="{=vampire_counts_female_266}Kristyn" />
+			<name name="{=vampire_counts_female_267}Kunegunde" />
+			<name name="{=vampire_counts_female_268}Kunne" />
+			<name name="{=vampire_counts_female_269}Lavinia" />
+			<name name="{=vampire_counts_female_270}Leanora" />
+			<name name="{=vampire_counts_female_271}Lena" />
+			<name name="{=vampire_counts_female_272}Leni" />
+			<name name="{=vampire_counts_female_273}Lenne" />
+			<name name="{=vampire_counts_female_274}Lenora" />
+			<name name="{=vampire_counts_female_275}Lenore" />
+			<name name="{=vampire_counts_female_276}Leonore" />
+			<name name="{=vampire_counts_female_277}Leticia" />
+			<name name="{=vampire_counts_female_278}Letty" />
+			<name name="{=vampire_counts_female_279}Libeste" />
+			<name name="{=vampire_counts_female_280}Libusch" />
+			<name name="{=vampire_counts_female_281}Liphilt" />
+			<name name="{=vampire_counts_female_282}Lisabeth" />
+			<name name="{=vampire_counts_female_283}Ludmilla" />
+			<name name="{=vampire_counts_female_284}Luise" />
+			<name name="{=vampire_counts_female_285}Lusche" />
+			<name name="{=vampire_counts_female_286}Mabel" />
+			<name name="{=vampire_counts_female_287}Madge" />
+			<name name="{=vampire_counts_female_288}Magdalena" />
+			<name name="{=vampire_counts_female_289}Magdalene" />
+			<name name="{=vampire_counts_female_290}Magdalyn" />
+			<name name="{=vampire_counts_female_291}Maggie" />
+			<name name="{=vampire_counts_female_292}Maghilda" />
+			<name name="{=vampire_counts_female_293}Maglind" />
+			<name name="{=vampire_counts_female_294}Maglyn" />
+			<name name="{=vampire_counts_female_295}Magreta" />
+			<name name="{=vampire_counts_female_296}Magunda" />
+			<name name="{=vampire_counts_female_297}Maida" />
+			<name name="{=vampire_counts_female_298}Maneth" />
+			<name name="{=vampire_counts_female_299}Manith" />
+			<name name="{=vampire_counts_female_300}Margarethe" />
+			<name name="{=vampire_counts_female_301}Margarethe" />
+			<name name="{=vampire_counts_female_302}Margaritha" />
+			<name name="{=vampire_counts_female_303}Margreta" />
+			<name name="{=vampire_counts_female_304}Marguerite" />
+			<name name="{=vampire_counts_female_305}Marianne" />
+			<name name="{=vampire_counts_female_306}Marien" />
+			<name name="{=vampire_counts_female_307}Marietta" />
+			<name name="{=vampire_counts_female_308}Marlene" />
+			<name name="{=vampire_counts_female_309}Marline" />
+			<name name="{=vampire_counts_female_310}Marlyn" />
+			<name name="{=vampire_counts_female_311}May" />
+			<name name="{=vampire_counts_female_312}Mechthild" />
+			<name name="{=vampire_counts_female_313}Meg" />
+			<name name="{=vampire_counts_female_314}Melicent" />
+			<name name="{=vampire_counts_female_315}Merlin" />
+			<name name="{=vampire_counts_female_316}Mina" />
+			<name name="{=vampire_counts_female_317}Miranda" />
+			<name name="{=vampire_counts_female_318}Moll" />
+			<name name="{=vampire_counts_female_319}Mute" />
+			<name name="{=vampire_counts_female_320}Natasha" />
+			<name name="{=vampire_counts_female_321}Natassia" />
+			<name name="{=vampire_counts_female_322}Nathilda" />
+			<name name="{=vampire_counts_female_323}Neleke" />
+			<name name="{=vampire_counts_female_324}Nellie" />
+			<name name="{=vampire_counts_female_325}Nethe" />
+			<name name="{=vampire_counts_female_326}Nora" />
+			<name name="{=vampire_counts_female_327}Nyze" />
+			<name name="{=vampire_counts_female_328}Olga" />
+			<name name="{=vampire_counts_female_329}Ophelia" />
+			<name name="{=vampire_counts_female_330}Osanna" />
+			<name name="{=vampire_counts_female_331}Ostelle" />
+			<name name="{=vampire_counts_female_332}Osterhildis" />
+			<name name="{=vampire_counts_female_333}Ostia" />
+			<name name="{=vampire_counts_female_334}Otilge" />
+			<name name="{=vampire_counts_female_335}Ottagunda" />
+			<name name="{=vampire_counts_female_336}Ottaline" />
+			<name name="{=vampire_counts_female_337}Ottilda" />
+			<name name="{=vampire_counts_female_338}Ottillia" />
+			<name name="{=vampire_counts_female_339}Phie" />
+			<name name="{=vampire_counts_female_340}Philomelia" />
+			<name name="{=vampire_counts_female_341}Regina" />
+			<name name="{=vampire_counts_female_342}Regine" />
+			<name name="{=vampire_counts_female_343}Reikhilda" />
+			<name name="{=vampire_counts_female_344}Renata" />
+			<name name="{=vampire_counts_female_345}Renate" />
+			<name name="{=vampire_counts_female_346}Rosabel" />
+			<name name="{=vampire_counts_female_347}Rosabella" />
+			<name name="{=vampire_counts_female_348}Rosale" />
+			<name name="{=vampire_counts_female_349}Rosalia" />
+			<name name="{=vampire_counts_female_350}Rosalinde" />
+			<name name="{=vampire_counts_female_351}Rosamunde" />
+			<name name="{=vampire_counts_female_352}Rosanne" />
+			<name name="{=vampire_counts_female_353}Rozhilda" />
+			<name name="{=vampire_counts_female_354}Salina" />
+			<name name="{=vampire_counts_female_355}Salmei" />
+			<name name="{=vampire_counts_female_356}Salomea" />
+			<name name="{=vampire_counts_female_357}Saltza" />
+			<name name="{=vampire_counts_female_358}Sanne" />
+			<name name="{=vampire_counts_female_359}Selena" />
+			<name name="{=vampire_counts_female_360}Selene" />
+			<name name="{=vampire_counts_female_361}Sigismunda" />
+			<name name="{=vampire_counts_female_362}Sigmara" />
+			<name name="{=vampire_counts_female_363}Sigmare" />
+			<name name="{=vampire_counts_female_364}Sigmaris" />
+			<name name="{=vampire_counts_female_365}Sigrud" />
+			<name name="{=vampire_counts_female_366}Silma" />
+			<name name="{=vampire_counts_female_367}Szina" />
+			<name name="{=vampire_counts_female_368}Szine" />
+			<name name="{=vampire_counts_female_369}Talima" />
+			<name name="{=vampire_counts_female_370}Theda" />
+			<name name="{=vampire_counts_female_371}Theodora" />
+			<name name="{=vampire_counts_female_372}Therese" />
+			<name name="{=vampire_counts_female_373}Thilde" />
+			<name name="{=vampire_counts_female_374}Thylda" />
+			<name name="{=vampire_counts_female_375}Tilde" />
+			<name name="{=vampire_counts_female_376}Tilea" />
+			<name name="{=vampire_counts_female_377}Ulla" />
+			<name name="{=vampire_counts_female_378}Ulrica" />
+			<name name="{=vampire_counts_female_379}Ulrike" />
+			<name name="{=vampire_counts_female_380}Ursula" />
+			<name name="{=vampire_counts_female_381}Uschi" />
+			<name name="{=vampire_counts_female_382}Ute" />
+			<name name="{=vampire_counts_female_383}Valeria" />
+			<name name="{=vampire_counts_female_384}Verena" />
+			<name name="{=vampire_counts_female_385}Veronica" />
+			<name name="{=vampire_counts_female_386}Wanda" />
+			<name name="{=vampire_counts_female_387}Wertha" />
+			<name name="{=vampire_counts_female_388}Wilfrieda" />
+			<name name="{=vampire_counts_female_389}Wilhelmina" />
+			<name name="{=vampire_counts_female_390}Winifred" />
+			<name name="{=vampire_counts_female_391}Wolfhilde" />
+			<name name="{=vampire_counts_female_392}Zemelda" />
+			<name name="{=vampire_counts_female_393}Zena" />
+		</female_names>
+		<clan_names>
+			<name name="{=vampire_counts_generic_clan_name}von {ORIGIN_SETTLEMENT}" />
+		</clan_names>
+		<cultural_feats>
+			<feat id="khuzait_cheaper_recruits_mounted" />
+			<feat id="khuzait_increased_animal_production" />
+			<feat id="khuzait_decreased_town_tax" />
+		</cultural_feats>
+		<possible_clan_banner_icon_ids>
+			<icon id="121" />
+			<icon id="122" />
+			<icon id="123" />
+			<icon id="124" />
+			<icon id="125" />
+			<icon id="126" />
+			<icon id="127" />
+			<icon id="128" />
+			<icon id="129" />
+			<icon id="130" />
+			<icon id="311" />
+			<icon id="312" />
+			<icon id="313" />
+			<icon id="314" />
+		</possible_clan_banner_icon_ids>
+		  <notable_and_wanderer_templates>
+			<template name="NPCCharacter.tor_wanderer_vampire_0" />
+			<template name="NPCCharacter.tor_wanderer_vampire_1" />
+			<template name="NPCCharacter.tor_wanderer_vampire_2" />
+			<template name="NPCCharacter.tor_notable_blooddragons_0" />
+			<template name="NPCCharacter.tor_notable_blooddragons_0b" />
+			<template name="NPCCharacter.tor_notable_blooddragons_1" />
+			<template name="NPCCharacter.tor_notable_blooddragons_1b" />
+			<template name="NPCCharacter.tor_notable_blooddragons_2" />
+			<template name="NPCCharacter.tor_notable_blooddragons_2b" />
+			<template name="NPCCharacter.tor_notable_blooddragons_3" />
+			<template name="NPCCharacter.tor_notable_blooddragons_3b" />
+			<template name="NPCCharacter.tor_notable_blooddragons_4" />
+			<template name="NPCCharacter.tor_notable_blooddragons_4b" />
+			<template name="NPCCharacter.tor_notable_blooddragons_5" />
+			<template name="NPCCharacter.tor_notable_blooddragons_6" />
+			<template name="NPCCharacter.tor_notable_blooddragons_7" />
+			<template name="NPCCharacter.tor_notable_blooddragons_8" />
+			<template name="NPCCharacter.tor_notable_blooddragons_9" />
+			<template name="NPCCharacter.tor_notable_blooddragons_10" />
+			<template name="NPCCharacter.tor_notable_blooddragons_11" />
+			<template name="NPCCharacter.tor_notable_blooddragons_12" />
+			<template name="NPCCharacter.tor_notable_blooddragons_13" />
+			<template name="NPCCharacter.tor_notable_blooddragons_21" />
+			<template name="NPCCharacter.tor_notable_blooddragons_22" />
+			<template name="NPCCharacter.tor_notable_blooddragons_gl1" />
+			<template name="NPCCharacter.tor_notable_blooddragons_gl4" />
+			<template name="NPCCharacter.tor_blooddragons_headman_1" />
+			<template name="NPCCharacter.tor_blooddragons_headman_2" />
+			<template name="NPCCharacter.tor_blooddragons_headman_3" />
+		  </notable_and_wanderer_templates>
+		  <lord_templates>
+			<template name="NPCCharacter.tor_empire_deserter_lord_0" />
+			<template name="NPCCharacter.tor_empire_deserter_lord_1" />
+			<template name="NPCCharacter.tor_empire_deserter_lord_2" />
+			<template name="NPCCharacter.tor_empire_deserter_lord_3" />
+		  </lord_templates>
+		  <rebellion_hero_templates>
+			<template name="NPCCharacter.tor_empire_deserter_lord_0" />
+			<template name="NPCCharacter.tor_empire_deserter_lord_1" />
+			<template name="NPCCharacter.tor_empire_deserter_lord_2" />
+			<template name="NPCCharacter.tor_empire_deserter_lord_3" />
+		  </rebellion_hero_templates>
+		<tournament_team_templates_one_participant>
+			<template name="NPCCharacter.tournament_template_vampire_one_participant_set_v1" />
+		</tournament_team_templates_one_participant>
+		<tournament_team_templates_two_participant>
+			<template name="NPCCharacter.tournament_template_vampire_two_participant_set_v1" />
+		</tournament_team_templates_two_participant>
+		<tournament_team_templates_four_participant>
+			<template name="NPCCharacter.tournament_template_vampire_four_participant_set_v1" />
+		</tournament_team_templates_four_participant>
+		<basic_mercenary_troops>
+      		<template name="NPCCharacter.tor_merc_free_company_volunteer" />
+    	</basic_mercenary_troops>
+	</Culture>
+	<Culture id="vlandia"
+            name="{=bretonniafaction}Bretonnia"
+            is_main_culture="true"
+            color="0xff8D291A"
+            color2="0xffF7BF46"
+            elite_basic_troop="NPCCharacter.tor_br_noble"
+            basic_troop="NPCCharacter.tor_br_peasant_levy"
+            melee_militia_troop="NPCCharacter.tor_br_manatarms_militia"
+            ranged_militia_troop="NPCCharacter.tor_br_peasant_archer"
+            melee_elite_militia_troop="NPCCharacter.tor_br_manatarms"
+            ranged_elite_militia_troop="NPCCharacter.tor_br_longbowman"
+            can_have_settlement="true"
+            town_edge_number="16"
+            villager_party_template="PartyTemplate.bretonnia_villager_template"
+            default_party_template="PartyTemplate.bretonnia_lordparty_template"
+            encounter_background_mesh="encounter_vlandia"
+            faction_banner_key="11.14.14.1536.1536.764.764.1.0.0.160.15.15.497.497.764.764.1.0.0"
+            elite_caravan_party_template="PartyTemplate.bretonnia_elite_caravan_template"
+            caravan_party_template="PartyTemplate.bretonnia_caravan_template"
+            militia_party_template="PartyTemplate.bretonnia_militia_template"
+            rebels_party_template="PartyTemplate.bretonnia_rebelparty_template"
+            vassal_reward_party_template="PartyTemplate.bretonnia_lordparty_template"
+            default_face_key="000fa92e90004202aced5d976886573d5d679585a376fdd605877a7764b8987c00000000000007520000037f0000000f00000037049140010000000000000000"
+            text="{=!}Culture description. Not sure where you see this. If you see this pls report with exact location!"
+            tournament_master="NPCCharacter.tournament_master_vlandia"
+            villager="NPCCharacter.tor_br_villager"
+            caravan_master="NPCCharacter.tor_br_caravan_captain"
+            armed_trader="NPCCharacter.tor_br_caravan_ranged"
+            caravan_guard="NPCCharacter.tor_br_caravan_guard"
+            veteran_caravan_guard="NPCCharacter.tor_br_caravan_elite_ranged"
+            prison_guard="NPCCharacter.tor_br_manatarms_halberd"
+            guard="NPCCharacter.tor_br_manatarms_halberd"
+            blacksmith="NPCCharacter.blacksmith_vlandia"
+            weaponsmith="NPCCharacter.weaponsmith_vlandia"
+            townswoman="NPCCharacter.townswoman_vlandia"
+            townswoman_infant="NPCCharacter.townswoman_infant_vlandia"
+            townswoman_child="NPCCharacter.townswoman_child_vlandia"
+            townswoman_teenager="NPCCharacter.townswoman_teenager_vlandia"
+            townsman="NPCCharacter.townsman_vlandia"
+            townsman_infant="NPCCharacter.townsman_infant_vlandia"
+            townsman_child="NPCCharacter.townsman_child_vlandia"
+            townsman_teenager="NPCCharacter.townsman_teenager_vlandia"
+            village_woman="NPCCharacter.village_woman_vlandia"
+            villager_male_child="NPCCharacter.villager_child_vlandia"
+            villager_male_teenager="NPCCharacter.villager_teenager_vlandia"
+            villager_female_child="NPCCharacter.village_woman_child_vlandia"
+            villager_female_teenager="NPCCharacter.village_woman_teenager_vlandia"
+            ransom_broker="NPCCharacter.ransom_broker_vlandia"
+            gangleader_bodyguard="NPCCharacter.gangleader_bodyguard_vlandia"
+            merchant_notary="NPCCharacter.merchant_notary_vlandia"
+            artisan_notary="NPCCharacter.artisan_notary_vlandia"
+            preacher_notary="NPCCharacter.preacher_notary_vlandia"
+            rural_notable_notary="NPCCharacter.rural_notable_notary_vlandia"
+            shop_worker="NPCCharacter.shop_worker_vlandia"
+            tavernkeeper="NPCCharacter.tavernkeeper_vlandia"
+            taverngamehost="NPCCharacter.taverngamehost_vlandia"
+            musician="NPCCharacter.musician_vlandia"
+            tavern_wench="NPCCharacter.tavern_wench_vlandia"
+            armorer="NPCCharacter.armorer_vlandia"
+            horseMerchant="NPCCharacter.horseMerchant_vlandia"
+            barber="NPCCharacter.barber_vlandia"
+            merchant="NPCCharacter.merchant_vlandia"
+            beggar="NPCCharacter.beggar_vlandia"
+            female_beggar="NPCCharacter.female_beggar_vlandia"
+            female_dancer="NPCCharacter.female_dancer_vlandia"
+            gear_practice_dummy="NPCCharacter.gear_practice_dummy_vlandia"
+            weapon_practice_stage_1="NPCCharacter.weapon_practice_stage_1_vlandia"
+            weapon_practice_stage_2="NPCCharacter.weapon_practice_stage_2_vlandia"
+            weapon_practice_stage_3="NPCCharacter.weapon_practice_stage_3_vlandia"
+            gear_dummy="NPCCharacter.gear_dummy_vlandia"
+			default_battle_equipment_roster="EquipmentRoster.emp_civ_template_default"
+           	default_civilian_equipment_roster="EquipmentRoster.emp_civ_template_default"
+           	duel_preset_equipment_roster="EquipmentRoster.emp_duel_preset_template"
+            board_game_type="MuTorere">
+      <vassal_reward_items>
+        <item id="Item.sentinel_2hsword" />
+      </vassal_reward_items>
+      <banner_bearer_replacement_weapons>
+        <item id="Item.vlandia_sword_1_t2" />
+        <item id="Item.vlandia_sword_2_t3" />
+        <item id="Item.vlandia_sword_3_t4" />
+        <item id="Item.vlandia_sword_5_t5" />
+      </banner_bearer_replacement_weapons>
+      <default_policies>
+        <policy id="policy_feudal_inheritance" />
+        <policy id="policy_castle_charters" />
+      </default_policies>
+      <male_names>
+        <name name="{=bretonnia_male_name_1}Jean" />
+		<name name="{=bretonnia_male_name_2}Michel" />
+		<name name="{=bretonnia_male_name_3}Philippe" />
+		<name name="{=bretonnia_male_name_4}Pierre" />
+		<name name="{=bretonnia_male_name_5}Alain" />
+		<name name="{=bretonnia_male_name_6}Bernard" />
+		<name name="{=bretonnia_male_name_7}Jacques" />
+		<name name="{=bretonnia_male_name_8}Thierry" />
+		<name name="{=bretonnia_male_name_9}Laurent" />
+		<name name="{=bretonnia_male_name_10}Rene" />
+		<name name="{=bretonnia_male_name_11}Olivier" />
+		<name name="{=bretonnia_male_name_12}Robert" />
+		<name name="{=bretonnia_male_name_13}Guy" />
+		<name name="{=bretonnia_male_name_14}Yves" />
+		<name name="{=bretonnia_male_name_15}Georges" />
+		<name name="{=bretonnia_male_name_16}Julien" />
+		<name name="{=bretonnia_male_name_17}Henri" />
+		<name name="{=bretonnia_male_name_18}Vincent" />
+		<name name="{=bretonnia_male_name_19}Louis" />
+		<name name="{=bretonnia_male_name_20}Frederic" />
+		<name name="{=bretonnia_male_name_21}Sebastien" />
+		<name name="{=bretonnia_male_name_22}Gilles" />
+		<name name="{=bretonnia_male_name_23}Guillaume" />
+		<name name="{=bretonnia_male_name_24}Gerard" />
+		<name name="{=bretonnia_male_name_25}Charles" />
+		<name name="{=bretonnia_male_name_26}Arnaud" />
+		<name name="{=bretonnia_male_name_27}Gilbert" />
+		<name name="{=bretonnia_male_name_28}Cyril" />
+		<name name="{=bretonnia_male_name_29}Bertrand" />
+		<name name="{=bretonnia_male_name_30}Cedric" />
+		<name name="{=bretonnia_male_name_31}Luc" />
+      </male_names>
+      <female_names>
+        <name name="{=bretonnia_female_name_1}Marie" />
+		<name name="{=bretonnia_female_name_2}Nathalie" />
+		<name name="{=bretonnia_female_name_3}Isabelle" />
+		<name name="{=bretonnia_female_name_4}Catherine" />
+		<name name="{=bretonnia_female_name_5}Sylvie" />
+		<name name="{=bretonnia_female_name_6}Monique" />
+		<name name="{=bretonnia_female_name_7}Christine" />
+		<name name="{=bretonnia_female_name_8}Anne" />
+		<name name="{=bretonnia_female_name_9}Sophie" />
+		<name name="{=bretonnia_female_name_10}Jacqueline" />
+		<name name="{=bretonnia_female_name_11}Brigitte" />
+		<name name="{=bretonnia_female_name_12}Stephanie" />
+		<name name="{=bretonnia_female_name_13}Celine" />
+      </female_names>
+      <clan_names>
+        <name name="{=!}de {ORIGIN_SETTLEMENT}" />
+      </clan_names>
+      <cultural_feats>
+        <feat id="vlandian_renown_mercenary_income" />
+        <feat id="vlandian_villages_production_bonus" />
+        <feat id="vlandian_increased_army_influence_cost" />
+      </cultural_feats>
+      <possible_clan_banner_icon_ids>
+        <icon id="140" />
+        <icon id="141" />
+        <icon id="142" />
+        <icon id="143" />
+        <icon id="144" />
+        <icon id="145" />
+        <icon id="146" />
+        <icon id="159" />
+        <icon id="205" />
+        <icon id="206" />
+        <icon id="207" />
+        <icon id="417" />
+        <icon id="418" />
+        <icon id="419" />
+        <icon id="300" />
+        <icon id="301" />
+        <icon id="302" />
+        <icon id="303" />
+        <icon id="315" />
+      </possible_clan_banner_icon_ids>
+      <notable_and_wanderer_templates>
+        <template name="NPCCharacter.tor_wanderer_bretonnia_0" />
+		<template name="NPCCharacter.tor_wanderer_bretonnia_1" />
+        <template name="NPCCharacter.spc_notable_bretonnia_merch1" />
+        <template name="NPCCharacter.spc_notable_bretonnia_merch2" />
+        <template name="NPCCharacter.spc_notable_bretonnia_merch3" />
+        <template name="NPCCharacter.spc_notable_bretonnia_merch4" />
+        <template name="NPCCharacter.spc_notable_bretonnia_merch5" />
+        <template name="NPCCharacter.spc_notable_bretonnia_1" />
+        <template name="NPCCharacter.spc_notable_bretonnia_1b" />
+        <template name="NPCCharacter.spc_notable_bretonnia_2" />
+        <template name="NPCCharacter.spc_notable_bretonnia_3" />
+        <template name="NPCCharacter.spc_bretonnia_gangleader_1" />
+        <template name="NPCCharacter.spc_bretonnia_gangleader_2" />
+        <template name="NPCCharacter.spc_bretonnia_gangleader_3" />
+        <template name="NPCCharacter.spc_notable_bretonnia_artisan_1" />
+        <template name="NPCCharacter.spc_notable_bretonnia_artisan_2" />
+        <template name="NPCCharacter.spc_notable_bretonnia_rural_1" />
+        <template name="NPCCharacter.spc_notable_bretonnia_rural_2" />
+        <template name="NPCCharacter.spc_bretonnia_headman_1" />
+        <template name="NPCCharacter.spc_bretonnia_headman_2" />
+        <template name="NPCCharacter.spc_bretonnia_headman_3" />
+      </notable_and_wanderer_templates>
+      <lord_templates>
+        <template name="NPCCharacter.tor_br_rogue_lord_0" />
+      </lord_templates>
+      <rebellion_hero_templates>
+        <template name="NPCCharacter.tor_br_rogue_lord_0" />
+      </rebellion_hero_templates>
+      <tournament_team_templates_one_participant>
+        <template name="NPCCharacter.tournament_template_br_one_participant_set_v1" />
+      </tournament_team_templates_one_participant>
+      <tournament_team_templates_two_participant>
+        <template name="NPCCharacter.tournament_template_br_two_participant_set_v1" />
+      </tournament_team_templates_two_participant>
+      <tournament_team_templates_four_participant>
+        <template name="NPCCharacter.tournament_template_br_four_participant_set_v1" />
+      </tournament_team_templates_four_participant>
+      <basic_mercenary_troops>
+        <template name="NPCCharacter.tor_br_caravan_guard" />
+        <template name="NPCCharacter.tor_br_caravan_ranged" />
+      </basic_mercenary_troops>
+    </Culture>
+	<Culture id="mousillon"
+            name="{=mousillonfaction}Mousillon"
+            is_main_culture="true"
+            color="0xff8D291A"
+            color2="0xffF7BF46"
+            elite_basic_troop="NPCCharacter.tor_m_illfated_squire"
+            basic_troop="NPCCharacter.tor_m_peasant_levy"
+            melee_militia_troop="NPCCharacter.tor_m_manatarms_militia"
+            ranged_militia_troop="NPCCharacter.tor_m_peasant_archer"
+            melee_elite_militia_troop="NPCCharacter.tor_m_manatarms"
+            ranged_elite_militia_troop="NPCCharacter.tor_m_longbowman"
+            can_have_settlement="true"
+            town_edge_number="16"
+            villager_party_template="PartyTemplate.mousillon_villager_template"
+            default_party_template="PartyTemplate.mousillon_lordparty_template"
+            encounter_background_mesh="encounter_vlandia"
+            faction_banner_key="11.14.14.1536.1536.764.764.1.0.0.160.15.15.497.497.764.764.1.0.0"
+            elite_caravan_party_template="PartyTemplate.mousillon_elite_caravan_template"
+            caravan_party_template="PartyTemplate.mousillon_caravan_template"
+            militia_party_template="PartyTemplate.mousillon_militia_template"
+            rebels_party_template="PartyTemplate.mousillon_rebelparty_template"
+            vassal_reward_party_template="PartyTemplate.mousillon_lordparty_template"
+            default_face_key="000fa92e90004202aced5d976886573d5d679585a376fdd605877a7764b8987c00000000000007520000037f0000000f00000037049140010000000000000000"
+            text="{=!}Culture description. Not sure where you see this. If you see this pls report with exact location!"
+            tournament_master="NPCCharacter.tournament_master_vlandia"
+            villager="NPCCharacter.tor_m_villager"
+            caravan_master="NPCCharacter.tor_m_caravan_captain"
+            armed_trader="NPCCharacter.tor_m_caravan_ranged"
+            caravan_guard="NPCCharacter.tor_m_caravan_guard"
+            veteran_caravan_guard="NPCCharacter.tor_m_caravan_elite_ranged"
+            prison_guard="NPCCharacter.tor_m_manatarms_halberd"
+            guard="NPCCharacter.tor_m_manatarms_halberd"
+            blacksmith="NPCCharacter.blacksmith_vlandia"
+            weaponsmith="NPCCharacter.weaponsmith_vlandia"
+            townswoman="NPCCharacter.townswoman_vlandia"
+            townswoman_infant="NPCCharacter.townswoman_infant_vlandia"
+            townswoman_child="NPCCharacter.townswoman_child_vlandia"
+            townswoman_teenager="NPCCharacter.townswoman_teenager_vlandia"
+            townsman="NPCCharacter.townsman_vlandia"
+            townsman_infant="NPCCharacter.townsman_infant_vlandia"
+            townsman_child="NPCCharacter.townsman_child_vlandia"
+            townsman_teenager="NPCCharacter.townsman_teenager_vlandia"
+            village_woman="NPCCharacter.village_woman_vlandia"
+            villager_male_child="NPCCharacter.villager_child_vlandia"
+            villager_male_teenager="NPCCharacter.villager_teenager_vlandia"
+            villager_female_child="NPCCharacter.village_woman_child_vlandia"
+            villager_female_teenager="NPCCharacter.village_woman_teenager_vlandia"
+            ransom_broker="NPCCharacter.ransom_broker_vlandia"
+            gangleader_bodyguard="NPCCharacter.gangleader_bodyguard_vlandia"
+            merchant_notary="NPCCharacter.merchant_notary_vlandia"
+            artisan_notary="NPCCharacter.artisan_notary_vlandia"
+            preacher_notary="NPCCharacter.preacher_notary_vlandia"
+            rural_notable_notary="NPCCharacter.rural_notable_notary_vlandia"
+            shop_worker="NPCCharacter.shop_worker_vlandia"
+            tavernkeeper="NPCCharacter.tavernkeeper_vlandia"
+            taverngamehost="NPCCharacter.taverngamehost_vlandia"
+            musician="NPCCharacter.musician_vlandia"
+            tavern_wench="NPCCharacter.tavern_wench_vlandia"
+            armorer="NPCCharacter.armorer_vlandia"
+            horseMerchant="NPCCharacter.horseMerchant_vlandia"
+            barber="NPCCharacter.barber_vlandia"
+            merchant="NPCCharacter.merchant_vlandia"
+            beggar="NPCCharacter.beggar_vlandia"
+            female_beggar="NPCCharacter.female_beggar_vlandia"
+            female_dancer="NPCCharacter.female_dancer_vlandia"
+            gear_practice_dummy="NPCCharacter.gear_practice_dummy_vlandia"
+            weapon_practice_stage_1="NPCCharacter.weapon_practice_stage_1_vlandia"
+            weapon_practice_stage_2="NPCCharacter.weapon_practice_stage_2_vlandia"
+            weapon_practice_stage_3="NPCCharacter.weapon_practice_stage_3_vlandia"
+            gear_dummy="NPCCharacter.gear_dummy_vlandia"
+			default_battle_equipment_roster="EquipmentRoster.emp_civ_template_default"
+           	default_civilian_equipment_roster="EquipmentRoster.emp_civ_template_default"
+           	duel_preset_equipment_roster="EquipmentRoster.emp_duel_preset_template"
+            board_game_type="MuTorere">
+      <vassal_reward_items>
+        <item id="Item.sentinel_2hsword" />
+      </vassal_reward_items>
+      <banner_bearer_replacement_weapons>
+        <item id="Item.vlandia_sword_1_t2" />
+        <item id="Item.vlandia_sword_2_t3" />
+        <item id="Item.vlandia_sword_3_t4" />
+        <item id="Item.vlandia_sword_5_t5" />
+      </banner_bearer_replacement_weapons>
+      <default_policies>
+        <policy id="policy_feudal_inheritance" />
+        <policy id="policy_castle_charters" />
+      </default_policies>
+      <male_names>
+        <name name="{=bretonnia_male_name_1}Jean" />
+		<name name="{=bretonnia_male_name_2}Michel" />
+		<name name="{=bretonnia_male_name_3}Philippe" />
+		<name name="{=bretonnia_male_name_4}Pierre" />
+		<name name="{=bretonnia_male_name_5}Alain" />
+		<name name="{=bretonnia_male_name_6}Bernard" />
+		<name name="{=bretonnia_male_name_7}Jacques" />
+		<name name="{=bretonnia_male_name_8}Thierry" />
+		<name name="{=bretonnia_male_name_9}Laurent" />
+		<name name="{=bretonnia_male_name_10}Rene" />
+		<name name="{=bretonnia_male_name_11}Olivier" />
+		<name name="{=bretonnia_male_name_12}Robert" />
+		<name name="{=bretonnia_male_name_13}Guy" />
+		<name name="{=bretonnia_male_name_14}Yves" />
+		<name name="{=bretonnia_male_name_15}Georges" />
+		<name name="{=bretonnia_male_name_16}Julien" />
+		<name name="{=bretonnia_male_name_17}Henri" />
+		<name name="{=bretonnia_male_name_18}Vincent" />
+		<name name="{=bretonnia_male_name_19}Louis" />
+		<name name="{=bretonnia_male_name_20}Frederic" />
+		<name name="{=bretonnia_male_name_21}Sebastien" />
+		<name name="{=bretonnia_male_name_22}Gilles" />
+		<name name="{=bretonnia_male_name_23}Guillaume" />
+		<name name="{=bretonnia_male_name_24}Gerard" />
+		<name name="{=bretonnia_male_name_25}Charles" />
+		<name name="{=bretonnia_male_name_26}Arnaud" />
+		<name name="{=bretonnia_male_name_27}Gilbert" />
+		<name name="{=bretonnia_male_name_28}Cyril" />
+		<name name="{=bretonnia_male_name_29}Bertrand" />
+		<name name="{=bretonnia_male_name_30}Cedric" />
+		<name name="{=bretonnia_male_name_31}Luc" />
+      </male_names>
+      <female_names>
+        <name name="{=bretonnia_female_name_1}Marie" />
+		<name name="{=bretonnia_female_name_2}Nathalie" />
+		<name name="{=bretonnia_female_name_3}Isabelle" />
+		<name name="{=bretonnia_female_name_4}Catherine" />
+		<name name="{=bretonnia_female_name_5}Sylvie" />
+		<name name="{=bretonnia_female_name_6}Monique" />
+		<name name="{=bretonnia_female_name_7}Christine" />
+		<name name="{=bretonnia_female_name_8}Anne" />
+		<name name="{=bretonnia_female_name_9}Sophie" />
+		<name name="{=bretonnia_female_name_10}Jacqueline" />
+		<name name="{=bretonnia_female_name_11}Brigitte" />
+		<name name="{=bretonnia_female_name_12}Stephanie" />
+		<name name="{=bretonnia_female_name_13}Celine" />
+      </female_names>
+      <clan_names>
+        <name name="{=!}de {ORIGIN_SETTLEMENT}" />
+      </clan_names>
+      <cultural_feats>
+        <feat id="vlandian_renown_mercenary_income" />
+        <feat id="vlandian_villages_production_bonus" />
+        <feat id="vlandian_increased_army_influence_cost" />
+      </cultural_feats>
+      <possible_clan_banner_icon_ids>
+        <icon id="140" />
+        <icon id="141" />
+        <icon id="142" />
+        <icon id="143" />
+        <icon id="144" />
+        <icon id="145" />
+        <icon id="146" />
+        <icon id="159" />
+        <icon id="205" />
+        <icon id="206" />
+        <icon id="207" />
+        <icon id="417" />
+        <icon id="418" />
+        <icon id="419" />
+        <icon id="300" />
+        <icon id="301" />
+        <icon id="302" />
+        <icon id="303" />
+        <icon id="315" />
+      </possible_clan_banner_icon_ids>
+      <notable_and_wanderer_templates>
+        <template name="NPCCharacter.tor_wanderer_mousillon_0" />
+        <template name="NPCCharacter.spc_notable_mousillon_merch1" />
+        <template name="NPCCharacter.spc_notable_mousillon_merch2" />
+        <template name="NPCCharacter.spc_notable_mousillon_merch3" />
+        <template name="NPCCharacter.spc_notable_mousillon_merch4" />
+        <template name="NPCCharacter.spc_notable_mousillon_merch5" />
+        <template name="NPCCharacter.spc_notable_mousillon_1" />
+        <template name="NPCCharacter.spc_notable_mousillon_1b" />
+        <template name="NPCCharacter.spc_notable_mousillon_2" />
+        <template name="NPCCharacter.spc_notable_mousillon_3" />
+        <template name="NPCCharacter.spc_mousillon_gangleader_1" />
+        <template name="NPCCharacter.spc_mousillon_gangleader_2" />
+        <template name="NPCCharacter.spc_mousillon_gangleader_3" />
+        <template name="NPCCharacter.spc_notable_mousillon_artisan_1" />
+        <template name="NPCCharacter.spc_notable_mousillon_artisan_2" />
+        <template name="NPCCharacter.spc_notable_mousillon_rural_1" />
+        <template name="NPCCharacter.spc_notable_mousillon_rural_2" />
+        <template name="NPCCharacter.spc_mousillon_headman_1" />
+        <template name="NPCCharacter.spc_mousillon_headman_2" />
+        <template name="NPCCharacter.spc_mousillon_headman_3" />
+      </notable_and_wanderer_templates>
+      <lord_templates>
+        <template name="NPCCharacter.tor_m_rogue_lord_0" />
+      </lord_templates>
+      <rebellion_hero_templates>
+        <template name="NPCCharacter.tor_m_rogue_lord_0" />
+      </rebellion_hero_templates>
+      <tournament_team_templates_one_participant>
+        <template name="NPCCharacter.tor_m_tournament_template_one_participant_v1" />
+      </tournament_team_templates_one_participant>
+      <tournament_team_templates_two_participant>
+        <template name="NPCCharacter.tor_m_tournament_template_two_participant_v1" />
+      </tournament_team_templates_two_participant>
+      <tournament_team_templates_four_participant>
+        <template name="NPCCharacter.tor_m_tournament_template_four_participant_v1" />
+      </tournament_team_templates_four_participant>
+      <basic_mercenary_troops>
+        <template name="NPCCharacter.tor_m_caravan_guard" />
+        <template name="NPCCharacter.tor_m_caravan_ranged" />
+      </basic_mercenary_troops>
+    </Culture>
 	<Culture id="looters"
 			 name="{=!}Outlaws"
 			 elite_basic_troop="NPCCharacter.tor_empire_outlaw_leader"
@@ -2857,7 +4625,7 @@
     	</banner_bearer_replacement_weapons>
 	</Culture>
 	<Culture id="steppe_bandits"
-			 name="{=e6csp4ha}Ungor Warband"
+			 name="{=!}Ungor Warband"
 			 bandit_chief="NPCCharacter.tor_beast_ungor_chief"
 			 bandit_raider="NPCCharacter.tor_beast_ungor_raider"
 			 bandit_bandit="NPCCharacter.tor_beast_ungor"
@@ -2868,6 +4636,25 @@
 			 can_have_settlement="true"
 			 encounter_background_mesh="bandit_encounter_background"
 			 bandit_boss_party_template="PartyTemplate.ungor_boss_party" >
+		<banner_bearer_replacement_weapons>
+			<item id="Item.vlandia_sword_1_t2" />
+			<item id="Item.vlandia_sword_2_t3" />
+			<item id="Item.vlandia_sword_3_t4" />
+			<item id="Item.vlandia_sword_5_t5" />
+    	</banner_bearer_replacement_weapons>
+	</Culture>
+	<Culture id="sea_raiders"
+			 name="{=!}Herrimaults"
+			 bandit_chief="NPCCharacter.tor_br_bandit_leader"
+			 bandit_raider="NPCCharacter.tor_br_bandit_scout"
+			 bandit_bandit="NPCCharacter.tor_br_bandit"
+			 bandit_boss="NPCCharacter.tor_br_bandit_leader"
+			 elite_basic_troop="NPCCharacter.tor_br_bandit_scout"
+			 basic_troop="NPCCharacter.tor_br_bandit"
+			 is_bandit="true"
+			 can_have_settlement="true"
+			 encounter_background_mesh="bretonnia_bandits"
+			 bandit_boss_party_template="PartyTemplate.br_bandit_party" >
 		<banner_bearer_replacement_weapons>
 			<item id="Item.vlandia_sword_1_t2" />
 			<item id="Item.vlandia_sword_2_t3" />
@@ -2895,12 +4682,6 @@
            	 default_civilian_equipment_roster="EquipmentRoster.default_civilian_equipment_roster_neutral" />
 	<Culture id="sturgia"
 			 name="{=!}Dwarves"
-			 elite_basic_troop="NPCCharacter.guard"
-			 basic_troop="NPCCharacter.guard"
-			 default_battle_equipment_roster="EquipmentRoster.default_battle_equipment_roster_neutral"
-           	 default_civilian_equipment_roster="EquipmentRoster.default_civilian_equipment_roster_neutral" />
-	<Culture id="vlandia"
-			 name="{=!}Bretonnia"
 			 elite_basic_troop="NPCCharacter.guard"
 			 basic_troop="NPCCharacter.guard"
 			 default_battle_equipment_roster="EquipmentRoster.default_battle_equipment_roster_neutral"

@@ -1,5 +1,6 @@
 ﻿using System;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Party.PartyComponents;
 using TaleWorlds.CampaignSystem.Settlements;
@@ -56,8 +57,7 @@ namespace TOR_Core.Quests
                 partyTemplate = clan.DefaultPartyTemplate;
             mobileParty.InitializeMobilePartyAroundPosition(partyTemplate, settlement.Position2D, 30, 15, 30);
             mobileParty.ItemRoster.Add(new ItemRosterElement(DefaultItems.Grain, 50));
-            mobileParty.Ai.SetAIState(AIState.PatrollingAroundLocation);
-            mobileParty.SetMovePatrolAroundSettlement(settlement);
+            SetPartyAiAction.GetActionForPatrollingAroundSettlement(mobileParty, settlement);
             mobileParty.Ai.SetDoNotMakeNewDecisions(true);
             mobileParty.IgnoreByOtherPartiesTill(CampaignTime.Never);
           // mobileParty.Party.Visuals.SetMapIconAsDirty();
@@ -81,15 +81,6 @@ namespace TOR_Core.Quests
         public bool CheckTracked(BasicCharacterObject basicCharacter)
         {
             return MobileParty.IsCurrentlyUsedByAQuest;
-        }
-    }
-
-    public class QuestPartyComponentTypeDefiner : SaveableTypeDefiner
-    {
-        public QuestPartyComponentTypeDefiner() : base(703799) { }
-        protected override void DefineClassTypes()
-        {
-            AddClassDefinition(typeof(QuestPartyComponent), 1);
         }
     }
 }

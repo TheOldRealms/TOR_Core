@@ -1,11 +1,15 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -34,6 +38,58 @@ namespace TOR_Core.HarmonyPatches
                     units.Add((Agent)unit);
                 }
                 __result = units.FirstOrDefault();
+            }
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(Agent), "MakeVoice")]
+        public static bool VoiceVariationPatch(Agent __instance, SkinVoiceManager.SkinVoiceType voiceType)
+        {
+            
+            if (__instance == null || !__instance.IsHuman || __instance.Controller != Agent.ControllerType.Player) return true;
+
+            string className = __instance.Monster.SoundAndCollisionInfoClassName;
+            if (className != "human") return true;
+            if (ShouldGetRandomizedVoice(__instance))
+            {
+                int count = SkinVoiceManager.GetVoiceDefinitionCountWithMonsterSoundAndCollisionInfoClassName(className);
+                int[] array = new int[count];
+                SkinVoiceManager.GetVoiceDefinitionListWithMonsterSoundAndCollisionInfoClassName(className, array);
+                __instance.AgentVisuals.SetVoiceDefinitionIndex(GetRandomVoiceIndexForAgent(__instance), 0);
+            }
+            
+            return true;
+        }
+
+        private static bool ShouldGetRandomizedVoice(Agent agent)
+        {
+            if (agent == null || !agent.IsHuman || agent.Character == null || agent.Character.Culture == null || agent.IsFemale) return false;
+            var cultureId = agent.Character.Culture.StringId;
+            if(Game.Current.GameType is Campaign && agent.IsHero)
+            {
+                cultureId = agent.GetHero().Culture.StringId;
+            }
+            return cultureId == "vlandia" || cultureId == "empire" || agent.IsVampire();
+        }
+
+        private static int GetRandomVoiceIndexForAgent(Agent agent)
+        {
+            if(agent.IsVampire()) return MBRandom.RandomInt(TORConstants.VAMPIRE_VOICE_INDEX_START, TORConstants.VAMPIRE_VOICE_INDEX_START + (TORConstants.VAMPIRE_VOICES_COUNT));
+
+            var cultureId = agent.Character.Culture.StringId;
+            if (Game.Current.GameType is Campaign)
+            {
+                cultureId = agent.GetHero().Culture.StringId;
+            }
+
+            switch (cultureId)
+            {
+                case "vlandia":
+                    return MBRandom.RandomInt(TORConstants.BRETONNIA_VOICE_INDEX_START, TORConstants.BRETONNIA_VOICE_INDEX_START + (TORConstants.BRETONNIA_VOICES_COUNT));
+                case "empire":
+                    return MBRandom.RandomInt(TORConstants.EMPIRE_VOICE_INDEX_START, TORConstants.EMPIRE_VOICE_INDEX_START + (TORConstants.EMPIRE_VOICES_COUNT));
+                default:
+                    return 1;
             }
         }
     }

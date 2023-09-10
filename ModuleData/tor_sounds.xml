@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="module_sound">
+  <module_sounds>
+    <!--
+  sound_categories are:
+	mission_ambient_bed
+	mission_ambient_3d_big
+	mission_ambient_3d_medium
+	mission_ambient_3d_small
+	mission_material_impact
+	mission_combat_trivial
+	mission_combat
+	mission_foley
+	mission_voice_shout
+	mission_voice
+	mission_voice_trivial
+	mission_siege_loud
+	mission_footstep
+	mission_footstep_run
+	mission_horse_gallop
+	mission_horse_walk
+	ui
+	alert
+	campaign_node
+	campaign_bed
+	
+	- Sounds that dont have valid categories wont be played!
+	
+	example:
+		int soundIndex = SoundEvent.GetEventIdFromString("example/voice/charge");//to avoid string operations in runtime soundIndex can be cached.
+		if (playOneshot)
+		{
+			MakeSound(soundIndex, MainAgent.Position, false, true, -1, -1);//plays oneshot sound at position with given parameters.
+		}
+		else
+		{
+			SoundEvent eventRef = SoundEvent.CreateEvent(soundIndex, Scene);//get a reference to sound and update parameters later.
+			eventRef.SetPosition(MainAgent.Position);
+			eventRef.Play();
+		}
+  -->
+
+    <!--music-->
+    <!--<module_sound name="west_bretonnia" sound_category="music" path="../../TOR_Armory/ModuleSounds/west_bretonnia.ogg" />-->
+    
+    <!--sound effects-->
+    <module_sound name="fireImpact1" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/fire_Impact_1.wav" />
+    <module_sound name="fireImpact2" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/fire_Impact_2.wav" />
+    <module_sound name="fireImpact3" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/fire_Impact_3.wav" />
+    <module_sound name="fireImpact4" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/fire_Impact_4.wav" />
+    <module_sound name="lightningImpact1" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/lightning_Impact_1.wav" />
+    <module_sound name="lightningImpact2" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/lightning_Impact_2.wav" />
+    <module_sound name="lightningImpact3" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/lightning_Impact_3.wav" />
+    <module_sound name="lightningImpact4" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/lightning_Impact_4.wav" />
+    <module_sound name="holyImpact1" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/holy_Impact_1.wav" />
+    <module_sound name="holyImpact2" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/holy_Impact_2.wav" />
+    <module_sound name="holyImpact3" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/holy_Impact_1.wav" />
+    <module_sound name="holyImpact4" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/holy_Impact_2.wav" />
+    <module_sound name="musket_fire_sound_1" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/musket_fire1.wav" />
+    <module_sound name="musket_fire_sound_2" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/musket_fire2.wav" />
+    <module_sound name="musket_fire_sound_3" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/musket_fire3.wav" />
+    <module_sound name="musket_fire_sound_4" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/musket_fire4.wav" />
+    <module_sound name="musket_fire_sound_5" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/musket_fire5.wav" />
+    <module_sound name="grenadelauncher_muzzle_1" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/grenadelauncher_muzzle1.ogg" />
+    <module_sound name="grenadelauncher_muzzle_2" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/grenadelauncher_muzzle2.ogg" />
+    <module_sound name="grenadelauncher_muzzle_3" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/grenadelauncher_muzzle3.ogg" />
+    <module_sound name="grenadelauncher_muzzle_4" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/grenadelauncher_muzzle4.ogg" />
+    <module_sound name="grenadelauncher_muzzle_5" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/grenadelauncher_muzzle5.ogg" />
+    <module_sound name="mortar_shot_1" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/Artillery/Mortar_Muzzlefire_1.ogg" />
+    <module_sound name="mortar_shot_2" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/Artillery/Mortar_Muzzlefire_2.ogg" />
+    <module_sound name="mortar_traveling" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/Artillery/Projectile_traveling.ogg" />
+    <module_sound name="mortar_explosion_1" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/Artillery/Mortar_Explosion_1.ogg" />
+    <module_sound name="mortar_explosion_2" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/Artillery/Mortar_Explosion_2.ogg" />
+    <module_sound name="mortar_explosion_3" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/Artillery/Projectile_traveling.ogg" />
+    <module_sound name="fireball" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/fireball.wav" />
+    <module_sound name="gas_cloud_release" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/gas_cloud_release.ogg" />
+    <module_sound name="dust_storm" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/dust_storm.ogg" />
+    <module_sound name="lightning_strike" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/lightningstrike.ogg" />
+    <module_sound name="dart" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/dart_sound.ogg" />
+    <module_sound name="fireball_explosion" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/fireball_explosion.wav" />
+    <module_sound name="dart_explosion" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/dart_explosion.ogg" />
+    <module_sound name="windofdeath_whispers" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/windsofdeath_whispers.ogg" />
+    <module_sound name="passing_fire" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/passing_fire.ogg" />
+    <module_sound name="hailstorm" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/hailstorm.ogg" />
+    <module_sound name="sear" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/sear.ogg" />
+    <module_sound name="flamestorm" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/flamestorm.ogg" />
+    <module_sound name="fire_cast" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/fire_cast.ogg" />
+    <module_sound name="electric_buzz" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/electric_buzz.ogg" />
+    <module_sound name="rocks_grinding" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/rocks_grinding.ogg" />
+    <module_sound name="scream" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/scream.ogg" />
+    <module_sound name="empire_heal" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/empire_heal.ogg" />
+    <module_sound name="bats_loop" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/bats_loop.ogg" />
+    <module_sound name="shards_explosion" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/shards_explosion.ogg" />
+    <module_sound name="evilbolt_cast" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/evilbolt_cast.ogg" />
+    <module_sound name="blood_explosion" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/blood_explosion.ogg" />
+    <module_sound name="shards_loop" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/shards_loop.ogg" />
+    <module_sound name="radiance_pillar" sound_category="mission_siege_loud" path="../../TOR_Armory/ModuleSounds/radiance_pillar.ogg" />
+    <module_sound name="dwarf_hand_grenade_tick" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/dwarf_hand_grenade_tick.wav" />
+    <module_sound name="scribble1" is_2d="true" sound_category="ui" path="../../TOR_Armory/ModuleSounds/scribble1.ogg" />
+    <module_sound name="scribble2" is_2d="true" sound_category="ui" path="../../TOR_Armory/ModuleSounds/scribble2.ogg" />
+    <module_sound name="scribble3" is_2d="true" sound_category="ui" path="../../TOR_Armory/ModuleSounds/scribble3.ogg" />
+
+  </module_sounds>
+</base>

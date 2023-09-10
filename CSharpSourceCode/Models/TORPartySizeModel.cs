@@ -2,6 +2,8 @@
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Localization;
+using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
 {
@@ -36,7 +38,24 @@ namespace TOR_Core.Models
                     num.Add(100, new TextObject("Vampire lord"));
                 }
             }
+
+            if (party != null && party.LeaderHero != null && party.LeaderHero == Hero.MainHero)
+            {
+                AddCareerPassivesForPartySize(Hero.MainHero, ref num);
+            }
+            
             return num;
+        }
+
+
+
+        private void AddCareerPassivesForPartySize(Hero playerHero, ref ExplainedNumber number)
+        {
+            if(playerHero==null)return;
+            if (playerHero.HasAnyCareer())
+            {
+                CareerHelper.ApplyBasicCareerPassives(playerHero, ref number, PassiveEffectType.PartySize);
+            }
         }
     }
 }

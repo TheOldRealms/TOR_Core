@@ -16,7 +16,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             NumberToSummon = number;
         }
 
-        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents)
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
             var data = GetAgentBuildData(triggeredByAgent);
             bool leftSide = false;
@@ -34,7 +34,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             BasicCharacterObject troopCharacter = MBObjectManager.Instance.GetObject<BasicCharacterObject>(SummonedUnitID);
             
             IAgentOriginBase troopOrigin = new SummonedAgentOrigin(caster, troopCharacter);
-            var formation = caster.Team.Formations.FirstOrDefault(f => f.PrimaryClass == FormationClass.Infantry);
+            var formation = caster.Team.GetFormation(FormationClass.Infantry);
             if (formation == null)
             {
                 formation = caster.Formation;
@@ -53,7 +53,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
 
         private Agent SpawnAgent(AgentBuildData buildData, Vec3 position)
         {
-            Agent troop = Mission.Current.SpawnAgent(buildData, false, 1);
+            Agent troop = Mission.Current.SpawnAgent(buildData, false);
             troop.TeleportToPosition(position);
             troop.FadeIn();
             troop.SetWatchState(Agent.WatchState.Alarmed);

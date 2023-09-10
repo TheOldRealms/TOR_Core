@@ -2,14 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Ink.Parsed;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 
 namespace TOR_Core.Extensions.ExtendedInfoSystem
 {
@@ -18,11 +20,13 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         [SaveableField(0)] public List<string> AcquiredAbilities = new List<string>();
         [SaveableField(1)] public List<string> AcquiredAttributes = new List<string>();
         [SaveableField(2)] public float CurrentWindsOfMagic = 0;
-        [SaveableField(3)] public int Corruption = 0; //between 0 and 100, 0 = pure af, 100 = fallen to chaos
+        [SaveableField(3)] public Dictionary<string, int> ReligionDevotionLevels = new Dictionary<string, int>();
         [SaveableField(4)] public SpellCastingLevel SpellCastingLevel = SpellCastingLevel.None;
         [SaveableField(5)] private CharacterObject _baseCharacter;
         [SaveableField(6)] private List<string> _knownLores = new List<string>();
         [SaveableField(7)] private List<string> _selectedAbilities = new List<string>();
+        [SaveableField(8)] public string CareerID = string.Empty;
+        [SaveableField(9)] public List<string> CareerChoices = new List<string>();
 
         public CharacterObject BaseCharacter => _baseCharacter;
 
@@ -36,6 +40,8 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                     if (BaseCharacter.HeroObject != null && BaseCharacter.HeroObject != Hero.MainHero && BaseCharacter.HeroObject.Occupation == Occupation.Lord && BaseCharacter.HeroObject.IsSpellCaster()) return 100f;
                     ExplainedNumber explainedNumber = new ExplainedNumber(10f, false, null);
                     SkillHelper.AddSkillBonusForCharacter(TORSkills.SpellCraft, TORSkillEffects.MaxWinds, BaseCharacter, ref explainedNumber);
+                    if(Hero.MainHero.HasAnyCareer())
+                        CareerHelper.ApplyBasicCareerPassives(Hero.MainHero,ref  explainedNumber, PassiveEffectType.WindsOfMagic,false);
                     return explainedNumber.ResultNumber;
                 }
             }
@@ -50,6 +56,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                     if (BaseCharacter.HeroObject != null && BaseCharacter.HeroObject != Hero.MainHero && BaseCharacter.HeroObject.Occupation == Occupation.Lord && BaseCharacter.HeroObject.IsSpellCaster()) return 2f;
                     ExplainedNumber explainedNumber = new ExplainedNumber(1f, false, null);
                     SkillHelper.AddSkillBonusForCharacter(TORSkills.SpellCraft, TORSkillEffects.WindsRechargeRate, BaseCharacter, ref explainedNumber);
+                    
                     return explainedNumber.ResultNumber;
                 }
             }
@@ -83,6 +90,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                     }
                 }
                 list.AddRange(AcquiredAbilities);
+                
                 return list;
             }
         }
@@ -111,6 +119,33 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             {
                 if (_selectedAbilities.Count > 0) return _selectedAbilities;
                 else return AllAbilites;
+            }
+        }
+
+        public List<string> GetAllPrayers()
+        {
+            var list = new List<string>();
+            foreach (var ability in AllAbilites)
+            {
+                if(list.Contains(ability)) continue;    //shouldn't happen, yet better save then sorry
+                
+                var t  = AbilityFactory.GetTemplate(ability);
+                if (t!=null&&t.AbilityType == AbilityType.Prayer)
+                {
+                    list.Add(ability);
+                }
+            }
+
+            return list;
+        }
+
+        public ReligionObject DominantReligion
+        {
+            get
+            {
+                if(ReligionDevotionLevels.Count == 0 || ReligionDevotionLevels.Values.Sum() == 0) return null;
+                var dominantTuple = ReligionDevotionLevels.MaxBy(x => x.Value);
+                return MBObjectManager.Instance.GetObject<ReligionObject>(dominantTuple.Key);
             }
         }
 
@@ -145,6 +180,53 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             if (LoreObject.GetLore(loreId) != null && !_knownLores.Contains(loreId)) _knownLores.Add(loreId);
         }
 
+        public void RemoveAbility(string abilityID)
+        {
+            if (AcquiredAbilities.Contains(abilityID))
+            {
+                AcquiredAbilities.Remove(abilityID);
+            }
+        }
+        public void RemoveAllPrayers()
+        {
+            var prayers = AllAbilites.Where(x => AbilityFactory.GetTemplate(x).AbilityType == AbilityType.Prayer);
+
+
+            foreach (var prayer in prayers)
+            {
+                AcquiredAbilities.Remove(prayer);
+            }
+        }
+        
+        public void RemoveKnownLore(string loreId)
+        {
+            if (LoreObject.GetLore(loreId) != null && _knownLores.Contains(loreId))
+            {
+                foreach (var abilityID in AllAbilites)
+                {
+                    var ability = AbilityFactory.GetTemplate(abilityID);
+                    if (ability.BelongsToLoreID!=loreId)continue;
+                    _selectedAbilities.Remove(abilityID);
+                }
+                _knownLores.Remove(loreId);
+            }
+        }
+        
+        public void RemoveAllSpells()
+        {
+            var allSpells = AbilityFactory.GetAllSpellNamesAsList();
+
+            foreach (var spell in allSpells)
+            {
+                AcquiredAbilities.Remove(spell);
+            }
+
+        }
+
+        public bool HasAnyKnownLore()
+        {
+            return !_knownLores.IsEmpty();
+        }
         public bool HasKnownLore(string loreId)
         {
             return _knownLores.Contains(loreId);
@@ -162,19 +244,6 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             {
                 if (!HasKnownLore(item.BelongsToLoreID)) AddKnownLore(item.BelongsToLoreID);
             }
-        }
-    }
-    public class HeroExtendedInfoInfoDefiner : SaveableTypeDefiner
-    {
-        public HeroExtendedInfoInfoDefiner() : base(1_543_132) { }
-        protected override void DefineClassTypes()
-        {
-            AddClassDefinition(typeof(HeroExtendedInfo), 1);
-        }
-
-        protected override void DefineContainerDefinitions()
-        {
-            ConstructContainerDefinition(typeof(Dictionary<string, HeroExtendedInfo>));
         }
     }
 }

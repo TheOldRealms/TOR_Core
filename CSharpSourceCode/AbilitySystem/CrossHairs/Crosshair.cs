@@ -56,15 +56,15 @@ namespace TOR_Core.AbilitySystem.CrossHairs
             _crosshairVM.SetProperties(accuracy, (double)(1f + (_missionScreen.CombatCamera.HorizontalFov - _crosshairAngleConstant) / _crosshairAngleConstant));
             WeaponInfo wieldedWeaponInfo = mainAgent.GetWieldedWeaponInfo(Agent.HandIndex.MainHand);
             float numberToCheck = MBMath.WrapAngle(mainAgent.LookDirection.AsVec2.RotationInRadians - mainAgent.GetMovementDirection().RotationInRadians);
-            if (wieldedWeaponInfo != null && wieldedWeaponInfo.IsRangedWeapon && BannerlordConfig.DisplayTargetingReticule)
+            if (wieldedWeaponInfo.IsValid && wieldedWeaponInfo.IsRangedWeapon && BannerlordConfig.DisplayTargetingReticule)
             {
                 Agent.ActionCodeType currentActionType = mainAgent.GetCurrentActionType(1);
                 MissionWeapon wieldedWeapon = mainAgent.WieldedWeapon;
                 if (wieldedWeapon.ReloadPhaseCount > 1 && wieldedWeapon.IsReloading && currentActionType == Agent.ActionCodeType.Reload)
                 {
-                    ValueTuple<float, float>[] array = new ValueTuple<float, float>[(int)wieldedWeapon.ReloadPhaseCount];
-                    ActionIndexCache itemUsageReloadActionCode = MBItem.GetItemUsageReloadActionCode(wieldedWeapon.CurrentUsageItem.ItemUsage, 9, mainAgent.HasMount, -1, mainAgent.GetIsLeftStance());
-                    this.FillReloadDurationsFromActions(array, mainAgent, itemUsageReloadActionCode);
+                    StackArray.StackArray10FloatFloatTuple array = default(StackArray.StackArray10FloatFloatTuple);
+                    var itemUsageReloadActionCode = MBItem.GetItemUsageReloadActionCode(wieldedWeapon.CurrentUsageItem.ItemUsage, 9, mainAgent.HasMount, -1, mainAgent.GetIsLeftStance());
+                    this.FillReloadDurationsFromActions(ref array, wieldedWeapon.ReloadPhaseCount, mainAgent, itemUsageReloadActionCode);
                     float num2 = mainAgent.GetCurrentActionProgress(1);
                     if (mainAgent.GetCurrentAction(1).Index != -1)
                     {
@@ -77,12 +77,12 @@ namespace TOR_Core.AbilitySystem.CrossHairs
                     short reloadPhase = wieldedWeapon.ReloadPhase;
                     for (int j = 0; j < (int)reloadPhase; j++)
                     {
-                        array[j].Item1 = 1f;
+                        array[j] = new ValueTuple<float, float>(1f, array[j].Item2);
                     }
                     if (!flag2)
                     {
-                        array[(int)reloadPhase].Item1 = item;
-                        _crosshairVM.SetReloadProperties(array);
+                        array[(int)reloadPhase] = new ValueTuple<float, float>(item, array[reloadPhase].Item2);
+                        _crosshairVM.SetReloadProperties(array, wieldedWeapon.ReloadPhaseCount);
                     }
                     flag = false;
                 }
@@ -92,7 +92,7 @@ namespace TOR_Core.AbilitySystem.CrossHairs
                     isTargetInvalid = (Mission.Current.MainAgent.MountAgent != null && !MBMath.IsBetween(numberToCheck, bodyRotationConstraint.x, bodyRotationConstraint.y) && (bodyRotationConstraint.x < -0.1f || bodyRotationConstraint.y > 0.1f));
                 }
             }
-            else if ((wieldedWeaponInfo != null && wieldedWeaponInfo.IsMeleeWeapon) || wieldedWeaponInfo == null)
+            else if ((wieldedWeaponInfo.IsValid && wieldedWeaponInfo.IsMeleeWeapon) || !wieldedWeaponInfo.IsValid)
             {
                 Agent.ActionCodeType currentActionType2 = mainAgent.GetCurrentActionType(1);
                 Agent.UsageDirection currentActionDirection = mainAgent.GetCurrentActionDirection(1);
@@ -162,7 +162,8 @@ namespace TOR_Core.AbilitySystem.CrossHairs
             }
             if (flag)
             {
-                _crosshairVM.SetReloadProperties(new ValueTuple<float, float>[0]);
+                StackArray.StackArray10FloatFloatTuple stackArray10FloatFloatTuple2 = default(StackArray.StackArray10FloatFloatTuple);
+                _crosshairVM.SetReloadProperties(stackArray10FloatFloatTuple2, 0);
             }
             _crosshairVM.SetArrowProperties(this._targetGadgetOpacities[0], this._targetGadgetOpacities[1], this._targetGadgetOpacities[2], this._targetGadgetOpacities[3]);
             _crosshairVM.IsTargetInvalid = isTargetInvalid;
@@ -179,15 +180,15 @@ namespace TOR_Core.AbilitySystem.CrossHairs
             _crosshairVM.IsVisible = false;
         }
 
-        private void FillReloadDurationsFromActions(ValueTuple<float, float>[] reloadPhases, Agent mainAgent, ActionIndexCache reloadAction)
+        private void FillReloadDurationsFromActions(ref StackArray.StackArray10FloatFloatTuple reloadPhases, int reloadPhaseCount, Agent mainAgent, ActionIndexValueCache reloadAction)
         {
             float num = 0f;
-            for (int i = 0; i < reloadPhases.Length; i++)
+            for (int i = 0; i < reloadPhaseCount; i++)
             {
-                if (reloadAction != ActionIndexCache.act_none)
+                if (reloadAction != ActionIndexValueCache.act_none)
                 {
                     float num2 = MBAnimation.GetAnimationParameter2(MBActionSet.GetAnimationIndexOfAction(mainAgent.ActionSet, reloadAction)) * MBActionSet.GetActionAnimationDuration(mainAgent.ActionSet, reloadAction);
-                    reloadPhases[i].Item2 = num2;
+                    reloadPhases[i] = new ValueTuple<float, float>(reloadPhases[i].Item1, num2);
                     if (num2 > num)
                     {
                         num = num2;
@@ -197,10 +198,9 @@ namespace TOR_Core.AbilitySystem.CrossHairs
             }
             if (num > 1E-05f)
             {
-                for (int j = 0; j < reloadPhases.Length; j++)
+                for (int j = 0; j < reloadPhaseCount; j++)
                 {
-                    int num3 = j;
-                    reloadPhases[num3].Item2 = reloadPhases[num3].Item2 / num;
+                    reloadPhases[j] = new ValueTuple<float, float>(reloadPhases[j].Item1, reloadPhases[j].Item2 / num);
                 }
             }
         }

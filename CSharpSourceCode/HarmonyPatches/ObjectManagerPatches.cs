@@ -11,9 +11,9 @@ namespace TOR_Core.HarmonyPatches
     {
         [HarmonyPrefix]
         [HarmonyPatch(typeof(MBObjectManager), "GetMergedXmlForManaged")]
-        public static bool SkipValidationForSettlements(string id, ref bool skipValidation)
+        public static bool SkipValidation(string id, ref bool skipValidation)
         {
-            if (id == "Settlements")
+            if (id == "Settlements" || id == "Religions")
             {
                 skipValidation = true;
             }

@@ -11,12 +11,12 @@ namespace TOR_Core.AbilitySystem
     class AbilityHUDMissionView : MissionView
     {
         private bool _hasAbility;
-        private bool _hasSpecialMove;
+        private bool _hasCareerAbility;
         private bool _isInitialized;
         private AbilityHUD_VM _abilityHUD_VM;
-        private SpecialMoveHUD_VM _specialMoveHUD_VM;
+        private CareerAbilityHUD_VM _careerAbilityHUD_VM;
         private GauntletLayer _abilityLayer;
-        private GauntletLayer _specialMoveLayer;
+        private GauntletLayer _careerAbilityLayer;
 
         public override void OnBehaviorInitialize()
         {
@@ -28,10 +28,10 @@ namespace TOR_Core.AbilitySystem
             _abilityLayer.LoadMovie("AbilityHUD", _abilityHUD_VM);
             MissionScreen.AddLayer(_abilityLayer);
 
-            _specialMoveHUD_VM = new SpecialMoveHUD_VM();
-            _specialMoveLayer = new GauntletLayer(99);
-            _specialMoveLayer.LoadMovie("SpecialMoveHUD", _specialMoveHUD_VM);
-            MissionScreen.AddLayer(_specialMoveLayer);
+            _careerAbilityHUD_VM = new CareerAbilityHUD_VM();
+            _careerAbilityLayer = new GauntletLayer(99);
+            _careerAbilityLayer.LoadMovie("SpecialMoveHUD", _careerAbilityHUD_VM);
+            MissionScreen.AddLayer(_careerAbilityLayer);
 
             _isInitialized = true;
         }
@@ -44,11 +44,11 @@ namespace TOR_Core.AbilitySystem
                 if (component != null)
                 {
                     _hasAbility = component.CurrentAbility != null;
-                    var specialMove = component.SpecialMove;
-                    if (specialMove != null)
+                    var careerAbility = component.CareerAbility;
+                    if (careerAbility != null)
                     {
-                        _specialMoveHUD_VM.SpecialMove = specialMove;
-                        _hasSpecialMove = true;
+                        _careerAbilityHUD_VM.CareerAbility = careerAbility;
+                        _hasCareerAbility = true;
                     }
                 }
             }
@@ -72,14 +72,14 @@ namespace TOR_Core.AbilitySystem
                     {
                         _abilityHUD_VM.UpdateProperties();
                     }
-                    if (_hasSpecialMove)
+                    if (_hasCareerAbility)
                     {
-                        _specialMoveHUD_VM.UpdateProperties();
+                        _careerAbilityHUD_VM.UpdateProperties();
                     }
                     return;
                 }
                 _abilityHUD_VM.IsVisible = false;
-                _specialMoveHUD_VM.IsVisible = false;
+                _careerAbilityHUD_VM.IsVisible = false;
             }
         }
     }

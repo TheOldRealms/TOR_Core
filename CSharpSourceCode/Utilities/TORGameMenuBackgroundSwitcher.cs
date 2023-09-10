@@ -40,6 +40,9 @@ namespace TOR_Core.Utilities
                 case "khuzait":
                     args.MenuContext.SetBackgroundMeshName("vampire_looted_village");
                     return;
+                case "vlandia":
+                    args.MenuContext.SetBackgroundMeshName("bretonnia_looted_village");
+                    return;
                 default:
                     args.MenuContext.SetBackgroundMeshName("wait_raiding_village");
                     return;
@@ -49,6 +52,30 @@ namespace TOR_Core.Utilities
         [GameMenuInitializationHandler("town_arena")]
         private static void game_menu_town_menu_arena_on_init_tow(MenuCallbackArgs args)
         {
+            var settlement = Settlement.CurrentSettlement
+                ?? TORCommon.FindNearestSettlement(MobileParty.MainParty, RAID_RADIUS)
+                ?? null;
+
+            if(settlement != null)
+            {
+                
+                if(settlement.Culture.StringId == "mousillon")
+                {
+                    args.MenuContext.SetBackgroundMeshName("bretonnia_arena");
+                    return;
+                }
+                if(settlement.Culture.StringId == "vlandia")
+                {
+                    args.MenuContext.SetBackgroundMeshName("bretonnia_arena");
+                    return;
+                }
+                else if (settlement.Culture.StringId == "khuzait")
+                {
+                    args.MenuContext.SetBackgroundMeshName("vampire_arena");
+                    return;
+                }
+            }
+            
             args.MenuContext.SetBackgroundMeshName("generic_arena");
             //args.MenuContext.SetAmbientSound("event:/map/ambient/node/settlements/2d/arena");
         }
@@ -79,10 +106,59 @@ namespace TOR_Core.Utilities
                 case "khuzait":
                     args.MenuContext.SetBackgroundMeshName("vampire_captive");
                     return;
+                case "vlandia":
+                    args.MenuContext.SetBackgroundMeshName("bretonnia_captive");
+                    return;
+                case "mousillon":
+                    args.MenuContext.SetBackgroundMeshName("bretonnia_captive");
+                    return;
                 default:
                     args.MenuContext.SetBackgroundMeshName("wait_captive_male");
                     return;
             }
         }
+        [GameMenuInitializationHandler("town_backstreet")]
+        private static void wait_menu_ui_town_backstreet_on_init_tor(MenuCallbackArgs args)
+        {
+            var settlement= Settlement.CurrentSettlement;
+            
+            if(settlement==null) return;
+            
+            
+            if (settlement.Culture == null)
+            {
+                args.MenuContext.SetBackgroundMeshName("vlandia_backstreet");
+                return;
+            }
+
+            switch (settlement.Culture.StringId)
+            {
+                case "mousillon":
+                    args.MenuContext.SetBackgroundMeshName("vlandia_tavern");
+                    return;
+            }
+        }
+        
+        [GameMenuInitializationHandler("town_keep")]
+        private static void wait_menu_ui_town_keep_on_init_tor(MenuCallbackArgs args)
+        {
+            var culture = Hero.MainHero.Culture;
+            if (culture == null)
+            {
+                args.MenuContext.SetBackgroundMeshName("bretonnia_city");
+                return;
+            }
+
+            switch (culture.StringId)
+            {
+                case "mousillon":
+                    args.MenuContext.SetBackgroundMeshName("bretonnia_city_background");
+                    return;
+            }
+        }
+        
+        
+        
+        
     }
 }

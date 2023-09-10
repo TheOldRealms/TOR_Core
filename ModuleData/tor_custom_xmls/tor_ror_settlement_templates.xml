@@ -50,7 +50,7 @@
     />
     <RORSettlementTemplate
         SettlementId="town_SY2"
-        BaseTroopId="tor_ror_dragon_knight_initiate"
+        BaseTroopId="tor_bd_blooddragon_initiate"
         MenuHeaderText="A small Chapter House of the Knighthood Order, for members to rest and resupply."
         MenuBackgroundImageId="invalid"
         RegimentName="Blood Dragons"
@@ -104,4 +104,29 @@
         RegimentName="Knights Griffon"
         RegimentHQName="Cathedral of Sigmar"
     />
+	<RORSettlementTemplate
+        SettlementId="castle_village_AQ3_2"
+        BaseTroopId="tor_ror_bergerac_herrimault"
+        MenuHeaderText="Around Bergerac, you notice the camp of the famous Bowman of Bergerac"
+        MenuBackgroundImageId="invalid"
+        RegimentName="Bowman of Bergerac"
+        RegimentHQName="Camp of the Bergerac Bowman"
+    />
+	<RORSettlementTemplate
+        SettlementId="village_PA2_3"
+        BaseTroopId="tor_ror_maisontaal_cultist"
+        MenuHeaderText="Inside the Abby of Maisontaal you find the Taal devoted cultists of maisontaal"
+        MenuBackgroundImageId="invalid"
+        RegimentName="Cultists of Maisontaal"
+        RegimentHQName="Maisontaal abby"
+    />
+	<RORSettlementTemplate
+		SettlementId="castle_village_AQ1_2"
+        BaseTroopId="tor_ror_peasant_squire"
+        MenuHeaderText="As you approach what resembles a shack, you see the less than regal Peasant Knights of Wainfleet"
+        MenuBackgroundImageId="invalid"
+        RegimentName="Peasant Knights of Wainfleet'"
+        RegimentHQName="Geg's Manor"
+    />
+        
 </ArrayOfRORSettlementTemplate>

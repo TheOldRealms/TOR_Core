@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using HarmonyLib;
+using SandBox.Missions.MissionLogics.Arena;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 
@@ -17,17 +19,17 @@ namespace TOR_Core.Extensions
         
         public static void AddMissionLogicAtIndexOf(this Mission mission, MissionLogic missionCombatantsLogic, MissionLogic torMissionCombatantsLogic)
         {
+           
             var behaviorIndex = mission.MissionBehaviors.FindIndex(item => item.GetType() == missionCombatantsLogic.GetType());
-            var logics = Traverse.Create(mission).Field("_missionLogics").GetValue() as List<MissionLogic>;
-            var logicsIndex = logics.FindIndex(item => item.GetType() == missionCombatantsLogic.GetType());
+            var logicsIndex = mission.MissionLogics.FindIndex(item => item.GetType() == missionCombatantsLogic.GetType());
             mission.RemoveMissionBehavior(missionCombatantsLogic);
 
             mission.AddMissionBehavior(torMissionCombatantsLogic); //TODO: Need to call this so that .mission is set on the behavior
             mission.MissionBehaviors.Remove(torMissionCombatantsLogic); //TODO: Then we remove without calling the mission.RemoveMissionBehavior, as it sets Mission to null.
-            logics.Remove(torMissionCombatantsLogic);
+            mission.MissionLogics.Remove(torMissionCombatantsLogic);
 
             mission.MissionBehaviors.Insert(behaviorIndex, torMissionCombatantsLogic); //TODO: And place at right location.
-            logics.Insert(logicsIndex, torMissionCombatantsLogic);
+            mission.MissionLogics.Insert(logicsIndex, torMissionCombatantsLogic);
         }
 
         public static void RemoveMissionBehaviourIfNotNull(this Mission mission, MissionBehavior behavior)
@@ -36,6 +38,11 @@ namespace TOR_Core.Extensions
             {
                 mission.RemoveMissionBehavior(behavior);
             }
+        }
+
+        public static bool IsArenaMission(this Mission mission)
+        {
+            return mission.GetMissionBehavior<ArenaPracticeFightMissionController>() != null || Mission.Current.CombatType == Mission.MissionCombatType.ArenaCombat;
         }
 
         public static int GetArtillerySlotsLeftForTeam(this Mission mission, Team team)
@@ -48,6 +55,16 @@ namespace TOR_Core.Extensions
             }
 
             return slotsLeft;
+        }
+
+        public static List<Team> GetEnemyTeamsOf(this Mission mission, Team team)
+        {
+            return mission.Teams.Where(x => x.IsEnemyOf(team)).ToList();
+        }
+
+        public static List<Team> GetAllyTeamsOf(this Mission mission, Team team)
+        {
+            return mission.Teams.Where(x => x.IsFriendOf(team)).ToList();
         }
     }
 }

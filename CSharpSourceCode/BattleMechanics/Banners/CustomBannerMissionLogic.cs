@@ -1,13 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.AgentOrigins;
 using TaleWorlds.Core;
+using TaleWorlds.Engine;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.Source.Missions;
+using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using static TaleWorlds.Core.ItemObject;
 
 namespace TOR_Core.BattleMechanics.Banners
 {
@@ -15,8 +19,6 @@ namespace TOR_Core.BattleMechanics.Banners
     {
         private Queue<Agent> _unprocessedAgents = new Queue<Agent>();
         private bool _hasUnprocessedAgents;
-        private int _counter = 0;
-        private readonly int NthAgentToAddBannerTo = 15;
 
         public override void OnAgentBuild(Agent agent, Banner banner)
         {
@@ -39,43 +41,84 @@ namespace TOR_Core.BattleMechanics.Banners
                     var banner = DetermineBanner(agent);
                     try
                     {
-                        SwitchShieldPattern(agent, banner);
-                        if(_counter > NthAgentToAddBannerTo)
-                        {
-                            _counter = 0;
-                            AssignBanner(agent, banner);
-                        }
+                        SwitchTableauPatterns(agent, banner);
                     }
                     catch
                     {
                         TORCommon.Log("Tried to assign shield pattern to agent but failed.", NLog.LogLevel.Error);
                     }
-                    _counter++;
                 }
                 _hasUnprocessedAgents = false;
             }
         }
 
-        private void SwitchShieldPattern(Agent agent, Banner banner)
+        private void SwitchTableauPatterns(Agent agent, Banner banner)
         {
             if (agent.State != AgentState.Active) return;
             if (banner != null)
             {
                 for (int i = 0; i < 5; i++)
                 {
-                    if (!agent.Equipment[i].IsEmpty && agent.Equipment[i].Item.Type == ItemObject.ItemTypeEnum.Shield)
+                    var equipment = agent.Equipment[i];
+                    if (!equipment.IsEmpty && equipment.Item != null)
                     {
-                        var equipment = agent.Equipment[i];
-                        if (equipment.Item.Type == ItemObject.ItemTypeEnum.Shield)
+                        /* THIS DOES NOT WORK FOR SOME REASON
+                        if (equipment.Item.IsBannerItem)
                         {
-                            string stringId = equipment.Item.StringId;
-                            var item = MBObjectManager.Instance.GetObject<ItemObject>(stringId);
-                            if(item != null && item.IsUsingTableau)
+                            var multiMesh = equipment.GetMultiMesh(agent.IsFemale, false, true);
+                            var visual = banner.BannerVisual as BannerVisual;
+
+                            if (multiMesh != null && visual != null)
+                            {
+                                for (int j = 0; j < multiMesh.MeshCount; j++)
+                                {
+                                    var currentMesh = multiMesh.GetMeshAtIndex(j);
+                                    bool noTableau = currentMesh.HasTag("dont_use_tableau");
+                                    bool isBannerReplacementMesh = currentMesh.HasTag("banner_replacement_mesh");
+                                    if (currentMesh != null && !noTableau && isBannerReplacementMesh)
+                                    {
+                                        visual.GetTableauTextureLarge(t => ApplyTextureToMesh(t, currentMesh));
+                                        currentMesh.ManualInvalidate();
+                                    }
+                                }
+                                multiMesh.ManualInvalidate();
+                            }
+                        }
+                        */
+                        if(equipment.Item.ItemType == ItemTypeEnum.Shield)
+                        {
+                            if (equipment.Item.IsUsingTableau)
                             {
                                 agent.RemoveEquippedWeapon((EquipmentIndex)i);
-                                var missionWeapon = new MissionWeapon(MBObjectManager.Instance.GetObject<ItemObject>(stringId), equipment.ItemModifier, banner);
+                                var missionWeapon = new MissionWeapon(equipment.Item, equipment.ItemModifier, banner);
                                 agent.EquipWeaponWithNewEntity((EquipmentIndex)i, ref missionWeapon);
                             }
+                            /* THIS BLOODY DOESNT WORK EITHER
+                            else if(equipment.Item.IsUsingTeamColor)
+                            {
+                                var multiMesh = equipment.GetMultiMesh(agent.IsFemale, false, true);
+
+                                if (multiMesh != null)
+                                {
+                                    for (int j = 0; j < multiMesh.MeshCount; j++)
+                                    {
+                                        var currentMesh = multiMesh.GetMeshAtIndex(j);
+
+                                        if (currentMesh != null)
+                                        {
+                                            currentMesh.Color = agent.Team.Color;
+                                            currentMesh.Color2 = agent.Team.Color2;
+                                            Material material = currentMesh.GetMaterial().CreateCopy();
+                                            material.AddMaterialShaderFlag("use_double_colormap_with_mask_texture", false);
+                                            currentMesh.SetMaterial(material);
+                                            //material.ManualInvalidate();
+                                            currentMesh.ManualInvalidate();
+                                        }
+                                    }
+                                    multiMesh.ManualInvalidate();
+                                }
+                            }
+                            */
                         }
                     }
                 }
@@ -83,17 +126,19 @@ namespace TOR_Core.BattleMechanics.Banners
             }
         }
 
-        private void AssignBanner(Agent agent, Banner banner)
+        private void ApplyTextureToMesh(Texture t, Mesh currentMesh)
         {
-            if (agent.State != AgentState.Active) return;
-            var equipment = agent.Equipment[EquipmentIndex.Weapon3];
-            if (equipment.IsEmpty)
+            if (currentMesh != null)
             {
-                _counter = 0;
-                var itemId = GetBannerNameForAgent(agent);
-                bool withBanner = itemId == "tor_empire_faction_banner_001" ? true : false;
-                var bannerWeapon = new MissionWeapon(MBObjectManager.Instance.GetObject<ItemObject>(itemId), null, withBanner ? banner : null);
-                agent.EquipWeaponWithNewEntity(EquipmentIndex.ExtraWeaponSlot, ref bannerWeapon);
+                Material material = currentMesh.GetMaterial()?.CreateCopy();
+                if(material != null)
+                {
+                    material.SetTexture(Material.MBTextureType.DiffuseMap2, t);
+                    uint num = (uint)material.GetShader().GetMaterialShaderFlagMask("use_tableau_blending", true);
+                    ulong shaderFlags = material.GetShaderFlags();
+                    material.SetShaderFlags(shaderFlags | (ulong)num);
+                    currentMesh.SetMaterial(material);
+                }
             }
         }
 
@@ -122,37 +167,6 @@ namespace TOR_Core.BattleMechanics.Banners
                 }
             }
             return CustomBannerManager.GetRandomBannerFor(agent.Character.Culture.StringId, factionId);
-        }
-
-        private string GetBannerNameForAgent(Agent agent)
-        {
-            List<string> list = new List<string>();
-            list.Add("tor_empire_faction_banner_001");
-            if (agent.IsUndead())
-            {
-                list.Add("tor_vc_weapon_banner_002");
-                list.Add("tor_vc_weapon_banner_003");
-                list.Add("tor_vc_weapon_banner_undead_001");
-            }
-            else if (agent.Origin is PartyAgentOrigin)
-            {
-                var origin = agent.Origin as PartyAgentOrigin;
-                if (origin.Party.Owner.Clan.StringId == "chaos_clan_1")
-                {
-                    list.Add("tor_chaos_weapon_banner_001");
-                    list.Add("tor_chaos_weapon_banner_002");
-                }
-                else if (origin.Party.MapFaction.StringId == "averland" && (origin.Troop.IsHero || origin.Troop.Level >= 26))
-                {
-                    list.Add("tor_empire_weapon_banner_002");
-                    list.Add("tor_empire_weapon_banner_003");
-                }
-                else if (origin.Party.MapFaction.StringId == "stirland" && (origin.Troop.IsHero || origin.Troop.Level >= 26))
-                {
-                    list.Add("tor_empire_weapon_banner_001");
-                }
-            }
-            return list.TakeRandom(1).FirstOrDefault();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace TOR_Core.Models
             var result = base.CalculateInventoryCapacity(mobileParty, includeDescriptions, additionalTroops, additionalSpareMounts, additionalPackAnimals, includeFollowers);
             if(mobileParty != null && mobileParty.HasPerk(TORPerks.GunPowder.AmmoWagons))
             {
-                result.AddFactor(TORPerks.GunPowder.AmmoWagons.SecondaryBonus * 0.01f, TORPerks.GunPowder.AmmoWagons.Name);
+                result.AddFactor(TORPerks.GunPowder.AmmoWagons.SecondaryBonus, TORPerks.GunPowder.AmmoWagons.Name);
             }
             return result;
         }

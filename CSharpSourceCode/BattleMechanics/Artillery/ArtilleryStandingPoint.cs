@@ -11,6 +11,14 @@ namespace TOR_Core.BattleMechanics.Artillery
         }
     }
 
+    public class TrebuchetStandingPoint : StandingPoint
+    {
+        public override bool IsDisabledForAgent(Agent agent)
+        {
+            return agent.IsPlayerControlled ? true : base.IsDisabledForAgent(agent);
+        }
+    }
+
     public class AmmoPickUpStandingPoint : StandingPointWithWeaponRequirement
     {
         public override bool IsDisabledForAgent(Agent agent)

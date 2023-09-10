@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Encounters;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.CustomEncounterDialogs
@@ -21,7 +22,7 @@ namespace TOR_Core.CampaignMechanics.CustomEncounterDialogs
             obj.AddDialogLine("chaos_greeting", "start", "close_window", "{=ccultist_drowninblood}You will die drowning in a pool of your own blood!", () => EncounteredPartyMatch("chaos_clan_1") && !HeroIsWounded(), null, 199);
             obj.AddDialogLine("chaos_die", "start", "close_window", "I will return!", () => EncounteredPartyMatch("chaos_clan_1") && HeroIsWounded(), null, 199);
 
-            obj.AddDialogLine("beastmen_greeting", "start", "close_window", "{=beastmen_trample}We will trample your puny body beneath our hooves!", () => EncounteredPartyMatch("steppe_bandits") && !HeroIsWounded(), null, 199);
+            obj.AddDialogLine("beastmen_greeting", "start", "close_window", "{=beastmen_trample}We will trample your puny body beneath our hooves!", () => (EncounteredPartyMatch("steppe_bandits") || EncounteredPartyMatch("beastmen_clan_1")) && !HeroIsWounded(), null, 199);
             obj.AddDialogLine("beastmen_die", "start", "close_window", "The dark gods have abandoned us!", () => EncounteredPartyMatch("steppe_bandits") && HeroIsWounded(), null, 199);
 
             obj.AddDialogLine("brokenwheel_greeting", "start", "close_window", "{=ccultist_flames}You will be bathed in flames of Chaos and you will be happy!", () => EncounteredPartyMatch("chs_cult_1") && !HeroIsWounded(), null, 199);

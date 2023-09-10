@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.AI.TeamBehavior;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.AI.FormationBehavior
 {
@@ -16,7 +17,7 @@ namespace TOR_Core.BattleMechanics.AI.FormationBehavior
             if (artillery == null) return;
             
             var closestEnemyFormation = artillery.QuerySystem.ClosestEnemyFormation;
-            if (closestEnemyFormation != null && closestEnemyFormation.AveragePosition.Distance(artillery.QuerySystem.AveragePosition) < 10)
+            if (closestEnemyFormation != null && closestEnemyFormation.AveragePosition.Distance(artillery.QuerySystem.AveragePosition) < 30)
             {
                 CurrentOrder = MovementOrder.MovementOrderChargeToTarget(closestEnemyFormation.Formation);
                 Formation.SetMovementOrder(CurrentOrder);
@@ -32,7 +33,7 @@ namespace TOR_Core.BattleMechanics.AI.FormationBehavior
 
         private Formation FindArtilleryFormation()
         {
-            return Formation.Team.FormationsIncludingSpecial.ToList().Find(formation => formation.Index == (int) TORFormationClass.Artillery);
+            return Formation.Team.GetFormationsIncludingSpecial().ToList().Find(formation => formation.Index == (int) TORFormationClass.Artillery);
         }
 
         protected override float GetAiWeight() => Formation.Index == (int) TORFormationClass.ArtilleryGuard && FindArtilleryFormation() != null ? 100f : 0.0f;

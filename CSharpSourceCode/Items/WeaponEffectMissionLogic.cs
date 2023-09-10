@@ -17,6 +17,14 @@ namespace TOR_Core.Items
             }
         }
 
+        public override void OnMissionTick(float dt)
+        {
+            if(Agent.Main != null && Agent.Main.GetComponent<ItemTraitAgentComponent>() != null)
+            {
+                Agent.Main.GetComponent<ItemTraitAgentComponent>().OnTickAsMainAgent(dt);
+            }
+        }
+
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
             if (affectedAgent == affectorAgent)
@@ -29,7 +37,7 @@ namespace TOR_Core.Items
                 {
                     foreach (var trait in relevantTraits)
                     {
-                        affectedAgent.ApplyStatusEffect(trait.ImbuedStatusEffectId, affectorAgent);
+                        affectedAgent.ApplyStatusEffect(trait.ImbuedStatusEffectId, affectorAgent, 5, false);
                     }
                 }
                 //TODO: disabling this for first release, we dont actually have an item script. This just clogs system resources and spams the screen with debug messages.

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.InputSystem;
 using TaleWorlds.MountAndBlade;
@@ -16,10 +17,14 @@ namespace TOR_Core.GameManagers
         
         private static void InitializeHotKeyManager()
         {
-            HotKeyManager.RegisterInitialContexts((IEnumerable<GameKeyContext>) new List<GameKeyContext>()
+            var list = HotKeyManager.GetAllCategories();
+            List<GameKeyContext> keyList = new List<GameKeyContext>();
+            foreach(var item in list)
             {
-                (GameKeyContext) new TORGameKeyContext(),
-            }, true);
+                keyList.Add(item);
+            }
+            if(!keyList.Any(x => x is TORGameKeyContext)) keyList.Add(new TORGameKeyContext());
+            HotKeyManager.RegisterInitialContexts(keyList, true);
 
             var context = nameof(TORGameKeyContext);
             var ContextTitleElement = Module.CurrentModule.GlobalTextManager.GetGameText("str_key_category_name");

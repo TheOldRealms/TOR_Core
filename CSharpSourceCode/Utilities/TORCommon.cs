@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using Helpers;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,6 +8,7 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Map;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Inventory;
@@ -143,15 +145,53 @@ namespace TOR_Core.Utilities
         /// <param name="party"></param>
         /// <param name="radius"></param>
         /// <returns></returns>
-        public static Settlement FindNearestSettlement(MobileParty party, float radius)
+        public static Settlement FindNearestSettlement(MobileParty party, float radius, Func<Settlement, bool> condition = null)
         {
-            var nearbySettlements =
-                Settlement.FindSettlementsAroundPosition(party.GetPosition2D, radius);
-
+            LocatableSearchData<Settlement> locatableSearchData = Settlement.StartFindingLocatablesAroundPosition(party.Position2D, radius);
+            List<Settlement> nearbySettlements = new List<Settlement>();
+            for (Settlement settlement = Settlement.FindNextLocatable(ref locatableSearchData); settlement != null; settlement = Settlement.FindNextLocatable(ref locatableSearchData))
+            {
+                nearbySettlements.Add(settlement);
+            }
+            if (condition != null)
+            {
+                nearbySettlements = nearbySettlements.FindAll(x => condition(x));
+            }
+            if (nearbySettlements.Count == 0) return null;
             // The list of nearbySettlements is unordered, thus we need to find the
             // settlement with minimum distance.
             return nearbySettlements.MinBy(
                 settlement => Campaign.Current.Models.MapDistanceModel.GetDistance(party, settlement));
+        }
+
+        public static MBList<Settlement> FindSettlementsAroundPosition(Vec2 position, float radius, Func<Settlement, bool> condition = null)
+        {
+            MBList<Settlement> settlements = new MBList<Settlement>();
+            LocatableSearchData<Settlement> locatableSearchData = Settlement.StartFindingLocatablesAroundPosition(position, radius);
+
+            for (Settlement settlement = Settlement.FindNextLocatable(ref locatableSearchData); settlement != null; settlement = Settlement.FindNextLocatable(ref locatableSearchData))
+            {
+                if(condition == null || condition(settlement))
+                {
+                    settlements.Add(settlement);
+                }
+            }
+            return settlements;
+        }
+
+        public static MBReadOnlyList<MobileParty> FindPartiesAroundPosition(Vec2 position, float radius, Func<MobileParty, bool> condition = null)
+        {
+            MBList<MobileParty> parties = new MBList<MobileParty>();
+            LocatableSearchData<MobileParty> locatableSearchData = MobileParty.StartFindingLocatablesAroundPosition(position, radius);
+
+            for (MobileParty party = MobileParty.FindNextLocatable(ref locatableSearchData); party != null; party = MobileParty.FindNextLocatable(ref locatableSearchData))
+            {
+                if (condition == null || condition(party))
+                {
+                    parties.Add(party);
+                }
+            }
+            return new MBReadOnlyList<MobileParty>(parties);
         }
 
         public static void WriteHeightMapDataForCurrentScene()
@@ -219,6 +259,16 @@ namespace TOR_Core.Utilities
         {
             var result = (value - minSource) / (maxSource - minSource) * (maxTarget - minTarget) + minTarget;
             return (ushort)result;
+        }
+
+        public static uint ConvertColorToUint(TaleWorlds.Library.Color color)
+        {
+            var r = (int)color.Red & 0xFF;
+            var g = (int)color.Green & 0xFF;
+            var b = (int)color.Blue & 0xFF;
+            var a = (int)color.Alpha & 0xFF;
+
+            return (uint)((r << 24) + (g << 16) + (b << 8) + (a));
         }
     }
 }

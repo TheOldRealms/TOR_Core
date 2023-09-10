@@ -58,5 +58,15 @@ namespace TOR_Core.Utilities
         {
             get { return TOREnvironmentModuleRootPath + "ModuleData/"; }
         }
+
+        public static string TORArmoryModuleRootPath
+        {
+            get { return ModuleHelper.GetModuleFullPath("TOR_Armory"); }
+        }
+
+        public static string TORArmoryModuleDataPath
+        {
+            get { return TORArmoryModuleRootPath + "ModuleData/"; }
+        }
     }
 }

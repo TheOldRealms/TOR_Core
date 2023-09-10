@@ -53,18 +53,9 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             mobileParty.ActualClan = Settlement.OwnerClan;
             PartyTemplateObject militiaPartyTemplate = Settlement.Culture.MilitiaPartyTemplate;
             mobileParty.InitializeMobilePartyAtPosition(militiaPartyTemplate, Settlement.GatePosition, 7);
-            mobileParty.Party.Visuals.SetMapIconAsDirty();
+            mobileParty.Party.SetVisualAsDirty();
             mobileParty.Ai.DisableAi();
             mobileParty.Aggressiveness = 0f;
-        }
-    }
-
-    public class GraveyardNightWatchPartyComponentTypeDefiner : SaveableTypeDefiner
-    {
-        public GraveyardNightWatchPartyComponentTypeDefiner() : base(703789) { }
-        protected override void DefineClassTypes()
-        {
-            AddClassDefinition(typeof(GraveyardNightWatchPartyComponent), 1);
         }
     }
 }
