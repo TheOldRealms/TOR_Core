@@ -9,7 +9,7 @@ namespace TOR_Core.Utilities
     public static class TORDamageDisplay
     {
         public static void DisplaySpellDamageResult(DamageType additionalDamageType,
-            int resultDamage, float damageAmplifier)
+            int resultDamage, float damageAmplifier, float wardsaveFactor)
         {
             var displayColor = Color.White;
             string displayDamageType = "";
@@ -40,7 +40,7 @@ namespace TOR_Core.Utilities
             InformationManager.DisplayMessage(new InformationMessage(resultDamage + "cast damage consisting of  " + " (" + displayDamageType + ") was applied " + "which was modified by " + (1 + damageAmplifier).ToString("##%", CultureInfo.InvariantCulture), displayColor));
         }
 
-        public static void DisplayDamageResult(int resultDamage, float[] categories, float[] percentages, bool isVictim)
+        public static void DisplayDamageResult(int resultDamage, float[] categories, float[] percentages,float wardsaveFactor, bool isVictim)
         {
             var displaycolor = Color.White;
             var dominantAdditionalEffect = DamageType.Physical;
@@ -97,7 +97,13 @@ namespace TOR_Core.Utilities
             if (percentages[1] > 0)
                 sign = "+";
 
-            var resultText = $"{resultDamage} damage was dealt which was {(int)categories[1]}{sign}{(percentages[1] != 0 ? "("+percentages[1].ToString(".%")+")": "")} {DamageType.Physical}{additionalDamageTypeText}";
+            var wardsaveFactorText = "";
+            if (wardsaveFactor <= 1)
+            {
+                wardsaveFactorText = $", {(1-wardsaveFactor).ToString( ".%")} was absorbed";
+            }
+
+            var resultText = $"{resultDamage} damage was dealt which was {(int)categories[1]}{sign}{(percentages[1] != 0 ? "("+percentages[1].ToString(".%")+")": "")} {DamageType.Physical}{additionalDamageTypeText}{wardsaveFactorText}";
             InformationManager.DisplayMessage(new InformationMessage(resultText, displaycolor));
 
 

@@ -426,7 +426,7 @@ namespace TOR_Core.Models
                 if (choices.Contains("InspirationOfTheLadyPassive4") && mask == PropertyMask.Defense)
                 {
                     var weight = agent.Character.Equipment.GetTotalWeightOfArmor(true);
-                    if (weight <= 4)
+                    if (weight <= 11)
                     {
                         var choice = TORCareerChoices.GetChoice("InspirationOfTheLadyPassive4");
                         if (choice != null)
@@ -440,7 +440,7 @@ namespace TOR_Core.Models
                 if (choices.Contains("JustCausePassive3") && mask == PropertyMask.Defense)
                 {
                     var weight = agent.Character.Equipment.GetTotalWeightOfArmor(true);
-                    if (weight <= 4)
+                    if (weight <= 11)
                     {
                         var choice = TORCareerChoices.GetChoice("JustCausePassive3");
                         if (choice != null)
