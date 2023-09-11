@@ -46,24 +46,32 @@ namespace TOR_Core.Models
             }
         }
 
-        public override ExplainedNumber GetTotalWage(MobileParty mobileParty, bool includeDescriptions = false)
+        public override ExplainedNumber GetTotalWage(MobileParty mobileParty, bool includeDescriptions=true)
         { 
+            includeDescriptions = true;
             var value = base.GetTotalWage(mobileParty, includeDescriptions);
-            
-            for (int index = 0; index < mobileParty.MemberRoster.Count; ++index)
+
+            if (mobileParty.IsMainParty)
             {
-                TroopRosterElement elementCopyAtIndex = mobileParty.MemberRoster.GetElementCopyAtIndex(index);
-                if (mobileParty.IsMainParty)
+                for (int index = 0; index < mobileParty.MemberRoster.Count; ++index)
                 {
+                    TroopRosterElement elementCopyAtIndex = mobileParty.MemberRoster.GetElementCopyAtIndex(index);
                     if (mobileParty.LeaderHero.HasAnyCareer())
                     {
                         var careerID = mobileParty.LeaderHero.GetCareer().StringId;
-                        value = AddCareerSpecifWagePerks(value, mobileParty.LeaderHero, elementCopyAtIndex);
+                        var careerFactors = new ExplainedNumber(0,true);
+                        careerFactors= AddCareerSpecifWagePerks(careerFactors, mobileParty.LeaderHero, elementCopyAtIndex);
+                        foreach (var line in careerFactors.GetLines())
+                        {
+                            value.Add(line.number,new TextObject(line.name));
+                        }
                     }
+
+
                 }
-                
-                
             }
+
+            
 
             return value;
         }
