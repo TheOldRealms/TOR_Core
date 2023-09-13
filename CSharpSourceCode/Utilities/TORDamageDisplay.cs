@@ -98,7 +98,7 @@ namespace TOR_Core.Utilities
                 sign = "+";
 
             var wardsaveFactorText = "";
-            if (wardsaveFactor <= 1)
+            if (wardsaveFactor < 1)
             {
                 wardsaveFactorText = $", {(1-wardsaveFactor).ToString( ".%")} was absorbed";
             }
