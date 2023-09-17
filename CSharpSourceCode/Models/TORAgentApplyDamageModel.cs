@@ -145,7 +145,7 @@ namespace TOR_Core.Models
 
                 if (container.ResistancePercentages[(int)DamageType.All] > 0)
                 {
-                    result.Add(-container.ResistancePercentages[(int)DamageType.All] / 100);
+                    result.Add(-container.ResistancePercentages[(int)DamageType.All]);
                 }
 
                 if (victimCharacter.GetPerkValue(TORPerks.SpellCraft.Dampener))
@@ -155,6 +155,8 @@ namespace TOR_Core.Models
                 SkillHelper.AddSkillBonusForCharacter(TORSkills.Faith, TORSkillEffects.FaithWardSave, victimCharacter, ref result, -1, false);
             }
 
+            result.LimitMax(1);
+            result.LimitMin (0.11f);
             return result.ResultNumber;
         }
     }

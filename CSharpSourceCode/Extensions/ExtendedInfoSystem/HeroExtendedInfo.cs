@@ -40,7 +40,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                     if (BaseCharacter.HeroObject != null && BaseCharacter.HeroObject != Hero.MainHero && BaseCharacter.HeroObject.Occupation == Occupation.Lord && BaseCharacter.HeroObject.IsSpellCaster()) return 100f;
                     ExplainedNumber explainedNumber = new ExplainedNumber(10f, false, null);
                     SkillHelper.AddSkillBonusForCharacter(TORSkills.SpellCraft, TORSkillEffects.MaxWinds, BaseCharacter, ref explainedNumber);
-                    if(Hero.MainHero.HasAnyCareer())
+                    if(Hero.MainHero.HasAnyCareer() && BaseCharacter.HeroObject == Hero.MainHero)
                         CareerHelper.ApplyBasicCareerPassives(Hero.MainHero,ref  explainedNumber, PassiveEffectType.WindsOfMagic,false);
                     return explainedNumber.ResultNumber;
                 }

@@ -54,7 +54,7 @@ namespace TOR_Core.Models
                 {
                     var choice = TORCareerChoices.GetChoice("MercenaryLordPassive3");
                     int mercenaryAward = MathF.Ceiling(clan.Influence * (1f / Campaign.Current.Models.ClanFinanceModel.RevenueSmoothenFraction())) * clan.MercenaryAwardMultiplier; //stolen vanilla calculation, it got too messy to redirect the income.
-                    var skillFactor = ((float)playerHero.GetSkillValue(DefaultSkills.Trade)) /100f;
+                    var skillFactor = ((float)playerHero.GetSkillValue(DefaultSkills.Trade)) /300f;
                     var bonus =  mercenaryAward * skillFactor;
                     income.Add((int)bonus,choice.BelongsToGroup.Name);
                 }
