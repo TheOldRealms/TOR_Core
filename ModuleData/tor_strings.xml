@@ -757,4 +757,31 @@
   
   <string id="careerchoice_description.WarriorPriestRoot" text="{=!}The Warrior Priest unleashes Sigmar's wrath for 8 seconds, which empowers him and the surrounding allies with 20% stronger melee attacks.  Every point in Faith increases the melee effect by 0.05% and the duration by 0.05 seconds. The ability recharges by taking 50% of damage of total health. Blocked damage counts as 10% of the damage taken." />
 
+   <!-- Begin FaceGen Entries -->
+  <string id="str_facegen_skin.TorsoBelly" text="{=!}Belly Girth" />
+  <string id="str_facegen_skin.TorsoHips" text="{=!}Hip Size" />
+  <string id="str_facegen_skin.TorsoButt" text="{=!}Butt Size" />
+  <string id="str_facegen_skin.Thigh" text="{=!}Thigh Size" />
+  <string id="str_facegen_skin.Calf" text="{=!}Calf Size" />
+  <string id="str_facegen_skin.Foot" text="{=!}Foot Size" />
+  <string id="str_facegen_skin.TorsoX" text="{=!}Torso Width" />
+  <string id="str_facegen_skin.TorsoY" text="{=!}Torso Depth" />
+  <string id="str_facegen_skin.TorsoZ" text="{=!}Torso Height" />
+  <string id="str_facegen_skin.ThoraxX" text="{=!}Chest Width" />
+  <string id="str_facegen_skin.ThoraxY" text="{=!}Chest Depth" />
+  <string id="str_facegen_skin.ThoraxZ" text="{=!}Chest Height" />
+  <string id="str_facegen_skin.Neck" text="{=!}Neck Size" />
+  <string id="str_facegen_skin.HeadDepth" text="{=!}Head Depth" />
+  <string id="str_facegen_skin.HeadWidth" text="{=!}Head Width" />
+  <string id="str_facegen_skin.HeadHeight" text="{=!}Head Height" />
+  <string id="str_facegen_skin.Shoulders" text="{=!}Shoulder Size" />
+  <string id="str_facegen_skin.UpperarmSize" text="{=!}Bicep Size" />
+  <string id="str_facegen_skin.ForearmSize" text="{=!}Forearm Size" />
+  <string id="str_facegen_skin.HandSize" text="{=!}Hand Size" />
+  <string id="str_facegen_skin.weight" text="{=!}Muscle Tone" />
+  <string id="str_facegen_skin.build" text="{=!}Ignore this" />
+  <string id="str_facegen_skin.Weight2" text="{=!}Body Weight" />
+  <string id="str_facegen_skin.Build2" text="{=!}Body Muscle" />
+  <!-- End FaceGen Entries -->
+
 </strings>
