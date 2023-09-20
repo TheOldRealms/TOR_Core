@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Русский" />
+  </tags>
+  	<strings>
+	
+	<string id="str_tor_emp_lord_averland_factionleader" text="{.MA}Курфюрст{.nn} {.MA}Мариус{.nn} {.MA}Лейтдорф{.nn}" />
+	<string id="str_tor_emp_lord_moot_factionleader" text="{.MA}Старейшина{.nn} Хисме Храброе Сердце" />
+	<string id="str_tor_emp_lord_averland_golden_1" text="{.MA}Верховный{.aj} {.MA}Патриарх{.nn} {.MA}Бальтазар{.nn} {.MA}Гельт{.nn}" />
+	<string id="str_tor_emp_lord_averland_golden_2" text="{.MA}Альбрехт{.nn} {.MA}Хельзегер{.nn}" />
+	<string id="str_tor_emp_lord_averland_golden_3" text="{.MA}Хакиках{.nn} аль-Хикмах" />
+	<string id="str_tor_emp_lord_averland_golden_4" text="{.MA}Бенедикт{.nn} {.MA}Стросс{.nn}" />
+	<string id="str_tor_emp_lord_averland_first_2" text="{.MA}{.MA}Филиберт{.nn} {.MA}Лейтдорф{.nn}" />
+	<string id="str_tor_emp_lord_averland_first_3" text="{.MA}Кастор{.nn} {.MA}Лейтдорф{.nn}" />
+	<string id="str_tor_emp_lord_averland_first_4" text="{.FA}Графиня{.nn} {.FA}Камилла{.nn} фон Сакс" />
+	<string id="str_tor_emp_lord_averland_first_5" text="{.MA}Барон{.nn} {.MA}Борис Ульбрихт" />
+	<string id="str_tor_emp_lord_averland_first_6" text="{.MA}Граф{.nn} {.MA}Дитер{.nn} фон Хайне" />
+	<string id="str_tor_emp_lord_averland_first_7" text="{.MA}Фердинанд{.nn} {.MA}Лейтдорф{.nn}" />
+	<string id="str_tor_emp_lord_averland_second_1" text="{.FA}Графиня{.nn} {.FA}Людмила{.nn} Альптраум" />
+	<string id="str_tor_emp_lord_averland_second_2" text="{.FA}Графиня{.nn} Марлен Альптраум" />
+	<string id="str_tor_emp_lord_averland_second_3" text="{.MA}Ференц{.nn} {.MA}Альптраум{.nn}" />
+	<string id="str_tor_emp_lord_averland_second_4" text="{.MA}Матиас{.nn} {.MA}Альптраум{.nn}" />
+	<string id="str_tor_emp_lord_averland_second_5" text="{.FA}Клотильда{.nn} Альптраум" />
+	<string id="str_tor_emp_lord_averland_third_1" text="{.FA}Графиня{.nn} {.FA}Селена{.nn} фон Куш" />
+	<string id="str_tor_emp_lord_averland_third_2" text="{.MA}Барон{.nn} {.MA}Зигмунд{.nn} {.MA}Гинденбург{.nn}" />
+	<string id="str_tor_emp_lord_averland_third_3" text="{.FA}Баронесса{.nn} {.FA}Элиза{.nn} Альдер" />
+	<string id="str_tor_emp_lord_averland_third_4" text="{.MA}Матиас{.nn} фон {.MA}Грюнвальд{.nn}" />
+	<string id="str_tor_emp_lord_averland_third_5" text="{.MA}Готтфрид{.nn} фон {.MA}Грюнвальд{.nn}" />
+	<string id="str_tor_emp_lord_averland_kobs_1" text="{.MA}Зигфрид{.nn} {.MA}Траппенфельд{.nn}" />
+	<string id="str_tor_emp_lord_stirland_sigmarcult_1" text="{.MA}Лютор{.nn} {.MA}Гусс{.nn}" />
+	<string id="str_tor_emp_lord_stirland_sigmarcult_2" text="{.MA}Великий{.aj} {.MA}Теогонист{.nn} {.MA}Фолькмар{.nn} {.MA}Мрачный{.aj}" />
+	<string id="str_tor_emp_lord_stirland_sigmarcult_3" text="Адсо {.MA}Тайсс{.nn}" />
+	<string id="str_tor_emp_lord_stirland_factionleader" text="{.MA}Курфюрст{.nn} {.MA}Альберих{.nn} Хаупт-{.MA}Андерссен{.nn}" />
+	<string id="str_tor_emp_lord_stirland_first_2" text="{.MA}Рудольф{.nn} Хаупт-{.MA}Андерссен{.nn}" />
+	<string id="str_tor_emp_lord_stirland_first_3" text="{.MA}Барон{.nn} {.MA}Антон{.nn} {.MA}Кайзингер{.nn}" />
+	<string id="str_tor_emp_lord_stirland_first_4" text="{.FA}Графиня{.nn} {.FA}Петра{.nn} Харден" />
+	<string id="str_tor_emp_lord_stirland_first_5" text="{.MA}Граф{.nn} {.MA}Артур{.nn} фон Трейчке" />
+	<string id="str_tor_emp_lord_stirland_first_6" text="{.MA}Барон{.nn} {.MA}Иммануэль{.nn} {.MA}Кребс{.nn}" />
+	<string id="str_tor_emp_lord_stirland_first_7" text="{.MA}Эрих{.nn} фон {.MA}Хальстедт{.nn}" />
+	<string id="str_tor_emp_lord_stirland_second_1" text="{.MA}Граф{.nn} {.MA}Петр{.nn} фон {.MA}Штольп{.nn}" />
+	<string id="str_tor_emp_lord_stirland_second_2" text="{.MA}Лорд{.nn}  {.MA}Фосс{.nn}  фон {.MA}Тойфельталь{.nn} " />
+	<string id="str_tor_emp_lord_stirland_second_3" text="{.MA}Сир{.nn} {.MA}Рольф{.nn} фон {.MA}Лонен{.nn}" />
+	<string id="str_tor_emp_lord_stirland_second_4" text="{.MA}Дариус{.nn} {.MA}Гайствахт{.nn}" />
+	<string id="str_tor_emp_lord_stirland_third_1" text="{.FA}Александра{.nn} фон Мюнстерберг" />
+	<string id="str_tor_emp_lord_stirland_third_2" text="{.MA}Граф{.nn} {.MA}Андреас{.nn} фон {.MA}Веберн{.nn}" />
+	<string id="str_tor_emp_lord_stirland_third_3" text="{.MA}Верховный{.aj} {.MA}Капитулярий{.nn} {.MA}Маробод{.nn}" />
+	<string id="str_tor_emp_lord_wissenland_factionleader" text="{.FA}Графиня{.nn}-{.MA}курфюрст{.nn} Эммануэль фон Либвиц" />
+	<string id="str_tor_emp_lord_wissenland_first_2" text="{.MA}Виконт{.nn} {.MA}Леос{.nn} фон {.MA}Либвиц{.nn}" />
+	<string id="str_tor_emp_lord_wissenland_first_3" text="{.MA}Граф{.nn} {.MA}Бруно{.nn} {.MA}Пфайфрахер{.nn}" />
+	<string id="str_tor_emp_lord_wissenland_first_4" text="Элспет фон Дракен" />
+	<string id="str_tor_emp_lord_wissenland_first_5" text="{.MA}Фридебрахт{.nn} {.MA}Пфайфрахер{.nn}" />
+	<string id="str_tor_emp_lord_wissenland_first_6" text="{.FA}Зигмара{.nn} Пфайфрахер" />
+	<string id="str_tor_emp_lord_wissenland_first_7" text="{.MA}Маршал{.nn} {.MA}Вольфхарт{.nn} фон {.MA}Либвиц{.nn}" />
+	<string id="str_tor_emp_lord_wissenland_second_1" text="{.FA}Графиня{.nn} Молли Топпенхаймер" />
+	<string id="str_tor_emp_lord_wissenland_second_2" text="{.MA}Иеронимус{.nn} {.MA}Карл{.nn} {.MA}Топпенхаймер{.nn}" />
+	<string id="str_tor_emp_lord_wissenland_second_3" text="Магдалин Топпенхаймер" />
+	<string id="str_tor_emp_lord_wissenland_second_4" text="{.MA}Петир{.nn} {.MA}Наубхоффер{.nn}" />
+	<string id="str_tor_emp_lord_wissenland_second_5" text="{.MA}Барон{.nn} {.MA}Фредерих{.nn} {.MA}Гербарт{.nn}" />
+	<string id="str_tor_emp_lord_wissenland_second_6" text="{.MA}Хелленболд{.nn} {.MA}Гербарт{.nn}" />
+	<string id="str_tor_emp_lord_wissenland_third_1" text="{.MA}Граф{.nn} {.MA}Манфред{.nn} фон {.MA}Айгенхоф{.nn}" />
+	<string id="str_tor_emp_lord_wissenland_third_2" text="{.MA}Барон{.nn} {.MA}Йоханн{.nn} фон {.MA}Кальб{.nn}" />
+	<string id="str_tor_emp_lord_wissenland_third_3" text="{.MA}Барон{.nn} {.MA}Винцентус{.nn} {.MA}Прайсс{.nn}" />
+	<string id="str_tor_emp_lord_wissenland_third_4" text="{.FA}Баронесса{.nn} {.FA}Катарина{.nn} фон Хайзенберг" />
+	<string id="str_tor_emp_lord_wissenland_third_5" text="{.MA}Виконт{.nn} {.MA}Герборт{.nn} Унру" />
+	<string id="str_tor_emp_lord_wissenland_third_6" text="{.MA}Егермаршал{.nn} {.MA}Олдрик{.nn} {.MA}Лорренштайнер{.nn}" />
+	<string id="str_tor_emp_lord_talabecland_factionleader" text="{.MA}Курфюрст{.nn} {.MA}Гельмут{.nn} {.MA}Фойербах{.nn}" />
+	<string id="str_tor_emp_lord_talabecland_first_2" text="{.FA}Графиня{.nn} {.FA}Элиза{.nn} Криглиц-Унтерн" />
+	<string id="str_tor_emp_lord_talabecland_first_3" text="{.MA}Граф{.nn} {.MA}Теодор{.nn} фон {.MA}Гердер{.nn}" />
+	<string id="str_tor_emp_lord_talabecland_first_4" text="{.MA}Маршал{.nn} {.MA}Маннфред{.nn} {.MA}Шульц{.nn}" />
+	<string id="str_tor_emp_lord_talabecland_first_5" text="{.MA}Командор{.nn} {.MA}Кристоф{.nn} {.MA}Штальмайер{.nn}" />
+	<string id="str_tor_emp_lord_talabecland_first_6" text="{.MA}Командор{.nn} {.MA}Детлеф{.nn} {.MA}Кинхольц{.nn}" />
+	<string id="str_tor_emp_lord_talabecland_first_7" text="{.MA}Командор{.nn} {.MA}Йорг{.nn} {.MA}Хафнер{.nn}" />
+	<string id="str_tor_emp_lord_talabecland_first_8" text="{.MA}Генерал{.nn} {.MA}Йорг{.nn} {.MA}Шмидт{.nn}" />
+	<string id="str_tor_emp_lord_talabecland_second_1" text="{.MA}Граф{.nn} {.MA}Йозеф{.nn} фон {.MA}Беринг{.nn}" />
+	<string id="str_tor_emp_lord_talabecland_second_2" text="{.MA}Барон{.nn} {.MA}Франц{.nn} {.MA}Рихтер{.nn}" />
+	<string id="str_tor_emp_lord_talabecland_second_3" text="{.MA}Барон{.nn} {.MA}Альбрехт{.nn} {.MA}Донн{.nn}" />
+	<string id="str_tor_emp_lord_talabecland_second_4" text="{.MA}Барон{.nn} {.MA}Курт{.nn} {.MA}Брукнер{.nn}" />
+	<string id="str_tor_emp_lord_talabecland_second_5" text="{.MA}Барон{.nn} {.MA}Лоренц{.nn} дер {.MA}Рунден{.nn}" />
+	<string id="str_tor_emp_lord_talabecland_third_1" text="{.MA}Граф{.nn} {.MA}Манфред{.nn} фон {.MA}Ширах{.nn}" />
+	<string id="str_tor_emp_lord_talabecland_third_2" text="{.MA}Барон{.nn} {.MA}Вальдемар{.nn} фон {.MA}Зютцен{.nn}" />
+	<string id="str_tor_emp_lord_talabecland_third_3" text="{.MA}Граф{.nn} {.MA}Готтфрид{.nn} фон {.MA}Либиг{.nn}" />
+	<string id="str_tor_emp_lord_talabecland_third_4" text="{.MA}Барон{.nn} {.MA}Леберехт{.nn} {.MA}Фрёбель{.nn}" />
+	<string id="str_tor_emp_lord_talabecland_third_5" text="{.MA}Граф{.nn} {.MA}Ульрих{.nn} фон {.MA}Бюлов{.nn}" />
+	<string id="str_tor_emp_lord_talabecland_third_6" text="{.MA}Барон{.nn} {.MA}Дитер{.nn} {.MA}Боллен{.nn}" />
+	<string id="str_tor_emp_lord_reikland_factionleader" text="{.MA}Император{.nn} {.MA}Карл{.nn} {.MA}Франц{.nn} фон Холсвиг-{.MA}Шлиштейн{.nn}" />
+	<string id="str_tor_emp_lord_reikland_first_2" text="{.MA}Грандмаршал{.nn} {.MA}Курт{.nn} {.MA}Хельборг{.nn}" />
+	<string id="str_tor_emp_lord_reikland_first_3" text="{.MA}Людвиг{.nn} {.MA}Шварцхельм{.nn}" />
+	<string id="str_tor_emp_lord_reikland_first_4" text="{.FA}Маркграфиня{.nn} {.FA}Изабелла{.nn} фон Холсвиг-Шлиштейн" />
+	<string id="str_tor_emp_lord_reikland_first_5" text="{.FA}Императрица{.nn} {.FA}Мария{.nn}-{.FA}Луиза{.nn} фон Вальфен" />
+	<string id="str_tor_emp_lord_reikland_first_6" text="{.MA}Верховный{.aj} {.MA}Канцлер{.nn} {.MA}Эммануэль{.nn}-{.MA}Ферранд{.nn} фон Холсвиг-{.MA}Шлиштейн{.nn}" />
+	<string id="str_tor_emp_lord_reikland_first_7" text="{.MA}Маркграф{.nn} {.MA}Эдлебрат{.nn} фон {.MA}Абенауэр{.nn}" />
+	<string id="str_tor_emp_lord_reikland_first_8" text="{.MA}Магистр{.nn}-{.MA}Патриарх{.nn} {.MA}Тирус{.nn} {.MA}Горманн{.nn}" />
+	<string id="str_tor_emp_lord_reikland_second_1" text="{.MA}Граф{.nn} {.MA}Фердинанд{.nn} фон {.MA}Валленштейн{.nn}" />
+	<string id="str_tor_emp_lord_reikland_second_2" text="{.MA}Лорд{.nn} {.MA}Адельберт{.nn} фон {.MA}Валленштейн{.nn}" />
+	<string id="str_tor_emp_lord_reikland_second_3" text="{.FA}Баронесса{.nn} {.FA}Магритта{.nn} фон Виттгенштейн" />
+	<string id="str_tor_emp_lord_reikland_second_4" text="{.MA}Граф{.nn} {.MA}Генрих{.nn} фон {.MA}Фалкенхайн{.nn}" />
+	<string id="str_tor_emp_lord_reikland_second_5" text="{.MA}Граф{.nn} {.MA}Сигизмунд{.nn} фон {.MA}Юнгфройд{.nn}" />
+	<string id="str_tor_emp_lord_reikland_third_1" text="{.MA}Маркграф{.nn} {.MA}Рейнхарт{.nn} фон {.MA}Макензен{.nn}" />
+	<string id="str_tor_emp_lord_reikland_third_2" text="{.MA}Граф{.nn} {.MA}Бернхард{.nn} Лойтце" />
+	<string id="str_tor_emp_lord_reikland_third_3" text="{.MA}Граф{.nn} {.MA}Роберт{.nn} фон {.MA}Уланд{.nn}" />
+	<string id="str_tor_emp_lord_reikland_forth_1" text="{.MA}Граф{.nn} {.MA}Вильгельм{.nn} I фон {.MA}Сапонатейм{.nn}" />
+	<string id="str_tor_emp_lord_reikland_forth_2" text="Ули ‘{.MA}Кляйнер{.nn}’ {.MA}Грубер{.nn}" />
+	<string id="str_tor_emp_lord_reikland_forth_3" text="{.MA}Граф{.nn} {.MA}Вильгельм{.nn} II фон {.MA}Сапонатейм{.nn}" />
+	<string id="str_tor_vc_lord_sylvania_factionleader" text="{.MA}Маннфред{.nn} фон {.MA}Карштайн{.nn}" />
+	<string id="str_tor_vc_lord_sylvania_first_2" text="{.MA}Анарк{.nn} фон {.MA}Карштайн{.nn}" />
+	<string id="str_tor_vc_lord_sylvania_first_3" text="{.MA}Дитрих{.nn} фон {.MA}Доль{.nn}" />
+	<string id="str_tor_vc_lord_sylvania_first_4" text="{.MA}Эммануэль{.nn} фон {.MA}Темпельхоф{.nn}" />
+	<string id="str_tor_vc_lord_sylvania_first_5" text="{.FA}Элиза{.nn} фон Карштайн" />
+	<string id="str_tor_vc_lord_sylvania_first_6" text="{.MA}Эрикан{.nn} {.MA}Кроуфинд{.nn}" />
+	<string id="str_tor_vc_lord_sylvania_first_7" text="{.MA}Маркос{.nn} фон {.MA}Карштайн{.nn}" />
+	<string id="str_tor_vc_lord_sylvania_first_8" text="{.MA}Адольфус{.nn} {.MA}Кригер{.nn}" />
+	<string id="str_tor_vc_lord_sylvania_first_9" text="{.FA}Габриэлла{.nn} фон Бундебад" />
+	<string id="str_tor_vc_lord_sylvania_second_1" text="{.MA}Йоханн{.nn} {.MA}Хайфиш{.nn} фон {.MA}Карштайн{.nn}" />
+	<string id="str_tor_vc_lord_sylvania_second_2" text="{.MA}Виктрос{.nn} фон {.MA}Крайгер{.nn}" />
+	<string id="str_tor_vc_lord_sylvania_second_3" text="Хар-Ак-{.MA}Иман{.nn}" />
+	<string id="str_tor_vc_lord_sylvania_second_4" text="{.MA}Мургель{.nn} фон {.MA}Ригак{.nn}" />
+	<string id="str_tor_vc_lord_sylvania_second_5" text="{.MA}Рудольф{.nn} {.MA}Брехт{.nn}" />
+	<string id="str_tor_vc_lord_sylvania_third_1" text="{.MA}Барон{.nn} {.MA}Дерек{.nn} фон Битте{.nn}" />
+	<string id="str_tor_vc_lord_sylvania_third_2" text="{.MA}Йонас{.nn} {.MA}Бёзелагер{.nn}" />
+	<string id="str_tor_vc_lord_sylvania_third_3" text="{.MA}Рувен{.nn} {.MA}Безумный{.aj}" />
+	<string id="str_tor_vc_lord_sylvania_third_4" text="{.MA}Леон{.nn} {.MA}Хользегер{.nn}" />
+	<string id="str_tor_vc_lord_sylvania_third_5" text="{.MA}Питер{.nn} фон {.MA}Шульхоф{.nn}" />
+	<string id="str_tor_vc_lord_sylvania_fourth_1" text="{.MA}Горгивич{.nn} {.MA}Краквальд{.nn}" />
+	<string id="str_tor_vc_lord_sylvania_fourth_2" text="{.MA}Сэр{.nn} {.MA}Тибериус{.nn} {.MA}Каэль{.nn}" />
+	<string id="str_tor_vc_lord_sylvania_fourth_3" text="Рабе фон {.MA}Шталь{.nn}" />
+	<string id="str_tor_vc_lord_sylvania_fourth_4" text="{.MA}Фрич{.nn} фон {.MA}Хаас{.nn}" />
+	<string id="str_tor_vc_lord_blooddragons_factionleader" text="{.MA}Валах{.nn} {.MA}Харкон{.nn}" />
+	<string id="str_tor_vc_lord_blooddragons_first_2" text="Драку" />
+	<string id="str_tor_vc_lord_blooddragons_first_3" text="{.MA}Драшлохав{.nn} из Брашова" />
+	<string id="str_tor_vc_lord_blooddragons_first_4" text="{.MA}Дардиолай{.nn} {.MA}Дакийский{.aj}" />
+	<string id="str_tor_br_lord_parravon_factionleader" text="{.MA}Герцог{.nn} {.MA}Кассион{.nn} де {.MA}Парравон{.nn}" />
+	<string id="str_tor_br_lord_parravon_first_2" text="{.MA}Сэр{.nn} {.MA}Филипп{.nn} {.MA}Антуан{.nn}" />
+	<string id="str_tor_br_lord_parravon_first_3" text="{.MA}Сэр{.nn} {.MA}Альдерик{.nn} ле Дорэ" />
+	<string id="str_tor_br_lord_parravon_first_4" text="{.MA}Сэр{.nn} Готье Монстре-флё" />
+	<string id="str_tor_br_lord_parravon_first_5" text="{.MA}Сэр{.nn} {.MA}Одрик{.nn} де {.MA}Парравон{.nn}" />
+	<string id="str_tor_br_lord_parravon_first_6" text="{.MA}Сэр{.nn} {.MA}Лукас{.nn} из аббатства Мезонталь" />
+	<string id="str_tor_br_lord_parravon_first_7" text="{.MA}Сэр{.nn} {.MA}Пьер{.nn} ле {.MA}Фэр{.nn}" />
+	<string id="str_tor_br_lord_montfort_factionleader" text="{.MA}Фолькард{.nn} де {.MA}Монфор{.nn}" />
+	<string id="str_tor_br_lord_montfort_first_2" text="{.MA}Сэр{.nn} {.MA}Алоис{.nn} де ла {.MA}Монтань{.nn}" />
+	<string id="str_tor_br_lord_montfort_first_3" text="{.MA}Сэр{.nn} {.MA}Элиан{.nn} ле {.MA}Бланк{.nn}" />
+	<string id="str_tor_br_lord_montfort_first_4" text="{.MA}Сэр{.nn} {.MA}Урбан{.nn} {.MA}Бофор{.nn}" />
+	<string id="str_tor_br_lord_montfort_first_5" text="{.MA}Сэр{.nn} {.MA}Седрик{.nn} де ла {.MA}Монтань{.nn}" />
+	<string id="str_tor_br_lord_montfort_first_6" text="{.MA}Сэр{.nn} Ги де л'Эрбе" />
+	<string id="str_tor_br_lord_montfort_first_7" text="{.MA}Сэр{.nn} Эрве ле {.MA}Пюр{.nn}" />
+	<string id="str_tor_br_lord_bastonne_factionleader" text="{.MA}Боэмонд{.nn} {.FA}Звероубийца{.nn}" />
+	<string id="str_tor_br_lord_bastonne_first_2" text="{.MA}Жаспер{.nn} ле Бо" />
+	<string id="str_tor_br_lord_bastonne_first_3" text="{.MA}Лука{.nn} де {.MA}Люпус{.nn}" />
+	<string id="str_tor_br_lord_bastonne_first_4" text="{.MA}Кристефор дю Туа" />
+	<string id="str_tor_br_lord_bastonne_first_5" text="{.MA}Гавейн ле {.MA}Фалькон{.nn}" />
+	<string id="str_tor_br_lord_bastonne_first_6" text="{.MA}Сэр {.MA}Эдвин{.nn} {.FA}Паукоубийца{.nn}" />
+	<string id="str_tor_br_lord_bastonne_first_7" text="{.MA}Симон{.nn} из Брюсса" />
+	<string id="str_tor_br_lord_bastonne_second_1" text="{.MA}Калард{.nn} из Гарамонта" />
+	<string id="str_tor_br_lord_bastonne_second_2" text="Леди {.FA}Анара{.nn} из Гарамонта" />
+	<string id="str_tor_br_lord_bordeleaux_factionleader" text="{.MA}Герцог{.nn} {.MA}Альберик{.nn} де Бордело" />
+	<string id="str_tor_br_lord_bordeleaux_first_2" text="{.MA}Сэр{.nn} Гиффруа Ранье" />
+	<string id="str_tor_br_lord_bordeleaux_first_3" text="{.MA}Сэр{.nn} Бонпре {.MA}Лапарт{.nn}" />
+	<string id="str_tor_br_lord_bordeleaux_first_4" text="{.MA}Сэр{.nn} Геффруа л'{.MA}Эпеист{.nn}" />
+	<string id="str_tor_br_lord_bordeleaux_first_5" text="{.MA}Сэр{.nn} {.MA}Гундехар{.nn} из Резола" />
+	<string id="str_tor_br_lord_bordeleaux_first_6" text="{.MA}Сэр{.nn} {.MA}Фогелан{.nn} де Уазо" />
+	<string id="str_tor_br_lord_bordeleaux_first_7" text="{.MA}Сэр{.nn} {.MA}Пигпин{.nn} {.MA}Имильруд{.nn}" />
+	<string id="str_tor_br_lord_carcassonne_factionleader" text="{.MA}Герцог{.nn} {.MA}Хьюбальд{.nn} де {.MA}Каркассон{.nn}" />
+	<string id="str_tor_br_lord_carcassonne_first_2" text="{.MA}Барон{.nn} {.MA}Абеляр{.nn} де {.MA}Турин{.nn}" />
+	<string id="str_tor_br_lord_carcassonne_first_3" text="{.MA}Сэр{.nn} де {.MA}Ракер{.nn}" />
+	<string id="str_tor_br_lord_carcassonne_first_4" text="{.MA}Сэр{.nn} {.MA}Люсьен{.nn} ле {.MA}Рок{.nn}" />
+	<string id="str_tor_br_lord_carcassonne_first_5" text="{.MA}Сэр{.nn} {.MA}Жерар{.nn} {.MA}Саважон{.nn}" />
+	<string id="str_tor_br_lord_carcassonne_first_6" text="{.MA}Сэр{.nn} {.MA}Ален{.nn} л'{.MA}Ивронь{.nn}" />
+	<string id="str_tor_br_lord_carcassonne_first_7" text="{.MA}Сэр{.nn} {.MA}Филберт{.nn} ле {.MA}Кошон{.nn}" />
+	<string id="str_tor_br_lord_carcassonne_second_1" text="{.MA}Сэр{.nn} Амори де {.MA}Годарон{.nn}" />
+	<string id="str_tor_br_lord_carcassonne_second_2" text="Леди {.FA}Джулия{.nn} де Турин" />
+	<string id="str_tor_br_lord_carcassonne_second_3" text="Леди {.FA}Маргерита{.nn} де Турин" />
+	<string id="str_tor_br_lord_brionne_factionleader" text="{.MA}Герцог{.nn} {.MA}Теодорик{.nn} {.MA}Брионнский{.aj}" />
+	<string id="str_tor_br_lord_brionne_first_2" text="{.MA}Гастон{.nn} ле {.MA}Пуссен{.nn}" />
+	<string id="str_tor_br_lord_brionne_first_3" text="{.MA}Филипп{.nn} л'Омгри" />
+	<string id="str_tor_br_lord_brionne_first_4" text="{.MA}Клод{.nn} ле Санте" />
+	<string id="str_tor_br_lord_brionne_first_5" text="{.MA}Антуан{.nn} ле {.MA}Бель{.nn}" />
+	<string id="str_tor_br_lord_brionne_first_6" text="{.MA}Шарль{.nn} де Алари" />
+	<string id="str_tor_br_lord_brionne_first_7" text="{.MA}Жак{.nn} ле {.MA}Шантелейм{.nn}" />
+	<string id="str_tor_br_lord_aquitaine_factionleader" text="{.MA}Герцог{.nn} {.MA}Арманд{.nn} д’{.MA}Аквитань{.nn}" />
+	<string id="str_tor_br_lord_aquitaine_first_2" text="{.MA}Сэр{.nn} {.MA}Маркус{.nn} ле {.MA}Бреф{.nn}" />
+	<string id="str_tor_br_lord_aquitaine_first_3" text="{.MA}Сэр{.nn} {.MA}Бодвин{.nn} ле {.MA}Дюзьем{.nn}" />
+	<string id="str_tor_br_lord_aquitaine_first_4" text="{.MA}Сэр{.nn} {.MA}Аарон{.nn} ле {.MA}Круэль{.nn}" />
+	<string id="str_tor_br_lord_aquitaine_first_5" text="{.MA}Сэр{.nn} {.MA}Гидеон{.nn} ле Маладруа" />
+	<string id="str_tor_br_lord_aquitaine_first_6" text="{.MA}Сэр{.nn} {.MA}Дариус{.nn} л'{.MA}Этранж{.nn}" />
+	<string id="str_tor_br_lord_aquitaine_first_7" text="{.MA}Сэр{.nn} {.MA}Габриэль{.nn} ле Пью" />
+	<string id="str_tor_br_lord_aquitaine_first_8" text="{.MA}Сэр{.nn} {.MA}Жак{.nn} ле {.MA}Марин{.nn}" />
+	<string id="str_tor_br_lord_quenelles_factionleader" text="{.MA}Герцог{.nn} {.MA}Танкред{.nn} II де {.MA}Кенель{.nn}" />
+	<string id="str_tor_br_lord_quenelles_first_2" text="{.MA}Комтур{.nn} {.MA}Райнор{.nn}" />
+	<string id="str_tor_br_lord_quenelles_first_3" text="{.MA}Сэр{.nn} {.MA}Пантелеон{.nn} {.MA}Старый{.nn}" />
+	<string id="str_tor_br_lord_quenelles_first_4" text="{.MA}Граф{.nn} {.MA}Антель{.nn} из Острея" />
+	<string id="str_tor_br_lord_quenelles_first_5" text="{.MA}Сэр{.nn} {.MA}Хродберт{.nn} из Шиена" />
+	<string id="str_tor_br_lord_quenelles_first_6" text="{.MA}Сэр{.nn} {.MA}Туран{.nn} {.MA}Странник" />
+	<string id="str_tor_br_lord_quenelles_second_1" text="{.MA}Сэр{.nn} {.MA}Леон{.nn}, {.MA}Возлюбленный Матильды" />
+	<string id="str_tor_br_lord_quenelles_second_2" text="Леди {.FA}Матильда{.nn}, {.FA}фрейлина Феи" />
+	<string id="str_tor_m_lord_mousillon_factionleader" text="{.MA}Маллобод{.nn}, {.MA}Змей{.nn} Музильона" />
+	<string id="str_tor_m_lord_mousillon_first_1" text="{.MA}Лорд{.nn} {.MA}Рашар{.nn}" />
+	<string id="str_tor_m_lord_mousillon_first_2" text="{.MA}Лорд{.nn} {.MA}Окассен{.nn}" />
+	<string id="str_tor_m_lord_mousillon_first_3" text="{.MA}Сэр{.nn} {.MA}Каин{.nn} {.MA}Беттанкур{.nn}" />
+	<string id="str_tor_m_lord_mousillon_first_4" text="{.MA}Глеб{.nn} {.MA}Маркс{.nn}" />
+	<string id="str_tor_m_lord_mousillon_first_5" text="{.MA}Сэр{.nn} {.MA}Гаррет{.nn}, {.MA}рыцарь{.nn} Черной Розы" />
+	<string id="str_tor_m_lord_mousillon_first_6" text="{.MA}Сэр{.nn} {.MA}Агравейн{.nn} {.MA}Призрак{.nn}" />
+	<string id="str_tor_m_lord_mousillon_first_7" text="{.MA}Сэр{.nn} {.MA}Гахерис{.nn} {.MA}Ужасный{.aj}" />
+	<string id="str_tor_m_lord_mousillon_first_8" text="{.MA}Питер{.nn} {.MA}Фонс{.nn}" />
+	<string id="str_tor_m_lord_mousillon_first_9" text="{.MA}Чёрный{.aj} {.MA}Герцог{.nn}" />
+	<string id="str_tor_chaos_lord_factionleader" text="{.MA}Архаон{.nn}" />
+	<string id="str_tor_ungor_chief_factionleader" text="{.MA}Унгрол{.nn} {.MA}Сквернорог{.nn}" />
+	<string id="str_tor_dog_clan_hero_braganza" text="{.MA}Лука{.nn} Браганза" />
+	<string id="str_tor_dog_clan_hero_cursed" text="{.MA}Рихтер{.nn} {.MA}Кройгар{.nn} {.MA}Проклятый{.aj}" />
+	<string id="str_tor_dog_clan_hero_leopard" text="Леопольдо ди Луччи" />
+	<string id="str_tor_dog_clan_hero_voland" text="{.MA}Воланд{.nn}" />
+	<string id="str_tor_dog_clan_hero_miragliano" text="{.MA}Максимилиан{.nn} {.MA}Дамарк{.nn}" />
+	<string id="str_tor_dog_clan_hero_ricco" text="Рикко" />
+	<string id="str_tor_dog_clan_hero_muktar" text="Аль-{.MA}Муктар{.nn}" />
+	
+	
+	</strings>
+</base>

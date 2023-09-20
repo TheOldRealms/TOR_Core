@@ -1,0 +1,18 @@
+  <?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Русский" />
+  </tags>
+  <strings>
+  
+    		<string id="str_tor_emp_lord" text="Имперский лорд" />
+			<string id="str_tor_bw_lord" text="Пиромант" />
+			<string id="str_tor_lw_lord" text="Белый маг" />
+			<string id="str_tor_cw_lord" text="Небесный маг" />
+			<string id="str_tor_prophetess_lw" text="Пророчица (Жизнь)" />
+			<string id="str_tor_prophetess_bw" text="Пророчица (Зверь)" />
+			<string id="str_tor_vc_lord" text="Лорд-вампир" />
+			<string id="str_tor_necromancer_lord" text="Некромант" />
+  
+    </strings>
+</base>

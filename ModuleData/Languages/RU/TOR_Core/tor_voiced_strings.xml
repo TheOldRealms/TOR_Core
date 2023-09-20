@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Русский" />
+  </tags>
+  <strings>
+  
+  		<string id="ccultist_robbery" text="Ещё один глупец забрёл в наши владения... Отдавай золото или прощайся с жизнью!" />
+		<string id="v_first_meeting" text="Что тебе нужно от меня?" />
+		<string id="v_annoyed_first_meeting" text="Как ты смеешь обращаться ко мне? Говори, пока не иссякло моё терпение." />
+		<string id="v_fealty" text="{STR_SALUTATION}... Я клянусь тебе в верности." />
+		<string id="v_whoislay" text="А ну стоять! Кто ты? Хочу знать, кого прикончу." />
+		<string id="v_beensometime" text="{STR_SALUTATION}. Давно не виделись." />
+		<string id="v_yourstocommand" text="{STR_SALUTATION}... Я жду твоего приказа." />
+		<string id="v_atyourservice" text="Я пришёл по твоему зову. Чем могу служить?" />
+		<string id="v_unburied" text="{STR_SALUTATION}... Я позабочусь, чтобы твоё мертвое тело не познало могилы." />
+		<string id="v_perish" text="Говори, что хотел. Всё равно твоя погибель близко..." />
+		<string id="v_diejoinarmy" text="Если сегодня тебе повезёт в бою, после смерти ты примкнёшь к моей армии." />
+  
+      </strings>
+</base>

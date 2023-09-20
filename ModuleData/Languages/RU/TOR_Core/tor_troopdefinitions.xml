@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Русский" />
+  </tags>
+  <strings>
+  
+      <!--Empire/ Империя-->
+  	<string id="str_tor_empire_villager" text="{.MA}Имперский{.aj} {.MA}крестьянин{.nn}" />
+	<string id="str_tor_empire_recruit" text="{.MA}Имперский{.aj} {.MA}рекрут{.nn}" />
+	<string id="str_tor_empire_state_troop" text="{.MA}Имперский{.aj} {.MA}солдат{.nn}" />
+	<string id="str_tor_empire_swordsman" text="{.MA}Имперский{.aj} {.MA}мечник{.nn}" />
+	<string id="str_tor_empire_spearman" text="{.MA}Имперский{.aj} {.MA}копейщик{.nn}" />
+	<string id="str_tor_empire_armored_spearman" text="{.MA}Имперский{.aj} {.MA}тяжёлый{.aj} {.MA}копейщик{.nn}" />
+	<string id="str_tor_empire_veteran_swordsman" text="{.MA}Имперский{.aj} {.MA}мечник{.nn}-{.MA}ветеран{.nn}" />
+	<string id="str_tor_empire_halberdier" text="{.MA}Имперский{.aj} {.MA}алебардист{.nn}" />
+	<string id="str_tor_empire_greatsword" text="{.MA}Имперский{.aj} {.MA}тяжёлый{.aj} {.MA}мечник{.nn}" />
+	<string id="str_tor_empire_pikeman" text="{.MA}Имперский{.aj} {.MA}пикинёр{.nn}" />
+	<string id="str_tor_empire_sergeant" text="{.MA}Имперский{.aj} {.MA}сержант{.nn}" />
+	<string id="str_tor_empire_scout" text="{.MA}Имперский{.aj} {.MA}разведчик{.nn}" />
+	<string id="str_tor_empire_archer" text="{.MA}Имперский{.aj} {.MA}лучник{.nn}" />
+	<string id="str_tor_empire_skirmisher" text="{.MA}Имперский{.aj} {.MA}стрелок{.nn}" />
+	<string id="str_tor_empire_handgunner" text="{.MA}Имперский{.aj} {.MA}мушкетёр{.nn}" />
+	<string id="str_tor_empire_crossbowman" text="{.MA}Имперский{.aj} {.MA}арбалетчик{.nn}" />
+	<string id="str_tor_empire_longbowman" text="{.MA}Имперский{.aj} {.MA}опытный{.aj} {.MA}лучник{.nn}" />
+	<string id="str_tor_empire_huntsman" text="{.MA}Имперский{.aj} {.MA}охотник{.nn}" />
+	<string id="str_tor_empire_marksman_crossbowman" text="{.MA}Имперский{.aj} {.MA}арбалетчик{.nn}-{.MA}снайпер{.nn}" />
+	<string id="str_tor_empire_marksman_handgunner" text="{.MA}Имперский{.aj} {.MA}мушкетёр{.nn}-{.MA}снайпер{.nn}" />
+	<string id="str_tor_empire_young_noble_squire" text="{.MA}Имперский{.aj} {.MA}сквайр{.nn}-{.MA}пистолетчик{.nn}" />
+	<string id="str_tor_empire_noble_cavalry" text="{.MA}Имперский{.aj} {.MA}сквайр{.nn}-{.MA}кавалерист{.nn}" />
+	<string id="str_tor_empire_reiksguard_knight" text="{.MA}Имперский{.aj} {.MA}рыцарь{.nn} Рейксгвардии" />
+	<string id="str_tor_empire_pistolier" text="{.MA}Имперский{.aj} {.MA}пистольер{.nn}" />
+	<string id="str_tor_empire_outrider" text="{.MA}Имперский{.aj} {.MA}налётчик{.nn}" />
+	<string id="str_tor_empire_reiksguard_preceptor" text="{.MA}Имперский{.aj} {.MA}рыцарь{.nn}-{.MA}прецептор{.nn} Рейксгвардии" />
+	<string id="str_tor_empire_innercircle_knight" text="{.MA}Имперский{.aj} {.MA}рыцарь{.nn} Внутреннего Круга" />
+	<string id="str_tor_demigryph_knight" text="{.MA}Имперский{.aj} {.MA}рыцарь{.nn} на демигрифе" />
+	<string id="str_tor_valiant_outrider" text="{.MA}Имперский{.aj} {.MA}опытный{.nn} {.MA}налётчик{.nn}" />
+	<string id="str_tor_valiant_outrider_grenade" text="{.MA}Имперский{.aj} {.MA}налётчик{.nn}-{.MA}гренадир{.nn}" />
+	<string id="str_tor_reiksguard_preceptor_innercircle" text="{.MA}Имперский{.aj} {.MA}рыцарь{.nn} Внутреннего Круга, {.MA}прецептор{.nn} Рейксгвардии" />
+	<string id="str_tor_demigryph_innercircle" text="{.MA}Имперский{.aj} {.MA}рыцарь{.nn} Рейксгвардии на демигрифе" />
+	<string id="str_tor_empire_novice_engineer" text="{.MA}Инженер{.nn}-{.MA}ученик{.nn}" />
+	<string id="str_tor_empire_trainee_artillery_crew" text="{.MA}Артиллерист{.nn}-{.MA}ученик{.nn}" />
+	<string id="str_tor_empire_apprentice_engineer" text="{.MA}Обученный{.aj} {.MA}инженер{.nn}" />
+	<string id="str_tor_empire_iron_company_guard" text="{.MA}Солдат{.nn} Железной Роты" />
+	<string id="str_tor_empire_experienced_artillery_crew" text="{.MA}Опытный{.aj} {.MA}артиллерист{.nn}" />
+	<string id="str_tor_empire_associate_engineer" text="{.MA}Посвящённый{.aj} {.MA}инженер{.nn}" />
+	<string id="str_tor_empire_iron_company_troop" text="{.MA}Гвардеец{.nn} Железной Роты" />
+	<string id="str_tor_empire_veteran_artillery_crew" text="{.MA}Ветеран{.nn}-{.MA}артиллерист{.nn}" />
+	<string id="str_tor_empire_master_engineer" text="{.MA}Мастер{.nn}-{.MA}инженер{.nn}" />
+	<string id="str_tor_empire_ironsider" text="{.MA}Нульнский{.aj} '{.MA}Железнобокий{.aj}'" />
+	<string id="str_tor_empire_caravan_captain" text="{.MA}Имперский{.aj} {.MA}капитан{.nn} каравана" />
+	<string id="str_tor_empire_caravan_guard" text="{.MA}Имперский{.aj} {.MA}охранник{.nn} каравана" />
+	<string id="str_tor_empire_caravan_vetguard" text="{.MA}Имперский{.aj} {.MA}рыцарь{.nn}" />
+	<string id="str_tor_empire_caravan_ranged" text="{.MA}Имперский{.aj} {.MA}арбалетчик{.nn}" />
+	<string id="str_tor_empire_flagellant" text="{.MA}Флагеллянт{.nn}" />
+	
+	  <!--Bretonnia / Бретония-->
+	  
+	<string id="str_tor_br_villager" text="{.MA}Бретонский{.aj} {.MA}простолюдин{.nn}" />
+	<string id="str_tor_br_battle_pilgrim" text="{.MA}Боевой{.aj} {.MA}пилигрим{.nn}" />
+	<string id="str_tor_br_peasant_levy" text="{.MA}Бретонский{.aj} {.MA}крестьянин{.nn}" />
+	<string id="str_tor_br_peasant_archer" text="{.MA}Бретонский{.aj} {.MA}крестьянин{.nn} с луком" />
+	<string id="str_tor_br_longbowman" text="{.MA}Бретонский{.aj} {.MA}лучник{.nn}" />
+	<string id="str_tor_br_villein" text="{.MA}Бретонский{.aj} {.MA}виллан{.nn}" />
+	<string id="str_tor_br_manatarms_militia" text="{.MA}Бретонский{.aj} {.MA}ополченец{.nn}" />
+	<string id="str_tor_br_manatarms" text="{.MA}Бретонский{.aj} {.MA}ополченец{.nn} с щитом" />
+	<string id="str_tor_br_manatarms_halberd" text="{.MA}Бретонский{.aj} {.MA}ополченец{.nn} с алебардой" />
+	<string id="str_tor_br_yeoman" text="{.MA}Бретонский{.aj} {.MA}йомен{.nn}" />
+	<string id="str_tor_br_yeoman_warden" text="{.MA}Бретонский{.aj} {.MA}йомен{.nn}-{.MA}страж{.nn}" />
+	<string id="str_tor_br_foot_squire" text="{.MA}Бретонский{.aj} {.MA}пеший{.aj} {.MA}оруженосец{.nn}" />
+	<string id="str_tor_br_mounted_yeoman" text="{.MA}Бретонский{.aj} {.MA}конный{.aj} {.MA}йомен{.nn}" />
+	<string id="str_tor_br_mounted_warden" text="{.MA}Бретонский{.aj} {.MA}конный{.aj} {.MA}йомен{.nn}-{.MA}страж{.nn}" />
+	<string id="str_tor_br_noble" text="{.MA}Бретонский{.aj} {.MA}дворянин{.nn}" />
+	<string id="str_tor_br_knight_errant" text="{.MA}Бретонский{.aj} {.MA}странствующий{.aj} {.MA}рыцарь{.nn}" />
+	<string id="str_tor_br_realm_knight" text="{.MA}Бретонский{.aj} {.MA}Рыцарь{.nn} Королевства" />
+	<string id="str_tor_br_quest_knight" text="{.MA}Бретонский{.aj} {.MA}Искатель{.nn} Грааля" />
+	<string id="str_tor_br_grail_knight" text="{.MA}Бретонский{.aj} {.MA}Рыцарь{.nn} Грааля" />
+	<string id="str_tor_br_caravan_guard" text="{.MA}Бретонский{.aj} {.MA}конник{.nn}-{.MA}караванщик{.nn}" />
+	<string id="str_tor_br_caravan_ranged" text="{.MA}Бретонский{.aj} {.MA}лучник{.nn}-{.MA}караванщик{.nn}" />
+	<string id="str_tor_br_caravan_elite_ranged" text="{.MA}Бретонский{.aj} {.MA}караванщик{.nn} с длинным луком" />
+	<string id="str_tor_br_caravan_captain" text="{.MA}Бретонский{.aj} {.MA}капитан{.nn} каравана" />
+	
+	<!--Mousillon / Музильон-->
+		  
+	<string id="str_tor_m_villager" text="{.MA}Музильонский{.aj} {.MA}простолюдин{.nn}" />
+	<string id="str_tor_m_peasant_levy" text="{.MA}Музильонский{.aj} {.MA}крестьянин{.nn}" />
+	<string id="str_tor_m_peasant_archer" text="{.MA}Музильонский{.aj} {.MA}крестьянин{.nn} с луком" />
+	<string id="str_tor_m_longbowman" text="{.MA}Музильонский{.aj} {.MA}лучник{.nn}" />
+	<string id="str_tor_m_villein" text="{.MA}Музильонский{.aj} {.MA}виллан{.nn}" />
+	<string id="str_tor_m_manatarms_militia" text="{.MA}Музильонский{.aj} {.MA}ополченец{.nn}" />
+	<string id="str_tor_m_manatarms" text="{.MA}Музильонский{.aj} {.MA}ополченец{.nn} с щитом" />
+	<string id="str_tor_m_manatarms_halberd" text="{.MA}Музильонский{.aj} {.MA}ополченец{.nn} с алебардой" />
+	<string id="str_tor_m_manatarms_halberd" text="{.MA}Музильонский{.aj} {.MA}ополченец{.nn} с алебардой" />
+	<string id="str_tor_m_mounted_yeoman" text="{.MA}Музильонский{.aj} {.MA}конный{.aj} {.MA}йомен{.nn}" />
+	<string id="str_tor_m_illfated_squire" text="{.MA}Музильонский{.aj} {.MA}бесчестный{.aj} {.MA}оруженосец{.nn}" />
+	<string id="str_tor_m_outcast_errant" text="{.MA}Музильонский{.aj} {.MA}рыцарь{.nn}-{.MA}изгой{.nn}" />
+	<string id="str_tor_m_knight_of_misfortune" text="{.MA}Музильонский{.aj} {.MA}Рыцарь{.nn} Несчастья" />
+	<string id="str_tor_m_doomed_questing_knight" text="{.MA}Музильонский{.aj} {.MA}проклятый{.aj} {.MA}Искатель{.nn} Грааля" />
+	<string id="str_tor_m_knight_of_the_black_grail" text="{.MA}Музильонский{.aj} {.MA}Рыцарь{.nn} Чёрного Грааля" />
+	<string id="str_tor_m_caravan_guard" text="{.MA}Музильонский{.aj} {.MA}конник{.nn}-{.MA}караванщик{.nn}" />
+	<string id="str_tor_m_caravan_ranged" text="{.MA}Музильонский{.aj} {.MA}лучник{.nn}-{.MA}караванщик{.nn}" />
+	<string id="str_tor_m_caravan_elite_ranged" text="{.MA}Музильонский{.aj} {.MA}караванщик{.nn} с длинным луком" />
+	<string id="str_tor_m_caravan_captain" text="{.MA}Музильонский{.aj} {.MA}капитан{.nn} каравана" />
+	
+	
+	<!--Vampire Counts / Вампиры-->
+
+	<string id="str_tor_vc_villager" text="{.MA}Сильванский{.aj} {.MA}крестьянин{.nn}" />
+	<string id="str_tor_vc_empire_recruit" text="{.MA}Сильванский{.aj} {.MA}вооружённый{.aj} {.MA}крестьянин{.nn}" />
+	<string id="str_tor_vc_empire_levy" text="{.MA}Сильванский{.aj} {.MA}рекрут{.nn}" />
+	<string id="str_tor_vc_empire_state_troop" text="{.MA}Сильванский{.aj} {.MA}солдат{.nn}" />
+	<string id="str_tor_vc_empire_veteran_state_troop" text="{.MA}Сильванский{.aj} {.MA}солдат{.nn}-{.MA}ветеран{.nn}" />
+	<string id="str_tor_vc_empire_sergeant" text="{.MA}Сильванский{.aj} {.MA}сержант{.nn}" />
+	<string id="str_tor_vc_empire_archer" text="{.MA}Сильванский{.aj} {.MA}разведчик{.nn}" />
+	<string id="str_tor_vc_empire_hunter" text="{.MA}Сильванский{.aj} {.MA}охотник{.nn}" />
+	<string id="str_tor_vc_empire_ranger" text="{.MA}Сильванский{.aj} {.MA}болотный{.aj} {.MA}стрелок{.nn}" />
+	<string id="str_tor_vc_summoned_skeleton" text="{.MA}Призванный{.aj} {.MA}скелет{.nn}" />
+	<string id="str_tor_vc_skeleton" text="{.MA}Скелет{.nn}" />
+	<string id="str_tor_vc_skeleton_swordsman" text="{.MA}Скелет{.nn}-{.MA}мечник{.nn}" />
+	<string id="str_tor_vc_skeleton_warrior" text="{.MA}Скелет{.nn}-{.MA}воин{.nn}" />
+	<string id="str_tor_vc_crypt_warrior" text="{.MA}Могильный{.aj} {.MA}воин{.nn}" />
+	<string id="str_tor_vc_grave_guard_warrior" text="{.MA}Страж{.nn} могил" />
+	<string id="str_tor_vc_grave_guard_seneschal" text="{.MA}Страж{.nn} могил-{.MA}сенешаль{.nn}" />
+	<string id="str_tor_vc_skeleton_spearman" text="{.MA}Скелет{.nn}-{.MA}копейщик{.nn}" />
+	<string id="str_tor_vc_skeleton_guard" text="{.MA}Скелет{.nn}-{.MA}стражник{.nn}" />
+	<string id="str_tor_vc_crypt_guard" text="{.MA}Стражник{.nn} склепа" />
+	<string id="str_tor_vc_grave_guard_spearman" text="{.MA}Страж{.nn} могил-{.MA}копейщик{.nn}" />
+	<string id="str_tor_vc_grave_guardian" text="{.MA}Хранитель{.nn} могил" />
+	<string id="str_tor_vc_black_knight" text="{.MA}Черный{.aj} {.MA}рыцарь{.nn}" />
+	<string id="str_tor_vc_hell_knight" text="{.MA}Рыцарь{.nn} преисподнии" />
+	<string id="str_tor_vc_spirit_host" text="{.MA}Призрак{.nn}" />
+	<string id="str_tor_vc_cairn_wraith" text="{.MA}Курганный{.aj} {.MA}дух{.nn}" />
+	<string id="str_tor_vc_crypt_wraith" text="{.MA}Дух{.nn} склепа" />
+	<string id="str_tor_vc_hex_wraith" text="{.MA}Дух{.nn} сглаза" />
+	<string id="str_tor_vc_hell_wraith" text="{.MA}Дух{.nn} преисподнии" />
+	<string id="str_tor_vc_con_carstein_noble" text="{.MA}Новообращённый{.aj} {.MA}вампир{.nn}" />
+	<string id="str_tor_vc_von_carstein_knight" text="Рыцарь{.nn} фон Карштайнов" />
+	<string id="str_tor_vc_drakenhof_templar" text="{.MA}Храмовник{.nn} Дракенхофа" />
+	<string id="str_tor_vc_drakenhof_kastelan" text="{.MA}Кастелян{.nn} Дракенхофа" />
+	<string id="str_tor_bd_blooddragon_initiate" text="{.MA}Кровавый{.aj} {.MA}Дракон{.nn}-{.MA}неофит{.nn}" />
+	<string id="str_tor_bd_blooddragon_knight" text="{.MA}Кровавый{.aj} {.MA}Дракон{.nn}-{.MA}рыцарь{.nn}" />
+	<string id="str_tor_bd_blooddragon_templar" text="{.MA}Кровавый{.aj} {.MA}Дракон{.nn}-{.MA}храмовник{.nn}" />
+	<string id="str_tor_bd_blooddragon_kastelan" text="{.MA}Кровавый{.aj} {.MA}Дракон{.nn}-{.MA}кастелян{.nn}" />
+	<string id="str_tor_vc_lahmian_sister" text="{.FA}Ламийский{.aj} {.FA}Сестра{.nn}" />
+	<string id="str_tor_vc_lahmian_noblewoman" text="{.FA}Ламийский{.aj} {.FA}дворянка{.nn}" />
+	<string id="str_tor_vc_lahmian_countess" text="{.FA}Ламийский{.aj} {.FA}Графиня{.nn}" />
+	<string id="str_tor_vc_caravan_captain" text="{.MA}Сильванский{.aj} {.MA}капитан{.nn} каравана" />
+	<string id="str_tor_vc_caravan_guard" text="{.MA}Сильванский{.aj} {.MA}конник{.nn}-{.MA}караванщик{.nn}" />
+	<string id="str_tor_vc_caravan_ranged" text="{.MA}Сильванский{.aj} {.MA}арбалетчик{.nn}" />
+	
+		<!--Chaos / Хаос-->
+	
+	<string id="str_tor_chaos_nurgle_warrior" text="{.MA}Гнилостный{.aj} {.MA}Король{.nn} Порчи" />
+	<string id="str_tor_chaos_nurgle_warrior_002" text="{.MA}Воитель{.nn} Нургла" />
+	<string id="str_tor_chaos_nurgle_warrior_003" text="{.MA}Избранный{.aj} Нургла" />
+	<string id="str_tor_chaos_chosen" text="{.MA}Избранный{.aj} Кхорна" />
+	<string id="str_tor_chaos_khorne_warrior" text="{.MA}Воитель{.nn} Кхорна" />
+	<string id="str_tor_chaos_chaos_knight" text="{.MA}Рыцарь{.nn} Хаоса" />
+	<string id="str_tor_beast_ungor" text="{.MA}Унгор{.nn}" />
+	<string id="str_tor_beast_shielded_ungor" text="{.MA}Унгор{.nn} с щитом" />
+	<string id="str_tor_beast_ungor_raider" text="{.MA}Унгор{.nn}-{.MA}налётчик{.nn}" />
+	<string id="str_tor_beast_ungor_chief" text="{.MA}Унгор{.nn}-{.MA}вожак{.nn}" />
+	<string id="str_tor_chaos_cult_acolyte" text="{.MA}Культист{.nn} Хаоса" />
+	<string id="str_tor_chaos_cult_darksoul" text="{.MA}Одержимый{.aj} Хаосом" />
+	<string id="str_tor_chaos_cult_magister" text="{.MA}Падший{.aj} {.MA}магистр{.nn}" />
+	<string id="str_tor_cult_bw_expelled_magister" text="{.MA}Изгнанный{.aj} {.MA}магистр{.nn}" />
+	<string id="str_tor_cult_bw_vengeful_cultist" text="{.MA}Мстительный{.aj} {.MA}культист{.nn}" />
+	<string id="str_tor_cult_bw_sorcerer_broken_wheel" text="{.MA}Колдун{.nn} Сломанного Колеса" />
+	<string id="str_tor_cult_coi_unlit_candle" text="{.FA}Незажжённый{.aj} {.FA}свеча{.nn}" />
+	<string id="str_tor_cult_coi_beacon" text="{.MA}Маяк{.nn}" />
+	<string id="str_tor_cult_coi_order_of_star_acolyte" text="{.MA}Аколит{.nn} Ордена Звезды" />
+	<string id="str_tor_cult_fsf_puer_ulceris" text="{.MA}Носитель{.nn} Язв" />
+	<string id="str_tor_cult_fsf_ulcus_frater" text="{.MA}Чумной{.aj} {.MA}брат{.nn}" />
+	<string id="str_tor_cult_fsf_ulcerator" text="{.MA}Уязвитель{.nn}" />
+	
+	<!--Mercenaries / Наемники-->
+	
+	
+	<string id="str_tor_dog_braganza_01" text="{.MA}Осаждающий{.aj}-{.MA}арбалетчик{.nn}" />
+	<string id="str_tor_dog_braganza_02" text="{.MA}Осаждающий{.aj}-{.MA}снайпер{.nn}" />
+	<string id="str_tor_dog_braganza_03" text="{.MA}Осаждающий{.aj} Браганзы" />
+	<string id="str_tor_dog_cursed_company_01" text="{.MA}Порабощённый{.aj} {.MA}воин{.nn}" />
+	<string id="str_tor_dog_cursed_company_02" text="{.MA}Проклятый{.aj} {.MA}воин{.nn}" />
+	<string id="str_tor_dog_cursed_company_03" text="{.MA}Боец{.nn} Проклятой Роты" />
+	<string id="str_tor_dog_leopard_01" text="{.MA}Наёмник{.nn}-{.MA}Леопард{.nn}" />
+	<string id="str_tor_dog_leopard_02" text="{.MA}Пикинёр{.nn}-{.MA}Леопард{.nn}" />
+	<string id="str_tor_dog_leopard_03" text="{.MA}Пикинёр{.nn}-{.MA}Леопард{.nn} Леопольда" />
+	<string id="str_tor_dog_voland_01" text="{.MA}Наёмный{.aj} {.MA}конник{.nn}-{.MA}венатор{.nn}" />
+	<string id="str_tor_dog_voland_02" text="{.MA}Венатор{.nn}-{.MA}кондотьер{.nn}" />
+	<string id="str_tor_dog_voland_03" text="{.MA}Венатор{.nn} Воланда" />
+	<string id="str_tor_dog_muktar_01" text="{.MA}Арабийский{.aj} {.MA}наёмный{.aj} {.MA}конник{.nn}" />
+	<string id="str_tor_dog_muktar_02" text="{.MA}Арабийский{.aj} {.MA}пустынный{.aj} {.MA}наездник{.nn}" />
+	<string id="str_tor_dog_muktar_03" text="{.MA}Пёс{.nn} Пустыни Аль-Муктара" />
+	<string id="str_tor_dog_miragliano_01" text="{.MA}Стрелок{.nn} из Миральяно" />
+	<string id="str_tor_dog_miragliano_02" text="{.MA}Арбалетчик{.nn} из Миральяно" />
+	<string id="str_tor_dog_miragliano_03" text="{.MA}Снайпер{.nn} из Миральяно" />
+	<string id="str_tor_dog_ricco_01" text="{.MA}Реманский{.aj} {.MA}патриот{.nn}" />
+	<string id="str_tor_dog_ricco_02" text="{.MA}Реманский{.aj} {.MA}пикинёр{.nn}" />
+	<string id="str_tor_dog_ricco_03" text="{.MA}Республиканский{.aj} {.MA}гвардеец{.nn} Рикко" />
+	<string id="str_tor_merc_free_company_volunteer" text="{.MA}Доброволец{.nn} Свободной Роты" />
+	<string id="str_tor_merc_free_company_scout" text="{.MA}Разведчик{.nn} Свободной Роты" />
+	<string id="str_tor_merc_free_company_militiaman" text="{.MA}Ополченец{.nn} Свободной Роты" />
+	<string id="str_tor_merc_free_company_bowman" text="{.MA}Лучник{.nn} Свободной Роты" />
+	<string id="str_tor_merc_free_company_pistolier" text="{.MA}Пистолетчик{.nn} Свободной Роты" />
+	<string id="str_tor_ror_kragsburg_retainer" text="{.MA}Боец{.nn} фон Крагсбурга" />
+	<string id="str_tor_ror_kragsburg_sergeant" text="{.MA}Сержант{.nn} фон Крагсбурга" />
+	<string id="str_tor_ror_kragsburg_house_guard" text="{.MA}Дружинник{.nn} фон Крагсбурга" />
+	<string id="str_tor_ror_kragsburg_personal_guard" text="{.MA}Телохранитель{.nn} фон Крагсбурга" />
+	<string id="str_tor_ror_stir_river_scout" text="{.MA}Разведчик{.nn} с реки Штир" />
+	<string id="str_tor_ror_stir_river_patrolman" text="{.MA}Патрульный{.nn} с реки Штир" />
+	<string id="str_tor_ror_stir_river_patrol_guardsman" text="{.MA}Патрульный{.nn}-{.MA}гвардеец{.nn} с реки Штир" />
+	<string id="str_tor_ror_stir_river_patrol_nimrod" text="{.MA}Патрульный{.nn}-{.MA}герой{.nn} с реки Штир" />
+	<string id="str_tor_ror_blazing_sun_initiate" text="{.MA}Посвящённый{.nn} Пылающего Солнца" />
+	<string id="str_tor_ror_blazing_sun_knight" text="{.MA}Рыцарь{.nn} Пылающего Солнца" />
+	<string id="str_tor_ror_blazing_sun_preceptor" text="{.MA}Рыцарь{.nn}-{.MA}прецептор{.nn} Пылающего Солнца" />
+	<string id="str_tor_ror_blazing_sun_demigryph_knight" text="{.MA}Рыцарь{.nn} Пылающего Солнца на демигрифе" />
+	<string id="str_tor_ror_blazing_sun_innercircle" text="{.MA}Рыцарь{.nn} Внутреннего Круга ордена Пылающего Солнца" />
+	<string id="str_tor_ror_blazing_sun_demigryph_innercircle" text="{.MA}Рыцарь{.nn} Внутреннего Круга ордена Пылающего Солнца на демигрифе" />
+	<string id="str_tor_ror_grundel_defender_troop" text="{.MA}Защитник{.nn} Грюнделя-{.MA}солдат{.nn}" />
+	<string id="str_tor_ror_grundel_defender_stalwart" text="{.MA}Штальвартский{.aj} {.MA}Защитник{.nn} Грюнделя" />
+	<string id="str_tor_ror_grundel_defender_sergeant" text="{.MA}Защитник{.nn} Грюнделя-{.MA}сержант{.nn}" />
+	<string id="str_tor_ror_grundel_defender_defender" text="{.MA}Храбрый{.aj} {.MA}Защитник{.nn} Грюнделя" />
+	<string id="str_tor_ror_deathjack_longbowman" text="{.MA}Смертник{.nn}-{.MA}лучник{.nn}" />
+	<string id="str_tor_ror_deathjack_marksman" text="{.MA}Смертник{.nn}-{.MA}мастер{.nn}" />
+	<string id="str_tor_ror_deathjack_toxophilite" text="{.MA}Смертник{.nn}-{.MA}снайпер{.nn}" />
+	<string id="str_tor_ror_ward_of_taal" text="{.MA}Ревнитель{.nn} Таала" />
+	<string id="str_tor_ror_hunter_of_taal" text="{.MA}Охотник{.nn} Таала" />
+	<string id="str_tor_ror_horned_hunter" text="{.MA}Рогатый{.aj} {.MA}охотник{.nn}" />
+	<string id="str_tor_ror_longshank_initiate" text="{.MA}Длинноногий{.aj}-{.MA}посвящённый{.aj}" />
+	<string id="str_tor_ror_longshank_strider" text="{.MA}Длинноногий{.aj}-{.MA}странник{.nn}" />
+	<string id="str_tor_ror_longshank_warden" text="{.MA}Длинноногий{.aj}-{.MA}хранитель{.nn}" />
+	<string id="str_tor_ror_longshank_ranger" text="{.MA}Длинноногий{.aj}-{.MA}стрелок{.nn}" />
+	<string id="str_tor_ror_griffon_initiate" text="{.MA}Посвящённый{.aj} Ордена Грифона" />
+	<string id="str_tor_ror_griffon_knight" text="{.MA}Рыцарь{.nn} Грифона" />
+	<string id="str_tor_ror_griffon_preceptor_knight" text="{.MA}Рыцарь{.nn}-{.MA}прецептор{.nn} Грифона" />
+	<string id="str_tor_ror_griffon_innercircle_knight" text="{.MA}Рыцарь{.nn} Грифона из Внутреннего Круга" />
+	<string id="str_tor_ror_griffon_demi_knight" text="{.MA}Рыцарь{.nn} Грифона на демигрифе" />
+	<string id="str_tor_ror_griffon_demi_preceptor_knight" text="{.MA}Рыцарь{.nn}-{.MA}прецептор{.nn} Грифона на демигрифе" />
+	<string id="str_tor_ror_son_of_altdorf" text="{.MA}Сын{.nn} Альтдорфа" />
+	<string id="str_tor_ror_altdorf_companyman" text="{.MA}Боец{.nn} Альтдорфской Роты" />
+	<string id="str_tor_ror_altdorf_company_sergeant" text="{.MA}Сержант{.nn} Альтдорфской Роты" />
+	<string id="str_tor_ror_sternieste_skeleton" text="{.MA}Скелет{.nn} из замка Штернист" />
+	<string id="str_tor_ror_sternieste_grave_guard" text="{.MA}Воин{.nn} склепа из замка Штернист" />
+	<string id="str_tor_ror_sternieste_sternsmen" text="{.MA}Страж{.nn} могил из замка Штернист" />
+	<string id="str_tor_ror_sternieste_black_knight" text="{.MA}Черный{.aj} {.MA}рыцарь{.nn} из замка Штернист" />
+	<string id="str_tor_ror_sternieste_reaver" text="{.MA}Разбойник{.nn} Верека" />
+	<string id="str_tor_ror_konigstein_skeleton" text="{.MA}Следопыт{.nn} Кёнигштайна" />
+	<string id="str_tor_ror_konigstein_swordsman" text="{.MA}Следопыт{.nn}-{.MA}мечник{.nn} Кёнигштайна" />
+	<string id="str_tor_ror_konigstein_spearman" text="{.MA}Следопыт{.nn}-{.MA}копейщик{.nn} Кёнигштайна" />
+	<string id="str_tor_ror_peasant_squire" text="{.MA}Крестьянин{.nn}-{.MA}оруженосец{.nn} из Уэйнфлита" />
+	<string id="str_tor_ror_peasant_squight" text="{.MA}Крестьянин{.nn}-{.MA}воитель{.nn} из Уэйнфлита" />
+	<string id="str_tor_ror_peasant_knight" text="{.MA}Рыцарь{.nn}-{.MA}крестьянин{.nn} из Уэйнфлита" />
+	<string id="str_tor_ror_maisontaal_cultist" text="{.MA}Культист{.nn} из Мезонталя" />
+	<string id="str_tor_ror_maisontaal_acetic" text="{.MA}Аколит{.nn} из Мезонталя" />
+	<string id="str_tor_ror_maisontaal_warden" text="{.MA}Святой{.aj} {.MA}Защитник{.nn} Мезонталя" />
+	<string id="str_tor_ror_bergerac_herrimault" text="{.MA}Честный{.aj} {.MA}Харримаут{.nn}" />
+	<string id="str_tor_ror_bergerac_ranger" text="{.MA}Стрелок{.nn} из Бержерака" />
+	<string id="str_tor_ror_bergerac_bowman" text="{.MA}Лучник{.nn} из Бержерака" />
+	
+	
+		<!--Bandits / Бандиты-->
+	
+	
+	<string id="str_tor_roaming_undead_skeleton" text="{.MA}Бродячий{.aj} {.MA}скелет{.nn}" />
+	<string id="str_tor_roaming_undead_warrior" text="{.MA}Бродячий{.aj} {.MA}скелет{.nn}-{.MA}воин{.nn}" />
+	<string id="str_tor_empire_outlaw" text="{.MA}Бандит{.nn}" />
+	<string id="str_tor_empire_outlaw_leader" text="{.MA}Главарь{.nn} бандитов" />
+	<string id="str_tor_empire_deserter" text="{.MA}Дезертир{.nn}" />
+	<string id="str_tor_empire_deserter_sergeant" text="{.MA}Дезертир{.nn}-{.MA}сержант{.nn}" />
+	<string id="str_tor_empire_deserter_scout" text="{.MA}Дезертир{.nn}-{.MA}разведчик{.nn}" />
+	<string id="str_tor_br_bandit" text="{.MA}Бродяга{.nn}" />
+	<string id="str_tor_br_bandit_leader" text="{.MA}Харримаут{.nn}" />
+	<string id="str_tor_br_bandit_scout" text="{.MA}Вор{.nn}" />
+	
+	
+	<string id="str_tor_ti_vittorio" text="{.MA}Витторио{.nn} де Лука" />
+
+  
+      </strings>
+</base>
