@@ -134,7 +134,7 @@ namespace TOR_Core.Ink
             _currentTags = _story.currentTags;
             foreach (var tag in _currentTags)
             {
-                if (tag.StartsWith ("STRID_")){
+                if (tag.StartsWith ("STR_")){
                     TextObject overrideText = new TextObject();
                     if (GameTexts.TryGetText("inky_"+StringId, out overrideText, tag))
                     {
@@ -624,28 +624,18 @@ namespace TOR_Core.Ink
 
         public string getChoiceText(Choice choice)
         {
-            var tags = choice.tags;
-            var path = choice.pathStringOnChoice;
             var choiceLine = "";
-            if (tags != null)
+            var path = choice.sourcePath.Split('.').FirstOrDefault();
+            var currentKnot = path[0];
+            var t = currentKnot + "_c" + choice.index;
+            if (GameTexts.TryGetText("inky_"+StringId, out var overrideText,  t))
             {
-                foreach (var tag in tags)
+                if (overrideText!=null&&!overrideText.ToString().IsEmpty())
                 {
-                    if (tag.StartsWith ("STRID_")){
-                        
-                        TextObject overrideText = new TextObject();
-                        if (GameTexts.TryGetText("inky_"+StringId, out overrideText, tag))
-                        {
-                            if (!overrideText.ToString().IsEmpty())
-                            {
-                                choiceLine = overrideText.ToString();
-                            }
-                        }
-                    }
+                    choiceLine = overrideText.ToString();
                 }
             }
             
-
             if (choiceLine.IsEmpty())
             {
                 choiceLine = choice.text;

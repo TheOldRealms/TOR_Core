@@ -20,17 +20,17 @@ VAR TurnipPrice = 50
 
 
 
-As your army travels, a sudden clearing reveals a surprising sight – a bustling fair known as the Morrslieb Revelry. Tents stand proud, colors dancing in the dappled sunlight. Laughter mingles with the snorts of horses, the heart of this joyous gathering. #STRID_Start1
+As your army travels, a sudden clearing reveals a surprising sight – a bustling fair known as the Morrslieb Revelry. Tents stand proud, colors dancing in the dappled sunlight. Laughter mingles with the snorts of horses, the heart of this joyous gathering. #STR_Start1
 
-Merchants beckon, their eyes alight with mischief, hawking horses at a discount from the standard rates you'd find in the scrolls. The air carries the tempting scents of roasted meat, frothy ale, and tangy wine. Amidst the merry crowd, a farmer grins, offering a turnip that oddly resembles the famed twin-tailed comet. Yours for a mere penny, a chance to possess this curious marvel. #STRID_Start2
+Merchants beckon, their eyes alight with mischief, hawking horses at a discount from the standard rates you'd find in the scrolls. The air carries the tempting scents of roasted meat, frothy ale, and tangy wine. Amidst the merry crowd, a farmer grins, offering a turnip that oddly resembles the famed twin-tailed comet. Yours for a mere penny, a chance to possess this curious marvel. #STR_Start2
     ->choices
 
     =choices
-    * [Join the crowd at the horse market. #STRID_Start_c1]->HorseStalls 
-    * [Savor the flavors of the fair. #STRID_Start_c2]->FoodStalls
-    * [Test your luck at the horse races. #STRID_Start_c3]->HorseRaces
-    * [Examine the peculiar turnip. #STRID_Start_c4]->Turnip
-    * [Continue your journey through the woods. #STRID_Start_c5]->Leave
+    * [Join the crowd at the horse market.]->HorseStalls 
+    * [Savor the flavors of the fair.]->FoodStalls
+    * [Test your luck at the horse races.]->HorseRaces
+    * [Examine the peculiar turnip.]->Turnip
+    * [Continue your journey through the woods.]->Leave
 
 ===HorseStalls===
 The fair's heart beats strongest at the horse market. Proud stallions prance, their eyes fierce and wild. One horse, in particular, captures your attention. It has a sleek, ebony coat that glistens in the sunlight, and its eyes seem to hold a knowing glint. 
@@ -120,5 +120,5 @@ With anticipation in the air, the raffle commences, and as the announcer calls o
     ->Turnip.choices
 
 ===Leave===
-As the fair's merriment fades, you step back into the embrace of the wilderness, leaving the laughter of the fair's revelry behind. #STRID_Leave1
+As the fair's merriment fades, you step back into the embrace of the wilderness, leaving the laughter of the fair's revelry behind. #STR_Leave1
 ->END

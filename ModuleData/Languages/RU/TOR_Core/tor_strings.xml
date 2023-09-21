@@ -719,16 +719,15 @@
   
   <string id="inky_continue_str" text="RU Continue." />
   <string id="inky_end_str" text="RU END." />
-  <string id="secrets_of_the_grail_Passive4_str" text="Боевые молитвы перезаряжаются на 30% быстрее." />
   <string id="inky_fair_strid_title" text="Test RU Title." />
-  <string id="inky_fair_strid_start1" text="Test RU." />
-  <string id="inky_fair_strid_start2" text="Test RU2." />
+  <string id="inky_fair_start1_str" text="Test RU." />
+  <string id="inky_fair_start2_str" text="Test RU2." />
   <string id="inky_fair_strid_leave1" text="Test RU End." />
-  <string id="inky_fair_strid_start_c1" text="Test RU Choice 1." />
-  <string id="inky_fair_strid_start_c2" text="Test RU Choice 2." />
-  <string id="inky_fair_strid_start_c3" text="Test RU Choice 3." />
-  <string id="inky_fair_strid_start_c4" text="Test RU Choice 4." />
-  <string id="inky_fair_strid_start_c5" text="Test RU Choice 5." />
+  <string id="inky_fair_start_c0" text="Test RU Choice 1." />
+  <string id="inky_fair_start_c1" text="Test RU Choice 2." />
+  <string id="inky_fair_start_c2" text="Test RU Choice 3." />
+  <string id="inky_fair_start_c3" text="Test RU Choice 4." />
+  <string id="inky_fair_start_c4" text="Test RU Choice 5." />
   
   <string id="careerchoice_description_WarriorPriestRoot" text="Воин-жрец высвобождает гнев Зигмара на 8 секунд, усиливая свои атаки и атаки союзников на 20%. Каждый пункт в навык Веры увеличивает ближний урон на 0.05% и продолжительность на 0.05 секунд. Чтобы способность перезарядилась, нужно получить 50 урона." />
   </strings>
