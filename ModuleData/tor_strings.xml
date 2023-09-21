@@ -757,4 +757,23 @@
   
   <string id="careerchoice_description.WarriorPriestRoot" text="{=careerchoice_description_warriorpriest_root_str}The Warrior Priest unleashes Sigmar's wrath for 8 seconds, which empowers him and the surrounding allies with 20% stronger melee attacks.  Every point in Faith increases the melee effect by 0.05% and the duration by 0.05 seconds. The ability recharges by taking 50% of damage of total health. Blocked damage counts as 10% of the damage taken." />
 
+
+
+	
+	<!-- Inky translation related.  Do NOT add texts inside quotation marks!-->
+	<!-- every inky story starts with "inky: "+ ID of the file name. While the Variation accounts for the specific text block -->
+	<string id="inky_continue" text="{inky_continue_str}" />
+	<string id="inky_end" text="{inky_end_str}" />
+	
+	<string id="inky_Fair.Title" text="{=inky_fair_strid_title}" />
+	<string id="inky_Fair.STRID_Start1" text="{=inky_fair_strid_start1}" />
+	<string id="inky_Fair.STRID_Start2" text="{=inky_fair_strid_start2}" />
+	<string id= "inky_Fair.STRID_Start_c1" text="{=inky_fair_strid_start_c1}"/>
+	<string id= "inky_Fair.STRID_Start_c2" text="{=inky_fair_strid_start_c2}"/>
+	<string id= "inky_Fair.STRID_Start_c3" text="{=inky_fair_strid_start_c3}"/>
+	<string id= "inky_Fair.STRID_Start_c4" text="{=inky_fair_strid_start_c4}"/>
+	<string id= "inky_Fair.STRID_Start_c5" text="{=inky_fair_strid_start_c5}"/>
+	<string id="inky_Fair.STRID_Start" text="{=inky_fair_strid_start2}" />
+	<string id="inky_Fair.STRID_Leave1" text="{=inky_fair_strid_leave1}" />
+	
 </strings>

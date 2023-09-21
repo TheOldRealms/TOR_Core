@@ -20,6 +20,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.CustomEvents;
@@ -34,11 +35,14 @@ namespace TOR_Core.Ink
     public class InkStory
     {
         private Story _story;
-        public readonly string Title;
+        private List<string> _currentTags;
+        public string Title;
         public readonly CustomEventFrequency Frequency;
         public readonly bool IsDevelopmentVersion;
         public readonly string StringId;
         public readonly int Cooldown;
+
+        private string _currentLine;
 
         public InkStory(string id, string file)
         {
@@ -52,7 +56,7 @@ namespace TOR_Core.Ink
                     _story = compiler.Compile();
                     //_story.allowExternalFunctionFallbacks = true;
                 }
-                Title = GetValueOfGlobalTag("title");
+                
                 if (Title == null) Title = "Invalid title, bad tag settings";
                 if (!Enum.TryParse<CustomEventFrequency>(GetValueOfGlobalTag("frequency"), out Frequency))
                 {
@@ -80,6 +84,21 @@ namespace TOR_Core.Ink
             MBMusicManager.Current.ActivateCampaignMode();
         }
 
+        public void SetTitle()
+        {
+            var overrideText = new TextObject();
+            if (GameTexts.TryGetText("inky_"+StringId, out overrideText, "Title"))
+            {
+                if (!overrideText.ToString().IsEmpty())
+                {
+                    Title = overrideText.ToString();
+                    return;
+                }
+            }
+            Title = GetValueOfGlobalTag ("title");
+            
+        }
+
         private string GetValueOfGlobalTag(string tag)
         {
             if (_story == null || _story.globalTags == null || _story.globalTags.Count < 1) return null;
@@ -96,7 +115,7 @@ namespace TOR_Core.Ink
         public void ChooseChoice(int index) => _story.ChooseChoiceIndex(index);
         public string GetLine()
         {
-            string line = _story.currentText;
+            string line = RetrieveText();
             if (string.IsNullOrWhiteSpace(line) && _story.canContinue)
             {
                 _story.Continue();
@@ -109,11 +128,33 @@ namespace TOR_Core.Ink
         public bool IsOver() => !_story.canContinue && !HasChoices();
         public bool HasTag(string tag) => _story.currentTags.Contains(tag);
 
+        public string RetrieveText()
+        {
+            var line = _story.currentText;
+            _currentTags = _story.currentTags;
+            foreach (var tag in _currentTags)
+            {
+                if (tag.StartsWith ("STRID_")){
+                    TextObject overrideText = new TextObject();
+                    if (GameTexts.TryGetText("inky_"+StringId, out overrideText, tag))
+                    {
+                        if (!overrideText.ToString().IsEmpty())
+                        {
+                            line = overrideText.ToString();
+                        }
+                    }
+                }
+            }
+            
+            return line;
+        }
+
         public bool Continue(out string line)
         {
             if (_story.canContinue)
             {
-                line = _story.Continue();
+                _story.Continue();
+                line = GetLine();
                 return true;
             }
             else
@@ -579,6 +620,40 @@ namespace TOR_Core.Ink
         {
             SkillObject skill = Skills.All.FirstOrDefault(x => x.StringId == skillname);
             if(skill != null) Hero.MainHero.AddSkillXp(skill, amount);
+        }
+
+        public string getChoiceText(Choice choice)
+        {
+            var tags = choice.tags;
+            var path = choice.pathStringOnChoice;
+            var choiceLine = "";
+            if (tags != null)
+            {
+                foreach (var tag in tags)
+                {
+                    if (tag.StartsWith ("STRID_")){
+                        
+                        TextObject overrideText = new TextObject();
+                        if (GameTexts.TryGetText("inky_"+StringId, out overrideText, tag))
+                        {
+                            if (!overrideText.ToString().IsEmpty())
+                            {
+                                choiceLine = overrideText.ToString();
+                            }
+                        }
+                    }
+                }
+            }
+            
+
+            if (choiceLine.IsEmpty())
+            {
+                choiceLine = choice.text;
+            }
+            
+
+            return choiceLine;
+
         }
     }
 }
