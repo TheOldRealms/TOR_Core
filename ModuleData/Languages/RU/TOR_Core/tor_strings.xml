@@ -239,10 +239,10 @@
   <string id="str_comment_noble_introduces_self_khuzait" text="Я {CONVERSATION_CHARACTER.LINK} из дома {CLAN_NAME}." />
   <string id="str_comment_noble_introduces_self_and_clan_khuzait_boasting" text="Я {CONVERSATION_CHARACTER.LINK} из дома {CLAN_NAME}. Уверен, ты слышал моё родовое имя. Жалкие солдаты Империи шепчут его, трепеща пред нашим величием." />
   <string id="str_comment_noble_introduces_self_and_clan_khuzait" text="Я {CONVERSATION_CHARACTER.LINK} из дома {CLAN_NAME}. Наш род веками преданно служил семье фон Карштайн." />
-  <string id="str_comment_noble_introduces_self_and_clan_khuzait_boasting" text="Я {CONVERSATION_CHARACTER.LINK} из дома {CLAN_NAME}. Я всё ещё здесь лишь ради приличия, так что говори быстрее." />
+  <string id="str_comment_noble_introduces_self_and_clan_khuzait_boasting_2" text="Я {CONVERSATION_CHARACTER.LINK} из дома {CLAN_NAME}. Я всё ещё здесь лишь ради приличия, так что говори быстрее." />
   <string id="str_comment_noble_introduces_self_and_clan_khuzait_boasting" text="А, ещё один слабак. Я {CONVERSATION_CHARACTER.LINK} из дома {CLAN_NAME}. Ты готов умереть?" />
   <string id="str_comment_noble_introduces_self_and_clan_khuzait" text="Знай, перед тобой {CONVERSATION_CHARACTER.LINK} из дома {CLAN_NAME}. Что за ничтожная дворняга приползла к моим ногам? Говори, что тебе нужно, или я прикажу повесить твой труп на стене Цитадели Крови." />
-  <string id="str_comment_noble_introduces_self_and_clan_khuzait" text="Жалкий слабак, мой господин Валах Харкон велел мне прикончить тебя. Я {CONVERSATION_CHARACTER.LINK} из дома {CLAN_NAME}. Говори быстрее, мне уже не терпиться напиться твоей кровью." />
+  <string id="str_comment_noble_introduces_self_and_clan_khuzait_2" text="Жалкий слабак, мой господин Валах Харкон велел мне прикончить тебя. Я {CONVERSATION_CHARACTER.LINK} из дома {CLAN_NAME}. Говори быстрее, мне уже не терпиться напиться твоей кровью." />
    <string id="str_comment_noble_introduces_self_vlandia" text="Рад встрече! Я {CONVERSATION_CHARACTER.LINK} из дома {CLAN_NAME}." />
   <string id="str_comment_noble_introduces_self_and_clan_vlandia" text="Приветствую! Я {CONVERSATION_CHARACTER.LINK} из дома {CLAN_NAME}. Мой род поколениями служил Леди и народу Бретонии." />
   <string id="str_comment_noble_introduces_self_and_clan_vlandia_honor" text="Рад знакомству. Я {CONVERSATION_CHARACTER.LINK} из дома {CLAN_NAME}. Будь Вы друг или враг, говорите, что хотели." />
@@ -255,6 +255,7 @@
   <string id="str_comment_noble_introduces_self_and_clan_mousillon_mercy" text="Я {CONVERSATION_CHARACTER.LINK} из дома {CLAN_NAME}. Мой господин велит мне не проявлять милосердия ни к кому, однако, для Вас я сделаю исключение." />
   <string id="str_comment_noble_introduces_self_and_clan_mousillon_boasting" text="Я {CONVERSATION_CHARACTER.LINK} из дома {CLAN_NAME}. Говорите побыстрее, у меня нет времени на всяких неудачников." />
   <string id="str_comment_noble_introduces_self_and_clan_mousillon_boasting_cruel" text="Как ты посмел обратиться к {CONVERSATION_CHARACTER.LINK} из дома {CLAN_NAME}? Жалкие нищие, попрошайки и трусы не имеют права даже ступать со мной по одной земле! Говори, пока не лишился головы." />
+  
 
   <!--Крафт-->
   <string id="smgrs" text="TOR-Двуручники" />
@@ -283,6 +284,14 @@
   <string id="str_weapon_usage_TorLance" text="Пика" />
   <string id="str_weapon_usage_TorLance_Couchable" text="Рыцарский удар" />
   
+  
+  <string id="str_how_to_learn_skill_Faith" text="Использовать боевые молитвы. Молиться у алтарей Богов." />
+  <string id="str_how_to_learn_skill_Gunpowder" text="Стрелять из огнестрельного оружия." />
+  <string id="str_how_to_learn_skill_Spellcraft" text="Использовать заклинания. Наносить урон заклинаниями." />
+   <string id="str_inventory_weapon_22" text="Пистоль" />
+   <string id="str_inventory_weapon_23" text="Ружьё" />
+   
+  
   <!--Поселения, порталы Хаоса, камни стада и т.д. -->
   <string id="customsettlement_intro_chaos_portal_01" text="Вы находитесь у открытого Портала Хаоса. Мерзкое строение пульсирует магической энергией, силы Хаоса небольшими отряда вторгаются из своего нечестивого царства." />
   <string id="customsettlement_disabled_chaos_portal_01" text="Похоже, теперь портал наконец закрыт. Пока заглянуть в Царство Хаоса нельзя." />
@@ -290,21 +299,12 @@
   <string id="customsettlement_intro_herdstone_01" text="Вы находитесь у Камня Стада, омерзительной святыни зверолюдей. Судя по зажженным кострам и сигнальным огням, сейчас здесь проходит какое-то сборище этих тварей." />
   <string id="customsettlement_disabled_herdstone_01" text="Лагерь зверолюдей пуст и безжизненен. Возможно, стоит вернуться позднее." />
   <string id="customsettlement_battle_herdstone_01" text="Попытаться одолеть стадо зверолюдей прямо в сердце их кровавых владений." />
-  <string id="customsettlement_intro_herdstone_02" text="Вы находитесь у Камня Стада, омерзительной святыни зверолюдей. Судя по зажженным кострам и сигнальным огням, сейчас здесь проходит какое-то сборище этих тварей." />
-  <string id="customsettlement_disabled_herdstone_02" text="Лагерь зверолюдей пуст и безжизненен. Возможно, стоит вернуться позднее." />
-  <string id="customsettlement_battle_herdstone_02" text="Попытаться одолеть стадо зверолюдей прямо в сердце их кровавых владений." />
   <string id="customsettlement_intro_sigmar_shrine_01" text="Вы находитесь в святилище, которым владеет {RELIGION_LINK}. Здесь паломники из окрестных селений молятся Богу-Королю." />
   <string id="customsettlement_disabled_sigmar_shrine_01" text="Святилище разрушено, и делать здесь больше нечего." />
-  <string id="customsettlement_intro_sigmar_shrine_02" text="Вы находитесь в святилище, которым владеет {RELIGION_LINK}. Здесь паломники из окрестных селений молятся Богу-Королю." />
-  <string id="customsettlement_disabled_sigmar_shrine_02" text="Святилище разрушено, и делать здесь больше нечего." />
-  <string id="customsettlement_intro_sigmar_shrine_03" text="Вы находитесь в святилище, которым владеет {RELIGION_LINK}. Здесь паломники из окрестных селений молятся Богу-Королю." />
-  <string id="customsettlement_disabled_sigmar_shrine_03" text="Святилище разрушено, и делать здесь больше нечего." />
   <string id="customsettlement_intro_taal_shrine_01" text="Вы находитесь в святилище, которым владеет {RELIGION_LINK}. Здесь паломники из окрестных селений молятся Богу Природы." />
   <string id="customsettlement_disabled_taal_shrine_01" text="Святилище разрушено, и делать здесь больше нечего." />
   <string id="customsettlement_intro_grove_of_the_lady_01" text="Вы находитесь в священной роще, которой владеет {RELIGION_LINK}. Здесь паломники из окрестных селений молятся Владычице Озера." />
   <string id="customsettlement_disabled_grove_of_the_lady_01" text="Святилище разрушено, и делать здесь больше нечего." />
-  <string id="customsettlement_intro_grove_of_the_lady_02" text="Вы находитесь в священной роще, которой владеет {RELIGION_LINK}. Здесь паломники из окрестных селений молятся Владычице Озера." />
-  <string id="customsettlement_disabled_grove_of_the_lady_02" text="Святилище разрушено, и делать здесь больше нечего." />
   <string id="customsettlement_intro_haunted_site_01" text="Эта заброшенная земля, которую сильванцы зовут Верхунгерн, населена призраками и тварями, и представляет из себя проклятый лабиринт из ветвей и болот. Только безумец или отчаявшийся рискнет лезть в эти дебри. " />
   <string id="customsettlement_disabled_haunted_site_01" text="Вы не должны этого видеть." />
   <string id="customsettlement_intro_haunted_site_02" text="Много веков назад Хел Фенн был уничтожен нечестивым огнём, сошедшим с небес. С тех пор это место проклято, отравляя весь бассейн реки Рейк.  Покосившиеся здания, гниющие деревья и просмолённые трупы усеивают эту опустошённую землю. Именно здесь, давным-давно, Маннфред фон Карштайн потерпел поражение в Вампирских войнах." />
@@ -495,8 +495,8 @@
 
 
   <string id="career_choicegroup1_name_WarriorPriest" text="Культист Зигмара" />
-  <string id="career_choicegroup2_name_WarriorPriest" text="Воин-жрец" />
-  <string id="career_choicegroup3_name_WarriorPriest" text="Архилектор" />
+  <string id="career_choicegroup2_name_WarriorPriest" text="Воин-Жрец" />
+  <string id="career_choicegroup3_name_WarriorPriest" text="Архи-Лектор" />
 
   <string id="career_choicegroup1_name_MinorVampire" text="Новообращённый" />
   <string id="career_choicegroup2_name_MinorVampire" text="Вампир" />
@@ -506,7 +506,7 @@
   <string id="career_choicegroup2_name_BloodKnight" text="Рыцарь Крови" />
   <string id="career_choicegroup3_name_BloodKnight" text="Магистр" />
 
-  <string id="career_choicegroup1_name_GrailKnight" text="Странствующий рыцарь" />
+  <string id="career_choicegroup1_name_GrailKnight" text="Странствующий Рыцарь" />
   <string id="career_choicegroup2_name_GrailKnight" text="Искатель Грааля" />
   <string id="career_choicegroup3_name_GrailKnight" text="Рыцарь Грааля" />
 
@@ -520,18 +520,205 @@
 
 
 
-  <string id="career_description_warriorpriest_str" text="При жизни Зигмар боролся за объединение Человечества, уничтожение зла и сопротивление скверне. Для вас Его путь всегда являлся наилучшим из примеров. Быть жрецом Его веры - значит, быть пастырем для всего человечества. Многие жрецы остаются в своих церквях и соборах, но Вы знаете правду: проклятых и нечестивых следует найти и уничтожить." />
-  <string id="career_description_bloodknight_str" text="Обращённый Абхорашем, Рыцарь Крови - мрачная насмешка над благородством и добродетелью, присущими его смертным собратьям. Поцелуй Крови превратил вашу честь в жестокость, веру - в богохульство, а долг - в бессмысленные амбиции. Таков удел всех вампиров, но участь падших рыцарей Старого Света выглядит особо трагичной." />
-  <string id="career_description_minorvampire_str" text="Вампиры - темные хозяева ночи, известные под множеством внушающих страх имён. Мало кто, будь то человек или чудовище, непорочный или одержимый, может сойтись в бою с вампиром и увидеть рассвет. Все вампиры стремятся быть единственными владыками своей не-жизни, свободными от любых обязательств перед долгом или повелителем. Это эгоистическое стремление всё больше и больше питает их амбиции повелевать всем, что они видят перед собой." />
-  <string id="career_description_mercenary_str" text="Быть Человеком в 25-ом столетии - значит быть одним из тысяч. Старый Свет стоит на пороге разрушений и потрясений, хаоса и смерти. В эту эпоху быть слабым подобно смерти; некоторые пытаются поймать за хвост время перемен и снискать богатства в войнах, славы в сражениях и достойной смерти в бою. Наёмник - так называют вас, свободного самому распоряжаться своей судьбой." />
-  <string id="career_description_grailknight_str" text="Быть Рыцарем Бретонии - значит, стремиться к благословлению Владычицы Озера и святому Граалю. Каждый муж, кого Владычица сочтет достойным испить из чаши Грааля, становятся святым воителем, почитаемым и уважаемым во всей Бретоннии и далеко за её пределами. Путь к этой цели труден настолько, что большинство рыцарей не достигают её, хотя и мечтают об этом всю свою жизнь." />
-  <string id="career_description_graildamsel_str" text="Фрейлины - так зовут тех, кого забирает в младенчестве Фея-Заклинательница, отметив их магический потенциал. Изъятые из семей, они воспитываются в тайне от всех, чтобы стать могучими хранительницами родной Бретонии. Закончив обучение, они отправляются в странствия, приходя на помощь простолюдинам и вдохновляя рыцарей на ратные подвиги." />
+  <string id="career_description_WarriorPriest" text="При жизни Зигмар боролся за объединение Человечества, уничтожение зла и сопротивление скверне. Для вас Его путь всегда являлся наилучшим из примеров. Быть жрецом Его веры - значит, быть пастырем для всего человечества. Многие жрецы остаются в своих церквях и соборах, но Вы знаете правду: проклятых и нечестивых следует найти и уничтожить." />
+  <string id="career_description_BloodKnight" text="Обращённый Абхорашем, Рыцарь Крови - мрачная насмешка над благородством и добродетелью, присущими его смертным собратьям. Поцелуй Крови превратил вашу честь в жестокость, веру - в богохульство, а долг - в бессмысленные амбиции. Таков удел всех вампиров, но участь падших рыцарей Старого Света выглядит особо трагичной." />
+  <string id="career_description_MinorVampire" text="Вампиры - темные хозяева ночи, известные под множеством внушающих страх имён. Мало кто, будь то человек или чудовище, непорочный или одержимый, может сойтись в бою с вампиром и увидеть рассвет. Все вампиры стремятся быть единственными владыками своей не-жизни, свободными от любых обязательств перед долгом или повелителем. Это эгоистическое стремление всё больше и больше питает их амбиции повелевать всем, что они видят перед собой." />
+  <string id="career_description_Mercenary" text="Быть Человеком в 25-ом столетии - значит быть одним из тысяч. Старый Свет стоит на пороге разрушений и потрясений, хаоса и смерти. В эту эпоху быть слабым подобно смерти; некоторые пытаются поймать за хвост время перемен и снискать богатства в войнах, славы в сражениях и достойной смерти в бою. Наёмник - так называют вас, свободного самому распоряжаться своей судьбой." />
+  <string id="career_description_GrailKnight" text="Быть Рыцарем Бретонии - значит, стремиться к благословлению Владычицы Озера и святому Граалю. Каждый муж, кого Владычица сочтет достойным испить из чаши Грааля, становятся святым воителем, почитаемым и уважаемым во всей Бретоннии и далеко за её пределами. Путь к этой цели труден настолько, что большинство рыцарей не достигают её, хотя и мечтают об этом всю свою жизнь." />
+  <string id="career_description_GrailDamsel" text="Фрейлины - так зовут тех, кого забирает в младенчестве Фея-Заклинательница, отметив их магический потенциал. Изъятые из семей, они воспитываются в тайне от всех, чтобы стать могучими хранительницами родной Бретонии. Закончив обучение, они отправляются в странствия, приходя на помощь простолюдинам и вдохновляя рыцарей на ратные подвиги." />
+  
+  
+  <string id="book_of_sigmar_choice_group_str" text="Книга Зигмара" />
+  <string id="sigmar_proclaimer_choice_group_str" text="Провозвестник Зигмара" />
+  <string id="relentless_fanatic_choice_group_str" text="Беспощадный подвижник" />
+  <string id="protector_of_the_weak_choice_group_str" text="Защитник слабых" />
+  <string id="holy_purge_choice_group_str" text="Святое Очищение" />
+  <string id="arch_lector_choice_group_str" text="Архи-Лектор" />
+  <string id="book_of_sigmar_passive1_str" text="Ваше Здоровье увеличивается на 10." />
+  <string id="book_of_sigmar_passive2_str" text="Мораль всех ваших бойцов увеличивается на 10." />
+  <string id="book_of_sigmar_passive3_str" text="После битвы все раненые персонажи восстанавливают 20 Здоровья." />
+  <string id="book_of_sigmar_passive4_str" text="Раненые бойцы вашего отряда лечатся быстрее." />
+  <string id="sigmar_proclaimer_passive1_str" text="Вы дополнительно наносите 10% Святого урона." />
+  <string id="sigmar_proclaimer_passive2_str" text="Жалование бойцов-Зигмаритов уменьшается на 20%." />
+  <string id="sigmar_proclaimer_passive3_str" text="Бойцы-зигмариты потребляют на 20% меньше еды." />
+  <string id="sigmar_proclaimer_passive4_str" text="При молитве в святилище Зигмара вы и ваши спутники восстанавливаете 50 Здоровья." />
+  <string id="relentless_fanatic_passive1_str" text="Ваше здоровье увеличивается на 20." />
+  <string id="relentless_fanatic_passive2_str" text="Вы дополнительно наносите 10% Святого урона." />
+  <string id="relentless_fanatic_passive3_str" text="Бойцы-зигмариты получают 25% сопротивления дальнобойным атакам." />
+  <string id="relentless_fanatic_passive4_str" text="Скорость вашего отряда увеличивается на 1." />
+  <string id="protector_of_the_weak_passive1_str" text="Ваше здоровье увеличивается на 20." />
+  <string id="protector_of_the_weak_passive2_str" text="Ваше сопротивление физ. урону в ближнем бою увеличивается на 15%." />
+  <string id="protector_of_the_weak_passive3_str" text="Ваше сопротивление Магии увеличивается на 25%." />
+  <string id="protector_of_the_weak_passive4_str" text="Удары слабее, чем на 15 урона, больше не ошеломляют вас." />
+  <string id="holy_purge_passive1_str" text="Вы дополнительно наносите 10% Святого урона." />
+  <string id="holy_purge_passive2_str" text="Бойцы-зигмариты получают Спасбросок в 25%." />
+  <string id="holy_purge_passive3_str" text="Все бойцы наносят на 10% больше урона врагам-нелюдям." />
+  <string id="holy_purge_passive4_str" text="Бойцы-зигмариты дополнительно наносят 10% Святого урона." />
+  <string id="arch_Lector_passive1_str" text="Боевые молитвы перезаряжаются в начале битвы." />
+  <string id="arch_Lector_passive2_str" text="Все стандартные войска Империи теперь считаются Зигмаритами и получают их бонусы." />
+  <string id="arch_Lector_passive3_str" text="Вы получаете Спасбросок в 15%." />
+  <string id="arch_Lector_passive4_str" text="На боевые молитвы больше не влияет глобальное время перезарядки." />
+  
+  <string id="new_blood_choice_group_str" text="Новообращённый" />
+  <string id="courtley_choice_group_str" text="Мистик" />
+  <string id="courtley_choice_group_str" text="Придворный" />
+  <string id="lordly_choice_group_str" text="Господин" />
+  <string id="martialle_choice_group_str" text="Воитель" />
+  <string id="master_of_dead_choice_group_str" text="Владыка мёртвых" />
+  <string id="new_blood_passive1_str" text="Ваше Здоровье увеличивается на 25." />
+  <string id="new_blood_passive2_str" text="Размер вашего отряда увеличивается на 25." />
+  <string id="new_blood_passive3_str" text="Восстановление здоровья после битвы увеличивается на 5." />
+  <string id="new_blood_passive4_str" text="Солнечный свет больше не понижает скорость отряда." />
+  <string id="arkayne_passive1_str" text="Максимальное кол-во Ветров Магии увеличивается на 10." />
+  <string id="arkayne_passive2_str" text="Урон от заклинаний увеличивается на 10%." />
+  <string id="arkayne_passive3_str" text="Вы дополнительно наносите 10% Магического урона в ближнем бою." />
+  <string id="arkayne_passive4_str" text="Ваши заклинания тратят на 10% меньше Ветров Магии." />
+  <string id="courtley_passive1_str" text="Ваши отношения с другими персонажами растут на 20% сильнее." />
+  <string id="courtley_passive2_str" text="Ваше Здоровье увеличивается на 25." />
+  <string id="courtley_passive3_str" text="Ваши заклинания и дальнобойные атаки дополнительно наносят 10% Магического урона." />
+  <string id="courtley_passive4_str" text="Смертельные удары в голову врага восполняют 3 Ветра Магии." />
+  <string id="lordly_passive1_str" text="Скорость вашего отряда увеличивается на 1.5." />
+  <string id="lordly_passive2_str" text="Размер вашего отряда увеличивается на 75." />
+  <string id="lordly_passive3_str" text="Жалование всех воинов-вампиров уменьшается на 15%." />
+  <string id="lordly_passive4_str" text="Улучшение ваших бойцов стоит в два раза дешевле." />
+  <string id="martialle_passive1_str" text="Вы наносите 10% доп. урона в ближнем бою." />
+  <string id="martialle_passive2_str" text="Ваше Здоровье увеличивается на 50." />
+  <string id="martialle_passive3_str" text="Все ваши бойцы дополнительно наносят 10% людям." />
+  <string id="martialle_passive4_str" text="Все ваши атаки наносят больше урона щитам." />
+  <string id="master_of_dead_passive1_str" text="Размер вашего отряда увеличивается на 100." />
+  <string id="master_of_dead_passive2_str" text="Нежить в вашем отряде получает Спасбросок в 25%." />
+  <string id="master_of_dead_passive3_str" text="Шанс поднять нежить после сражения растёт на 20%." />
+  <string id="master_of_dead_passive4_str" text="Воины-нежить 4 ранга и выше теперь могут быть ранены, а не убиты, с шансом в 20%." />
+  
+  
+  <string id="peerless_warrior_choice_group_str" text="Несравненный Воин" />
+  <string id="blade_master_choice_group_str" text="Мастер Клинка" />
+  <string id="doom_rider_choice_group_str" text="Всадник Рока" />
+  <string id="controlled_hunger_choice_group_str" text="Подвластный Голод" />
+  <string id="avatar_of_death_choice_group_str" text="Воплощение Смерти" />
+  <string id="dread_knight_choice_group_str" text="Жуткий Рыцарь" />
+  <string id="peerless_warrior_passive1_str" text="Ваше Здоровье увеличивается на 25." />
+  <string id="peerless_warrior_passive2_str" text="Вы наносите 10% доп. урона в ближнем бою." />
+  <string id="peerless_warrior_passive3_str" text="Бойцы 4 ранга и выше получают на 20% больше опыта за убийства." />
+  <string id="peerless_warrior_passive4_str" text="Каждый день вы получаете 100 опыта в одном из навыков ближнего боя." />
+  <string id="blade_master_passive1_str" text="Вы наносите 20% доп. урона в ближнем бою." />
+  <string id="blade_master_passive2_str" text="Восстановление здоровья после битвы увеличивается на 5." />
+  <string id="blade_master_passive3_str" text="Удары слабее, чем на 15 урона, больше не ошеломляют вас." />
+  <string id="blade_master_passive4_str" text="Вы и ваши бойцы получаете опыт от грабежа деревень." />
+  <string id="doom_rider_passive1_str" text="Вы наносите 20% доп. урона в ближнем бою." />
+  <string id="doom_rider_passive2_str" text="Ваше Здоровье увеличивается на 50." />
+  <string id="doom_rider_passive3_str" text="Скорость вашего отряда увеличивается на 2." />
+  <string id="doom_rider_passive4_str" text="Вы обращаете побеждённых врагов в вампиров с шансом в 15% (40% - для бойцов 4 ранга и выше)." />
+  <string id="controlled_hunger_passive1_str" text="Солнечный свет больше не понижает скорость отряда." />
+  <string id="controlled_hunger_passive2_str" text="Ваше Здоровье увеличивается на 50." />
+  <string id="controlled_hunger_passive3_str" text="Здоровье вашего ездового животного увеличивается на 35%." />
+  <string id="controlled_hunger_passive4_str" text="Все бойцы-вампиры в вашем отряде получают Спасбросок в 20%." />
+  <string id="avatar_of_death_passive1_str" text="Вы получаете 25% физ. сопротивления ближним и дальнобойным атакам." />
+  <string id="avatar_of_death_passive2_str" text="Жалование всех воинов-вампиров уменьшается на 35%." />
+  <string id="avatar_of_death_passive3_str" text="Вы получаете 35% маг. сопротивления заклинаниям." />
+  <string id="avatar_of_death_passive4_str" text="Ваши удары наносят больше урона щитам." />
+  <string id="dread_knight_passive1_str" text="Ваше Здоровье увеличивается на 50." />
+  <string id="dread_knight_passive2_str" text="Урон от наскока увеличивается на 50%." />
+  <string id="dread_knight_passive3_str" text="Ваша кавалерия наносит на 20% больше урона." />
+  <string id="dread_knight_passive4_str" text="Пробитие брони вашими атаками в ближнем бою увеличивается на 25%." />
+  
+  
+  <string id="survivalist_choice_group_str" text="Выживальщик" />
+  <string id="duelist_choice_group_str" text="Дуэлянт" />
+  <string id="headhunter_choice_group_str" text="Охотник за головами" />
+  <string id="knightly_choice_group_str" text="Межевой рыцарь" />
+  <string id="mercenary_lord_choice_group_str" text="Лорд-наёмник" />
+  <string id="commander_choice_group_str" text="Командор" />
+  <string id="survivalist_passive1_str" text="5 дополнительных боеприпасов." />
+  <string id="survivalist_passive2_str" text="Вы наносите на 10% больше дальнобойного урона." />
+  <string id="survivalist_passive3_str" text="Ваш отряд передвигается по лесу на 20% быстрее." />
+  <string id="survivalist_passive4_str" text="Раз в день вы ходите на охоту (шанс поймать добычу зависит от Разведки, Древкового и навыков дальн. оружия)" />
+  <string id="duelist_passive1_str" text="Ваше Здоровье увеличивается на 20." />
+  <string id="duelist_passive2_str" text="Вы наносите 10% доп. урона в ближнем бою." />
+  <string id="duelist_passive3_str" text="Жалование пехоты уменьшается на 20%." />
+  <string id="duelist_passive4_str" text="Восстановление здоровья в путешествиях увеличивается на 3." />
+  <string id="headhunter_passive1_str" text="10 дополнительных боеприпасов." />
+  <string id="headhunter_passive2_str" text="Вы наносите на 10% больше дальнобойного урона." />
+  <string id="headhunter_passive3_str" text="За каждого убитого/захваченного в плен лорда или главаря бандитов вы получаете 500 золотых." />
+  <string id="headhunter_passive4_str" text="Сопротивление дальнобойному урону увеличивается на 15%." />
+  <string id="knightly_passive1_str" text="Вы наносите 15% доп. урона в ближнем бою." />
+  <string id="knightly_passive2_str" text="Вы получаете 15% сопротивления ближним атакам. " />
+  <string id="knightly_passive3_str" text="Ваше Здоровье увеличивается на 40." />
+  <string id="knightly_passive4_str" text="Пробитие брони вашими атаками в ближнем бою увеличивается на 15%." />
+  <string id="mercenary_lord_passive1_str" text="4 дополнительных спец. боеприпаса (гранаты/картечь)." />
+  <string id="mercenary_lord_passive2_str" text="Ваши стрелки наносят на 15% больше урона." />
+  <string id="mercenary_lord_passive3_str" text="Оплата по контракту наёмника увеличивается, а трата Влияния уменьшается. Изменяется от навыка Торговли." />
+  <string id="mercenary_lord_passive4_str" text="Выстрелы вашего оружия поражают несколько целей." />
+  <string id="commander_passive1_str" text="Жалование бойцов 4 ранга и выше снижается на 20%." />
+  <string id="commander_passive2_str" text="Все воины ближнего боя наносят на 15% больше урона." />
+  <string id="commander_passive3_str" text="Удары слабее, чем на 15 урона, больше не ошеломляют вас." />
+  <string id="commander_passive4_str" text="С шансом в 40% при найме бойца ещё один приходит к вам бесплатно." />
+  
+  <string id="errantry_war_choice_group_str" text="Обет Странствий" />
+  <string id="enhanced_horse_combat_choice_group_str" text="Конный воитель" />
+  <string id="questing_vow_choice_group_str" text="Обет Искателя" />
+  <string id="monster_slayer_choice_group_str" text="Убийца чудовищ" />
+  <string id="master_horseman_choice_group_str" text="Мастерство всадника" />
+  <string id="grail_vow_choice_group_str" text="Обет Грааля" />
+  <string id="errantry_war_passive1_str" text="Вы наносите 10% доп. урона в ближнем бою." />
+  <string id="errantry_war_passive2_str" text="Ваше Здоровье увеличивается на 40." />
+  <string id="errantry_war_passive3_str" text="Все рыцари в вашем отряде получают доп. 20 очков навыка Одноручного и Двуручного оружия." />
+  <string id="errantry_war_passive4_str" text="Все воины ближнего боя в вашем отряде получают 25 опыта в день." />
+  <string id="enhanced_horse_combat_passive1_str" text="Здоровье вашего ездового животного увеличивается на 50%." />
+  <string id="enhanced_horse_combat_passive2_str" text="Сражаясь верхом, вы наносите 10% доп. урона в ближнем бою." />
+  <string id="enhanced_horse_combat_passive3_str" text="Улучшение ваших бойцов стоит на 25% дешевле." />
+  <string id="enhanced_horse_combat_passive4_str" text="Все рыцари в вашем отряде получают доп. 30 очков навыка Древкового оружия." />
+  <string id="questing_vow_passive1_str" text="Ваше Здоровье увеличивается на 40." />
+  <string id="questing_vow_passive2_str" text="Вы получаете 15% физ. сопротивления ближним и дальнобойным атакам." />
+  <string id="questing_vow_passive3_str" text="Все Рыцари в вашем отряде получают доп. 10% сопротивления физ. урону." />
+  <string id="questing_vow_passive4_str" text="Удары слабее, чем на 15 урона, больше не ошеломляют вас." />
+  <string id="monster_slayer_passive1_str" text="Вы наносите 10% доп. огненного урона в ближнем бою." />
+  <string id="monster_slayer_passive2_str" text="Пробитие брони вашими атаками в ближнем бою увеличивается на 20%." />
+  <string id="monster_slayer_passive3_str" text="С шансом в 40% при найме бойца ещё один приходит к вам бесплатно." />
+  <string id="monster_slayer_passive4_str" text="Жалование всех крестьян снижается на 75%." />
+  <string id="master_horseman_passive1_str" text="Урон от наскока увеличивается на 50%." />
+  <string id="master_horseman_passive2_str" text="Скорость вашего отряда увеличивается на 2." />
+  <string id="master_horseman_passive3_str" text="Восстановление здоровья в путешествиях увеличивается на 4." />
+  <string id="master_horseman_passive4_str" text="Жалование всех рыцарей снижается на 25%." />
+  <string id="grail_vow_passive1_str" text="Ваше Здоровье увеличивается на 40." />
+  <string id="grail_vow_passive2_str" text="Боевые пилигримы в вашем отряде наносят дополнительно 20% Святого урона." />
+  <string id="grail_vow_passive3_str" text="Вы дополнительно наносите 20 Святого урона." />
+  <string id="grail_vow_passive4_str" text="Вы получаете Спасбросок в 15%." />
+  
+  
+  <string id="fey_enchantment_choice_group_str" text="Заклинания Феи" />
+  <string id="inspiration_of_the_lady_choice_group_str" text="Вдохновение Владычицы" />
+  <string id="tales_of_gilles_choice_group_str" text="Легенда о Жиле" />
+  <string id="vivid_visions_choice_group_str" text="Яркие видения" />
+  <string id="just_cause_choice_group_str" text="Правое дело" />
+  <string id="secrets_of_the_grail_choice_group_str" text="Тайны Грааля" />
+  <string id="fey_enchantment_passive1_str" text="Урон от заклинаний увеличивается на 15%." />
+  <string id="fey_enchantment_passive2_str" text="Максимальное кол-во Ветров Магии увеличивается на 10." />
+  <string id="fey_enchantment_passive3_str" text="Ваши бойцы наносят дополнительно 15% магического урона." />
+  <string id="fey_enchantment_passive4_str" text="Все рыцари в вашем отряде получают Спасбросок в 15%." />
+  <string id="inspiration_of_the_lady_passive1_str" text="С шансом в 25% при найме бойца ещё один приходит к вам бесплатно." />
+  <string id="inspiration_of_the_lady_passive2_str" text="Раненые бойцы вашего отряда лечатся быстрее." />
+  <string id="inspiration_of_the_lady_passive3_str" text="Жалование всех рыцарей снижается на 25%." />
+  <string id="inspiration_of_the_lady_passive4_str" text="Если вес вашего одеяния не превышает 11, вы получаете Спасбросок в 10%." />
+  <string id="tales_of_giles_passive1_str" text="Ваше Здоровье увеличивается на 25." />
+  <string id="tales_of_giles_passive2_str" text="Все бретонские бойцы получают Спасбросок в 10%." />
+  <string id="tales_of_giles_passive3_str" text="При молитве в святилище Владычицы Озера все раненые бойцы полностью исцеляются." />
+  <string id="tales_of_giles_passive4_str" text="Заклинания перезаряжаются на 20% быстрее." />
+  <string id="vivid_visions_passive1_str" text="Максимальное кол-во Ветров Магии увеличивается на 10." />
+  <string id="vivid_visions_passive2_str" text="Скорость вашего отряда увеличивается на 1.5." />
+  <string id="vivid_visions_passive3_str" text="Вы получаете 25% маг. сопротивления заклинаниям." />
+  <string id="vivid_visions_passive4_str" text="Дальность обнаружения противников вашим отрядом увеличивается на 20%." />
+  <string id="just_cause_passive1_str" text="Улучшение ваших бойцов стоит в два раза дешевле." />
+  <string id="just_cause_passive2_str" text="Все ваши бойцы, не являющиеся рыцарями, ежедневно получают 100 опыта." />
+  <string id="just_cause_passive3_str" text="Если вес вашего одеяния не превышает 11, вы получаете доп. Спасбросок в 15%." />
+  <string id="just_cause_passive4_str" text="Ваши отношения с другими персонажами растут на 20% сильнее." />
+  <string id="secrets_of_the_grail_Passive1_str" text="Заклинание Молния наносит на 30% больше урона." />
+  <string id="secrets_of_the_grail_Passive2_str" text="Ваши заклинания тратят на 10% меньше Ветров Магии." />
+  <string id="secrets_of_the_grail_Passive3_str" text="Используя боевые молитвы, вы восстанавливаете 15 Ветров Магии с вероятностью в 50%." />
+  <string id="secrets_of_the_grail_Passive4_str" text="Боевые молитвы перезаряжаются на 30% быстрее." />
 
-  <string id="book_of_sigmar_passive1_str" text="10 LEBEN" />
 
   
-  
-  
-  <string id="careerchoice_description_WarriorPriestRoot" text="Воин-жрец освобождает гнев Зигмара на 8 секунд, который усиливает его атаки и атаки союзников на 20%. Каждый пункт в навык Веры, увеличивает ближний урон на 0.05% и продолжительность на 0.05 секунд. Чтобы способность перезарядилась, нужно получить 50 урона." />
+  <string id="careerchoice_description_WarriorPriestRoot" text="Воин-жрец высвобождает гнев Зигмара на 8 секунд, усиливая свои атаки и атаки союзников на 20%. Каждый пункт в навык Веры увеличивает ближний урон на 0.05% и продолжительность на 0.05 секунд. Чтобы способность перезарядилась, нужно получить 50 урона." />
   </strings>
 </base>
