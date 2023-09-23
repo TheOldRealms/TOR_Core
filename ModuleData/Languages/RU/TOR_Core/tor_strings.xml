@@ -729,6 +729,13 @@
   <string id="inky_fair_start_c3" text="Test RU Choice 4." />
   <string id="inky_fair_start_c4" text="Test RU Choice 5." />
   
+  <string id="tor_spellcasting_mode_key_str" text=" test RU key" /> 
+  <string id="tor_spellcasting_mode_description_str" text=" test RU description" /> 
+  
+  <string id="tor_rogue_engineer_name_str" text="Test RU Goswin" />
+  
+  <string id="tor_career_ability_key_str" text="Test RU special move" />
+  
   <string id="careerchoice_description_WarriorPriestRoot" text="Воин-жрец высвобождает гнев Зигмара на 8 секунд, усиливая свои атаки и атаки союзников на 20%. Каждый пункт в навык Веры увеличивает ближний урон на 0.05% и продолжительность на 0.05 секунд. Чтобы способность перезарядилась, нужно получить 50 урона." />
   </strings>
 </base>
