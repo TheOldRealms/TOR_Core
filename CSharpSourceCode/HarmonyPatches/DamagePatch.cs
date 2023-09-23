@@ -161,11 +161,12 @@ namespace TOR_Core.HarmonyPatches
                         }
                     }
                 }
+                
                 resultDamage = (int)(resultDamage * wardSaveFactor);
                 b.InflictedDamage = resultDamage;
                 b.BaseMagnitude = resultDamage;
                 if (attacker == Agent.Main || victim == Agent.Main)
-                    TORDamageDisplay.DisplaySpellDamageResult((DamageType) damageType, resultDamage, damageAmplifications[damageType]);                
+                    TORDamageDisplay.DisplaySpellDamageResult((DamageType) damageType, resultDamage, damageAmplifications[damageType],wardSaveFactor);                
                 return true;
             }
 
@@ -184,7 +185,8 @@ namespace TOR_Core.HarmonyPatches
                     resultDamage += (int)damageCategories[i];
                 }
             }
-            resultDamage = (int)(resultDamage * wardSaveFactor * (1 + damageAmplifications[(int)DamageType.All])); 
+            
+            resultDamage = (int)(resultDamage * wardSaveFactor); 
             var originalDamage = b.InflictedDamage;
             b.InflictedDamage = resultDamage;
             //b.BaseMagnitude = resultDamage;       this shouldn't be the case
@@ -207,7 +209,7 @@ namespace TOR_Core.HarmonyPatches
                         resultBonus[i] += additionalDamagePercentages[i];
                     }
                     
-                    TORDamageDisplay.DisplayDamageResult(resultDamage, damageCategories, resultBonus, isVictim);
+                    TORDamageDisplay.DisplayDamageResult(resultDamage, damageCategories, resultBonus,wardSaveFactor, isVictim);
 
                 }
             }
