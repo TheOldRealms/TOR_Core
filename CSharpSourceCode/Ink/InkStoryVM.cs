@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +26,7 @@ namespace TOR_Core.Ink
             _story = story;
             _story.Reset();
             _story.SetTitle();
+            _spritePath = story.GetInitialIllustration();
             _story.Continue(out _);
             RefreshValues();
         }
@@ -36,9 +37,9 @@ namespace TOR_Core.Ink
             if (_story == null) return;
             //Get Sprite to display on the right
             PlaySound();
-            if (_story.GetIllustration() != null)
+            if (_story.GetCurrentIllustration() != null)
             {
-                SpritePath = _story.GetIllustration();
+                SpritePath = _story.GetCurrentIllustration();
             }
            
             //Calc if the current text is too long

@@ -96,9 +96,9 @@ namespace TOR_Core.Ink
                 }
             }
             Title = GetValueOfGlobalTag ("title");
-            
         }
 
+      
         private string GetValueOfGlobalTag(string tag)
         {
             if (_story == null || _story.globalTags == null || _story.globalTags.Count < 1) return null;
@@ -119,7 +119,7 @@ namespace TOR_Core.Ink
             if (string.IsNullOrWhiteSpace(line) && _story.canContinue)
             {
                 _story.Continue();
-                line += GetLine();
+                line += RetrieveText();
             }
             return line;
         }
@@ -163,8 +163,19 @@ namespace TOR_Core.Ink
                 return false;
             }
         }
+        
+        public string GetInitialIllustration()
+        {
+            var illustration = GetValueOfGlobalTag ("illustration");
+            if (illustration != null)
+            {
+                return "InkStories\\Illustrations\\" + illustration.Trim();
+            }
 
-        public string GetIllustration()
+            return "";
+        }
+
+        public string GetCurrentIllustration()
         {
             var tags = _story.currentTags;
             foreach(var tag in tags)
