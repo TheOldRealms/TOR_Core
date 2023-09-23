@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaleWorlds.Core;
+﻿using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.AI.Decision;
+using TOR_Core.BattleMechanics.Artillery.BA;
 
 namespace TOR_Core.BattleMechanics.Artillery
 {
@@ -22,6 +18,99 @@ namespace TOR_Core.BattleMechanics.Artillery
         public Team Team { get; set; }
         public void SetTarget(Target target) => Target = target;
         public void ClearTarget() => Target = null;
+        
+                
+        public string wptag;
+        private bool _BallistaMove;
+        private bool _BallistaMoveInit;
+        private bool _InitParticles;
+        private Vec3 _Destination;
+        private float WheelDiameter = 0.6f;
+        private float MinSpeed = 0.5f;
+        private float MaxSpeed = 1.25f;
+        private BallistaMove MovementComponent;
+        private SynchedMissionObject _wheel_L;
+        private SynchedMissionObject _wheel_R;
+        
+        public bool isMoving { get; private set; }
+        
+        protected override void OnTick(float dt)
+        {
+            base.OnTick(dt);
+            if (IsDestroyed)
+            {
+                Deactivate();
+                Disable();
+            }
+            else if (_BallistaMoveInit)
+            {
+                _BallistaMoveInit = false;
+                _BallistaMove = true;
+                AddRegularMovementComponent();
+            }
+            else if ((PilotAgent == null || !PilotAgent.IsUsingGameObject) && isMoving)
+            {
+                EndMoving();
+            }
+            else
+            {
+                if (!_BallistaMove)
+                    return;
+                if (MovementComponent.DestinationReached)
+                    EndMoving();
+                else
+                    MovementComponent.OnTick(dt);
+            }
+        }
+        
+        public void MoveBallista(Vec3 dest)
+        {
+            WorldPosition worldPosition = new WorldPosition(Mission.Current.Scene, dest);
+            if (PilotAgent == null || !PilotAgent.CanMoveDirectlyToPosition(worldPosition.AsVec2))
+                return;
+            if (_BallistaMove)
+                EndMoving();
+            if (PilotAgent.Team == Mission.Current.PlayerTeam)
+            {
+                _Destination = dest;
+                _BallistaMoveInit = true;
+                isMoving = true;
+            }
+        }
+        
+        private void EndMoving()
+        {
+            MovementComponent = null;
+            _BallistaMove = false;
+            isMoving = false;
+            if (PilotAgent == null)
+                return;
+            PilotAgent.AIStateFlags -= Agent.AIStateFlag.UseObjectMoving;
+        }
+        
+        private void AddRegularMovementComponent()
+        {
+            MovementComponent = new BallistaMove
+            {
+                Destination = _Destination,
+                MinSpeed = MinSpeed,
+                MaxSpeed = MaxSpeed,
+                BallistaTeam = PilotAgent.Team,
+                MainObject = this,
+                MovementSoundCodeID = SoundEvent.GetEventIdFromString("event:/mission/siege/siegetower/move"),
+                WheelDiameter = WheelDiameter
+            };
+            if (PilotAgent != null)
+                PilotAgent.AIStateFlags |= Agent.AIStateFlag.UseObjectMoving;
+            if (_InitParticles)
+                return;
+            GameEntity gameEntity = GameEntity;
+            MatrixFrame boneLocalFrame = new MatrixFrame(Mat3.Identity, new Vec3(y: -0.7f, z: 0.6f));
+            ParticleSystem attachedToEntity = ParticleSystem.CreateParticleSystemAttachedToEntity("psys_game_burning_agent", gameEntity, ref boneLocalFrame);
+            gameEntity.AddComponent(attachedToEntity);
+            _InitParticles = true;
+        }
+        
         public bool IsTargetInRange(Vec3 position)
         {
             var startPos = ProjectileEntityCurrentGlobalPosition;

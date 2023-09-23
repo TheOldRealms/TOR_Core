@@ -28,6 +28,14 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.Components
         protected override void OnTick(Agent agentToCompareTo, Formation formationToCompareTo, Team potentialUsersTeam, float dt)
         {
             base.OnTick(agentToCompareTo, formationToCompareTo, potentialUsersTeam, dt);
+            
+            if (this._fieldSiegeWeapon.isMoving)
+            {
+                this._target = null;
+                this._fieldSiegeWeapon.AimAtRotation(0.0f, 0.0f);
+                return;
+            }
+            
             if (_fieldSiegeWeapon.PilotAgent != null && _fieldSiegeWeapon.PilotAgent.IsAIControlled)
             {
                 if (_fieldSiegeWeapon.State == RangedSiegeWeapon.WeaponState.Idle)
