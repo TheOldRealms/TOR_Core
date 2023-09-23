@@ -712,37 +712,37 @@
   <string id="tor_religion_blessing_name.cult_of_myrmidia" text="{=!}Blessing of Myrmidia" />
 
   <!-- Career related -->
-  <string id="career_title.WarriorPriest" text="{=!}Warrior Priest of Sigmar" />
-  <string id="career_title.MinorVampire" text="{=!}Vampire Nobility" />
-  <string id="career_title.GrailKnight" text="{=!}Knight of Bretonnia" />
-    <string id="career_title.GrailDamsel" text="{=!}Damsel of the Lady" />
-  <string id="career_title.BloodKnight" text="{=!}Blood Knight" />
-  <string id="career_title.Mercenary" text="{=!}Mercenary" />
+  <string id="career_title.WarriorPriest" text="{=tor_career_title_warrior_priest_str}Warrior Priest of Sigmar" />
+  <string id="career_title.MinorVampire" text="{=tor_career_title_minor_vampire_str}Vampire Nobility" />
+  <string id="career_title.GrailKnight" text="{=tor_career_title_grail_knight_str}Knight of Bretonnia" />
+    <string id="career_title.GrailDamsel" text="{=tor_career_title_grail_damsel_str}Damsel of the Lady" />
+  <string id="career_title.BloodKnight" text="{=tor_career_title_blood_knight_str}Blood Knight" />
+  <string id="career_title.Mercenary" text="{=tor_career_title_mercenary_str}Mercenary" />
 
 
-  <string id="career_choicegroup1_name.WarriorPriest" text="{=!}Cultist of Sigmar" />
-  <string id="career_choicegroup2_name.WarriorPriest" text="{=!}Warrior Priest" />
-  <string id="career_choicegroup3_name.WarriorPriest" text="{=!}Arch Lector" />
+  <string id="career_choicegroup1_name.WarriorPriest" text="{=career_choicegroup1_warrior_priest_str}Cultist of Sigmar" />
+  <string id="career_choicegroup2_name.WarriorPriest" text="{=career_choicegroup2_warrior_priest_str}Warrior Priest" />
+  <string id="career_choicegroup3_name.WarriorPriest" text="{=career_choicegroup3_warrior_priest_str}Arch Lector" />
 
-  <string id="career_choicegroup1_name.MinorVampire" text="{=!}New Blood" />
-  <string id="career_choicegroup2_name.MinorVampire" text="{=!}Vampire" />
-  <string id="career_choicegroup3_name.MinorVampire" text="{=!}Exalted" />
+  <string id="career_choicegroup1_name.MinorVampire" text="{=career_choicegroup1_minor_vampire_str}New Blood" />
+  <string id="career_choicegroup2_name.MinorVampire" text="{=career_choicegroup2_minor_vampire_str}Vampire" />
+  <string id="career_choicegroup3_name.MinorVampire" text="{=career_choicegroup3_minor_vampire_str}Exalted" />
 
-  <string id="career_choicegroup1_name.BloodKnight" text="{=!}Initiate" />
-  <string id="career_choicegroup2_name.BloodKnight" text="{=!}Blood Knight" />
-  <string id="career_choicegroup3_name.BloodKnight" text="{=!}Master" />
+  <string id="career_choicegroup1_name.BloodKnight" text="{=career_choicegroup1_blood_knight_str}Initiate" />
+  <string id="career_choicegroup2_name.BloodKnight" text="{=career_choicegroup2_blood_knight_str}Blood Knight" />
+  <string id="career_choicegroup3_name.BloodKnight" text="{=career_choicegroup3_blood_knight_str}Master" />
 
-  <string id="career_choicegroup1_name.GrailKnight" text="{=!}Knight Errant" />
-  <string id="career_choicegroup2_name.GrailKnight" text="{=!}Questing Knight" />
-  <string id="career_choicegroup3_name.GrailKnight" text="{=!}Grail Knight" />
+  <string id="career_choicegroup1_name.GrailKnight" text="{=career_choicegroup1_grail_knight_str}Knight Errant" />
+  <string id="career_choicegroup2_name.GrailKnight" text="{=career_choicegroup2_grail_knight_str}Questing Knight" />
+  <string id="career_choicegroup3_name.GrailKnight" text="{=career_choicegroup3_grail_knight_str}Grail Knight" />
 
-  <string id="career_choicegroup1_name.Mercenary" text="{=!}Recruit" />
-  <string id="career_choicegroup2_name.Mercenary" text="{=!}Sergeant" />
-  <string id="career_choicegroup3_name.Mercenary" text="{=!}Commander" />
+  <string id="career_choicegroup1_name.Mercenary" text="{=career_choicegroup1_mercenary_str}Recruit" />
+  <string id="career_choicegroup2_name.Mercenary" text="{=career_choicegroup2_mercenary_str}Sergeant" />
+  <string id="career_choicegroup3_name.Mercenary" text="{=career_choicegroup3_mercenary_str}Commander" />
   
-  <string id="career_choicegroup1_name.GrailDamsel" text="{=!}Grail Maid" />
-  <string id="career_choicegroup2_name.GrailDamsel" text="{=!}Grail Damsel" />
-  <string id="career_choicegroup3_name.GrailDamsel" text="{=!}Prophetess" />
+  <string id="career_choicegroup1_name.GrailDamsel" text="{=career_choicegroup1_grail_damsel_str}Grail Maid" />
+  <string id="career_choicegroup2_name.GrailDamsel" text="{=career_choicegroup2_grail_damsel_str}Grail Damsel" />
+  <string id="career_choicegroup3_name.GrailDamsel" text="{=career_choicegroup3_grail_damsel_str}Prophetess" />
 
 
 
