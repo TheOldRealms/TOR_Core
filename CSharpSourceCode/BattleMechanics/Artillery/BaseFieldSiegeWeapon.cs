@@ -102,13 +102,6 @@ namespace TOR_Core.BattleMechanics.Artillery
             };
             if (PilotAgent != null)
                 PilotAgent.AIStateFlags |= Agent.AIStateFlag.UseObjectMoving;
-            if (_InitParticles)
-                return;
-            GameEntity gameEntity = GameEntity;
-            MatrixFrame boneLocalFrame = new MatrixFrame(Mat3.Identity, new Vec3(y: -0.7f, z: 0.6f));
-            ParticleSystem attachedToEntity = ParticleSystem.CreateParticleSystemAttachedToEntity("psys_game_burning_agent", gameEntity, ref boneLocalFrame);
-            gameEntity.AddComponent(attachedToEntity);
-            _InitParticles = true;
         }
         
         public bool IsTargetInRange(Vec3 position)
