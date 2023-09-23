@@ -11,6 +11,7 @@ using TOR_Core.Utilities;
 using TOR_Core.Extensions;
 using TaleWorlds.CampaignSystem;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TaleWorlds.CampaignSystem.Party;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -67,7 +68,7 @@ namespace TOR_Core.AbilitySystem
                     if(hero == Hero.MainHero)
                     {
                         var artilleryRoster = hero.PartyBelongedTo.GetArtilleryItems();
-                        if (artilleryRoster.Count > 0)
+                        if (artilleryRoster.Count > 0 && MobileParty.MainParty.GetMaxNumberOfArtillery() > 0)
                         {
                             for (int i = 0; i < artilleryRoster.Count; i++)
                             {
@@ -279,7 +280,7 @@ namespace TOR_Core.AbilitySystem
                     }
                 }
                 
-                ability.SetCoolDown((int)cooldown.ResultNumber);
+                ability.SetCoolDown((int)cooldown.ResultNumber-15);
             }
         }
         public void SetPrayerCoolDown(int time)

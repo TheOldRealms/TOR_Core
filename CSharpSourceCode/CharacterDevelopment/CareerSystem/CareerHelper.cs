@@ -188,8 +188,19 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
             return value;
         }
-        
-        
+
+        public static  bool PlayerOwnsMagicCareer()
+        {
+            if (Hero.MainHero.HasAnyCareer())
+            {
+               var career = Hero.MainHero.GetCareer();
+
+               if (Hero.MainHero.GetExtendedInfo().CareerID == "Mercenary" || Hero.MainHero.GetExtendedInfo().CareerID == "MinorVampire" || Hero.MainHero.GetExtendedInfo().CareerID == "GrailDamsel")
+                   return true;
+            }
+
+            return false;
+        }
 
         public static bool PrayerCooldownIsNotShared(this Agent agent)
         {

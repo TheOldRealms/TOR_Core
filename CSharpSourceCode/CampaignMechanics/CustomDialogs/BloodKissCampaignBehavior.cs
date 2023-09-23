@@ -40,8 +40,7 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             starter.AddPlayerLine("bloodkiss_iamready", "bloodkiss_areyouready", "bloodkiss_player_ready", "I am ready my lord.", null, null);
             starter.AddPlayerLine("bloodkiss_iamnotready", "bloodkiss_areyouready", "bloodkiss_player_notready", "On a second thought, I need to think about it.", null, null);
             
-            starter.AddPlayerLine("bloodkiss_iamready", "bloodkiss_areyouready", "bloodkiss_player_ready", "I am ready my lord.", null, null);
-            starter.AddPlayerLine("bloodkiss_iamnotready", "bloodkiss_areyouready", "bloodkiss_player_notready", "On a second thought, I need to think about it.", null, null);
+
 
             
             starter.AddDialogLine("bloodkiss_recieve", "bloodkiss_player_ready", "bloodkiss_playcutscene", "Prepare thine self for thine dark awakening.", null, null);

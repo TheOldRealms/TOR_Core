@@ -22,6 +22,7 @@ namespace TOR_Core.AbilitySystem
         private Timer _timer = null;
         private float _cooldown_end_time;
 
+        protected bool _isLocked=false;
         public bool IsCasting { get; private set; }
         public string StringID { get; }
         public AbilityTemplate Template { get; protected set; }
@@ -85,7 +86,7 @@ namespace TOR_Core.AbilitySystem
 
         public virtual bool CanCast(Agent casterAgent)
         {
-            return !IsCasting &&
+            return !_isLocked&&!IsCasting &&
                    !IsOnCooldown() &&
                    ((casterAgent.IsPlayerControlled && IsRightAngleToCast()) ||
                     (casterAgent.IsActive() && casterAgent.Health > 0 && casterAgent.GetMorale() > 1 && casterAgent.IsAbilityUser()));
@@ -114,6 +115,12 @@ namespace TOR_Core.AbilitySystem
             _coolDownLeft =cooldownTime;
             _cooldown_end_time = Mission.Current.CurrentTime + _coolDownLeft + 0.8f; //Adjustment was needed for natural tick on UI
             _timer.Start();
+        }
+
+        public virtual void DeactivateAbility()
+        {
+            _isLocked = true;
+            AbilityScript?.Stop();
         }
         public virtual void ActivateAbility(Agent casterAgent)
         {
@@ -150,7 +157,12 @@ namespace TOR_Core.AbilitySystem
             }
                 
             
-            var frame = GetSpawnFrame(casterAgent); 
+            var frame = GetSpawnFrame(casterAgent);
+
+            if (Template.DoNotAlignParticleEffectPrefab)
+            {
+                frame = new MatrixFrame(Mat3.CreateMat3WithForward(Vec3.Forward), frame.origin);
+            }
             
             GameEntity parentEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
             parentEntity.SetGlobalFrame(frame);

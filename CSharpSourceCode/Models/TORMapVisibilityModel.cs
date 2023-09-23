@@ -25,14 +25,14 @@ namespace TOR_Core.Models
             {
                 if (party.LeaderHero.HasAnyCareer())
                 {
-                    AddCareerSpecificSpottingRangePerks(result, party.LeaderHero, party);
+                    AddCareerSpecificSpottingRangePerks(ref result, party.LeaderHero, party);
                 }
             }
             
             return result;
         }
         
-        private void AddCareerSpecificSpottingRangePerks(ExplainedNumber number, Hero mainHero, MobileParty party)
+        private void AddCareerSpecificSpottingRangePerks(ref ExplainedNumber number, Hero mainHero, MobileParty party)
         {
             var choices = mainHero.GetAllCareerChoices();
 
@@ -40,8 +40,7 @@ namespace TOR_Core.Models
             if (choices.Contains("VividVisionsPassive4"))
             {
                 var choice = TORCareerChoices.GetChoice("VividVisionsPassive4");
-                
-                number.AddFactor(choice.GetPassiveValue());
+                number.AddFactor(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
             }
         }
     }

@@ -28,6 +28,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         private string _choiceGroup1Condition;
         private string _choiceGroup2Condition;
         private string _choiceGroup3Condition;
+        private string _choiceGroup1Unlock;
+        private string _choiceGroup2Unlock;
+        private string _choiceGroup3Unlock;
         private string _freeCareerPoints;
         private bool _tier1Active;
         private bool _tier2Active;
@@ -54,14 +57,17 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     case 1:
                         _choiceGroups1.Add(new CareerChoiceGroupObjectVM(group, RefreshValues));
                         if(group.GetConditionText(Hero.MainHero) != _choiceGroup1Condition) _choiceGroup1Condition += group.GetConditionText(Hero.MainHero);
+                        if(group.GetUnlockText(Hero.MainHero) != _choiceGroup1Unlock) _choiceGroup1Unlock+= group.GetUnlockText(Hero.MainHero);
                         break;
                     case 2:
                         _choiceGroups2.Add(new CareerChoiceGroupObjectVM(group, RefreshValues));
                         if (group.GetConditionText(Hero.MainHero) != _choiceGroup2Condition) _choiceGroup2Condition += group.GetConditionText(Hero.MainHero);
+                        if(group.GetUnlockText(Hero.MainHero) != _choiceGroup2Unlock) _choiceGroup2Unlock+= group.GetUnlockText(Hero.MainHero);
                         break;
                     case 3:
                         _choiceGroups3.Add(new CareerChoiceGroupObjectVM(group, RefreshValues));
                         if (group.GetConditionText(Hero.MainHero) != _choiceGroup3Condition) _choiceGroup3Condition += group.GetConditionText(Hero.MainHero);
+                        if(group.GetUnlockText(Hero.MainHero) != _choiceGroup3Unlock) _choiceGroup3Unlock+= group.GetUnlockText(Hero.MainHero);
                         break;
                     default:
                         break;
@@ -323,7 +329,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 }
             }
         }
-
         [DataSourceProperty]
         public string ChoiceGroup3Condition
         {
@@ -340,7 +345,54 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 }
             }
         }
-
+        [DataSourceProperty]
+        public string ChoiceGroup1Unlock
+        {
+            get
+            {
+                return _choiceGroup1Unlock;
+            }
+            set
+            {
+                if (value != _choiceGroup1Unlock)
+                {
+                    _choiceGroup1Unlock = value;
+                    OnPropertyChangedWithValue(value, "ChoiceGroup1Unlock");
+                }
+            }
+        }
+        [DataSourceProperty]
+        public string ChoiceGroup2Unlock
+        {
+            get
+            {
+                return _choiceGroup2Unlock;
+            }
+            set
+            {
+                if (value != _choiceGroup2Unlock)
+                {
+                    _choiceGroup2Unlock = value;
+                    OnPropertyChangedWithValue(value, "ChoiceGroup2Unlock");
+                }
+            }
+        }
+        [DataSourceProperty]
+        public string ChoiceGroup3Unlock
+        {
+            get
+            {
+                return _choiceGroup3Unlock;
+            }
+            set
+            {
+                if (value != _choiceGroup3Unlock)
+                {
+                    _choiceGroup3Unlock = value;
+                    OnPropertyChangedWithValue(value, "ChoiceGroup3Unlock");
+                }
+            }
+        }
         [DataSourceProperty]
         public string FreeCareerPoints
         {

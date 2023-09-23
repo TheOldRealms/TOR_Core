@@ -7,6 +7,7 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.TournamentGames;
 using TOR_Core.BattleMechanics.Jousting;
+using TOR_Core.CampaignMechanics.Assimilation;
 
 namespace TOR_Core.Models
 {
@@ -14,7 +15,8 @@ namespace TOR_Core.Models
     {
         public override TournamentGame CreateTournament(Town town)
         {
-            if(town.Culture.StringId == "vlandia")
+            var culture = AssimilationCampaignBehavior.GetOriginalCultureForSettlement(town.Settlement);
+            if (culture != null && culture.StringId == "vlandia" || culture.StringId == "mousillon")
             {
                 return new JoustTournamentGame(town);
             }
@@ -23,7 +25,7 @@ namespace TOR_Core.Models
 
         public override float GetTournamentStartChance(Town town)
         {
-            //return 0.8f; //DEBUG
+            //return 1f; //DEBUG
             return base.GetTournamentStartChance(town);
         }
     }

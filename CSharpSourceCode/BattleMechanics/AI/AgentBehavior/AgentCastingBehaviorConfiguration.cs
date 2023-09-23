@@ -66,7 +66,8 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior
         {
             if (abilityTemplate.AbilityTargetType == AbilityTargetType.AlliesInAOE ||
                 abilityTemplate.AbilityEffectType == AbilityEffectType.Heal ||
-                abilityTemplate.AbilityTargetType == AbilityTargetType.SingleAlly)
+                abilityTemplate.AbilityTargetType == AbilityTargetType.SingleAlly ||
+                abilityTemplate.AssociatedTriggeredEffectTemplates.Count > 0 && abilityTemplate.AssociatedTriggeredEffectTemplates[0].TargetType == TargetType.Friendly)
                 return agent.Team.GetAllyTeams()
                     .SelectMany(team => team.GetFormations())
                     .Select(form => new Target {Formation = form})
@@ -174,7 +175,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior
             {
                 return new List<Axis>
                 {
-                    new Axis(0, 1, x => x, target => 0.4f)
+                    new Axis(0, 1, x => (float)Math.Min(0.4, 1 - x), CommonAIDecisionFunctions.WindsOfMagicRemainingRatio(behavior.Agent))
                 };
             };
         }

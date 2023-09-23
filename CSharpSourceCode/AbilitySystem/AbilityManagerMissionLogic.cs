@@ -19,6 +19,8 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.GameManagers;
 using TOR_Core.Quests;
 using NLog;
+using TaleWorlds.Library;
+using TOR_Core.BattleMechanics.StatusEffect;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -98,7 +100,7 @@ namespace TOR_Core.AbilitySystem
                 RefreshMaxArtilleryCountForTeam(team);
             }
         }
-
+        
         public override void OnBehaviorInitialize()
         {
             base.OnBehaviorInitialize();
@@ -144,7 +146,19 @@ namespace TOR_Core.AbilitySystem
             var comp2 = affectedAgent.GetComponent<AbilityComponent>();
             if (comp2 != null)
             {
-                if (comp2.CareerAbility != null && comp2.CareerAbility.ChargeType == ChargeType.DamageTaken) comp2.CareerAbility.AddCharge(blow.InflictedDamage * DamagePortionForChargingCareerAbility);
+                if (comp2.CareerAbility != null && comp2.CareerAbility.ChargeType == ChargeType.DamageTaken)
+                {
+                    
+                    var percentage = blow.InflictedDamage / affectedAgent.HealthLimit;
+                    
+                    if (attackCollisionData.CollisionResult == CombatCollisionResult.Blocked)
+                    {
+                        percentage *= 0.1f;
+                    }
+
+                    percentage *= 100;
+                    comp2.CareerAbility.AddCharge(percentage * DamagePortionForChargingCareerAbility);
+                }
             }
         }
 
@@ -324,16 +338,19 @@ namespace TOR_Core.AbilitySystem
 
             if (Input.IsKeyPressed(_spellcastingModeKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_spellcastingModeKey.ControllerKey.InputKey))
             {
-                switch (_currentState)
+                if (_abilityComponent.KnownAbilitySystem.Count > 1 || _abilityComponent.CurrentAbility.Template.AbilityTargetType != AbilityTargetType.Self)
                 {
-                    case AbilityModeState.Off:
-                        EnableAbilityMode();
-                        break;
-                    case AbilityModeState.Idle:
-                        DisableAbilityMode(false);
-                        break;
-                    default:
-                        break;
+                    switch (_currentState)
+                    {
+                        case AbilityModeState.Off:
+                            EnableAbilityMode();
+                            break;
+                        case AbilityModeState.Idle:
+                            DisableAbilityMode(false);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
             else if (Input.IsKeyPressed(InputKey.LeftMouseButton))
@@ -356,11 +373,11 @@ namespace TOR_Core.AbilitySystem
             }
             else if (Input.IsKeyPressed(InputKey.MouseScrollUp) && _currentState != AbilityModeState.Off)
             {
-                Agent.Main.SelectNextAbility();
+                if(_abilityComponent.KnownAbilitySystem.Count > 1) Agent.Main.SelectNextAbility();
             }
             else if (Input.IsKeyPressed(InputKey.MouseScrollDown) && _currentState != AbilityModeState.Off)
             {
-                Agent.Main.SelectPreviousAbility();
+                if (_abilityComponent.KnownAbilitySystem.Count > 1) Agent.Main.SelectPreviousAbility();
             }
         }
 
@@ -504,6 +521,37 @@ namespace TOR_Core.AbilitySystem
             _keyContext.GetGameKey(19).KeyboardKey.ChangeKey(InputKey.Invalid);
             _keyContext.GetGameKey(20).KeyboardKey.ChangeKey(InputKey.Invalid);
             _keyContext.GetGameKey(21).KeyboardKey.ChangeKey(InputKey.Invalid);
+        }
+        
+        public override void OnMissionResultReady(MissionResult missionResult)
+        {
+            if (missionResult.PlayerDefeated || missionResult.PlayerVictory)
+            {
+                var agents = Mission.Current.Agents;
+                foreach (var agent in agents)
+                {
+                    if (agent.IsMainAgent&&agent.IsActive())
+                    {
+                        DisableAbilityMode(true);
+                    }
+
+                    var abilityComponent = agent.GetComponent<AbilityComponent>();
+                    if (abilityComponent != null)
+                    {
+                        var abilities = abilityComponent.KnownAbilitySystem;
+                        foreach (var ability in abilities)
+                        {
+                            ability.DeactivateAbility();
+                        }
+                    }
+                    
+                    var comp = agent.GetComponent<StatusEffectComponent>();
+                    if (comp != null)
+                    {
+                        comp.Dispose();
+                    }
+                }
+            }
         }
 
         private void OnItemPickup(Agent agent, SpawnedItemEntity item)

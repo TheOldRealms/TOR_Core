@@ -69,7 +69,7 @@ namespace TOR_Core.CharacterDevelopment
             _warriorPriest.Initialize("Warrior Priest", (hero) => 
             {
                 return hero.Culture == MBObjectManager.Instance.GetObject<CultureObject>("empire") && hero.Clan.Tier >= 1;
-            }, "RighteousFury", ChargeType.DamageTaken, 50);
+            }, "RighteousFury", ChargeType.DamageTaken, 30);
             
             _mercenary.Initialize("Mercenary", null, "");
         }

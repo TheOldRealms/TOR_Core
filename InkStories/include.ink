@@ -232,3 +232,53 @@ EXTERNAL GetTotalPartyWoundedCount()
 EXTERNAL MakePartyDisorganized()
 ===function MakePartyDisorganized()===
     ~ return ""
+    
+//Opens the duel mission
+EXTERNAL OpenDuelMission()
+===function OpenDuelMission()===
+    ~ return ""
+
+//Opens the cultist lair mission
+EXTERNAL OpenCultistLairMission(missionName)
+===function OpenCultistLairMission(missionName)===
+    ~ return ""
+
+//Opens the duel mission
+EXTERNAL GetPlayerHasCustomTag(tag)
+===function GetPlayerHasCustomTag(tag)===
+    ~ return false
+    
+//Opens the duel mission
+EXTERNAL SetPlayerCustomTag(tag)
+===function SetPlayerCustomTag(tag)===
+    ~ return ""
+    
+//Opens a random invetory as trade
+EXTERNAL OpenInventoryAsTrade()
+===function OpenInventoryAsTrade()===
+    ~ return ""
+
+//Checks whether the current time of day is night
+EXTERNAL IsNight()
+===function IsNight()===
+    ~ return false
+
+//Checks whether player has the indicated amount of gold
+EXTERNAL HasEnoughGold(number)
+===function HasEnoughGold(number)===
+    ~ return true
+    
+//Plays a music from the sounds.xml
+EXTERNAL PlayMusic(musicname)
+===function PlayMusic(musicname)===
+    ~ return ""
+
+//Give an artifact item based on player's religion
+EXTERNAL GiveMiracleItem()
+===function GiveMiracleItem()===
+    ~ return ""
+    
+//Resets all raiding sites (e.g. herdstones and chaos portal)
+EXTERNAL ResetRaiderSites()
+===function ResetRaiderSites()===
+    ~ return ""

@@ -132,8 +132,10 @@ namespace TOR_Core.CampaignMechanics
             int possibleUpgradeCount = upgradeArgs.PossibleUpgradeCount;
             int num = upgradeArgs.UpgradeXpCost * possibleUpgradeCount;
             memberRoster.SetElementXp(rosterIndex, memberRoster.GetElementXp(rosterIndex) - num);
-            memberRoster.AddToCounts(upgradeArgs.Target, -possibleUpgradeCount, false, 0, 0, true, -1);
-            memberRoster.AddToCounts(upgradeTarget, possibleUpgradeCount, false, 0, 0, true, -1);
+            //memberRoster.AddToCounts(upgradeArgs.Target, -possibleUpgradeCount, false, 0, 0, true, -1);
+            party.AddMember(upgradeArgs.Target, -possibleUpgradeCount, 0);
+            //memberRoster.AddToCounts(upgradeTarget, possibleUpgradeCount, false, 0, 0, true, -1);
+            party.AddMember(upgradeArgs.UpgradeTarget, possibleUpgradeCount, 0);
             if (party.Owner != null && party.Owner.Clan == Clan.PlayerClan && upgradeTarget.UpgradeRequiresItemFromCategory != null)
             {
                 int num2 = possibleUpgradeCount;

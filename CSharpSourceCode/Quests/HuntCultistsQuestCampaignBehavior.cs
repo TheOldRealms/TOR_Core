@@ -12,6 +12,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade;
 using TaleWorlds.SaveSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Ink;
@@ -31,7 +32,8 @@ namespace TOR_Core.Quests
             if(party == MobileParty.MainParty)
             {
                 Hero master = settlement.HeroesWithoutParty.FirstOrDefault(x => x.IsBountyMaster());
-                if(master != null && master.Issue == null)
+                int rng = MBRandom.RandomInt(0, 100);
+                if (master != null && master.Issue == null && rng < TORConstants.BOUNTY_QUEST_CHANCE)
                 {
                     Campaign.Current.IssueManager.CreateNewIssue(new PotentialIssueData(new PotentialIssueData.StartIssueDelegate(OnIssueSelected), typeof(HuntCultistsIssue), IssueBase.IssueFrequency.VeryCommon), master);
                 }
@@ -67,7 +69,7 @@ namespace TOR_Core.Quests
             [SaveableField(0)]
             private Settlement _targetSettlement;
 
-            public HuntCultistsIssue(Hero issueOwner, Settlement targetSettlement) : base(issueOwner, CampaignTime.DaysFromNow(1f))
+            public HuntCultistsIssue(Hero issueOwner, Settlement targetSettlement) : base(issueOwner, CampaignTime.DaysFromNow(30f))
             {
                 _targetSettlement = targetSettlement;
             }
@@ -138,7 +140,7 @@ namespace TOR_Core.Quests
 
             protected override QuestBase GenerateIssueQuest(string questId)
             {
-                return new HuntCultistsQuest("hunt_cultists_quest_" + CampaignTime.Now.ElapsedSecondsUntilNow, IssueOwner, CampaignTime.DaysFromNow(1f), RewardGold, _targetSettlement);
+                return new HuntCultistsQuest("hunt_cultists_quest_" + CampaignTime.Now.ElapsedSecondsUntilNow, IssueOwner, CampaignTime.DaysFromNow(30f), RewardGold, _targetSettlement);
             }
 
             protected override void OnGameLoad() { }
@@ -177,6 +179,10 @@ namespace TOR_Core.Quests
             {
                 OfferDialogFlow = DialogFlow.CreateDialogFlow("issue_classic_quest_start", 100).NpcLine(new TextObject("{=!}Excellent. Do not underestimate the ruinous powers, unwavering vigilance is required on your quest!", null), null, null).Condition(() => Hero.OneToOneConversationHero == QuestGiver).Consequence(OnQuestAccepted).CloseDialog();
                 DiscussDialogFlow = DialogFlow.CreateDialogFlow("quest_discuss", 100).NpcLine(new TextObject("{=!}It was good doing business with you.", null), null, null).Condition(() => Hero.OneToOneConversationHero == QuestGiver).CloseDialog();
+                Campaign.Current.ConversationManager.AddDialogFlow(DialogFlow.CreateDialogFlow("start", 199).NpcLine("{=khorne_cultist_mission}This vessel is mine. Don't interfere with my plans!")
+                    .Condition(() => Mission.Current != null && Mission.Current.SceneName == "TOR_cultist_lair_001")
+                    .PlayerLine("Prepare to die!")
+                    .Consequence(TurnHostile).CloseDialog());
             }
 
             protected override void OnTimedOut()
@@ -187,6 +193,18 @@ namespace TOR_Core.Quests
             protected override void RegisterEvents()
             {
                 CampaignEvents.AfterSettlementEntered.AddNonSerializedListener(this, SettlementEntered);
+            }
+
+            private void TurnHostile()
+            {
+                Mission.Current.SetMissionMode(MissionMode.Battle, false);
+                foreach (var agent in Mission.Current.Agents)
+                {
+                    if (agent.IsAIControlled && agent.IsHuman && agent.IsActive())
+                    {
+                        agent.SetWatchState(Agent.WatchState.Alarmed);
+                    }
+                }
             }
 
             private void SettlementEntered(MobileParty party, Settlement settlement, Hero hero)
@@ -211,12 +229,13 @@ namespace TOR_Core.Quests
                     AddLog(new TextObject("{=!}You were successful in uncovering the cultists."));
                     CompleteQuestWithSuccess();
                 }
-                else CompleteQuestWithFail(new TextObject("{=!}Aligning yourself with the cultists, you can hardly expect payment from the Order. Best keep this dark secret to yourself."));
+                else CompleteQuestWithFail(new TextObject("{=!}The cultists escaped."));
             }
 
             private void OnQuestAccepted()
             {
                 StartQuest();
+                this.QuestDueTime = CampaignTime.Now + CampaignTime.Days(20);
                 var acceptLog = new TextObject("{=!}You were tasked to travel to {TARGET_SETTLEMENT} and root out any cultist who may be hiding there.");
                 acceptLog.SetTextVariable("TARGET_SETTLEMENT", _settlement.EncyclopediaLinkWithName);
                 AddLog(acceptLog);
@@ -224,7 +243,7 @@ namespace TOR_Core.Quests
 
             protected override void OnCompleteWithSuccess()
             {
-                GiveGoldAction.ApplyForQuestBetweenCharacters(QuestGiver, Hero.MainHero, RewardGold);
+                GiveGoldAction.ApplyForQuestBetweenCharacters(null, Hero.MainHero, RewardGold);
             }
         }
     }

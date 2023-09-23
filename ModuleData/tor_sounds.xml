@@ -41,6 +41,10 @@
 		}
   -->
 
+    <!--music-->
+    <!--<module_sound name="west_bretonnia" sound_category="music" path="../../TOR_Armory/ModuleSounds/west_bretonnia.ogg" />-->
+    
+    <!--sound effects-->
     <module_sound name="fireImpact1" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/fire_Impact_1.wav" />
     <module_sound name="fireImpact2" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/fire_Impact_2.wav" />
     <module_sound name="fireImpact3" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/fire_Impact_3.wav" />

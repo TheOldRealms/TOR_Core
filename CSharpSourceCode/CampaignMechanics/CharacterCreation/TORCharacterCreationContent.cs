@@ -203,6 +203,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private void OnOptionFinalize(TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation charInfo, string id)
         {
             Hero.MainHero.AddAttribute("AbilityUser");
+            Hero.MainHero.AddAttribute("CanPlaceArtillery");
             var selectedOption = _options.Find(x => x.Id == id);
             if (selectedOption.OptionText == "Magister Apprentice" || selectedOption.OptionText == "Damsel of the Lady")
             {

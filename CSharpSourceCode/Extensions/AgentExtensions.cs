@@ -514,15 +514,22 @@ namespace TOR_Core.Extensions
         {
             var hero = agent.GetHero();
             var character = agent.Character;
+            var abilities = new List<string>();
             if (hero != null)
             {
-                return hero.GetExtendedInfo().SelectedAbilities;
+                abilities.AddRange(hero.GetExtendedInfo().SelectedAbilities);
+                
+                if (agent.HasAttribute("Priest"))
+                {
+                    abilities.AddRange(hero.GetExtendedInfo().GetAllPrayers());
+                }
             }
             else if (character != null)
             {
-                return agent.Character.GetAbilities();
+                abilities.AddRange(agent.Character.GetAbilities());
             }
-            else return new List<string>();
+            
+            return abilities;
         }
 
         public static Ability GetAbility(this Agent agent, int abilityindex)

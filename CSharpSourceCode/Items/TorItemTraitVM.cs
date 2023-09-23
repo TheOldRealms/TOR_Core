@@ -14,7 +14,18 @@ namespace TOR_Core.Items
             _icon = "<img src=\"" + trait.IconName + "\"/>";
         }
 
-		[DataSourceProperty]
+		private TorItemTraitVM() { }
+
+        public static TorItemTraitVM CreateDamageOnlyTraitVM()
+        {
+			var vm = new TorItemTraitVM();
+			vm._hintText = new HintViewModel(new TaleWorlds.Localization.TextObject("This item deals elemental damage."));
+			vm._icon = "<img src=\"winds_icon_45\"/>";
+
+            return vm;
+        }
+
+        [DataSourceProperty]
 		public HintViewModel Hint
 		{
 			get

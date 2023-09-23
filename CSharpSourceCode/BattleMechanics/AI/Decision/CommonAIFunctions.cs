@@ -3,12 +3,23 @@ using System.Linq;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.AbilitySystem;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.AI.Decision
 {
     public static class CommonAIDecisionFunctions
     {
+        public static Func<Target, float> WindsOfMagicRemainingRatio(Agent behaviorAgent)
+        {
+            var heroExtendedInfo = behaviorAgent.GetHero()?.GetExtendedInfo();
+            return target =>
+            {
+                if (heroExtendedInfo == null) return 1.0f;
+                return heroExtendedInfo.CurrentWindsOfMagic / heroExtendedInfo.MaxWindsOfMagic;
+            };
+        }
+
         public static Func<Target, float> FormationUnderFire()
         {
             return target => { return target.Formation.QuerySystem.UnderRangedAttackRatio; };
@@ -141,8 +152,8 @@ namespace TOR_Core.BattleMechanics.AI.Decision
                 return value;
             };
         }
-        
-        
+
+
         public static Func<Target, float> PositionHeight()
         {
             return target =>
@@ -186,9 +197,9 @@ namespace TOR_Core.BattleMechanics.AI.Decision
             var direction = targetFormation.QuerySystem.EstimatedDirection;
             var rightVec = direction.RightVec();
 
-            adjustedPosition += direction.ToVec3() * (float) (_random.NextDouble() * targetFormation.Depth - targetFormation.Depth / 2);
+            adjustedPosition += direction.ToVec3() * (float)(_random.NextDouble() * targetFormation.Depth - targetFormation.Depth / 2);
             var widthToTarget = targetFormation.Width * 0.90f;
-            adjustedPosition += rightVec.ToVec3() * (float) (_random.NextDouble() * widthToTarget - widthToTarget / 2);
+            adjustedPosition += rightVec.ToVec3() * (float)(_random.NextDouble() * widthToTarget - widthToTarget / 2);
 
             return targetFormation.GetMedianAgent(true, false, adjustedPosition.AsVec2);
         }

@@ -1,4 +1,6 @@
+using HarmonyLib;
 using Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -38,6 +40,21 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
             CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, OnGameMenuOpened);
             CampaignEvents.BeforeMissionOpenedEvent.AddNonSerializedListener(this, OnBeforeMissionStart);
+            CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, DailyTickSettlement);
+        }
+
+        private void DailyTickSettlement(Settlement settlement)
+        {
+            if (settlement.Culture.StringId != "vlandia" || !settlement.IsTown) return;
+            if (settlement.Town.Workshops.Any(x => x.WorkshopType.StringId == "wood_WorkshopType"))
+            {
+                var trebuchetItem = MBObjectManager.Instance.GetObject<ItemObject>("tor_bretonnia_artillery_fieldtrebuchet_001");
+                var trebIndex = settlement.ItemRoster.FindIndexOfItem(trebuchetItem);
+                if(trebIndex < 0)
+                {
+                    settlement.ItemRoster.Add(new ItemRosterElement(trebuchetItem, 1));
+                }
+            }
         }
 
         private void OnGameMenuOpened(MenuCallbackArgs obj) => EnforceEngineerLocation();
@@ -72,7 +89,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             //skill check
             obj.AddDialogLine("opengunshopcheck", "opengunshopcheck", "skillcheck", GameTexts.FindText(questDialogId,"engineerSkillCheck").ToString(), null, checkplayerengineerskillrequirements, 200, null);
             obj.AddDialogLine("playerskillcheckfailed", "skillcheck", "close window", GameTexts.FindText(questDialogId,"engineerSkillCheckFailed").ToString(), () => !_playerIsSkilledEnough, null, 200);
-            obj.AddDialogLine("playerskillchecksuccess", "skillcheck", "playerpassedskillcheck2",GameTexts.FindText(questDialogId,"engineerSkillCheckPassed").ToString(), () => _playerIsSkilledEnough, null, 200);
+            obj.AddDialogLine("playerskillchecksuccess", "skillcheck", "playerpassedskillcheck2",GameTexts.FindText(questDialogId,"engineerSkillCheckPassed").ToString(), () => _playerIsSkilledEnough&& Hero.MainHero.Culture.StringId== "empire"&&!Hero.MainHero.IsVampire(), null, 200);
 
             //quest start
             obj.AddDialogLine("playerpassskillcheck2", "playerpassedskillcheck2", "playerstartquestcheck",GameTexts.FindText(questDialogId,"cultistBriefing0").ToString(), null, givequestoffer, 200);
@@ -242,7 +259,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
         private void opengunshopconsequence()
         {
-            var engineerItems = MBObjectManager.Instance.GetObjectTypeList<ItemObject>().Where(x => x.IsTorItem() && (x.StringId.Contains("gun") || x.StringId.Contains("artillery")));
+            var engineerItems = MBObjectManager.Instance.GetObjectTypeList<ItemObject>().Where(x => !x.StringId.Contains("bretonnia") && x.IsTorItem() && (x.StringId.Contains("gun") || x.StringId.Contains("artillery")));
             var ammo = MBObjectManager.Instance.GetObject<ItemObject>("tor_neutral_weapon_ammo_musket_ball");
             var grenades = MBObjectManager.Instance.GetObject<ItemObject>("tor_empire_weapon_ammo_grenade");
             List<ItemRosterElement> list = new List<ItemRosterElement>();

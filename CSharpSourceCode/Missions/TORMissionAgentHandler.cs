@@ -12,9 +12,10 @@ using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.BattleMechanics.AI.AgentBehavior.CustomMissionAgentBehaviors;
 
-namespace TOR_Core.Utilities
+namespace TOR_Core.Missions
 {
 	public class TORMissionAgentHandler : MissionLogic
 	{
@@ -49,7 +50,7 @@ namespace TOR_Core.Utilities
 			}
 		}
 
-		public void SpawnPlayer(bool civilianEquipment = false, bool noHorses = false, bool noWeapon = false, bool wieldInitialWeapons = false, bool isStealth = false, string spawnTag = "")
+		public void SpawnPlayer(bool civilianEquipment = false, bool noHorses = false, bool noWeapon = false, bool wieldInitialWeapons = false, bool isStealth = false, bool isDuelMode = false, string spawnTag = "")
 		{
 			if (Campaign.Current.GameMode != CampaignGameMode.Campaign)
 			{
@@ -95,7 +96,12 @@ namespace TOR_Core.Utilities
 				.TroopOrigin(new PartyAgentOrigin(PartyBase.MainParty, GetPlayerCharacter(), -1, default, false))
 				.MountKey(MountCreationKey.GetRandomMountKeyString(playerCharacter.Equipment[EquipmentIndex.ArmorItemEndSlot].Item, playerCharacter.GetMountKeySeed()))
 				.Controller(Agent.ControllerType.Player);
-			
+
+            if (isDuelMode)
+            {
+				agentBuildData2.Equipment(GetRapierReplacement(playerCharacter));
+            }
+
 			Hero heroObject = playerCharacter.HeroObject;
 			if (((heroObject != null) ? heroObject.ClanBanner : null) != null)
 			{
@@ -114,10 +120,31 @@ namespace TOR_Core.Utilities
 			}
 		}
 
-		public void SpawnEnemies(PartyTemplateObject template, int enemyCount)
+        private Equipment GetRapierReplacement(CharacterObject playerCharacter)
+        {
+            Equipment equipment = new Equipment();
+			for (EquipmentIndex i = EquipmentIndex.ArmorItemBeginSlot; i <= EquipmentIndex.ArmorItemEndSlot; i++)
+			{
+				EquipmentElement equipmentFromSlot = playerCharacter.Equipment.GetEquipmentFromSlot(i);
+				if (equipmentFromSlot.Item != null)
+				{
+					equipment.AddEquipmentToSlotWithoutAgent(i, new EquipmentElement(equipmentFromSlot.Item, null, null, false));
+				}
+			}
+			var rapier = Game.Current.ObjectManager.GetObject<ItemObject>("tor_empire_weapon_rapier_001");
+			if(rapier != null)
+            {
+				equipment.AddEquipmentToSlotWithoutAgent(EquipmentIndex.Weapon0, new EquipmentElement(rapier));
+            }
+			return equipment;
+		}
+
+        public void SpawnEnemies(PartyTemplateObject template, int enemyCount)
         {
 			int count = 0;
 			if (template == null) return;
+			int maxCount = GetAllUsablePointsWithTag("npc_common").Count;
+			if (maxCount < enemyCount) enemyCount = maxCount;
 			List<CharacterObject> enemies = new List<CharacterObject>();
 			foreach(var stack in template.Stacks)
             {
@@ -130,36 +157,56 @@ namespace TOR_Core.Utilities
 			}
         }
 
-		private void SpawnEnemy(CharacterObject character)
+		public Agent SpawnEnemyDuelist()
+        {
+			var character = MBObjectManager.Instance.GetObject<CharacterObject>("tor_ti_vittorio");
+			if(character != null)
+            {
+				var agent = SpawnEnemy(character, "npc_duel_enemy", true);
+				agent.Defensiveness = 3;
+				return agent;
+            }
+			return null;
+        }
+
+		private Agent SpawnEnemy(CharacterObject character, string specialTag = null, bool turnHostile = false)
         {
 			MatrixFrame matrixFrame = MatrixFrame.Identity;
 			List<UsableMachine> allUsablePointsWithTag = GetAllUsablePointsWithTag("npc_common");
+			if(!string.IsNullOrWhiteSpace(specialTag)) allUsablePointsWithTag = GetAllUsablePointsWithTag(specialTag);
 			if (allUsablePointsWithTag.Count > 0)
 			{
 				var point = allUsablePointsWithTag.GetRandomElementInefficiently();
 				if (point != null) GetSpawnFrameFromUsableMachine(point, out matrixFrame);
-				if(matrixFrame != MatrixFrame.Identity)
-                {
+				if (matrixFrame != MatrixFrame.Identity)
+				{
 					matrixFrame.rotation.f.z = 0f;
 					matrixFrame.rotation.f.Normalize();
 					matrixFrame.rotation.u = Vec3.Up;
 					matrixFrame.rotation.s = Vec3.CrossProduct(matrixFrame.rotation.f, matrixFrame.rotation.u);
 					matrixFrame.rotation.OrthonormalizeAccordingToForwardAndKeepUpAsZAxis();
 
-                    matrixFrame.origin.z = Mission.Scene.GetGroundHeightAtPosition(matrixFrame.origin, BodyFlags.CommonCollisionExcludeFlags);
+					matrixFrame.origin.z = Mission.Scene.GetGroundHeightAtPosition(matrixFrame.origin, BodyFlags.CommonCollisionExcludeFlags);
 
 					var agentData = GetAgentBuildData(character, matrixFrame);
 
 					var agent = Mission.SpawnAgent(agentData);
+					AnimationSystemData animationSystemData = agentData.AgentMonster.FillAnimationSystemData(MBGlobals.GetActionSetWithSuffix(agentData.AgentMonster, agentData.AgentIsFemale, ActionSetCode.HideoutBanditActionSetSuffix), character.GetStepSize(), false);
+					agent.SetActionSet(ref animationSystemData);
 					var agentNavigator = agent.GetComponent<CampaignAgentComponent>().CreateAgentNavigator();
 					var daily = agentNavigator.AddBehaviorGroup<TORDailyBehaviorGroup>();
 					daily.AddBehavior<TORWalkingBehavior>().SetIndoorWandering(false);
 					agentNavigator.AddBehaviorGroup<InterruptingBehaviorGroup>();
 					var alarmed = agentNavigator.AddBehaviorGroup<TORAlarmedBehaviorGroup>();
 					alarmed.AddBehavior<TORFightBehavior>();
+                    if (turnHostile)
+                    {
+						agent.SetWatchState(Agent.WatchState.Alarmed);
+                    }
+					return agent;
 				}
 			}
-			else return;
+			return null;
 		}
 
 		public IEnumerable<string> GetAllSpawnTags()

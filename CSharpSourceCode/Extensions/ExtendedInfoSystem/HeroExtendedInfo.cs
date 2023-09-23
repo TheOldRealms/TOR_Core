@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Ink.Parsed;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
@@ -39,7 +40,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                     if (BaseCharacter.HeroObject != null && BaseCharacter.HeroObject != Hero.MainHero && BaseCharacter.HeroObject.Occupation == Occupation.Lord && BaseCharacter.HeroObject.IsSpellCaster()) return 100f;
                     ExplainedNumber explainedNumber = new ExplainedNumber(10f, false, null);
                     SkillHelper.AddSkillBonusForCharacter(TORSkills.SpellCraft, TORSkillEffects.MaxWinds, BaseCharacter, ref explainedNumber);
-                    if(Hero.MainHero.HasAnyCareer())
+                    if(Hero.MainHero.HasAnyCareer() && BaseCharacter.HeroObject == Hero.MainHero)
                         CareerHelper.ApplyBasicCareerPassives(Hero.MainHero,ref  explainedNumber, PassiveEffectType.WindsOfMagic,false);
                     return explainedNumber.ResultNumber;
                 }
@@ -121,6 +122,23 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             }
         }
 
+        public List<string> GetAllPrayers()
+        {
+            var list = new List<string>();
+            foreach (var ability in AllAbilites)
+            {
+                if(list.Contains(ability)) continue;    //shouldn't happen, yet better save then sorry
+                
+                var t  = AbilityFactory.GetTemplate(ability);
+                if (t!=null&&t.AbilityType == AbilityType.Prayer)
+                {
+                    list.Add(ability);
+                }
+            }
+
+            return list;
+        }
+
         public ReligionObject DominantReligion
         {
             get
@@ -162,7 +180,13 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             if (LoreObject.GetLore(loreId) != null && !_knownLores.Contains(loreId)) _knownLores.Add(loreId);
         }
 
-
+        public void RemoveAbility(string abilityID)
+        {
+            if (AcquiredAbilities.Contains(abilityID))
+            {
+                AcquiredAbilities.Remove(abilityID);
+            }
+        }
         public void RemoveAllPrayers()
         {
             var prayers = AllAbilites.Where(x => AbilityFactory.GetTemplate(x).AbilityType == AbilityType.Prayer);

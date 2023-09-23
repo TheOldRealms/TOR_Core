@@ -20,9 +20,10 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(RangedSiegeWeapon), "ShootProjectileAux")]
         public static bool OverrideArtilleryShooting(RangedSiegeWeapon __instance, ItemObject missileItem, Agent ____lastShooterAgent)
         {
-            if(__instance is BaseFieldSiegeWeapon)
+            if(__instance is BaseFieldSiegeWeapon && ____lastShooterAgent != null && ____lastShooterAgent.IsAIControlled)
             {
                 var fieldSiegeWeapon = __instance as BaseFieldSiegeWeapon;
+                if (fieldSiegeWeapon == null || fieldSiegeWeapon.Target == null) return true;
                 Vec3 launchVec = Vec3.Zero;
                 float angle = fieldSiegeWeapon.GetTargetReleaseAngle(fieldSiegeWeapon.Target.SelectedWorldPosition, out launchVec);
                 if (angle == float.NegativeInfinity)

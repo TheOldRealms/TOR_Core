@@ -104,7 +104,19 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                     TORMissionHelper.ApplyStatusEffectToAgents(targets, effect.StringID, triggererAgent, statusEffectDuration, true, _isTemplateMutated);
                 }
             }
-           
+
+            if (_template.DoNotAlignParticleEffectPrefabOnImpact)
+            {
+                var groundPos = new Vec3(position.x,position.y,position.z-5f);
+                float distance=0f;
+                Mission.Current.Scene.RayCastForClosestEntityOrTerrain(position,groundPos,out distance,0.01f,BodyFlags.CommonCollisionExcludeFlagsForAgent);
+                if (distance >= 0.0000001f)
+                {
+                    position = new Vec3(position.x,position.y,position.z-distance);
+                }
+                normal = Vec3.Forward;
+            }
+
             SpawnVisuals(position, normal);
             PlaySound(position);
             TriggerScript(position, triggererAgent, targets, statusEffectDuration);

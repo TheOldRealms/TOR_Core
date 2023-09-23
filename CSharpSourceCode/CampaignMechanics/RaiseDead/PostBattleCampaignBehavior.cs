@@ -74,7 +74,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             {
                 var info = c.GetAttributes();
             }
-            _raiseableCharacters = characters.Where(character => character.IsUndead() && character.IsBasicTroop).ToList();
+            _raiseableCharacters = characters.Where(character => character.IsUndead() && character.IsBasicTroop && character.Race == TaleWorlds.Core.FaceGen.GetRaceOrDefault("skeleton")).ToList();
         }
 
         private List<CharacterObject> CalculateBloodKnightsCandidates(MapEvent mapEvent, out int reduced)
@@ -82,7 +82,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             reduced = 0;
             List<CharacterObject> elements = new List<CharacterObject>();
 
-            CharacterObject BloodKnightTemplate = MBObjectManager.Instance.GetObject<CharacterObject>("tor_ror_dragon_knight_initiate");        //I assume that needs change, beware
+            CharacterObject BloodKnightTemplate = MBObjectManager.Instance.GetObject<CharacterObject>("tor_bd_blooddragon_initiate");        //I assume that needs change, beware
 
             var partiesOnSide = mapEvent.PartiesOnSide(mapEvent.DefeatedSide);
 

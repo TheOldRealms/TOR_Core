@@ -9,6 +9,8 @@ using TaleWorlds.Library;
 using TaleWorlds.Core;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using System;
+using System.Diagnostics.Tracing;
+using TaleWorlds.TwoDimension;
 using TOR_Core.BattleMechanics.SFX;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
@@ -23,14 +25,18 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         public bool ModifiedDrivenProperties;
         private bool _restoredBaseValues;
         private bool _initBaseValues;
+        private bool _disabled;
         private Dictionary<DrivenProperty, float> _baseValues;
+       
 
         public StatusEffectComponent(Agent agent) : base(agent)
         {
             _currentEffects = new Dictionary<StatusEffect, EffectData>();
             _effectAggregate = new EffectAggregate();
             _dummyEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
+            _dummyEntity.Name = "_dummyEntity_" + Agent.Index;
             _baseValues = new Dictionary<DrivenProperty, float>();
+     
         }
 
         public void SynchronizeBaseValues(bool mountOnly = false)
@@ -52,6 +58,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         public void RunStatusEffect(string effectId, Agent applierAgent, float duration, bool append, bool isMutated)
         {
             if (Agent == null) return;
+            if(_disabled) return;
 
             StatusEffect effect = _currentEffects.Keys.Where(e => e.Template.StringID.Equals(effectId)).FirstOrDefault();
             if (effect != null)
@@ -78,6 +85,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         }
 
         public override void OnAgentRemoved() => CleanUp();
+        public override void OnComponentRemoved() => CleanUp();
 
         public void OnElapsed(float dt)
         {
@@ -193,14 +201,21 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             {
                 foreach (var entity in data.Entities)
                 {
+                    entity.FadeOut(1, true);
                     entity.RemoveAllParticleSystems();
+                    Agent.AgentVisuals.RemoveChildEntity(entity, 0);
                 }
             }
-            else
-            {
-                _dummyEntity.RemoveAllParticleSystems();
-            }
+            _dummyEntity.RemoveAllParticleSystems();
 
+            if (data.Effect.Template.Type == StatusEffectTemplate.EffectType.MovementManipulation)
+            {
+                if (Mathf.Abs(GetMovementSpeedModifier() - effect.Template.BaseEffectValue) - 0.00001f <= 0f)
+                {
+                    this.Agent.UpdateAgentProperties();
+                }
+            }
+            
             _currentEffects.Remove(effect);
             foreach (var currEffect in _currentEffects.Keys)
             {
@@ -211,6 +226,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     _currentEffects[currEffect].Particles.Add(ParticleSystem.CreateParticleSystemAttachedToEntity(currEffect.Template.ParticleId, _dummyEntity, ref frame));
                 }
             }
+
+            
         }
 
         public float[] GetAmplifiers(AttackTypeMask mask)
@@ -297,7 +314,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 data = new EffectData(effect, particles, entities);
             }
 
-
             _currentEffects.Add(effect, data);
         }
 
@@ -310,8 +326,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
             _currentEffects.Clear();
             _effectAggregate = null;
-            _dummyEntity?.FadeOut(0.1f, true);
+            _dummyEntity?.FadeOut(1, true);
             _dummyEntity = null;
+            _disabled = true;
         }
 
         public void Dispose()

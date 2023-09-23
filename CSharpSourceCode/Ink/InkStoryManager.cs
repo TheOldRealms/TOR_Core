@@ -15,6 +15,8 @@ namespace TOR_Core.Ink
         private static InkStoryManager _instance;
         private Dictionary<string, InkStory> _stories = new Dictionary<string, InkStory>();
         private Action<InkStory> _action;
+        public static string LastStoryId { get; private set; }
+        public static List<InkStory> AllStories => _instance._stories.Values.ToList();
 
         private InkStoryManager() { }
 
@@ -33,7 +35,7 @@ namespace TOR_Core.Ink
                 var files = Directory.GetFiles(path, "*.ink");
                 foreach(var file in files)
                 {
-                    _stories.Add(Path.GetFileNameWithoutExtension(file), new InkStory(file));
+                    _stories.Add(Path.GetFileNameWithoutExtension(file), new InkStory(Path.GetFileNameWithoutExtension(file), file));
                 }
             }
         }
@@ -59,6 +61,7 @@ namespace TOR_Core.Ink
                 if(behavior != null)
                 {
                     behavior.OpenStory(story);
+                    LastStoryId = name;
                     _instance._action = afterClose;
                 }
             }
@@ -72,6 +75,7 @@ namespace TOR_Core.Ink
                 if (behavior != null)
                 {
                     var currentStory = behavior.CurrentStory;
+                    currentStory.CleanUp();
                     behavior.CloseStory();
                     if (_instance._action != null) _instance._action(currentStory);
                 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine;
 using TaleWorlds.MountAndBlade;
@@ -71,7 +71,7 @@ namespace TOR_Core.AbilitySystem
         public override bool CanCast(Agent casterAgent)
         {
             if (Template.StringID.Contains("ShadowStep") && casterAgent.HasMount) return false;
-            return !IsCasting &&
+            return !_isLocked&&!IsCasting &&
                    !IsOnCooldown() &&
                    IsCharged &&
                    casterAgent.IsPlayerControlled;

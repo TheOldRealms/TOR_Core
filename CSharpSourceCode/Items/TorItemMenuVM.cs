@@ -110,6 +110,10 @@ namespace TOR_Core.Items
 							ItemTraitList.Add(new TorItemTraitVM(itemTrait));
                         }
                     }
+					else if(_lastSetItem.HasWeaponComponent)
+					{
+						ItemTraitList.Add(TorItemTraitVM.CreateDamageOnlyTraitVM());
+					}
                 }
                 if (_lastSetItem.HasWeaponComponent)
                 {

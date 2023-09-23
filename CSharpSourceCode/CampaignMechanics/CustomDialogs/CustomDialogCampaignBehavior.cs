@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Encounters;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.CustomEncounterDialogs

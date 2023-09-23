@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfCharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_villager">
     <Abilities />
@@ -744,6 +744,15 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_m_yeoman">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_mounted_yeoman">
     <Abilities />
     <Attributes />
@@ -1395,6 +1404,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+      <string>Unstoppable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -1406,6 +1416,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+      <string>Unstoppable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -1417,6 +1428,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+      <string>Unstoppable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -2134,39 +2146,6 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_dragon_knight_initiate">
-    <Abilities />
-    <Attributes>
-      <string>Unbreakable</string>
-    </Attributes>
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_dragon_knight">
-    <Abilities />
-    <Attributes>
-      <string>Unbreakable</string>
-    </Attributes>
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_dragon_templar">
-    <Abilities />
-    <Attributes>
-      <string>Unbreakable</string>
-    </Attributes>
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_konigstein_skeleton">
     <Abilities />
     <Attributes>
@@ -2195,6 +2174,88 @@
     <Attributes>
       <string>Undead</string>
     </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_peasant_squire">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_peasant_squight">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_peasant_knight">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_maisontaal_cultist">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_maisontaal_acetic">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_maisontaal_warden">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="0.80" />
+      <DamageProportionTuple DamageType="Holy" Percent="0.20" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_bergerac_herrimault">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_bergerac_ranger">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_bergerac_bowman">
+    <Abilities />
+    <Attributes />
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -2419,6 +2480,18 @@
   <CharacterExtendedInfo id="tor_br_bandit_scout">
     <Abilities />
     <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ti_vittorio">
+    <Abilities />
+    <Attributes>
+      <string>Unbreakable</string>
+      <string>Unstoppable</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -3277,29 +3350,36 @@
     <Abilities />
     <Attributes>
       <string>BloodDragon</string>
+      <string>Necromancer</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_blooddragons_first_2">
     <Abilities />
     <Attributes>
       <string>BloodDragon</string>
+      <string>Necromancer</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_blooddragons_first_3">
     <Abilities />
     <Attributes>
       <string>BloodDragon</string>
+      <string>Necromancer</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_blooddragons_first_4">
     <Abilities />
     <Attributes>
       <string>BloodDragon</string>
+      <string>Necromancer</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_parravon_factionleader">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_parravon_first_2">
     <Abilities />
@@ -3327,7 +3407,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_montfort_factionleader">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_montfort_first_2">
     <Abilities />
@@ -3355,7 +3438,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_bastonne_factionleader">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_bastonne_first_2">
     <Abilities />
@@ -3381,13 +3467,32 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_br_lord_bastonne_first_8">
+  <CharacterExtendedInfo id="tor_br_lord_bastonne_second_1">
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lord_bastonne_second_2">
+    <Abilities>
+      <string>DwellersBelow</string>
+      <string>TheGreenEye</string>
+      <string>Barkskin</string>
+      <string>SummerHeat</string>
+      <string>Regrowth</string>
+      <string>DrainLife</string>
+      <string>StormOfRenewal</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+      <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_bordeleaux_factionleader">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_bordeleaux_first_2">
     <Abilities />
@@ -3415,7 +3520,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_carcassonne_factionleader">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_carcassonne_first_2">
     <Abilities />
@@ -3441,13 +3549,48 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_br_lord_carcassonne_first_8">
+  <CharacterExtendedInfo id="tor_br_lord_carcassonne_second_1">
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lord_carcassonne_second_2">
+    <Abilities>
+      <string>DwellersBelow</string>
+      <string>TheGreenEye</string>
+      <string>Barkskin</string>
+      <string>SummerHeat</string>
+      <string>Regrowth</string>
+      <string>DrainLife</string>
+      <string>StormOfRenewal</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+      <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lord_carcassonne_second_3">
+    <Abilities>
+      <string>DwellersBelow</string>
+      <string>TheGreenEye</string>
+      <string>Barkskin</string>
+      <string>SummerHeat</string>
+      <string>Regrowth</string>
+      <string>DrainLife</string>
+      <string>StormOfRenewal</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+      <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_brionne_factionleader">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_brionne_first_2">
     <Abilities />
@@ -3475,7 +3618,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_aquitaine_factionleader">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_aquitaine_first_2">
     <Abilities />
@@ -3507,7 +3653,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_quenelles_factionleader">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_quenelles_first_2">
     <Abilities />
@@ -3551,7 +3700,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_lord_mousillon_factionleader">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Necromancer</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_lord_mousillon_first_1">
     <Abilities>
@@ -3568,11 +3719,14 @@
     <Attributes>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
+      <string>Necromancer</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_lord_mousillon_first_2">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Necromancer</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_lord_mousillon_first_3">
     <Abilities />
@@ -3593,6 +3747,7 @@
     <Attributes>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
+      <string>Necromancer</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_lord_mousillon_first_5">
@@ -3606,6 +3761,32 @@
   <CharacterExtendedInfo id="tor_m_lord_mousillon_first_7">
     <Abilities />
     <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_m_lord_mousillon_first_8">
+    <Abilities>
+      <string>NagashGaze</string>
+      <string>SummonSkeleton</string>
+      <string>Shadowblood</string>
+      <string>Morkharn</string>
+      <string>CurseOfYears</string>
+      <string>Kandorak</string>
+      <string>ScreamingSkull</string>
+      <string>WindOfDeath</string>
+      <string>GraveCall</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+      <string>Necromancer</string>
+      <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_m_lord_mousillon_first_9">
+    <Abilities />
+    <Attributes>
+      <string>AICompanion</string>
+      <string>Undead</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_chaos_lord_factionleader">
     <Abilities>
@@ -3687,6 +3868,7 @@
       <string>DeathlyShards</string>
       <string>RadiancePillar</string>
       <string>RadiantGaze</string>
+	  <string>NetOfAmyntok</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
@@ -4093,6 +4275,10 @@
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_spelltrainer_vc_0">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_spelltrainer_bretonnia_0">
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>

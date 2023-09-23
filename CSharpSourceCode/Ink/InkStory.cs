@@ -4,18 +4,29 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HarmonyLib;
 using Ink;
 using Ink.Runtime;
+using psai.net;
+using SandBox;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.Extensions;
+using TaleWorlds.CampaignSystem.GameState;
+using TaleWorlds.CampaignSystem.Inventory;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.Engine;
+using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.CampaignMechanics.CustomEvents;
+using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.Missions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Ink
@@ -23,19 +34,63 @@ namespace TOR_Core.Ink
     public class InkStory
     {
         private Story _story;
+        public readonly string Title;
+        public readonly CustomEventFrequency Frequency;
+        public readonly bool IsDevelopmentVersion;
+        public readonly string StringId;
+        public readonly int Cooldown;
 
-        public InkStory(string inkFilePath)
+        public InkStory(string id, string file)
         {
-            if (File.Exists(inkFilePath))
+            if (File.Exists(file))
             {
-                using (var reader = File.OpenText(inkFilePath))
+                StringId = id;
+                using (var reader = File.OpenText(file))
                 {
                     var ink = reader.ReadToEnd();
                     var compiler = new Compiler(ink);
                     _story = compiler.Compile();
                     //_story.allowExternalFunctionFallbacks = true;
                 }
+                Title = GetValueOfGlobalTag("title");
+                if (Title == null) Title = "Invalid title, bad tag settings";
+                if (!Enum.TryParse<CustomEventFrequency>(GetValueOfGlobalTag("frequency"), out Frequency))
+                {
+                    Frequency = CustomEventFrequency.Invalid;
+                }
+                if (!bool.TryParse(GetValueOfGlobalTag("development"), out IsDevelopmentVersion))
+                {
+                    IsDevelopmentVersion = true;
+                }
+                if (!int.TryParse(GetValueOfGlobalTag("cooldown"), out Cooldown))
+                {
+                    Cooldown = 300;
+                }
             }
+        }
+
+        public void CleanUp()
+        {
+            if(TORAudio.IsPlaying)
+            {
+                TORAudio.StopAudio();
+            }
+            TORAudio.CleanUp();
+            MBMusicManager.Current.UnpauseMusicManagerSystem();
+            MBMusicManager.Current.ActivateCampaignMode();
+        }
+
+        private string GetValueOfGlobalTag(string tag)
+        {
+            if (_story == null || _story.globalTags == null || _story.globalTags.Count < 1) return null;
+            foreach(var item in _story.globalTags)
+            {
+                if (item.ToLowerInvariant().Contains(tag.ToLowerInvariant()))
+                {
+                    return item.Split(':').Last();
+                }
+            }
+            return null;
         }
 
         public void ChooseChoice(int index) => _story.ChooseChoiceIndex(index);
@@ -92,7 +147,7 @@ namespace TOR_Core.Ink
             else return varName + " not found";
         }
 
-        private void SetVariable(string varName, object varValue)
+        public void SetVariable(string varName, object varValue)
         {
             if (_story.variablesState.GlobalVariableExistsWithName(varName))
             {
@@ -195,6 +250,142 @@ namespace TOR_Core.Ink
             {
                 _story.BindExternalFunction("MakePartyDisorganized", MakePartyDisorganized, false);
             }
+            if (!_story.TryGetExternalFunction("OpenDuelMission", out _))
+            {
+                _story.BindExternalFunction("OpenDuelMission", OpenDuelMission, false);
+            }
+            if (!_story.TryGetExternalFunction("OpenCultistLairMission", out _))
+            {
+                _story.BindExternalFunction<string>("OpenCultistLairMission", OpenCultistLairMission, false);
+            }
+            if (!_story.TryGetExternalFunction("GetPlayerHasCustomTag", out _))
+            {
+                _story.BindExternalFunction<string>("GetPlayerHasCustomTag", GetPlayerHasCustomTag, true);
+            }
+            if (!_story.TryGetExternalFunction("SetPlayerCustomTag", out _))
+            {
+                _story.BindExternalFunction<string>("SetPlayerCustomTag", SetPlayerCustomTag, false);
+            }
+            if (!_story.TryGetExternalFunction("OpenInventoryAsTrade", out _))
+            {
+                _story.BindExternalFunction("OpenInventoryAsTrade", OpenInventoryAsTrade, false);
+            }
+            if (!_story.TryGetExternalFunction("IsNight", out _))
+            {
+                _story.BindExternalFunction("IsNight", IsNight, true);
+            }
+            if (!_story.TryGetExternalFunction("HasEnoughGold", out _))
+            {
+                _story.BindExternalFunction<int>("HasEnoughGold", HasEnoughGold, true);
+            }
+            if (!_story.TryGetExternalFunction("PlayMusic", out _))
+            {
+                _story.BindExternalFunction<string>("PlayMusic", PlayMusic, false);
+            }
+            if (!_story.TryGetExternalFunction("GiveMiracleItem", out _))
+            {
+                _story.BindExternalFunction("GiveMiracleItem", GiveMiracleItem, false);
+            }
+            if (!_story.TryGetExternalFunction("ResetRaiderSites", out _))
+            {
+                _story.BindExternalFunction("ResetRaiderSites", ResetRaiderSites, false);
+            }
+        }
+
+        private void ResetRaiderSites()
+        {
+            foreach (var site in Settlement.All.Where(x => x.SettlementComponent is BaseRaiderSpawnerComponent))
+            {
+                var component = site.SettlementComponent as BaseRaiderSpawnerComponent;
+                component.IsActive = true;
+            }
+        }
+
+        private void GiveMiracleItem()
+        {
+            bool gaveItem = false;
+            var religion = Hero.MainHero.GetDominantReligion();
+            var inventory = MobileParty.MainParty.ItemRoster;
+            foreach (var item in religion.ReligiousArtifacts)
+            {
+                bool found = false;
+                for (int i = 0; i < inventory.Count; i++)
+                {
+                    var itemInventory = inventory.GetItemAtIndex(i);
+                    if (item.StringId == itemInventory.StringId)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found) continue;
+                else
+                {
+                    inventory.Add(new ItemRosterElement(item, 1));
+                    gaveItem = true;
+                    break;
+                }
+            }
+            if(!gaveItem)
+            {
+                inventory.Add(new ItemRosterElement(religion.ReligiousArtifacts.TakeRandom(1).FirstOrDefault(), 1));
+            }
+        }
+
+        private void PlayMusic(string songName)
+        {
+            var file = TORPaths.TORArmoryModuleRootPath + "ModuleSounds/" + songName + ".ogg";
+            if(File.Exists(file))
+            {
+                MBMusicManager.Current.DeactivateCurrentMode();
+                MBMusicManager.Current.PauseMusicManagerSystem();
+                TORAudio.PlayAudio(file);
+            }
+        }
+
+        private object HasEnoughGold(int amount) => Hero.MainHero.Gold >= amount;
+
+        private object IsNight() => CampaignTime.Now.IsNightTime;
+
+        private void OpenCultistLairMission(string missionName)
+        {
+            var template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_cultists");
+            TorMissionManager.OpenQuestMission(missionName, template, 5, (playerVictory) => SetVariable("DealtWithCultists", playerVictory));
+        }
+
+        private void OpenInventoryAsTrade()
+        {
+            AccessTools.Field(typeof(InventoryManager), "_currentMode").SetValue(InventoryManager.Instance, InventoryMode.Trade);
+            var logic = new InventoryLogic(null);
+            ItemRoster roster = new ItemRoster();
+            var items = MBObjectManager.Instance.GetObjectTypeList<ItemObject>().Where(x => (x.HasWeaponComponent || x.HasArmorComponent) && x.StringId.StartsWith("tor_") && !x.NotMerchandise);
+            var foods = MBObjectManager.Instance.GetObjectTypeList<ItemObject>().Where(x => x.HasFoodComponent);
+            var selectedItems = items.TakeRandom(20);
+            var selectedFoods = foods.TakeRandom(5);
+            foreach (var item in selectedItems)
+            {
+                roster.Add(new ItemRosterElement(item, 1));
+            }
+            foreach (var food in selectedFoods)
+            {
+                roster.Add(new ItemRosterElement(food, MBRandom.RandomInt(1, 10)));
+            }
+            AccessTools.Field(typeof(InventoryManager), "_inventoryLogic").SetValue(InventoryManager.Instance, logic);
+            logic.Initialize(roster, PartyBase.MainParty.ItemRoster, PartyBase.MainParty.MemberRoster, true, true, CharacterObject.PlayerCharacter, InventoryManager.InventoryCategoryType.All, new InkFakeMarketData(), true);
+
+            InventoryState inventoryState = Game.Current.GameStateManager.CreateState<InventoryState>();
+            inventoryState.InitializeLogic(logic);
+            Game.Current.GameStateManager.PushState(inventoryState, 0);
+            inventoryState.Handler.FilterInventoryAtOpening(InventoryManager.InventoryCategoryType.All);
+        }
+
+        private void SetPlayerCustomTag(string tag) => Hero.MainHero.AddAttribute(tag);
+
+        private object GetPlayerHasCustomTag(string tag) => Hero.MainHero.HasAttribute(tag);
+
+        private void OpenDuelMission()
+        {
+            TorMissionManager.OpenDuelMission((playerVictory) => SetVariable("PlayerWin", playerVictory));
         }
 
         private void MakePartyDisorganized() => MobileParty.MainParty.SetDisorganized(true);
@@ -329,15 +520,15 @@ namespace TOR_Core.Ink
             Settlement settlement = null;
             if (settlementType.ToLowerInvariant() == "town")
             {
-                settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 50f, x => x.IsTown);
+                settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 150f, x => x.IsTown);
             }
             else if (settlementType.ToLowerInvariant() == "village")
             {
-                settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 50f, x => x.IsVillage);
+                settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 150f, x => x.IsVillage);
             }
             else if (settlementType.ToLowerInvariant() == "castle")
             {
-                settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 50f, x => x.IsCastle);
+                settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 150f, x => x.IsCastle);
             }
             if (settlement != null) return settlement.Name.ToString();
             return "ERROR: invalid settlement type";

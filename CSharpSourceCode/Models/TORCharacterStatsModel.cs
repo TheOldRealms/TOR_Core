@@ -48,7 +48,7 @@ namespace TOR_Core.Models
                     number.Add(character.Tier * 10);
                     break;
             }
-            if (character.IsUndead())
+            if (character.IsUndead()&&!character.IsHero)
             {
                 number.Add(-50);
             }
@@ -85,6 +85,8 @@ namespace TOR_Core.Models
                 {
                     CareerHelper.ApplyBasicCareerPassives(hero, ref number, PassiveEffectType.Health);
                 }
+
+                if (hero.HasAttribute("GiftOfNurgle")) number.Add(20, new TextObject("Gift of Nurgle"));
             }
             if (hero.GetPerkValue(TORPerks.Faith.Devotee))
             {

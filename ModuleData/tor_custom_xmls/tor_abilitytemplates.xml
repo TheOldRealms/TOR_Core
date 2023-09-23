@@ -81,7 +81,7 @@
 				<z>255</z>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>physical_ranged_resistance_40</TriggeredEffect>
+		<TriggeredEffect>ward_of_arrows</TriggeredEffect>
 	</AbilityTemplate>
 	<AbilityTemplate StringID="MinorHeal" 
       Name="Petty Heal" 
@@ -538,7 +538,7 @@
       TargetCapturingRadius="1"
       SpellTier="2"
       BelongsToLoreID="LoreOfFire"
-      TooltipDescription="[TODO]">
+      TooltipDescription="The caster wraps himself in a cloak of magical flame that's shielding him from physical (30%) and fire (70%) damage for 15 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1306,7 +1306,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="LoreOfLight"
-      TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
+      TooltipDescription="The wizard conjures an arcane net in the selected area. Any foe caught in the spell is halted for 15 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1734,7 +1734,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="Necromancy"
-      TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
+      TooltipDescription="The caster utters an ancient curse, which causes the foe to age at a horrific rate. Reduces enemy attack and movement speed by 50% for 15 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1813,6 +1813,7 @@
       ParticleEffectSizeModifier="1"
       SoundEffectToPlay="none"
       ShouldSoundLoopOverDuration="false"
+
       CastType="WindUp"
       CastTime="0.5"
       AnimationActionName="act_release_heavy_thrown"
@@ -1827,7 +1828,7 @@
       VisualsRotationVelocity="1"
       SpellTier="4"
       BelongsToLoreID="DarkMagic"
-      TooltipDescription="A large meteor strikes the area killing all below in a giant shockwave.">
+      TooltipDescription="The wizard rips open the sky and calls down a bolt burning with dark flames on the foe.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2055,10 +2056,10 @@
 	<AbilityTemplate StringID="DwellersBelow"
       Name="Dwelllers Below"
       SpriteName="dwellersbelow_icon"
-      CoolDown="5"
-      WindsOfMagicCost="12"
+      CoolDown="50"
+      WindsOfMagicCost="35"
       BaseMisCastChance="0.05"
-      Duration="20"
+      Duration="16"
       Radius="20"
       AbilityType="Spell"
       AbilityEffectType="Bombardment"
@@ -2073,19 +2074,19 @@
       ShadowCastEnabled="true"
       ParticleEffectPrefab="dwellers_below_ground"
       ParticleEffectSizeModifier="0"
-      SoundEffectToPlay=""
-      ShouldSoundLoopOverDuration="false"
+      SoundEffectToPlay="dwellers_below"
+      ShouldSoundLoopOverDuration="true"
       CastType="Instant"
       CastTime="0.5"
       AnimationActionName="act_release_heavy_thrown"
       Offset="0.0"
       AbilityTargetType="GroundAtPosition"
-      TargetCapturingRadius="4"
+      TargetCapturingRadius="10"
       MaxDistance="50"
       CrosshairType="TargetedAOE"
       SpellTier="4"
       BelongsToLoreID="LoreOfLife"
-      TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
+      TooltipDescription="Tendrils emerge from the ground reaching out and attacking enemies passing the area. Knocks down and dismounts enemies, slows (0.8%) and deals 5 dmg per second for 16 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2127,7 +2128,7 @@
       AbilityTargetType="WorldPosition"
       SpellTier="3"
       BelongsToLoreID="LoreOfLife"
-      TooltipDescription="Launch a small number of stones at the enemy - Monthy Python style.">
+      TooltipDescription="Caster merges their eyes, firing a single fast, penetrating projectile in the aimed direction.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2170,7 +2171,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="LoreOfLife"
-      TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
+      TooltipDescription="Hardens the skin of targets, making them tougher, providing 35% physical resistance for total duration of 8 secouds">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2213,7 +2214,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="2"
       BelongsToLoreID="LoreOfLife"
-      TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
+      TooltipDescription="Causes a small area to radiate unbearable heat, causing fatigue, impairing movement by 50%, and making the enemies vulnerable to fire damage by 25% for  seconds 8.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2256,7 +2257,7 @@
 	CrosshairType="TargetedAOE"
 	SpellTier="3"
 	BelongsToLoreID="LoreOfLife"
-	TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
+	TooltipDescription="Allies in a 3 meter radius gain 5 health points per second. Lasts 12 seconds.">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2300,7 +2301,7 @@
    CrosshairType="TargetedAOE"
    SpellTier="2"
     BelongsToLoreID="LoreOfLife"
-    TooltipDescription="Enemies in the area experience a soul draining direct damage over time effect causing them to take 12 damage every second for 10 seconds.">
+    TooltipDescription="Drains the life essence from an enemy, dealing 5 damage per second for total duration of 10 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2338,13 +2339,13 @@
 	CastTime="0.5"
 	AnimationActionName="act_release_heavy_thrown"
 	Offset="0.5"
-	AbilityTargetType="GroundAtPosition"
+	AbilityTargetType="AlliesInAOE"
 	TargetCapturingRadius="4"
 	MaxDistance="20"
 	CrosshairType="TargetedAOE"
 	SpellTier="4"
 	BelongsToLoreID="LoreOfLife"
-	TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
+	TooltipDescription="Raw energy flows across the battlefield, renewing lost vigour and mending wounds. Heals 30 hitpoints flat, and 10 hitpoints of all friendly targets inside the area for 12 seconds.">
 		<LightColorRGB x="50" y="255" z="50" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2390,7 +2391,7 @@
       AbilityTargetType="WorldPosition"
       SpellTier="2"
       BelongsToLoreID="LoreOfBeasts"
-      TooltipDescription="Launch a small number of stones at the enemy - Monthy Python style.">
+      TooltipDescription="The caster throws a javelin like amber spear in the targeted direction that penetrates multiple targets.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2433,7 +2434,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="2"
       BelongsToLoreID="LoreOfBeasts"
-      TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
+      TooltipDescription="Roots erupt from the ground preventing all enemies from moving for 4 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2476,7 +2477,7 @@
       TargetCapturingRadius="1"
       SpellTier="2"
       BelongsToLoreID="LoreOfBeasts"
-      TooltipDescription="Adds 20% physical damage bonus for 15 seconds to the caster.">
+      TooltipDescription="A magical skin surrounds the caster protecting him from physical damage (35%) for 12 seconds.">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2522,7 +2523,7 @@
       TargetCapturingRadius="6"
       SpellTier="3"
       BelongsToLoreID="LoreOfBeasts"
-      TooltipDescription="A black cloud looms over the targeted area striking those below with arcane lightning bolts.">
+      TooltipDescription="A Storm of Stones is falling down on your enemies dealing physical damage">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2565,7 +2566,7 @@
    CrosshairType="TargetedAOE"
    SpellTier="3"
     BelongsToLoreID="LoreOfBeasts"
-    TooltipDescription="Enemies in the area experience a soul draining direct damage over time effect causing them to take 12 damage every second for 10 seconds.">
+    TooltipDescription="Summons a nightmare of crows in the targeted area. Enemies caught in the area suffer damage over time for 5 sec and their physical resist is reduced by 20%.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2609,7 +2610,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="4"
       BelongsToLoreID="LoreOfBeasts"
-      TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
+      TooltipDescription="Allies in a 3 meter radius will deal 25% more physical damage and attack 25% faster.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2652,7 +2653,7 @@
    CrosshairType="TargetedAOE"
    SpellTier="4"
     BelongsToLoreID="LoreOfBeasts"
-    TooltipDescription="Enemies in the area experience a soul draining direct damage over time effect causing them to take 12 damage every second for 10 seconds.">
+    TooltipDescription="Woodland sprites hinder all enemies caught in an area for 11 seconds, reducing movement (35%) and attack speed (50%) and causing 3 damage per second.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2953,7 +2954,7 @@
       Name="Comet of Sigmar" 
       SpriteName="comet_of_sigmar_icon" 
       CoolDown="30" 
-      WindsOfMagicCost="15" 
+      WindsOfMagicCost="0" 
       BaseMisCastChance="0.05" 
       Duration="3" 
       Radius="0.4" 
@@ -2980,7 +2981,7 @@
       AbilityTargetType="WorldPosition"
       SpellTier="3"
       BelongsToLoreID="SigmaritePrayers"
-      TooltipDescription="You throw a fiery missile that takes the form of Sigmar’s famed twin-tailed comet. A comet of Sigmar is a holy missile with 30 Damage. It can knock units down, or throw them off horse.">
+      TooltipDescription="You throw a fiery missile that takes the form of Sigmar’s famed twin-tailed comet. A comet of Sigmar is a holy missile with 30 Damage. It can knock units down, or throw them off horse. Only affects enemies">
 		<LightColorRGB x="245" y="247" z="129" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2992,7 +2993,8 @@
 	
 	<AbilityTemplate StringID="HealingHand" 
       Name="Healing Hand" 
-      SpriteName="healinghand_icon" 
+      SpriteName="healinghand_icon"
+	  DoNotAlignParticleEffectPrefab="true"		  
       CoolDown="50" 
       WindsOfMagicCost="0" 
       BaseMisCastChance="0.3" 
@@ -3009,7 +3011,8 @@
       LightFlickeringMagnitude="0" 
       LightFlickeringInterval="0" 
       ShadowCastEnabled="false" 
-      ParticleEffectPrefab="healing_hand_ground" 
+      ParticleEffectPrefab="healing_hand_ground"
+	    
       ParticleEffectSizeModifier="1" 
       SoundEffectToPlay="empire_heal" 
       ShouldSoundLoopOverDuration="false"
@@ -3035,8 +3038,8 @@
 	<AbilityTemplate StringID="ArmourOfRighteousness"
       Name="Armour of Righteousness"
       SpriteName="armorofrighteousness_icon"
-      CoolDown="10"
-      WindsOfMagicCost="6"
+      CoolDown="70"
+      WindsOfMagicCost="0"
       BaseMisCastChance="0.05"
       Duration="0"
       Radius="3"
@@ -3065,7 +3068,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="1"
       BelongsToLoreID="SigmaritePrayers"
-      TooltipDescription="Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
+      TooltipDescription="Allies in a 3 meter radius gain 35% physical resistance for 8 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -3079,7 +3082,7 @@
       Name="Vanquish"
       SpriteName="vanquish_icon"
       CoolDown="100"
-      WindsOfMagicCost="13"
+      WindsOfMagicCost="0"
       BaseMisCastChance="0.05"
       Duration="0"
       Radius="0"
@@ -3124,7 +3127,7 @@
       Name="Aerial Shield" 
       SpriteName="aerial_shield_icon" 
       CoolDown="120" 
-      WindsOfMagicCost="3" 
+      WindsOfMagicCost="0" 
       BaseMisCastChance="0.05" 
       Duration="45" 
       Radius="8" 
@@ -3168,7 +3171,7 @@
       Name="Aura Of The Lady" 
       SpriteName="auraofthelady_icon" 
       CoolDown="60" 
-      WindsOfMagicCost="3" 
+      WindsOfMagicCost="0" 
       BaseMisCastChance="0.05" 
       Duration="0" 
       Radius="8" 
@@ -3212,7 +3215,7 @@
       Name="Shield Of Combat" 
       SpriteName="shieldofcombat_icon" 
       CoolDown="60" 
-      WindsOfMagicCost="3" 
+      WindsOfMagicCost="0" 
       BaseMisCastChance="0.05" 
       Duration="0" 
       Radius="8" 
@@ -3256,7 +3259,7 @@
       Name="Lady's Favour"
       SpriteName="ladys_favor_icon"
       CoolDown="60"
-      WindsOfMagicCost="3"
+      WindsOfMagicCost="0"
       BaseMisCastChance="0.05"
       Duration="10"
       Radius="6"

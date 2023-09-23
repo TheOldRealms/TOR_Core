@@ -61,6 +61,13 @@ namespace TOR_Core.HarmonyPatches
         }
 
         [HarmonyPostfix]
+        [HarmonyPatch(typeof(Town), "GetWallLevel")]
+        public static void SetWallLevel(ref int __result)
+        {
+            __result = 3;
+        }
+
+        [HarmonyPostfix]
         [HarmonyPatch(typeof(PropertyBasedTooltipVM), "Refresh")]
         public static void AddExtrasToSettlementInfo(PropertyBasedTooltipVM __instance, Type ____invokedType, object[] ____invokedArgs)
         {

@@ -16,7 +16,7 @@ namespace TOR_Core.Ink
         private bool _isVisible = false;
         private string _title = "Title";
         private string _currentText = string.Empty;
-        private int _maxChars = 800;
+        private int _maxChars = 1200;
         private string _spritePath = string.Empty;
 
         public void SetStory(InkStory story)
@@ -30,18 +30,13 @@ namespace TOR_Core.Ink
 
         public override void RefreshValues()
         {
+            Title = _story.Title;
             if (_story == null) return;
             //Get Sprite to display on the right
             PlaySound();
             if (_story.GetIllustration() != null)
             {
                 SpritePath = _story.GetIllustration();
-            }
-            //Detect title
-            if (_story.HasTag("title"))
-            {
-                Title = _story.GetLine();
-                _story.Continue(out _);
             }
             //Calc if the current text is too long
             if(CurrentText.Count() > _maxChars)

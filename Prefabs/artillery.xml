@@ -1083,7 +1083,7 @@
 									<meta_mesh_component name="icon_man"/>
 								</components>
 								<scripts>
-									<script name="StandingPoint">
+									<script name="TrebuchetStandingPoint">
 										<variables>
 											<variable name="AutoSheathWeapons" value="true"/>
 											<variable name="AutoEquipWeaponsOnUseStopped" value="false"/>
@@ -1139,7 +1139,7 @@
 									<meta_mesh_component name="icon_man"/>
 								</components>
 								<scripts>
-									<script name="StandingPoint">
+									<script name="TrebuchetStandingPoint">
 										<variables>
 											<variable name="AutoSheathWeapons" value="true"/>
 											<variable name="AutoEquipWeaponsOnUseStopped" value="false"/>
@@ -1243,7 +1243,7 @@
 									<meta_mesh_component name="icon_man"/>
 								</components>
 								<scripts>
-									<script name="StandingPoint">
+									<script name="TrebuchetStandingPoint">
 										<variables>
 											<variable name="AutoSheathWeapons" value="true"/>
 											<variable name="AutoEquipWeaponsOnUseStopped" value="false"/>
@@ -1271,7 +1271,7 @@
 									<meta_mesh_component name="icon_man"/>
 								</components>
 								<scripts>
-									<script name="StandingPoint">
+									<script name="TrebuchetStandingPoint">
 										<variables>
 											<variable name="AutoSheathWeapons" value="true"/>
 											<variable name="AutoEquipWeaponsOnUseStopped" value="false"/>

@@ -19,7 +19,7 @@ namespace TOR_Core.Models
             var num = base.CalculateClanGoldChange(clan, includeDescriptions, applyWithdrawals, includeDetails);
             AddCareerPerkBenefits(clan, ref num);
             
-            if(clan.Kingdom != null && clan.Kingdom.RulingClan != clan && clan != Clan.PlayerClan && !clan.IsMinorFaction && num.ResultNumber < 0 && clan.Gold < 100000)
+            if(num.ResultNumber < 0 && clan.Kingdom != null && clan != Clan.PlayerClan && !clan.IsMinorFaction && num.ResultNumber < 0 && clan.Gold < 100000)
             {
                 AdjustIncomeForAI(ref num);
             }
@@ -54,7 +54,7 @@ namespace TOR_Core.Models
                 {
                     var choice = TORCareerChoices.GetChoice("MercenaryLordPassive3");
                     int mercenaryAward = MathF.Ceiling(clan.Influence * (1f / Campaign.Current.Models.ClanFinanceModel.RevenueSmoothenFraction())) * clan.MercenaryAwardMultiplier; //stolen vanilla calculation, it got too messy to redirect the income.
-                    var skillFactor = ((float)playerHero.GetSkillValue(DefaultSkills.Trade)) /100f;
+                    var skillFactor = ((float)playerHero.GetSkillValue(DefaultSkills.Trade)) /300f;
                     var bonus =  mercenaryAward * skillFactor;
                     income.Add((int)bonus,choice.BelongsToGroup.Name);
                 }

@@ -1,8 +1,11 @@
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
@@ -43,27 +46,91 @@ namespace TOR_Core.Models
             }
         }
 
-        public override ExplainedNumber GetTotalWage(MobileParty mobileParty, bool includeDescriptions = false)
+        public override ExplainedNumber GetTotalWage(MobileParty mobileParty, bool includeDescriptions=true)
         { 
+            includeDescriptions = true;
             var value = base.GetTotalWage(mobileParty, includeDescriptions);
-            
-            for (int index = 0; index < mobileParty.MemberRoster.Count; ++index)
+
+            if (mobileParty.IsMainParty)
             {
-                TroopRosterElement elementCopyAtIndex = mobileParty.MemberRoster.GetElementCopyAtIndex(index);
-                if (mobileParty.IsMainParty)
+                for (int index = 0; index < mobileParty.MemberRoster.Count; ++index)
                 {
+                    TroopRosterElement elementCopyAtIndex = mobileParty.MemberRoster.GetElementCopyAtIndex(index);
                     if (mobileParty.LeaderHero.HasAnyCareer())
                     {
                         var careerID = mobileParty.LeaderHero.GetCareer().StringId;
-                        value = AddCareerSpecifWagePerks(value, mobileParty.LeaderHero, elementCopyAtIndex);
+                        var careerFactors = new ExplainedNumber(0,true);
+                        careerFactors= AddCareerSpecifWagePerks(careerFactors, mobileParty.LeaderHero, elementCopyAtIndex);
+                        foreach (var line in careerFactors.GetLines())
+                        {
+                            value.Add(line.number,new TextObject(line.name));
+                        }
                     }
+
+
                 }
-                
-                
             }
+
+            
 
             return value;
         }
+
+        public override int GetTroopRecruitmentCost(CharacterObject troop, Hero buyerHero, bool withoutItemCost = false)
+        {
+            var value = base.GetTroopRecruitmentCost (troop, buyerHero, withoutItemCost);
+        
+            if (troop.Level<= 41)
+            {
+                return value;
+            }
+            // if we ever decide to add more tiers to the Unit tree, we need to differ like in the base model. 
+            var troopRecruitmentCost = 2500;
+            //vanilla copy paste.
+             bool specialFlag = troop.Occupation == Occupation.Mercenary || troop.Occupation == Occupation.Gangster || troop.Occupation == Occupation.CaravanGuard;
+             
+             
+              if (specialFlag)
+                troopRecruitmentCost = MathF.Round((float) troopRecruitmentCost * 2f);
+              if (buyerHero != null)
+              {
+               var  explainedNumber = new ExplainedNumber(1f);
+                if (troop.Tier >= 2 && buyerHero.GetPerkValue(DefaultPerks.Throwing.HeadHunter))
+                  explainedNumber.AddFactor(DefaultPerks.Throwing.HeadHunter.SecondaryBonus);
+                if (troop.IsInfantry)
+                {
+                  if (buyerHero.GetPerkValue(DefaultPerks.OneHanded.ChinkInTheArmor))
+                    explainedNumber.AddFactor(DefaultPerks.OneHanded.ChinkInTheArmor.SecondaryBonus);
+                  if (buyerHero.GetPerkValue(DefaultPerks.TwoHanded.ShowOfStrength))
+                    explainedNumber.AddFactor(DefaultPerks.TwoHanded.ShowOfStrength.SecondaryBonus);
+                  if (buyerHero.GetPerkValue(DefaultPerks.Polearm.HardyFrontline))
+                    explainedNumber.AddFactor(DefaultPerks.Polearm.HardyFrontline.SecondaryBonus);
+                  if (buyerHero.Culture.HasFeat(DefaultCulturalFeats.SturgianRecruitUpgradeFeat))
+                    explainedNumber.AddFactor(DefaultCulturalFeats.SturgianRecruitUpgradeFeat.EffectBonus, GameTexts.FindText("str_culture"));
+                }
+                else if (troop.IsRanged)
+                {
+                  if (buyerHero.GetPerkValue(DefaultPerks.Bow.RenownedArcher))
+                    explainedNumber.AddFactor(DefaultPerks.Bow.RenownedArcher.SecondaryBonus);
+                  if (buyerHero.GetPerkValue(DefaultPerks.Crossbow.Piercer))
+                    explainedNumber.AddFactor(DefaultPerks.Crossbow.Piercer.SecondaryBonus);
+                }
+                if (troop.IsMounted && buyerHero.Culture.HasFeat(DefaultCulturalFeats.KhuzaitRecruitUpgradeFeat))
+                  explainedNumber.AddFactor(DefaultCulturalFeats.KhuzaitRecruitUpgradeFeat.EffectBonus, GameTexts.FindText("str_culture"));
+                if (buyerHero.IsPartyLeader && buyerHero.GetPerkValue(DefaultPerks.Steward.Frugal))
+                  explainedNumber.AddFactor(DefaultPerks.Steward.Frugal.SecondaryBonus);
+                if (specialFlag)
+                {
+                  if (buyerHero.GetPerkValue(DefaultPerks.Trade.SwordForBarter))
+                    explainedNumber.AddFactor(DefaultPerks.Trade.SwordForBarter.PrimaryBonus);
+                  if (buyerHero.GetPerkValue(DefaultPerks.Charm.SlickNegotiator))
+                    explainedNumber.AddFactor(DefaultPerks.Charm.SlickNegotiator.PrimaryBonus);
+                }
+                troopRecruitmentCost = MathF.Max(1, MathF.Round((float) troopRecruitmentCost * explainedNumber.ResultNumber));
+              }
+              return troopRecruitmentCost;
+        }
+
 
         private ExplainedNumber AddCareerSpecifWagePerks(ExplainedNumber resultValue, Hero hero, TroopRosterElement unit)
         {
