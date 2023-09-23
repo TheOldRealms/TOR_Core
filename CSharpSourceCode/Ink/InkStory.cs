@@ -625,15 +625,14 @@ namespace TOR_Core.Ink
         public string getChoiceText(Choice choice)
         {
             var choiceLine = "";
-            var path = choice.sourcePath.Split('.').FirstOrDefault();
-            var currentKnot = path[0];
-            var t = currentKnot + "_c" + choice.index;
-            if (GameTexts.TryGetText("inky_"+StringId, out var overrideText,  t))
+            var choiceID = choice.sourcePath.Split('.').FirstOrDefault() + "_c" + choice.index;
+            var stringId = "{=inky_" + StringId +"_"+ choiceID+"}";
+            stringId=stringId.ToLowerInvariant();
+            var overrideText = new TextObject (stringId).ToString();
+            
+            if (!overrideText.IsEmpty())
             {
-                if (overrideText!=null&&!overrideText.ToString().IsEmpty())
-                {
-                    choiceLine = overrideText.ToString();
-                }
+                choiceLine = overrideText;
             }
             
             if (choiceLine.IsEmpty())
