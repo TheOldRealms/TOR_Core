@@ -26,7 +26,7 @@ namespace TOR_Core.Ink
             _story = story;
             _story.Reset();
             _story.SetTitle();
-            _spritePath = story.GetInitialIllustration();
+            SpritePath = story.GetInitialIllustration();
             _story.Continue(out _);
             RefreshValues();
         }

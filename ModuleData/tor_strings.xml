@@ -758,7 +758,9 @@
   <string id="careerchoice_description.WarriorPriestRoot" text="{=careerchoice_description_warriorpriest_root_str}The Warrior Priest unleashes Sigmar's wrath for 8 seconds, which empowers him and the surrounding allies with 20% stronger melee attacks.  Every point in Faith increases the melee effect by 0.05% and the duration by 0.05 seconds. The ability recharges by taking 50% of damage of total health. Blocked damage counts as 10% of the damage taken." />
 
 
-
+	<!--Career perks related !-->
+	<string id="tor_hunt_perk_result.Failed" text="{=tor_hunt_perk_result_failed_str}You were able to detect a {PERK_HUNT_ANIMAL_SIZE}, yet your hunt was not sucessful" />
+	<string id="tor_hunt_perk_result.Success" text="{=tor_hunt_perk_result_success_str}You were able to hunt down a {PERK_HUNT_ANIMAL_SIZE}, you gained {PERK_HUNT_PREY}" />
 	
 	<!-- Inky translation related.  Do NOT add texts inside quotation marks!-->
 	<!-- every inky story starts with "inky: "+ ID of the file name. While the Variation accounts for the specific text block -->
