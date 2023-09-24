@@ -686,6 +686,7 @@
   <string id="tor_religion_label" text="{=tor_religion_label_str}Religion" />
   
   <string id="tor_religion_text_frame" text="{=tor_religion_text_frame_str}{TOR_DEVOTION_LEVEL} of {TOR_RELIGION}" />
+  <string id="tor_religion_change_notification_frame" text="{=tor_religion_change_notification_frame_str}{PLAYER.NAME} is now a {TOR_DEVOTION_LEVEL} of the {TOR_RELIGION}" />
   <string id="tor_religion_devotionlevel.None" text="{=tor_religion_label_none_str}Not a follower of any religion" />
   <string id="tor_religion_devotionlevel.Follower" text="{=tor_religion_label_follower_str}Follower" />
   <string id="tor_religion_devotionlevel.Devoted" text="{=tor_religion_label_devoted_str}Devoted" />
