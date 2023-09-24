@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <strings>
   <!--Rogue Engineer Quest-->
+  
+  <string id="str_quest_tor_engineer.rogueEngineerParty" text= "{ROGUE_ENGINEER_NAME}s Part Thieves"/>
+  
   <string id="str_quest_tor_engineer.rogueEngineerFirstTime" text= "{=!}You have the look of someone who's never seen a spec of black powder nor grease. Are you in the right place?"/>
   <string id="str_quest_tor_engineer.cultistDone" text= " {=!}Ah, you have returned. What news do you bring?"/>
   <string id="str_quest_tor_engineer.cultistInProgress" text= "{=!}Come back to me when you have news."/>

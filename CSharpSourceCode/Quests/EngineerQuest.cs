@@ -25,15 +25,16 @@ namespace TOR_Core.Quests
         [SaveableField(6)] private MobileParty _targetParty = null;
         [SaveableField(7)] private bool _failstate;
         private bool _skipImprisonment;
+        private string RogueEngineerLeaderName;
         private const string QuestName = "Runaway Parts";
         private const string CultistFactionId = "forest_bandits";
-        private const string CultistPartyDisplayName = "Runaway Thieves";
-        private const string CultistPartyLeaderName = "Runaway Thieves Leader";
+        private string CultistPartyDisplayName;
+        private string CultistPartyLeaderName;
         private const string CultistPartyTemplateId = "broken_wheel";
         private const string CultistLeaderTemplateId = "tor_bw_cultist_lord_0";
         private const string EngineerFactionId = "mountain_bandits";
-        private const string RogueEngineerDisplayName = "Goswins Part Thieves";
-        private const string RogueEngineerLeaderName = "Goswin";
+        private string RogueEngineerDisplayName;
+       
         private const string RogueEngineerPartyTemplateId = "empire_deserters_boss_party";
         private const string RogueEngineerLeaderTemplateId = "tor_engineerquesthero";
         public EngineerQuestStates CurrentActiveLog => (EngineerQuestStates)_currentActiveLog;
@@ -67,10 +68,19 @@ namespace TOR_Core.Quests
             _logs.Add(log3);
         }
 
+        public string GetRogueEngineerTemplateID()
+        {
+            return RogueEngineerLeaderTemplateId;
+        }
+
         private void InitializeQuest()
         {
             LoadAllLogs();
             _task1 = AddDiscreteLog(_logs[0].LogText, _logs[0].TaskName, 0, 1);
+            RogueEngineerLeaderName = new TextObject ("{ROGUE_ENGINEER_NAME}").ToString();
+            RogueEngineerDisplayName = GameTexts.FindText ("str_quest_tor_engineer.rogueEngineerParty").ToString();
+            CultistPartyDisplayName = new TextObject("{tor_quest_engineer_cultist_party_str} Runaway Thieves").ToString();
+            CultistPartyLeaderName = new TextObject("{tor_quest_engineer_cultist_party_leader_str} Runaway Thieves Leader").ToString();
             _currentActiveLog = 0;
         }
 
