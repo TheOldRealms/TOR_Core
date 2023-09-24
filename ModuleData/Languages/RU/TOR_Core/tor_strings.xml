@@ -729,8 +729,14 @@
   <string id="inky_fair_start_c3" text="Test RU Choice 4." />
   <string id="inky_fair_start_c4" text="Test RU Choice 5." />
   
+  <string id="tor_skill_faith_str" text="Test RU Faith" />
+  <string id="tor_skills_gun_accuracy_str" text="Test RU Accuracy" />
+   <string id="tor_attribute_discipline_abbreviation_str" text="GER" />
   <string id="tor_spellcasting_mode_key_str" text=" test RU key" /> 
   <string id="tor_spellcasting_mode_description_str" text=" test RU description" /> 
+  
+  
+  <string id="tor_perk_miracle_label_str" text="Test RU Miracle." />
   
   <string id="tor_rogue_engineer_name_str" text="Test RU Goswin" />
   
