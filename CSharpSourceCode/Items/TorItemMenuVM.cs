@@ -117,11 +117,17 @@ namespace TOR_Core.Items
                 }
                 if (_lastSetItem.HasWeaponComponent)
                 {
-					var damageprops = base.TargetItemProperties.Where(x => x.DefinitionLabel.Contains("Damage"));
+					var damageprops = base.TargetItemProperties.Where(x => x.DefinitionLabel.Contains (damageText.ToString()));
 					foreach(var prop in damageprops)
                     {
 						int damagenum = 0;
+						var text = prop.ValueLabel.Split (' ')[0];
 						bool success = int.TryParse(prop.ValueLabel.Split(' ')[0], out damagenum);
+						if (!success)
+						{ 
+							success = int.TryParse(prop.ValueLabel.Split(' ')[1], out damagenum);	//in foreign languages the order is swapped for what ever reason
+						}
+							
                         if (success)
                         {
 							prop.ValueLabel = "";
@@ -131,17 +137,17 @@ namespace TOR_Core.Items
 								for (int i = 0; i < info.DamageProportions.Count; i++)
 								{
 									var tuple = info.DamageProportions[i];
-									prop.ValueLabel += ((int)(tuple.Percent * damagenum)).ToString() + " " + tuple.DamageType.ToString() + (i == info.DamageProportions.Count - 1 ? "" : "+");
+									prop.ValueLabel += ((int)(tuple.Percent * damagenum)).ToString() + " " + GameTexts.FindText("tor_damagetype",tuple.DamageType.ToString()) + (i == info.DamageProportions.Count - 1 ? "" : "+");
 								}
 								prop.ValueLabel += ")";
 							}
 							else if (info != null && info.DamageProportions.Count == 1)
-                            {
-								prop.ValueLabel = damagenum.ToString() + " " + info.DamageProportions[0].DamageType.ToString();
+							{
+								prop.ValueLabel = damagenum.ToString() + " " + GameTexts.FindText ("tor_damagetype", DamageType.Physical.ToString());
 							}
 							if(prop.ValueLabel == "")
                             {
-								prop.ValueLabel = damagenum.ToString() + " Physical";
+								prop.ValueLabel = damagenum.ToString() + " "+GameTexts.FindText("tor_damagetype",DamageType.Physical.ToString());
                             }
                         }
                     }

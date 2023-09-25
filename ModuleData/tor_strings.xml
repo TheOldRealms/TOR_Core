@@ -755,8 +755,16 @@
   <string id="career_choicegroup1_name.GrailDamsel" text="{=career_choicegroup1_grail_damsel_str}Grail Maid" />
   <string id="career_choicegroup2_name.GrailDamsel" text="{=career_choicegroup2_grail_damsel_str}Grail Damsel" />
   <string id="career_choicegroup3_name.GrailDamsel" text="{=career_choicegroup3_grail_damsel_str}Prophetess" />
-
-
+  
+  
+  <!--TOR Damage type related !-->
+  <string id="tor_damagetype.Invalid" text="{=tor_damagetype_invalid_str}Invalid"/>
+  <string id="tor_damagetype.Physical" text="{=tor_damagetype_physical_str}Physical"/>
+  <string id="tor_damagetype.Magical" text="{=tor_damagetype_magical_str}Magical"/>
+  <string id="tor_damagetype.Fire" text="{=tor_damagetype_fire_str}Fire"/>
+  <string id="tor_damagetype.Holy" text="{=tor_damagetype_holy_str}Holy"/>
+  <string id="tor_damagetype.Lightning" text="{=tor_damagetype_lightning_str}Lightning"/>
+  
 
   <string id="career_description.WarriorPriest" text="{=career_description_warriorpriest_str}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />
   <string id="career_description.BloodKnight" text="{=career_description_bloodknight_str}Sired by Abhorash, the Blood Knight is a dark mockery of everything noble or virtuous that can be said about their mortal counterparts. Where before the Blood Kiss there was honour is now cruelty; faith turns to irreverence and duty falls to wanton ambition. This is true of all vampires but seems particularly tragic for the fallen knights of the Old World." />

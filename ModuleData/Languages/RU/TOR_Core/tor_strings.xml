@@ -720,6 +720,9 @@
   <string id="secrets_of_the_grail_Passive3_str" text="Используя боевые молитвы, вы восстанавливаете 15 Ветров Магии с вероятностью в 50%." />
   <string id="secrets_of_the_grail_Passive4_str" text="Боевые молитвы перезаряжаются на 30% быстрее." />
   
+  
+  <string id="tor_damagetype_physical_str" text="RU Physical" />
+  
   <string id="tor_religion_text_frame_str" text="{TOR_DEVOTION_LEVEL} von {TOR_RELIGION}, RU test" />
   <string id="tor_religion_label_follower_str" text="RU Follower" />
   <string id="inky_continue_str" text="RU Continue." />
