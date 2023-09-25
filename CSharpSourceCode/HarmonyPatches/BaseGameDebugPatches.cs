@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using NLog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -9,6 +10,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.InputSystem;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ModuleManager;
 using TaleWorlds.MountAndBlade;
@@ -66,16 +68,23 @@ namespace TOR_Core.HarmonyPatches
             return false;
         }
 
-        [HarmonyPrefix]
+        [HarmonyFinalizer]
         [HarmonyPatch(typeof(MobilePartyAi), "DoAiPathMode")]
-        public static bool PreventCrash(MobilePartyAi __instance, ref bool ____aiPathMode, ref object variables)
+        public static Exception PreventCrash(MobilePartyAi __instance, ref bool ____aiPathMode, ref bool ____aiPathNeeded, ref object variables, Exception __exception)
         {
-            if(__instance.Path.Size == 128)
+            if(__exception != null)
             {
+                TORCommon.Say("An exception was suppressed in DoAiPathMode. Party navigation may become unstable.");
                 ____aiPathMode = false;
-                return false;
+                ____aiPathNeeded = false;
+                if (__instance.Path.Size > 0)
+                {
+                    var lastPosition = AccessTools.Field(typeof(object), "LastCurrentPosition").GetValue(variables);
+                    AccessTools.Field(typeof(object), "CurrentPosition").SetValue(variables, lastPosition);
+                    AccessTools.Property(typeof(MobilePartyAi), "NextTargetPosition").SetValue(__instance, __instance.Path[__instance.Path.Size - 1]);
+                }
             }
-            return true;
+            return null;
         }
 
         [HarmonyPrefix]
