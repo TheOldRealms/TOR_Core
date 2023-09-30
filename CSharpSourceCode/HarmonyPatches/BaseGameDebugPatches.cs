@@ -79,8 +79,6 @@ namespace TOR_Core.HarmonyPatches
                 ____aiPathNeeded = false;
                 if (__instance.Path.Size > 0)
                 {
-                    var lastPosition = AccessTools.Field(typeof(object), "LastCurrentPosition").GetValue(variables);
-                    AccessTools.Field(typeof(object), "CurrentPosition").SetValue(variables, lastPosition);
                     AccessTools.Property(typeof(MobilePartyAi), "NextTargetPosition").SetValue(__instance, __instance.Path[__instance.Path.Size - 1]);
                 }
             }
