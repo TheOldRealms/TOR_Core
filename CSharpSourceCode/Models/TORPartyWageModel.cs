@@ -20,7 +20,7 @@ namespace TOR_Core.Models
         public override int GetCharacterWage(CharacterObject character)
         {
             if (character.IsUndead()) return 0;
-
+            
             switch (character.Tier)
             {
                 case 0:
@@ -46,8 +46,8 @@ namespace TOR_Core.Models
             }
         }
 
-        public override ExplainedNumber GetTotalWage(MobileParty mobileParty, bool includeDescriptions=true)
-        { 
+        public override ExplainedNumber GetTotalWage(MobileParty mobileParty, bool includeDescriptions = true)
+        {
             includeDescriptions = true;
             var value = base.GetTotalWage(mobileParty, includeDescriptions);
 
@@ -59,80 +59,77 @@ namespace TOR_Core.Models
                     if (mobileParty.LeaderHero.HasAnyCareer())
                     {
                         var careerID = mobileParty.LeaderHero.GetCareer().StringId;
-                        var careerFactors = new ExplainedNumber(0,true);
-                        careerFactors= AddCareerSpecifWagePerks(careerFactors, mobileParty.LeaderHero, elementCopyAtIndex);
+                        var careerFactors = new ExplainedNumber(0, true);
+                        careerFactors = AddCareerSpecificWagePerks(careerFactors, mobileParty.LeaderHero, elementCopyAtIndex);
                         foreach (var line in careerFactors.GetLines())
                         {
-                            value.Add(line.number,new TextObject(line.name));
+                            value.Add(line.number, new TextObject(line.name));
                         }
                     }
 
 
                 }
             }
-
-            
-
             return value;
         }
 
         public override int GetTroopRecruitmentCost(CharacterObject troop, Hero buyerHero, bool withoutItemCost = false)
         {
-            var value = base.GetTroopRecruitmentCost (troop, buyerHero, withoutItemCost);
-        
-            if (troop.Level<= 41)
+            var value = base.GetTroopRecruitmentCost(troop, buyerHero, withoutItemCost);
+
+            if (troop.Level <= 41)
             {
                 return value;
             }
             // if we ever decide to add more tiers to the Unit tree, we need to differ like in the base model. 
             var troopRecruitmentCost = 2500;
             //vanilla copy paste.
-             bool specialFlag = troop.Occupation == Occupation.Mercenary || troop.Occupation == Occupation.Gangster || troop.Occupation == Occupation.CaravanGuard;
-             
-             
-              if (specialFlag)
-                troopRecruitmentCost = MathF.Round((float) troopRecruitmentCost * 2f);
-              if (buyerHero != null)
-              {
-               var  explainedNumber = new ExplainedNumber(1f);
+            bool specialFlag = troop.Occupation == Occupation.Mercenary || troop.Occupation == Occupation.Gangster || troop.Occupation == Occupation.CaravanGuard;
+
+
+            if (specialFlag)
+                troopRecruitmentCost = MathF.Round((float)troopRecruitmentCost * 2f);
+            if (buyerHero != null)
+            {
+                var explainedNumber = new ExplainedNumber(1f);
                 if (troop.Tier >= 2 && buyerHero.GetPerkValue(DefaultPerks.Throwing.HeadHunter))
-                  explainedNumber.AddFactor(DefaultPerks.Throwing.HeadHunter.SecondaryBonus);
+                    explainedNumber.AddFactor(DefaultPerks.Throwing.HeadHunter.SecondaryBonus);
                 if (troop.IsInfantry)
                 {
-                  if (buyerHero.GetPerkValue(DefaultPerks.OneHanded.ChinkInTheArmor))
-                    explainedNumber.AddFactor(DefaultPerks.OneHanded.ChinkInTheArmor.SecondaryBonus);
-                  if (buyerHero.GetPerkValue(DefaultPerks.TwoHanded.ShowOfStrength))
-                    explainedNumber.AddFactor(DefaultPerks.TwoHanded.ShowOfStrength.SecondaryBonus);
-                  if (buyerHero.GetPerkValue(DefaultPerks.Polearm.HardyFrontline))
-                    explainedNumber.AddFactor(DefaultPerks.Polearm.HardyFrontline.SecondaryBonus);
-                  if (buyerHero.Culture.HasFeat(DefaultCulturalFeats.SturgianRecruitUpgradeFeat))
-                    explainedNumber.AddFactor(DefaultCulturalFeats.SturgianRecruitUpgradeFeat.EffectBonus, GameTexts.FindText("str_culture"));
+                    if (buyerHero.GetPerkValue(DefaultPerks.OneHanded.ChinkInTheArmor))
+                        explainedNumber.AddFactor(DefaultPerks.OneHanded.ChinkInTheArmor.SecondaryBonus);
+                    if (buyerHero.GetPerkValue(DefaultPerks.TwoHanded.ShowOfStrength))
+                        explainedNumber.AddFactor(DefaultPerks.TwoHanded.ShowOfStrength.SecondaryBonus);
+                    if (buyerHero.GetPerkValue(DefaultPerks.Polearm.HardyFrontline))
+                        explainedNumber.AddFactor(DefaultPerks.Polearm.HardyFrontline.SecondaryBonus);
+                    if (buyerHero.Culture.HasFeat(DefaultCulturalFeats.SturgianRecruitUpgradeFeat))
+                        explainedNumber.AddFactor(DefaultCulturalFeats.SturgianRecruitUpgradeFeat.EffectBonus, GameTexts.FindText("str_culture"));
                 }
                 else if (troop.IsRanged)
                 {
-                  if (buyerHero.GetPerkValue(DefaultPerks.Bow.RenownedArcher))
-                    explainedNumber.AddFactor(DefaultPerks.Bow.RenownedArcher.SecondaryBonus);
-                  if (buyerHero.GetPerkValue(DefaultPerks.Crossbow.Piercer))
-                    explainedNumber.AddFactor(DefaultPerks.Crossbow.Piercer.SecondaryBonus);
+                    if (buyerHero.GetPerkValue(DefaultPerks.Bow.RenownedArcher))
+                        explainedNumber.AddFactor(DefaultPerks.Bow.RenownedArcher.SecondaryBonus);
+                    if (buyerHero.GetPerkValue(DefaultPerks.Crossbow.Piercer))
+                        explainedNumber.AddFactor(DefaultPerks.Crossbow.Piercer.SecondaryBonus);
                 }
                 if (troop.IsMounted && buyerHero.Culture.HasFeat(DefaultCulturalFeats.KhuzaitRecruitUpgradeFeat))
-                  explainedNumber.AddFactor(DefaultCulturalFeats.KhuzaitRecruitUpgradeFeat.EffectBonus, GameTexts.FindText("str_culture"));
+                    explainedNumber.AddFactor(DefaultCulturalFeats.KhuzaitRecruitUpgradeFeat.EffectBonus, GameTexts.FindText("str_culture"));
                 if (buyerHero.IsPartyLeader && buyerHero.GetPerkValue(DefaultPerks.Steward.Frugal))
-                  explainedNumber.AddFactor(DefaultPerks.Steward.Frugal.SecondaryBonus);
+                    explainedNumber.AddFactor(DefaultPerks.Steward.Frugal.SecondaryBonus);
                 if (specialFlag)
                 {
-                  if (buyerHero.GetPerkValue(DefaultPerks.Trade.SwordForBarter))
-                    explainedNumber.AddFactor(DefaultPerks.Trade.SwordForBarter.PrimaryBonus);
-                  if (buyerHero.GetPerkValue(DefaultPerks.Charm.SlickNegotiator))
-                    explainedNumber.AddFactor(DefaultPerks.Charm.SlickNegotiator.PrimaryBonus);
+                    if (buyerHero.GetPerkValue(DefaultPerks.Trade.SwordForBarter))
+                        explainedNumber.AddFactor(DefaultPerks.Trade.SwordForBarter.PrimaryBonus);
+                    if (buyerHero.GetPerkValue(DefaultPerks.Charm.SlickNegotiator))
+                        explainedNumber.AddFactor(DefaultPerks.Charm.SlickNegotiator.PrimaryBonus);
                 }
-                troopRecruitmentCost = MathF.Max(1, MathF.Round((float) troopRecruitmentCost * explainedNumber.ResultNumber));
-              }
-              return troopRecruitmentCost;
+                troopRecruitmentCost = MathF.Max(1, MathF.Round((float)troopRecruitmentCost * explainedNumber.ResultNumber));
+            }
+            return troopRecruitmentCost;
         }
 
 
-        private ExplainedNumber AddCareerSpecifWagePerks(ExplainedNumber resultValue, Hero hero, TroopRosterElement unit)
+        private ExplainedNumber AddCareerSpecificWagePerks(ExplainedNumber resultValue, Hero hero, TroopRosterElement unit)
         {
             var choices = hero.GetAllCareerChoices();
 
@@ -146,78 +143,78 @@ namespace TOR_Core.Models
                     resultValue.Add(value, choice.BelongsToGroup.Name);
                 }
             }
-            
+
             if (choices.Contains("DuelistPassive3"))
             {
                 if (!unit.Character.IsMounted)
                 {
                     TextObject text;
                     var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "DuelistPassive3", out text);
-                    resultValue.Add(value,text);
+                    resultValue.Add(value, text);
                 }
             }
-            
+
             if (choices.Contains("CommanderPassive1"))
             {
-                if (unit.Character.Tier>4&&!unit.Character.IsHero)
+                if (unit.Character.Tier > 4 && !unit.Character.IsHero)
                 {
                     TextObject text;
                     var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "CommanderPassive1", out text);
-                    resultValue.Add(value,text);
+                    resultValue.Add(value, text);
                 }
             }
-            
+
             if (choices.Contains("LordlyPassive3"))
             {
-                if (unit.Character.IsVampire()&&unit.Character != Hero.MainHero.CharacterObject)
+                if (unit.Character.IsVampire() && unit.Character != Hero.MainHero.CharacterObject)
                 {
                     TextObject text;
                     var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "LordlyPassive3", out text);
-                    resultValue.Add(value,text);
+                    resultValue.Add(value, text);
                 }
             }
-            
+
             if (choices.Contains("InspirationOfTheLadyPassive3"))
             {
                 if (unit.Character.IsKnightUnit())
                 {
                     TextObject text;
                     var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "LordlyPassive3", out text);
-                    resultValue.Add(value,text);
+                    resultValue.Add(value, text);
                 }
             }
-            
+
             if (choices.Contains("AvatarOfDeathPassive2"))
             {
-                if (unit.Character.IsVampire()&&unit.Character != Hero.MainHero.CharacterObject)
+                if (unit.Character.IsVampire() && unit.Character != Hero.MainHero.CharacterObject)
                 {
                     TextObject text;
                     var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "AvatarOfDeathPassive2", out text);
-                    resultValue.Add(value,text);
+                    resultValue.Add(value, text);
                 }
             }
-            
+
             if (choices.Contains("MonsterSlayerPassive4"))
             {
-                if (unit.Character != Hero.MainHero.CharacterObject&&!unit.Character.IsKnightUnit()&&unit.Character.Culture.StringId=="vlandia")
+                if (unit.Character != Hero.MainHero.CharacterObject && !unit.Character.IsKnightUnit() && unit.Character.Culture.StringId == "vlandia")
                 {
                     TextObject text;
                     var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "MonsterSlayerPassive4", out text);
-                    resultValue.Add(value,text);
+                    resultValue.Add(value, text);
                 }
             }
-            
+
             if (choices.Contains("MasterHorsemanPassive4"))
             {
-                if (unit.Character != Hero.MainHero.CharacterObject&&unit.Character.IsKnightUnit())
+                if (unit.Character != Hero.MainHero.CharacterObject && unit.Character.IsKnightUnit())
                 {
                     TextObject text;
                     var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "MasterHorsemanPassive4", out text);
-                    resultValue.Add(value,text);
+                    resultValue.Add(value, text);
                 }
-          
+
             }
-            
+
             return resultValue;
         }
 
@@ -235,9 +232,9 @@ namespace TOR_Core.Models
             if (choice?.Passive == null) return 0;
             var effectMagnitude = choice.Passive.EffectMagnitude;
             if (choice.Passive.InterpretAsPercentage) effectMagnitude /= 100;
-            var value = -(unit.Character.TroopWage*unit.Number) * (effectMagnitude);
+            var value = -(unit.Character.TroopWage * unit.Number) * (effectMagnitude);
             return value;
         }
-        
+
     }
 }
