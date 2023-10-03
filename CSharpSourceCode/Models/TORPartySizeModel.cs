@@ -12,7 +12,7 @@ namespace TOR_Core.Models
         public override ExplainedNumber GetPartyMemberSizeLimit(PartyBase party, bool includeDescriptions = false)
         {
             var num = base.GetPartyMemberSizeLimit(party, includeDescriptions);
-            if (party.Culture.Name.Contains("Vampire"))
+            if (party.Culture != null && party.Culture.Name.Contains("Vampire"))
             {
                 if (party.LeaderHero != null && party.LeaderHero.IsHumanPlayerCharacter)
                 {
@@ -51,7 +51,7 @@ namespace TOR_Core.Models
 
         private void AddCareerPassivesForPartySize(Hero playerHero, ref ExplainedNumber number)
         {
-            if(playerHero==null)return;
+            if (playerHero == null) return;
             if (playerHero.HasAnyCareer())
             {
                 CareerHelper.ApplyBasicCareerPassives(playerHero, ref number, PassiveEffectType.PartySize);
