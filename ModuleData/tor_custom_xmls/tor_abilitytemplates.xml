@@ -331,7 +331,7 @@
       VisualsRotationVelocity="0"
       SpellTier="1"
       BelongsToLoreID="MinorMagic"
-      TooltipDescription="Dry winds from the desert knocks down victims and applies minor damage.">
+      TooltipDescription="Dry winds from the desert knock down victims and apply minor damage.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -841,7 +841,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="LoreOfHeavens"
-      TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
+      TooltipDescription="Divining favorable signs, the caster guides the minds of his fellow warriors. Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1138,7 +1138,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="LoreOfLight"
-      TooltipDescription="Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
+      TooltipDescription="The wizard calls upon the beneficent Guardian of Light to protect his allies from harm. Grants 50% physical resistance for 15 seconds in a 3 meter radius.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1472,7 +1472,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="Necromancy"
-      TooltipDescription="Allies in the area regenerate health over time.">
+      TooltipDescription="The wizard draws tendrils of the Wind of Death to restore his minions and fill them with unholy vigour. Heals allies over time in a radius.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1561,7 +1561,7 @@
       TargetCapturingRadius="2.5"
       SpellTier="3"
       BelongsToLoreID="Necromancy"
-      TooltipDescription="Raise 4 Grave Guard for the remainder of the battle.">
+      TooltipDescription="Raises champions of death to serve the caster. Summon 4 Grave Guard units for the remainder of the battle.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1691,7 +1691,7 @@
       TargetCapturingRadius="2.5"
       SpellTier="4"
       BelongsToLoreID="Necromancy"
-      TooltipDescription="Raise 15 Skeleton Champions.">
+      TooltipDescription="Drawing forth the dark energy coursing through the land, the necromancer searches long dead bodies to answer his summons. Raise 15 Skeleton Champions.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1954,7 +1954,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="DarkMagic"
-      TooltipDescription="Allies in a 3 meter radius gain 20% physical bonus damage for 15 seconds.">
+      TooltipDescription="The caster draws unstable power from the Realm of Chaos to empower his minions. Grants 20% physical bonus damage for 15 seconds in an area.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2214,7 +2214,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="2"
       BelongsToLoreID="LoreOfLife"
-      TooltipDescription="Causes a small area to radiate unbearable heat, causing fatigue, impairing movement by 50%, and making the enemies vulnerable to fire damage by 25% for  seconds 8.">
+      TooltipDescription="Causes a small area to radiate unbearable heat, causing fatigue, impairing movement by 50%, and making the enemies vulnerable to fire damage by 25% for 8 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2257,7 +2257,7 @@
 	CrosshairType="TargetedAOE"
 	SpellTier="3"
 	BelongsToLoreID="LoreOfLife"
-	TooltipDescription="Allies in a 3 meter radius gain 5 health points per second. Lasts 12 seconds.">
+	TooltipDescription="Invoking the name of Duthandor, lord of the ancient wildshrines, the wizard mends wounds and broken bones of his comrades. Allies in a 3 meter radius gain 5 HP per second for 12 seconds.">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2536,8 +2536,8 @@
 	<AbilityTemplate StringID="FlockOfDoom"
    Name="Flock Of Doom"
    SpriteName="flockofdoom_icon"
-   CoolDown="15"
-   WindsOfMagicCost="6"
+   CoolDown="25"
+   WindsOfMagicCost="20"
    BaseMisCastChance="0.05"
    Duration="4"
    Radius="7.5"
@@ -2610,7 +2610,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="4"
       BelongsToLoreID="LoreOfBeasts"
-      TooltipDescription="Allies in a 3 meter radius will deal 25% more physical damage and attack 25% faster.">
+      TooltipDescription="Unleashes the primal savagery of the caster's allies, driving them into a frenzy. Grants 25% more physical damage and 25% attack speed in a 3 meter radius for 20 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2623,8 +2623,8 @@
 	<AbilityTemplate StringID="CurseOfAnraheir"
    Name="Curse Of Anraheir"
    SpriteName="curseofanraheir_icon"
-   CoolDown="15"
-   WindsOfMagicCost="6"
+   CoolDown="20"
+   WindsOfMagicCost="15"
    BaseMisCastChance="0.05"
    Duration="11"
    Radius="10"

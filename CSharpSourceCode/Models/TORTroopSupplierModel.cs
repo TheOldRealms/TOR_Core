@@ -26,8 +26,9 @@ namespace TOR_Core.Models
             FlattenedTroopRoster priorityTroops, bool includePlayer, int sizeOfSide, bool forcePriorityTroops, 
             List<(FlattenedTroopRosterElement, MapEventParty, float)> priorityList)
         {
-            bool isLordParty = (bool)(battleParty.Party != null && battleParty.Party.MobileParty != null && battleParty.Party.MobileParty.IsLordParty);
-            if (forcePriorityTroops || (priorityTroops != null && priorityTroops.Count() > 0) || !isLordParty)
+            bool isLordParty = battleParty.Party != null && battleParty.Party.MobileParty != null && battleParty.Party.MobileParty.IsLordParty;
+            bool isPlayerEvent = battleParty.Party != null && battleParty.Party.MapEvent != null && battleParty.Party.MapEvent.IsPlayerMapEvent;
+            if (forcePriorityTroops || (priorityTroops != null && priorityTroops.Count() > 0) || !isLordParty || !isPlayerEvent)
             {
                 base.EnqueueTroopSpawnProbabilitiesAccordingToUnitSpawnPrioritization(battleParty, priorityTroops, includePlayer, sizeOfSide, forcePriorityTroops, priorityList);
                 return;
