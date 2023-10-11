@@ -747,6 +747,15 @@
   <string id="tor_spellcasting_mode_description_str" text=" test RU description" /> 
   
   
+  
+  <string id= "tor_menu_enter_game_label_str" text="Test RU enter old world" />
+  <string id= "tor_menu_shader_cache_label_str" text="build russian shaders" />
+  <string id= "tor_menu_shader_cache_popup_title" text="Test RU warning" />
+  <string id= "tor_menu_shader_cache_popup_message" text="Test RU message" />
+  <string id= "tor_menu_shader_cache_popup_confirm" text="Да" />
+  <string id= "tor_menu_shader_cache_popup_reject" text="niet" />
+  
+  
   <string id="tor_perk_miracle_label_str" text="Test RU Miracle." />
   
   <string id="tor_rogue_engineer_name_str" text="Test RU Goswin" />
