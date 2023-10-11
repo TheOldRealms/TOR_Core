@@ -35,7 +35,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
             _spellTemplate = template;
             _hero = currentHero;
             _isTrainerMode = isTrainerMode;
-            SpellName = template.Name;
+            SpellName = new TextObject(_spellTemplate.Name).ToString();
             SpellSpriteName = template.SpriteName;
             SpellStatItems = template.GetStats(_hero, _spellTemplate);
             SpellHint = new BasicTooltipViewModel(GetHintText);
@@ -44,7 +44,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
 
         private string GetHintText()
         {
-            return _spellTemplate.TooltipDescription;
+            return new TextObject (_spellTemplate.TooltipDescription).ToString();
         }
 
         private void ExecuteLearnSpell()

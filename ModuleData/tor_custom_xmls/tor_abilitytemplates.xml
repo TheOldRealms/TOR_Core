@@ -42,7 +42,7 @@
 		<TriggeredEffect>dart_explosion</TriggeredEffect>
 	</AbilityTemplate>
 	<AbilityTemplate StringID="WardOfArrows" 
-      Name="Ward of Arrows" 
+      Name="{=ward_of_arrows_spell_str}Ward of Arrows" 
       SpriteName="ward_of_arrows_icon" 
       CoolDown="10" 
       WindsOfMagicCost="3" 
@@ -73,7 +73,7 @@
       TargetCapturingRadius="1"
       SpellTier="1"
       BelongsToLoreID="MinorMagic"
-      TooltipDescription="Adds 40% physical resistance against ranged damage for 15 seconds to the caster.">
+      TooltipDescription="{=ward_of_arrows_description_str}Adds 40% physical resistance against ranged damage for 15 seconds to the caster.">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
 			<AsVec2>
 				<x>255</x>
