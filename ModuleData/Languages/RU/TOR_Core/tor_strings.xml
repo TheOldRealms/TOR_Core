@@ -755,6 +755,9 @@
   <string id= "tor_menu_shader_cache_popup_confirm" text="Да" />
   <string id= "tor_menu_shader_cache_popup_reject" text="niet" />
   
+  <string id= "tor_ungor_raiders_str" text="russian Ungors" />
+
+  
   
   <string id="tor_perk_miracle_label_str" text="Test RU Miracle." />
   

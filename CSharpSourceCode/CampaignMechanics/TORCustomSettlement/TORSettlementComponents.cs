@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.CampaignMechanics.RaidingParties;
@@ -107,7 +108,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_patrol");
             Clan chaosClan = Clan.FindFirst(x => x.StringId == "chaos_clan_1");
             var find = TORCommon.FindSettlementsAroundPosition(Settlement.Position2D, 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
-            var chaosRaidingParty = RaidingPartyComponent.CreateRaidingParty("chaos_clan_1_party_" + RaidingPartyCount + 1, Settlement, "Chaos Raiders", template, chaosClan, MBRandom.RandomInt(75, 99));
+            var chaosRaidingParty = RaidingPartyComponent.CreateRaidingParty("chaos_clan_1_party_" + RaidingPartyCount + 1, Settlement, "{=tor_chaos_raiders_str}Chaos Raiders", template, chaosClan, MBRandom.RandomInt(75, 99));
             SetPartyAiAction.GetActionForRaidingSettlement(chaosRaidingParty, find);
             ((RaidingPartyComponent)chaosRaidingParty.PartyComponent).Target = find;
         }
@@ -124,7 +125,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("ungor_party");
             Clan beastmenClan = Clan.FindFirst(x => x.StringId == "beastmen_clan_1");
             var find = TORCommon.FindSettlementsAroundPosition(Settlement.Position2D, 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
-            var raidingParty = RaidingPartyComponent.CreateRaidingParty("beastmen_clan_1_party_" + RaidingPartyCount + 1, Settlement, "Ungor Raiders", template, beastmenClan, MBRandom.RandomInt(75, 99));
+            var raidingParty = RaidingPartyComponent.CreateRaidingParty("beastmen_clan_1_party_" + RaidingPartyCount + 1, Settlement, new TextObject ("{=tor_ungor_raiders_str}Ungor Raiders").ToString(), template, beastmenClan, MBRandom.RandomInt(75, 99));
             SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, find);
             ((RaidingPartyComponent)raidingParty.PartyComponent).Target = find;
         }
