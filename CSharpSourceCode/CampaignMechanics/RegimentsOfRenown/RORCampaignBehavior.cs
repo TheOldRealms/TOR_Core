@@ -122,7 +122,7 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                 MBTextManager.SetTextVariable("MEN_COUNT", kvp.Value);
                 MBTextManager.SetTextVariable("TROOP_NAME", kvp.Key.Name);
                 MBTextManager.SetTextVariable("TOTAL_AMOUNT", cost);
-                MBTextManager.SetTextVariable("LINETEXT", "Recruit {MEN_COUNT} {TROOP_NAME} ({TOTAL_AMOUNT}{GOLD_ICON})");
+                MBTextManager.SetTextVariable("LINETEXT", "{=tor_ror_recruitment_text_str}Recruit {MEN_COUNT} {TROOP_NAME} ({TOTAL_AMOUNT}{GOLD_ICON})");
                 return true;
             }
             else return false;
@@ -135,7 +135,7 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
             var intro = new TextObject("You have arrived at the {HQ_NAME}. {NEWLINE} {BLURB} {NEWLINE} {EMPTY}");
             MBTextManager.SetTextVariable("HQ_NAME", template.RegimentHQName);
             MBTextManager.SetTextVariable("BLURB", template.MenuHeaderText);
-            if (!HasAvailableRoRUnits(Settlement.CurrentSettlement)) MBTextManager.SetTextVariable("EMPTY", "Currently there are no available Regiments of Renown to recruit. Check back in a week.");
+            if (!HasAvailableRoRUnits(Settlement.CurrentSettlement)) MBTextManager.SetTextVariable("EMPTY", "{=tor_ror_recruitment_empty_text_str}Currently there are no available Regiments of Renown to recruit. Check back in a week.");
             else MBTextManager.SetTextVariable("EMPTY", " ");
             MBTextManager.SetTextVariable("ROR_HEADER", intro);
         }

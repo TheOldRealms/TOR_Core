@@ -39,7 +39,7 @@ namespace TOR_Core.Items
 		public TorItemMenuVM(Action<ItemVM, int> resetComparedItems, InventoryLogic inventoryLogic, Func<WeaponComponentData, ItemObject.ItemUsageSetFlags> getItemUsageSetFlags, Func<EquipmentIndex, SPItemVM> getEquipmentAtIndex) : base(resetComparedItems, inventoryLogic, getItemUsageSetFlags, getEquipmentAtIndex)
         {
 			_itemTraitList = new MBBindingList<TorItemTraitVM>();
-			_readHint = new HintViewModel(new TextObject("Read scroll"));
+			_readHint = new HintViewModel(new TextObject("{=tor_item_hint_read_scroll_str}Read scroll"));
 			inventoryLogic.AfterTransfer += CheckItem;
         }
 
@@ -184,18 +184,21 @@ namespace TOR_Core.Items
 			if (!IsSkillBook
 				|| !TORSkillBookCampaignBehavior.Instance.IsBookUseful(_lastSetItem))
             {
-				TORCommon.Say(String.Format("It seems that there is nothing more to gain from studying {0}", _lastSetItem.Name));
+	            MBTextManager.SetTextVariable("TOR_LAST_READ_BOOK", _lastSetItem.Name);
+	            TORCommon.Say (new TextObject ("{tor_item_hint_read_scroll_finished_str} It seems that there is nothing more to gain from studying {TOR_LAST_READ_BOOK}."));
 				return;
             }
 			if (TORSkillBookCampaignBehavior.Instance.CurrentBook.Equals(_lastSetItem.StringId ?? "")) {
-				TORCommon.Say(String.Format("You are already reading {0}", _lastSetItem.Name));
+				MBTextManager.SetTextVariable("TOR_LAST_READ_BOOK", _lastSetItem.Name);
+				TORCommon.Say (new TextObject ("{tor_item_hint_read_scroll_finished_str} You are already reading {TOR_LAST_READ_BOOK}."));
 				return;
             }
 
 			TORSkillBookCampaignBehavior.Instance.CurrentBook =
 				_lastSetItem.StringId ?? "";
 			UpdateReadButton(_lastSetItem);
-			TORCommon.Say(String.Format("Selected {0} for reading!", _lastSetItem?.Name));
+			MBTextManager.SetTextVariable("TOR_LAST_READ_BOOK", _lastSetItem.Name);
+			TORCommon.Say (new TextObject ("{tor_item_hint_read_scroll_selected_str} Selected {TOR_LAST_READ_BOOK} for reading!"));
 			return;
 		}
 
