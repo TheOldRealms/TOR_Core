@@ -37,7 +37,7 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                     if (Clan.PlayerClan.Tier < 3)
                     {
                         args.IsEnabled = false;
-                        args.Tooltip = new TextObject("Your clan needs to be at least Tier 3 in order to recruit Regiments of Renown.");
+                        args.Tooltip = new TextObject("{=tor_ror_enter_not_enough_renown_str}Your clan needs to be at least Tier 3 in order to recruit Regiments of Renown.");
                     }
                     return Settlement.CurrentSettlement.IsRoRSettlement();
                 },
@@ -53,7 +53,7 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                     if (Clan.PlayerClan.Tier < 3)
                     {
                         args.IsEnabled = false;
-                        args.Tooltip = new TextObject("Your clan needs to be at least Tier 3 in order to recruit Regiments of Renown.");
+                        args.Tooltip = new TextObject("{=tor_ror_enter_not_enough_renown_str}Your clan needs to be at least Tier 3 in order to recruit Regiments of Renown.");
                     }
                     return Settlement.CurrentSettlement.IsRoRSettlement() && !Settlement.CurrentSettlement.IsRaided && !Settlement.CurrentSettlement.IsUnderRaid;
                 },
@@ -274,12 +274,12 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                 }
                 else
                 {
-                    MBInformationManager.AddQuickInformation(new TextObject("Not enough room in party."));
+                    MBInformationManager.AddQuickInformation(new TextObject("{=tor_ror_recruitment_not_enough_space_party_str}Not enough room in party."));
                 }
             }
             else
             {
-                MBInformationManager.AddQuickInformation(new TextObject("Not enough gold."));
+                MBInformationManager.AddQuickInformation(new TextObject("{=tor_ror_recruitment_not_enough_gold_str}Not enough gold."));
             }
             GameMenu.SwitchToMenu("ror_center");
         }
