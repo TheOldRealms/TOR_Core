@@ -238,23 +238,23 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             flag = !Hero.MainHero.IsVampire() && !Hero.MainHero.IsSpellCaster() && !Hero.MainHero.HasAttribute("Priest") && _testResult == "";
             if (flag)
             {
-                string text = "";
+                TextObject text;
                 var culture = Hero.OneToOneConversationHero.Culture.StringId;
                 switch (culture)
                 {
                     case "empire":
                         {
-                            text = "I have come seeking knowledge, I wish to learn the arcane arts. Can you help me?";
+                            text = new TextObject ("{=tor_spelltrainer_magictest_empire_str}I have come seeking knowledge, I wish to learn the arcane arts. Can you help me?");
                             break;
                         }
                     case "khuzait":
                     case "mousillon":
                         {
-                            text = "I need the power to escape death, to rule over this world as something more. Can you teach me the ways of your power?";
+                            text = new TextObject("{=tor_spelltrainer_magictest_vc_str}I need the power to escape death, to rule over this world as something more. Can you teach me the ways of your power?");
                             break;
                         }
                     default:
-                        text = "You shouldn't see this.";
+                        text = new TextObject("You shouldn't see this.");
                         break;
                 }
                 MBTextManager.SetTextVariable("TEST_QUESTION", text);
@@ -265,23 +265,23 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
         private bool filltextfortestprompt()
         {
-            string text = "";
+            TextObject text;
             var culture = Hero.OneToOneConversationHero.Culture.StringId;
             switch (culture)
             {
                 case "empire":
                     {
-                        text = "Hmm. To understand the Winds of magic you must have the aethyric senses. Let me perform an experiment on you to determine your potential...";
+                        text = new TextObject("{=tor_spelltrainer_magictest_begin_empire_str}Hmm. To understand the Winds of magic you must have the aethyric senses. Let me perform an experiment on you to determine your potential...");
                         break;
                     }
                 case "khuzait":
                 case "mousillon":
                     {
-                        text = "I can sense the you might have some grasp on the Winds of magic. Let me subject you to an examination to see your potential...";
+                        text = new TextObject("{=tor_spelltrainer_magictest_begin_vc_str}I can sense the you might have some grasp on the Winds of magic. Let me subject you to an examination to see your potential...");
                         break;
                     }
                 default:
-                    text = "You shouldn't see this.";
+                    text = new TextObject("You shouldn't see this.");
                     break;
             }
             MBTextManager.SetTextVariable("TEST_PROMPT", text);
@@ -297,10 +297,10 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
         private bool testresultcondition()
         {
-            var result = "Error.";
+            var result = new TextObject("Error.");
             if (_testResult == "success")
             {
-                result = "Hmm...interesting. It would seem you do have an aptitude, perhaps even potential.";
+                result = new TextObject("{=tor_spelltrainer_magictest_result_success_str}Hmm...interesting. It would seem you do have an aptitude, perhaps even potential.");
                 Hero.MainHero.AddAttribute("AbilityUser");
                 Hero.MainHero.AddAttribute("SpellCaster");
                 Hero.MainHero.AddKnownLore("MinorMagic");
@@ -310,7 +310,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             }
             else if (_testResult == "failure")
             {
-                result = "Pah, it is beyond you. Begone before you waste more of my time.";
+                result = new TextObject("{=tor_spelltrainer_magictest_result_failure_str}Pah, it is beyond you. Begone before you waste more of my time.");
             }
             MBTextManager.SetTextVariable("TEST_RESULT", result);
             return true;
