@@ -299,7 +299,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         private bool testresultcondition()
         {
             var result = new TextObject("Error.");
-            if (_testResult == "success")
+            if (_testResult == "success")       //why is this not a simple boolean?
             {
                 result = new TextObject("{=tor_spelltrainer_magictest_result_success_str}Hmm...interesting. It would seem you do have an aptitude, perhaps even potential.");
                 Hero.MainHero.AddAttribute("AbilityUser");
