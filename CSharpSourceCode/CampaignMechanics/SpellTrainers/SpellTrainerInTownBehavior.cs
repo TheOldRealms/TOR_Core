@@ -19,6 +19,7 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.ObjectSystem;
+using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.SkillBooks;
@@ -347,26 +348,26 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             else if (Hero.MainHero.IsVampire() && possibleLores.Count > 0 && info.SpellCastingLevel == SpellCastingLevel.Master) flag = true;
             if (flag)
             {
-                string text = "";
+                TextObject text = new TextObject ();
                 var culture = Hero.OneToOneConversationHero.Culture.StringId;
                 switch (culture)
                 {
                     case "empire":
                         {
-                            text = "I am ready to join the colleges and become a true wizard of the Empire.";
+                            text = new TextObject("{=tor_spelltrainer_magictest_empire_player_specialize_lore_str}I am ready to join the colleges and become a true wizard of the Empire.");
                             break;
                         }
                     case "khuzait":
                         {
-                            text = "My Lord, I beseech you to teach me your dark magic. I have learned all that I can on my own and would be a most loyal apprentice to you.";
+                            text = new TextObject("{=tor_spelltrainer_magictest_vc_player_specialize_lore_str}My Lord, I beseech you to teach me your dark magic. I have learned all that I can on my own and would be a most loyal apprentice to you.");
                             if (Hero.MainHero.IsVampire())
                             {
-                                text = "I can feel my dark power continuing to grow, teach me more lest I find myself a new 'tutor'. Hurry on to find your Grimoire, lest I grow thirsty in your absence...";
+                                text = new TextObject("{=tor_spelltrainer_magictest_vc_vampire_player_specialize_lore_str}I can feel my dark power continuing to grow, teach me more lest I find myself a new 'tutor'. Hurry on to find your Grimoire, lest I grow thirsty in your absence...");
                             }
                             break;
                         }
                     default:
-                        text = "You shouldn't see this.";
+                        text = new TextObject("You shouldn't see this.");
                         break;
                 }
                 MBTextManager.SetTextVariable("SPECALIZE_QUESTION", text);
@@ -382,13 +383,13 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             {
                 case "empire":
                     {
-                        text = "You have proven yourself and have a strong aptitude for the wind of magic, which college will you be joining? You can only dedicate yourself to one, choose wisely.";
+                        text = "{=tor_spelltrainer_magictest_empire_specialize_lore_str}You have proven yourself and have a strong aptitude for the wind of magic, which college will you be joining? You can only dedicate yourself to one, choose wisely.";
                         break;
                     }
                 case "khuzait":
                     {
-                        text = "You have potential Dark One, serve me and I will teach you all that I know in time. Come let me consult my grimoire.";
-                        if (Hero.MainHero.IsVampire()) text = "Yes sire! Right away my good and merciful lord.";
+                        text = "{=tor_spelltrainer_magictest_vc_specialize_lore_str}You have potential Dark One, serve me and I will teach you all that I know in time. Come let me consult my grimoire.";
+                        if (Hero.MainHero.IsVampire()) text = "{=tor_spelltrainer_magictest_vc_vampire_specialize_lore_str}Yes sire! Right away my good and merciful lord.";
                         break;
                     }
                 default:
@@ -407,7 +408,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             {
                 if (item.ID != "MinorMagic" && !item.DisabledForCultures.Contains(CharacterObject.OneToOneConversationCharacter.Culture.StringId) && !Hero.MainHero.GetExtendedInfo().HasKnownLore(item.ID)) list.Add(new InquiryElement(item, item.Name, null));
             }
-            var inquirydata = new MultiSelectionInquiryData("Choose Lore", "Choose a lore to specialize in.", list, true, 1, 1, "Confirm", "Cancel", OnChooseLore, OnCancelLore);
+            var inquirydata = new MultiSelectionInquiryData("{=tor_magic_lore_prompt_label_str}Choose Lore", "{=tor_magic_lore_prompt_description_str}Choose a lore to specialize in.", list, true, 1, 1, "Confirm", "Cancel", OnChooseLore, OnCancelLore);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
         }
 
@@ -418,8 +419,9 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             if (choice != null)
             {
                 Hero.MainHero.AddKnownLore(choice.ID);
+                var choiceText = new TextObject (choice.Name);
                 if (info.SpellCastingLevel < SpellCastingLevel.Entry) Hero.MainHero.SetSpellCastingLevel(SpellCastingLevel.Entry);
-                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned lore: " + choice.Name));
+                MBInformationManager.AddQuickInformation(new TextObject("{=tor_magic_lore_prompt_notification_str}Successfully learned lore: " + choiceText));
                 TORQuestHelper.GetCurrentActiveIfExists<SpecializeLoreQuest>()?.CompleteQuestWithSuccess();
             }
             InformationManager.HideInquiry();
