@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -92,19 +92,19 @@ namespace TOR_Core.Quests
                 }
             }
 
-            public override TextObject IssueQuestSolutionAcceptByPlayer => new TextObject("{=tor_quest_hunt_cultist_quest_accept_player_str}Consider it done.");
+            public override TextObject IssueQuestSolutionAcceptByPlayer => new TextObject("{=tor_quest_hunt_cultist_accept_player_str}Consider it done.");
 
             public override bool IsThereAlternativeSolution => false;
 
             public override bool IsThereLordSolution => false;
 
-            public override TextObject Title => new TextObject("{=tor_quest_hunt_cultist_quest_title_str}A cultist in our midst");
+            public override TextObject Title => new TextObject("{=tor_quest_hunt_cultist_title_str}A cultist in our midst");
 
             public override TextObject Description
             {
                 get
                 {
-                    TextObject textObject = new TextObject("{=tor_quest_hunt_cultist_quest_description_str}Travel to target settlement and root out any cultist who may be hiding there.", null);
+                    TextObject textObject = new TextObject("{=tor_quest_hunt_cultist_description_str}Travel to target settlement and root out any cultist who may be hiding there.", null);
                     textObject.SetTextVariable("TARGET_SETTLEMENT", _targetSettlement.EncyclopediaLinkWithName);
                     return textObject;
                 }
@@ -177,8 +177,8 @@ namespace TOR_Core.Quests
 
             protected override void SetDialogs()
             {
-                OfferDialogFlow = DialogFlow.CreateDialogFlow("issue_classic_quest_start", 100).NpcLine(new TextObject("{=tor_quest_hunt_cultist_quest_offer_dialog_str}Excellent. Do not underestimate the ruinous powers, unwavering vigilance is required on your quest!", null), null, null).Condition(() => Hero.OneToOneConversationHero == QuestGiver).Consequence(OnQuestAccepted).CloseDialog();
-                DiscussDialogFlow = DialogFlow.CreateDialogFlow("quest_discuss", 100).NpcLine(new TextObject("{=tor_quest_hunt_cultist_quest_discuss_dialog_str}It was good doing business with you.", null), null, null).Condition(() => Hero.OneToOneConversationHero == QuestGiver).CloseDialog();
+                OfferDialogFlow = DialogFlow.CreateDialogFlow("issue_classic_quest_start", 100).NpcLine(new TextObject("{=tor_quest_hunt_cultist_offer_dialog_str}Excellent. Do not underestimate the ruinous powers, unwavering vigilance is required on your quest!", null), null, null).Condition(() => Hero.OneToOneConversationHero == QuestGiver).Consequence(OnQuestAccepted).CloseDialog();
+                DiscussDialogFlow = DialogFlow.CreateDialogFlow("quest_discuss", 100).NpcLine(new TextObject("{=tor_quest_hunt_cultist_discuss_dialog_str}It was good doing business with you.", null), null, null).Condition(() => Hero.OneToOneConversationHero == QuestGiver).CloseDialog();
                 Campaign.Current.ConversationManager.AddDialogFlow(DialogFlow.CreateDialogFlow("start", 199).NpcLine("{=khorne_cultist_mission}This vessel is mine. Don't interfere with my plans!")
                     .Condition(() => Mission.Current != null && Mission.Current.SceneName == "TOR_cultist_lair_001")
                     .PlayerLine("{=tor_quest_hunt_cultist_quest_prepare_to_die_str}Prepare to die!")
@@ -187,7 +187,7 @@ namespace TOR_Core.Quests
 
             protected override void OnTimedOut()
             {
-                AddLog(new TextObject("{=tor_quest_hunt_cultist_quest_out_of_time_log_str}You failed to complete the investigation in time. Any potential cultists are surely in the wind now."));
+                AddLog(new TextObject("{=tor_quest_hunt_cultist_out_of_time_log_str}You failed to complete the investigation in time. Any potential cultists are surely in the wind now."));
             }
 
             protected override void RegisterEvents()
