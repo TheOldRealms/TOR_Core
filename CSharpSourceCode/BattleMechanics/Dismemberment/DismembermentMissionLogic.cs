@@ -37,6 +37,8 @@ namespace TOR_Core.BattleMechanics.Dismemberment
         private int _index;
         private bool _fullyInstantiated;
 
+        private int _timeSpeedRequestID=11111;
+
         public override void AfterStart()
         {
             _pooledDismemberedLimbs = new GameEntity[poolSize][];
@@ -111,7 +113,7 @@ namespace TOR_Core.BattleMechanics.Dismemberment
         {
             if (slowMotionEndTime > 0 && Mission.CurrentTime >= slowMotionEndTime)
             {
-                Mission.Current.Scene.TimeSpeed *= 2;
+                Mission.Current.RemoveTimeSpeedRequest (_timeSpeedRequestID);
             }
 
             /*objectPos = _pooledDismemberedLimbs[0][0].GlobalPosition;
@@ -236,7 +238,8 @@ namespace TOR_Core.BattleMechanics.Dismemberment
         private void EnableSlowMotion()
         {
             slowMotionEndTime = Mission.CurrentTime + 0.5f;
-            Mission.Current.Scene.TimeSpeed *= 0.5f;
+            var timeRequest = new Mission.TimeSpeedRequest (0.50f,_timeSpeedRequestID);
+            Mission.Current.AddTimeSpeedRequest (timeRequest);
         }
 
         private bool ShouldBeDismembered(Agent attacker, Agent victim, Blow blow)

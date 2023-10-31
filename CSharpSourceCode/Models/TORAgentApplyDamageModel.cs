@@ -80,7 +80,7 @@ namespace TOR_Core.Models
                     {
                         var choices = Hero.MainHero.GetAllCareerChoices();
 
-                        if (choices.Contains("MartiallePassive4") || choices.Contains("AvatarOfDeathPassive4"))
+                        if (choices.Contains("MartiallePassive4") || choices.Contains("NightRiderPassive4"))
                         {
                             weaponComponentData.WeaponFlags |= WeaponFlags.BonusAgainstShield;
                         }

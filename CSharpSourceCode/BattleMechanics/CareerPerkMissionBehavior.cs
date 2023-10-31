@@ -3,8 +3,10 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.TwoDimension;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics
 {
@@ -29,7 +31,27 @@ namespace TOR_Core.BattleMechanics
                         playerHero.AddWindsOfMagic(value);
                     }
                 }
+
+                if (choices.Contains ("AvatarOfDeathPassive4"))
+                {
+                    var choice = TORCareerChoices.GetChoice("AvatarOfDeathPassive4");
+
+                    if (choice != null)
+                    {
+                        var threshold = 500;
+                        var damage = blow.InflictedDamage - threshold;
+                        if (damage >= 0)
+                        {
+                            var bonus =  Mathf.Clamp  (damage / 100,0, 5);
+                            affectorAgent.Heal (bonus);
+                       
+                        }
+                        
+                    }
+                }
             }
+            
+            
 
             if (affectorAgent.IsMainAgent || affectorAgent.GetOriginMobileParty() == MobileParty.MainParty)
             {

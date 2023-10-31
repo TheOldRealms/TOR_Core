@@ -29,6 +29,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _masterOfDead;
         //Blood Knight
         private CareerChoiceGroupObject _peerlessWarrior;
+        private CareerChoiceGroupObject _nightRider;
         private CareerChoiceGroupObject _bladeMaster;
         private CareerChoiceGroupObject _doomRider;
         private CareerChoiceGroupObject _controlledHunger;
@@ -81,6 +82,7 @@ namespace TOR_Core.CharacterDevelopment
             _masterOfDead = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("MasterOfDead"));
             
             _peerlessWarrior = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("PeerlessWarrior"));
+            _nightRider = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("NightRider"));
             _bladeMaster = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("BladeMaster"));
             _doomRider = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("DoomRider"));
             _controlledHunger = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("ControlledHunger"));
@@ -185,6 +187,12 @@ namespace TOR_Core.CharacterDevelopment
                 text = string.Empty;
                 return true;
             });
+            _nightRider.Initialize("{=night_rider_choice_group_str}Night Rider", TORCareers.BloodKnight, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            
             _bladeMaster.Initialize("{=blade_master_choice_group_str}Blade Master", TORCareers.BloodKnight, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";

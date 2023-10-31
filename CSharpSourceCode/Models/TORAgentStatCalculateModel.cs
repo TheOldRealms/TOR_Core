@@ -179,6 +179,13 @@ namespace TOR_Core.Models
                                 if(choice.Passive!=null)
                                     resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
                             }
+                            
+                            if ((skill == DefaultSkills.OneHanded||skill == DefaultSkills.TwoHanded||skill == DefaultSkills.Polearm)&& choices.Contains("NightRider2") && (agent.Character.IsUndead()||agent.Character.IsVampire()))
+                            {
+                                var choice = TORCareerChoices.GetChoice("NightRider2");
+                                if(choice.Passive!=null)
+                                    resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                            }
                         }
                     }
                 }
