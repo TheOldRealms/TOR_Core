@@ -22,8 +22,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         public override string ToString() => Name.ToString();
 
         public CareerChoiceGroupObject(string stringId) : base(stringId) { }
-
-        public void Initialize(string name, CareerObject ownerCareer, int tier, ConditionDelegate conditionDelegate, UnlockDelegate unlockDelegate=null)
+        
+        
+        public void Initialize(string name,CareerObject ownerCareer, int tier, ConditionDelegate conditionDelegate, UnlockDelegate unlockDelegate=null)
         {
             base.Initialize(new TextObject(name), new TextObject("Choice group for " + name));
             OwnerCareer = ownerCareer;
@@ -32,6 +33,22 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             _unlockDelegate = unlockDelegate;
             OwnerCareer.ChoiceGroups.Add(this);
             AfterInitialized();
+        }
+
+        public void Initialize(string name, CareerObject[] ownerCareers, int tier, ConditionDelegate conditionDelegate, UnlockDelegate unlockDelegate=null)
+        {
+            if (ownerCareers.Length < 2)
+            {
+                Initialize (name, ownerCareers[0], tier, conditionDelegate, unlockDelegate);
+            }
+            else
+            {
+                foreach (var career in ownerCareers)
+                {
+                    Initialize(name,career,tier,conditionDelegate,unlockDelegate);
+                }
+            }
+            
         }
 
         public bool IsActiveForHero(Hero hero)

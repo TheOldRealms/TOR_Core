@@ -56,6 +56,8 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _vividVisions;
         private CareerChoiceGroupObject _justCause;
         private CareerChoiceGroupObject _secretsOfTheGrail;
+        
+        private CareerChoiceGroupObject _blackGrailVow;
 
 
         public TORCareerChoiceGroups()
@@ -110,6 +112,7 @@ namespace TOR_Core.CharacterDevelopment
             _justCause = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("JustCause")); 
             _secretsOfTheGrail = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("SecretsOfTheGrail"));
             
+            _blackGrailVow = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("BlackGrailVow"));
         }
 
         private void InitializeAll()
@@ -253,36 +256,46 @@ namespace TOR_Core.CharacterDevelopment
             
             //Grail Knight
             
-            _errantryWar.Initialize("{=errantry_war_choice_group_str}Errantry War", TORCareers.GrailKnight, 1, (Hero hero, out string text) =>
+            _errantryWar.Initialize("{=errantry_war_choice_group_str}Errantry War", new [] {TORCareers.GrailKnight,TORCareers.BlackGrailKnight}, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _enhancedHorseCombat.Initialize("{=enhanced_horse_combat_choice_group_str}Enhanced Horse Combat", TORCareers.GrailKnight, 1, (Hero hero, out string text) =>
+            _enhancedHorseCombat.Initialize("{=enhanced_horse_combat_choice_group_str}Enhanced Horse Combat", new [] {TORCareers.GrailKnight,TORCareers.BlackGrailKnight}, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _questingVow.Initialize("{=questing_vow_choice_group_str}Questing Vow", TORCareers.GrailKnight, 2, (Hero hero, out string text) =>
+            _questingVow.Initialize("{=questing_vow_choice_group_str}Questing Vow", new [] {TORCareers.GrailKnight,TORCareers.BlackGrailKnight}, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _monsterSlayer.Initialize("{=monster_slayer_choice_group_str}Monster Slayer", TORCareers.GrailKnight, 2, (Hero hero, out string text) =>
+            _monsterSlayer.Initialize("{=monster_slayer_choice_group_str}Monster Slayer", new [] {TORCareers.GrailKnight,TORCareers.BlackGrailKnight}, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _masterHorseman.Initialize("{=master_horseman_choice_group_str}Master Horseman", TORCareers.GrailKnight, 2, (Hero hero, out string text) =>
+            _masterHorseman.Initialize("{=master_horseman_choice_group_str}Master Horseman", new [] {TORCareers.GrailKnight,TORCareers.BlackGrailKnight}, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _grailVow.Initialize("{=grail_vow_choice_group_str}Grail Vow", TORCareers.GrailKnight, 3, (Hero hero, out string text) =>
+            _grailVow.Initialize("{=grail_vow_choice_group_str}Grail Vow",TORCareers.GrailKnight,
+            3, (Hero hero, out string text)  =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
+            
+            // Black Grail Knight
+            
+            _blackGrailVow.Initialize("{=grail_vow_choice_group_str}Black Grail Vow", TORCareers.BlackGrailKnight, 3, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            
             
             //Grail Damsel
             

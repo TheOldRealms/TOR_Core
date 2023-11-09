@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
@@ -327,6 +327,19 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _grailVowPassive2.Initialize(CareerID, "{=grail_vow_passive2_str}20% extra holy damage for Battle pilgrim troops.", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
             _grailVowPassive3.Initialize(CareerID, "{=grail_vow_passive3_str}20% extra melee holy damage.", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 20), AttackTypeMask.Melee));
             _grailVowPassive4.Initialize(CareerID, "{=grail_vow_passive4_str}Gain 15% Ward save.", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.All));
+            
+            //Living Saint
+            // 40+ Hitpoints
+            
+            // Grail Pilgrims upgrade. Yeoman can be upgraded to grail Pilgrims
+            // kills of anything else than bretonnes will increase faith skill based on tier of the troop
+            //Trinkets gain a second use
+            // couched lance kills reduce career ability charge cooldown.
+            // ultimate ability affects nearby allied Knights. Ability scales with Faith.
+            
+            
+            //grail vow. Heals player for 5 HP per second during Knightly Charge and adds 20% extra Holy Damage.
+            
         }
     }
 }

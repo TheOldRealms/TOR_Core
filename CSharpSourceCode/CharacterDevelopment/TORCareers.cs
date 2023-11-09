@@ -22,6 +22,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerObject _warriorPriest;
         private CareerObject _bloodKnight;
         private CareerObject _mercenary;
+        private CareerObject _blackGrailKnight;
         
         public static CareerObject GrailDamsel=> Instance._grailDamsel;
         public static CareerObject GrailKnight => Instance._grailKnight;
@@ -30,10 +31,14 @@ namespace TOR_Core.CharacterDevelopment
         public static CareerObject Mercenary => Instance._mercenary;
         public static CareerObject BloodKnight => Instance._bloodKnight;
 
+        public static CareerObject BlackGrailKnight => Instance._blackGrailKnight;
+
         private List<CareerObject> _allCareers = new List<CareerObject>();
         private MBReadOnlyList<CareerObject> _readonlyCareers;
-       
+        
+
         public static MBReadOnlyList<CareerObject> All => Instance._readonlyCareers;
+        
 
         public TORCareers()
         {
@@ -52,12 +57,15 @@ namespace TOR_Core.CharacterDevelopment
             _bloodKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("BloodKnight"));
             _mercenary = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Mercenary"));
             
+            _blackGrailKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("BlackGrailKnight"));
+            
             _allCareers.Add(_grailKnight);
             _allCareers.Add(_warriorPriest);
             _allCareers.Add(_minorVampire);
             _allCareers.Add(_bloodKnight);
             _allCareers.Add(_mercenary);
             _allCareers.Add(_grailDamsel);
+            _allCareers.Add (_blackGrailKnight);
         }
 
         private void InitializeAll()
@@ -72,6 +80,8 @@ namespace TOR_Core.CharacterDevelopment
             }, "RighteousFury", ChargeType.DamageTaken, 30);
             
             _mercenary.Initialize("Mercenary", null, "");
+            
+            _blackGrailKnight.Initialize("BlackGrailKnight", null, "");
         }
     }
 }

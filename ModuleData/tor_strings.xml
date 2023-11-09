@@ -756,6 +756,9 @@
   <string id="career_choicegroup2_name.GrailDamsel" text="{=career_choicegroup2_grail_damsel_str}Grail Damsel" />
   <string id="career_choicegroup3_name.GrailDamsel" text="{=career_choicegroup3_grail_damsel_str}Prophetess" />
   
+  <string id="career_choicegroup1_name.BlackGrailKnight" text="{=career_choicegroup1_grail_knight_str}Dark Knight Errant" />
+  <string id="career_choicegroup2_name.BlackGrailKnight" text="{=career_choicegroup2_grail_knight_str}Dark Questing Knight" />
+  <string id="career_choicegroup3_name.BlackGrailKnight" text="{=career_choicegroup3_grail_knight_str}Black Grail Knight" />
   
   <!--TOR Damage type related !-->
   <string id="tor_damagetype.Invalid" text="{=tor_damagetype_invalid_str}Invalid"/>
@@ -771,6 +774,8 @@
   <string id="career_description.MinorVampire" text="{=career_description_minorvampire_str}Known and feared by many names, Vampires are the night's dark master. Nighly anyone be they Man or Beast, Holy or Daemonic can face one and survive. All Vampires strive to be the only masters of their unlife, free from any obligations to religions or masters. This egomaniacal drive is what fuels them to greater and greater ambitions, so that one day they may be lord of all they observe." />
   <string id="career_description.Mercenary" text="{=career_description_mercenary_str}To be a Man in the 25th century is to be one of thousands. The Old World finds itself on the precipice of destruction and turmoil, of chaos and death. No one in this age can be weak; some use the times to their advantage and turn warfare into wealth, combat into glory and tragedy into destiny. Mercenary they may call you, whatever the name no one will control your fate." />
   <string id="career_description.GrailKnight" text="{=career_description_grailknight_str}To be a knight of Bretonnia is to strive for the blessing of the Lady and her holy grail. Any man deemed worthy to sup from her chalice becomes a holy warrior honored and respected across all of Bretonnia and yet farther. The road to that goal is difficult, so much so that most knights fail to accomplish despite all sharing the same dream." />
+  <string id="career_description.BlackGrailKnight" text="{=career_description_grailknight_str}Less ass kicks for Piero, since the black grail knight is a derivative of the grail knight" />
+  
   <string id="career_description.GrailDamsel" text="{=career_description_graildamsel_str}Damsels are sought out as children by the Fey Enchantress for their latent magical potential. Taken away from their families they are raised in secret to be potent guardians of fair Bretonnia. Upon completion of their training they embark out into the land, coming to the aid of the people and influencing knights in order to fulfill their martial potential." />
 
 
