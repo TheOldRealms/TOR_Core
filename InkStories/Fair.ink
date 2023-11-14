@@ -33,7 +33,7 @@ Merchants beckon, their eyes alight with mischief, hawking horses at a discount 
     * [Continue your journey through the woods.]->Leave
 
 ===HorseStalls===
-The fair's heart beats strongest at the horse market. Proud stallions prance, their eyes fierce and wild. One horse, in particular, captures your attention. It has a sleek, ebony coat that glistens in the sunlight, and its eyes seem to hold a knowing glint. 
+The fair's heart beats strongest at the horse market. Proud stallions prance, their eyes fierce and wild. One horse, in particular, captures your attention. It has a sleek, ebony coat that glistens in the sunlight, and its eyes seem to hold a knowing glint. #STR_HorseStalls1
     ->choices
 
     =choices
@@ -42,7 +42,7 @@ The fair's heart beats strongest at the horse market. Proud stallions prance, th
     * [Return to the fair's heart.]->Start.choices
 
 ===BuyHorse===
-{HasEnoughGold(HorsePrice): You strike a deal with the merchant. You exchange coins for a sturdy saddle and reins. With a surge of anticipation, you mount the horse. The connection between you is immediate, the horse seems to respond to your touch with trust and eagerness. {GiveGold(-HorsePrice)} | You don't have enough gold.}
+{HasEnoughGold(HorsePrice): You strike a deal with the merchant. You exchange coins for a sturdy saddle and reins. With a surge of anticipation, you mount the horse. The connection between you is immediate, the horse seems to respond to your touch with trust and eagerness. {GiveGold(-HorsePrice)} | You don't have enough gold. #STR_BuyHorse1NOTENOUGHGOLD} #STR_BuyHorse1
 
 * [Return to the revelry]->Start.choices
 

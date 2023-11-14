@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
   <tags>
     <tag language="Русский" />
@@ -740,6 +740,8 @@
   <string id="inky_fair_start_c3" text="Test RU Choice 4." />
   <string id="inky_fair_start_c4" text="Test RU Choice 5." />
   
+  <string id="inky_fair_strid_buyhorse1" text="Test Buy Horse" />
+  <string id="inky_fair_strid_buyhorse_not_enough_gold" text="Test Horse NOT ENOUGH MONEY" />
   <string id="tor_skill_faith_str" text="Test RU Faith" />
   <string id="tor_skills_gun_accuracy_str" text="Test RU Accuracy" />
    <string id="tor_attribute_discipline_abbreviation_str" text="GER" />

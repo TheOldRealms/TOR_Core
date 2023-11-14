@@ -791,5 +791,6 @@
 	<string id="inky_Fair.STR_Start1" text="{=inky_fair_start1_str}" />
 	<string id="inky_Fair.STR_Start2" text="{=inky_fair_start2_str}" />
 	<string id="inky_Fair.STR_Leave1" text="{=inky_fair_strid_leave1}" />
-	
-</strings>
+	<string id="inky_Fair.STR_BuyHorse1" text="{=inky_fair_strid_buyhorse1}" />
+	<string id="inky_Fair.STR_BuyHorse1NOTENOUGHGOLD" text="{=inky_fair_strid_buyhorse_not_enough_gold}" />
+</strings> 
