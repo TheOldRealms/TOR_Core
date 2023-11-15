@@ -787,10 +787,34 @@
 	<string id="inky_continue" text="{inky_continue_str}" />
 	<string id="inky_end" text="{inky_end_str}" />
 	
+	<!--Ink !-->
+	<!--Battlefield !-->
+	<string id="inky_Battlefield.Title" text="{=inky_battlefield_strid_title}" />
+	<string id="inky_Battlefield.STR_Start1" text="{=inky_battlefield_start1_str}" />
+	<string id="inky_Battlefield.STR_Start2" text="{=inky_battlefield_start1_str}" />
+	<string id="inky_Battlefield.STR_Start3" text="{=inky_battlefield_start1_str}" />
+	
+	<string id="inky_Battlefield.STR_SearchForSurvivors1" text="{=inky_battlefield_search_for_survivors_1_str}" />
+	<string id="inky_Battlefield.STR_SearchForSurvivors2" text="{=inky_battlefield_search_for_survivors_2_str}" />
+	
+	<string id="inky_Battlefield.STR_UseGhyranMagic1" text="{=inky_battlefield_use_ghyranmagic_1_str}" />
+	<string id="inky_Battlefield.STR_UseGhyranMagic2" text="{=inky_battlefield_use_ghyranmagic_2_str}" />
+
+    <string id="inky_Battlefield.STR_HelpButDie1" text="{=inky_battlefield_help_but_die_1_str}" />
+    <string id="inky_Battlefield.STR_HelpButDie2" text="{=inky_battlefield_help_but_die_2_str}" />
+	
+	<string id="inky_Battlefield.STR_PayRespects1" text="{=inky_battlefield_pay_respect_1_str}" />
+	<string id="inky_Battlefield.STR_PayRespects2" text="{=inky_battlefield_pay_respect_2_str}" />
+	
+	<string id="inky_Battlefield.STR_ContinueOn1" text="{=inky_battlefield_continue_on_1_str}" />
+	<string id="inky_Battlefield.STR_ContinueOn2" text="{=inky_battlefield_continue_on_2_str}" />
+	 #STR_ContinueOn1
+	 #STR_ContinueOn2
+	<!--Fair !-->
 	<string id="inky_Fair.Title" text="{=inky_fair_strid_title}" />
 	<string id="inky_Fair.STR_Start1" text="{=inky_fair_start1_str}" />
 	<string id="inky_Fair.STR_Start2" text="{=inky_fair_start2_str}" />
-	<string id="inky_Fair.STR_Leave1" text="{=inky_fair_strid_leave1}" />
-	<string id="inky_Fair.STR_BuyHorse1" text="{=inky_fair_strid_buyhorse1}" />
+	<string id="inky_Fair.STR_Leave1" text="{=inky_fair_leave1_str}" />
+	<string id="inky_Fair.STR_BuyHorse1" text="{=inky_fair_strid_buy_horse_1_str}" />
 	<string id="inky_Fair.STR_BuyHorse1NOTENOUGHGOLD" text="{=inky_fair_strid_buyhorse_not_enough_gold}" />
 </strings> 

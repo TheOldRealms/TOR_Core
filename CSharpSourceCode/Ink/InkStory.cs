@@ -141,6 +141,7 @@ namespace TOR_Core.Ink
                         if (!overrideText.ToString().IsEmpty())
                         {
                             line = overrideText.ToString();
+                            return line;
                         }
                     }
                 }
