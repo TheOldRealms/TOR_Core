@@ -112,14 +112,15 @@ INCLUDE include.ink
 -> Start
 
 ===Start===
-    As your party is travelling along you come across a cabin in the woods.
+    As your party is travelling along you come across a cabin in the woods. #STR_Start1
     
     *[Approach the cabin]->Approach
     *[Go on your way (Leave)]You decide it is better to move on for now.->END
     
 ===Approach===
 
-As you approach the cabin you can see that it is heavily boarded up. The only door on the cabin seems to be locked tight. As you examine the door you see that the door is {DoorText} and that the lock on it is {LockText}.->choice1
+As you approach the cabin you can see that it is heavily boarded up. The only door on the cabin seems to be locked tight. As you examine the door you see that the door is {DoorText} and that the lock on it is {LockText}. #STR_Approach1
+->choice1  
 
     =choice1
     What will your party do?

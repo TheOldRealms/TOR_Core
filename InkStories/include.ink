@@ -46,15 +46,24 @@ Possible school (lore) of magic names (case sensitive!)
 
 ===function limit100(number)===
     ~ return "{number>100:100|{number}}"
+    
+===function get_player_skill_chance(skillName, skillLevelForCertainty)===
+    ~ return limit100(INT(((GetPlayerSkillValue(skillName) / skillLevelForCertainty) * 100)))
+
 
 ===function print_player_skill_chance(skillName, skillLevelForCertainty)===
-    ~ return "({skillName} check - success chance " + limit100(INT(((GetPlayerSkillValue(skillName) / skillLevelForCertainty) * 100))) + "%)"
+    ~ SetPlayerSkillChance(skillName, skillLevelForCertainty)
+    ~ return "({skillName} check - success chance " + get_player_skill_chance(skillName,skillLevelForCertainty) + "%)"
 
 ===function perform_player_skill_check(skillName, skillLevelToCheckAgainst)===
     ~ return GetPlayerSkillValue(skillName) >= RANDOM(1,skillLevelToCheckAgainst)
 
+===function get_party_skill_chance(skillName, skillLevelForCertainty)===
+    ~ return limit100(INT(((GetPartySkillValue(skillName) / skillLevelForCertainty) * 100)))
+    
 ===function print_party_skill_chance(skillName, skillLevelForCertainty)===
-    ~ return "({skillName} check - success chance " + limit100(INT(((GetPartySkillValue(skillName) / skillLevelForCertainty) * 100))) + "%)"
+    ~ SetPartySkillChance(skillName, skillLevelForCertainty)
+    ~ return "({skillName} check - success chance " + get_player_skill_chance(skillName,skillLevelForCertainty) + "%)"
 
 ===function perform_party_skill_check(skillName, skillLevelToCheckAgainst)===
     ~ return GetPartySkillValue(skillName) >= RANDOM(1,skillLevelToCheckAgainst)
@@ -73,6 +82,15 @@ Possible school (lore) of magic names (case sensitive!)
 
 ===function came_from(-> x)===
     ~ return TURNS_SINCE(x) == 0
+    
+    
+EXTERNAL SetPlayerSkillChance(skillname, skillLevelForCertainty)
+===function SetPlayerSkillChance(skillName, skillLevelForCertainty)===
+    ~ return ""
+    
+EXTERNAL SetPartySkillChance(skillname, skillLevelForCertainty)
+===function SetPartySkillChance(skillName, skillLevelForCertainty)===
+    ~ return ""
 
 //Gets the current skill value of the player
 //Takes the skill's name as argument

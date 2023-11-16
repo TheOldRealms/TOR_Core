@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HarmonyLib;
+using Helpers;
 using Ink;
 using Ink.Runtime;
 using psai.net;
@@ -20,6 +21,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
+using TaleWorlds.InputSystem;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
@@ -29,6 +31,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Missions;
 using TOR_Core.Utilities;
+using Object = Ink.Runtime.Object;
 
 namespace TOR_Core.Ink
 {
@@ -70,7 +73,62 @@ namespace TOR_Core.Ink
                 {
                     Cooldown = 300;
                 }
+
+             
             }
+        }
+
+        public void InitVariableTranslations()
+        {
+            if (_story.variablesState.Any())
+            {
+                var variables = _story.state.variablesState.ToList();
+                foreach (var variable in variables)
+                { 
+                    var o = _story.state.variablesState.GetVariableWithName (variable);
+                    var id = "inky_" + this.StringId;
+                    var translatedtext = new TextObject (o.ToString());
+                    var variableText = variable + "_" + translatedtext.ToString();
+                    var text = new TextObject();
+                    if(Campaign.Current==null) return;
+                    
+                    if (GameTexts.TryGetText (o.ToString(), out text))
+                    {
+                        _story.state.variablesState[variable]= text.ToString() ;
+                    }
+
+                    if(GameTexts.TryGetText (id,out text,variableText))
+                    {
+                        GameTexts.SetVariable ("inky_"+variable,text);
+                    }
+
+                    /*if (variable.Contains ("CheckChance"))
+                    {
+                        var skillName = variable.Replace ("CheckChance", "");
+
+                        if (skillName.Contains (DefaultSkills.OneHanded.ToString()))
+                        {
+                            GameTexts.SetVariable ("inky_"+DefaultSkills.OneHanded.ToString(),o.ToString());
+                            GameTexts.SetVariable ("inky_"+variable,o.ToString());
+                        }
+                            skillName == DefaultSkills.TwoHanded.ToString()||
+                            skillName == DefaultSkills.Polearm.ToString()||
+                            )
+                        {
+                            
+                        }
+
+                        DefaultSkills.Trade.ToString()
+                        
+                    }*/
+                   
+                   
+
+                }
+                
+            }
+            
+
         }
 
         public void CleanUp()
@@ -195,7 +253,18 @@ namespace TOR_Core.Ink
         {
             if (_story.variablesState.GlobalVariableExistsWithName(varName))
             {
-                return _story.variablesState[varName].ToString();
+                TextObject overrideText = new TextObject();
+                var variableState = _story.variablesState[varName].ToString();
+                var combinedVariableID = varName+"_"+variableState;
+                if (GameTexts.TryGetText ("inky_" + StringId, out overrideText, combinedVariableID))
+                {
+                    if (!overrideText.ToString().IsEmpty())
+                    {
+                        return overrideText.ToString();
+                    }
+                }
+               
+                return variableState;
             }
             else return varName + " not found";
         }
@@ -211,6 +280,14 @@ namespace TOR_Core.Ink
         public void Reset()
         {
             _story.ResetState();
+            if(!_story.TryGetExternalFunction ("SetPlayerSkillChance", out _))
+            {
+                _story.BindExternalFunction<string,string> ("SetPlayerSkillChance", SetPlayerSkillChance, false);
+            }
+            if(!_story.TryGetExternalFunction ("SetPartySkillChance", out _))
+            {
+                _story.BindExternalFunction<string,string> ("SetPartySkillChance", SetPartySkillChance, false);
+            }
             if(!_story.TryGetExternalFunction("GiveWinds", out _))
             {
                 _story.BindExternalFunction("GiveWinds", (int number) => Hero.MainHero.AddWindsOfMagic(number), false);
@@ -343,6 +420,23 @@ namespace TOR_Core.Ink
             {
                 _story.BindExternalFunction("ResetRaiderSites", ResetRaiderSites, false);
             }
+        }
+
+        private void SetPlayerSkillChance(string skillname, string skillChance)
+        {
+        
+            var id = "inky_Party_" + skillname + "_CheckChance";
+            GameTexts.SetVariable (id,skillChance);
+        }
+        private void SetPartySkillChance(string skillname, string skillChance)
+        {
+        
+            var idChance = "inky_Party_skill_CheckChance";
+            
+            GameTexts.SetVariable (idChance,skillChance);
+            GameTexts.SetVariable ("inky_skill_check_skill_name",skillname);
+            var skillCheckResultText = GameTexts.FindText ("inky_party_skill_check_result_template") ;
+            GameTexts.SetVariable("inky_party_skill_check_result_"+skillname,skillCheckResultText.ToString());
         }
 
         private void ResetRaiderSites()

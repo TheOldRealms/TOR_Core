@@ -758,15 +758,47 @@
   <string id= "tor_menu_shader_cache_popup_reject" text="niet" />
   
   <string id= "tor_ungor_raiders_str" text="russian Ungors" />
+  
+  <string id= "tor_ui_winds_of_magic_title_str" text="Vodka" />
+  <string id= "tor_ui_winds_of_magic_recharge_rate_str" text="refill rate" />
+  <string id= "enchant_weapon_spell_str" text="russian enchant weapon translation" />
+  <string id= "enchant_weapon_description_str" text="russian enchant weapon description" />
+  
+    <string id= "inky_party_skill_check_template_str" text="RU ({inky_skill_check_skill_name} check with success chance {inky_Party_skill_CheckChance}%)" />
 
-  
-  
   <string id="tor_perk_miracle_label_str" text="Test RU Miracle." />
   
   <string id="tor_rogue_engineer_name_str" text="Test RU Goswin" />
   
+  <string id="inky_cabin_in_the_woods_locked_lock_text_weak_str" text="Test RU weak" />
+  <string id="inky_cabin_in_the_woods_locked_lock_text_average_str" text="Test RU average" />
+  <string id="inky_cabin_in_the_woods_locked_lock_text_strong_str" text="Test RU strong" />
+  
+    <string id="inky_cabin_in_the_woods_locked_door_text_weak_str" text="Test RU weak" />
+  <string id="inky_cabin_in_the_woods_locked_door_text_average_str" text="Test RU average" />
+  <string id="inky_cabin_in_the_woods_locked_door_text_strong_str" text="Test RU strong" />
+  <string id="inky_cabin_in_the_woods_approach_1_str" text="Test RU As you approach the cabin you can see that it is heavily boarded up. The only door on the cabin seems to be locked tight. As you examine the door you see that the door is {inky_DoorText} and that the lock on it is {inky_LockText}." />
+
+  <string id="inky_cabininthewoodslocked_approach_c0" text="Test RU Choice 1.{inky_party_skill_check_result_Roguery}" />
+  <string id="inky_cabininthewoodslocked_approach_c1" text="Test RU Choice 2.{inky_party_skill_check_result_Engineering}" />
+  <string id="inky_cabininthewoodslocked_approach_c2" text="Test RU Choice 3.{inky_party_skill_check_result_Spellcraft}" />
+  <string id="inky_cabininthewoodslocked_approach_c3" text="Test RU Choice 4.{inky_party_skill_check_result_Roguery}" />
+  <string id="inky_cabininthewoodslocked_approach_c4" text="Test RU Choice 5 (Leave)." />
+
+
   <string id="tor_career_ability_key_str" text="Test RU special move" />
+  <string id="tor_cc_option1_label_str" text="Test RU CC Option" />
+  <string id="tor_cc_options1_text_str" text="Test RU Character Creation Text" />
   
   <string id="careerchoice_description_WarriorPriestRoot" text="Воин-жрец высвобождает гнев Зигмара на 8 секунд, усиливая свои атаки и атаки союзников на 20%. Каждый пункт в навык Веры увеличивает ближний урон на 0.05% и продолжительность на 0.05 секунд. Чтобы способность перезарядилась, нужно получить 50 урона." />
+  
+  
+  
+  <string id="inky_skill_check_result_player_onehanded_str" text="(One Handed check - success chance {inky_player_OneHanded_CheckChance}%)" />
+  <string id="inky_skill_check_result_player_onehanded_str" text="(Two Handed check - success chance {inky_player_TwoHanded_CheckChance}%)" />
+  <string id="inky_skill_check_result_player_polearm_str" text="(Two Handed check - success chance {inky_playerTwoHandedCheckChance}%)" />
+  
+  <string id="inky_skill_check_result_party_roguery_str" text="(Roguery check - success chance {inky_Player_Roguery_CheckChance}%)" />
+  <string id="inky_skill_check_result_player_roguery_str" text="(Roguery check - success chance {inky_Party_Roguery_CheckChance}%)" />
   </strings>
 </base>
