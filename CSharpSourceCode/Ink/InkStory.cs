@@ -382,23 +382,7 @@ namespace TOR_Core.Ink
             }
         }
 
-        private void SetPlayerAttributeChance(string attribute, string attributeChance)
-        {
-            var idChance = "inky_Player_attribute_CheckChance";
-            GameTexts.SetVariable (idChance,attributeChance);
-            GameTexts.SetVariable ("inky_attribute_check_attribute_name",attribute);
-            var attributeCheckResultText = GameTexts.FindText ("inky_player_attribute_check_result_template") ;
-            GameTexts.SetVariable ("inky_player_attribute_skill_check_result_" + attribute, attributeCheckResultText);
-        }
-        
-        private void SetPartyAttributeChance(string attribute, string attributeChance)
-        {
-            var idChance = "inky_Party_attribute_CheckChance";
-            GameTexts.SetVariable (idChance,attributeChance);
-            GameTexts.SetVariable ("inky_attribute_check_attribute_name",attribute);
-            var attributeCheckResultText = GameTexts.FindText ("inky_party_attribute_check_result_template") ;
-            GameTexts.SetVariable ("inky_party_attribute_check_result_" + attribute, attributeCheckResultText);
-        }
+       
 
         private void SetTextVariable(string variableName, string variant)
         {
@@ -420,7 +404,9 @@ namespace TOR_Core.Ink
         
             var idChance = "inky_Player_skill_CheckChance";
             GameTexts.SetVariable (idChance,skillChance);
-            GameTexts.SetVariable ("inky_skill_check_skill_name",skillname);
+
+            var skillText = TORTextHelper.GetTextObjectOfSkillId (skillname);
+            GameTexts.SetVariable ("inky_skill_check_skill_name",skillText);
             var skillCheckResultText = GameTexts.FindText ("inky_player_skill_check_result_template") ;
             
             GameTexts.SetVariable ("inky_player_skill_check_result_"+skillname,skillChance);
@@ -431,9 +417,31 @@ namespace TOR_Core.Ink
             var idChance = "inky_Party_skill_CheckChance";
             
             GameTexts.SetVariable (idChance,skillChance);
-            GameTexts.SetVariable ("inky_skill_check_skill_name",skillname);
+            
+            var skillText = TORTextHelper.GetTextObjectOfSkillId (skillname);
+            GameTexts.SetVariable ("inky_skill_check_skill_name",skillText);
             var skillCheckResultText = GameTexts.FindText ("inky_party_skill_check_result_template") ;
             GameTexts.SetVariable("inky_party_skill_check_result_"+skillname,skillCheckResultText.ToString());
+        }
+        
+        private void SetPlayerAttributeChance(string attribute, string attributeChance)
+        {
+            var idChance = "inky_Player_attribute_CheckChance";
+            GameTexts.SetVariable (idChance,attributeChance);
+            var attributeText = TORTextHelper.GetTextObjectOfAttribute (attribute);
+            GameTexts.SetVariable ("inky_attribute_check_attribute_name",attributeText);
+            var attributeCheckResultText = GameTexts.FindText ("inky_player_attribute_check_result_template") ;
+            GameTexts.SetVariable ("inky_player_attribute_skill_check_result_" + attribute, attributeCheckResultText);
+        }
+        
+        private void SetPartyAttributeChance(string attribute, string attributeChance)
+        {
+            var idChance = "inky_Party_attribute_CheckChance";
+            GameTexts.SetVariable (idChance,attributeChance);
+            var attributeText = TORTextHelper.GetTextObjectOfAttribute (attribute);
+            GameTexts.SetVariable ("inky_attribute_check_attribute_name",attributeText);
+            var attributeCheckResultText = GameTexts.FindText ("inky_party_attribute_check_result_template") ;
+            GameTexts.SetVariable ("inky_party_attribute_check_result_" + attribute, attributeCheckResultText);
         }
 
         private void ResetRaiderSites()
