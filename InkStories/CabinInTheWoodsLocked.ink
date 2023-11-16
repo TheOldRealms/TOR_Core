@@ -155,7 +155,8 @@ As you approach the cabin you can see that it is heavily boarded up. The only do
 
 ===Inside===
 
-Your party gets inside the cabin and find that someone or something has stored some supplies here.->choice2
+Your party gets inside the cabin and find that someone or something has stored some supplies here. #STR_Inside1
+->choice2 
 
     =choice2
         *[Take the supplies ({RewardText})]

@@ -833,6 +833,7 @@
 
 	<string id="inky_CabinInTheWoodsLocked.STR_Start1" text="{=inky_cabin_in_the_woods_start_1_str}" />
 	<string id="inky_CabinInTheWoodsLocked.STR_Approach1" text="{=inky_cabin_in_the_woods_approach_1_str}" />
+	<string id="inky_CabinInTheWoodsLocked.#STR_Inside1" text="{=inky_cabin_in_the_woods_inside_1_str}" />
 	
 	<!--Fair !-->
 	<string id="inky_Fair.Title" text="{=inky_fair_strid_title}" />
