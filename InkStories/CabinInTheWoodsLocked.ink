@@ -64,6 +64,8 @@ INCLUDE include.ink
             - LockQuality == 3:
                 ~ LockText = "strong"
         }
+        
+    ~ SetTextVariable("LockText",LockQuality)
             
     VAR DoorQuality = 0
         ~ DoorQuality = RANDOM(1,3)
@@ -81,6 +83,7 @@ INCLUDE include.ink
                 ~ DoorText = "strong"
         }
 
+    ~ SetTextVariable("DoorText",DoorQuality)
     //Reward
         VAR RewardRoll = 0
            ~ RewardRoll = RANDOM(0,2)
@@ -94,6 +97,8 @@ INCLUDE include.ink
                 - RewardRoll == 2:
                     ~ RewardText = "500 gold"
             }
+            
+    ~ SetTextVariable("RewardText",RewardRoll)
             
  //Variable Update: Update any variables before story start
     ~ PartyRogueryCheckText = print_party_skill_chance("Roguery", LockDifficulty)

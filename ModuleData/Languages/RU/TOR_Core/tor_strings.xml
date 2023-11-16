@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
   <tags>
     <tag language="Русский" />
@@ -742,13 +742,14 @@
   
   <string id="inky_fair_strid_buyhorse1" text="Test Buy Horse" />
   <string id="inky_fair_strid_buyhorse_not_enough_gold" text="Test Horse NOT ENOUGH MONEY" />
+  
   <string id="tor_skill_faith_str" text="Test RU Faith" />
   <string id="tor_skills_gun_accuracy_str" text="Test RU Accuracy" />
    <string id="tor_attribute_discipline_abbreviation_str" text="GER" />
   <string id="tor_spellcasting_mode_key_str" text=" test RU key" /> 
   <string id="tor_spellcasting_mode_description_str" text=" test RU description" /> 
   
-  
+  <string id= "tor_menu_enter_game_label_str" text="Test RU enter old world" />
   
   <string id= "tor_menu_enter_game_label_str" text="Test RU enter old world" />
   <string id= "tor_menu_shader_cache_label_str" text="build russian shaders" />
@@ -777,12 +778,17 @@
     <string id="inky_cabin_in_the_woods_locked_door_text_weak_str" text="Test RU weak" />
   <string id="inky_cabin_in_the_woods_locked_door_text_average_str" text="Test RU average" />
   <string id="inky_cabin_in_the_woods_locked_door_text_strong_str" text="Test RU strong" />
+  
+    <string id="inky_cabin_in_the_woods_locked_reward_text_1_str" text="5 grain RU" />
+	<string id="inky_cabin_in_the_woods_locked_reward_text_2_str" text="russian steel 2" />
+	<string id="inky_cabin_in_the_woods_locked_reward_text_3_str" text="500 pesos" />
+	
   <string id="inky_cabin_in_the_woods_approach_1_str" text="Test RU As you approach the cabin you can see that it is heavily boarded up. The only door on the cabin seems to be locked tight. As you examine the door you see that the door is {inky_DoorText} and that the lock on it is {inky_LockText}." />
 
-  <string id="inky_cabininthewoodslocked_approach_c0" text="Test RU Choice 1.{inky_party_skill_check_result_Roguery}" />
-  <string id="inky_cabininthewoodslocked_approach_c1" text="Test RU Choice 2.{inky_party_skill_check_result_Engineering}" />
+  <string id="inky_cabininthewoodslocked_approach_c0" text="Test RU Choice 1. öäü {inky_party_skill_check_result_Roguery}" />
+  <string id="inky_cabininthewoodslocked_approach_c1" text="Test RU Choice 2 ć, ń, ó, ś, ź.{inky_party_skill_check_result_Engineering}" />
   <string id="inky_cabininthewoodslocked_approach_c2" text="Test RU Choice 3.{inky_party_skill_check_result_Spellcraft}" />
-  <string id="inky_cabininthewoodslocked_approach_c3" text="Test RU Choice 4.{inky_party_skill_check_result_Roguery}" />
+  <string id="inky_cabininthewoodslocked_approach_c3" text="Test RU Choice 4.{inky_party_attribute_check_result_Vigor}" />
   <string id="inky_cabininthewoodslocked_approach_c4" text="Test RU Choice 5 (Leave)." />
 
 

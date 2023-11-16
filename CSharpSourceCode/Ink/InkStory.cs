@@ -78,59 +78,6 @@ namespace TOR_Core.Ink
             }
         }
 
-        public void InitVariableTranslations()
-        {
-            if (_story.variablesState.Any())
-            {
-                var variables = _story.state.variablesState.ToList();
-                foreach (var variable in variables)
-                { 
-                    var o = _story.state.variablesState.GetVariableWithName (variable);
-                    var id = "inky_" + this.StringId;
-                    var translatedtext = new TextObject (o.ToString());
-                    var variableText = variable + "_" + translatedtext.ToString();
-                    var text = new TextObject();
-                    if(Campaign.Current==null) return;
-                    
-                    if (GameTexts.TryGetText (o.ToString(), out text))
-                    {
-                        _story.state.variablesState[variable]= text.ToString() ;
-                    }
-
-                    if(GameTexts.TryGetText (id,out text,variableText))
-                    {
-                        GameTexts.SetVariable ("inky_"+variable,text);
-                    }
-
-                    /*if (variable.Contains ("CheckChance"))
-                    {
-                        var skillName = variable.Replace ("CheckChance", "");
-
-                        if (skillName.Contains (DefaultSkills.OneHanded.ToString()))
-                        {
-                            GameTexts.SetVariable ("inky_"+DefaultSkills.OneHanded.ToString(),o.ToString());
-                            GameTexts.SetVariable ("inky_"+variable,o.ToString());
-                        }
-                            skillName == DefaultSkills.TwoHanded.ToString()||
-                            skillName == DefaultSkills.Polearm.ToString()||
-                            )
-                        {
-                            
-                        }
-
-                        DefaultSkills.Trade.ToString()
-                        
-                    }*/
-                   
-                   
-
-                }
-                
-            }
-            
-
-        }
-
         public void CleanUp()
         {
             if(TORAudio.IsPlaying)
@@ -280,6 +227,11 @@ namespace TOR_Core.Ink
         public void Reset()
         {
             _story.ResetState();
+            
+            if(!_story.TryGetExternalFunction ("SetTextVariable", out _))
+            {
+                _story.BindExternalFunction<string,string> ("SetTextVariable", SetTextVariable, false);
+            }
             if(!_story.TryGetExternalFunction ("SetPlayerSkillChance", out _))
             {
                 _story.BindExternalFunction<string,string> ("SetPlayerSkillChance", SetPlayerSkillChance, false);
@@ -287,6 +239,14 @@ namespace TOR_Core.Ink
             if(!_story.TryGetExternalFunction ("SetPartySkillChance", out _))
             {
                 _story.BindExternalFunction<string,string> ("SetPartySkillChance", SetPartySkillChance, false);
+            }
+            if(!_story.TryGetExternalFunction ("SetPlayerAttributeChance", out _))
+            {
+                _story.BindExternalFunction<string,string> ("SetPlayerAttributeChance", SetPlayerAttributeChance, false);
+            }
+            if(!_story.TryGetExternalFunction ("SetPartyAttributeChance", out _))
+            {
+                _story.BindExternalFunction<string,string> ("SetPartyAttributeChance", SetPartyAttributeChance, false);
             }
             if(!_story.TryGetExternalFunction("GiveWinds", out _))
             {
@@ -422,11 +382,48 @@ namespace TOR_Core.Ink
             }
         }
 
+        private void SetPlayerAttributeChance(string attribute, string attributeChance)
+        {
+            var idChance = "inky_Player_attribute_CheckChance";
+            GameTexts.SetVariable (idChance,attributeChance);
+            GameTexts.SetVariable ("inky_attribute_check_attribute_name",attribute);
+            var attributeCheckResultText = GameTexts.FindText ("inky_player_attribute_check_result_template") ;
+            GameTexts.SetVariable ("inky_player_attribute_skill_check_result_" + attribute, attributeCheckResultText);
+        }
+        
+        private void SetPartyAttributeChance(string attribute, string attributeChance)
+        {
+            var idChance = "inky_Party_attribute_CheckChance";
+            GameTexts.SetVariable (idChance,attributeChance);
+            GameTexts.SetVariable ("inky_attribute_check_attribute_name",attribute);
+            var attributeCheckResultText = GameTexts.FindText ("inky_party_attribute_check_result_template") ;
+            GameTexts.SetVariable ("inky_party_attribute_check_result_" + attribute, attributeCheckResultText);
+        }
+
+        private void SetTextVariable(string variableName, string variant)
+        {
+            var textID = "inky_" + StringId;
+            var variable = GetVariable (variableName);
+            var variableVariant = variableName +"_"+ variant;
+
+            if (!GameTexts.TryGetText (textID, out var resultText, variableVariant) && ( resultText==null|| resultText.Value==""))
+            {
+                resultText = new TextObject ("{=!}"+variable);
+            }
+            
+            GameTexts.SetVariable ("inky_"+variableName,resultText);
+            
+        }
+
         private void SetPlayerSkillChance(string skillname, string skillChance)
         {
         
-            var id = "inky_Party_" + skillname + "_CheckChance";
-            GameTexts.SetVariable (id,skillChance);
+            var idChance = "inky_Player_skill_CheckChance";
+            GameTexts.SetVariable (idChance,skillChance);
+            GameTexts.SetVariable ("inky_skill_check_skill_name",skillname);
+            var skillCheckResultText = GameTexts.FindText ("inky_player_skill_check_result_template") ;
+            
+            GameTexts.SetVariable ("inky_player_skill_check_result_"+skillname,skillChance);
         }
         private void SetPartySkillChance(string skillname, string skillChance)
         {

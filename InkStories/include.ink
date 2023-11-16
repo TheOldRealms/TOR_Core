@@ -47,35 +47,36 @@ Possible school (lore) of magic names (case sensitive!)
 ===function limit100(number)===
     ~ return "{number>100:100|{number}}"
     
-===function get_player_skill_chance(skillName, skillLevelForCertainty)===
-    ~ return limit100(INT(((GetPlayerSkillValue(skillName) / skillLevelForCertainty) * 100)))
-
-
+    
 ===function print_player_skill_chance(skillName, skillLevelForCertainty)===
-    ~ SetPlayerSkillChance(skillName, skillLevelForCertainty)
-    ~ return "({skillName} check - success chance " + get_player_skill_chance(skillName,skillLevelForCertainty) + "%)"
+    ~ temp chance = limit100(INT(((GetPlayerSkillValue(skillName) / skillLevelForCertainty) * 100)))
+    ~ SetPlayerSkillChance(skillName, chance)
+    ~ return "({skillName} check - success chance " + chance + "%)"
 
 ===function perform_player_skill_check(skillName, skillLevelToCheckAgainst)===
     ~ return GetPlayerSkillValue(skillName) >= RANDOM(1,skillLevelToCheckAgainst)
-
-===function get_party_skill_chance(skillName, skillLevelForCertainty)===
-    ~ return limit100(INT(((GetPartySkillValue(skillName) / skillLevelForCertainty) * 100)))
     
 ===function print_party_skill_chance(skillName, skillLevelForCertainty)===
-    ~ SetPartySkillChance(skillName, skillLevelForCertainty)
-    ~ return "({skillName} check - success chance " + get_player_skill_chance(skillName,skillLevelForCertainty) + "%)"
+    ~ temp chance = limit100(INT(((GetPartySkillValue(skillName) / skillLevelForCertainty) * 100)))
+    ~ SetPartySkillChance(skillName, chance)
+    ~ return "({skillName} check - success chance " + chance + "%)"
 
 ===function perform_party_skill_check(skillName, skillLevelToCheckAgainst)===
     ~ return GetPartySkillValue(skillName) >= RANDOM(1,skillLevelToCheckAgainst)
 
+    
 ===function print_player_attribute_chance(attributeName, attributeLevelForCertainty)===
-    ~ return "({attributeName} check - success chance " + limit100(INT(((GetPlayerAttributeValue(attributeName) / attributeLevelForCertainty) * 100))) + "%)"
+    ~ temp chance = limit100(INT(((GetPlayerAttributeValue(attributeName) / attributeLevelForCertainty) * 100)))
+    ~ SetPlayerAttributeChance(attributeName, chance)
+    ~ return "({attributeName} check - success chance " + chance + "%)"
 
 ===function perform_player_attribute_check(attributeName, attributeLevelForCertainty)===
     ~ return GetPlayerAttributeValue(attributeName) >= RANDOM(1,attributeLevelForCertainty)
 
 ===function print_party_attribute_chance(attributeName, attributeLevelForCertainty)===
-    ~ return "({attributeName} check - success chance " + limit100(INT(((GetPartyAttributeValue(attributeName) / attributeLevelForCertainty) * 100))) + "%)"
+    ~ temp chance = limit100(INT(((GetPartyAttributeValue(attributeName) / attributeLevelForCertainty) * 100)))
+    ~ SetPartyAttributeChance(attributeName, chance)
+    ~ return "({attributeName} check - success chance " + chance + "%)"
 
 ===function perform_party_attribute_check(attributeName, attributeLevelForCertainty)===
     ~ return GetPartyAttributeValue(attributeName) >= RANDOM(1,attributeLevelForCertainty)
@@ -84,6 +85,10 @@ Possible school (lore) of magic names (case sensitive!)
     ~ return TURNS_SINCE(x) == 0
     
     
+EXTERNAL SetTextVariable(variableName, value)
+===function SetTextVariable(variableName, value)===
+    ~ return ""    
+    
 EXTERNAL SetPlayerSkillChance(skillname, skillLevelForCertainty)
 ===function SetPlayerSkillChance(skillName, skillLevelForCertainty)===
     ~ return ""
@@ -91,6 +96,16 @@ EXTERNAL SetPlayerSkillChance(skillname, skillLevelForCertainty)
 EXTERNAL SetPartySkillChance(skillname, skillLevelForCertainty)
 ===function SetPartySkillChance(skillName, skillLevelForCertainty)===
     ~ return ""
+    
+EXTERNAL SetPlayerAttributeChance(attributeName, attributeLevelForCertainty)
+===function SetPlayerAttributeChance(skillName, skillLevelForCertainty)===
+    ~ return ""
+
+EXTERNAL SetPartyAttributeChance(attributeName, attributeLevelForCertainty)
+===function SetPartyAttributeChance(skillName, skillLevelForCertainty)===
+    ~ return ""
+    
+
 
 //Gets the current skill value of the player
 //Takes the skill's name as argument

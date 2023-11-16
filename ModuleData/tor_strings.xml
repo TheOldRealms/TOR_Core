@@ -789,6 +789,14 @@
 	
 	<!--Ink !-->
 	<string id="inky_party_skill_check_result_template" text ="{=inky_party_skill_check_template_str}({inky_skill_check_skill_name} check with success chance {inky_Party_skill_CheckChance}%)" />
+	<string id="inky_player_skill_check_result_template" text ="{=inky_player_skill_check_template_str}({inky_skill_check_skill_name} check with success chance {inky_Player_skill_CheckChance}%)" />
+	
+	<string id="inky_player_attribute_check_result_template" text ="{=inky_player_attribute_check_template_str}({inky_attribute_check_attribute_name} check with success chance {inky_Player_attribute_CheckChance}%)" />
+	<string id="inky_party_attribute_check_result_template" text ="{=inky_party_attribute_check_template_str}({inky_attribute_check_attribute_name} check with success chance {inky_Party_attribute_CheckChance}%)" />
+	
+	
+	
+	
 	<!--Battlefield !-->
 	<string id="inky_Battlefield.Title" text="{=inky_battlefield_strid_title}" />
 	<string id="inky_Battlefield.STR_Start1" text="{=inky_battlefield_start1_str}" />
@@ -811,15 +819,17 @@
 	<string id="inky_Battlefield.STR_ContinueOn2" text="{=inky_battlefield_continue_on_2_str}" />
 	
 	<!-- Cabin in the Wood!-->
-	<string id="inky_CabinInTheWoodsLocked.DoorText_weak" text="{=inky_cabin_in_the_woods_locked_door_text_weak_str} weak" />
-	<string id="inky_CabinInTheWoodsLocked.DoorText_average" text="{=inky_cabin_in_the_woods_locked_door_text_average_str} average" />
-	<string id="inky_CabinInTheWoodsLocked.DoorText_strong" text="{=inky_cabin_in_the_woods_locked_door_text_strong_str} strong" />
+	<string id="inky_CabinInTheWoodsLocked.DoorText_1" text="{=inky_cabin_in_the_woods_locked_door_text_weak_str} weak" />
+	<string id="inky_CabinInTheWoodsLocked.DoorText_2" text="{=inky_cabin_in_the_woods_locked_door_text_average_str} average" />
+	<string id="inky_CabinInTheWoodsLocked.DoorText_3" text="{=inky_cabin_in_the_woods_locked_door_text_strong_str} strong" />
 	
-	<string id="inky_CabinInTheWoodsLocked.LockText_weak" text="{=inky_cabin_in_the_woods_locked_lock_text_weak_str} weak" />
-	<string id="inky_CabinInTheWoodsLocked.LockText_average" text="{=inky_cabin_in_the_woods_locked_lock_text_average_str} average" />
-	<string id="inky_CabinInTheWoodsLocked.LockText_strong" text="{=inky_cabin_in_the_woods_locked_lock_text_strong_str} strong" />
+	<string id="inky_CabinInTheWoodsLocked.LockText_1" text="{=inky_cabin_in_the_woods_locked_lock_text_weak_str} weak" />
+	<string id="inky_CabinInTheWoodsLocked.LockText_2" text="{=inky_cabin_in_the_woods_locked_lock_text_average_str} average" />
+	<string id="inky_CabinInTheWoodsLocked.LockText_3" text="{=inky_cabin_in_the_woods_locked_lock_text_strong_str} strong" />
 	
-
+	<string id="inky_CabinInTheWoodsLocked.RewardText_1" text="{=inky_cabin_in_the_woods_locked_reward_text_1_str} 5 grain" />
+    <string id="inky_CabinInTheWoodsLocked.RewardText_2" text="{=inky_cabin_in_the_woods_locked_reward_text_2_str}" />
+	<string id="inky_CabinInTheWoodsLocked.RewardText_3" text="{=inky_cabin_in_the_woods_locked_reward_text_3_str}" />
 
 	<string id="inky_CabinInTheWoodsLocked.STR_Start1" text="{=inky_cabin_in_the_woods_start_1_str}" />
 	<string id="inky_CabinInTheWoodsLocked.STR_Approach1" text="{=inky_cabin_in_the_woods_approach_1_str}" />
