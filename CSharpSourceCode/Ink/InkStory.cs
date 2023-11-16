@@ -32,6 +32,7 @@ using TOR_Core.Extensions;
 using TOR_Core.Missions;
 using TOR_Core.Utilities;
 using Object = Ink.Runtime.Object;
+using Path = Ink.Runtime.Path;
 
 namespace TOR_Core.Ink
 {
@@ -234,19 +235,19 @@ namespace TOR_Core.Ink
             }
             if(!_story.TryGetExternalFunction ("SetPlayerSkillChance", out _))
             {
-                _story.BindExternalFunction<string,string> ("SetPlayerSkillChance", SetPlayerSkillChance, false);
+                _story.BindExternalFunction<string,string> ("SetPlayerSkillChance", SetPlayerSkillChance, true);
             }
             if(!_story.TryGetExternalFunction ("SetPartySkillChance", out _))
             {
-                _story.BindExternalFunction<string,string> ("SetPartySkillChance", SetPartySkillChance, false);
+                _story.BindExternalFunction<string,string> ("SetPartySkillChance", SetPartySkillChance, true);
             }
             if(!_story.TryGetExternalFunction ("SetPlayerAttributeChance", out _))
             {
-                _story.BindExternalFunction<string,string> ("SetPlayerAttributeChance", SetPlayerAttributeChance, false);
+                _story.BindExternalFunction<string,string> ("SetPlayerAttributeChance", SetPlayerAttributeChance, true);
             }
             if(!_story.TryGetExternalFunction ("SetPartyAttributeChance", out _))
             {
-                _story.BindExternalFunction<string,string> ("SetPartyAttributeChance", SetPartyAttributeChance, false);
+                _story.BindExternalFunction<string,string> ("SetPartyAttributeChance", SetPartyAttributeChance, true);
             }
             if(!_story.TryGetExternalFunction("GiveWinds", out _))
             {
@@ -736,7 +737,8 @@ namespace TOR_Core.Ink
         public string getChoiceText(Choice choice)
         {
             var choiceLine = "";
-            var choiceID = choice.sourcePath.Split('.').FirstOrDefault() + "_c" + choice.index;
+            var pathExitID = GetPathExitID (choice.targetPath);
+            var choiceID = choice.targetPath.ToString().Split('.').FirstOrDefault() + "_c" + pathExitID;
             var stringId = "{=inky_" + StringId +"_"+ choiceID+"}";
             stringId=stringId.ToLowerInvariant();
             var overrideText = new TextObject (stringId).ToString();
@@ -754,6 +756,12 @@ namespace TOR_Core.Ink
 
             return choiceLine;
 
+        }
+
+        private string GetPathExitID(Path path)
+        {
+            var pathExitID = path.ToString().Split ('.').FirstOrDefault (x => x.StartsWith ("c-"))?.Replace("c-","");
+            return pathExitID;
         }
     }
 }

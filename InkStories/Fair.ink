@@ -42,7 +42,7 @@ The fair's heart beats strongest at the horse market. Proud stallions prance, th
     * [Return to the fair's heart.]->Start.choices
 
 ===BuyHorse===
-{HasEnoughGold(HorsePrice): You strike a deal with the merchant. You exchange coins for a sturdy saddle and reins. With a surge of anticipation, you mount the horse. The connection between you is immediate, the horse seems to respond to your touch with trust and eagerness. {GiveGold(-HorsePrice)} {GiveItem("t2_empire_horse",1)} | You don't have enough gold.}
+{HasEnoughGold(HorsePrice): You strike a deal with the merchant. You exchange coins for a sturdy saddle and reins. With a surge of anticipation, you mount the horse. The connection between you is immediate, the horse seems to respond to your touch with trust and eagerness. {GiveGold(-HorsePrice)} {GiveItem("t2_empire_horse",1)} | You don't have enough gold. #STR_BuyHorse1NOTENOUGHGOLD }  #STR_BuyHorse1
 
 * [Return to the revelry]->Start.choices
 
@@ -50,28 +50,28 @@ The fair's heart beats strongest at the horse market. Proud stallions prance, th
 {perform_player_skill_check("Charm",150): -> success | -> fail}
 
     =success
-    Your words work their magic, and the merchant agrees to lower the price by 50%. The merchant grumbles but respects your negotiating skills.
+    Your words work their magic, and the merchant agrees to lower the price by 50%. The merchant grumbles but respects your negotiating skills. #STR_PersuadeMerchant_Success
     ~HorsePrice = 1000
     ->HorseStalls.choices
 
     =fail
-    Despite your best attempts to haggle, the merchant remains firm on the price.
+    Despite your best attempts to haggle, the merchant remains firm on the price. #STR_PersuadeMerchant_Fail
     ->HorseStalls.choices
     
 
 ===FoodStalls===
-Scents swirl and tempt, guiding you to a feast of flavors. Meats sizzle and ale froths – a carnival for the senses. There's plenty of food available, and it's your choice to partake.
+Scents swirl and tempt, guiding you to a feast of flavors. Meats sizzle and ale froths – a carnival for the senses. There's plenty of food available, and it's your choice to partake. #STR_FoodStalls1
 
 * [Indulge in the fair's feast. ({FoodPrice} gold)]->BuyFood
 * [Carry on, resisting the temptation.]->Start
 
 ===BuyFood===
-{HasEnoughGold(FoodPrice): Indulgence wins. You feast, the fair's flavors a delightful symphony on your tongue. Merchants nod their approval as you partake. {GiveGold(-FoodPrice)} | You don't have enough gold.}
+{HasEnoughGold(FoodPrice): Indulgence wins. You feast, the fair's flavors a delightful symphony on your tongue. Merchants nod their approval as you partake. {GiveGold(-FoodPrice)} | You don't have enough gold. #STR_BuyFood1NOTENOUGHGOLD}#STR_BuyFood1
 
 * [Return to the merriment.]->Start.choices
 
 ===HorseRaces===
-Cheers erupt from an amphitheater. Horses thunder, riders urging them to glory.
+Cheers erupt from an amphitheater. Horses thunder, riders urging them to glory. #STR_HorseRaces
 ->choices
 
     =choices
@@ -79,17 +79,17 @@ Cheers erupt from an amphitheater. Horses thunder, riders urging them to glory.
     * [You decide that you shouldn't test your luck.]->Start.choices
 
 ===PlaceBet===
-{not HasEnoughGold(HorseBetPrice): You don't have enough gold. -> HorseRaces.choices}
+{not HasEnoughGold(HorseBetPrice): You don't have enough gold. #STR_PlaceBet_NOTENOUGHGOLD -> HorseRaces.choices } 
 ~GiveGold(-HorseBetPrice)
 {WinHorseRace: ->success | ->fail}
     =success
-    Your heart races as you place your wager. The horse you chose surges forward, and luck dances in your favor. Laughter and clinking coins surround you.
+    Your heart races as you place your wager. The horse you chose surges forward, and luck dances in your favor. Laughter and clinking coins surround you. #STR_PlaceBet_Success
     ~ GiveGold(HorseBetPayout)
     * [Return to the merry crowd.]->Start.choices
 
     =fail
     Your heart races as you place your wager. The horse you chose quickly surges forward at first, but the other riders soon catch up. Eventually, your horse slows down to the point of only earning a late place. Laughter and clinking coins surround you.
-    
+        #STR_PlaceBet_Fail
     * [Return to the merry crowd.]->Start.choices
 
 ===Turnip===

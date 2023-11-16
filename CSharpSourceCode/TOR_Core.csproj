@@ -561,6 +561,7 @@
     <Compile Include="Extensions\MissionExtensions.cs" />
     <Compile Include="Extensions\MobilePartyExtensions.cs" />
     <Compile Include="Extensions\SettlementExtensions.cs" />
+    <Compile Include="Extensions\SkillExtensions.cs" />
     <Compile Include="Extensions\TeamExtensions.cs" />
     <Compile Include="Extensions\UI\BaseViewModelExtension.cs" />
     <Compile Include="Extensions\UI\HeroEncyclopediaVMExtension.cs" />
@@ -693,6 +694,7 @@
     <Compile Include="Utilities\TORPaths.cs" />
     <Compile Include="Utilities\TORSpellBlowHelper.cs" />
     <Compile Include="Utilities\TORWorldMapScript.cs" />
+    <Compile Include="Utilities\TORTextHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
