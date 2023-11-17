@@ -842,4 +842,45 @@
 	<string id="inky_Fair.STR_Leave1" text="{=inky_fair_leave1_str}" />
 	<string id="inky_Fair.STR_BuyHorse1" text="{=inky_fair_strid_buy_horse_1_str}" />
 	<string id="inky_Fair.STR_BuyHorse1NOTENOUGHGOLD" text="{=inky_fair_strid_buyhorse_not_enough_gold}" />
+	<string id="inky_Fair.STR_Leave1" text="{=inky_fair_leave1_str}" />
+	<string id="inky_Fair.PersuadeMerchant_Fail" text="{=inky_fair_persuadeMerchant_fail_str}" />
+	<string id="inky_Fair.PersuadeMerchant_Success" text="{=inky_fair_persuadeMerchant_fail_str}" />
+	
+	<!--Duel !-->
+	
+	<string id="inky_Duel.MetBefore_False" text="{=inky_duel_met_before_false_str}you spot a mysterious figure approaching with confident strides. As they draw nearer, the glint of a finely crafted rapier catches your eye. The stranger stops before you, a warm smile on their face as they appraise you." />
+	<string id="inky_Duel.MetBefore_True" text="{=inky_duel_met_before_true_str}you spot the familiar figure of Vittorio de Luca, the renowned Tilean duelist, making his way towards your group with confident strides.{inky_DeniedBefore1}" />
+	<string id="inky_Duel.DeniedBefore1_False" text="{=inky_duel_denied_before_false_str} Memories of your previous encounter flood back, the thrill of the first duel still lingering in your mind." />
+	<string id="inky_Duel.DeniedBefore1_True" text="{=!}" />
+	
+	<string id="inky_Duel.DeniedBefore2_False" text="{=inky_duel_denied_before2_false_str} Care to prove your skills this time around?" />
+	<string id="inky_Duel.DeniedBefore2_True" text="{=inky_duel_denied_before2_true_str}Care to prove your skills once more in a rematch?" />
+	<string id="inky_Duel.MetBefore2_False" text="{=!}" />
+	<string id="inky_Duel.MetBefore2_True" text="{=inky_duel_met_before2_true_str} Once More" />
+	
+	
+	<string id="inky_Duel.STR_Start1" text="{=!}" />
+	<string id="inky_Duel.STR_Start2" text="{=!}{inky_MetBefore}" />
+	<string id="inky_Duel.STR_Start3MetBefore" text="{=!}As Vittorio draws nearer, the glint of his finely crafted rapier catches your eye, and a warm smile spreads across his face as he appraises you. &quot;Ah, what a stroke of luck to meet again on this lonely path,&quot; he says, his voice carrying a playful undertone. &quot;I see the fire of a warrior still burns within you.&quot; {inky_DeniedBefore2}" />
+	<string id="inky_Duel.STR_Start3NotMetBefore" text="{=!}&quot;Ah, what a stroke of luck to meet a band of worthy warriors on this lonely path,&quot; they say. &quot;I am Vittorio de Luca, a master of the blade from the distant lands of Tilea. I have journeyed far and wide, seeking a worthy adversary who can match my skills in combat. And now, fate has led me to you. Care to prove your skills in a friendly duel, with a little wager to make it exciting?&quot;" />
+	
+	<string id="inky_Duel.STR_AcceptNotMetBefore1" text="{=!}" />
+	<string id="inky_Duel.STR_AcceptNotMetBefore2" text="{=!}" />
+	<string id="inky_Duel.STR_AcceptNotMetBefore3" text="{=!}" />
+	
+    <string id="inky_Duel.STR_Accept1" text="{=!}" />
+	<string id="inky_Duel.STR_Accept2" text="{=!}"/> 
+	<string id="inky_Duel.STR_Accept2" text="{=!}"/> 
+	<string id="inky_Duel.STR_Deny1" text="{=!}" />
+	<string id="inky_Duel.STR_Deny2" text="{=!}"/>	
+	<string id="inky_Duel.STR_Deny3" text="{=!}"/>
+	
+	<string id="inky_Duel.STR_Playerwin1" text="{=!}"/>
+	<string id="inky_Duel.STR_Playerwin2" text="{=!}"/>
+	<string id="inky_Duel.STR_Playerwin3" text="{=!}"/>
+	
+	<string id="inky_Duel.STR_PlayerLost1" text="{=!}"/>
+	<string id="inky_Duel.STR_PlayerLost2" text="{=!}"/>
+	
+	<string id="inky_Duel.STR_DuelEnd" text="{=!}"/>
 </strings> 
