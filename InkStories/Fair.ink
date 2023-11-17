@@ -20,6 +20,7 @@ VAR TurnipPrice = 50
 
 
 
+
 As your army travels, a sudden clearing reveals a surprising sight – a bustling fair known as the Morrslieb Revelry. Tents stand proud, colors dancing in the dappled sunlight. Laughter mingles with the snorts of horses, the heart of this joyous gathering. #STR_Start1
 
 Merchants beckon, their eyes alight with mischief, hawking horses at a discount from the standard rates you'd find in the scrolls. The air carries the tempting scents of roasted meat, frothy ale, and tangy wine. Amidst the merry crowd, a farmer grins, offering a turnip that oddly resembles the famed twin-tailed comet. Yours for a mere penny, a chance to possess this curious marvel. #STR_Start2
@@ -93,7 +94,7 @@ Cheers erupt from an amphitheater. Horses thunder, riders urging them to glory. 
     * [Return to the merry crowd.]->Start.choices
 
 ===Turnip===
-Intrigue tugs at your senses as you gaze upon the comet-shaped turnip – a whimsical marvel. A farmer grins, inviting you to join a raffle.
+Intrigue tugs at your senses as you gaze upon the comet-shaped turnip – a whimsical marvel. A farmer grins, inviting you to join a raffle. #STR_Turnip1
     ->choices
 
     =choices
@@ -102,9 +103,9 @@ Intrigue tugs at your senses as you gaze upon the comet-shaped turnip – a whim
     * [Move on, leaving the curious turnip behind.]->Start.choices
 
 ===BuyTicket===
-{HasEnoughGold(TurnipPrice): With a coin and a smile, you secure your chance at the raffle. Who knows? The comet-kissed turnip might be yours after all. {GiveGold(-TurnipPrice)} | You don't have enough gold. -> Turnip.choices}
+{HasEnoughGold(TurnipPrice): With a coin and a smile, you secure your chance at the raffle. Who knows? The comet-kissed turnip might be yours after all. {GiveGold(-TurnipPrice)} | You don't have enough gold. #STR_BuyTicket1NOTENOUGHGOLD  -> Turnip.choices}  #STR_BuyTicket1
 
-With anticipation in the air, the raffle commences, and as the announcer calls out the winning ticket number, you hold your breath. However, luck is not on your side this time. The winning number isn't yours, and a twinge of disappointment washes over you.
+With anticipation in the air, the raffle commences, and as the announcer calls out the winning ticket number, you hold your breath. However, luck is not on your side this time. The winning number isn't yours, and a twinge of disappointment washes over you. #STR_BuyTicket2
 
 * [Return to the mirthful revelry.]->Start.choices
 
@@ -112,11 +113,11 @@ With anticipation in the air, the raffle commences, and as the announcer calls o
 {perform_player_skill_check("Roguery", 80): -> success | ->fail}
 
     =success
-    Your sharp eyes pick up on subtle details that others might miss. The turnip seems to have no strange markings that hint at its significance. It's completely ordinary.
+    Your sharp eyes pick up on subtle details that others might miss. The turnip seems to have no strange markings that hint at its significance. It's completely ordinary.   #STR_PerceiveTurnip_Success
     ->Turnip.choices
     
     =fail
-    Your examination doesn't reveal anything unusual about the turnip.
+    Your examination doesn't reveal anything unusual about the turnip. #STR_PerceiveTurnip_Success
     ->Turnip.choices
 
 ===Leave===
