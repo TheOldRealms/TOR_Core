@@ -883,4 +883,15 @@
 	<string id="inky_Duel.STR_PlayerLost2" text="{=!}"/>
 	
 	<string id="inky_Duel.STR_DuelEnd" text="{=!}"/>
+	
+	
+	<!--Duel !-->
+	
+	
+	<!--Meadow ! -->
+	<string id="inky_Meadow.IsNight_True" text="{=inky_Meadow_is_night_true_str}Silver moonlight" />
+	<string id="inky_Meadow.IsNight_False" text="{=inky_Meadow_is_night_false_str}Golden sunlight" />
+	
+	
+	<string id="inky_Duel.STR_Start3" text="{inky_IsNight} filters through the tree canopy, bathing the meadow in warmth. A gentle aroma of blooming flowers perfumes the air. Birds serenade with their melodies, filling the clearing with a symphony that feels like a balm to your weary spirit. #STR_Start3"/>
 </strings> 
