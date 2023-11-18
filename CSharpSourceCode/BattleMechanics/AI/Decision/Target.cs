@@ -28,7 +28,13 @@ namespace TOR_Core.BattleMechanics.AI.Decision
                 if (Agent != null)
                     return Agent.CollisionCapsuleCenter;
                 if (Formation != null)
-                    return Formation.GetMedianAgent(false, false, Formation.GetAveragePositionOfUnits(false, false)).Position;
+                {
+                    var formation = Formation.GetMedianAgent(false, false, Formation.GetAveragePositionOfUnits(false, false));
+                    if (formation != null)
+                        return formation.Position;
+                    else
+                        return TacticalPosition.Position.GetGroundVec3();
+                }
                 if (SelectedWorldPosition != Vec3.Zero)
                     return SelectedWorldPosition;
                 if (TacticalPosition != null)
