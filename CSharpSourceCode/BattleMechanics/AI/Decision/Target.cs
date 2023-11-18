@@ -30,10 +30,10 @@ namespace TOR_Core.BattleMechanics.AI.Decision
                 if (Formation != null)
                 {
                     var formation = Formation.GetMedianAgent(false, false, Formation.GetAveragePositionOfUnits(false, false));
+                    // this can somehow be null... I'm guessing the formation gets wiped out?
                     if (formation != null)
                         return formation.Position;
-                    else
-                        return TacticalPosition.Position.GetGroundVec3();
+                    // else just go on to the next few decisions
                 }
                 if (SelectedWorldPosition != Vec3.Zero)
                     return SelectedWorldPosition;
