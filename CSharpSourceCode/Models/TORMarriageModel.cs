@@ -1,5 +1,6 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
 {
@@ -13,10 +14,6 @@ namespace TOR_Core.Models
                 GeneralTorMarriageRuleSet(firstHero, secondHero);
 
             return finalDecision;
-
-            //return firstHero.IsFemale != secondHero.IsFemale && 
-            //    !firstHero.IsFactionLeader && !secondHero.IsFactionLeader &&
-            //    firstHero.IsLord && secondHero.IsLord;
         }
 
         public override bool IsSuitableForMarriage(Hero maidenOrSuitor)
@@ -28,22 +25,20 @@ namespace TOR_Core.Models
                 HeroSpecificTorMarriageRuleSet(maidenOrSuitor);
 
             return finalDecision;
-
-            //return CharacterObject.PlayerCharacter.IsFemale != maidenOrSuitor.IsFemale &&
-            //    CharacterObject.PlayerCharacter.HeroObject.MapFaction.Id == maidenOrSuitor.MapFaction.Id &&
-            //    !CharacterObject.PlayerCharacter.HeroObject.IsFactionLeader && !maidenOrSuitor.IsFactionLeader &&
-            //    maidenOrSuitor.IsLord;
         }
 
         protected bool GeneralTorMarriageRuleSet(Hero firstHero, Hero secondHero)
         {
-            // New Rules
+            // Culture must be compatible for marriage
+            if (!firstHero.Culture.IsSuitableForMarriage(secondHero.Culture))
+                return false;
+
             return true;
         }
 
         protected bool HeroSpecificTorMarriageRuleSet(Hero maidenOrSuitor)
         {
-            // New Rules
+            // No new rules yet
             return true;
         }
     }
