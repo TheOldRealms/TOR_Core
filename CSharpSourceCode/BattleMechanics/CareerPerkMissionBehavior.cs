@@ -4,6 +4,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
+using TOR_Core.AbilitySystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -41,18 +42,31 @@ namespace TOR_Core.BattleMechanics
                         var threshold = 500;
                         var damage = blow.InflictedDamage - threshold;
                         if (damage >= 0)
-                        {
-                            var bonus =  Mathf.Clamp  (damage / 100,0, 5);
+                        { 
+                            var bonus =  Mathf.Clamp(damage / 100,0, 5);
                             affectorAgent.Heal (bonus);
                        
                         }
                         
                     }
                 }
+                
+                
             }
-            
-            
-
+            else if(affectorAgent.GetOriginMobileParty().IsMainParty && affectorAgent.IsHero)
+            {
+                var playerHero = Agent.Main.GetHero();
+                var choices = playerHero.GetAllCareerChoices();
+                if (choices.Contains ("NightRiderKeystone") && !(blow.IsMissile || TORSpellBlowHelper.IsSpellBlow(blow)))
+                {
+                    var choice = TORCareerChoices.GetChoice("NightRiderKeystone");
+                    if (choice != null && affectorAgent.GetOriginMobileParty().IsMainParty && !affectorAgent.IsMainAgent)
+                    {
+                        var careerAbility = Agent.Main.GetComponent<AbilityComponent>()?.CareerAbility;
+                        careerAbility?.AddCharge(1);
+                    }
+                }
+            }
             if (affectorAgent.IsMainAgent || affectorAgent.GetOriginMobileParty() == MobileParty.MainParty)
             {
                 var playerHero = affectorAgent.GetHero();
