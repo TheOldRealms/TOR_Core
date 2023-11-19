@@ -109,7 +109,6 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                                 if (team.Side == BattleSideEnum.Attacker)
                                 {
                                     team.AddTacticOption(new TacticRangedHarrassmentOffensive(team));
-                                    team.AddTacticOption(new TacticPositionalArtillery(team)); //TODO: 
                                 }
                                
                             }
