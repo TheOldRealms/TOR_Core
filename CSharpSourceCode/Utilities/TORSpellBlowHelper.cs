@@ -65,8 +65,7 @@ namespace TOR_Core.Utilities
         
         public static bool IsSpellBlow(KillingBlow b)
         {
-            //TODO add more info to define it as spell killing blow
-            return  b.AttackType == AgentAttackType.Kick && b.VictimBodyPart == BoneBodyPartType.Chest;
+            return  b.AttackType == AgentAttackType.Kick &&  b.WeaponItemKind ==-1 &&b.VictimBodyPart == BoneBodyPartType.Chest;
         }
     }
     public struct SpellBlowInfo
