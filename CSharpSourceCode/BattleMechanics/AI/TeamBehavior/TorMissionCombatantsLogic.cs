@@ -103,13 +103,13 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
                                 {
                                     team.AddTacticOption(new TacticDefensiveEngagement(team));
                                     team.AddTacticOption(new TacticDefensiveLine(team));
-                                    team.AddTacticOption(new TacticPositionalArtillery(team)); 
+                                    team.AddTacticOption(new TacticDefensiveArtillery(team)); 
                                 }
 
                                 if (team.Side == BattleSideEnum.Attacker)
                                 {
                                     team.AddTacticOption(new TacticRangedHarrassmentOffensive(team));
-                                    team.AddTacticOption(new TacticPositionalArtillery(team)); //TODO: 
+                                    team.AddTacticOption(new TacticOffensiveArtillery(team));  
                                 }
                                
                             }
