@@ -206,7 +206,7 @@
                 //Bonus Attempts from Lore of Beasts
                     {LoreOfBeastsInParty:
                         -true: 
-                            A mage in your party calls upon the Wind of Ghur to aid your men in their search. (+1 attempt) #STR_Forage_LoreOFBeastInParty
+                            A mage in your party calls upon the Wind of Ghur to aid your men in their search. (+1 attempt) #STR_Hunt_LoreOFBeastInParty
                             ~ HuntLoops = HuntLoops + 1
                         -false:
                         -else: ERROR
@@ -215,7 +215,7 @@
                 //Bonus attempt from Scouting
                     {perform_party_skill_check("Scouting", HuntDifficulty):
                         -true: 
-                            Your scouts manage to locate some extra animals. (Scouting)(+1 Attempt)
+                            Your scouts manage to locate some extra animals. (Scouting)(+1 Attempt) #STR_Hunt_Scout
                             ~HuntLoops = HuntLoops + 1
                         -false:
                         -else: ERROR

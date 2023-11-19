@@ -893,5 +893,60 @@
 	<string id="inky_Meadow.IsNight_False" text="{=inky_Meadow_is_night_false_str}Golden sunlight" />
 	
 	
-	<string id="inky_Duel.STR_Start3" text="{inky_IsNight} filters through the tree canopy, bathing the meadow in warmth. A gentle aroma of blooming flowers perfumes the air. Birds serenade with their melodies, filling the clearing with a symphony that feels like a balm to your weary spirit. #STR_Start3"/>
+	<string id="inky_Meadow.STR_Start3" text="{inky_IsNight} filters through the tree canopy, bathing the meadow in warmth. A gentle aroma of blooming flowers perfumes the air. Birds serenade with their melodies, filling the clearing with a symphony that feels like a balm to your weary spirit. #STR_Start3"/>
+	
+	
+	<!--Overturned Cart ! -->
+	
+	<string id="inky_OverturnedCart.InjuryText1_1" text="{=inky_overturned_cart_injury1_1_str}weak" />
+	<string id="inky_OverturnedCart.InjuryText1_2" text="{=inky_overturned_cart_injury1_2_str}mild" />
+	<string id="inky_OverturnedCart.InjuryText1_3" text="{=inky_overturned_cart_injury1_3_str}severely" />
+	
+	<string id="inky_OverturnedCart.InjuryText2_1" text="{=inky_overturned_cart_injury2_1_str}asks" />
+	<string id="inky_OverturnedCart.InjuryText2_2" text="{=inky_overturned_cart_injury2_2_str}begs" />
+	<string id="inky_OverturnedCart.InjuryText2_3" text="{=inky_overturned_cart_injury2_3_str}gasps" />
+	
+	<string id="inky_OverturnedCart.InjuryText3_1" text="{=inky_overturned_cart_injury3_1_str}gets up" />
+	<string id="inky_OverturnedCart.InjuryText3_2" text="{=inky_overturned_cart_injury3_2_str}barely gets up" />
+	<string id="inky_OverturnedCart.InjuryText3_3" text="{=inky_overturned_cart_injury3_3_str}lays there trying not do die" />
+	
+	<string id="inky_OverturnedCart.InjuryText4_1" text="{=inky_overturned_cart_injury4_1_str}" />
+	<string id="inky_OverturnedCart.InjuryText4_2" text="{=inky_overturned_cart_injury4_2_str}seems to get a bit depressed knowing that he will be crippled for at least some time" />
+	<string id="inky_OverturnedCart.InjuryText4_3" text="{=inky_overturned_cart_injury4_3_str}dies" />
+	
+	<string id="inky_OverturnedCart.Profession_1" text="{=inky_overturned_cart_profession_1_str}merchant" />
+	<string id="inky_OverturnedCart.Profession_2" text="{=inky_overturned_cart_profession_2_str}farmer" />
+	<string id="inky_OverturnedCart.Profession_3" text="{=inky_overturned_cart_profession_3_str}blacksmith" />
+	
+	<string id="inky_OverturnedCart.RewardText_0" text="{=inky_overturned_cart_rewardtext_0_str}500 gold" />
+	<string id="inky_OverturnedCart.RewardText_1" text="{=inky_overturned_cart_rewardtext_1_str}5 grain" />
+	<string id="inky_OverturnedCart.RewardText_2" text="{=inky_overturned_cart_rewardtext_2_str}2 steel ingots" />
+	
+	<string id="inky_OverturnedCart.HorsesAround_0" text="{=inky_overturned_cart_horsesaround_0_str}" />
+	<string id="inky_OverturnedCart.HorsesAround_1" text="{=inky_overturned_cart_horsesaround_1_str}take the horses," />
+	
+	
+	<string id="inky_OverturnedCart.Start1" text="{=inky_overturned_cart_start_1_str}As your party is travelling along you see a cart in the distance." />
+	<string id="inky_OverturnedCart.Start2" text="{=inky_overturned_cart_start_2_str}As you get closer you can see that it had broken down and tipped over." />
+	<string id="inky_OverturnedCart.StartHorse" text="{=inky_overturned_cart_start_2_str}You can also see some horses grazing on grass in a nearby field, presumably these were pulling the cart prior to the incident." />
+	
+	
+	<string id="inky_OverturnedCart.Approach1" text="{=inky_overturned_cart_approach_1_str}" />
+	<string id="inky_OverturnedCart.Approach2" text="{=inky_overturned_cart_approach_2_str}You notice that the man trapped under the cart is {inky_InjuryText1}." />
+	<string id="inky_OverturnedCart.Approach3" text="{=inky_overturned_cart_approach_3_str}As you get close he {inky_InjuryText2} to you, &quot;Please help me&quot;." />
+	
+	
+	<string id="inky_OverturnedCart.STR_RewardForHelp2" text="{=inky_overturned_cart_reward_for_help_1_str}You ask the man what he can do for you." />
+	<string id="inky_OverturnedCart.STR_RewardForHelp2" text="{=inky_overturned_cart_reward_for_help_2_str}The man replies, &quot;I am just a simple {Profession} from {Settlement}, I cannot give you a reward other than my thanks.&quot;" />
+	<string id="inky_OverturnedCart.STR_RewardForHelp3" text="{=inky_overturned_cart_reward_for_help_3_str}After a moment he says, &quot;I am a friend of {Notable} and I will put in a good word for you.&quot;" />
+	
+	
+	
+	<string id="inky_OverturnedCart.HelpExtort1" text="{=inky_overturned_cart_helpextort_3_str}You tell the {inky_Profession} that he shouldn't be so modest. He is clearly a man of some means and can easily spare {inky_RewardText} as compensation for the assistance." />
+	
+	
+	<string id="inky_OverturnedCart.HelpExtort1" text="{=inky_overturned_cart_helpextort_3_str}You tell the {inky_Profession} that he shouldn't be so modest. He is clearly a man of some means and can easily spare {inky_RewardText} as compensation for the assistance." />
+	
+	<string id="inky_OverturnedCart.AfterLiftMedicine1" text="{=inky_overturned_cart_after_Lift_Medicine_3_str}You tell the {inky_Profession} that he shouldn't be so modest. He is clearly a man of some means and can easily spare {inky_RewardText} as compensation for the assistance." />
+
 </strings> 

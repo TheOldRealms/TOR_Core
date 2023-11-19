@@ -799,6 +799,15 @@
   <string id="careerchoice_description_WarriorPriestRoot" text="Воин-жрец высвобождает гнев Зигмара на 8 секунд, усиливая свои атаки и атаки союзников на 20%. Каждый пункт в навык Веры увеличивает ближний урон на 0.05% и продолжительность на 0.05 секунд. Чтобы способность перезарядилась, нужно получить 50 урона." />
   
   
+           
+  <string id="inky_overturnedcart_approach_c6" text ="RU Kill the man, raise his corpse as a skeleton, {inky_HorsesAround} and loot his cart (Mercy---) {inky_party_skill_check_result_Spellcraft}" />
+  
+  <string id="inky_overturnedcart_approach_c6" text ="RU Kill the man, raise his corpse as a skeleton, {inky_HorsesAround} and loot his cart (Mercy---) {inky_party_skill_check_result_Spellcraft}" />
+  <string id="inky_overturnedcart_afterlift_c0" text ="RU Treat him with medicine {inky_party_skill_check_result_Medicine}" />
+  
+
+
+  
   
   <string id="inky_skill_check_result_player_onehanded_str" text="(One Handed check - success chance {inky_player_OneHanded_CheckChance}%)" />
   <string id="inky_skill_check_result_player_onehanded_str" text="(Two Handed check - success chance {inky_player_TwoHanded_CheckChance}%)" />
