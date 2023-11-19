@@ -431,6 +431,8 @@
     <Compile Include="BattleMechanics\AI\Decision\Target.cs" />
     <Compile Include="BattleMechanics\AI\FormationBehavior\BehaviorProtectArtilleryCrew.cs" />
     <Compile Include="BattleMechanics\AI\FormationBehavior\TORBehaviorDefend.cs" />
+    <Compile Include="BattleMechanics\AI\InfluenceMap\InfluenceLayer.cs" />
+    <Compile Include="BattleMechanics\AI\InfluenceMap\InfluenceMap.cs" />
     <Compile Include="BattleMechanics\AI\TeamBehavior\Tactic\ArtilleryPositioningComponent.cs" />
     <Compile Include="BattleMechanics\AI\TeamBehavior\Tactic\TacticOffensiveArtillery.cs" />
     <Compile Include="BattleMechanics\AI\TeamBehavior\Tactic\TacticDefensiveArtillery.cs" />
