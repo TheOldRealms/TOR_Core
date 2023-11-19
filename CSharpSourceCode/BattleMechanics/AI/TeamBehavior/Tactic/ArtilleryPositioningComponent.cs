@@ -6,9 +6,11 @@ using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
 using TOR_Core.BattleMechanics.AI.Decision;
 using TOR_Core.BattleMechanics.Artillery;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
 {
@@ -29,7 +31,16 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior.Tactic
             _artilleryPlacerComponents = new List<WizardAIComponent>();
         }
 
-
+        public Boolean CanArtilleryBePlaced()
+        {
+            return !(
+                Team.GeneralAgent == null ||
+                !Team.GeneralAgent.IsAbilityUser() ||
+                !Team.GeneralAgent.GetComponent<AbilityComponent>().GetKnownAbilityTemplates().Exists(item => item.AbilityEffectType == AbilityEffectType.ArtilleryPlacement) ||
+                Team.ActiveAgents.Select(agent => agent.HasAttribute("ArtilleryCrew")).Count() < 2 ||
+                Team.GeneralAgent.Controller == Agent.ControllerType.Player
+            );
+        }
 
         public Target DeterminePositions()
         {
