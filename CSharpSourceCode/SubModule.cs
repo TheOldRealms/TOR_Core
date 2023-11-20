@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using HarmonyLib;
@@ -93,6 +94,7 @@ namespace TOR_Core
             CustomBannerManager.LoadXML();
             RORManager.LoadTemplates();
             InkStoryManager.Initialize();
+            AnimationTriggerManager.LoadAnimationTriggers();
         }
 
         private Assembly ResolveDllPath(object sender, ResolveEventArgs args)
@@ -234,7 +236,8 @@ namespace TOR_Core
             mission.AddMissionBehavior(new UndeadMoraleMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new ForceAtmosphereMissionLogic());
-   
+            mission.AddMissionBehavior(new AnimationTriggerMissionLogic());
+
 
             if (Game.Current.GameType is Campaign)
             {
@@ -244,6 +247,11 @@ namespace TOR_Core
                     mission.RemoveMissionBehavior(mission.GetMissionBehavior<BattleAgentLogic>());
                     mission.AddMissionBehavior(new TORBattleAgentLogic());
                 }
+            }
+
+            if(Debugger.IsAttached)
+            {
+                mission.AddMissionBehavior(new TORAnimationLogger());
             }
         }
 

@@ -1038,6 +1038,16 @@
       <EquipmentSet id="tor_we_eternal_guard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_we_treeman" default_group="infantry" level="41" name="{=str_tor_we_treeman}Treeman" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level41" is_basic_troop="true" race="large_humanoid_monster">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_we_treeman_template" />
+      <EquipmentSet id="tor_we_treeman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_vc_villager" default_group="infantry" level="1" name="{=str_tor_vc_villager}Sylvanian Peasant" occupation="Villager" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level1">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />

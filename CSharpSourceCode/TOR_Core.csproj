@@ -464,6 +464,9 @@
     <Compile Include="BattleMechanics\StatusEffect\StatusEffectManager.cs" />
     <Compile Include="BattleMechanics\StatusEffect\StatusEffectMissionLogic.cs" />
     <Compile Include="BattleMechanics\StatusEffect\StatusEffectTemplate.cs" />
+    <Compile Include="BattleMechanics\TriggeredEffect\AnimationTrigger.cs" />
+    <Compile Include="BattleMechanics\TriggeredEffect\AnimationTriggerManager.cs" />
+    <Compile Include="BattleMechanics\TriggeredEffect\AnimationTriggerMissionLogic.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\DynamicItemTraitScripts.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\ITriggeredScript.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\KnockDownScript.cs" />
@@ -676,6 +679,7 @@
     <Compile Include="SubModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\DictionaryExtensions.cs" />
+    <Compile Include="Utilities\TORAnimationLogger.cs" />
     <Compile Include="Utilities\TORAudio.cs" />
     <Compile Include="Utilities\TORCommon.cs" />
     <Compile Include="Utilities\TORConsoleCommands.cs" />

@@ -120,9 +120,9 @@ namespace TOR_Core.HarmonyPatches
             }
 
             //calculating spell damage
-            if (TORSpellBlowHelper.IsSpellBlow(b)|| (attackTypeMask ==AttackTypeMask.Spell&&abilityName!="") )      //checking the Attackmask should be enough IsSpellBlow is checked before!
+            if (TORSpellBlowHelper.IsSpellBlow(b) || (attackTypeMask == AttackTypeMask.Spell && abilityName != ""))      //checking the Attackmask should be enough IsSpellBlow is checked before!
             {
-                var abilityId="";
+                string abilityId = string.Empty;
                 int damageType = 0;
                 if (abilityName != "")
                 {
@@ -145,7 +145,7 @@ namespace TOR_Core.HarmonyPatches
                 damageCategories[damageType] *= 1 + damageAmplifications[damageType];
                 resultDamage = (int)damageCategories[damageType];
                 
-                if(Game.Current.GameType is Campaign)
+                if(Game.Current.GameType is Campaign && abilityId != string.Empty && abilityId != null)
                 {
                     var abilityTemplate = AbilityFactory.GetTemplate(abilityId);
                     if (attacker.IsHero && abilityTemplate != null)
@@ -210,7 +210,11 @@ namespace TOR_Core.HarmonyPatches
                     }
                     
                     TORDamageDisplay.DisplayDamageResult(resultDamage, damageCategories, resultBonus,wardSaveFactor, isVictim);
-
+                }
+                //if the agent will die, and it was a shockwave, activate ragdoll
+                if(victim.Health < b.InflictedDamage + 5 && b.BlowFlag.HasFlag(BlowFlags.KnockDown) && !victim.IsPlayerControlled)
+                {
+                    victim.AgentVisuals.GetSkeleton().ActivateRagdoll();
                 }
             }
             

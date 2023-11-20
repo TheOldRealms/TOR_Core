@@ -1890,6 +1890,14 @@
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_eternalguard_001" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_we_treeman_template" culture="Culture.battania">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_treeman_fist" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_treeman_fist" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_vc_skeleton_template" culture="Culture.khuzait">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_skeleton_002" />

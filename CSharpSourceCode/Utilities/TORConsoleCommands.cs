@@ -9,6 +9,7 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Ink;
@@ -72,16 +73,9 @@ namespace TOR_Core.Utilities
                     result+=partResult;
                     continue;
                 }
-
-
-
             }
-
-
             return result;
         }
-        
-        
         
         [CommandLineFunctionality.CommandLineArgumentFunction("list_spells", "tor")]
         public static string ListSpells(List<string> argumentNames) =>
@@ -242,6 +236,32 @@ namespace TOR_Core.Utilities
             var template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_cultists");
             TorMissionManager.OpenQuestMission("TOR_cultist_lair_001", template, 9);
             return "Scene opened.";
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("add_player_attribute", "tor")]
+        public static string AddPlayerAttribute(List<string> arguments)
+        {
+
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+
+            if (arguments == null || arguments.Count == 0)
+            {
+                return "Argument cannot be null. Pass in the name of the story to open. \n";
+            }
+
+            var attribute = arguments[0];
+            Hero.MainHero.AddAttribute(attribute);
+
+            return string.Format("Successfully added attribute: {0} to player.", attribute);
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("reload_animation_triggers", "tor")]
+        public static string ReloadAnimationTriggers(List<string> arguments)
+        {
+            AnimationTriggerManager.ReloadAnimationTriggers();
+            
+            return string.Format("Successfully reloaded animation triggers");
         }
 
         private static string AggregateOutput(string topicHeader, List<string> matchedSpells) =>
