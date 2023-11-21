@@ -81,7 +81,6 @@ namespace TOR_Core.AbilitySystem
             if (ChargeType != ChargeType.CooldownOnly) _currentCharge = 0;
             if (_requiresSpellTargeting)
             {
-                casterAgent.SelectAbility(previousAbilityIndex);
                 previousAbilityIndex= 0;
                 _readyToLaunch = false;
             }

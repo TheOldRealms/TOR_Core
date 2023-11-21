@@ -320,21 +320,28 @@ namespace TOR_Core.AbilitySystem
                     if (_currentState == AbilityModeState.Off &&
                         IsCurrentCrossHairCompatible())
                     {
-                        if (_abilityComponent.CareerAbility.RequiresSpellTargeting()&& _abilityComponent.CareerAbility.IsCharged)
+                        if (_abilityComponent.CareerAbility.RequiresSpellTargeting())
                         {
-                            _abilityComponent.SelectAbility(_abilityComponent.CareerAbility);
-                            EnableAbilityMode();
-                            _careerAbilitySelected = true;
+                            ShiftToCareerAbility();
                         }
                         else
                         {
                             _abilityComponent.CareerAbility.TryCast(Agent.Main);
                         }
                     }
-                    else if (_currentState == AbilityModeState.Idle && _careerAbilitySelected)
+                    else if (_currentState == AbilityModeState.Idle)
                     {
-                        RestoreAbility();
+                        if (_careerAbilitySelected)
+                        {
+                            ShiftBackFromCareerAbility();
+                        }
+                        else
+                        {
+                            ShiftToCareerAbility();
+                        }
+                        
                     }
+                
             }
 
             if (Input.IsKeyPressed(_nextAbilitySelection.KeyboardKey.InputKey) || Input.IsKeyPressed(_nextAbilitySelection.ControllerKey.InputKey))
@@ -365,11 +372,12 @@ namespace TOR_Core.AbilitySystem
                     switch (_currentState)
                     {
                         case AbilityModeState.Off:
+                            ShiftBackFromCareerAbility();
                             EnableAbilityMode();
                             break;
                         case AbilityModeState.Idle:
+                            ShiftBackFromCareerAbility();
                             DisableAbilityMode(false);
-                            _careerAbilitySelected = false;
                             break;
                         default:
                             break;
@@ -388,7 +396,7 @@ namespace TOR_Core.AbilitySystem
                     Agent.Main.CastCurrentAbility();
                     if (_careerAbilitySelected)
                     {
-                        RestoreAbility();
+                        ShiftBackFromCareerAbility();
                     }
                 }
 
@@ -418,11 +426,22 @@ namespace TOR_Core.AbilitySystem
                 else return true;
             }
         }
-
-        private void RestoreAbility()
+        
+        private void ShiftToCareerAbility()
         {
-            DisableAbilityMode(false);
+           if(!(_abilityComponent.CareerAbility.RequiresSpellTargeting() && _abilityComponent.CareerAbility.IsCharged))
+               return;
+            
+            _abilityComponent.SelectAbility(_abilityComponent.CareerAbility);
+            EnableAbilityMode();
+            _careerAbilitySelected = true;
+
+        }
+
+        private void ShiftBackFromCareerAbility()
+        {
             _abilityComponent.SelectAbility(_abilityComponent.GetCurrentAbilityIndex());
+            
             _careerAbilitySelected = false;
         }
 

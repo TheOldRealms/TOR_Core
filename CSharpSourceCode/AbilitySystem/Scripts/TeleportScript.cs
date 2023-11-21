@@ -1,4 +1,4 @@
-﻿using TaleWorlds.Library;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Utilities;
 
@@ -26,6 +26,8 @@ namespace TOR_Core.AbilitySystem.Scripts
             
             _casterAgent.TeleportToPosition( targetPosition);
             teleported = true;
+
+            IsFading = true;
 
         }
 
