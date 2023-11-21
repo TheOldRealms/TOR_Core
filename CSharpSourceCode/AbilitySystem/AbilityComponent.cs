@@ -185,7 +185,14 @@ namespace TOR_Core.AbilitySystem
                 AbilityCrosshair crosshair = AbilityFactory.InitializeCrosshair(ability.Template);
                 ability.SetCrosshair(crosshair);
             }
+            AbilityCrosshair CAcrosshair = AbilityFactory.InitializeCrosshair(CareerAbility.Template);
+            CareerAbility.SetCrosshair(CAcrosshair);
             SelectAbility(0);
+        }
+        
+        public void SelectAbility(Ability ability)
+        {
+            CurrentAbility = ability;
         }
 
         public void SelectAbility(int index)
@@ -243,6 +250,18 @@ namespace TOR_Core.AbilitySystem
             }
 
             return null;
+        }
+        
+        public int GetCurrentAbilityIndex()
+        {
+            for (var index = 0; index < _knownAbilitySystem.Count; index++)
+            {
+                var ability = _knownAbilitySystem[index];
+                if (ability == CurrentAbility)
+                    return index;
+            }
+
+            return 0;
         }
 
         public override void OnTickAsAI(float dt)

@@ -29,6 +29,7 @@ namespace TOR_Core.AbilitySystem
         private bool _shouldSheathWeapon;
         private bool _shouldWieldWeapon;
         private bool _hasInitializedForMainAgent;
+        private bool _careerAbilitySelected;
         private AbilityModeState _currentState = AbilityModeState.Off;
         private EquipmentIndex _mainHand;
         private EquipmentIndex _offHand;
@@ -319,15 +320,36 @@ namespace TOR_Core.AbilitySystem
                     if (_currentState == AbilityModeState.Off &&
                         IsCurrentCrossHairCompatible())
                     {
-                        _abilityComponent.CareerAbility.TryCast(Agent.Main);
+                        if (_abilityComponent.CareerAbility.RequiresSpellTargeting()&& _abilityComponent.CareerAbility.IsCharged)
+                        {
+                            _abilityComponent.SelectAbility(_abilityComponent.CareerAbility);
+                            EnableAbilityMode();
+                            _careerAbilitySelected = true;
+                        }
+                        else
+                        {
+                            _abilityComponent.CareerAbility.TryCast(Agent.Main);
+                        }
+                    }
+                    else if (_currentState == AbilityModeState.Idle && _careerAbilitySelected)
+                    {
+                        RestoreAbility();
                     }
             }
 
             if (Input.IsKeyPressed(_nextAbilitySelection.KeyboardKey.InputKey) || Input.IsKeyPressed(_nextAbilitySelection.ControllerKey.InputKey))
+            {
                 Agent.Main.SelectNextAbility();
+                _careerAbilitySelected = false;
+            }
+
 
             if (Input.IsKeyPressed(_previousAbilitySelection.KeyboardKey.InputKey) || Input.IsKeyPressed(_previousAbilitySelection.ControllerKey.InputKey))
+            {
                 Agent.Main.SelectPreviousAbility();
+                _careerAbilitySelected = false;
+            }
+                
 
             if (Input.IsKeyPressed(_quickCast.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCast.ControllerKey.InputKey))
             {
@@ -347,6 +369,7 @@ namespace TOR_Core.AbilitySystem
                             break;
                         case AbilityModeState.Idle:
                             DisableAbilityMode(false);
+                            _careerAbilitySelected = false;
                             break;
                         default:
                             break;
@@ -363,6 +386,10 @@ namespace TOR_Core.AbilitySystem
                 if (!flag)
                 {
                     Agent.Main.CastCurrentAbility();
+                    if (_careerAbilitySelected)
+                    {
+                        RestoreAbility();
+                    }
                 }
 
                 if (_abilityComponent.CareerAbility != null && _abilityComponent.CareerAbility.IsActive) _abilityComponent.OnInterrupt();
@@ -390,6 +417,13 @@ namespace TOR_Core.AbilitySystem
                 if (behaviour.CurrentCrosshair is SniperScope) return !behaviour.CurrentCrosshair.IsVisible;
                 else return true;
             }
+        }
+
+        private void RestoreAbility()
+        {
+            DisableAbilityMode(false);
+            _abilityComponent.SelectAbility(_abilityComponent.GetCurrentAbilityIndex());
+            _careerAbilitySelected = false;
         }
 
         public override void OnAgentCreated(Agent agent)
@@ -645,6 +679,14 @@ namespace TOR_Core.AbilitySystem
                 if (!(Game.Current.GameType is Campaign)) return;
                 if (hero.HasAnyCareer() && hero.HasCareerChoice("ArchLectorPassive1")) return;
                 Agent.Main.GetComponent<AbilityComponent>().SetIntialPrayerCoolDown();
+            }
+        }
+
+        public void ActivateSpellcasterMode()
+        {
+            if (IsAbilityModeAvailableForMainAgent())
+            {
+                EnableAbilityMode();
             }
         }
     }

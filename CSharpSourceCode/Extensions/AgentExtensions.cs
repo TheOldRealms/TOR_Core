@@ -463,6 +463,14 @@ namespace TOR_Core.Extensions
             }
         }
 
+        public static void SetSpellCasterMode(this Agent agent)
+        {
+            if(agent!=Agent.Main) return;
+            if (Mission.Current == null) return;
+            
+            Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>().ActivateSpellcasterMode();
+        }
+
         public static Hero GetHero(this Agent agent)
         {
             if (agent == null) return null;
