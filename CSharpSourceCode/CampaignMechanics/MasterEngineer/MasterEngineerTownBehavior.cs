@@ -285,7 +285,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
         private void ResetQuest()
         {
-            RunawayPartsQuest.ResetQuestinCurrentState();
+            RunawayPartsQuest.ResetQuestInCurrentState();
         }
 
         private void QuestBegin()

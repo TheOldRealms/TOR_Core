@@ -2,12 +2,10 @@
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.Conversation;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
-using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
@@ -36,7 +34,7 @@ namespace TOR_Core.Quests
         private const string RogueEngineerLeaderName = "Goswin";
         private const string RogueEngineerPartyTemplateId = "empire_deserters_boss_party";
         private const string RogueEngineerLeaderTemplateId = "tor_engineerquesthero";
-        public EngineerQuestStates CurrentActiveLog => (EngineerQuestStates)_currentActiveLog;
+        public EngineerQuestStates CurrentActiveLog => _currentActiveLog;
         private List<JournalLog> _logs;
 
         private delegate void InializeVisuals(MobileParty party);
@@ -74,13 +72,17 @@ namespace TOR_Core.Quests
             _currentActiveLog = 0;
         }
 
-        public void ResetQuestinCurrentState()
+        public void ResetQuestInCurrentState(bool tracked = true)
         {
             if (_currentActiveLog == EngineerQuestStates.Cultisthunt)
             {
                 RemoveLog(_task1);
-                SpawnQuestParty(CultistLeaderTemplateId, CultistPartyTemplateId, CultistFactionId,
-                    CultistPartyLeaderName, CultistPartyDisplayName);
+                if (tracked)
+                    SpawnQuestParty(CultistLeaderTemplateId, CultistPartyTemplateId, CultistFactionId,
+                        CultistPartyLeaderName, CultistPartyDisplayName);
+                else
+                    SpawnQuestPartyUntracked(CultistLeaderTemplateId, CultistPartyTemplateId, CultistFactionId,
+                        CultistPartyLeaderName, CultistPartyDisplayName);
                 _task1 = AddDiscreteLog(_logs[(int)EngineerQuestStates.Cultisthunt].LogText,
                     _logs[(int)EngineerQuestStates.Cultisthunt].TaskName, 0, 1);
             }
@@ -88,8 +90,12 @@ namespace TOR_Core.Quests
             if (_currentActiveLog == EngineerQuestStates.RogueEngineerhunt)
             {
                 RemoveLog(_task3);
-                SpawnQuestParty(RogueEngineerLeaderTemplateId, RogueEngineerPartyTemplateId, EngineerFactionId,
-                    RogueEngineerLeaderName, RogueEngineerDisplayName);
+                if (tracked)
+                    SpawnQuestParty(RogueEngineerLeaderTemplateId, RogueEngineerPartyTemplateId, EngineerFactionId,
+                        RogueEngineerLeaderName, RogueEngineerDisplayName);
+                else
+                    SpawnQuestPartyUntracked(RogueEngineerLeaderTemplateId, RogueEngineerPartyTemplateId, EngineerFactionId,
+                        RogueEngineerLeaderName, RogueEngineerDisplayName);
                 _task3 = AddDiscreteLog(_logs[(int)EngineerQuestStates.RogueEngineerhunt].LogText,
                     _logs[(int)EngineerQuestStates.RogueEngineerhunt].TaskName, 0, 1);
             }
@@ -164,7 +170,6 @@ namespace TOR_Core.Quests
                 new TextObject("You have no idea what you are interfering with..."),
                 () => _skipImprisonment && _currentActiveLog == EngineerQuestStates.HandInRogueEngineerHunt, RemoveSkip,
                 0, 1, 200, null);
-           
         }
 
         private void RemoveSkip()
@@ -249,6 +254,21 @@ namespace TOR_Core.Quests
             CampaignEvents.HourlyTickPartyEvent.AddNonSerializedListener(this, Markers);
         }
 
+        protected override void AfterLoad()
+        {
+            base.AfterLoad();
+
+            if (_targetParty != null && _targetParty.Position2D != null)
+            {
+                var position = _targetParty.Position2D;
+
+                _targetParty.RemoveParty();
+                ResetQuestInCurrentState(false);
+
+                _targetParty.Position2D = position;
+            }
+        }
+
         private void Markers(MobileParty party) //Currently pointless 
         {
             if (_targetParty != party) return;
@@ -267,25 +287,51 @@ namespace TOR_Core.Quests
             return returnvalue;
         }
 
+        public static void RestartResetEngineerQuest()
+        {
+            Current.QuestManager.Quests.Remove(GetCurrentActiveIfExists());
+            Current.QuestManager.Quests.Add(TORQuestHelper.GetNewEngineerQuest(false));
+        }
+
         private void SpawnQuestParty(string partyLeaderTemplate, string partyTemplate, string factionId,
             string heroNameOverride = null, string partyNameOverride = null, Settlement spawnLocationOverride = null)
         {
-            var leaderTemplate = MBObjectManager.Instance.GetObject<CharacterObject>(partyLeaderTemplate);
-            var faction = Current.Factions.FirstOrDefault(x => x.StringId.ToString() == factionId);
-            var factionClan = (Clan)faction;
+            SpawnQuestPartyUntracked(partyLeaderTemplate, partyTemplate, factionId, heroNameOverride, partyNameOverride, spawnLocationOverride);
+            AddTrackedObject(_targetParty);
+        }
+
+        private void SpawnQuestPartyUntracked(string partyLeaderTemplate, string partyTemplate, string factionId,
+            string heroNameOverride = null, string partyNameOverride = null, Settlement spawnLocationOverride = null)
+        {
+            var factionClan = GenerateClan(factionId);
             //this is intended as a quick fix, if we dont  want a full random spawning
+            var settlement = GenerateSettlement(factionClan, spawnLocationOverride);
+            var hero = GenerateHero(partyLeaderTemplate, factionClan, settlement, heroNameOverride);
+            var party = GenerateParty(factionClan, settlement, hero, partyTemplate, partyNameOverride);
+
+            _targetParty = party;
+        }
+
+        #region Generators for party spawning
+        private Clan GenerateClan(string factionId)
+        {
+            var faction = Current.Factions.FirstOrDefault(x => x.StringId.ToString() == factionId);
+            return (Clan)faction;
+        }
+
+        private Settlement GenerateSettlement(Clan factionClan, Settlement spawnLocationOverride = null)
+        {
             Settlement settlement = null;
             if (spawnLocationOverride == null)
             {
                 if (factionClan.IsBanditFaction)
                 {
                     settlement = Settlement.All.FirstOrDefault(x =>
-                        x.IsHideout && x.Culture.StringId == faction.Culture.StringId);
+                        x.IsHideout && x.Culture.StringId == factionClan.Culture.StringId);
                 }
                 else
                 {
                     settlement = Settlement.All.Where(x => x.IsHideout).MinBy(x => x.GetTrackDistanceToMainAgent());
-                    ;
                 }
             }
             else
@@ -293,20 +339,33 @@ namespace TOR_Core.Quests
                 settlement = Settlement.All.FirstOrDefault(x => x.Name == spawnLocationOverride.Name);
             }
 
-            var partyTextObject = new TextObject(partyNameOverride);
+            return settlement;
+        }
+        
+        private Hero GenerateHero(string partyLeaderTemplate, Clan factionClan, Settlement settlement,
+            string heroNameOverride = null)
+        {
+            var leaderTemplate = MBObjectManager.Instance.GetObject<CharacterObject>(partyLeaderTemplate);
             var heroTextObject = new TextObject(heroNameOverride);
             var hero = HeroCreator.CreateSpecialHero(leaderTemplate, settlement, factionClan, null, 45);
             if (heroNameOverride != null) hero.SetName(heroTextObject, heroTextObject);
+
+            return hero;
+        }
+
+        private MobileParty GenerateParty(Clan factionClan, Settlement settlement, Hero hero, 
+            string partyTemplate, string partyNameOverride = null)
+        {
+            var partyTextObject = new TextObject(partyNameOverride);
             var party = QuestPartyComponent.CreateParty(settlement, hero, factionClan, partyTemplate);
             if (partyNameOverride != null) party.SetCustomName(partyTextObject);
             party.Aggressiveness = 0f;
             party.IgnoreByOtherPartiesTill(CampaignTime.Never);
             //  party.SetPartyUsedByQuest(true);
-            _targetParty = party;
-            List<PartyBase> list = new List<PartyBase>();
-            list.Add(_targetParty.Party);
-            AddTrackedObject(party);
+
+            return party;
         }
+        #endregion
 
         protected override void HourlyTick() { }
     }
