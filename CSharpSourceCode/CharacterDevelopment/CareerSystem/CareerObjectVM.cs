@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.TwoDimension;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
@@ -88,7 +90,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             if(info != null)
             {
                 int usedPoints = info.CareerChoices.Count - 1; //Account for root choice, does not need to be taken into consideration.
-                FreeCareerPoints = "Free career points: " + (Hero.MainHero.Level - usedPoints).ToString();
+
+                var min = Mathf.Min(TORConstants.MAXIMUM_CAREER_POINTS, Hero.MainHero.Level);
+                FreeCareerPoints = "Free career points: " + (min - usedPoints).ToString();
             }
         }
 
