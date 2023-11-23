@@ -12,7 +12,7 @@ namespace TOR_Core.Models
         public override ExplainedNumber GetPartyMemberSizeLimit(PartyBase party, bool includeDescriptions = false)
         {
             var num = base.GetPartyMemberSizeLimit(party, includeDescriptions);
-            if (party.Culture != null && party.Culture.Name.Contains("Vampire"))
+            if (party.MapFaction != null && party.Culture != null && party.Culture.Name.Contains("Vampire"))
             {
                 if (party.LeaderHero != null && party.LeaderHero.IsHumanPlayerCharacter)
                 {
