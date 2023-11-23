@@ -53,7 +53,7 @@ namespace TOR_Core.BattleMechanics
                 
                 
             }
-            else if(affectorAgent.GetOriginMobileParty().IsMainParty && affectorAgent.IsHero)
+            else if(affectorAgent.GetOriginMobileParty().IsMainParty&&  affectorAgent!=Agent.Main&& affectorAgent.IsHero)
             {
                 var playerHero = Agent.Main.GetHero();
                 var choices = playerHero.GetAllCareerChoices();

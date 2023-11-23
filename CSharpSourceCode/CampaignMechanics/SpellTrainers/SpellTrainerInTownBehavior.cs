@@ -183,6 +183,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             obj.AddDialogLine("trainer_prophetesse_start", "hub_prophetesse", "choices_prophetesse", "{=tor_spelltrainer_prophetesse_choices_str}Is there more you seek? Speak your desires.", isMorgianaLeFay, null, 200, null);
             obj.AddPlayerLine("trainer_prophetesse_learnspells", "choices_prophetesse", "openbook_prophetesse", "{=tor_spelltrainer_prophetesse_open_book_str}Revered Fay Enchantress, share with me some of your magic teachings.", () => MobileParty.MainParty.HasSpellCasterMember()&&damselCondition(), null, 200, null);
             obj.AddPlayerLine("trainer_prophetesse_scrollShop", "choices_prophetesse", "hub_prophetesse", "{=tor_spelltrainer_prophetesse_scrolls_str}Gracious Enchantress, I ask you for the tomes and scrolls that hold the keys to the Lady's wisdom.", null, OpenScrollShop, 200, null);
+            obj.AddPlayerLine("trainer_prophetesse_scrollShop", "choices_prophetesse", "hub_prophetesse", "{=tor_spelltrainer_prophetesse_damselsecond_lore_str}Lore did not give me a proper text for giving my damsel a second lore :(. Can you just give {DAMSELNAME} Lore of Beasts real quick?", ()=> MobileParty.MainParty.HasSpellCasterMember()&&damselCondition()&&damselSecondLoreCondition(), damselSecondLoreConsequence, 200, null);
             obj.AddPlayerLine("trainer_prophetesse_playergoodbye", "choices_prophetesse", "saygoodbye", "{=tor_spelltrainer_prophetesse_player_goodbye_str}Until we meet again, my Fay Enchantress.", null, null, 200, null);
             obj.AddDialogLine("trainer_prophetesse_goodbye", "saygoodbye", "close_window", "{=tor_spelltrainer_prophetesse_goodbye_str}Go forth, and may the Lady's grace illuminate your path.", isMorgianaLeFay, null, 200, null);
             obj.AddDialogLine("trainer_prophetesse_afterlearnspells", "openbook_prophetesse", "hub_prophetesse", "{=tor_spelltrainer_prophetesse_close_book_str}You have grasped this weave with prowess. Carry this knowledge, and may it serve you well, as a beacon of the Lady's blessings.", null, openbookconsequence, 200, null);
@@ -217,6 +218,29 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             return false;
         }
 
+        
+        private bool damselSecondLoreCondition()
+        {
+            var damselCompanion = Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Where(x => x != Hero.MainHero&& x.Culture.StringId == "vlandia" && x.IsSpellCaster()).FirstOrDefault();
+            if (damselCompanion == null) return false;
+            
+            if (Hero.MainHero.HasCareer(TORCareers.GrailDamsel) && !damselCompanion.HasKnownLore("LoreOfBeasts"))
+            {
+                GameTexts.SetVariable("DAMSELNAME", damselCompanion.Name);
+                return Hero.MainHero.HasAttribute("SecondLoreForDamselCompanions");
+            }
+            return false;
+        }
+        
+        private void damselSecondLoreConsequence()
+        {
+            TextObject text = new TextObject("{DAMSELNAME}");
+
+            var hero= Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Where(x => x.Name.ToString() == text.ToString() && x.IsSpellCaster()).FirstOrDefault();
+            if(hero==null)return;
+            hero.AddKnownLore("LoreOfBeasts");
+        }
+        
         private bool damselCondition()
         {
             if (Hero.MainHero.HasCareer(TORCareers.GrailDamsel)||(Hero.MainHero.PartyBelongedTo!=null&& Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.Culture.StringId == "vlandia"&& x.IsSpellCaster()))) return true;
