@@ -1,15 +1,15 @@
 <Module>
-	<Name value="The Old Realms Core Module" />
+	<Name value="The Old Realms Core Module (Knights and Saints update)" />
 	<Id value="TOR_Core" />
-	<Version value="v1.2.3" />
+	<Version value="v1.2.5" />
 	<ModuleCategory value="Singleplayer"/>
 	<DependedModules>
-		<DependedModule Id="Native" DependentVersion="v1.2.3" />
-		<DependedModule Id="SandBoxCore" DependentVersion="v1.2.3" />
-		<DependedModule Id="Sandbox" DependentVersion="v1.2.3" />
-		<DependedModule Id="StoryMode" DependentVersion="v1.2.3" />
-		<DependedModule Id="TOR_Armory" DependentVersion="v1.2.3" />
-		<DependedModule Id="TOR_Environment" DependentVersion="v1.2.3" />
+		<DependedModule Id="Native" DependentVersion="v1.2.5" />
+		<DependedModule Id="SandBoxCore" DependentVersion="v1.2.5" />
+		<DependedModule Id="Sandbox" DependentVersion="v1.2.5" />
+		<DependedModule Id="StoryMode" DependentVersion="v1.2.5" />
+		<DependedModule Id="TOR_Armory" DependentVersion="v1.2.5" />
+		<DependedModule Id="TOR_Environment" DependentVersion="v1.2.5" />
 	</DependedModules>
 	<SubModules>
 		<SubModule>

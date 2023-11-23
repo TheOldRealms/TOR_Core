@@ -39,7 +39,7 @@ The fair's heart beats strongest at the horse market. Proud stallions prance, th
     * [Return to the fair's heart.]->Start.choices
 
 ===BuyHorse===
-{HasEnoughGold(HorsePrice): You strike a deal with the merchant. You exchange coins for a sturdy saddle and reins. With a surge of anticipation, you mount the horse. The connection between you is immediate, the horse seems to respond to your touch with trust and eagerness. {GiveGold(-HorsePrice)} | You don't have enough gold.}
+{HasEnoughGold(HorsePrice): You strike a deal with the merchant. You exchange coins for a sturdy saddle and reins. With a surge of anticipation, you mount the horse. The connection between you is immediate, the horse seems to respond to your touch with trust and eagerness. {GiveGold(-HorsePrice)} {GiveItem("t2_empire_horse",1)} | You don't have enough gold.}
 
 * [Return to the revelry]->Start.choices
 
@@ -47,8 +47,8 @@ The fair's heart beats strongest at the horse market. Proud stallions prance, th
 {perform_player_skill_check("Charm",150): -> success | -> fail}
 
     =success
-    Your words work their magic, and the merchant agrees to lower the price by 25%. The merchant grumbles but respects your negotiating skills.
-    ~HorsePrice = 1500
+    Your words work their magic, and the merchant agrees to lower the price by 50%. The merchant grumbles but respects your negotiating skills.
+    ~HorsePrice = 1000
     ->HorseStalls.choices
 
     =fail
