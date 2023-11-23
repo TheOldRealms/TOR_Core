@@ -46,6 +46,22 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                     GameMenu.SwitchToMenu("ror_center");
                 }, false, 4, false);
 
+            obj.AddGameMenuOption("castle", "ror_enter", "Regiments of Renown Recruitment",
+                delegate (MenuCallbackArgs args)
+                {
+                    args.optionLeaveType = GameMenuOption.LeaveType.Submenu;
+                    if (Clan.PlayerClan.Tier < 3)
+                    {
+                        args.IsEnabled = false;
+                        args.Tooltip = new TextObject("Your clan needs to be at least Tier 3 in order to recruit Regiments of Renown.");
+                    }
+                    return Settlement.CurrentSettlement.IsRoRSettlement();
+                },
+                delegate (MenuCallbackArgs args)
+                {
+                    GameMenu.SwitchToMenu("ror_center");
+                }, false, 4, false);
+
             obj.AddGameMenuOption("village", "ror_enter", "Regiments of Renown Recruitment",
                 delegate (MenuCallbackArgs args)
                 {
