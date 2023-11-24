@@ -29,6 +29,7 @@ namespace TOR_Core.HarmonyPatches
             }
         }
 
+        /*
         [HarmonyPatch(typeof(MapScene), "Load")]
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
@@ -56,6 +57,7 @@ namespace TOR_Core.HarmonyPatches
                 yield return instruction;
             }
         }
+        */
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(MapScene), "GetMapBorders")]
