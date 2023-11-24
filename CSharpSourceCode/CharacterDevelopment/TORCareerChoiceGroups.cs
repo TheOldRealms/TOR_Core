@@ -288,17 +288,18 @@ namespace TOR_Core.CharacterDevelopment
             
             //Grail Damsel
             
-            _feyEnchantment.Initialize("{=fey_enchantment_choice_group_str}Fey Enchantment", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
-            {
-                text = string.Empty;
-                return true;
-            });
+            
             _inspirationOfTheLady.Initialize("{=inspiration_of_the_lady_choice_group_str}Inspiration of the Lady", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
             _talesOfGiles.Initialize("{=tales_of_gilles_choice_group_str}Tales of Gilles", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _feyEnchantment.Initialize("{=fey_enchantment_choice_group_str}Fey Enchantment", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
