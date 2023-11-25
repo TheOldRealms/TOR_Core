@@ -20,7 +20,11 @@ using TOR_Core.GameManagers;
 using TOR_Core.Quests;
 using NLog;
 using TaleWorlds.Library;
+using TaleWorlds.TwoDimension;
 using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.HarmonyPatches;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -125,6 +129,8 @@ namespace TOR_Core.AbilitySystem
                if(comp.CareerAbility==null)
                    return;
                
+               
+               CareerHelper.CalculateChargeForCareer(ChargeType.DamageDone,blow.InflictedDamage);
                if (comp.CareerAbility.ChargeType == ChargeType.NumberOfKills) comp.CareerAbility.AddCharge(1);
            }
             
@@ -132,35 +138,35 @@ namespace TOR_Core.AbilitySystem
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
-            var comp = affectorAgent.GetComponent<AbilityComponent>();
+            if (!affectedAgent.IsMainAgent && !affectorAgent.IsMainAgent) return;
+            var isAttacker = affectorAgent.IsMainAgent;
+            
+            
+            var comp = Agent.Main.GetComponent<AbilityComponent>();
             if (comp != null)
             {
                 if(comp.CareerAbility==null)
                     return;
 
-                var propotion = DamagePortionForChargingCareerAbility;
+                var attackMask = DamagePatch.DetermineMask(blow);
                 
-                
-                if (comp.CareerAbility.ChargeType == ChargeType.DamageDone) comp.CareerAbility.AddCharge(blow.InflictedDamage * DamagePortionForChargingCareerAbility);
-            }
-
-            var comp2 = affectedAgent.GetComponent<AbilityComponent>();
-            if (comp2 != null)
-            {
-                if (comp2.CareerAbility != null && comp2.CareerAbility.ChargeType == ChargeType.DamageTaken)
+                var result = 0f;
+                if (isAttacker)
                 {
-                    
-                    var percentage = blow.InflictedDamage / affectedAgent.HealthLimit;
-                    
-                    if (attackCollisionData.CollisionResult == CombatCollisionResult.Blocked)
-                    {
-                        percentage *= 0.1f;
-                    }
-
-                    percentage *= 100;
-                    comp2.CareerAbility.AddCharge(percentage * DamagePortionForChargingCareerAbility);
+                    result = CareerHelper.CalculateChargeForCareer(ChargeType.DamageDone,blow.InflictedDamage, attackMask, attackCollisionData);
                 }
+                else
+                {
+                    result = CareerHelper.CalculateChargeForCareer(ChargeType.DamageTaken, blow.InflictedDamage, attackMask, attackCollisionData);
+                }
+
+                if (!Mathf.IsZero(result))
+                {
+                    comp.CareerAbility.AddCharge(result);
+                }
+                
             }
+            
         }
 
         public override void OnMissionTick(float dt)

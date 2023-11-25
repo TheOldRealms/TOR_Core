@@ -1043,7 +1043,7 @@
             Radius="4" 
             HasShockWave="false" 
             TargetType="Self" 
-            ImbuedStatusEffectDuration="5" 
+            ImbuedStatusEffectDuration="6" 
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>fey_path_res</ImbuedStatusEffect>
@@ -1053,7 +1053,7 @@
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
-            DamageType="Invalid" 
+            DamageType="Magical" 
             DamageAmount="1" 
             Radius="5" 
             HasShockWave="true" 

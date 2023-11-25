@@ -27,7 +27,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         private bool _initBaseValues;
         private bool _disabled;
         private Dictionary<DrivenProperty, float> _baseValues;
-       
+        private CareerPerkMissionBehavior _careerPerkMissionBehavior;
 
         public StatusEffectComponent(Agent agent) : base(agent)
         {
@@ -36,7 +36,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             _dummyEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
             _dummyEntity.Name = "_dummyEntity_" + Agent.Index;
             _baseValues = new Dictionary<DrivenProperty, float>();
-     
+
+            _careerPerkMissionBehavior = Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
+
         }
 
         public void SynchronizeBaseValues(bool mountOnly = false)
@@ -106,7 +108,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
 
             CalculateEffectAggregate();
-            StatusEffect dotEffect = _currentEffects.Keys.Where(x => x.Template.Type == StatusEffectTemplate.EffectType.DamageOverTime).FirstOrDefault();
+            StatusEffect overTimeEffect = _currentEffects.Keys.Where(x => x.Template.Type == StatusEffectTemplate.EffectType.DamageOverTime||x.Template.Type == StatusEffectTemplate.EffectType.HealthOverTime).FirstOrDefault();
 
             if (Agent.IsActive() && Agent != null && !Agent.IsFadingOut())
             {
@@ -121,16 +123,24 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
                 if (_effectAggregate.DamageOverTime > 0)
                 {
-                    Agent.ApplyDamage((int)_effectAggregate.DamageOverTime, Agent.Position, dotEffect.ApplierAgent, false, false);
+                    Agent.ApplyDamage((int)_effectAggregate.DamageOverTime, Agent.Position, overTimeEffect.ApplierAgent, false, false);
                 }
                 else if (_effectAggregate.HealthOverTime > 0)
                 {
-                    Agent.Heal((int)_effectAggregate.HealthOverTime);
+                    var healingValue =(int) _effectAggregate.HealthOverTime;
+                    Agent.Heal(healingValue);
 
                     if (Agent.HasMount && Agent.HasAttribute("HorseLink"))
                     {
-                        Agent.MountAgent.Heal(_effectAggregate.HealthOverTime);
+                        Agent.MountAgent.Heal(healingValue);
                     }
+
+
+                    if (_careerPerkMissionBehavior != null)
+                    {
+                        _careerPerkMissionBehavior.OnAgentHealed(overTimeEffect.ApplierAgent,Agent,healingValue);
+                    }
+                    
                 }
 
                 if (_effectAggregate == null) return;

@@ -97,15 +97,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             _secretsOfTheGrailKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SecretsOfTheGrailKeystone"));
             _secretsOfTheGrailPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SecretsOfTheGrailPassive1"));
-            _secretsOfTheGrailPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SecretsOfTheGrailPassive1"));
-            _secretsOfTheGrailPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SecretsOfTheGrailPassive1"));
-            _secretsOfTheGrailPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SecretsOfTheGrailPassive1"));
+            _secretsOfTheGrailPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SecretsOfTheGrailPassive2"));
+            _secretsOfTheGrailPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SecretsOfTheGrailPassive3"));
+            _secretsOfTheGrailPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SecretsOfTheGrailPassive4"));
             
             _envoyOfTheLadyKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("EnvoyOfTheLadyKeystone"));
             _envoyOfTheLadyPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("EnvoyOfTheLadyPassive1"));
-            _envoyOfTheLadyPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("EnvoyOfTheLadyPassive1"));
-            _envoyOfTheLadyPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("EnvoyOfTheLadyPassive1"));
-            _envoyOfTheLadyPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("EnvoyOfTheLadyPassive1"));
+            _envoyOfTheLadyPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("EnvoyOfTheLadyPassive2"));
+            _envoyOfTheLadyPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("EnvoyOfTheLadyPassive3"));
+            _envoyOfTheLadyPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("EnvoyOfTheLadyPassive4"));
         }
 
         protected override void InitializeKeyStones()
@@ -139,7 +139,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _inspirationOfTheLadyKeystone.Initialize(CareerID, "Spellcaster damage of companions in the party count towards the career ability", "InspirationOfTheLady", false, ChoiceType.Passive);
+            _inspirationOfTheLadyKeystone.Initialize(CareerID, "The Charge Amount is doubled but Spellcaster damage and heal of companions in the party count towards the career ability", "InspirationOfTheLady", false, ChoiceType.Passive);
             
             _justCauseKeystone.Initialize(CareerID, "Magical damage for troops close to the exit of the teleport  is increased by 30% for 5 secounds", "JustCause", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
@@ -154,15 +154,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
             
-            _vividVisionsKeystone.Initialize(CareerID, "Fey path charges 20% faster", "VividVisions", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+            _vividVisionsKeystone.Initialize(CareerID, "Fey path charges 30% faster", "VividVisions", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
-            }, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.Special));
+            }, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special,true));
             
             _secretsOfTheGrailKeystone.Initialize(CareerID, "After using Fey Paths, a second jump is available shortly after the first one.", "SecretsOfTheGrail", false, ChoiceType.Passive);
             
-            _envoyOfTheLadyKeystone.Initialize(CareerID, "When you teleport, you take all units in your closest sourroundings(5m radius) with you.", "EnvoyOfTheLady", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+            _envoyOfTheLadyKeystone.Initialize(CareerID, "When you teleport, you take all units in your closest surroundings(5m radius) with you.", "EnvoyOfTheLady", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
-            }, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.Special));
+            }, new CareerChoiceObject.PassiveEffect());
 
         }
 
@@ -178,12 +178,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _inspirationOfTheLadyPassive3.Initialize(CareerID, "{=inspiration_of_the_lady_passive3_str}All Knight troops wages are reduced by 25%.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
             _inspirationOfTheLadyPassive4.Initialize(CareerID, "{=inspiration_of_the_lady_passive4_str}10% Ward save if your armor weight does not exceed 11 weight.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));
 
-            _talesOfGilesPassive1.Initialize(CareerID, "{=tales_of_giles_passive1_str}Increases max Winds of Magic by 5.", "TalesOfGiles", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
+            _talesOfGilesPassive1.Initialize(CareerID, "{=tales_of_giles_passive1_str}Increases max Winds of Magic by 10.", "TalesOfGiles", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
             _talesOfGilesPassive2.Initialize(CareerID, "{=tales_of_giles_passive2_str}Bretonnian units receive 10% Ward save.", "TalesOfGiles", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));
             _talesOfGilesPassive3.Initialize(CareerID, "{=tales_of_giles_passive3_str}When praying at a shrine of the Lady, all wounded troops get healed.", "TalesOfGiles", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special, true));
             _talesOfGilesPassive4.Initialize(CareerID, "{=tales_of_giles_passive4_str}20% spell cooldown reduction.", "TalesOfGiles", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.WindsCooldownReduction, true)); 
             
-            _vividVisionsPassive1.Initialize(CareerID, "{=vivid_visions_passive1_str}Increases max Winds of Magic by 5.", "VividVisions", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
+            _vividVisionsPassive1.Initialize(CareerID, "{=vivid_visions_passive1_str}Increases max Winds of Magic by 10.", "VividVisions", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
             _vividVisionsPassive2.Initialize(CareerID, "{=vivid_visions_passive2_str}Party movement speed is increased by 1.", "VividVisions", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1f, PassiveEffectType.PartyMovementSpeed));
             _vividVisionsPassive3.Initialize(CareerID, "{=vivid_visions_passive3_str}Increases Magic resistance against spells by 25%.", "VividVisions", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical,25),AttackTypeMask.Spell));
             _vividVisionsPassive4.Initialize(CareerID, "{=vivid_visions_passive4_str}The Spotting range of the party is increased by 20%.", "VividVisions", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
@@ -200,7 +200,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             _envoyOfTheLadyPassive1.Initialize(CareerID, "{=ambassador_of_the_lady_Passive1_str}Increases Magic damage by 20%.", "EnvoyOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 20), AttackTypeMask.Spell));
             _envoyOfTheLadyPassive2.Initialize(CareerID, "{=ambassador_of_the_lady_Passive2_str}Knight Companion health points are doubled.", "EnvoyOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special, true));
-            _envoyOfTheLadyPassive3.Initialize(CareerID, "{=ambassador_of_the_lady_Passive3_str}Damsel Companion have 50 more Winds of Magic.", "EnvoyOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, false)); //AbilityMissionLogic, OnCastComplete
+            _envoyOfTheLadyPassive3.Initialize(CareerID, "{=ambassador_of_the_lady_Passive3_str}Damsel Companion have 25 more Winds of Magic.", "EnvoyOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, false)); //AbilityMissionLogic, OnCastComplete
             _envoyOfTheLadyPassive4.Initialize(CareerID, "{=ambassador_of_the_lady_Passive4_str}Diplomatic force options for all Brettonnian Leaders.", "EnvoyOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special, true));
         }
         
