@@ -48,9 +48,9 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                         }
                         else if (BaseCharacter.HeroObject.PartyBelongedTo!=null && BaseCharacter.HeroObject.PartyBelongedTo.IsMainParty)
                         {
-                            if (CareerChoices.Contains("AmbassadorOfTheLadyPassive2"))
+                            if (CareerChoices.Contains("EnvoyOfTheLadyPassive2"))
                             {
-                                var choice = TORCareerChoices.GetChoice("AmbassadorOfTheLadyPassive2");
+                                var choice = TORCareerChoices.GetChoice("EnvoyOfTheLadyPassive2");
                                 explainedNumber.Add(choice.GetPassiveValue());
                             }
                         }

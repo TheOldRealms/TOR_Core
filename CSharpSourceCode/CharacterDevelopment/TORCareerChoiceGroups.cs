@@ -49,6 +49,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _monsterSlayer;
         private CareerChoiceGroupObject _masterHorseman;
         private CareerChoiceGroupObject _grailVow;
+        private CareerChoiceGroupObject _holyCrusader;
         //Grail Damsel
         private CareerChoiceGroupObject _feyEnchantment;
         private CareerChoiceGroupObject _inspirationOfTheLady;
@@ -103,6 +104,7 @@ namespace TOR_Core.CharacterDevelopment
             _monsterSlayer = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("MonsterSlayer")); 
             _masterHorseman = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("MasterHorseman")); 
             _grailVow = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("GrailVow"));
+            _holyCrusader = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("HolyCrusader"));
             
             _feyEnchantment = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("FeyEnchantment"));
             _inspirationOfTheLady = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("InspirationOfTheLady")); 
@@ -116,6 +118,9 @@ namespace TOR_Core.CharacterDevelopment
 
         private void InitializeAll()
         {
+            
+            //Warrior Priest of Sigmar
+            
             _bookOfSigmar.Initialize("{=book_of_sigmar_choice_group_str}Book of Sigmar", TORCareers.WarriorPriest, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
@@ -147,6 +152,7 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.Clan.Tier >= 4;
             });
             
+            //Vampire Count
             
             _newBlood.Initialize("{=new_blood_choice_group_str}New Blood", TORCareers.MinorVampire, 1, (Hero hero, out string text) =>
             {
@@ -184,6 +190,7 @@ namespace TOR_Core.CharacterDevelopment
             });
             
             //Blood Knight
+            
             _peerlessWarrior.Initialize("{=peerless_warrior_choice_group_str}Peerless Warrior", TORCareers.BloodKnight, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
@@ -222,6 +229,7 @@ namespace TOR_Core.CharacterDevelopment
             });
             
             //Mercenary
+            
             _survivalist.Initialize("{=survivalist_choice_group_str}The Survivalist", TORCareers.Mercenary, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
@@ -285,9 +293,13 @@ namespace TOR_Core.CharacterDevelopment
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
+            _holyCrusader.Initialize("{=holy_crusader_choice_group_str}Holy Crusader", TORCareers.GrailKnight, 3, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier >= 4;
+            });
             
             //Grail Damsel
-            
             
             _inspirationOfTheLady.Initialize("{=inspiration_of_the_lady_choice_group_str}Inspiration of the Lady", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
             {

@@ -265,7 +265,7 @@ namespace TOR_Core.Extensions
                 var info = hero.GetExtendedInfo();
                 if (info != null && !info.CareerChoices.Contains(choice.StringId))
                 {
-                    int maxChoices = TORConstants.MAXIMUM_CAREER_POINTS + 1;
+                    int maxChoices = Math.Min(hero.Level+1,TORConstants.MAXIMUM_CAREER_POINTS + 1);
                     if(info.CareerChoices.Count < maxChoices)
                     {
                         info.CareerChoices.Add(choice.StringId);
@@ -306,6 +306,12 @@ namespace TOR_Core.Extensions
                 return hero.GetExtendedInfo().CareerID == career.StringId;
             }
             return result;
+        }
+
+
+        public static bool IsBretonnianKnight(this Hero hero)       //Potentially a cleaner way to check that
+        {
+            return !hero.IsSpellCaster() && hero.Culture.StringId != "vlandia";
         }
 
         public static bool HasAnyCareer(this Hero hero) => Game.Current.GameType is Campaign&& hero.GetCareer() != null;

@@ -868,7 +868,7 @@
             SoundEffectLength="0" 
             DamageType="Invalid" 
             DamageAmount="0" 
-            Radius="8" 
+            Radius="5" 
             HasShockWave="false" 
             TargetType="Self" 
             ImbuedStatusEffectDuration="2.1" 

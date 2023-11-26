@@ -1,4 +1,5 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using System.Linq;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Localization;
 using TOR_Core.CharacterDevelopment;
@@ -86,6 +87,11 @@ namespace TOR_Core.Models
                     CareerHelper.ApplyBasicCareerPassives(hero, ref number, PassiveEffectType.Health);
                 }
 
+                if (hero.PartyBelongedTo != null && hero.PartyBelongedTo.IsMainParty && hero != Hero.MainHero)
+                {
+                    
+                } 
+
                 if (Hero.MainHero.HasCareerChoice("AmbassadorOfTheLadyPassive2"))
                 {
                     if (hero.PartyBelongedTo != null && hero.PartyBelongedTo.IsMainParty && hero != Hero.MainHero && Hero.MainHero.HasAnyCareer())
@@ -93,6 +99,30 @@ namespace TOR_Core.Models
                             var choice = TORCareerChoices.GetChoice("AmbassadorOfTheLadyPassive2");
                             number.AddFactor(choice.GetPassiveValue());
                     }
+                }
+
+                if (hero.PartyBelongedTo!=null&& hero.PartyBelongedTo.IsMainParty && hero != Hero.MainHero)
+                {
+                    
+                    if (Hero.MainHero.HasCareerChoice("AmbassadorOfTheLadyPassive2"))
+                    {
+                        if (hero.IsBretonnianKnight())
+                        {
+                            var choice = TORCareerChoices.GetChoice("AmbassadorOfTheLadyPassive2");
+                            number.AddFactor(choice.GetPassiveValue());
+                        }
+                    }
+                    if (Hero.MainHero.HasCareerChoice("HolyCrusaderPassive2"))
+                    {
+                        if (hero.IsBretonnianKnight())
+                        {
+                            var heroes =Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
+                            heroes.Remove(Hero.MainHero);
+                            var extraHealth= heroes.Where(knight => hero.IsBretonnianKnight()).Sum(knight=> 15);
+                            number.Add(extraHealth);
+                        }
+                    }
+                    
                 }
 
                 if (hero.HasAttribute("GiftOfNurgle")) number.Add(20, new TextObject("Gift of Nurgle"));

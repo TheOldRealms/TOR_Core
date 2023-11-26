@@ -26,17 +26,29 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public void Initialize(CareerObject ownerCareer, string description, string belongsToGroup, bool isRootNode, ChoiceType type, List<MutationObject> mutations = null, PassiveEffect passiveEffect = null)
         {
-            TextObject descriptionOverride;
-            if(GameTexts.TryGetText("careerchoice_description", out descriptionOverride, StringId))
+            TextObject text;
+            text = new TextObject(description);
+            Passive = passiveEffect;
+            if(GameTexts.TryGetText("careerchoice_description", out var descriptionOverride, StringId))
             {
                 if(Passive != null)
                 {
-                    if (Passive.InterpretAsPercentage) GameTexts.SetVariable("EFFECT_VALUE", Passive.EffectMagnitude.ToString("R"));
-                    else GameTexts.SetVariable("EFFECT_VALUE", Passive.EffectMagnitude.ToString());
+                    if (Passive.InterpretAsPercentage)
+                    {
+                        GameTexts.SetVariable("EFFECT_VALUE", Passive.EffectMagnitude.ToString("R"));
+                    }
+                    else
+                    {
+                        GameTexts.SetVariable("EFFECT_VALUE", Passive.EffectMagnitude.ToString());
+                    }
                 }
-                description = descriptionOverride.ToString();
+                
+                if (descriptionOverride != null)
+                {
+                    text = new TextObject(descriptionOverride.ToString());
+                }
             }
-            base.Initialize(new TextObject(StringId), new TextObject(description));
+            base.Initialize(new TextObject(StringId), text);
             OwnerCareer = ownerCareer;
             if (!string.IsNullOrEmpty(belongsToGroup))
             {
@@ -45,7 +57,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             else BelongsToGroup = null;
             if (BelongsToGroup != null) BelongsToGroup.Choices.Add(this);
             if(mutations != null) _mutations.AddRange(mutations);
-            Passive = passiveEffect;
             if (isRootNode) OwnerCareer.RootNode = this;
             AfterInitialized();
         }
@@ -202,6 +213,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         PrayerCoolDownReduction, //player cooldown reduction as Percentage
         PartyMovementSpeed, //general party speed
         PartySize,
+        CompanionLimit,
         TroopRegeneration,  //troop generation
         TroopMorale,        //Morale
         TroopUpgradeCost,

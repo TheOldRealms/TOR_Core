@@ -1,5 +1,7 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
+using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
 {
@@ -12,6 +14,24 @@ namespace TOR_Core.Models
             return Clan.PlayerClan.Equals(clan)
                 ? base.GetPartyLimitForTier(clan, clanTierToCheck)
                 : clan.Heroes.Count;
+        }
+        
+        
+        public override int GetCompanionLimit(Clan clan)
+        {
+            int companionLimit = base.GetCompanionLimit(clan);
+
+            if (clan != Clan.PlayerClan) return companionLimit;
+
+            if (Hero.MainHero.HasAnyCareer())
+            {
+                var explainedNumber = new ExplainedNumber(); 
+                CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref explainedNumber ,PassiveEffectType.CompanionLimit, false);
+                companionLimit += (int)explainedNumber.ResultNumber;
+            }
+
+            return companionLimit;
+
         }
     }
 }

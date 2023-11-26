@@ -549,7 +549,7 @@
   <string id="relentless_fanatic_passive2_str" text="Вы дополнительно наносите 10% Святого урона." />
   <string id="relentless_fanatic_passive3_str" text="Бойцы-зигмариты получают 25% сопротивления дальнобойным атакам." />
   <string id="relentless_fanatic_passive4_str" text="Скорость вашего отряда увеличивается на 1." />
-  <string id="protector_of_the_weak_passive1_str" text="Ваше здоровье увеличивается на 20." />
+  <string id="protector_of_the_weak_passive1_str" text="Ваше здоровье увеличивается на {EFFECT_VALUE}." />
   <string id="protector_of_the_weak_passive2_str" text="Ваше сопротивление физ. урону в ближнем бою увеличивается на 15%." />
   <string id="protector_of_the_weak_passive3_str" text="Ваше сопротивление Магии увеличивается на 25%." />
   <string id="protector_of_the_weak_passive4_str" text="Удары слабее, чем на 15 урона, больше не ошеломляют вас." />

@@ -52,6 +52,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         private CareerChoiceObject _grailVowPassive3;
         private CareerChoiceObject _grailVowPassive4;
 
+        private CareerChoiceObject _holyCrusaderKeystone;
+        private CareerChoiceObject _holyCrusaderPassive1;
+        private CareerChoiceObject _holyCrusaderPassive2;
+        private CareerChoiceObject _holyCrusaderPassive3;
+        private CareerChoiceObject _holyCrusaderPassive4;
+
         protected override void RegisterAll()
         {
             _grailKnightRoot = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("GrailKnightRoot"));
@@ -91,6 +97,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _grailVowPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("GrailVowPassive2"));
             _grailVowPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("GrailVowPassive3"));
             _grailVowPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("GrailVowPassive4"));
+            
+            _holyCrusaderKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("HolyCrusaderKeystone"));
+            _holyCrusaderPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("HolyCrusaderPassive1"));
+            _holyCrusaderPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("HolyCrusaderPassive2"));
+            _holyCrusaderPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("HolyCrusaderPassive3"));
+            _holyCrusaderPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("HolyCrusaderPassive4"));
         }
 
         protected override void InitializeKeyStones()
@@ -242,7 +254,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Replace
                     }
                 });
-            _grailVowKeystone.Initialize(CareerID, "Ability scales with Faith, affects nearby allies. When active, get +20% holy damage and regen.", "GrailVow", false,
+            _grailVowKeystone.Initialize(CareerID, "Ability scales with Faith. When active, get +20% holy damage and regen.", "GrailVow", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -271,6 +283,35 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     },
                     new CareerChoiceObject.MutationObject()
                     {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "knightly_charge_phys_res",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { TORSkills.Faith }, 0.001f),
+                        MutationType = OperationType.Add
+                    }
+                });
+            _holyCrusaderKeystone.Initialize(CareerID, "Ability scales with Leadership and activates also for all other Knight Companions. Effect is also applied for all units in a 5 meter radius", "HolyCrusader", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "knightly_charge_lsc",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Leadership }, 0.001f),
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "knightly_charge_phys_res",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Leadership }, 0.001f),
+                        MutationType = OperationType.Add
+                    },
+
+                    new CareerChoiceObject.MutationObject()
+                    {
                         MutationTargetType = typeof(AbilityTemplate),
                         MutationTargetOriginalId = "KnightlyCharge",
                         PropertyName = "AbilityTargetType",
@@ -284,14 +325,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         PropertyName = "TargetType",
                         PropertyValue = (choice, originalValue, agent) => TargetType.Friendly,
                         MutationType = OperationType.Replace
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "knightly_charge_phys_res",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { TORSkills.Faith }, 0.001f),
-                        MutationType = OperationType.Add
                     }
                 });
         }
@@ -327,6 +360,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _grailVowPassive2.Initialize(CareerID, "{=grail_vow_passive2_str}20% extra holy damage for Battle pilgrim troops.", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
             _grailVowPassive3.Initialize(CareerID, "{=grail_vow_passive3_str}20% extra melee holy damage.", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 20), AttackTypeMask.Melee));
             _grailVowPassive4.Initialize(CareerID, "{=grail_vow_passive4_str}Gain 15% Ward save.", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.All));
+            
+            _holyCrusaderPassive1.Initialize(CareerID, "{=holy_crusader_passive1_str}Increases Hitpoints by 40.", "HolyCrusader", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Health));
+            _holyCrusaderPassive2.Initialize(CareerID, "{=holy_crusader_passive2_str}Companion Health increases by 15 for every 'Knight' Companion.", "HolyCrusader", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special));
+            _holyCrusaderPassive3.Initialize(CareerID, "{=holy_crusader_passive3_str}Grail Knights can be upgraded to Companions.", "HolyCrusader", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Health));
+            _holyCrusaderPassive4.Initialize(CareerID, "{=holy_crusader_passive4_str}Companion limit of party is increased by 10.", "HolyCrusader", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.CompanionLimit));
         }
     }
 }
