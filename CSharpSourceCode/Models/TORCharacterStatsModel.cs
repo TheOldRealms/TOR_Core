@@ -86,6 +86,15 @@ namespace TOR_Core.Models
                     CareerHelper.ApplyBasicCareerPassives(hero, ref number, PassiveEffectType.Health);
                 }
 
+                if (Hero.MainHero.HasCareerChoice("AmbassadorOfTheLadyPassive2"))
+                {
+                    if (hero.PartyBelongedTo != null && hero.PartyBelongedTo.IsMainParty && hero != Hero.MainHero && Hero.MainHero.HasAnyCareer())
+                    {
+                            var choice = TORCareerChoices.GetChoice("AmbassadorOfTheLadyPassive2");
+                            number.AddFactor(choice.GetPassiveValue());
+                    }
+                }
+
                 if (hero.HasAttribute("GiftOfNurgle")) number.Add(20, new TextObject("Gift of Nurgle"));
             }
             if (hero.GetPerkValue(TORPerks.Faith.Devotee))

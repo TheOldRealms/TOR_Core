@@ -338,6 +338,10 @@ namespace TOR_Core.AbilitySystem
                 {
                     frame.origin = casterAgent.GetChestGlobalPosition();
                     frame.rotation = casterAgent.LookFrame.rotation;
+                    if (this.IsGroundAbility())
+                    {
+                        frame = new MatrixFrame(Mat3.Identity, Crosshair.Position);
+                    }
                     break;
                 }
                 case AbilityEffectType.ArtilleryPlacement:

@@ -1,7 +1,9 @@
 using System;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.AbilitySystem.Scripts;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -14,8 +16,12 @@ namespace TOR_Core.AbilitySystem
     {
         private readonly CareerObject _career;
         private float _currentCharge;
-        private readonly int _maxCharge = 100;
+        private readonly int _maxCharge = 1000;
         private readonly Hero _ownerHero;
+        private bool _requiresSpellTargeting;
+        private bool _readyToLaunch;
+        private int previousAbilityIndex;
+        private bool _doubleUse;
 
         public CareerAbility(AbilityTemplate template, Agent agent) : base(template)
         {
@@ -31,7 +37,11 @@ namespace TOR_Core.AbilitySystem
 
                     Template = (AbilityTemplate)template.Clone(template.StringID + "*cloned*" + _ownerHero.StringId);
                     _career.MutateAbility(Template, agent);
+                    _requiresSpellTargeting = _career.RequiresAbilityTargeting;
+                    
                 }
+                
+                //_currentCharge = _maxCharge;
 
                 if (Hero.MainHero.GetAllCareerChoices().Contains("CourtleyKeystone") || Hero.MainHero.GetAllCareerChoices().Contains("EnhancedHorseCombatKeystone"))
                     _currentCharge = _maxCharge;
@@ -62,14 +72,31 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
+        public bool RequiresSpellTargeting()
+        {
+            return _requiresSpellTargeting;
+        }
+
         public override void ActivateAbility(Agent casterAgent)
         {
             base.ActivateAbility(casterAgent);
             if (ChargeType != ChargeType.CooldownOnly) _currentCharge = 0;
+            if (_requiresSpellTargeting)
+            {
+                previousAbilityIndex= 0;
+                _readyToLaunch = false;
+            }
+
+            if (this._career.AllChoices.Any(x=> x.StringId == "SecretsOfTheGrailKeystone") &&_doubleUse==false)
+            {
+                _currentCharge = _maxCharge;
+                _doubleUse = true;
+            }
         }
 
         public override bool CanCast(Agent casterAgent)
         {
+            
             if (Template.StringID.Contains("ShadowStep") && casterAgent.HasMount) return false;
             return !_isLocked&&!IsCasting &&
                    !IsOnCooldown() &&
@@ -81,61 +108,18 @@ namespace TOR_Core.AbilitySystem
         {
             if (!IsActive)
             {
-                TORCommon.Say(_currentCharge + amount + " charged of " + _maxCharge); //TODO Remove
-                var modifiedAmount = ModifyChargeAmount(amount);
-                _currentCharge += modifiedAmount;
+                //TORCommon.Say(_currentCharge + amount + " charged of " + _maxCharge);
+                _currentCharge += amount;
                 _currentCharge = Math.Min(_maxCharge, _currentCharge);
+            }
+
+            if (_currentCharge == _maxCharge)
+            {
+                _doubleUse = false;
             }
         }
         
-        private float ModifyChargeAmount(float baseChargeAmount)
-        {
-            var number = new ExplainedNumber(baseChargeAmount);
-            if (Agent.Main.GetHero().HasAnyCareer())
-            {
-                if (Agent.Main.GetHero().GetAllCareerChoices().Contains("ArkayneKeystone"))
-                {
-                    var choice = TORCareerChoices.GetChoice("ArkayneKeystone");
-                    if (choice != null)
-                    {
-                        var value = choice.GetPassiveValue();
-                        number.AddFactor(value);
-                    }
-                }
-
-                if (Agent.Main.GetHero().GetAllCareerChoices().Contains("DreadKnightKeystone"))
-                {
-                    var choice = TORCareerChoices.GetChoice("DreadKnightKeystone");
-                    if (choice != null)
-                    {
-                        var value = choice.GetPassiveValue();
-                        number.AddFactor(value);
-                    }
-                }
-
-                if (Agent.Main.GetHero().GetAllCareerChoices().Contains("NewBloodKeystone"))
-                {
-                    var choice = TORCareerChoices.GetChoice("NewBloodKeystone");
-                    if (choice != null)
-                    {
-                        var value = choice.GetPassiveValue();
-                        number.AddFactor(value);
-                    }
-                }
-
-                if (Agent.Main.GetHero().GetAllCareerChoices().Contains("MartialleKeystone"))
-                {
-                    var choice = TORCareerChoices.GetChoice("MartialleKeystone");
-                    if (choice != null)
-                    {
-                        var value = choice.GetPassiveValue();
-                        number.AddFactor(value);
-                    }
-                }
-            }
-
-            return number.ResultNumber;
-        }
+        
     }
 
     public enum ChargeType

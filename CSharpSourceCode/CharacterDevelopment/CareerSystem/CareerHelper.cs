@@ -9,6 +9,8 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.AbilitySystem;
+using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
@@ -85,6 +87,125 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 }
             }
         }
+
+        public static float CalculateChargeForCareer(ChargeType chargeType, int chargeValue, AttackTypeMask mask, AttackCollisionData collisionData)
+        {
+            var blocked = collisionData.AttackBlockedWithShield;
+            return CalculateChargeForCareer(chargeType, chargeValue, mask, blocked);
+        }
+
+        public static float CalculateChargeForCareer(ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, bool blocked = false) 
+        {
+            var heroCareer = Hero.MainHero.GetCareer();
+            
+            
+            ExplainedNumber explainedNumber = new ExplainedNumber();
+            var careerScaleFactor = ModifyChargeAmount();
+            
+            switch (chargeType)
+            {
+                case ChargeType.DamageDone:
+                {
+                    if (heroCareer == TORCareers.GrailDamsel&& mask == AttackTypeMask.Spell)
+                    { 
+                        explainedNumber.Add(chargeValue);
+                       
+                        explainedNumber.AddFactor(-0.9f);
+                    }
+                   
+                    break;
+                }
+                case ChargeType.DamageTaken:
+                {
+                    if (heroCareer == TORCareers.WarriorPriest)
+                    {
+                        explainedNumber.Add((float) chargeValue / Hero.MainHero.MaxHitPoints);      //proportion of lost health 
+                        
+                        if (blocked)
+                        {
+                            explainedNumber.AddFactor(-0.85f);
+                        }
+                        
+                    }
+                    break;
+                }
+                    
+                case ChargeType.NumberOfKills:
+                    
+                    break;
+            }
+
+            explainedNumber.AddFactor(1-careerScaleFactor);
+            return explainedNumber.ResultNumber;
+        }
+        
+        private static float ModifyChargeAmount()
+        {
+            var number = new ExplainedNumber(1);
+            if (Agent.Main.GetHero().HasAnyCareer())
+            {
+                if (Agent.Main.GetHero().GetAllCareerChoices().Contains("ArkayneKeystone"))
+                {
+                    var choice = TORCareerChoices.GetChoice("ArkayneKeystone");
+                    if (choice != null)
+                    {
+                        var value = choice.GetPassiveValue();
+                        number.AddFactor(value);
+                    }
+                }
+
+                if (Agent.Main.GetHero().GetAllCareerChoices().Contains("DreadKnightKeystone"))
+                {
+                    var choice = TORCareerChoices.GetChoice("DreadKnightKeystone");
+                    if (choice != null)
+                    {
+                        var value = choice.GetPassiveValue();
+                        number.AddFactor(value);
+                    }
+                }
+
+                if (Agent.Main.GetHero().GetAllCareerChoices().Contains("NewBloodKeystone"))
+                {
+                    var choice = TORCareerChoices.GetChoice("NewBloodKeystone");
+                    if (choice != null)
+                    {
+                        var value = choice.GetPassiveValue();
+                        number.AddFactor(value);
+                    }
+                }
+
+                if (Agent.Main.GetHero().GetAllCareerChoices().Contains("MartialleKeystone"))
+                {
+                    var choice = TORCareerChoices.GetChoice("MartialleKeystone");
+                    if (choice != null)
+                    {
+                        var value = choice.GetPassiveValue();
+                        number.AddFactor(value);
+                    }
+                }
+                
+                if (Agent.Main.GetHero().GetAllCareerChoices().Contains("VividVisionsKeystone"))
+                {
+                    var choice = TORCareerChoices.GetChoice("VividVisionsKeystone");
+                    if (choice != null)
+                    {
+                        var value = choice.GetPassiveValue();
+                        number.AddFactor(value);
+                    }
+                }
+                if (Agent.Main.GetHero().GetAllCareerChoices().Contains("InspirationOfTheLadyKeystone"))
+                {
+                    var choice = TORCareerChoices.GetChoice("InspirationOfTheLadyKeystone");
+                    if (choice != null)
+                    {
+                        number.AddFactor(-0.05f);           // Originally only 10% of charge is taken into account, now it would be 5% 
+                    }
+                }
+            }
+
+            return number.ResultNumber-1;
+        }
+        
         
         public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, bool asFactor = false)
         {

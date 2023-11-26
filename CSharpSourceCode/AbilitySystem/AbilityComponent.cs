@@ -185,7 +185,19 @@ namespace TOR_Core.AbilitySystem
                 AbilityCrosshair crosshair = AbilityFactory.InitializeCrosshair(ability.Template);
                 ability.SetCrosshair(crosshair);
             }
-            SelectAbility(0);
+
+            if (Campaign.Current != null && Agent.IsHero&& Agent== Agent.Main &&  Hero.MainHero.HasAnyCareer())
+            {
+                AbilityCrosshair CACrosshair = AbilityFactory.InitializeCrosshair(CareerAbility.Template);
+                CareerAbility.SetCrosshair(CACrosshair);
+                SelectAbility(0); 
+            }
+            
+        }
+        
+        public void SelectAbility(Ability ability)
+        {
+            CurrentAbility = ability;
         }
 
         public void SelectAbility(int index)
@@ -243,6 +255,18 @@ namespace TOR_Core.AbilitySystem
             }
 
             return null;
+        }
+        
+        public int GetCurrentAbilityIndex()
+        {
+            for (var index = 0; index < _knownAbilitySystem.Count; index++)
+            {
+                var ability = _knownAbilitySystem[index];
+                if (ability == CurrentAbility)
+                    return index;
+            }
+
+            return 0;
         }
 
         public override void OnTickAsAI(float dt)

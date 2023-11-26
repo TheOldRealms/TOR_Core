@@ -6,13 +6,67 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.HarmonyPatches;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics
 {
     public class CareerPerkMissionBehavior : MissionLogic
     {
+        
+        
+        public void OnAgentHealed(Agent affectorAgent, Agent affectedAgent, int totalAmountOfHeal)
+        {
+            if ((affectorAgent == Agent.Main || affectorAgent.GetOriginMobileParty().IsMainParty) && affectorAgent.IsHero)
+            {
+                if (Agent.Main.GetHero().HasAnyCareer())
+                {
+                    if (Agent.Main.GetHero().GetCareer() == TORCareers.GrailDamsel)
+                    {
+                        var choices = Agent.Main.GetHero().GetAllCareerChoices();
+                        if (affectorAgent.IsMainAgent || affectorAgent.IsSpellCaster() && choices.Contains("InspirationOfTheLadyKeystone"))
+                        {
+                            var cAbility = Agent.Main.GetComponent<AbilityComponent>();
+                            if (cAbility != null)
+                            {
+                                var value = CareerHelper.CalculateChargeForCareer(ChargeType.DamageDone, totalAmountOfHeal, AttackTypeMask.Spell);
+                                
+                                cAbility.CareerAbility.AddCharge(value);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
+        {
+            if(affectorAgent.IsMount) return;
+            if (affectorAgent.GetOriginMobileParty().IsMainParty && Agent.Main!=null&&  affectorAgent!= Agent.Main && affectorAgent.IsHero)
+            {
+                
+                var choices = Agent.Main.GetHero().GetAllCareerChoices();
+                if (choices.Contains("InspirationOfTheLadyKeystone"))
+                {
+                    if (!affectorAgent.IsSpellCaster()) return;
+                    
+                    AttackTypeMask mask= DamagePatch.DetermineMask(blow);
+                    if (mask == AttackTypeMask.Spell)
+                    {
+                        var value = CareerHelper.CalculateChargeForCareer(ChargeType.DamageDone, blow.InflictedDamage, mask);
+                        var cAbility = Agent.Main.GetComponent<AbilityComponent>();
+                        if (cAbility != null)
+                        {
+                            cAbility.CareerAbility.AddCharge(value);
+                        }
+                        
+                    }
+                    
+                }
+            }
+        }
 
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
@@ -53,7 +107,8 @@ namespace TOR_Core.BattleMechanics
                 
                 
             }
-            else if(affectorAgent.GetOriginMobileParty().IsMainParty && affectorAgent.IsHero)
+            
+            if(!affectorAgent.IsMount&&affectorAgent.GetOriginMobileParty().IsMainParty&& Agent.Main!=null&&   affectorAgent!=Agent.Main&& affectorAgent.IsHero)
             {
                 var playerHero = Agent.Main.GetHero();
                 var choices = playerHero.GetAllCareerChoices();
@@ -63,10 +118,13 @@ namespace TOR_Core.BattleMechanics
                     if (choice != null && affectorAgent.GetOriginMobileParty().IsMainParty && !affectorAgent.IsMainAgent)
                     {
                         var careerAbility = Agent.Main.GetComponent<AbilityComponent>()?.CareerAbility;
-                        careerAbility?.AddCharge(1);
+
+                        var charge = CareerHelper.CalculateChargeForCareer(ChargeType.NumberOfKills, 1);
+                        careerAbility?.AddCharge(charge);
                     }
                 }
             }
+            
             if (affectorAgent.IsMainAgent || affectorAgent.GetOriginMobileParty() == MobileParty.MainParty)
             {
                 var playerHero = affectorAgent.GetHero();

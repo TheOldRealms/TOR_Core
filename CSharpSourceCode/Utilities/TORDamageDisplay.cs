@@ -37,7 +37,7 @@ namespace TOR_Core.Utilities
                     displayDamageType = "Physical";
                     break;
             }
-            InformationManager.DisplayMessage(new InformationMessage(resultDamage + "cast damage consisting of  " + " (" + displayDamageType + ") was applied " + "which was modified by " + (1 + damageAmplifier).ToString("##%", CultureInfo.InvariantCulture), displayColor));
+            InformationManager.DisplayMessage(new InformationMessage(resultDamage + " cast damage consisting of  " + " (" + displayDamageType + ") was applied " + "which was modified by " + (1 + damageAmplifier).ToString("##%", CultureInfo.InvariantCulture), displayColor));
         }
 
         public static void DisplayDamageResult(int resultDamage, float[] categories, float[] percentages,float wardsaveFactor, bool isVictim)

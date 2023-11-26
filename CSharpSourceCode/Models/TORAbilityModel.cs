@@ -26,7 +26,7 @@ namespace TOR_Core.Models
                 case AbilityType.Prayer:
                     return TORSkills.Faith;
                 default:
-                    return null;
+                    return TORSkills.SpellCraft;;
             }
         }
 

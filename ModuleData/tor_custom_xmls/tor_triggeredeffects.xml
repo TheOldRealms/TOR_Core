@@ -978,7 +978,6 @@
             DamageVariance="0" 
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyFlamingItemTraitScript"/>
 			
-			
 		 <TriggeredEffectTemplate StringID="amber_spear" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
@@ -989,7 +988,6 @@
             TargetType="Enemy" 
             DamageVariance="0" />
 
-      
       <TriggeredEffectTemplate StringID="attackspeed_bonus_20" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
@@ -1004,6 +1002,7 @@
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>attackspeed_bonus_20</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
+	  
 	   <TriggeredEffectTemplate StringID="apply_fire_cloak_augment" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
@@ -1035,6 +1034,48 @@
             <ImbuedStatusEffect>ward_of_arrows</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
+	  <TriggeredEffectTemplate StringID="fey_paths_self" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="4" 
+            HasShockWave="false" 
+            TargetType="Self" 
+            ImbuedStatusEffectDuration="6" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>fey_path_res</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
 	  
+	  <TriggeredEffectTemplate StringID="fey_paths_enemy" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Magical" 
+            DamageAmount="1" 
+            Radius="5" 
+            HasShockWave="true" 
+            TargetType="Enemy" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+      </TriggeredEffectTemplate>
+	  
+	  
+	  <TriggeredEffectTemplate StringID="fey_paths_friendly" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="4" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="5" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>fey_path_dmg</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
 	  
 </TriggeredEffectTemplates>

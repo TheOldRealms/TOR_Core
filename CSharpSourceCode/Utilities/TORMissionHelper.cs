@@ -4,9 +4,11 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.Extensions;
+using TOR_Core.Models;
 
 namespace TOR_Core.Utilities
 {
@@ -23,23 +25,34 @@ namespace TOR_Core.Utilities
 
                     var damage = maxDamage < minDamage ? minDamage : MBRandom.RandomInt(minDamage, maxDamage);
                     agent.ApplyDamage(damage, impactPosition, damager, doBlow: true, hasShockWave: hasShockWave);
+                    
                 }
             }
         }
 
         public static void HealAgents(IEnumerable<Agent> agents, int minHeal, int maxHeal = -1, Agent healer = null, TargetType targetType = TargetType.Friendly, AbilityTemplate originSpellTemplate = null)
         {
+            CareerPerkMissionBehavior perkBehavior= Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
+            bool triggerPerkBehavior = perkBehavior!=null &&!(healer == null || originSpellTemplate == null);
+            //ideal place to add also perk effects of skills and careers ?
             if (agents != null)
             {
                 foreach (var agent in agents)
                 {
+                    var amount = minHeal;
                     if (maxHeal < minHeal)
                     {
                         agent.Heal(minHeal);
                     }
                     else
+                    { 
+                        amount = MBRandom.RandomInt(minHeal, maxHeal);
+                        agent.Heal(amount);
+                    }
+
+                    if (triggerPerkBehavior)
                     {
-                        agent.Heal(MBRandom.RandomInt(minHeal, maxHeal));
+                        perkBehavior.OnAgentHealed(healer,agent,amount);
                     }
                 }
             }

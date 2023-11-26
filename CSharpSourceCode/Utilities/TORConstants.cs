@@ -29,5 +29,6 @@ namespace TOR_Core.Utilities
         public const int EMPIRE_VOICES_COUNT = 2;
         public const int BRETONNIA_VOICE_INDEX_START = 29;
         public const int BRETONNIA_VOICES_COUNT = 3;
+        public const int MAXIMUM_CAREER_POINTS = 30;
     }
 }

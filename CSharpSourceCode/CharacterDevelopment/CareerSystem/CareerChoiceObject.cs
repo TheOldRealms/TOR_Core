@@ -149,7 +149,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 AttackTypeMask = mask;
             }
 
-            public PassiveEffect(float effectValue, PassiveEffectType type = PassiveEffectType.Special, bool asPercent=false)
+            public PassiveEffect(float effectValue=0, PassiveEffectType type = PassiveEffectType.Special, bool asPercent=false)
             {
                 EffectMagnitude = effectValue;
                 Operation = OperationType.Add;

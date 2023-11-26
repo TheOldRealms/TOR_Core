@@ -56,6 +56,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _vividVisions;
         private CareerChoiceGroupObject _justCause;
         private CareerChoiceGroupObject _secretsOfTheGrail;
+        private CareerChoiceGroupObject _envoyOfTheLady;
 
 
         public TORCareerChoiceGroups()
@@ -109,6 +110,7 @@ namespace TOR_Core.CharacterDevelopment
             _vividVisions = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("VividVisions")); 
             _justCause = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("JustCause")); 
             _secretsOfTheGrail = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("SecretsOfTheGrail"));
+            _envoyOfTheLady = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("EnvoyOfTheLady"));
             
         }
 
@@ -286,17 +288,18 @@ namespace TOR_Core.CharacterDevelopment
             
             //Grail Damsel
             
-            _feyEnchantment.Initialize("{=fey_enchantment_choice_group_str}Fey Enchantment", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
-            {
-                text = string.Empty;
-                return true;
-            });
+            
             _inspirationOfTheLady.Initialize("{=inspiration_of_the_lady_choice_group_str}Inspiration of the Lady", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
             _talesOfGiles.Initialize("{=tales_of_gilles_choice_group_str}Tales of Gilles", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _feyEnchantment.Initialize("{=fey_enchantment_choice_group_str}Fey Enchantment", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
@@ -324,7 +327,12 @@ namespace TOR_Core.CharacterDevelopment
                 unlockText = "Unlocks Lore of Heavens";
                 return hero.Clan.Tier >= 4;
             });
-            
+            _envoyOfTheLady.Initialize("{=envoy_of_the_lady_choice_group_str}Envoy of the Lady", TORCareers.GrailDamsel, 3, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier >= 4;
+            });
+
         }
     }
 }

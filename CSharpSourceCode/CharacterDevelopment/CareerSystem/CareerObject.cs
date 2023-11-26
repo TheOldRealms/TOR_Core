@@ -21,8 +21,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         private Predicate<Hero> _condition;
         public ChargeType ChargeType { get; private set; }
         public int MaxCharge { get; private set; }
+        
         public string AbilityTemplateID { get; private set; }
         public Type AbilityScriptType { get; private set; }
+        public bool RequiresAbilityTargeting { get; private set; }
         public CareerChoiceObject RootNode { get; set; }
         public List<CareerChoiceGroupObject> ChoiceGroups { get; private set; } = new List<CareerChoiceGroupObject>();
         public List<CareerChoiceObject> AllChoices
@@ -39,7 +41,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public override string ToString() => Name.ToString();
 
-        public void Initialize(string name, Predicate<Hero> condition, string abilityID, ChargeType chargeType = ChargeType.CooldownOnly, int maxCharge = 100, Type abilityScriptType = null)
+        public void Initialize(string name, Predicate<Hero> condition, string abilityID, ChargeType chargeType = ChargeType.CooldownOnly, int maxCharge = 100, Type abilityScriptType = null, bool requiresAbilityTargeting=false)
         {
             var description = GameTexts.FindText("career_description", StringId);
             base.Initialize(new TextObject(name), description);
@@ -48,6 +50,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             MaxCharge = maxCharge;
             AbilityTemplateID = abilityID;
             AbilityScriptType = abilityScriptType;
+            RequiresAbilityTargeting = requiresAbilityTargeting;
             AfterInitialized();
         }
 

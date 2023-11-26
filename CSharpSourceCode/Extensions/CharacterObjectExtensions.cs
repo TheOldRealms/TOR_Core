@@ -91,12 +91,7 @@ namespace TOR_Core.Extensions
             }
             return list;
         }
-
-        public static bool HasAnyCareer(this CharacterObject characterObject)
-        {
-            return characterObject.HeroObject ==null && characterObject.HeroObject.HasAnyCareer();
-        }
-
+        
         public static bool IsUndead(this CharacterObject characterObject)
         {
             if (characterObject.IsHero)

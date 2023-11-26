@@ -20,7 +20,11 @@ using TOR_Core.GameManagers;
 using TOR_Core.Quests;
 using NLog;
 using TaleWorlds.Library;
+using TaleWorlds.TwoDimension;
 using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.HarmonyPatches;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -29,6 +33,7 @@ namespace TOR_Core.AbilitySystem
         private bool _shouldSheathWeapon;
         private bool _shouldWieldWeapon;
         private bool _hasInitializedForMainAgent;
+        private bool _careerAbilitySelected;
         private AbilityModeState _currentState = AbilityModeState.Off;
         private EquipmentIndex _mainHand;
         private EquipmentIndex _offHand;
@@ -124,6 +129,8 @@ namespace TOR_Core.AbilitySystem
                if(comp.CareerAbility==null)
                    return;
                
+               
+               CareerHelper.CalculateChargeForCareer(ChargeType.DamageDone,blow.InflictedDamage);
                if (comp.CareerAbility.ChargeType == ChargeType.NumberOfKills) comp.CareerAbility.AddCharge(1);
            }
             
@@ -131,35 +138,35 @@ namespace TOR_Core.AbilitySystem
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
-            var comp = affectorAgent.GetComponent<AbilityComponent>();
+            if (!affectedAgent.IsMainAgent && !affectorAgent.IsMainAgent) return;
+            var isAttacker = affectorAgent.IsMainAgent;
+            
+            
+            var comp = Agent.Main.GetComponent<AbilityComponent>();
             if (comp != null)
             {
                 if(comp.CareerAbility==null)
                     return;
 
-                var propotion = DamagePortionForChargingCareerAbility;
+                var attackMask = DamagePatch.DetermineMask(blow);
                 
-                
-                if (comp.CareerAbility.ChargeType == ChargeType.DamageDone) comp.CareerAbility.AddCharge(blow.InflictedDamage * DamagePortionForChargingCareerAbility);
-            }
-
-            var comp2 = affectedAgent.GetComponent<AbilityComponent>();
-            if (comp2 != null)
-            {
-                if (comp2.CareerAbility != null && comp2.CareerAbility.ChargeType == ChargeType.DamageTaken)
+                var result = 0f;
+                if (isAttacker)
                 {
-                    
-                    var percentage = blow.InflictedDamage / affectedAgent.HealthLimit;
-                    
-                    if (attackCollisionData.CollisionResult == CombatCollisionResult.Blocked)
-                    {
-                        percentage *= 0.1f;
-                    }
-
-                    percentage *= 100;
-                    comp2.CareerAbility.AddCharge(percentage * DamagePortionForChargingCareerAbility);
+                    result = CareerHelper.CalculateChargeForCareer(ChargeType.DamageDone,blow.InflictedDamage, attackMask, attackCollisionData);
                 }
+                else
+                {
+                    result = CareerHelper.CalculateChargeForCareer(ChargeType.DamageTaken, blow.InflictedDamage, attackMask, attackCollisionData);
+                }
+
+                if (!Mathf.IsZero(result))
+                {
+                    comp.CareerAbility.AddCharge(result);
+                }
+                
             }
+            
         }
 
         public override void OnMissionTick(float dt)
@@ -319,15 +326,43 @@ namespace TOR_Core.AbilitySystem
                     if (_currentState == AbilityModeState.Off &&
                         IsCurrentCrossHairCompatible())
                     {
-                        _abilityComponent.CareerAbility.TryCast(Agent.Main);
+                        if (_abilityComponent.CareerAbility.RequiresSpellTargeting())
+                        {
+                            ShiftToCareerAbility();
+                        }
+                        else
+                        {
+                            _abilityComponent.CareerAbility.TryCast(Agent.Main);
+                        }
                     }
+                    else if (_currentState == AbilityModeState.Idle)
+                    {
+                        if (_careerAbilitySelected)
+                        {
+                            ShiftBackFromCareerAbility();
+                        }
+                        else
+                        {
+                            ShiftToCareerAbility();
+                        }
+                        
+                    }
+                
             }
 
             if (Input.IsKeyPressed(_nextAbilitySelection.KeyboardKey.InputKey) || Input.IsKeyPressed(_nextAbilitySelection.ControllerKey.InputKey))
+            {
                 Agent.Main.SelectNextAbility();
+                _careerAbilitySelected = false;
+            }
+
 
             if (Input.IsKeyPressed(_previousAbilitySelection.KeyboardKey.InputKey) || Input.IsKeyPressed(_previousAbilitySelection.ControllerKey.InputKey))
+            {
                 Agent.Main.SelectPreviousAbility();
+                _careerAbilitySelected = false;
+            }
+                
 
             if (Input.IsKeyPressed(_quickCast.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCast.ControllerKey.InputKey))
             {
@@ -343,9 +378,11 @@ namespace TOR_Core.AbilitySystem
                     switch (_currentState)
                     {
                         case AbilityModeState.Off:
+                            ShiftBackFromCareerAbility();
                             EnableAbilityMode();
                             break;
                         case AbilityModeState.Idle:
+                            ShiftBackFromCareerAbility();
                             DisableAbilityMode(false);
                             break;
                         default:
@@ -363,6 +400,10 @@ namespace TOR_Core.AbilitySystem
                 if (!flag)
                 {
                     Agent.Main.CastCurrentAbility();
+                    if (_careerAbilitySelected)
+                    {
+                        ShiftBackFromCareerAbility();
+                    }
                 }
 
                 if (_abilityComponent.CareerAbility != null && _abilityComponent.CareerAbility.IsActive) _abilityComponent.OnInterrupt();
@@ -390,6 +431,24 @@ namespace TOR_Core.AbilitySystem
                 if (behaviour.CurrentCrosshair is SniperScope) return !behaviour.CurrentCrosshair.IsVisible;
                 else return true;
             }
+        }
+        
+        private void ShiftToCareerAbility()
+        {
+           if(!(_abilityComponent.CareerAbility.RequiresSpellTargeting() && _abilityComponent.CareerAbility.IsCharged))
+               return;
+            
+            _abilityComponent.SelectAbility(_abilityComponent.CareerAbility);
+            EnableAbilityMode();
+            _careerAbilitySelected = true;
+
+        }
+
+        private void ShiftBackFromCareerAbility()
+        {
+            _abilityComponent.SelectAbility(_abilityComponent.GetCurrentAbilityIndex());
+            
+            _careerAbilitySelected = false;
         }
 
         public override void OnAgentCreated(Agent agent)
@@ -645,6 +704,14 @@ namespace TOR_Core.AbilitySystem
                 if (!(Game.Current.GameType is Campaign)) return;
                 if (hero.HasAnyCareer() && hero.HasCareerChoice("ArchLectorPassive1")) return;
                 Agent.Main.GetComponent<AbilityComponent>().SetIntialPrayerCoolDown();
+            }
+        }
+
+        public void ActivateSpellcasterMode()
+        {
+            if (IsAbilityModeAvailableForMainAgent())
+            {
+                EnableAbilityMode();
             }
         }
     }

@@ -387,6 +387,29 @@
 		<temporary_attribute>ClearBloodBurst</temporary_attribute>
 	</StatusEffectTemplate>
 		
+	<StatusEffectTemplate 
+		id="fey_path_res" 
+		particle_id="aerial_shield"
+		do_not_attach_to_agent_skeleton="true"
+		particle_intensity="High"
+		base_effect_value="1.0"
+		damage_type="Physical"
+		applies_for_attack_type="Melee"
+		type="Resistance">
+		<temporary_attribute>ClearBloodBurst</temporary_attribute>
+	</StatusEffectTemplate>	
+	
+	<StatusEffectTemplate 
+		id="fey_path_dmg" 
+		particle_id="firecloak"
+		do_not_attach_to_agent_skeleton="true"
+		particle_intensity="High"
+		base_effect_value="0.3"
+		damage_type="Magical"
+		applies_for_attack_type="Melee"
+		type="DamageAmplification">
+	</StatusEffectTemplate>	
+	
 	<StatusEffectTemplate
 		id="tangling_thorn"
 		particle_id="tangling_thorn"
