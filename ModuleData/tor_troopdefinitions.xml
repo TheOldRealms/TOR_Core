@@ -1019,6 +1019,12 @@
   <NPCCharacter id="tor_we_drudge" default_group="infantry" level="1" name="{=str_tor_we_drudge}Wood Elf Drudge" occupation="Villager" culture="Culture.battania" skill_template="SkillSet.tor_skills_level1" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_we_eternal_guard" />
@@ -1031,6 +1037,12 @@
   <NPCCharacter id="tor_we_eternal_guard" default_group="infantry" level="6" name="{=str_tor_we_eternal_guard}Eternal Guard" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
     </face>
     <upgrade_targets />
     <Equipments>
@@ -1041,6 +1053,12 @@
   <NPCCharacter id="tor_we_treeman" default_group="infantry" level="41" name="{=str_tor_we_treeman}Treeman" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level41" is_basic_troop="true" race="large_humanoid_monster">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="Bald" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
     </face>
     <upgrade_targets />
     <Equipments>
