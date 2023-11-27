@@ -278,12 +278,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         protected override void InitializePassives()
         {
-            _bookOfSigmarPassive1.Initialize(CareerID, "{=book_of_sigmar_passive1_str}Increases Hitpoints by 10.", "BookOfSigmar", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
+            _bookOfSigmarPassive1.Initialize(CareerID, "", "BookOfSigmar", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
             _bookOfSigmarPassive2.Initialize(CareerID, "{=book_of_sigmar_passive2_str}Increases morale for all troops by 10.", "BookOfSigmar", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.TroopMorale));
             _bookOfSigmarPassive3.Initialize(CareerID, "{=book_of_sigmar_passive3_str}After battle, all wounded companions are healed for 20 Hitpoints.", "BookOfSigmar", false, ChoiceType.Passive, null); // PostBattleCampaignBehavior 30 
             _bookOfSigmarPassive4.Initialize(CareerID, "{=book_of_sigmar_passive4_str}Wounded troops in your party heal faster.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration)); 
 
-            _sigmarProclaimerPassive1.Initialize(CareerID, "{=sigmar_proclaimer_passive1_str}10% extra holy melee damage.", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy,10),AttackTypeMask.Melee));
+            _sigmarProclaimerPassive1.Initialize(CareerID, "", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy,10),AttackTypeMask.Melee));
             _sigmarProclaimerPassive2.Initialize(CareerID, "{=sigmar_proclaimer_passive2_str}All Sigmarite troops wages are reduced by 20%", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //TORPartyWageModel 82
             _sigmarProclaimerPassive3.Initialize(CareerID, "{=sigmar_proclaimer_passive3_str}All Sigmarite troops consume 20% less food.", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //Foodconsumptionmodel 62
             _sigmarProclaimerPassive4.Initialize(CareerID, "{=sigmar_proclaimer_passive4_str}When praying at a shrine of Sigmar, all characters restore 50 Hitpoints.", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special));//TORCustomSettlementCampaignBehavior 429

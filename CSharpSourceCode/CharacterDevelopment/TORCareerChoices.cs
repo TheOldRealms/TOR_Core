@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using HarmonyLib;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.StatusEffect;
@@ -36,6 +37,7 @@ namespace TOR_Core.CharacterDevelopment
         public TORCareerChoices()
         {
             Instance = this;
+            SetBasicTextVariables();
             WarriorPriestCareerChoices = new WarriorPriestCareerChoices(TORCareers.WarriorPriest);
             VampireCountCareerChoices = new VampireCountCareerChoices(TORCareers.MinorVampire);
             BloodKnightCareerChoices = new BloodKnightCareerChoices(TORCareers.BloodKnight);
@@ -56,6 +58,15 @@ namespace TOR_Core.CharacterDevelopment
         public TORCareerChoicesBase  GetCareerChoices(CareerObject id)
         {
             return _allCareers.FirstOrDefault(x => x.GetID() ==id);
+        }
+
+        private void SetBasicTextVariables()
+        {
+            foreach (var type in Enum.GetValues(typeof(PassiveEffectType)).Cast<PassiveEffectType>())
+            {
+                GameTexts.SetVariable("TOR_CHOICE_"+type.ToString().ToUpper(),GameTexts.FindText("tor_careerchoice_basic", type.ToString()));
+            }
+            
         }
         
         

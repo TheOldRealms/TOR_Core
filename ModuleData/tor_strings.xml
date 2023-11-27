@@ -765,7 +765,12 @@
   <string id="tor_damagetype.Holy" text="{=tor_damagetype_holy_str}Holy"/>
   <string id="tor_damagetype.Lightning" text="{=tor_damagetype_lightning_str}Lightning"/>
   
-
+  <string id="tor_attacktype.Melee" text="{=tor_damagetype_lightning_str}Melee"/>
+  <string id="tor_attacktype.Ranged" text="{=tor_damagetype_lightning_str}Ranged"/>
+  <string id="tor_attacktype.Spell" text="{=tor_damagetype_lightning_str}Spell"/>
+  <string id="tor_attacktype.All" text="{=tor_damagetype_lightning_str}All"/>
+  
+  <!--Career related related !-->
   <string id="career_description.WarriorPriest" text="{=career_description_warriorpriest_str}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />
   <string id="career_description.BloodKnight" text="{=career_description_bloodknight_str}Sired by Abhorash, the Blood Knight is a dark mockery of everything noble or virtuous that can be said about their mortal counterparts. Where before the Blood Kiss there was honour is now cruelty; faith turns to irreverence and duty falls to wanton ambition. This is true of all vampires but seems particularly tragic for the fallen knights of the Old World." />
   <string id="career_description.MinorVampire" text="{=career_description_minorvampire_str}Known and feared by many names, Vampires are the night's dark master. Nighly anyone be they Man or Beast, Holy or Daemonic can face one and survive. All Vampires strive to be the only masters of their unlife, free from any obligations to religions or masters. This egomaniacal drive is what fuels them to greater and greater ambitions, so that one day they may be lord of all they observe." />
@@ -773,14 +778,82 @@
   <string id="career_description.GrailKnight" text="{=career_description_grailknight_str}To be a knight of Bretonnia is to strive for the blessing of the Lady and her holy grail. Any man deemed worthy to sup from her chalice becomes a holy warrior honored and respected across all of Bretonnia and yet farther. The road to that goal is difficult, so much so that most knights fail to accomplish despite all sharing the same dream." />
   <string id="career_description.GrailDamsel" text="{=career_description_graildamsel_str}Damsels are sought out as children by the Fey Enchantress for their latent magical potential. Taken away from their families they are raised in secret to be potent guardians of fair Bretonnia. Upon completion of their training they embark out into the land, coming to the aid of the people and influencing knights in order to fulfill their martial potential." />
 
-
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive1" text="{=protector_of_the_weak_passive1_str}Increases Hitpoints by {EFFECT_VALUE}" />
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive2" text="{=protector_of_the_weak_passive2_str}Increases Hitpoints by {EFFECT_VALUE}" />
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive3" text="{=protector_of_the_weak_passive3_str}Increases Hitpoints by {EFFECT_VALUE}" />
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive4" text="{=protector_of_the_weak_passive4_str}Increases Hitpoints by {EFFECT_VALUE}" />
   
+
   <string id="careerchoice_description.WarriorPriestRoot" text="{=careerchoice_description_warriorpriest_root_str}The Warrior Priest unleashes Sigmar's wrath for 8 seconds, which empowers him and the surrounding allies with 20% stronger melee attacks.  Every point in Faith increases the melee effect by 0.05% and the duration by 0.05 seconds. The ability recharges by taking 50% of damage of total health. Blocked damage counts as 10% of the damage taken." />
 
 
-	<!--Career perks related !-->
-	<string id="tor_hunt_perk_result.Failed" text="{=tor_hunt_perk_result_failed_str}You were able to detect a {PERK_HUNT_ANIMAL_SIZE}, yet your hunt was not sucessful" />
-	<string id="tor_hunt_perk_result.Success" text="{=tor_hunt_perk_result_success_str}You were able to hunt down a {PERK_HUNT_ANIMAL_SIZE}, you gained {PERK_HUNT_PREY}" />
+  <!--Career perks related !-->
+
+  <string id="tor_hunt_perk_result.Failed" text="{=tor_hunt_perk_result_failed_str}You were able to detect a {PERK_HUNT_ANIMAL_SIZE}, yet your hunt was not sucessful" />
+  <string id="tor_hunt_perk_result.Success" text="{=tor_hunt_perk_result_success_str}You were able to hunt down a {PERK_HUNT_ANIMAL_SIZE}, you gained {PERK_HUNT_PREY}" />
+  
+  
+  
+  <string id="tor_careerchoice_basic.Health" text="{=str_tor_career_choice_basic_health}Increases Hitpoints by {EFFECT_VALUE}" /> <!--TOR_CHOICE_HEALTH !-->
+  <string id="tor_careerchoice_basic.Health" text="{=str_tor_career_choice_basic_health}Increases health regeneration after battles by {EFFECT_VALUE}. /> <!--TOR_CHOICE_HEALTH !-->
+  
+  <string id="tor_careerchoice_basic.Damage" text="{=str_tor_career_choice_basic_damage}{EFFECT_VALUE}% extra {EFFECT_DAMAGE_TYPE} {EFFECT_ATTACK_TYPE} damage" /> <!--TOR_CHOICE_DAMAGE !-->
+  <string id="tor_careerchoice_basic.Resistance" text="{=str_tor_career_choice_basic_resistance}Add {EFFECT_VALUE}% {EFFECT_DAMAGE_TYPE} {EFFECT_ATTACK_TYPE} resistance" /> <!--TOR_CHOICE_RESISTANCE !-->
+  <string id="tor_careerchoice_basic.ArmorPenetration" text="{=str_tor_career_choice_basic_armorpenetration}Add {EFFECT_VALUE}% armor penetration" /> <!--TOR_CHOICE_ARMORPENETRATION  Increases armor penetration of melee attacks by 15%!-->
+  <string id="tor_careerchoice_basic.HorseHealth" text="{=str_tor_career_choice_basic_horsehealth}{EFFECT_VALUE}% additional Hitpoints for the player's mount." /> <!--TOR_CHOICE_HORSEHEALTH !-->
+  <string id="tor_careerchoice_basic.HorseChargeDamage" text="{=str_tor_career_choice_basic_horsechargedamage}Horse charge damage is increased by {EFFECT_VALUE}%" /> <!--TOR_CHOICE_HORSECHARGEDAMAGE !-->
+  <string id="tor_careerchoice_basic.WindsOfMagic" text="{=str_tor_career_choice_basic_windsofmagic}Increases max Winds of Magic by {EFFECT_VALUE}%"." /> <!--TOR_CHOICE_WINDSOFMAGIC !-->
+  <string id="tor_careerchoice_basic.WindsCostReduction" text="{=str_tor_career_choice_basic_damage}{EFFECT_VALUE}% cost reduction for spells." /> <!--TOR_CHOICE_WINDSCOSTREDUCTION !-->
+  <string id="tor_careerchoice_basic.WindsCooldownReduction" text="{=str_tor_career_choice_basic_damage}{EFFECT_VALUE}% spell cooldown reduction." /> <!--TOR_CHOICE_WINDSCOOLDOWNREDUCTION!-->
+  <string id="tor_careerchoice_basic.PrayerCooldownReduction" text="{=str_tor_career_choice_basic_damage}{EFFECT_VALUE}% prayer cooldown reduction." /> <!--TOR_CHOICE_WINDSCOOLDOWNREDUCTION!-->
+  <string id="tor_careerchoice_basic.PartyMovementSpeed" text="{=str_tor_career_choice_basic_damage}Party movement speed is increased by {EFFECT_VALUE}." /> <!--TOR_CHOICE_PARTYMOVEMENTSPEED !-->
+  <string id="tor_careerchoice_basic.PartySize" text="{=str_tor_career_choice_basic_damage}Party size is increased by {EFFECT_VALUE}" /> <!--TOR_CHOICE_PARTYSIZE-->
+  <string id="tor_careerchoice_basic.TroopRegeneration" text="{=str_tor_career_choice_basic_damage}Wounded troops in your party heal faster ({EFFECT_VALUE})." /> <!--TOR_CHOICE_TROOPREGENERATION!-->
+  <string id="tor_careerchoice_basic.TroopUpgradeCost" text="{=str_tor_career_choice_basic_damage}Upgrade costs are reduced by {EFFECT_VALUE}%." /> <!--TOR_CHOICE_TROOPUPGRADECOST !-->
+  <string id="tor_careerchoice_basic.Ammo" text="{=str_tor_career_choice_basic_damage}{EFFECT_VALUE} extra ammunition" /> <!--TOR_CHOICE_AMMO !-->
+  
+    <!--Warrior Priest !-->
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive1" text="{=protector_of_the_weak_passive1_str}Increases Hitpoints by {EFFECT_VALUE}" />
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive2" text="{=protector_of_the_weak_passive2_str}Increases Hitpoints by {EFFECT_VALUE}" />
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive3" text="{=protector_of_the_weak_passive3_str}Increases Hitpoints by {EFFECT_VALUE}" />
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive4" text="{=protector_of_the_weak_passive4_str}Increases Hitpoints by {EFFECT_VALUE}" />
+  <string id="careerchoice_description.ProtectorOfTheWeakKeystone" text="{=protector_of_the_weak_passive4_str}Increases Hitpoints by {EFFECT_VALUE}" />
+  
+  
+  <string id="careerchoice_description.SigmarsProclaimerPassive1" text="{TOR_CHOICE_DAMAGE}" />
+ 
+
+  
+  <string id="careerchoice_description.BookOfSigmarPassive1" text="{TOR_CHOICE_HEALTH}" />
+  <string id="careerchoice_description.BookOfSigmarPassive1" text="{=book_of_sigmar_passive2_str}Increases morale for all troops by {EFFECT_VALUE}." />
+  <string id="careerchoice_description.BookOfSigmarPassive1" text="{=book_of_sigmar_passive3_str}After battle, all wounded companions are healed for {EFFECT_VALUE} Hitpoints." />
+  <string id="careerchoice_description.BookOfSigmarPassive1" text="{=book_of_sigmar_passive4_str}Wounded troops in your party heal faster." />
+  <string id="careerchoice_description.BookOfSigmarKeyStone" text="{=book_of_sigmar_passivekeystone_str} " />
+
+SigmarsProclaimerKeyStone
+SigmarsProclaimerPassive1
+
+RelentlessFanaticKeyStone
+RelentlessFanaticPassive1
+
+ProtectorOfTheWeakKeyStone
+ProtectorOfTheWeakPassive1
+
+HolyPurgeKeyStone
+HolyPurgePassive1
+
+ArchLectorKeyStone
+ArchLectorPassive1
+
+  <!--Grail Knight !-->
+  
+
+
+  
+  
+  
+  
+	
 	
 	<!-- Inky translation related.  Do NOT add texts inside quotation marks!-->
 	<!-- every inky story starts with "inky: "+ ID of the file name. While the Variation accounts for the specific text block -->
