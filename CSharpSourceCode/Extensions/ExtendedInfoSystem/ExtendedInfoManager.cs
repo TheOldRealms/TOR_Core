@@ -89,8 +89,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                     {
                         bonusRegen += TORPerks.SpellCraft.Catalyst.SecondaryBonus;
                     }
-                    entry.Value.CurrentWindsOfMagic += entry.Value.WindsOfMagicRechargeRate * bonusRegen;
-                    entry.Value.CurrentWindsOfMagic = Math.Min(entry.Value.CurrentWindsOfMagic, entry.Value.MaxWindsOfMagic);
+                    entry.Value.AddCustomResource("WindsOfMagic", entry.Value.WindsOfMagicRechargeRate * bonusRegen);
                 }
             }
             //count down blessing duration

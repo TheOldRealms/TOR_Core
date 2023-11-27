@@ -55,7 +55,7 @@ namespace TOR_Core.CampaignMechanics
 			if (IsSpellCaster)
 			{
 				var info = Hero.MainHero.GetExtendedInfo();
-				WindsOfMagic = ((int)info.CurrentWindsOfMagic).ToString();
+				WindsOfMagic = ((int)info.GetCustomResourceValue("WindsOfMagic")).ToString();
 				_maxWinds = (int)info.MaxWindsOfMagic;
 				_windRechargeRate = info.WindsOfMagicRechargeRate;
 			}

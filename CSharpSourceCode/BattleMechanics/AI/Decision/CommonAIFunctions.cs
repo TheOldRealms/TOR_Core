@@ -16,7 +16,7 @@ namespace TOR_Core.BattleMechanics.AI.Decision
             return target =>
             {
                 if (heroExtendedInfo == null) return 1.0f;
-                return heroExtendedInfo.CurrentWindsOfMagic / heroExtendedInfo.MaxWindsOfMagic;
+                return heroExtendedInfo.GetCustomResourceValue("WindsOfMagic") / heroExtendedInfo.MaxWindsOfMagic;
             };
         }
 
