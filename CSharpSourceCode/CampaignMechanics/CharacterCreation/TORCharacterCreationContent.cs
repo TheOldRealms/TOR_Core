@@ -139,13 +139,17 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             characterCreation.AddNewMenu(stage3Menu);
         }
 
+        protected override void OnApplyCulture()
+        {
+            _originalRace = CharacterObject.PlayerCharacter.Race;
+        }
+
         private void OnMenuInit(TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation charInfo)
         {
             charInfo.IsPlayerAlone = true;
             charInfo.HasSecondaryCharacter = false;
             charInfo.ClearFaceGenMounts();
             _isFemale = CharacterObject.PlayerCharacter.IsFemale;
-            _originalRace = CharacterObject.PlayerCharacter.Race;
         }
 
         private void OnOptionSelected(TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation charInfo, string optionId)
