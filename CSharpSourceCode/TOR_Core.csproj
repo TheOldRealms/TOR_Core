@@ -489,7 +489,8 @@
     <Compile Include="CampaignMechanics\Diplomacy\TORKingdomDecisionProposalBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEvent.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEventsCampaignBehavior.cs" />
-    <Compile Include="CampaignMechanics\Invasions\InvasionForce.cs" />
+    <Compile Include="CampaignMechanics\Invasions\InvasionCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\Invasions\InvasionPartyComponent.cs" />
     <Compile Include="CampaignMechanics\MasterEngineer\MasterEngineerTownBehavior.cs" />
     <Compile Include="CampaignMechanics\RaidingParties\RaidingPartyComponent.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\CharacterCreationOption.cs" />
@@ -642,6 +643,7 @@
     <Compile Include="Models\CustomBattleModels\TORCustomBattleAgentStatCalculateModel.cs" />
     <Compile Include="Models\TORDamageParticleModel.cs" />
     <Compile Include="Models\TORDiplomacyModel.cs" />
+    <Compile Include="Models\TOREncounterModel.cs" />
     <Compile Include="Models\TOREquipmentSelectionModel.cs" />
     <Compile Include="Models\TORFaithModel.cs" />
     <Compile Include="Models\TORSettlementFoodModel.cs" />

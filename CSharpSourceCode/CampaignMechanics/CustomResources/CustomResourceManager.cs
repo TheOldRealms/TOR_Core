@@ -16,8 +16,8 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         {
             _instance = new CustomResourceManager();
             _instance._resources.Clear();
-            _instance._resources.Add("SoulEnergy", 
-                new CustomResource("SoulEnergy", "Soul Energy", "Soul Energy is used by practitioners of necromancy to raise and upkeep their undead minions.", ""));
+            _instance._resources.Add("DarkEnergy", 
+                new CustomResource("DarkEnergy", "Dark Energy", "Dark Energy is used by practitioners of necromancy to raise and upkeep their undead minions.", ""));
             _instance._resources.Add("WindsOfMagic",
                 new CustomResource("WindsOfMagic", "Winds of Magic", "Winds of Magic is used by spellcasters to cast spells.", ""));
         }
