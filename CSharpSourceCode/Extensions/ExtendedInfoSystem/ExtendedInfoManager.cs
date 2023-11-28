@@ -33,6 +33,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             CampaignEvents.HeroKilledEvent.AddNonSerializedListener(this, OnHeroKilled);
             CampaignEvents.MobilePartyCreated.AddNonSerializedListener(this, OnPartyCreated);
             CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this, OnPartyDestroyed);
+            CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
         }
 
         public static CharacterExtendedInfo GetCharacterInfoFor(string id)
@@ -58,6 +59,12 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             }
         }
 
+        private void OnNewGameCreated(CampaignGameStarter starter)
+        {
+            if (_characterInfos.Count > 0) _characterInfos.Clear();
+            TryLoadCharacters(out _characterInfos);
+        }
+
         private void OnSessionStart(CampaignGameStarter obj)
         {
             if (_characterInfos.Count > 0) _characterInfos.Clear();
@@ -69,8 +76,6 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             if(index == CampaignEvents.OnNewGameCreatedPartialFollowUpEventMaxIndex - 2)
             {
-                if (_characterInfos.Count > 0) _characterInfos.Clear();
-                TryLoadCharacters(out _characterInfos);
                 InitializeHeroes();
                 EnsurePartyInfos();
             }
@@ -194,8 +199,8 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                         if (!info.KnownLores.Contains(LoreObject.GetLore(abilityobj.BelongsToLoreID)))
                         {
                             hero.AddKnownLore(abilityobj.BelongsToLoreID);
-                            castingLevel = Math.Max(castingLevel, abilityobj.SpellTier);
                         }
+                        castingLevel = Math.Max(castingLevel, abilityobj.SpellTier);
                     }
                 }
                 hero.SetSpellCastingLevel((SpellCastingLevel)castingLevel);
