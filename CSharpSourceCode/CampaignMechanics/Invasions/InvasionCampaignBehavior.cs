@@ -34,8 +34,8 @@ namespace TOR_Core.CampaignMechanics.Invasions
             if(attackerParty == _currentInvadingParty && !win)
             {
                 _currentInvadingParty = null;
-                DestroyPartyAction.Apply(settlement.Party, attackerParty);
                 KillCharacterAction.ApplyByBattle(attackerParty.LeaderHero, null);
+                DestroyPartyAction.Apply(settlement.Party, attackerParty);
             }
         }
 
