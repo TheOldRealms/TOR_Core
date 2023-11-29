@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
+using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
@@ -365,6 +367,27 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _holyCrusaderPassive2.Initialize(CareerID, "{=holy_crusader_passive2_str}Companion Health increases by 15 for every 'Knight' Companion.", "HolyCrusader", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special));
             _holyCrusaderPassive3.Initialize(CareerID, "{=holy_crusader_passive3_str}Grail Knights can be upgraded to Companions.", "HolyCrusader", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Health));
             _holyCrusaderPassive4.Initialize(CareerID, "{=holy_crusader_passive4_str}Companion limit of party is increased by 10.", "HolyCrusader", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.CompanionLimit));
+        }
+
+
+        public override bool ConditionsAreMetToShowButton(CharacterObject viewedCharacterObject)
+        {
+            if (viewedCharacterObject.IsHero) return false;
+            if (viewedCharacterObject.StringId != "tor_br_grail_knight") return false;
+            
+            var choices = Hero.MainHero.GetAllCareerChoices();
+
+            if (choices.Contains("HolyCrusaderPassive3"))
+            {
+                return true;
+            }
+
+            return false;
+        }
+        
+        public override bool ConditionsAreMetToEnableButton(CharacterObject viewedCharacterObject)
+        {
+           return true;
         }
     }
 }

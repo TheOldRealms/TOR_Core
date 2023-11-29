@@ -334,5 +334,28 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             }
             return false;
         }
+
+
+        public static bool ConditionsMetToShowSuperButton(CharacterObject viewedCharacter)
+        {
+            var career= Hero.MainHero.GetCareer();
+            if (career != null)
+            {
+                return TORCareerChoices.Instance.GetCareerChoices(career).ConditionsAreMetToShowButton(viewedCharacter);
+            }
+
+            return false;
+        }
+        
+        public static bool ConditionsMetToEnableSuperButton(CharacterObject viewedCharacter)
+        {
+            var career= Hero.MainHero.GetCareer();
+            if (career != null)
+            {
+                return TORCareerChoices.Instance.GetCareerChoices(career).ConditionsAreMetToShowButton(viewedCharacter);
+            }
+
+            return false;
+        }
     }
 }

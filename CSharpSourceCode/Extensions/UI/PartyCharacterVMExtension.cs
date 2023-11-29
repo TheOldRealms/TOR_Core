@@ -3,10 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Conversation;
+using TaleWorlds.CampaignSystem.Encounters;
+using TaleWorlds.CampaignSystem.GameState;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia.Pages;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
+using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
+using TaleWorlds.MountAndBlade;
+using TaleWorlds.ObjectSystem;
+using TaleWorlds.ScreenSystem;
+using TOR_Core.CampaignMechanics;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions.UI
@@ -17,21 +28,41 @@ namespace TOR_Core.Extensions.UI
         private bool _shouldButtonBeVisible;
         private bool _isButtonEnabled;
         private BasicTooltipViewModel _buttonHint;
+        private bool _shouldButtonBeVisible2;
+        private string _spriteTORButton;
 
         public PartyCharacterVMExtension(ViewModel vm) : base(vm)
         {
             _buttonHint = new BasicTooltipViewModel(GetButtonHintText);
             RefreshValues();
+            
         }
 
         public override void RefreshValues()
         {
             //Update datasource properties here. Gets called every time the base ViewModel would get refreshed.
             //Careful to always update the property, not the field behind it directly, because then the engine won't get notified and events won't be raised.
-            ShouldButtonBeVisible = true;
-            IsButtonEnabled = true;
+            var troop = ( (PartyCharacterVM)_vm ).Troop.Character;
+            if(troop==null) return;
+            var showButton= CareerHelper.ConditionsMetToShowSuperButton(troop);
 
+            ShouldButtonBeVisible = showButton;
+            IsButtonEnabled = showButton && CareerHelper.ConditionsMetToEnableSuperButton(troop);
+            
+            
+
+            ShouldButtonBeVisible2 = false;
+            //General\Mission\PersonalKillfeed\kill_feed_skull
+            SpriteTORButton = "winds_icon_45";
+
+
+
+           
         }
+
+       
+
+
 
         private string GetButtonHintText()
         {
@@ -41,9 +72,44 @@ namespace TOR_Core.Extensions.UI
 
         public void ExecuteButtonClick()
         {
+            var troop = ( (PartyCharacterVM)_vm ).Troop.Character;
+            SpecialbuttonEventManagerHandler.Instance.OnButtonClicked(troop.StringId);
+            
+           
             TORCommon.Say("Button clicked.");
         }
-
+        
+        [DataSourceProperty]
+        public string SpriteTORButton
+        {
+            get
+            {
+                return _spriteTORButton;
+            }
+            set
+            { 
+                _spriteTORButton=value;
+                _vm.OnPropertyChangedWithValue(value, "SpriteTORButton");
+            }
+        }
+        
+        [DataSourceProperty]
+        public bool ShouldButtonBeVisible2
+        {
+            get
+            {
+                return _shouldButtonBeVisible2;
+            }
+            set
+            {
+                if (value != _shouldButtonBeVisible)
+                {
+                    _shouldButtonBeVisible2 = value;
+                    _vm.OnPropertyChangedWithValue(value, "ShouldButtonBeVisible2");
+                }
+            }
+        }
+        
         [DataSourceProperty]
         public bool ShouldButtonBeVisible
         {
@@ -95,4 +161,6 @@ namespace TOR_Core.Extensions.UI
             }
         }
     }
+
+    
 }

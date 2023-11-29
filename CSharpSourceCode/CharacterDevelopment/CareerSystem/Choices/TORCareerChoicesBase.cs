@@ -78,6 +78,16 @@ namespace TOR_Core.CampaignMechanics.Choices
             //this should only be meaningful in 
         }
 
+        public virtual bool ConditionsAreMetToShowButton(CharacterObject characterObject)
+        {
+            return false;
+        }
+        
+        public virtual bool ConditionsAreMetToEnableButton(CharacterObject characterObject)
+        {
+            return false;
+        }
+
 
 
     }
