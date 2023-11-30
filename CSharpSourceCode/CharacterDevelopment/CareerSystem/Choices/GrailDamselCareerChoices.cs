@@ -53,7 +53,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         private CareerChoiceObject _secretsOfTheGrailPassive3;
         private CareerChoiceObject _secretsOfTheGrailPassive4;
         
-        private CareerChoiceObject _envoyOfTheLadyKeystone1;
         private CareerChoiceObject _envoyOfTheLadyPassive1;
         private CareerChoiceObject _envoyOfTheLadyPassive2;
         private CareerChoiceObject _envoyOfTheLadyPassive3;
