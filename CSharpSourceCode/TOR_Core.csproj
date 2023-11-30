@@ -478,6 +478,7 @@
     <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\RaceFixCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\BountyMaster\BountyMasterCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\Careers\DamselEnvoyOfTheLadyPerkBehavior.cs" />
     <Compile Include="CampaignMechanics\Careers\GrailKnightCareerButtonCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Careers\TORCareerPerkCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
@@ -510,6 +511,7 @@
     <Compile Include="CampaignMechanics\Religion\ReligionObject.cs" />
     <Compile Include="CampaignMechanics\SkillBooks\TORSkillBookCampaignBehavior.cs" />
     <Compile Include="BattleMechanics\TORBattleAgentLogic.cs" />
+    <Compile Include="CampaignMechanics\SpecialbuttonHandler.cs" />
     <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCaptivityCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORBaseSettlementComponent.cs" />
@@ -520,9 +522,6 @@
     <Compile Include="CampaignMechanics\TORAIRecruitmentCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORSpecialSettlementBehavior.cs" />
     <Compile Include="CampaignMechanics\TORWanderersCampaignBehavior.cs" />
-    <Compile Include="CharacterDevelopment\CampaignBehavior\GrailKnightCareerButtonCampaignBehavior.cs" />
-    <Compile Include="CharacterDevelopment\CampaignBehavior\DamselEnvoyOfTheLadyPerkBehavior.cs" />
-    <Compile Include="CharacterDevelopment\CampaignBehavior\SpecialbuttonHandler.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerAbilityEffectVM.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceGroupObject.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceGroupObjectVM.cs" />

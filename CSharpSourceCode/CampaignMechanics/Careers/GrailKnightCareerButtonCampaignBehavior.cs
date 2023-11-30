@@ -9,7 +9,7 @@ using TaleWorlds.ObjectSystem;
 
 namespace TOR_Core.CampaignMechanics
 {
-    public class GrailKnightCareerButtonCampaignBehavior : CareerButtonBehavior
+    public class GrailKnightCareerButtonCampaignBehavior : CampaignBehaviorBase
     {
         private bool _grailKnightCompanionDialogBegins;
         private Hero _currentHeroTemplate;
