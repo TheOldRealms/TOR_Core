@@ -30,7 +30,7 @@ namespace TOR_Core.Extensions
             return RORManager.GetTemplateFor(settlement.StringId);
         }
 
-        public static bool IsBrettonianMayorSettlement(this Settlement settlement)
+        public static bool IsBretonnianMayorSettlement(this Settlement settlement)
         {
             if (settlement.IsVillage) return false;
 

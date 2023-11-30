@@ -55,7 +55,7 @@ namespace TOR_Core.CampaignMechanics
             _factionsRuleBretonnianSettlement = new List<Kingdom>();
             foreach (var settlement in settlements)
             {
-                if (settlement.IsBrettonianMayorSettlement() && settlement.Owner.Culture.StringId != "vlandia")
+                if (settlement.IsBretonnianMayorSettlement() && settlement.Owner.Culture.StringId != "vlandia")
                 {
                     if (settlement.Owner.Clan != null || settlement.Owner.Clan.Kingdom != null)
                     {
