@@ -813,47 +813,46 @@
   <string id="tor_careerchoice_basic.Ammo" text="{=str_tor_career_choice_basic_damage}{EFFECT_VALUE} extra ammunition" /> <!--TOR_CHOICE_AMMO !-->
   
     <!--Warrior Priest !-->
-  <string id="careerchoice_description.ProtectorOfTheWeakPassive1" text="{=protector_of_the_weak_passive1_str}Increases Hitpoints by {EFFECT_VALUE}" />
-  <string id="careerchoice_description.ProtectorOfTheWeakPassive2" text="{=protector_of_the_weak_passive2_str}Increases Hitpoints by {EFFECT_VALUE}" />
-  <string id="careerchoice_description.ProtectorOfTheWeakPassive3" text="{=protector_of_the_weak_passive3_str}Increases Hitpoints by {EFFECT_VALUE}" />
-  <string id="careerchoice_description.ProtectorOfTheWeakPassive4" text="{=protector_of_the_weak_passive4_str}Increases Hitpoints by {EFFECT_VALUE}" />
-  <string id="careerchoice_description.ProtectorOfTheWeakKeystone" text="{=protector_of_the_weak_passive4_str}Increases Hitpoints by {EFFECT_VALUE}" />
-  
-  
-  <string id="careerchoice_description.SigmarsProclaimerPassive1" text="{TOR_CHOICE_DAMAGE}" />
- 
-
-  
+	
   <string id="careerchoice_description.BookOfSigmarPassive1" text="{TOR_CHOICE_HEALTH}" />
-  <string id="careerchoice_description.BookOfSigmarPassive1" text="{=book_of_sigmar_passive2_str}Increases morale for all troops by {EFFECT_VALUE}." />
-  <string id="careerchoice_description.BookOfSigmarPassive1" text="{=book_of_sigmar_passive3_str}After battle, all wounded companions are healed for {EFFECT_VALUE} Hitpoints." />
-  <string id="careerchoice_description.BookOfSigmarPassive1" text="{=book_of_sigmar_passive4_str}Wounded troops in your party heal faster." />
-  <string id="careerchoice_description.BookOfSigmarKeyStone" text="{=book_of_sigmar_passivekeystone_str} " />
+  <string id="careerchoice_description.BookOfSigmarPassive2" text="{=str_tor_book_of_sigmar_passive2}Increases morale for all troops by {EFFECT_VALUE}" />
+  <string id="careerchoice_description.BookOfSigmarPassive3" text="{=str_tor_book_of_sigmar_passive3}After battle, all wounded companions are healed for {EFFECT_VALUE} Hitpoints" />
+  <string id="careerchoice_description.BookOfSigmarPassive4" text="{TOR_CHOICE_TROOPREGENERATION}" />
+  <string id="careerchoice_description.BookOfSigmarKeyStone" text="{=str_tor_book_of_sigmar_passivekeystone}Adds a healing buff to Righeous Fury that restores {EFFECT_VALUE} Hitpoints per second" />
 
-SigmarsProclaimerKeyStone
-SigmarsProclaimerPassive1
+  <string id="careerchoice_description.SigmarsProclaimerPassive1" text="{TOR_CHOICE_DAMAGE}" />
+  <string id="careerchoice_description.SigmarsProclaimerPassive2" text="{=str_tor_sigmars_proclaimer_passive2}All Sigmarite troops wages are reduced by {EFFECT_VALUE}%" />
+  <string id="careerchoice_description.SigmarsProclaimerPassive3" text="{=str_tor_sigmars_proclaimer_passive3}All Sigmarite troops consume {EFFECT_VALUE}% less food" />
+  <string id="careerchoice_description.SigmarsProclaimerPassive4" text="{=str_tor_sigmars_proclaimer_passive4}When praying at a shrine of Sigmar, all characters restore {EFFECT_VALUE} Hitpoints" />
+  <string id="careerchoice_description.SigmarsProclaimerKeyStone" text="{=str_tor_sigmars_proclaimer_passivekeystone}Doubles the aura size of Righteous Fury" />
+  
+  <string id="careerchoice_description.RelentlessFanaticPassive1" text="{TOR_CHOICE_HEALTH}" />
+  <string id="careerchoice_description.RelentlessFanaticPassive2" text="{TOR_CHOICE_DAMAGE}" />
+  <string id="careerchoice_description.RelentlessFanaticPassive3" text="{=str_tor_relentless_fanatic_passive3}All Sigmarite troops get {EFFECT_VALUE}% resistance to physical ranged attacks" />
+  <string id="careerchoice_description.RelentlessFanaticPassive4" text="{TOR_CHOICE_PARTYMOVEMENTSPEED}" />
+  <string id="careerchoice_description.RelentlessFanaticKeyStone" text="{=str_tor_relentless_fanatic_passivekeystone}Righteous Fury scales with Leadership. Troops affected get Unbreakable for the duration" />
+  
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive1" text="{TOR_CHOICE_HEALTH}" />
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive2" text="{TOR_CHOICE_RESISTANCE}" />
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive3" text="{TOR_CHOICE_RESISTANCE}" />
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive4" text="{=str_tor_protector_of_the_weak_passive4}Hits below {EFFECT_VALUE} damage do not stagger the player" />
+  <string id="careerchoice_description.ProtectorOfTheWeakKeystone" text="{=str_tor_protector_of_the_weak_passivekeystone}Righteous Fury scales with the highest melee weapon skill. {TOR_CHOICE_RESISTANCE}" />
+  
+  <string id="careerchoice_description.HolyPurgePassive1" text="{TOR_CHOICE_DAMAGE}" />
+  <string id="careerchoice_description.HolyPurgePassive2" text="{=str_tor_holy_purge_passive2}All Sigmarite troops gain {EFFECT_VALUE}% Ward save" />
+  <string id="careerchoice_description.HolyPurgePassive3" text="{=str_tor_holy_purge_passive3}All troops deal {EFFECT_VALUE}% more melee damage to non-human enemies" />
+  <string id="careerchoice_description.HolyPurgePassive4" text="{=str_tor_holy_purge_passive4}All Sigmarite troops gain {EFFECT_VALUE}% extra holy damage" />
+  <string id="careerchoice_description.HolyPurgeKeystone" text="{=str_tor_holy_purge_passivekeystone}All units affected by Righteous Fury receive a Burning Weapon buff " />
+  
+  <string id="careerchoice_description.ArchLectorPassive1" text="{=str_tor_arch_lector_passive1}Prayers are recharged on battle start" />
+  <string id="careerchoice_description.ArchLectorPassive2" text="{=str_tor_arch_lector_passive2}All neutral Empire troops now count as Sigmarite troops" />
+  <string id="careerchoice_description.ArchLectorPassive3" text="{=str_tor_arch_lector_passive3}Gain {EFFECT_VALUE}% Ward save" />
+  <string id="careerchoice_description.ArchLectorPassive4" text="{=str_tor_arch_lector_passive4}Prayers aren't affected by global cooldowns" />
+  <string id="careerchoice_description.ArchLectorKeyStone" text="{=str_tor_arch_lector_passivekeystone}Righteous Fury adds a damaging aura. Its radius increases when raising relevant skills " />
 
-RelentlessFanaticKeyStone
-RelentlessFanaticPassive1
-
-ProtectorOfTheWeakKeyStone
-ProtectorOfTheWeakPassive1
-
-HolyPurgeKeyStone
-HolyPurgePassive1
-
-ArchLectorKeyStone
-ArchLectorPassive1
 
   <!--Grail Knight !-->
   
-
-
-  
-  
-  
-  
-	
 	
 	<!-- Inky translation related.  Do NOT add texts inside quotation marks!-->
 	<!-- every inky story starts with "inky: "+ ID of the file name. While the Variation accounts for the specific text block -->
