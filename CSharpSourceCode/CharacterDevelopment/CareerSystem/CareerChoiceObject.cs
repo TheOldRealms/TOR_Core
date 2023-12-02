@@ -33,14 +33,29 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             {
                 if(Passive != null)
                 {
-                    if (Passive.InterpretAsPercentage)
+                    if (Passive.DamageProportionTuple != null)
                     {
-                        GameTexts.SetVariable("EFFECT_VALUE", Passive.EffectMagnitude.ToString("R"));
+                        var damageType = Passive.DamageProportionTuple.DamageType;
+                        GameTexts.TryGetText("tor_damagetype",out var damageTypeText,damageType.ToString());
+                        GameTexts.SetVariable("EFFECT_DAMAGE_TYPE",damageTypeText);
+
+                        var attackType = Passive.AttackTypeMask;
+                        GameTexts.TryGetText("tor_attacktype",out var attackTypeText,attackType.ToString());
+                        GameTexts.SetVariable("EFFECT_ATTACK_TYPE",damageTypeText);
+                        GameTexts.SetVariable("EFFECT_VALUE", (Passive.DamageProportionTuple.Percent).ToString("R"));
                     }
                     else
                     {
-                        GameTexts.SetVariable("EFFECT_VALUE", Passive.EffectMagnitude.ToString());
+                        if (Passive.InterpretAsPercentage)
+                        {
+                            GameTexts.SetVariable("EFFECT_VALUE", Passive.EffectMagnitude.ToString("R"));
+                        }
+                        else 
+                        {
+                            GameTexts.SetVariable("EFFECT_VALUE", Passive.EffectMagnitude.ToString());
+                        }
                     }
+                    
                 }
                 
                 if (descriptionOverride != null)

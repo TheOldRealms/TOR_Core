@@ -740,13 +740,16 @@
   <string id="inky_fair_start_c3" text="Test RU Choice 4." />
   <string id="inky_fair_start_c4" text="Test RU Choice 5." />
   
+  <string id="inky_fair_strid_buyhorse1" text="Test Buy Horse" />
+  <string id="inky_fair_strid_buyhorse_not_enough_gold" text="Test Horse NOT ENOUGH MONEY" />
+  
   <string id="tor_skill_faith_str" text="Test RU Faith" />
   <string id="tor_skills_gun_accuracy_str" text="Test RU Accuracy" />
    <string id="tor_attribute_discipline_abbreviation_str" text="GER" />
   <string id="tor_spellcasting_mode_key_str" text=" test RU key" /> 
   <string id="tor_spellcasting_mode_description_str" text=" test RU description" /> 
   
-  
+  <string id= "tor_menu_enter_game_label_str" text="Test RU enter old world" />
   
   <string id= "tor_menu_enter_game_label_str" text="Test RU enter old world" />
   <string id= "tor_menu_shader_cache_label_str" text="build russian shaders" />
@@ -756,15 +759,61 @@
   <string id= "tor_menu_shader_cache_popup_reject" text="niet" />
   
   <string id= "tor_ungor_raiders_str" text="russian Ungors" />
+  
+  <string id= "tor_ui_winds_of_magic_title_str" text="Vodka" />
+  <string id= "tor_ui_winds_of_magic_recharge_rate_str" text="refill rate" />
+  <string id= "enchant_weapon_spell_str" text="russian enchant weapon translation" />
+  <string id= "enchant_weapon_description_str" text="russian enchant weapon description" />
+  
+    <string id= "inky_party_skill_check_template_str" text="RU ({inky_skill_check_skill_name} check with success chance {inky_Party_skill_CheckChance}%)" />
 
-  
-  
   <string id="tor_perk_miracle_label_str" text="Test RU Miracle." />
   
   <string id="tor_rogue_engineer_name_str" text="Test RU Goswin" />
   
+  <string id="inky_cabin_in_the_woods_locked_lock_text_weak_str" text="Test RU weak" />
+  <string id="inky_cabin_in_the_woods_locked_lock_text_average_str" text="Test RU average" />
+  <string id="inky_cabin_in_the_woods_locked_lock_text_strong_str" text="Test RU strong" />
+  
+    <string id="inky_cabin_in_the_woods_locked_door_text_weak_str" text="Test RU weak" />
+  <string id="inky_cabin_in_the_woods_locked_door_text_average_str" text="Test RU average" />
+  <string id="inky_cabin_in_the_woods_locked_door_text_strong_str" text="Test RU strong" />
+  
+    <string id="inky_cabin_in_the_woods_locked_reward_text_1_str" text="5 grain RU" />
+	<string id="inky_cabin_in_the_woods_locked_reward_text_2_str" text="russian steel 2" />
+	<string id="inky_cabin_in_the_woods_locked_reward_text_3_str" text="500 pesos" />
+	
+  <string id="inky_cabin_in_the_woods_approach_1_str" text="Test RU As you approach the cabin you can see that it is heavily boarded up. The only door on the cabin seems to be locked tight. As you examine the door you see that the door is {inky_DoorText} and that the lock on it is {inky_LockText}." />
+
+  <string id="inky_cabininthewoodslocked_approach_c0" text="Test RU Choice 1. öäü {inky_party_skill_check_result_Roguery}" />
+  <string id="inky_cabininthewoodslocked_approach_c1" text="Test RU Choice 2 ć, ń, ó, ś, ź.{inky_party_skill_check_result_Engineering}" />
+  <string id="inky_cabininthewoodslocked_approach_c2" text="Test RU Choice 3.{inky_party_skill_check_result_Spellcraft}" />
+  <string id="inky_cabininthewoodslocked_approach_c3" text="Test RU Choice 4.{inky_party_attribute_check_result_Vigor}" />
+  <string id="inky_cabininthewoodslocked_approach_c4" text="Test RU Choice 5 (Leave)." />
+
+
   <string id="tor_career_ability_key_str" text="Test RU special move" />
+  <string id="tor_cc_option1_label_str" text="Test RU CC Option" />
+  <string id="tor_cc_options1_text_str" text="Test RU Character Creation Text" />
   
   <string id="careerchoice_description_WarriorPriestRoot" text="Воин-жрец высвобождает гнев Зигмара на 8 секунд, усиливая свои атаки и атаки союзников на 20%. Каждый пункт в навык Веры увеличивает ближний урон на 0.05% и продолжительность на 0.05 секунд. Чтобы способность перезарядилась, нужно получить 50 урона." />
+  
+  
+           
+  <string id="inky_overturnedcart_approach_c6" text ="RU Kill the man, raise his corpse as a skeleton, {inky_HorsesAround} and loot his cart (Mercy---) {inky_party_skill_check_result_Spellcraft}" />
+  
+  <string id="inky_overturnedcart_approach_c6" text ="RU Kill the man, raise his corpse as a skeleton, {inky_HorsesAround} and loot his cart (Mercy---) {inky_party_skill_check_result_Spellcraft}" />
+  <string id="inky_overturnedcart_afterlift_c0" text ="RU Treat him with medicine {inky_party_skill_check_result_Medicine}" />
+  
+
+
+  
+  
+  <string id="inky_skill_check_result_player_onehanded_str" text="(One Handed check - success chance {inky_player_OneHanded_CheckChance}%)" />
+  <string id="inky_skill_check_result_player_onehanded_str" text="(Two Handed check - success chance {inky_player_TwoHanded_CheckChance}%)" />
+  <string id="inky_skill_check_result_player_polearm_str" text="(Two Handed check - success chance {inky_playerTwoHandedCheckChance}%)" />
+  
+  <string id="inky_skill_check_result_party_roguery_str" text="(Roguery check - success chance {inky_Player_Roguery_CheckChance}%)" />
+  <string id="inky_skill_check_result_player_roguery_str" text="(Roguery check - success chance {inky_Party_Roguery_CheckChance}%)" />
   </strings>
 </base>

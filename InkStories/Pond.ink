@@ -177,24 +177,24 @@
 
 ===Start===
 
-    As your party is traveling you come across a tranquil scene that steals your breath away. Before you stretches a serene pond, a hidden gem amidst the wilderness. The water is calm and clear, reflecting the azure sky above. Lush vegetation surrounds the pond, offering a peaceful sanctuary.
-    {IsNight(): Silver moonlight | Golden sunlight} filters through the trees, casting a glow on the water's surface. The air carries the gentle scent of nature, a soothing balm for your weary senses. Birds sing melodious tunes, contributing to the serene atmosphere.
+    As your party is traveling you come across a tranquil scene that steals your breath away. Before you stretches a serene pond, a hidden gem amidst the wilderness. The water is calm and clear, reflecting the azure sky above. Lush vegetation surrounds the pond, offering a peaceful sanctuary. #STR_Start1
+    {IsNight(): Silver moonlight | Golden sunlight} filters through the trees, casting a glow on the water's surface. The air carries the gentle scent of nature, a soothing balm for your weary senses. Birds sing melodious tunes, contributing to the serene atmosphere. #STR_Start2
 
-    As you stand there, captivated by the sight, your men catch up to you. Their faces, etched with exhaustion, light up with wonder and relief. Even the typically reserved member of your group manages a small smile.
+    As you stand there, captivated by the sight, your men catch up to you. Their faces, etched with exhaustion, light up with wonder and relief. Even the typically reserved member of your group manages a small smile. #STR_Start3
     
-    Your second places a hand on your shoulder, their voice carrying a rare note of lightness. "A moment of respite by the pond. What do you say?"
+    Your second places a hand on your shoulder, their voice carrying a rare note of lightness. "A moment of respite by the pond. What do you say?" #STR_Start4
         ->choice1
         
     =choice1
-        What will you have your party do?
+        What will you have your party do? #STR_Start4 
             *[Forage for wild plants (Multiple attempts at {LoreOfLifeInParty: 50% chance (Improved by Lore of Life)| 25% chance} to succeed at harvesting various wild plants)] 
                 
-                You order your party to forage for wild plants.
+                You order your party to forage for wild plants. #STR_Forage1
             
                 //Lore of Life in Party Increases success chance
                     {LoreOfLifeInParty:
                         -true: 
-                            A mage in your party calls upon the Wind of Ghyran to aid your men in their search.
+                            A mage in your party calls upon the Wind of Ghyran to aid your men in their search. #STR_ForageLoreOfLife1
                             ~ ForageDifficulty = ForageDifficulty - 25
                         -false:
                         -else: ERROR
@@ -204,22 +204,24 @@
 
             *[Fish (Multiple chances to get Fish (50% success chance))] 
             
-            You have your men go fishing.
+            You have your men go fishing. #STR_Fish1
                 
                 ->FishLoop
                 
             *[Have your men rest (All companions healed and all wounded troops recovered {PartyMedicineCheckText})]
                 
-                You try to give your men a break hoping that the brief respite will help them get better.
+                You try to give your men a break hoping that the brief respite will help them get better. #STR_Rest1
                 
                 {PartyMedicineCheckTest:
                     -true: 
+                        Your party takes advantage of the break to take care of the wounded. #STR_RestMedicineSuccess
                         ~ HealPartyToFull()
                     -false:
+                    Just as the men start to tend to the wounded, the ground suddenly shakes beneath you, and a roar fills the air. A cascade of earth and rocks crashes into the pond, caused by a landslide along the shore. The water churns, swallowing a part of the land it had eroded over time. #STR_RestMedicineFail
                     -else: "ERROR"
                 }
                 
-                {PartyMedicineCheckTest: Your party takes advantage of the break to take care of the wounded.| Just as the men start to tend to the wounded, the ground suddenly shakes beneath you, and a roar fills the air. A cascade of earth and rocks crashes into the pond, caused by a landslide along the shore. The water churns, swallowing a part of the land it had eroded over time.}
+               
                 
                 ->Leave
                 

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HarmonyLib;
+using Helpers;
 using Ink;
 using Ink.Runtime;
 using psai.net;
@@ -20,6 +21,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
+using TaleWorlds.InputSystem;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
@@ -29,6 +31,8 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Missions;
 using TOR_Core.Utilities;
+using Object = Ink.Runtime.Object;
+using Path = Ink.Runtime.Path;
 
 namespace TOR_Core.Ink
 {
@@ -70,6 +74,8 @@ namespace TOR_Core.Ink
                 {
                     Cooldown = 300;
                 }
+
+             
             }
         }
 
@@ -141,6 +147,7 @@ namespace TOR_Core.Ink
                         if (!overrideText.ToString().IsEmpty())
                         {
                             line = overrideText.ToString();
+                            return line;
                         }
                     }
                 }
@@ -194,7 +201,18 @@ namespace TOR_Core.Ink
         {
             if (_story.variablesState.GlobalVariableExistsWithName(varName))
             {
-                return _story.variablesState[varName].ToString();
+                TextObject overrideText = new TextObject();
+                var variableState = _story.variablesState[varName].ToString();
+                var combinedVariableID = varName+"_"+variableState;
+                if (GameTexts.TryGetText ("inky_" + StringId, out overrideText, combinedVariableID))
+                {
+                    if (!overrideText.ToString().IsEmpty())
+                    {
+                        return overrideText.ToString();
+                    }
+                }
+               
+                return variableState;
             }
             else return varName + " not found";
         }
@@ -210,6 +228,27 @@ namespace TOR_Core.Ink
         public void Reset()
         {
             _story.ResetState();
+            
+            if(!_story.TryGetExternalFunction ("SetTextVariable", out _))
+            {
+                _story.BindExternalFunction<string,string> ("SetTextVariable", SetTextVariable, false);
+            }
+            if(!_story.TryGetExternalFunction ("SetPlayerSkillChance", out _))
+            {
+                _story.BindExternalFunction<string,string> ("SetPlayerSkillChance", SetPlayerSkillChance, true);
+            }
+            if(!_story.TryGetExternalFunction ("SetPartySkillChance", out _))
+            {
+                _story.BindExternalFunction<string,string> ("SetPartySkillChance", SetPartySkillChance, true);
+            }
+            if(!_story.TryGetExternalFunction ("SetPlayerAttributeChance", out _))
+            {
+                _story.BindExternalFunction<string,string> ("SetPlayerAttributeChance", SetPlayerAttributeChance, true);
+            }
+            if(!_story.TryGetExternalFunction ("SetPartyAttributeChance", out _))
+            {
+                _story.BindExternalFunction<string,string> ("SetPartyAttributeChance", SetPartyAttributeChance, true);
+            }
             if(!_story.TryGetExternalFunction("GiveWinds", out _))
             {
                 _story.BindExternalFunction("GiveWinds", (int number) => Hero.MainHero.AddWindsOfMagic(number), false);
@@ -342,6 +381,68 @@ namespace TOR_Core.Ink
             {
                 _story.BindExternalFunction("ResetRaiderSites", ResetRaiderSites, false);
             }
+        }
+
+       
+
+        private void SetTextVariable(string variableName, string variant)
+        {
+            var textID = "inky_" + StringId;
+            var variable = GetVariable (variableName);
+            var variableVariant = variableName +"_"+ variant;
+
+            if (!GameTexts.TryGetText (textID, out var resultText, variableVariant) && ( resultText==null|| resultText.Value==""))
+            {
+                resultText = new TextObject ("{=!}"+variable);
+            }
+            
+            GameTexts.SetVariable ("inky_"+variableName,resultText);
+            
+        }
+
+        private void SetPlayerSkillChance(string skillname, string skillChance)
+        {
+        
+            var idChance = "inky_Player_skill_CheckChance";
+            GameTexts.SetVariable (idChance,skillChance);
+
+            var skillText = TORTextHelper.GetTextObjectOfSkillId (skillname);
+            GameTexts.SetVariable ("inky_skill_check_skill_name",skillText);
+            var skillCheckResultText = GameTexts.FindText ("inky_player_skill_check_result_template") ;
+            
+            GameTexts.SetVariable ("inky_player_skill_check_result_"+skillname,skillChance);
+        }
+        private void SetPartySkillChance(string skillname, string skillChance)
+        {
+        
+            var idChance = "inky_Party_skill_CheckChance";
+            
+            GameTexts.SetVariable (idChance,skillChance);
+            
+            var skillText = TORTextHelper.GetTextObjectOfSkillId (skillname);
+            GameTexts.SetVariable ("inky_skill_check_skill_name",skillText);
+            var skillCheckResultText = GameTexts.FindText ("inky_party_skill_check_result_template") ;
+            GameTexts.SetVariable("inky_party_skill_check_result_"+skillname,skillCheckResultText.ToString());
+        }
+        
+        private void SetPlayerAttributeChance(string attribute, string attributeChance)
+        {
+            var idChance = "inky_Player_attribute_CheckChance";
+            GameTexts.SetVariable (idChance,attributeChance);
+            var attributeText = TORTextHelper.GetTextObjectOfAttribute (attribute);
+            GameTexts.SetVariable ("inky_attribute_check_attribute_name",attributeText);
+            var attributeCheckResultText = GameTexts.FindText ("inky_player_attribute_check_result_template") ;
+            GameTexts.SetVariable ("inky_player_attribute_skill_check_result_" + attribute, attributeCheckResultText);
+        }
+        
+        private void SetPartyAttributeChance(string attribute, string attributeChance)
+        {
+            var idChance = "inky_Party_attribute_CheckChance";
+            GameTexts.SetVariable (idChance,attributeChance);
+            var attributeText = TORTextHelper.GetTextObjectOfAttribute (attribute);
+            GameTexts.SetVariable ("inky_attribute_check_attribute_name",attributeText);
+            var attributeCheckResultText = GameTexts.FindText ("inky_party_attribute_check_result_template") ;
+            GameTexts.SetVariable ("inky_party_attribute_check_result_" + attribute, attributeCheckResultText);
         }
 
         private void ResetRaiderSites()
@@ -636,7 +737,8 @@ namespace TOR_Core.Ink
         public string getChoiceText(Choice choice)
         {
             var choiceLine = "";
-            var choiceID = choice.sourcePath.Split('.').FirstOrDefault() + "_c" + choice.index;
+            var pathExitID = GetPathExitID (choice.targetPath);
+            var choiceID = choice.targetPath.ToString().Split('.').FirstOrDefault() + "_c" + pathExitID;
             var stringId = "{=inky_" + StringId +"_"+ choiceID+"}";
             stringId=stringId.ToLowerInvariant();
             var overrideText = new TextObject (stringId).ToString();
@@ -654,6 +756,12 @@ namespace TOR_Core.Ink
 
             return choiceLine;
 
+        }
+
+        private string GetPathExitID(Path path)
+        {
+            var pathExitID = path.ToString().Split ('.').FirstOrDefault (x => x.StartsWith ("c-"))?.Replace("c-","");
+            return pathExitID;
         }
     }
 }

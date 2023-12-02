@@ -765,7 +765,12 @@
   <string id="tor_damagetype.Holy" text="{=tor_damagetype_holy_str}Holy"/>
   <string id="tor_damagetype.Lightning" text="{=tor_damagetype_lightning_str}Lightning"/>
   
-
+  <string id="tor_attacktype.Melee" text="{=tor_damagetype_lightning_str}Melee"/>
+  <string id="tor_attacktype.Ranged" text="{=tor_damagetype_lightning_str}Ranged"/>
+  <string id="tor_attacktype.Spell" text="{=tor_damagetype_lightning_str}Spell"/>
+  <string id="tor_attacktype.All" text="{=tor_damagetype_lightning_str}All"/>
+  
+  <!--Career related related !-->
   <string id="career_description.WarriorPriest" text="{=career_description_warriorpriest_str}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />
   <string id="career_description.BloodKnight" text="{=career_description_bloodknight_str}Sired by Abhorash, the Blood Knight is a dark mockery of everything noble or virtuous that can be said about their mortal counterparts. Where before the Blood Kiss there was honour is now cruelty; faith turns to irreverence and duty falls to wanton ambition. This is true of all vampires but seems particularly tragic for the fallen knights of the Old World." />
   <string id="career_description.MinorVampire" text="{=career_description_minorvampire_str}Known and feared by many names, Vampires are the night's dark master. Nighly anyone be they Man or Beast, Holy or Daemonic can face one and survive. All Vampires strive to be the only masters of their unlife, free from any obligations to religions or masters. This egomaniacal drive is what fuels them to greater and greater ambitions, so that one day they may be lord of all they observe." />
@@ -773,28 +778,245 @@
   <string id="career_description.GrailKnight" text="{=career_description_grailknight_str}To be a knight of Bretonnia is to strive for the blessing of the Lady and her holy grail. Any man deemed worthy to sup from her chalice becomes a holy warrior honored and respected across all of Bretonnia and yet farther. The road to that goal is difficult, so much so that most knights fail to accomplish despite all sharing the same dream." />
   <string id="career_description.GrailDamsel" text="{=career_description_graildamsel_str}Damsels are sought out as children by the Fey Enchantress for their latent magical potential. Taken away from their families they are raised in secret to be potent guardians of fair Bretonnia. Upon completion of their training they embark out into the land, coming to the aid of the people and influencing knights in order to fulfill their martial potential." />
 
-
-  <string id="careerchoice_description.WarriorPriestRoot" text="{=careerchoice_description_warriorpriest_root_str}The Warrior Priest unleashes Sigmar's wrath for 8 seconds, which empowers him and the surrounding allies with 20% stronger melee attacks.  Every point in Faith increases the melee effect by 0.05% and the duration by 0.05 seconds. The ability recharges by taking 50% of damage of total health. Blocked damage counts as 10% of the damage taken." />
-  
-  <string id="careerchoice_description.BookOfSigmarPassive1" text="{=careerchoice_description_warriorpriest_root_str}The Warrior Priest unleashes Sigmar's wrath for 8 seconds, which empowers him and the surrounding allies with 20% stronger melee attacks.  Every point in Faith increases the melee effect by 0.05% and the duration by 0.05 seconds. The ability recharges by taking 50% of damage of total health. Blocked damage counts as 10% of the damage taken." />
-  
-
   <string id="careerchoice_description.ProtectorOfTheWeakPassive1" text="{=protector_of_the_weak_passive1_str}Increases Hitpoints by {EFFECT_VALUE}" />
   <string id="careerchoice_description.ProtectorOfTheWeakPassive2" text="{=protector_of_the_weak_passive2_str}Increases Hitpoints by {EFFECT_VALUE}" />
   <string id="careerchoice_description.ProtectorOfTheWeakPassive3" text="{=protector_of_the_weak_passive3_str}Increases Hitpoints by {EFFECT_VALUE}" />
   <string id="careerchoice_description.ProtectorOfTheWeakPassive4" text="{=protector_of_the_weak_passive4_str}Increases Hitpoints by {EFFECT_VALUE}" />
-	<!--Career perks related !-->
-	<string id="tor_hunt_perk_result.Failed" text="{=tor_hunt_perk_result_failed_str}You were able to detect a {PERK_HUNT_ANIMAL_SIZE}, yet your hunt was not sucessful" />
-	<string id="tor_hunt_perk_result.Success" text="{=tor_hunt_perk_result_success_str}You were able to hunt down a {PERK_HUNT_ANIMAL_SIZE}, you gained {PERK_HUNT_PREY}" />
+  
+
+  <string id="careerchoice_description.WarriorPriestRoot" text="{=careerchoice_description_warriorpriest_root_str}The Warrior Priest unleashes Sigmar's wrath for 8 seconds, which empowers him and the surrounding allies with 20% stronger melee attacks.  Every point in Faith increases the melee effect by 0.05% and the duration by 0.05 seconds. The ability recharges by taking 50% of damage of total health. Blocked damage counts as 10% of the damage taken." />
+
+
+  <!--Career perks related !-->
+
+  <string id="tor_hunt_perk_result.Failed" text="{=tor_hunt_perk_result_failed_str}You were able to detect a {PERK_HUNT_ANIMAL_SIZE}, yet your hunt was not sucessful" />
+  <string id="tor_hunt_perk_result.Success" text="{=tor_hunt_perk_result_success_str}You were able to hunt down a {PERK_HUNT_ANIMAL_SIZE}, you gained {PERK_HUNT_PREY}" />
+  
+  
+  
+  <string id="tor_careerchoice_basic.Health" text="{=str_tor_career_choice_basic_health}Increases Hitpoints by {EFFECT_VALUE}" /> <!--TOR_CHOICE_HEALTH !-->
+  <string id="tor_careerchoice_basic.Damage" text="{=str_tor_career_choice_basic_damage}{EFFECT_VALUE}% extra {EFFECT_DAMAGE_TYPE} {EFFECT_ATTACK_TYPE} damage" /> <!--TOR_CHOICE_DAMAGE !-->
+  <string id="tor_careerchoice_basic.Resistance" text="{=str_tor_career_choice_basic_resistance}Add {EFFECT_VALUE}% {EFFECT_DAMAGE_TYPE} {EFFECT_ATTACK_TYPE} resistance" /> <!--TOR_CHOICE_RESISTANCE !-->
+  <string id="tor_careerchoice_basic.ArmorPenetration" text="{=str_tor_career_choice_basic_armorpenetration}Add {EFFECT_VALUE}% armor penetration" /> <!--TOR_CHOICE_ARMORPENETRATION  Increases armor penetration of melee attacks by 15%!-->
+  <string id="tor_careerchoice_basic.HorseHealth" text="{=str_tor_career_choice_basic_horsehealth}{EFFECT_VALUE}% additional Hitpoints for the player's mount." /> <!--TOR_CHOICE_HORSEHEALTH !-->
+  <string id="tor_careerchoice_basic.HorseChargeDamage" text="{=str_tor_career_choice_basic_horsechargedamage}Horse charge damage is increased by {EFFECT_VALUE}%" /> <!--TOR_CHOICE_HORSECHARGEDAMAGE !-->
+  <string id="tor_careerchoice_basic.WindsOfMagic" text="{=str_tor_career_choice_basic_windsofmagic}Increases max Winds of Magic by {EFFECT_VALUE}%." /> <!--TOR_CHOICE_WINDSOFMAGIC !-->
+  <string id="tor_careerchoice_basic.WindsCostReduction" text="{=str_tor_career_choice_basic_damage}{EFFECT_VALUE}% cost reduction for spells." /> <!--TOR_CHOICE_WINDSCOSTREDUCTION !-->
+  <string id="tor_careerchoice_basic.WindsCooldownReduction" text="{=str_tor_career_choice_basic_damage}{EFFECT_VALUE}% spell cooldown reduction." /> <!--TOR_CHOICE_WINDSCOOLDOWNREDUCTION!-->
+  <string id="tor_careerchoice_basic.PrayerCooldownReduction" text="{=str_tor_career_choice_basic_damage}{EFFECT_VALUE}% prayer cooldown reduction." /> <!--TOR_CHOICE_WINDSCOOLDOWNREDUCTION!-->
+  <string id="tor_careerchoice_basic.PartyMovementSpeed" text="{=str_tor_career_choice_basic_damage}Party movement speed is increased by {EFFECT_VALUE}." /> <!--TOR_CHOICE_PARTYMOVEMENTSPEED !-->
+  <string id="tor_careerchoice_basic.PartySize" text="{=str_tor_career_choice_basic_damage}Party size is increased by {EFFECT_VALUE}" /> <!--TOR_CHOICE_PARTYSIZE-->
+  <string id="tor_careerchoice_basic.TroopRegeneration" text="{=str_tor_career_choice_basic_damage}Wounded troops in your party heal faster ({EFFECT_VALUE})." /> <!--TOR_CHOICE_TROOPREGENERATION!-->
+  <string id="tor_careerchoice_basic.TroopUpgradeCost" text="{=str_tor_career_choice_basic_damage}Upgrade costs are reduced by {EFFECT_VALUE}%." /> <!--TOR_CHOICE_TROOPUPGRADECOST !-->
+  <string id="tor_careerchoice_basic.Ammo" text="{=str_tor_career_choice_basic_damage}{EFFECT_VALUE} extra ammunition" /> <!--TOR_CHOICE_AMMO !-->
+  
+    <!--Warrior Priest !-->
+	
+  <string id="careerchoice_description.BookOfSigmarPassive1" text="{TOR_CHOICE_HEALTH}" />
+  <string id="careerchoice_description.BookOfSigmarPassive2" text="{=str_tor_book_of_sigmar_passive2}Increases morale for all troops by {EFFECT_VALUE}" />
+  <string id="careerchoice_description.BookOfSigmarPassive3" text="{=str_tor_book_of_sigmar_passive3}After battle, all wounded companions are healed for {EFFECT_VALUE} Hitpoints" />
+  <string id="careerchoice_description.BookOfSigmarPassive4" text="{TOR_CHOICE_TROOPREGENERATION}" />
+  <string id="careerchoice_description.BookOfSigmarKeyStone" text="{=str_tor_book_of_sigmar_keystone}Adds a healing buff to Righeous Fury that restores 5 Hitpoints per second" />
+
+  <string id="careerchoice_description.SigmarsProclaimerPassive1" text="{TOR_CHOICE_DAMAGE}" />
+  <string id="careerchoice_description.SigmarsProclaimerPassive2" text="{=str_tor_sigmars_proclaimer_passive2}All Sigmarite troops wages are reduced by {EFFECT_VALUE}%" />
+  <string id="careerchoice_description.SigmarsProclaimerPassive3" text="{=str_tor_sigmars_proclaimer_passive3}All Sigmarite troops consume {EFFECT_VALUE}% less food" />
+  <string id="careerchoice_description.SigmarsProclaimerPassive4" text="{=str_tor_sigmars_proclaimer_passive4}When praying at a shrine of Sigmar, all characters restore {EFFECT_VALUE} Hitpoints" />
+  <string id="careerchoice_description.SigmarsProclaimerKeyStone" text="{=str_tor_sigmars_proclaimer_keystone}Doubles the aura size of Righteous Fury" />
+  
+  <string id="careerchoice_description.RelentlessFanaticPassive1" text="{TOR_CHOICE_HEALTH}" />
+  <string id="careerchoice_description.RelentlessFanaticPassive2" text="{TOR_CHOICE_DAMAGE}" />
+  <string id="careerchoice_description.RelentlessFanaticPassive3" text="{=str_tor_relentless_fanatic_passive3}All Sigmarite troops get {EFFECT_VALUE}% resistance to physical ranged attacks" />
+  <string id="careerchoice_description.RelentlessFanaticPassive4" text="{TOR_CHOICE_PARTYMOVEMENTSPEED}" />
+  <string id="careerchoice_description.RelentlessFanaticKeyStone" text="{=str_tor_relentless_fanatic_keystone}Righteous Fury scales with Leadership. Troops affected get Unbreakable for the duration" />
+  
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive1" text="{TOR_CHOICE_HEALTH}" />
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive2" text="{TOR_CHOICE_RESISTANCE}" />
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive3" text="{TOR_CHOICE_RESISTANCE}" />
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive4" text="{=str_tor_protector_of_the_weak_passive4}Hits below 15 damage do not stagger the player" />
+  <string id="careerchoice_description.ProtectorOfTheWeakKeystone" text="{=str_tor_protector_of_the_weak_keystone}Righteous Fury scales with the highest melee weapon skill. Adds 20% physical resistance." />
+  
+  <string id="careerchoice_description.HolyPurgePassive1" text="{TOR_CHOICE_DAMAGE}" />
+  <string id="careerchoice_description.HolyPurgePassive2" text="{=str_tor_holy_purge_passive2}All Sigmarite troops gain {EFFECT_VALUE}% Ward save" />
+  <string id="careerchoice_description.HolyPurgePassive3" text="{=str_tor_holy_purge_passive3}All troops deal {EFFECT_VALUE}% more melee damage to non-human enemies" />
+  <string id="careerchoice_description.HolyPurgePassive4" text="{=str_tor_holy_purge_passive4}All Sigmarite troops gain {EFFECT_VALUE}% extra holy damage" />
+  <string id="careerchoice_description.HolyPurgeKeystone" text="{=str_tor_holy_purge_keystone}All units affected by Righteous Fury receive a Burning Weapon buff " />
+  
+  <string id="careerchoice_description.ArchLectorPassive1" text="{=str_tor_arch_lector_passive1}Prayers are recharged on battle start" />
+  <string id="careerchoice_description.ArchLectorPassive2" text="{=str_tor_arch_lector_passive2}All neutral Empire troops now count as Sigmarite troops" />
+  <string id="careerchoice_description.ArchLectorPassive3" text="{=str_tor_arch_lector_passive3}Gain {EFFECT_VALUE}% Ward save" />
+  <string id="careerchoice_description.ArchLectorPassive4" text="{=str_tor_arch_lector_passive4}Prayers aren't affected by global cooldowns" />
+  <string id="careerchoice_description.ArchLectorKeyStone" text="{=str_tor_arch_lector_keystone}Righteous Fury adds a damaging aura. Its radius increases when raising relevant skills " />
+
+
+  <!--Grail Knight !-->
+  
 	
 	<!-- Inky translation related.  Do NOT add texts inside quotation marks!-->
 	<!-- every inky story starts with "inky: "+ ID of the file name. While the Variation accounts for the specific text block -->
 	<string id="inky_continue" text="{inky_continue_str}" />
 	<string id="inky_end" text="{inky_end_str}" />
 	
+	<!--Ink !-->
+	<string id="inky_party_skill_check_result_template" text ="{=inky_party_skill_check_template_str}({inky_skill_check_skill_name} check with success chance {inky_Party_skill_CheckChance}%)" />
+	<string id="inky_player_skill_check_result_template" text ="{=inky_player_skill_check_template_str}({inky_skill_check_skill_name} check with success chance {inky_Player_skill_CheckChance}%)" />
+	
+	<string id="inky_player_attribute_check_result_template" text ="{=inky_player_attribute_check_template_str}({inky_attribute_check_attribute_name} check with success chance {inky_Player_attribute_CheckChance}%)" />
+	<string id="inky_party_attribute_check_result_template" text ="{=inky_party_attribute_check_template_str}({inky_attribute_check_attribute_name} check with success chance {inky_Party_attribute_CheckChance}%)" />
+	
+	
+	
+	
+	<!--Battlefield !-->
+	<string id="inky_Battlefield.Title" text="{=inky_battlefield_strid_title}" />
+	<string id="inky_Battlefield.STR_Start1" text="{=inky_battlefield_start1_str}" />
+	<string id="inky_Battlefield.STR_Start2" text="{=inky_battlefield_start1_str}" />
+	<string id="inky_Battlefield.STR_Start3" text="{=inky_battlefield_start1_str}" />
+	
+	<string id="inky_Battlefield.STR_SearchForSurvivors1" text="{=inky_battlefield_search_for_survivors_1_str}" />
+	<string id="inky_Battlefield.STR_SearchForSurvivors2" text="{=inky_battlefield_search_for_survivors_2_str}" />
+	
+	<string id="inky_Battlefield.STR_UseGhyranMagic1" text="{=inky_battlefield_use_ghyranmagic_1_str}" />
+	<string id="inky_Battlefield.STR_UseGhyranMagic2" text="{=inky_battlefield_use_ghyranmagic_2_str}" />
+
+    <string id="inky_Battlefield.STR_HelpButDie1" text="{=inky_battlefield_help_but_die_1_str}" />
+    <string id="inky_Battlefield.STR_HelpButDie2" text="{=inky_battlefield_help_but_die_2_str}" />
+	
+	<string id="inky_Battlefield.STR_PayRespects1" text="{=inky_battlefield_pay_respect_1_str}" />
+	<string id="inky_Battlefield.STR_PayRespects2" text="{=inky_battlefield_pay_respect_2_str}" />
+	
+	<string id="inky_Battlefield.STR_ContinueOn1" text="{=inky_battlefield_continue_on_1_str}" />
+	<string id="inky_Battlefield.STR_ContinueOn2" text="{=inky_battlefield_continue_on_2_str}" />
+	
+	<!-- Cabin in the Wood!-->
+	<string id="inky_CabinInTheWoodsLocked.DoorText_1" text="{=inky_cabin_in_the_woods_locked_door_text_weak_str} weak" />
+	<string id="inky_CabinInTheWoodsLocked.DoorText_2" text="{=inky_cabin_in_the_woods_locked_door_text_average_str} average" />
+	<string id="inky_CabinInTheWoodsLocked.DoorText_3" text="{=inky_cabin_in_the_woods_locked_door_text_strong_str} strong" />
+	
+	<string id="inky_CabinInTheWoodsLocked.LockText_1" text="{=inky_cabin_in_the_woods_locked_lock_text_weak_str} weak" />
+	<string id="inky_CabinInTheWoodsLocked.LockText_2" text="{=inky_cabin_in_the_woods_locked_lock_text_average_str} average" />
+	<string id="inky_CabinInTheWoodsLocked.LockText_3" text="{=inky_cabin_in_the_woods_locked_lock_text_strong_str} strong" />
+	
+	<string id="inky_CabinInTheWoodsLocked.RewardText_1" text="{=inky_cabin_in_the_woods_locked_reward_text_1_str} 5 grain" />
+    <string id="inky_CabinInTheWoodsLocked.RewardText_2" text="{=inky_cabin_in_the_woods_locked_reward_text_2_str}" />
+	<string id="inky_CabinInTheWoodsLocked.RewardText_3" text="{=inky_cabin_in_the_woods_locked_reward_text_3_str}" />
+
+	<string id="inky_CabinInTheWoodsLocked.STR_Start1" text="{=inky_cabin_in_the_woods_start_1_str}" />
+	<string id="inky_CabinInTheWoodsLocked.STR_Approach1" text="{=inky_cabin_in_the_woods_approach_1_str}" />
+	<string id="inky_CabinInTheWoodsLocked.#STR_Inside1" text="{=inky_cabin_in_the_woods_inside_1_str}" />
+	
+	<!--Fair !-->
 	<string id="inky_Fair.Title" text="{=inky_fair_strid_title}" />
 	<string id="inky_Fair.STR_Start1" text="{=inky_fair_start1_str}" />
 	<string id="inky_Fair.STR_Start2" text="{=inky_fair_start2_str}" />
-	<string id="inky_Fair.STR_Leave1" text="{=inky_fair_strid_leave1}" />
+	<string id="inky_Fair.STR_Leave1" text="{=inky_fair_leave1_str}" />
+	<string id="inky_Fair.STR_BuyHorse1" text="{=inky_fair_strid_buy_horse_1_str}" />
+	<string id="inky_Fair.STR_BuyHorse1NOTENOUGHGOLD" text="{=inky_fair_strid_buyhorse_not_enough_gold}" />
+	<string id="inky_Fair.STR_Leave1" text="{=inky_fair_leave1_str}" />
+	<string id="inky_Fair.PersuadeMerchant_Fail" text="{=inky_fair_persuadeMerchant_fail_str}" />
+	<string id="inky_Fair.PersuadeMerchant_Success" text="{=inky_fair_persuadeMerchant_fail_str}" />
 	
-</strings>
+	<!--Duel !-->
+	
+	<string id="inky_Duel.MetBefore_False" text="{=inky_duel_met_before_false_str}you spot a mysterious figure approaching with confident strides. As they draw nearer, the glint of a finely crafted rapier catches your eye. The stranger stops before you, a warm smile on their face as they appraise you." />
+	<string id="inky_Duel.MetBefore_True" text="{=inky_duel_met_before_true_str}you spot the familiar figure of Vittorio de Luca, the renowned Tilean duelist, making his way towards your group with confident strides.{inky_DeniedBefore1}" />
+	<string id="inky_Duel.DeniedBefore1_False" text="{=inky_duel_denied_before_false_str} Memories of your previous encounter flood back, the thrill of the first duel still lingering in your mind." />
+	<string id="inky_Duel.DeniedBefore1_True" text="{=!}" />
+	
+	<string id="inky_Duel.DeniedBefore2_False" text="{=inky_duel_denied_before2_false_str} Care to prove your skills this time around?" />
+	<string id="inky_Duel.DeniedBefore2_True" text="{=inky_duel_denied_before2_true_str}Care to prove your skills once more in a rematch?" />
+	<string id="inky_Duel.MetBefore2_False" text="{=!}" />
+	<string id="inky_Duel.MetBefore2_True" text="{=inky_duel_met_before2_true_str} Once More" />
+	
+	
+	<string id="inky_Duel.STR_Start1" text="{=!}" />
+	<string id="inky_Duel.STR_Start2" text="{=!}{inky_MetBefore}" />
+	<string id="inky_Duel.STR_Start3MetBefore" text="{=!}As Vittorio draws nearer, the glint of his finely crafted rapier catches your eye, and a warm smile spreads across his face as he appraises you. &quot;Ah, what a stroke of luck to meet again on this lonely path,&quot; he says, his voice carrying a playful undertone. &quot;I see the fire of a warrior still burns within you.&quot; {inky_DeniedBefore2}" />
+	<string id="inky_Duel.STR_Start3NotMetBefore" text="{=!}&quot;Ah, what a stroke of luck to meet a band of worthy warriors on this lonely path,&quot; they say. &quot;I am Vittorio de Luca, a master of the blade from the distant lands of Tilea. I have journeyed far and wide, seeking a worthy adversary who can match my skills in combat. And now, fate has led me to you. Care to prove your skills in a friendly duel, with a little wager to make it exciting?&quot;" />
+	
+	<string id="inky_Duel.STR_AcceptNotMetBefore1" text="{=!}" />
+	<string id="inky_Duel.STR_AcceptNotMetBefore2" text="{=!}" />
+	<string id="inky_Duel.STR_AcceptNotMetBefore3" text="{=!}" />
+	
+    <string id="inky_Duel.STR_Accept1" text="{=!}" />
+	<string id="inky_Duel.STR_Accept2" text="{=!}"/> 
+	<string id="inky_Duel.STR_Accept2" text="{=!}"/> 
+	<string id="inky_Duel.STR_Deny1" text="{=!}" />
+	<string id="inky_Duel.STR_Deny2" text="{=!}"/>	
+	<string id="inky_Duel.STR_Deny3" text="{=!}"/>
+	
+	<string id="inky_Duel.STR_Playerwin1" text="{=!}"/>
+	<string id="inky_Duel.STR_Playerwin2" text="{=!}"/>
+	<string id="inky_Duel.STR_Playerwin3" text="{=!}"/>
+	
+	<string id="inky_Duel.STR_PlayerLost1" text="{=!}"/>
+	<string id="inky_Duel.STR_PlayerLost2" text="{=!}"/>
+	
+	<string id="inky_Duel.STR_DuelEnd" text="{=!}"/>
+	
+	
+	<!--Duel !-->
+	
+	
+	<!--Meadow ! -->
+	<string id="inky_Meadow.IsNight_True" text="{=inky_Meadow_is_night_true_str}Silver moonlight" />
+	<string id="inky_Meadow.IsNight_False" text="{=inky_Meadow_is_night_false_str}Golden sunlight" />
+	
+	
+	<string id="inky_Meadow.STR_Start3" text="{inky_IsNight} filters through the tree canopy, bathing the meadow in warmth. A gentle aroma of blooming flowers perfumes the air. Birds serenade with their melodies, filling the clearing with a symphony that feels like a balm to your weary spirit. #STR_Start3"/>
+	
+	
+	<!--Overturned Cart ! -->
+	
+	<string id="inky_OverturnedCart.InjuryText1_1" text="{=inky_overturned_cart_injury1_1_str}weak" />
+	<string id="inky_OverturnedCart.InjuryText1_2" text="{=inky_overturned_cart_injury1_2_str}mild" />
+	<string id="inky_OverturnedCart.InjuryText1_3" text="{=inky_overturned_cart_injury1_3_str}severely" />
+	
+	<string id="inky_OverturnedCart.InjuryText2_1" text="{=inky_overturned_cart_injury2_1_str}asks" />
+	<string id="inky_OverturnedCart.InjuryText2_2" text="{=inky_overturned_cart_injury2_2_str}begs" />
+	<string id="inky_OverturnedCart.InjuryText2_3" text="{=inky_overturned_cart_injury2_3_str}gasps" />
+	
+	<string id="inky_OverturnedCart.InjuryText3_1" text="{=inky_overturned_cart_injury3_1_str}gets up" />
+	<string id="inky_OverturnedCart.InjuryText3_2" text="{=inky_overturned_cart_injury3_2_str}barely gets up" />
+	<string id="inky_OverturnedCart.InjuryText3_3" text="{=inky_overturned_cart_injury3_3_str}lays there trying not do die" />
+	
+	<string id="inky_OverturnedCart.InjuryText4_1" text="{=inky_overturned_cart_injury4_1_str}" />
+	<string id="inky_OverturnedCart.InjuryText4_2" text="{=inky_overturned_cart_injury4_2_str}seems to get a bit depressed knowing that he will be crippled for at least some time" />
+	<string id="inky_OverturnedCart.InjuryText4_3" text="{=inky_overturned_cart_injury4_3_str}dies" />
+	
+	<string id="inky_OverturnedCart.Profession_1" text="{=inky_overturned_cart_profession_1_str}merchant" />
+	<string id="inky_OverturnedCart.Profession_2" text="{=inky_overturned_cart_profession_2_str}farmer" />
+	<string id="inky_OverturnedCart.Profession_3" text="{=inky_overturned_cart_profession_3_str}blacksmith" />
+	
+	<string id="inky_OverturnedCart.RewardText_0" text="{=inky_overturned_cart_rewardtext_0_str}500 gold" />
+	<string id="inky_OverturnedCart.RewardText_1" text="{=inky_overturned_cart_rewardtext_1_str}5 grain" />
+	<string id="inky_OverturnedCart.RewardText_2" text="{=inky_overturned_cart_rewardtext_2_str}2 steel ingots" />
+	
+	<string id="inky_OverturnedCart.HorsesAround_0" text="{=inky_overturned_cart_horsesaround_0_str}" />
+	<string id="inky_OverturnedCart.HorsesAround_1" text="{=inky_overturned_cart_horsesaround_1_str}take the horses," />
+	
+	
+	<string id="inky_OverturnedCart.Start1" text="{=inky_overturned_cart_start_1_str}As your party is travelling along you see a cart in the distance." />
+	<string id="inky_OverturnedCart.Start2" text="{=inky_overturned_cart_start_2_str}As you get closer you can see that it had broken down and tipped over." />
+	<string id="inky_OverturnedCart.StartHorse" text="{=inky_overturned_cart_start_2_str}You can also see some horses grazing on grass in a nearby field, presumably these were pulling the cart prior to the incident." />
+	
+	
+	<string id="inky_OverturnedCart.Approach1" text="{=inky_overturned_cart_approach_1_str}" />
+	<string id="inky_OverturnedCart.Approach2" text="{=inky_overturned_cart_approach_2_str}You notice that the man trapped under the cart is {inky_InjuryText1}." />
+	<string id="inky_OverturnedCart.Approach3" text="{=inky_overturned_cart_approach_3_str}As you get close he {inky_InjuryText2} to you, &quot;Please help me&quot;." />
+	
+	
+	<string id="inky_OverturnedCart.STR_RewardForHelp2" text="{=inky_overturned_cart_reward_for_help_1_str}You ask the man what he can do for you." />
+	<string id="inky_OverturnedCart.STR_RewardForHelp2" text="{=inky_overturned_cart_reward_for_help_2_str}The man replies, &quot;I am just a simple {Profession} from {Settlement}, I cannot give you a reward other than my thanks.&quot;" />
+	<string id="inky_OverturnedCart.STR_RewardForHelp3" text="{=inky_overturned_cart_reward_for_help_3_str}After a moment he says, &quot;I am a friend of {Notable} and I will put in a good word for you.&quot;" />
+	
+	
+	
+	<string id="inky_OverturnedCart.HelpExtort1" text="{=inky_overturned_cart_helpextort_3_str}You tell the {inky_Profession} that he shouldn't be so modest. He is clearly a man of some means and can easily spare {inky_RewardText} as compensation for the assistance." />
+	
+	
+	<string id="inky_OverturnedCart.HelpExtort1" text="{=inky_overturned_cart_helpextort_3_str}You tell the {inky_Profession} that he shouldn't be so modest. He is clearly a man of some means and can easily spare {inky_RewardText} as compensation for the assistance." />
+	
+	<string id="inky_OverturnedCart.AfterLiftMedicine1" text="{=inky_overturned_cart_after_Lift_Medicine_3_str}You tell the {inky_Profession} that he shouldn't be so modest. He is clearly a man of some means and can easily spare {inky_RewardText} as compensation for the assistance." />
+
+</strings> 
