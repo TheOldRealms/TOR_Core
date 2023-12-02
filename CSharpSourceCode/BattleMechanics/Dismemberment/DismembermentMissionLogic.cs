@@ -113,7 +113,7 @@ namespace TOR_Core.BattleMechanics.Dismemberment
         {
             if (slowMotionEndTime > 0 && Mission.CurrentTime >= slowMotionEndTime)
             {
-                Mission.Current.RemoveTimeSpeedRequest (_timeSpeedRequestID);
+              //  Mission.Current.RemoveTimeSpeedRequest (_timeSpeedRequestID);
             }
 
             /*objectPos = _pooledDismemberedLimbs[0][0].GlobalPosition;

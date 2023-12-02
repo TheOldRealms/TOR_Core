@@ -186,7 +186,7 @@ namespace TOR_Core.AbilitySystem
                 ability.SetCrosshair(crosshair);
             }
 
-            if (Campaign.Current != null && Agent.IsHero&& Agent== Agent.Main &&  Hero.MainHero.HasAnyCareer())
+            if (Campaign.Current != null && Agent.IsHero&& Agent== Agent.Main &&  Hero.MainHero.HasAnyCareer()&& CareerAbility!=null)
             {
                 AbilityCrosshair CACrosshair = AbilityFactory.InitializeCrosshair(CareerAbility.Template);
                 CareerAbility.SetCrosshair(CACrosshair);
