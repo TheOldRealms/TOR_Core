@@ -56,6 +56,14 @@
         RegimentName="Blood Dragons"
         RegimentHQName="Blood Dragon Chapter House"
     />
+	<RORSettlementTemplate
+        SettlementId="castle_BK1"
+        BaseTroopId="tor_bd_blooddragon_initiate"
+        MenuHeaderText="A small Chapter House of the Knighthood Order, for members to rest and resupply."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Blood Dragons"
+        RegimentHQName="Blood Dragon Chapter House"
+    />
     <RORSettlementTemplate
         SettlementId="village_ST3_1"
         BaseTroopId="tor_ror_sternieste_skeleton"

@@ -125,6 +125,20 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                     SetGenericStateMenu(args.MenuContext.GameMenu.StringId);
                 }, 
                 false, -1, false);
+            
+            ValidateRORSettlements();
+        }
+
+        private void ValidateRORSettlements()
+        {
+            foreach(var settlement in Settlement.All)
+            {
+                if (!settlement.IsRoRSettlement()) continue;
+                if (!_rorSettlementDetails.ContainsKey(settlement))
+                {
+                    _rorSettlementDetails.Add(settlement, new Dictionary<CharacterObject, int>());
+                }
+            }
         }
 
         private bool IsRecruitmentOptionValid(MenuCallbackArgs args, int index)
