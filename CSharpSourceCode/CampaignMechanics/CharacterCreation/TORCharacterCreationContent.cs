@@ -10,6 +10,7 @@ using TaleWorlds.CampaignSystem.Extensions;
 using TaleWorlds.CampaignSystem.GameState;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TaleWorlds.GauntletUI;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
@@ -45,7 +46,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             ExtendedInfoManager.Instance.ClearInfo(Hero.MainHero);
         }
 
-        public override TextObject ReviewPageDescription => new TextObject("{=!}You prepare to enter The Old World! Here is your character. Click finish if you are ready, or go back to make changes.", null);
+        public override TextObject ReviewPageDescription => new TextObject("{=tor_cc_finished_info_str}You prepare to enter The Old World! Here is your character. Click finish if you are ready, or go back to make changes.", null);
 
         public override IEnumerable<Type> CharacterCreationStages
         {
@@ -70,9 +71,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private void AddMenus(TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation characterCreation)
         {
             //stages
-            CharacterCreationMenu stage1Menu = new CharacterCreationMenu(new TextObject("{=!}Origin", null), new TextObject("{=!}Choose your family's background...", null), new CharacterCreationOnInit(OnMenuInit), CharacterCreationMenu.MenuTypes.MultipleChoice);
-            CharacterCreationMenu stage2Menu = new CharacterCreationMenu(new TextObject("{=!}Growth", null), new TextObject("{=!}Teenage years...", null), new CharacterCreationOnInit(OnMenuInit), CharacterCreationMenu.MenuTypes.MultipleChoice);
-            CharacterCreationMenu stage3Menu = new CharacterCreationMenu(new TextObject("{=!}Profession", null), new TextObject("{=!}Your starting profession...", null), new CharacterCreationOnInit(OnMenuInit), CharacterCreationMenu.MenuTypes.MultipleChoice);
+            CharacterCreationMenu stage1Menu = new CharacterCreationMenu(new TextObject("{=tor_cc_origin_summary_str}Origin", null), new TextObject("{=tor_cc_origin_text_str}Choose your family's background...", null), new CharacterCreationOnInit(OnMenuInit), CharacterCreationMenu.MenuTypes.MultipleChoice);
+            CharacterCreationMenu stage2Menu = new CharacterCreationMenu(new TextObject("{=tor_cc_growth_summary_str}Growth", null), new TextObject("{=tor_cc_growth_text_str}Teenage years...", null), new CharacterCreationOnInit(OnMenuInit), CharacterCreationMenu.MenuTypes.MultipleChoice);
+            CharacterCreationMenu stage3Menu = new CharacterCreationMenu(new TextObject("{=tor_cc_profession_summary_str}Profession", null), new TextObject("{=tor_cc_profession_text_str}Your starting profession...", null), new CharacterCreationOnInit(OnMenuInit), CharacterCreationMenu.MenuTypes.MultipleChoice);
 
             for (int i = 1; i <= _maxStageNumber; i++)
             {
@@ -120,7 +121,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                             effectedSkills.Add(Skills.All.FirstOrDefault(x => x.StringId == skillId));
                         }
                         CharacterAttribute attribute = Attributes.All.Where(x => x.StringId == option.AttributeToIncrease.ToLower()).FirstOrDefault();
-                        category.AddCategoryOption(new TextObject("{=!}" + option.OptionText), effectedSkills, attribute, FocusToAdd, SkillLevelToAdd, AttributeLevelToAdd, null, delegate (TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation charInfo)
+                        category.AddCategoryOption(new TextObject(option.OptionText), effectedSkills, attribute, FocusToAdd, SkillLevelToAdd, AttributeLevelToAdd, null, delegate (TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation charInfo)
                         {
                             OnOptionSelected(charInfo, option.Id);
                         },
@@ -128,7 +129,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         {
                             OnOptionFinalize(charInfo, option.Id);
                         },
-                        new TextObject("{=!}" + option.OptionFlavourText));
+                        new TextObject(option.OptionFlavourText));
                     }
                 }
             }
@@ -157,11 +158,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             charInfo.ClearFaceGenPrefab();
             var race = _originalRace;
             Hero.MainHero.UpdatePlayerGender(_isFemale);
-            if (selectedOption.OptionText == "Vampiric Nobility"|| selectedOption.OptionText == "Vampire of Mousillon")
+            
+            
+            
+            if (IsVampireCharacterCreationID (optionId))
             {
                 race = FaceGen.GetRaceOrDefault("vampire");
             }
-            else if(selectedOption.OptionText == "Damsel of the Lady" && !CharacterObject.PlayerCharacter.IsFemale)
+            else if(IsDamselCharacterCreationID(optionId) && !CharacterObject.PlayerCharacter.IsFemale)
             {
                 Hero.MainHero.UpdatePlayerGender(true);
             }
@@ -208,8 +212,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             Hero.MainHero.AddAttribute("AbilityUser");
             Hero.MainHero.AddAttribute("CanPlaceArtillery");
-            var selectedOption = _options.Find(x => x.Id == id);
-            if (selectedOption.OptionText == "Magister Apprentice" || selectedOption.OptionText == "Damsel of the Lady")
+            
+            if (IsMagicianCharacterCreationID (id) || IsDamselCharacterCreationID (id))
             {
                 Hero.MainHero.AddAttribute("SpellCaster");
                 Hero.MainHero.AddAbility("Dart");
@@ -219,12 +223,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
             }
 
-            if (selectedOption.OptionText == "Knight Errant")
+            if (IsKnightErrantCharacterCreationID(id))
             {
                 Hero.MainHero.AddCareer(TORCareers.GrailKnight);
             }
             
-            if(selectedOption.OptionText == "Damsel of the Lady")
+            if(IsDamselCharacterCreationID (id))
             {
                 Hero.MainHero.AddAttribute("Priest");
                 Hero.MainHero.AddCareer(TORCareers.GrailDamsel);
@@ -235,7 +239,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.PartyBelongedTo.Party.AddMember(knight, 1, 0);
             }
             
-            if (selectedOption.OptionText == "Priest Acolyte")
+            if (IsPriestAcolyteCharacterCreationID(id))
             {
                 Hero.MainHero.AddAttribute("Priest");
                 var skill = Hero.MainHero.GetSkillValue(TORSkills.Faith);
@@ -245,7 +249,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddCareer(TORCareers.WarriorPriest);
                 Hero.MainHero.AddAbility("HealingHand");
             }
-            else if (selectedOption.OptionText == "Novice Necromancer"||selectedOption.OptionText == "Necromancer")
+            else if (IsNecromancerCharacterCreationID (id))
             {
                 Hero.MainHero.AddAttribute("SpellCaster");
                 Hero.MainHero.AddAttribute("Necromancer");
@@ -257,7 +261,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
                 Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 25);
             }
-            else if (selectedOption.OptionText == "Vampiric Nobility"||selectedOption.OptionText == "Vampire of Mousillon")
+            else if (IsVampireCharacterCreationID (id))
             {
                 Hero.MainHero.AddAttribute("Vampire");
                 Hero.MainHero.AddAttribute("Necromancer");
@@ -309,6 +313,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             Hero.MainHero.SetBirthDay(CampaignTime.YearsFromNow(-age));
         }
+
+        
+        private bool IsKnightErrantCharacterCreationID(string characterCreationOptionID) =>  characterCreationOptionID == "option41";
+        private bool IsVampireCharacterCreationID(string characterCreationOptionID) => characterCreationOptionID == "option26" || characterCreationOptionID == "option57";
+        private bool IsMagicianCharacterCreationID(string characterCreationOptionID) => characterCreationOptionID == "option12";
+        private bool IsDamselCharacterCreationID(string characterCreationOptionID) => characterCreationOptionID == "option42";
+        private bool IsPriestAcolyteCharacterCreationID(string characterCreationOptionID) => characterCreationOptionID == "option13";
+        private bool IsNecromancerCharacterCreationID(string characterCreationOptionID) => characterCreationOptionID == "option27" || characterCreationOptionID == "option58";
 
         private void PromptChooseLore()
         {

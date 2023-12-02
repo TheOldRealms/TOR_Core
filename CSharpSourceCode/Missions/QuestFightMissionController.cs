@@ -109,7 +109,7 @@ namespace TOR_Core.Missions
 		public override InquiryData OnEndMissionRequest(out bool canLeave)
 		{
 			canLeave = (Mission.MissionResult != null && Mission.MissionResult.BattleResolved == true && Mission.MissionResult.PlayerVictory) || PlayerCanLeave;
-            if (!canLeave) MBInformationManager.AddQuickInformation(new TextObject("You may not leave until finishing the quest scenario."));
+            if (!canLeave) MBInformationManager.AddQuickInformation(new TextObject("{=tor_quest_fight_hint_not_leaving_str}You may not leave until finishing the quest scenario."));
 			return null;
 		}
 

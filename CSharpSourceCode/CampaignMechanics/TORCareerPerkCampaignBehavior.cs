@@ -5,6 +5,8 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
+using TaleWorlds.TwoDimension;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 
@@ -183,19 +185,36 @@ namespace TOR_Core.CampaignMechanics
             var PreySize = MBRandom.RandomInt(1, 3);
             if (MBRandom.RandomFloatRanged(0, 1) >= PreyChance) return;
             mobileParty.LeaderHero.AddSkillXp(DefaultSkills.Scouting, 50f * PreySize);
-            var preySizeAnimalText = PreySize == 3 ? "large animation" : PreySize == 2 ? "medium sized animal" : "small animal";
+            var preySizeAnimalText = "";
+            switch (PreySize)
+            {
+                case 1: preySizeAnimalText = new TextObject ("{=tor_hunt_perk_animal_large_str}large Animal").ToString();
+                    break;
+                case 2: preySizeAnimalText = new TextObject ("{=tor_hunt_perk_animal_medium_str}medium Animal").ToString();
+                    break;
+                case 3: preySizeAnimalText = new TextObject ("{=tor_hunt_perk_animal_small_str}small Animal").ToString();
+                    break;
+            }
+            
+            MBTextManager.SetTextVariable("PERK_HUNT_ANIMAL_SIZE", preySizeAnimalText);
+            
+            
+            
             if (MBRandom.RandomFloatRanged(0, 1) >= huntSucess)
             {
-                InformationManager.DisplayMessage(new InformationMessage($"You were able to detect a {preySizeAnimalText}, yet your hunt was not sucessful"));
+                InformationManager.DisplayMessage(new InformationMessage(GameTexts.FindText ("tor_hunt_perk_result","Failed").ToString()));
                 return;
             }
+            
+            var preyText = PreySize > 1 ? $"({PreySize} {DefaultItems.Meat.Name}, {PreySize}{DefaultItems.Hides.Name})" : $"{PreySize} {DefaultItems.Meat.Name}";
+            MBTextManager.SetTextVariable("PERK_HUNT_PREY", preyText);
 
             mobileParty.LeaderHero.AddSkillXp(weaponSkill, 50f * PreySize);
             mobileParty.ItemRoster.Add(new ItemRosterElement(DefaultItems.Meat, PreySize));
             if (PreySize > 1)
                 mobileParty.ItemRoster.Add(new ItemRosterElement(DefaultItems.Hides, PreySize));
-            var preySizeText = PreySize > 1 ? $"({PreySize} {DefaultItems.Meat.Name}, {PreySize}{DefaultItems.Hides.Name})" : $"{PreySize} {DefaultItems.Meat.Name}";
-            InformationManager.DisplayMessage(new InformationMessage($"You were able to hunt down a {preySizeAnimalText}, you gained {preySizeText}"));
+            
+            InformationManager.DisplayMessage(new InformationMessage(GameTexts.FindText ("tor_hunt_perk_result","Success").ToString()));
         }
 
         public override void SyncData(IDataStore dataStore)

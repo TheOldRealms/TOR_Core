@@ -6,6 +6,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Extensions;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.CharacterDevelopment;
@@ -116,9 +117,14 @@ namespace TOR_Core.CampaignMechanics.SkillBooks
         private void ProgressReadingByHours(int hours)
         {
             var hoursToComplete = GetHoursRequiredToComplete();
+            var bookName = _currentBookObject.Name;
+            GameTexts.SetVariable ("SKILLBOOK", bookName);
             if (!IsBookUseful(_currentBookObject))
             {
-                TORCommon.Say(String.Format("You feel as if there is nothing left to gain from reading {0}", _currentBookObject.Name));
+                
+                
+                var text = new TextObject ("{=tor_skill_book_done_notification_str}You feel as if there is nothing left to gain from reading {SKILLBOOK}");
+                TORCommon.Say(text);
                 _readingProgress[CurrentBook] = hoursToComplete;
                 return;
             }
@@ -129,14 +135,15 @@ namespace TOR_Core.CampaignMechanics.SkillBooks
             // progression or too many skill points might be allocated.
             hours = endProgression - startProgression;
 
-            _currentSkillTuples.ForEach(
-                skillTuple => CalculateSkillTupleProgression(skillTuple, startProgression, hours));
+            _currentSkillTuples.ForEach(skillTuple => CalculateSkillTupleProgression(skillTuple, startProgression, hours));
 
-            _readingProgress[CurrentBook] =
-                Math.Min(endProgression, hoursToComplete);
-            TORCommon.Say(
-                String.Format("Reading for {0} has progressed to {1:0.00}%",
-                _currentBookObject.Name, 100 * ((float) endProgression / hoursToComplete)));
+            _readingProgress[CurrentBook] = Math.Min(endProgression, hoursToComplete);
+            var progressText = ( 100 * ( (float)endProgression / hoursToComplete ) ).ToString ("{1:0.00}");
+            GameTexts.SetVariable ("BOOK_PROGRESS", progressText);
+            
+            var displayText = new TextObject ("{=tor_skill_book_progress_notification_str} Reading for {SKILLBOOK} has progressed to {BOOK_PROGRESS}");
+
+            TORCommon.Say( displayText );
         }
 
         private void CalculateSkillTupleProgression(SkillTuple skillTuple, int currentProgression, int hours)
@@ -153,6 +160,10 @@ namespace TOR_Core.CampaignMechanics.SkillBooks
                     && !Hero.MainHero.HasAbility(skillTuple.SkillId))
                 {
                     Hero.MainHero.AddAbility(skillTuple.SkillId);
+                    var abilityName = abilityTemplate.Name;
+                    GameTexts.SetVariable ("BOOK_ABILITY", abilityName);
+                    GameTexts.SetVariable ("PLAYERNAME", Hero.MainHero.Name);
+                    var displaytext = new TextObject ("{PLAYERNAME} has gained the {BOOK_ABILITY} ability!");
                     TORCommon.Say(String.Format("{0} has gained the {1} ability!", 
                         Hero.MainHero.Name, abilityTemplate.Name));
                 }

@@ -83,7 +83,7 @@ namespace TOR_Core.Missions
 					if(_dismountNotificationTimer == null) _dismountNotificationTimer = new BasicMissionTimer();
 					else if(_dismountNotificationTimer.ElapsedTime > 5)
                     {
-						MBInformationManager.AddQuickInformation(new TextObject("You must dismount to continue with combat on foot."));
+						MBInformationManager.AddQuickInformation(new TextObject("{=tor_jousting_information_dismount_str}You must dismount to continue with combat on foot."));
 						_dismountNotificationTimer.Reset();
                     }
 				}

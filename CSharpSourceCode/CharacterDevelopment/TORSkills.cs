@@ -25,9 +25,9 @@ namespace TOR_Core.CharacterDevelopment
             _faith = Game.Current.ObjectManager.RegisterPresumedObject(new SkillObject("Faith"));
             _gunPowder = Game.Current.ObjectManager.RegisterPresumedObject(new SkillObject("Gunpowder"));
             _spellCraft = Game.Current.ObjectManager.RegisterPresumedObject(new SkillObject("Spellcraft"));
-            _faith.Initialize(new TextObject("{=!}Faith", null), new TextObject("{=!}Faith signifies your beliefs and your conviction in your chosen religion.", null), SkillObject.SkillTypeEnum.Personal).SetAttribute(TORAttributes.Discipline);
-            _gunPowder.Initialize(new TextObject("{=!}Gunpowder", null), new TextObject("{=!}Gunpowder skill governs your ability to handle firearms and artillery.", null), SkillObject.SkillTypeEnum.Personal).SetAttribute(TORAttributes.Discipline);
-            _spellCraft.Initialize(new TextObject("{=!}Spellcraft", null), new TextObject("{=!}Spellcraft is your ability to use magic.", null), SkillObject.SkillTypeEnum.Personal).SetAttribute(TORAttributes.Discipline);
+            _faith.Initialize(new TextObject("{=tor_skill_faith_str}Faith", null), new TextObject("{=tor_skill_faith_description_str}Faith signifies your beliefs and your conviction in your chosen religion.", null), SkillObject.SkillTypeEnum.Personal).SetAttribute(TORAttributes.Discipline);
+            _gunPowder.Initialize(new TextObject("{=tor_skill_gunpowder_str}Gunpowder", null), new TextObject("{=tor_skill_gunpowder_description_str}Gunpowder skill governs your ability to handle firearms and artillery.", null), SkillObject.SkillTypeEnum.Personal).SetAttribute(TORAttributes.Discipline);
+            _spellCraft.Initialize(new TextObject("{=tor_skill_spellcraft_str}Spellcraft", null), new TextObject("{=tor_skill_spellcraft_description_str}Spellcraft is your ability to use magic.", null), SkillObject.SkillTypeEnum.Personal).SetAttribute(TORAttributes.Discipline);
         }
     }
 }

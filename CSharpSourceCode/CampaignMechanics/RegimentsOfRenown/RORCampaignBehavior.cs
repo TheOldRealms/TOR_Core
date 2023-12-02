@@ -37,7 +37,7 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                     if (Clan.PlayerClan.Tier < 3)
                     {
                         args.IsEnabled = false;
-                        args.Tooltip = new TextObject("Your clan needs to be at least Tier 3 in order to recruit Regiments of Renown.");
+                        args.Tooltip = new TextObject("{=tor_ror_enter_not_enough_renown_str}Your clan needs to be at least Tier 3 in order to recruit Regiments of Renown.");
                     }
                     return Settlement.CurrentSettlement.IsRoRSettlement();
                 },
@@ -69,7 +69,7 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                     if (Clan.PlayerClan.Tier < 3)
                     {
                         args.IsEnabled = false;
-                        args.Tooltip = new TextObject("Your clan needs to be at least Tier 3 in order to recruit Regiments of Renown.");
+                        args.Tooltip = new TextObject("{=tor_ror_enter_not_enough_renown_str}Your clan needs to be at least Tier 3 in order to recruit Regiments of Renown.");
                     }
                     return Settlement.CurrentSettlement.IsRoRSettlement() && !Settlement.CurrentSettlement.IsRaided && !Settlement.CurrentSettlement.IsUnderRaid;
                 },
@@ -138,7 +138,7 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                 MBTextManager.SetTextVariable("MEN_COUNT", kvp.Value);
                 MBTextManager.SetTextVariable("TROOP_NAME", kvp.Key.Name);
                 MBTextManager.SetTextVariable("TOTAL_AMOUNT", cost);
-                MBTextManager.SetTextVariable("LINETEXT", "Recruit {MEN_COUNT} {TROOP_NAME} ({TOTAL_AMOUNT}{GOLD_ICON})");
+                MBTextManager.SetTextVariable("LINETEXT", "{=tor_ror_recruitment_text_str}Recruit {MEN_COUNT} {TROOP_NAME} ({TOTAL_AMOUNT}{GOLD_ICON})");
                 return true;
             }
             else return false;
@@ -151,7 +151,7 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
             var intro = new TextObject("You have arrived at the {HQ_NAME}. {NEWLINE} {BLURB} {NEWLINE} {EMPTY}");
             MBTextManager.SetTextVariable("HQ_NAME", template.RegimentHQName);
             MBTextManager.SetTextVariable("BLURB", template.MenuHeaderText);
-            if (!HasAvailableRoRUnits(Settlement.CurrentSettlement)) MBTextManager.SetTextVariable("EMPTY", "Currently there are no available Regiments of Renown to recruit. Check back in a week.");
+            if (!HasAvailableRoRUnits(Settlement.CurrentSettlement)) MBTextManager.SetTextVariable("EMPTY", "{=tor_ror_recruitment_empty_text_str}Currently there are no available Regiments of Renown to recruit. Check back in a week.");
             else MBTextManager.SetTextVariable("EMPTY", " ");
             MBTextManager.SetTextVariable("ROR_HEADER", intro);
         }
@@ -290,12 +290,12 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                 }
                 else
                 {
-                    MBInformationManager.AddQuickInformation(new TextObject("Not enough room in party."));
+                    MBInformationManager.AddQuickInformation(new TextObject("{=tor_ror_recruitment_not_enough_space_party_str}Not enough room in party."));
                 }
             }
             else
             {
-                MBInformationManager.AddQuickInformation(new TextObject("Not enough gold."));
+                MBInformationManager.AddQuickInformation(new TextObject("{=tor_ror_recruitment_not_enough_gold_str}Not enough gold."));
             }
             GameMenu.SwitchToMenu("ror_center");
         }

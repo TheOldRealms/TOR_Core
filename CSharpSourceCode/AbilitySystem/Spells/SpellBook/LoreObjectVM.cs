@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TOR_Core.AbilitySystem.Spells;
 
 namespace TOR_Core.AbilitySystem.SpellBook
@@ -36,7 +37,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
 
         public override void RefreshValues()
         {
-            Name = _lore.Name;
+            Name = new TextObject(_lore.Name).ToString();
             SpriteName = _lore.SpriteName;
             base.RefreshValues();
         }

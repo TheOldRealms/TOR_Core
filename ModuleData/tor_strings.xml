@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <strings>
   <!--Rogue Engineer Quest-->
+  
+  <string id="str_quest_tor_engineer.rogueEngineerParty" text= "{ROGUE_ENGINEER_NAME}s Part Thieves"/>
+  
   <string id="str_quest_tor_engineer.rogueEngineerFirstTime" text= "{=!}You have the look of someone who's never seen a spec of black powder nor grease. Are you in the right place?"/>
   <string id="str_quest_tor_engineer.cultistDone" text= " {=!}Ah, you have returned. What news do you bring?"/>
   <string id="str_quest_tor_engineer.cultistInProgress" text= "{=!}Come back to me when you have news."/>
@@ -679,82 +682,341 @@
   
   
   <!-- Religions -->
-  <string id="str_religion" text="{=!}Religion" />
-  <string id="tor_religion_description.cult_of_sigmar" text="{=!}The Cult of Sigmar, also sometimes called the Church of Sigmar, the Holy Temple of Sigmar, the Clergy of Sigmar or simply the Sigmarite Cult, is the state church of the Empire that administrates the worship of that realm's patron god, Sigmar Heldenhammer. The Cult of Sigmar was founded by the wild-eyed friar Johann Helstrum in the year 73 IC, when he appeared before the masses to relate a vision that he experienced of Sigmar kneeling before Ulric, the god of war and winter, who placed the crown of godhood upon his brow as Sigmar took his place amongst the deities of the Old World Pantheon. As of today, the Cult of Sigmar has become an essential part of Imperial society. Nearly every city, town or village within the Empire has dedicated a portion of their wealth and land to the creation and maintenance of a Sigmarite temple, from which a priest of the Cult of Sigmar will attend to the spiritual well-being of its citizenry, whether it be through holy words of prayer or through heroic actions and trials by combat." />
-  <string id="tor_religion_description.cult_of_taal" text="{=!}The Cult of Taal and Rhya is among the most ancient and pervasive in the Old World, tracing a direct line to the primal gods from the deepest of history. The cult grew organically, as early Humans tried to explain natural phenomenon, such as thunder, the turning of the seasons, and the rise and ebb of the seas. Over time, the Gods Taal and Rhya came into being, beginning as a single entity, known as Ishnernos. This split occurred many thousands of years ago, and the Cult of Ishnernos faded into distant memory. Taal rules nature and is considered King of the Gods. He claims the wild places as his domain and is primarily worshipped by hardy woodsmen, trackers, and rangers. Rhya's worshippers are found in the cultivated fields and orchards of the Empire, and are found among farmers, fishermen, and young lovers everywhere. The Cult of Taal and Rhya is the sanctioned cult of Talabecland, and is wildly popular in the eastern and northern parts of the Empire. Of the two, Taal receives most recognition, and Rhya's role is much diminished. The grand city of Talabheim is particularly fervent in its worship of both Taal and Rhya. However, in other cities, although Rhya's name is commonly known, he worship is rare, leading many urbanites to conclude that her cult is on the decline." />
-  <string id="tor_religion_description.cult_of_lady" text="{=!}The Cult of the Lady of the Lake, or simply the Cult of the Lady, is a state-official religious cult that serves to follow and uphold the values set upon them by the Lady of the Lake, and to serve the interest of her and the Kingdom of Bretonnia. Since ancient times, the Bretonnians have worshipped the Lady of the Lake as their goddess and their primary deity, a figure of myth and legend who guides their Kings and protects their lands from harm. Worship of the Lady can be traced to the earliest days of the Kingdom. It is said that she arose from a Sacred Lake before Gilles le Breton and his Knightly Companions on the dawn of the Great Victory of Bordeleaux. Wreathed in a fey light, the Lady rose from the water bearing a Grail which overflowed with light that spilled into the waters of the lake, blessing the assembled knights until dawn's light broke over the mountains." />
-  <string id="tor_religion_description.cult_of_myrmidia" text="{=!}" />
-  <string id="tor_religion_description.cult_of_nagash" text="{=!}Vampires of all kinds loathe the gods. They don't deny their existence, but they don't serve them, seeking to be their equal instead. The closest idea of a religion to vampires would be their shared recognition of Nagash as the creator of undeath. Ultimately, all vampires descend from him. Nagash, known by many names such as the 'Great Necromancer', the 'Great Betrayer', the 'Usurper', the 'Undying King', the 'Supreme Lord of Undeath' or simply 'He Who Shall Not Be Named' is the ultimate personification of death and the Undead, an ancient, evil being who sought to conquer this cruel, chaotic mortal world and bring about an age of Undeath that will rule for all eternity. Nagash is darkness and unreasoning hatred given form, the father and creator of the foul art of necromancy and lord of all Vampires. His every action and deed is self-serving, his achievement horrific and loathsome, and his every whim bent solely to ensure that no one shall ever deny nor challenge his right to rule ever again." />
-  <string id="tor_religion_description.chaos_undivided" text="{=!}The term Chaos Undivided refers to a faction among the forces of Chaos that serves the pantheon of the major Chaos Gods as a whole rather than owing complete fealty to one over the others. It is often represented by the Everchosen of Chaos, the mortal Chaos Lord who is the greatest champion of all the major Chaos Gods. Followers of Chaos Undivided venerate the force of Chaos itself, sometimes as an entity that some insane scholars of the Old World name the 'Great Beast' in which the major Chaos Gods are seen as a single deity whose four major constituent parts are to be worshipped equally as different emanations of the same universal force. At times, this entity sets aside its mad internal struggle, which is otherwise known as the Great Game, to make it possible for the fragmented armies of the major Chaos Gods to gather together under one banner, such as during the various Chaos incursions into the Known World like the Great War Against Chaos and the End Times. These moments cause the Old World to tremble and quake in fear and loathing." />
-  <string id="tor_religion_description.cult_of_slaanesh" text="{=!}Slaanesh, also known as the 'Dark Prince', the 'Prince of Pleasure', the 'Lord of Excess', the 'God of Obsession', 'the Serpent', the 'Master of Excess in All Things', the 'Perfect Prince' and even the 'Prince of Chaos' is the major Chaos God of pleasure, passion, obsession, excess, hedonism, decadence and pain. Born of mortal inspiration and desire, Slaanesh is the great muse, the fulfiller of dreams. He is passion given form. He is pleasure incarnate, from the intellectual satisfaction of a problem solved to the fulfilment of baser desires. His is the domain of frustration and agony, the struggle to achieve that which mortals covet. He is titillation. He is suffering. He is the sum of all mortal experience." />
-  <string id="tor_religion_description.cult_of_nurgle" text="{=!}Nurgle, also known as the 'Plague Lord', 'Grandfather Nurgle', the 'Lord of Pestilence', the 'Fly Lord', the 'Urfather' and 'the Crow' among many other names is the major Chaos God of disease, decay, despair, destruction, death and rebirth. Nurgle is the Chaos God most directly involved with the plight of mortals, particularly Men, who suffer so acutely from a fear of death. He is the eldest of the four Chaos Gods and indeed is undoubtedly the oldest Chaos God of all, for the process of death and decay is as ancient as life itself. Nurgle is the embodiment of the constant cycle of death and rebirth which animates all life in the universe, and was brought into being by mortals' fears of death and the despair they feel about their inevitable mortality from age and disease." />
-  <string id="tor_religion_description.cult_of_khorne" text="{=!}Khorne, also known as the 'Blood God', the 'Lord of Murder', the 'Lord of Skulls', 'Hunter of Souls' and 'the Hound' in Norsca, is the major Chaos God of war, hatred, wrath, rage, murder, blood, strength, courage and martial honour. Khorne is the second eldest of the major Ruinous Powers and his waxing strength in this time of constant conflict often renders him the mightiest of the Chaos Gods in his effect on the mortal world and in the Great Game between the gods. His domain encompasses the most basic and brutal of sentient emotions - hate, anger, rage, the desire for destruction and the joy of killing one's enemies. Every act of killing or murder in the mortal world feeds and empowers Khorne, the more senseless, vicious and bloodthirsty, the better." />
-  <string id="tor_religion_description.cult_of_tzeentch" text="{=!}Tzeentch, also known as the 'Changer of Ways', the 'Lord of Change', the 'Architect of Fate', the 'Wind-lord', the 'Raven God', and the 'Great Conspirator' is the major Chaos God of change, evolution, ambition, intrigue, destiny, lies, trickery, sorcery, knowledge, and mutation. Though weary scholars of daemonology know this god by the name of Tzeentch, in truth, he exceeds all the other Ruinous Powers in his number of facets, names and aspects. For he is change, said to embody every mortal creature's recognition of, and desire, to change, to grow, to move, to seek more -- more knowledge, more wealth, more power. His face and form shifts and turns from eternity unto eternity." />
+  
+  <string id="tor_religion_label" text="{=tor_religion_label_str}Religion" />
+  
+  <string id="tor_religion_text_frame" text="{=tor_religion_text_frame_str}{TOR_DEVOTION_LEVEL} of {TOR_RELIGION}" />
+  <string id="tor_religion_change_notification_frame" text="{=tor_religion_change_notification_frame_str}{PLAYER.NAME} is now a {TOR_DEVOTION_LEVEL} of the {TOR_RELIGION}" />
+  <string id="tor_religion_devotionlevel.None" text="{=tor_religion_label_none_str}Not a follower of any religion" />
+  <string id="tor_religion_devotionlevel.Follower" text="{=tor_religion_label_follower_str}Follower" />
+  <string id="tor_religion_devotionlevel.Devoted" text="{=tor_religion_label_devoted_str}Devoted" />
+  <string id="tor_religion_devotionlevel.Fanatic" text="{=tor_religion_label_fanatic_str}Fanatic"  />
+  
+  <string id="tor_religion_description.cult_of_sigmar" text="{=tor_religion_description_cult_of_sigmar_str}The Cult of Sigmar, also sometimes called the Church of Sigmar, the Holy Temple of Sigmar, the Clergy of Sigmar or simply the Sigmarite Cult, is the state church of the Empire that administrates the worship of that realm's patron god, Sigmar Heldenhammer. The Cult of Sigmar was founded by the wild-eyed friar Johann Helstrum in the year 73 IC, when he appeared before the masses to relate a vision that he experienced of Sigmar kneeling before Ulric, the god of war and winter, who placed the crown of godhood upon his brow as Sigmar took his place amongst the deities of the Old World Pantheon. As of today, the Cult of Sigmar has become an essential part of Imperial society. Nearly every city, town or village within the Empire has dedicated a portion of their wealth and land to the creation and maintenance of a Sigmarite temple, from which a priest of the Cult of Sigmar will attend to the spiritual well-being of its citizenry, whether it be through holy words of prayer or through heroic actions and trials by combat." />
+  <string id="tor_religion_description.cult_of_taal" text="{=tor_religion_description_cult_of_taal_str}The Cult of Taal and Rhya is among the most ancient and pervasive in the Old World, tracing a direct line to the primal gods from the deepest of history. The cult grew organically, as early Humans tried to explain natural phenomenon, such as thunder, the turning of the seasons, and the rise and ebb of the seas. Over time, the Gods Taal and Rhya came into being, beginning as a single entity, known as Ishnernos. This split occurred many thousands of years ago, and the Cult of Ishnernos faded into distant memory. Taal rules nature and is considered King of the Gods. He claims the wild places as his domain and is primarily worshipped by hardy woodsmen, trackers, and rangers. Rhya's worshippers are found in the cultivated fields and orchards of the Empire, and are found among farmers, fishermen, and young lovers everywhere. The Cult of Taal and Rhya is the sanctioned cult of Talabecland, and is wildly popular in the eastern and northern parts of the Empire. Of the two, Taal receives most recognition, and Rhya's role is much diminished. The grand city of Talabheim is particularly fervent in its worship of both Taal and Rhya. However, in other cities, although Rhya's name is commonly known, he worship is rare, leading many urbanites to conclude that her cult is on the decline." />
+  <string id="tor_religion_description.cult_of_lady" text="{=tor_religion_description_cult_of_lady_str}The Cult of the Lady of the Lake, or simply the Cult of the Lady, is a state-official religious cult that serves to follow and uphold the values set upon them by the Lady of the Lake, and to serve the interest of her and the Kingdom of Bretonnia. Since ancient times, the Bretonnians have worshipped the Lady of the Lake as their goddess and their primary deity, a figure of myth and legend who guides their Kings and protects their lands from harm. Worship of the Lady can be traced to the earliest days of the Kingdom. It is said that she arose from a Sacred Lake before Gilles le Breton and his Knightly Companions on the dawn of the Great Victory of Bordeleaux. Wreathed in a fey light, the Lady rose from the water bearing a Grail which overflowed with light that spilled into the waters of the lake, blessing the assembled knights until dawn's light broke over the mountains." />
+  <string id="tor_religion_description.cult_of_myrmidia" text="{=tor_religion_description_cult_of_myrmidia_str}" />
+  <string id="tor_religion_description.cult_of_nagash" text="{=tor_religion_description_cult_of_nagash_str}Vampires of all kinds loathe the gods. They don't deny their existence, but they don't serve them, seeking to be their equal instead. The closest idea of a religion to vampires would be their shared recognition of Nagash as the creator of undeath. Ultimately, all vampires descend from him. Nagash, known by many names such as the 'Great Necromancer', the 'Great Betrayer', the 'Usurper', the 'Undying King', the 'Supreme Lord of Undeath' or simply 'He Who Shall Not Be Named' is the ultimate personification of death and the Undead, an ancient, evil being who sought to conquer this cruel, chaotic mortal world and bring about an age of Undeath that will rule for all eternity. Nagash is darkness and unreasoning hatred given form, the father and creator of the foul art of necromancy and lord of all Vampires. His every action and deed is self-serving, his achievement horrific and loathsome, and his every whim bent solely to ensure that no one shall ever deny nor challenge his right to rule ever again." />
+  <string id="tor_religion_description.chaos_undivided" text="{=tor_religion_description_cult_of_chaos_undivided_str}The term Chaos Undivided refers to a faction among the forces of Chaos that serves the pantheon of the major Chaos Gods as a whole rather than owing complete fealty to one over the others. It is often represented by the Everchosen of Chaos, the mortal Chaos Lord who is the greatest champion of all the major Chaos Gods. Followers of Chaos Undivided venerate the force of Chaos itself, sometimes as an entity that some insane scholars of the Old World name the 'Great Beast' in which the major Chaos Gods are seen as a single deity whose four major constituent parts are to be worshipped equally as different emanations of the same universal force. At times, this entity sets aside its mad internal struggle, which is otherwise known as the Great Game, to make it possible for the fragmented armies of the major Chaos Gods to gather together under one banner, such as during the various Chaos incursions into the Known World like the Great War Against Chaos and the End Times. These moments cause the Old World to tremble and quake in fear and loathing." />
+  <string id="tor_religion_description.cult_of_slaanesh" text="{=tor_religion_description_cult_of_chaos_slaanesh_str}Slaanesh, also known as the 'Dark Prince', the 'Prince of Pleasure', the 'Lord of Excess', the 'God of Obsession', 'the Serpent', the 'Master of Excess in All Things', the 'Perfect Prince' and even the 'Prince of Chaos' is the major Chaos God of pleasure, passion, obsession, excess, hedonism, decadence and pain. Born of mortal inspiration and desire, Slaanesh is the great muse, the fulfiller of dreams. He is passion given form. He is pleasure incarnate, from the intellectual satisfaction of a problem solved to the fulfilment of baser desires. His is the domain of frustration and agony, the struggle to achieve that which mortals covet. He is titillation. He is suffering. He is the sum of all mortal experience." />
+  <string id="tor_religion_description.cult_of_nurgle" text="{=tor_religion_description_cult_of_chaos_nurgle_str}Nurgle, also known as the 'Plague Lord', 'Grandfather Nurgle', the 'Lord of Pestilence', the 'Fly Lord', the 'Urfather' and 'the Crow' among many other names is the major Chaos God of disease, decay, despair, destruction, death and rebirth. Nurgle is the Chaos God most directly involved with the plight of mortals, particularly Men, who suffer so acutely from a fear of death. He is the eldest of the four Chaos Gods and indeed is undoubtedly the oldest Chaos God of all, for the process of death and decay is as ancient as life itself. Nurgle is the embodiment of the constant cycle of death and rebirth which animates all life in the universe, and was brought into being by mortals' fears of death and the despair they feel about their inevitable mortality from age and disease." />
+  <string id="tor_religion_description.cult_of_khorne" text="{=tor_religion_description_cult_of_chaos_khorne_str}Khorne, also known as the 'Blood God', the 'Lord of Murder', the 'Lord of Skulls', 'Hunter of Souls' and 'the Hound' in Norsca, is the major Chaos God of war, hatred, wrath, rage, murder, blood, strength, courage and martial honour. Khorne is the second eldest of the major Ruinous Powers and his waxing strength in this time of constant conflict often renders him the mightiest of the Chaos Gods in his effect on the mortal world and in the Great Game between the gods. His domain encompasses the most basic and brutal of sentient emotions - hate, anger, rage, the desire for destruction and the joy of killing one's enemies. Every act of killing or murder in the mortal world feeds and empowers Khorne, the more senseless, vicious and bloodthirsty, the better." />
+  <string id="tor_religion_description.cult_of_tzeentch" text="{=tor_religion_description_cult_of_chaos_tzeentch_str}Tzeentch, also known as the 'Changer of Ways', the 'Lord of Change', the 'Architect of Fate', the 'Wind-lord', the 'Raven God', and the 'Great Conspirator' is the major Chaos God of change, evolution, ambition, intrigue, destiny, lies, trickery, sorcery, knowledge, and mutation. Though weary scholars of daemonology know this god by the name of Tzeentch, in truth, he exceeds all the other Ruinous Powers in his number of facets, names and aspects. For he is change, said to embody every mortal creature's recognition of, and desire, to change, to grow, to move, to seek more -- more knowledge, more wealth, more power. His face and form shifts and turns from eternity unto eternity." />
 
-  <string id="tor_religion_name_of_god.cult_of_sigmar" text="{=!}Sigmar" />
-  <string id="tor_religion_name_of_god.cult_of_taal" text="{=!}Taal" />
-  <string id="tor_religion_name_of_god.cult_of_lady" text="{=!}the Lady" />
-  <string id="tor_religion_name_of_god.cult_of_myrmidia" text="{=!}Myrmidia" />
-  <string id="tor_religion_name_of_god.cult_of_nagash" text="{=!}Nagash" />
-  <string id="tor_religion_name_of_god.chaos_undivided" text="{=!}Ruinous Powers" />
-  <string id="tor_religion_name_of_god.cult_of_slaanesh" text="{=!}Slaanesh" />
-  <string id="tor_religion_name_of_god.cult_of_nurgle" text="{=!}Nurgle" />
-  <string id="tor_religion_name_of_god.cult_of_khorne" text="{=!}Khorne" />
-  <string id="tor_religion_name_of_god.cult_of_tzeentch" text="{=!}Tzeentch" />
+  <string id="tor_religion_name_of_god.cult_of_sigmar" text="{=tor_religion_name_of_god_cult_of_sigmar_str}Sigmar" />
+  <string id="tor_religion_name_of_god.cult_of_taal" text="{=tor_religion_name_of_god_cult_of_taal_str}Taal" />
+  <string id="tor_religion_name_of_god.cult_of_lady" text="{=tor_religion_name_of_god_cult_of_lady_str}the Lady" />
+  <string id="tor_religion_name_of_god.cult_of_myrmidia" text="{=tor_religion_name_of_god_cult_of_myrmidia_str}Myrmidia" />
+  <string id="tor_religion_name_of_god.cult_of_nagash" text="{=tor_religion_name_of_god_cult_of_nagash_str}Nagash" />
+  <string id="tor_religion_name_of_god.chaos_undivided" text="{=tor_religion_name_of_god_chaos_undivided_str}Ruinous Powers" />
+  <string id="tor_religion_name_of_god.cult_of_slaanesh" text="{=tor_religion_name_of_god_cult_of_slaanesh_str}Slaanesh" />
+  <string id="tor_religion_name_of_god.cult_of_nurgle" text="{=tor_religion_name_of_god_cult_of_nurgle_str}Nurgle" />
+  <string id="tor_religion_name_of_god.cult_of_khorne" text="{=tor_religion_name_of_god_cult_of_khorne_str}Khorne" />
+  <string id="tor_religion_name_of_god.cult_of_tzeentch" text="{=tor_religion_name_of_god_cult_of_tzeentch_str}Tzeentch" />
 
-  <string id="tor_religion_blessing_effect_description.cult_of_sigmar" text="{=!}Your party members heal their wounds 20% faster." />
-  <string id="tor_religion_blessing_effect_description.cult_of_taal" text="{=!}Increase your party's movement speed in forests by 20%." />
-  <string id="tor_religion_blessing_effect_description.cult_of_lady" text="{=!}Increase your party's morale by 20." />
-  <string id="tor_religion_blessing_effect_description.cult_of_myrmidia" text="{=!}Earn 20% more xp from battles." />
-  <string id="tor_religion_blessing_name.cult_of_sigmar" text="{=!}Blessing of Sigmar" />
-  <string id="tor_religion_blessing_name.cult_of_taal" text="{=!}Blessing of Taal" />
-  <string id="tor_religion_blessing_name.cult_of_lady" text="{=!}Blessing of the Lady" />
-  <string id="tor_religion_blessing_name.cult_of_myrmidia" text="{=!}Blessing of Myrmidia" />
+  <string id="tor_religion_blessing_effect_description.cult_of_sigmar" text="{=tor_religion_blessing_effect_description_cult_of_sigmar}Your party members heal their wounds 20% faster." />
+  <string id="tor_religion_blessing_effect_description.cult_of_taal" text="{=tor_religion_blessing_effect_description_cult_of_taal}Increase your party's movement speed in forests by 20%." />
+  <string id="tor_religion_blessing_effect_description.cult_of_lady" text="{=tor_religion_blessing_effect_description_cult_of_lady}Increase your party's morale by 20." />
+  <string id="tor_religion_blessing_effect_description.cult_of_myrmidia" text="{=tor_religion_blessing_effect_description_cult_of_myrmidia}Earn 20% more xp from battles." />
+  <string id="tor_religion_blessing_name.cult_of_sigmar" text="{=tor_religion_blessing_name_cult_of_sigmar_str}Blessing of Sigmar" />
+  <string id="tor_religion_blessing_name.cult_of_taal" text="{=tor_religion_blessing_name_cult_of_taal_str}Blessing of Taal" />
+  <string id="tor_religion_blessing_name.cult_of_lady" text="{=tor_religion_blessing_name_cult_of_lady_str}Blessing of the Lady" />
+  <string id="tor_religion_blessing_name.cult_of_myrmidia" text="{=tor_religion_blessing_name_cult_of_myrmidia_str}Blessing of Myrmidia" />
 
   <!-- Career related -->
-  <string id="career_title.WarriorPriest" text="{=!}Warrior Priest of Sigmar" />
-  <string id="career_title.MinorVampire" text="{=!}Vampire Nobility" />
-  <string id="career_title.GrailKnight" text="{=!}Knight of Bretonnia" />
-    <string id="career_title.GrailDamsel" text="{=!}Damsel of the Lady" />
-  <string id="career_title.BloodKnight" text="{=!}Blood Knight" />
-  <string id="career_title.Mercenary" text="{=!}Mercenary" />
+  <string id="career_title.WarriorPriest" text="{=tor_career_title_warrior_priest_str}Warrior Priest of Sigmar" />
+  <string id="career_title.MinorVampire" text="{=tor_career_title_minor_vampire_str}Vampire Nobility" />
+  <string id="career_title.GrailKnight" text="{=tor_career_title_grail_knight_str}Knight of Bretonnia" />
+    <string id="career_title.GrailDamsel" text="{=tor_career_title_grail_damsel_str}Damsel of the Lady" />
+  <string id="career_title.BloodKnight" text="{=tor_career_title_blood_knight_str}Blood Knight" />
+  <string id="career_title.Mercenary" text="{=tor_career_title_mercenary_str}Mercenary" />
 
 
-  <string id="career_choicegroup1_name.WarriorPriest" text="{=!}Cultist of Sigmar" />
-  <string id="career_choicegroup2_name.WarriorPriest" text="{=!}Warrior Priest" />
-  <string id="career_choicegroup3_name.WarriorPriest" text="{=!}Arch Lector" />
+  <string id="career_choicegroup1_name.WarriorPriest" text="{=career_choicegroup1_warrior_priest_str}Cultist of Sigmar" />
+  <string id="career_choicegroup2_name.WarriorPriest" text="{=career_choicegroup2_warrior_priest_str}Warrior Priest" />
+  <string id="career_choicegroup3_name.WarriorPriest" text="{=career_choicegroup3_warrior_priest_str}Arch Lector" />
 
-  <string id="career_choicegroup1_name.MinorVampire" text="{=!}New Blood" />
-  <string id="career_choicegroup2_name.MinorVampire" text="{=!}Vampire" />
-  <string id="career_choicegroup3_name.MinorVampire" text="{=!}Exalted" />
+  <string id="career_choicegroup1_name.MinorVampire" text="{=career_choicegroup1_minor_vampire_str}New Blood" />
+  <string id="career_choicegroup2_name.MinorVampire" text="{=career_choicegroup2_minor_vampire_str}Vampire" />
+  <string id="career_choicegroup3_name.MinorVampire" text="{=career_choicegroup3_minor_vampire_str}Exalted" />
 
-  <string id="career_choicegroup1_name.BloodKnight" text="{=!}Initiate" />
-  <string id="career_choicegroup2_name.BloodKnight" text="{=!}Blood Knight" />
-  <string id="career_choicegroup3_name.BloodKnight" text="{=!}Master" />
+  <string id="career_choicegroup1_name.BloodKnight" text="{=career_choicegroup1_blood_knight_str}Initiate" />
+  <string id="career_choicegroup2_name.BloodKnight" text="{=career_choicegroup2_blood_knight_str}Blood Knight" />
+  <string id="career_choicegroup3_name.BloodKnight" text="{=career_choicegroup3_blood_knight_str}Master" />
 
-  <string id="career_choicegroup1_name.GrailKnight" text="{=!}Knight Errant" />
-  <string id="career_choicegroup2_name.GrailKnight" text="{=!}Questing Knight" />
-  <string id="career_choicegroup3_name.GrailKnight" text="{=!}Grail Knight" />
+  <string id="career_choicegroup1_name.GrailKnight" text="{=career_choicegroup1_grail_knight_str}Knight Errant" />
+  <string id="career_choicegroup2_name.GrailKnight" text="{=career_choicegroup2_grail_knight_str}Questing Knight" />
+  <string id="career_choicegroup3_name.GrailKnight" text="{=career_choicegroup3_grail_knight_str}Grail Knight" />
 
-  <string id="career_choicegroup1_name.Mercenary" text="{=!}Recruit" />
-  <string id="career_choicegroup2_name.Mercenary" text="{=!}Sergeant" />
-  <string id="career_choicegroup3_name.Mercenary" text="{=!}Commander" />
+  <string id="career_choicegroup1_name.Mercenary" text="{=career_choicegroup1_mercenary_str}Recruit" />
+  <string id="career_choicegroup2_name.Mercenary" text="{=career_choicegroup2_mercenary_str}Sergeant" />
+  <string id="career_choicegroup3_name.Mercenary" text="{=career_choicegroup3_mercenary_str}Commander" />
   
-  <string id="career_choicegroup1_name.GrailDamsel" text="{=!}Grail Maid" />
-  <string id="career_choicegroup2_name.GrailDamsel" text="{=!}Grail Damsel" />
-  <string id="career_choicegroup3_name.GrailDamsel" text="{=!}Prophetess" />
-
-
-
-  <string id="career_description.WarriorPriest" text="{=!}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />
-  <string id="career_description.BloodKnight" text="{=!}Sired by Abhorash, the Blood Knight is a dark mockery of everything noble or virtuous that can be said about their mortal counterparts. Where before the Blood Kiss there was honour is now cruelty; faith turns to irreverence and duty falls to wanton ambition. This is true of all vampires but seems particularly tragic for the fallen knights of the Old World." />
-  <string id="career_description.MinorVampire" text="{=!}Known and feared by many names, Vampires are the night's dark master. Nighly anyone be they Man or Beast, Holy or Daemonic can face one and survive. All Vampires strive to be the only masters of their unlife, free from any obligations to religions or masters. This egomaniacal drive is what fuels them to greater and greater ambitions, so that one day they may be lord of all they observe." />
-  <string id="career_description.Mercenary" text="{=!}To be a Man in the 25th century is to be one of thousands. The Old World finds itself on the precipice of destruction and turmoil, of chaos and death. No one in this age can be weak; some use the times to their advantage and turn warfare into wealth, combat into glory and tragedy into destiny. Mercenary they may call you, whatever the name no one will control your fate." />
-  <string id="career_description.GrailKnight" text="{=!}To be a knight of Bretonnia is to strive for the blessing of the Lady and her holy grail. Any man deemed worthy to sup from her chalice becomes a holy warrior honored and respected across all of Bretonnia and yet farther. The road to that goal is difficult, so much so that most knights fail to accomplish despite all sharing the same dream." />
-  <string id="career_description.GrailDamsel" text="{=!}Damsels are sought out as children by the Fey Enchantress for their latent magical potential. Taken away from their families they are raised in secret to be potent guardians of fair Bretonnia. Upon completion of their training they embark out into the land, coming to the aid of the people and influencing knights in order to fulfill their martial potential." />
-
-
+  <string id="career_choicegroup1_name.GrailDamsel" text="{=career_choicegroup1_grail_damsel_str}Grail Maid" />
+  <string id="career_choicegroup2_name.GrailDamsel" text="{=career_choicegroup2_grail_damsel_str}Grail Damsel" />
+  <string id="career_choicegroup3_name.GrailDamsel" text="{=career_choicegroup3_grail_damsel_str}Prophetess" />
   
-  <string id="careerchoice_description.WarriorPriestRoot" text="{=!}The Warrior Priest unleashes Sigmar's wrath for 8 seconds, which empowers him and the surrounding allies with 20% stronger melee attacks.  Every point in Faith increases the melee effect by 0.05% and the duration by 0.05 seconds. The ability recharges by taking 50% of damage of total health. Blocked damage counts as 10% of the damage taken." />
+  
+  <!--TOR Damage type related !-->
+  <string id="tor_damagetype.Invalid" text="{=tor_damagetype_invalid_str}Invalid"/>
+  <string id="tor_damagetype.Physical" text="{=tor_damagetype_physical_str}Physical"/>
+  <string id="tor_damagetype.Magical" text="{=tor_damagetype_magical_str}Magical"/>
+  <string id="tor_damagetype.Fire" text="{=tor_damagetype_fire_str}Fire"/>
+  <string id="tor_damagetype.Holy" text="{=tor_damagetype_holy_str}Holy"/>
+  <string id="tor_damagetype.Lightning" text="{=tor_damagetype_lightning_str}Lightning"/>
+  
+  <string id="tor_attacktype.Melee" text="{=tor_damagetype_lightning_str}Melee"/>
+  <string id="tor_attacktype.Ranged" text="{=tor_damagetype_lightning_str}Ranged"/>
+  <string id="tor_attacktype.Spell" text="{=tor_damagetype_lightning_str}Spell"/>
+  <string id="tor_attacktype.All" text="{=tor_damagetype_lightning_str}All"/>
+  
+  <!--Career related related !-->
+  <string id="career_description.WarriorPriest" text="{=career_description_warriorpriest_str}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />
+  <string id="career_description.BloodKnight" text="{=career_description_bloodknight_str}Sired by Abhorash, the Blood Knight is a dark mockery of everything noble or virtuous that can be said about their mortal counterparts. Where before the Blood Kiss there was honour is now cruelty; faith turns to irreverence and duty falls to wanton ambition. This is true of all vampires but seems particularly tragic for the fallen knights of the Old World." />
+  <string id="career_description.MinorVampire" text="{=career_description_minorvampire_str}Known and feared by many names, Vampires are the night's dark master. Nighly anyone be they Man or Beast, Holy or Daemonic can face one and survive. All Vampires strive to be the only masters of their unlife, free from any obligations to religions or masters. This egomaniacal drive is what fuels them to greater and greater ambitions, so that one day they may be lord of all they observe." />
+  <string id="career_description.Mercenary" text="{=career_description_mercenary_str}To be a Man in the 25th century is to be one of thousands. The Old World finds itself on the precipice of destruction and turmoil, of chaos and death. No one in this age can be weak; some use the times to their advantage and turn warfare into wealth, combat into glory and tragedy into destiny. Mercenary they may call you, whatever the name no one will control your fate." />
+  <string id="career_description.GrailKnight" text="{=career_description_grailknight_str}To be a knight of Bretonnia is to strive for the blessing of the Lady and her holy grail. Any man deemed worthy to sup from her chalice becomes a holy warrior honored and respected across all of Bretonnia and yet farther. The road to that goal is difficult, so much so that most knights fail to accomplish despite all sharing the same dream." />
+  <string id="career_description.GrailDamsel" text="{=career_description_graildamsel_str}Damsels are sought out as children by the Fey Enchantress for their latent magical potential. Taken away from their families they are raised in secret to be potent guardians of fair Bretonnia. Upon completion of their training they embark out into the land, coming to the aid of the people and influencing knights in order to fulfill their martial potential." />
 
-</strings>
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive1" text="{=protector_of_the_weak_passive1_str}Increases Hitpoints by {EFFECT_VALUE}" />
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive2" text="{=protector_of_the_weak_passive2_str}Increases Hitpoints by {EFFECT_VALUE}" />
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive3" text="{=protector_of_the_weak_passive3_str}Increases Hitpoints by {EFFECT_VALUE}" />
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive4" text="{=protector_of_the_weak_passive4_str}Increases Hitpoints by {EFFECT_VALUE}" />
+  
+
+  <string id="careerchoice_description.WarriorPriestRoot" text="{=careerchoice_description_warriorpriest_root_str}The Warrior Priest unleashes Sigmar's wrath for 8 seconds, which empowers him and the surrounding allies with 20% stronger melee attacks.  Every point in Faith increases the melee effect by 0.05% and the duration by 0.05 seconds. The ability recharges by taking 50% of damage of total health. Blocked damage counts as 10% of the damage taken." />
+
+
+  <!--Career perks related !-->
+
+  <string id="tor_hunt_perk_result.Failed" text="{=tor_hunt_perk_result_failed_str}You were able to detect a {PERK_HUNT_ANIMAL_SIZE}, yet your hunt was not sucessful" />
+  <string id="tor_hunt_perk_result.Success" text="{=tor_hunt_perk_result_success_str}You were able to hunt down a {PERK_HUNT_ANIMAL_SIZE}, you gained {PERK_HUNT_PREY}" />
+  
+  
+  
+  <string id="tor_careerchoice_basic.Health" text="{=str_tor_career_choice_basic_health}Increases Hitpoints by {EFFECT_VALUE}" /> <!--TOR_CHOICE_HEALTH !-->
+  <string id="tor_careerchoice_basic.Damage" text="{=str_tor_career_choice_basic_damage}{EFFECT_VALUE}% extra {EFFECT_DAMAGE_TYPE} {EFFECT_ATTACK_TYPE} damage" /> <!--TOR_CHOICE_DAMAGE !-->
+  <string id="tor_careerchoice_basic.Resistance" text="{=str_tor_career_choice_basic_resistance}Add {EFFECT_VALUE}% {EFFECT_DAMAGE_TYPE} {EFFECT_ATTACK_TYPE} resistance" /> <!--TOR_CHOICE_RESISTANCE !-->
+  <string id="tor_careerchoice_basic.ArmorPenetration" text="{=str_tor_career_choice_basic_armorpenetration}Add {EFFECT_VALUE}% armor penetration" /> <!--TOR_CHOICE_ARMORPENETRATION  Increases armor penetration of melee attacks by 15%!-->
+  <string id="tor_careerchoice_basic.HorseHealth" text="{=str_tor_career_choice_basic_horsehealth}{EFFECT_VALUE}% additional Hitpoints for the player's mount." /> <!--TOR_CHOICE_HORSEHEALTH !-->
+  <string id="tor_careerchoice_basic.HorseChargeDamage" text="{=str_tor_career_choice_basic_horsechargedamage}Horse charge damage is increased by {EFFECT_VALUE}%" /> <!--TOR_CHOICE_HORSECHARGEDAMAGE !-->
+  <string id="tor_careerchoice_basic.WindsOfMagic" text="{=str_tor_career_choice_basic_windsofmagic}Increases max Winds of Magic by {EFFECT_VALUE}%." /> <!--TOR_CHOICE_WINDSOFMAGIC !-->
+  <string id="tor_careerchoice_basic.WindsCostReduction" text="{=str_tor_career_choice_basic_damage}{EFFECT_VALUE}% cost reduction for spells." /> <!--TOR_CHOICE_WINDSCOSTREDUCTION !-->
+  <string id="tor_careerchoice_basic.WindsCooldownReduction" text="{=str_tor_career_choice_basic_damage}{EFFECT_VALUE}% spell cooldown reduction." /> <!--TOR_CHOICE_WINDSCOOLDOWNREDUCTION!-->
+  <string id="tor_careerchoice_basic.PrayerCooldownReduction" text="{=str_tor_career_choice_basic_damage}{EFFECT_VALUE}% prayer cooldown reduction." /> <!--TOR_CHOICE_WINDSCOOLDOWNREDUCTION!-->
+  <string id="tor_careerchoice_basic.PartyMovementSpeed" text="{=str_tor_career_choice_basic_damage}Party movement speed is increased by {EFFECT_VALUE}." /> <!--TOR_CHOICE_PARTYMOVEMENTSPEED !-->
+  <string id="tor_careerchoice_basic.PartySize" text="{=str_tor_career_choice_basic_damage}Party size is increased by {EFFECT_VALUE}" /> <!--TOR_CHOICE_PARTYSIZE-->
+  <string id="tor_careerchoice_basic.TroopRegeneration" text="{=str_tor_career_choice_basic_damage}Wounded troops in your party heal faster ({EFFECT_VALUE})." /> <!--TOR_CHOICE_TROOPREGENERATION!-->
+  <string id="tor_careerchoice_basic.TroopUpgradeCost" text="{=str_tor_career_choice_basic_damage}Upgrade costs are reduced by {EFFECT_VALUE}%." /> <!--TOR_CHOICE_TROOPUPGRADECOST !-->
+  <string id="tor_careerchoice_basic.Ammo" text="{=str_tor_career_choice_basic_damage}{EFFECT_VALUE} extra ammunition" /> <!--TOR_CHOICE_AMMO !-->
+  
+    <!--Warrior Priest !-->
+	
+  <string id="careerchoice_description.BookOfSigmarPassive1" text="{TOR_CHOICE_HEALTH}" />
+  <string id="careerchoice_description.BookOfSigmarPassive2" text="{=str_tor_book_of_sigmar_passive2}Increases morale for all troops by {EFFECT_VALUE}" />
+  <string id="careerchoice_description.BookOfSigmarPassive3" text="{=str_tor_book_of_sigmar_passive3}After battle, all wounded companions are healed for {EFFECT_VALUE} Hitpoints" />
+  <string id="careerchoice_description.BookOfSigmarPassive4" text="{TOR_CHOICE_TROOPREGENERATION}" />
+  <string id="careerchoice_description.BookOfSigmarKeyStone" text="{=str_tor_book_of_sigmar_keystone}Adds a healing buff to Righeous Fury that restores 5 Hitpoints per second" />
+
+  <string id="careerchoice_description.SigmarsProclaimerPassive1" text="{TOR_CHOICE_DAMAGE}" />
+  <string id="careerchoice_description.SigmarsProclaimerPassive2" text="{=str_tor_sigmars_proclaimer_passive2}All Sigmarite troops wages are reduced by {EFFECT_VALUE}%" />
+  <string id="careerchoice_description.SigmarsProclaimerPassive3" text="{=str_tor_sigmars_proclaimer_passive3}All Sigmarite troops consume {EFFECT_VALUE}% less food" />
+  <string id="careerchoice_description.SigmarsProclaimerPassive4" text="{=str_tor_sigmars_proclaimer_passive4}When praying at a shrine of Sigmar, all characters restore {EFFECT_VALUE} Hitpoints" />
+  <string id="careerchoice_description.SigmarsProclaimerKeyStone" text="{=str_tor_sigmars_proclaimer_keystone}Doubles the aura size of Righteous Fury" />
+  
+  <string id="careerchoice_description.RelentlessFanaticPassive1" text="{TOR_CHOICE_HEALTH}" />
+  <string id="careerchoice_description.RelentlessFanaticPassive2" text="{TOR_CHOICE_DAMAGE}" />
+  <string id="careerchoice_description.RelentlessFanaticPassive3" text="{=str_tor_relentless_fanatic_passive3}All Sigmarite troops get {EFFECT_VALUE}% resistance to physical ranged attacks" />
+  <string id="careerchoice_description.RelentlessFanaticPassive4" text="{TOR_CHOICE_PARTYMOVEMENTSPEED}" />
+  <string id="careerchoice_description.RelentlessFanaticKeyStone" text="{=str_tor_relentless_fanatic_keystone}Righteous Fury scales with Leadership. Troops affected get Unbreakable for the duration" />
+  
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive1" text="{TOR_CHOICE_HEALTH}" />
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive2" text="{TOR_CHOICE_RESISTANCE}" />
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive3" text="{TOR_CHOICE_RESISTANCE}" />
+  <string id="careerchoice_description.ProtectorOfTheWeakPassive4" text="{=str_tor_protector_of_the_weak_passive4}Hits below 15 damage do not stagger the player" />
+  <string id="careerchoice_description.ProtectorOfTheWeakKeystone" text="{=str_tor_protector_of_the_weak_keystone}Righteous Fury scales with the highest melee weapon skill. Adds 20% physical resistance." />
+  
+  <string id="careerchoice_description.HolyPurgePassive1" text="{TOR_CHOICE_DAMAGE}" />
+  <string id="careerchoice_description.HolyPurgePassive2" text="{=str_tor_holy_purge_passive2}All Sigmarite troops gain {EFFECT_VALUE}% Ward save" />
+  <string id="careerchoice_description.HolyPurgePassive3" text="{=str_tor_holy_purge_passive3}All troops deal {EFFECT_VALUE}% more melee damage to non-human enemies" />
+  <string id="careerchoice_description.HolyPurgePassive4" text="{=str_tor_holy_purge_passive4}All Sigmarite troops gain {EFFECT_VALUE}% extra holy damage" />
+  <string id="careerchoice_description.HolyPurgeKeystone" text="{=str_tor_holy_purge_keystone}All units affected by Righteous Fury receive a Burning Weapon buff " />
+  
+  <string id="careerchoice_description.ArchLectorPassive1" text="{=str_tor_arch_lector_passive1}Prayers are recharged on battle start" />
+  <string id="careerchoice_description.ArchLectorPassive2" text="{=str_tor_arch_lector_passive2}All neutral Empire troops now count as Sigmarite troops" />
+  <string id="careerchoice_description.ArchLectorPassive3" text="{=str_tor_arch_lector_passive3}Gain {EFFECT_VALUE}% Ward save" />
+  <string id="careerchoice_description.ArchLectorPassive4" text="{=str_tor_arch_lector_passive4}Prayers aren't affected by global cooldowns" />
+  <string id="careerchoice_description.ArchLectorKeyStone" text="{=str_tor_arch_lector_keystone}Righteous Fury adds a damaging aura. Its radius increases when raising relevant skills " />
+
+
+  <!--Grail Knight !-->
+  
+	
+	<!-- Inky translation related.  Do NOT add texts inside quotation marks!-->
+	<!-- every inky story starts with "inky: "+ ID of the file name. While the Variation accounts for the specific text block -->
+	<string id="inky_continue" text="{inky_continue_str}" />
+	<string id="inky_end" text="{inky_end_str}" />
+	
+	<!--Ink !-->
+	<string id="inky_party_skill_check_result_template" text ="{=inky_party_skill_check_template_str}({inky_skill_check_skill_name} check with success chance {inky_Party_skill_CheckChance}%)" />
+	<string id="inky_player_skill_check_result_template" text ="{=inky_player_skill_check_template_str}({inky_skill_check_skill_name} check with success chance {inky_Player_skill_CheckChance}%)" />
+	
+	<string id="inky_player_attribute_check_result_template" text ="{=inky_player_attribute_check_template_str}({inky_attribute_check_attribute_name} check with success chance {inky_Player_attribute_CheckChance}%)" />
+	<string id="inky_party_attribute_check_result_template" text ="{=inky_party_attribute_check_template_str}({inky_attribute_check_attribute_name} check with success chance {inky_Party_attribute_CheckChance}%)" />
+	
+	
+	
+	
+	<!--Battlefield !-->
+	<string id="inky_Battlefield.Title" text="{=inky_battlefield_strid_title}" />
+	<string id="inky_Battlefield.STR_Start1" text="{=inky_battlefield_start1_str}" />
+	<string id="inky_Battlefield.STR_Start2" text="{=inky_battlefield_start1_str}" />
+	<string id="inky_Battlefield.STR_Start3" text="{=inky_battlefield_start1_str}" />
+	
+	<string id="inky_Battlefield.STR_SearchForSurvivors1" text="{=inky_battlefield_search_for_survivors_1_str}" />
+	<string id="inky_Battlefield.STR_SearchForSurvivors2" text="{=inky_battlefield_search_for_survivors_2_str}" />
+	
+	<string id="inky_Battlefield.STR_UseGhyranMagic1" text="{=inky_battlefield_use_ghyranmagic_1_str}" />
+	<string id="inky_Battlefield.STR_UseGhyranMagic2" text="{=inky_battlefield_use_ghyranmagic_2_str}" />
+
+    <string id="inky_Battlefield.STR_HelpButDie1" text="{=inky_battlefield_help_but_die_1_str}" />
+    <string id="inky_Battlefield.STR_HelpButDie2" text="{=inky_battlefield_help_but_die_2_str}" />
+	
+	<string id="inky_Battlefield.STR_PayRespects1" text="{=inky_battlefield_pay_respect_1_str}" />
+	<string id="inky_Battlefield.STR_PayRespects2" text="{=inky_battlefield_pay_respect_2_str}" />
+	
+	<string id="inky_Battlefield.STR_ContinueOn1" text="{=inky_battlefield_continue_on_1_str}" />
+	<string id="inky_Battlefield.STR_ContinueOn2" text="{=inky_battlefield_continue_on_2_str}" />
+	
+	<!-- Cabin in the Wood!-->
+	<string id="inky_CabinInTheWoodsLocked.DoorText_1" text="{=inky_cabin_in_the_woods_locked_door_text_weak_str} weak" />
+	<string id="inky_CabinInTheWoodsLocked.DoorText_2" text="{=inky_cabin_in_the_woods_locked_door_text_average_str} average" />
+	<string id="inky_CabinInTheWoodsLocked.DoorText_3" text="{=inky_cabin_in_the_woods_locked_door_text_strong_str} strong" />
+	
+	<string id="inky_CabinInTheWoodsLocked.LockText_1" text="{=inky_cabin_in_the_woods_locked_lock_text_weak_str} weak" />
+	<string id="inky_CabinInTheWoodsLocked.LockText_2" text="{=inky_cabin_in_the_woods_locked_lock_text_average_str} average" />
+	<string id="inky_CabinInTheWoodsLocked.LockText_3" text="{=inky_cabin_in_the_woods_locked_lock_text_strong_str} strong" />
+	
+	<string id="inky_CabinInTheWoodsLocked.RewardText_1" text="{=inky_cabin_in_the_woods_locked_reward_text_1_str} 5 grain" />
+    <string id="inky_CabinInTheWoodsLocked.RewardText_2" text="{=inky_cabin_in_the_woods_locked_reward_text_2_str}" />
+	<string id="inky_CabinInTheWoodsLocked.RewardText_3" text="{=inky_cabin_in_the_woods_locked_reward_text_3_str}" />
+
+	<string id="inky_CabinInTheWoodsLocked.STR_Start1" text="{=inky_cabin_in_the_woods_start_1_str}" />
+	<string id="inky_CabinInTheWoodsLocked.STR_Approach1" text="{=inky_cabin_in_the_woods_approach_1_str}" />
+	<string id="inky_CabinInTheWoodsLocked.#STR_Inside1" text="{=inky_cabin_in_the_woods_inside_1_str}" />
+	
+	<!--Fair !-->
+	<string id="inky_Fair.Title" text="{=inky_fair_strid_title}" />
+	<string id="inky_Fair.STR_Start1" text="{=inky_fair_start1_str}" />
+	<string id="inky_Fair.STR_Start2" text="{=inky_fair_start2_str}" />
+	<string id="inky_Fair.STR_Leave1" text="{=inky_fair_leave1_str}" />
+	<string id="inky_Fair.STR_BuyHorse1" text="{=inky_fair_strid_buy_horse_1_str}" />
+	<string id="inky_Fair.STR_BuyHorse1NOTENOUGHGOLD" text="{=inky_fair_strid_buyhorse_not_enough_gold}" />
+	<string id="inky_Fair.STR_Leave1" text="{=inky_fair_leave1_str}" />
+	<string id="inky_Fair.PersuadeMerchant_Fail" text="{=inky_fair_persuadeMerchant_fail_str}" />
+	<string id="inky_Fair.PersuadeMerchant_Success" text="{=inky_fair_persuadeMerchant_fail_str}" />
+	
+	<!--Duel !-->
+	
+	<string id="inky_Duel.MetBefore_False" text="{=inky_duel_met_before_false_str}you spot a mysterious figure approaching with confident strides. As they draw nearer, the glint of a finely crafted rapier catches your eye. The stranger stops before you, a warm smile on their face as they appraise you." />
+	<string id="inky_Duel.MetBefore_True" text="{=inky_duel_met_before_true_str}you spot the familiar figure of Vittorio de Luca, the renowned Tilean duelist, making his way towards your group with confident strides.{inky_DeniedBefore1}" />
+	<string id="inky_Duel.DeniedBefore1_False" text="{=inky_duel_denied_before_false_str} Memories of your previous encounter flood back, the thrill of the first duel still lingering in your mind." />
+	<string id="inky_Duel.DeniedBefore1_True" text="{=!}" />
+	
+	<string id="inky_Duel.DeniedBefore2_False" text="{=inky_duel_denied_before2_false_str} Care to prove your skills this time around?" />
+	<string id="inky_Duel.DeniedBefore2_True" text="{=inky_duel_denied_before2_true_str}Care to prove your skills once more in a rematch?" />
+	<string id="inky_Duel.MetBefore2_False" text="{=!}" />
+	<string id="inky_Duel.MetBefore2_True" text="{=inky_duel_met_before2_true_str} Once More" />
+	
+	
+	<string id="inky_Duel.STR_Start1" text="{=!}" />
+	<string id="inky_Duel.STR_Start2" text="{=!}{inky_MetBefore}" />
+	<string id="inky_Duel.STR_Start3MetBefore" text="{=!}As Vittorio draws nearer, the glint of his finely crafted rapier catches your eye, and a warm smile spreads across his face as he appraises you. &quot;Ah, what a stroke of luck to meet again on this lonely path,&quot; he says, his voice carrying a playful undertone. &quot;I see the fire of a warrior still burns within you.&quot; {inky_DeniedBefore2}" />
+	<string id="inky_Duel.STR_Start3NotMetBefore" text="{=!}&quot;Ah, what a stroke of luck to meet a band of worthy warriors on this lonely path,&quot; they say. &quot;I am Vittorio de Luca, a master of the blade from the distant lands of Tilea. I have journeyed far and wide, seeking a worthy adversary who can match my skills in combat. And now, fate has led me to you. Care to prove your skills in a friendly duel, with a little wager to make it exciting?&quot;" />
+	
+	<string id="inky_Duel.STR_AcceptNotMetBefore1" text="{=!}" />
+	<string id="inky_Duel.STR_AcceptNotMetBefore2" text="{=!}" />
+	<string id="inky_Duel.STR_AcceptNotMetBefore3" text="{=!}" />
+	
+    <string id="inky_Duel.STR_Accept1" text="{=!}" />
+	<string id="inky_Duel.STR_Accept2" text="{=!}"/> 
+	<string id="inky_Duel.STR_Accept2" text="{=!}"/> 
+	<string id="inky_Duel.STR_Deny1" text="{=!}" />
+	<string id="inky_Duel.STR_Deny2" text="{=!}"/>	
+	<string id="inky_Duel.STR_Deny3" text="{=!}"/>
+	
+	<string id="inky_Duel.STR_Playerwin1" text="{=!}"/>
+	<string id="inky_Duel.STR_Playerwin2" text="{=!}"/>
+	<string id="inky_Duel.STR_Playerwin3" text="{=!}"/>
+	
+	<string id="inky_Duel.STR_PlayerLost1" text="{=!}"/>
+	<string id="inky_Duel.STR_PlayerLost2" text="{=!}"/>
+	
+	<string id="inky_Duel.STR_DuelEnd" text="{=!}"/>
+	
+	
+	<!--Duel !-->
+	
+	
+	<!--Meadow ! -->
+	<string id="inky_Meadow.IsNight_True" text="{=inky_Meadow_is_night_true_str}Silver moonlight" />
+	<string id="inky_Meadow.IsNight_False" text="{=inky_Meadow_is_night_false_str}Golden sunlight" />
+	
+	
+	<string id="inky_Meadow.STR_Start3" text="{inky_IsNight} filters through the tree canopy, bathing the meadow in warmth. A gentle aroma of blooming flowers perfumes the air. Birds serenade with their melodies, filling the clearing with a symphony that feels like a balm to your weary spirit. #STR_Start3"/>
+	
+	
+	<!--Overturned Cart ! -->
+	
+	<string id="inky_OverturnedCart.InjuryText1_1" text="{=inky_overturned_cart_injury1_1_str}weak" />
+	<string id="inky_OverturnedCart.InjuryText1_2" text="{=inky_overturned_cart_injury1_2_str}mild" />
+	<string id="inky_OverturnedCart.InjuryText1_3" text="{=inky_overturned_cart_injury1_3_str}severely" />
+	
+	<string id="inky_OverturnedCart.InjuryText2_1" text="{=inky_overturned_cart_injury2_1_str}asks" />
+	<string id="inky_OverturnedCart.InjuryText2_2" text="{=inky_overturned_cart_injury2_2_str}begs" />
+	<string id="inky_OverturnedCart.InjuryText2_3" text="{=inky_overturned_cart_injury2_3_str}gasps" />
+	
+	<string id="inky_OverturnedCart.InjuryText3_1" text="{=inky_overturned_cart_injury3_1_str}gets up" />
+	<string id="inky_OverturnedCart.InjuryText3_2" text="{=inky_overturned_cart_injury3_2_str}barely gets up" />
+	<string id="inky_OverturnedCart.InjuryText3_3" text="{=inky_overturned_cart_injury3_3_str}lays there trying not do die" />
+	
+	<string id="inky_OverturnedCart.InjuryText4_1" text="{=inky_overturned_cart_injury4_1_str}" />
+	<string id="inky_OverturnedCart.InjuryText4_2" text="{=inky_overturned_cart_injury4_2_str}seems to get a bit depressed knowing that he will be crippled for at least some time" />
+	<string id="inky_OverturnedCart.InjuryText4_3" text="{=inky_overturned_cart_injury4_3_str}dies" />
+	
+	<string id="inky_OverturnedCart.Profession_1" text="{=inky_overturned_cart_profession_1_str}merchant" />
+	<string id="inky_OverturnedCart.Profession_2" text="{=inky_overturned_cart_profession_2_str}farmer" />
+	<string id="inky_OverturnedCart.Profession_3" text="{=inky_overturned_cart_profession_3_str}blacksmith" />
+	
+	<string id="inky_OverturnedCart.RewardText_0" text="{=inky_overturned_cart_rewardtext_0_str}500 gold" />
+	<string id="inky_OverturnedCart.RewardText_1" text="{=inky_overturned_cart_rewardtext_1_str}5 grain" />
+	<string id="inky_OverturnedCart.RewardText_2" text="{=inky_overturned_cart_rewardtext_2_str}2 steel ingots" />
+	
+	<string id="inky_OverturnedCart.HorsesAround_0" text="{=inky_overturned_cart_horsesaround_0_str}" />
+	<string id="inky_OverturnedCart.HorsesAround_1" text="{=inky_overturned_cart_horsesaround_1_str}take the horses," />
+	
+	
+	<string id="inky_OverturnedCart.Start1" text="{=inky_overturned_cart_start_1_str}As your party is travelling along you see a cart in the distance." />
+	<string id="inky_OverturnedCart.Start2" text="{=inky_overturned_cart_start_2_str}As you get closer you can see that it had broken down and tipped over." />
+	<string id="inky_OverturnedCart.StartHorse" text="{=inky_overturned_cart_start_2_str}You can also see some horses grazing on grass in a nearby field, presumably these were pulling the cart prior to the incident." />
+	
+	
+	<string id="inky_OverturnedCart.Approach1" text="{=inky_overturned_cart_approach_1_str}" />
+	<string id="inky_OverturnedCart.Approach2" text="{=inky_overturned_cart_approach_2_str}You notice that the man trapped under the cart is {inky_InjuryText1}." />
+	<string id="inky_OverturnedCart.Approach3" text="{=inky_overturned_cart_approach_3_str}As you get close he {inky_InjuryText2} to you, &quot;Please help me&quot;." />
+	
+	
+	<string id="inky_OverturnedCart.STR_RewardForHelp2" text="{=inky_overturned_cart_reward_for_help_1_str}You ask the man what he can do for you." />
+	<string id="inky_OverturnedCart.STR_RewardForHelp2" text="{=inky_overturned_cart_reward_for_help_2_str}The man replies, &quot;I am just a simple {Profession} from {Settlement}, I cannot give you a reward other than my thanks.&quot;" />
+	<string id="inky_OverturnedCart.STR_RewardForHelp3" text="{=inky_overturned_cart_reward_for_help_3_str}After a moment he says, &quot;I am a friend of {Notable} and I will put in a good word for you.&quot;" />
+	
+	
+	
+	<string id="inky_OverturnedCart.HelpExtort1" text="{=inky_overturned_cart_helpextort_3_str}You tell the {inky_Profession} that he shouldn't be so modest. He is clearly a man of some means and can easily spare {inky_RewardText} as compensation for the assistance." />
+	
+	
+	<string id="inky_OverturnedCart.HelpExtort1" text="{=inky_overturned_cart_helpextort_3_str}You tell the {inky_Profession} that he shouldn't be so modest. He is clearly a man of some means and can easily spare {inky_RewardText} as compensation for the assistance." />
+	
+	<string id="inky_OverturnedCart.AfterLiftMedicine1" text="{=inky_overturned_cart_after_Lift_Medicine_3_str}You tell the {inky_Profession} that he shouldn't be so modest. He is clearly a man of some means and can easily spare {inky_RewardText} as compensation for the assistance." />
+
+</strings> 

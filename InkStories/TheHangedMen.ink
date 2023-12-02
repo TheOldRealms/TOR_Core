@@ -62,28 +62,29 @@ INCLUDE include.ink
 -> Start
 
 ===Start===
-    You come across a tree with three men hanging from it with a sword stuck in the ground beneath them. As you get closer you can see that the word "Traitors" is etched into the tree and that the sword has been used to mark a grave. ->choice1
+    You come across a tree with three men hanging from it with a sword stuck in the ground beneath them. As you get closer you can see that the word "Traitors" is etched into the tree and that the sword has been used to mark a grave. #STR_Start1
+    ->choice1
 
     //What to do with the hanging bodies
     =choice1
-        What will your party do with the hanging bodies?
+        What will your party do with the hanging bodies? #STR_Start2
         
             *[Do nothing]
-                You decide to do nothing with the hanging bodies.
-                ->choice1to2Intermission
+                You decide to do nothing with the hanging bodies. #STR_DoNothing
+                ->Grave
         
             *[Bury the hanging bodies (Mercy+)]
-                You cut down the bodies and lay them to rest.
+                You cut down the bodies and lay them to rest. #STR_Bury
                 ~ AddTraitInfluence("Mercy", 20)
-                ->choice1to2Intermission
+                ->Grave
         
             *[Loot the hanging bodies (Mercy-)]
-                You cut down the bodies and loot the corpses, taking the tattered rags they were executed in.
+                You cut down the bodies and loot the corpses, taking the tattered rags they were executed in. #STR_Loot
                 ~ AddTraitInfluence("Mercy", -20)
                 ~ GiveItem("wrapped_headcloth",3)
                 ~ GiveItem("ragged_robes",3)
                 ~ GiveItem("leather_shoes",3)
-                ->choice1to2Intermission
+                ->Grave
             
         //Raise the hanging bodies as skeletons
             *{PartyCanRaiseDead}[Raise the hanging bodies as skeletons (Mercy--) {print_party_skill_chance("Spellcraft", RaiseDeadDifficulty)}]
@@ -93,12 +94,11 @@ INCLUDE include.ink
                         ~ ChangePartyTroopCount("tor_vc_skeleton",3)
                         ~ SkeletonSuccess = true
                 }
-                Your party attempts to resurrect the corpses as skeletons {SkeletonSuccess: and succeeds. ->choice1to2Intermission | and fails.->choice1}
+                Your party attempts to resurrect the corpses as skeletons {SkeletonSuccess: and succeeds. ->Grave | and fails.->choice1} #STR_Loot
 
-
+===Grave===
     //Needed for intermission text 
-    =choice1to2Intermission
-        Having decided what to do with the hanging bodies you turn your attention to the grave marked by the sword.
+        Having decided what to do with the hanging bodies you turn your attention to the grave marked by the sword. #STR_Grave
         ->choice2
         
     //What to do with the buried body
@@ -106,31 +106,31 @@ INCLUDE include.ink
         
         //Variable Update
         ~ RaiseDeadDifficulty = 100
-        What will you do with the grave?
+        What will you do with the grave? #STR_Grave
         *[Leave this place (Leave)]
             ->Leave
             
         *[Offer a prayer (Mercy+)]
-            You say a prayer for the departed hoping they can find peace.
+            You say a prayer for the departed hoping they can find peace. #STR_Prayer
             ~ AddTraitInfluence("Mercy", 20)
             ->Leave
 
 
         *[Take the sword (1 tier 3 sword, Mercy-)]
-            You take the sword into your hands.
+            You take the sword into your hands. #STR_TakeSword
             ~ AddTraitInfluence("Mercy", -20)
             ~ HaveSword = true
             ~ TookSword = true
             ->choice2
             
         *[Dig up the grave (Mercy-)]
-            You dig up the grave to find a warrior buried in some armour. You can see some of the armour is damaged, most likely from the "traitors".
+            You dig up the grave to find a warrior buried in some armour. You can see some of the armour is damaged, most likely from the "traitors". #STR_Dig
             ~ AddTraitInfluence("Mercy", -20)
             ~ DugUpGrave = true
             ->choice2
         
         *{DugUpGrave == true}[Loot the buried body (2 pieces of tier 3 armour, Mercy-)]
-            You strip the body of all the armour that is still intact.
+            You strip the body of all the armour that is still intact. #STR_DigLoot
             ~LootedBody = true
             ~AddTraitInfluence("Mercy", -20)
             
@@ -162,11 +162,11 @@ INCLUDE include.ink
                         -false:
                     }
 
-                Your party attempts to resurrect the corpse as a wight {CryptGuardSuccess: and succeed. The wight stands up {TookSword: and holds out its hand as if to ask for its sword back. You give back the weapon} then it marches off to join the rest of your forces. ->Leave | and fail.->choice2}
+                Your party attempts to resurrect the corpse as a wight {CryptGuardSuccess: and succeed. The wight stands up {TookSword: and holds out its hand as if to ask for its sword back. You give back the weapon} then it marches off to join the rest of your forces. ->Leave | and fail.->choice2} #STR_DigResurrect
             ->Leave
 
 ===Leave===
-    Having made your decisions you go on your way.
+    Having made your decisions you go on your way. #STR_Leave1
     {HaveSword: 
         ~GiveItem("vlandia_sword_1_t2",1)
     }

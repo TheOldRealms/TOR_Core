@@ -8,6 +8,8 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia.Pages;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Generic;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
+using TaleWorlds.TwoDimension;
 using TOR_Core.CampaignMechanics.Religion;
 
 namespace TOR_Core.Extensions.UI
@@ -40,12 +42,19 @@ namespace TOR_Core.Extensions.UI
 				if (_hero != null)
 				{
 					var list = ReligionObject.All;
-					string religionText = "Not a follower of any religion";
+					var religionText = new TextObject("{=tor_religion_follower_none_str}Not a follower of any religion").ToString();
 					if (_hero.HasAnyReligion())
 					{
-						religionText = string.Format("{0} of {1}", _hero.GetDevotionLevelForReligion(_hero.GetDominantReligion()) ,_hero.GetDominantReligion().EncyclopediaLinkWithName.ToString());
+						var devotionLevelText = GameTexts.FindText ("tor_religion_devotionlevel", _hero.GetDevotionLevelForReligion (_hero.GetDominantReligion()).ToString());
+						var religionNameText = GameTexts.FindText ("tor_religion_name_of_god", _hero.GetDominantReligion().StringId);
+						var link = HyperlinkTexts.GetSettlementHyperlinkText (_hero.GetDominantReligion().EncyclopediaLink, religionNameText);
+						MBTextManager.SetTextVariable ("TOR_DEVOTION_LEVEL",devotionLevelText);
+						MBTextManager.SetTextVariable ("TOR_RELIGION",link);
+						religionText = GameTexts.FindText ("tor_religion_text_frame").ToString();
 					}
-					heroVM.Stats.Add(new StringPairItemVM("Religion:", religionText));
+
+					var label = new TextObject("{=tor_religion_label}Religion") + ": ";
+					heroVM.Stats.Add(new StringPairItemVM(label, religionText));
 				}
 			}
         }
