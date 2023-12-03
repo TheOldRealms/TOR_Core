@@ -87,28 +87,21 @@ namespace TOR_Core.Models
                     CareerHelper.ApplyBasicCareerPassives(hero, ref number, PassiveEffectType.Health);
                 }
 
-                if (hero.PartyBelongedTo != null && hero.PartyBelongedTo.IsMainParty && hero != Hero.MainHero)
-                {
-                    
-                } 
-
-                if (Hero.MainHero.HasCareerChoice("AmbassadorOfTheLadyPassive2"))
-                {
-                    if (hero.PartyBelongedTo != null && hero.PartyBelongedTo.IsMainParty && hero != Hero.MainHero && Hero.MainHero.HasAnyCareer())
-                    {
-                            var choice = TORCareerChoices.GetChoice("AmbassadorOfTheLadyPassive2");
-                            number.AddFactor(choice.GetPassiveValue());
-                    }
-                }
-
                 if (hero.PartyBelongedTo!=null&& hero.PartyBelongedTo.IsMainParty && hero != Hero.MainHero)
                 {
-                    
-                    if (Hero.MainHero.HasCareerChoice("AmbassadorOfTheLadyPassive2"))
+                    if (Hero.MainHero.HasCareerChoice("CommanderPassive4"))
                     {
                         if (hero.IsBretonnianKnight())
                         {
-                            var choice = TORCareerChoices.GetChoice("AmbassadorOfTheLadyPassive2");
+                            var choice = TORCareerChoices.GetChoice("CommanderPassive4");
+                            number.Add(choice.GetPassiveValue());
+                        }
+                    }
+                    if (Hero.MainHero.HasCareerChoice("EnvoyOfTheLadyPassive2"))
+                    {
+                        if (hero.IsBretonnianKnight())
+                        {
+                            var choice = TORCareerChoices.GetChoice("EnvoyOfTheLadyPassive2");
                             number.AddFactor(choice.GetPassiveValue());
                         }
                     }

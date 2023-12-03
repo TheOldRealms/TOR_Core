@@ -233,6 +233,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         TroopMorale,        //Morale
         TroopUpgradeCost,
         Ammo,               //Player ammo
+        InfluenceGainFromBattles
 
     }
 }

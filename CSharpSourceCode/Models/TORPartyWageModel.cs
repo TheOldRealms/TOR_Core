@@ -154,7 +154,7 @@ namespace TOR_Core.Models
                 }
             }
 
-            if (choices.Contains("CommanderPassive1"))
+            if (choices.Contains("PaymasterPassive3"))
             {
                 if (unit.Character.Tier > 4 && !unit.Character.IsHero)
                 {

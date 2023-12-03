@@ -4,13 +4,16 @@ using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Conversation;
+using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics
@@ -23,7 +26,36 @@ namespace TOR_Core.CampaignMechanics
             CampaignEvents.DailyTickPartyEvent.AddNonSerializedListener(this, DailyCareerTickEvents);
             CampaignEvents.ItemsLooted.AddNonSerializedListener(this, RaidingPartyEvent);
             CampaignEvents.OnUnitRecruitedEvent.AddNonSerializedListener(this, PlayerRecruitmentEvent);
+            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, PlayerWinBattleEvents);
+            CampaignEvents.OnMissionEndedEvent.AddNonSerializedListener(this, PlayerWinBattleEvents);
         }
+
+        private void PlayerWinBattleEvents(IMission obj)
+        {
+            var playerMapEvent = MapEvent.PlayerMapEvent;
+
+            var t = 1;
+        }
+
+        private void PlayerWinBattleEvents(MapEvent mapEvent)
+        {
+            if (mapEvent.Winner.IsMainPartyAmongParties())
+            {
+                
+                mapEvent.GetBattleRewards(PartyBase.MainParty, out float renownChange, out float influenceChange, out float moraleChange, out float goldChange, out float playerEarnedLootPercentage);
+                var value = new ExplainedNumber(influenceChange);
+
+                CareerHelper.ApplyBasicCareerPassives( Hero.MainHero, ref value, PassiveEffectType.InfluenceGainFromBattles, true);
+
+                var resultNumber = value.ResultNumber- influenceChange;
+                
+                GainKingdomInfluenceAction.ApplyForBattle(Hero.MainHero, resultNumber);
+                
+               // mapEvent.GetMapEventSide(mapEvent.PlayerSide).ApplyRenownAndInfluenceChanges();
+            }
+         
+        }
+
         private void PlayerRecruitmentEvent(CharacterObject characterObject, int amount)
         {
             if (Hero.MainHero.HasAnyCareer())
@@ -31,7 +63,7 @@ namespace TOR_Core.CampaignMechanics
                 var party = Hero.MainHero.PartyBelongedTo;
                 var choices = Hero.MainHero.GetAllCareerChoices();
                 
-                if (choices.Contains("CommanderPassive4"))
+                if (choices.Contains("PaymasterPassive2"))
                 {
                     var choice = TORCareerChoices.GetChoice("CommanderPassive4");
                     if (choice != null)

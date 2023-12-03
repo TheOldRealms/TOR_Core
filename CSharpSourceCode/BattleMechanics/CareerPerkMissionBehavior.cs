@@ -129,38 +129,6 @@ namespace TOR_Core.BattleMechanics
             {
                 var playerHero = affectorAgent.GetHero();
                 var choices = playerHero.GetAllCareerChoices();
-
-                if (choices.Contains("HeadhunterPassive3"))
-                {
-                    if(affectedAgent.IsMount) return;
-                    if(affectedAgent.Team == affectorAgent.Team) return;
-                    
-                    var isHighValueTarget = false;
-                    if (affectedAgent.Character.Culture.IsBandit)
-                    {
-                        if (Mission.Current.Mode == MissionMode.Tournament) return;
-
-                        var cultureObject = affectedAgent.Character.GetCultureObject();
-                        if (cultureObject != null && cultureObject.BanditBoss == affectedAgent.Character) 
-                            isHighValueTarget = true;
-                    }
-                    else
-                    {
-                        if (playerHero.PartyBelongedTo.ActualClan.MapFaction.IsKingdomFaction && playerHero.Clan.IsUnderMercenaryService &&
-                            affectedAgent.IsHero && affectedAgent.GetHero().Occupation == Occupation.Lord)
-                            isHighValueTarget = true;
-                    }
-
-                    if (!isHighValueTarget) return;
-
-                    var choice = TORCareerChoices.GetChoice("HeadhunterPassive3");
-                    if (choice != null)
-                    {
-                        var value = (int)choice.GetPassiveValue();
-                        playerHero.Gold += value;
-                        InformationManager.DisplayMessage(new InformationMessage($"Contract Complete. You earned {value} from a bounty", Color.FromUint(16744448)));
-                    }
-                }
             }
         }
     }

@@ -40,6 +40,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _duelist;
         private CareerChoiceGroupObject _headhunter;
         private CareerChoiceGroupObject _knightly;
+        private CareerChoiceGroupObject _paymaster;
         private CareerChoiceGroupObject _mercenaryLord;
         private CareerChoiceGroupObject _commander;
         //Grail Knight
@@ -95,6 +96,7 @@ namespace TOR_Core.CharacterDevelopment
             _duelist = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Duelist"));
             _headhunter = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Headhunter"));
             _knightly = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Knightly"));
+            _paymaster = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Paymaster"));
             _mercenaryLord = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("MercenaryLord"));
             _commander = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Commander"));
             
@@ -246,6 +248,11 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.Clan.Tier >= 2;
             });
             _knightly.Initialize("{=knightly_choice_group_str}The Knightly", TORCareers.Mercenary, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            _paymaster.Initialize("{=knightly_choice_group_str}The Paymaster", TORCareers.Mercenary, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
