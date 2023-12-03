@@ -59,7 +59,7 @@
 	<RORSettlementTemplate
         SettlementId="castle_BK1"
         BaseTroopId="tor_bd_blooddragon_initiate"
-        MenuHeaderText="A small Chapter House of the Knighthood Order, for members to rest and resupply."
+        MenuHeaderText="You walk into the main hall of the Blood Dragons. Here all members of the Ordo Draconis gather to share their tales of valor and to hear from their brethren before departing to terrorise the world once more."
         MenuBackgroundImageId="invalid"
         RegimentName="Blood Dragons"
         RegimentHQName="Blood Dragon Chapter House"
