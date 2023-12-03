@@ -347,15 +347,27 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             return false;
         }
         
-        public static bool ConditionsMetToEnableSuperButton(CharacterObject viewedCharacter)
+        public static bool ConditionsMetToEnableSuperButton(CharacterObject viewedCharacter, out TextObject disableReason)
         {
             var career= Hero.MainHero.GetCareer();
             if (career != null)
             {
-                return TORCareerChoices.Instance.GetCareerChoices(career).ConditionsAreMetToShowButton(viewedCharacter);
+                return TORCareerChoices.Instance.GetCareerChoices(career).ConditionsAreMetToEnableButton(viewedCharacter, out  disableReason);
             }
 
+            disableReason = new TextObject();
             return false;
+        }
+        
+        public static string GetButtonSprite()
+        {
+            var career= Hero.MainHero.GetCareer();
+            if (career != null)
+            {
+                return TORCareerChoices.Instance.GetCareerChoices(career).CareerButtonIcon;
+            }
+
+            return "";
         }
     }
 }

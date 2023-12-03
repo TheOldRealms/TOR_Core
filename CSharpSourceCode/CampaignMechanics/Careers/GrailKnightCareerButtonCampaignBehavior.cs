@@ -6,19 +6,21 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.CharacterDevelopment;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics
 {
     public class GrailKnightCareerButtonCampaignBehavior : CampaignBehaviorBase
     {
         private bool _grailKnightCompanionDialogBegins;
-        private Hero _currentHeroTemplate;
+        private CharacterObject _currentCharacterTemplate;
         
         private void OnSessionLaunched(CampaignGameStarter obj)
         {
-            obj.AddDialogLine("grailKnightCompanionHonoring_start1", "start", "grailKnightCompanionHonoring_vow1", new TextObject("Mylord what do you want from me").ToString(), GrailKnightCompanionVowCondition, DeactivateCondition, 200,null);
-            obj.AddPlayerLine("grailKnightCompanionHonoring_vow1", "grailKnightCompanionHonoring_vow1", "grailKnightCompanionHonoring_vow2",new TextObject("Yo man you deserve yourself some strips man").ToString(), null, null,200, null);
-            obj.AddDialogLine("grailKnightCompanionHonoring_vow2", "grailKnightCompanionHonoring_vow2", "grailKnightCompanionHonoring_vow3", new TextObject("haha really nice!").ToString(), null,null , 200,null);
+            obj.AddDialogLine("grailKnightCompanionHonoring_start1", "start", "grailKnightCompanionHonoring_vow1", new TextObject("Hello Lord, it is rare that I have the pleasure of speaking with you. How can I serve you?").ToString(), GrailKnightCompanionVowCondition, DeactivateCondition, 200,null);
+            obj.AddPlayerLine("grailKnightCompanionHonoring_vow1", "grailKnightCompanionHonoring_vow1", "grailKnightCompanionHonoring_vow2",new TextObject("You have served me well for some time now and like I have completed your quest for the grail and have passed the lady’s secret trials.").ToString(), null, null,200, null);
+            obj.AddDialogLine("grailKnightCompanionHonoring_vow2", "grailKnightCompanionHonoring_vow2", "grailKnightCompanionHonoring_vow3", new TextObject("I would serve no other! What an honour to fight by the side of a fellow Grail Knight, especially one as accomplished and renowned as you.").ToString(), null,null , 200,null);
             obj.AddPlayerLine("grailKnightCompanionHonoring_vow3", "grailKnightCompanionHonoring_vow3", "grailKnightCompanionHonoring_vow4",new TextObject("Get down on your knees brother").ToString(), null, null,200, null);
             obj.AddDialogLine("grailKnightCompanionHonoring_vow4", "grailKnightCompanionHonoring_vow4", "grailKnightCompanionHonoring_vow5", new TextObject("wait what are you serious now?").ToString(), null,null , 200,null);
             obj.AddPlayerLine("grailKnightCompanionHonoring_vow5", "grailKnightCompanionHonoring_vow5", "grailKnightCompanionHonoring_vow6",new TextObject("Get on your fucking knees!").ToString(), null, null,200, null);
@@ -48,20 +50,24 @@ namespace TOR_Core.CampaignMechanics
                 //Log error
                 return;
             }
-            _currentHeroTemplate = HeroCreator.CreateSpecialHero(heroTemplate, Campaign.Current.MainParty.CurrentSettlement, null, null, 40);
+           
 
-  
-            ConversationCharacterData characterData = new ConversationCharacterData(_currentHeroTemplate.CharacterObject, null);
+            _currentCharacterTemplate = heroTemplate;
+            ConversationCharacterData characterData = new ConversationCharacterData(heroTemplate, null);
             ConversationCharacterData playerData = new ConversationCharacterData(Hero.MainHero.CharacterObject,Hero.MainHero.PartyBelongedTo.Party);
             Campaign.Current.CurrentConversationContext = ConversationContext.Default;
             Campaign.Current.ConversationManager.OpenMapConversation(playerData,characterData);
+
+            
         }
 
 
         private void MakeGrailKnightCompanion()
         {
-            AddCompanionAction.Apply(MobileParty.MainParty.ActualClan, _currentHeroTemplate);
-            AddHeroToPartyAction.Apply(_currentHeroTemplate, MobileParty.MainParty);
+            var hero = HeroCreator.CreateSpecialHero(_currentCharacterTemplate, Campaign.Current.MainParty.CurrentSettlement, null, null, 40);
+            
+            AddCompanionAction.Apply(MobileParty.MainParty.ActualClan, hero);
+            AddHeroToPartyAction.Apply(hero, MobileParty.MainParty);
         }
         
         
@@ -78,6 +84,8 @@ namespace TOR_Core.CampaignMechanics
 
         public void ButtonPressed(object sender, TroopEventArgs eventArgs)
         {
+            if(Hero.MainHero.GetCareer() != TORCareers.GrailKnight) return;
+            
             var troopID = eventArgs.TroopId;
             _grailKnightCompanionDialogBegins=true;
             InitiateDialog(troopID);

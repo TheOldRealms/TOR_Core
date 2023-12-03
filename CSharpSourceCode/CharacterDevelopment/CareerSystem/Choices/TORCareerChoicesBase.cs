@@ -1,6 +1,7 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TOR_Core.CharacterDevelopment;
 using TaleWorlds.Core;
+using TaleWorlds.Localization;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 
@@ -9,6 +10,7 @@ namespace TOR_Core.CampaignMechanics.Choices
     public abstract class TORCareerChoicesBase
     {
         protected CareerObject CareerID=null;
+        
 
 
         public CareerObject GetID()
@@ -77,18 +79,18 @@ namespace TOR_Core.CampaignMechanics.Choices
         {
             //this should only be meaningful in 
         }
+        
+        public virtual string CareerButtonIcon => "winds_icon_45"; 
 
         public virtual bool ConditionsAreMetToShowButton(CharacterObject characterObject)
         {
             return false;
         }
         
-        public virtual bool ConditionsAreMetToEnableButton(CharacterObject characterObject)
+        public virtual bool ConditionsAreMetToEnableButton(CharacterObject characterObject, out TextObject disableReason)
         {
+            disableReason = new TextObject();
             return false;
         }
-
-
-
     }
 }

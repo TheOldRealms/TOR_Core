@@ -480,6 +480,7 @@
     <Compile Include="CampaignMechanics\BountyMaster\BountyMasterCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Careers\DamselEnvoyOfTheLadyPerkBehavior.cs" />
     <Compile Include="CampaignMechanics\Careers\GrailKnightCareerButtonCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\Careers\MercenaryCareerButtonCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Careers\TORCareerPerkCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissCampaignBehavior.cs" />

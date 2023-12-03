@@ -13,6 +13,7 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.ScreenSystem;
@@ -30,6 +31,8 @@ namespace TOR_Core.Extensions.UI
         private BasicTooltipViewModel _buttonHint;
         private bool _shouldButtonBeVisible2;
         private string _spriteTORButton;
+        private TextObject disableReason;
+        
 
         public PartyCharacterVMExtension(ViewModel vm) : base(vm)
         {
@@ -47,27 +50,25 @@ namespace TOR_Core.Extensions.UI
             var showButton= CareerHelper.ConditionsMetToShowSuperButton(troop);
 
             ShouldButtonBeVisible = showButton;
-            IsButtonEnabled = showButton && CareerHelper.ConditionsMetToEnableSuperButton(troop);
+            var textObect = new TextObject();
+            IsButtonEnabled = showButton && CareerHelper.ConditionsMetToEnableSuperButton(troop, out textObect);
+            disableReason = textObect;
             
             
 
             ShouldButtonBeVisible2 = false;
             //General\Mission\PersonalKillfeed\kill_feed_skull
-            SpriteTORButton = "winds_icon_45";
+            SpriteTORButton = CareerHelper.GetButtonSprite();
 
 
 
-           
+
         }
-
-       
-
-
 
         private string GetButtonHintText()
         {
             //This method will get called every time the hint shows up, so you can dynamically construct the hint text based on context, not just static text
-            return "This is Z3rca's button. This text will show up as hint.";
+            return disableReason.ToString();
         }
 
         public void ExecuteButtonClick()

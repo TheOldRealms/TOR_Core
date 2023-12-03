@@ -1,7 +1,11 @@
+using System.Linq;
+using System.Windows.Forms;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Localization;
 using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.Choices;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -75,9 +79,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _knightlyPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("KnightlyPassive4"));
             
             _paymasterPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("PaymasterPassive1"));
-            _paymasterPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("PaymasterPassive1"));
-            _paymasterPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("PaymasterPassive1"));
-            _paymasterPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("PaymasterPassive1"));
+            _paymasterPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("PaymasterPassive2"));
+            _paymasterPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("PaymasterPassive3"));
+            _paymasterPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("PaymasterPassive4"));
 
             _mercenaryLordPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("MercenaryLordPassive1"));
             _mercenaryLordPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("MercenaryLordPassive2"));
@@ -134,9 +138,38 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _commanderPassive4.Initialize(CareerID, "Companion health of party is increased by 25.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special));
 
             //_commanderPassive4.
-                
         }
         
+        public override bool ConditionsAreMetToShowButton(CharacterObject characterObject)
+        {
+            return Hero.MainHero.HasCareerChoice("PaymasterPassive4")&& !characterObject.IsHero&&  (!characterObject.IsEliteTroop()||characterObject.IsEliteTroop()&& characterObject.IsRanged);
+        }
+        
+        public override bool ConditionsAreMetToEnableButton(CharacterObject characterObject, out TextObject disableReason)
+        {
+            disableReason = new TextObject("Makes the current unit a companion");
+            if (Campaign.Current.Models.ClanTierModel.GetCompanionLimit(Hero.MainHero.Clan) <= Hero.MainHero.CompanionsInParty.Count())
+            {
+                disableReason = new TextObject("Party limit has been reached.");
+                return false;
+            }
+
+            if (characterObject.IsKnightUnit()&& !characterObject.IsRanged)
+            {
+                disableReason = new TextObject("Only works for non-knightly units.");
+                return false;
+            }
+            
+            if (characterObject.IsKnightUnit()&& !characterObject.IsRanged)
+            {
+                disableReason = new TextObject("Unit needs to reach tier 5 and higher.");
+                return false;
+            }
+            
+            return true;
+        }
+        
+        public override string CareerButtonIcon => "General\\Icons\\Coin@2x";
 
       
     }
