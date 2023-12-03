@@ -25,7 +25,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         private bool _knowsPlayer;
         private bool _gaveQuestOffer;
         private readonly string _masterEngineerId = "tor_nulnengineernpc_empire";
-        private readonly string _rogueEngineerName = "Goswin";
+
         private Hero _masterEngineerHero = null;
         private Settlement _nuln;
         private bool _playerIsSkilledEnough;
@@ -34,6 +34,10 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
         private string questDialogId = "str_quest_tor_engineer";
 
+        private string GetRogueEngineerName()
+        {
+            return new TextObject ("{=tor_rogue_engineer_name_str}Goswin").ToString();
+        }
         public override void RegisterEvents()
         {
             CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameStarted);
@@ -186,7 +190,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
         private void OnSessionLaunched(CampaignGameStarter obj)
         {
-            MBTextManager.SetTextVariable("ROGUE_ENGINEER_NAME", _rogueEngineerName);
+            MBTextManager.SetTextVariable("ROGUE_ENGINEER_NAME", GetRogueEngineerName());
             MBTextManager.SetTextVariable("PLAYERNAME", Hero.MainHero.Name);
             _nuln = Settlement.All.FirstOrDefault(x => x.StringId == "town_WI1");
             AddEngineerDialogLines(obj);
@@ -262,6 +266,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             var engineerItems = MBObjectManager.Instance.GetObjectTypeList<ItemObject>().Where(x => !x.StringId.Contains("bretonnia") && x.IsTorItem() && (x.StringId.Contains("gun") || x.StringId.Contains("artillery")));
             var ammo = MBObjectManager.Instance.GetObject<ItemObject>("tor_neutral_weapon_ammo_musket_ball");
             var grenades = MBObjectManager.Instance.GetObject<ItemObject>("tor_empire_weapon_ammo_grenade");
+            var buckshots = MBObjectManager.Instance.GetObject<ItemObject>("tor_neutral_weapon_ammo_musket_ball_scatter");
             List<ItemRosterElement> list = new List<ItemRosterElement>();
             foreach (var item in engineerItems)
             {
@@ -271,7 +276,8 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             ItemRoster roster = new ItemRoster();
             roster.Add(list);
             if (ammo != null) roster.Add(new ItemRosterElement(ammo, MBRandom.RandomInt(2, 5)));
-            if (grenades != null) roster.Add(new ItemRosterElement(ammo, MBRandom.RandomInt(2, 5)));
+            if (grenades != null) roster.Add(new ItemRosterElement(grenades, MBRandom.RandomInt(2, 5)));
+            if (buckshots != null) roster.Add(new ItemRosterElement(buckshots, MBRandom.RandomInt(2, 5)));
             InventoryManager.OpenScreenAsTrade(roster, _nuln.Town);
         }
 
@@ -337,7 +343,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             if (Campaign.Current.CurrentConversationContext != ConversationContext.PartyEncounter) return false;
             if (!RunawayPartsQuest.RogueEngineerQuestPartIsActive()) return false;
             var partner = CharacterObject.OneToOneConversationCharacter;
-            return partner != null && partner.Occupation == Occupation.Lord && partner.HeroObject.Name.Contains(_rogueEngineerName);
+            return partner != null && partner.Occupation == Occupation.Lord && partner.HeroObject.Template.StringId.Contains(RunawayPartsQuest.GetRogueEngineerTemplateID());
         }
 
         private void checkplayerengineerskillrequirements()

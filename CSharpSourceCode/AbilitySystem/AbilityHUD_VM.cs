@@ -2,6 +2,7 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.Extensions;
@@ -31,7 +32,7 @@ namespace TOR_Core.AbilitySystem
             {
                 IsSpell = _ability is Spell;
                 SpriteName = _ability.Template.SpriteName;
-                Name = _ability.Template.Name;
+                Name = new TextObject(_ability.Template.Name).ToString();
                 WindsCost = _ability.Template.WindsOfMagicCost.ToString();
                 CoolDownLeft = _ability.GetCoolDownLeft().ToString();
                 IsOnCoolDown = _ability.IsOnCooldown();
@@ -103,7 +104,7 @@ namespace TOR_Core.AbilitySystem
         }
 
         [DataSourceProperty]
-        public string Name
+        public String Name
         {
             get
             {
@@ -113,6 +114,7 @@ namespace TOR_Core.AbilitySystem
             {
                 if (value != _name)
                 {
+                    
                     _name = value;
                     base.OnPropertyChangedWithValue(value, "Name");
                 }

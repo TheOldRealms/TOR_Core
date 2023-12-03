@@ -20,7 +20,7 @@ namespace TOR_Core.CharacterDevelopment
         {
             Instance = this;
             _spellCasterSkills = Game.Current.ObjectManager.RegisterPresumedObject(new TraitObject("SpellCasterSkills"));
-            _spellCasterSkills.Initialize(new TextObject("{=!}Spellcaster", null), new TextObject("{=!}Spellcaster Description", null), true, 0, 10);
+            _spellCasterSkills.Initialize(new TextObject("{=tor_spellcaster_trait_name_str}Spellcaster", null), new TextObject("{=tor_spellcaster_trait_description_str}Spellcaster Description", null), true, 0, 10);
         }
     }
 }
