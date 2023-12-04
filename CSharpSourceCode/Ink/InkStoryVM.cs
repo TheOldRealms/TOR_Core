@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 
 namespace TOR_Core.Ink
 {
@@ -24,6 +25,8 @@ namespace TOR_Core.Ink
             CurrentText = string.Empty;
             _story = story;
             _story.Reset();
+            _story.SetTitle();
+            SpritePath = story.GetInitialIllustration();
             _story.Continue(out _);
             RefreshValues();
         }
@@ -34,10 +37,11 @@ namespace TOR_Core.Ink
             if (_story == null) return;
             //Get Sprite to display on the right
             PlaySound();
-            if (_story.GetIllustration() != null)
+            if (_story.GetCurrentIllustration() != null)
             {
-                SpritePath = _story.GetIllustration();
+                SpritePath = _story.GetCurrentIllustration();
             }
+           
             //Calc if the current text is too long
             if(CurrentText.Count() > _maxChars)
             {
@@ -46,22 +50,25 @@ namespace TOR_Core.Ink
             else
             {
                 CurrentText = CurrentText + "\n" + _story.GetLine();
+                
             }
             //Check choices
             _choices.Clear();
             if (_story.IsOver())
             {
-                _choices.Add(new InkStoryChoiceVM(-1, "End", OnChoiceSelected));
+                _choices.Add(new InkStoryChoiceVM(-1, new TextObject ("{=inky_end_str}End").ToString(), OnChoiceSelected));
             }
             else if (!_story.HasChoices())
             {
-                _choices.Add(new InkStoryChoiceVM(0, "Continue", OnChoiceSelected));
+                
+                _choices.Add(new InkStoryChoiceVM(0, new TextObject ("{=inky_continue_str}Continue").ToString(), OnChoiceSelected));
             }
             else
             {
                 foreach(var choice in _story.GetChoices())
                 {
-                    _choices.Add(new InkStoryChoiceVM(choice.index, choice.text, OnChoiceSelected));
+                    var text = _story.getChoiceText (choice);
+                    _choices.Add(new InkStoryChoiceVM(choice.index, text, OnChoiceSelected));
                 }
             }
         }

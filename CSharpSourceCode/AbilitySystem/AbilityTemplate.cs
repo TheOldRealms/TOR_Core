@@ -11,6 +11,7 @@ using TOR_Core.Utilities;
 using TOR_Core.Extensions;
 using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.Localization;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -134,11 +135,11 @@ namespace TOR_Core.AbilitySystem
             MBBindingList<StatItemVM> list = new MBBindingList<StatItemVM>();
             if (IsSpell)
             {
-                list.Add(new StatItemVM("Spell Name: ", Name));
-                list.Add(new StatItemVM("Winds of Magic cost: ", hero.GetEffectiveWindsCostForSpell(spellTemplate) + TORCommon.GetWindsIconAsText()));
-                list.Add(new StatItemVM("Spell Tier: ", ((SpellCastingLevel)SpellTier).ToString()));
-                list.Add(new StatItemVM("Spell Type: ", AbilityEffectType.ToString()));
-                list.Add(new StatItemVM("Cooldown: ", CoolDown.ToString()+" seconds"));
+                list.Add(new StatItemVM(new TextObject ("{=tor_spell_stat_tag_name_str}Spell Name: ").ToString(), new TextObject(Name).ToString()));
+                list.Add(new StatItemVM(new TextObject ("{=tor_spell_stat_tag_wom_cost_str}Winds of Magic cost: ").ToString(), hero.GetEffectiveWindsCostForSpell(spellTemplate) + TORCommon.GetWindsIconAsText()));
+                list.Add(new StatItemVM(new TextObject ("{=tor_spell_stat_tag_tier_str}Spell Tier: ").ToString(), ((SpellCastingLevel)SpellTier).ToString()));
+                list.Add(new StatItemVM(new TextObject ("{=tor_spell_stat_tag_type_str}Spell Type: ").ToString(), AbilityEffectType.ToString()));
+                list.Add(new StatItemVM(new TextObject ("{=tor_spell_stat_tag_cooldown_str}Cooldown: ").ToString(), CoolDown.ToString()+" seconds"));
             }
             return list;
         }

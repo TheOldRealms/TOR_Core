@@ -16,7 +16,7 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
         private Kingdom _sylvania;
         public override RelevantContextType RelevantContext => RelevantContextType.Map;
 
-        public override TextObject TitleText => new TextObject("Player recieves the Blood Kiss.");
+        public override TextObject TitleText => new TextObject("{=tor_bloodkiss_player_notification_str}Player recieves the Blood Kiss.");
 
         public override string SceneID => "scn_cutscene_bloodkiss";
 

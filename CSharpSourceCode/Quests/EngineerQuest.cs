@@ -25,15 +25,16 @@ namespace TOR_Core.Quests
         [SaveableField(6)] private MobileParty _targetParty = null;
         [SaveableField(7)] private bool _failstate;
         private bool _skipImprisonment;
+        private string RogueEngineerLeaderName;
         private const string QuestName = "Runaway Parts";
         private const string CultistFactionId = "forest_bandits";
-        private const string CultistPartyDisplayName = "Runaway Thieves";
-        private const string CultistPartyLeaderName = "Runaway Thieves Leader";
+        private string CultistPartyDisplayName;
+        private string CultistPartyLeaderName;
         private const string CultistPartyTemplateId = "broken_wheel";
         private const string CultistLeaderTemplateId = "tor_bw_cultist_lord_0";
         private const string EngineerFactionId = "mountain_bandits";
-        private const string RogueEngineerDisplayName = "Goswins Part Thieves";
-        private const string RogueEngineerLeaderName = "Goswin";
+        private string RogueEngineerDisplayName;
+       
         private const string RogueEngineerPartyTemplateId = "empire_deserters_boss_party";
         private const string RogueEngineerLeaderTemplateId = "tor_engineerquesthero";
         public EngineerQuestStates CurrentActiveLog => (EngineerQuestStates)_currentActiveLog;
@@ -57,20 +58,29 @@ namespace TOR_Core.Quests
         private void LoadAllLogs()
         {
             _logs = new List<JournalLog>();
-            var log0 = new JournalLog(CampaignTime.Now, new TextObject("The Master Engineer has tasked me with hunting down thieving runaways, I should find them and bring back what they stole."), new TextObject("Track down runaway thieves"), 0, 1, LogType.Discreate);
-            var log1 = new JournalLog(CampaignTime.Now, new TextObject("I found the thieves, but they did not have the stolen components. I should return to the Master Engineer with the news."), new TextObject("Return to the Master Engineer in Nuln"), 0, 0, LogType.Discreate);
-            var log2 = new JournalLog(CampaignTime.Now, new TextObject("It would appear a traitorous Engineer has the stolen parts, the Master Engineer has asked for my help in finding him."), new TextObject("Track down Goswin and retrieve the stolen components."), 0, 1, LogType.Discreate);
-            var log3 = new JournalLog(CampaignTime.Now, new TextObject("I have slain Oswin and retrieved the stolen components, I should return to the Master Engineer and let him know."), new TextObject("Return to the Master Engineer in Nuln"), 0, 1, LogType.Discreate);
+            var log0 = new JournalLog(CampaignTime.Now, new TextObject("{=tor_engineer_quest_log0_str}The Master Engineer has tasked me with hunting down thieving runaways, I should find them and bring back what they stole."), new TextObject("{=tor_engineer_quest_task0_str}Track down runaway thieves"), 0, 1, LogType.Discreate);
+            var log1 = new JournalLog(CampaignTime.Now, new TextObject("{=tor_engineer_quest_log1_str}I found the thieves, but they did not have the stolen components. I should return to the Master Engineer with the news."), new TextObject("{=tor_engineer_quest_task1_str}Return to the Master Engineer in Nuln"), 0, 0, LogType.Discreate);
+            var log2 = new JournalLog(CampaignTime.Now, new TextObject("{=tor_engineer_quest_log2_str}It would appear a traitorous Engineer has the stolen parts, the Master Engineer has asked for my help in finding him."), new TextObject("{=tor_engineer_quest_task2_str}Track down Goswin and retrieve the stolen components."), 0, 1, LogType.Discreate);
+            var log3 = new JournalLog(CampaignTime.Now, new TextObject("{=tor_engineer_quest_log3_str}I have slain Oswin and retrieved the stolen components, I should return to the Master Engineer and let him know."), new TextObject("{=tor_engineer_quest_task3_str}Return to the Master Engineer in Nuln"), 0, 1, LogType.Discreate);
             _logs.Add(log0);
             _logs.Add(log1);
             _logs.Add(log2);
             _logs.Add(log3);
         }
 
+        public string GetRogueEngineerTemplateID()
+        {
+            return RogueEngineerLeaderTemplateId;
+        }
+
         private void InitializeQuest()
         {
             LoadAllLogs();
             _task1 = AddDiscreteLog(_logs[0].LogText, _logs[0].TaskName, 0, 1);
+            RogueEngineerLeaderName = new TextObject ("{ROGUE_ENGINEER_NAME}").ToString();
+            RogueEngineerDisplayName = GameTexts.FindText ("str_quest_tor_engineer.rogueEngineerParty").ToString();
+            CultistPartyDisplayName = new TextObject("{tor_quest_engineer_cultist_party_str} Runaway Thieves").ToString();
+            CultistPartyLeaderName = new TextObject("{tor_quest_engineer_cultist_party_leader_str} Runaway Thieves Leader").ToString();
             _currentActiveLog = 0;
         }
 
@@ -131,7 +141,7 @@ namespace TOR_Core.Quests
             {
                 RemoveLog(_task1);
                 _task1 = AddDiscreteLog(
-                    new TextObject("I failed... I was beaten. I need to return to the Master Engineer with the news."),
+                    new TextObject("{=tor_engineer_quest_log1_fail_str}I failed... I was beaten. I need to return to the Master Engineer with the news."),
                     new TextObject("Return to the Master Engineer in Nuln"), 0, 1);
             }
 
@@ -139,7 +149,7 @@ namespace TOR_Core.Quests
             {
                 RemoveLog(_task3);
                 _task3 = AddDiscreteLog(
-                    new TextObject("I failed... I was beaten. I need to return to the Master Engineer with the news."),
+                    new TextObject("{=tor_engineer_quest_log3_fail_str}I failed... I was beaten. I need to return to the Master Engineer with the news."),
                     new TextObject("Return to the Master Engineer in Nuln"), 0, 1);
             }
 
@@ -156,12 +166,12 @@ namespace TOR_Core.Quests
             //Current.ConversationManager.EndConversation();
             Current.ConversationManager.ClearCurrentOptions();
             Current.ConversationManager.AddDialogLineMultiAgent("start", "start", "close_window",
-                new TextObject("Your victory here is meaningless...you will never find what we took..."),
+                new TextObject("{=tor_engineer_quest_cultists_skip_str}Your victory here is meaningless...you will never find what we took..."),
                 () => _skipImprisonment && _currentActiveLog == EngineerQuestStates.HandInCultisthunt, RemoveSkip, 0, 1,
                 200, null);
             
             Current.ConversationManager.AddDialogLineMultiAgent("start", "start", "rogueengineer_playerafterbattle",
-                new TextObject("You have no idea what you are interfering with..."),
+                new TextObject("{=tor_engineer_quest_engineer_skip_str}You have no idea what you are interfering with..."),
                 () => _skipImprisonment && _currentActiveLog == EngineerQuestStates.HandInRogueEngineerHunt, RemoveSkip,
                 0, 1, 200, null);
            

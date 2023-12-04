@@ -39,7 +39,7 @@ namespace TOR_Core.Items
 		public TorItemMenuVM(Action<ItemVM, int> resetComparedItems, InventoryLogic inventoryLogic, Func<WeaponComponentData, ItemObject.ItemUsageSetFlags> getItemUsageSetFlags, Func<EquipmentIndex, SPItemVM> getEquipmentAtIndex) : base(resetComparedItems, inventoryLogic, getItemUsageSetFlags, getEquipmentAtIndex)
         {
 			_itemTraitList = new MBBindingList<TorItemTraitVM>();
-			_readHint = new HintViewModel(new TextObject("Read scroll"));
+			_readHint = new HintViewModel(new TextObject("{=tor_item_hint_read_scroll_str}Read scroll"));
 			inventoryLogic.AfterTransfer += CheckItem;
         }
 
@@ -117,11 +117,17 @@ namespace TOR_Core.Items
                 }
                 if (_lastSetItem.HasWeaponComponent)
                 {
-					var damageprops = base.TargetItemProperties.Where(x => x.DefinitionLabel.Contains("Damage"));
+					var damageprops = base.TargetItemProperties.Where(x => x.DefinitionLabel.Contains (damageText.ToString()));
 					foreach(var prop in damageprops)
                     {
 						int damagenum = 0;
+						var text = prop.ValueLabel.Split (' ')[0];
 						bool success = int.TryParse(prop.ValueLabel.Split(' ')[0], out damagenum);
+						if (!success)
+						{ 
+							success = int.TryParse(prop.ValueLabel.Split(' ')[1], out damagenum);	//in foreign languages the order is swapped for what ever reason
+						}
+							
                         if (success)
                         {
 							prop.ValueLabel = "";
@@ -131,17 +137,17 @@ namespace TOR_Core.Items
 								for (int i = 0; i < info.DamageProportions.Count; i++)
 								{
 									var tuple = info.DamageProportions[i];
-									prop.ValueLabel += ((int)(tuple.Percent * damagenum)).ToString() + " " + tuple.DamageType.ToString() + (i == info.DamageProportions.Count - 1 ? "" : "+");
+									prop.ValueLabel += ((int)(tuple.Percent * damagenum)).ToString() + " " + GameTexts.FindText("tor_damagetype",tuple.DamageType.ToString()) + (i == info.DamageProportions.Count - 1 ? "" : "+");
 								}
 								prop.ValueLabel += ")";
 							}
 							else if (info != null && info.DamageProportions.Count == 1)
-                            {
-								prop.ValueLabel = damagenum.ToString() + " " + info.DamageProportions[0].DamageType.ToString();
+							{
+								prop.ValueLabel = damagenum.ToString() + " " + GameTexts.FindText ("tor_damagetype", DamageType.Physical.ToString());
 							}
 							if(prop.ValueLabel == "")
                             {
-								prop.ValueLabel = damagenum.ToString() + " Physical";
+								prop.ValueLabel = damagenum.ToString() + " "+GameTexts.FindText("tor_damagetype",DamageType.Physical.ToString());
                             }
                         }
                     }
@@ -178,18 +184,21 @@ namespace TOR_Core.Items
 			if (!IsSkillBook
 				|| !TORSkillBookCampaignBehavior.Instance.IsBookUseful(_lastSetItem))
             {
-				TORCommon.Say(String.Format("It seems that there is nothing more to gain from studying {0}", _lastSetItem.Name));
+	            MBTextManager.SetTextVariable("TOR_LAST_READ_BOOK", _lastSetItem.Name);
+	            TORCommon.Say (new TextObject ("{tor_item_hint_read_scroll_finished_str} It seems that there is nothing more to gain from studying {TOR_LAST_READ_BOOK}."));
 				return;
             }
 			if (TORSkillBookCampaignBehavior.Instance.CurrentBook.Equals(_lastSetItem.StringId ?? "")) {
-				TORCommon.Say(String.Format("You are already reading {0}", _lastSetItem.Name));
+				MBTextManager.SetTextVariable("TOR_LAST_READ_BOOK", _lastSetItem.Name);
+				TORCommon.Say (new TextObject ("{tor_item_hint_read_scroll_finished_str} You are already reading {TOR_LAST_READ_BOOK}."));
 				return;
             }
 
 			TORSkillBookCampaignBehavior.Instance.CurrentBook =
 				_lastSetItem.StringId ?? "";
 			UpdateReadButton(_lastSetItem);
-			TORCommon.Say(String.Format("Selected {0} for reading!", _lastSetItem?.Name));
+			MBTextManager.SetTextVariable("TOR_LAST_READ_BOOK", _lastSetItem.Name);
+			TORCommon.Say (new TextObject ("{tor_item_hint_read_scroll_selected_str} Selected {TOR_LAST_READ_BOOK} for reading!"));
 			return;
 		}
 

@@ -19,7 +19,7 @@ namespace TOR_Core.Items
         public static TorItemTraitVM CreateDamageOnlyTraitVM()
         {
 			var vm = new TorItemTraitVM();
-			vm._hintText = new HintViewModel(new TaleWorlds.Localization.TextObject("This item deals elemental damage."));
+			vm._hintText = new HintViewModel(new TaleWorlds.Localization.TextObject("{=tor_item_trait_default_elemental_damage_str}This item deals elemental damage."));
 			vm._icon = "<img src=\"winds_icon_45\"/>";
 
             return vm;

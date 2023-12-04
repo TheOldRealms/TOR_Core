@@ -216,7 +216,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         {
             starter.AddGameMenu("raidingsite_menu", "{LOCATION_DESCRIPTION}", RaidingSiteMenuInit);
             starter.AddGameMenuOption("raidingsite_menu", "dobattle", "{BATTLE_OPTION_TEXT}", RaidingSiteBattleCondition, RaidingSiteBattleConsequence);
-            starter.AddGameMenuOption("raidingsite_menu", "leave", "Leave...", delegate (MenuCallbackArgs args)
+            starter.AddGameMenuOption("raidingsite_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate (MenuCallbackArgs args)
             {
                 args.optionLeaveType = GameMenuOption.LeaveType.Leave;
                 return true;
@@ -289,12 +289,12 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                     var list = new List<InquiryElement>();
                     var item = MBObjectManager.Instance.GetObject<ItemObject>(comp.RewardItemId);
                     list.Add(new InquiryElement(item, item.Name.ToString(), new ImageIdentifier(item)));
-                    var inq = new MultiSelectionInquiryData("Victory!", "You are Victorious! Claim your reward!", list, false, 1, 1, "OK", null, onRewardClaimed, null);
+                    var inq = new MultiSelectionInquiryData("Victory!", "{=tor_custom_settlement_chaos_portal_victory_str}You are Victorious! Claim your reward!", list, false, 1, 1, "OK", null, onRewardClaimed, null);
                     MBInformationManager.ShowMultiSelectionInquiry(inq);
                 }
                 else
                 {
-                    var inq = new InquiryData("Defeated!", "The enemy proved more than a match for you. Better luck next time!", true, false, "OK", null, null, null);
+                    var inq = new InquiryData("Defeated!", "{=tor_custom_settlement_chaos_portal_lose_str}The enemy proved more than a match for you. Better luck next time!", true, false, "OK", null, null, null);
                     InformationManager.ShowInquiry(inq);
                 }
             }
@@ -312,8 +312,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         {
             starter.AddGameMenu("shrine_menu", "{LOCATION_DESCRIPTION}", ShrineMenuInit);
             starter.AddGameMenuOption("shrine_menu", "pray", "{PRAY_TEXT}", PrayCondition, (args) => GameMenu.SwitchToMenu("shrine_menu_praying"));
-            starter.AddGameMenuOption("shrine_menu", "donate", "{=!}Give items as an offering", DonationCondition, (args) => InventoryManager.OpenScreenAsInventory());
-            starter.AddGameMenuOption("shrine_menu", "leave", "Leave...", delegate (MenuCallbackArgs args)
+            starter.AddGameMenuOption("shrine_menu", "donate", "{=tor_custom_settlement_shrine_offering_label_str}Give items as an offering", DonationCondition, (args) => InventoryManager.OpenScreenAsInventory());
+            starter.AddGameMenuOption("shrine_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate (MenuCallbackArgs args)
             {
                 args.optionLeaveType = GameMenuOption.LeaveType.Leave;
                 return true;
@@ -362,10 +362,11 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             var component = settlement.SettlementComponent as ShrineComponent;
             args.optionLeaveType = GameMenuOption.LeaveType.ShowMercy;
             var godName = GameTexts.FindText("tor_religion_name_of_god", component.Religion.StringId);
-            MBTextManager.SetTextVariable("PRAY_TEXT", "Pray to recieve the blessing of " + godName);
+            MBTextManager.SetTextVariable("GOD_NAME", godName);
+            MBTextManager.SetTextVariable("PRAY_TEXT", "{=tor_custom_settlement_shrine_pray_text_str}Pray to recieve the blessing of {GOD_NAME}");
             if (MobileParty.MainParty.HasAnyActiveBlessing())
             {
-                args.Tooltip = new TextObject("{=!}You already have an active blessing.", null);
+                args.Tooltip = new TextObject("{=tor_custom_settlement_shrine_blessing_already_active_str}You already have an active blessing.", null);
                 args.IsEnabled = false;
             }
             return component.IsActive && component.Religion != null && !component.Religion.HostileReligions.Contains(Hero.MainHero.GetDominantReligion());
@@ -378,7 +379,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             args.optionLeaveType = GameMenuOption.LeaveType.Trade;
             if (!Hero.MainHero.GetPerkValue(TORPerks.Faith.Offering))
             {
-                args.Tooltip = new TextObject("{=!}You need the Offering perk in the Faith skill line to perform this action.", null);
+                args.Tooltip = new TextObject("{=tor_custom_settlement_donation_perk_info_str}You need the Offering perk in the Faith skill line to perform this action.", null);
                 args.IsEnabled = false;
             }
             return component.IsActive && component.Religion != null && !component.Religion.HostileReligions.Contains(Hero.MainHero.GetDominantReligion());
@@ -431,10 +432,13 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             var component = settlement.SettlementComponent as ShrineComponent;
             var godName = GameTexts.FindText("tor_religion_name_of_god", component.Religion.StringId);
             var troop = component.Religion.ReligiousTroops.FirstOrDefault(x => x.IsBasicTroop && x.Occupation == Occupation.Soldier);
-            MBTextManager.SetTextVariable("PRAY_RESULT", "You recieve the blessing of " + godName + ".");
+            MBTextManager.SetTextVariable("GOD_NAME", godName);
+            MBTextManager.SetTextVariable("PRAY_RESULT", "{=tor_custom_settlement_shrine_pray_result_text_str}You received the blessing of {GOD_NAME}.");
             if(_numberOfTroops > 0)
             {
-                MBTextManager.SetTextVariable("FOLLOWERS_RESULT", "Witnessing your prayers have inspired " + _numberOfTroops.ToString() + " " + troop.EncyclopediaLinkWithName + " to join your party.");
+                MBTextManager.SetTextVariable("FOLLOWER_RESULT_NUMBER", _numberOfTroops.ToString());
+                MBTextManager.SetTextVariable("FOLLOWER_RESULT_TROOP", troop.EncyclopediaLinkWithName);
+                MBTextManager.SetTextVariable("FOLLOWERS_RESULT", "{=tor_custom_settlement_shrine_follower_result_str}Witnessing your prayers have inspired {FOLLOWER_RESULT_NUMBER} {FOLLOWER_RESULT_TROOP} to join your party.");
             }
             MobileParty.MainParty.AddBlessingToParty(component.Religion.StringId, _model.CalculateBlessingDurationForParty(MobileParty.MainParty));
             Hero.MainHero.AddReligiousInfluence(component.Religion, _model.CalculateDevotionIncreaseForPraying(Hero.MainHero));
@@ -463,13 +467,13 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         {
             starter.AddGameMenu("cursedsite_menu", "{LOCATION_DESCRIPTION}", CursedSiteMenuInit);
             starter.AddGameMenuOption("cursedsite_menu", "purify", "{PURIFY_TEXT}", PurifyCondition, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu_purifying"));
-            starter.AddGameMenuOption("cursedsite_menu", "ghosts", "Tap into the congealed essence of Dark Magic and bind some wraiths to your will.", GhostsCondition, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu_ghosts"));
-            starter.AddGameMenuOption("cursedsite_menu", "leave", "Leave...", delegate (MenuCallbackArgs args)
+            starter.AddGameMenuOption("cursedsite_menu", "ghosts", "{tor_custom_settlement_menu_cursed_site_ghost_str}Tap into the congealed essence of Dark Magic and bind some wraiths to your will.", GhostsCondition, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu_ghosts"));
+            starter.AddGameMenuOption("cursedsite_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate (MenuCallbackArgs args)
             {
                 args.optionLeaveType = GameMenuOption.LeaveType.Leave;
                 return true;
             }, (MenuCallbackArgs args) => PlayerEncounter.Finish(true), true);
-            starter.AddWaitGameMenu("cursedsite_menu_purifying", "Performing purification ritual...",
+            starter.AddWaitGameMenu("cursedsite_menu_purifying", "{=tor_custom_settlement_cursed_site_purify_progress_str}Performing purification ritual...",
                 delegate (MenuCallbackArgs args)
                 {
                     _startWaitTime = CampaignTime.Now;
@@ -479,7 +483,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 }, null, PurificationConsequence,
                 PurifyingTick,
                 GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameOverlays.MenuOverlayType.None, 4f, GameMenu.MenuFlags.None, null);
-            starter.AddWaitGameMenu("cursedsite_menu_ghosts", "Performing binding ritual...",
+            starter.AddWaitGameMenu("cursedsite_menu_ghosts", "{=tor_custom_settlement_cursed_site_ghosts_progress_str}Performing binding ritual...",
                 delegate (MenuCallbackArgs args)
                 {
                     _startWaitTime = CampaignTime.Now;
@@ -491,12 +495,12 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameOverlays.MenuOverlayType.None, 4f, GameMenu.MenuFlags.None, null);
             starter.AddGameMenu("purification_result", "{PURIFICATION_RESULT} {NEWLINE} {WOUNDED_RESULT}", PurificationResultInit);
             starter.AddGameMenu("ghost_result", "{GHOST_RESULT}", GhostResultInit);
-            starter.AddGameMenuOption("purification_result", "return_to_root", "Continue", delegate (MenuCallbackArgs args)
+            starter.AddGameMenuOption("purification_result", "return_to_root", "{tor_custom_settlement_menu_continue_str}Continue", delegate (MenuCallbackArgs args)
             {
                 args.optionLeaveType = GameMenuOption.LeaveType.Continue;
                 return true;
             }, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu"), true);
-            starter.AddGameMenuOption("ghost_result", "return_to_root", "Continue", delegate (MenuCallbackArgs args)
+            starter.AddGameMenuOption("ghost_result", "return_to_root", "{tor_custom_settlement_menu_continue_str}Continue", delegate (MenuCallbackArgs args)
             {
                 args.optionLeaveType = GameMenuOption.LeaveType.Continue;
                 return true;
@@ -514,7 +518,9 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             }
             else
             {
-                MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", new TextObject(text.ToString() + "{NEWLINE}" + " " + "{NEWLINE}" + "Currently there are wards in place holding back the malevolent energies of the curse. The wards will hold for " + component.WardHours + " hours more."));
+                MBTextManager.SetTextVariable("CURSEDSITE_WARDHOURS", component.WardHours );
+                var wardText = new TextObject ("{=tor_custom_settlement_cursed_site_ward_text_str}Currently there are wards in place holding back the malevolent energies of the curse. The wards will hold for {CURSEDSITE_WARDHOURS} hours more");
+                MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", new TextObject(text.ToString() + "{NEWLINE}" + " " + "{NEWLINE}" + wardText));
             }
             args.MenuContext.SetBackgroundMeshName(component.BackgroundMeshName);
         }
@@ -527,12 +533,13 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             if (component != null && religion != null && component.Religion.HostileReligions.Contains(religion) && religion.Affinity == ReligionAffinity.Order)
             {
                 var godName = GameTexts.FindText("tor_religion_name_of_god", religion.StringId);
+                MBTextManager.SetTextVariable("GOD_NAME", godName);
                 args.optionLeaveType = GameMenuOption.LeaveType.ShowMercy;
-                MBTextManager.SetTextVariable("PURIFY_TEXT", "Perform a ritual of warding in the name of " + godName + ".");
+                MBTextManager.SetTextVariable("PURIFY_TEXT", "{=tor_custom_settlement_cursed_site_purify_text_str}Perform a ritual of warding in the name of {GOD_NAME}.");
                 if (MobileParty.MainParty.MemberRoster.TotalHealthyCount < 10)
                 {
                     args.IsEnabled = false;
-                    args.Tooltip = new TextObject("You need at least 10 healthy party members to perform the ritual.");
+                    args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_purify_fail_text_str}You need at least 10 healthy party members to perform the ritual.");
                 }
                 return component.IsActive;
             }
@@ -546,12 +553,12 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             args.optionLeaveType = GameMenuOption.LeaveType.ForceToGiveTroops;
             if (!(Hero.MainHero.IsNecromancer() || Hero.MainHero.IsVampire()))
             {
-                args.Tooltip = new TextObject("You are not a practicioner of necromancy.");
+                args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_not_necromancer_text_str}You are not a practitioner of necromancy.");
                 args.IsEnabled = false;
             }
             if (_lastGhostRecruitmentTime.ContainsKey(Hero.MainHero.StringId) && _lastGhostRecruitmentTime[Hero.MainHero.StringId] >= (int)CampaignTime.Now.ToDays)
             {
-                args.Tooltip = new TextObject("You can only perform this action once a day.");
+                args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_once_a_day_text_str}You can only perform this action once a day.");
                 args.IsEnabled = false;
             }
             return component.IsActive;
@@ -621,10 +628,12 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             var settlement = Settlement.CurrentSettlement;
             var component = settlement.SettlementComponent as CursedSiteComponent;
             int duration = TORConstants.DEFAULT_WARDING_DURATION; //TODO modify this based on faith perks/skills?
-            MBTextManager.SetTextVariable("PURIFICATION_RESULT", "Your party succeeds in placing seals and wards around the area dampening the effects of the curse. You estimate the wards will hold for " + duration + " hours.");
+            MBTextManager.SetTextVariable ("PURIFICATION_DURATION", duration);
+            MBTextManager.SetTextVariable("PURIFICATION_RESULT", "{=tor_custom_settlement_cursed_site_purify_success_str}Your party succeeds in placing seals and wards around the area dampening the effects of the curse. You estimate the wards will hold for {PURIFICATION_DURATION} hours.");
             if (_numberOfTroops > 0)
             {
-                MBTextManager.SetTextVariable("WOUNDED_RESULT", "Staying in the cursed area while performing the ritual has taken a toll on your men. " + _numberOfTroops + " of your party members have become wounded.");
+                MBTextManager.SetTextVariable("PURIFICATION_WOUNDED_RESULT_NUMBER", _numberOfTroops);
+                MBTextManager.SetTextVariable("WOUNDED_RESULT", "{=tor_custom_settlement_cursed_site_purify_wounded_result_str}Staying in the cursed area while performing the ritual has taken a toll on your men. {PURIFICATION_WOUNDED_RESULT_NUMBER} of your party members have become wounded.");
             }
             Hero.MainHero.AddReligiousInfluence(Hero.MainHero.GetDominantReligion(), TORConstants.DEFAULT_WARDING_DEVOTION_INCREASE);
             Hero.MainHero.AddSkillXp(TORSkills.Faith, 300);
@@ -636,7 +645,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         {
             if (_numberOfTroops > 0)
             {
-                MBTextManager.SetTextVariable("GHOST_RESULT", "You successfully bind " + _numberOfTroops + " spirits to your command.");
+                MBTextManager.SetTextVariable("GHOST_RESULT_NUMBER", _numberOfTroops);
+                MBTextManager.SetTextVariable("GHOST_RESULT", "{=tor_custom_settlement_cursed_site_ghosts_result_str}You successfully bind {GHOST_RESULT_NUMBER} spirits to your command.");
                 if (_lastGhostRecruitmentTime.ContainsKey(Hero.MainHero.StringId))
                 {
                     _lastGhostRecruitmentTime[Hero.MainHero.StringId] = (int)CampaignTime.Now.ToDays;

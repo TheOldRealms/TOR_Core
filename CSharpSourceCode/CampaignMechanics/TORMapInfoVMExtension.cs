@@ -4,6 +4,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Map.MapBar;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.UI;
 
@@ -31,6 +32,10 @@ namespace TOR_Core.CampaignMechanics
 
 		private List<TooltipProperty> GetArtilleryHintText()
 		{
+			string artilleryTitle = new TextObject ("{=tor_ui_artillery_title_str}Artillery").ToString();
+			string artilleryInventory = new TextObject ("{=tor_ui_artillery_amount_str}Current Artillery Pieces in Inventory:").ToString();
+			string artilleryDeployable = new TextObject ("{=tor_ui_winds_of_magic_recharge_rate_str}Maximum Deployable Artillery Pieces:").ToString();
+			
 			List<TooltipProperty> list = new List<TooltipProperty>();
 			list.Add(new TooltipProperty("Artillery", _maxArtillery.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.Title));
 			list.Add(new TooltipProperty("Current Artillery Pieces in Inventory:", _currentArtilleryItems.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
@@ -40,11 +45,14 @@ namespace TOR_Core.CampaignMechanics
 
 		private List<TooltipProperty> GetWindsHintText()
 		{
+			string womTitle = new TextObject ("{=tor_ui_winds_of_magic_title_str}Winds of Magic").ToString();
+			string womMaximum = new TextObject ("{=tor_ui_winds_of_magic_maximum_str}Maximum:").ToString();
+			string womRechargeRate = new TextObject ("{=tor_ui_winds_of_magic_recharge_rate_str}Recharge Rate:").ToString();
+			
 			List<TooltipProperty> list = new List<TooltipProperty>();
-			list.Add(new TooltipProperty("Winds of Magic", WindsOfMagic, 0, false, TooltipProperty.TooltipPropertyFlags.Title));
-			list.Add(new TooltipProperty("", string.Empty, 0, false, TooltipProperty.TooltipPropertyFlags.RundownSeperator));
-			list.Add(new TooltipProperty("Maximum:", _maxWinds.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
-			list.Add(new TooltipProperty("Recharge Rate:", _windRechargeRate.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
+			list.Add(new TooltipProperty(womTitle, WindsOfMagic, 0, false, TooltipProperty.TooltipPropertyFlags.Title));
+			list.Add(new TooltipProperty(womMaximum, _maxWinds.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
+			list.Add(new TooltipProperty(womRechargeRate, _windRechargeRate.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
 			return list;
 		}
 

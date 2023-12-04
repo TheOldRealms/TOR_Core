@@ -30,7 +30,9 @@ namespace TOR_Core.Quests
         
         public static MobileParty CreateParty(Settlement settlement, Hero leader, Clan clan, string partyTemplateOverride=null)
         {
-            var name=leader.FirstName.ToString() + "'s party";
+            var name= new TextObject ("{TOR_QUEST_PARTYLEADER_NAME}'s party");
+            name.SetTextVariable("TOR_QUEST_PARTYLEADER_NAME", leader.FirstName);
+            
             PartyTemplateObject partyTemplate = null;
             if(partyTemplateOverride!=null)
             {
@@ -43,13 +45,13 @@ namespace TOR_Core.Quests
             });
         }
         
-        private void InitializeQuestPartyProperties(MobileParty mobileParty, Settlement settlement, Hero leader, Clan clan, string name=null, PartyTemplateObject partyTemplate=null)
+        private void InitializeQuestPartyProperties(MobileParty mobileParty, Settlement settlement, Hero leader, Clan clan, TextObject name=null, PartyTemplateObject partyTemplate=null)
         {
             var component = mobileParty.PartyComponent as QuestPartyComponent;
             component._owner = leader;
             component._homeSettlement = settlement;
             if(name!=null)
-                component._name = new TextObject(name);
+                component._name = name;
             mobileParty.ActualClan = clan;
             mobileParty.Aggressiveness = 0.5f;
             mobileParty.AddElementToMemberRoster(leader.CharacterObject, 1, true);

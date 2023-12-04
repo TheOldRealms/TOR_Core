@@ -25,7 +25,10 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             {
                 if(_cachedName == null)
                 {
-                    _cachedName = new TextObject(Settlement.Name.ToString() + "'s Nightwatch");
+
+                    var nightwatch = new TextObject ("{=tor_graveyard_nightwatch_name}{SETTLEMENTNAME}'s Nightwatch");
+                    MBTextManager.SetTextVariable("SETTLEMENT_NAME", Settlement.CurrentSettlement.Name);
+                    _cachedName = nightwatch;
                 }
                 return _cachedName;
             }
@@ -36,7 +39,8 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         private GraveyardNightWatchPartyComponent(Settlement settlement)
         {
             Settlement = settlement;
-            _cachedName = new TextObject(settlement.Name.ToString() + "'s Nightwatch");
+            _cachedName = new TextObject ("{=tor_graveyard_nightwatch_name}{SETTLEMENTNAME}'s Nightwatch");
+            MBTextManager.SetTextVariable("SETTLEMENT_NAME", Settlement.CurrentSettlement.Name);
         }
 
 

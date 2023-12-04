@@ -64,6 +64,8 @@ INCLUDE include.ink
             - LockQuality == 3:
                 ~ LockText = "strong"
         }
+        
+    ~ SetTextVariable("LockText",LockQuality)
             
     VAR DoorQuality = 0
         ~ DoorQuality = RANDOM(1,3)
@@ -81,6 +83,7 @@ INCLUDE include.ink
                 ~ DoorText = "strong"
         }
 
+    ~ SetTextVariable("DoorText",DoorQuality)
     //Reward
         VAR RewardRoll = 0
            ~ RewardRoll = RANDOM(0,2)
@@ -94,6 +97,8 @@ INCLUDE include.ink
                 - RewardRoll == 2:
                     ~ RewardText = "500 gold"
             }
+            
+    ~ SetTextVariable("RewardText",RewardRoll)
             
  //Variable Update: Update any variables before story start
     ~ PartyRogueryCheckText = print_party_skill_chance("Roguery", LockDifficulty)
@@ -112,14 +117,15 @@ INCLUDE include.ink
 -> Start
 
 ===Start===
-    As your party is travelling along you come across a cabin in the woods.
+    As your party is travelling along you come across a cabin in the woods. #STR_Start1
     
     *[Approach the cabin]->Approach
     *[Go on your way (Leave)]You decide it is better to move on for now.->END
     
 ===Approach===
 
-As you approach the cabin you can see that it is heavily boarded up. The only door on the cabin seems to be locked tight. As you examine the door you see that the door is {DoorText} and that the lock on it is {LockText}.->choice1
+As you approach the cabin you can see that it is heavily boarded up. The only door on the cabin seems to be locked tight. As you examine the door you see that the door is {DoorText} and that the lock on it is {LockText}. #STR_Approach1
+->choice1  
 
     =choice1
     What will your party do?
@@ -149,7 +155,8 @@ As you approach the cabin you can see that it is heavily boarded up. The only do
 
 ===Inside===
 
-Your party gets inside the cabin and find that someone or something has stored some supplies here.->choice2
+Your party gets inside the cabin and find that someone or something has stored some supplies here. #STR_Inside1
+->choice2 
 
     =choice2
         *[Take the supplies ({RewardText})]

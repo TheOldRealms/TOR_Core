@@ -10,6 +10,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -36,7 +37,9 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 var heroes = playerParty.Party.MobileParty.GetMemberHeroes();
                 foreach (var hero in heroes.Where(hero => !hero.IsHealthFull())) 
                 {
-                    hero.Heal(20,false);
+                    var choice =  TORCareerChoices.GetChoice("BookOfSigmarPassive3");
+                    
+                    hero.Heal((int) choice.GetPassiveValue(),false);
                 }
             }
         }

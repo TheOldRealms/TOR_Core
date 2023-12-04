@@ -50,7 +50,7 @@ namespace TOR_Core.Models
                 case AbilityType.Spell:
                     return TORSkillEffects.SpellDuration;
                 case AbilityType.Prayer:
-                    return TORSkillEffects.SpellDuration;
+                    return TORSkillEffects.SpellDuration;   //Thats a bug: there is no prayer duration amplification by skills
                 default:
                     return null;
             }

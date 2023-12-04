@@ -18,7 +18,7 @@ namespace TOR_Core.Quests
         [SaveableField(3)]
         private JournalLog _task2 = null;
         [SaveableField(4)]
-        private TextObject _title = new TextObject("Practice Spellcasting");
+        private TextObject _title = new TextObject("{=tor_specialize_lore_quest_title_str}Practice Spellcasting");
 
         public override TextObject Title => _title;
         public override bool IsRemainingTimeHidden => false;
@@ -37,7 +37,7 @@ namespace TOR_Core.Quests
 
         private void SetLogs()
         {
-            _task1 = AddDiscreteLog(new TextObject("Use magic 5 times."), new TextObject("Number of casts"), _numberOfCasts, 5);
+            _task1 = AddDiscreteLog(new TextObject("{=tor_specialize_lore_quest_task1_str}Use magic 5 times."), new TextObject("{=tor_specialize_lore_quest_task1_counter_str}Number of casts"), _numberOfCasts, 5);
         }
 
         public void IncrementCast()
@@ -51,7 +51,7 @@ namespace TOR_Core.Quests
         {
             if (_task1.HasBeenCompleted() && _task2 == null)
             {
-                _task2 = AddLog(new TextObject("Visit a spell trainer to specialize in a lore."));
+                _task2 = AddLog(new TextObject("{=tor_specialize_lore_quest_task1_finish_str}Visit a spell trainer to specialize in a lore."));
             }
         }
     }
