@@ -35,7 +35,9 @@ using TOR_Core.CampaignMechanics.Chaos;
 using TOR_Core.CampaignMechanics.CustomDialogs;
 using TOR_Core.CampaignMechanics.CustomEncounterDialogs;
 using TOR_Core.CampaignMechanics.CustomEvents;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Diplomacy;
+using TOR_Core.CampaignMechanics.Invasions;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
@@ -95,6 +97,7 @@ namespace TOR_Core
             RORManager.LoadTemplates();
             InkStoryManager.Initialize();
             AnimationTriggerManager.LoadAnimationTriggers();
+            CustomResourceManager.Initialize();
         }
 
         private Assembly ResolveDllPath(object sender, ResolveEventArgs args)
@@ -118,6 +121,7 @@ namespace TOR_Core
                 starter.AddBehavior(new TORSkillBookCampaignBehavior());
                 starter.AddBehavior(new TORCustomSettlementCampaignBehavior());
                 starter.AddBehavior(new RaidingPartyCampaignBehavior());
+                starter.AddBehavior(new InvasionCampaignBehavior());
                 starter.AddBehavior(new CustomDialogCampaignBehavior());
                 starter.AddBehavior(new PostBattleCampaignBehavior());
                 starter.AddBehavior(new RaiseDeadInTownBehavior());
@@ -134,7 +138,6 @@ namespace TOR_Core
                 starter.AddBehavior(new InkStoryCampaignBehavior());
                 starter.AddBehavior(new ReligionCampaignBehavior());
                 starter.AddBehavior(new TORKingdomDecisionProposalBehavior());
-
                 starter.AddBehavior(new BountyMasterCampaignBehavior());
                 starter.AddBehavior(new HuntCultistsQuestCampaignBehavior());
                 starter.AddBehavior(new TORCareerPerkCampaignBehavior());
@@ -143,6 +146,7 @@ namespace TOR_Core
                 starter.AddBehavior(new TORSpecialSettlementBehavior());
                 starter.AddBehavior(new CustomEventsCampaignBehavior());
                 starter.AddBehavior(new PlaguedVillageQuestCampaignBehavior());
+
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
@@ -199,6 +203,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORTroopSupplierModel());
                 gameStarterObject.AddModel(new TORSettlementFoodModel());
                 gameStarterObject.AddModel(new TOREquipmentSelectionModel());
+                gameStarterObject.AddModel(new TOREncounterModel());
 
                 CampaignOptions.IsLifeDeathCycleDisabled = true;
             }

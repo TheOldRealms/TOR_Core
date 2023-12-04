@@ -10,6 +10,7 @@ using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.BountyMaster;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CharacterDevelopment;
@@ -53,14 +54,42 @@ namespace TOR_Core.Extensions
             return explainedNumber.ResultNumber;
         }
 
+        public static void AddCustomResource(this Hero hero, string id, float amount)
+        {
+            var info = hero.GetExtendedInfo();
+            if (info != null)
+            {
+                info.AddCustomResource(id, amount);
+            }
+        }
+
+        public static float GetCustomResourceValue(this Hero hero, string id)
+        {
+            var info = hero.GetExtendedInfo();
+            if (info != null)
+            {
+                return info.GetCustomResourceValue(id);
+            }
+            else return 0;
+        }
+
+        public static Dictionary<CustomResource, float> GetCustomResources(this Hero hero)
+        {
+            var info = hero.GetExtendedInfo();
+            if (info != null)
+            {
+                return info.GetCustomResources();
+            }
+            else return null;
+        }
+
         public static float AddWindsOfMagic(this Hero hero, float amount)
         {
             float result = 0;
             var info = hero.GetExtendedInfo();
             if(info != null)
             {
-                result= Mathf.Clamp(info.CurrentWindsOfMagic+amount, 0, info.MaxWindsOfMagic);
-                hero.GetExtendedInfo().CurrentWindsOfMagic = result;
+                info.AddCustomResource("WindsOfMagic", amount);
             }
             
             return result;

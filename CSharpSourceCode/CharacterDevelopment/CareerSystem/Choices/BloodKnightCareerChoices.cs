@@ -363,8 +363,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _bladeMasterPassive2.Initialize(CareerID, "Increases health regeneration after battles by 5.", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.HealthRegeneration));
             _bladeMasterPassive3.Initialize(CareerID, "Hits below 15 damage will not stagger the player.", "BladeMaster", false, ChoiceType.Passive, null); // Agent extension 83,
             _bladeMasterPassive4.Initialize(CareerID, "All troops, the player included, gain exp when raiding villages.", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //TorRaidModel 23  AND TorCareerPerkCampaignBehavior 73
-
-
+            
             _doomRiderPassive1.Initialize(CareerID, "20% extra melee damage.", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Melee));
             _doomRiderPassive2.Initialize(CareerID, "Increases Hitpoints by 50.", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
             _doomRiderPassive3.Initialize(CareerID, "Party speed increases by 2.", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2.0f, PassiveEffectType.PartyMovementSpeed));

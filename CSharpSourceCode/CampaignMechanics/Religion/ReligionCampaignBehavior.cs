@@ -90,7 +90,12 @@ namespace TOR_Core.CampaignMechanics.Religion
         {
             if((int)e.NewDevotionLevel > (int)e.OldDevotionLevel && e.Hero == Hero.MainHero)
             {
-                MBInformationManager.AddQuickInformation(new TextObject(e.Hero.Name.ToString() + " is now a " + e.NewDevotionLevel.ToString() + " of the " + e.Religion.Name));
+                var devotionLevelText = GameTexts.FindText ("tor_religion_devotionlevel", e.NewDevotionLevel.ToString());
+                var religionNameText = GameTexts.FindText ("tor_religion_name_of_god", e.Religion.StringId);
+                MBTextManager.SetTextVariable ("TOR_DEVOTION_LEVEL",devotionLevelText);
+                MBTextManager.SetTextVariable ("TOR_RELIGION",religionNameText);
+                MBTextManager.SetTextVariable ("PLAYER.NAME",Hero.MainHero.Name);
+                MBInformationManager.AddQuickInformation(GameTexts.FindText ("tor_religion_change_notification_frame"));
             }
         }
 

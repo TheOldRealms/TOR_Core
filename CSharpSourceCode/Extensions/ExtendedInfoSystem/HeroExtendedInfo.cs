@@ -12,6 +12,7 @@ using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.CampaignMechanics.CustomResources;
 
 namespace TOR_Core.Extensions.ExtendedInfoSystem
 {
@@ -19,7 +20,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
     {
         [SaveableField(0)] public List<string> AcquiredAbilities = new List<string>();
         [SaveableField(1)] public List<string> AcquiredAttributes = new List<string>();
-        [SaveableField(2)] public float CurrentWindsOfMagic = 0;
+        [SaveableField(2)] public Dictionary<string, float> CustomResources = new Dictionary<string, float>();
         [SaveableField(3)] public Dictionary<string, int> ReligionDevotionLevels = new Dictionary<string, int>();
         [SaveableField(4)] public SpellCastingLevel SpellCastingLevel = SpellCastingLevel.None;
         [SaveableField(5)] private CharacterObject _baseCharacter;
@@ -29,6 +30,60 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         [SaveableField(9)] public List<string> CareerChoices = new List<string>();
 
         public CharacterObject BaseCharacter => _baseCharacter;
+
+        public void AddCustomResource(string id, float amount)
+        {
+            if (CustomResources.ContainsKey(id))
+            {
+                CustomResources[id] = Math.Max(0, CustomResources[id] + amount);
+                if(id == "WindsOfMagic")
+                {
+                    CustomResources[id] = Math.Min(MaxWindsOfMagic, CustomResources[id]);
+                }
+            }
+            else
+            {
+                CustomResources.Add(id, amount);
+                if (id == "WindsOfMagic")
+                {
+                    CustomResources[id] = Math.Min(MaxWindsOfMagic, CustomResources[id]);
+                }
+            }
+        }
+
+        public void SetCustomResourceValue(string id, float amount)
+        {
+            if (CustomResources.ContainsKey(id))
+            {
+                CustomResources[id] = Math.Max(0, amount);
+                if (id == "WindsOfMagic")
+                {
+                    CustomResources[id] = Math.Min(MaxWindsOfMagic, CustomResources[id]);
+                }
+            }
+            else
+            {
+                CustomResources.Add(id, amount);
+                if (id == "WindsOfMagic")
+                {
+                    CustomResources[id] = Math.Min(MaxWindsOfMagic, CustomResources[id]);
+                }
+            }
+        }
+
+        public float GetCustomResourceValue(string id)
+        {
+            if (CustomResources.ContainsKey(id))
+            {
+                return CustomResources[id];
+            }
+            else return 0;
+        }
+
+        public Dictionary<CustomResource, float> GetCustomResources()
+        {
+            return CustomResources.ToDictionary(x => CustomResourceManager.GetResourceObject(x.Key), x => x.Value);
+        }
 
         public float MaxWindsOfMagic
         {
