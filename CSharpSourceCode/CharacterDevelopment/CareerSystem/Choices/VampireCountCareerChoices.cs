@@ -29,6 +29,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         private CareerChoiceObject _newBloodPassive2;
         private CareerChoiceObject _newBloodPassive3;
         private CareerChoiceObject _newBloodPassive4;
+        
+        private CareerChoiceObject _feralKeystone;
+        private CareerChoiceObject _feralPassive1;
+        private CareerChoiceObject _feralPassive2;
+        private CareerChoiceObject _feralPassive3;
+        private CareerChoiceObject _feralPassive4;
 
         private CareerChoiceObject _arkayneKeystone;
         private CareerChoiceObject _arkaynePassive1;
@@ -69,6 +75,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _newBloodPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NewBloodPassive2"));
             _newBloodPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NewBloodPassive3"));
             _newBloodPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NewBloodPassive4"));
+            
+            _feralKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("FeralKeystone"));
+            _feralPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("FeralPassive1"));
+            _feralPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("FeralPassive2"));
+            _feralPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("FeralPassive3"));
+            _feralPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("FeralPassive4"));
 
             _arkayneKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ArkayneKeystone"));
             _arkaynePassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ArkaynePassive1"));
@@ -123,8 +135,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Replace
                     },
                 });
+            
+            
 
-            _newBloodKeystone.Initialize(CareerID, "Ability needs 20% less damage to get charged. Flying Speed is increased by 20%.", "NewBlood", false, // very hardcoded. I will continue on that after release 
+            _newBloodKeystone.Initialize(CareerID, "Ability needs 20% less damage to get charged.", "NewBlood", false, // very hardcoded. I will continue on that after release 
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                }, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
+            
+            _feralKeystone.Initialize(CareerID, "Mistform speed is increased by 20%.", "Feral", false, // very hardcoded. I will continue on that after release 
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                 }, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
@@ -158,17 +177,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 }, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //charge reduction
 
-            _arkayneKeystone.Initialize(CareerID, "Mistform scales with Spellcraft and recharges Winds (1/s). Requires extra 40% damage dealt.", "Arkayne", false,
+            _arkayneKeystone.Initialize(CareerID, "Mistform scales with Spellcraft. Spell damage can charge ability with 90% reduced power.", "Arkayne", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_mistwalk",
-                        PropertyName = "ImbuedStatusEffects",
-                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "mistwalk_wom" }).ToList(),
-                        MutationType = OperationType.Replace
-                    },
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(AbilityTemplate),
@@ -177,7 +188,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { TORSkills.SpellCraft }, 0.03f),
                         MutationType = OperationType.Add
                     }
-                }, new CareerChoiceObject.PassiveEffect(-40, PassiveEffectType.Special, true)); //charge increase
+                }, new CareerChoiceObject.PassiveEffect(0));
 
             _courtleyKeystone.Initialize(CareerID, "Mist Form is recharged on battle start and now also scales with Roguery.", "Courtley", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
@@ -239,9 +250,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         {
             _newBloodPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
             _newBloodPassive2.Initialize(CareerID, "Increases Party size by 25.", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.PartySize, false));
-            _newBloodPassive3.Initialize(CareerID, "Increases health regeneration after battles by 5.", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.HealthRegeneration));
+            _newBloodPassive3.Initialize(CareerID, "Increases max Winds of Magic by 5.", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
             _newBloodPassive4.Initialize(CareerID, "Immune to sunlight speed malus.", "NewBlood", false, ChoiceType.Passive, null); //TORPartySpeedCalculatingModel 46
 
+            _feralPassive1.Initialize(CareerID, "10% extra melee damage.", "Feral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
+            _feralPassive2.Initialize(CareerID, "Increases health regeneration on the campaign map by 5.", "Feral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.HealthRegeneration));
+            _feralPassive3.Initialize(CareerID, "Party movement speed is increased by 1.5.", "Feral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1.5f, PassiveEffectType.PartyMovementSpeed,false));
+            _feralPassive4.Initialize(CareerID, "Increases Hitpoints by 25.", "Feral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+            
             _arkaynePassive1.Initialize(CareerID, "Increases max Winds of Magic by 10.", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
             _arkaynePassive2.Initialize(CareerID, "Increases Magical spell damage by 10%.", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
             _arkaynePassive3.Initialize(CareerID, "10% extra Magical melee damage.", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Melee));
@@ -252,7 +268,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _courtleyPassive3.Initialize(CareerID, "10% extra Magical spell and ranged damage.", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell | AttackTypeMask.Ranged));
             _courtleyPassive4.Initialize(CareerID, "Killing blows in the head replenish 3 Winds of Magic.", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3)); //CareerPerkMissionBehavior 28
 
-            _lordlyPassive1.Initialize(CareerID, "Party movement speed is increased by 1.5.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1.5f, PassiveEffectType.PartyMovementSpeed,false));
+            _lordlyPassive1.Initialize(CareerID, "Increases Companion Limit by 5.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
             _lordlyPassive2.Initialize(CareerID, "Party size is increased by 75.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(75, PassiveEffectType.PartySize));
             _lordlyPassive3.Initialize(CareerID, "All Vampire troops wages are reduced by 15%.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.Special, true)); //TORPartyWageModel 85
             _lordlyPassive4.Initialize(CareerID, "Upgrade costs are halved.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-0.5f, PassiveEffectType.TroopUpgradeCost));

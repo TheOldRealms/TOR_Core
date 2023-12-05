@@ -32,5 +32,87 @@
 			</script>
 		</scripts>
 	</game_entity>
+	<game_entity name="FlyableObject" old_prefab_name="" mobility="1">
+		<flags>
+			<flag name="record_to_scene_replay" value="true"/>
+		</flags>
+		<tags>
+			<tag name="npc_wait"/>
+			<tag name="npc_common"/>
+		</tags>
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<physics shape="bo_bd_chair_a" override_material="wood"/>
+		<components>
+			<meta_mesh_component name="bd_chair_a"/>
+		</components>
+		<scripts>
+			<script name="Chair">
+				<variables>
+					<variable name="ChairType" value="Chair"/>
+					<variable name="PilotStandingPointTag" value="Pilot"/>
+					<variable name="AmmoPickUpTag" value="ammopickup"/>
+					<variable name="WaitStandingPointTag" value="Wait"/>
+					<variable name="NavMeshPrefabName" value=""/>
+				</variables>
+			</script>
+			<script name="PlayerFlyableObjectScript">
+	
+				<variables>
+				</variables>
+			</script>
+		</scripts>
+		<children>
+			<game_entity name="chair_sit_position_front" old_prefab_name="" mobility="1">
+				<visibility_masks>
+					<visibility_mask name="visible_only_when_editing" value="true"/>
+				</visibility_masks>
+				<transform position="0.000, -0.600, 0.000" rotation_euler="0.000, 0.000, 3.141" scale="0.750, 0.750, 1.000"/>
+				<components>
+					<meta_mesh_component name="animation_stand_arrow_blue"/>
+				</components>
+				<scripts>
+					<script name="ChairUsePoint">
+						<variables>
+							<variable name="NearTable" value="false"/>
+							<variable name="NearTableLoopAction" value=""/>
+							<variable name="NearTablePairLoopAction" value=""/>
+							<variable name="Drink" value="false"/>
+							<variable name="DrinkLoopAction" value=""/>
+							<variable name="DrinkPairLoopAction" value=""/>
+							<variable name="DrinkRightHandItem" value=""/>
+							<variable name="DrinkLeftHandItem" value=""/>
+							<variable name="Eat" value="false"/>
+							<variable name="EatLoopAction" value=""/>
+							<variable name="EatPairLoopAction" value=""/>
+							<variable name="EatRightHandItem" value=""/>
+							<variable name="EatLeftHandItem" value=""/>
+							<variable name="ArriveAction" value="act_sit_down_from_front"/>
+							<variable name="LoopStartAction" value="act_sit_1"/>
+							<variable name="PairLoopStartAction" value=""/>
+							<variable name="LeaveAction" value="act_stand_up_to_front"/>
+							<variable name="GroupId" value="-1"/>
+							<variable name="RightHandItem" value=""/>
+							<variable name="RightHandItemBone" value="ItemR"/>
+							<variable name="LeftHandItem" value=""/>
+							<variable name="LeftHandItemBone" value="ItemL"/>
+							<variable name="MinUserToStartInteraction" value="1"/>
+							<variable name="ActivatePairs" value="false"/>
+							<variable name="MinWaitinSeconds" value="50.000"/>
+							<variable name="MaxWaitInSeconds" value="320.000"/>
+							<variable name="ForwardDistanceToPivotPoint" value="0.000"/>
+							<variable name="SideDistanceToPivotPoint" value="0.000"/>
+							<variable name="KeepOldVisibility" value="false"/>
+							<variable name="AutoSheathWeapons" value="false"/>
+							<variable name="AutoEquipWeaponsOnUseStopped" value="false"/>
+							<variable name="AutoWieldWeapons" value="false"/>
+							<variable name="TranslateUser" value="true"/>
+							<variable name="HasRecentlyBeenRechecked" value="false"/>
+							<variable name="NavMeshPrefabName" value=""/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+		</children>
+	</game_entity>
 </prefabs>
 

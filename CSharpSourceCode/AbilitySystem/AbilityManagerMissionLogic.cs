@@ -138,6 +138,7 @@ namespace TOR_Core.AbilitySystem
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
+            
             if (!affectedAgent.IsMainAgent && !affectorAgent.IsMainAgent) return;
             var isAttacker = affectorAgent.IsMainAgent;
             

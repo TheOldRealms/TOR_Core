@@ -460,6 +460,7 @@
     <Compile Include="BattleMechanics\SFX\TORLightDampener.cs" />
     <Compile Include="BattleMechanics\SFX\TORSimpleObjectAnimator.cs" />
     <Compile Include="BattleMechanics\SFX\TORSpinner.cs" />
+    <Compile Include="BattleMechanics\SFX\PlayerFlyableObjectScript.cs" />
     <Compile Include="BattleMechanics\SniperScope\SniperScope.cs" />
     <Compile Include="BattleMechanics\StatusEffect\StatusEffect.cs" />
     <Compile Include="BattleMechanics\StatusEffect\StatusEffectComponent.cs" />

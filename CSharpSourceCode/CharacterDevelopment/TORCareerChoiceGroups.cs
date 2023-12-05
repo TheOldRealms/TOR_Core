@@ -27,6 +27,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _lordly;
         private CareerChoiceGroupObject _martialle;
         private CareerChoiceGroupObject _masterOfDead;
+        private CareerChoiceGroupObject _feral;
         //Blood Knight
         private CareerChoiceGroupObject _peerlessWarrior;
         private CareerChoiceGroupObject _nightRider;
@@ -59,6 +60,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _justCause;
         private CareerChoiceGroupObject _secretsOfTheGrail;
         private CareerChoiceGroupObject _envoyOfTheLady;
+      
 
 
         public TORCareerChoiceGroups()
@@ -78,6 +80,7 @@ namespace TOR_Core.CharacterDevelopment
             _archLector = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("ArchLector"));
             
             _newBlood = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("NewBlood"));
+            _feral = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Feral"));
             _arkayne = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Arkayne"));
             _courtley = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Courtley"));
             _lordly = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Lordly"));
@@ -157,6 +160,11 @@ namespace TOR_Core.CharacterDevelopment
             //Vampire Count
             
             _newBlood.Initialize("{=new_blood_choice_group_str}New Blood", TORCareers.MinorVampire, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _feral.Initialize("{=new_blood_choice_group_str}Feral", TORCareers.MinorVampire, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;

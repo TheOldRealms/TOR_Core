@@ -65,7 +65,7 @@ namespace TOR_Core.CharacterDevelopment
             _grailDamsel.Initialize("Damsel of the Lady", null,"FeyPaths", ChargeType.DamageDone, 2500, typeof(TeleportScript),true);   
             _grailKnight.Initialize("Grail Knight", null, "KnightlyCharge",ChargeType.CooldownOnly,100);   
             _bloodKnight.Initialize("Blood Knight", null, "RedFury", ChargeType.NumberOfKills,10, typeof(RedFuryScript));
-            _minorVampire.Initialize("Vampire Count", null, "ShadowStep", ChargeType.DamageDone, 400, typeof(ShadowStepScript));
+            _minorVampire.Initialize("Vampire Count", null, "ShadowStep", ChargeType.DamageDone, 800, typeof(ShadowStepScript));
             _warriorPriest.Initialize("Warrior Priest", (hero) => 
             {
                 return hero.Culture == MBObjectManager.Instance.GetObject<CultureObject>("empire") && hero.Clan.Tier >= 1;

@@ -112,6 +112,20 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                        
                         explainedNumber.AddFactor(-0.9f);
                     }
+                    
+                    if (heroCareer == TORCareers.MinorVampire)
+                    {
+                        if (mask == AttackTypeMask.Melee)
+                        {
+                            explainedNumber.Add(chargeValue);
+                        }
+
+                        if (mask == AttackTypeMask.Spell && Agent.Main.GetHero().GetAllCareerChoices().Contains("ArkayneKeystone"))
+                        {
+                            explainedNumber.AddFactor(-0.9f);
+                        }
+                           
+                    }
                    
                     break;
                 }
@@ -144,15 +158,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             var number = new ExplainedNumber(1);
             if (Agent.Main.GetHero().HasAnyCareer())
             {
-                if (Agent.Main.GetHero().GetAllCareerChoices().Contains("ArkayneKeystone"))
-                {
-                    var choice = TORCareerChoices.GetChoice("ArkayneKeystone");
-                    if (choice != null)
-                    {
-                        var value = choice.GetPassiveValue();
-                        number.AddFactor(value);
-                    }
-                }
 
                 if (Agent.Main.GetHero().GetAllCareerChoices().Contains("DreadKnightKeystone"))
                 {
