@@ -239,7 +239,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
             
-            _mercenaryLordKeystone.Initialize(CareerID, "The Career ability reduces reload time by 0.15%.", "MercenaryLord", false,
+            _mercenaryLordKeystone.Initialize(CareerID, "The Career ability reduces reload time by 15%.", "MercenaryLord", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()

@@ -55,10 +55,14 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
                             ChangeCrosshair(_weaponCrosshair);
                     }
                 }
-                else ChangeCrosshair(null);
+                else
+                {
+                    ChangeCrosshair(null);
+                }
                 if (_currentCrosshair != null) _currentCrosshair.Tick();
             }
-            else if(_currentCrosshair != null) ChangeCrosshair(null);
+            else if(_currentCrosshair != null) 
+                ChangeCrosshair(null);
         }
 
         private void ChangeCrosshair(ICrosshair crosshair)
@@ -68,13 +72,22 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
             if(_currentCrosshair != null) _currentCrosshair.Show();
         }
 
+        public void SetDefaultCrosshair()
+        {
+            _currentCrosshair = _weaponCrosshair;
+            _abilityCrosshair = null;
+        }
+
         private bool CanUseCrosshair()
         {
+            var careerAbility = _abilityComponent?.CareerAbility;
+            
+            
             return Agent.Main != null &&
                    Agent.Main.State == AgentState.Active &&
                    (_abilityComponent == null ||
                    _abilityComponent.CareerAbility == null ||
-                   !_abilityComponent.CareerAbility.IsActive) &&
+                   !_abilityComponent.CareerAbility.RequiresDisabledCrosshairDuringAbility) &&
                    Mission.Mode != MissionMode.Conversation &&
                    Mission.Mode != MissionMode.Deployment &&
                    Mission.Mode != MissionMode.CutScene &&

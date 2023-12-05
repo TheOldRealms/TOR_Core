@@ -20,6 +20,9 @@ namespace TOR_Core.AbilitySystem
         private bool _readyToLaunch;
         private int previousAbilityIndex;
         private bool _doubleUse;
+        
+
+        private bool _requiresDisabledCrosshairDuringAbility = false;
 
         private CustomCrosshairMissionBehavior _crosshairBehavior;
 
@@ -39,19 +42,25 @@ namespace TOR_Core.AbilitySystem
                     _career.MutateAbility(Template, agent);
                     _requiresSpellTargeting = _career.RequiresAbilityTargeting;
                     
+                    if(Template.StringID.Contains("ShadowStep"))
+                    {
+                        _requiresDisabledCrosshairDuringAbility = true;
+                    }
+                    
                 }
                 
-                //_currentCharge = _maxCharge;
+                _currentCharge = _maxCharge;
+            
 
                 if (Hero.MainHero.GetAllCareerChoices().Contains("CourtleyKeystone") || Hero.MainHero.GetAllCareerChoices().Contains("EnhancedHorseCombatKeystone"))
                     _currentCharge = _maxCharge;
                 else
                     SetCoolDown(Template.CoolDown);
             }
-
-            _crosshairBehavior = Mission.Current.GetMissionBehavior<CustomCrosshairMissionBehavior>();
         }
 
+
+        public bool RequiresDisabledCrosshairDuringAbility => _requiresDisabledCrosshairDuringAbility;  
         public ChargeType ChargeType { get; } = ChargeType.CooldownOnly;
         public float ChargeLevel => _currentCharge / _maxCharge;
         public bool IsCharged => ChargeType == ChargeType.CooldownOnly || _currentCharge >= _maxCharge;
@@ -79,6 +88,8 @@ namespace TOR_Core.AbilitySystem
             return _requiresSpellTargeting;
         }
 
+        
+
         public override void ActivateAbility(Agent casterAgent)
         {
             base.ActivateAbility(casterAgent);
@@ -97,7 +108,7 @@ namespace TOR_Core.AbilitySystem
 
             if (_crosshairBehavior != null && _crosshairBehavior.CurrentCrosshair != null)
             {
-                _crosshairBehavior.CurrentCrosshair.Show();
+                _crosshairBehavior.SetDefaultCrosshair();
             }
         }
 
