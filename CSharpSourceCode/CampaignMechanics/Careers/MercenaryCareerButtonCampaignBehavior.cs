@@ -56,7 +56,10 @@ namespace TOR_Core.CampaignMechanics
                 return;
             }
 
-            _price = 1000 * characterTemplate.Level + 200 * characterTemplate.TroopWage;
+            var troopwage = 0;
+            if (characterTemplate.TroopWage != null) troopwage = characterTemplate.TroopWage;
+
+            _price = 1000 * characterTemplate.Level + 200 * troopwage;
             GameTexts.SetVariable("MERCCOMPANIONPRICE",_price.ToString());
             
             //_currentHeroTemplate = HeroCreator.CreateSpecialHero(heroTemplate, Campaign.Current.MainParty.CurrentSettlement, null, null, 40);

@@ -327,7 +327,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 return false;
             }
             
-            if (characterObject.IsKnightUnit()&& !characterObject.IsRanged)
+            if (characterObject.Level<=26)
             {
                 disableReason = new TextObject("Unit needs to reach tier 5 and higher.");
                 return false;
