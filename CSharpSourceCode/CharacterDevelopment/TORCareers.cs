@@ -71,7 +71,7 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.Culture == MBObjectManager.Instance.GetObject<CultureObject>("empire") && hero.Clan.Tier >= 1;
             }, "RighteousFury", ChargeType.DamageTaken, 30);
             
-            _mercenary.Initialize("Mercenary", null, "");
+            _mercenary.Initialize("Mercenary", null, "LetThemHaveIt", ChargeType.DamageDone, 300);
         }
     }
 }

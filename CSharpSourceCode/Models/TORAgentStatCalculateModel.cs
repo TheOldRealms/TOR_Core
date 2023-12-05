@@ -314,6 +314,20 @@ namespace TOR_Core.Models
             {
                 agentDrivenProperties.SetDynamicCombatProperties(statusEffectComponent, 1); //I have the feeling this call is not necessary given the many updates that are done per frame.
             }
+
+            var reloadSpeedModifier = statusEffectComponent.GetReloadSpeedModifier();
+            
+            if (reloadSpeedModifier != 0)
+            {
+                var reloadSpeed = Mathf.Clamp(reloadSpeedModifier + 1, 0.05f, 2); 
+                if (agent.IsMount) return;
+
+                agentDrivenProperties.SetDynamicReloadProperties(statusEffectComponent, reloadSpeed);
+            }
+            else
+            {
+                agentDrivenProperties.SetDynamicReloadProperties(statusEffectComponent, 1); 
+            }
         }
 
         private void AddSkillEffectsForAgent(Agent agent, AgentDrivenProperties agentDrivenProperties)

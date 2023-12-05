@@ -400,6 +400,88 @@
 	</StatusEffectTemplate>	
 	
 	<StatusEffectTemplate 
+		id="let_them_have_it_unstoppable" 
+		particle_id=""
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.2"
+		type= "TemporaryAttributeOnly"
+		damage_type="Physical"
+		applies_for_attack_type="Melee">
+		<temporary_attribute>Unstoppable</temporary_attribute>
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="let_them_have_it_unbreakable" 
+		particle_id=""
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.2"
+		type= "TemporaryAttributeOnly"
+		damage_type="Physical"
+		applies_for_attack_type="Melee">
+		<temporary_attribute>Unbreakable</temporary_attribute>
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="let_them_have_it_range_dmg" 
+		particle_id="psys_energy_sphere"
+		particle_intensity="Low"
+		base_effect_value="0.15"
+		damage_type="Physical"
+		applies_for_attack_type="Ranged"
+		type="DamageAmplification">
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="let_them_have_it_melee_dmg" 
+		particle_id="psys_energy_sphere"
+		particle_intensity="Low"
+		base_effect_value="0.15"
+		damage_type="Physical"
+		applies_for_attack_type="Melee"
+		type="DamageAmplification">
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="let_them_have_it_melee_res" 
+		particle_id="psys_energy_sphere"
+		particle_intensity="Low"
+		base_effect_value="0.15"
+		damage_type="Physical"
+		applies_for_attack_type="Melee"
+		type="Resistance">
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="let_them_have_it_range_res" 
+		particle_id="psys_energy_sphere"
+		particle_intensity="Low"
+		base_effect_value="0.15"
+		damage_type="Physical"
+		applies_for_attack_type="Ranged"
+		type="Resistance">
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="let_them_have_it_melee_ats" 
+		particle_id="psys_energy_sphere"
+		particle_intensity="Low"
+		base_effect_value="0.15"
+		damage_type="Physical"
+		applies_for_attack_type="Melee"
+		type="AttackSpeedManipulation">
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="let_them_have_it_melee_rls" 
+		particle_id="psys_energy_sphere"
+		particle_intensity="Low"
+		base_effect_value="0.15"
+		damage_type="Physical"
+		applies_for_attack_type="Ranged"
+		type="ReloadSpeedManipulation">
+	</StatusEffectTemplate>
+	
+	
+	
+ 	
+	
+	
+	<StatusEffectTemplate 
 		id="fey_path_dmg" 
 		particle_id="firecloak"
 		do_not_attach_to_agent_skeleton="true"

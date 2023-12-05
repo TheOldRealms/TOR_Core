@@ -906,6 +906,23 @@
 			<ImbuedStatusEffect>redfury_effect_res</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
+	  <TriggeredEffectTemplate StringID="apply_let_them_have_it" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="3" 
+            HasShockWave="false" 
+            TargetType="Self" 
+            ImbuedStatusEffectDuration="2.1" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>let_them_have_it_unstoppable</ImbuedStatusEffect>
+			<ImbuedStatusEffect>let_them_have_it_unbreakable</ImbuedStatusEffect>
+			
+      </TriggeredEffectTemplate>
+	  
       <TriggeredEffectTemplate StringID="apply_righteous_fury" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 

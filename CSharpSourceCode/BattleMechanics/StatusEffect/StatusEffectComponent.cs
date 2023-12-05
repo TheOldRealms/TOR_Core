@@ -49,6 +49,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 _baseValues.AddOrReplace(DrivenProperty.MaxSpeedMultiplier, this.Agent.AgentDrivenProperties.MaxSpeedMultiplier);
                 _baseValues.AddOrReplace(DrivenProperty.SwingSpeedMultiplier, this.Agent.AgentDrivenProperties.SwingSpeedMultiplier);
                 _baseValues.AddOrReplace(DrivenProperty.ThrustOrRangedReadySpeedMultiplier, this.Agent.AgentDrivenProperties.ThrustOrRangedReadySpeedMultiplier);
+                _baseValues.AddOrReplace(DrivenProperty.ReloadSpeed, this.Agent.AgentDrivenProperties.ReloadSpeed);
+                _baseValues.AddOrReplace(DrivenProperty.BipedalRangedReloadSpeedMultiplier, this.Agent.AgentDrivenProperties.BipedalRangedReloadSpeedMultiplier);
             }
 
             if (!this.Agent.HasMount) return;
@@ -145,7 +147,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
                 if (_effectAggregate == null) return;
 
-                ModifiedDrivenProperties = _effectAggregate.SpeedProperties != 0 || _effectAggregate.AttackSpeedProperties != 0;
+                ModifiedDrivenProperties = _effectAggregate.SpeedProperties != 0 || _effectAggregate.AttackSpeedProperties != 0 || _effectAggregate.ReloadSpeedProperties != 0;
 
                 if (!ModifiedDrivenProperties)
                 {
@@ -263,6 +265,13 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             if (_effectAggregate == null) _effectAggregate = new EffectAggregate();
             return _effectAggregate.AttackSpeedProperties;
         }
+        
+        public float GetReloadSpeedModifier()
+        {
+            if (_effectAggregate == null) _effectAggregate = new EffectAggregate();
+            return _effectAggregate.ReloadSpeedProperties;
+        }
+
 
         public float GetLanceSteadinessModifier()
         {
@@ -370,6 +379,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             public Dictionary<AttackTypeMask, float[]> Resistances { get; }
             public float SpeedProperties;
             public float AttackSpeedProperties;
+            public float ReloadSpeedProperties;
             public float LanceSteadinessChance;
 
             public EffectAggregate()
@@ -413,6 +423,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                         break;
                     case StatusEffectTemplate.EffectType.AttackSpeedManipulation:
                         AttackSpeedProperties += strength;
+                        break;
+                    case StatusEffectTemplate.EffectType.ReloadSpeedManipulation:
+                        ReloadSpeedProperties += strength;
                         break;
                     case StatusEffectTemplate.EffectType.TemporaryAttributeOnly:
                         break;

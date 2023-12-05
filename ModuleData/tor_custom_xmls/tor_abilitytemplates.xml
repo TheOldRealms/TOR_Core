@@ -2905,6 +2905,45 @@
 			</AsVec2>
 		</LightColorRGB>
 		<TriggeredEffect>apply_red_fury</TriggeredEffect>
+	
+	</AbilityTemplate>
+		<AbilityTemplate StringID="LetThemHaveIt"
+       Name="{=red_fury_label_str}Let Them Have It"
+       SpriteName="redfury_icon"
+       CoolDown="15"
+       WindsOfMagicCost="0"
+       BaseMisCastChance="0"
+       Duration="15"
+       Radius="1"
+       AbilityType="CareerAbility"
+       AbilityEffectType="CareerAbilityEffect"
+       BaseMovementSpeed="0"
+       TickInterval="2"
+       TriggerType="EveryTick"
+       HasLight="false"
+       LightIntensity="0"
+       LightRadius="0"
+       LightFlickeringMagnitude="0"
+       LightFlickeringInterval="0"
+       ShadowCastEnabled="false"
+       ParticleEffectPrefab=""
+       ParticleEffectSizeModifier="0"
+       SoundEffectToPlay=""
+       ShouldSoundLoopOverDuration="false"
+       CastType="Instant"
+       CastTime="0.5"
+       AnimationActionName=""
+       Offset="0"
+       AbilityTargetType="Self"
+       TargetCapturingRadius="4">
+		<LightColorRGB x="255" y="255" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>apply_let_them_have_it</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="KnightlyCharge"

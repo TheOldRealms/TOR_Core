@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TaleWorlds.TwoDimension;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -44,7 +45,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             _name = GameTexts.FindText("career_title", _career.StringId).ToString();
             _spriteName = "CareerSystem\\Illustrations\\" + career.StringId;
             _abilitySpriteName = _career.GetAbilityTemplate()?.SpriteName;      //in case no career ability is found deactivate this screen
-            _abilityName = _career.GetAbilityTemplate()?.Name;
+            _abilityName = new TextObject(_career.GetAbilityTemplate()?.Name).ToString();
             _abilityDescription = new MBBindingList<CareerAbilityEffectVM>();
             _career.GetAbilityEffectLines().ForEach(x => _abilityDescription.Add(new CareerAbilityEffectVM(x)));
             _description = _career.Description.ToString();

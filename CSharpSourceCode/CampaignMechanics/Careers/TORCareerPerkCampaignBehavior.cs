@@ -65,7 +65,7 @@ namespace TOR_Core.CampaignMechanics
                 
                 if (choices.Contains("PaymasterPassive2"))
                 {
-                    var choice = TORCareerChoices.GetChoice("CommanderPassive4");
+                    var choice = TORCareerChoices.GetChoice("PaymasterPassive2");
                     if (choice != null)
                         AddExtraTroopsWithChanceIfPossible(characterObject, amount, party, choice.GetPassiveValue());
                 }

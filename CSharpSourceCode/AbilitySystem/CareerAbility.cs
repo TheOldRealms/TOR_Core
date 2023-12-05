@@ -5,6 +5,7 @@ using TaleWorlds.Engine;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.AbilitySystem.Scripts;
+using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -92,6 +93,7 @@ namespace TOR_Core.AbilitySystem
                 _currentCharge = _maxCharge;
                 _doubleUse = true;
             }
+            Campaign.Current.GetCampaignBehavior<CustomCrosshairMissionBehavior>().CurrentCrosshair.Show();
         }
 
         public override bool CanCast(Agent casterAgent)

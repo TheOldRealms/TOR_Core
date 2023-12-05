@@ -159,7 +159,7 @@ namespace TOR_Core.Models
                 if (unit.Character.Tier > 4 && !unit.Character.IsHero)
                 {
                     TextObject text;
-                    var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "CommanderPassive1", out text);
+                    var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "PaymasterPassive3", out text);
                     resultValue.Add(value, text);
                 }
             }
