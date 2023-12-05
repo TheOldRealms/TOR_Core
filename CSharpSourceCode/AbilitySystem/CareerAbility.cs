@@ -3,13 +3,10 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine;
 using TaleWorlds.MountAndBlade;
-using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.AbilitySystem.Scripts;
 using TOR_Core.Battle.CrosshairMissionBehavior;
-using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -23,6 +20,8 @@ namespace TOR_Core.AbilitySystem
         private bool _readyToLaunch;
         private int previousAbilityIndex;
         private bool _doubleUse;
+
+        private CustomCrosshairMissionBehavior _crosshairBehavior;
 
         public CareerAbility(AbilityTemplate template, Agent agent) : base(template)
         {
@@ -49,6 +48,8 @@ namespace TOR_Core.AbilitySystem
                 else
                     SetCoolDown(Template.CoolDown);
             }
+
+            _crosshairBehavior = Mission.Current.GetMissionBehavior<CustomCrosshairMissionBehavior>();
         }
 
         public ChargeType ChargeType { get; } = ChargeType.CooldownOnly;
@@ -93,7 +94,11 @@ namespace TOR_Core.AbilitySystem
                 _currentCharge = _maxCharge;
                 _doubleUse = true;
             }
-            Campaign.Current.GetCampaignBehavior<CustomCrosshairMissionBehavior>().CurrentCrosshair.Show();
+
+            if (_crosshairBehavior != null && _crosshairBehavior.CurrentCrosshair != null)
+            {
+                _crosshairBehavior.CurrentCrosshair.Show();
+            }
         }
 
         public override bool CanCast(Agent casterAgent)

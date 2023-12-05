@@ -39,9 +39,9 @@ namespace TOR_Core.CampaignMechanics
 
         private void PlayerWinBattleEvents(MapEvent mapEvent)
         {
-            if (mapEvent.Winner.IsMainPartyAmongParties())
+            // If you lose a hideout fight the Winner will be potentially null
+            if (mapEvent.Winner != null && mapEvent.Winner.IsMainPartyAmongParties())
             {
-                
                 mapEvent.GetBattleRewards(PartyBase.MainParty, out float renownChange, out float influenceChange, out float moraleChange, out float goldChange, out float playerEarnedLootPercentage);
                 var value = new ExplainedNumber(influenceChange);
 
