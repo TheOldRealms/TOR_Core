@@ -82,23 +82,22 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
         {
             var careerAbility = _abilityComponent?.CareerAbility;
             
+            var careerAbilityDeactivateCondition= careerAbility!=null && careerAbility.RequiresDisabledCrosshairDuringAbility && careerAbility.IsActive;
             
             return Agent.Main != null &&
                    Agent.Main.State == AgentState.Active &&
-                   (_abilityComponent == null ||
-                   _abilityComponent.CareerAbility == null ||
-                   !_abilityComponent.CareerAbility.RequiresDisabledCrosshairDuringAbility) &&
-                   Mission.Mode != MissionMode.Conversation &&
-                   Mission.Mode != MissionMode.Deployment &&
-                   Mission.Mode != MissionMode.CutScene &&
-                   MissionScreen != null &&
-                   MissionScreen.CustomCamera == null &&
-                   (MissionScreen.OrderFlag == null || !MissionScreen.OrderFlag.IsVisible) &&
-                   !MissionScreen.IsViewingCharacter() &&
-                   !MissionScreen.IsPhotoModeEnabled &&
-                   !MBEditor.EditModeEnabled &&
-                   BannerlordConfig.DisplayTargetingReticule &&
-                   !ScreenManager.GetMouseVisibility();
+                    !careerAbilityDeactivateCondition &&
+                     Mission.Mode != MissionMode.Conversation &&
+                     Mission.Mode != MissionMode.Deployment &&
+                     Mission.Mode != MissionMode.CutScene &&
+                     MissionScreen != null &&
+                     MissionScreen.CustomCamera == null &&
+                     (MissionScreen.OrderFlag == null || !MissionScreen.OrderFlag.IsVisible) &&
+                     !MissionScreen.IsViewingCharacter() &&
+                     !MissionScreen.IsPhotoModeEnabled &&
+                     !MBEditor.EditModeEnabled &&
+                     BannerlordConfig.DisplayTargetingReticule &&
+                     !ScreenManager.GetMouseVisibility();
         }
 
         private bool CanUseAbilityCrosshair()

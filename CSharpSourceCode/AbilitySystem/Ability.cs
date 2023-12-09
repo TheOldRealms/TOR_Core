@@ -86,7 +86,12 @@ namespace TOR_Core.AbilitySystem
 
         public virtual bool CanCast(Agent casterAgent)
         {
-            return !_isLocked&&!IsCasting &&
+            var deactivateConditon = false;
+            if (casterAgent.IsMainAgent&&casterAgent.GetHero().HasAnyCareer())
+            {
+                deactivateConditon = casterAgent.GetCareerAbility().RequiresDisabledCrosshairDuringAbility && casterAgent.GetCareerAbility().IsActive;
+            }
+            return !deactivateConditon&&!_isLocked&&!IsCasting &&
                    !IsOnCooldown() &&
                    ((casterAgent.IsPlayerControlled && IsRightAngleToCast()) ||
                     (casterAgent.IsActive() && casterAgent.Health > 0 && casterAgent.GetMorale() > 1 && casterAgent.IsAbilityUser()));

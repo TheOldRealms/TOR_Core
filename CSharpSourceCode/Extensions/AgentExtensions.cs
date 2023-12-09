@@ -516,6 +516,16 @@ namespace TOR_Core.Extensions
             }
             else return new List<string>();
         }
+
+        public static CareerAbility GetCareerAbility(this Agent agent)
+        {
+            if (agent.IsMainAgent && agent.GetHero().HasAnyCareer())
+            {
+                return agent.GetComponent<AbilityComponent>().CareerAbility;
+            }
+
+            return null;
+        }
         
 
         public static List<string> GetSelectedAbilities(this Agent agent)
