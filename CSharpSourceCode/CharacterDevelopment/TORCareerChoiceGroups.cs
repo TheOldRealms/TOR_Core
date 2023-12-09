@@ -164,7 +164,7 @@ namespace TOR_Core.CharacterDevelopment
                 text = string.Empty;
                 return true;
             });
-            _feral.Initialize("{=new_blood_choice_group_str}Feral", TORCareers.MinorVampire, 1, (Hero hero, out string text) =>
+            _feral.Initialize("{=new_blood_choice_group_str}The Feral", TORCareers.MinorVampire, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
