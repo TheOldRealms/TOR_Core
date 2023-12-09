@@ -2830,7 +2830,7 @@
 	<AbilityTemplate StringID="RighteousFury"
        Name="{=righteous_fury_label_str}Righteous Fury"
        SpriteName="righteousfury_icon"
-       CoolDown="10"
+       CoolDown="15"
        WindsOfMagicCost="0"
        BaseMisCastChance="0"
        Duration="8"

@@ -115,16 +115,23 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     
                     if (heroCareer == TORCareers.MinorVampire)
                     {
-                        if (mask == AttackTypeMask.Melee)
-                        {
-                            explainedNumber.Add(chargeValue);
-                        }
+                        explainedNumber.Add(chargeValue);
 
                         if (mask == AttackTypeMask.Spell && Agent.Main.GetHero().GetAllCareerChoices().Contains("ArkayneKeystone"))
                         {
                             explainedNumber.AddFactor(-0.9f);
                         }
                            
+                    }
+                    
+                    if (Agent.Main.GetHero().GetAllCareerChoices().Contains("BookOfSigmarKeystone"))
+                    {
+                        explainedNumber.Add(chargeValue);
+                        
+                        if (mask == AttackTypeMask.Spell ||  mask == AttackTypeMask.Melee)
+                        {
+                            explainedNumber.AddFactor(-0.9f);
+                        } 
                     }
                    
                     break;

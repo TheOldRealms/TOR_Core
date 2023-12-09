@@ -20,6 +20,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _protectorOfTheWeak;
         private CareerChoiceGroupObject _holyPurge;
         private CareerChoiceGroupObject _archLector;
+        private CareerChoiceGroupObject _twinTailedComet;
         //Minor Vampire
         private CareerChoiceGroupObject _newBlood;
         private CareerChoiceGroupObject _arkayne;
@@ -60,7 +61,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _justCause;
         private CareerChoiceGroupObject _secretsOfTheGrail;
         private CareerChoiceGroupObject _envoyOfTheLady;
-      
+
 
 
         public TORCareerChoiceGroups()
@@ -78,6 +79,7 @@ namespace TOR_Core.CharacterDevelopment
             _protectorOfTheWeak = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("ProtectorOfTheWeak"));
             _holyPurge = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("HolyPurge"));
             _archLector = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("ArchLector"));
+            _twinTailedComet = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("TwinTailedComet"));
             
             _newBlood = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("NewBlood"));
             _feral = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Feral"));
@@ -152,6 +154,11 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.Clan.Tier >= 2;
             });
             _archLector.Initialize("{=arch_lector_choice_group_str}Arch Lector", TORCareers.WarriorPriest, 3, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier >= 4;
+            });
+            _twinTailedComet.Initialize("{=arch_lector_choice_group_str}Twin Tailed Comet", TORCareers.WarriorPriest, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;

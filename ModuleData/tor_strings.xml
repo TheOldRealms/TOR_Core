@@ -816,7 +816,7 @@
   <string id="careerchoice_description.BookOfSigmarPassive2" text="{=str_tor_book_of_sigmar_passive2}Increases morale for all troops by {EFFECT_VALUE}" />
   <string id="careerchoice_description.BookOfSigmarPassive3" text="{=str_tor_book_of_sigmar_passive3}After battle, all wounded companions are healed for {EFFECT_VALUE} Hitpoints" />
   <string id="careerchoice_description.BookOfSigmarPassive4" text="{TOR_CHOICE_TROOPREGENERATION}" />
-  <string id="careerchoice_description.BookOfSigmarKeyStone" text="{=str_tor_book_of_sigmar_keystone}Adds a healing buff to Righeous Fury that restores 5 Hitpoints per second" />
+  <string id="careerchoice_description.BookOfSigmarKeyStone" text="{=str_tor_book_of_sigmar_keystone}Ability can also be charged by applying damage." />
 
   <string id="careerchoice_description.SigmarsProclaimerPassive1" text="{TOR_CHOICE_DAMAGE}" />
   <string id="careerchoice_description.SigmarsProclaimerPassive2" text="{=str_tor_sigmars_proclaimer_passive2}All Sigmarite troops wages are reduced by {EFFECT_VALUE}%" />
@@ -846,7 +846,13 @@
   <string id="careerchoice_description.ArchLectorPassive2" text="{=str_tor_arch_lector_passive2}All neutral Empire troops now count as Sigmarite troops" />
   <string id="careerchoice_description.ArchLectorPassive3" text="{=str_tor_arch_lector_passive3}Gain {EFFECT_VALUE}% Ward save" />
   <string id="careerchoice_description.ArchLectorPassive4" text="{=str_tor_arch_lector_passive4}Prayers aren't affected by global cooldowns" />
-  <string id="careerchoice_description.ArchLectorKeyStone" text="{=str_tor_arch_lector_keystone}Righteous Fury adds a damaging aura. Its radius increases when raising relevant skills " />
+  <string id="careerchoice_description.ArchLectorKeyStone" text="{=str_tor_arch_lector_keystone}Adds a healing buff to Righeous Fury that restores 3 Hitpoints per second" />
+
+  <string id="careerchoice_description.TwinTailedCometPassive1" text="{=str_tor_arch_lector_passive1}Prayers are recharged on battle start" />
+  <string id="careerchoice_description.TwinTailedCometPassive2" text="{=str_tor_arch_lector_passive2}All neutral Empire troops now count as Sigmarite troops" />
+  <string id="careerchoice_description.TwinTailedCometPassive3" text="{=str_tor_arch_lector_passive3}Gain {EFFECT_VALUE}% Ward save" />
+  <string id="careerchoice_description.TwinTailedCometPassive4" text="{=str_tor_arch_lector_passive4}Prayers aren't affected by global cooldowns" />
+  <string id="careerchoice_description.TwinTailedCometKeystone" text="{=str_tor_arch_lector_keystone}Righteous Fury adds a damaging aura. Its radius increases when raising relevant skills." />
 
 
   <!--Grail Knight !-->

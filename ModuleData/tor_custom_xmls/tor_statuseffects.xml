@@ -349,7 +349,7 @@
 		id="righteous_fury_regeneration" 
 		particle_id="healing_hand"
 		particle_intensity="High"
-		base_effect_value="5"
+		base_effect_value="3"
 		do_not_attach_to_agent_skeleton="true"
 		type="HealthOverTime"/>
 	

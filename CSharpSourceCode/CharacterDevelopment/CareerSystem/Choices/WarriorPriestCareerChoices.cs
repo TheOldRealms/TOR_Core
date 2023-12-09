@@ -55,6 +55,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         private CareerChoiceObject _archLectorPassive2;
         private CareerChoiceObject _archLectorPassive3;
         private CareerChoiceObject _archLectorPassive4;
+        
+        private CareerChoiceObject _twinTailedCometKeystone;
+        private CareerChoiceObject _twinTailedCometPassive1;
+        private CareerChoiceObject _twinTailedCometPassive2;
+        private CareerChoiceObject _twinTailedCometPassive3;
+        private CareerChoiceObject _twinTailedCometPassive4;
 
 
         protected override void RegisterAll()
@@ -97,7 +103,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             _archLectorPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ArchLectorPassive3"));
             _archLectorPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ArchLectorPassive4"));
             
-         
+            _twinTailedCometPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("TwinTailedCometPassive1"));
+            _twinTailedCometPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("TwinTailedCometPassive2"));
+            _twinTailedCometPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("TwinTailedCometPassive3"));
+            _twinTailedCometPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("TwinTailedCometPassive4"));
+            _twinTailedCometKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("TwinTailedCometKeystone"));
         }
 
         protected override  void InitializeKeyStones()
@@ -122,18 +132,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                         MutationType = OperationType.Add
                     }
                 });
-            _bookOfSigmarKeystone.Initialize(CareerID, "Adds a healing buff to Righteous Fury that restores 5 Hitpoints per second.", "BookOfSigmar", false,
+            _bookOfSigmarKeystone.Initialize(CareerID, "Ability can also be charged by applying damage.", "BookOfSigmar", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_righteous_fury",
-                        PropertyName = "ImbuedStatusEffects",
-                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"righteous_fury_regeneration"}).ToList(),
-                        MutationType = OperationType.Replace
-                    },
-                });
+                },new CareerChoiceObject.PassiveEffect());
+            
             _sigmarProclaimerKeystone.Initialize(CareerID, "Doubles the aura size of Righteous Fury.", "SigmarsProclaimer", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
@@ -246,7 +249,21 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                         MutationType = OperationType.Replace
                     },
                 });
-            _archLectorKeystone.Initialize(CareerID, "Righteous Fury adds a damaging aura. Its radius increases slightly when raising relevant skills.", "ArchLector", false,
+            
+            _archLectorKeystone.Initialize(CareerID, "Adds a healing buff to Righteous Fury that restores 3 Hitpoints per second.", "ArchLector", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_righteous_fury",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"righteous_fury_regeneration"}).ToList(),
+                        MutationType = OperationType.Replace
+                    },
+                });
+            
+            _twinTailedCometKeystone.Initialize(CareerID, "Righteous Fury adds a damaging aura. Its radius increases slightly when raising relevant skills.", "TwinTailedComet", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -307,6 +324,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             _archLectorPassive2.Initialize(CareerID, "All neutral Empire troops now count as Sigmarite troops.", "ArchLector", false, ChoiceType.Passive, null);
             _archLectorPassive3.Initialize(CareerID, "Gain 15% Ward save.", "ArchLector", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All,15),AttackTypeMask.All));
             _archLectorPassive4.Initialize(CareerID, "Prayers aren't affected by global cooldowns.", "ArchLector", false, ChoiceType.Passive, null);   //Ability 132
+            
+            _twinTailedCometPassive1.Initialize(CareerID, "10% extra holy melee damage.", "TwinTailedComet", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy,10),AttackTypeMask.Melee));
+            _twinTailedCometPassive2.Initialize(CareerID, "Increases Companion Limit by 5.", "TwinTailedComet", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
+            _twinTailedCometPassive3.Initialize(CareerID, "Extra 20% armor penetration of melee attacks.", "TwinTailedComet", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
+            _twinTailedCometPassive4.Initialize(CareerID, "Increases Hitpoints by 30.", "TwinTailedComet", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Health));
+
         }
         
 
