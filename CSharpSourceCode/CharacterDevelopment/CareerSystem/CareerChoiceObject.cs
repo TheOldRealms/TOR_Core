@@ -46,12 +46,22 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     }
                     else
                     {
+                        
+                        
                         if (Passive.InterpretAsPercentage)
                         {
-                            GameTexts.SetVariable("EFFECT_VALUE", Passive.EffectMagnitude.ToString("R"));
+                            if (Passive.PassiveEffectType == PassiveEffectType.ArmorPenetration)
+                            {
+                                GameTexts.SetVariable("EFFECT_VALUE", (-Passive.EffectMagnitude).ToString("R"));
+                            }
+                            else
+                            {
+                                GameTexts.SetVariable("EFFECT_VALUE", Passive.EffectMagnitude.ToString("R"));
+                            }
                         }
                         else 
                         {
+                            
                             GameTexts.SetVariable("EFFECT_VALUE", Passive.EffectMagnitude.ToString());
                         }
                     }
