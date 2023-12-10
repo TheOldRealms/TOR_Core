@@ -162,11 +162,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 }
                     
                 case ChargeType.NumberOfKills:
-                    
+                    explainedNumber.Add(1);
                     break;
             }
 
-            explainedNumber.AddFactor(1-careerScaleFactor);
+            explainedNumber.AddFactor(careerScaleFactor);
             return explainedNumber.ResultNumber;
         }
         

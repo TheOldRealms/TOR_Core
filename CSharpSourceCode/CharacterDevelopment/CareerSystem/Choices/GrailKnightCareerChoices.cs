@@ -293,7 +293,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Add
                     }
                 });
-            _holyCrusaderKeystone.Initialize(CareerID, "Ability scales with Leadership and activates also for all other Knight Companions. Effect is also applied for all units in a 5 meter radius", "HolyCrusader", false,
+            _holyCrusaderKeystone.Initialize(CareerID, "Ability scales with Leadership and propagates from all Companions to units in a 5m radius ", "HolyCrusader", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -366,7 +366,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             _holyCrusaderPassive1.Initialize(CareerID, "{=holy_crusader_passive1_str}Increases Hitpoints by 40.", "HolyCrusader", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Health));
             _holyCrusaderPassive2.Initialize(CareerID, "{=holy_crusader_passive2_str}Companion Health increases by 15 for every 'Knight' Companion.", "HolyCrusader", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special));
-            _holyCrusaderPassive3.Initialize(CareerID, "{=holy_crusader_passive3_str}Grail Knights can be upgraded to Companions.", "HolyCrusader", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Health));
+            _holyCrusaderPassive3.Initialize(CareerID, "{=holy_crusader_passive3_str}Grail Knights can be upgraded to Companions.", "HolyCrusader", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
             _holyCrusaderPassive4.Initialize(CareerID, "{=holy_crusader_passive4_str}Companion limit of party is increased by 10.", "HolyCrusader", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.CompanionLimit));
         }
 

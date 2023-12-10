@@ -135,31 +135,6 @@ namespace TOR_Core.BattleMechanics
                         
                     }
                 }
-                
-                
-            }
-            
-            if(!affectorAgent.IsMount&&affectorAgent.GetOriginMobileParty().IsMainParty&& Agent.Main!=null&&   affectorAgent!=Agent.Main&& affectorAgent.IsHero)
-            {
-                var playerHero = Agent.Main.GetHero();
-                var choices = playerHero.GetAllCareerChoices();
-                if (choices.Contains ("NightRiderKeystone") && !(blow.IsMissile || TORSpellBlowHelper.IsSpellBlow(blow)))
-                {
-                    var choice = TORCareerChoices.GetChoice("NightRiderKeystone");
-                    if (choice != null && affectorAgent.GetOriginMobileParty().IsMainParty && !affectorAgent.IsMainAgent)
-                    {
-                        var careerAbility = Agent.Main.GetComponent<AbilityComponent>()?.CareerAbility;
-
-                        var charge = CareerHelper.CalculateChargeForCareer(ChargeType.NumberOfKills, 1);
-                        careerAbility?.AddCharge(charge);
-                    }
-                }
-            }
-            
-            if (affectorAgent.IsMainAgent || affectorAgent.GetOriginMobileParty() == MobileParty.MainParty)
-            {
-                var playerHero = affectorAgent.GetHero();
-                var choices = playerHero.GetAllCareerChoices();
             }
         }
     }

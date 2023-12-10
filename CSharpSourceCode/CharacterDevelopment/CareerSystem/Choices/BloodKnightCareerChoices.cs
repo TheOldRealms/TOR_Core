@@ -32,7 +32,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         
         private CareerChoiceObject _nightRiderKeystone;
         private CareerChoiceObject _nightRiderPassive1;
-        private CareerChoiceObject _nightRidePassive2;
+        private CareerChoiceObject _nightRiderPassive2;
         private CareerChoiceObject _nightRiderPassive3;
         private CareerChoiceObject _nightRiderPassive4;
 
@@ -79,10 +79,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _peerlessWarriorPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("PeerlessWarriorPassive4"));
             
             _nightRiderKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NightRiderKeystone"));
-            _nightRiderPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NightRidePassive1"));
-            _nightRidePassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NightRidePassive2"));
-            _nightRiderPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NightRidePassive3"));
-            _nightRiderPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NightRidePassive4"));
+            _nightRiderPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NightRiderPassive1"));
+            _nightRiderPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NightRiderPassive2"));
+            _nightRiderPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NightRiderPassive3"));
+            _nightRiderPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NightRiderPassive4"));
 
             _bladeMasterKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BladeMasterKeystone"));
             _bladeMasterPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BladeMasterPassive1"));
@@ -360,7 +360,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _peerlessWarriorPassive4.Initialize(CareerID, "{=peerless_warrior_passive4_str}You gain 100 exp in one of the melee combat skills at random every day.", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special, false));  // CareerChoicePerkCampaignBehavior 123
             
             _nightRiderPassive1.Initialize(CareerID, "{=night_rider_passive1_str}Increases Hitpoints by 25.", "NightRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
-            _nightRidePassive2.Initialize(CareerID, "{=night_rider_passive2_str}All undead and vampires receive 20 points to their melee skills.", "NightRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special));
+            _nightRiderPassive2.Initialize(CareerID, "{=night_rider_passive2_str}All undead and vampires receive 20 points to their melee skills.", "NightRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special));
             _nightRiderPassive3.Initialize(CareerID, "{=night_rider_passive3_str}Raiding is at Night 50% faster.", "NightRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, true));
             _nightRiderPassive4.Initialize(CareerID, "{=night_rider_passive4_str}Attacks deal bonus damage against shields.", "NightRider", false, ChoiceType.Passive, null);
             

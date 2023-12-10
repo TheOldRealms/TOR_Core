@@ -68,6 +68,7 @@ namespace TOR_Core.CampaignMechanics
             
             AddCompanionAction.Apply(MobileParty.MainParty.ActualClan, hero);
             AddHeroToPartyAction.Apply(hero, MobileParty.MainParty);
+            MobileParty.MainParty.MemberRoster.AddToCountsAtIndex(MobileParty.MainParty.MemberRoster.FindIndexOfTroop(_currentCharacterTemplate),-1);
         }
         
         

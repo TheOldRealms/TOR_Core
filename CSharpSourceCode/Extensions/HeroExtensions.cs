@@ -311,7 +311,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsBretonnianKnight(this Hero hero)       //Potentially a cleaner way to check that
         {
-            return !hero.IsSpellCaster() && hero.Culture.StringId != "vlandia";
+            return !hero.IsSpellCaster() && hero.Culture.StringId == "vlandia";
         }
 
         public static bool HasAnyCareer(this Hero hero) => Game.Current.GameType is Campaign&& hero.GetCareer() != null;

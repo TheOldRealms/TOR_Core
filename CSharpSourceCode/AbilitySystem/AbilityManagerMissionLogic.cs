@@ -124,14 +124,34 @@ namespace TOR_Core.AbilitySystem
            // base.OnAgentRemoved(affectedAgent, affectorAgent, agentState, blow);
            if(affectorAgent==null)return;
            var comp = affectorAgent.GetComponent<AbilityComponent>();
-           if (comp != null)
+           if (affectorAgent==Agent.Main&&comp != null)
            {
                if(comp.CareerAbility==null)
                    return;
                
-               
                CareerHelper.CalculateChargeForCareer(ChargeType.DamageDone,blow.InflictedDamage);
                if (comp.CareerAbility.ChargeType == ChargeType.NumberOfKills) comp.CareerAbility.AddCharge(1);
+           }
+           var partyCondition = !affectorAgent.IsMount && affectorAgent.GetOriginMobileParty().IsMainParty && Agent.Main != null;
+           var t = affectorAgent != Agent.Main && affectorAgent.IsHero;
+           
+           if(!affectorAgent.IsMount&&affectorAgent.GetOriginMobileParty().IsMainParty&& Agent.Main!=null&&   affectorAgent!=Agent.Main&& affectorAgent.IsHero)
+           {
+               var playerHero = Agent.Main.GetHero();
+               var choices = playerHero.GetAllCareerChoices();
+
+               var spellblow = TORSpellBlowHelper.IsSpellBlow(blow);
+               if (choices.Contains ("NightRiderKeystone") && !(blow.IsMissile || TORSpellBlowHelper.IsSpellBlow(blow)))
+               {
+                   var choice = TORCareerChoices.GetChoice("NightRiderKeystone");
+                   if (choice != null && affectorAgent.GetOriginMobileParty().IsMainParty && !affectorAgent.IsMainAgent)
+                   {
+                       var careerAbility = Agent.Main.GetComponent<AbilityComponent>()?.CareerAbility;
+
+                       var charge = CareerHelper.CalculateChargeForCareer(ChargeType.NumberOfKills, 1);
+                       careerAbility?.AddCharge(charge);
+                   }
+               }
            }
             
         }
