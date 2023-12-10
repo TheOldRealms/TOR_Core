@@ -1,3 +1,4 @@
+using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
@@ -5,6 +6,7 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -46,7 +48,6 @@ namespace TOR_Core.BattleMechanics
             if(affectorAgent.IsMount) return;
             if (affectorAgent.GetOriginMobileParty().IsMainParty && Agent.Main!=null&&  affectorAgent!= Agent.Main && affectorAgent.IsHero)
             {
-                
                 var choices = Agent.Main.GetHero().GetAllCareerChoices();
                 if (choices.Contains("InspirationOfTheLadyKeystone"))
                 {
@@ -63,9 +64,39 @@ namespace TOR_Core.BattleMechanics
                         }
                         
                     }
-                    
                 }
             }
+
+            if (affectorAgent.IsMainAgent && affectorAgent.GetHero().GetCareer() == TORCareers.WitchHunter)
+            {
+                var temporaryEffects = affectedAgent.GetComponent<StatusEffectComponent>().GetTemporaryAttributes();
+
+                if (temporaryEffects.Contains("AccusationMark"))
+                {
+                    AbilityTemplate ability = affectorAgent.GetComponent<AbilityComponent>().CareerAbility.Template;
+
+                    var chance = ability.ScaleVariable1;
+
+                    chance = Mathf.Clamp(chance, 0.1f, 1);
+                
+                    if (MBRandom.RandomFloat <= chance)
+                    {
+                        affectedAgent.GetComponent<StatusEffectComponent>().RunStatusEffect("accusation_debuff", affectorAgent, ability.Duration,true,true);
+                    }
+                    else
+                    {
+                        affectedAgent.GetComponent<StatusEffectComponent>().RemoveStatusEffect("accusation_debuff");
+                    }
+                }
+                
+                
+                
+                
+                
+            }
+
+
+            
         }
 
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)

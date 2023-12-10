@@ -950,7 +950,7 @@
             ImbuedStatusEffectDuration="5" 
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
-            <ImbuedStatusEffect>accusation_debuff_phy</ImbuedStatusEffect>
+            <ImbuedStatusEffect>accusation_debuff</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	  

@@ -104,6 +104,8 @@ namespace TOR_Core.AbilitySystem
         public bool ShouldRotateVisuals { get; set; } = false;
         [XmlAttribute]
         public bool DoNotAlignParticleEffectPrefab { get; set; } = false;
+        [XmlIgnore] 
+        public float ScaleVariable1 { get; set; } = 0f;
         public float VisualsRotationVelocity { get; set; } = 0f;
         [XmlIgnore]
         public SeekerParameters SeekerParameters { get; set; }
@@ -129,8 +131,7 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-        [XmlIgnore] 
-        public float ScaleVariable1;
+       
         
         public AbilityTemplate() { }
         public AbilityTemplate(string id) => StringID = id;
@@ -190,7 +191,8 @@ namespace TOR_Core.AbilitySystem
                 TooltipDescription = TooltipDescription,
                 MaxRandomDeviation = MaxRandomDeviation,
                 ShouldRotateVisuals = ShouldRotateVisuals,
-                VisualsRotationVelocity = VisualsRotationVelocity
+                VisualsRotationVelocity = VisualsRotationVelocity,
+                ScaleVariable1 = ScaleVariable1
             };
         }
     }

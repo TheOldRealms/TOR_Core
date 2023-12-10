@@ -37,7 +37,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             _toolsOfJudgementKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ToolsOfJudgementKeystone"));
             
-            _silverHammerKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SilverhammerKeystone"));
+            _silverHammerKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SilverHammerKeystone"));
             
             _endsJustifiesMeansKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("EndsJustifiesMeansKeystone"));
             
@@ -63,7 +63,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
             
-            _toolsOfJudgementKeystone.Initialize(CareerID, "The Marker stays 5 seconds longer on the target. One-handed  or two-handed skill counts towards careers ability.", "ToolsOfJudgement", true,
+            _toolsOfJudgementKeystone.Initialize(CareerID, "The Marker stays 5 seconds longer on the target. One-handed  or two-handed skill counts towards careers ability.", "ToolsOfJudgement", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -84,7 +84,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
             
-            _huntTheWickedKeystone.Initialize(CareerID, "20% additional physical damage.", "HuntTheWicked", true,
+            _huntTheWickedKeystone.Initialize(CareerID, "20% additional physical damage for marked enemies.", "HuntTheWicked", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -92,12 +92,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(TriggeredEffectTemplate),
                         MutationTargetOriginalId = "apply_accusation",
                         PropertyName = "ImbuedStatusEffects",
-                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "accusation_debuff_phy2" }).ToList(),
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "accusation_debuff_phy" }).ToList(),
                         MutationType = OperationType.Replace
                     }
                 });
             
-            _silverHammerKeystone.Initialize(CareerID, "Increases damage to the target by  holy damage 20%. Faith skill counts towards ability.", "SilverHammer", true,
+            _silverHammerKeystone.Initialize(CareerID, "Increases damage to the target by  holy damage 20%. Faith skill counts towards ability.", "SilverHammer", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -118,7 +118,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
             
-            _endsJustifiesMeansKeystone.Initialize(CareerID, "If the enemy suffers from one hit more damage than its maximum life a marker is placed on a near-by enemy. Ability scales with rougery", "EndsJustifiesMeans", true,
+            _endsJustifiesMeansKeystone.Initialize(CareerID, "If the enemy suffers from one hit more damage than its maximum life a marker is placed on a near-by enemy. Ability scales with rougery", "EndsJustifiesMeans", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -131,7 +131,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 }); // passive
             
-            _swiftProcedureKeystone.Initialize(CareerID, "Marked enemies movement & swing speed is decreased. Ability scales with atheletics", "SwiftProcedure", true,
+            _swiftProcedureKeystone.Initialize(CareerID, "Marked enemies movement & swing speed is decreased. Ability scales with atheletics", "SwiftProcedure", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -152,13 +152,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
             
-            _guiltyByAssociationKeystone.Initialize(CareerID, "After adding the marker, the mark may jump to 1-2 surrounding enemies.", "GuiltyByAssociation", true,
+            _guiltyByAssociationKeystone.Initialize(CareerID, "After adding the marker, the mark may jump to 1-2 surrounding enemies.", "GuiltyByAssociation", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     
                 }); //special
             
-            _noRestAgainstEvilKeystone.Initialize(CareerID, "Executing marked enemies increases your reload speed and swing speed for 5 seconds.", "NoRestAgainstEvil", true,
+            _noRestAgainstEvilKeystone.Initialize(CareerID, "Executing marked enemies increases your reload speed and swing speed for 5 seconds.", "NoRestAgainstEvil", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                 }); // special

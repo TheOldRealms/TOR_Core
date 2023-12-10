@@ -89,6 +89,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         }
 
         public override void OnAgentRemoved() => CleanUp();
+        
         public override void OnComponentRemoved() => CleanUp();
 
         public void OnElapsed(float dt)
@@ -467,6 +468,15 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     DamageAmplifications[AttackTypeMask.Melee][(int)damageType] += value;
                 }
             }
+        }
+
+        public void RemoveStatusEffect(string StatusEffectID)
+        {
+            var targetEffect = _currentEffects.Keys.FirstOrDefault(x => x.Template.StringID.Contains(StatusEffectID));
+            
+            if(targetEffect==null) return;
+
+            RemoveEffect(targetEffect);
         }
     }
 }

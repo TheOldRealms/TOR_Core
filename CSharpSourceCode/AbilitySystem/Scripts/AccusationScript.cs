@@ -9,7 +9,7 @@
         {
             base.OnInit();
 
-            var value = this._ability.Template.ScaleVariable1;
+            //var value = this._ability.Template.ScaleVariable1;
         }
     }
 }
