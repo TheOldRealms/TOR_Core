@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
@@ -6,6 +7,7 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
+using TOR_Core.AbilitySystem.Scripts;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -67,25 +69,59 @@ namespace TOR_Core.BattleMechanics
                 }
             }
 
-            if (affectorAgent.IsMainAgent && affectorAgent.GetHero().GetCareer() == TORCareers.WitchHunter)
+            if (affectorAgent!=null&&affectorAgent.IsMainAgent && affectorAgent.GetHero().GetCareer() == TORCareers.WitchHunter)
             {
                 var temporaryEffects = affectedAgent.GetComponent<StatusEffectComponent>().GetTemporaryAttributes();
 
                 if (temporaryEffects.Contains("AccusationMark"))
                 {
+                    var choices = Hero.MainHero.GetAllCareerChoices();
+                    
                     AbilityTemplate ability = affectorAgent.GetComponent<AbilityComponent>().CareerAbility.Template;
 
                     var chance = ability.ScaleVariable1;
 
                     chance = Mathf.Clamp(chance, 0.1f, 1);
+
+                    var targets = new MBList<Agent>();
+
+                    if (choices.Contains("EndsJustifiesMeansKeystone")&&affectedAgent.HealthLimit <= blow.InflictedDamage)
+                    {
+                        targets.AddRange(AccusationScript.GetAdditionalAccusationMarkTargets(affectedAgent.Position.AsVec2,1));
+                    }
+                    
+                    var script = (AccusationScript)affectorAgent.GetComponent<AbilityComponent>().CareerAbility.AbilityScript;
+                    var triggeredEffect = script.GetEffects()[0];
                 
                     if (MBRandom.RandomFloat <= chance)
                     {
-                        affectedAgent.GetComponent<StatusEffectComponent>().RunStatusEffect("accusation_debuff", affectorAgent, ability.Duration,true,true);
+                        
+                        targets.Add(affectedAgent);
+                        
+                        if (choices.Contains("GuiltyByAssociationKeystone"))
+                        {
+                            targets.AddRange(AccusationScript.GetAdditionalAccusationMarkTargets(affectedAgent.Position.AsVec2));
+                        }
                     }
                     else
                     {
-                        affectedAgent.GetComponent<StatusEffectComponent>().RemoveStatusEffect("accusation_debuff");
+                        affectedAgent.GetComponent<StatusEffectComponent>().RemoveStatusEffect("accusation_debuff",true);
+                    }
+                    
+                    if(triggeredEffect==null) return;
+                    
+                    foreach (var target in targets)
+                    {
+                        foreach (var statusEffect in triggeredEffect.StatusEffects)
+                        {
+                            target.GetComponent<StatusEffectComponent>().RunStatusEffect(statusEffect, affectorAgent, triggeredEffect.ImbuedStatusEffectDuration,true,true);
+                        }
+                    }
+
+                    if (affectedAgent.Health <= blow.InflictedDamage&&choices.Contains("NoRestAgainstEvilKeystone"))
+                    {
+                        affectorAgent.GetComponent<StatusEffectComponent>().RunStatusEffect("accusation_buff_ats",affectorAgent,8,true,true);
+                        affectorAgent.GetComponent<StatusEffectComponent>().RunStatusEffect("accusation_buff_rls",affectorAgent,8,true,true);
                     }
                 }
                 
@@ -135,6 +171,7 @@ namespace TOR_Core.BattleMechanics
                         
                     }
                 }
+                
             }
         }
     }

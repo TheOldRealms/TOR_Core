@@ -2879,7 +2879,7 @@
        AbilityEffectType="CareerAbilityEffect"
        BaseMovementSpeed="0"
        TickInterval="2"
-       TriggerType="EveryTick"
+       TriggerType="TickOnce"
        HasLight="false"
        LightIntensity="0"
        LightRadius="0"

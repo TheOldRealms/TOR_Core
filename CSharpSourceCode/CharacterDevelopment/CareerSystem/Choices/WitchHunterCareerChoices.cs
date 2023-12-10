@@ -50,7 +50,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _witchHunterRoot.Initialize(CareerID, "single enemy is marked for 5 seconds and the first hit inflicted against the target increases the physical damage by 20%. After the first hit there is a 10% chance the marker stays on the target. For every point in Gunpowder or crossbow, the chances increases by X% the marker stays on the target.", null, true,
+            _witchHunterRoot.Initialize(CareerID, "single enemy is marked for 8 seconds and the first hit inflicted against the target increases the physical damage by 20%. After the first hit there is a 10% chance the marker stays on the target. For every point in Gunpowder or crossbow, the chances increases by X% the marker stays on the target.", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -63,16 +63,16 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
             
-            _toolsOfJudgementKeystone.Initialize(CareerID, "The Marker stays 5 seconds longer on the target. One-handed  or two-handed skill counts towards careers ability.", "ToolsOfJudgement", false,
+            _toolsOfJudgementKeystone.Initialize(CareerID, "The Marker stays 6 seconds longer on the target. One-handed  or two-handed skill counts towards careers ability.", "ToolsOfJudgement", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
                     {
-                        MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "Accusation",
-                        PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) => 2 ,
-                        MutationType = OperationType.Multiply
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_accusation",
+                        PropertyName = "ImbuedStatusEffectDuration",
+                        PropertyValue = (choice, originalValue, agent) => 6 ,
+                        MutationType = OperationType.Add
                     },
                     new CareerChoiceObject.MutationObject()
                     {

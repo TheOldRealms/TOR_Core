@@ -16,6 +16,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         {
             List<TriggeredEffect> result = new List<TriggeredEffect>();
             var effects = _ability?.Template.TriggeredEffects;
+            if (effects == null) return result;
             foreach (var effect in effects)
             {
                 if (effect != null && !string.IsNullOrEmpty(effect))

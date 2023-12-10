@@ -947,7 +947,7 @@
             Radius="3" 
             HasShockWave="false" 
             TargetType="Enemy" 
-            ImbuedStatusEffectDuration="5" 
+            ImbuedStatusEffectDuration="8" 
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>accusation_debuff</ImbuedStatusEffect>

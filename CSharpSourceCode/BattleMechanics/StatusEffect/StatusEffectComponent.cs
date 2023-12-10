@@ -470,8 +470,17 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
         }
 
-        public void RemoveStatusEffect(string StatusEffectID)
+        public void RemoveStatusEffect(string StatusEffectID, bool allEffects=false)
         {
+            if (allEffects)
+            {
+                var targetEffects = _currentEffects.Keys.Where(x => x.Template.StringID.Contains(StatusEffectID)).ToList();
+                foreach (var statusEffect in targetEffects)
+                {
+                    TORCommon.Say("remove "+statusEffect.Template.StringID);
+                    RemoveEffect(statusEffect);
+                }
+            }
             var targetEffect = _currentEffects.Keys.FirstOrDefault(x => x.Template.StringID.Contains(StatusEffectID));
             
             if(targetEffect==null) return;
