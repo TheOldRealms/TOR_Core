@@ -109,10 +109,11 @@ namespace TOR_Core.Models
                     {
                         if (hero.IsBretonnianKnight())
                         {
+                            var choice = TORCareerChoices.GetChoice("HolyCrusaderPassive2");
                             var heroes =Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
                             heroes.Remove(Hero.MainHero);
                             var extraHealth= heroes.Where(knight => hero.IsBretonnianKnight()).Sum(knight=> 15);
-                            number.Add(extraHealth);
+                            number.Add(extraHealth,choice.BelongsToGroup.Name);
                         }
                     }
                     
