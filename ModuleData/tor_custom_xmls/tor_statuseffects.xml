@@ -386,18 +386,6 @@
 		type="Resistance">
 		<temporary_attribute>ClearBloodBurst</temporary_attribute>
 	</StatusEffectTemplate>
-		
-	<StatusEffectTemplate 
-		id="fey_path_res" 
-		particle_id="aerial_shield"
-		do_not_attach_to_agent_skeleton="true"
-		particle_intensity="High"
-		base_effect_value="1.0"
-		damage_type="Physical"
-		applies_for_attack_type="Melee"
-		type="Resistance">
-		<temporary_attribute>ClearBloodBurst</temporary_attribute>
-	</StatusEffectTemplate>	
 	
 	<StatusEffectTemplate 
 		id="let_them_have_it_unstoppable" 
@@ -457,6 +445,7 @@
 		applies_for_attack_type="Ranged"
 		type="Resistance">
 	</StatusEffectTemplate>
+	
 	<StatusEffectTemplate 
 		id="let_them_have_it_melee_ats" 
 		particle_id="psys_energy_sphere"
@@ -466,6 +455,7 @@
 		applies_for_attack_type="Melee"
 		type="AttackSpeedManipulation">
 	</StatusEffectTemplate>
+	
 	<StatusEffectTemplate 
 		id="let_them_have_it_melee_rls" 
 		particle_id="psys_energy_sphere"
@@ -476,10 +466,17 @@
 		type="ReloadSpeedManipulation">
 	</StatusEffectTemplate>
 	
-	
-	
- 	
-	
+	<StatusEffectTemplate 
+		id="fey_path_res" 
+		particle_id="aerial_shield"
+		do_not_attach_to_agent_skeleton="true"
+		particle_intensity="High"
+		base_effect_value="1.0"
+		damage_type="Physical"
+		applies_for_attack_type="Melee"
+		type="Resistance">
+		<temporary_attribute>ClearBloodBurst</temporary_attribute>
+	</StatusEffectTemplate>	
 	
 	<StatusEffectTemplate 
 		id="fey_path_dmg" 
@@ -500,8 +497,7 @@
     	base_effect_value="-0.9"
 		type="MovementManipulation"
 		damage_type="Physical"/>
-		
-		
+			
 	<StatusEffectTemplate 
 		id="barkskin" 
 		do_not_attach_to_agent_skeleton="true"

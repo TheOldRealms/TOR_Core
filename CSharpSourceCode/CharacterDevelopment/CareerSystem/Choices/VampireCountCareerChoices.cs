@@ -138,12 +138,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             
 
-            _newBloodKeystone.Initialize(CareerID, "Ability needs 20% less damage to get charged.", "NewBlood", false, // very hardcoded. I will continue on that after release 
+            _newBloodKeystone.Initialize(CareerID, "Ability needs 20% less damage to get charged.", "NewBlood", false, 
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                 }, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
             
-            _feralKeystone.Initialize(CareerID, "Mistform speed is increased by 20%.", "Feral", false, // very hardcoded. I will continue on that after release 
+            _feralKeystone.Initialize(CareerID, "Mistform speed is increased by 20%.", "Feral", false, 
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                 }, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
