@@ -352,14 +352,69 @@
 		base_effect_value="3"
 		do_not_attach_to_agent_skeleton="true"
 		type="HealthOverTime"/>
-		
-		
-	
 	<StatusEffectTemplate 
 		id="righteous_fury_pulsevisual" 
 		particle_id="righteousfury_pulse"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"/>
+		
+	<StatusEffectTemplate
+		id="accusation_debuff_phy"
+		particle_id="soulstealer"
+		particle_intensity="Low"
+		apply_particle_to_root_bone_only="true"
+    	base_effect_value="-0.2"
+		type="Resistance"
+		damage_type="Physical"/>	
+	<StatusEffectTemplate
+		id="accusation_debuff_phy2"
+		particle_id=""
+		particle_intensity="Low"
+		apply_particle_to_root_bone_only="true"
+    	base_effect_value="-0.2"
+		type="Resistance"
+		damage_type="Physical"/>
+	<StatusEffectTemplate
+		id="accusation_debuff_holy"
+		particle_id=""
+		particle_intensity="Low"
+		apply_particle_to_root_bone_only="true"
+    	base_effect_value="-0.2"
+		type="Resistance"
+		damage_type="Holy"/>
+	<StatusEffectTemplate 
+		id="accusation_debuff_mov" 
+		particle_id="curse_of_years"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="-0.20"
+		type="MovementManipulation">
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="accusation_debuff_ats" 
+		particle_id="curse_of_years"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="-0.20"
+		type="AttackSpeedManipulation">
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="accusation_buff_ats" 
+		particle_id="righteous_fury_regeneration"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.25"
+		type="AttackSpeedManipulation">
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="accusation_buff_rls" 
+		particle_id="righteous_fury_regeneration"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.25"
+		type="ReloadSpeedManipulation">
+	</StatusEffectTemplate>
+	
 	<StatusEffectTemplate 
 		id="fire_cloak_phy_res" 
 		particle_id="firecloak"
@@ -388,83 +443,6 @@
 		type="Resistance">
 		<temporary_attribute>ClearBloodBurst</temporary_attribute>
 	</StatusEffectTemplate>
-	
-	<StatusEffectTemplate
-		id="accusation_debuff_phy"
-		particle_id="soulstealer"
-		particle_intensity="Low"
-		apply_particle_to_root_bone_only="true"
-    	base_effect_value="-0.2"
-		type="Resistance"
-		damage_type="Physical"/>
-		
-	<StatusEffectTemplate
-		id="accusation_debuff_phy2"
-		particle_id=""
-		particle_intensity="Low"
-		apply_particle_to_root_bone_only="true"
-    	base_effect_value="-0.2"
-		type="Resistance"
-		damage_type="Physical"/>
-	
-	<StatusEffectTemplate
-		id="accusation_debuff_holy"
-		particle_id=""
-		particle_intensity="Low"
-		apply_particle_to_root_bone_only="true"
-    	base_effect_value="-0.2"
-		type="Resistance"
-		damage_type="Holy"/>
-		
-	
-	<StatusEffectTemplate 
-		id="accusation_debuff_mov" 
-		particle_id="curse_of_years"
-		particle_intensity="High"
-		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="-0.20"
-		type="MovementManipulation">
-	</StatusEffectTemplate>
-	
-	<StatusEffectTemplate 
-		id="accusation_debuff_ats" 
-		particle_id="curse_of_years"
-		particle_intensity="High"
-		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="-0.20"
-		type="AttackSpeedManipulation">
-	</StatusEffectTemplate>
-	
-	<StatusEffectTemplate 
-		id="accusation_buff_ats" 
-		particle_id="righteous_fury_regeneration"
-		particle_intensity="High"
-		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="0.25"
-		type="AttackSpeedManipulation">
-	</StatusEffectTemplate>
-	
-	<StatusEffectTemplate 
-		id="accusation_buff_rls" 
-		particle_id="righteous_fury_regeneration"
-		particle_intensity="High"
-		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="0.25"
-		type="ReloadSpeedManipulation">
-	</StatusEffectTemplate>
-	
-		
-	<StatusEffectTemplate 
-		id="fey_path_res" 
-		particle_id="aerial_shield"
-		do_not_attach_to_agent_skeleton="true"
-		particle_intensity="High"
-		base_effect_value="1.0"
-		damage_type="Physical"
-		applies_for_attack_type="Melee"
-		type="Resistance">
-		<temporary_attribute>ClearBloodBurst</temporary_attribute>
-	</StatusEffectTemplate>	
 	
 	<StatusEffectTemplate 
 		id="let_them_have_it_unstoppable" 
@@ -524,6 +502,7 @@
 		applies_for_attack_type="Ranged"
 		type="Resistance">
 	</StatusEffectTemplate>
+	
 	<StatusEffectTemplate 
 		id="let_them_have_it_melee_ats" 
 		particle_id="psys_energy_sphere"
@@ -533,6 +512,7 @@
 		applies_for_attack_type="Melee"
 		type="AttackSpeedManipulation">
 	</StatusEffectTemplate>
+	
 	<StatusEffectTemplate 
 		id="let_them_have_it_melee_rls" 
 		particle_id="psys_energy_sphere"
@@ -543,10 +523,17 @@
 		type="ReloadSpeedManipulation">
 	</StatusEffectTemplate>
 	
-	
-	
- 	
-	
+	<StatusEffectTemplate 
+		id="fey_path_res" 
+		particle_id="aerial_shield"
+		do_not_attach_to_agent_skeleton="true"
+		particle_intensity="High"
+		base_effect_value="1.0"
+		damage_type="Physical"
+		applies_for_attack_type="Melee"
+		type="Resistance">
+		<temporary_attribute>ClearBloodBurst</temporary_attribute>
+	</StatusEffectTemplate>	
 	
 	<StatusEffectTemplate 
 		id="fey_path_dmg" 
@@ -567,8 +554,7 @@
     	base_effect_value="-0.9"
 		type="MovementManipulation"
 		damage_type="Physical"/>
-		
-		
+			
 	<StatusEffectTemplate 
 		id="barkskin" 
 		do_not_attach_to_agent_skeleton="true"
