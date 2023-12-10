@@ -72,12 +72,6 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
             if(_currentCrosshair != null) _currentCrosshair.Show();
         }
 
-        public void SetDefaultCrosshair()
-        {
-            _currentCrosshair = _weaponCrosshair;
-            _abilityCrosshair = null;
-        }
-
         private bool CanUseCrosshair()
         {
             var careerAbility = _abilityComponent?.CareerAbility;

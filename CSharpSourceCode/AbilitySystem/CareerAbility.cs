@@ -105,11 +105,7 @@ namespace TOR_Core.AbilitySystem
                 _currentCharge = _maxCharge;
                 _doubleUse = true;
             }
-
-            if (_crosshairBehavior != null && _crosshairBehavior.CurrentCrosshair != null)
-            {
-                _crosshairBehavior.SetDefaultCrosshair();
-            }
+            
         }
 
         public override bool CanCast(Agent casterAgent)
