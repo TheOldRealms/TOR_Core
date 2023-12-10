@@ -372,6 +372,7 @@
     <Compile Include="AbilitySystem\ItemBoundAbility.cs" />
     <Compile Include="AbilitySystem\Prayer.cs" />
     <Compile Include="AbilitySystem\Scripts\AbilityScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\AccusationScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ArtilleryPlacementScript.cs" />
     <Compile Include="AbilitySystem\Scripts\AugmentScript.cs" />
     <Compile Include="AbilitySystem\Scripts\BlastScript.cs" />

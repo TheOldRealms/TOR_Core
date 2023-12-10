@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
@@ -54,188 +56,112 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "RighteousFury",
-                        PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.05f),
-                        MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "righteous_fury_effect",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.0005f),
+                        MutationTargetOriginalId = "Accusation",
+                        PropertyName = "ScaleVariable1",
+                        PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.GunPowder, DefaultSkills.Crossbow }, 0.0005f,false,true),
                         MutationType = OperationType.Add
                     }
                 });
             
-            _huntTheWickedKeystone.Initialize(CareerID, "single enemy is marked for 5 seconds and the first hit inflicted against the target increases the physical damage by 20%. After the first hit there is a 10% chance the marker stays on the target. For every point in Gunpowder or crossbow, the chances increases by X% the marker stays on the target.", null, true,
+            _toolsOfJudgementKeystone.Initialize(CareerID, "The Marker stays 5 seconds longer on the target. One-handed  or two-handed skill counts towards careers ability.", "ToolsOfJudgement", true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "RighteousFury",
+                        MutationTargetOriginalId = "Accusation",
                         PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.05f),
-                        MutationType = OperationType.Add
+                        PropertyValue = (choice, originalValue, agent) => 2 ,
+                        MutationType = OperationType.Multiply
                     },
                     new CareerChoiceObject.MutationObject()
                     {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "righteous_fury_effect",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.0005f),
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "Accusation",
+                        PropertyName = "ScaleVariable1",
+                        PropertyValue = (choice, originalValue, agent) =>CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded,DefaultSkills.TwoHanded}, 0.0005f,true),
                         MutationType = OperationType.Add
                     }
                 });
             
-            _toolsOfJudgementKeystone.Initialize(CareerID, "single enemy is marked for 5 seconds and the first hit inflicted against the target increases the physical damage by 20%. After the first hit there is a 10% chance the marker stays on the target. For every point in Gunpowder or crossbow, the chances increases by X% the marker stays on the target.", null, true,
+            _huntTheWickedKeystone.Initialize(CareerID, "20% additional physical damage.", "HuntTheWicked", true,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_accusation",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "accusation_debuff_phy2" }).ToList(),
+                        MutationType = OperationType.Replace
+                    }
+                });
+            
+            _silverHammerKeystone.Initialize(CareerID, "Increases damage to the target by  holy damage 20%. Faith skill counts towards ability.", "SilverHammer", true,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_accusation",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "accusation_debuff_holy" }).ToList(),
+                        MutationType = OperationType.Replace
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "Accusation",
+                        PropertyName = "ScaleVariable1",
+                        PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.0005f),
+                        MutationType = OperationType.Add
+                    }
+                });
+            
+            _endsJustifiesMeansKeystone.Initialize(CareerID, "If the enemy suffers from one hit more damage than its maximum life a marker is placed on a near-by enemy. Ability scales with rougery", "EndsJustifiesMeans", true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "RighteousFury",
-                        PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.05f),
-                        MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "righteous_fury_effect",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.0005f),
+                        MutationTargetOriginalId = "Accusation",
+                        PropertyName = "ScaleVariable1",
+                        PropertyValue = (choice, originalValue, agent) =>CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Roguery}, 0.0005f),
                         MutationType = OperationType.Add
                     }
-                });
+                }); // passive
             
-            _huntTheWickedKeystone.Initialize(CareerID, "single enemy is marked for 5 seconds and the first hit inflicted against the target increases the physical damage by 20%. After the first hit there is a 10% chance the marker stays on the target. For every point in Gunpowder or crossbow, the chances increases by X% the marker stays on the target.", null, true,
+            _swiftProcedureKeystone.Initialize(CareerID, "Marked enemies movement & swing speed is decreased. Ability scales with atheletics", "SwiftProcedure", true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
                     {
-                        MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "RighteousFury",
-                        PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.05f),
-                        MutationType = OperationType.Add
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_accusation",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "accusation_debuff_mov", "accusation_debuff_ats" }).ToList(),
+                        MutationType = OperationType.Replace
                     },
                     new CareerChoiceObject.MutationObject()
                     {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "righteous_fury_effect",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.0005f),
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "Accusation",
+                        PropertyName = "ScaleVariable1",
+                        PropertyValue = (choice, originalValue, agent) =>CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Athletics}, 0.0005f),
                         MutationType = OperationType.Add
                     }
                 });
             
-            _silverHammerKeystone.Initialize(CareerID, "single enemy is marked for 5 seconds and the first hit inflicted against the target increases the physical damage by 20%. After the first hit there is a 10% chance the marker stays on the target. For every point in Gunpowder or crossbow, the chances increases by X% the marker stays on the target.", null, true,
+            _guiltyByAssociationKeystone.Initialize(CareerID, "After adding the marker, the mark may jump to 1-2 surrounding enemies.", "GuiltyByAssociation", true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "RighteousFury",
-                        PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.05f),
-                        MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "righteous_fury_effect",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.0005f),
-                        MutationType = OperationType.Add
-                    }
-                });
+                    
+                }); //special
             
-            _endsJustifiesMeansKeystone.Initialize(CareerID, "single enemy is marked for 5 seconds and the first hit inflicted against the target increases the physical damage by 20%. After the first hit there is a 10% chance the marker stays on the target. For every point in Gunpowder or crossbow, the chances increases by X% the marker stays on the target.", null, true,
+            _noRestAgainstEvilKeystone.Initialize(CareerID, "Executing marked enemies increases your reload speed and swing speed for 5 seconds.", "NoRestAgainstEvil", true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "RighteousFury",
-                        PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.05f),
-                        MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "righteous_fury_effect",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.0005f),
-                        MutationType = OperationType.Add
-                    }
-                });
-            
-            _swiftProcedureKeystone.Initialize(CareerID, "single enemy is marked for 5 seconds and the first hit inflicted against the target increases the physical damage by 20%. After the first hit there is a 10% chance the marker stays on the target. For every point in Gunpowder or crossbow, the chances increases by X% the marker stays on the target.", null, true,
-                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
-                {
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "RighteousFury",
-                        PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.05f),
-                        MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "righteous_fury_effect",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.0005f),
-                        MutationType = OperationType.Add
-                    }
-                });
-            
-            _guiltyByAssociationKeystone.Initialize(CareerID, "single enemy is marked for 5 seconds and the first hit inflicted against the target increases the physical damage by 20%. After the first hit there is a 10% chance the marker stays on the target. For every point in Gunpowder or crossbow, the chances increases by X% the marker stays on the target.", null, true,
-                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
-                {
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "RighteousFury",
-                        PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.05f),
-                        MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "righteous_fury_effect",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.0005f),
-                        MutationType = OperationType.Add
-                    }
-                });
-            
-            _noRestAgainstEvilKeystone.Initialize(CareerID, "single enemy is marked for 5 seconds and the first hit inflicted against the target increases the physical damage by 20%. After the first hit there is a 10% chance the marker stays on the target. For every point in Gunpowder or crossbow, the chances increases by X% the marker stays on the target.", null, true,
-                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
-                {
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "RighteousFury",
-                        PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.05f),
-                        MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "righteous_fury_effect",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.0005f),
-                        MutationType = OperationType.Add
-                    }
-                });
+                }); // special
 
             
         }

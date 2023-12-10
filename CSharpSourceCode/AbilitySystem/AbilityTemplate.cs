@@ -128,6 +128,10 @@ namespace TOR_Core.AbilitySystem
                 }
             }
         }
+
+        [XmlIgnore] 
+        public float ScaleVariable1;
+        
         public AbilityTemplate() { }
         public AbilityTemplate(string id) => StringID = id;
         public MBBindingList<StatItemVM> GetStats(Hero hero, AbilityTemplate spellTemplate)
