@@ -853,7 +853,7 @@
   <string id="careerchoice_description.TwinTailedCometPassive2" text="{TOR_CHOICE_COMPANIONLIMIT}" />
   <string id="careerchoice_description.TwinTailedCometPassive3" text="{TOR_CHOICE_ARMORPENETRATION}" />
   <string id="careerchoice_description.TwinTailedCometPassive4" text="{TOR_CHOICE_HEALTH}" />
-  <string id="careerchoice_description.TwinTailedCometKeyStone" text="{=str_tor_twin_tailed_comet_keystone}Righteous Fury adds a damaging aura. Its radius increases when raising relevant skills." />
+  <string id="careerchoice_description.TwinTailedCometKeystone" text="{=str_tor_twin_tailed_comet_keystone}Righteous Fury adds a damaging aura. Its radius increases when raising relevant skills." />
 
 
   <!--Grail Knight !-->

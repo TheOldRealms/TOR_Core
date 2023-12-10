@@ -938,6 +938,22 @@
             <ImbuedStatusEffect>righteous_fury_effect</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
+	  <TriggeredEffectTemplate StringID="apply_accusation" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="3" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            ImbuedStatusEffectDuration="2.1" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>fireball_dot</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+	  
+	  
 	  <TriggeredEffectTemplate StringID="apply_mistwalk" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 

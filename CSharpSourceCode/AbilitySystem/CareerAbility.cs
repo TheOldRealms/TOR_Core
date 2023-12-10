@@ -20,11 +20,7 @@ namespace TOR_Core.AbilitySystem
         private bool _readyToLaunch;
         private int previousAbilityIndex;
         private bool _doubleUse;
-        
 
-        private bool _requiresDisabledCrosshairDuringAbility = false;
-
-        private CustomCrosshairMissionBehavior _crosshairBehavior;
 
         public CareerAbility(AbilityTemplate template, Agent agent) : base(template)
         {
@@ -44,7 +40,7 @@ namespace TOR_Core.AbilitySystem
                     
                     if(Template.StringID.Contains("ShadowStep"))
                     {
-                        _requiresDisabledCrosshairDuringAbility = true;
+                        RequiresDisabledCrosshairDuringAbility = true;
                     }
                     
                 }
@@ -56,11 +52,17 @@ namespace TOR_Core.AbilitySystem
                     _currentCharge = _maxCharge;
                 else
                     SetCoolDown(Template.CoolDown);
+                
+                
+                IsSingleTarget = Template.AbilityTargetType == AbilityTargetType.SingleAlly||Template.AbilityTargetType == AbilityTargetType.SingleEnemy;
             }
         }
 
 
-        public bool RequiresDisabledCrosshairDuringAbility => _requiresDisabledCrosshairDuringAbility;  
+        public bool IsSingleTarget { get; }
+
+        public bool RequiresDisabledCrosshairDuringAbility { get; } = false;
+
         public ChargeType ChargeType { get; } = ChargeType.CooldownOnly;
         public float ChargeLevel => _currentCharge / _maxCharge;
         public bool IsCharged => ChargeType == ChargeType.CooldownOnly || _currentCharge >= _maxCharge;
@@ -105,11 +107,7 @@ namespace TOR_Core.AbilitySystem
                 _currentCharge = _maxCharge;
                 _doubleUse = true;
             }
-
-            if (_crosshairBehavior != null && _crosshairBehavior.CurrentCrosshair != null)
-            {
-                _crosshairBehavior.SetDefaultCrosshair();
-            }
+            
         }
 
         public override bool CanCast(Agent casterAgent)

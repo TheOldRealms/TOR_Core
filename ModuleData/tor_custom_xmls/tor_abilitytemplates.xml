@@ -2867,6 +2867,48 @@
 		<TriggeredEffect>apply_righteous_fury</TriggeredEffect>
 	</AbilityTemplate>
 	
+	<AbilityTemplate StringID="Accusation"
+       Name="{=righteous_fury_label_str}Accusation"
+       SpriteName="righteousfury_icon"
+       CoolDown="15"
+       WindsOfMagicCost="0"
+       BaseMisCastChance="0"
+       Duration="8"
+       Radius="1"
+       AbilityType="CareerAbility"
+       AbilityEffectType="CareerAbilityEffect"
+       BaseMovementSpeed="0"
+       TickInterval="2"
+       TriggerType="EveryTick"
+       HasLight="false"
+       LightIntensity="0"
+       LightRadius="0"
+	   MaxDistance="150"
+       LightFlickeringMagnitude="0"
+       LightFlickeringInterval="0"
+       ShadowCastEnabled="false"
+       ParticleEffectPrefab=""
+       ParticleEffectSizeModifier="0"
+       SoundEffectToPlay=""
+       ShouldSoundLoopOverDuration="false"
+	   AbilityTargetType="SingleEnemy"
+       CastType="Instant"
+       CastTime="0.5"
+       AnimationActionName="act_release_heavy_thrown"
+       Offset="0"
+	   CrosshairType="SingleTarget"
+       TargetCapturingRadius="4">
+		<LightColorRGB x="255" y="255" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>apply_accusation</TriggeredEffect>
+	</AbilityTemplate>
+
+	
 	<AbilityTemplate StringID="RedFury"
        Name="{=red_fury_label_str}Red Fury"
        SpriteName="redfury_icon"

@@ -16,6 +16,8 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
     [OverrideView(typeof(MissionCrosshair))]
     public class CustomCrosshairMissionBehavior : MissionView
     {
+        private bool _hasCareerSingleTargetCrosshair;
+        private bool _isCareerSingleTargetCrosshairActive;
         private bool _areCrosshairsInitialized;
         private ICrosshair _currentCrosshair;
         private Crosshair _weaponCrosshair;
@@ -44,6 +46,7 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
                 }
                 else if (!Agent.Main.WieldedWeapon.IsEmpty && Agent.Main.WieldedWeapon.CurrentUsageItem.IsRangedWeapon)
                 {
+                    
                     if (CanUseSniperScope())
                     {
                         if (_currentCrosshair != _sniperScope)
@@ -54,12 +57,30 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
                         if (_currentCrosshair != _weaponCrosshair)
                             ChangeCrosshair(_weaponCrosshair);
                     }
+                    
+                    if (_hasCareerSingleTargetCrosshair&&_abilityComponent.CareerAbility.IsCharged && !_abilityComponent.CareerAbility.IsOnCooldown())
+                    {
+                        if (!_isCareerSingleTargetCrosshairActive)
+                        {
+                            _isCareerSingleTargetCrosshairActive = true;
+                            //_abilityComponent.CareerAbility.Crosshair.Show();
+                        }
+                        
+                    }
+                    else if (_isCareerSingleTargetCrosshairActive)
+                    {
+                        _isCareerSingleTargetCrosshairActive = false; 
+                        _abilityComponent.CareerAbility.Crosshair.Hide();
+                    }
                 }
                 else
                 {
                     ChangeCrosshair(null);
                 }
                 if (_currentCrosshair != null) _currentCrosshair.Tick();
+                
+                if(_isCareerSingleTargetCrosshairActive) _abilityComponent.CareerAbility.Crosshair.Tick();
+                
             }
             else if(_currentCrosshair != null) 
                 ChangeCrosshair(null);
@@ -122,6 +143,8 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
                 _abilityCrosshair = _abilityComponent.CurrentAbility?.Crosshair;
             }
             _areCrosshairsInitialized = true;
+
+            _hasCareerSingleTargetCrosshair = _abilityComponent.CareerAbility.IsSingleTarget;
         }
 
         public override void OnMissionScreenFinalize()

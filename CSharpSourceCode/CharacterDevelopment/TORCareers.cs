@@ -22,7 +22,9 @@ namespace TOR_Core.CharacterDevelopment
         private CareerObject _warriorPriest;
         private CareerObject _bloodKnight;
         private CareerObject _mercenary;
+        private CareerObject _witchHunter;
         
+        public static CareerObject WitchHunter=> Instance._witchHunter;
         public static CareerObject GrailDamsel=> Instance._grailDamsel;
         public static CareerObject GrailKnight => Instance._grailKnight;
         public static CareerObject MinorVampire => Instance._minorVampire;
@@ -32,7 +34,8 @@ namespace TOR_Core.CharacterDevelopment
 
         private List<CareerObject> _allCareers = new List<CareerObject>();
         private MBReadOnlyList<CareerObject> _readonlyCareers;
-       
+        
+
         public static MBReadOnlyList<CareerObject> All => Instance._readonlyCareers;
 
         public TORCareers()
@@ -51,6 +54,7 @@ namespace TOR_Core.CharacterDevelopment
             _warriorPriest = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("WarriorPriest"));
             _bloodKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("BloodKnight"));
             _mercenary = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Mercenary"));
+            _witchHunter = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("WitchHunter"));
             
             _allCareers.Add(_grailKnight);
             _allCareers.Add(_warriorPriest);
@@ -58,6 +62,8 @@ namespace TOR_Core.CharacterDevelopment
             _allCareers.Add(_bloodKnight);
             _allCareers.Add(_mercenary);
             _allCareers.Add(_grailDamsel);
+            
+            _allCareers.Add(_witchHunter);
         }
 
         private void InitializeAll()
@@ -72,6 +78,7 @@ namespace TOR_Core.CharacterDevelopment
             }, "RighteousFury", ChargeType.DamageTaken, 30);
             
             _mercenary.Initialize("Mercenary", null, "LetThemHaveIt", ChargeType.DamageDone, 300);
+            _witchHunter.Initialize("Witch Hunter", null, "Accusation", ChargeType.DamageDone, 300);
         }
     }
 }
