@@ -28,11 +28,21 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             {
                 if (onlyWielded)
                 {
+                    var getWeaponEquipment = agent.Character.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Weapon3);
                     int skillValueWielded = 0;
-                    if (agent.WieldedWeapon.Item != null)
+                    if (!getWeaponEquipment.IsEmpty())
                     {
-                        wieldedWeaponSkill = agent.WieldedWeapon.Item?.PrimaryWeapon?.RelevantSkill;
-                        skillValueWielded= agent.GetHero().GetSkillValue(wieldedWeaponSkill);
+                        var value = 0;
+                        foreach (var weapon in getWeaponEquipment)
+                        {
+                            var skill = weapon.PrimaryWeapon.RelevantSkill;
+                            if (relevantSkills.Contains(skill)&& value<agent.GetHero().GetSkillValue(skill))
+                            {
+                                value = agent.GetHero().GetSkillValue(skill);
+                            }
+                        }
+                        
+                        skillValueWielded= value;
                     }
                     skillValue= skillValueWielded;
                 }
