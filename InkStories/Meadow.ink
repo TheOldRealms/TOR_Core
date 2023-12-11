@@ -170,25 +170,30 @@
 
     ~ PartyRangedSkillCheckText = print_party_skill_chance(SkillTextFinal, HuntDifficulty*2)
     
+    
+    
 //Variable Check (Use for sanity check. Uncomment variables to see what they are)
+    
+     ~ SetTextVariable("IsNight",IsNight())
 
 -> Start
 
 ===Start===
 
-    You and your party have been trudging along a winding path, when the landscape gradually shifts. The air becomes gentler, the sounds more peaceful.
-    And then, you step into a clearing, and a gasp escapes your lips. Before you stretches a meadow unlike any you've seen in a long while. The grass is a rich tapestry of green, waving softly in the breeze. A multitude of wildflowers paints the scene with vibrant hues of red, purple, and yellow.
-    {IsNight(): Silver moonlight | Golden sunlight } filters through the tree canopy, bathing the meadow in warmth. A gentle aroma of blooming flowers perfumes the air. Birds serenade with their melodies, filling the clearing with a symphony that feels like a balm to your weary spirit.
+    You and your party have been trudging along a winding path, when the landscape gradually shifts. The air becomes gentler, the sounds more peaceful. #STR_Start1
+    And then, you step into a clearing, and a gasp escapes your lips. Before you stretches a meadow unlike any you've seen in a long while. The grass is a rich tapestry of green, waving softly in the breeze. A multitude of wildflowers paints the scene with vibrant hues of red, purple, and yellow. #STR_Start2
+    {IsNight(): Silver moonlight | Golden sunlight } filters through the tree canopy, bathing the meadow in warmth. A gentle aroma of blooming flowers perfumes the air. Birds serenade with their melodies, filling the clearing with a symphony that feels like a balm to your weary spirit. #STR_Start3
         ->choice1
         
     =choice1
-        What will you have your party do?
-            *[Forage for wild plants (Multiple attempts at {LoreOfLifeInParty: 75% chance (Improved by Lore of Life)| 50% chance} to succeed at harvesting various wild plants)] You order your party to forage amongst the plants of the meadow.
+        What will you have your party do? #STR_Start4
+            *[Forage for wild plants (Multiple attempts at {LoreOfLifeInParty: 75% chance (Improved by Lore of Life)| 50% chance} to succeed at harvesting various wild plants)] 
+            You order your party to forage amongst the plants of the meadow. #STR_Forage1
             
                 //Lore of Life in Party Increases success chance
                     {LoreOfLifeInParty:
                         -true: 
-                            A mage in your party calls upon the Wind of Ghyran to aid your men in their search.
+                            A mage in your party calls upon the Wind of Ghyran to aid your men in their search. #STR_Forage_LoreOFLifeInParty
                             ~ ForageDifficulty = ForageDifficulty - 25
                         -false:
                         -else: ERROR
@@ -201,7 +206,7 @@
                 //Bonus Attempts from Lore of Beasts
                     {LoreOfBeastsInParty:
                         -true: 
-                            A mage in your party calls upon the Wind of Ghur to aid your men in their search. (+1 attempt)
+                            A mage in your party calls upon the Wind of Ghur to aid your men in their search. (+1 attempt) #STR_Hunt_LoreOFBeastInParty
                             ~ HuntLoops = HuntLoops + 1
                         -false:
                         -else: ERROR
@@ -210,7 +215,7 @@
                 //Bonus attempt from Scouting
                     {perform_party_skill_check("Scouting", HuntDifficulty):
                         -true: 
-                            Your scouts manage to locate some extra animals. (Scouting)(+1 Attempt)
+                            Your scouts manage to locate some extra animals. (Scouting)(+1 Attempt) #STR_Hunt_Scout
                             ~HuntLoops = HuntLoops + 1
                         -false:
                         -else: ERROR
@@ -220,7 +225,7 @@
                 
             *[Have your men rest (All companions healed and all wounded troops recovered {PartyMedicineCheckText})]
                 
-                You try to give your men a break hoping that the brief respite will help them get better. You set up a makeshift camp at the meadow's edge. 
+                You try to give your men a break hoping that the brief respite will help them get better. You set up a makeshift camp at the meadow's edge. #STR_Rest1
                 
                 {PartyMedicineCheckTest:
                     -true: 
@@ -229,7 +234,7 @@
                     -else: "ERROR"
                 }
                 
-                {PartyMedicineCheckTest: Your party takes advantage of the break to take care of the wounded.| Unfortunately just as the men start to try and rest, a large storm comes through and forces your party to try and move to find shelter.}
+                {PartyMedicineCheckTest: Your party takes advantage of the break to take care of the wounded.| Unfortunately just as the men start to try and rest, a large storm comes through and forces your party to try and move to find shelter.} #STR_Rest2
                 
                 ->Leave
                 
@@ -258,18 +263,18 @@
             
             {RewardRoll:
                 -0:
-                    Foraging yields no results, your men return empty handed.
+                    Foraging yields no results, your men return empty handed. #ForageLoop0
                 -1:
-                    Your men find some wild grain. (+1 Grain)
+                    Your men find some wild grain. (+1 Grain) #ForageLoop1
                     ~ GiveItem("grain",1)
                 -2:
-                    Your men find some wild berries. (+1 Grapes)
+                    Your men find some wild berries. (+1 Grapes) #ForageLoop2
                     ~ GiveItem("grape",1)
                 -3:
-                    Your men find some wild flax. (+1 Flax)
+                    Your men find some wild flax. (+1 Flax) #ForageLoop3
                     ~ GiveItem("flax",1)
                 -4:
-                    Your men find some wild spices. (+1 Spice)
+                    Your men find some wild spices. (+1 Spice) #ForageLoop4
                     ~ GiveItem("spice",1)
             }
             
@@ -309,19 +314,19 @@
         //Reward
             {
                 - AttemptSuccessful == true && RewardRoll == 0:
-                    Your men are successful, they return with some pheasants. (+1 Meat)
+                    Your men are successful, they return with some pheasants. (+1 Meat) #HuntLoop0
                     ~ GiveItem("meat",1)
                     ~ GiveItem("hides",1)
                 - AttemptSuccessful == true && RewardRoll == 1:
-                    Your men are successful, they return with a deer. (+1 Meat, +1 Hide)
+                    Your men are successful, they return with a deer. (+1 Meat, +1 Hide) #HuntLoop1
                     ~ GiveItem("meat",1)
                     ~ GiveItem("hides",1)
                 - AttemptSuccessful == true && RewardRoll == 2:
-                    Your men are successful, they return with a wild boar. (+1 Meat, +1 Fur)
+                    Your men are successful, they return with a wild boar. (+1 Meat, +1 Fur) #HuntLoop2
                     ~ GiveItem("meat",1)
                     ~ GiveItem("fur",1)
                 - AttemptSuccessful == false:
-                     Wild game eludes you, your men return empty handed.
+                     Wild game eludes you, your men return empty handed. #HuntLoop3
                 -else: ERROR
             }
                     
@@ -331,7 +336,7 @@
     ->END
     
 ===Leave===
-    Having spent your time in the meadow you decide to head off.
+    Having spent your time in the meadow you decide to head off. #STR_Leave
 
     ~ MakePartyDisorganized()
     

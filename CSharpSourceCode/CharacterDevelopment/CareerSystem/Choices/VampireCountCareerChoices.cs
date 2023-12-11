@@ -237,35 +237,35 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializePassives()
         {
-            _newBloodPassive1.Initialize(CareerID, "{=new_blood_passive1_str}Increases Hitpoints by 25.", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
-            _newBloodPassive2.Initialize(CareerID, "{=new_blood_passive2_str}Increases Party size by 25.", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.PartySize, false));
-            _newBloodPassive3.Initialize(CareerID, "{=new_blood_passive3_str}Increases health regeneration after battles by 5.", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.HealthRegeneration));
-            _newBloodPassive4.Initialize(CareerID, "{=new_blood_passive4_str}Immune to sunlight speed malus.", "NewBlood", false, ChoiceType.Passive, null); //TORPartySpeedCalculatingModel 46
+            _newBloodPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+            _newBloodPassive2.Initialize(CareerID, "Increases Party size by 25.", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.PartySize, false));
+            _newBloodPassive3.Initialize(CareerID, "Increases health regeneration after battles by 5.", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.HealthRegeneration));
+            _newBloodPassive4.Initialize(CareerID, "Immune to sunlight speed malus.", "NewBlood", false, ChoiceType.Passive, null); //TORPartySpeedCalculatingModel 46
 
-            _arkaynePassive1.Initialize(CareerID, "{=arkayne_passive1_str}Increases max Winds of Magic by 10.", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
-            _arkaynePassive2.Initialize(CareerID, "{=arkayne_passive2_str}Increases Magical spell damage by 10%.", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
-            _arkaynePassive3.Initialize(CareerID, "{=arkayne_passive3_str}10% extra Magical melee damage.", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Melee));
-            _arkaynePassive4.Initialize(CareerID, "{=arkayne_passive4_str}10% cost reduction for spells.", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-10, PassiveEffectType.WindsCostReduction, true));
+            _arkaynePassive1.Initialize(CareerID, "Increases max Winds of Magic by 10.", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
+            _arkaynePassive2.Initialize(CareerID, "Increases Magical spell damage by 10%.", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
+            _arkaynePassive3.Initialize(CareerID, "10% extra Magical melee damage.", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Melee));
+            _arkaynePassive4.Initialize(CareerID, "10% cost reduction for spells.", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-10, PassiveEffectType.WindsCostReduction, true));
 
-            _courtleyPassive1.Initialize(CareerID, "{=courtley_passive1_str}Increases positive Relation gains by 20%.", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //TorDiplomacy model 23
-            _courtleyPassive2.Initialize(CareerID, "{=courtley_passive2_str}Increases Hitpoints by 25.", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
-            _courtleyPassive3.Initialize(CareerID, "{=courtley_passive3_str}10% extra Magical spell and ranged damage.", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell | AttackTypeMask.Ranged));
-            _courtleyPassive4.Initialize(CareerID, "{=courtley_passive4_str}Killing blows in the head replenish 3 Winds of Magic.", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3)); //CareerPerkMissionBehavior 28
+            _courtleyPassive1.Initialize(CareerID, "Increases positive Relation gains by 20%.", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //TorDiplomacy model 23
+            _courtleyPassive2.Initialize(CareerID, "Increases Hitpoints by 25.", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+            _courtleyPassive3.Initialize(CareerID, "10% extra Magical spell and ranged damage.", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell | AttackTypeMask.Ranged));
+            _courtleyPassive4.Initialize(CareerID, "Killing blows in the head replenish 3 Winds of Magic.", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3)); //CareerPerkMissionBehavior 28
 
-            _lordlyPassive1.Initialize(CareerID, "{=lordly_passive1_str}Party movement speed is increased by 1.5.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1.5f, PassiveEffectType.PartyMovementSpeed,false));
-            _lordlyPassive2.Initialize(CareerID, "{=lordly_passive2_str}Party size is increased by 75.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(75, PassiveEffectType.PartySize));
-            _lordlyPassive3.Initialize(CareerID, "{=lordly_passive3_str}All Vampire troops wages are reduced by 15%.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.Special, true)); //TORPartyWageModel 85
-            _lordlyPassive4.Initialize(CareerID, "{=lordly_passive4_str}Upgrade costs are halved.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-0.5f, PassiveEffectType.TroopUpgradeCost));
+            _lordlyPassive1.Initialize(CareerID, "Party movement speed is increased by 1.5.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1.5f, PassiveEffectType.PartyMovementSpeed,false));
+            _lordlyPassive2.Initialize(CareerID, "Party size is increased by 75.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(75, PassiveEffectType.PartySize));
+            _lordlyPassive3.Initialize(CareerID, "All Vampire troops wages are reduced by 15%.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.Special, true)); //TORPartyWageModel 85
+            _lordlyPassive4.Initialize(CareerID, "Upgrade costs are halved.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-0.5f, PassiveEffectType.TroopUpgradeCost));
 
-            _martiallePassive1.Initialize(CareerID, "{=martialle_passive1_str}10% extra melee damage.", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
-            _martiallePassive2.Initialize(CareerID, "{=martialle_passive2_str}Increases Hitpoints by 50.", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
-            _martiallePassive3.Initialize(CareerID, "{=martialle_passive3_str}All troops gain 10% extra damage against human enemies.", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true)); //68 Damage patch
-            _martiallePassive4.Initialize(CareerID, "{=martialle_passive4_str}All attacks deal bonus damage against shields.", "Martialle", false, ChoiceType.Passive, null); // TorAgentApplyDamageModel 83
+            _martiallePassive1.Initialize(CareerID, "10% extra melee damage.", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
+            _martiallePassive2.Initialize(CareerID, "Increases Hitpoints by 50.", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
+            _martiallePassive3.Initialize(CareerID, "All troops gain 10% extra damage against human enemies.", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true)); //68 Damage patch
+            _martiallePassive4.Initialize(CareerID, "All attacks deal bonus damage against shields.", "Martialle", false, ChoiceType.Passive, null); // TorAgentApplyDamageModel 83
 
-            _masterOfDeadPassive1.Initialize(CareerID, "{=master_of_dead_passive1_str}Increases Party size by 100.", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.PartySize));
-            _masterOfDeadPassive2.Initialize(CareerID, "{=master_of_dead_passive1_str}Undead troops gain 25% Ward save.", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true)); // AgentstatCalculator 444, Might be OP , I had fun, i would leave it for the playtest, can be adjusted
-            _masterOfDeadPassive3.Initialize(CareerID, "{=master_of_dead_passive1_str}20% higher chance for raised dead after battle.", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); // HeroExtension 44
-            _masterOfDeadPassive4.Initialize(CareerID, "{=master_of_dead_passive1_str}Tier 4 Undead troops can get wounded with a 20% lower chance.", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.Special, true)); //HealingpartyModel 33
+            _masterOfDeadPassive1.Initialize(CareerID, "Increases Party size by 100.", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.PartySize));
+            _masterOfDeadPassive2.Initialize(CareerID, "Undead troops gain 25% Ward save.", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true)); // AgentstatCalculator 444, Might be OP , I had fun, i would leave it for the playtest, can be adjusted
+            _masterOfDeadPassive3.Initialize(CareerID, "20% higher chance for raised dead after battle.", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); // HeroExtension 44
+            _masterOfDeadPassive4.Initialize(CareerID, "Tier 4 Undead troops can get wounded with a 20% lower chance.", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.Special, true)); //HealingpartyModel 33
         }
         
         public override void InitialCareerSetup()
