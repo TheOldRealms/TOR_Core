@@ -526,6 +526,8 @@
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\GrailKnightCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\ImperialMagisterCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\MercenaryCareerButtonBehavior.cs" />
+    <Compile Include="CampaignMechanics\ServeAsAMerc\ServeAsAHirelingCampaignBehavior.cs" />
+    
     <Compile Include="CharacterDevelopment\CareerSystem\CareerAbilityEffectVM.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\NecrarchCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\SpecialbuttonHandler.cs" />

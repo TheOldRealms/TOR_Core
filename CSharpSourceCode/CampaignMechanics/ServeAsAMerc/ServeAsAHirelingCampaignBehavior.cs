@@ -16,7 +16,7 @@ using TaleWorlds.Localization;
 
 namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 {
-    public class ServeAsAMercenaryCampaignBehavior : CampaignBehaviorBase
+    public class ServeAsAHirelingCampaignBehavior : CampaignBehaviorBase
     {
         private bool _enlisted;
         private Hero _enlistingLord;
@@ -98,12 +98,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
          private void ServeAsAMercDialog(CampaignGameStarter campaignGameStarter)
         {
             campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword", "I am hereby offering my sword.", null, EnlistPlayer);
-
-
             campaignGameStarter.AddDialogLine("payedsword", "payedsword", "end", "As you wish.", null,null,200,null);
-            
-            
-            
             
         }
          
