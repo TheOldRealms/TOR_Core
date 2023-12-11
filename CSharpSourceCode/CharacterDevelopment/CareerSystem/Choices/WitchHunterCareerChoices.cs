@@ -89,8 +89,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _noRestAgainstEvilPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NoRestAgainstEvilPassive3"));
             _noRestAgainstEvilPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NoRestAgainstEvilPassive4"));
             
-            _swiftProcedureKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SwitftProcedureKeystone"));
-            _swiftProcedurePassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SwitftProcedurePassive1"));
+            _swiftProcedureKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SwiftProcedureKeystone"));
+            _swiftProcedurePassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SwiftProcedurePassive1"));
             _swiftProcedurePassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SwitftProcedurePassive2"));
             _swiftProcedurePassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SwitftProcedurePassive3"));
             _swiftProcedurePassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SwitftProcedurePassive4"));
