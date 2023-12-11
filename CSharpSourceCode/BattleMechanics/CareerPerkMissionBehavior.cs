@@ -32,9 +32,9 @@ namespace TOR_Core.BattleMechanics
                             var cAbility = Agent.Main.GetComponent<AbilityComponent>();
                             if (cAbility != null)
                             {
-                                var value = CareerHelper.CalculateChargeForCareer(ChargeType.DamageDone, totalAmountOfHeal, AttackTypeMask.Spell);
+                               // var value = CareerHelper.CalculateChargeForCareer(ChargeType.DamageDone, totalAmountOfHeal, AttackTypeMask.Spell);
                                 
-                                cAbility.CareerAbility.AddCharge(value);
+                               // cAbility.CareerAbility.AddCharge(value);
                             }
                         }
                     }
@@ -55,11 +55,11 @@ namespace TOR_Core.BattleMechanics
                     AttackTypeMask mask= DamagePatch.DetermineMask(blow);
                     if (mask == AttackTypeMask.Spell)
                     {
-                        var value = CareerHelper.CalculateChargeForCareer(ChargeType.DamageDone, blow.InflictedDamage, mask);
+                       // var value = CareerHelper.CalculateChargeForCareer(ChargeType.DamageDone, blow.InflictedDamage, mask);
                         var cAbility = Agent.Main.GetComponent<AbilityComponent>();
                         if (cAbility != null)
                         {
-                            cAbility.CareerAbility.AddCharge(value);
+                        //    cAbility.CareerAbility.AddCharge(value);
                         }
                         
                     }
@@ -119,8 +119,8 @@ namespace TOR_Core.BattleMechanics
                     {
                         var careerAbility = Agent.Main.GetComponent<AbilityComponent>()?.CareerAbility;
 
-                        var charge = CareerHelper.CalculateChargeForCareer(ChargeType.NumberOfKills, 1);
-                        careerAbility?.AddCharge(charge);
+                //        var charge = CareerHelper.CalculateChargeForCareer(ChargeType.NumberOfKills, 1);
+                //      careerAbility?.AddCharge(charge);
                     }
                 }
             }
