@@ -3,6 +3,7 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.AbilitySystem.Scripts;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -114,6 +115,9 @@ namespace TOR_Core.AbilitySystem
         {
             
             if (Template.StringID.Contains("ShadowStep") && casterAgent.HasMount) return false;
+
+            if (IsSingleTarget && !((SingleTargetCrosshair)Crosshair).IsTargetLocked) return false;
+            
             return !_isLocked&&!IsCasting &&
                    !IsOnCooldown() &&
                    IsCharged &&

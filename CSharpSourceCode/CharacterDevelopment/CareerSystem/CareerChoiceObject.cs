@@ -229,6 +229,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         HealthRegeneration, //player life regeneration
         Damage,             //player damage, requires damage tuple
         Resistance,         //player resistance requires damage tuple
+        AccuracyPenalty,           //spray of ranged weapons
+        RangedMovementPenalty, // inaccuracy for ranged weapons penality due to movement
         ArmorPenetration,   //player ignores armor with attack mask - this cant be Spells, will be ignored
         HorseHealth,        //only player, percentage based
         HorseChargeDamage,  //Damage When Horse is raced into infantry.
@@ -243,7 +245,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         TroopMorale,        //Morale
         TroopUpgradeCost,
         Ammo,               //Player ammo
-        InfluenceGainFromBattles
-
+        InfluenceGainFromBattles,
+        SwingSpeed
     }
 }

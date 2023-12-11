@@ -725,12 +725,18 @@
 
   <!-- Career related -->
   <string id="career_title.WarriorPriest" text="{=tor_career_title_warrior_priest_str}Warrior Priest of Sigmar" />
+  <string id="career_title.WitchHunter" text="{=tor_career_title_warrior_priest_str}Witch Hunter" />
   <string id="career_title.MinorVampire" text="{=tor_career_title_minor_vampire_str}Vampire Nobility" />
   <string id="career_title.GrailKnight" text="{=tor_career_title_grail_knight_str}Knight of Bretonnia" />
     <string id="career_title.GrailDamsel" text="{=tor_career_title_grail_damsel_str}Damsel of the Lady" />
   <string id="career_title.BloodKnight" text="{=tor_career_title_blood_knight_str}Blood Knight" />
   <string id="career_title.Mercenary" text="{=tor_career_title_mercenary_str}Mercenary" />
-
+  
+  
+  
+  <string id="career_choicegroup1_name.WitchHunter" text="{=career_choicegroup1_warrior_priest_str}Trainee Templar" />
+  <string id="career_choicegroup2_name.WitchHunter" text="{=career_choicegroup2_warrior_priest_str}Witch Hunter Templar" />
+  <string id="career_choicegroup3_name.WitchHunter" text="{=career_choicegroup3_warrior_priest_str}Witch Hunter General" />
 
   <string id="career_choicegroup1_name.WarriorPriest" text="{=career_choicegroup1_warrior_priest_str}Cultist of Sigmar" />
   <string id="career_choicegroup2_name.WarriorPriest" text="{=career_choicegroup2_warrior_priest_str}Warrior Priest" />

@@ -205,10 +205,15 @@ namespace TOR_Core.CharacterDevelopment
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _endsJustifiesMeans.Initialize("{=protector_of_the_weak_choice_group_str}Ends Justifies Means", TORCareers.WitchHunter, 2, (Hero hero, out string text) =>
+            _noRestAgainstEvil.Initialize("{=arch_lector_choice_group_str}No Rest Against Evil", TORCareers.WitchHunter, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
+            });
+            _endsJustifiesMeans.Initialize("{=protector_of_the_weak_choice_group_str}Ends Justifies Means", TORCareers.WitchHunter, 3, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier >= 4;
             });
             _swiftProcedure.Initialize("{=holy_purge_choice_group_str}Swift Procedure", TORCareers.WitchHunter, 2, (Hero hero, out string text) =>
             {
@@ -220,11 +225,7 @@ namespace TOR_Core.CharacterDevelopment
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
-            _noRestAgainstEvil.Initialize("{=arch_lector_choice_group_str}No Rest Against Evil", TORCareers.WitchHunter, 3, (Hero hero, out string text) =>
-            {
-                text = "Required clan renown: 4";
-                return hero.Clan.Tier >= 4;
-            });
+            
             
             
             //Vampire Count

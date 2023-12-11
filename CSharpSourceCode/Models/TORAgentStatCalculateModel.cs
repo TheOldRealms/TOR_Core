@@ -356,6 +356,8 @@ namespace TOR_Core.Models
             var character = agent.Character as CharacterObject;
             var captain = agent.GetCaptainCharacter();
             ExplainedNumber movementAccuracyPenalty = new ExplainedNumber(agentDrivenProperties.WeaponMaxMovementAccuracyPenalty);
+            ExplainedNumber accuracyPenalty = new ExplainedNumber(agentDrivenProperties.WeaponInaccuracy);
+            ExplainedNumber swingSpeed = new ExplainedNumber(agentDrivenProperties.SwingSpeedMultiplier);
             if (weapon != null && character != null)
             {
                 if (weapon.WeaponClass == WeaponClass.Pistol && !agent.HasMount)
@@ -364,7 +366,19 @@ namespace TOR_Core.Models
                 }
             }
 
+            if (agent.IsMainAgent && agent.GetHero().HasAnyCareer())
+            {
+                CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref movementAccuracyPenalty, PassiveEffectType.RangedMovementPenalty);
+                
+                CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref accuracyPenalty, PassiveEffectType.AccuracyPenalty,true);
+                
+                CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref swingSpeed, PassiveEffectType.SwingSpeed,true);
+            }
+
             agentDrivenProperties.WeaponMaxMovementAccuracyPenalty = movementAccuracyPenalty.ResultNumber;
+            agentDrivenProperties.WeaponInaccuracy = accuracyPenalty.ResultNumber;
+            agentDrivenProperties.SwingSpeedMultiplier = swingSpeed.ResultNumber;
+
         }
 
         public override float GetMaxCameraZoom(Agent agent)
