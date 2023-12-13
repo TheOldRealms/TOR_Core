@@ -1,5 +1,6 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
@@ -57,12 +58,82 @@ namespace TOR_Core.Models
         
         public override float GetScoreOfDeclaringWar(IFaction factionDeclaresWar, IFaction factionDeclaredWar, IFaction evaluatingClan, out TextObject warReason)
         {
-            float scoreOfDeclaringWar = base.GetScoreOfDeclaringWar(factionDeclaresWar, factionDeclaredWar, evaluatingClan, out warReason);
-            float determineEffectOfReligion = DetermineEffectOfReligion(factionDeclaresWar, factionDeclaredWar, (Clan)evaluatingClan);
-            //TORCommon.Say("War support Score: " + scoreOfDeclaringWar + " + Religion effect:" + determineEffectOfReligion);
-            return scoreOfDeclaringWar + determineEffectOfReligion;
+            var nativeScoreOfDeclaringWar = base.GetScoreOfDeclaringWar(factionDeclaresWar, factionDeclaredWar, evaluatingClan, out warReason);
+            // this might come in handy later
+            var clanScore = baseClanFactor(factionDeclaresWar, factionDeclaredWar, evaluatingClan);
+            var factionScore = baseFactionFactor(factionDeclaresWar, factionDeclaredWar);
+
+            var religiousScoreOfWar = DetermineEffectOfReligion(factionDeclaresWar, factionDeclaredWar, (Clan)evaluatingClan);
+            // normalize effect of religion based on average hero "agro"
+            religiousScoreOfWar /= (factionDeclaredWar.Heroes.Count + factionDeclaresWar.Heroes.Count);
+            // apply faction score as a multiplier to this... basically weigh religion as much as faction strength
+            religiousScoreOfWar *= factionScore;
+            TORCommon.Say($"War between {factionDeclaredWar.Name} vs {factionDeclaresWar.Name}; Native Score: {nativeScoreOfDeclaringWar} Religion Score:{religiousScoreOfWar}");
+            return nativeScoreOfDeclaringWar + religiousScoreOfWar;
         }
 
+        /// <summary>
+        /// This code is from the decompiler for what GetScoreOfDeclaringWar is doing without the internal method... 
+        /// This is for helping us understand the acceptable range of how faction power and tribute plays into war
+        /// Date of binary: 11/30/2023
+        /// </summary>
+        private float baseClanFactor(IFaction factionDeclaresWar, IFaction factionDeclaredWar, IFaction evaluatingClan)
+        {
+            StanceLink stanceWith = factionDeclaresWar.GetStanceWith(factionDeclaredWar);
+            int clanFactor = 0;
+            if (stanceWith.IsNeutral)
+            {
+                int dailyTributePaid = stanceWith.GetDailyTributePaid(factionDeclaredWar);
+                float potentialClanPlunder = 
+                    evaluatingClan.Leader.Gold + 
+                    (evaluatingClan.MapFaction.IsKingdomFaction 
+                      ? (0.5f * (((Kingdom)evaluatingClan.MapFaction).KingdomBudgetWallet / (((Kingdom)evaluatingClan.MapFaction).Clans.Count + 1f))) 
+                      : 0f);
+                float clanIsRulingClanFactor = 
+                    (!evaluatingClan.IsKingdomFaction && evaluatingClan.Leader != null) 
+                        ? (
+                            (potentialClanPlunder < 50000f) 
+                            ? (1f + 0.5f * ((50000f - potentialClanPlunder) / 50000f)) 
+                            : (
+                                (potentialClanPlunder > 200000f) 
+                                ? MathF.Max(0.5f, MathF.Sqrt(200000f / potentialClanPlunder)) 
+                                : 1f
+                              )
+                           ) 
+                        : 1f;
+                clanFactor = GetValueOfDailyTribute(dailyTributePaid);
+                // Ruling clan should have more influence
+                clanFactor = (int)(clanFactor * clanIsRulingClanFactor);
+            }
+            return clanFactor;
+        }
+
+        /// <summary>
+        /// This code is from the decompiler for what GetScoreOfDeclaringWar is doing without the internal method... 
+        /// This is for helping us understand the acceptable range of how faction power and tribute plays into war
+        /// Date of binary: 11/30/2023
+        /// </summary>
+        private float baseFactionFactor(IFaction factionDeclaresWar, IFaction factionDeclaredWar)
+        {
+            return -(int)
+                MathF.Min(
+                    120000f,
+                    (
+                        MathF.Min(
+                            10000f,
+                            factionDeclaresWar.TotalStrength)
+                        * 0.8f + 2000f
+                    )
+                    *
+                    (
+                        MathF.Min(
+                            10000f,
+                            factionDeclaredWar.TotalStrength)
+                        * 0.8f + 2000f
+                    )
+                    * 0.0012f
+                 );
+        }
 
         private float DetermineEffectOfReligion(IFaction factionDeclaresWar, IFaction factionToDeclareWarOn, IFaction evaluatingClan)
         {
@@ -91,6 +162,8 @@ namespace TOR_Core.Models
             return religionValue; // / factionToDeclareWarOn.Heroes.Count;
         }
 
+        // Max Value: 100
+        // Min Value: 0
         public static float DeterminePositiveEffect(Hero hero, ReligionObject religion, Hero enemy, ReligionObject comparedToReligion)
         {
             if (religion.HostileReligions.Contains(comparedToReligion))
@@ -155,6 +228,8 @@ namespace TOR_Core.Models
             return value;
         }
 
+        // Max Score = 0
+        // Min Score = -125
         private float DetermineNegativeEffect(Hero hero, ReligionObject religion, Hero enemy, ReligionObject comparedToReligion)
         {
             var value = 0;
