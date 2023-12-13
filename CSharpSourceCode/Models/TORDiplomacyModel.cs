@@ -73,8 +73,7 @@ namespace TOR_Core.Models
         }
 
         /// <summary>
-        /// This code is from the decompiler for what GetScoreOfDeclaringWar is doing without the internal method... 
-        /// This is for helping us understand the acceptable range of how faction power and tribute plays into war
+        /// This code is from the decompiler
         /// Date of binary: 11/30/2023
         /// </summary>
         private float baseClanFactor(IFaction factionDeclaresWar, IFaction factionDeclaredWar, IFaction evaluatingClan)
@@ -109,8 +108,7 @@ namespace TOR_Core.Models
         }
 
         /// <summary>
-        /// This code is from the decompiler for what GetScoreOfDeclaringWar is doing without the internal method... 
-        /// This is for helping us understand the acceptable range of how faction power and tribute plays into war
+        /// This code is from the decompiler
         /// Date of binary: 11/30/2023
         /// </summary>
         private float baseFactionFactor(IFaction factionDeclaresWar, IFaction factionDeclaredWar)
