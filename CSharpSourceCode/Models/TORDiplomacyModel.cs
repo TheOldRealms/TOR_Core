@@ -64,9 +64,9 @@ namespace TOR_Core.Models
             var factionScore = baseFactionFactor(factionDeclaresWar, factionDeclaredWar);
 
             var religiousScoreOfWar = DetermineEffectOfReligion(factionDeclaresWar, factionDeclaredWar, (Clan)evaluatingClan);
-            // normalize effect of religion based on average hero "agro"
-            religiousScoreOfWar /= (factionDeclaredWar.Heroes.Count + factionDeclaresWar.Heroes.Count);
-            // apply faction score as a multiplier to this... basically weigh religion as much as faction strength
+            // normalize effect of religion based on average hero "agro" to approximately between 0.0 and 1.0
+            religiousScoreOfWar /= (factionDeclaredWar.Heroes.Count + factionDeclaresWar.Heroes.Count) * 100;
+            // weigh religion as much as faction strength
             religiousScoreOfWar *= factionScore;
             TORCommon.Say($"War between {factionDeclaredWar.Name} vs {factionDeclaresWar.Name}; Native Score: {nativeScoreOfDeclaringWar} Religion Score:{religiousScoreOfWar}");
             return nativeScoreOfDeclaringWar + religiousScoreOfWar;
