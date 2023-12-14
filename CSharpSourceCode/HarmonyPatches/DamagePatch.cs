@@ -74,6 +74,8 @@ namespace TOR_Core.HarmonyPatches
                         }
                     }
                     
+                    
+                    
                     //Need to stay here because they need information about victim
                     
                     
@@ -86,6 +88,17 @@ namespace TOR_Core.HarmonyPatches
                             additionalDamagePercentages[(int)DamageType.Physical] += value;
                         }
                     }
+                    
+                    if (victim.Character.Race != 0 && choices.Contains("SilverHammerPassive2"))
+                    {
+                        var choice = TORCareerChoices.GetChoice("SilverHammerPassive2");
+                        if (choice != null)
+                        {
+                            var value = choice.GetPassiveValue();
+                            additionalDamagePercentages[(int)DamageType.Physical] += value;
+                        }
+                    }
+                    
                     if (!attacker.IsHero&&attacker.HasMount&&choices.Contains("DreadKnightPassive3"))
                     {
                         var choice = TORCareerChoices.GetChoice("DreadKnightPassive3");

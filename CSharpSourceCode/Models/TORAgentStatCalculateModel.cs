@@ -186,6 +186,13 @@ namespace TOR_Core.Models
                                 if(choice.Passive!=null)
                                     resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
                             }
+                            
+                            if ((skill == DefaultSkills.Bow||skill == DefaultSkills.Throwing || skill == DefaultSkills.Crossbow || skill == TORSkills.GunPowder)&& choices.Contains("NoRestAgainstEvilPassive2"))
+                            {
+                                var choice = TORCareerChoices.GetChoice("NoRestAgainstEvilPassive2");
+                                if(choice.Passive!=null)
+                                    resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                            }
                         }
                     }
                 }
@@ -471,6 +478,39 @@ namespace TOR_Core.Models
                     }
                 }
                 
+                if(( mask== PropertyMask.Attack&& attackMask == AttackTypeMask.Ranged &&choices.Contains("ToolsOfJudgementPassive4")))
+                {
+                    var equipment = agent.Character.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Weapon3);
+
+                    var choice = TORCareerChoices.GetChoice("ToolsOfJudgementPassive4");
+                    foreach (var weapon in equipment)
+                    {
+                        foreach (var data in weapon.Weapons)
+                        {
+                            if (data.IsMeleeWeapon)
+                            {
+                                result.DamagePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                            }
+                        }
+                    }
+                }
+                
+                if(( mask== PropertyMask.Attack&& attackMask == AttackTypeMask.Melee &&choices.Contains("HuntTheWickedPassive3")))
+                {
+                    var equipment = agent.Character.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Weapon3);
+
+                    var choice = TORCareerChoices.GetChoice("HuntTheWickedPassive3");
+                    foreach (var weapon in equipment)
+                    {
+                        foreach (var data in weapon.Weapons)
+                        {
+                            if (data.IsRangedWeapon)
+                            {
+                                result.DamagePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                            }
+                        }
+                    }
+                }
                 
                 if (choices.Contains("JustCausePassive3") && mask == PropertyMask.Defense)
                 {
@@ -514,6 +554,24 @@ namespace TOR_Core.Models
                     }
                 }
                 
+                if (!agent.IsHero&&mask == PropertyMask.Attack && attackMask == AttackTypeMask.Ranged&& choices.Contains("HuntTheWickedPassive4") )
+                {
+                    var choice = TORCareerChoices.GetChoice("HuntTheWickedPassive4");
+                    if (choice != null)
+                    {
+                        result.AdditionalDamagePercentages[(int)DamageType.Physical] += choice.GetPassiveValue();
+                    }
+                }
+                
+                if (!agent.IsHero&&mask == PropertyMask.Attack && choices.Contains("GuiltyByAssociationPassive2") )
+                {
+                    var choice = TORCareerChoices.GetChoice("GuiltyByAssociationPassive2");
+                    if (choice != null)
+                    {
+                        result.AdditionalDamagePercentages[(int)DamageType.Holy] += choice.GetPassiveValue();
+                    }
+                }
+                
                 if (choices.Contains("FeyEntchantmentPassive4") && mask == PropertyMask.Defense)
                 {
                     if (agent.Character.IsKnightUnit())
@@ -539,6 +597,7 @@ namespace TOR_Core.Models
                         
                     }
                 }
+                
                 
                 if (choices.Contains("HolyPurgePassive2") && mask == PropertyMask.Defense)
                 {

@@ -214,6 +214,16 @@ namespace TOR_Core.Models
                 }
 
             }
+            
+            if (choices.Contains("HuntTheWickedPassive2"))
+            {
+                if (unit.Character != Hero.MainHero.CharacterObject && unit.Character.IsRanged&& !unit.Character.IsMounted)
+                {
+                    TextObject text;
+                    var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "HuntTheWickedPassive2", out text);
+                    resultValue.Add(value, text);
+                }
+            }
 
             return resultValue;
         }

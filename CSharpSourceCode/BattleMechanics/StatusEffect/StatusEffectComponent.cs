@@ -67,7 +67,14 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             StatusEffect effect = _currentEffects.Keys.Where(e => e.Template.StringID.Equals(effectId)).FirstOrDefault();
             if (effect != null)
             {
-                if (append) effect.CurrentDuration += duration;
+                if (append)
+                {
+                    effect.CurrentDuration += duration;
+                }
+                else
+                {
+                    effect.CurrentDuration = duration; 
+                }
             }
             else
             {

@@ -360,9 +360,10 @@
 		
 	<StatusEffectTemplate
 		id="accusation_debuff"
-		particle_id="soulstealer"
+		particle_id="accusation_mark"
 		particle_intensity="Low"
 		apply_particle_to_root_bone_only="true"
+		do_not_attach_to_agent_skeleton="true"
     	base_effect_value="-0.2"
 		type="Resistance"
 		damage_type="Physical" > 

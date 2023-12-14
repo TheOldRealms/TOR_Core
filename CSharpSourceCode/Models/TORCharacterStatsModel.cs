@@ -87,16 +87,20 @@ namespace TOR_Core.Models
                     CareerHelper.ApplyBasicCareerPassives(hero, ref number, PassiveEffectType.Health);
                 }
 
-                if (hero.PartyBelongedTo!=null&& hero.PartyBelongedTo.IsMainParty && hero != Hero.MainHero)
+                if (hero.PartyBelongedTo!=null&& hero.IsPlayerCompanion)
                 {
+                    if (Hero.MainHero.HasCareerChoice("GuiltyByAssociationPassive3"))
+                    {
+                        var choice = TORCareerChoices.GetChoice("GuiltyByAssociationPassive3");
+                        number.Add(choice.GetPassiveValue());
+                    }
+                    
                     if (Hero.MainHero.HasCareerChoice("CommanderPassive4"))
                     {
-                        if (hero.IsBretonnianKnight())
-                        {
-                            var choice = TORCareerChoices.GetChoice("CommanderPassive4");
-                            number.Add(choice.GetPassiveValue());
-                        }
+                        var choice = TORCareerChoices.GetChoice("CommanderPassive4");
+                        number.Add(choice.GetPassiveValue());
                     }
+                    
                     if (Hero.MainHero.HasCareerChoice("EnvoyOfTheLadyPassive2"))
                     {
                         if (hero.IsBretonnianKnight())
@@ -116,6 +120,8 @@ namespace TOR_Core.Models
                             number.Add(extraHealth,choice.BelongsToGroup.Name);
                         }
                     }
+                    
+                    
                     
                 }
 

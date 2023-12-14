@@ -68,8 +68,14 @@ namespace TOR_Core.BattleMechanics
                     }
                 }
             }
+            
+            
+            
+            
 
-            if (affectorAgent!=null&&affectorAgent.IsMainAgent && affectorAgent.GetHero().GetCareer() == TORCareers.WitchHunter)
+            if( affectorAgent!=null && affectorAgent.IsHero 
+                                    && (affectorAgent.IsMainAgent && affectorAgent.GetHero().HasCareer(TORCareers.WitchHunter) || 
+                                        (affectorAgent.GetHero().PartyBelongedTo == MobileParty.MainParty && Hero.MainHero.HasCareerChoice("NoRestAgainstEvilKeystone"))))
             {
                 var temporaryEffects = affectedAgent.GetComponent<StatusEffectComponent>().GetTemporaryAttributes();
 
@@ -118,17 +124,8 @@ namespace TOR_Core.BattleMechanics
                         }
                     }
 
-                    if (affectedAgent.Health <= blow.InflictedDamage&&choices.Contains("NoRestAgainstEvilKeystone"))
-                    {
-                        affectorAgent.GetComponent<StatusEffectComponent>().RunStatusEffect("accusation_buff_ats",affectorAgent,8,true,true);
-                        affectorAgent.GetComponent<StatusEffectComponent>().RunStatusEffect("accusation_buff_rls",affectorAgent,8,true,true);
-                    }
+                    
                 }
-                
-                
-                
-                
-                
             }
 
 
@@ -144,14 +141,28 @@ namespace TOR_Core.BattleMechanics
                 var choices = playerHero.GetAllCareerChoices();
                 var hitBodyPart = blow.VictimBodyPart;
 
-                if ((hitBodyPart == BoneBodyPartType.Head || hitBodyPart == BoneBodyPartType.Abdomen) && choices.Contains("CourtleyPassive4"))
+                if (hitBodyPart == BoneBodyPartType.Head || hitBodyPart == BoneBodyPartType.Neck)
                 {
-                    var choice = TORCareerChoices.GetChoice("CourtleyPassive4");
-                    if (choice != null)
+                    if(choices.Contains("CourtleyPassive4"))
                     {
-                        var value = choice.GetPassiveValue();
-                        playerHero.AddWindsOfMagic(value);
+                        var choice = TORCareerChoices.GetChoice("CourtleyPassive4");
+                        if (choice != null)
+                        {
+                            var value = choice.GetPassiveValue();
+                            playerHero.AddWindsOfMagic(value);
+                        }
                     }
+                    
+                    if(choices.Contains("GuiltyByAssociationPassive4"))
+                    {
+                        var choice = TORCareerChoices.GetChoice("GuiltyByAssociationKeystone");
+                        if (choice != null)
+                        {
+                            affectorAgent.ApplyStatusEffect("accusation_buff_ats",affectorAgent,choice.GetPassiveValue(),false,false);
+                            affectorAgent.ApplyStatusEffect("accusation_buff_rls",affectorAgent,choice.GetPassiveValue(),false,false);
+                        }
+                    }
+                    
                 }
 
                 if (choices.Contains ("AvatarOfDeathPassive4"))
@@ -169,6 +180,19 @@ namespace TOR_Core.BattleMechanics
                        
                         }
                         
+                    }
+                }
+                
+                if (choices.Contains ("SilverHammerPassive1"))
+                {
+                    var choice = TORCareerChoices.GetChoice("SilverHammerPassive1");
+
+                    if (choice != null)
+                    {
+                        if (affectedAgent.IsEnemyOf(affectorAgent) && affectedAgent.Character.Race != 0)
+                        {
+                            Hero.MainHero.AddSkillXp(TORSkills.Faith,choice.GetPassiveValue());
+                        }
                     }
                 }
                 
