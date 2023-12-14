@@ -74,7 +74,7 @@ namespace TOR_Core
             AppDomain currentDomain = AppDomain.CurrentDomain;
             currentDomain.AssemblyResolve += new ResolveEventHandler(ResolveDllPath);
 
-            CampaignTime startTime = CampaignTime.Years(2502) + CampaignTime.Weeks(4) + CampaignTime.Days(5) + CampaignTime.Hours(12);
+            CampaignTime startTime = CampaignTime.Years(2502) + CampaignTime.Weeks(20) + CampaignTime.Days(5) + CampaignTime.Hours(12);
             
             typeof(CampaignData).GetField("CampaignStartTime",BindingFlags.Static|BindingFlags.Public)?.SetValue(null,startTime);
             
