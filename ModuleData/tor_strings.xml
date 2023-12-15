@@ -795,7 +795,7 @@
   
   
   <string id="tor_careerchoice_basic.Health" text="{=str_tor_career_choice_basic_health}Increases Hitpoints by {EFFECT_VALUE}" /> <!--TOR_CHOICE_HEALTH !-->
-  <string id="tor_careerchoice_basic.Damage" text="{=str_tor_career_choice_basic_damage}{EFFECT_VALUE}% extra {EFFECT_DAMAGE_TYPE} {EFFECT_ATTACK_TYPE} damage" /> <!--TOR_CHOICE_DAMAGE !-->
+  <string id="tor_careerchoice_basic.Damage" text="{=str_tor_career_choice_basic_damage}{EFFECT_VALUE}% extra {EFFECT_DAMAGE_TYPE} damage" /> <!--TOR_CHOICE_DAMAGE !-->
   <string id="tor_careerchoice_basic.Resistance" text="{=str_tor_career_choice_basic_resistance}Add {EFFECT_VALUE}% {EFFECT_DAMAGE_TYPE} {EFFECT_ATTACK_TYPE} resistance" /> <!--TOR_CHOICE_RESISTANCE !-->
   <string id="tor_careerchoice_basic.ArmorPenetration" text="{=str_tor_career_choice_basic_armorpenetration}Add {EFFECT_VALUE}% armor penetration" /> <!--TOR_CHOICE_ARMORPENETRATION  Increases armor penetration of melee attacks by 15%!-->
   <string id="tor_careerchoice_basic.HorseHealth" text="{=str_tor_career_choice_basic_horsehealth}{EFFECT_VALUE}% additional Hitpoints for the player's mount." /> <!--TOR_CHOICE_HORSEHEALTH !-->
