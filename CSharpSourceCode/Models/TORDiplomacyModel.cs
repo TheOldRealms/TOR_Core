@@ -70,7 +70,7 @@ namespace TOR_Core.Models
             // normalize effect of religion based on average hero "agro" to approximately between 0.0 and 1.0
             religiousScoreOfWar /= (factionDeclaredWar.Heroes.Count + factionDeclaresWar.Heroes.Count) * 100;
             // weigh religion as much as faction strength
-            religiousScoreOfWar *= (factionScore+distanceScore)/2f;
+            religiousScoreOfWar *= 0.8f*factionScore + 0.2f*distanceScore;
             TORCommon.Say($"War between {factionDeclaredWar.Name} vs {factionDeclaresWar.Name}; Native Score: {nativeScoreOfDeclaringWar} Religion Score:{religiousScoreOfWar}");
             return nativeScoreOfDeclaringWar + religiousScoreOfWar;
         }
