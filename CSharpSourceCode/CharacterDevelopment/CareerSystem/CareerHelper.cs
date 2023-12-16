@@ -100,11 +100,20 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public static float CalculateChargeForCareer(ChargeType chargeType, int chargeValue, AttackTypeMask mask, AttackCollisionData collisionData)
         {
+            ChargeCollisionFlag flag = ChargeCollisionFlag.None;
+
+            if (collisionData.AttackBlockedWithShield)
+                flag |= ChargeCollisionFlag.HitShield;
+
+            if (collisionData.VictimHitBodyPart == BoneBodyPartType.Head || collisionData.VictimHitBodyPart == BoneBodyPartType.Neck)
+            {
+                flag |= ChargeCollisionFlag.HeadShot;
+            }
             var blocked = collisionData.AttackBlockedWithShield;
-            return CalculateChargeForCareer(chargeType, chargeValue, mask, blocked);
+            return CalculateChargeForCareer(chargeType, chargeValue, mask, flag);
         }
 
-        public static float CalculateChargeForCareer(ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, bool blocked = false) 
+        public static float CalculateChargeForCareer(ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, ChargeCollisionFlag collisionFlag = ChargeCollisionFlag.None) 
         {
             var heroCareer = Hero.MainHero.GetCareer();
             
@@ -116,6 +125,28 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             {
                 case ChargeType.DamageDone:
                 {
+                    if (heroCareer == TORCareers.WitchHunter)
+                    {
+                        if (( mask == AttackTypeMask.Ranged || mask == AttackTypeMask.Melee && Hero.MainHero.HasCareerChoice("HuntTheWickedKeystone") ))
+                        {
+                            if (mask == AttackTypeMask.Ranged)
+                            {
+                                explainedNumber.AddFactor(-0.5f); 
+                            }
+
+                            if (collisionFlag == ChargeCollisionFlag.HeadShot)
+                            {
+                                explainedNumber.AddFactor(1f); 
+                            }
+                            
+                            explainedNumber.Add(chargeValue);
+                        }
+                        
+                        
+                       
+                        
+                    }
+                    
                     if (heroCareer == TORCareers.GrailDamsel&& mask == AttackTypeMask.Spell)
                     { 
                         explainedNumber.Add(chargeValue);
@@ -152,7 +183,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     {
                         explainedNumber.Add((float) chargeValue / Hero.MainHero.MaxHitPoints);      //proportion of lost health 
                         
-                        if (blocked)
+                        if (collisionFlag == ChargeCollisionFlag.HitShield)
                         {
                             explainedNumber.AddFactor(-0.85f);
                         }
@@ -390,6 +421,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             }
 
             return "";
+        }
+        
+        
+        public enum ChargeCollisionFlag
+        {
+            None,
+            HitShield,
+            HeadShot
         }
     }
 }

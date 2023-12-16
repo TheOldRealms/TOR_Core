@@ -45,11 +45,11 @@ namespace TOR_Core.AbilitySystem
                     }
                     
                 }
-                
-                _currentCharge = _maxCharge;
             
 
-                if (Hero.MainHero.GetAllCareerChoices().Contains("CourtleyKeystone") || Hero.MainHero.GetAllCareerChoices().Contains("EnhancedHorseCombatKeystone"))
+                if (Hero.MainHero.HasCareerChoice("CourtleyKeystone") 
+                    || Hero.MainHero.HasCareerChoice("EnhancedHorseCombatKeystone")
+                    || Hero.MainHero.HasCareerChoice("NoRestAgainstEvilKeystone"))
                     _currentCharge = _maxCharge;
                 else
                     SetCoolDown(Template.CoolDown);

@@ -98,7 +98,7 @@ namespace TOR_Core.BattleMechanics
                     
                     var script = (AccusationScript)affectorAgent.GetComponent<AbilityComponent>().CareerAbility.AbilityScript;
                     var triggeredEffect = script.GetEffects()[0];
-                
+                    TORCommon.Say("chance was"+ chance);
                     if (MBRandom.RandomFloat <= chance)
                     {
                         

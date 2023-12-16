@@ -123,7 +123,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
             
-            _toolsOfJudgementKeystone.Initialize(CareerID, "The Marker stays 6 seconds longer on the target. \n Ability scales with one handed and two handed skill.", "ToolsOfJudgement", false,
+            _toolsOfJudgementKeystone.Initialize(CareerID, "The Marker stays 6 seconds longer on the target. Ability scales with One and Two-Handed-skill.", "ToolsOfJudgement", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -144,7 +144,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
             
-            _huntTheWickedKeystone.Initialize(CareerID, "20% additional physical damage for marked enemies.", "HuntTheWicked", false,
+            _huntTheWickedKeystone.Initialize(CareerID, "20% additional physical damage for marked enemies. Melee damage can charge ability", "HuntTheWicked", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -178,20 +178,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
             
-            _endsJustifiesMeansKeystone.Initialize(CareerID, "If the enemy suffers from one hit more damage than its maximum life a marker is placed on a near-by enemy. Ability scales with rougery", "EndsJustifiesMeans", false,
+            _noRestAgainstEvilKeystone.Initialize(CareerID, "Companions can trigger mark effects. Ability starts charged.", "NoRestAgainstEvil", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "Accusation",
-                        PropertyName = "ScaleVariable1",
-                        PropertyValue = (choice, originalValue, agent) =>CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Roguery}, 0.0005f),
-                        MutationType = OperationType.Add
-                    }
-                }); // passive
+                }); // special
+
             
-            _swiftProcedureKeystone.Initialize(CareerID, "Marked enemies movement & swing speed is decreased. Ability scales with atheletics", "SwiftProcedure", false,
+            _swiftProcedureKeystone.Initialize(CareerID, "Marked enemies movement & swing speed is decreased. Ability scales with athletics", "SwiftProcedure", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -218,10 +211,18 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     
                 }); //special
             
-            _noRestAgainstEvilKeystone.Initialize(CareerID, "Companions can trigger mark effects.", "NoRestAgainstEvil", false,
+            _endsJustifiesMeansKeystone.Initialize(CareerID, "Marked enemies suffering more damage than their maximum health propagate mark. Scales with Rougery", "EndsJustifiesMeans", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
-                }); // special
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "Accusation",
+                        PropertyName = "ScaleVariable1",
+                        PropertyValue = (choice, originalValue, agent) =>CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Roguery}, 0.0005f),
+                        MutationType = OperationType.Add
+                    }
+                }); // passive
 
             
         }
