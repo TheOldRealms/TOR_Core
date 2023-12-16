@@ -200,7 +200,7 @@
                             <NavigationAutoScrollWidget TrackedWidget="..\Z3rcaButton" ScrollYOffset="160" />
                             <ButtonWidget Id="Z3rcaButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Party.TalkSlot.Background" Command.Click="ExecuteButtonClick" IsEnabled="@IsButtonEnabled" GamepadNavigationIndex="2">
                               <Children>
-                                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!RecruitIcon.Width" SuggestedHeight="!RecruitIcon.Height" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="@SpriteTORButton" Color="#FF0000FF" SaturationFactor="60" ValueFactor="20" />
+                                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!RecruitIcon.Width" SuggestedHeight="!RecruitIcon.Height" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="@SpriteTORButton" SaturationFactor="60" ValueFactor="20" />
                                 <HintWidget DataSource="{ButtonHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false" />
                               </Children>
                             </ButtonWidget>
