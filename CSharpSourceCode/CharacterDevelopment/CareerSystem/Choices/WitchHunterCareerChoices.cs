@@ -272,6 +272,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         public override bool ConditionsAreMetToShowButton(CharacterObject characterObject)
         {
             if (!Hero.MainHero.HasCareerChoice("SilverHammerPassive4")) return false;
+            
+            if (characterObject.StringId == "tor_wh_retinue")
+                return false;
 
             if (!characterObject.IsHero)
                 return true;
