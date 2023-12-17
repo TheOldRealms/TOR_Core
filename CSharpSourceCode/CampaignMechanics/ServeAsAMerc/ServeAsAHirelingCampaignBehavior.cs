@@ -8,16 +8,20 @@ using TaleWorlds.CampaignSystem.BarterSystem.Barterables;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.MapEvents;
+using TaleWorlds.CampaignSystem.Overlay;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 {
     public class ServeAsAHirelingCampaignBehavior : CampaignBehaviorBase
     {
+        private TextObject infotext = new TextObject("Following {ENLISTINGLORDNAME}", null);
+
         private bool _enlisted;
         private Hero _enlistingLord;
 
@@ -36,6 +40,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             CampaignEvents.OnSettlementLeftEvent.AddNonSerializedListener(this, EnlistingLordPartyLeavesSettlement);
         }
 
+
          private void EnlistingLordPartyLeavesSettlement(MobileParty mobileParty, Settlement settlement)
          {
              if(!_enlisted) return;
@@ -50,8 +55,15 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
              if(!_enlisted) return;
              if (_enlistingLord.PartyBelongedTo == mobileParty)
              {
-                 
-                 //EnterSettlementAction.ApplyForParty(PartyBase.MainParty.MobileParty,settlement);
+               
+                    GameMenu.ActivateGameMenu("party_wait");
+                    bool isTown = settlement.IsTown;
+                    if (isTown)
+                    {
+                        Campaign.Current.TimeControlMode = CampaignTimeControlMode.Stop;
+                    }
+                
+                EnterSettlementAction.ApplyForParty(PartyBase.MainParty.MobileParty,settlement);
              }
          }
          
@@ -68,13 +80,23 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
          private void EnlistingLordPartyEncounter(MapEvent mapEvent, PartyBase attacker, PartyBase defender)
          {
              if(!_enlisted) return;
-             if (attacker == _enlistingLord.PartyBelongedTo.Party || defender == _enlistingLord.PartyBelongedTo.Party)
-             {
-                 EncounterManager.StartPartyEncounter(PartyBase.MainParty, defender);
+             if (!_enlisted) return;
+            if (attacker != _enlistingLord.PartyBelongedTo.Party && defender != _enlistingLord.PartyBelongedTo.Party) return;
+            else
+            {
+                PartyBase.MainParty.MapEventSide = _enlistingLord.PartyBelongedTo.MapEventSide;
+                GameMenu.ExitToLast();
+
+            }
+            if (attacker == _enlistingLord.PartyBelongedTo.Party) {
+                EncounterManager.StartPartyEncounter(PartyBase.MainParty, defender);
 
 
-             }
-         }
+            } else if (defender == _enlistingLord.PartyBelongedTo.Party)
+            {
+                EncounterManager.StartPartyEncounter(attacker, PartyBase.MainParty);
+            }
+        }
 
 
          private void OnTick(float dt)
@@ -92,39 +114,90 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
          {
    
          }
-         
-         
 
-         private void ServeAsAMercDialog(CampaignGameStarter campaignGameStarter)
+        private void party_wait_talk_to_other_members_on_init(MenuCallbackArgs args)
         {
+     
+        }
+
+        private void ServeAsAMercDialog(CampaignGameStarter campaignGameStarter)
+        {
+
+
             campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword", "I am hereby offering my sword.", null, EnlistPlayer);
             campaignGameStarter.AddDialogLine("payedsword", "payedsword", "end", "As you wish.", null,null,200,null);
             
+            campaignGameStarter.AddWaitGameMenu("hireling_menu", infotext.ToString(), new OnInitDelegate(this.party_wait_talk_to_other_members_on_init), new OnConditionDelegate(this.wait_on_condition),
+                null, new OnTickDelegate(this.wait_on_tick), GameMenu.MenuAndOptionType.WaitMenuHideProgressAndHoursOption, GameOverlays.MenuOverlayType.None, 0f, GameMenu.MenuFlags.None, null);
+            
+            
+            TextObject textObject = new TextObject("Desert", null);
+            campaignGameStarter.AddGameMenuOption("hireling_menu", "party_wait_change_equipment", textObject.ToString(), delegate (MenuCallbackArgs args)
+            {
+                args.optionLeaveType = GameMenuOption.LeaveType.Escape;
+                return true;
+            }, delegate (MenuCallbackArgs args)
+            {
+            }, true, -1, false, null);
         }
-         
 
-         private void EnlistPlayer()
+        // Token: 0x0600015C RID: 348 RVA: 0x000119BC File Offset: 0x0000FBBC
+        private bool wait_on_condition(MenuCallbackArgs args)
+        {
+            return true;
+        }
+        // Token: 0x06000159 RID: 345 RVA: 0x000112C1 File Offset: 0x0000F4C1
+        private void wait_on_tick(MenuCallbackArgs args, CampaignTime time)
+        {
+            this.updatePartyMenu(args);
+        }
+        // Token: 0x0600015E RID: 350 RVA: 0x000119DC File Offset: 0x0000FBDC
+        private void updatePartyMenu(MenuCallbackArgs args)
+        {
+            bool flag = _enlistingLord == null || !_enlisted;
+            if (flag)
+            {
+                while (Campaign.Current.CurrentMenuContext != null)
+                {
+                    GameMenu.ExitToLast();
+                }
+            }
+            else
+            {
+                
+                 args.MenuContext.SetBackgroundMeshName(_enlistingLord.MapFaction.Culture.EncounterBackgroundMesh);
+                TextObject text = args.MenuContext.GameMenu.GetText();
+                text.SetTextVariable("PARTY_LEADER", _enlistingLord.EncyclopediaLinkWithName);
+                TORCommon.Say(infotext);
+
+            }
+        }
+
+        private void EnlistPlayer()
          {
              HidePlayerParty();
              DisbandParty();
-             _enlistingLord = CharacterObject.OneToOneConversationCharacter.HeroObject;
+            _enlistingLord = CharacterObject.OneToOneConversationCharacter.HeroObject;
              ChangeKingdomAction.ApplyByJoinFactionAsMercenary(Hero.MainHero.Clan, _enlistingLord.Clan.Kingdom,25,false);
-             
-             
-             while (Campaign.Current.CurrentMenuContext != null)
+             MBTextManager.SetTextVariable("ENLISTINGLORDNAME", _enlistingLord.EncyclopediaLinkWithName);
+
+
+
+            while (Campaign.Current.CurrentMenuContext != null)
                  GameMenu.ExitToLast();
 
              //GameMenu.ActivateGameMenu("party_wait");
              
              _enlisted = true;
-             
+            GameMenu.ActivateGameMenu("hireling_menu");
 
-         }
-         
-         private void HidePlayerParty()
+
+        }
+
+        private void HidePlayerParty()
          {
 
-     //        PartyBase.MainParty.MobileParty.IsVisible = false;
+            PartyBase.MainParty.MobileParty.IsVisible = false;
              
              
              /*if (((PartyVisual) ).HumanAgentVisuals != null)
