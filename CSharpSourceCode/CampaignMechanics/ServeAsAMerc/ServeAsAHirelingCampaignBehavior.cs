@@ -20,7 +20,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 {
     public class ServeAsAHirelingCampaignBehavior : CampaignBehaviorBase
     {
-        private TextObject infotext = new TextObject("Following {ENLISTINGLORDNAME}", null);
 
         private bool _enlisted;
         private Hero _enlistingLord;
@@ -56,7 +55,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
              if (_enlistingLord.PartyBelongedTo == mobileParty)
              {
                
-                    GameMenu.ActivateGameMenu("party_wait");
+                
                     bool isTown = settlement.IsTown;
                     if (isTown)
                     {
@@ -107,13 +106,20 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                  PartyBase.MainParty.MobileParty.Position2D = _enlistingLord.PartyBelongedTo.Position2D;
              }
          }
-         
-         
 
-         public override void SyncData(IDataStore dataStore)
-         {
-   
-         }
+        public static void LeaveLordPartyAction(bool keepgear)
+        {
+            bool flag2 = PlayerEncounter.Current != null;
+            if (flag2)
+            {
+                PlayerEncounter.Finish(true);
+            }
+        }
+
+        public override void SyncData(IDataStore dataStore)
+        {
+
+        }
 
         private void party_wait_talk_to_other_members_on_init(MenuCallbackArgs args)
         {
@@ -126,18 +132,53 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
             campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword", "I am hereby offering my sword.", null, EnlistPlayer);
             campaignGameStarter.AddDialogLine("payedsword", "payedsword", "end", "As you wish.", null,null,200,null);
-            
-            campaignGameStarter.AddWaitGameMenu("hireling_menu", infotext.ToString(), new OnInitDelegate(this.party_wait_talk_to_other_members_on_init), new OnConditionDelegate(this.wait_on_condition),
+            TextObject infotext = new TextObject("Following {ENLISTINGLORDNAME}", null);        
+        campaignGameStarter.AddWaitGameMenu("hireling_menu", infotext.Value, new OnInitDelegate(this.party_wait_talk_to_other_members_on_init), new OnConditionDelegate(this.wait_on_condition),
                 null, new OnTickDelegate(this.wait_on_tick), GameMenu.MenuAndOptionType.WaitMenuHideProgressAndHoursOption, GameOverlays.MenuOverlayType.None, 0f, GameMenu.MenuFlags.None, null);
             
             
             TextObject textObject = new TextObject("Desert", null);
-            campaignGameStarter.AddGameMenuOption("hireling_menu", "party_wait_change_equipment", textObject.ToString(), delegate (MenuCallbackArgs args)
+            TextObject textObject25 = new TextObject("{=FLT0000044}Abandon Party", null);
+            campaignGameStarter.AddGameMenuOption("hireling_menu", "party_wait_leave", textObject25.ToString(), delegate (MenuCallbackArgs args)
             {
+                TextObject text = new TextObject("{=FLT0000045}This will damage your reputation with the {FACTION}", null);
+                string faction_name = (_enlistingLord != null) ? _enlistingLord.MapFaction.Name.ToString() : "DATA CORRUPTION ERROR";
+                text.SetTextVariable("FACTION", faction_name);
+                args.Tooltip = text;
                 args.optionLeaveType = GameMenuOption.LeaveType.Escape;
                 return true;
             }, delegate (MenuCallbackArgs args)
             {
+                TextObject titleText = new TextObject("{=FLT0000044}Abandon Party", null);
+                TextObject text = new TextObject("{=FLT0000046}Are you sure you want to abandon the party>  This will harm your relations with the entire faction.", null);
+                TextObject affrimativeText = new TextObject("{=FLT0000047}Yes", null);
+                TextObject negativeText = new TextObject("{=FLT0000048}No", null);
+                InformationManager.ShowInquiry(new InquiryData(titleText.ToString(), text.ToString(), true, true, affrimativeText.ToString(), negativeText.ToString(), delegate ()
+                {
+                    // ChangeFactionRelation(_enlistingLord.MapFaction, -100000);
+                    ChangeCrimeRatingAction.Apply(_enlistingLord.MapFaction, 55f, true);
+                    foreach (Clan clan in _enlistingLord.Clan.Kingdom.Clans)
+                    {
+                        bool flag2 = !clan.IsUnderMercenaryService;
+                        if (flag2)
+                        {
+                            ChangeRelationAction.ApplyPlayerRelation(clan.Leader, -20, true, true);
+                            foreach (Hero lord in clan.Heroes)
+                            {
+                                bool isLord = lord.IsLord;
+                                if (isLord)
+                                {
+                                  //  Test.ChangeLordRelation(lord, -100000);
+                                }
+                            }
+                        }
+                    }
+                    LeaveLordPartyAction(true);
+                    GameMenu.ExitToLast();
+                }, delegate ()
+                {
+                    GameMenu.ActivateGameMenu("hireling_menu");
+                }, "", 0f, null, null, null), false, false);
             }, true, -1, false, null);
         }
 
@@ -168,8 +209,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                  args.MenuContext.SetBackgroundMeshName(_enlistingLord.MapFaction.Culture.EncounterBackgroundMesh);
                 TextObject text = args.MenuContext.GameMenu.GetText();
                 text.SetTextVariable("PARTY_LEADER", _enlistingLord.EncyclopediaLinkWithName);
-                TORCommon.Say(infotext);
-
             }
         }
 
