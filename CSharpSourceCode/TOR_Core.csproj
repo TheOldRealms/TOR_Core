@@ -523,7 +523,6 @@
     <Compile Include="CampaignMechanics\TORSpecialSettlementBehavior.cs" />
     <Compile Include="CampaignMechanics\TORWanderersCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\ServeAsAMerc\ServeAsAHirelingCampaignBehavior.cs" />
-    
     <Compile Include="CharacterDevelopment\CareerSystem\CareerAbilityEffectVM.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceGroupObject.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceGroupObjectVM.cs" />
