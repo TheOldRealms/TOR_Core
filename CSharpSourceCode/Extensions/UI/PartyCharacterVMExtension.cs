@@ -76,8 +76,27 @@ namespace TOR_Core.Extensions.UI
             var troop = ( (PartyCharacterVM)_vm ).Troop.Character;
             SpecialbuttonEventManagerHandler.Instance.OnButtonClicked(troop.StringId);
             
-           
+            ((PartyCharacterVM)_vm).RefreshValues();
+            
+            
+           // _vm.OnPropertyChanged("AmountOfUpgrades");
+           //PartyScreenLogic.PartyCommand command = new PartyScreenLogic.PartyCommand();
+           //command.FillForRecruitTroop(PartyScreenLogic.PartyRosterSide.Right,PartyScreenLogic.TroopType.Member,troop,1,1);
+         //  ( (PartyCharacterVM)_vm ).ExecuteRecruitTroop();
             TORCommon.Say("Button clicked.");
+            
+            //var vm = new PartyVM(PartyScreenManager.PartyScreenLogic);
+            
+            //var t= ViewModelExtensionManager.Instance.GetExtensionInstance(vm);
+       
+            //PartyScreenManager.PartyScreenLogic.Reset(false);
+           // var command = new PartyScreenLogic.PartyCommand();
+            
+            
+            //PartyScreenManager.PartyScreenLogic.AddCommand();
+            //PartyScreenManager.PartyScreenLogic.UpdateDelegate
+
+
         }
         
         [DataSourceProperty]

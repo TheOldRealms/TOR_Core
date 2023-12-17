@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Localization;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
+using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
@@ -209,7 +212,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     
-                }); //special
+                }); 
             
             _endsJustifiesMeansKeystone.Initialize(CareerID, "Marked enemies suffering more damage than their maximum health propagate mark. Scales with Rougery", "EndsJustifiesMeans", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
@@ -222,7 +225,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         PropertyValue = (choice, originalValue, agent) =>CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Roguery}, 0.0005f),
                         MutationType = OperationType.Add
                     }
-                }); // passive
+                });
 
             
         }
@@ -242,7 +245,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _silverHammerPassive1.Initialize(CareerID, "Exterminated Undead and Ruinous powers increase faith per fallen Unit.", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10,PassiveEffectType.Special));
             _silverHammerPassive2.Initialize(CareerID, "All units deal more damage against undead and chaos.", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 15), AttackTypeMask.Ranged));
             _silverHammerPassive3.Initialize(CareerID, "Increases Hitpoints by 25.", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
-            _silverHammerPassive4.Initialize(CareerID, "Handgunners can be upgraded to Silverbullets.", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));          //TORAgentStatCalculateModel 458
+            _silverHammerPassive4.Initialize(CareerID, "Troops can be upgraded to Witch Hunter Retinues.", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));          //TORAgentStatCalculateModel 458
 
             _noRestAgainstEvilPassive1.Initialize(CareerID, "Extra holy melee damage (20%).", "NoRestAgainstEvil", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 20), AttackTypeMask.Melee));
             _noRestAgainstEvilPassive2.Initialize(CareerID, "All regular troops have 20 higher ranged and melee skill", "NoRestAgainstEvil", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));          //TORAgentStatCalculateModel 458
@@ -263,8 +266,36 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _guiltyByAssociationPassive2.Initialize(CareerID, "Every ranged troop deals 15% extra holy damage.", "GuiltyByAssociation", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));          //TORAgentStatCalculateModel 458
             _guiltyByAssociationPassive3.Initialize(CareerID, "Companions have 50 additional health points.", "GuiltyByAssociation", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special));
             _guiltyByAssociationPassive4.Initialize(CareerID, "Killing blows in the head increase temporary reload & swing speed", "GuiltyByAssociation", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special));
-
-
         }
+        
+        
+        public override bool ConditionsAreMetToShowButton(CharacterObject characterObject)
+        {
+            if (!Hero.MainHero.HasCareerChoice("SilverHammerPassive4")) return false;
+
+            if (!characterObject.IsHero)
+                return true;
+            
+            return false;
+        }
+        
+        public override bool ConditionsAreMetToEnableButton(CharacterObject characterObject, out TextObject disableReason)
+        {
+            disableReason = new TextObject("Upgrades troop to a Witch Hunter Retinue");
+            if (characterObject.IsEliteTroop())
+            {
+                disableReason = new TextObject("Knights Cant be upgraded to Retinues");
+                return false;
+            }
+
+            if (characterObject.Culture.StringId == "vlandia" || characterObject.Race !=0)
+            {
+                disableReason = new TextObject("Needs to be part of the empire or southern realms");
+                return false;
+            }
+            
+            return true;
+        }
+        
     }
 }

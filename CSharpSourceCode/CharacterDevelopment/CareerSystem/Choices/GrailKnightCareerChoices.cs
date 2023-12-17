@@ -371,6 +371,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         }
 
 
+        public override string CareerButtonIcon => "CareerSystem\\Grail";
+
+
         public override bool ConditionsAreMetToShowButton(CharacterObject viewedCharacterObject)
         {
             if (viewedCharacterObject.IsHero) return false;

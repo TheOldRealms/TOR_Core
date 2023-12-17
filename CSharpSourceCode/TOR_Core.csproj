@@ -483,6 +483,7 @@
     <Compile Include="CampaignMechanics\Careers\DamselEnvoyOfTheLadyPerkBehavior.cs" />
     <Compile Include="CampaignMechanics\Careers\GrailKnightCareerButtonCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Careers\MercenaryCareerButtonCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\Careers\TORCareerButtonExchangeTroop.cs" />
     <Compile Include="CampaignMechanics\Careers\TORCareerPerkCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissCampaignBehavior.cs" />
@@ -575,6 +576,7 @@
     <Compile Include="Extensions\UI\BaseViewModelExtension.cs" />
     <Compile Include="Extensions\UI\HeroEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\PartyCharacterVMExtension.cs" />
+    <Compile Include="Extensions\UI\PartyVMExtension.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionAttribute.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionManager.cs" />
     <Compile Include="Extensions\ViewModelExtensions.cs" />

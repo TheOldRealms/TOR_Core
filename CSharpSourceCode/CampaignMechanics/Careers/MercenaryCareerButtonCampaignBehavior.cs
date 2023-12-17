@@ -78,6 +78,7 @@ namespace TOR_Core.CampaignMechanics
             GiveGoldAction.ApplyBetweenCharacters(Hero.MainHero, null, _price);
             AddCompanionAction.Apply(MobileParty.MainParty.ActualClan, hero);
             AddHeroToPartyAction.Apply(hero, MobileParty.MainParty);
+            MobileParty.MainParty.MemberRoster.AddToCountsAtIndex(MobileParty.MainParty.MemberRoster.FindIndexOfTroop(_currentTemplate),-1);
         }
 
         

@@ -64,7 +64,6 @@ namespace TOR_Core.BattleMechanics
                         {
                             cAbility.CareerAbility.AddCharge(value);
                         }
-                        
                     }
                 }
             }

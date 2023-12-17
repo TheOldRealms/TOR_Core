@@ -5,12 +5,15 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
 using TaleWorlds.Library;
 
 namespace TOR_Core.Extensions.UI
 {
     public class ViewModelExtensionManager
     {
+        public PartyVM PartyVm;
+        
         private readonly Dictionary<ViewModel, IViewModelExtension> _extensionInstances = new Dictionary<ViewModel, IViewModelExtension>();
         public static ViewModelExtensionManager Instance { get; private set; }
         public List<Type> ExtensionTypes { get; private set; } = new List<Type>();

@@ -31,7 +31,6 @@ namespace TOR_Core.CampaignMechanics
             obj.AddDialogLine("grailKnightCompanionHonoring_vow10", "grailKnightCompanionHonoring_vow10", "grailKnightCompanionHonoring_vow11",new TextObject("...I kick now some more ass!").ToString(), null, null,200, null);
             obj.AddPlayerLine("grailKnightCompanionHonoring_vow11", "grailKnightCompanionHonoring_vow11", "grailKnightCompanionHonoring_vow12",new TextObject("now lift yourself and be my loyal servant!").ToString(), null, MakeGrailKnightCompanion,200, null);
             obj.AddPlayerLine("grailKnightCompanionHonoring_vow12", "grailKnightCompanionHonoring_vow12", "close_window",new TextObject("now lift yourself and be my loyal servant!").ToString(), null, null,200, null);
-            //Campaign.Current.
         }
         
         public override void RegisterEvents()
