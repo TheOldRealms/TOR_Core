@@ -537,7 +537,19 @@
       <EquipmentSet id="tor_empire_flagellant_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wh_retinue" default_group="infantry" level="16" name="{=str_tor_empire_flagellant}Empire Flagellant" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
+  <NPCCharacter id="tor_wh_retinue" default_group="infantry" level="16" name="{=str_tor_empire_flagellant}Retinue Apprentice" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.flagellant" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_wh_retinue_hunter" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_empire_flagellant_template" />
+      <EquipmentSet id="tor_empire_flagellant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_wh_retinue_hunter" default_group="infantry" level="24" name="{=str_tor_empire_flagellant}Retinue Hunter" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.flagellant" />
     </face>

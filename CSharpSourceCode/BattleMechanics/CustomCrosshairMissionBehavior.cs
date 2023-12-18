@@ -135,10 +135,10 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
                 _abilityComponent.CurrentAbilityChanged += ChangeAbilityCrosshair;
                 _abilityComponent.InitializeCrosshairs();
                 _abilityCrosshair = _abilityComponent.CurrentAbility?.Crosshair;
+                _hasCareerSingleTargetCrosshair = _abilityComponent.CareerAbility.IsSingleTarget;
             }
             _areCrosshairsInitialized = true;
-
-            _hasCareerSingleTargetCrosshair = _abilityComponent.CareerAbility.IsSingleTarget;
+            
         }
 
         public override void OnMissionScreenFinalize()
