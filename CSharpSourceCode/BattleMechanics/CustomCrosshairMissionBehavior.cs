@@ -1,4 +1,5 @@
-﻿using TaleWorlds.Core;
+﻿using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -135,7 +136,11 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
                 _abilityComponent.CurrentAbilityChanged += ChangeAbilityCrosshair;
                 _abilityComponent.InitializeCrosshairs();
                 _abilityCrosshair = _abilityComponent.CurrentAbility?.Crosshair;
-                _hasCareerSingleTargetCrosshair = _abilityComponent.CareerAbility.IsSingleTarget;
+                if (Game.Current.GameType is Campaign)
+                {
+                    _hasCareerSingleTargetCrosshair = _abilityComponent.CareerAbility.IsSingleTarget;
+                }
+                
             }
             _areCrosshairsInitialized = true;
             
