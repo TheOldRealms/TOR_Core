@@ -109,7 +109,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _grailDamselRootNode.Initialize(CareerID, "No Career Ability", null, true, ChoiceType.Keystone);
+            _grailDamselRootNode.Initialize(CareerID, "The Damsel wanders on the fey paths. Instantly teleports the player to the targeted ground position. Charges with dealt dealt or healed damage with magic", null, true, ChoiceType.Keystone);
             
             
             _feyEnchantmentKeystone.Initialize(CareerID, "Enemies on the target area of the spell caster are knocked down", "FeyEnchantment", false,
