@@ -66,13 +66,17 @@ namespace TOR_Core.Models
             var factionScore = baseFactionFactor(factionDeclaresWar, factionDeclaredWar);
             var distanceScore = baseDistanceFactor(factionDeclaresWar, factionDeclaredWar);
 
-            var religiousScoreOfWar = DetermineEffectOfReligion(factionDeclaresWar, factionDeclaredWar, (Clan)evaluatingClan);
+            var religionScore = DetermineEffectOfReligion(factionDeclaresWar, factionDeclaredWar, (Clan)evaluatingClan);
             // normalize effect of religion based on average hero "agro" to approximately between 0.0 and 1.0
-            religiousScoreOfWar /= (factionDeclaredWar.Heroes.Count + factionDeclaresWar.Heroes.Count) * 100;
-            // weigh religion as much as faction strength
-            religiousScoreOfWar *= 0.8f*factionScore + 0.2f*distanceScore;
-            TORCommon.Say($"War between {factionDeclaredWar.Name} vs {factionDeclaresWar.Name}; Native Score: {nativeScoreOfDeclaringWar} Religion Score:{religiousScoreOfWar}");
-            return nativeScoreOfDeclaringWar + religiousScoreOfWar;
+            religionScore = religionScore / ((factionDeclaredWar.Heroes.Count + factionDeclaresWar.Heroes.Count) * 100);
+            // weigh religion as much as faction strength, distance is kinda between 0-1
+            var torScoreOfDeclaringWar = religionScore * factionScore * distanceScore;
+            // Extra weight to account for distanceScore's decimal value
+            torScoreOfDeclaringWar *= 10;
+            TORCommon.Say($"War between {factionDeclaredWar.Name} vs {factionDeclaresWar.Name}; \n\t\t" +
+                $"Native Score: {nativeScoreOfDeclaringWar}, TOR Score: {torScoreOfDeclaringWar}; \n\t\t" +
+                $"Faction Score: {factionScore}, Distance Score: {distanceScore}, Religion Score = {religionScore} ");
+            return nativeScoreOfDeclaringWar + torScoreOfDeclaringWar;
         }
 
 
