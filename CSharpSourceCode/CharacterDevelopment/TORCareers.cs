@@ -79,7 +79,7 @@ namespace TOR_Core.CharacterDevelopment
             
             _mercenary.Initialize("Mercenary", null, "LetThemHaveIt", ChargeType.DamageDone, 300);
             
-            _witchHunter.Initialize("Witch Hunter", null, "Accusation", ChargeType.DamageDone, 300, typeof(AccusationScript));
+            _witchHunter.Initialize("Witch Hunter", null, "Accusation", ChargeType.DamageDone, 200, typeof(AccusationScript));
         }
     }
 }
