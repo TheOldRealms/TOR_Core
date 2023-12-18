@@ -47,6 +47,7 @@ namespace TOR_Core.BattleMechanics
         }
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
+            if(affectedAgent.IsMount) return;
             if(affectorAgent.IsMount) return;
             if (affectorAgent.GetOriginMobileParty().IsMainParty && Agent.Main!=null&&  affectorAgent!= Agent.Main && affectorAgent.IsHero)
             {
@@ -134,6 +135,8 @@ namespace TOR_Core.BattleMechanics
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
             if (affectorAgent == null) return;
+            if(affectedAgent.IsMount) return;
+            
             if (affectorAgent.IsMainAgent)
             {
                 var playerHero = affectorAgent.GetHero();
