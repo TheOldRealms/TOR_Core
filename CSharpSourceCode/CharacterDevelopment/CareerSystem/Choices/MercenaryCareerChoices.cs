@@ -118,8 +118,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _mercenaryRootNode.Initialize(CareerID, "Let Them Have It", null, true, ChoiceType.Keystone);
-            
             _mercenaryRootNode.Initialize(CareerID, "The Mercenary prepares the men around him for the next attack. Makes all troops unbreakable for a short amount of time. The duration is prolonged by the leadership skills", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
