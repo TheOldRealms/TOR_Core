@@ -29,7 +29,6 @@ namespace TOR_Core.Extensions.UI
         private bool _shouldButtonBeVisible;
         private bool _isButtonEnabled;
         private BasicTooltipViewModel _buttonHint;
-        private bool _shouldButtonBeVisible2;
         private string _spriteTORButton;
         private TextObject disableReason;
         
@@ -54,15 +53,7 @@ namespace TOR_Core.Extensions.UI
             IsButtonEnabled = showButton && CareerHelper.ConditionsMetToEnableSuperButton(troop, out textObect);
             disableReason = textObect;
             
-            
-
-            ShouldButtonBeVisible2 = false;
-            //General\Mission\PersonalKillfeed\kill_feed_skull
             SpriteTORButton = CareerHelper.GetButtonSprite();
-
-
-
-
         }
 
         private string GetButtonHintText()
@@ -110,23 +101,6 @@ namespace TOR_Core.Extensions.UI
             { 
                 _spriteTORButton=value;
                 _vm.OnPropertyChangedWithValue(value, "SpriteTORButton");
-            }
-        }
-        
-        [DataSourceProperty]
-        public bool ShouldButtonBeVisible2
-        {
-            get
-            {
-                return _shouldButtonBeVisible2;
-            }
-            set
-            {
-                if (value != _shouldButtonBeVisible)
-                {
-                    _shouldButtonBeVisible2 = value;
-                    _vm.OnPropertyChangedWithValue(value, "ShouldButtonBeVisible2");
-                }
             }
         }
         

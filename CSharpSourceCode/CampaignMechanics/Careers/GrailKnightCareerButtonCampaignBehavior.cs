@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Conversation;
@@ -18,19 +18,15 @@ namespace TOR_Core.CampaignMechanics
         
         private void OnSessionLaunched(CampaignGameStarter obj)
         {
-            obj.AddDialogLine("grailKnightCompanionHonoring_start1", "start", "grailKnightCompanionHonoring_vow1", new TextObject("Hello Lord, it is rare that I have the pleasure of speaking with you. How can I serve you?").ToString(), GrailKnightCompanionVowCondition, DeactivateCondition, 200,null);
-            obj.AddPlayerLine("grailKnightCompanionHonoring_vow1", "grailKnightCompanionHonoring_vow1", "grailKnightCompanionHonoring_vow2",new TextObject("You have served me well for some time now and like I have completed your quest for the grail and have passed the lady’s secret trials.").ToString(), null, null,200, null);
-            obj.AddDialogLine("grailKnightCompanionHonoring_vow2", "grailKnightCompanionHonoring_vow2", "grailKnightCompanionHonoring_vow3", new TextObject("I would serve no other! What an honour to fight by the side of a fellow Grail Knight, especially one as accomplished and renowned as you.").ToString(), null,null , 200,null);
-            obj.AddPlayerLine("grailKnightCompanionHonoring_vow3", "grailKnightCompanionHonoring_vow3", "grailKnightCompanionHonoring_vow4",new TextObject("Get down on your knees brother").ToString(), null, null,200, null);
-            obj.AddDialogLine("grailKnightCompanionHonoring_vow4", "grailKnightCompanionHonoring_vow4", "grailKnightCompanionHonoring_vow5", new TextObject("wait what are you serious now?").ToString(), null,null , 200,null);
-            obj.AddPlayerLine("grailKnightCompanionHonoring_vow5", "grailKnightCompanionHonoring_vow5", "grailKnightCompanionHonoring_vow6",new TextObject("Get on your fucking knees!").ToString(), null, null,200, null);
-            obj.AddPlayerLine("grailKnightCompanionHonoring_vow6", "grailKnightCompanionHonoring_vow6", "grailKnightCompanionHonoring_vow7",new TextObject("Now Swear by the Lady!").ToString(), null, null,200, null);
-            obj.AddPlayerLine("grailKnightCompanionHonoring_vow7", "grailKnightCompanionHonoring_vow7", "grailKnightCompanionHonoring_vow8",new TextObject("I am a motherfucking grail knight !").ToString(), null, null,200, null);
-            obj.AddDialogLine("grailKnightCompanionHonoring_vow8", "grailKnightCompanionHonoring_vow8", "grailKnightCompanionHonoring_vow9", new TextObject("I am a motherfucking grail knight.").ToString(), null,null , 200,null);
-            obj.AddPlayerLine("grailKnightCompanionHonoring_vow9", "grailKnightCompanionHonoring_vow9", "grailKnightCompanionHonoring_vow10",new TextObject("I kick now some more ass!").ToString(), null, null,200, null);
-            obj.AddDialogLine("grailKnightCompanionHonoring_vow10", "grailKnightCompanionHonoring_vow10", "grailKnightCompanionHonoring_vow11",new TextObject("...I kick now some more ass!").ToString(), null, null,200, null);
-            obj.AddPlayerLine("grailKnightCompanionHonoring_vow11", "grailKnightCompanionHonoring_vow11", "grailKnightCompanionHonoring_vow12",new TextObject("now lift yourself and be my loyal servant!").ToString(), null, MakeGrailKnightCompanion,200, null);
-            obj.AddPlayerLine("grailKnightCompanionHonoring_vow12", "grailKnightCompanionHonoring_vow12", "close_window",new TextObject("now lift yourself and be my loyal servant!").ToString(), null, null,200, null);
+            obj.AddDialogLine("grailKnightCompanionHonoring_start1", "start", "grailKnightCompanionHonoring_vow1", new TextObject("{=str_tor_grail_companion_vow_start}Hello Lord, it is rare that I have the pleasure of speaking with you. How can I serve you?").ToString(), GrailKnightCompanionVowCondition, DeactivateCondition, 200,null);
+            obj.AddPlayerLine("grailKnightCompanionHonoring_vow1", "grailKnightCompanionHonoring_vow1", "grailKnightCompanionHonoring_vow2",new TextObject("{=str_tor_grail_companion_vow_1}You have served me well for some time now and like I have completed your quest for the grail and have passed the lady’s secret trials.").ToString(), null, null,200, null);
+            
+            obj.AddDialogLine("grailKnightCompanionHonoring_vow2", "grailKnightCompanionHonoring_vow2", "grailKnightCompanionHonoring_vow3", new TextObject("{=str_tor_grail_companion_vow_2}I would serve no other! What an honour to fight by the side of a fellow Grail Knight, especially one as accomplished and renowned as you.").ToString(), null,null , 200,null);
+            obj.AddPlayerLine("grailKnightCompanionHonoring_vow3", "grailKnightCompanionHonoring_vow3", "grailKnightCompanionHonoring_vow4",new TextObject("{=str_tor_grail_companion_vow_3}I wish to join you to myself, as a member of my family and inner circle. In such a role you will lead my men into battle, handle what tasks I set aside for you and I may even grant you your own band to campaign with.").ToString(), null, null,200, null);
+            obj.AddPlayerLine("grailKnightCompanionHonoring_vow3_end", "grailKnightCompanionHonoring_vow3", "close_window",new TextObject("{=str_tor_grail_companion_vow_3}Thank you, it was good speaking with you.").ToString(), null, null,200, null);
+
+            obj.AddDialogLine("grailKnightCompanionHonoring_vow4", "grailKnightCompanionHonoring_vow4", "grailKnightCompanionHonoring_vow5", new TextObject("{=str_tor_grail_companion_vow_4}I am flattered, truly my lord, I accept wholeheartedly!").ToString(), null,MakeGrailKnightCompanion , 200,null);
+            obj.AddDialogLine("grailKnightCompanionHonoring_vow5", "grailKnightCompanionHonoring_vow5", "close_window",new TextObject("{=str_tor_grail_companion_vow_5}Thank you, it was good speaking with you.").ToString(), null, null,200, null); 
         }
         
         public override void RegisterEvents()

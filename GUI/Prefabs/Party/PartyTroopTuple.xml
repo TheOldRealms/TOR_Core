@@ -193,7 +193,7 @@
                           </Children>
                         </Widget>
 
-                        <!--Z3rca's new Button-->
+                        <!--Career Special Button-->
                         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.Slot.Width" SuggestedHeight="!Party.Slot.Height" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="10" MarginRight="10" IsVisible="@ShouldButtonBeVisible">
                           <Children>
 
@@ -209,9 +209,6 @@
                           </Children>
                         </Widget>
 						
-					  
-						
-
                         <!--XP Bar-->
                         <FillBarVerticalWidget Id="TroopXPBarWidget" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="10" SuggestedHeight="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginLeft="10" MarginTop="5" MarginBottom="20" Sprite="BlankWhiteSquare_9" Color="#00000066" FillWidget="FillWidget" InitialAmount="@CurrentXP" IsDirectionUpward="true" IsVisible="@IsUpgradableTroop" MaxAmount="@MaxXP">
                           <Children>

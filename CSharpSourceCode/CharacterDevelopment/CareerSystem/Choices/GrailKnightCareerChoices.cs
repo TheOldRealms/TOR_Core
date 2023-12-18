@@ -370,10 +370,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _holyCrusaderPassive4.Initialize(CareerID, "{=holy_crusader_passive4_str}Companion limit of party is increased by 10.", "HolyCrusader", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.CompanionLimit));
         }
 
-
         public override string CareerButtonIcon => "CareerSystem\\Grail";
-
-
+        
         public override bool ConditionsAreMetToShowButton(CharacterObject viewedCharacterObject)
         {
             if (viewedCharacterObject.IsHero) return false;
