@@ -26,6 +26,7 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
         private AbilityCrosshair _abilityCrosshair;
         private AbilityComponent _abilityComponent;
         private AbilityManagerMissionLogic _missionLogic;
+        private CareerAbility _careerAbility;
 
         public ICrosshair CurrentCrosshair { get => _currentCrosshair; }
 
@@ -45,10 +46,10 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
                     if (_currentCrosshair != _abilityCrosshair)
                         ChangeCrosshair(_abilityCrosshair);
                 }
-                else if (!Agent.Main.WieldedWeapon.IsEmpty && Agent.Main.WieldedWeapon.CurrentUsageItem.IsRangedWeapon)
+                else if (!Agent.Main.WieldedWeapon.IsEmpty)
                 {
                     
-                    if (CanUseSniperScope())
+                    if (CanUseSniperScope()&&Agent.Main.WieldedWeapon.CurrentUsageItem.IsRangedWeapon)
                     {
                         if (_currentCrosshair != _sniperScope)
                             ChangeCrosshair(_sniperScope);
@@ -96,9 +97,7 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
 
         private bool CanUseCrosshair()
         {
-            var careerAbility = _abilityComponent?.CareerAbility;
-            
-            var careerAbilityDeactivateCondition= careerAbility!=null && careerAbility.RequiresDisabledCrosshairDuringAbility && careerAbility.IsActive;
+            var careerAbilityDeactivateCondition= _careerAbility!=null && _careerAbility.RequiresDisabledCrosshairDuringAbility && _careerAbility.IsActive;        //vampire bat swarm shouldnt have crosshair
             
             return Agent.Main != null &&
                    Agent.Main.State == AgentState.Active &&
@@ -137,7 +136,8 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
                 _abilityComponent.InitializeCrosshairs();
                 _abilityCrosshair = _abilityComponent.CurrentAbility?.Crosshair;
                 if (Game.Current.GameType is Campaign)
-                {
+                { 
+                    _careerAbility = _abilityComponent?.CareerAbility;
                     _hasCareerSingleTargetCrosshair = _abilityComponent.CareerAbility.IsSingleTarget;
                 }
                 
