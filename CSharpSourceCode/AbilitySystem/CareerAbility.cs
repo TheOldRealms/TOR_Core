@@ -6,6 +6,7 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.AbilitySystem.Scripts;
 using TOR_Core.Battle.CrosshairMissionBehavior;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 
@@ -47,7 +48,8 @@ namespace TOR_Core.AbilitySystem
                 }
             
 
-                if (Hero.MainHero.HasCareerChoice("CourtleyKeystone") 
+                if (Hero.MainHero.HasCareer(TORCareers.WitchHunter)
+                    ||Hero.MainHero.HasCareerChoice("CourtleyKeystone") 
                     || Hero.MainHero.HasCareerChoice("EnhancedHorseCombatKeystone")
                     || Hero.MainHero.HasCareerChoice("NoRestAgainstEvilKeystone"))
                     _currentCharge = _maxCharge;
