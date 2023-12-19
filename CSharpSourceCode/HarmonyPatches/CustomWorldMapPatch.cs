@@ -29,36 +29,6 @@ namespace TOR_Core.HarmonyPatches
             }
         }
 
-        /*
-        [HarmonyPatch(typeof(MapScene), "Load")]
-        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-        {
-            int truthOccurance = -1;
-            bool truthFlag = false;
-            foreach (CodeInstruction instruction in instructions)
-            {
-                if (instruction.opcode == OpCodes.Ldstr && instruction.OperandIs("Main_map"))
-                {
-                    instruction.operand = "modded_main_map";
-                }
-                else if (instruction.opcode == OpCodes.Ldloca_S)
-                {
-                    truthOccurance++;
-                    truthFlag = true;
-                }
-                else if (instruction.opcode == OpCodes.Stfld)
-                {
-                    truthFlag = false;
-                }
-                else if (instruction.opcode == OpCodes.Ldc_I4_0 && truthFlag && (truthOccurance == 1 || truthOccurance == 3))
-                {
-                    instruction.opcode = OpCodes.Ldc_I4_1;
-                }
-                yield return instruction;
-            }
-        }
-        */
-
         [HarmonyPostfix]
         [HarmonyPatch(typeof(MapScene), "GetMapBorders")]
         public static void CustomBorders(MapScene __instance, ref Vec2 minimumPosition, ref Vec2 maximumPosition, ref float maximumHeight)

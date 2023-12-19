@@ -30,5 +30,19 @@ namespace TOR_Core.Models
           
             return (int) explainedNumber.ResultNumber;
         }
+
+        public override bool CanPartyUpgradeTroopToTarget(PartyBase upgradingParty, CharacterObject upgradeableCharacter, CharacterObject upgradeTarget)
+        {
+            var baseValue = base.CanPartyUpgradeTroopToTarget(upgradingParty, upgradeableCharacter, upgradeTarget);
+            if (baseValue == false) return baseValue;
+            else
+            {
+                //check party has enough resources for upgrade if it needs a custom resource
+                
+                
+                
+                return baseValue;
+            }
+        }
     }
 }

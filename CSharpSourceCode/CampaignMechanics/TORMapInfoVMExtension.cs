@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Map.MapBar;
@@ -14,23 +15,32 @@ namespace TOR_Core.CampaignMechanics
     public class TORMapInfoVMExtension : BaseViewModelExtension
 	{
 		private string _windsOfMagic = "0";
-		private string _artilleryText = "0";
+        private string _cultureResourceText = "0";
+        private string _artilleryText = "0";
 		private bool _isSpellCaster = false;
 		private BasicTooltipViewModel _windsHint;
-		private BasicTooltipViewModel _artilleryHint;
+        private BasicTooltipViewModel _cultureResourceHint;
+        private BasicTooltipViewModel _artilleryHint;
 		private float _windRechargeRate = 0f;
 		private int _maxWinds = 0;
 		private int _maxArtillery = 0;
 		private int _currentArtilleryItems = 0;
+		private bool _hasCultureResource;
 
-		public TORMapInfoVMExtension(ViewModel vm) : base(vm)
+        public TORMapInfoVMExtension(ViewModel vm) : base(vm)
 		{
 			_windsHint = new BasicTooltipViewModel(GetWindsHintText);
 			_artilleryHint = new BasicTooltipViewModel(GetArtilleryHintText);
-			RefreshValues();
+            _cultureResourceHint = new BasicTooltipViewModel(GetCultureResourceHintText);
+            RefreshValues();
 		}
 
-		private List<TooltipProperty> GetArtilleryHintText()
+        private List<TooltipProperty> GetCultureResourceHintText()
+        {
+			return new List<TooltipProperty> { new TooltipProperty(Hero.MainHero.GetCultureSpecificCustomResource().LocalizedName.ToString() + ": ", Hero.MainHero.GetCultureSpecificCustomResourceValue().ToString() + Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText(), 0, false, TooltipProperty.TooltipPropertyFlags.None) };
+        }
+
+        private List<TooltipProperty> GetArtilleryHintText()
 		{
 			string artilleryTitle = new TextObject ("{=tor_ui_artillery_title_str}Artillery").ToString();
 			string artilleryInventory = new TextObject ("{=tor_ui_artillery_amount_str}Current Artillery Pieces in Inventory:").ToString();
@@ -75,6 +85,13 @@ namespace TOR_Core.CampaignMechanics
 			}
 			_maxArtillery = MobileParty.MainParty.GetMaxNumberOfArtillery();
 			ArtilleryText = _currentArtilleryItems.ToString() + "/" + _maxArtillery.ToString();
+			var resource = Hero.MainHero.GetCultureSpecificCustomResource();
+            HasCultureResource = resource != null;
+			if(resource != null)
+			{
+				CultureResourceText = Hero.MainHero.GetCultureSpecificCustomResourceValue().ToString();
+			}
+			
 		}
 
 		[DataSourceProperty]
@@ -111,7 +128,24 @@ namespace TOR_Core.CampaignMechanics
 			}
 		}
 
-		[DataSourceProperty]
+        [DataSourceProperty]
+        public string CultureResourceText
+        {
+            get
+            {
+                return this._cultureResourceText;
+            }
+            set
+            {
+                if (value != this._cultureResourceText)
+                {
+                    this._cultureResourceText = value;
+                    _vm.OnPropertyChangedWithValue(value, "CultureResourceText");
+                }
+            }
+        }
+
+        [DataSourceProperty]
 		public string ArtilleryText
 		{
 			get
@@ -161,5 +195,39 @@ namespace TOR_Core.CampaignMechanics
 				}
 			}
 		}
-	}
+
+        [DataSourceProperty]
+        public BasicTooltipViewModel CultureResourceHint
+        {
+            get
+            {
+                return this._cultureResourceHint;
+            }
+            set
+            {
+                if (value != this._cultureResourceHint)
+                {
+                    this._cultureResourceHint = value;
+                    _vm.OnPropertyChangedWithValue(value, "CultureResourceHint");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public bool HasCultureResource
+        {
+            get
+            {
+                return this._hasCultureResource;
+            }
+            set
+            {
+                if (value != this._hasCultureResource)
+                {
+                    this._hasCultureResource = value;
+                    _vm.OnPropertyChangedWithValue(value, "HasCultureResource");
+                }
+            }
+        }
+    }
 }

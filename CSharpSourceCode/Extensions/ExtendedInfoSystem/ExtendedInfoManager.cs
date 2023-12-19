@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
@@ -69,6 +70,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             if (_characterInfos.Count > 0) _characterInfos.Clear();
             TryLoadCharacters(out _characterInfos);
+            var success = _characterInfos.Any(x => x.Value.ResourceCost != null);
             EnsurePartyInfos();
         }
 
@@ -119,6 +121,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 var info = new HeroExtendedInfo(hero.CharacterObject);
                 _heroInfos.Add(hero.GetInfoKey(), info);
                 if (hero.Template != null) InitializeTemplatedHeroStats(hero);
+                hero.AddCultureSpecificCustomResource(0);
             }
         }
 
@@ -174,6 +177,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 {
                     var info = new HeroExtendedInfo(hero.CharacterObject);
                     _heroInfos.Add(hero.GetInfoKey(), info);
+                    hero.AddCultureSpecificCustomResource(0);
                 }
             }
         }

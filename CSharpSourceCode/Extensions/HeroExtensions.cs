@@ -54,7 +54,7 @@ namespace TOR_Core.Extensions
             return explainedNumber.ResultNumber;
         }
 
-        public static void AddCustomResource(this Hero hero, string id, float amount)
+        private static void AddCustomResource(this Hero hero, string id, float amount)
         {
             var info = hero.GetExtendedInfo();
             if (info != null)
@@ -71,6 +71,25 @@ namespace TOR_Core.Extensions
                 return info.GetCustomResourceValue(id);
             }
             else return 0;
+        }
+
+        public static CustomResource GetCultureSpecificCustomResource(this Hero hero)
+        {
+            return CustomResourceManager.GetResourceObject(x => x.FirstOrDefault(y => y.Culture == hero.Culture.StringId));
+        }
+
+        public static float GetCultureSpecificCustomResourceValue(this Hero hero)
+        {
+            if (hero.GetCultureSpecificCustomResource() != null)
+            {
+                return hero.GetCustomResourceValue(hero.GetCultureSpecificCustomResource().StringId);
+            }
+            else return 0;
+        }
+
+        public static void AddCultureSpecificCustomResource(this Hero hero, float amount)
+        {
+            if(hero.GetCultureSpecificCustomResource() != null) hero.AddCustomResource(hero.GetCultureSpecificCustomResource().StringId, amount);
         }
 
         public static Dictionary<CustomResource, float> GetCustomResources(this Hero hero)

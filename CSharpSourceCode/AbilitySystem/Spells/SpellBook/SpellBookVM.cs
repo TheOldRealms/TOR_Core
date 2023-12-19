@@ -8,6 +8,7 @@ using TOR_Core.Utilities;
 using TOR_Core.Extensions;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CampaignMechanics.CustomResources;
 
 namespace TOR_Core.AbilitySystem.SpellBook
 {
@@ -49,9 +50,9 @@ namespace TOR_Core.AbilitySystem.SpellBook
             StatItems.Clear();
             StatItems.Add(new StatItemVM("Hero name: ", _currentHero.Name.ToString()));
             StatItems.Add(new StatItemVM("Spell casting level: ", info.SpellCastingLevel.ToString()));
-            StatItems.Add(new StatItemVM("Maximum Winds of Magic: ", info.MaxWindsOfMagic.ToString() + TORCommon.GetWindsIconAsText()));
-            StatItems.Add(new StatItemVM("Current Winds of Magic: ", info.GetCustomResourceValue("WindsOfMagic").ToString() + TORCommon.GetWindsIconAsText()));
-            StatItems.Add(new StatItemVM("Winds of Magic recharge rate: ", info.WindsOfMagicRechargeRate.ToString() + TORCommon.GetWindsIconAsText() + "\\ hour"));
+            StatItems.Add(new StatItemVM("Maximum Winds of Magic: ", info.MaxWindsOfMagic.ToString() + CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText()));
+            StatItems.Add(new StatItemVM("Current Winds of Magic: ", info.GetCustomResourceValue("WindsOfMagic").ToString() + CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText()));
+            StatItems.Add(new StatItemVM("Winds of Magic recharge rate: ", info.WindsOfMagicRechargeRate.ToString() + CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText() + "\\ hour"));
             string lorestext = "";
             for(int i = 0; i < info.KnownLores.Count; i++)
             {

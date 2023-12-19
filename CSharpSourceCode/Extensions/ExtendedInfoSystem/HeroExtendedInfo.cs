@@ -13,6 +13,7 @@ using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions.ExtendedInfoSystem
 {
@@ -33,6 +34,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
         public void AddCustomResource(string id, float amount)
         {
+            if (!CustomResourceManager.DoesResourceObjectExist(id)) return;
             if (CustomResources.ContainsKey(id))
             {
                 CustomResources[id] = Math.Max(0, CustomResources[id] + amount);
@@ -40,6 +42,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 {
                     CustomResources[id] = Math.Min(MaxWindsOfMagic, CustomResources[id]);
                 }
+                else CustomResources[id] = Math.Min(TORConstants.MAXIMUM_CUSTOMRESOURCE_VALUE, CustomResources[id]);
             }
             else
             {
@@ -48,11 +51,13 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 {
                     CustomResources[id] = Math.Min(MaxWindsOfMagic, CustomResources[id]);
                 }
+                else CustomResources[id] = Math.Min(TORConstants.MAXIMUM_CUSTOMRESOURCE_VALUE, CustomResources[id]);
             }
         }
 
         public void SetCustomResourceValue(string id, float amount)
         {
+            if (!CustomResourceManager.DoesResourceObjectExist(id)) return;
             if (CustomResources.ContainsKey(id))
             {
                 CustomResources[id] = Math.Max(0, amount);
@@ -60,6 +65,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 {
                     CustomResources[id] = Math.Min(MaxWindsOfMagic, CustomResources[id]);
                 }
+                else CustomResources[id] = Math.Min(TORConstants.MAXIMUM_CUSTOMRESOURCE_VALUE, CustomResources[id]);
             }
             else
             {
@@ -68,6 +74,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 {
                     CustomResources[id] = Math.Min(MaxWindsOfMagic, CustomResources[id]);
                 }
+                else CustomResources[id] = Math.Min(TORConstants.MAXIMUM_CUSTOMRESOURCE_VALUE, CustomResources[id]);
             }
         }
 

@@ -279,6 +279,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         public override void OnCharacterCreationFinalized()
         {
             CultureObject culture = CharacterObject.PlayerCharacter.Culture;
+            Hero.MainHero.AddCultureSpecificCustomResource(0);
             Vec2 position2D = default(Vec2);
 
             switch (culture.StringId)
