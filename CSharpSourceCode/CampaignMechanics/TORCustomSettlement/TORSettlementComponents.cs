@@ -105,7 +105,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
 
         public override void SpawnNewParty()
         {
-            PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_patrol");
+            PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_lordparty_template");
             Clan chaosClan = Clan.FindFirst(x => x.StringId == "chaos_clan_1");
             var find = TORCommon.FindSettlementsAroundPosition(Settlement.Position2D, 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
             var chaosRaidingParty = RaidingPartyComponent.CreateRaidingParty("chaos_clan_1_party_" + RaidingPartyCount + 1, Settlement, "{=tor_chaos_raiders_str}Chaos Raiders", template, chaosClan, MBRandom.RandomInt(75, 99));

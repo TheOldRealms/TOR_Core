@@ -94,11 +94,8 @@ namespace TOR_Core.HarmonyPatches
                             var value = choice.GetPassiveValue();
                             additionalDamagePercentages[(int)DamageType.Physical] += value;
                         }
-                        
                     }
-                   
                 }
-                
             }
 
             string abilityName = "";
@@ -115,7 +112,6 @@ namespace TOR_Core.HarmonyPatches
                         attackTypeMask = AttackTypeMask.Spell;
                         abilityName = magicSpellMissile.Weapon.Item.ToString();
                     }
-
                 }
             }
 
@@ -211,17 +207,21 @@ namespace TOR_Core.HarmonyPatches
                     
                     TORDamageDisplay.DisplayDamageResult(resultDamage, damageCategories, resultBonus,wardSaveFactor, isVictim);
                 }
-                //if the agent will die, and it was a shockwave, activate ragdoll
-                if(victim.Health < b.InflictedDamage + 5 && b.BlowFlag.HasFlag(BlowFlags.KnockDown) && !victim.IsPlayerControlled)
-                {
-                    victim.AgentVisuals.GetSkeleton().ActivateRagdoll();
-                }
             }
             
             return true;
         }
-        
-        
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(Agent), "Die")]
+        public static void RagdollOnDeathPatch(Agent __instance, Blow b, Agent.KillInfo overrideKillInfo = Agent.KillInfo.Invalid)
+        {
+            if (b.BlowFlag.HasFlag(BlowFlags.KnockDown) && !__instance.IsPlayerControlled)
+            {
+                __instance.AgentVisuals.GetSkeleton().ActivateRagdoll();
+            }
+        }
+
 
         public static AttackTypeMask DetermineMask(Blow blow)
         {

@@ -55,6 +55,7 @@ namespace TOR_Core.CampaignMechanics.Invasions
 
         private void DailyTickSettlement(Settlement settlement)
         {
+            /*
             if (_currentInvadingParty != null) return;
             if (settlement.SettlementComponent is ChaosPortalComponent)
             {
@@ -67,6 +68,7 @@ namespace TOR_Core.CampaignMechanics.Invasions
                 leader.UpdateHomeSettlement();
                 _currentInvadingParty = InvasionPartyComponent.CreateInvasionForce("chaos_clan_1_invading_party" + MBRandom.RandomInt(111,111111), settlement, "Chaos Invaders", template, chaosClan, leader ,MBRandom.RandomInt(1200, 1500));
             }
+            */
         }
 
         public override void SyncData(IDataStore dataStore) { }
