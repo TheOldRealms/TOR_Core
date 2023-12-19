@@ -47,7 +47,7 @@ namespace TOR_Core.BattleMechanics
         }
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
-            if(affectedAgent.IsMount) return;
+            if(affectedAgent==null||affectedAgent.IsMount) return;
             if(affectorAgent.IsMount) return;
             if (affectorAgent.GetOriginMobileParty().IsMainParty && Agent.Main!=null&&  affectorAgent!= Agent.Main && affectorAgent.IsHero)
             {
