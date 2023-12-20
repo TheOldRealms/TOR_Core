@@ -14,6 +14,7 @@ using TOR_Core.Extensions;
 using TaleWorlds.Library;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.CustomResources;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -98,6 +99,13 @@ namespace TOR_Core.HarmonyPatches
             __instance.OnPropertyChanged("AmountOfUpgrades");
 
             return false;
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(PartyVM), "Update")]
+        public static void UpgradeTroopPostFix(PartyVM __instance, PartyScreenLogic.PartyCommand command)
+        {
+            CustomResourceManager.OnPartyScreenTroopUpgrade(__instance, command);
         }
 
         public static string GetUpgradeHint(int index, int numOfItems, int availableUpgrades, int upgradeCoinCost, bool hasRequiredPerk, PerkObject requiredPerk, CharacterObject character, TroopRosterElement troop, int partyGoldChangeAmount, string entireStackShortcutKeyText, string fiveStackShortcutKeyText)

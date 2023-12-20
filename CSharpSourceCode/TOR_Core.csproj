@@ -488,6 +488,7 @@
     <Compile Include="CampaignMechanics\CustomDialogs\CustomDialogCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomResources\CustomResource.cs" />
     <Compile Include="CampaignMechanics\CustomResources\CustomResourceManager.cs" />
+    <Compile Include="CampaignMechanics\CustomResources\PartyVMExtension.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\TORDeclareWarDecision.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\TORKingdomDecisionProposalBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEvent.cs" />

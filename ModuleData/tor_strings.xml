@@ -507,6 +507,9 @@
   <string id="str_inventory_weapon.22" text="{=!}Pistol" />
   <string id="str_inventory_weapon.23" text="{=!}Handgun" />
 
+  <!--oarty screen-->
+  <string id="str_customresource_trade_label" text="{=!}You will {?PAY_OR_GET}get{?}pay{\?} {TRADE_AMOUNT}" />
+
   <!--custom settlements e.g. chaos portal, shrines, herdstones -->
   <string id="customsettlement_intro.chaos_portal_01" text="{=!}You arrive at an active chaos portal. The vile thing pulses with arcane magic, chaos forces are invading in minor numbers from their realm." />
   <string id="customsettlement_disabled.chaos_portal_01" text="{=!}The portal lies dormant. Come back at a later time." />

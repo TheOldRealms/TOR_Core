@@ -9,6 +9,7 @@ using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Party;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Utilities;
 
@@ -35,6 +36,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             CampaignEvents.MobilePartyCreated.AddNonSerializedListener(this, OnPartyCreated);
             CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this, OnPartyDestroyed);
             CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
+            CustomResourceManager.RegisterEvents();
         }
 
         public static CharacterExtendedInfo GetCharacterInfoFor(string id)

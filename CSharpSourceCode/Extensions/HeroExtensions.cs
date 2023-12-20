@@ -54,7 +54,7 @@ namespace TOR_Core.Extensions
             return explainedNumber.ResultNumber;
         }
 
-        private static void AddCustomResource(this Hero hero, string id, float amount)
+        public static void AddCustomResource(this Hero hero, string id, float amount)
         {
             var info = hero.GetExtendedInfo();
             if (info != null)

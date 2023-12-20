@@ -27,8 +27,7 @@ namespace TOR_Core.CampaignMechanics
                 {
                     Sprite = Context.SpriteData.GetSprite(resource.SmallIconName);
                 }
-            }
-            
+            }   
         }
     }
 }

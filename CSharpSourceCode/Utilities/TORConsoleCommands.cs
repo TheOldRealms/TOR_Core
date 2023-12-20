@@ -10,6 +10,7 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.TriggeredEffect;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Ink;
@@ -241,7 +242,6 @@ namespace TOR_Core.Utilities
         [CommandLineFunctionality.CommandLineArgumentFunction("add_player_attribute", "tor")]
         public static string AddPlayerAttribute(List<string> arguments)
         {
-
             if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
                 return CampaignCheats.ErrorType;
 
@@ -262,6 +262,25 @@ namespace TOR_Core.Utilities
             AnimationTriggerManager.ReloadAnimationTriggers();
             
             return string.Format("Successfully reloaded animation triggers");
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("add_custom_resource", "tor")]
+        public static string AddCustomResource(List<string> arguments)
+        {
+            string resourceId = arguments[0];
+            int amount = 0;
+            if(int.TryParse(arguments[1], out amount))
+            {
+                var resource = CustomResourceManager.GetResourceObject(resourceId);
+                if(resource != null)
+                {
+                    Hero.MainHero.AddCustomResource(resourceId, amount);
+                    return string.Format("Successfully added {0} {1} to main hero.", amount.ToString(), resource.Name);
+                }
+                return string.Format("Custom resource with id {0} not found.", resourceId);
+            }
+
+            return string.Format("Incorrect arguments. Usage is \"tor.add_custom_resource resourcename amount\" ");
         }
 
         private static string AggregateOutput(string topicHeader, List<string> matchedSpells) =>
