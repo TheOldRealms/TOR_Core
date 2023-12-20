@@ -3007,7 +3007,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_HL2" name="{=Settlements.Settlement.name.town_HL2}Breder" owner="Faction.reikland_clan_3" posX="1446.752" posY="1211.141" culture="Culture.empire" gate_posX="1446.826" gate_posY="1209.987" text="{=!}At the Confluence of the River Reik and the River Schilder sits the town of Schilderheim. Ruled by Graf Robert von Uhland, Schilderheim is an important river market down river from altdorf, being one of the last places that trade on the River Reik can stop before reaching Marienburg.">
+  <Settlement id="town_HL2" name="{=Settlements.Settlement.name.town_HL2}Breder" owner="Faction.reikland_clan_3" posX="1446.752" posY="1211.141" culture="Culture.empire" gate_posX="1447.175" gate_posY="1210.065" text="{=!}At the Confluence of the River Reik and the River Schilder sits the town of Schilderheim. Ruled by Graf Robert von Uhland, Schilderheim is an important river market down river from altdorf, being one of the last places that trade on the River Reik can stop before reaching Marienburg.">
     <Components>
       <Town id="town_comp_HL2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -3455,9 +3455,9 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_OL1_1" name="{=Settlements.Settlement.name.castle_village_OL1_1}Vogelsang" posX="1485.67" posY="1302.192" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_OL1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
+  <Settlement id="castle_village_OL1_1" name="{=Settlements.Settlement.name.castle_village_OL1_1}Vogelsang" posX="1485.354" posY="1302.318" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_OL1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
     <Components>
-      <Village id="castle_village_comp_OL1_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_OL6" bound="Settlement.castle_OL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_OL1_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_OL3" bound="Settlement.castle_OL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_004" />
@@ -3470,7 +3470,7 @@
   </Settlement>
   <Settlement id="castle_village_OL1_2" name="{=Settlements.Settlement.name.castle_village_OL1_2}Birkewiese" posX="1506.817" posY="1320.385" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_OL1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
     <Components>
-      <Village id="castle_village_comp_OL1_2" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_OL6" bound="Settlement.castle_OL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_OL1_2" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_OL1" bound="Settlement.castle_OL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_004" />
@@ -3493,7 +3493,7 @@
   </Settlement>
   <Settlement id="castle_village_OL2_1" name="{=Settlements.Settlement.name.castle_village_OL1_1}Eichewaldchen" posX="1468.006" posY="1191.657" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_OL1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
     <Components>
-      <Village id="castle_village_comp_OL2_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_OL6" bound="Settlement.castle_OL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_OL2_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_OL1" bound="Settlement.castle_OL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_004" />
@@ -3516,7 +3516,7 @@
   </Settlement>
   <Settlement id="castle_village_OL3_1" name="{=Settlements.Settlement.name.castle_village_OL3_1}Vandengart" posX="1542.818" posY="1214.089" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_OL2_1}Diesdorf is a small town on the river Reik located between Altdorf and Kemperbad. Diesdorf is a major holy site of the Cult of Sigmar, it is said that Magnus the Pious once made a powerful and stirring speech to the crowds who had gathered to hear him. Around sixty years ago, Emperor Wilhelm III founded the Diesdorf Military college to train those who have proven their leadership abilities in battle.">
     <Components>
-      <Village id="castle_village_comp_OL3_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_OL5" bound="Settlement.castle_OL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_OL3_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_OL1" bound="Settlement.castle_OL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_004" />
@@ -3529,7 +3529,7 @@
   </Settlement>
   <Settlement id="castle_village_OL3_2" name="{=Settlements.Settlement.name.castle_village_OL3_2}Kurst" posX="1519.368" posY="1214.058" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_OL2_2}Lachenbad sits along the Tranig river at the joining points of the Grey Lady  and Ober-Stimmigen canals. While the village is a farming community, it is the home of a talented blacksmith, Uli and his promisingly talented son Valten.">
     <Components>
-      <Village id="castle_village_comp_OL2_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_OL5" bound="Settlement.castle_OL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_OL2_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_OL1" bound="Settlement.castle_OL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_004" />
@@ -3542,7 +3542,7 @@
   </Settlement>
   <Settlement id="castle_village_OL3_3" name="{=Settlements.Settlement.name.castle_village_OL3_3}Levudaldorf" posX="1524.945" posY="1204.704" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_OL2_2}Lachenbad sits along the Tranig river at the joining points of the Grey Lady  and Ober-Stimmigen canals. While the village is a farming community, it is the home of a talented blacksmith, Uli and his promisingly talented son Valten.">
     <Components>
-      <Village id="castle_village_comp_OL3_3" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_OL5" bound="Settlement.castle_OL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_OL3_3" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_OL1" bound="Settlement.castle_OL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_004" />
