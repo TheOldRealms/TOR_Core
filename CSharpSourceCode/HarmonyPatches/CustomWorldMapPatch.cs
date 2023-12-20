@@ -63,8 +63,8 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(MapScene), "GetMapBorders")]
         public static void CustomBorders(MapScene __instance, ref Vec2 minimumPosition, ref Vec2 maximumPosition, ref float maximumHeight)
         {
-            minimumPosition = new Vec2(850, 600);
-            maximumPosition = new Vec2(1700, 1300);
+            minimumPosition = new Vec2(700, 400);
+            maximumPosition = new Vec2(1700, 1400);
             maximumHeight = 350;
         }
         
