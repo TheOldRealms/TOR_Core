@@ -2611,7 +2611,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_RL5_1" name="{=Settlements.Settlement.name.castle_village_RL5_1}Reinsfeld" posX="1164.732" posY="1096.432" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL5_1}Reinsfeld is a village along the Uhl river in the northwestern Reikwald. The people here are fairly isolated from the rest of the Province, relying on what little trade passes by on the road towards Marienburg.">
+  <Settlement id="castle_village_RL5_1" name="{=Settlements.Settlement.name.castle_village_RL5_1}Reinsfeld" posX="1167.76" posY="1092.758" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL5_1}Reinsfeld is a village along the Uhl river in the northwestern Reikwald. The people here are fairly isolated from the rest of the Province, relying on what little trade passes by on the road towards Marienburg.">
     <Components>
       <Village id="castle_village_comp_RL5_1" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.town_RL2" bound="Settlement.castle_RL5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3740,7 +3740,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_OL4_1" name="{=Settlements.Settlement.name.village_OL4_1}Verborgenbucht" posX="1475.481" posY="1329.318" culture="Culture.empire" text="{=Settlements.Settlement.text.village_OL4_1}At the foot of the Axe Bite Pass sits the village of Osburg, the last Imperial settlement before the Market fortress of Helmgart and the Imperial/Bretonnian border. Any shipments bound for Helmgart must pass first through Osburg, and this source of trade makes the merchants here fairly prosperous.">
+  <Settlement id="village_OL4_1" name="{=Settlements.Settlement.name.village_OL4_1}Verborgenbucht" posX="1475.481" posY="1329.317" culture="Culture.empire" text="{=Settlements.Settlement.text.village_OL4_1}At the foot of the Axe Bite Pass sits the village of Osburg, the last Imperial settlement before the Market fortress of Helmgart and the Imperial/Bretonnian border. Any shipments bound for Helmgart must pass first through Osburg, and this source of trade makes the merchants here fairly prosperous.">
     <Components>
       <Village id="village_comp_OL4_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_OL4" bound="Settlement.town_OL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
