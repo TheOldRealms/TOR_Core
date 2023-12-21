@@ -164,7 +164,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORClanTierModel());
                 gameStarterObject.AddModel(new TORCombatXpModel());
                 gameStarterObject.AddModel(new TORDamageParticleModel());
-                gameStarterObject.AddModel(new TORMapWeatherModel());
+                //gameStarterObject.AddModel(new TORMapWeatherModel());
                 gameStarterObject.AddModel(new TORMarriageModel());
                 gameStarterObject.AddModel(new TORMobilePartyFoodConsumptionModel());
                 gameStarterObject.AddModel(new TORPartyHealingModel());
