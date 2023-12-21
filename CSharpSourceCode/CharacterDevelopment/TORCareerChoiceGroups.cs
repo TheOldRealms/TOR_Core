@@ -29,6 +29,17 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _swiftProcedure;
         private CareerChoiceGroupObject _guiltyByAssociation;
         private CareerChoiceGroupObject _noRestAgainstEvil;
+        //Necromancer
+        private CareerChoiceGroupObject _carrionBookOfShysh;
+        private CareerChoiceGroupObject _tomeOfThousandSouls;
+        private CareerChoiceGroupObject _deArcanisKadon;
+        private CareerChoiceGroupObject _codexMortifica;
+        private CareerChoiceGroupObject _grimoireNecris;
+        private CareerChoiceGroupObject _liberMortis;
+        
+        private CareerChoiceGroupObject _bookOfArkhan;
+
+        
         //Minor Vampire
         private CareerChoiceGroupObject _newBlood;
         private CareerChoiceGroupObject _arkayne;
@@ -98,6 +109,18 @@ namespace TOR_Core.CharacterDevelopment
             _swiftProcedure = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("SwiftProcedure"));
             _guiltyByAssociation = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("GuiltyByAssociation"));
             _noRestAgainstEvil = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("NoRestAgainstEvil"));
+            
+            //Necromancer
+            
+            _carrionBookOfShysh = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("CarrionBookOfShysh"));
+            _deArcanisKadon = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("DeArcanisKadon"));
+            _codexMortifica = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("CodexMortifica"));
+            _grimoireNecris = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("GrimoireNecris"));
+            _tomeOfThousandSouls = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("TomesOfThousandSouls"));
+            _liberMortis = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("LiberMortis"));
+            
+            _bookOfArkhan = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("BookOfArkhan"));
+     
             
             //Vampire Count
             _newBlood = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("NewBlood"));
@@ -226,6 +249,46 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.Clan.Tier >= 4;
             });
             
+            //Necromancer
+            _carrionBookOfShysh.Initialize("{=arch_lector_choice_group_str}Carrion Book of Shysh", TORCareers.Necromancer, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _deArcanisKadon.Initialize("{=arch_lector_choice_group_str}De Arcanis Kardon", TORCareers.Necromancer, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _codexMortifica.Initialize("{=arch_lector_choice_group_str}Codex Mortifica", TORCareers.Necromancer, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            
+            _liberMortis.Initialize("{=arch_lector_choice_group_str}Liber Mortis", TORCareers.Necromancer, 2, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+
+            _tomeOfThousandSouls.Initialize("{=arch_lector_choice_group_str}Tome of Thousand Souls", TORCareers.Necromancer, 2, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            
+            _grimoireNecris.Initialize("{=arch_lector_choice_group_str}Grimore Necris", TORCareers.Necromancer, 2, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            
+            _bookOfArkhan.Initialize("{=arch_lector_choice_group_str}Book of Arkhan", TORCareers.Necromancer, 3, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
             
             
             //Vampire Count

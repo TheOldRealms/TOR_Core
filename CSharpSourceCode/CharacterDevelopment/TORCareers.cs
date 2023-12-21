@@ -23,7 +23,9 @@ namespace TOR_Core.CharacterDevelopment
         private CareerObject _bloodKnight;
         private CareerObject _mercenary;
         private CareerObject _witchHunter;
+        private CareerObject _necromancer;
         
+        public static CareerObject Necromancer=> Instance._necromancer;
         public static CareerObject WitchHunter=> Instance._witchHunter;
         public static CareerObject GrailDamsel=> Instance._grailDamsel;
         public static CareerObject GrailKnight => Instance._grailKnight;
@@ -55,6 +57,7 @@ namespace TOR_Core.CharacterDevelopment
             _bloodKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("BloodKnight"));
             _mercenary = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Mercenary"));
             _witchHunter = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("WitchHunter"));
+            _necromancer = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Necromancer"));
             
             _allCareers.Add(_grailKnight);
             _allCareers.Add(_warriorPriest);
@@ -62,6 +65,7 @@ namespace TOR_Core.CharacterDevelopment
             _allCareers.Add(_bloodKnight);
             _allCareers.Add(_mercenary);
             _allCareers.Add(_grailDamsel);
+            _allCareers.Add(_necromancer);
             
             _allCareers.Add(_witchHunter);
         }
@@ -80,6 +84,8 @@ namespace TOR_Core.CharacterDevelopment
             _mercenary.Initialize("Mercenary", null, "LetThemHaveIt", ChargeType.DamageDone, 300);
             
             _witchHunter.Initialize("Witch Hunter", null, "Accusation", ChargeType.DamageDone, 200, typeof(AccusationScript));
+
+            _necromancer.Initialize("Necromancer", null, "LetThemHaveIt", ChargeType.DamageDone, 800);
         }
     }
 }
