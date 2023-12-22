@@ -60,19 +60,23 @@ namespace TOR_Core.Models
         
         public override float GetScoreOfDeclaringWar(IFaction factionDeclaresWar, IFaction factionDeclaredWar, IFaction evaluatingClan, out TextObject warReason)
         {
-            var nativeScoreOfDeclaringWar = base.GetScoreOfDeclaringWar(factionDeclaresWar, factionDeclaredWar, evaluatingClan, out warReason);
-            // this might come in handy later
-            var clanScore = baseClanFactor(factionDeclaresWar, factionDeclaredWar, evaluatingClan);
+            /// Reverse engineered values to make calculations fall in line with native
             var factionScore = baseFactionFactor(factionDeclaresWar, factionDeclaredWar);
             var distanceScore = baseDistanceFactor(factionDeclaresWar, factionDeclaredWar);
 
+            /// TOR internal score calculations
             var religionScore = DetermineEffectOfReligion(factionDeclaresWar, factionDeclaredWar, (Clan)evaluatingClan);
             // normalize effect of religion based on average hero "agro" to approximately between 0.0 and 1.0
             religionScore = religionScore / ((factionDeclaredWar.Heroes.Count + factionDeclaresWar.Heroes.Count) * 100);
             // weigh religion as much as faction strength, distance is kinda between 0-1
             var torScoreOfDeclaringWar = religionScore * factionScore * distanceScore;
-            // Extra weight to account for distanceScore's decimal value
-            torScoreOfDeclaringWar *= 50;
+
+            var nativeScoreOfDeclaringWar = base.GetScoreOfDeclaringWar(factionDeclaresWar, factionDeclaredWar, evaluatingClan, out warReason);
+
+            /// Applying extra multiplers to increase wars
+            torScoreOfDeclaringWar *= 8;
+            nativeScoreOfDeclaringWar *= 2;
+
             TORCommon.Say($"War between {factionDeclaredWar.Name} vs {factionDeclaresWar.Name}; \n\t\t" +
                 $"Native Score: {nativeScoreOfDeclaringWar}, TOR Score: {torScoreOfDeclaringWar}; \n\t\t" +
                 $"Faction Score: {factionScore}, Distance Score: {distanceScore}, Religion Score = {religionScore} ");
