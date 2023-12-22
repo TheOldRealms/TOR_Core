@@ -3078,7 +3078,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_ML3_1" name="{=Settlements.Settlement.name.castle_village_ML3_1}Winsen" posX="1259.011" posY="1218.794" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_ML3_1}Worlitz is a river village protected by the forces garrisoning the Castle Reiksguard. The people here are very loyal directly to the Emperor Karl-Franz who many believe to be a reincarnation of Sigmar. The town benefits from trade heading down the Reik to Altdorf, Marienburg and beyond.">
+  <Settlement id="castle_village_ML3_1" name="{=Settlements.Settlement.name.castle_village_ML3_1}Winsen" posX="1251.015" posY="1223.07" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_ML3_1}Worlitz is a river village protected by the forces garrisoning the Castle Reiksguard. The people here are very loyal directly to the Emperor Karl-Franz who many believe to be a reincarnation of Sigmar. The town benefits from trade heading down the Reik to Altdorf, Marienburg and beyond.">
     <Components>
       <Village id="castle_village_comp_ML3_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_ML1" bound="Settlement.castle_ML3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3091,7 +3091,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_ML3_2" name="{=Settlements.Settlement.name.castle_village_ML3_2}Bokel" posX="1267.193" posY="1240.834" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_ML3_2}The town of Grünburg sits on the river Teufel. While trade flows through the town from the canals to itself and from the Reik to its north, Grünburg’s main source of wealth comes from its river boatyards, where many of the boats and barges that ply the rivers of the Reikland originate from. The town is also famous for the Battle of Grünburg where the advance of Orc Warlord Gorbad Ironclaw was finally halted around a half a millenia ago. The battle plains is valued particularly due to the fact that nearly all of the Imperial and orc forces present were mounted calvarymen, unusual for both the contemporary period and the modern era. As such an excavation site has been established by several interested parties and many come to look upon their work.">
+  <Settlement id="castle_village_ML3_2" name="{=Settlements.Settlement.name.castle_village_ML3_2}Bokel" posX="1264.805" posY="1245.828" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_ML3_2}The town of Grünburg sits on the river Teufel. While trade flows through the town from the canals to itself and from the Reik to its north, Grünburg’s main source of wealth comes from its river boatyards, where many of the boats and barges that ply the rivers of the Reikland originate from. The town is also famous for the Battle of Grünburg where the advance of Orc Warlord Gorbad Ironclaw was finally halted around a half a millenia ago. The battle plains is valued particularly due to the fact that nearly all of the Imperial and orc forces present were mounted calvarymen, unusual for both the contemporary period and the modern era. As such an excavation site has been established by several interested parties and many come to look upon their work.">
     <Components>
       <Village id="castle_village_comp_ML3_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_ML1" bound="Settlement.castle_ML3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3943,7 +3943,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_NL1_1" name="{=Settlements.Settlement.name.castle_village_NL1_1}Wilhelmskoog" posX="1403.163" posY="1331.395" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_NL1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
+  <Settlement id="castle_village_NL1_1" name="{=Settlements.Settlement.name.castle_village_NL1_1}Wilhelmskoog" posX="1402.151" posY="1356.994" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_NL1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
     <Components>
       <Village id="castle_village_comp_NL1_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_NL6" bound="Settlement.castle_NL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3956,7 +3956,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_NL1_2" name="{=Settlements.Settlement.name.castle_village_NL1_2}Ockholm" posX="1410.815" posY="1327.638" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_NL1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
+  <Settlement id="castle_village_NL1_2" name="{=Settlements.Settlement.name.castle_village_NL1_2}Ockholm" posX="1410.118" posY="1345.601" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_NL1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
     <Components>
       <Village id="castle_village_comp_NL1_2" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_NL6" bound="Settlement.castle_NL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4361,6 +4361,223 @@
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
+  </Settlement>
+  <!-- Wasteland -->
+  <Settlement id="town_WA1" name="{=Settlements.Settlement.name.town_WA1}Marienburg" owner="Faction.reikland_clan_1" posX="1141.937" posY="1189.139" culture="Culture.empire" gate_posX="1136.255" gate_posY="1190.041" text="{=!}Altdorf is at once perhaps the greatest city of the Empire and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the Reikland and the Empire of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the Empire; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
+    <Components>
+      <Town id="town_comp_WA1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.town_complex">
+      <Location id="center" scene_name="vlandia_town_g" scene_name_1="vlandia_town_g" scene_name_2="vlandia_town_g" scene_name_3="vlandia_town_g" />
+      <Location id="arena" scene_name="TOW_arena_empire_a" />
+      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="vlandia_dungeon_a" />
+      <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
+      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_3" scene_name="empire_house_d_interior_house" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
+      <Area type="Clearing" name="{=LWHIVshb}Clearing" />
+      <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_WA1_1" name="{=Settlements.Settlement.name.village_WA1_1}Broekwater" posX="1126.938" posY="1220.126" culture="Culture.empire" text="{=Settlements.Settlement.text.village_WA1_1}Frederheim is a small Reiklander village just north of Altdorf on the Altdorf-Middenheim road. While the town is a possession of Karl-Franz and is a part of Altdorf’s demesne, the Emperor has seen fit to give oversight of it in all but name to the Cult of Shallya. This is a result of the cult's request for an area in which to establish a walled hospice and sanatorium.">
+    <Components>
+      <Village id="village_comp_WA1_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WA1" bound="Settlement.town_WA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_WA1_2" name="{=Settlements.Settlement.name.village_WA1_2}Kalkaat" posX="1148.076" posY="1151.464" culture="Culture.empire" text="{=Settlements.Settlement.text.village_WA1_2}On the eastern side of the confluence of the rivers Taal and Reik sits the village of Kaldach. The town is notable particularly for being the demarcation of the Reikland/Talabecland border. Besides this, it remains a small farming community.">
+    <Components>
+      <Village id="village_comp_WA1_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WA1" bound="Settlement.town_WA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_WA1_3" name="{=Settlements.Settlement.name.village_WA1_3}Leydenhoven" posX="1178.641" posY="1173.838" culture="Culture.empire" text="{=Settlements.Settlement.text.village_WA1_3}Directly west of Altdorf, between the river Reik and the Weissbruck canal is the village of Hochloff. The town is known for the type of grain it raises the Hochloffkorn which is very well regarded for making a high quality flour.">
+    <Components>
+      <Village id="village_comp_WA1_3" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WA1" bound="Settlement.town_WA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_WA1_4" name="{=Settlements.Settlement.name.village_WA1_4}Klessen" posX="1129.433" posY="1164.753" culture="Culture.empire" text="{=Settlements.Settlement.text.village_WA1_3}Directly west of Altdorf, between the river Reik and the Weissbruck canal is the village of Hochloff. The town is known for the type of grain it raises the Hochloffkorn which is very well regarded for making a high quality flour.">
+    <Components>
+      <Village id="village_comp_WA1_4" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WA1" bound="Settlement.town_WA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="town_WA2" name="{=Settlements.Settlement.name.town_WA2}Aarnau" owner="Faction.reikland_clan_3" posX="1190.483" posY="1330.157" culture="Culture.empire" gate_posX="1190.131" gate_posY="1324.411" text="{=!}At the Confluence of the River Reik and the River Schilder sits the town of Schilderheim. Ruled by Graf Robert von Uhland, Schilderheim is an important river market down river from altdorf, being one of the last places that trade on the River Reik can stop before reaching Marienburg.">
+    <Components>
+      <Town id="town_comp_WA2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.town_complex">
+      <Location id="center" scene_name="TOR_empire_city_001" scene_name_1="TOR_empire_city_001" scene_name_2="TOR_empire_city_001" scene_name_3="TOR_empire_city_001" />
+      <Location id="arena" scene_name="TOW_arena_empire_a" />
+      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_02" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="vlandia_dungeon_a" />
+      <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
+      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_3" scene_name="empire_house_d_interior_house" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
+      <Area type="Clearing" name="{=LWHIVshb}Clearing" />
+      <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_WA2_1" name="{=Settlements.Settlement.name.village_WA2_1}Hollum" posX="1178.682" posY="1325.302" culture="Culture.empire" text="{=Settlements.Settlement.text.village_WA2_1}Holthusen is a town in western Reikland on the river Schilder. By road it lies between Eilhart and Schilderheim. The town's primary trade good is the Holthusen Hogshead barrel which is used across the empire to age or ferment their products before shipment. The barrels are said to be so sturdy as to be able to protect their contents even from direct cannon fire. Every year Holthusen hosts the Weinfest, a great gathering for wine tasting that requires an invite to enter. Of course the lack of invite does not stop the horde of wastrels and rogues who wish to drink the free wine provided by the festival. Weinfest also marks the only time of year during which the Golden Cask is brought out, which is said to contain the best wine in the Empire if not the entire Old World. Due to the town's forested location, it is frequently attacked by beastmen. The palisades and guards are normally strong enough to see the monsters off, but the townspeople fear the day this defence falls short. As such, some of the townspeople have been leaving casks of cheap wine at the edge of the woods in an attempt to appease the beastmen with tribute. This dubious practice likely will not be allowed to continue much longer.">
+    <Components>
+      <Village id="village_comp_WA2_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WA2" bound="Settlement.town_WA2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_WA2_2" name="{=Settlements.Settlement.name.village_WA2_2}Harskamp" posX="1199.428" posY="1306.908" culture="Culture.empire" text="{=Settlements.Settlement.text.village_WA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+    <Components>
+      <Village id="village_comp_WA2_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WA2" bound="Settlement.town_WA2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="village_WA2_3" name="{=Settlements.Settlement.name.village_WA2_3}Oostwold" posX="1214.297" posY="1290.718" culture="Culture.empire" text="{=Settlements.Settlement.text.village_WA2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the Reiklands best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+    <Components>
+      <Village id="village_comp_WA2_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_WA2" bound="Settlement.town_WA2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_005" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_WA1" name="{=Settlements.Settlement.name.castle_WA1}Fort Solace" owner="Faction.talabecland_clan_1" posX="1151.266" posY="1274.353" culture="Culture.empire" gate_posX="1150.422" gate_posY="1273.93" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+    <Components>
+      <Town id="castle_comp_WA1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.castle_complex">
+      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="empire_dungeon_a" />
+    </Locations>
+  </Settlement>
+  <Settlement id="castle_village_WA1_1" name="{=Settlements.Settlement.name.castle_village_WA1_1}Gorssel" posX="1213.098" posY="1224.789" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_WA1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
+    <Components>
+      <Village id="castle_village_comp_WA1_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_WA3" bound="Settlement.castle_WA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_village_WA1_2" name="{=Settlements.Settlement.name.castle_village_WA1_2}Wouduin Tollstation" posX="1221.396" posY="1235.308" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_WA1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
+    <Components>
+      <Village id="castle_village_comp_WA1_2" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_WA1" bound="Settlement.castle_WA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_WA2" name="{=Settlements.Settlement.name.castle_WA2}Fort Bergbres" owner="Faction.reikland_clan_2" posX="1102.162" posY="1121.534" culture="Culture.empire" gate_posX="1101.309" gate_posY="1121.118" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+    <Components>
+      <Town id="castle_comp_WA2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.castle_complex">
+      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="empire_dungeon_a" />
+    </Locations>
+  </Settlement>
+  <Settlement id="castle_village_WA2_1" name="{=Settlements.Settlement.name.castle_village_WA2_1}Halsdorph" posX="1124.482" posY="1142.021" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_WA1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
+    <Components>
+      <Village id="castle_village_comp_WA2_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_WA1" bound="Settlement.castle_WA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_village_WA2_2" name="{=Settlements.Settlement.name.castle_village_WA2_2}Halsdorph" posX="1145.159" posY="1113.296" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_WA1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
+    <Components>
+      <Village id="castle_village_comp_WA2_2" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_WA1" bound="Settlement.castle_WA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
+  </Settlement>
+  <Settlement id="castle_village_WA2_3" name="{=Settlements.Settlement.name.castle_village_WA2_3}Merxheim" posX="1167.681" posY="1116.416" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_WA1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
+    <Components>
+      <Village id="castle_village_comp_WA2_3" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_WA1" bound="Settlement.castle_WA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.village_complex">
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
+    </Locations>
+    <CommonAreas>
+      <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
+      <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
+      <Area type="Bog" name="{=iXA5SttU}Bog" />
+    </CommonAreas>
   </Settlement>
   <!-- Bretonnia -->
   <!-- Montfort -->
