@@ -3045,7 +3045,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_ML2" name="{=Settlements.Settlement.name.castle_ML2}Middenstag" owner="Faction.reikland_clan_1" posX="1347.485" posY="1160.849" culture="Culture.empire" gate_posX="1348.987" gate_posY="1162.084" text="{=!}The Grand Freistadt of Kemperbad is a major trade city that sits at the confluences of the rivers Riek and Stir. The city holds a commanding position over this portion of the river trade and is crucial to ensuring the southern empires continued economic prosperity. The city purchased its charter from Emperor Boris the Incompetent in 1066 IC, from then on being ruled directly by the Council of Thirteen which represents the largest merchants in town plus representatives from the local temples of Sigmar and Shallya.">
+  <Settlement id="castle_ML2" name="{=Settlements.Settlement.name.castle_ML2}Middenstag" owner="Faction.talabecland_clan_1" posX="1347.485" posY="1160.849" culture="Culture.empire" gate_posX="1348.987" gate_posY="1162.084" text="{=!}The Grand Freistadt of Kemperbad is a major trade city that sits at the confluences of the rivers Riek and Stir. The city holds a commanding position over this portion of the river trade and is crucial to ensuring the southern empires continued economic prosperity. The city purchased its charter from Emperor Boris the Incompetent in 1066 IC, from then on being ruled directly by the Council of Thirteen which represents the largest merchants in town plus representatives from the local temples of Sigmar and Shallya.">
     <Components>
       <Town id="castle_comp_ML2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -3579,7 +3579,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_HL1" name="{=Settlements.Settlement.name.castle_HL1}Fort Korve" owner="Faction.reikland_clan_2" posX="1483.421" posY="1151.806" culture="Culture.empire" gate_posX="1483.116" gate_posY="1153.726" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_HL1" name="{=Settlements.Settlement.name.castle_HL1}Fort Korve" owner="Faction.talabecland_clan_2" posX="1483.421" posY="1151.806" culture="Culture.empire" gate_posX="1483.116" gate_posY="1153.726" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
       <Town id="castle_comp_HL1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -3602,7 +3602,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_HL2" name="{=Settlements.Settlement.name.castle_HL2}Fort Schippel" owner="Faction.reikland_clan_1" posX="1424.193" posY="1180.031" culture="Culture.empire" gate_posX="1424.864" gate_posY="1180.988" text="{=!}The Grand Freistadt of Kemperbad is a major trade city that sits at the confluences of the rivers Riek and Stir. The city holds a commanding position over this portion of the river trade and is crucial to ensuring the southern empires continued economic prosperity. The city purchased its charter from Emperor Boris the Incompetent in 1066 IC, from then on being ruled directly by the Council of Thirteen which represents the largest merchants in town plus representatives from the local temples of Sigmar and Shallya.">
+  <Settlement id="castle_HL2" name="{=Settlements.Settlement.name.castle_HL2}Fort Schippel" owner="Faction.talabecland_clan_2" posX="1424.193" posY="1180.031" culture="Culture.empire" gate_posX="1424.864" gate_posY="1180.988" text="{=!}The Grand Freistadt of Kemperbad is a major trade city that sits at the confluences of the rivers Riek and Stir. The city holds a commanding position over this portion of the river trade and is crucial to ensuring the southern empires continued economic prosperity. The city purchased its charter from Emperor Boris the Incompetent in 1066 IC, from then on being ruled directly by the Council of Thirteen which represents the largest merchants in town plus representatives from the local temples of Sigmar and Shallya.">
     <Components>
       <Town id="castle_comp_HL2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -3638,7 +3638,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_HL3" name="{=Settlements.Settlement.name.castle_HL3}Fort Denkh" owner="Faction.reikland_clan_1" posX="1387.836" posY="1177.96" culture="Culture.empire" gate_posX="1387.371" gate_posY="1176.888" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as KaHL-Franz’s summer home.">
+  <Settlement id="castle_HL3" name="{=Settlements.Settlement.name.castle_HL3}Fort Denkh" owner="Faction.talabecland_clan_3" posX="1387.836" posY="1177.96" culture="Culture.empire" gate_posX="1387.371" gate_posY="1176.888" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as KaHL-Franz’s summer home.">
     <Components>
       <Town id="castle_comp_HL3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4279,7 +4279,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_OL3" name="{=Settlements.Settlement.name.castle_OL3}Grenzburg" owner="Faction.reikland_clan_1" posX="1559.159" posY="1208.449" culture="Culture.empire" gate_posX="1558.284" gate_posY="1206.713" text="{=!}The Grand Freistadt of Kemperbad is a major trade city that sits at the confluences of the rivers Riek and Stir. The city holds a commanding position over this portion of the river trade and is crucial to ensuring the southern empires continued economic prosperity. The city purchased its charter from Emperor Boris the Incompetent in 1066 IC, from then on being ruled directly by the Council of Thirteen which represents the largest merchants in town plus representatives from the local temples of Sigmar and Shallya.">
+  <Settlement id="castle_OL3" name="{=Settlements.Settlement.name.castle_OL3}Grenzburg" owner="Faction.talabecland_clan_3" posX="1559.159" posY="1208.449" culture="Culture.empire" gate_posX="1558.284" gate_posY="1206.713" text="{=!}The Grand Freistadt of Kemperbad is a major trade city that sits at the confluences of the rivers Riek and Stir. The city holds a commanding position over this portion of the river trade and is crucial to ensuring the southern empires continued economic prosperity. The city purchased its charter from Emperor Boris the Incompetent in 1066 IC, from then on being ruled directly by the Council of Thirteen which represents the largest merchants in town plus representatives from the local temples of Sigmar and Shallya.">
     <Components>
       <Town id="castle_comp_OL3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4291,7 +4291,7 @@
   </Settlement>
   <Settlement id="castle_village_OL3_1" name="{=Settlements.Settlement.name.castle_village_OL3_1}Vandengart" posX="1542.817" posY="1214.089" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_OL2_1}Diesdorf is a small town on the river Reik located between Altdorf and Kemperbad. Diesdorf is a major holy site of the Cult of Sigmar, it is said that Magnus the Pious once made a powerful and stirring speech to the crowds who had gathered to hear him. Around sixty years ago, Emperor Wilhelm III founded the Diesdorf Military college to train those who have proven their leadership abilities in battle.">
     <Components>
-      <Village id="castle_village_comp_OL3_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_OL1" bound="Settlement.castle_OL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_OL3_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_OL1" bound="Settlement.castle_OL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_004" />
@@ -4304,7 +4304,7 @@
   </Settlement>
   <Settlement id="castle_village_OL3_2" name="{=Settlements.Settlement.name.castle_village_OL3_2}Kurst" posX="1519.367" posY="1214.058" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_OL2_2}Lachenbad sits along the Tranig river at the joining points of the Grey Lady  and Ober-Stimmigen canals. While the village is a farming community, it is the home of a talented blacksmith, Uli and his promisingly talented son Valten.">
     <Components>
-      <Village id="castle_village_comp_OL2_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_OL1" bound="Settlement.castle_OL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_OL3_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_OL1" bound="Settlement.castle_OL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_004" />
@@ -4317,7 +4317,7 @@
   </Settlement>
   <Settlement id="castle_village_OL3_3" name="{=Settlements.Settlement.name.castle_village_OL3_3}Levudaldorf" posX="1524.945" posY="1204.704" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_OL2_2}Lachenbad sits along the Tranig river at the joining points of the Grey Lady  and Ober-Stimmigen canals. While the village is a farming community, it is the home of a talented blacksmith, Uli and his promisingly talented son Valten.">
     <Components>
-      <Village id="castle_village_comp_OL3_3" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_OL1" bound="Settlement.castle_OL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_OL3_3" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_OL1" bound="Settlement.castle_OL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_004" />
@@ -4328,7 +4328,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_OL4" name="{=Settlements.Settlement.name.castle_OL3}Roezfels" owner="Faction.reikland_clan_1" posX="1438.342" posY="1251.45" culture="Culture.empire" gate_posX="1439.917" gate_posY="1250.31" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
+  <Settlement id="castle_OL4" name="{=Settlements.Settlement.name.castle_OL3}Roezfels" owner="Faction.talabecland_clan_3" posX="1438.342" posY="1251.45" culture="Culture.empire" gate_posX="1439.917" gate_posY="1250.31" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
     <Components>
       <Town id="castle_comp_OL4" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4352,9 +4352,9 @@
     </CommonAreas>
   </Settlement>
   <!-- Brass Keep-->
-  <Settlement id="castle_BK2" name="{=Settlements.Settlement.name.castle_OL3}Brass Keep" owner="Faction.reikland_clan_1" posX="1405.619" posY="1257.948" culture="Culture.empire" gate_posX="1407.407" gate_posY="1257.184" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
+  <Settlement id="castle_BK2" name="{=Settlements.Settlement.name.castle_BK2}Brass Keep" owner="Faction.reikland_clan_1" posX="1405.619" posY="1257.948" culture="Culture.empire" gate_posX="1407.407" gate_posY="1257.184" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
     <Components>
-      <Town id="castle_comp_OL3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
+      <Town id="castle_comp_BK2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
@@ -5139,7 +5139,7 @@
     </CommonAreas>
   </Settlement>
   <!-- Gisoreux -->
-  <Settlement id="town_GX1" name="{=Settlements.Settlement.name.town_GX1}Castle Gisoreux" owner="Faction.carcassonne_clan_1" posX="1028.602" posY="1091.354" culture="Culture.vlandia" gate_posX="1029.421" gate_posY="1094.2" text="{=Settlements.Settlement.text.town_GX1} The fortress city and the ducal capital of Carcassonne, Castle Carcassonne sits on an island surrounded by the river Songez. Due to the defensive location Castle Carcassonne is designed to be more of a fortress rather than a city, however there is a small town attached to the castle that acts as a marketplace and hub for many travelers and Knights who seek services.">
+  <Settlement id="town_GX1" name="{=Settlements.Settlement.name.town_GX1}Castle Gisoreux" owner="Faction.carcassonne_clan_1" posX="1028.602" posY="1091.355" culture="Culture.vlandia" gate_posX="1029.42" gate_posY="1094.201" text="{=Settlements.Settlement.text.town_GX1} The fortress city and the ducal capital of Carcassonne, Castle Carcassonne sits on an island surrounded by the river Songez. Due to the defensive location Castle Carcassonne is designed to be more of a fortress rather than a city, however there is a small town attached to the castle that acts as a marketplace and hub for many travelers and Knights who seek services.">
     <Components>
       <Town id="town_comp_GX1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -5185,7 +5185,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_GX2" name="{=Settlements.Settlement.name.town_GX2}Hautmont" owner="Faction.carcassonne_clan_1" posX="1047.292" posY="1131.857" culture="Culture.vlandia" gate_posX="1046.265" gate_posY="1129.08" text="{=Settlements.Settlement.text.town_GX2}Located in the Vaults , the City of Turin is the capital of the Barony of Savoie. The region is influenced heavily by nearby Tilea, despite this the city and people are steadfastly loyal to Bretonnia. Holding the famed relic, the “Shroud of Gilles le Breton” the City of Turin is a Pilgrimage site to all who follow the Lady of the Lake, and all who seek visions of the Lady.">
+  <Settlement id="town_GX2" name="{=Settlements.Settlement.name.town_GX2}Hautmont" owner="Faction.carcassonne_clan_1" posX="1047.292" posY="1131.857" culture="Culture.vlandia" gate_posX="1046.264" gate_posY="1129.08" text="{=Settlements.Settlement.text.town_GX2}Located in the Vaults , the City of Turin is the capital of the Barony of Savoie. The region is influenced heavily by nearby Tilea, despite this the city and people are steadfastly loyal to Bretonnia. Holding the famed relic, the “Shroud of Gilles le Breton” the City of Turin is a Pilgrimage site to all who follow the Lady of the Lake, and all who seek visions of the Lady.">
     <Components>
       <Town id="town_comp_GX2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -5231,7 +5231,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_GX1" name="{=Settlements.Settlement.name.castle_GX1}Castle Oisillon" owner="Faction.carcassonne_clan_1" posX="999.2686" posY="1155.632" culture="Culture.vlandia" gate_posX="1000.492" gate_posY="1155.184" text="{=Settlements.Settlement.text.castle_GX1}Located on the western border of Carcassonne and at the base of the Irana Mountains, Toulouse is a vital defensive position that holds the River Niveau crossing, that separates the border of Carcassonne and Estalia.">
+  <Settlement id="castle_GX1" name="{=Settlements.Settlement.name.castle_GX1}Castle Oisillon" owner="Faction.carcassonne_clan_1" posX="999.269" posY="1155.632" culture="Culture.vlandia" gate_posX="1000.493" gate_posY="1155.184" text="{=Settlements.Settlement.text.castle_GX1}Located on the western border of Carcassonne and at the base of the Irana Mountains, Toulouse is a vital defensive position that holds the River Niveau crossing, that separates the border of Carcassonne and Estalia.">
     <Components>
       <Town id="castle_comp_GX1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -5255,7 +5255,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_GX2" name="{=Settlements.Settlement.name.castle_GX2}Castle Desfleuve" owner="Faction.carcassonne_clan_1" posX="1075.955" posY="1114.818" culture="Culture.vlandia" gate_posX="1077.044" gate_posY="1115.534" text="{=Settlements.Settlement.text.castle_GX2}A small fortress settlement on the Southern Reach of Bretonnia near the Tilean border. Once besieged by the armies of Tilea, the siege turned to a massacre when Ser Der Raker broke the assailants single handedly.">
+  <Settlement id="castle_GX2" name="{=Settlements.Settlement.name.castle_GX2}Castle Desfleuve" owner="Faction.carcassonne_clan_1" posX="1075.955" posY="1114.818" culture="Culture.vlandia" gate_posX="1077.043" gate_posY="1115.535" text="{=Settlements.Settlement.text.castle_GX2}A small fortress settlement on the Southern Reach of Bretonnia near the Tilean border. Once besieged by the armies of Tilea, the siege turned to a massacre when Ser Der Raker broke the assailants single handedly.">
     <Components>
       <Town id="castle_comp_GX2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -5301,7 +5301,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_GX3_1" name="{=Settlements.Settlement.name.castle_village_GX3_1}Bonchamp" posX="1017.224" posY="1101.022" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_GX3_1}Salignac La Rouge is the last Bretonnian settlement along the Loren Highway. Travelers heading towards Kreutzhafen will typically pick up anything they need for the long journey there from the peasants here. The people here feel uncomfortably close to the Fey of Cavaroc, but relations with Athel Loren remain as amicable as possible.">
+  <Settlement id="castle_village_GX3_1" name="{=Settlements.Settlement.name.castle_village_GX3_1}Bonchamp" posX="1017.224" posY="1101.023" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_GX3_1}Salignac La Rouge is the last Bretonnian settlement along the Loren Highway. Travelers heading towards Kreutzhafen will typically pick up anything they need for the long journey there from the peasants here. The people here feel uncomfortably close to the Fey of Cavaroc, but relations with Athel Loren remain as amicable as possible.">
     <Components>
       <Village id="castle_village_comp_GX3_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.castle_GX3" bound="Settlement.castle_GX3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -5315,7 +5315,7 @@
     </CommonAreas>
   </Settlement>
   <!-- Artois -->
-  <Settlement id="town_AS1" name="{=Settlements.Settlement.name.town_AS1}Castle Artois" owner="Faction.carcassonne_clan_1" posX="923.0521" posY="1170.046" culture="Culture.vlandia" gate_posX="922.981" gate_posY="1167.086" text="{=Settlements.Settlement.text.town_AS1} The fortress city and the ducal capital of Carcassonne, Castle Carcassonne sits on an island surrounded by the river Songez. Due to the defensive location Castle Carcassonne is designed to be more of a fortress rather than a city, however there is a small town attached to the castle that acts as a marketplace and hub for many travelers and Knights who seek services.">
+  <Settlement id="town_AS1" name="{=Settlements.Settlement.name.town_AS1}Castle Artois" owner="Faction.carcassonne_clan_1" posX="923.052" posY="1170.046" culture="Culture.vlandia" gate_posX="922.9792" gate_posY="1167.085" text="{=Settlements.Settlement.text.town_AS1} The fortress city and the ducal capital of Carcassonne, Castle Carcassonne sits on an island surrounded by the river Songez. Due to the defensive location Castle Carcassonne is designed to be more of a fortress rather than a city, however there is a small town attached to the castle that acts as a marketplace and hub for many travelers and Knights who seek services.">
     <Components>
       <Town id="town_comp_AS1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -5335,7 +5335,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AS1_1" name="{=Settlements.Settlement.name.village_AS1_1}Uesin" posX="936.4435" posY="1169.484" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_AS1_1}Located near the Border of Carcassonne and Brionne on the river Brienne, maintains a trusting relationship with the outlying villages of Lunel and Vauvert, having been trade partners for ages past.">
+  <Settlement id="village_AS1_1" name="{=Settlements.Settlement.name.village_AS1_1}Uesin" posX="936.444" posY="1169.484" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_AS1_1}Located near the Border of Carcassonne and Brionne on the river Brienne, maintains a trusting relationship with the outlying villages of Lunel and Vauvert, having been trade partners for ages past.">
     <Components>
       <Village id="village_comp_AS1_1" village_type="VillageType.cattle_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AS1" bound="Settlement.town_AS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -5348,7 +5348,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AS1_2" name="{=Settlements.Settlement.name.village_AS1_2}Odemar" posX="942.4113" posY="1138.261" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_AS1_2}Located at the base of the Irana Mountains, the village of Albi has been host to countless raids from Greenskin tribes. As such, the shepherds have become battle hardened and will defend their village from any oncoming monstrosities.">
+  <Settlement id="village_AS1_2" name="{=Settlements.Settlement.name.village_AS1_2}Odemar" posX="942.411" posY="1138.261" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_AS1_2}Located at the base of the Irana Mountains, the village of Albi has been host to countless raids from Greenskin tribes. As such, the shepherds have become battle hardened and will defend their village from any oncoming monstrosities.">
     <Components>
       <Village id="village_comp_AS1_2" village_type="VillageType.sheep_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AS1" bound="Settlement.town_AS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -5361,7 +5361,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AS2" name="{=Settlements.Settlement.name.town_AS2}Larret" owner="Faction.carcassonne_clan_1" posX="893.0287" posY="1129.92" culture="Culture.vlandia" gate_posX="892.9576" gate_posY="1126.959" text="{=Settlements.Settlement.text.town_AS2}Located in the Vaults , the City of Turin is the capital of the Barony of Savoie. The region is influenced heavily by nearby Tilea, despite this the city and people are steadfastly loyal to Bretonnia. Holding the famed relic, the “Shroud of Gilles le Breton” the City of Turin is a Pilgrimage site to all who follow the Lady of the Lake, and all who seek visions of the Lady.">
+  <Settlement id="town_AS2" name="{=Settlements.Settlement.name.town_AS2}Larret" owner="Faction.carcassonne_clan_1" posX="893.029" posY="1129.92" culture="Culture.vlandia" gate_posX="892.9562" gate_posY="1126.959" text="{=Settlements.Settlement.text.town_AS2}Located in the Vaults , the City of Turin is the capital of the Barony of Savoie. The region is influenced heavily by nearby Tilea, despite this the city and people are steadfastly loyal to Bretonnia. Holding the famed relic, the “Shroud of Gilles le Breton” the City of Turin is a Pilgrimage site to all who follow the Lady of the Lake, and all who seek visions of the Lady.">
     <Components>
       <Town id="town_comp_AS2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -5381,7 +5381,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AS2_1" name="{=Settlements.Settlement.name.village_AS2_1}Ambricourt" posX="877.0687" posY="1155.939" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_AS2_1}Having been sacked by Greenskin invaders many times in the past, the population of Montebaun is very low. Being one of the few timber villages in carcassonne, the remaining peasants here are often worked to the bone.">
+  <Settlement id="village_AS2_1" name="{=Settlements.Settlement.name.village_AS2_1}Ambricourt" posX="877.069" posY="1155.939" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_AS2_1}Having been sacked by Greenskin invaders many times in the past, the population of Montebaun is very low. Being one of the few timber villages in carcassonne, the remaining peasants here are often worked to the bone.">
     <Components>
       <Village id="village_comp_AS2_1" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AS2" bound="Settlement.town_AS2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -5394,7 +5394,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AS2_2" name="{=Settlements.Settlement.name.village_AS2_2}Lanester" posX="906.1063" posY="1147.392" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_AS2_2}Sitting south of the Quenelles border and the river Brienne, the village of Chanaz is a small farming community that provides its grain to the City of Turin.">
+  <Settlement id="village_AS2_2" name="{=Settlements.Settlement.name.village_AS2_2}Lanester" posX="906.106" posY="1147.392" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_AS2_2}Sitting south of the Quenelles border and the river Brienne, the village of Chanaz is a small farming community that provides its grain to the City of Turin.">
     <Components>
       <Village id="village_comp_AS2_2" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AS2" bound="Settlement.town_AS2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -5407,7 +5407,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AS1" name="{=Settlements.Settlement.name.castle_AS1}Castle Arras" owner="Faction.carcassonne_clan_1" posX="912.8311" posY="1112.075" culture="Culture.vlandia" gate_posX="913.2254" gate_posY="1110.833" text="{=Settlements.Settlement.text.castle_AS1}Located on the western border of Carcassonne and at the base of the Irana Mountains, Toulouse is a vital defensive position that holds the River Niveau crossing, that separates the border of Carcassonne and Estalia.">
+  <Settlement id="castle_AS1" name="{=Settlements.Settlement.name.castle_AS1}Castle Arras" owner="Faction.carcassonne_clan_1" posX="912.831" posY="1112.075" culture="Culture.vlandia" gate_posX="913.226" gate_posY="1110.833" text="{=Settlements.Settlement.text.castle_AS1}Located on the western border of Carcassonne and at the base of the Irana Mountains, Toulouse is a vital defensive position that holds the River Niveau crossing, that separates the border of Carcassonne and Estalia.">
     <Components>
       <Town id="castle_comp_AS1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -5418,7 +5418,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_AS1_1" name="{=Settlements.Settlement.name.castle_village_AS1_2}Guingamp" posX="914.7234" posY="1129.732" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AS1_1}Condom is a timber village located in the most north western part of Carcassonne, that borders Estalia and the Duchy of Brionne.">
+  <Settlement id="castle_village_AS1_1" name="{=Settlements.Settlement.name.castle_village_AS1_2}Guingamp" posX="914.723" posY="1129.732" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AS1_1}Condom is a timber village located in the most north western part of Carcassonne, that borders Estalia and the Duchy of Brionne.">
     <Components>
       <Village id="castle_village_comp_AS1_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.castle_AS1" bound="Settlement.castle_AS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -5431,7 +5431,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AS2" name="{=Settlements.Settlement.name.castle_AS2}Castle Lens" owner="Faction.carcassonne_clan_1" posX="940.8439" posY="1076.486" culture="Culture.vlandia" gate_posX="941.9984" gate_posY="1077.09" text="{=Settlements.Settlement.text.castle_AS2}A small fortress settlement on the Southern Reach of Bretonnia near the Tilean border. Once besieged by the armies of Tilea, the siege turned to a massacre when Ser Der Raker broke the assailants single handedly.">
+  <Settlement id="castle_AS2" name="{=Settlements.Settlement.name.castle_AS2}Castle Lens" owner="Faction.carcassonne_clan_1" posX="940.844" posY="1076.486" culture="Culture.vlandia" gate_posX="941.9985" gate_posY="1077.09" text="{=Settlements.Settlement.text.castle_AS2}A small fortress settlement on the Southern Reach of Bretonnia near the Tilean border. Once besieged by the armies of Tilea, the siege turned to a massacre when Ser Der Raker broke the assailants single handedly.">
     <Components>
       <Town id="castle_comp_AS2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -5441,7 +5441,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_AS2_1" name="{=Settlements.Settlement.name.castle_village_AS2_1}Oissel" posX="959.8435" posY="1091.496" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AS2_1}In the eastern plains of Carcassonne, Yenne sits just opposite of the village Perpignan on the river Pou. Just outside of Yenne lies the Burial Mound of Grundsnik, an orc warboss who was defeated many centuries ago. Orcs occasionally come here, seeking to reclaim Grundsnik’s treasure.">
+  <Settlement id="castle_village_AS2_1" name="{=Settlements.Settlement.name.castle_village_AS2_1}Oissel" posX="959.844" posY="1091.496" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AS2_1}In the eastern plains of Carcassonne, Yenne sits just opposite of the village Perpignan on the river Pou. Just outside of Yenne lies the Burial Mound of Grundsnik, an orc warboss who was defeated many centuries ago. Orcs occasionally come here, seeking to reclaim Grundsnik’s treasure.">
     <Components>
       <Village id="castle_village_comp_AS2_1" village_type="VillageType.olive_trees" hearth="200" trade_bound="Settlement.castle_AS2" bound="Settlement.castle_AS2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -5454,7 +5454,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AS3" name="{=Settlements.Settlement.name.castle_AS3}Castle Béthune" owner="Faction.carcassonne_clan_2" posX="993.7201" posY="1123.123" culture="Culture.vlandia" gate_posX="993.8508" gate_posY="1124.419" text="{=Settlements.Settlement.text.castle_AS3}Located near the borders of the Loren Forrest, Castle Gaudaron is an ever watchful eye that stands at the base of the Vaults mountain range. Castle Gaudaron is a key position for maintaining Bretonnian rule over the northern end of the Novalone Pass, as well as for guarding the Loren highway.">
+  <Settlement id="castle_AS3" name="{=Settlements.Settlement.name.castle_AS3}Castle Béthune" owner="Faction.carcassonne_clan_2" posX="993.72" posY="1123.123" culture="Culture.vlandia" gate_posX="993.8509" gate_posY="1124.419" text="{=Settlements.Settlement.text.castle_AS3}Located near the borders of the Loren Forrest, Castle Gaudaron is an ever watchful eye that stands at the base of the Vaults mountain range. Castle Gaudaron is a key position for maintaining Bretonnian rule over the northern end of the Novalone Pass, as well as for guarding the Loren highway.">
     <Components>
       <Town id="castle_comp_AS3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -5464,7 +5464,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_AS3_1" name="{=Settlements.Settlement.name.castle_village_AS3_1}Tournon" posX="966.8988" posY="1127.519" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AS3_1}Salignac La Rouge is the last Bretonnian settlement along the Loren Highway. Travelers heading towards Kreutzhafen will typically pick up anything they need for the long journey there from the peasants here. The people here feel uncomfortably close to the Fey of Cavaroc, but relations with Athel Loren remain as amicable as possible.">
+  <Settlement id="castle_village_AS3_1" name="{=Settlements.Settlement.name.castle_village_AS3_1}Tournon" posX="966.899" posY="1127.519" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AS3_1}Salignac La Rouge is the last Bretonnian settlement along the Loren Highway. Travelers heading towards Kreutzhafen will typically pick up anything they need for the long journey there from the peasants here. The people here feel uncomfortably close to the Fey of Cavaroc, but relations with Athel Loren remain as amicable as possible.">
     <Components>
       <Village id="castle_village_comp_AS3_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.castle_AS3" bound="Settlement.castle_AS3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
