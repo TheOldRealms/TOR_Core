@@ -2804,7 +2804,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_ML4" name="{=Settlements.Settlement.name.town_ML4}Grimminhagen" owner="Faction.reikland_clan_4" posX="1363.104" posY="1198.936" culture="Culture.empire" gate_posX="1362.605" gate_posY="1198.111" text="{=!}Bögenhafen is a prominent market town that sits on either side of the River Bögen. It is midway between Altdorf and Montfort allowing the town to maintain its economic importance through nearly any hardship. The northside of the town, known as the Pit, is the smallest and poorest section of Bögenhafen. The Southside of the town is where most of the wealth and all of the town’s important institutions reside, including its religious temples and town hall. A town council rules in the name of Graf Wilhelm von Saponatheim.">
+  <Settlement id="town_ML4" name="{=Settlements.Settlement.name.town_ML4}Grimminhagen" owner="Faction.reikland_clan_4" posX="1363.103" posY="1198.936" culture="Culture.empire" gate_posX="1362.605" gate_posY="1198.111" text="{=!}Bögenhafen is a prominent market town that sits on either side of the River Bögen. It is midway between Altdorf and Montfort allowing the town to maintain its economic importance through nearly any hardship. The northside of the town, known as the Pit, is the smallest and poorest section of Bögenhafen. The Southside of the town is where most of the wealth and all of the town’s important institutions reside, including its religious temples and town hall. A town council rules in the name of Graf Wilhelm von Saponatheim.">
     <Components>
       <Town id="town_comp_ML4" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -3045,7 +3045,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <!--   <Settlement id="castle_ML2" name="{=Settlements.Settlement.name.castle_ML2}Middenstag" owner="Faction.reikland_clan_1" posX="1347.485" posY="1160.849" culture="Culture.empire" gate_posX="1348.987" gate_posY="1162.084" text="{=!}The Grand Freistadt of Kemperbad is a major trade city that sits at the confluences of the rivers Riek and Stir. The city holds a commanding position over this portion of the river trade and is crucial to ensuring the southern empires continued economic prosperity. The city purchased its charter from Emperor Boris the Incompetent in 1066 IC, from then on being ruled directly by the Council of Thirteen which represents the largest merchants in town plus representatives from the local temples of Sigmar and Shallya.">
+  <Settlement id="castle_ML2" name="{=Settlements.Settlement.name.castle_ML2}Middenstag" owner="Faction.reikland_clan_1" posX="1347.485" posY="1160.849" culture="Culture.empire" gate_posX="1348.987" gate_posY="1162.084" text="{=!}The Grand Freistadt of Kemperbad is a major trade city that sits at the confluences of the rivers Riek and Stir. The city holds a commanding position over this portion of the river trade and is crucial to ensuring the southern empires continued economic prosperity. The city purchased its charter from Emperor Boris the Incompetent in 1066 IC, from then on being ruled directly by the Council of Thirteen which represents the largest merchants in town plus representatives from the local temples of Sigmar and Shallya.">
     <Components>
       <Town id="castle_comp_ML2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -3067,8 +3067,8 @@
       <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
-  </Settlement> -->
-  <!--   <Settlement id="castle_ML3" name="{=Settlements.Settlement.name.castle_ML3}Deinste" owner="Faction.reikland_clan_1" posX="1233.031" posY="1236.722" culture="Culture.empire" gate_posX="1232.166" gate_posY="1234.98" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
+  </Settlement>
+  <Settlement id="castle_ML3" name="{=Settlements.Settlement.name.castle_ML3}Deinste" owner="Faction.talabecland_clan_1" posX="1233.031" posY="1236.722" culture="Culture.empire" gate_posX="1232.166" gate_posY="1234.98" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
     <Components>
       <Town id="castle_comp_ML3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -3078,7 +3078,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_ML3_1" name="{=Settlements.Settlement.name.castle_village_ML3_1}Winsen" posX="1251.015" posY="1223.07" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_ML3_1}Worlitz is a river village protected by the forces garrisoning the Castle Reiksguard. The people here are very loyal directly to the Emperor Karl-Franz who many believe to be a reincarnation of Sigmar. The town benefits from trade heading down the Reik to Altdorf, Marienburg and beyond.">
+  <Settlement id="castle_village_ML3_1" name="{=Settlements.Settlement.name.castle_village_ML3_1}Winsen" posX="1259.011" posY="1218.794" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_ML3_1}Worlitz is a river village protected by the forces garrisoning the Castle Reiksguard. The people here are very loyal directly to the Emperor Karl-Franz who many believe to be a reincarnation of Sigmar. The town benefits from trade heading down the Reik to Altdorf, Marienburg and beyond.">
     <Components>
       <Village id="castle_village_comp_ML3_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_ML1" bound="Settlement.castle_ML3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3091,7 +3091,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_ML3_2" name="{=Settlements.Settlement.name.castle_village_ML3_2}Bokel" posX="1264.805" posY="1245.828" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_ML3_2}The town of Grünburg sits on the river Teufel. While trade flows through the town from the canals to itself and from the Reik to its north, Grünburg’s main source of wealth comes from its river boatyards, where many of the boats and barges that ply the rivers of the Reikland originate from. The town is also famous for the Battle of Grünburg where the advance of Orc Warlord Gorbad Ironclaw was finally halted around a half a millenia ago. The battle plains is valued particularly due to the fact that nearly all of the Imperial and orc forces present were mounted calvarymen, unusual for both the contemporary period and the modern era. As such an excavation site has been established by several interested parties and many come to look upon their work.">
+  <Settlement id="castle_village_ML3_2" name="{=Settlements.Settlement.name.castle_village_ML3_2}Bokel" posX="1267.193" posY="1240.834" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_ML3_2}The town of Grünburg sits on the river Teufel. While trade flows through the town from the canals to itself and from the Reik to its north, Grünburg’s main source of wealth comes from its river boatyards, where many of the boats and barges that ply the rivers of the Reikland originate from. The town is also famous for the Battle of Grünburg where the advance of Orc Warlord Gorbad Ironclaw was finally halted around a half a millenia ago. The battle plains is valued particularly due to the fact that nearly all of the Imperial and orc forces present were mounted calvarymen, unusual for both the contemporary period and the modern era. As such an excavation site has been established by several interested parties and many come to look upon their work.">
     <Components>
       <Village id="castle_village_comp_ML3_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_ML1" bound="Settlement.castle_ML3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3103,7 +3103,7 @@
       <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
-  </Settlement> -->
+  </Settlement>
   <!-- Ostermark -->
   <Settlement id="town_OM1" name="{=Settlements.Settlement.name.town_OM1}Bechafen" owner="Faction.stirland_clan_1" posX="1617.503" posY="1150.379" culture="Culture.empire" gate_posX="1615.657" gate_posY="1145.75" text="{=!}Wurtbad rests on the banks of the river Stir and it´s the capital of the province. By far the most densely populated town in Stirland, it is also home to the crumbling Temple of Myrmida. The nobility and people of Wurtbad are famous for its suspiciousness and sombreness, as the lost province of Sylvania is too close for comfort. It is one of the few places where goods can be carried over the river, making it an excellent strategic checkpoint for anyone wishing to push onwards into the land.">
     <Components>
@@ -3579,7 +3579,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <!--   <Settlement id="castle_HL1" name="{=Settlements.Settlement.name.castle_HL1}Fort Korve" owner="Faction.reikland_clan_2" posX="1483.421" posY="1151.806" culture="Culture.empire" gate_posX="1483.116" gate_posY="1153.726" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_HL1" name="{=Settlements.Settlement.name.castle_HL1}Fort Korve" owner="Faction.reikland_clan_2" posX="1483.421" posY="1151.806" culture="Culture.empire" gate_posX="1483.116" gate_posY="1153.726" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
       <Town id="castle_comp_HL1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -3601,8 +3601,8 @@
       <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
-  </Settlement> -->
-  <!--   <Settlement id="castle_HL2" name="{=Settlements.Settlement.name.castle_HL2}Fort Schippel" owner="Faction.reikland_clan_1" posX="1424.193" posY="1180.031" culture="Culture.empire" gate_posX="1424.864" gate_posY="1180.988" text="{=!}The Grand Freistadt of Kemperbad is a major trade city that sits at the confluences of the rivers Riek and Stir. The city holds a commanding position over this portion of the river trade and is crucial to ensuring the southern empires continued economic prosperity. The city purchased its charter from Emperor Boris the Incompetent in 1066 IC, from then on being ruled directly by the Council of Thirteen which represents the largest merchants in town plus representatives from the local temples of Sigmar and Shallya.">
+  </Settlement>
+  <Settlement id="castle_HL2" name="{=Settlements.Settlement.name.castle_HL2}Fort Schippel" owner="Faction.reikland_clan_1" posX="1424.193" posY="1180.031" culture="Culture.empire" gate_posX="1424.864" gate_posY="1180.988" text="{=!}The Grand Freistadt of Kemperbad is a major trade city that sits at the confluences of the rivers Riek and Stir. The city holds a commanding position over this portion of the river trade and is crucial to ensuring the southern empires continued economic prosperity. The city purchased its charter from Emperor Boris the Incompetent in 1066 IC, from then on being ruled directly by the Council of Thirteen which represents the largest merchants in town plus representatives from the local temples of Sigmar and Shallya.">
     <Components>
       <Town id="castle_comp_HL2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -3637,8 +3637,8 @@
       <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
-  </Settlement> -->
-  <!--   <Settlement id="castle_HL3" name="{=Settlements.Settlement.name.castle_HL3}Fort Denkh" owner="Faction.reikland_clan_1" posX="1387.836" posY="1177.96" culture="Culture.empire" gate_posX="1387.371" gate_posY="1176.888" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as KaHL-Franz’s summer home.">
+  </Settlement>
+  <Settlement id="castle_HL3" name="{=Settlements.Settlement.name.castle_HL3}Fort Denkh" owner="Faction.reikland_clan_1" posX="1387.836" posY="1177.96" culture="Culture.empire" gate_posX="1387.371" gate_posY="1176.888" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as KaHL-Franz’s summer home.">
     <Components>
       <Town id="castle_comp_HL3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -3660,7 +3660,7 @@
       <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
-  </Settlement> -->
+  </Settlement>
   <!-- Nordland -->
   <Settlement id="town_NL1" name="{=Settlements.Settlement.name.town_NL1}Salzenmund" owner="Faction.reikland_clan_1" posX="1354.768" posY="1302.227" culture="Culture.empire" gate_posX="1354.293" gate_posY="1303.066" text="{=!}Altdorf is at once perhaps the greatest city of the Empire and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the Reikland and the Empire of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the Empire; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
     <Components>
@@ -3933,7 +3933,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <!--   <Settlement id="castle_NL1" name="{=Settlements.Settlement.name.castle_NL1}Manaansheim" owner="Faction.reikland_clan_2" posX="1385" posY="1359.834" culture="Culture.empire" gate_posX="1384.106" gate_posY="1361.561" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_NL1" name="{=Settlements.Settlement.name.castle_NL1}Manaansheim" owner="Faction.talabecland_clan_2" posX="1385" posY="1359.834" culture="Culture.empire" gate_posX="1384.106" gate_posY="1361.561" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
       <Town id="castle_comp_NL1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -3968,7 +3968,7 @@
       <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
-  </Settlement> -->
+  </Settlement>
   <!-- Ostland -->
   <Settlement id="town_OL1" name="{=Settlements.Settlement.name.town_OL1}Wolfenburg" owner="Faction.reikland_clan_1" posX="1491.881" posY="1210.375" culture="Culture.empire" gate_posX="1492.555" gate_posY="1209.686" text="{=!}Altdorf is at once perhaps the greatest city of the Empire and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the Reikland and the Empire of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the Empire; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
     <Components>
@@ -4220,7 +4220,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <!--  <Settlement id="castle_OL1" name="{=Settlements.Settlement.name.castle_OL1}Bohsenfels" owner="Faction.reikland_clan_2" posX="1501.018" posY="1294.397" culture="Culture.empire" gate_posX="1501.597" gate_posY="1296.253" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_OL1" name="{=Settlements.Settlement.name.castle_OL1}Bohsenfels" owner="Faction.talabecland_clan_1" posX="1501.018" posY="1294.397" culture="Culture.empire" gate_posX="1501.597" gate_posY="1296.253" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
       <Town id="castle_comp_OL1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4255,8 +4255,8 @@
       <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
-  </Settlement> -->
-  <!--   <Settlement id="castle_OL2" name="{=Settlements.Settlement.name.castle_OL2}Castle Lenkster" owner="Faction.reikland_clan_2" posX="1471.429" posY="1209.456" culture="Culture.empire" gate_posX="1469.572" gate_posY="1210.033" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  </Settlement>
+  <Settlement id="castle_OL2" name="{=Settlements.Settlement.name.castle_OL2}Castle Lenkster" owner="Faction.reikland_clan_2" posX="1471.429" posY="1209.456" culture="Culture.empire" gate_posX="1469.572" gate_posY="1210.033" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
       <Town id="castle_comp_OL2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4278,8 +4278,8 @@
       <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
-  </Settlement> -->
-  <!--   <Settlement id="castle_OL3" name="{=Settlements.Settlement.name.castle_OL3}Grenzburg" owner="Faction.reikland_clan_1" posX="1559.159" posY="1208.449" culture="Culture.empire" gate_posX="1558.284" gate_posY="1206.713" text="{=!}The Grand Freistadt of Kemperbad is a major trade city that sits at the confluences of the rivers Riek and Stir. The city holds a commanding position over this portion of the river trade and is crucial to ensuring the southern empires continued economic prosperity. The city purchased its charter from Emperor Boris the Incompetent in 1066 IC, from then on being ruled directly by the Council of Thirteen which represents the largest merchants in town plus representatives from the local temples of Sigmar and Shallya.">
+  </Settlement>
+  <Settlement id="castle_OL3" name="{=Settlements.Settlement.name.castle_OL3}Grenzburg" owner="Faction.reikland_clan_1" posX="1559.159" posY="1208.449" culture="Culture.empire" gate_posX="1558.284" gate_posY="1206.713" text="{=!}The Grand Freistadt of Kemperbad is a major trade city that sits at the confluences of the rivers Riek and Stir. The city holds a commanding position over this portion of the river trade and is crucial to ensuring the southern empires continued economic prosperity. The city purchased its charter from Emperor Boris the Incompetent in 1066 IC, from then on being ruled directly by the Council of Thirteen which represents the largest merchants in town plus representatives from the local temples of Sigmar and Shallya.">
     <Components>
       <Town id="castle_comp_OL3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4327,8 +4327,8 @@
       <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
-  </Settlement> -->
-  <!--   <Settlement id="castle_OL4" name="{=Settlements.Settlement.name.castle_OL3}Roezfels" owner="Faction.reikland_clan_1" posX="1438.342" posY="1251.45" culture="Culture.empire" gate_posX="1439.917" gate_posY="1250.31" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
+  </Settlement>
+  <Settlement id="castle_OL4" name="{=Settlements.Settlement.name.castle_OL3}Roezfels" owner="Faction.reikland_clan_1" posX="1438.342" posY="1251.45" culture="Culture.empire" gate_posX="1439.917" gate_posY="1250.31" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
     <Components>
       <Town id="castle_comp_OL4" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4350,7 +4350,7 @@
       <Area type="Thicket" name="{=66Mzk0NZ}Thicket" />
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
-  </Settlement> -->
+  </Settlement>
   <!-- Brass Keep-->
   <Settlement id="castle_BK2" name="{=Settlements.Settlement.name.castle_OL3}Brass Keep" owner="Faction.reikland_clan_1" posX="1405.619" posY="1257.948" culture="Culture.empire" gate_posX="1407.407" gate_posY="1257.184" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
     <Components>
