@@ -72,7 +72,7 @@ namespace TOR_Core.Models
             // weigh religion as much as faction strength, distance is kinda between 0-1
             var torScoreOfDeclaringWar = religionScore * factionScore * distanceScore;
             // Extra weight to account for distanceScore's decimal value
-            torScoreOfDeclaringWar *= 10;
+            torScoreOfDeclaringWar *= 50;
             TORCommon.Say($"War between {factionDeclaredWar.Name} vs {factionDeclaresWar.Name}; \n\t\t" +
                 $"Native Score: {nativeScoreOfDeclaringWar}, TOR Score: {torScoreOfDeclaringWar}; \n\t\t" +
                 $"Faction Score: {factionScore}, Distance Score: {distanceScore}, Religion Score = {religionScore} ");
@@ -291,7 +291,7 @@ namespace TOR_Core.Models
         /// </summary>
         private float baseDistanceFactor(IFaction factionDeclaresWar, IFaction factionDeclaredWar)
         {
-            float distance = BaseGetDistance(factionDeclaresWar, factionDeclaredWar);
+            float distance = baseGetDistance(factionDeclaresWar, factionDeclaredWar);
             float num = (483f + 8.63f * Campaign.AverageDistanceBetweenTwoFortifications) / 2f;
             float num2 = (factionDeclaresWar.Leader == Hero.MainHero || factionDeclaredWar.Leader == Hero.MainHero) ? -300000f : -400000f;
             float num3;
@@ -324,7 +324,7 @@ namespace TOR_Core.Models
         /// This code is from the decompiler
         /// Date of binary: 11/30/2023
         /// </summary>
-        private float BaseGetDistance(IFaction factionDeclaresWar, IFaction factionDeclaredWar)
+        private float baseGetDistance(IFaction factionDeclaresWar, IFaction factionDeclaredWar)
         {
             if (factionDeclaresWar.Fiefs.Count != 0 && factionDeclaredWar.Fiefs.Count != 0)
             {
