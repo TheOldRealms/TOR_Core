@@ -470,6 +470,15 @@ namespace TOR_Core.Extensions
             
             Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>().ActivateSpellcasterMode();
         }
+        
+        public static void UnsetSpellCasterMode(this Agent agent)
+        {
+            if(agent!=Agent.Main) return;
+            if (Mission.Current == null) return;
+            
+            Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>().DeactivateSpellcasterMode();
+        }
+        
 
         public static Hero GetHero(this Agent agent)
         {

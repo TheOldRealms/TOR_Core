@@ -85,7 +85,7 @@ namespace TOR_Core.CharacterDevelopment
             
             _witchHunter.Initialize("Witch Hunter", null, "Accusation", ChargeType.DamageDone, 200, typeof(AccusationScript));
 
-            _necromancer.Initialize("Necromancer", null, "LetThemHaveIt", ChargeType.DamageDone, 800);
+            _necromancer.Initialize("Necromancer", null, "GreaterHarbinger", ChargeType.DamageDone, 800, typeof(SummonChampionScript), true);
         }
     }
 }

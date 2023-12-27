@@ -384,6 +384,7 @@
     <Compile Include="AbilitySystem\Scripts\ProjectileScript.cs" />
     <Compile Include="AbilitySystem\Scripts\RedFuryScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ShadowStepScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\SummonChampionScript.cs" />
     <Compile Include="AbilitySystem\Scripts\SummoningScript.cs" />
     <Compile Include="AbilitySystem\Scripts\TeleportScript.cs" />
     <Compile Include="AbilitySystem\Scripts\VortexScript.cs" />

@@ -60,7 +60,7 @@ namespace TOR_Core.HarmonyPatches
                     wardSaveFactor = torModel.CalculateWardSaveFactor(victim, attackTypeMask);
                 }
 
-                if (attacker.GetOriginMobileParty()==MobileParty.MainParty)
+                if (attacker.GetOriginMobileParty()!=null&& attacker.GetOriginMobileParty()==MobileParty.MainParty)
                 {
                     var choices = Hero.MainHero.GetAllCareerChoices();
 

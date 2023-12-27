@@ -735,6 +735,14 @@ namespace TOR_Core.AbilitySystem
                 EnableAbilityMode();
             }
         }
+
+        public void DeactivateSpellcasterMode()
+        {
+            if (IsAbilityModeAvailableForMainAgent())
+            {
+                DisableAbilityMode(true);
+            }
+        }
     }
 
     public enum AbilityModeState

@@ -1528,7 +1528,7 @@
 		<TriggeredEffect>witheringwave_tick</TriggeredEffect>
 	</AbilityTemplate> -->
 	<AbilityTemplate StringID="Kandorak" 
-      Name="{=kandorak_label_str}Kandorak - The Harbinger" 
+      Name="{=kandorak_label_str}G" 
       SpriteName="theharbinger_icon" 
       CoolDown="30" 
       WindsOfMagicCost="6" 
@@ -3027,6 +3027,49 @@
 		</LightColorRGB>
 		<TriggeredEffect>apply_knightly_charge</TriggeredEffect>
 	</AbilityTemplate>
+
+	<AbilityTemplate StringID="GreaterHarbinger" 
+      Name="Greater Harbinger" 
+      SpriteName="theharbinger_icon" 
+      CoolDown="5" 
+      BaseMisCastChance="0.3" 
+      Duration="2" 
+      Radius="2" 
+      AbilityType="CareerAbility" 
+      AbilityEffectType="CareerAbilityEffect" 
+      BaseMovementSpeed="0" 
+      TickInterval="2" 
+      TriggerType="TickOnce" 
+      HasLight="false" 
+      LightIntensity="0" 
+      LightRadius="0" 
+      LightFlickeringMagnitude="0" 
+      LightFlickeringInterval="0" 
+      ShadowCastEnabled="false" 
+      ParticleEffectPrefab="" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="rocks_grinding" 
+      ShouldSoundLoopOverDuration="true"
+      CastType="Instant" 
+      CastTime="0" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="10"
+      AbilityTargetType="GroundAtPosition"
+      CrosshairType="Pointer"
+      MinDistance="1"
+      MaxDistance="60"
+      TargetCapturingRadius="1"
+      SpellTier="2"
+      TooltipDescription="Summon a champion on the target location.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+	<TriggeredEffect>summon_champion</TriggeredEffect>
+	</AbilityTemplate>
+	
 	
 	<AbilityTemplate StringID="FeyPaths" 
       Name="Fey Paths" 

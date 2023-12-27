@@ -30,6 +30,8 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             _isTemplateMutated = isTemplateMutated;
         }
 
+        public string SummonedTroopId => _template.TroopIdToSummon;
+
         public float ImbuedStatusEffectDuration => _template.ImbuedStatusEffectDuration;
         public List<string> StatusEffects => _template.ImbuedStatusEffects;
         public void Trigger(Vec3 position, Vec3 normal, Agent triggererAgent, AbilityTemplate originAbilityTemplate = null, MBList<Agent> targets = null)

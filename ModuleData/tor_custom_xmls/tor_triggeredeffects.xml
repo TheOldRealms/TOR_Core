@@ -575,6 +575,20 @@
             TroopIdToSummon="tor_vc_summoned_skeleton"
             NumberToSummon="5"
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.SummonScript"/>
+			
+      <TriggeredEffectTemplate StringID="summon_champion" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="All" 
+            DamageVariance="0" 
+            TroopIdToSummon="tor_vc_grave_guard_warrior"
+            NumberToSummon="1"/>
+			
       <TriggeredEffectTemplate StringID="summon_kandorak" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 

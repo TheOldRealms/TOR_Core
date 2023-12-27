@@ -47,7 +47,8 @@ namespace TOR_Core.AbilitySystem
                     
                 }
             
-
+                _currentCharge = _maxCharge;
+                
                 if (Hero.MainHero.HasCareer(TORCareers.WitchHunter)
                     ||Hero.MainHero.HasCareerChoice("CourtleyKeystone") 
                     || Hero.MainHero.HasCareerChoice("EnhancedHorseCombatKeystone")
