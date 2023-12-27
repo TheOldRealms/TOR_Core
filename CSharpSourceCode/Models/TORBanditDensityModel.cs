@@ -1,5 +1,6 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -11,22 +12,22 @@ namespace TOR_Core.Models
             {
                 if (Campaign.Current.CampaignStartTime.ElapsedDaysUntilNow < 10)
                 {
-                    return 200;
+                    return TORConfig.NumberOfMaximumLooterPartiesEarly;
                 }
                 else if(Campaign.Current.CampaignStartTime.ElapsedDaysUntilNow < 20)
                 {
-                    return 400;
+                    return TORConfig.NumberOfMaximumLooterParties;
                 }
                 else
                 {
-                    return 600;
+                    return TORConfig.NumberOfMaximumLooterPartiesLate;
                 }
             }
         }
 
-        public override int NumberOfMaximumBanditPartiesAroundEachHideout => 24;
-        public override int NumberOfMaximumBanditPartiesInEachHideout => 3;
-        public override int NumberOfInitialHideoutsAtEachBanditFaction => 40;
-        public override int NumberOfMaximumHideoutsAtEachBanditFaction => 80;
+        public override int NumberOfMaximumBanditPartiesAroundEachHideout => TORConfig.NumberOfMaximumBanditPartiesAroundEachHideout;
+        public override int NumberOfMaximumBanditPartiesInEachHideout => TORConfig.NumberOfMaximumBanditPartiesInEachHideout;
+        public override int NumberOfInitialHideoutsAtEachBanditFaction => TORConfig.NumberOfInitialHideoutsAtEachBanditFaction;
+        public override int NumberOfMaximumHideoutsAtEachBanditFaction => TORConfig.NumberOfMaximumHideoutsAtEachBanditFaction;
     }
 }

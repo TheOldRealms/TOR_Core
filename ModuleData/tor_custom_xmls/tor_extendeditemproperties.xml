@@ -3106,16 +3106,22 @@
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_banner_003">
     <ItemTraits />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_empire_faction_banner_001">
+  <ExtendedItemObjectProperties ItemStringId="tor_faction_banner_001_t1">
     <ItemTraits />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_empire_banner_t1_001">
+  <ExtendedItemObjectProperties ItemStringId="tor_faction_banner_001_t2">
     <ItemTraits />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_empire_banner_t2_001">
+  <ExtendedItemObjectProperties ItemStringId="tor_faction_banner_001_t3">
     <ItemTraits />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_empire_banner_t3_001">
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_banner_001_t1">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_banner_001_t2">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_banner_001_t3">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_weapon_banner_001">
@@ -3134,6 +3140,15 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_weapon_banner_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_fake_faction_banner_001_t1">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_fake_faction_banner_001_t2">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_fake_faction_banner_001_t3">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_001">
@@ -3317,6 +3332,10 @@
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_artillery_cannon_001">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_artillery_fieldtrebuchet_001">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>

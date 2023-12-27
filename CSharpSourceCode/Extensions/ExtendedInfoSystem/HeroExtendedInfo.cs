@@ -42,7 +42,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 {
                     CustomResources[id] = Math.Min(MaxWindsOfMagic, CustomResources[id]);
                 }
-                else CustomResources[id] = Math.Min(TORConstants.MAXIMUM_CUSTOMRESOURCE_VALUE, CustomResources[id]);
+                else CustomResources[id] = Math.Min(TORConfig.MaximumCustomResourceValue, CustomResources[id]);
             }
             else
             {
@@ -51,7 +51,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 {
                     CustomResources[id] = Math.Min(MaxWindsOfMagic, CustomResources[id]);
                 }
-                else CustomResources[id] = Math.Min(TORConstants.MAXIMUM_CUSTOMRESOURCE_VALUE, CustomResources[id]);
+                else CustomResources[id] = Math.Min(TORConfig.MaximumCustomResourceValue, CustomResources[id]);
             }
         }
 
@@ -65,7 +65,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 {
                     CustomResources[id] = Math.Min(MaxWindsOfMagic, CustomResources[id]);
                 }
-                else CustomResources[id] = Math.Min(TORConstants.MAXIMUM_CUSTOMRESOURCE_VALUE, CustomResources[id]);
+                else CustomResources[id] = Math.Min(TORConfig.MaximumCustomResourceValue, CustomResources[id]);
             }
             else
             {
@@ -74,7 +74,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 {
                     CustomResources[id] = Math.Min(MaxWindsOfMagic, CustomResources[id]);
                 }
-                else CustomResources[id] = Math.Min(TORConstants.MAXIMUM_CUSTOMRESOURCE_VALUE, CustomResources[id]);
+                else CustomResources[id] = Math.Min(TORConfig.MaximumCustomResourceValue, CustomResources[id]);
             }
         }
 

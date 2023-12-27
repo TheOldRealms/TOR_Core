@@ -691,6 +691,7 @@
     <Compile Include="Utilities\TORAnimationLogger.cs" />
     <Compile Include="Utilities\TORAudio.cs" />
     <Compile Include="Utilities\TORCommon.cs" />
+    <Compile Include="Utilities\TORConfig.cs" />
     <Compile Include="Utilities\TORConsoleCommands.cs" />
     <Compile Include="Utilities\TORConstants.cs" />
     <Compile Include="Utilities\TORDamageDisplay.cs" />
