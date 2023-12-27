@@ -49,7 +49,7 @@ namespace TOR_Core.BattleMechanics
         {
             if(affectedAgent==null||affectedAgent.IsMount) return;
             if(affectorAgent.IsMount) return;
-            if (affectorAgent.GetOriginMobileParty().IsMainParty && Agent.Main!=null&&  affectorAgent!= Agent.Main && affectorAgent.IsHero)
+            if (affectorAgent.GetOriginMobileParty()!=null&&affectorAgent.GetOriginMobileParty().IsMainParty && Agent.Main!=null&&  affectorAgent!= Agent.Main && affectorAgent.IsHero)
             {
                 var choices = Agent.Main.GetHero().GetAllCareerChoices();
                 if (choices.Contains("InspirationOfTheLadyKeystone"))
