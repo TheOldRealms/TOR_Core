@@ -47,7 +47,11 @@ namespace TOR_Core.BattleMechanics
         }
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
-            if(affectedAgent==null||affectedAgent.IsMount) return;
+            if(affectedAgent==null) return;
+            
+            if(affectedAgent.IsMount) return;
+            
+            if(affectorAgent == null) return;
             if(affectorAgent.IsMount) return;
             if (affectorAgent.GetOriginMobileParty()!=null&&affectorAgent.GetOriginMobileParty().IsMainParty && Agent.Main!=null&&  affectorAgent!= Agent.Main && affectorAgent.IsHero)
             {
@@ -73,11 +77,13 @@ namespace TOR_Core.BattleMechanics
             
             
 
-            if( affectorAgent!=null && affectorAgent.IsHero 
+            if( affectorAgent.IsHero 
                                     && (affectorAgent.IsMainAgent && affectorAgent.GetHero().HasCareer(TORCareers.WitchHunter) || 
                                         (affectorAgent.GetHero().PartyBelongedTo == MobileParty.MainParty && Hero.MainHero.HasCareerChoice("NoRestAgainstEvilKeystone"))))
             {
-                var temporaryEffects = affectedAgent.GetComponent<StatusEffectComponent>().GetTemporaryAttributes();
+                var comp = affectedAgent.GetComponent<StatusEffectComponent>();
+                if(comp==null) return;
+                var temporaryEffects = comp.GetTemporaryAttributes();
 
                 if (temporaryEffects.Contains("AccusationMark"))
                 {
