@@ -121,7 +121,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _grimoireNecrisKeystone.Initialize(CareerID, "Harbinger kills gain 2HP for caster and the Champion.", "GrimoireNecris", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
-                    
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "summon_champion",
+                        PropertyName = "TroopIdToSummon",
+                        PropertyValue = (choice, originalValue, agent) => originalValue+"_plate",
+                        MutationType = OperationType.Replace
+                    },
                 },new CareerChoiceObject.PassiveEffect()); // For every kill as Harbinger you and the Harbinger regain 2 HP
             
             _booksOfNagashKeystone.Initialize(CareerID, "Regenerate per kill of your champion 1 winds of magic. Adds 20% magical damage to champion", "BooksOfNagash", false,
