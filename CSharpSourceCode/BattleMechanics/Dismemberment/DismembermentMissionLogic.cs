@@ -37,7 +37,7 @@ namespace TOR_Core.BattleMechanics.Dismemberment
         private int _index;
         private bool _fullyInstantiated;
 
-        private int _timeSpeedRequestID=11111;
+        private int _timeSpeedRequestID=1111;
 
         public override void AfterStart()
         {
@@ -113,21 +113,9 @@ namespace TOR_Core.BattleMechanics.Dismemberment
         {
             if (slowMotionEndTime > 0 && Mission.CurrentTime >= slowMotionEndTime)
             {
-              //  Mission.Current.RemoveTimeSpeedRequest (_timeSpeedRequestID);
+               Mission.Current.RemoveTimeSpeedRequest (_timeSpeedRequestID);
+               slowMotionEndTime = -1;
             }
-
-            /*objectPos = _pooledDismemberedLimbs[0][0].GlobalPosition;
-
-            if (lastPos != objectPos)
-            {
-                TORCommon.Say("object is moving");
-            }
-            else
-            {
-             //   TORCommon.Say(lastPos+" " + objectPos);
-            }
-
-            lastPos = objectPos;*/
         }
 
         public override void OnRegisterBlow(Agent attacker, Agent victim, GameEntity realHitEntity, Blow blow, ref AttackCollisionData collisionData, in MissionWeapon attackerWeapon)
