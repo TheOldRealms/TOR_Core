@@ -49,9 +49,14 @@ namespace TOR_Core.Models
                     number.Add(character.Tier * 10);
                     break;
             }
-            if (character.IsUndead()&&!character.IsHero)
+            if (character.IsUndead()&&!character.IsHero && !character.HasAttribute("NecromancerChampion"))
             {
                 number.Add(-50);
+            }
+
+            if (character.HasAttribute("NecromancerChampion"))
+            {
+                number.Add(100);
             }
             return number;
         }

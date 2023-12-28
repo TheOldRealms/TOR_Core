@@ -79,7 +79,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             else
             {
                 effect = StatusEffectManager.CreateNewStatusEffect(effectId, applierAgent, isMutated);
-                if (applierAgent.IsHero)
+                if (applierAgent!=null&&applierAgent.IsHero)
                 {
                     var career = applierAgent.GetHero().GetCareer();
                     if (career != null) career.MutateStatusEffect(effect.Template, applierAgent);

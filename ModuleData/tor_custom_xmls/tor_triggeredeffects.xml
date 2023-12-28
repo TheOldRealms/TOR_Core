@@ -582,13 +582,16 @@
             SoundEffectLength="0" 
             DamageType="Invalid" 
             DamageAmount="0" 
-            Radius="5" 
+            Radius="1" 
             HasShockWave="false" 
-            TargetType="All" 
-            DamageVariance="0" 
-            TroopIdToSummon="tor_vc_grave_guard_warrior"
-            NumberToSummon="1"/>
-			
+            TargetType="Friendly" 
+            DamageVariance="0"
+			ImbuedStatusEffectDuration="1" 
+            TroopIdToSummon="tor_vc_grave_guard_champion"
+            NumberToSummon="1">
+			<ImbuedStatusEffect>greater_harbinger_debuff</ImbuedStatusEffect>
+	  </TriggeredEffectTemplate>
+	  
       <TriggeredEffectTemplate StringID="summon_kandorak" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 

@@ -53,6 +53,15 @@ namespace TOR_Core.BattleMechanics
             
             if(affectorAgent == null) return;
             if(affectorAgent.IsMount) return;
+
+            if ((blow.InflictedDamage>affectedAgent.Health)&&affectedAgent.HasAttribute("NecromancerChampion") && affectedAgent.IsMainAgent )
+            {
+                var agent = Mission.Current.Agents.FirstOrDefault(x => x.IsHero && x.GetHero() == Hero.MainHero);
+
+                if (agent != null) agent.Controller = Agent.ControllerType.Player;
+            }
+            
+            
             if (affectorAgent.GetOriginMobileParty()!=null&&affectorAgent.GetOriginMobileParty().IsMainParty && Agent.Main!=null&&  affectorAgent!= Agent.Main && affectorAgent.IsHero)
             {
                 var choices = Agent.Main.GetHero().GetAllCareerChoices();

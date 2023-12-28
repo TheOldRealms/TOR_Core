@@ -1224,6 +1224,16 @@
       <EquipmentSet id="tor_vc_grave_guard_seneschal_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_vc_grave_guard_champion" default_group="infantry" level="31" name="{=str_tor_vc_grave_guard_seneschal}Grave Guard Champion" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level31" race="skeleton">
+    <face>
+      <face_key_template value="BodyProperty.skeleton" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_vc_grave_guard_seneschal_template" />
+      <EquipmentSet id="tor_vc_grave_guard_seneschal_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_vc_skeleton_spearman" default_group="infantry" level="6" name="{=str_tor_vc_skeleton_spearman}Skeleton Spearman" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level6" race="skeleton">
     <face>
       <face_key_template value="BodyProperty.skeleton" />

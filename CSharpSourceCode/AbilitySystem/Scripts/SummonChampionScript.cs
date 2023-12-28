@@ -1,23 +1,38 @@
 ﻿using System.Collections.Generic;
+using SandBox.View.Map;
 using TaleWorlds.Core;
+using TaleWorlds.DotNet;
+using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.MountAndBlade.GauntletUI.Widgets.Scoreboard;
+using TaleWorlds.MountAndBlade.View.MissionViews;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.BattleMechanics.TriggeredEffect.Scripts;
 using TOR_Core.Extensions;
+using TOR_Core.GameManagers;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem.Scripts
 {
     public class SummonChampionScript : CareerAbilityScript
     {
-        private string SummonedChampionId;
+        private string _summonedChampionId;
 
-        private bool summoned;
+        private bool _summoned;
         
-        private Vec3 targetPosition;
+        private Vec3 _targetPosition;
+
+        private Agent _champion;
+
+        private bool _championIsActive;
+
+        private bool _isDisabled;
         
+        private GameKey _specialMoveKey;
+
+
         protected override void OnInit()
         {
             var effects = this.GetEffectsToTrigger();
@@ -26,35 +41,101 @@ namespace TOR_Core.AbilitySystem.Scripts
             {
                 if (effect.SummonedTroopId != "none")
                 {
-                    SummonedChampionId = effect.SummonedTroopId;
+                    _summonedChampionId = effect.SummonedTroopId;
                     break;
                 }
                
             }
+            
+            _specialMoveKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("SpecialMove");
 
-            targetPosition = GameEntity.GlobalPosition;
+            _targetPosition = GameEntity.GlobalPosition;
         }
         
         protected override void OnTick(float dt)
         {
-            if(summoned) return;
+            if (!_summoned)
+            {
+                var data = GetAgentBuildData(_casterAgent);
+                bool leftSide = false;
             
-            var data = GetAgentBuildData(_casterAgent);
-            bool leftSide = false;
+                _champion = SpawnAgent(data, _targetPosition);
+                
+                _casterAgent.UnsetSpellCasterMode();
+                _casterAgent.Controller = Agent.ControllerType.None;
             
-            var agent = SpawnAgent(data, targetPosition);
+                _champion.ApplyStatusEffect("greater_harbinger_debuff",null,9999f);
+                _champion.Controller = Agent.ControllerType.Player;
+                _summoned = true;
+                _championIsActive = true;
+            }
 
-            _casterAgent.UnsetSpellCasterMode();
-
-            agent.Controller = Agent.ControllerType.Player;
             
-            summoned = true;
 
+            if (!_casterAgent.IsActive() && !_isDisabled)
+            {
+                Blow blow = new Blow();
+                blow.OwnerId = _casterAgent.Index;
+                _champion.Die(blow);
+                _isDisabled = true;
+                Stop();
+            }
+
+            if (!_champion.IsActive()&& !_isDisabled)
+            {
+                _isDisabled = true;
+                Stop();
+            }
+            
+            if (Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) ||
+                Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey))
+            {
+                switchBetweenAgents();
+            }
+
+        }
+
+        public override void Stop()
+        {
+            base.Stop();
+            TORCommon.Say("stop");
+        }
+
+
+        private void switchBetweenAgents()
+        {
+            if (!_championIsActive && _summoned)
+            {
+                if (_champion.Health>0)
+                {
+                    _casterAgent.Controller = Agent.ControllerType.None;
+                    _champion.Controller = Agent.ControllerType.Player;
+                }
+
+                _championIsActive = true;
+
+            }
+            else
+            {
+                if (_casterAgent.Health>0)
+                {
+                    _casterAgent.Controller = Agent.ControllerType.Player;
+                    _champion.Controller = Agent.ControllerType.AI;
+                }  
+                
+                _championIsActive = false;
+            }
+            
+        }
+
+        protected override void OnRemoved(int removeReason)
+        {
+            base.OnRemoved(removeReason);
         }
 
         private AgentBuildData GetAgentBuildData(Agent caster)
         {
-            BasicCharacterObject troopCharacter = MBObjectManager.Instance.GetObject<BasicCharacterObject>(SummonedChampionId);
+            BasicCharacterObject troopCharacter = MBObjectManager.Instance.GetObject<BasicCharacterObject>(_summonedChampionId);
             
             IAgentOriginBase troopOrigin = new SummonedAgentOrigin(caster, troopCharacter);
             var formation = caster.Team.GetFormation(FormationClass.Infantry);

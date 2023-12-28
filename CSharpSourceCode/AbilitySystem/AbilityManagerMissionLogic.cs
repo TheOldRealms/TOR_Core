@@ -132,10 +132,9 @@ namespace TOR_Core.AbilitySystem
                CareerHelper.CalculateChargeForCareer(ChargeType.DamageDone,blow.InflictedDamage);
                if (comp.CareerAbility.ChargeType == ChargeType.NumberOfKills) comp.CareerAbility.AddCharge(1);
            }
-           var partyCondition = !affectorAgent.IsMount && affectorAgent.GetOriginMobileParty().IsMainParty && Agent.Main != null;
-           var t = affectorAgent != Agent.Main && affectorAgent.IsHero;
+           var partyCondition = !affectorAgent.IsMount &&affectorAgent.GetOriginMobileParty()!=null&& affectorAgent.GetOriginMobileParty().IsMainParty && Agent.Main != null;
            
-           if(!affectorAgent.IsMount&&affectorAgent.GetOriginMobileParty().IsMainParty&& Agent.Main!=null&&   affectorAgent!=Agent.Main&& affectorAgent.IsHero)
+           if(partyCondition)
            {
                var playerHero = Agent.Main.GetHero();
                var choices = playerHero.GetAllCareerChoices();
