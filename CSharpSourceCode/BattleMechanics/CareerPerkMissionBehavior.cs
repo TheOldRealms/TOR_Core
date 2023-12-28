@@ -155,7 +155,7 @@ namespace TOR_Core.BattleMechanics
             if (affectorAgent.IsMainAgent)
             {
                 var playerHero = affectorAgent.GetHero();
-                var choices = playerHero.GetAllCareerChoices();
+                var choices = Hero.MainHero.GetAllCareerChoices();
                 var hitBodyPart = blow.VictimBodyPart;
 
                 if (hitBodyPart == BoneBodyPartType.Head || hitBodyPart == BoneBodyPartType.Neck)
@@ -211,6 +211,21 @@ namespace TOR_Core.BattleMechanics
                             Hero.MainHero.AddSkillXp(TORSkills.Faith,choice.GetPassiveValue());
                         }
                     }
+                }
+
+                if (affectorAgent.HasAttribute("NecromancerChampion"))
+                {
+                    if (choices.Contains("GrimoireNecrisKeystone"))
+                    {
+                        affectorAgent.Heal(2);
+                    } 
+                    
+                    if (choices.Contains("BooksOfNagashKeystone"))
+                    {
+                        Hero.MainHero.AddWindsOfMagic(1);
+                    } 
+                    
+                    Hero.MainHero.AddSkillXp(TORSkills.SpellCraft,20); 
                 }
                 
             }

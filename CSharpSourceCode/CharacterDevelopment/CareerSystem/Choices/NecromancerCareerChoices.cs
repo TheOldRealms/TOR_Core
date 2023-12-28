@@ -23,7 +23,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         
         private CareerChoiceObject _liberMortisKeystone; //4
         private CareerChoiceObject _bookofWsoranKeystone;        //5
-        private CareerChoiceObject _grimoireNecris; //6
+        private CareerChoiceObject _grimoireNecrisKeystone; //6
         
         
         private CareerChoiceObject _booksOfNagashKeystone; // 7
@@ -45,9 +45,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             _liberMortisKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("LiberMortisKeystone"));
             _bookofWsoranKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BookofWsoranKeystone"));
-            _booksOfNagashKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BookOfArkhanKeystone"));
+            _grimoireNecrisKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("GrimoireNecrisKeystone"));
             
-            _grimoireNecris = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("GrimoireNecrisKeystone"));
+            
+            _booksOfNagashKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BooksOfNagashKeystone"));
             
             
         }
@@ -107,25 +108,26 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 },new CareerChoiceObject.PassiveEffect()); // add 90% resistence for necromancer while controlled
                 
             
-            _liberMortisKeystone.Initialize(CareerID, "Your champion gains 25% extra melee damage.", "LiberMortis", false,
+            _liberMortisKeystone.Initialize(CareerID, "Your champion gains 25% extra melee damage. Ability starts charged", "LiberMortis", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
-                },new CareerChoiceObject.PassiveEffect()); // add 25% extra damage to champion
+                },new CareerChoiceObject.PassiveEffect(25,PassiveEffectType.Special,true)); // add 25% extra damage to champion
             
             _bookofWsoranKeystone.Initialize(CareerID, "Your Champion gains 25% Wardsave and can't be staggered.", "BookOfWsoran", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
-                },new CareerChoiceObject.PassiveEffect()); // add 25% Wardsave to champion
+                },new CareerChoiceObject.PassiveEffect(25,PassiveEffectType.Special,true)); // add 25% Wardsave to champion
             
-            _grimoireNecris.Initialize(CareerID, "Harbinger kills gain 2HP for caster and the Champion. Harbinger gains in field battles a horse.", "GrimoireNecris", false,
+            _grimoireNecrisKeystone.Initialize(CareerID, "Harbinger kills gain 2HP for caster and the Champion.", "GrimoireNecris", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
+                    
                 },new CareerChoiceObject.PassiveEffect()); // For every kill as Harbinger you and the Harbinger regain 2 HP
             
             _booksOfNagashKeystone.Initialize(CareerID, "Regenerate per kill of your champion 1 winds of magic. Adds 20% magical damage to champion", "BooksOfNagash", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
-                },new CareerChoiceObject.PassiveEffect());// For every kill as Harbinger the necromancer gains 1 Winds of Magic
+                },new CareerChoiceObject.PassiveEffect(25,PassiveEffectType.Special,true));// For every kill as Harbinger the necromancer gains 1 Winds of Magic
         }
 
         protected override void InitializePassives()

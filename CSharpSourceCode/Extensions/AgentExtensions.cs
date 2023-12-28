@@ -96,6 +96,9 @@ namespace TOR_Core.Extensions
                     return true;
             }
 
+            if (Hero.MainHero.HasCareerChoice("BookofWsoranKeystone") && agent.HasAttribute("NecromancerChampion"))
+                return true;
+
             return false;
         }
 

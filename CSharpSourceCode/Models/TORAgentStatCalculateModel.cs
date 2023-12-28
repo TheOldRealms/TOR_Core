@@ -209,6 +209,7 @@ namespace TOR_Core.Models
 
         public override float GetEffectiveMaxHealth(Agent agent)
         {
+            if (agent == null) return 0;
             if (agent.Origin is SummonedAgentOrigin) 
                 return agent.BaseHealthLimit;
             
@@ -405,6 +406,10 @@ namespace TOR_Core.Models
 
         public AgentPropertyContainer AddPerkEffectsToAgentPropertyContainer(Agent agent, PropertyMask mask, AttackTypeMask attackMask, AgentPropertyContainer container)
         {
+            if (agent.Controller == Agent.ControllerType.Player)
+            {
+                TORCommon.Say("lol");
+            }
             var proportions = container.DamageProportions;
             var damageamps = container.DamagePercentages;
             var damagebonuses = container.AdditionalDamagePercentages;
@@ -455,13 +460,12 @@ namespace TOR_Core.Models
             }
 
             var result = new AgentPropertyContainer(proportions, damageamps, resistances, damagebonuses);
-
-
+            if (!Hero.MainHero.HasAnyCareer()) return result;
             if (agent == Agent.Main)
             {
-                if (!Agent.Main.GetHero().HasAnyCareer()) return result;
+                
                 result = CareerHelper.AddBasicCareerPassivesToPropertyContainerForMainAgent(agent, result, attackMask, mask);
-
+                
                 var choices = Agent.Main.GetHero().GetAllCareerChoices();
                 
            
@@ -693,9 +697,39 @@ namespace TOR_Core.Models
                     }
                         
                 }
-                
-                
             }
+
+
+            if (agent.Character.HasAttribute("NecromancerChampion"))
+            {
+                var choices = Hero.MainHero.GetAllCareerChoices();
+                if(( attackMask == AttackTypeMask.Melee&& mask == PropertyMask.Attack))
+                {
+                    if (agent.Controller == Agent.ControllerType.Player)
+                    {
+                        
+                        if (mask == PropertyMask.Attack&&agent.Character.HasAttribute("NecromancerChampion")&&choices.Contains("LiberMortisKeystone"))
+                        {
+                            var choice = TORCareerChoices.GetChoice("LiberMortisKeystone");
+                            result.AdditionalDamagePercentages[(int)DamageType.Physical] += choice.GetPassiveValue();
+                        }
+                
+                        if (mask == PropertyMask.Attack&&agent.Character.HasAttribute("NecromancerChampion")&&choices.Contains("BooksOfNagashKeystone"))
+                        {
+                            var choice = TORCareerChoices.GetChoice("BooksOfNagashKeystone");
+                            result.AdditionalDamagePercentages[(int)DamageType.Magical] += choice.GetPassiveValue();
+                        }
+                    }
+                }
+
+                if (mask == PropertyMask.Defense&&choices.Contains("BookofWsoranKeystone"))
+                {
+                    var choice = TORCareerChoices.GetChoice("BookofWsoranKeystone");
+                    result.ResistancePercentages[(int)DamageType.All]+= choice.GetPassiveValue();
+                }
+            }
+            
+            
 
             return result;
         }

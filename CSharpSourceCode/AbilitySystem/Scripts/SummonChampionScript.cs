@@ -43,6 +43,10 @@ namespace TOR_Core.AbilitySystem.Scripts
                 if (effect.SummonedTroopId != "none")
                 {
                     _summonedChampionId = effect.SummonedTroopId;
+                    if (_summonedChampionId.Contains("horse") && _summonedChampionId.Contains("two_handed"))
+                    {
+                        _summonedChampionId = "tor_vc_grave_guard_champion_mount_two_handed";
+                    }
                     break;
                 }
                
