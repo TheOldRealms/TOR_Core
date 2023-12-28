@@ -728,19 +728,26 @@
   <string id="career_title.WitchHunter" text="{=tor_career_title_warrior_priest_str}Witch Hunter" />
   <string id="career_title.MinorVampire" text="{=tor_career_title_minor_vampire_str}Vampire Nobility" />
   <string id="career_title.GrailKnight" text="{=tor_career_title_grail_knight_str}Knight of Bretonnia" />
-    <string id="career_title.GrailDamsel" text="{=tor_career_title_grail_damsel_str}Damsel of the Lady" />
+  <string id="career_title.GrailDamsel" text="{=tor_career_title_grail_damsel_str}Damsel of the Lady" />
   <string id="career_title.BloodKnight" text="{=tor_career_title_blood_knight_str}Blood Knight" />
   <string id="career_title.Mercenary" text="{=tor_career_title_mercenary_str}Mercenary" />
+  <string id="career_title.Necromancer" text="{=tor_career_title_necromancer_str}Necromancer" />
   
   
   
   <string id="career_choicegroup1_name.WitchHunter" text="{=career_choicegroup1_warrior_priest_str}Witch Hunter Initiate" />
   <string id="career_choicegroup2_name.WitchHunter" text="{=career_choicegroup2_warrior_priest_str}Witch Hunter Captain" />
   <string id="career_choicegroup3_name.WitchHunter" text="{=career_choicegroup3_warrior_priest_str}Master Witch Hunter" />
+  
+
 
   <string id="career_choicegroup1_name.WarriorPriest" text="{=career_choicegroup1_warrior_priest_str}Cultist of Sigmar" />
   <string id="career_choicegroup2_name.WarriorPriest" text="{=career_choicegroup2_warrior_priest_str}Warrior Priest" />
   <string id="career_choicegroup3_name.WarriorPriest" text="{=career_choicegroup3_warrior_priest_str}Arch Lector" />
+  
+  <string id="career_choicegroup1_name.Necromancer" text="{=career_choicegroup1_warrior_priest_str}Apprentise" />
+  <string id="career_choicegroup2_name.Necromancer" text="{=career_choicegroup2_warrior_priest_str}Scholar" />
+  <string id="career_choicegroup3_name.Necromancer" text="{=career_choicegroup3_warrior_priest_str}Lichmaster" />
 
   <string id="career_choicegroup1_name.MinorVampire" text="{=career_choicegroup1_minor_vampire_str}New Blood" />
   <string id="career_choicegroup2_name.MinorVampire" text="{=career_choicegroup2_minor_vampire_str}Vampire" />
@@ -783,6 +790,9 @@
   <string id="career_description.Mercenary" text="{=career_description_mercenary_str}To be a Man in the 25th century is to be one of thousands. The Old World finds itself on the precipice of destruction and turmoil, of chaos and death. No one in this age can be weak; some use the times to their advantage and turn warfare into wealth, combat into glory and tragedy into destiny. Mercenary they may call you, whatever the name no one will control your fate." />
   <string id="career_description.GrailKnight" text="{=career_description_grailknight_str}To be a knight of Bretonnia is to strive for the blessing of the Lady and her holy grail. Any man deemed worthy to sup from her chalice becomes a holy warrior honored and respected across all of Bretonnia and yet farther. The road to that goal is difficult, so much so that most knights fail to accomplish despite all sharing the same dream." />
   <string id="career_description.GrailDamsel" text="{=career_description_graildamsel_str}Damsels are sought out as children by the Fey Enchantress for their latent magical potential. Taken away from their families they are raised in secret to be potent guardians of fair Bretonnia. Upon completion of their training they embark out into the land, coming to the aid of the people and influencing knights in order to fulfill their martial potential." />
+  
+    <string id="career_description.Necromancer" text="{=career_description_witchHunter_str}Kriegan and Ecthelion could get their ass up and write the text because Jax is not but he is the boss so you are screwed" />
+
   
   <string id="career_description.WitchHunter" text="{=career_description_witchHunter_str}Whether in the name of faith, purity or reward, Witch Hunters are charged with ending the threat created by all those who spread the taint of darkness. They justify their weapons, unconventional instruments and methods of investigations in the name of protecting innocent souls. A mostly thankless task, as even those who they are sworn to protect fear the shadow of a Witch Hunter at their threshold." />
 

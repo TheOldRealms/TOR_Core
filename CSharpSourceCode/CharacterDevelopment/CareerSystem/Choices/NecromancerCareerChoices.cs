@@ -11,14 +11,16 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         public NecromancerCareerChoices(CareerObject id) : base(id) {}
         private CareerChoiceObject _necromancerRoot;
         
-        private CareerChoiceObject _carrionBookOfShyshKeystone; // 1
-        private CareerChoiceObject _tomeOfThousandSouls;        //2
-        private CareerChoiceObject _deArcanisKadonKeystone; // 3
+        private CareerChoiceObject _liberNecrisKeystone; // 1
+        private CareerChoiceObject _deArcanisKadonKeystone; // 2
+        private CareerChoiceObject _bookOfArkhan;     //3
         
-        private CareerChoiceObject _codexMortifica;     //4
-        private CareerChoiceObject _grimoireNecrisKeystone; //5
-        private CareerChoiceObject _liberMortisKeystone; //6
-        private CareerChoiceObject _bookOfArkhan; // 7
+        private CareerChoiceObject _liberMortisKeystone; //4
+        private CareerChoiceObject _bookofWsoranKeystone;        //5
+        private CareerChoiceObject _grimoireNecris; //6
+        
+        
+        private CareerChoiceObject _booksOfNagashKeystone; // 7
         
         
 
@@ -28,16 +30,16 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         {
             _necromancerRoot = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NecromancerRoot"));
             
-            _carrionBookOfShyshKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("CarrionBookOfShyshKeystone"));
+            _liberNecrisKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("LiberNecrisKeystone"));
             _deArcanisKadonKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("DeArcanisKadonKeystone"));
-            _codexMortifica = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("CodexMortificaKeystone"));
+            _bookOfArkhan = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("CodexMortificaKeystone"));
             
             _liberMortisKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("LiberMortisKeystone"));
-            _tomeOfThousandSouls = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("TomeOfThousandSoulsKeystone"));
-            _grimoireNecrisKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("GrimoireNecrisKeystone"));
+            _bookofWsoranKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BookofWsoranKeystone"));
+            _booksOfNagashKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BookOfArkhanKeystone"));
             
+            _grimoireNecris = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("GrimoireNecrisKeystone"));
             
-            _bookOfArkhan = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BookOfArkhanKeystone"));
             
         }
 
@@ -56,7 +58,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
             
-            _carrionBookOfShyshKeystone.Initialize(CareerID, "Your Harbinger gains a two handed weapon. Ability scales with Roguery", "CarrionBookOfShysh", false,
+            _liberNecrisKeystone.Initialize(CareerID, "Your Harbinger gains a two handed weapon. Ability scales with Roguery", "LiberNecris", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -69,12 +71,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 },new CareerChoiceObject.PassiveEffect());  // two handed weapon
             
-            _deArcanisKadonKeystone.Initialize(CareerID, "Pressing Ability key allows to switch between characters; As Necromancer, Harbinger acts indenpendant.", "DeArcanisKadon", false,
+            _deArcanisKadonKeystone.Initialize(CareerID, "Pressing Ability key allows to switch between characters; Harbinger acts indenpendant.", "DeArcanisKadon", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                 },new CareerChoiceObject.PassiveEffect());  // switch controls
                 
-            _codexMortifica.Initialize(CareerID, "During Champion control gain 90% damage resistance for caster. Ability scales with Medicine.", "CodexMortifica", false,
+            _bookOfArkhan.Initialize(CareerID, "During Champion control gain 90% damage resistance for caster. Ability scales with Medicine.", "BookOfArkhan", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -93,17 +95,17 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 {
                 },new CareerChoiceObject.PassiveEffect()); // add 25% extra damage to champion
             
-            _tomeOfThousandSouls.Initialize(CareerID, "Your Champion gains 25% Wardsave and can't be staggered.", "TomeOfThousandSouls", false,
+            _bookofWsoranKeystone.Initialize(CareerID, "Your Champion gains 25% Wardsave and can't be staggered.", "BookOfWsoran", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                 },new CareerChoiceObject.PassiveEffect()); // add 25% Wardsave to champion
             
-            _grimoireNecrisKeystone.Initialize(CareerID, "Harbinger kills gain 2HP for caster and the Champion. Harbinger gains in field battles a horse.", "GrimoireNecris", false,
+            _grimoireNecris.Initialize(CareerID, "Harbinger kills gain 2HP for caster and the Champion. Harbinger gains in field battles a horse.", "GrimoireNecris", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                 },new CareerChoiceObject.PassiveEffect()); // For every kill as Harbinger you and the Harbinger regain 2 HP
             
-            _bookOfArkhan.Initialize(CareerID, "Regenerate per kill of your champion 1 winds of magic for necromancer", "BookOfArkhan", false,
+            _booksOfNagashKeystone.Initialize(CareerID, "Regenerate per kill of your champion 1 winds of magic. Adds 20% magical damage to champion", "BooksOfNagash", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                 },new CareerChoiceObject.PassiveEffect());// For every kill as Harbinger the necromancer gains 1 Winds of Magic

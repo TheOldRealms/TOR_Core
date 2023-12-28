@@ -30,14 +30,13 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _guiltyByAssociation;
         private CareerChoiceGroupObject _noRestAgainstEvil;
         //Necromancer
-        private CareerChoiceGroupObject _carrionBookOfShysh;
-        private CareerChoiceGroupObject _tomeOfThousandSouls;
+        private CareerChoiceGroupObject _liberNecris;
+        private CareerChoiceGroupObject _bookOfWsoran;
         private CareerChoiceGroupObject _deArcanisKadon;
-        private CareerChoiceGroupObject _codexMortifica;
         private CareerChoiceGroupObject _grimoireNecris;
         private CareerChoiceGroupObject _liberMortis;
         private CareerChoiceGroupObject _bookOfArkhan;
-
+        private CareerChoiceGroupObject _booksOfNagash;
         
         //Minor Vampire
         private CareerChoiceGroupObject _newBlood;
@@ -111,13 +110,12 @@ namespace TOR_Core.CharacterDevelopment
             
             //Necromancer
             
-            _carrionBookOfShysh = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("CarrionBookOfShysh"));
+            _liberNecris = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("LiberNecris"));
             _deArcanisKadon = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("DeArcanisKadon"));
-            _codexMortifica = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("CodexMortifica"));
             _grimoireNecris = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("GrimoireNecris"));
-            _tomeOfThousandSouls = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("TomeOfThousandSouls"));
+            _bookOfWsoran = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("BookOfWsoran"));
             _liberMortis = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("LiberMortis"));
-            
+            _booksOfNagash = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("BooksOfNagash"));
             _bookOfArkhan = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("BookOfArkhan"));
      
             
@@ -249,7 +247,7 @@ namespace TOR_Core.CharacterDevelopment
             });
             
             //Necromancer
-            _carrionBookOfShysh.Initialize("{=arch_lector_choice_group_str}Carrion Book of Shysh", TORCareers.Necromancer, 1, (Hero hero, out string text) =>
+            _liberNecris.Initialize("{=arch_lector_choice_group_str}Liber Necris", TORCareers.Necromancer, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
@@ -259,7 +257,7 @@ namespace TOR_Core.CharacterDevelopment
                 text = string.Empty;
                 return true;
             });
-            _codexMortifica.Initialize("{=arch_lector_choice_group_str}Codex Mortifica", TORCareers.Necromancer, 1, (Hero hero, out string text) =>
+            _bookOfArkhan.Initialize("{=arch_lector_choice_group_str}Book of Arkhan", TORCareers.Necromancer, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
@@ -267,26 +265,26 @@ namespace TOR_Core.CharacterDevelopment
             
             _liberMortis.Initialize("{=arch_lector_choice_group_str}Liber Mortis", TORCareers.Necromancer, 2, (Hero hero, out string text) =>
             {
-                text = string.Empty;
-                return true;
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
             });
 
-            _tomeOfThousandSouls.Initialize("{=arch_lector_choice_group_str}Tome of Thousand Souls", TORCareers.Necromancer, 2, (Hero hero, out string text) =>
+            _bookOfWsoran.Initialize("{=arch_lector_choice_group_str}Book of W'soran", TORCareers.Necromancer, 2, (Hero hero, out string text) =>
             {
-                text = string.Empty;
-                return true;
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
             });
             
             _grimoireNecris.Initialize("{=arch_lector_choice_group_str}Grimore Necris", TORCareers.Necromancer, 2, (Hero hero, out string text) =>
             {
-                text = string.Empty;
-                return true;
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
             });
             
-            _bookOfArkhan.Initialize("{=arch_lector_choice_group_str}Book of Arkhan", TORCareers.Necromancer, 3, (Hero hero, out string text) =>
+            _booksOfNagash.Initialize("{=arch_lector_choice_group_str}Books of Nagash", TORCareers.Necromancer, 3, (Hero hero, out string text) =>
             {
-                text = string.Empty;
-                return true;
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier >= 4;
             });
             
             
