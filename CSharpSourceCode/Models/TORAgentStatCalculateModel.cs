@@ -406,10 +406,7 @@ namespace TOR_Core.Models
 
         public AgentPropertyContainer AddPerkEffectsToAgentPropertyContainer(Agent agent, PropertyMask mask, AttackTypeMask attackMask, AgentPropertyContainer container)
         {
-            if (agent.Controller == Agent.ControllerType.Player)
-            {
-                TORCommon.Say("lol");
-            }
+            
             var proportions = container.DamageProportions;
             var damageamps = container.DamagePercentages;
             var damagebonuses = container.AdditionalDamagePercentages;
@@ -655,13 +652,44 @@ namespace TOR_Core.Models
                         result.AdditionalDamagePercentages[(int)DamageType.Physical] += choice.GetPassiveValue();
                     }
                 }
-
-                if (agent.IsUndead()&&choices.Contains("MasterOfDeadPassive2") && mask == PropertyMask.Defense)
+                
+                if (agent.IsUndead() && mask == PropertyMask.Defense)
                 {
-                    var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive2");
+                    if (choices.Contains("MasterOfDeadPassive2"))
+                    {
+                        var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive2");
+                        if (choice != null)
+                        {
+                            result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                        }
+                    }
+                    
+                    if (choices.Contains("BookofWsoranPassive3"))
+                    {
+                        var choice = TORCareerChoices.GetChoice("BookofWsoranPassive3");
+                        if (choice != null)
+                        {
+                            result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                        }
+                    }
+                    
+                }
+
+                if (agent.IsUndead()&&choices.Contains("DeArcanisKadonPassive1") && mask == PropertyMask.Attack)
+                {
+                    var choice = TORCareerChoices.GetChoice("DeArcanisKadonPassive1");
                     if (choice != null)
                     {
-                        result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                        result.AdditionalDamagePercentages[(int)DamageType.Magical] += choice.GetPassiveValue();
+                    }
+                }
+                
+                if (agent.IsUndead()&&choices.Contains("LiberMortisPassive3") && mask == PropertyMask.Attack)
+                {
+                    var choice = TORCareerChoices.GetChoice("LiberMortisPassive3");
+                    if (choice != null)
+                    {
+                        result.AdditionalDamagePercentages[(int)DamageType.Physical] += choice.GetPassiveValue();
                     }
                 }
                 

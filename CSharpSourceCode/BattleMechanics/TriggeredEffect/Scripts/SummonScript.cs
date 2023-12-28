@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
+using TOR_Core.CharacterDevelopment;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
 {
@@ -21,7 +24,28 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             var data = GetAgentBuildData(triggeredByAgent);
             bool leftSide = false;
             Vec3 lastPosition = position;
-            for(int i = 1; i < NumberToSummon + 1; i++)
+            var bonus = 0;
+
+            if (triggeredByAgent.GetHero() == Hero.MainHero)
+            {
+                if (Hero.MainHero.HasCareer(TORCareers.Necromancer))
+                {
+                    if(Hero.MainHero.HasCareerChoice("GrimoireNecrisPassive4"))
+                    {
+                        var equipmentItems = triggeredByAgent.Character.GetCharacterEquipment();
+
+                        foreach (var item in equipmentItems)
+                        {
+                            if (item.IsMagicalItem())
+                            {
+                                bonus++;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            for(int i = 1; i < NumberToSummon + 1+bonus; i++)
             {
                 lastPosition = leftSide ? new Vec3(lastPosition.X - i * 1, lastPosition.Y) : new Vec3(lastPosition.X + i * 1, lastPosition.Y);
                 leftSide = !leftSide;

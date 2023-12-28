@@ -63,8 +63,8 @@ namespace TOR_Core.Models
                 var value = playerMainAgent.GetComponent<AbilityComponent>().CareerAbility.Template.ScaleVariable1;
                 TORCommon.Say("value :"+(int)value);
                 number.Add((int)value);
-                
             }
+            
             return number;
         }
 

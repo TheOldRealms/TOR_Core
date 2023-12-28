@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 {
@@ -19,15 +21,41 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         private CareerChoiceObject _liberNecrisPassive4;
         
         private CareerChoiceObject _deArcanisKadonKeystone; // 2
+        private CareerChoiceObject _deArcanisKadonPassive1;
+        private CareerChoiceObject _deArcanisKadonPassive2;
+        private CareerChoiceObject _deArcanisKadonPassive3;
+        private CareerChoiceObject _deArcanisKadonPassive4;
+        
         private CareerChoiceObject _codexMortificaKeystone;     //3
+        private CareerChoiceObject _codexMortificaPassive1;
+        private CareerChoiceObject _codexMortificaPassive2;
+        private CareerChoiceObject _codexMortificaPassive3;
+        private CareerChoiceObject _codexMortificaPassive4;
         
         private CareerChoiceObject _liberMortisKeystone; //4
+        private CareerChoiceObject _liberMortisPassive1;
+        private CareerChoiceObject _liberMortisPassive2;
+        private CareerChoiceObject _liberMortisPassive3;
+        private CareerChoiceObject _liberMortisPassive4;
+        
         private CareerChoiceObject _bookofWsoranKeystone;        //5
+        private CareerChoiceObject _bookofWsoranPassive1;
+        private CareerChoiceObject _bookofWsoranPassive2;
+        private CareerChoiceObject _bookofWsoranPassive3;
+        private CareerChoiceObject _bookofWsoranPassive4;
+        
         private CareerChoiceObject _grimoireNecrisKeystone; //6
+        private CareerChoiceObject _grimoireNecrisPassive1;
+        private CareerChoiceObject _grimoireNecrisPassive2;
+        private CareerChoiceObject _grimoireNecrisPassive3;
+        private CareerChoiceObject _grimoireNecrisPassive4;
         
         
         private CareerChoiceObject _booksOfNagashKeystone; // 7
-
+        private CareerChoiceObject _booksOfNagashPassive1;
+        private CareerChoiceObject _booksOfNagashPassive2;
+        private CareerChoiceObject _booksOfNagashPassive3;
+        private CareerChoiceObject _booksOfNagashPassive4;
 
 
         protected override void RegisterAll()
@@ -41,14 +69,40 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _liberNecrisPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("LiberNecrisPassive4"));
             
             _deArcanisKadonKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("DeArcanisKadonKeystone"));
+            _deArcanisKadonPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("DeArcanisKadonPassive1"));
+            _deArcanisKadonPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("DeArcanisKadonPassive2"));
+            _deArcanisKadonPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("DeArcanisKadonPassive3"));
+            _deArcanisKadonPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("DeArcanisKadonPassive4"));
+            
             _codexMortificaKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("CodexMortificaKeystone"));
+            _codexMortificaPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("CodexMortificaPassive1"));
+            _codexMortificaPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("CodexMortificaPassive2"));
+            _codexMortificaPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("CodexMortificaPassive3"));
+            _codexMortificaPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("CodexMortificaPassive4"));
             
             _liberMortisKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("LiberMortisKeystone"));
+            _liberMortisPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("LiberMortisPassive1"));
+            _liberMortisPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("LiberMortisPassive2"));
+            _liberMortisPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("LiberMortisPassive3"));
+            _liberMortisPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("LiberMortisPassive4"));
+                
             _bookofWsoranKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BookofWsoranKeystone"));
-            _grimoireNecrisKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("GrimoireNecrisKeystone"));
+            _bookofWsoranPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BookofWsoranPassive1"));
+            _bookofWsoranPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BookofWsoranPassive2"));
+            _bookofWsoranPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BookofWsoranPassive3"));
+            _bookofWsoranPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BookofWsoranPassive4"));
             
+            _grimoireNecrisKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("GrimoireNecrisKeystone"));
+            _grimoireNecrisPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("GrimoireNecrisPassive1"));
+            _grimoireNecrisPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("GrimoireNecrisPassive2"));
+            _grimoireNecrisPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("GrimoireNecrisPassive3"));
+            _grimoireNecrisPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("GrimoireNecrisPassive4"));
             
             _booksOfNagashKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BooksOfNagashKeystone"));
+            _booksOfNagashPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BooksOfNagashPassive1"));
+            _booksOfNagashPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BooksOfNagashPassive2"));
+            _booksOfNagashPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BooksOfNagashPassive3"));
+            _booksOfNagashPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BooksOfNagashPassive4"));
             
             
         }
@@ -118,7 +172,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 {
                 },new CareerChoiceObject.PassiveEffect(25,PassiveEffectType.Special,true)); // add 25% Wardsave to champion
             
-            _grimoireNecrisKeystone.Initialize(CareerID, "Harbinger kills gain 2HP for caster and the Champion.", "GrimoireNecris", false,
+            _grimoireNecrisKeystone.Initialize(CareerID, "Harbinger kills gain 2HP for caster and the Champion. Harbinger gains a plate armor", "GrimoireNecris", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -139,9 +193,41 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializePassives()
         {
-            _liberNecrisPassive1.Initialize(CareerID, "Increases Party size by 10.", "LiberNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.PartySize));
-            //_liberNecrisPassive.Initialize(CareerID, "Increases Party size by 10.", "LiberNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.PartySize));
+            _liberNecrisPassive1.Initialize(CareerID, "Increases Party size by 10.", "LiberNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.PartySize));
+            _liberNecrisPassive2.Initialize(CareerID, "Increases maximum winds of magic capacities by 5.", "LiberNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
+            _liberNecrisPassive3.Initialize(CareerID, "Increases your health by 25.", "LiberNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+            _liberNecrisPassive4.Initialize(CareerID, "Increases magic spell damage by 10%.", "LiberNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
 
+            
+            _deArcanisKadonPassive1.Initialize(CareerID, "10% extra melee damage for undead troops.", "DeArcanisKadon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));
+            _deArcanisKadonPassive2.Initialize(CareerID, "Increases Party size by 10.", "DeArcanisKadon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.PartySize));
+            _deArcanisKadonPassive3.Initialize(CareerID, "15% cost reduction for spells.", "DeArcanisKadon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.WindsCostReduction, true));
+            _deArcanisKadonPassive4.Initialize(CareerID, "Increases maximum winds of magic capacities by 10.", "DeArcanisKadon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
+
+            _codexMortificaPassive1.Initialize(CareerID, "Increases Party size by 10.", "CodexMortifica", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.PartySize));
+            _codexMortificaPassive2.Initialize(CareerID, "Tier 4 Undead troops can get wounded with a 20% lower chance.", "CodexMortifica", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.Special, true));
+            _codexMortificaPassive3.Initialize(CareerID, "Wounded troops in your party heal faster.", "CodexMortifica", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration));
+            _codexMortificaPassive4.Initialize(CareerID, "Increases maximum winds of magic capacities by 10.", "CodexMortifica", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
+
+            _liberMortisPassive1.Initialize(CareerID, "Increases Party size by 25.", "LiberMortis", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.PartySize));
+            _liberMortisPassive2.Initialize(CareerID, "Attacks of undead troops can penetrate 15% armor.", "LiberMortis", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special));
+            _liberMortisPassive3.Initialize(CareerID, "Undead troops gain 15% extra physical melee damage.", "LiberMortis", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special));
+            _liberMortisPassive4.Initialize(CareerID, "PLACEHOLDER.", "LiberMortis", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special));
+
+            _bookofWsoranPassive1.Initialize(CareerID, "Increases Party size by 50.", "BookOfWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.PartySize));
+            _bookofWsoranPassive2.Initialize(CareerID, "PLACEHOLDER.", "BookOfWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special));
+            _bookofWsoranPassive3.Initialize(CareerID, "Undead troops gain 25% Ward save.", "BookOfWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
+            _bookofWsoranPassive4.Initialize(CareerID, "PLACEHOLDER.", "BookofWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special));
+            
+            _grimoireNecrisPassive1.Initialize(CareerID, "PLACEHOLDER.", "GrimoireNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special));
+            _grimoireNecrisPassive2.Initialize(CareerID, "PLACEHOLDER.", "GrimoireNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special));
+            _grimoireNecrisPassive3.Initialize(CareerID, "PLACEHOLDER.", "GrimoireNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special,true));
+            _grimoireNecrisPassive4.Initialize(CareerID, "For every magical item equipped you summon 1 unit more .", "GrimoireNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
+
+            _booksOfNagashPassive1.Initialize(CareerID, "Increases Party size by 100.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.PartySize));
+            _booksOfNagashPassive2.Initialize(CareerID, "PLACEHOLDER.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special));
+            _booksOfNagashPassive3.Initialize(CareerID, "Increases maximum winds of magic capacities by 20.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.WindsOfMagic));
+            _booksOfNagashPassive4.Initialize(CareerID, "PLACEHOLDER.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special));
         }
     }
 }

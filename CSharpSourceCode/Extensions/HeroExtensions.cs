@@ -44,7 +44,7 @@ namespace TOR_Core.Extensions
 
                 if (choices.Contains("MasterOfDeadPassive3"))
                 {
-                    var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive2");
+                    var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive3");
                     if(choice!=null)
                         explainedNumber.AddFactor(choice.GetPassiveValue());
                 }

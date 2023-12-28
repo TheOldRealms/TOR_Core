@@ -41,6 +41,12 @@ namespace TOR_Core.Models
                     if (choice != null)
                         return result + choice.GetPassiveValue();
                 }
+                if(choices.Contains( "CodexMortificaPassive2"))
+                {
+                    var choice = TORCareerChoices.GetChoice("CodexMortificaPassive2");
+                    if (choice != null)
+                        return result + choice.GetPassiveValue();
+                }
             }
 
             
