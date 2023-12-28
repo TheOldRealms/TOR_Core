@@ -2,6 +2,7 @@
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
@@ -12,8 +13,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         private CareerChoiceObject _necromancerRoot;
         
         private CareerChoiceObject _liberNecrisKeystone; // 1
+        private CareerChoiceObject _liberNecrisPassive1;
+        private CareerChoiceObject _liberNecrisPassive2;
+        private CareerChoiceObject _liberNecrisPassive3;
+        private CareerChoiceObject _liberNecrisPassive4;
+        
         private CareerChoiceObject _deArcanisKadonKeystone; // 2
-        private CareerChoiceObject _bookOfArkhan;     //3
+        private CareerChoiceObject _codexMortificaKeystone;     //3
         
         private CareerChoiceObject _liberMortisKeystone; //4
         private CareerChoiceObject _bookofWsoranKeystone;        //5
@@ -21,18 +27,21 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         
         
         private CareerChoiceObject _booksOfNagashKeystone; // 7
-        
-        
 
-        
-        
+
+
         protected override void RegisterAll()
         {
             _necromancerRoot = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NecromancerRoot"));
             
             _liberNecrisKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("LiberNecrisKeystone"));
+            _liberNecrisPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("LiberNecrisPassive1"));
+            _liberNecrisPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("LiberNecrisPassive2"));
+            _liberNecrisPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("LiberNecrisPassive3"));
+            _liberNecrisPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("LiberNecrisPassive4"));
+            
             _deArcanisKadonKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("DeArcanisKadonKeystone"));
-            _bookOfArkhan = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("CodexMortificaKeystone"));
+            _codexMortificaKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("CodexMortificaKeystone"));
             
             _liberMortisKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("LiberMortisKeystone"));
             _bookofWsoranKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BookofWsoranKeystone"));
@@ -63,20 +72,28 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 {
                     new CareerChoiceObject.MutationObject()
                     {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "summon_champion",
+                        PropertyName = "TroopIdToSummon",
+                        PropertyValue = (choice, originalValue, agent) => originalValue+"_two_handed",
+                        MutationType = OperationType.Replace
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
                         MutationTargetType = typeof(AbilityTemplate),
                         MutationTargetOriginalId = "GreaterHarbinger",
                         PropertyName = "ScaleVariable1",
                         PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Roguery}, 0.33f),
                         MutationType = OperationType.Add
                     }
-                },new CareerChoiceObject.PassiveEffect());  // two handed weapon
+                },new CareerChoiceObject.PassiveEffect()); 
             
             _deArcanisKadonKeystone.Initialize(CareerID, "Pressing Ability key allows to switch between characters; Harbinger acts indenpendant.", "DeArcanisKadon", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                 },new CareerChoiceObject.PassiveEffect());  // switch controls
                 
-            _bookOfArkhan.Initialize(CareerID, "During Champion control gain 90% damage resistance for caster. Ability scales with Medicine.", "BookOfArkhan", false,
+            _codexMortificaKeystone.Initialize(CareerID, "During Champion control gain 90% damage resistance for caster. Ability scales with Medicine.", "CodexMortifica", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -113,7 +130,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializePassives()
         {
-            
+            _liberNecrisPassive1.Initialize(CareerID, "Increases Party size by 10.", "LiberNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.PartySize));
+            //_liberNecrisPassive.Initialize(CareerID, "Increases Party size by 10.", "LiberNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.PartySize));
+
         }
     }
 }

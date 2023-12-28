@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using SandBox.View.Map;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.DotNet;
 using TaleWorlds.InputSystem;
@@ -63,7 +64,12 @@ namespace TOR_Core.AbilitySystem.Scripts
                 
                 _casterAgent.UnsetSpellCasterMode();
                 _casterAgent.Controller = Agent.ControllerType.None;
-            
+
+                if (Hero.MainHero.HasCareerChoice("CodexMortificaKeystone"))
+                {
+                    _casterAgent.ApplyStatusEffect("greater_harbinger_ward_protection",null,9999f);
+                }
+                
                 _champion.ApplyStatusEffect("greater_harbinger_debuff",null,9999f);
                 _champion.Controller = Agent.ControllerType.Player;
                 _summoned = true;
@@ -87,8 +93,9 @@ namespace TOR_Core.AbilitySystem.Scripts
                 Stop();
             }
             
-            if (Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) ||
-                Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey))
+            if ((Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) ||
+                 Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey)) 
+                && Hero.MainHero.HasCareerChoice("DeArcanisKadonKeystone"))
             {
                 switchBetweenAgents();
             }
@@ -98,6 +105,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         public override void Stop()
         {
             base.Stop();
+            _casterAgent.RemoveStatusEffect("greater_harbinger_ward_protection");
             TORCommon.Say("stop");
         }
 
@@ -110,6 +118,11 @@ namespace TOR_Core.AbilitySystem.Scripts
                 {
                     _casterAgent.Controller = Agent.ControllerType.None;
                     _champion.Controller = Agent.ControllerType.Player;
+                    
+                    if (Hero.MainHero.HasCareerChoice("CodexMortificaKeystone"))
+                    {
+                        _casterAgent.ApplyStatusEffect("greater_harbinger_ward_protection",null,9999f);
+                    }
                 }
 
                 _championIsActive = true;
@@ -121,16 +134,12 @@ namespace TOR_Core.AbilitySystem.Scripts
                 {
                     _casterAgent.Controller = Agent.ControllerType.Player;
                     _champion.Controller = Agent.ControllerType.AI;
+                    _casterAgent.RemoveStatusEffect("greater_harbinger_ward_protection");
                 }  
                 
                 _championIsActive = false;
             }
             
-        }
-
-        protected override void OnRemoved(int removeReason)
-        {
-            base.OnRemoved(removeReason);
         }
 
         private AgentBuildData GetAgentBuildData(Agent caster)
@@ -152,6 +161,8 @@ namespace TOR_Core.AbilitySystem.Scripts
                 TroopOrigin(troopOrigin).
                 IsReinforcement(true).
                 InitialDirection(Vec2.Forward);
+            
+            
             return buildData;
         }
 

@@ -35,7 +35,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _deArcanisKadon;
         private CareerChoiceGroupObject _grimoireNecris;
         private CareerChoiceGroupObject _liberMortis;
-        private CareerChoiceGroupObject _bookOfArkhan;
+        private CareerChoiceGroupObject _codexMortifica;
         private CareerChoiceGroupObject _booksOfNagash;
         
         //Minor Vampire
@@ -116,7 +116,7 @@ namespace TOR_Core.CharacterDevelopment
             _bookOfWsoran = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("BookOfWsoran"));
             _liberMortis = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("LiberMortis"));
             _booksOfNagash = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("BooksOfNagash"));
-            _bookOfArkhan = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("BookOfArkhan"));
+            _codexMortifica = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("CodexMortifica"));
      
             
             //Vampire Count
@@ -257,7 +257,7 @@ namespace TOR_Core.CharacterDevelopment
                 text = string.Empty;
                 return true;
             });
-            _bookOfArkhan.Initialize("{=arch_lector_choice_group_str}Book of Arkhan", TORCareers.Necromancer, 1, (Hero hero, out string text) =>
+            _codexMortifica.Initialize("{=arch_lector_choice_group_str}Codex Mortifica", TORCareers.Necromancer, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;

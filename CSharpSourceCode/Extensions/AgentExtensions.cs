@@ -723,6 +723,13 @@ namespace TOR_Core.Extensions
             var comp = agent.GetComponent<StatusEffectComponent>();
             if (comp != null) comp.RunStatusEffect(effectId, applierAgent, duration, append, isMutated);
         }
+        
+        public static void RemoveStatusEffect(this Agent agent, string effectId)
+        {
+            TORCommon.Say(effectId+" removed");
+            var comp = agent.GetComponent<StatusEffectComponent>();
+            if (comp != null) comp.RemoveStatusEffect(effectId);
+        }
 
         public static void FallDown(this Agent agent)
         {
