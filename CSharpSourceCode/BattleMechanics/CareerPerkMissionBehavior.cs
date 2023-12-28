@@ -54,7 +54,7 @@ namespace TOR_Core.BattleMechanics
             if(affectorAgent == null) return;
             if(affectorAgent.IsMount) return;
 
-            if ((blow.InflictedDamage>affectedAgent.Health)&&affectedAgent.HasAttribute("NecromancerChampion") && affectedAgent.IsMainAgent )
+            if ((blow.InflictedDamage>=affectedAgent.Health)&&affectedAgent.HasAttribute("NecromancerChampion") && affectedAgent.IsMainAgent )
             {
                 var agent = Mission.Current.Agents.FirstOrDefault(x => x.IsHero && x.GetHero() == Hero.MainHero);
 

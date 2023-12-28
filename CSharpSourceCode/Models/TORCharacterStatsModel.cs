@@ -2,9 +2,12 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade;
+using TOR_Core.AbilitySystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -56,7 +59,11 @@ namespace TOR_Core.Models
 
             if (character.HasAttribute("NecromancerChampion"))
             {
-                number.Add(100);
+                var playerMainAgent = Mission.Current.Agents.FirstOrDefault(x => x.IsHero && x.GetHero() == Hero.MainHero);
+                var value = playerMainAgent.GetComponent<AbilityComponent>().CareerAbility.Template.ScaleVariable1;
+                
+                number.Add((int)value);
+                
             }
             return number;
         }

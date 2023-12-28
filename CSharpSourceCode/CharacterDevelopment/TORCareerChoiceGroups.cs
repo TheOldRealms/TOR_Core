@@ -36,7 +36,6 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _codexMortifica;
         private CareerChoiceGroupObject _grimoireNecris;
         private CareerChoiceGroupObject _liberMortis;
-        
         private CareerChoiceGroupObject _bookOfArkhan;
 
         
@@ -116,7 +115,7 @@ namespace TOR_Core.CharacterDevelopment
             _deArcanisKadon = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("DeArcanisKadon"));
             _codexMortifica = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("CodexMortifica"));
             _grimoireNecris = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("GrimoireNecris"));
-            _tomeOfThousandSouls = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("TomesOfThousandSouls"));
+            _tomeOfThousandSouls = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("TomeOfThousandSouls"));
             _liberMortis = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("LiberMortis"));
             
             _bookOfArkhan = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("BookOfArkhan"));
