@@ -34,14 +34,12 @@ namespace TOR_Core.BattleMechanics
                         var choices = Agent.Main.GetHero().GetAllCareerChoices();
                         if (affectorAgent.IsMainAgent || affectorAgent.IsSpellCaster() && choices.Contains("InspirationOfTheLadyKeystone"))
                         {
-                            var cAbility = Agent.Main.GetComponent<AbilityComponent>();
-                            if (cAbility != null)
-                            {
-                                var value = CareerHelper.CalculateChargeForCareer(ChargeType.DamageDone, totalAmountOfHeal, AttackTypeMask.Spell);
-                                
-                                cAbility.CareerAbility.AddCharge(value);
-                            }
+                            Agent.Main.CalculateCareerAbilityCharge(totalAmountOfHeal,ChargeType.DamageDone,AttackTypeMask.Spell);
                         }
+                    }
+                    if (Agent.Main.GetHero().GetCareer() == TORCareers.Necromancer)
+                    {
+                        Agent.Main.CalculateCareerAbilityCharge(totalAmountOfHeal,ChargeType.DamageDone,AttackTypeMask.Spell);
                     }
                 }
             }
@@ -73,12 +71,7 @@ namespace TOR_Core.BattleMechanics
                     AttackTypeMask mask= DamagePatch.DetermineMask(blow);
                     if (mask == AttackTypeMask.Spell)
                     {
-                        var value = CareerHelper.CalculateChargeForCareer(ChargeType.DamageDone, blow.InflictedDamage, mask);
-                        var cAbility = Agent.Main.GetComponent<AbilityComponent>();
-                        if (cAbility != null)
-                        {
-                            cAbility.CareerAbility.AddCharge(value);
-                        }
+                        Agent.Main.CalculateCareerAbilityCharge(blow.InflictedDamage,ChargeType.DamageDone, mask);
                     }
                 }
             }
@@ -88,7 +81,7 @@ namespace TOR_Core.BattleMechanics
             
 
             if( affectorAgent.IsHero 
-                                    && (affectorAgent.IsMainAgent && affectorAgent.GetHero().HasCareer(TORCareers.WitchHunter) || 
+                                    && (affectorAgent.IsMainAgent && affectorAgent.GetHero().HasCareer(TORCareers.WitchHunter) || affectorAgent.IsHero&&
                                         (affectorAgent.GetHero().PartyBelongedTo == MobileParty.MainParty && Hero.MainHero.HasCareerChoice("NoRestAgainstEvilKeystone"))))
             {
                 var comp = affectedAgent.GetComponent<StatusEffectComponent>();
@@ -142,6 +135,12 @@ namespace TOR_Core.BattleMechanics
 
                     
                 }
+            }
+
+
+            if (affectorAgent.GetOriginMobileParty() == MobileParty.MainParty && affectorAgent.IsUndead())
+            {
+                Agent.Main.CalculateCareerAbilityCharge(blow.InflictedDamage,ChargeType.DamageDone,AttackTypeMask.Melee);
             }
 
 

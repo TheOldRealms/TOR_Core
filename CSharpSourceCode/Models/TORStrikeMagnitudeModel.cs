@@ -35,9 +35,9 @@ namespace TOR_Core.Models
                 {
                     if (Hero.MainHero.HasCareer(TORCareers.Necromancer))
                     {
-                        if (Hero.MainHero.HasCareerChoice("GrimoireNecrisPassive1"))
+                        if (Hero.MainHero.HasCareerChoice("LiberMortisPassive2"))
                         {
-                            var choice = TORCareerChoices.GetChoice("GrimoireNecrisPassive1");
+                            var choice = TORCareerChoices.GetChoice("LiberMortisPassive2");
                             resultArmor.AddFactor(choice.GetPassiveValue());
                         }
                     }

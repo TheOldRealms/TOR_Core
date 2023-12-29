@@ -146,7 +146,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                        
                         
                     }
-                    
+                    if (heroCareer == TORCareers.Necromancer)
+                    {
+                        if (mask == AttackTypeMask.Spell)
+                        {
+                            explainedNumber.AddFactor(-0.9f);
+                        }
+                        
+                        explainedNumber.Add(chargeValue);
+                    }
                     if (heroCareer == TORCareers.GrailDamsel&& mask == AttackTypeMask.Spell)
                     { 
                         explainedNumber.Add(chargeValue);

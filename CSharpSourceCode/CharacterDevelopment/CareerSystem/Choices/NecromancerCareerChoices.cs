@@ -219,7 +219,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _bookofWsoranPassive3.Initialize(CareerID, "Undead troops gain 25% Ward save.", "BookOfWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
             _bookofWsoranPassive4.Initialize(CareerID, "PLACEHOLDER.", "BookOfWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special));
             
-            _grimoireNecrisPassive1.Initialize(CareerID, "undead troops in your formation gain 15% armor penetration.", "GrimoireNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special,true));
+            _grimoireNecrisPassive1.Initialize(CareerID, "Cooldown reduction for spells by 25%.", "GrimoireNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.WindsCooldownReduction,true));
             _grimoireNecrisPassive2.Initialize(CareerID, "PLACEHOLDER.", "GrimoireNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special));
             _grimoireNecrisPassive3.Initialize(CareerID, "Buffs and healing duration is increased by 50%.", "GrimoireNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.5f, PassiveEffectType.BuffDuration,true));
             _grimoireNecrisPassive4.Initialize(CareerID, "For every magical item equipped you summon 1 unit more .", "GrimoireNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
