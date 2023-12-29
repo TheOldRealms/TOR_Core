@@ -1481,95 +1481,49 @@
 		</LightColorRGB>
 		<TriggeredEffect>breath_of_darkness</TriggeredEffect>
 	</AbilityTemplate>
-<!-- 	<AbilityTemplate StringID="WitheringWave" 
-      Name="Withering Wave " 
-      SpriteName="witheringwave_icon" 
-      CoolDown="30" 
-      WindsOfMagicCost="16" 
-      BaseMisCastChance="0.3" 
-      Duration="8" 
-      Radius="2" 
-      AbilityType="Spell" 
-      AbilityEffectType="Vortex" 
-      BaseMovementSpeed="3" 
-      TickInterval="0.5" 
-      TriggerType="EveryTick" 
-      HasLight="false" 
-      LightIntensity="50" 
-      LightRadius="10" 
-      LightFlickeringMagnitude="0" 
-      LightFlickeringInterval="0" 
-      ShadowCastEnabled="false" 
-      ParticleEffectPrefab="withering_wave" 
-      ParticleEffectSizeModifier="1" 
-      SoundEffectToPlay="windofdeath_whispers" 
-      ShouldSoundLoopOverDuration="true"
-      CastType="WindUp" 
-      CastTime="0.5" 
-      AnimationActionName="act_release_heavy_thrown" 
-      Offset="3"
-      AbilityTargetType="GroundAtPosition"
-      CrosshairType="TargetedAOE"
-      MinDistance="3"
+	<AbilityTemplate StringID="VanHelsDanseMacabre"
+      Name="{=vanhelsdansemacabre_label_str}Vanhel's Danse Macabre"
+      SpriteName="breathofdarkness_icon"
+      CoolDown="30"
+      WindsOfMagicCost="12"
+      BaseMisCastChance="0.05"
+      Duration="0"
+      Radius="3"
+      AbilityType="Spell"
+      AbilityEffectType="Heal"
+      BaseMovementSpeed="0"
+      TickInterval="-1"
+      TriggerType="TickOnce"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab=""
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.5"
+      AbilityTargetType="AlliesInAOE"
+      TargetCapturingRadius="4"
       MaxDistance="20"
-      TargetCapturingRadius="2"
-      MaxRandomDeviation="2"
-      ShouldRotateVisuals="false"
-      VisualsRotationVelocity="0"
+      CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="Necromancy"
-      TooltipDescription="A withering wave rolls over randomly the countryside consuming the life energy of those caught within.">
+      TooltipDescription="{=vanhelsdansemacabre_description_str}The animated dead are normally ungainly and cumbersome; this spell, however, gives them grace and speed - and makes then all the more deadly as a result.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>witheringwave_tick</TriggeredEffect>
-	</AbilityTemplate> -->
-	<AbilityTemplate StringID="Kandorak" 
-      Name="{=kandorak_label_str}G" 
-      SpriteName="theharbinger_icon" 
-      CoolDown="30" 
-      WindsOfMagicCost="6" 
-      BaseMisCastChance="0.3" 
-      Duration="2" 
-      Radius="2" 
-      AbilityType="Spell" 
-      AbilityEffectType="Summoning" 
-      BaseMovementSpeed="0" 
-      TickInterval="2" 
-      TriggerType="TickOnce" 
-      HasLight="false" 
-      LightIntensity="0" 
-      LightRadius="0" 
-      LightFlickeringMagnitude="0" 
-      LightFlickeringInterval="0" 
-      ShadowCastEnabled="false" 
-      ParticleEffectPrefab="raise_dead" 
-      ParticleEffectSizeModifier="1" 
-      SoundEffectToPlay="rocks_grinding" 
-      ShouldSoundLoopOverDuration="true"
-      CastType="Instant" 
-      CastTime="0" 
-      AnimationActionName="act_release_heavy_thrown" 
-      Offset="10"
-      AbilityTargetType="GroundAtPosition"
-      CrosshairType="Pointer"
-      MinDistance="1"
-      MaxDistance="30"
-      TargetCapturingRadius="2.5"
-      SpellTier="3"
-      BelongsToLoreID="Necromancy"
-      TooltipDescription="{=kandorak_description_str}Raises champions of death to serve the caster. Summon 4 Grave Guard units for the remainder of the battle.">
-		<LightColorRGB x="255" y="170" z="0" w="-1">
-			<AsVec2>
-				<x>255</x>
-				<y>170</y>
-			</AsVec2>
-		</LightColorRGB>
-		<TriggeredEffect>summon_kandorak</TriggeredEffect>
+		<TriggeredEffect>apply_vanhelsdansemacabre</TriggeredEffect>
 	</AbilityTemplate>
+	
 	<AbilityTemplate StringID="ScreamingSkull" 
       Name="{=screaming_skull_label_str}Screaming Skull" 
       SpriteName="screamingskull_icon" 

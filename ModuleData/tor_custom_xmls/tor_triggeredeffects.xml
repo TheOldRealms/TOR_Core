@@ -1000,6 +1000,22 @@
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>mistwalk_healing_group</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
+	  
+	  <TriggeredEffectTemplate StringID="apply_vanhelsdansemacabre" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="10" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="2.1" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>vanhelsdansemacabre_ats</ImbuedStatusEffect>
+			<ImbuedStatusEffect>vanhelsdansemacabre_mvs</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
       
       <TriggeredEffectTemplate StringID="apply_righteous_fury_pulse" 
             BurstParticleEffectPrefab="righteous_fury_dmg_pulse" 

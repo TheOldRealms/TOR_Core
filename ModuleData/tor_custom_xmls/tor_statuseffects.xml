@@ -437,9 +437,25 @@
 		type="Resistance">
 		<temporary_attribute>ClearBloodBurst</temporary_attribute>
 	</StatusEffectTemplate>
-	
-	
-	
+	<StatusEffectTemplate 
+		id="vanhelsdansemacabre_ats" 
+		particle_id="breath_of_darkness"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.25"
+		damage_type="Physical"
+		type="AttackSpeedManipulation">
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="vanhelsdansemacabre_mvs" 
+		particle_id="breath_of_darkness"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.1"
+		damage_type="Physical"
+		type="MovementManipulation">
+	</StatusEffectTemplate>
+
 	<StatusEffectTemplate 
 		id="fire_cloak_phy_res" 
 		particle_id="firecloak"
