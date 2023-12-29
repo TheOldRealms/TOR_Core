@@ -61,10 +61,10 @@ namespace TOR_Core.AbilitySystem.Scripts
         {
             if (!_summoned)
             {
-                var data = GetAgentBuildData(_casterAgent);
+                var data = TORSummonHelper.GetAgentBuildData(_casterAgent,_summonedChampionId);
                 bool leftSide = false;
             
-                _champion = SpawnAgent(data, _targetPosition);
+                _champion = TORSummonHelper.SpawnAgent(data, _targetPosition);
                 
                 _casterAgent.UnsetSpellCasterMode();
                 _casterAgent.Controller = Agent.ControllerType.None;
@@ -145,41 +145,5 @@ namespace TOR_Core.AbilitySystem.Scripts
             }
             
         }
-
-        private AgentBuildData GetAgentBuildData(Agent caster)
-        {
-            BasicCharacterObject troopCharacter = MBObjectManager.Instance.GetObject<BasicCharacterObject>(_summonedChampionId);
-            
-            IAgentOriginBase troopOrigin = new SummonedAgentOrigin(caster, troopCharacter);
-            var formation = caster.Team.GetFormation(FormationClass.Infantry);
-            if (formation == null)
-            {
-                formation = caster.Formation;
-            }
-            AgentBuildData buildData = new AgentBuildData(troopCharacter).
-                Team(caster.Team).
-                Formation(formation).
-                ClothingColor1(caster.Team.Color).
-                ClothingColor2(caster.Team.Color2).
-                Equipment(troopCharacter.GetFirstEquipment(false)).
-                TroopOrigin(troopOrigin).
-                IsReinforcement(true).
-                InitialDirection(Vec2.Forward);
-            
-            
-            return buildData;
-        }
-
-        private Agent SpawnAgent(AgentBuildData buildData, Vec3 position)
-        {
-            Agent troop = Mission.Current.SpawnAgent(buildData, false);
-            troop.TeleportToPosition(position);
-            troop.FadeIn();
-            troop.SetWatchState(Agent.WatchState.Alarmed);
-            return troop;
-        }
-
-
-       
     }
 }

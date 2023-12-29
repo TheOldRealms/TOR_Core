@@ -1234,7 +1234,7 @@
       <EquipmentSet id="tor_vc_grave_guard_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_grave_guard_champion_two_handed" default_group="infantry" level="31" name="{=str_tor_vc_grave_guard_seneschal}Grave Guard Champion" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level31" race="skeleton">
+  <NPCCharacter id="tor_vc_grave_guard_champion_two_handed" default_group="infantry" level="36" name="{=str_tor_vc_grave_guard_seneschal}Grave Guard Champion" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level31" race="skeleton">
     <face>
       <face_key_template value="BodyProperty.skeleton" />
     </face>
@@ -1244,7 +1244,7 @@
       <EquipmentSet id="tor_vc_grave_guard_seneschal_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_grave_guard_champion_plate" default_group="infantry" level="31" name="{=str_tor_vc_grave_guard_seneschal}Grave Guard Champion" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level31" race="skeleton">
+  <NPCCharacter id="tor_vc_grave_guard_champion_plate" default_group="infantry" level="41" name="{=str_tor_vc_grave_guard_seneschal}Grave Guard Champion" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level31" race="skeleton">
     <face>
       <face_key_template value="BodyProperty.skeleton" />
     </face>
@@ -1254,7 +1254,7 @@
       <EquipmentSet id="tor_vc_hell_knight_template_plate" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_grave_guard_champion_plate_two_handed" default_group="infantry" level="31" name="{=str_tor_vc_grave_guard_seneschal}Grave Guard Champion" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level31" race="skeleton">
+  <NPCCharacter id="tor_vc_grave_guard_champion_plate_two_handed" default_group="infantry" level="46" name="{=str_tor_vc_grave_guard_seneschal}Grave Guard Champion" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level31" race="skeleton">
     <face>
       <face_key_template value="BodyProperty.skeleton" />
     </face>

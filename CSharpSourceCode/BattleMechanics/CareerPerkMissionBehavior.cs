@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Scripts;
@@ -227,8 +228,42 @@ namespace TOR_Core.BattleMechanics
                     
                     Hero.MainHero.AddSkillXp(TORSkills.SpellCraft,20); 
                 }
+
+              
                 
             }
+            
+            if (agentState == AgentState.Killed && affectedAgent.IsUndead() && affectedAgent.GetOriginMobileParty()== MobileParty.MainParty && Hero.MainHero.HasCareerChoice("BooksOfNagashPassive2"))
+            {
+                var level = affectedAgent.Character.Level;
+                if (level > 1)
+                {
+
+                    var lowerSkeleton = MBObjectManager.Instance.CreateObject<CharacterObject>("tor_vc_summoned_skeleton");
+
+                    if (lowerSkeleton != null)
+                    {
+                        var leaderAgent = Mission.Current.MainAgent;
+                        var spawnCount = level / 7;
+                        
+                        if(spawnCount>1)
+
+                        {
+                            for (int i = 0; i < spawnCount; i++)
+                            {
+                                var data = TORSummonHelper.GetAgentBuildData(leaderAgent, "tor_vc_summoned_skeleton");
+                            
+                                var position = Mission.Current.GetRandomPositionAroundPoint(affectedAgent.Position, 1, 3, false);
+                                TORSummonHelper.SpawnAgent(data, position);
+                            }
+                        }
+                    }
+                }
+            }
         }
+
+        
+        
+        
     }
 }
