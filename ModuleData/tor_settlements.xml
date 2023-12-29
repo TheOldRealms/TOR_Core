@@ -3734,7 +3734,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_NL2" name="{=Settlements.Settlement.name.town_NL2}Dietershafen" owner="Faction.reikland_clan_3" posX="1326.672" posY="1363.607" culture="Culture.empire" gate_posX="1327.424" gate_posY="1363.004" text="{=!}At the Confluence of the River Reik and the River Schilder sits the town of Schilderheim. Ruled by Graf Robert von Uhland, Schilderheim is an important river market down river from altdorf, being one of the last places that trade on the River Reik can stop before reaching Marienburg.">
+  <Settlement id="town_NL2" name="{=Settlements.Settlement.name.town_NL2}Dietershafen" owner="Faction.reikland_clan_3" posX="1328.893" posY="1360.356" culture="Culture.empire" gate_posX="1329.392" gate_posY="1359.532" text="{=!}At the Confluence of the River Reik and the River Schilder sits the town of Schilderheim. Ruled by Graf Robert von Uhland, Schilderheim is an important river market down river from altdorf, being one of the last places that trade on the River Reik can stop before reaching Marienburg.">
     <Components>
       <Town id="town_comp_NL2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -3873,7 +3873,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_NL5" name="{=Settlements.Settlement.name.town_NL5}Hargendorf" owner="Faction.reikland_clan_4" posX="1285.47" posY="1367.949" culture="Culture.empire" gate_posX="1285.347" gate_posY="1366.993" text="{=!}Bögenhafen is a prominent market town that sits on either side of the River Bögen. It is midway between Altdorf and Montfort allowing the town to maintain its economic importance through nearly any hardship. The northside of the town, known as the Pit, is the smallest and poorest section of Bögenhafen. The Southside of the town is where most of the wealth and all of the town’s important institutions reside, including its religious temples and town hall. A town council rules in the name of Graf Wilhelm von Saponatheim.">
+  <Settlement id="town_NL5" name="{=Settlements.Settlement.name.town_NL5}Hargendorf" owner="Faction.reikland_clan_4" posX="1285.47" posY="1367.949" culture="Culture.empire" gate_posX="1286.308" gate_posY="1366.485" text="{=!}Bögenhafen is a prominent market town that sits on either side of the River Bögen. It is midway between Altdorf and Montfort allowing the town to maintain its economic importance through nearly any hardship. The northside of the town, known as the Pit, is the smallest and poorest section of Bögenhafen. The Southside of the town is where most of the wealth and all of the town’s important institutions reside, including its religious temples and town hall. A town council rules in the name of Graf Wilhelm von Saponatheim.">
     <Components>
       <Town id="town_comp_NL5" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -4432,7 +4432,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_LL1_1" name="{=Settlements.Settlement.name.castle_village_LL1_1}Sarrielrein" posX="1237.397" posY="1357.658" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_LL1_1} In the west of Parravon, near the borders of Montfort, Laval holds a tight knit relationship with its neighbour, Etoy. They often trade goods, such as raw materials for leather and hides. During the Lily Day, the two villages have many weddings and hold a small festival.">
+  <Settlement id="castle_village_LL1_1" name="{=Settlements.Settlement.name.castle_village_LL1_1}Sarrielrein" posX="1237.792" posY="1355.316" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_LL1_1} In the west of Parravon, near the borders of Montfort, Laval holds a tight knit relationship with its neighbour, Etoy. They often trade goods, such as raw materials for leather and hides. During the Lily Day, the two villages have many weddings and hold a small festival.">
     <Components>
       <Village id="castle_village_comp_LL1_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.town_LL1" bound="Settlement.castle_LL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4445,7 +4445,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_LL1_2" name="{=Settlements.Settlement.name.castle_village_LL1_2}Farisar's Rock" posX="1261.047" posY="1365.118" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_LL1_1} In the west of Parravon, near the borders of Montfort, Laval holds a tight knit relationship with its neighbour, Etoy. They often trade goods, such as raw materials for leather and hides. During the Lily Day, the two villages have many weddings and hold a small festival.">
+  <Settlement id="castle_village_LL1_2" name="{=Settlements.Settlement.name.castle_village_LL1_2}Farisar's Rock" posX="1259.461" posY="1359.551" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_LL1_1} In the west of Parravon, near the borders of Montfort, Laval holds a tight knit relationship with its neighbour, Etoy. They often trade goods, such as raw materials for leather and hides. During the Lily Day, the two villages have many weddings and hold a small festival.">
     <Components>
       <Village id="castle_village_comp_LL1_2" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.town_LL1" bound="Settlement.castle_LL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4577,7 +4577,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_WA2" name="{=Settlements.Settlement.name.town_WA2}Aarnau" owner="Faction.reikland_clan_3" posX="1190.483" posY="1330.157" culture="Culture.empire" gate_posX="1190.132" gate_posY="1324.412" text="{=!}At the Confluence of the River Reik and the River Schilder sits the town of Schilderheim. Ruled by Graf Robert von Uhland, Schilderheim is an important river market down river from altdorf, being one of the last places that trade on the River Reik can stop before reaching Marienburg.">
+  <Settlement id="town_WA2" name="{=Settlements.Settlement.name.town_WA2}Aarnau" owner="Faction.reikland_clan_3" posX="1190.483" posY="1330.157" culture="Culture.empire" gate_posX="1194.136" gate_posY="1326.854" text="{=!}At the Confluence of the River Reik and the River Schilder sits the town of Schilderheim. Ruled by Graf Robert von Uhland, Schilderheim is an important river market down river from altdorf, being one of the last places that trade on the River Reik can stop before reaching Marienburg.">
     <Components>
       <Town id="town_comp_WA2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -4636,7 +4636,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_WA1" name="{=Settlements.Settlement.name.castle_WA1}Fort Solace" owner="Faction.talabecland_clan_1" posX="1151.266" posY="1274.353" culture="Culture.empire" gate_posX="1150.422" gate_posY="1273.93" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_WA1" name="{=Settlements.Settlement.name.castle_WA1}Fort Solace" owner="Faction.talabecland_clan_1" posX="1149.254" posY="1272.096" culture="Culture.empire" gate_posX="1148.327" gate_posY="1272.27" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
       <Town id="castle_comp_WA1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
