@@ -225,7 +225,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _grimoireNecrisPassive4.Initialize(CareerID, "For every magical item equipped you summon 1 unit more .", "GrimoireNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
 
             _booksOfNagashPassive1.Initialize(CareerID, "Increases Party size by 100.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.PartySize));
-            _booksOfNagashPassive2.Initialize(CareerID, "For every fallen higher tier undead, based on the troop tier more skeletons are summoned.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special));
+            _booksOfNagashPassive2.Initialize(CareerID, "PLACEHOLDER.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special));
             _booksOfNagashPassive3.Initialize(CareerID, "Increases maximum winds of magic capacities by 20.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.WindsOfMagic));
             _booksOfNagashPassive4.Initialize(CareerID, "PLACEHOLDER.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special));
         }

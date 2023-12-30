@@ -53,7 +53,7 @@ namespace TOR_Core.BattleMechanics
             if(affectorAgent == null) return;
             if(affectorAgent.IsMount) return;
 
-            if ((blow.InflictedDamage>=affectedAgent.Health)&&affectedAgent.HasAttribute("NecromancerChampion") && affectedAgent.IsMainAgent )
+            if ((blow.InflictedDamage>=affectedAgent.Health+5)&&affectedAgent.HasAttribute("NecromancerChampion") && affectedAgent.IsMainAgent )
             {
                 var agent = Mission.Current.Agents.FirstOrDefault(x => x.IsHero && x.GetHero() == Hero.MainHero);
 
@@ -152,6 +152,14 @@ namespace TOR_Core.BattleMechanics
             if (affectorAgent == null) return;
             if(affectedAgent.IsMount) return;
             
+            
+            if (affectedAgent.HasAttribute("NecromancerChampion") && affectedAgent.IsMainAgent )
+            {
+                var agent = Mission.Current.Agents.FirstOrDefault(x => x.IsHero && x.GetHero() == Hero.MainHero);
+
+                if (agent != null) agent.Controller = Agent.ControllerType.Player;
+            }
+            
             if (affectorAgent.IsMainAgent)
             {
                 var playerHero = affectorAgent.GetHero();
@@ -230,34 +238,6 @@ namespace TOR_Core.BattleMechanics
 
               
                 
-            }
-            
-            if (agentState == AgentState.Killed && affectedAgent.IsUndead() && affectedAgent.GetOriginMobileParty()== MobileParty.MainParty && Hero.MainHero.HasCareerChoice("BooksOfNagashPassive2"))
-            {
-                var level = affectedAgent.Character.Level;
-                if (level > 1)
-                {
-
-                    var lowerSkeleton = MBObjectManager.Instance.CreateObject<CharacterObject>("tor_vc_summoned_skeleton");
-
-                    if (lowerSkeleton != null)
-                    {
-                        var leaderAgent = Mission.Current.MainAgent;
-                        var spawnCount = level / 7;
-                        
-                        if(spawnCount>1)
-
-                        {
-                            for (int i = 0; i < spawnCount; i++)
-                            {
-                                var data = TORSummonHelper.GetAgentBuildData(leaderAgent, "tor_vc_summoned_skeleton");
-                            
-                                var position = Mission.Current.GetRandomPositionAroundPoint(affectedAgent.Position, 1, 3, false);
-                                TORSummonHelper.SpawnAgent(data, position);
-                            }
-                        }
-                    }
-                }
             }
         }
 

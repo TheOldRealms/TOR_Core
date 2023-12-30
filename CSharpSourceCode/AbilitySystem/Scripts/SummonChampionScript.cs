@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Forms;
+using SandBox.Missions.MissionLogics;
 using SandBox.View.Map;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
@@ -9,6 +11,7 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.GauntletUI.Widgets.Scoreboard;
 using TaleWorlds.MountAndBlade.View.MissionViews;
 using TaleWorlds.ObjectSystem;
+using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.BattleMechanics.TriggeredEffect.Scripts;
 using TOR_Core.Extensions;
@@ -24,14 +27,13 @@ namespace TOR_Core.AbilitySystem.Scripts
         private bool _summoned;
         
         private Vec3 _targetPosition;
-
         private Agent _champion;
-
         private bool _championIsActive;
-
         private bool _isDisabled;
-        
+        private bool _isHideOutMission;
         private GameKey _specialMoveKey;
+        
+        private MissionCameraFadeView _cameraView;
 
 
         protected override void OnInit()
@@ -51,6 +53,14 @@ namespace TOR_Core.AbilitySystem.Scripts
                 }
                
             }
+
+            if (Mission.Current.GetMissionBehavior<HideoutMissionController>() != null)
+            {
+                _isHideOutMission = true;
+                
+            }
+
+            _cameraView = Mission.Current.GetMissionBehavior<MissionCameraFadeView>();
             
             _specialMoveKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("SpecialMove");
 
@@ -61,25 +71,8 @@ namespace TOR_Core.AbilitySystem.Scripts
         {
             if (!_summoned)
             {
-                var data = TORSummonHelper.GetAgentBuildData(_casterAgent,_summonedChampionId);
-                bool leftSide = false;
-            
-                _champion = TORSummonHelper.SpawnAgent(data, _targetPosition);
-                
-                _casterAgent.UnsetSpellCasterMode();
-                _casterAgent.Controller = Agent.ControllerType.None;
-
-                if (Hero.MainHero.HasCareerChoice("CodexMortificaKeystone"))
-                {
-                    _casterAgent.ApplyStatusEffect("greater_harbinger_ward_protection",null,9999f);
-                }
-                
-                _champion.ApplyStatusEffect("greater_harbinger_debuff",null,9999f);
-                _champion.Controller = Agent.ControllerType.Player;
-                _summoned = true;
-                _championIsActive = true;
+                InitialShiftToChampion();
             }
-
             
 
             if (!_casterAgent.IsActive() && !_isDisabled)
@@ -109,8 +102,77 @@ namespace TOR_Core.AbilitySystem.Scripts
         public override void Stop()
         {
             base.Stop();
+            if (_championIsActive)
+            {
+                ShiftControllerToCaster();
+            }
             _casterAgent.RemoveStatusEffect("greater_harbinger_ward_protection");
             TORCommon.Say("stop");
+        }
+
+        private void InitialShiftToChampion()
+        {
+            var data = TORSummonHelper.GetAgentBuildData(_casterAgent,_summonedChampionId);
+            
+            _champion = TORSummonHelper.SpawnAgent(data, _targetPosition);
+                
+            _casterAgent.UnsetSpellCasterMode();
+            
+            
+            _champion.ApplyStatusEffect("greater_harbinger_debuff",null,9999f);
+
+            if (_isHideOutMission)
+            {
+                _champion.Formation=null;
+                _casterAgent.Team.PlayerOrderController.SelectAllFormations();
+                _casterAgent.Team.PlayerOrderController.SetOrder(OrderType.Charge);
+            }
+            
+            ShiftControllerToChampion();
+            
+            _summoned = true;
+            
+        }
+
+        private void ShiftControllerToChampion()
+        {
+            if (_champion.Health>0)
+            {
+                _casterAgent.Controller = Agent.ControllerType.None;
+                _champion.Controller = Agent.ControllerType.Player;
+                _casterAgent.SetTargetPosition(_casterAgent.Position.AsVec2);
+                
+                //_casterAgent.SetTargetPosition(_casterAgent.Position.AsVec2);
+                    
+                if (Hero.MainHero.HasCareerChoice("CodexMortificaKeystone"))
+                {
+                    _casterAgent.ApplyStatusEffect("greater_harbinger_ward_protection",null,9999f);
+                }
+                _championIsActive = true;
+            }
+
+            _cameraView.BeginFadeOutAndIn(0.1f, 0.1f, 0.5f);
+        }
+        private void ShiftControllerToCaster()
+        {
+            _casterAgent.ClearTargetFrame();
+           // _casterAgent.SetTargetPosition();
+            if (_isHideOutMission)
+            {
+                _casterAgent.Team.PlayerOrderController.SelectAllFormations();
+                _casterAgent.Team.PlayerOrderController.SetOrder(OrderType.Charge);
+            }
+            
+            if (_casterAgent.Health>0)
+            {
+                _casterAgent.Controller = Agent.ControllerType.Player;
+                _champion.Controller = Agent.ControllerType.AI;
+                _casterAgent.RemoveStatusEffect("greater_harbinger_ward_protection");
+            }  
+            
+            _cameraView.BeginFadeOutAndIn(0.1f, 0.1f, 0.5f);
+            
+            _championIsActive = false;
         }
 
 
@@ -118,30 +180,11 @@ namespace TOR_Core.AbilitySystem.Scripts
         {
             if (!_championIsActive && _summoned)
             {
-                if (_champion.Health>0)
-                {
-                    _casterAgent.Controller = Agent.ControllerType.None;
-                    _champion.Controller = Agent.ControllerType.Player;
-                    
-                    if (Hero.MainHero.HasCareerChoice("CodexMortificaKeystone"))
-                    {
-                        _casterAgent.ApplyStatusEffect("greater_harbinger_ward_protection",null,9999f);
-                    }
-                }
-
-                _championIsActive = true;
-
+                ShiftControllerToChampion();
             }
             else
             {
-                if (_casterAgent.Health>0)
-                {
-                    _casterAgent.Controller = Agent.ControllerType.Player;
-                    _champion.Controller = Agent.ControllerType.AI;
-                    _casterAgent.RemoveStatusEffect("greater_harbinger_ward_protection");
-                }  
-                
-                _championIsActive = false;
+                ShiftControllerToCaster();
             }
             
         }
