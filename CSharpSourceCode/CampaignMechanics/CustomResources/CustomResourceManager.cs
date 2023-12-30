@@ -11,6 +11,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
 using TaleWorlds.Core;
 using TaleWorlds.ScreenSystem;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -94,15 +95,43 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             _instance._resourceChanges.Clear();
             if ((Hero.MainHero.IsVampire() || Hero.MainHero.IsNecromancer()) && PartyScreenManager.Instance.CurrentMode == PartyScreenMode.Loot)
             {
-                if (leftMemberRoster != null && leftMemberRoster.TotalManCount > 0)
-                {
-                    Hero.MainHero.AddCultureSpecificCustomResource(leftMemberRoster.TotalManCount / 10);
+                var result = 0f;
+                if (leftMemberRoster!=null && leftMemberRoster.Count > 0)
+                { 
+                    result = adjustedGainsForDarkEnergy(leftMemberRoster);
                 }
-                if (leftPrisonRoster != null && leftPrisonRoster.TotalManCount > 0)
-                {
-                    Hero.MainHero.AddCultureSpecificCustomResource(leftPrisonRoster.TotalManCount / 10);
+                
+                if (leftPrisonRoster!=null&& leftPrisonRoster.Count > 0)
+                { 
+                    result = adjustedGainsForDarkEnergy(leftPrisonRoster, true);
                 }
+                
+                Hero.MainHero.AddCultureSpecificCustomResource(result);
             }
+        }
+
+
+        private static float adjustedGainsForDarkEnergy(TroopRoster leftUnits, bool isPrisoner=false)
+        {
+            var explainedNumber = new ExplainedNumber();
+            float reduction = 10;
+            if (isPrisoner)
+            {
+                reduction /= 2;
+            }
+                
+            foreach (var troop in leftUnits.GetTroopRoster().ToList())
+            {
+                if(troop.Character.IsHero) continue;
+                
+                var level = troop.Character.Level;
+                
+                explainedNumber.Add(level*troop.Number);
+            }
+            
+            
+
+            return explainedNumber.ResultNumber/reduction;
         }
 
         public static void OnPartyScreenTroopUpgrade(PartyVM partyVM, PartyScreenLogic.PartyCommand command)
