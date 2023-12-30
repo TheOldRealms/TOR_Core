@@ -266,6 +266,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                Hero.MainHero.AddCareer(TORCareers.Necromancer);
                 Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 25);
             }
             else if (IsVampireCharacterCreationID (id))
