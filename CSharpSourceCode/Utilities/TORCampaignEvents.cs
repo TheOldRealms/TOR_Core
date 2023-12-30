@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Settlements;
 using TOR_Core.CampaignMechanics.Religion;
 
 namespace TOR_Core.Utilities
@@ -12,6 +13,7 @@ namespace TOR_Core.Utilities
     {
         public static TORCampaignEvents Instance;
         public event EventHandler<DevotionLevelChangedEventArgs> DevotionLevelChanged;
+        public event EventHandler<ChaosUprisingStartedEventArgs> ChaosUprisingStarted;
 
         public TORCampaignEvents()
         {
@@ -25,6 +27,16 @@ namespace TOR_Core.Utilities
             if(devotionEvent != null)
             {
                 devotionEvent(this, args);
+            }
+        }
+
+        public void OnChaosUprisingStarted(Settlement settlement)
+        {
+            var args = new ChaosUprisingStartedEventArgs(settlement);
+            var uprisingEvent = ChaosUprisingStarted;
+            if(uprisingEvent != null)
+            {
+                uprisingEvent(this, args);
             }
         }
     }
@@ -43,5 +55,15 @@ namespace TOR_Core.Utilities
         public ReligionObject Religion { get; set; }
         public DevotionLevel OldDevotionLevel { get; set; }
         public DevotionLevel NewDevotionLevel { get; set; }
+    }
+
+    public class ChaosUprisingStartedEventArgs : EventArgs
+    {
+        public ChaosUprisingStartedEventArgs(Settlement settlement)
+        {
+            Settlement = settlement;
+        }
+
+        public Settlement Settlement { get; set; }
     }
 }

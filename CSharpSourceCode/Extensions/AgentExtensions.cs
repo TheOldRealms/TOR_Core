@@ -616,7 +616,7 @@ namespace TOR_Core.Extensions
         /// <param name="damageAmount">How much damage the agent will receive.</param>
         /// <param name="damager">The agent who is applying the damage</param>
         /// <param name="doBlow">A mask that controls whether the unit receives a blow or direct health manipulation</param>
-        public static void ApplyDamage(this Agent agent, int damageAmount, Vec3 impactPosition, Agent damager = null, bool doBlow = true, bool hasShockWave = false)
+        public static void ApplyDamage(this Agent agent, int damageAmount, Vec3 impactPosition, Agent damager = null, bool doBlow = true, bool hasShockWave = false, bool originatesFromAbility = true)
         {
             if (agent == null || !agent.IsHuman || !agent.IsActive() || agent.Health < 1)
             {
@@ -645,8 +645,9 @@ namespace TOR_Core.Extensions
                     blow.GlobalPosition = agent.GetChestGlobalPosition();
                     blow.BaseMagnitude = damageAmount;
                     blow.WeaponRecord.FillAsMeleeBlow(null, null, -1, -1);
+                    blow.WeaponRecord.Weight = 5f;
                     blow.InflictedDamage = damageAmount;
-                    var direction = agent.Position == impactPosition ? agent.LookDirection : agent.Position - impactPosition;
+                    var direction = blow.GlobalPosition == impactPosition ? -agent.LookDirection : blow.GlobalPosition - impactPosition;
                     direction.Normalize();
                     blow.Direction = direction;
                     blow.SwingDirection = direction;
@@ -659,7 +660,14 @@ namespace TOR_Core.Extensions
                     {
                         if (agent.HasMount) blow.BlowFlag |= BlowFlags.CanDismount;
                         else blow.BlowFlag |= BlowFlags.KnockDown;
+                        blow.BaseMagnitude = 1000;
+                        
                     }
+                    if (!originatesFromAbility)
+                    {
+                        blow.AttackType = AgentAttackType.Standard;
+                    }
+                    blow.WeaponRecord.Velocity = direction * blow.BaseMagnitude;
 
                     if (agent.Health <= damageAmount && !doBlow)
                     {

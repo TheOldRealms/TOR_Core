@@ -469,6 +469,9 @@
     <Compile Include="BattleMechanics\StatusEffect\StatusEffectManager.cs" />
     <Compile Include="BattleMechanics\StatusEffect\StatusEffectMissionLogic.cs" />
     <Compile Include="BattleMechanics\StatusEffect\StatusEffectTemplate.cs" />
+    <Compile Include="BattleMechanics\TriggeredEffect\AnimationTrigger.cs" />
+    <Compile Include="BattleMechanics\TriggeredEffect\AnimationTriggerManager.cs" />
+    <Compile Include="BattleMechanics\TriggeredEffect\AnimationTriggerMissionLogic.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\DynamicItemTraitScripts.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\ITriggeredScript.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\KnockDownScript.cs" />
@@ -493,10 +496,15 @@
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\MousillonTag.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\VampireTags.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\CustomDialogCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\CustomResources\CustomResource.cs" />
+    <Compile Include="CampaignMechanics\CustomResources\CustomResourceManager.cs" />
+    <Compile Include="CampaignMechanics\CustomResources\PartyVMExtension.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\TORDeclareWarDecision.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\TORKingdomDecisionProposalBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEvent.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEventsCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\Invasions\InvasionCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\Invasions\InvasionPartyComponent.cs" />
     <Compile Include="CampaignMechanics\MasterEngineer\MasterEngineerTownBehavior.cs" />
     <Compile Include="CampaignMechanics\RaidingParties\RaidingPartyComponent.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\CharacterCreationOption.cs" />
@@ -522,6 +530,7 @@
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORBaseSettlementComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORSettlementComponents.cs" />
+    <Compile Include="CampaignMechanics\TorMapBarSpriteWidget.cs" />
     <Compile Include="CampaignMechanics\TORMapInfoVMExtension.cs" />
     <Compile Include="CampaignMechanics\TORPartyUpgraderCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORAIRecruitmentCampaignBehavior.cs" />
@@ -610,6 +619,7 @@
     <Compile Include="HarmonyPatches\MissionPatches.cs" />
     <Compile Include="HarmonyPatches\MountCreationPatches.cs" />
     <Compile Include="HarmonyPatches\ObjectManagerPatches.cs" />
+    <Compile Include="HarmonyPatches\CustomResourcePatches.cs" />
     <Compile Include="HarmonyPatches\PerkResetRelatedPatch.cs" />
     <Compile Include="HarmonyPatches\RotatingMainMenuScenePatch.cs" />
     <Compile Include="HarmonyPatches\SettlementPatches.cs" />
@@ -653,6 +663,7 @@
     <Compile Include="Models\CustomBattleModels\TORCustomBattleAgentStatCalculateModel.cs" />
     <Compile Include="Models\TORDamageParticleModel.cs" />
     <Compile Include="Models\TORDiplomacyModel.cs" />
+    <Compile Include="Models\TOREncounterModel.cs" />
     <Compile Include="Models\TOREquipmentSelectionModel.cs" />
     <Compile Include="Models\TORFaithModel.cs" />
     <Compile Include="Models\TORSettlementFoodModel.cs" />
@@ -690,8 +701,10 @@
     <Compile Include="SubModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\DictionaryExtensions.cs" />
+    <Compile Include="Utilities\TORAnimationLogger.cs" />
     <Compile Include="Utilities\TORAudio.cs" />
     <Compile Include="Utilities\TORCommon.cs" />
+    <Compile Include="Utilities\TORConfig.cs" />
     <Compile Include="Utilities\TORConsoleCommands.cs" />
     <Compile Include="Utilities\TORConstants.cs" />
     <Compile Include="Utilities\TORDamageDisplay.cs" />

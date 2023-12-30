@@ -107,11 +107,8 @@ namespace TOR_Core.HarmonyPatches
                             var value = choice.GetPassiveValue();
                             additionalDamagePercentages[(int)DamageType.Physical] += value;
                         }
-                        
                     }
-                   
                 }
-                
             }
 
             string abilityName = "";
@@ -128,14 +125,13 @@ namespace TOR_Core.HarmonyPatches
                         attackTypeMask = AttackTypeMask.Spell;
                         abilityName = magicSpellMissile.Weapon.Item.ToString();
                     }
-
                 }
             }
 
             //calculating spell damage
-            if (TORSpellBlowHelper.IsSpellBlow(b)|| (attackTypeMask ==AttackTypeMask.Spell&&abilityName!="") )      //checking the Attackmask should be enough IsSpellBlow is checked before!
+            if (TORSpellBlowHelper.IsSpellBlow(b) || (attackTypeMask == AttackTypeMask.Spell && abilityName != ""))      //checking the Attackmask should be enough IsSpellBlow is checked before!
             {
-                var abilityId="";
+                string abilityId = string.Empty;
                 int damageType = 0;
                 if (abilityName != "")
                 {
@@ -158,7 +154,7 @@ namespace TOR_Core.HarmonyPatches
                 damageCategories[damageType] *= 1 + damageAmplifications[damageType];
                 resultDamage = (int)damageCategories[damageType];
                 
-                if(Game.Current.GameType is Campaign)
+                if(Game.Current.GameType is Campaign && abilityId != string.Empty && abilityId != null)
                 {
                     var abilityTemplate = AbilityFactory.GetTemplate(abilityId);
                     if (attacker.IsHero && abilityTemplate != null)
@@ -223,14 +219,22 @@ namespace TOR_Core.HarmonyPatches
                     }
                     
                     TORDamageDisplay.DisplayDamageResult(resultDamage, damageCategories, resultBonus,wardSaveFactor, isVictim);
-
                 }
             }
             
             return true;
         }
-        
-        
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(Agent), "Die")]
+        public static void RagdollOnDeathPatch(Agent __instance, Blow b, Agent.KillInfo overrideKillInfo = Agent.KillInfo.Invalid)
+        {
+            if (b.BlowFlag.HasFlag(BlowFlags.KnockDown) && !__instance.IsPlayerControlled)
+            {
+                __instance.AgentVisuals.GetSkeleton().ActivateRagdoll();
+            }
+        }
+
 
         public static AttackTypeMask DetermineMask(Blow blow)
         {

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
@@ -150,6 +151,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             charInfo.HasSecondaryCharacter = false;
             charInfo.ClearFaceGenMounts();
             _isFemale = CharacterObject.PlayerCharacter.IsFemale;
+            if(Debugger.IsAttached) _originalRace = CharacterObject.PlayerCharacter.Race; //This is to allow becoming different races by selecting them at character creation for development purposes.
         }
 
         private void OnOptionSelected(TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation charInfo, string optionId)
@@ -285,6 +287,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         public override void OnCharacterCreationFinalized()
         {
             CultureObject culture = CharacterObject.PlayerCharacter.Culture;
+            Hero.MainHero.AddCultureSpecificCustomResource(0);
             Vec2 position2D = default(Vec2);
 
             switch (culture.StringId)

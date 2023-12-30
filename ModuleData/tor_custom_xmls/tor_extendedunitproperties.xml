@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfCharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_villager">
     <Abilities />
@@ -845,6 +845,39 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_we_servant">
+    <Abilities />
+    <Attributes>
+      <string>Expendable</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_we_eternal_guard">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_we_treeman">
+    <Abilities />
+    <Attributes>
+      <string>Unbreakable</string>
+      <string>Unstoppable</string>
+      <string>HasAnimationTriggeredEffects</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_villager">
     <Abilities />
     <Attributes>
@@ -1189,6 +1222,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="2" UpgradeCost="0" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_cairn_wraith">
     <Abilities />
@@ -1203,6 +1237,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="3" UpgradeCost="3" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_crypt_wraith">
     <Abilities />
@@ -1217,6 +1252,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="4" UpgradeCost="4" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_hex_wraith">
     <Abilities />
@@ -1231,6 +1267,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="3" UpgradeCost="3" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_hell_wraith">
     <Abilities />
@@ -1245,6 +1282,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="4" UpgradeCost="4" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_con_carstein_noble">
     <Abilities />
@@ -1423,45 +1461,126 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_chaos_nurgle_warrior">
+  <CharacterExtendedInfo id="tor_chaos_enslaved_villager">
     <Abilities />
-    <Attributes>
-      <string>Unbreakable</string>
-    </Attributes>
+    <Attributes />
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_chaos_nurgle_warrior_002">
+  <CharacterExtendedInfo id="tor_chaos_norscan_tribesman">
     <Abilities />
-    <Attributes>
-      <string>Unbreakable</string>
-    </Attributes>
+    <Attributes />
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_chaos_nurgle_warrior_003">
+  <CharacterExtendedInfo id="tor_chaos_norscan_raider">
     <Abilities />
-    <Attributes>
-      <string>Unbreakable</string>
-    </Attributes>
+    <Attributes />
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_chaos_chosen">
+  <CharacterExtendedInfo id="tor_chaos_norscan_marauder">
     <Abilities />
-    <Attributes>
-      <string>Unbreakable</string>
-      <string>Unstoppable</string>
-    </Attributes>
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_norscan_champion">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_norscan_whaler">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_norscan_reaver">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_norscan_horseman">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_norscan_horsemaster">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_aspiring_warrior">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_pit_fighter">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_undivided_warrior">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_nobletree_t6_3">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_slaanesh_warrior">
+    <Abilities />
+    <Attributes />
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -1470,9 +1589,80 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_chaos_khorne_warrior">
     <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_nurgle_warrior">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_tzeench_warrior">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_undivided_knight">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_caravan_ranged">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_caravan_guard">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_caravan_horseman">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_caravan_captain">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_cultist_of_chaos">
+    <Abilities />
     <Attributes>
-      <string>Unbreakable</string>
-      <string>Unstoppable</string>
+      <string>Expendable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -1480,12 +1670,20 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_chaos_chaos_knight">
+  <CharacterExtendedInfo id="tor_chaos_darksoul_of_chaos">
     <Abilities />
     <Attributes>
-      <string>Unbreakable</string>
-      <string>Unstoppable</string>
+      <string>Expendable</string>
     </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_acolyte_of_chaos">
+    <Abilities />
+    <Attributes />
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -3924,7 +4122,7 @@
       <string>DeathlyShards</string>
       <string>RadiancePillar</string>
       <string>RadiantGaze</string>
-	  <string>NetOfAmyntok</string>
+      <string>NetOfAmyntok</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
@@ -3975,6 +4173,10 @@
       <string>AbilityUser</string>
       <string>SpellCaster</string>
     </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_glade_lord">
+    <Abilities />
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord">
     <Abilities>
@@ -4311,6 +4513,10 @@
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_fsf_cultist_lord_3">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_wanderer_chaos_0">
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>

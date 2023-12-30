@@ -385,12 +385,6 @@
   <NPCCharacter id="tor_br_rogue_lord_0" default_group="cavalry" name="{=str_tor_br_rogue_lord_0}{DOESNTMATTER]" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
-      <hair_tags>
-        <hair_tag name="0" />
-      </hair_tags>
-      <beard_tags>
-        <beard_tag name="0" />
-      </beard_tags>
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="8" />
@@ -407,12 +401,6 @@
   <NPCCharacter id="tor_m_rogue_lord_0" default_group="cavalry" name="{=str_tor_m_rogue_lord_0}{DOESNTMATTER]" occupation="Lord" culture="Culture.mousillon" voice="curt" age="30" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
-      <hair_tags>
-        <hair_tag name="0" />
-      </hair_tags>
-      <beard_tags>
-        <beard_tag name="0" />
-      </beard_tags>
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="8" />
@@ -1088,6 +1076,22 @@
     <Equipments>
       <EquipmentSet id="tor_cult_fsf_archbacillus_template" />
       <EquipmentSet id="tor_cult_fsf_archbacillus_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_wanderer_chaos_0" default_group="infantry" name="{=str_tor_wanderer_chaos_0}{FIRSTNAME} the Chosen of Chaos" occupation="Wanderer" culture="Culture.chaos_culture" voice="curt" age="30" race="chaos_ud_cultist" is_template="true" is_hero="false">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Calculating" value="5" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Valor" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_wight_king_template" />
+      <EquipmentSet id="tor_wight_king_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_engineerquesthero" default_group="infantry" name="{=str_tor_engineerquesthero}{=!}Goswin" occupation="Lord" culture="Culture.empire" voice="ironic" age="30" is_template="true" is_hero="false">

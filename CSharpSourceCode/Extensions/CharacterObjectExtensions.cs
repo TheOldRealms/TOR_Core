@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
@@ -211,6 +212,46 @@ namespace TOR_Core.Extensions
             return cult != null && cult.ReligiousTroops.Contains(characterObject);
         }
         
+        public static bool HasCustomResourceUpgradeRequirement(this CharacterObject character)
+        {
+            var info = ExtendedInfoManager.GetCharacterInfoFor(character.StringId);
+            if (info != null)
+            {
+                return info.ResourceCost != null && info.ResourceCost.UpgradeCost > 0;
+            }
+            return false;
+        }
+
+        public static bool HasCustomResourceUpkeepRequirement(this CharacterObject character)
+        {
+            var info = ExtendedInfoManager.GetCharacterInfoFor(character.StringId);
+            if (info != null)
+            {
+                return info.ResourceCost != null && info.ResourceCost.UpkeepCost > 0;
+            }
+            return false;
+        }
+
+        public static Tuple<CustomResource, int> GetCustomResourceRequiredForUpgrade(this CharacterObject character)
+        {
+            var info = ExtendedInfoManager.GetCharacterInfoFor(character.StringId);
+            if (info != null && character.HasCustomResourceUpgradeRequirement())
+            {
+                return new Tuple<CustomResource, int>(CustomResourceManager.GetResourceObject(info.ResourceCost.ResourceType), info.ResourceCost.UpgradeCost);
+            }
+            return null;
+        }
+
+        public static Tuple<CustomResource, int> GetCustomResourceRequiredForUpkeep(this CharacterObject character)
+        {
+            var info = ExtendedInfoManager.GetCharacterInfoFor(character.StringId);
+            if (info != null && character.HasCustomResourceUpkeepRequirement())
+            {
+                return new Tuple<CustomResource, int>(CustomResourceManager.GetResourceObject(info.ResourceCost.ResourceType), info.ResourceCost.UpkeepCost);
+            }
+            return null;
+        }
+
         /// <summary>
         /// Access item objects from the equipment of the character
         /// Equipment Indexes can define the Range. Note that horses are not a valid item object to be accessed
