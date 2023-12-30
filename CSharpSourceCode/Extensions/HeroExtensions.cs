@@ -86,6 +86,25 @@ namespace TOR_Core.Extensions
             }
             else return 0;
         }
+        
+        public static float GetCultureSpecificCustomResourceUpkeep(this Hero hero)
+        {
+            if (hero.PartyBelongedTo == null) return 0;
+            
+            var upkeep=0;
+            if (hero.GetCultureSpecificCustomResource() != null)
+            {
+                
+                foreach (var element in hero.PartyBelongedTo.MemberRoster.ToFlattenedRoster())
+                {
+                    if (element.Troop.HasCustomResourceUpkeepRequirement())
+                    {
+                        upkeep += element.Troop.GetCustomResourceRequiredForUpkeep().Item2;
+                    }
+                }
+            } 
+            return upkeep;
+        }
 
         public static void AddCultureSpecificCustomResource(this Hero hero, float amount)
         {

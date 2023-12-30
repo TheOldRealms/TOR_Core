@@ -31,12 +31,32 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionStart);
             CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, OnNewGameCreatedPartialFollowUpEnd);
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, HourlyTick);
+            CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, DailyTick);
             CampaignEvents.HeroCreated.AddNonSerializedListener(this, OnHeroCreated);
             CampaignEvents.HeroKilledEvent.AddNonSerializedListener(this, OnHeroKilled);
             CampaignEvents.MobilePartyCreated.AddNonSerializedListener(this, OnPartyCreated);
             CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this, OnPartyDestroyed);
             CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
             CustomResourceManager.RegisterEvents();
+        }
+
+        private void DailyTick()
+        {
+            foreach (var entry in _heroInfos)
+            {
+                var hero = Hero.FindFirst(x => x.StringId == entry.Key);
+                
+                if(hero.GetCultureSpecificCustomResource()==null) continue;
+
+                if (hero == Hero.MainHero)
+                {
+                    TORCommon.Say("blop");
+                }
+                var id=  hero.GetCultureSpecificCustomResource().StringId;
+                
+                entry.Value.AddCustomResource(id,-hero.GetCultureSpecificCustomResourceUpkeep());
+                
+            }
         }
 
         public static CharacterExtendedInfo GetCharacterInfoFor(string id)

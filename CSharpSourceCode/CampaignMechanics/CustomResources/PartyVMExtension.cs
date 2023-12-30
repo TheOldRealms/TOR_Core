@@ -50,7 +50,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             {
                 CustomResourceUpkeepVisible = true;
                 var resource = troop.GetCustomResourceRequiredForUpkeep();
-                CustomResourceUpkeepText = resource.Item2.ToString();
+                CustomResourceUpkeepText = resource.Item2.ToString("0.00");
                 CustomResourceUpkeepSprite = UIResourceManager.SpriteData.GetSprite(resource.Item1.LargeIconName);
             }
             else
