@@ -47,11 +47,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 var hero = Hero.FindFirst(x => x.StringId == entry.Key);
                 
                 if(hero.GetCultureSpecificCustomResource()==null) continue;
-
-                if (hero == Hero.MainHero)
-                {
-                    TORCommon.Say("blop");
-                }
+                
                 var id=  hero.GetCultureSpecificCustomResource().StringId;
                 
                 entry.Value.AddCustomResource(id,-hero.GetCultureSpecificCustomResourceUpkeep());
