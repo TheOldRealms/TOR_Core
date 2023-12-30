@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -25,7 +26,7 @@ namespace TOR_Core.Models
 			{
 				return 0;
 			}
-			return (int)(formation.GetCountOfUnitsWithCondition(x => x.IsActive() && !x.IsDetachedFromFormation && x.CurrentlyUsedGameObject == null) / 15);
+			return TORConfig.NumberOfTroopsPerFormationWithStandard;
 		}
 	}
 }

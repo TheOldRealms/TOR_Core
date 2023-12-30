@@ -507,6 +507,9 @@
   <string id="str_inventory_weapon.22" text="{=!}Pistol" />
   <string id="str_inventory_weapon.23" text="{=!}Handgun" />
 
+  <!--oarty screen-->
+  <string id="str_customresource_trade_label" text="{=!}You will {?PAY_OR_GET}get{?}pay{\?} {TRADE_AMOUNT}" />
+
   <!--custom settlements e.g. chaos portal, shrines, herdstones -->
   <string id="customsettlement_intro.chaos_portal_01" text="{=!}You arrive at an active chaos portal. The vile thing pulses with arcane magic, chaos forces are invading in minor numbers from their realm." />
   <string id="customsettlement_disabled.chaos_portal_01" text="{=!}The portal lies dormant. Come back at a later time." />
@@ -777,6 +780,33 @@
   <string id="career_description.Mercenary" text="{=career_description_mercenary_str}To be a Man in the 25th century is to be one of thousands. The Old World finds itself on the precipice of destruction and turmoil, of chaos and death. No one in this age can be weak; some use the times to their advantage and turn warfare into wealth, combat into glory and tragedy into destiny. Mercenary they may call you, whatever the name no one will control your fate." />
   <string id="career_description.GrailKnight" text="{=career_description_grailknight_str}To be a knight of Bretonnia is to strive for the blessing of the Lady and her holy grail. Any man deemed worthy to sup from her chalice becomes a holy warrior honored and respected across all of Bretonnia and yet farther. The road to that goal is difficult, so much so that most knights fail to accomplish despite all sharing the same dream." />
   <string id="career_description.GrailDamsel" text="{=career_description_graildamsel_str}Damsels are sought out as children by the Fey Enchantress for their latent magical potential. Taken away from their families they are raised in secret to be potent guardians of fair Bretonnia. Upon completion of their training they embark out into the land, coming to the aid of the people and influencing knights in order to fulfill their martial potential." />
+
+   <!-- Begin FaceGen Entries -->
+  <string id="str_facegen_skin.TorsoBelly" text="{=!}Belly Girth" />
+  <string id="str_facegen_skin.TorsoHips" text="{=!}Hip Size" />
+  <string id="str_facegen_skin.TorsoButt" text="{=!}Butt Size" />
+  <string id="str_facegen_skin.Thigh" text="{=!}Thigh Size" />
+  <string id="str_facegen_skin.Calf" text="{=!}Calf Size" />
+  <string id="str_facegen_skin.Foot" text="{=!}Foot Size" />
+  <string id="str_facegen_skin.TorsoX" text="{=!}Torso Width" />
+  <string id="str_facegen_skin.TorsoY" text="{=!}Torso Depth" />
+  <string id="str_facegen_skin.TorsoZ" text="{=!}Torso Height" />
+  <string id="str_facegen_skin.ThoraxX" text="{=!}Chest Width" />
+  <string id="str_facegen_skin.ThoraxY" text="{=!}Chest Depth" />
+  <string id="str_facegen_skin.ThoraxZ" text="{=!}Chest Height" />
+  <string id="str_facegen_skin.Neck" text="{=!}Neck Size" />
+  <string id="str_facegen_skin.HeadDepth" text="{=!}Head Depth" />
+  <string id="str_facegen_skin.HeadWidth" text="{=!}Head Width" />
+  <string id="str_facegen_skin.HeadHeight" text="{=!}Head Height" />
+  <string id="str_facegen_skin.Shoulders" text="{=!}Shoulder Size" />
+  <string id="str_facegen_skin.UpperarmSize" text="{=!}Bicep Size" />
+  <string id="str_facegen_skin.ForearmSize" text="{=!}Forearm Size" />
+  <string id="str_facegen_skin.HandSize" text="{=!}Hand Size" />
+  <string id="str_facegen_skin.weight" text="{=!}Muscle Tone" />
+  <string id="str_facegen_skin.build" text="{=!}Ignore this" />
+  <string id="str_facegen_skin.Weight2" text="{=!}Body Weight" />
+  <string id="str_facegen_skin.Build2" text="{=!}Body Muscle" />
+  <!-- End FaceGen Entries -->
 
   <string id="careerchoice_description.ProtectorOfTheWeakPassive1" text="{=protector_of_the_weak_passive1_str}Increases Hitpoints by {EFFECT_VALUE}" />
   <string id="careerchoice_description.ProtectorOfTheWeakPassive2" text="{=protector_of_the_weak_passive2_str}Increases Hitpoints by {EFFECT_VALUE}" />

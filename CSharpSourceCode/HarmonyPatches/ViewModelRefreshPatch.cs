@@ -20,7 +20,7 @@ namespace TOR_Core.HarmonyPatches
             foreach(var type in ViewModelExtensionManager.Instance.ExtensionTypes)
             {
                 var attribute = type.GetCustomAttribute<ViewModelExtensionAttribute>();
-                yield return attribute.BaseType.GetMethod(attribute.RefreshMethodName);
+                yield return attribute.BaseType.GetMethod(attribute.RefreshMethodName, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
             }
         }
 

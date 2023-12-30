@@ -252,7 +252,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             var settlement = Settlement.CurrentSettlement;
             var component = settlement.SettlementComponent as BaseRaiderSpawnerComponent;
             PartyTemplateObject template = settlement.Culture?.DefaultPartyTemplate;
-            if(template == null) template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_patrol");
+            if(template == null) template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_lordparty_template");
             Clan ownerClan = settlement.OwnerClan;
             if(ownerClan == null) ownerClan = Clan.FindFirst(x => x.StringId == "chaos_clan_1");
             template = ownerClan.DefaultPartyTemplate;

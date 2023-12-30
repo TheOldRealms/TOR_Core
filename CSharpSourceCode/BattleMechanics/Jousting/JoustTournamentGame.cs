@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.Settlements.Locations;
 using TaleWorlds.CampaignSystem.TournamentGames;
+using TaleWorlds.Core;
 using TaleWorlds.SaveSystem;
+using TOR_Core.Extensions;
 using TOR_Core.Missions;
 
 namespace TOR_Core.BattleMechanics.Jousting
@@ -19,6 +22,12 @@ namespace TOR_Core.BattleMechanics.Jousting
         public JoustTournamentGame(Town town) : base(town)
         {
             Mode = QualificationMode.IndividualScore;
+        }
+
+        public override bool CanBeAParticipant(CharacterObject character, bool considerSkills)
+        {
+            if (character.Race == FaceGen.GetRaceOrDefault("large_humanoid_monster") || character.HasAttribute("HasAnimationTriggeredEffects")) return false;
+            return base.CanBeAParticipant(character, considerSkills);
         }
 
         public override void OpenMission(Settlement settlement, bool isPlayerParticipating)

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<TORConfiguration 
+    FakeBannerFrequency="10"
+    NumberOfTroopsPerFormationWithStandard="100"
+    MaximumCustomResourceValue="100"
+    NumberOfMaximumLooterPartiesEarly="200"
+    NumberOfMaximumLooterParties="400"
+    NumberOfMaximumLooterPartiesLate="600"
+    NumberOfMaximumBanditPartiesAroundEachHideout="24"
+    NumberOfMaximumBanditPartiesInEachHideout="3"
+    NumberOfInitialHideoutsAtEachBanditFaction="40"
+    NumberOfMaximumHideoutsAtEachBanditFaction="80"
+/>

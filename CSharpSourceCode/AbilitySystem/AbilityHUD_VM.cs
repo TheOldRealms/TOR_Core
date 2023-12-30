@@ -38,7 +38,7 @@ namespace TOR_Core.AbilitySystem
                 IsOnCoolDown = _ability.IsOnCooldown();
                 if (Game.Current.GameType is Campaign && _ability is Spell)
                 {
-                    SetWindsOfMagicValue((float)(Agent.Main?.GetHero()?.GetExtendedInfo()?.CurrentWindsOfMagic));
+                    SetWindsOfMagicValue((float)(Agent.Main?.GetHero()?.GetCustomResourceValue("WindsOfMagic")));
                     var windsCost = AddPerkEffectsToWindsCost(Agent.Main?.GetHero(), _ability.Template);
                     WindsCost = windsCost.ToString();
                     if (_windsOfMagicValue < windsCost)
