@@ -231,9 +231,19 @@ namespace TOR_Core.BattleMechanics
                     if (choices.Contains("BooksOfNagashKeystone"))
                     {
                         Hero.MainHero.AddWindsOfMagic(1);
-                    } 
+                    }
+
+                    if (affectedAgent.Character != null)
+                    {
+                        var level = affectedAgent.Character.Level;
+                        Hero.MainHero.AddSkillXp(TORSkills.SpellCraft,5*level);
+                        if (Hero.MainHero.HasCareerChoice("LiberNecrisPassive2"))
+                        {
+                            Hero.MainHero.AddSkillXp(DefaultSkills.Roguery,5*level);
+                        }
+                        
+                    }
                     
-                    Hero.MainHero.AddSkillXp(TORSkills.SpellCraft,20); 
                 }
 
               

@@ -10,6 +10,8 @@ using TaleWorlds.ObjectSystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
 
@@ -232,12 +234,21 @@ namespace TOR_Core.Extensions
             return false;
         }
 
-        public static Tuple<CustomResource, int> GetCustomResourceRequiredForUpgrade(this CharacterObject character)
+        public static Tuple<CustomResource, int> GetCustomResourceRequiredForUpgrade(this CharacterObject character, bool belongsToMainParty=false)
         {
             var info = ExtendedInfoManager.GetCharacterInfoFor(character.StringId);
             if (info != null && character.HasCustomResourceUpgradeRequirement())
             {
-                return new Tuple<CustomResource, int>(CustomResourceManager.GetResourceObject(info.ResourceCost.ResourceType), info.ResourceCost.UpgradeCost);
+                var cost = info.ResourceCost.UpgradeCost;
+                if (belongsToMainParty)
+                {
+                    var explainedNumber = new ExplainedNumber(cost);
+                    CareerHelper.ApplyBasicCareerPassives(Hero.MainHero,ref explainedNumber,PassiveEffectType.CustomResourceUpgradeCost,true);
+                    
+                    cost = (int)explainedNumber.ResultNumber;
+                }
+               
+                return new Tuple<CustomResource, int>(CustomResourceManager.GetResourceObject(info.ResourceCost.ResourceType), cost);
             }
             return null;
         }

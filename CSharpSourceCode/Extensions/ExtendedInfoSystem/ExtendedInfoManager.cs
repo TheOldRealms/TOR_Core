@@ -49,9 +49,10 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 if(hero.GetCultureSpecificCustomResource()==null) continue;
                 
                 var id=  hero.GetCultureSpecificCustomResource().StringId;
+
+                var resourceChange = hero.GetCultureSpecificCustomResourceChange();
                 
-                entry.Value.AddCustomResource(id,-hero.GetCultureSpecificCustomResourceUpkeep());
-                
+                entry.Value.AddCustomResource(id,resourceChange.ResultNumber);
             }
         }
 

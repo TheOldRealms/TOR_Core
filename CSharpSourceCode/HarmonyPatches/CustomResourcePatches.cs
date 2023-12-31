@@ -37,7 +37,7 @@ namespace TOR_Core.HarmonyPatches
                     var upgradeTarget = troopToUpgrade.UpgradeTargets[i];
                     int upgradeGoldCost = troopToUpgrade.GetUpgradeGoldCost(PartyBase.MainParty, i);
                     int upgradeXpCost = troopToUpgrade.GetUpgradeXpCost(PartyBase.MainParty, i);
-                    var customResourceRequirement = upgradeTarget.GetCustomResourceRequiredForUpgrade();
+                    var customResourceRequirement = upgradeTarget.GetCustomResourceRequiredForUpgrade(true);
                     bool doesUpgradeRequireItems = upgradeTarget.UpgradeRequiresItemFromCategory != null;
                     bool doesUpgradeRequireResources = customResourceRequirement != null;
                     
@@ -137,7 +137,7 @@ namespace TOR_Core.HarmonyPatches
                     GameTexts.SetVariable("STR2", textObject3.ToString());
                     text = GameTexts.FindText("str_string_newline_string", null).ToString();
                 }
-                var resource = characterObject.GetCustomResourceRequiredForUpgrade();
+                var resource = characterObject.GetCustomResourceRequiredForUpgrade(true);
                 if (resource != null)
                 {
                     TextObject resourceText = new TextObject("{=partyscreen_resource_text}Required: {NEEDED_AMOUNT} {RESOURCE_ICON} (You have {CURRENT_AMOUNT})", null);

@@ -43,17 +43,19 @@ namespace TOR_Core.CampaignMechanics
 	        string customResourceTitle = Hero.MainHero.GetCultureSpecificCustomResource().LocalizedName.ToString();
 	        var value = Hero.MainHero.GetCultureSpecificCustomResourceValue().ToString("0.00");
 	        var icon = Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText();
-	        var rate =  Hero.MainHero.GetCultureSpecificCustomResourceUpkeep();
-	    
-	        
-	        List<TooltipProperty> list = new List<TooltipProperty>();
-	        
-	        list.Add(new TooltipProperty(customResourceTitle, value+icon, 0, false, TooltipProperty.TooltipPropertyFlags.Title));
-	        if (rate > 0)
-	        {
-		        list.Add(new TooltipProperty(rateText, rate+icon, 0, false, TooltipProperty.TooltipPropertyFlags.None));
-	        }
+	        var change = Hero.MainHero.GetCultureSpecificCustomResourceChange();
 
+	        List<TooltipProperty> list = new List<TooltipProperty>();
+	        list.Add(new TooltipProperty(customResourceTitle, value+icon, 0, false, TooltipProperty.TooltipPropertyFlags.Title));
+	        
+	        foreach (var elem in change.GetLines())
+	        {
+		        if (!elem.number.ApproximatelyEqualsTo(0.0f))
+		        {
+			        list.Add(new TooltipProperty(elem.name, elem.number.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+		        }
+	        }
+	        
 	        return list;
         }
 

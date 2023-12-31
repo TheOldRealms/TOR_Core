@@ -226,6 +226,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
     {
         Special,            //For everything that requires special implementation
         Health,             //Player health points
+        CustomResourceUpkeep, //scales custom resource upkeep
+        CustomResourceUpgradeCost, //scales custom upgrade costs
+        CustomResourceGain, //daily gain for custom resource , flat number
         HealthRegeneration, //player life regeneration
         Damage,             //player damage, requires damage tuple
         Resistance,         //player resistance requires damage tuple

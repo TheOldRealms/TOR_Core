@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
@@ -87,23 +88,47 @@ namespace TOR_Core.Extensions
             else return 0;
         }
         
-        public static float GetCultureSpecificCustomResourceUpkeep(this Hero hero)
+        public static ExplainedNumber GetCultureSpecificCustomResourceChange(this Hero hero)
         {
-            if (hero.PartyBelongedTo == null) return 0;
-            
-            var upkeep=0;
+            if (hero.PartyBelongedTo == null) return new ExplainedNumber();
+
+            var number = new ExplainedNumber(0,true);
             if (hero.GetCultureSpecificCustomResource() != null)
             {
-                
-                foreach (var element in hero.PartyBelongedTo.MemberRoster.ToFlattenedRoster())
+                var upkeep = GetCalculatedCustomResourceUpkeep(hero);
+
+                if (upkeep < 0)
                 {
-                    if (element.Troop.HasCustomResourceUpkeepRequirement())
-                    {
-                        upkeep += element.Troop.GetCustomResourceRequiredForUpkeep().Item2;
-                    }
+                    number.Add(upkeep,new TextObject("Upkeep"));
                 }
+
+                if (hero == Hero.MainHero)
+                {
+                    CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref number,PassiveEffectType.CustomResourceGain); 
+                }
+                
             } 
-            return upkeep;
+            return number;
+        }
+
+        public static float GetCalculatedCustomResourceUpkeep(this Hero hero)
+        {
+            var upkeep = new ExplainedNumber(0,true,new TextObject("Upkeep"));
+            foreach (var element in hero.PartyBelongedTo.MemberRoster.ToFlattenedRoster())
+            {
+                if (element.Troop.HasCustomResourceUpkeepRequirement())
+                {
+                    upkeep.Add(element.Troop.GetCustomResourceRequiredForUpkeep().Item2,new TextObject("Upkeep"));
+                }
+            }
+                
+            if (hero == Hero.MainHero)
+            {
+                CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref upkeep,PassiveEffectType.CustomResourceUpkeep, true); 
+            }
+            
+
+            return -upkeep.ResultNumber;
         }
 
         public static void AddCultureSpecificCustomResource(this Hero hero, float amount)

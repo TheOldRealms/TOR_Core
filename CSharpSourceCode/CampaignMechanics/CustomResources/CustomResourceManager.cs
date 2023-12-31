@@ -57,7 +57,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         {
             ScreenManager.OnPushScreen += ScreenManager_OnPushScreen;
             ScreenManager.OnPopScreen += ScreenManager_OnPopScreen;
-            CampaignEvents.OnQuarterDailyPartyTick.AddNonSerializedListener(CustomResourceManager._instance, QuaterDailyTick);
+            CampaignEvents.OnQuarterDailyPartyTick.AddNonSerializedListener(_instance, QuaterDailyTick);
         }
 
         private static void QuaterDailyTick(MobileParty mobileParty)
@@ -74,8 +74,8 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             {
                 if (hero.IsVampire()||hero.IsNecromancer())
                 {
-                    var punishment= hero.GetCultureSpecificCustomResourceUpkeep();
-                    hero.AddWindsOfMagic(-punishment*3);
+                    var upkeep = hero.GetCalculatedCustomResourceUpkeep();
+                    hero.AddWindsOfMagic( upkeep*3);
                 }  
             }
         }
@@ -163,7 +163,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             {
                 CharacterObject troopToUpgrade = command.Character;
                 CharacterObject upgradeTarget = troopToUpgrade.UpgradeTargets[command.UpgradeTarget];
-                var requirement = upgradeTarget.GetCustomResourceRequiredForUpgrade();
+                var requirement = upgradeTarget.GetCustomResourceRequiredForUpgrade(true);
 
                 if(requirement != null)
                 {
