@@ -37,7 +37,28 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             CampaignEvents.MobilePartyCreated.AddNonSerializedListener(this, OnPartyCreated);
             CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this, OnPartyDestroyed);
             CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
+            CampaignEvents.OnQuarterDailyPartyTick.AddNonSerializedListener(_instance, QuarterDailyTick);
             CustomResourceManager.RegisterEvents();
+        }
+        
+        private static void QuarterDailyTick(MobileParty mobileParty)
+        {
+            if(!mobileParty.IsLordParty) return;
+            PunishmentForMissingResource(mobileParty);
+        }
+
+        private static void PunishmentForMissingResource(MobileParty mobileParty)
+        {
+            
+            var hero = mobileParty.LeaderHero;
+            if (hero.GetCultureSpecificCustomResourceValue()<=0)
+            {
+                if (hero.IsVampire()||hero.IsNecromancer())
+                {
+                    var upkeep = hero.GetCalculatedCustomResourceUpkeep();
+                    hero.AddWindsOfMagic( upkeep*3); //takes winds
+                }  
+            }
         }
 
         private void DailyTick()

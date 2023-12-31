@@ -81,6 +81,8 @@ namespace TOR_Core.Extensions
 
         public static CustomResource GetCultureSpecificCustomResource(this Hero hero)
         {
+            if (hero == null)
+                return null;
             return CustomResourceManager.GetResourceObject(x => x.FirstOrDefault(y => y.Culture == hero.Culture.StringId));
         }
 

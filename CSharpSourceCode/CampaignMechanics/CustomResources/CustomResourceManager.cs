@@ -57,28 +57,9 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         {
             ScreenManager.OnPushScreen += ScreenManager_OnPushScreen;
             ScreenManager.OnPopScreen += ScreenManager_OnPopScreen;
-            CampaignEvents.OnQuarterDailyPartyTick.AddNonSerializedListener(_instance, QuaterDailyTick);
         }
 
-        private static void QuaterDailyTick(MobileParty mobileParty)
-        {
-            if(!mobileParty.IsLordParty) return;
-            PunishmentForMissingResource(mobileParty);
-        }
-
-        private static void PunishmentForMissingResource(MobileParty mobileParty)
-        {
-            
-            var hero = mobileParty.LeaderHero;
-            if (hero.GetCultureSpecificCustomResourceValue()<=0)
-            {
-                if (hero.IsVampire()||hero.IsNecromancer())
-                {
-                    var upkeep = hero.GetCalculatedCustomResourceUpkeep();
-                    hero.AddWindsOfMagic( upkeep*3);
-                }  
-            }
-        }
+        
 
 
         private static void ScreenManager_OnPopScreen(ScreenBase poppedScreen)
