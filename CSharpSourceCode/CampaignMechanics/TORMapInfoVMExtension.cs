@@ -38,7 +38,6 @@ namespace TOR_Core.CampaignMechanics
 
         private List<TooltipProperty> GetCultureResourceHintText()
         {
-	        string rateText = "Upkeep:";
 	        string customResourceTitle = Hero.MainHero.GetCultureSpecificCustomResource().LocalizedName.ToString();
 	        var value = Hero.MainHero.GetCultureSpecificCustomResourceValue().ToString("0.00");
 	        var icon = Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText();

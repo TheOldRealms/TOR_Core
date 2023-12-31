@@ -132,7 +132,6 @@ namespace TOR_Core.Extensions
                 CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref upkeep,PassiveEffectType.CustomResourceUpkeep, true); 
             }
             
-
             return -upkeep.ResultNumber;
         }
 
