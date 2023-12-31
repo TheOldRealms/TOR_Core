@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -120,7 +120,10 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         {
             List<CharacterObject> elements = new List<CharacterObject>();
             var num = mapEvent.GetMapEventSide(mapEvent.DefeatedSide).Casualties- reduction;
-            double raiseDeadChance = Hero.MainHero.GetRaiseDeadChance();
+            double raiseDeadChance = 0;
+
+            raiseDeadChance= Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Select(hero => hero.GetRaiseDeadChance()).Max();
+            
             for (int i = 0; i <= num; i++)
             {
                 if(MBRandom.RandomFloat <= raiseDeadChance)

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
@@ -30,15 +31,19 @@ namespace TOR_Core.Extensions
         }
 
         /// <summary>
-        /// Returns raise dead chance, where, for example, 0.1 is a 10% chance.
+        /// Calculates the Raise dead chance based on the Spellcraft Skillvalue and applies Career Perks.
+        /// 0.005 would allow with 200 spell craft an 80% chance of raising dead.
         /// </summary>
         /// <param name="hero"></param>
         /// <returns></returns>
         public static float GetRaiseDeadChance(this Hero hero)
         {
-            var explainedNumber = new ExplainedNumber();
-            var attributes = hero.GetAttributeValue(TORAttributes.Discipline); //was intelligence Intentional?
-           explainedNumber.Add(attributes * 0.07f);
+            if (!hero.IsNecromancer()) return 0f;
+            
+            var chance = new ExplainedNumber();
+            var skillValue = Mathf.Min(200,hero.GetSkillValue(TORSkills.SpellCraft));
+            
+           chance.Add(skillValue * 0.005f);
 
             if (hero.HasAnyCareer())
             {
@@ -48,11 +53,11 @@ namespace TOR_Core.Extensions
                 {
                     var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive3");
                     if(choice!=null)
-                        explainedNumber.AddFactor(choice.GetPassiveValue());
+                        chance.AddFactor(choice.GetPassiveValue());
                 }
             }
 
-            return explainedNumber.ResultNumber;
+            return chance.ResultNumber;
         }
 
         public static void AddCustomResource(this Hero hero, string id, float amount)

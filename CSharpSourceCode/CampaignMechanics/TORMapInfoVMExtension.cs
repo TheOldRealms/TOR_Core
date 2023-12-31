@@ -23,7 +23,6 @@ namespace TOR_Core.CampaignMechanics
         private BasicTooltipViewModel _cultureResourceHint;
         private BasicTooltipViewModel _artilleryHint;
 		private float _windRechargeRate = 0f;
-		private float _cultureResourceRate=0f;
 		private int _maxWinds = 0;
 		private int _maxArtillery = 0;
 		private int _currentArtilleryItems = 0;

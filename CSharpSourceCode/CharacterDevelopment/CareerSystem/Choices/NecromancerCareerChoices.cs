@@ -50,7 +50,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         private CareerChoiceObject _grimoireNecrisPassive3;
         private CareerChoiceObject _grimoireNecrisPassive4;
         
-        
         private CareerChoiceObject _booksOfNagashKeystone; // 7
         private CareerChoiceObject _booksOfNagashPassive1;
         private CareerChoiceObject _booksOfNagashPassive2;
@@ -204,8 +203,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _deArcanisKadonPassive4.Initialize(CareerID, "Increases maximum winds of magic capacities by 15.", "DeArcanisKadon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.WindsOfMagic));
 
             _codexMortificaPassive1.Initialize(CareerID, "Increases Party size by 10.", "CodexMortifica", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.PartySize));
-            _codexMortificaPassive3.Initialize(CareerID, "Wounded troops in your party heal faster.", "CodexMortifica", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration));
             _codexMortificaPassive2.Initialize(CareerID, "Increases maximum winds of magic capacities by 10.", "CodexMortifica", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
+            _codexMortificaPassive3.Initialize(CareerID, "Wounded troops in your party heal faster.", "CodexMortifica", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration));
             _codexMortificaPassive4.Initialize(CareerID, "Tier 4 Undead troops can get wounded with a 20% lower chance.", "CodexMortifica", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.Special, true));
 
             _liberMortisPassive1.Initialize(CareerID, "Increases Party size by 25.", "LiberMortis", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.PartySize));
