@@ -51,13 +51,11 @@ namespace TOR_Core.AbilitySystem.Scripts
                     }
                     break;
                 }
-               
             }
 
             if (Mission.Current.GetMissionBehavior<HideoutMissionController>() != null)
             {
                 _isHideOutMission = true;
-                
             }
 
             Mission.Current.OnBeforeAgentRemoved += AgentRemoved;
@@ -84,7 +82,6 @@ namespace TOR_Core.AbilitySystem.Scripts
                 InitialShiftToChampion();
             }
             
-
             if (!_casterAgent.IsActive() && !_isDisabled)
             {
                 Blow blow = new Blow();
@@ -154,6 +151,8 @@ namespace TOR_Core.AbilitySystem.Scripts
                 _championIsActive = true;
             }
 
+            _champion.WieldInitialWeapons();
+
             _cameraView.BeginFadeOutAndIn(0.1f, 0.1f, 0.5f);
         }
         private void ShiftControllerToCaster()
@@ -171,9 +170,9 @@ namespace TOR_Core.AbilitySystem.Scripts
                 _champion.Controller = Agent.ControllerType.AI;
                 _casterAgent.RemoveStatusEffect("greater_harbinger_ward_protection");
             }  
-            
             _cameraView.BeginFadeOutAndIn(0.1f, 0.1f, 0.5f);
-            
+            _casterAgent.WieldInitialWeapons();
+            //TODO there is an initial weird hit that is done by caster and champion. Have to investigate this. 
             _championIsActive = false;
         }
 
