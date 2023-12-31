@@ -215,17 +215,17 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _bookofWsoranPassive1.Initialize(CareerID, "Increases Party size by 50.", "BookOfWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.PartySize));
             _bookofWsoranPassive2.Initialize(CareerID, "Increase hex durations by 50%.", "BookOfWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.5f, PassiveEffectType.DebuffDuration,true));
             _bookofWsoranPassive3.Initialize(CareerID, "Undead troops gain 25% Ward save.", "BookOfWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
-            _bookofWsoranPassive4.Initialize(CareerID, "Reduce the Dark Energy upkeep for troops by 35%.", "BookOfWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-35, PassiveEffectType.CustomResourceUpkeep,true));
+            _bookofWsoranPassive4.Initialize(CareerID, "Reduce the Dark Energy upkeep for troops by 35%.", "BookOfWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-35, PassiveEffectType.CustomResourceUpkeepModifier,true));
             
             _grimoireNecrisPassive1.Initialize(CareerID, "Cooldown reduction for spells by 25%.", "GrimoireNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.WindsCooldownReduction,true));
-            _grimoireNecrisPassive2.Initialize(CareerID, "Dark Energy Upkeep costs are reduced by 25%", "GrimoireNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpkeep,true));
+            _grimoireNecrisPassive2.Initialize(CareerID, "Dark Energy Upkeep costs are reduced by 25%", "GrimoireNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpkeepModifier,true));
             _grimoireNecrisPassive3.Initialize(CareerID, "Buffs and healing duration is increased by 50%.", "GrimoireNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.BuffDuration,true));
             _grimoireNecrisPassive4.Initialize(CareerID, "For every magical item equipped you summon 1 unit more.", "GrimoireNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
 
-            _booksOfNagashPassive1.Initialize(CareerID, "Gain 15 Dark Energy daily.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.CustomResourceGain));
+            _booksOfNagashPassive1.Initialize(CareerID, "Gain 15 Dark Energy daily.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.CustomResourceGainModifier));
             _booksOfNagashPassive2.Initialize(CareerID, "Increases Party size by 100.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.PartySize));
             _booksOfNagashPassive3.Initialize(CareerID, "Increases maximum winds of magic capacities by 25.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.WindsOfMagic));
-            _booksOfNagashPassive4.Initialize(CareerID, "Dark Energy cost for undead troop upgrades is reduced by 50%.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-50, PassiveEffectType.CustomResourceUpgradeCost,true));
+            _booksOfNagashPassive4.Initialize(CareerID, "Dark Energy cost for undead troop upgrades is reduced by 50%.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-50, PassiveEffectType.CustomResourceUpgradeCostModifier,true));
         }
     }
 }

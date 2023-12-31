@@ -109,7 +109,7 @@ namespace TOR_Core.Extensions
 
                 if (hero == Hero.MainHero)
                 {
-                    CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref number,PassiveEffectType.CustomResourceGain); 
+                    CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref number,PassiveEffectType.CustomResourceGainModifier); 
                 }
                 
             } 
@@ -129,7 +129,7 @@ namespace TOR_Core.Extensions
                 
             if (hero == Hero.MainHero)
             {
-                CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref upkeep,PassiveEffectType.CustomResourceUpkeep, true); 
+                CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref upkeep,PassiveEffectType.CustomResourceUpkeepModifier, true); 
             }
             
             return -upkeep.ResultNumber;

@@ -243,7 +243,7 @@ namespace TOR_Core.Extensions
                 if (belongsToMainParty)
                 {
                     var explainedNumber = new ExplainedNumber(cost);
-                    CareerHelper.ApplyBasicCareerPassives(Hero.MainHero,ref explainedNumber,PassiveEffectType.CustomResourceUpgradeCost,true);
+                    CareerHelper.ApplyBasicCareerPassives(Hero.MainHero,ref explainedNumber,PassiveEffectType.CustomResourceUpgradeCostModifier,true);
                     
                     cost = (int)explainedNumber.ResultNumber;
                 }
