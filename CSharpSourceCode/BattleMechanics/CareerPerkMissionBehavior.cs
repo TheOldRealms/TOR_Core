@@ -152,14 +152,6 @@ namespace TOR_Core.BattleMechanics
             if (affectorAgent == null) return;
             if(affectedAgent.IsMount) return;
             
-            
-            if (affectedAgent.HasAttribute("NecromancerChampion") && affectedAgent.IsMainAgent )
-            {
-                var agent = Mission.Current.Agents.FirstOrDefault(x => x.IsHero && x.GetHero() == Hero.MainHero);
-
-                if (agent != null) agent.Controller = Agent.ControllerType.Player;
-            }
-            
             if (affectorAgent.IsMainAgent)
             {
                 var playerHero = affectorAgent.GetHero();

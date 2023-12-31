@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using SandBox.Missions.MissionLogics;
 using SandBox.View.Map;
@@ -60,11 +60,21 @@ namespace TOR_Core.AbilitySystem.Scripts
                 
             }
 
+            Mission.Current.OnBeforeAgentRemoved += AgentRemoved;
+
             _cameraView = Mission.Current.GetMissionBehavior<MissionCameraFadeView>();
             
             _specialMoveKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("SpecialMove");
 
             _targetPosition = GameEntity.GlobalPosition;
+        }
+
+        private void AgentRemoved(Agent affectedagent, Agent affectoragent, AgentState agentstate, KillingBlow killingblow)
+        {
+            if (affectedagent == _champion)
+            {
+                Stop();
+            }
         }
         
         protected override void OnTick(float dt)
@@ -83,12 +93,6 @@ namespace TOR_Core.AbilitySystem.Scripts
                 _isDisabled = true;
                 Stop();
             }
-
-            if (!_champion.IsActive()&& !_isDisabled)
-            {
-                _isDisabled = true;
-                Stop();
-            }
             
             if ((Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) ||
                  Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey)) 
@@ -101,6 +105,7 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         public override void Stop()
         {
+            Mission.Current.OnBeforeAgentRemoved -= AgentRemoved;
             base.Stop();
             if (_championIsActive)
             {
@@ -141,8 +146,6 @@ namespace TOR_Core.AbilitySystem.Scripts
                 _casterAgent.Controller = Agent.ControllerType.None;
                 _champion.Controller = Agent.ControllerType.Player;
                 _casterAgent.SetTargetPosition(_casterAgent.Position.AsVec2);
-                
-                //_casterAgent.SetTargetPosition(_casterAgent.Position.AsVec2);
                     
                 if (Hero.MainHero.HasCareerChoice("CodexMortificaKeystone"))
                 {
@@ -156,7 +159,6 @@ namespace TOR_Core.AbilitySystem.Scripts
         private void ShiftControllerToCaster()
         {
             _casterAgent.ClearTargetFrame();
-           // _casterAgent.SetTargetPosition();
             if (_isHideOutMission)
             {
                 _casterAgent.Team.PlayerOrderController.SelectAllFormations();
