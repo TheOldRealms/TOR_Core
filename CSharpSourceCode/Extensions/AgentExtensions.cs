@@ -751,19 +751,6 @@ namespace TOR_Core.Extensions
         {
             agent.AgentVisuals?.SetVisible(true);
         }
-
-        public static void CalculateCareerAbilityCharge(this Agent agent, int amount, ChargeType chargeType, AttackTypeMask attackTypeMask)
-        {
-            if(Agent.Main==null) return;
-            if(agent!=Agent.Main) return;
-            var cAbility = agent.GetComponent<AbilityComponent>();
-            if (cAbility != null)
-            {
-                var value = CareerHelper.CalculateChargeForCareer(chargeType, amount, attackTypeMask);
-                                
-                cAbility.CareerAbility.AddCharge(value);
-            }
-        }
         
         
 

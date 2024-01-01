@@ -243,7 +243,17 @@ namespace TOR_Core.HarmonyPatches
             {
                 return AttackTypeMask.Ranged;
             } 
-                
+            
+            return AttackTypeMask.Melee;
+        }
+        
+        public static AttackTypeMask DetermineMask(KillingBlow blow)
+        {
+            if (TORSpellBlowHelper.IsSpellBlow(blow)) return AttackTypeMask.Spell;
+            if (blow.IsMissile)
+            {
+                return AttackTypeMask.Ranged;
+            } 
             
             return AttackTypeMask.Melee;
         }

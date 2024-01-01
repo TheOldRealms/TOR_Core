@@ -7,6 +7,7 @@ using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
@@ -67,6 +68,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             return skillValue*scalingFactor;
         }
         
+        
+        
+        
         public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, AttackTypeMask mask,bool asFactor = false)
         {
             var choices = hero.GetAllCareerChoices();
@@ -97,8 +101,24 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 }
             }
         }
+        
+        public static void ApplyCareerAbilityCharge( int amount, ChargeType chargeType, AttackTypeMask attackTypeMask,Agent affector=null,Agent affected =null, AttackCollisionData collisionData = new AttackCollisionData())
+        {
+            if(Agent.Main==null) return;
+            if(affector!=Agent.Main) return;
+            var cAbility = affector.GetComponent<AbilityComponent>();
+            if (cAbility != null)
+            {
+                var value = CalculateChargeForCareer(chargeType, amount, affector,affected, attackTypeMask, collisionData);
+                if (value > 0)
+                {
+                    cAbility.CareerAbility.AddCharge(value);
+                }
+                
+            }
+        }
 
-        public static float CalculateChargeForCareer(ChargeType chargeType, int chargeValue, AttackTypeMask mask, AttackCollisionData collisionData)
+        public static float CalculateChargeForCareer(ChargeType chargeType, int chargeValue, Agent agent, Agent affected, AttackTypeMask mask, AttackCollisionData collisionData)
         {
             ChargeCollisionFlag flag = ChargeCollisionFlag.None;
 
@@ -109,162 +129,19 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             {
                 flag |= ChargeCollisionFlag.HeadShot;
             }
-            var blocked = collisionData.AttackBlockedWithShield;
-            return CalculateChargeForCareer(chargeType, chargeValue, mask, flag);
-        }
-
-        public static float CalculateChargeForCareer(ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, ChargeCollisionFlag collisionFlag = ChargeCollisionFlag.None) 
-        {
+            
             var heroCareer = Hero.MainHero.GetCareer();
-            
-            
-            ExplainedNumber explainedNumber = new ExplainedNumber();
-            var careerScaleFactor = ModifyChargeAmount();
-            
-            switch (chargeType)
+
+
+            var result = heroCareer.GetCalculatedCharge(agent,affected, chargeType, chargeValue, mask, flag);
+
+
+            if (!result.ResultNumber.ApproximatelyEqualsTo(0))
             {
-                case ChargeType.DamageDone:
-                {
-                    if (heroCareer == TORCareers.WitchHunter)
-                    {
-                        if (( mask == AttackTypeMask.Ranged || mask == AttackTypeMask.Melee && Hero.MainHero.HasCareerChoice("HuntTheWickedKeystone") ))
-                        {
-                            if (mask == AttackTypeMask.Ranged)
-                            {
-                                explainedNumber.AddFactor(-0.5f); 
-                            }
-
-                            if (collisionFlag == ChargeCollisionFlag.HeadShot)
-                            {
-                                explainedNumber.AddFactor(1f); 
-                            }
-                            
-                            explainedNumber.Add(chargeValue);
-                        }
-                        
-                        
-                       
-                        
-                    }
-                    if (heroCareer == TORCareers.Necromancer)
-                    {
-                        if (mask == AttackTypeMask.Spell)
-                        {
-                            explainedNumber.AddFactor(-0.9f);
-                        }
-                        
-                        explainedNumber.Add(chargeValue);
-                    }
-                    if (heroCareer == TORCareers.GrailDamsel&& mask == AttackTypeMask.Spell)
-                    { 
-                        explainedNumber.Add(chargeValue);
-                       
-                        explainedNumber.AddFactor(-0.9f);
-                    }
-                    
-                    if (heroCareer == TORCareers.MinorVampire)
-                    {
-                        explainedNumber.Add(chargeValue);
-
-                        if (mask == AttackTypeMask.Spell && Agent.Main.GetHero().GetAllCareerChoices().Contains("ArkayneKeystone"))
-                        {
-                            explainedNumber.AddFactor(-0.9f);
-                        }
-                           
-                    }
-                    
-                    if (Agent.Main.GetHero().GetAllCareerChoices().Contains("BookOfSigmarKeystone"))
-                    {
-                        explainedNumber.Add(chargeValue);
-                        
-                        if (mask == AttackTypeMask.Spell ||  mask == AttackTypeMask.Melee)
-                        {
-                            explainedNumber.AddFactor(-0.9f);
-                        } 
-                    }
-                   
-                    break;
-                }
-                case ChargeType.DamageTaken:
-                {
-                    if (heroCareer == TORCareers.WarriorPriest)
-                    {
-                        explainedNumber.Add((float) chargeValue / Hero.MainHero.MaxHitPoints);      //proportion of lost health 
-                        
-                        if (collisionFlag == ChargeCollisionFlag.HitShield)
-                        {
-                            explainedNumber.AddFactor(-0.85f);
-                        }
-                        
-                    }
-                    break;
-                }
-                    
-                case ChargeType.NumberOfKills:
-                    explainedNumber.Add(1);
-                    break;
+                return  result.ResultNumber;
             }
 
-            explainedNumber.AddFactor(careerScaleFactor);
-            return explainedNumber.ResultNumber;
-        }
-        
-        private static float ModifyChargeAmount()
-        {
-            var number = new ExplainedNumber(1);
-            if (Agent.Main.GetHero().HasAnyCareer())
-            {
-
-                if (Agent.Main.GetHero().GetAllCareerChoices().Contains("DreadKnightKeystone"))
-                {
-                    var choice = TORCareerChoices.GetChoice("DreadKnightKeystone");
-                    if (choice != null)
-                    {
-                        var value = choice.GetPassiveValue();
-                        number.AddFactor(value);
-                    }
-                }
-
-                if (Agent.Main.GetHero().GetAllCareerChoices().Contains("NewBloodKeystone"))
-                {
-                    var choice = TORCareerChoices.GetChoice("NewBloodKeystone");
-                    if (choice != null)
-                    {
-                        var value = choice.GetPassiveValue();
-                        number.AddFactor(value);
-                    }
-                }
-
-                if (Agent.Main.GetHero().GetAllCareerChoices().Contains("MartialleKeystone"))
-                {
-                    var choice = TORCareerChoices.GetChoice("MartialleKeystone");
-                    if (choice != null)
-                    {
-                        var value = choice.GetPassiveValue();
-                        number.AddFactor(value);
-                    }
-                }
-                
-                if (Agent.Main.GetHero().GetAllCareerChoices().Contains("VividVisionsKeystone"))
-                {
-                    var choice = TORCareerChoices.GetChoice("VividVisionsKeystone");
-                    if (choice != null)
-                    {
-                        var value = choice.GetPassiveValue();
-                        number.AddFactor(value);
-                    }
-                }
-                if (Agent.Main.GetHero().GetAllCareerChoices().Contains("InspirationOfTheLadyKeystone"))
-                {
-                    var choice = TORCareerChoices.GetChoice("InspirationOfTheLadyKeystone");
-                    if (choice != null)
-                    {
-                        number.AddFactor(-0.05f);           // Originally only 10% of charge is taken into account, now it would be 5% 
-                    }
-                }
-            }
-
-            return number.ResultNumber-1;
+            return 0;
         }
         
         

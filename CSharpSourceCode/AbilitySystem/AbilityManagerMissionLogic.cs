@@ -119,73 +119,84 @@ namespace TOR_Core.AbilitySystem
             Mission.OnItemPickUp -= OnItemPickup;
         }
 
+        private bool ActionFullFillsBasicCareerChargeRequirements(Agent affectorAgent , Agent affectedAgent)
+        {
+            if (!Hero.MainHero.HasAnyCareer()) return false;
+            if(Agent.Main==null)return false;
+            
+            if(affectorAgent==null)return false;
+            if(affectorAgent.IsMount||affectedAgent.IsMount) return false;
+            
+            var affectorParty = affectorAgent.GetOriginMobileParty();
+            var affectedParty = affectedAgent.GetOriginMobileParty();
+            if(!affectorParty.IsMainParty&&!affectedParty.IsMainParty ) return false;
+            
+            
+            return true;
+        }
+
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
-           // base.OnAgentRemoved(affectedAgent, affectorAgent, agentState, blow);
-           if(affectorAgent==null)return;
-           var comp = affectorAgent.GetComponent<AbilityComponent>();
-           if (affectorAgent==Agent.Main&&comp != null)
-           {
-               if(comp.CareerAbility==null)
-                   return;
-               
-               CareerHelper.CalculateChargeForCareer(ChargeType.DamageDone,blow.InflictedDamage);
-               if (comp.CareerAbility.ChargeType == ChargeType.NumberOfKills) comp.CareerAbility.AddCharge(1);
-           }
-           var partyCondition = !affectorAgent.IsMount &&affectorAgent.GetOriginMobileParty()!=null&& affectorAgent.GetOriginMobileParty().IsMainParty && Agent.Main != null;
-           
-           if(partyCondition)
-           {
-               var playerHero = Agent.Main.GetHero();
-               var choices = playerHero.GetAllCareerChoices();
 
-               var spellblow = TORSpellBlowHelper.IsSpellBlow(blow);
-               if (choices.Contains ("NightRiderKeystone") && !(blow.IsMissile || TORSpellBlowHelper.IsSpellBlow(blow)))
-               {
-                   var choice = TORCareerChoices.GetChoice("NightRiderKeystone");
-                   if (choice != null && affectorAgent.GetOriginMobileParty().IsMainParty && !affectorAgent.IsMainAgent)
-                   {
-                       var careerAbility = Agent.Main.GetComponent<AbilityComponent>()?.CareerAbility;
-
-                       var charge = CareerHelper.CalculateChargeForCareer(ChargeType.NumberOfKills, 1);
-                       careerAbility?.AddCharge(charge);
-                   }
-               }
-           }
+            if (ActionFullFillsBasicCareerChargeRequirements(affectorAgent, affectedAgent))
+            {
+                var attackMask = DamagePatch.DetermineMask(blow);
+                
+                CareerHelper.ApplyCareerAbilityCharge(1,ChargeType.NumberOfKills,attackMask,affectorAgent,affectedAgent);
+            }
             
         }
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
+            if(!ActionFullFillsBasicCareerChargeRequirements(affectedAgent, affectorAgent))return;
             
-            if (!affectedAgent.IsMainAgent && !affectorAgent.IsMainAgent) return;
-            var isAttacker = affectorAgent.IsMainAgent;
             
             
             var comp = Agent.Main.GetComponent<AbilityComponent>();
-            if (comp != null)
+            var attackMask = DamagePatch.DetermineMask(blow);
+            
+            CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage,ChargeType.DamageDone, attackMask,affectorAgent,affectedAgent, attackCollisionData);
+            
+            if (affectorAgent.IsHero && affectorAgent.GetHero() == Hero.MainHero)
             {
-                if(comp.CareerAbility==null)
-                    return;
-
-                var attackMask = DamagePatch.DetermineMask(blow);
-                
-                var result = 0f;
-                if (isAttacker)
-                {
-                    result = CareerHelper.CalculateChargeForCareer(ChargeType.DamageDone,blow.InflictedDamage, attackMask, attackCollisionData);
-                }
-                else
-                {
-                    result = CareerHelper.CalculateChargeForCareer(ChargeType.DamageTaken, blow.InflictedDamage, attackMask, attackCollisionData);
-                }
-
-                if (!Mathf.IsZero(result))
-                {
-                    comp.CareerAbility.AddCharge(result);
-                }
-                
+                return;
             }
+
+            if (affectedAgent.IsHero && affectorAgent.GetHero() == Hero.MainHero)
+            {
+                CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage,ChargeType.DamageTaken,attackMask,affectorAgent,affectedAgent, attackCollisionData);
+                return;
+            }
+
+            if (affectorAgent.GetOriginMobileParty() != null && affectorAgent.GetOriginMobileParty().IsMainParty)
+            {
+                if (affectorAgent.IsHero)
+                {
+                    var choices = Agent.Main.GetHero().GetAllCareerChoices();
+                    if (choices.Contains("InspirationOfTheLadyKeystone"))
+                    {
+                        if (!affectorAgent.IsSpellCaster()) return;
+                    
+                        AttackTypeMask mask= DamagePatch.DetermineMask(blow);
+                        if (mask == AttackTypeMask.Spell)
+                        {
+                            CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage,ChargeType.DamageDone, mask);
+                            return;
+                        }
+                    }
+                }
+                
+                if (affectorAgent.IsUndead())
+                {
+                    if (comp.CareerAbility.IsActive)
+                    {
+                        return;
+                    }
+                    CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage,ChargeType.DamageDone,attackMask);
+                }
+            }
+            
             
         }
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using HarmonyLib;
@@ -12,6 +13,7 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
@@ -27,6 +29,21 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         public bool RequiresAbilityTargeting { get; private set; }
         public CareerChoiceObject RootNode { get; set; }
         public List<CareerChoiceGroupObject> ChoiceGroups { get; private set; } = new List<CareerChoiceGroupObject>();
+        
+        public delegate ExplainedNumber ChargeFunction(Agent affectorAgent,Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask, CareerHelper.ChargeCollisionFlag collisionFlag);
+
+        private ChargeFunction _handler;
+
+        public ExplainedNumber GetCalculatedCharge(Agent affector,Agent affected, ChargeType chargeType, int chargeValue, AttackTypeMask mask, CareerHelper.ChargeCollisionFlag collisionFlag)
+        {
+            if (_handler != null)
+            {
+               return _handler.Invoke(affector,affected, chargeType, chargeValue, mask, collisionFlag);
+            }
+
+            return new ExplainedNumber();
+        } 
+        
         public List<CareerChoiceObject> AllChoices
         {
             get
@@ -41,7 +58,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public override string ToString() => Name.ToString();
 
-        public void Initialize(string name, Predicate<Hero> condition, string abilityID, ChargeType chargeType = ChargeType.CooldownOnly, int maxCharge = 100, Type abilityScriptType = null, bool requiresAbilityTargeting=false)
+        public void Initialize(string name, Predicate<Hero> condition, string abilityID, ChargeType chargeType = ChargeType.CooldownOnly, ChargeFunction function = null, int maxCharge = 100, Type abilityScriptType = null, bool requiresAbilityTargeting=false)
         {
             var description = GameTexts.FindText("career_description", StringId);
             base.Initialize(new TextObject(name), description);
@@ -51,6 +68,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             AbilityTemplateID = abilityID;
             AbilityScriptType = abilityScriptType;
             RequiresAbilityTargeting = requiresAbilityTargeting;
+            
+            _handler = function;
+       
             AfterInitialized();
         }
 
@@ -122,6 +142,36 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 lines.Add(new TextObject(line.Trim()));
             }
             return lines;
+        }
+        
+        
+         
+    }
+
+   
+
+
+    class SupplierTest<ExplainedNumber>
+    {
+        private ExplainedNumber val;
+        private Func<ExplainedNumber> getValue;
+
+        // Constructor.
+        public SupplierTest(Func<ExplainedNumber> func)
+        {
+            val = default;
+            getValue = func;
+        }
+
+        public ExplainedNumber Value
+        {
+            get
+            {
+                if (val == null)
+                    // Execute the delegate.
+                    val = getValue();
+                return val;
+            }
         }
     }
 }

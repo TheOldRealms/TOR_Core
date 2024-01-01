@@ -10,6 +10,8 @@ using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Scripts;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.CharacterDevelopment
 {
@@ -36,6 +38,8 @@ namespace TOR_Core.CharacterDevelopment
 
         private List<CareerObject> _allCareers = new List<CareerObject>();
         private MBReadOnlyList<CareerObject> _readonlyCareers;
+
+      
         
 
         public static MBReadOnlyList<CareerObject> All => Instance._readonlyCareers;
@@ -72,20 +76,23 @@ namespace TOR_Core.CharacterDevelopment
 
         private void InitializeAll()
         {
-            _grailDamsel.Initialize("Damsel of the Lady", null,"FeyPaths", ChargeType.DamageDone, 2500, typeof(TeleportScript),true);   
-            _grailKnight.Initialize("Grail Knight", null, "KnightlyCharge",ChargeType.CooldownOnly,100);   
-            _bloodKnight.Initialize("Blood Knight", null, "RedFury", ChargeType.NumberOfKills,10, typeof(RedFuryScript));
-            _minorVampire.Initialize("Vampire Count", null, "ShadowStep", ChargeType.DamageDone, 800, typeof(ShadowStepScript));
+            _grailDamsel.Initialize("Damsel of the Lady", null,"FeyPaths", ChargeType.DamageDone,CareerAbilityChargeSupplier.GrailDamselCareerCharge, 2500, typeof(TeleportScript),true);   
+            _grailKnight.Initialize("Grail Knight", null, "KnightlyCharge",ChargeType.CooldownOnly);   
+            _bloodKnight.Initialize("Blood Knight", null, "RedFury", ChargeType.NumberOfKills,CareerAbilityChargeSupplier.BloodKnightCareerCharge,10, typeof(RedFuryScript));
+            _minorVampire.Initialize("Vampire Count", null, "ShadowStep", ChargeType.DamageDone, CareerAbilityChargeSupplier.MinorVampireCareerCharge,800, typeof(ShadowStepScript));
             _warriorPriest.Initialize("Warrior Priest", (hero) => 
             {
                 return hero.Culture == MBObjectManager.Instance.GetObject<CultureObject>("empire") && hero.Clan.Tier >= 1;
-            }, "RighteousFury", ChargeType.DamageTaken, 30);
+            }, "RighteousFury", ChargeType.DamageTaken, CareerAbilityChargeSupplier.WarriorPriestCareerCharge,30);
             
-            _mercenary.Initialize("Mercenary", null, "LetThemHaveIt", ChargeType.DamageDone, 300);
+            _mercenary.Initialize("Mercenary", null, "LetThemHaveIt", ChargeType.DamageDone, null,300);
             
-            _witchHunter.Initialize("Witch Hunter", null, "Accusation", ChargeType.DamageDone, 200, typeof(AccusationScript));
+            _witchHunter.Initialize("Witch Hunter", null, "Accusation", ChargeType.DamageDone, CareerAbilityChargeSupplier.WitchHunterCareerCharge,200, typeof(AccusationScript),false);
 
-            _necromancer.Initialize("Necromancer", null, "GreaterHarbinger", ChargeType.DamageDone, 2000, typeof(SummonChampionScript), true);
+            _necromancer.Initialize("Necromancer", null, "GreaterHarbinger", ChargeType.DamageDone, CareerAbilityChargeSupplier.NecromancerCareerCharge,2000, typeof(SummonChampionScript), true);
         }
+
+
+        
     }
 }

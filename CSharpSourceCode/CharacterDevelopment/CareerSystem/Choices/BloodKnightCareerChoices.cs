@@ -146,7 +146,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
             
-            _nightRiderKeystone.Initialize(CareerID, "Companion Kills will count for career charge","NightRider",false,ChoiceType.Keystone,new List<CareerChoiceObject.MutationObject>(),new CareerChoiceObject.PassiveEffect (0, PassiveEffectType.Special));
+            _nightRiderKeystone.Initialize(CareerID, "Companion Kills will count for career charge.","NightRider",false,ChoiceType.Keystone,new List<CareerChoiceObject.MutationObject>(),new CareerChoiceObject.PassiveEffect (0, PassiveEffectType.Special));
             
             _bladeMasterKeystone.Initialize(CareerID, "All melee weapon skills, wielded or not, count towards the career ability effects.", "BladeMaster", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
