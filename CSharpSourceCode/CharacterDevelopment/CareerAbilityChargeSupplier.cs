@@ -48,7 +48,7 @@ namespace TOR_Core.CharacterDevelopment
                 return explainedNumber;
             }
             
-            if (chargeType != ChargeType.DamageDone) return explainedNumber; 
+            if (chargeType != ChargeType.DamageDone || chargeType != ChargeType.Healed) return explainedNumber; 
             
             explainedNumber.Add(chargeValue);
             
@@ -66,7 +66,7 @@ namespace TOR_Core.CharacterDevelopment
         {
             ExplainedNumber explainedNumber =new ExplainedNumber();
             
-            if (chargeType != ChargeType.DamageDone) return explainedNumber;    //heal also 
+            if (chargeType != ChargeType.DamageDone || chargeType != ChargeType.Healed) return explainedNumber;
 
             if (mask != AttackTypeMask.Spell) return explainedNumber;
 

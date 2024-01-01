@@ -149,6 +149,7 @@ namespace TOR_Core.AbilitySystem
         CooldownOnly,
         NumberOfKills,
         DamageDone,
+        Healed,
         DamageTaken
     }
 }

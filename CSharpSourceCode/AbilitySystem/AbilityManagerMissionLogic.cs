@@ -134,6 +134,14 @@ namespace TOR_Core.AbilitySystem
             
             return true;
         }
+        
+        public void OnAgentHealed(Agent affectorAgent, Agent affectedAgent, int totalAmountOfHeal)
+        {
+            if (ActionFullFillsBasicCareerChargeRequirements(affectorAgent, affectedAgent))
+            {
+                CareerHelper.ApplyCareerAbilityCharge(totalAmountOfHeal,ChargeType.Healed,AttackTypeMask.Spell,affectorAgent,affectedAgent);
+            }
+        }
 
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {

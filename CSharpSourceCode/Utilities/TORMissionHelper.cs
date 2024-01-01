@@ -36,8 +36,8 @@ namespace TOR_Core.Utilities
 
         public static void HealAgents(IEnumerable<Agent> agents, int minHeal, int maxHeal = -1, Agent healer = null, TargetType targetType = TargetType.Friendly, AbilityTemplate originSpellTemplate = null)
         {
-            CareerPerkMissionBehavior perkBehavior= Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
-            bool triggerPerkBehavior = perkBehavior!=null &&!(healer == null || originSpellTemplate == null);
+            AbilityManagerMissionLogic abilityManagerMissionLogic= Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>();
+            bool validHealingEffect = abilityManagerMissionLogic!=null &&!(healer == null || originSpellTemplate == null);
             //ideal place to add also perk effects of skills and careers ?
             if (agents != null)
             {
@@ -54,9 +54,9 @@ namespace TOR_Core.Utilities
                         agent.Heal(amount);
                     }
 
-                    if (triggerPerkBehavior)
+                    if (validHealingEffect)
                     {
-                        perkBehavior.OnAgentHealed(healer,agent,amount);
+                        abilityManagerMissionLogic.OnAgentHealed(healer,agent,amount);
                     }
                 }
             }

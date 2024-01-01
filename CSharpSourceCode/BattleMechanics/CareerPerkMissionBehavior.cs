@@ -28,27 +28,6 @@ namespace TOR_Core.BattleMechanics
             Blow blow,
             KillingBlow killingBlow);
         
-        public void OnAgentHealed(Agent affectorAgent, Agent affectedAgent, int totalAmountOfHeal)
-        {
-            if ((affectorAgent == Agent.Main || affectorAgent.GetOriginMobileParty().IsMainParty) && affectorAgent.IsHero)
-            {
-                if (Agent.Main.GetHero().HasAnyCareer())
-                {
-                    if (Agent.Main.GetHero().GetCareer() == TORCareers.GrailDamsel)
-                    {
-                        var choices = Agent.Main.GetHero().GetAllCareerChoices();
-                        if (affectorAgent.IsMainAgent || affectorAgent.IsSpellCaster() && choices.Contains("InspirationOfTheLadyKeystone"))
-                        {
-                            CareerHelper.ApplyCareerAbilityCharge(totalAmountOfHeal,ChargeType.DamageDone,AttackTypeMask.Spell,affectorAgent);
-                        }
-                    }
-                    if (Agent.Main.GetHero().GetCareer() == TORCareers.Necromancer)
-                    {
-                        CareerHelper.ApplyCareerAbilityCharge(totalAmountOfHeal,ChargeType.DamageDone,AttackTypeMask.Spell);
-                    }
-                }
-            }
-        }
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
             if(affectedAgent==null) return;
