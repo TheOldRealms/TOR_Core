@@ -18,14 +18,11 @@ namespace TOR_Core.AbilitySystem.Scripts
         private bool _championIsActive;
         private bool _isDisabled;
         private bool _isHideOutMission;
-        private GameKey _specialMoveKey;
-
         private bool _summoned;
+        private GameKey _specialMoveKey;
         private string _summonedChampionId;
-
         private Vec3 _targetPosition;
-
-
+        
         protected override void OnInit()
         {
             var effects = GetEffectsToTrigger();
@@ -79,7 +76,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             base.Stop();
             if (_championIsActive) ShiftControllerToCaster();
             _casterAgent.RemoveStatusEffect("greater_harbinger_ward_protection");
-            TORCommon.Say("stop");
+            //TORCommon.Say("stop");
         }
 
         private void InitialShiftToChampion()

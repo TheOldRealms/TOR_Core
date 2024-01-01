@@ -99,6 +99,8 @@ namespace TOR_Core.BattleMechanics.Banners
         {
             if (agent.IsHero) return false;
             var equipment = agent.Equipment;
+            
+            
             if(equipment.HasAnyWeaponWithFlags(WeaponFlags.NotUsableWithOneHand)) return false;
             var weaponList = GetWeaponItems(equipment).ToList();
             if (weaponList.Any(x => !x.IsEmpty && x.Item != null && x.Item.ItemType == ItemTypeEnum.TwoHandedWeapon)) return false;
