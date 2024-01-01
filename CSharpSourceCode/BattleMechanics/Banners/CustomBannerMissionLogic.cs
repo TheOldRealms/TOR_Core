@@ -10,6 +10,7 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.Source.Missions;
 using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.AbilitySystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 using static TaleWorlds.Core.ItemObject;
@@ -98,9 +99,8 @@ namespace TOR_Core.BattleMechanics.Banners
         private bool CheckEligibleAndAddBanner(Agent agent, Banner banner)
         {
             if (agent.IsHero) return false;
+            if (agent.isSummoned()) return false;
             var equipment = agent.Equipment;
-            
-            
             if(equipment.HasAnyWeaponWithFlags(WeaponFlags.NotUsableWithOneHand)) return false;
             var weaponList = GetWeaponItems(equipment).ToList();
             if (weaponList.Any(x => !x.IsEmpty && x.Item != null && x.Item.ItemType == ItemTypeEnum.TwoHandedWeapon)) return false;

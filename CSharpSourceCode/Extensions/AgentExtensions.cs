@@ -2,6 +2,7 @@ using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NAudio.SoundFont;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
@@ -495,6 +496,12 @@ namespace TOR_Core.Extensions
                 if (character != null && character.IsHero) hero = character.HeroObject;
             }
             return hero;
+        }
+
+        public static bool isSummoned(this Agent agent)
+        {
+            if (agent == null) return false;
+            return agent.Origin != null && agent.Origin.GetType() == typeof(SummonedAgentOrigin);
         }
 
         public static int GetPlaceableArtilleryCount(this Agent agent)
