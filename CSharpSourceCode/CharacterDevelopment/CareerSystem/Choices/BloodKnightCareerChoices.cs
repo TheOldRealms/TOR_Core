@@ -4,6 +4,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.DamageSystem;
@@ -14,6 +15,7 @@ using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
+using FaceGen = TaleWorlds.Core.FaceGen;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 {
@@ -386,8 +388,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _dreadKnightPassive1.Initialize(CareerID, "Increases Hitpoints by 50.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
             _dreadKnightPassive2.Initialize(CareerID, "Horse charge damage is increased by 50%.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseChargeDamage, true));
-            _dreadKnightPassive3.Initialize(CareerID, "Cavalry units get a 20% damage increase in damage.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
+            _dreadKnightPassive3.Initialize(CareerID, "Cavalry units get a 20% damage increase in damage.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Melee,DreadKnightPassive3));
             _dreadKnightPassive4.Initialize(CareerID, "Extra 25% armor penetration of melee attacks.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
+        }
+
+        public static bool DreadKnightPassive3(Agent attacker, Agent victim, AttackTypeMask mask)
+        {
+            return !attacker.IsHero && attacker.HasMount && mask== AttackTypeMask.Melee;
         }
         
         public override void InitialCareerSetup()

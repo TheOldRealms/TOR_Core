@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
+using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
@@ -317,7 +319,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             
             _holyPurgePassive1.Initialize(CareerID, "10% extra holy melee damage.", "HolyPurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy,10),AttackTypeMask.Melee));
             _holyPurgePassive2.Initialize(CareerID, "All Sigmarite troops gain 10% Ward save.", "HolyPurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));      //TORAgentStatCalculateModel 345 
-            _holyPurgePassive3.Initialize(CareerID, "All troops deal 10% more melee damage to non-human enemies.", "HolyPurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special,true)); 
+            _holyPurgePassive3.Initialize(CareerID, "All troops deal 10% more melee damage to non-human enemies.", "HolyPurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical,10),AttackTypeMask.Melee,HolyPurgePassive3)); 
             _holyPurgePassive4.Initialize(CareerID, "All Sigmarite troops gain 10% extra Holy damage.", "HolyPurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy,10),AttackTypeMask.All));
 
             _archLectorPassive1.Initialize(CareerID, "Prayers are recharged on battle start.", "ArchLector", false, ChoiceType.Passive, null); // AbilityMissionLogic 534
@@ -329,7 +331,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             _twinTailedCometPassive2.Initialize(CareerID, "Increases Companion Limit by 5.", "TwinTailedComet", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
             _twinTailedCometPassive3.Initialize(CareerID, "Extra 20% armor penetration of melee attacks.", "TwinTailedComet", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
             _twinTailedCometPassive4.Initialize(CareerID, "Increases Hitpoints by 30.", "TwinTailedComet", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Health));
-
+        }
+        
+        private static bool HolyPurgePassive3(Agent attacker, Agent victim, AttackTypeMask mask)
+        {
+            return victim.Character.Race != 0; 
         }
         
 

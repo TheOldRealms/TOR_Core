@@ -126,7 +126,6 @@ namespace TOR_Core.AbilitySystem
             if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent))
             {
                 var attackMask = DamagePatch.DetermineMask(blow);
-                
                 CareerHelper.ApplyCareerAbilityCharge(1,ChargeType.NumberOfKills,attackMask,affectorAgent,affectedAgent);
             }
             
@@ -134,54 +133,11 @@ namespace TOR_Core.AbilitySystem
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
-            if(!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent))return;
-            
-            
-            
-            var comp = Agent.Main.GetComponent<AbilityComponent>();
-            var attackMask = DamagePatch.DetermineMask(blow);
-            
-            CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage,ChargeType.DamageDone, attackMask,affectorAgent,affectedAgent, attackCollisionData);
-            
-            /*if (affectorAgent.IsHero && affectorAgent.GetHero() == Hero.MainHero)
+            if(CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent))
             {
-                return;
+                var attackMask = DamagePatch.DetermineMask(blow);
+                CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage,ChargeType.DamageDone, attackMask,affectorAgent,affectedAgent, attackCollisionData);
             }
-
-            if (affectedAgent.IsHero && affectorAgent.GetHero() == Hero.MainHero)
-            {
-                CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage,ChargeType.DamageTaken,attackMask,affectorAgent,affectedAgent, attackCollisionData);
-                return;
-            }
-
-            if (affectorAgent.GetOriginMobileParty() != null && affectorAgent.GetOriginMobileParty().IsMainParty)
-            {
-                if (affectorAgent.IsHero)
-                {
-                    var choices = Agent.Main.GetHero().GetAllCareerChoices();
-                    if (choices.Contains("InspirationOfTheLadyKeystone"))
-                    {
-                        if (!affectorAgent.IsSpellCaster()) return;
-                    
-                        AttackTypeMask mask= DamagePatch.DetermineMask(blow);
-                        if (mask == AttackTypeMask.Spell)
-                        {
-                            CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage,ChargeType.DamageDone, mask);
-                            return;
-                        }
-                    }
-                }
-                
-                if (affectorAgent.IsUndead())
-                {
-                    if (comp.CareerAbility.IsActive)
-                    {
-                        return;
-                    }
-                    CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage,ChargeType.DamageDone,attackMask);
-                }
-            }*/
-            
             
         }
 

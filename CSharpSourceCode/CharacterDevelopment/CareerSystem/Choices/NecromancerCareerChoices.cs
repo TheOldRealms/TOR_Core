@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
+using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
@@ -214,7 +216,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _bookofWsoranPassive1.Initialize(CareerID, "Increases Party size by 50.", "BookOfWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.PartySize));
             _bookofWsoranPassive2.Initialize(CareerID, "Increase hex durations by 50%.", "BookOfWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.5f, PassiveEffectType.DebuffDuration,true));
-            _bookofWsoranPassive3.Initialize(CareerID, "Undead troops gain 25% Ward save.", "BookOfWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
+            _bookofWsoranPassive3.Initialize(CareerID, "Undead troops gain 25% Ward save.", "BookOfWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 25), AttackTypeMask.Spell, bookofWsoranPassiveFunction));
             _bookofWsoranPassive4.Initialize(CareerID, "Reduce the Dark Energy upkeep for troops by 35%.", "BookOfWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-35, PassiveEffectType.CustomResourceUpkeepModifier,true));
             
             _grimoireNecrisPassive1.Initialize(CareerID, "Cooldown reduction for spells by 25%.", "GrimoireNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.WindsCooldownReduction,true));
@@ -226,6 +228,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _booksOfNagashPassive2.Initialize(CareerID, "Increases Party size by 100.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.PartySize));
             _booksOfNagashPassive3.Initialize(CareerID, "Increases maximum winds of magic capacities by 25.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.WindsOfMagic));
             _booksOfNagashPassive4.Initialize(CareerID, "Dark Energy cost for undead troop upgrades is reduced by 50%.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-50, PassiveEffectType.CustomResourceUpgradeCostModifier,true));
+        }
+
+        private static bool bookofWsoranPassiveFunction(Agent attacker, Agent victim, AttackTypeMask mask)
+        {
+            //TODO needs testing
+            return victim.BelongsToMainParty() && victim.IsUndead();
         }
     }
 }

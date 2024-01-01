@@ -3,6 +3,7 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
@@ -243,7 +244,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _huntTheWickedPassive4.Initialize(CareerID, "Increases the damage of all ranged troops by 10%.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));          //TORAgentStatCalculateModel 458
 
             _silverHammerPassive1.Initialize(CareerID, "Exterminated Undead and Ruinous powers increase faith per fallen Unit.", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10,PassiveEffectType.Special));
-            _silverHammerPassive2.Initialize(CareerID, "All units deal more damage against undead and chaos.", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 15), AttackTypeMask.Ranged));
+            _silverHammerPassive2.Initialize(CareerID, "All units deal more damage against undead and chaos.", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 15), AttackTypeMask.All,SilverHammerPassive2));
             _silverHammerPassive3.Initialize(CareerID, "Increases Hitpoints by 25.", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
             _silverHammerPassive4.Initialize(CareerID, "Troops can be upgraded to Witch Hunter Retinues.", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));          //TORAgentStatCalculateModel 458
 
@@ -267,6 +268,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _guiltyByAssociationPassive3.Initialize(CareerID, "Companions have 50 additional health points.", "GuiltyByAssociation", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special));
             _guiltyByAssociationPassive4.Initialize(CareerID, "Killing blows in the head increase temporary reload & swing speed", "GuiltyByAssociation", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special));
         }
+        
+        private static bool SilverHammerPassive2(Agent attacker, Agent victim, AttackTypeMask mask)
+        {
+            return victim.Character.Race != 0; 
+        }
+        
+        
         
         
         public override bool ConditionsAreMetToShowButton(CharacterObject characterObject)

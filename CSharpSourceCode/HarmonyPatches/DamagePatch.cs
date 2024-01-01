@@ -60,53 +60,27 @@ namespace TOR_Core.HarmonyPatches
                     wardSaveFactor = torModel.CalculateWardSaveFactor(victim, attackTypeMask);
                 }
 
-                if (attacker.GetOriginMobileParty()!=null&& attacker.GetOriginMobileParty()==MobileParty.MainParty)
-                {
-                    var choices = Hero.MainHero.GetAllCareerChoices();
 
-                    if ((victim.Character.Race == 0||victim.Character.IsCultist()) && choices.Contains("MartiallePassive3"))        //other humans should be added if applicable
+                var property = PropertyMask.All;
+                if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(attacker, victim) && !(attacker.IsMainAgent || victim.IsMainAgent))
+                {
+                    if (attacker.BelongsToMainParty())
                     {
-                        var choice = TORCareerChoices.GetChoice("MartiallePassive3");
-                        if (choice != null)
+                        property = PropertyMask.Attack;
+                        var careerBonuses = CareerHelper.AddCareerPassivesForTroopDamageValues(attacker, victim, attackTypeMask, property);
+                        for (var index = 0; index < careerBonuses.Length; index++)
                         {
-                            var value = choice.GetPassiveValue();
-                            additionalDamagePercentages[(int)DamageType.Physical] += value;
-                        }
+                            additionalDamagePercentages[index] += careerBonuses[index];
+                        } 
                     }
-                    
-                    
-                    
-                    //Need to stay here because they need information about victim
-                    
-                    
-                    if (victim.Character.Race != 0 && choices.Contains("HolyPurgePassive3"))
+                    else
                     {
-                        var choice = TORCareerChoices.GetChoice("HolyPurgePassive3");
-                        if (choice != null)
+                        property = PropertyMask.Defense;
+                        var careerBonuses = CareerHelper.AddCareerPassivesForTroopDamageValues(attacker, victim, attackTypeMask, property);
+                        for (var index = 0; index < careerBonuses.Length; index++)
                         {
-                            var value = choice.GetPassiveValue();
-                            additionalDamagePercentages[(int)DamageType.Physical] += value;
-                        }
-                    }
-                    
-                    if (victim.Character.Race != 0 && choices.Contains("SilverHammerPassive2"))
-                    {
-                        var choice = TORCareerChoices.GetChoice("SilverHammerPassive2");
-                        if (choice != null)
-                        {
-                            var value = choice.GetPassiveValue();
-                            additionalDamagePercentages[(int)DamageType.Physical] += value;
-                        }
-                    }
-                    
-                    if (!attacker.IsHero&&attacker.HasMount&&choices.Contains("DreadKnightPassive3"))
-                    {
-                        var choice = TORCareerChoices.GetChoice("DreadKnightPassive3");
-                        if (choice != null)
-                        {
-                            var value = choice.GetPassiveValue();
-                            additionalDamagePercentages[(int)DamageType.Physical] += value;
-                        }
+                            resistancePercentages[index] += careerBonuses[index];
+                        } 
                     }
                 }
             }
