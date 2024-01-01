@@ -51,6 +51,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             
             var hero = mobileParty.LeaderHero;
+            if(hero==null) return;
             if (hero.GetCultureSpecificCustomResourceValue()<=0)
             {
                 if (hero.IsVampire()||hero.IsNecromancer())

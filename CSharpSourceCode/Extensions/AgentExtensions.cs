@@ -573,7 +573,11 @@ namespace TOR_Core.Extensions
             return null;
         }
 
-        
+        public static bool BelongsToMainParty(this Agent agent)
+        {
+            var party = agent.GetOriginMobileParty();
+            return party != null && party.IsMainParty;
+        }
 
         public static List<string> GetAttributes(this Agent agent)
         {

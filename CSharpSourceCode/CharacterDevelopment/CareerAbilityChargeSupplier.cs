@@ -10,13 +10,17 @@ namespace TOR_Core.CharacterDevelopment
 {
     public static class CareerAbilityChargeSupplier
     {
-        public static ExplainedNumber WitchHunterCareerCharge( Agent affectingAgent,Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
+        public static float WitchHunterCareerCharge( Agent affectingAgent,Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
+            
+            if (chargeType != ChargeType.DamageDone) return 0;
+            if (!affectingAgent.BelongsToMainParty()) return 0;
+            
             ExplainedNumber explainedNumber = new ExplainedNumber(0);
-            if (chargeType != ChargeType.DamageDone) return explainedNumber;
-
+            
             if (affectingAgent.IsHero && affectingAgent.IsMainAgent)
             {
+                
                 explainedNumber.Add(chargeValue);
             }
             
@@ -37,18 +41,22 @@ namespace TOR_Core.CharacterDevelopment
                 explainedNumber.Add(chargeValue);
             }
 
-            return explainedNumber;
+            return explainedNumber.ResultNumber;
         }
         
-        public static ExplainedNumber NecromancerCareerCharge(Agent affectingAgent,Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
+        public static float NecromancerCareerCharge(Agent affectingAgent,Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
-            ExplainedNumber explainedNumber =new ExplainedNumber();
+            if (!affectingAgent.BelongsToMainParty()) return 0;
+            if(mask== AttackTypeMask.Ranged) return 0;
+            
             if( mask == AttackTypeMask.Melee&&!affectingAgent.IsUndead())
             {
-                return explainedNumber;
+                return 0;
             }
             
-            if (chargeType != ChargeType.DamageDone || chargeType != ChargeType.Healed) return explainedNumber; 
+            if ((chargeType != ChargeType.DamageDone && chargeType != ChargeType.Healed)) return 0; 
+            
+            ExplainedNumber explainedNumber =new ExplainedNumber();
             
             explainedNumber.Add(chargeValue);
             
@@ -59,23 +67,26 @@ namespace TOR_Core.CharacterDevelopment
             }
                         
             explainedNumber.Add(chargeValue);
-            return explainedNumber;
+            return explainedNumber.ResultNumber;
         }
         
-        public static ExplainedNumber GrailDamselCareerCharge(Agent affectingAgent,Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
+        public static float GrailDamselCareerCharge(Agent affectingAgent,Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
+            if (chargeType != ChargeType.DamageDone || chargeType != ChargeType.Healed) return 0;
+
+            if (mask != AttackTypeMask.Spell) return 0;
+
+            if (!affectingAgent.IsHero) return 0;
+            
+            
             ExplainedNumber explainedNumber =new ExplainedNumber();
             
-            if (chargeType != ChargeType.DamageDone || chargeType != ChargeType.Healed) return explainedNumber;
+          
 
-            if (mask != AttackTypeMask.Spell) return explainedNumber;
-
-            if (!affectingAgent.IsHero) return explainedNumber;
-
-            if (affectingAgent.GetOriginMobileParty() != MobileParty.MainParty) return explainedNumber;
+            if (affectingAgent.GetOriginMobileParty() != MobileParty.MainParty) return 0;
            
 
-            if (!affectingAgent.IsMainAgent && !Hero.MainHero.HasCareerChoice("InspirationOfTheLadyKeystone")) return explainedNumber;
+            if (!affectingAgent.IsMainAgent && !Hero.MainHero.HasCareerChoice("InspirationOfTheLadyKeystone")) return 0;
             
             explainedNumber.Add(chargeValue);
                        
@@ -100,17 +111,20 @@ namespace TOR_Core.CharacterDevelopment
                     explainedNumber.AddFactor(-0.05f);           // Originally only 10% of charge is taken into account, now it would be 5% 
                 }
             }
-            return explainedNumber;
+            return explainedNumber.ResultNumber;
 
 
 
 
         }
 
-        public static ExplainedNumber MinorVampireCareerCharge(Agent affectingAgent,Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
+        public static float MinorVampireCareerCharge(Agent affectingAgent,Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
+            if (affectingAgent.GetOriginMobileParty() != MobileParty.MainParty) return 0;
+            if (chargeType != ChargeType.DamageDone) return 0; 
+            
             ExplainedNumber explainedNumber =new ExplainedNumber();
-            if (chargeType != ChargeType.DamageDone) return explainedNumber; 
+           
             
             explainedNumber.Add(chargeValue);
 
@@ -139,15 +153,18 @@ namespace TOR_Core.CharacterDevelopment
                 }
             }
 
-            return explainedNumber;
+            return explainedNumber.ResultNumber;
         }
 
-        public static ExplainedNumber BloodKnightCareerCharge(Agent affectingAgent,Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
+        public static float BloodKnightCareerCharge(Agent affectingAgent,Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
-            ExplainedNumber explainedNumber = new ExplainedNumber();
-            if (chargeType != ChargeType.NumberOfKills) return explainedNumber;
+            
+            if (chargeType != ChargeType.NumberOfKills) return 0;
 
-            if (!affectingAgent.IsHero) return explainedNumber;
+            if (!affectingAgent.IsHero) return 0;
+            
+            ExplainedNumber explainedNumber = new ExplainedNumber();
+            
             if (affectingAgent.IsMainAgent || affectingAgent.GetOriginMobileParty().IsMainParty&&Hero.MainHero.HasCareerChoice("NightRiderKeystone"))
             {
                 explainedNumber.Add(chargeValue);
@@ -164,14 +181,15 @@ namespace TOR_Core.CharacterDevelopment
                 }
             }
             
-            return explainedNumber;
+            return explainedNumber.ResultNumber;
         }
         
-        public static ExplainedNumber WarriorPriestCareerCharge(Agent affectingAgent,Agent affectedAgent,ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
+        public static float WarriorPriestCareerCharge(Agent affectingAgent,Agent affectedAgent,ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
-            ExplainedNumber explainedNumber =new ExplainedNumber();
-            if (chargeType != ChargeType.DamageTaken) return explainedNumber;
             
+            if (chargeType != ChargeType.DamageTaken) return 0;
+            
+            ExplainedNumber explainedNumber =new ExplainedNumber();
             explainedNumber.Add(chargeValue);
             
             explainedNumber.Add((float) chargeValue / Hero.MainHero.MaxHitPoints);      //proportion of lost health 
@@ -181,7 +199,7 @@ namespace TOR_Core.CharacterDevelopment
                 explainedNumber.AddFactor(-0.85f);
             }
 
-            return explainedNumber;
+            return explainedNumber.ResultNumber;
         }
         
         

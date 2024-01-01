@@ -118,35 +118,12 @@ namespace TOR_Core.AbilitySystem
             BindWeaponKeys();
             Mission.OnItemPickUp -= OnItemPickup;
         }
-
-        private bool ActionFullFillsBasicCareerChargeRequirements(Agent affectorAgent , Agent affectedAgent)
-        {
-            if (!Hero.MainHero.HasAnyCareer()) return false;
-            if(Agent.Main==null)return false;
-            
-            if(affectorAgent==null)return false;
-            if(affectorAgent.IsMount||affectedAgent.IsMount) return false;
-            
-            var affectorParty = affectorAgent.GetOriginMobileParty();
-            var affectedParty = affectedAgent.GetOriginMobileParty();
-            if(!affectorParty.IsMainParty&&!affectedParty.IsMainParty ) return false;
-            
-            
-            return true;
-        }
         
-        public void OnAgentHealed(Agent affectorAgent, Agent affectedAgent, int totalAmountOfHeal)
-        {
-            if (ActionFullFillsBasicCareerChargeRequirements(affectorAgent, affectedAgent))
-            {
-                CareerHelper.ApplyCareerAbilityCharge(totalAmountOfHeal,ChargeType.Healed,AttackTypeMask.Spell,affectorAgent,affectedAgent);
-            }
-        }
 
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
 
-            if (ActionFullFillsBasicCareerChargeRequirements(affectorAgent, affectedAgent))
+            if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent))
             {
                 var attackMask = DamagePatch.DetermineMask(blow);
                 
@@ -157,7 +134,7 @@ namespace TOR_Core.AbilitySystem
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
-            if(!ActionFullFillsBasicCareerChargeRequirements(affectedAgent, affectorAgent))return;
+            if(!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent))return;
             
             
             
@@ -166,7 +143,7 @@ namespace TOR_Core.AbilitySystem
             
             CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage,ChargeType.DamageDone, attackMask,affectorAgent,affectedAgent, attackCollisionData);
             
-            if (affectorAgent.IsHero && affectorAgent.GetHero() == Hero.MainHero)
+            /*if (affectorAgent.IsHero && affectorAgent.GetHero() == Hero.MainHero)
             {
                 return;
             }
@@ -203,7 +180,7 @@ namespace TOR_Core.AbilitySystem
                     }
                     CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage,ChargeType.DamageDone,attackMask);
                 }
-            }
+            }*/
             
             
         }

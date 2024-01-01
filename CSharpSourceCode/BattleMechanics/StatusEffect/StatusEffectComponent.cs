@@ -10,8 +10,11 @@ using TaleWorlds.Core;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using System;
 using System.Diagnostics.Tracing;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.TwoDimension;
+using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.SFX;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
 {
@@ -27,7 +30,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         private bool _initBaseValues;
         private bool _disabled;
         private Dictionary<DrivenProperty, float> _baseValues;
-        private CareerPerkMissionBehavior _careerPerkMissionBehavior;
 
         public StatusEffectComponent(Agent agent) : base(agent)
         {
@@ -36,9 +38,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             _dummyEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
             _dummyEntity.Name = "_dummyEntity_" + Agent.Index;
             _baseValues = new Dictionary<DrivenProperty, float>();
-
-            _careerPerkMissionBehavior = Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
-
         }
 
         public void SynchronizeBaseValues(bool mountOnly = false)
@@ -118,8 +117,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
 
             CalculateEffectAggregate();
-            StatusEffect overTimeEffect = _currentEffects.Keys.Where(x => x.Template.Type == StatusEffectTemplate.EffectType.DamageOverTime||x.Template.Type == StatusEffectTemplate.EffectType.HealthOverTime).FirstOrDefault();
-
+            
             if (Agent.IsActive() && Agent != null && !Agent.IsFadingOut())
             {
                 if (_effectAggregate == null) return;
@@ -133,10 +131,22 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
                 if (_effectAggregate.DamageOverTime > 0)
                 {
-                    Agent.ApplyDamage((int)_effectAggregate.DamageOverTime, Agent.Position, overTimeEffect.ApplierAgent, false, false);
+                    var value = _effectAggregate.DamageOverTime;
+                    var effect = _currentEffects.Keys.FirstOrDefault(x => x.Template.Type == StatusEffectTemplate.EffectType.DamageOverTime&& x.ApplierAgent == Agent.Main) ?? 
+                                  _currentEffects.Keys.FirstOrDefault(x => x.Template.Type == StatusEffectTemplate.EffectType.DamageOverTime);
+                    
+                    var applier = effect?.ApplierAgent;
+
+                    if (applier!=null&&(applier.IsMainAgent||applier.BelongsToMainParty()))
+                    {
+                        CareerHelper.ApplyCareerAbilityCharge((int)value,ChargeType.Healed,AttackTypeMask.Spell,applier);
+                    }
+
+                    Agent.ApplyDamage((int)_effectAggregate.DamageOverTime, Agent.Position, applier, false, false);
                 }
                 else if (_effectAggregate.HealthOverTime > 0)
                 {
+                    
                     var healingValue =(int) _effectAggregate.HealthOverTime;
                     Agent.Heal(healingValue);
 
@@ -144,11 +154,15 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     {
                         Agent.MountAgent.Heal(healingValue);
                     }
+                    
+                    var effect = _currentEffects.Keys.FirstOrDefault(x => x.Template.Type == StatusEffectTemplate.EffectType.HealthOverTime&& x.ApplierAgent == Agent.Main) ?? 
+                                  _currentEffects.Keys.FirstOrDefault(x => x.Template.Type == StatusEffectTemplate.EffectType.HealthOverTime);
 
+                    var applier = effect?.ApplierAgent;
 
-                    if (_careerPerkMissionBehavior != null)
+                    if (applier!=null&&(applier.IsMainAgent||applier.BelongsToMainParty()))
                     {
-                        _careerPerkMissionBehavior.OnAgentHealed(overTimeEffect.ApplierAgent,Agent,healingValue);
+                        CareerHelper.ApplyCareerAbilityCharge(healingValue,ChargeType.Healed,AttackTypeMask.Spell,applier);
                     }
                     
                 }

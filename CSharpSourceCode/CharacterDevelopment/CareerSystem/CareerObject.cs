@@ -30,18 +30,19 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         public CareerChoiceObject RootNode { get; set; }
         public List<CareerChoiceGroupObject> ChoiceGroups { get; private set; } = new List<CareerChoiceGroupObject>();
         
-        public delegate ExplainedNumber ChargeFunction(Agent affectorAgent,Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask, CareerHelper.ChargeCollisionFlag collisionFlag);
+        public delegate float ChargeFunction(Agent affectorAgent,Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask, CareerHelper.ChargeCollisionFlag collisionFlag);
 
         private ChargeFunction _handler;
 
-        public ExplainedNumber GetCalculatedCharge(Agent affector,Agent affected, ChargeType chargeType, int chargeValue, AttackTypeMask mask, CareerHelper.ChargeCollisionFlag collisionFlag)
+        public float GetCalculatedCareerAbilityCharge(Agent affector,Agent affected, ChargeType chargeType, int chargeValue, AttackTypeMask mask, CareerHelper.ChargeCollisionFlag collisionFlag)
         {
+            float result=0f;
             if (_handler != null)
             {
                return _handler.Invoke(affector,affected, chargeType, chargeValue, mask, collisionFlag);
             }
 
-            return new ExplainedNumber();
+            return result;
         } 
         
         public List<CareerChoiceObject> AllChoices

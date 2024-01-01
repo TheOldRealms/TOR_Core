@@ -102,11 +102,21 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             }
         }
         
+        public static bool IsValidCareerMissionInteractionBetweenAgents(Agent affectorAgent , Agent affectedAgent)
+        {
+            if (!Hero.MainHero.HasAnyCareer()) return false;
+            if(Agent.Main==null)return false;
+            
+            if(affectorAgent==null)return false;
+            if(affectorAgent.IsMount||affectedAgent.IsMount) return false;
+
+            return affectorAgent.BelongsToMainParty() || affectedAgent.BelongsToMainParty();
+        }
+        
         public static void ApplyCareerAbilityCharge( int amount, ChargeType chargeType, AttackTypeMask attackTypeMask,Agent affector=null,Agent affected =null, AttackCollisionData collisionData = new AttackCollisionData())
         {
             if(Agent.Main==null) return;
-            if(affector!=Agent.Main) return;
-            var cAbility = affector.GetComponent<AbilityComponent>();
+            var cAbility = Agent.Main.GetComponent<AbilityComponent>();
             if (cAbility != null)
             {
                 var value = CalculateChargeForCareer(chargeType, amount, affector,affected, attackTypeMask, collisionData);
@@ -133,12 +143,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             var heroCareer = Hero.MainHero.GetCareer();
 
 
-            var result = heroCareer.GetCalculatedCharge(agent,affected, chargeType, chargeValue, mask, flag);
+            var result = heroCareer.GetCalculatedCareerAbilityCharge(agent,affected, chargeType, chargeValue, mask, flag);
 
 
-            if (!result.ResultNumber.ApproximatelyEqualsTo(0))
+            if (!result.ApproximatelyEqualsTo(0))
             {
-                return  result.ResultNumber;
+                return  result;
             }
 
             return 0;
