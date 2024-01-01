@@ -4,12 +4,14 @@ using System.Linq;
 using System.Reflection;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.AgentOrigins;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.Source.Missions;
 using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.AbilitySystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 using static TaleWorlds.Core.ItemObject;
@@ -98,6 +100,14 @@ namespace TOR_Core.BattleMechanics.Banners
         private bool CheckEligibleAndAddBanner(Agent agent, Banner banner)
         {
             if (agent.IsHero) return false;
+            if(Game.Current.GameType is Campaign && Campaign.Current != null)
+            {
+                if (!(agent.Origin is PartyAgentOrigin)) return false;
+                var party = ((PartyAgentOrigin)agent.Origin).Party;
+                if (!party.IsMobile) return false;
+                if (!party.MobileParty.IsLordParty) return false;
+            }
+            
             var equipment = agent.Equipment;
             if(equipment.HasAnyWeaponWithFlags(WeaponFlags.NotUsableWithOneHand)) return false;
             var weaponList = GetWeaponItems(equipment).ToList();
