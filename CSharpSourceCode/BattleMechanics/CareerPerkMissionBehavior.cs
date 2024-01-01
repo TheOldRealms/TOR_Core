@@ -51,29 +51,24 @@ namespace TOR_Core.BattleMechanics
                     
                     AbilityTemplate ability = affectorAgent.GetComponent<AbilityComponent>().CareerAbility.Template;
 
-                    var chance = ability.ScaleVariable1;
+                    var reapplyChance = 0.5f;
 
-                    chance = Mathf.Clamp(chance, 0.1f, 1);
+                    reapplyChance = Mathf.Clamp(reapplyChance, 0.1f, 1);
 
                     var targets = new MBList<Agent>();
 
                     if (choices.Contains("EndsJustifiesMeansKeystone")&&affectedAgent.HealthLimit <= blow.InflictedDamage)
                     {
-                        targets.AddRange(AccusationScript.GetAdditionalAccusationMarkTargets(affectedAgent.Position.AsVec2,1));
+                        var amount = AccusationScript.CalculateAdditonalTargetAmount(ability.ScaleVariable1);
+                        targets.AddRange(AccusationScript.GetAdditionalAccusationMarkTargets(affectedAgent.Position.AsVec2,amount+1));
                     }
                     
                     var script = (AccusationScript)affectorAgent.GetComponent<AbilityComponent>().CareerAbility.AbilityScript;
                     var triggeredEffect = script.GetEffects()[0];
-                    TORCommon.Say("chance was"+ chance);
-                    if (MBRandom.RandomFloat <= chance)
+                    targets.Add(affectedAgent);
+                    if (MBRandom.RandomFloat <= reapplyChance|| choices.Contains("NoRestAgainstEvilKeystone"))
                     {
-                        
                         targets.Add(affectedAgent);
-                        
-                        if (choices.Contains("GuiltyByAssociationKeystone"))
-                        {
-                            targets.AddRange(AccusationScript.GetAdditionalAccusationMarkTargets(affectedAgent.Position.AsVec2));
-                        }
                     }
                     else
                     {

@@ -31,6 +31,11 @@ namespace TOR_Core.Models
                         missileWeaponFlags |= WeaponFlags.MultiplePenetration;
                     }
                 }
+
+                if (attackerAgent.HasAttribute("ShieldPenetration"))
+                {
+                    missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
+                }
             }
         }
 

@@ -113,7 +113,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _witchHunterRoot.Initialize(CareerID, "A single enemy is marked for 8 seconds and the first hit inflicted against the target increases the physical damage by 20%. After the first hit there is a 10% chance the marker stays on the target. For every point in Gunpowder or crossbow, the chances increases by 0.05% for the marker staying on the target.", null, true,
+            _witchHunterRoot.Initialize(CareerID, "A single enemy is marked for 8 seconds and the first hit inflicted against the target increases the physical damage by 20%. After every hit there is a 50% chance the marker stays on the target. For every point in Gunpowder or crossbow, the chances increases by 0.1% additional targets are marked.", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -121,12 +121,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(AbilityTemplate),
                         MutationTargetOriginalId = "Accusation",
                         PropertyName = "ScaleVariable1",
-                        PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.GunPowder, DefaultSkills.Crossbow }, 0.0005f,false,true),
+                        PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.GunPowder, DefaultSkills.Crossbow }, 0.001f,false,true),
                         MutationType = OperationType.Add
                     }
                 });
             
-            _toolsOfJudgementKeystone.Initialize(CareerID, "The Marker stays 6 seconds longer on the target. Ability scales with One and Two-Handed-skill.", "ToolsOfJudgement", false,
+            _toolsOfJudgementKeystone.Initialize(CareerID, "The Marker stays 6 seconds longer on the target. Ability scales with the higehest One- or Two-Handed-skill.", "ToolsOfJudgement", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -142,7 +142,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(AbilityTemplate),
                         MutationTargetOriginalId = "Accusation",
                         PropertyName = "ScaleVariable1",
-                        PropertyValue = (choice, originalValue, agent) =>CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded,DefaultSkills.TwoHanded}, 0.0005f,true),
+                        PropertyValue = (choice, originalValue, agent) =>CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded,DefaultSkills.TwoHanded}, 0.001f,true),
                         MutationType = OperationType.Add
                     }
                 });
@@ -160,7 +160,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
             
-            _silverHammerKeystone.Initialize(CareerID, "Increases holy damage by 20% to the marked target. Ability starts charged and scales with Faith.", "SilverHammer", false,
+            _silverHammerKeystone.Initialize(CareerID, "Increases holy damage by 20% to the marked target. Ability scales with Faith.", "SilverHammer", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -176,12 +176,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(AbilityTemplate),
                         MutationTargetOriginalId = "Accusation",
                         PropertyName = "ScaleVariable1",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.0005f),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.001f),
                         MutationType = OperationType.Add
                     }
                 });
             
-            _noRestAgainstEvilKeystone.Initialize(CareerID, "Companions can trigger mark effects. Ability starts charged.", "NoRestAgainstEvil", false,
+            _noRestAgainstEvilKeystone.Initialize(CareerID, "The marker never vanishes from the target. Shield penetration for the duration of the ability", "NoRestAgainstEvil", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                 }); // special
@@ -203,18 +203,18 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(AbilityTemplate),
                         MutationTargetOriginalId = "Accusation",
                         PropertyName = "ScaleVariable1",
-                        PropertyValue = (choice, originalValue, agent) =>CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Athletics}, 0.0005f),
+                        PropertyValue = (choice, originalValue, agent) =>CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Athletics}, 0.001f),
                         MutationType = OperationType.Add
                     }
                 });
             
-            _guiltyByAssociationKeystone.Initialize(CareerID, "After adding the marker, the mark may jump to 1-2 surrounding enemies.", "GuiltyByAssociation", false,
+            _guiltyByAssociationKeystone.Initialize(CareerID, "Companions and Retinues can trigger mark effects. Ability starts charged.", "GuiltyByAssociation", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     
                 }); 
             
-            _endsJustifiesMeansKeystone.Initialize(CareerID, "Marked enemies suffering more damage than their maximum health propagate mark. Scales with Rougery", "EndsJustifiesMeans", false,
+            _endsJustifiesMeansKeystone.Initialize(CareerID, "Marked enemies suffering from overkill damage propagate mark. Scales with Rougery", "EndsJustifiesMeans", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
