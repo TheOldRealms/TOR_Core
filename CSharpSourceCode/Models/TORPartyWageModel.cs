@@ -122,6 +122,7 @@ namespace TOR_Core.Models
                     if (buyerHero.GetPerkValue(DefaultPerks.Charm.SlickNegotiator))
                         explainedNumber.AddFactor(DefaultPerks.Charm.SlickNegotiator.PrimaryBonus);
                 }
+                
                 troopRecruitmentCost = MathF.Max(1, MathF.Round((float)troopRecruitmentCost * explainedNumber.ResultNumber));
             }
             return troopRecruitmentCost;

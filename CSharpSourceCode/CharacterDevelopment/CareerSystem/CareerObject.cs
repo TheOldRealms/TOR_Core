@@ -31,7 +31,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         public List<CareerChoiceGroupObject> ChoiceGroups { get; private set; } = new List<CareerChoiceGroupObject>();
         
         public delegate float ChargeFunction(Agent affectorAgent,Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask, CareerHelper.ChargeCollisionFlag collisionFlag);
-
         private ChargeFunction _handler;
 
         public float GetCalculatedCareerAbilityCharge(Agent affector,Agent affected, ChargeType chargeType, int chargeValue, AttackTypeMask mask, CareerHelper.ChargeCollisionFlag collisionFlag)

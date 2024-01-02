@@ -176,6 +176,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
             public bool IsValidCharacterObject(CharacterObject characterObject) =>_specialCharacterEvaluationFunction==null || _specialCharacterEvaluationFunction.Invoke(characterObject);
             
+            
             public PassiveEffect(float effectValue, PassiveEffectType type, AttackTypeMask mask)
             {
                 EffectMagnitude = effectValue;
@@ -197,7 +198,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 _specialCombatInteractionFunction = function;
             }
 
-            public PassiveEffect(float effectValue=0, PassiveEffectType type = PassiveEffectType.Special, bool asPercent=false,  SpecialCharacterEvaluationFunction function = null)
+            public PassiveEffect(float effectValue=0, PassiveEffectType type = PassiveEffectType.Special, bool asPercent=false,  SpecialCharacterEvaluationFunction function=null)
             {
                 EffectMagnitude = effectValue;
                 Operation = OperationType.Add;
@@ -266,7 +267,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         TroopRegeneration,  //troop generation
         TroopMorale,        //Morale
         TroopWages,
-        TroopFoodConsumption, //TODO
         TroopUpgradeCost,
         Ammo,               //Player ammo
         InfluenceGainFromBattles,
