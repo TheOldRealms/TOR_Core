@@ -279,18 +279,22 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _martiallePassive4.Initialize(CareerID, "All attacks deal bonus damage against shields.", "Martialle", false, ChoiceType.Passive, null); // TorAgentApplyDamageModel 83
 
             _masterOfDeadPassive1.Initialize(CareerID, "Increases Party size by 100.", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.PartySize));
-            _masterOfDeadPassive2.Initialize(CareerID, "Undead troops gain 25% Ward save.", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true)); // AgentstatCalculator 444, Might be OP , I had fun, i would leave it for the playtest, can be adjusted
+            _masterOfDeadPassive2.Initialize(CareerID, "Undead troops gain 25% Ward save.", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 25), AttackTypeMask.All, MasterOfDeadPassive2));
             _masterOfDeadPassive3.Initialize(CareerID, "20% higher chance for raised dead after battle.", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); // HeroExtension 44
             _masterOfDeadPassive4.Initialize(CareerID, "Tier 4 Undead troops can get wounded with a 20% lower chance.", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.Special, true)); //HealingpartyModel 33
+        }
+        
+        private static bool MasterOfDeadPassive2(Agent attacker, Agent victim, AttackTypeMask mask)
+        {
+            if (!victim.BelongsToMainParty()) return false;
+            if (victim.IsHero) return false;
+            return victim.IsUndead();
         }
 
         private static bool MartiallePassive3(Agent attacker, Agent victim, AttackTypeMask mask)
         {
             return victim.Character.Race == 0||victim.Character.IsCultist(); //other humans should be added if applicable
         }
-        
-        
-        
         
         public override void InitialCareerSetup()
         {

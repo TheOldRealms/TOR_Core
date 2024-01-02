@@ -53,17 +53,9 @@ namespace TOR_Core.HarmonyPatches
             var wardSaveFactor = 1f;
             if (Game.Current.GameType is Campaign)
             {
-                var model = MissionGameModels.Current.AgentApplyDamageModel;
-                if(model != null && model is TORAgentApplyDamageModel)
-                {
-                    var torModel = model as TORAgentApplyDamageModel;
-                    wardSaveFactor = torModel.CalculateWardSaveFactor(victim, attackTypeMask);
-                }
-
-
-                var property = PropertyMask.All;
                 if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(attacker, victim) && !(attacker.IsMainAgent || victim.IsMainAgent))
                 {
+                    var property = PropertyMask.All;
                     if (attacker.BelongsToMainParty())
                     {
                         property = PropertyMask.Attack;
@@ -83,6 +75,16 @@ namespace TOR_Core.HarmonyPatches
                         } 
                     }
                 }
+                
+                var model = MissionGameModels.Current.AgentApplyDamageModel;
+                if(model != null && model is TORAgentApplyDamageModel)
+                {
+                    var torModel = model as TORAgentApplyDamageModel;
+                    wardSaveFactor = torModel.CalculateWardSaveFactor(victim, attackTypeMask);
+                }
+
+
+                
             }
 
             string abilityName = "";

@@ -379,7 +379,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _controlledHungerPassive1.Initialize(CareerID, "Immune to sunlight malus.", "ControlledHunger", false, ChoiceType.Passive, null); //TORPartySpeedCalculatingModel 46
             _controlledHungerPassive2.Initialize(CareerID, "Increases Hitpoints by 50.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
             _controlledHungerPassive3.Initialize(CareerID, "Mount health is increased by 35%.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(35f, PassiveEffectType.HorseHealth, true));
-            _controlledHungerPassive4.Initialize(CareerID, "Ward save for all vampire units.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
+            _controlledHungerPassive4.Initialize(CareerID, "Ward save for all vampire units.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 25), AttackTypeMask.Spell, ControlledHungerPassive4));
 
             _avatarOfDeathPassive1.Initialize(CareerID, "{=avatar_of_death_passive1_str}Gain 25% physical resistance to melee and ranged attacks.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 25), AttackTypeMask.Ranged | AttackTypeMask.Melee));
             _avatarOfDeathPassive2.Initialize(CareerID, "{=avatar_of_death_passive2_str}All vampire units wages are reduced by 35%.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-35, PassiveEffectType.Special, true)); //TORPartyWageModel 85
@@ -392,8 +392,16 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _dreadKnightPassive4.Initialize(CareerID, "Extra 25% armor penetration of melee attacks.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
         }
 
+        private static bool ControlledHungerPassive4(Agent attacker, Agent victim, AttackTypeMask mask)
+        {
+            if (!victim.BelongsToMainParty()) return false;
+            if (victim.IsHero) return false;
+            return victim.IsVampire();
+        }
+        
         public static bool DreadKnightPassive3(Agent attacker, Agent victim, AttackTypeMask mask)
         {
+            if (!attacker.BelongsToMainParty()) return false;
             return !attacker.IsHero && attacker.HasMount && mask== AttackTypeMask.Melee;
         }
         
