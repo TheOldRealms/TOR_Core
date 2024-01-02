@@ -27,7 +27,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         }
 
 
-        public abstract void ButtonClickedEvent(CharacterObject character);
+        public abstract void ButtonClickedEvent(CharacterObject characterObject);
 
         public abstract bool ShouldButtonBeVisible(CharacterObject characterObject);
 

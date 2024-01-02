@@ -486,7 +486,6 @@
     <Compile Include="CampaignMechanics\BountyMaster\BountyMasterCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Careers\GrailDamselEnvoyOfTheLadyPerkBehavior.cs" />
     <Compile Include="CampaignMechanics\Careers\TORCareerPerkCampaignBehavior.cs" />
-    <Compile Include="CampaignMechanics\Careers\WitchHunterRetinueRecruitment.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissSceneNotificationItem.cs" />
@@ -540,6 +539,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\MercenaryCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerAbilityEffectVM.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\SpecialbuttonHandler.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\WitchHunterCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceGroupObject.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceGroupObjectVM.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceObject.cs" />

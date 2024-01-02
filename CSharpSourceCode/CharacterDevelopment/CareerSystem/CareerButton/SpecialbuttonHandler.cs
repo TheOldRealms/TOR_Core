@@ -2,20 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.GameMenus;
-using TaleWorlds.CampaignSystem.GameState;
-using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.Roster;
-using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
-using TaleWorlds.Core;
-using TaleWorlds.Library;
 using TaleWorlds.Localization;
-using TaleWorlds.MountAndBlade;
-using TaleWorlds.ObjectSystem;
-using TaleWorlds.ScreenSystem;
-using TOR_Core.CampaignMechanics.Careers;
-using TOR_Core.CharacterDevelopment;
-using TOR_Core.CharacterDevelopment.CareerSystem.Button;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
 
@@ -31,15 +18,6 @@ namespace TOR_Core.CampaignMechanics
         
         
         private static SpecialbuttonEventManagerHandler _instance;
-
-        private readonly WitchHunterRetinueRecruitment _witchHunterRetinueRecruitment;
-        
-
-
-        private SpecialbuttonEventManagerHandler()
-        {
-            _witchHunterRetinueRecruitment = new WitchHunterRetinueRecruitment();
-        }
 
         public void RegisterNewButton(CareerButtonBehaviorBase buttonBehavior)
         {

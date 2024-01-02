@@ -95,9 +95,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
             _mercenaryCompanionDialogBegins=false;
         }
 
-        public override void ButtonClickedEvent(CharacterObject character)
+        public override void ButtonClickedEvent(CharacterObject characterObject)
         {
-            InitiateDialog(character.StringId);
+            InitiateDialog(characterObject.StringId);
         }
 
         public override bool ShouldButtonBeVisible(CharacterObject characterObject)

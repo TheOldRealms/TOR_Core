@@ -75,12 +75,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         public void DeactivateCondition()
         {
             _grailKnightCompanionDialogBegins = false;
-            return;
         }
         
-        public override void ButtonClickedEvent(CharacterObject character)
+        public override void ButtonClickedEvent(CharacterObject characterObject)
         {
-            InitiateDialog(character.StringId);
+            InitiateDialog(characterObject.StringId);
         }
 
         public override bool ShouldButtonBeVisible(CharacterObject characterObject)

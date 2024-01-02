@@ -5,10 +5,11 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.Extensions;
 
-namespace TOR_Core.CampaignMechanics.Careers
+namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 {
-    public class WitchHunterRetinueRecruitment
+    public class WitchHunterCareerButtonBehavior : CareerButtonBehaviorBase
     {
         private TroopRoster copiedTroopRoster;
 
@@ -17,7 +18,12 @@ namespace TOR_Core.CampaignMechanics.Careers
         private int level;
 
         private const string retinueID = "tor_wh_retinue";
-
+        
+        
+        public WitchHunterCareerButtonBehavior(CareerObject career) : base(career)
+        {
+            
+        }
 
         public void SetUpRetinueExchange(CharacterObject characterTemplate)
         {
@@ -47,13 +53,10 @@ namespace TOR_Core.CampaignMechanics.Careers
 
         private void AddRetinuesAndCalculateXPGain(PartyBase leftownerparty, TroopRoster leftmemberroster, TroopRoster leftPrisonRoster, PartyBase rightownerparty, TroopRoster rightmemberroster, TroopRoster rightprisonroster, bool fromcancel)
         {
-            
+            //TODO rework, needs a bit more love
             var count = rightmemberroster.TotalManCount-rightmemberroster.TotalHeroes;
             if(count<=0)
                 return;
-            //copiedTroopRoster.Add(rightmemberroster);
-
-            //rightownerparty.MemberRoster.Clear();
             rightownerparty.MemberRoster.Add(copiedTroopRoster);
             rightownerparty.AddMember(originalTroop, -count);
 
@@ -81,6 +84,32 @@ namespace TOR_Core.CampaignMechanics.Careers
             if (retinueCount <= 0) return 0;
             
             return ( 15 * level * unitCount )/retinueCount;
+        }
+        
+        
+       
+
+        public override void ButtonClickedEvent(CharacterObject characterObject)
+        {
+            
+        }
+
+        public override bool ShouldButtonBeVisible(CharacterObject characterObject)
+        {
+            if (!Hero.MainHero.HasCareerChoice("SilverHammerPassive4")) return false;
+            
+            if (characterObject.StringId == "tor_wh_retinue")
+                return false;
+
+            if (!characterObject.IsHero)
+                return true;
+            
+            return false;
+        }
+
+        public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
