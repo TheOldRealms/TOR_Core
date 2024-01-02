@@ -198,7 +198,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 _specialCombatInteractionFunction = function;
             }
 
-            public PassiveEffect(float effectValue=0, PassiveEffectType type = PassiveEffectType.Special, bool asPercent=false,  SpecialCharacterEvaluationFunction function=null)
+            public PassiveEffect(float effectValue=0, PassiveEffectType type = PassiveEffectType.Special, bool asPercent=false,  SpecialCharacterEvaluationFunction function = null)
             {
                 EffectMagnitude = effectValue;
                 Operation = OperationType.Add;
