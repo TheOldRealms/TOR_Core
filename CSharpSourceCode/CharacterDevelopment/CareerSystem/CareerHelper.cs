@@ -156,40 +156,45 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         }
         
         
-        public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, bool asFactor = false, CharacterObject characterObject=null)
+        public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, bool asFactor = true, CharacterObject characterObject=null)
         {
             var choices = hero.GetAllCareerChoices();
             foreach (var choiceID in choices)
             {
                 var choice = TORCareerChoices.GetChoice(choiceID);
-                if (choice == null)
-                    continue;
 
-                if (choice.Passive != null && choice.Passive.PassiveEffectType == passiveEffectType)
+                if (choice?.Passive == null || choice.Passive.PassiveEffectType != passiveEffectType) continue;
+                
+                if (characterObject == null)
                 {
-                    if (choice.Passive.AsFactorOverride)
-                    {
-                        asFactor = true;
-                    }
-                    
-                    var value = choice.Passive.EffectMagnitude;
-                    var text = choice.BelongsToGroup.Name;
-                    
-
-                    if(!choice.Passive.IsValidCharacterObject(characterObject)) continue;
-                    
-                    
-                    if (choice.Passive.InterpretAsPercentage)
-                    {
-                        value /= 100;
-                    }
-                    if (asFactor)
-                    {
-                        number.AddFactor(value, text);
-                        return;
-                    }
-                    number.Add(value, text);
+                    characterObject = hero.CharacterObject;
                 }
+                    
+                var passive = choice.Passive;
+                
+                if(!passive.IsValidCharacterObject(characterObject)) continue;
+                    
+                if (passive.WithFactorFlatSwitch)
+                {
+                    asFactor = !asFactor;
+                }
+                    
+                var value = passive.EffectMagnitude;
+                var text = choice.BelongsToGroup.Name;
+                    
+                if(!passive.IsValidCharacterObject(characterObject)) continue;
+                    
+                if (passive.InterpretAsPercentage)
+                {
+                    value /= 100;
+                }
+                    
+                if (asFactor)
+                {
+                    number.AddFactor(value, text);
+                    return;
+                }
+                number.Add(value, text);
             }
         }
 

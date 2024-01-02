@@ -111,7 +111,7 @@ namespace TOR_Core.Extensions
 
                 if (hero == Hero.MainHero)
                 {
-                    CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref number,PassiveEffectType.CustomResourceGainModifier); 
+                    CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref number,PassiveEffectType.CustomResourceGain, false); 
                 }
                 
             } 

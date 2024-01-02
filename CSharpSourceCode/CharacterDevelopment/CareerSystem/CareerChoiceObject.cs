@@ -165,7 +165,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             public OperationType Operation = OperationType.None;
             public PassiveEffectType PassiveEffectType = PassiveEffectType.Special;
             public bool InterpretAsPercentage = true;
-            public bool AsFactorOverride;
+            public bool WithFactorFlatSwitch;
             public DamageProportionTuple DamageProportionTuple;
             public AttackTypeMask AttackTypeMask = AttackTypeMask.Melee;
             
@@ -177,7 +177,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             public bool IsValidCombatInteraction(Agent attacker, Agent victim, AttackTypeMask mask) =>  _specialCombatInteractionFunction==null||_specialCombatInteractionFunction.Invoke(attacker,victim, mask);
 
             public bool IsValidCharacterObject(CharacterObject characterObject) =>_specialCharacterEvaluationFunction==null || _specialCharacterEvaluationFunction.Invoke(characterObject);
-            
             
             public PassiveEffect(float effectValue, PassiveEffectType type, AttackTypeMask mask)
             {
@@ -200,14 +199,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 _specialCombatInteractionFunction = function;
             }
 
-            public PassiveEffect(float effectValue=0, PassiveEffectType type = PassiveEffectType.Special, bool asPercent=false,  SpecialCharacterEvaluationFunction function = null, bool asFactorOverride=false)
+            public PassiveEffect(float effectValue=0, PassiveEffectType type = PassiveEffectType.Special, bool asPercent=false,  SpecialCharacterEvaluationFunction function = null, bool withFactorFlatSwitch=false)
             {
                 EffectMagnitude = effectValue;
                 Operation = OperationType.Add;
                 InterpretAsPercentage = asPercent;
                 PassiveEffectType = type;
                 _specialCharacterEvaluationFunction = function;
-                AsFactorOverride = false;
+                WithFactorFlatSwitch = withFactorFlatSwitch;
             }
         }
         
@@ -243,11 +242,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
     {
         Special,            //For everything that requires special implementation
         
-        Health,             //Player health points
+        Health,             //Player health points, flat number
         CustomResourceUpkeepModifier, //scales custom resource upkeep
         CustomResourceUpgradeCostModifier, //scales custom upgrade costs
-        CustomResourceGainModifier, //daily gain for custom resource , flat number
-        HealthRegeneration, //player life regeneration
+        CustomResourceGain, //daily gain for custom resource , flat number
+        HealthRegeneration, //player life regeneration, as flat number
         Damage,             //player damage, requires damage tuple
         Resistance,         //player resistance requires damage tuple
         AccuracyPenalty,           //spray of ranged weapons
@@ -255,7 +254,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         ArmorPenetration,   //player ignores armor with attack mask - this cant be Spells, will be ignored
         HorseHealth,        //only player, percentage based
         HorseChargeDamage,  //Damage When Horse is raced into infantry.
-        WindsOfMagic,       //player Winds of Magic
+        WindsOfMagic,       //player Winds of Magic, as flat number
         WindsCostReduction, //player Winds of Magic cost reduction as Percentage
         BuffDuration,       //Increases duration for friendly augments     //TODO Radius
         DebuffDuration,     //Increases duration for hex
@@ -267,11 +266,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         CompanionLimit,
         TroopDamage,
         TroopResistance,
-        TroopRegeneration,  //troop generation
+        TroopRegeneration,  //troop regeneration, flat number
         TroopMorale,        //Morale
         TroopWages,
         TroopUpgradeCost,
-        Ammo,               //Player ammo
+        Ammo,               //Player ammo , flat number
         SwingSpeed
     }
 }

@@ -102,7 +102,7 @@ namespace TOR_Core.Models
 
                 if (hero.HasAnyCareer())
                 {
-                    CareerHelper.ApplyBasicCareerPassives(hero, ref number, PassiveEffectType.Health);
+                    CareerHelper.ApplyBasicCareerPassives(hero, ref number, PassiveEffectType.Health, false);
                 }
 
                 if (hero.PartyBelongedTo!=null&& hero.IsPlayerCompanion)

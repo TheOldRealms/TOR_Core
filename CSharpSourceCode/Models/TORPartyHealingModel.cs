@@ -92,7 +92,7 @@ namespace TOR_Core.Models
         {
             if (party.LeaderHero.HasAnyCareer())
             {
-                CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.TroopRegeneration);
+                CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.TroopRegeneration, false);
             }
         }
         
@@ -100,7 +100,7 @@ namespace TOR_Core.Models
         {
             if (party.LeaderHero.HasAnyCareer())
             {
-                CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.HealthRegeneration);
+                CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.HealthRegeneration, false);
             }
         }
     }

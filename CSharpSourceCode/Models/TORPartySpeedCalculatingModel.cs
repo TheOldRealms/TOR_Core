@@ -68,7 +68,7 @@ namespace TOR_Core.Models
             if (party.LeaderHero == null) return;
             if (party.LeaderHero.HasAnyCareer())
             {
-                CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.PartyMovementSpeed, false, party.LeaderHero.CharacterObject);
+                CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.PartyMovementSpeed, false);
             }
         }
     }
