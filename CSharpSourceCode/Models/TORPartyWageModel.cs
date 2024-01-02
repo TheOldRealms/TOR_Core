@@ -46,9 +46,8 @@ namespace TOR_Core.Models
             }
         }
 
-        public override ExplainedNumber GetTotalWage(MobileParty mobileParty, bool includeDescriptions = true)
+        public override ExplainedNumber GetTotalWage(MobileParty mobileParty, bool includeDescriptions)
         {
-            includeDescriptions = true;
             var value = base.GetTotalWage(mobileParty, includeDescriptions);
 
             if (mobileParty.IsMainParty)

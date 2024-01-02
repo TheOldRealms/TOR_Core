@@ -325,7 +325,7 @@
             <ListPanel Id="TopInfoBar" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="510" SuggestedHeight="40" HorizontalAlignment="Right" VerticalAlignment="Top" MarginTop="21" >
               <Children>
 
-                <HintWidget DataSource="{DenarHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="15" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" GamepadNavigationIndex="0">
+                <HintWidget DataSource="{DenarTooltip}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="15" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" GamepadNavigationIndex="0">
                   <Children>
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="false">
                       <Children>
