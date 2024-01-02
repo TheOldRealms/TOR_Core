@@ -269,8 +269,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         {
             _survivalistPassive1.Initialize(CareerID, "5 extra ammo", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Ammo));
             _survivalistPassive2.Initialize(CareerID, "Increases ranged damage by 10%.", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Ranged));
-            _survivalistPassive3.Initialize(CareerID, "Party movement speed is increased by 20% in forest terrain.", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //TORspeedcalculationmodel 58
-            _survivalistPassive4.Initialize(CareerID, "Go for a hunt once a day (success chance based on Scouting, Polearm and ranged skills).", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0)); //TORCareerPerkCampaignBehavior 118 
+            _survivalistPassive3.Initialize(CareerID, "Party movement speed is increased by 20% in forest terrain.", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.PartyMovementSpeed, true, SurvivalistPassive3, true)); 
+            _survivalistPassive4.Initialize(CareerID, "Party movement speed is increased by 20% in mountain and swamp terrain.", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.PartyMovementSpeed, true, SurvivalistPassive4, true)); 
 
             _duelistPassive1.Initialize(CareerID, "Increases Hitpoints by 20.", "Duelist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Health));
             _duelistPassive2.Initialize(CareerID, "Increases melee damage resistance of melee troops by 10%.", "Duelist", false, ChoiceType.Passive, null,  new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,DuelistPassive2));
@@ -301,6 +301,24 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _commanderPassive2.Initialize(CareerID, "Increases the damage of all melee troops by 15%.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Melee, CommanderPassive2));
             _commanderPassive3.Initialize(CareerID, "Hits below 15 damage do not stagger the player.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special)); // Agent extension 83
             _commanderPassive4.Initialize(CareerID, "Companion health of party is increased by 25.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special));
+        }
+        
+        private static bool SurvivalistPassive3(CharacterObject characterObject)
+        {
+            if (characterObject.HeroObject != Hero.MainHero) return false;
+            var party = characterObject.HeroObject.PartyBelongedTo;
+            TerrainType faceTerrainType = Campaign.Current.MapSceneWrapper.GetFaceTerrainType(party.CurrentNavigationFace);
+            
+             return faceTerrainType==TerrainType.Forest;
+        }
+        
+        private static bool SurvivalistPassive4(CharacterObject characterObject)
+        {
+            if (characterObject.HeroObject != Hero.MainHero) return false;
+            var party = characterObject.HeroObject.PartyBelongedTo;
+            TerrainType faceTerrainType = Campaign.Current.MapSceneWrapper.GetFaceTerrainType(party.CurrentNavigationFace);
+            
+            return faceTerrainType==TerrainType.Mountain || faceTerrainType==TerrainType.Swamp;
         }
         
         private static bool DuelistPassive2(Agent attacker, Agent victim, AttackTypeMask mask)

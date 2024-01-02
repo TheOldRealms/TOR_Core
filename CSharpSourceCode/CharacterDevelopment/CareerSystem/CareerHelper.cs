@@ -156,7 +156,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         }
         
         
-        public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, bool asFactor = false)
+        public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, bool asFactor = false, CharacterObject characterObject=null)
         {
             var choices = hero.GetAllCareerChoices();
             foreach (var choiceID in choices)
@@ -167,17 +167,28 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
                 if (choice.Passive != null && choice.Passive.PassiveEffectType == passiveEffectType)
                 {
+                    if (choice.Passive.AsFactorOverride)
+                    {
+                        asFactor = true;
+                    }
+                    
                     var value = choice.Passive.EffectMagnitude;
+                    var text = choice.BelongsToGroup.Name;
+                    
+
+                    if(!choice.Passive.IsValidCharacterObject(characterObject)) continue;
+                    
+                    
                     if (choice.Passive.InterpretAsPercentage)
                     {
                         value /= 100;
                     }
                     if (asFactor)
                     {
-                        number.AddFactor(value, new TextObject(choice.BelongsToGroup.Name.ToString()));
+                        number.AddFactor(value, text);
                         return;
                     }
-                    number.Add(value, new TextObject(choice.BelongsToGroup.Name.ToString()));
+                    number.Add(value, text);
                 }
             }
         }

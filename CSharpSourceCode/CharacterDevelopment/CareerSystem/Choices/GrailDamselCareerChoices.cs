@@ -184,7 +184,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _talesOfGilesPassive4.Initialize(CareerID, "{=tales_of_giles_passive4_str}20% spell cooldown reduction.", "TalesOfGiles", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.WindsCooldownReduction, true)); 
             
             _vividVisionsPassive1.Initialize(CareerID, "{=vivid_visions_passive1_str}Increases max Winds of Magic by 10.", "VividVisions", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
-            _vividVisionsPassive2.Initialize(CareerID, "{=vivid_visions_passive2_str}Party movement speed is increased by 1.", "VividVisions", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1f, PassiveEffectType.PartyMovementSpeed));
+            _vividVisionsPassive2.Initialize(CareerID, "{=vivid_visions_passive2_str}Party movement speed is increased by 25%.", "VividVisions", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1f, PassiveEffectType.PartyMovementSpeed));
             _vividVisionsPassive3.Initialize(CareerID, "{=vivid_visions_passive3_str}Increases Magic resistance against spells by 25%.", "VividVisions", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical,25),AttackTypeMask.Spell));
             _vividVisionsPassive4.Initialize(CareerID, "{=vivid_visions_passive4_str}The Spotting range of the party is increased by 20%.", "VividVisions", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
             

@@ -165,8 +165,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             public OperationType Operation = OperationType.None;
             public PassiveEffectType PassiveEffectType = PassiveEffectType.Special;
             public bool InterpretAsPercentage = true;
+            public bool AsFactorOverride;
             public DamageProportionTuple DamageProportionTuple;
             public AttackTypeMask AttackTypeMask = AttackTypeMask.Melee;
+            
             public delegate bool SpecialCombatInteractionFunction(Agent attacker, Agent victim, AttackTypeMask mask);
             private readonly SpecialCombatInteractionFunction _specialCombatInteractionFunction;
             public delegate bool SpecialCharacterEvaluationFunction(CharacterObject troop);
@@ -198,13 +200,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 _specialCombatInteractionFunction = function;
             }
 
-            public PassiveEffect(float effectValue=0, PassiveEffectType type = PassiveEffectType.Special, bool asPercent=false,  SpecialCharacterEvaluationFunction function = null)
+            public PassiveEffect(float effectValue=0, PassiveEffectType type = PassiveEffectType.Special, bool asPercent=false,  SpecialCharacterEvaluationFunction function = null, bool asFactorOverride=false)
             {
                 EffectMagnitude = effectValue;
                 Operation = OperationType.Add;
                 InterpretAsPercentage = asPercent;
                 PassiveEffectType = type;
                 _specialCharacterEvaluationFunction = function;
+                AsFactorOverride = false;
             }
         }
         
@@ -269,7 +272,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         TroopWages,
         TroopUpgradeCost,
         Ammo,               //Player ammo
-        InfluenceGainFromBattles,
         SwingSpeed
     }
 }
