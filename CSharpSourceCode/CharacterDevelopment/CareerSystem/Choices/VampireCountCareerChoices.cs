@@ -286,7 +286,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         
         private static bool LordlyPassive3(CharacterObject characterObject)
         {
-            if(!characterObject.IsHero) return false;
+            if(characterObject.IsHero) return false;
             return characterObject.IsVampire();
         }
         

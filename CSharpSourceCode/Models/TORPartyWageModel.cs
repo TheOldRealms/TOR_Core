@@ -138,7 +138,7 @@ namespace TOR_Core.Models
                 var choice = TORCareerChoices.GetChoice(choiceID);
                 if (choice == null)
                     continue;
-                
+                if (choice.Passive==null) continue;
                 if (choice.Passive.PassiveEffectType != PassiveEffectType.TroopWages) continue;
                 
                 if (!choice.Passive.IsValidCharacterObject(unit.Character))

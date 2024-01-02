@@ -256,9 +256,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             float effect = careerPerk.GetPassiveValue();
             value = (troop.Character.TroopWage*troop.Number) * effect;
             description = careerPerk.BelongsToGroup.Name;
-            
-            
-            description = new TextObject();
 
             return value;
         }
