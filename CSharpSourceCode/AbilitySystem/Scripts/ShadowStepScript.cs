@@ -15,13 +15,9 @@ namespace TOR_Core.AbilitySystem.Scripts
     {
         private readonly InputKey[] _axisKeys = new InputKey[4];
         private readonly GameKeyContext _keyContext = HotKeyManager.GetCategory("Generic");
-        private const float minimalDistance =2;
+        private const float minimalDistance = 2;
         private float _speed = 10f;
-        private float currentTick;
         private float effectTickInterval;
-        private Camera _Flycamera;
-
-
         private PlayerFlyableObjectScript _playerFlyableObjectScript;
 
         public override void Initialize(Ability ability)
@@ -49,17 +45,16 @@ namespace TOR_Core.AbilitySystem.Scripts
             Agent.Main.TeleportToPosition(frame.origin);
             GameEntity.SetGlobalFrame(frame);
             InstantiateFlightPrefab(frame);
-
         }
 
-        private void  InstantiateFlightPrefab(MatrixFrame frame)
+        private void InstantiateFlightPrefab(MatrixFrame frame)
         {
             var chair = GameEntity.Instantiate(Mission.Current.Scene, "FlyableObject", frame);
             chair.BodyFlag = BodyFlags.Barrier3D;
             chair.BodyFlag |= BodyFlags.DontCollideWithCamera;
             chair.BodyFlag |= BodyFlags.CommonCollisionExcludeFlagsForAgent;
             chair.EntityVisibilityFlags |= EntityVisibilityFlags.VisibleOnlyForEnvmap;
-            
+
             _playerFlyableObjectScript = chair.GetFirstScriptOfType<PlayerFlyableObjectScript>();
             _playerFlyableObjectScript.ActivateFlying();
         }
@@ -93,56 +88,54 @@ namespace TOR_Core.AbilitySystem.Scripts
             if (_casterAgent != null && _casterAgent.Health > 0)
             {
                 UpdateSound(_casterAgent.Position);
-             if (Input.IsKeyDown(InputKey.W) || Input.IsKeyPressed(InputKey.W))
-             {
-                 if (_playerFlyableObjectScript.IsReady()&& GetDistance()>minimalDistance)
-                 {
-                     Fly(dt);
-                 }
-                 else
-                 {
-                     Fly(-dt*0.5f);
-                 }
-             }
-            }
-            
-            if (_timeSinceLastTick >= effectTickInterval)
-            {
-                TriggerEffects(_casterAgent.Position, -_casterAgent.Position.NormalizedCopy());
-                _timeSinceLastTick = 0f;
+                if (Input.IsKeyDown(InputKey.W) || Input.IsKeyPressed(InputKey.W))
+                {
+                    if (_playerFlyableObjectScript.IsReady() && GetDistance() > minimalDistance)
+                    {
+                        Fly(dt);
+                    }
+                    else
+                    {
+                        Fly(-dt * 0.5f);
+                    }
+                }
             }
 
-            
+            if (_timeSinceLastTick >= effectTickInterval)
+            {
+                if (_casterAgent != null)
+                {
+                    TriggerEffects(_casterAgent.Position, -_casterAgent.Position.NormalizedCopy());
+                }
+
+                _timeSinceLastTick = 0f;
+            }
         }
 
         private float GetDistance()
         {
             float num;
-            var pos2= GameEntity.GetGlobalFrame().origin;
+            var pos2 = GameEntity.GetGlobalFrame().origin;
             var pos = GameEntity.GetGlobalFrame().Elevate(-minimalDistance).origin;
             if (Mission.Current.Scene.RayCastForClosestEntityOrTerrain(pos2, pos, out num))
             {
-                TORCommon.Say(num+"");
+                TORCommon.Say(num + "");
                 return num;
             }
-            else
-            {
-                return 3;
-            } 
-            
+
+            return 3;
         }
 
         private void Fly(float dt)
         {
-            if(_playerFlyableObjectScript.GameEntity==null) return;
+            if (_playerFlyableObjectScript.GameEntity == null) return;
 
             var frame = _playerFlyableObjectScript.GameEntity.GetGlobalFrame();
             frame.rotation = Mission.Current.GetCameraFrame().rotation;
             frame.Elevate(-_speed * dt);
-            
+
             _playerFlyableObjectScript.Advance(frame);
             GameEntity.SetGlobalFrame(frame);
-
         }
 
         public override void Stop()
