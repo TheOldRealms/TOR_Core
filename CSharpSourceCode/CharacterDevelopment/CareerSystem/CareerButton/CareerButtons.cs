@@ -20,7 +20,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         public CareerButtons()
         {
             _careerButtons.Add(TORCareers.Mercenary, new MercenaryCareerButtonBehavior(TORCareers.Mercenary));
-            _careerButtons.Add(TORCareers.GrailKnight, new MercenaryCareerButtonBehavior(TORCareers.GrailKnight));
+            _careerButtons.Add(TORCareers.GrailKnight, new GrailKnightCareerButtonBehavior(TORCareers.GrailKnight));
             _careerButtons.Add(TORCareers.WitchHunter, new MercenaryCareerButtonBehavior(TORCareers.WitchHunter));
         }
         
