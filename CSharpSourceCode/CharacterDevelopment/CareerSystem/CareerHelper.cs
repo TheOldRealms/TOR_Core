@@ -68,11 +68,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
             return skillValue*scalingFactor;
         }
+
+
         
         
-        
-        
-        public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, AttackTypeMask mask,bool asFactor = false)
+        public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, AttackTypeMask mask, bool asFactor = false)
         {
             var choices = hero.GetAllCareerChoices();
             foreach (var choiceID in choices)

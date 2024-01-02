@@ -239,7 +239,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _toolsOfJudgementPassive4.Initialize(CareerID, "Every equipped weapon increases ranged damage by 10%.", "ToolsOfJudgement", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10,PassiveEffectType.Special,true));
            
             _huntTheWickedPassive1.Initialize(CareerID, "Increases health regeneration after battles by 3.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.HealthRegeneration));
-            _huntTheWickedPassive2.Initialize(CareerID, "Ranged Infantry wages are 15% reduced.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special,true));
+            _huntTheWickedPassive2.Initialize(CareerID, "Ranged Infantry wages are 15% reduced.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special,true,HuntTheWickedPassive2));
             _huntTheWickedPassive3.Initialize(CareerID, "Every  equipped ranged weapon increases melee damage by 10%.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10,PassiveEffectType.Special,true));
             _huntTheWickedPassive4.Initialize(CareerID, "Increases the damage of all ranged troops by 10%.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 10), AttackTypeMask.Ranged, HuntTheWickedPassive4));  
 
@@ -272,6 +272,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         private static bool SilverHammerPassive2(Agent attacker, Agent victim, AttackTypeMask mask)
         {
             return victim.Character.Race != 0; 
+        }
+        
+        private static bool HuntTheWickedPassive2(CharacterObject characterObject)
+        {
+            if (characterObject.IsHero) return false;
+            if(characterObject.IsMounted) return false;
+            
+            return characterObject.IsRanged;
         }
         
         private static bool HuntTheWickedPassive4(Agent attacker, Agent victim, AttackTypeMask mask)

@@ -303,7 +303,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             _bookOfSigmarPassive4.Initialize(CareerID, "Wounded troops in your party heal faster.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration)); 
 
             _sigmarProclaimerPassive1.Initialize(CareerID, "10% extra holy melee damage.", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy,10),AttackTypeMask.Melee));
-            _sigmarProclaimerPassive2.Initialize(CareerID, "All Sigmarite troops wages are reduced by 20%", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //TORPartyWageModel 82
+            _sigmarProclaimerPassive2.Initialize(CareerID, "All Sigmarite troops wages are reduced by 20%", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.TroopWages, true, SigmarsProclaimerPassive2));
             _sigmarProclaimerPassive3.Initialize(CareerID, "All Sigmarite troops consume 20% less food.", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //Foodconsumptionmodel 62
             _sigmarProclaimerPassive4.Initialize(CareerID, "When praying at a shrine of Sigmar, all characters restore 50 Hitpoints.", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special));//TORCustomSettlementCampaignBehavior 429
 
@@ -331,6 +331,19 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             _twinTailedCometPassive2.Initialize(CareerID, "Increases Companion Limit by 5.", "TwinTailedComet", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
             _twinTailedCometPassive3.Initialize(CareerID, "Extra 20% armor penetration of melee attacks.", "TwinTailedComet", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
             _twinTailedCometPassive4.Initialize(CareerID, "Increases Hitpoints by 30.", "TwinTailedComet", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Health));
+        }
+
+        private static bool IsSigmariteTroop(CharacterObject troop)
+        {
+            return troop.UnitBelongsToCult("cult_of_sigmar") ||  troop.IsReligiousUnit()&& Hero.MainHero.HasCareerChoice("ArchLector2");
+        }
+        
+        private static bool SigmarsProclaimerPassive2(CharacterObject troop)
+        {
+            if (troop.IsHero) return false;
+            if (!troop.IsSoldier) return false;
+            
+            return IsSigmariteTroop(troop);
         }
         
         private static bool RelentlessFanaticPassive3(Agent attacker, Agent victim, AttackTypeMask mask)
