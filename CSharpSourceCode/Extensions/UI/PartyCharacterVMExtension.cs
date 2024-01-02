@@ -19,6 +19,7 @@ using TaleWorlds.ObjectSystem;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions.UI
@@ -36,6 +37,17 @@ namespace TOR_Core.Extensions.UI
         public PartyCharacterVMExtension(ViewModel vm) : base(vm)
         {
             _buttonHint = new BasicTooltipViewModel(GetButtonHintText);
+
+            var career = Hero.MainHero.GetCareer().CareerButton;
+            if (career != null)
+            {
+                career.Register();
+            }
+            else
+            {
+                SpecialbuttonEventManagerHandler.Instance.Disable();
+            }
+            
             RefreshValues();
             
         }
@@ -46,12 +58,14 @@ namespace TOR_Core.Extensions.UI
             //Careful to always update the property, not the field behind it directly, because then the engine won't get notified and events won't be raised.
             var troop = ( (PartyCharacterVM)_vm ).Troop.Character;
             if(troop==null) return;
-            var showButton= CareerHelper.ConditionsMetToShowSuperButton(troop);
 
-            ShouldButtonBeVisible = showButton;
+            ShouldButtonBeVisible = SpecialbuttonEventManagerHandler.Instance.ShouldButtonBeVisible(troop);
+            
             var textObect = new TextObject();
-            IsButtonEnabled = showButton && CareerHelper.ConditionsMetToEnableSuperButton(troop, out textObect);
-            disableReason = textObect;
+            
+            
+            IsButtonEnabled =  SpecialbuttonEventManagerHandler.Instance.ShouldButtonBeActive(troop, out var displaytext);
+            disableReason = displaytext;
             
             SpriteTORButton = CareerHelper.GetButtonSprite();
         }
@@ -65,28 +79,9 @@ namespace TOR_Core.Extensions.UI
         public void ExecuteButtonClick()
         {
             var troop = ( (PartyCharacterVM)_vm ).Troop.Character;
-            SpecialbuttonEventManagerHandler.Instance.OnButtonClicked(troop.StringId);
+            SpecialbuttonEventManagerHandler.Instance.OnButtonClicked(troop);
             
             ((PartyCharacterVM)_vm).RefreshValues();
-            
-            
-           // _vm.OnPropertyChanged("AmountOfUpgrades");
-           //PartyScreenLogic.PartyCommand command = new PartyScreenLogic.PartyCommand();
-           //command.FillForRecruitTroop(PartyScreenLogic.PartyRosterSide.Right,PartyScreenLogic.TroopType.Member,troop,1,1);
-         //  ( (PartyCharacterVM)_vm ).ExecuteRecruitTroop();
-            TORCommon.Say("Button clicked.");
-            
-            //var vm = new PartyVM(PartyScreenManager.PartyScreenLogic);
-            
-            //var t= ViewModelExtensionManager.Instance.GetExtensionInstance(vm);
-       
-            //PartyScreenManager.PartyScreenLogic.Reset(false);
-           // var command = new PartyScreenLogic.PartyCommand();
-            
-            
-            //PartyScreenManager.PartyScreenLogic.AddCommand();
-            //PartyScreenManager.PartyScreenLogic.UpdateDelegate
-
 
         }
         

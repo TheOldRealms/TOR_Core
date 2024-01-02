@@ -15,6 +15,7 @@ using TaleWorlds.ObjectSystem;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.CampaignMechanics.Careers;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem.Button;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics
@@ -23,16 +24,35 @@ namespace TOR_Core.CampaignMechanics
     { 
         public event EventHandler<TroopEventArgs> ButtonClickedEventHandler;
         
+        private CareerButtonBase.OnCareerButtonClickedEvent  _clickEvent;
+        private CareerButtonBase.OnShouldButtonBeVisible _shouldButtonBeVisible;
+        private CareerButtonBase.OnShouldButtonBeActive _shouldButtonBeActive;
+        
         
         private static SpecialbuttonEventManagerHandler _instance;
 
         private readonly WitchHunterRetinueRecruitment _witchHunterRetinueRecruitment;
         
-        
+
 
         private SpecialbuttonEventManagerHandler()
         {
             _witchHunterRetinueRecruitment = new WitchHunterRetinueRecruitment();
+        }
+
+        public void RegisterNewButton(CareerButtonBase button)
+        {
+         
+            _shouldButtonBeActive = button.ShouldButtonBeActive;
+            _shouldButtonBeVisible = button.ShouldButtonBeVisible;
+            _clickEvent = button.ButtonClickedEvent;
+        }
+
+        public void Disable()
+        {
+            _shouldButtonBeActive = null;
+            _shouldButtonBeVisible = null;
+            _clickEvent = null;
         }
 
         public static SpecialbuttonEventManagerHandler Instance
@@ -48,21 +68,38 @@ namespace TOR_Core.CampaignMechanics
         }
         
         
-        public void OnButtonClicked(string troopID)
+        public void OnButtonClicked(CharacterObject troopID)
         {
-            var e= new TroopEventArgs();
-            e.TroopId = troopID;
-            HandleBasicTroopExchanges(troopID);
-            ButtonClickedEventHandler(this,e);      //Special campaign behaviors like dialogs ect.
+            if (_clickEvent != null)
+            {
+                _clickEvent.Invoke(troopID);
+            }
+        }
+
+        public bool ShouldButtonBeVisible(CharacterObject characterObject)
+        {
+            if (_shouldButtonBeVisible == null) return false;
+            
+            return _shouldButtonBeVisible(characterObject);
+        }
+        
+        public bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText )
+        {
+            displayText = new TextObject();
+            if (_shouldButtonBeActive == null) return false;
+            
+            var value =  _shouldButtonBeActive(characterObject, out displayText);
+            return value;
         }
         
         private void HandleBasicTroopExchanges(string troopID)
         {
-            var characterTemplate = MBObjectManager.Instance.GetObject<CharacterObject>(troopID);
+            
+            /*var characterTemplate = MBObjectManager.Instance.GetObject<CharacterObject>(troopID);
             if (Hero.MainHero.GetCareer() == TORCareers.WitchHunter)
             {
                 _witchHunterRetinueRecruitment.SetUpRetinueExchange(characterTemplate);
-            }
+            }*/
         }
         
     }

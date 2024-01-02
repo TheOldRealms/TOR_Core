@@ -356,36 +356,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         }
         
-        public override bool ConditionsAreMetToShowButton(CharacterObject characterObject)
-        {
-            return Hero.MainHero.HasCareerChoice("PaymasterPassive4")&& !characterObject.IsHero&&  (!characterObject.IsEliteTroop()||characterObject.IsEliteTroop()&& characterObject.IsRanged);
-        }
         
-        public override bool ConditionsAreMetToEnableButton(CharacterObject characterObject, out TextObject disableReason)
-        {
-            disableReason = new TextObject("Makes the current unit a companion");
-            if (Campaign.Current.Models.ClanTierModel.GetCompanionLimit(Hero.MainHero.Clan) <= Hero.MainHero.CompanionsInParty.Count())
-            {
-                disableReason = new TextObject("Party limit has been reached.");
-                return false;
-            }
-
-            if (characterObject.IsKnightUnit()&& !characterObject.IsRanged)
-            {
-                disableReason = new TextObject("Only works for non-knightly units.");
-                return false;
-            }
-            
-            if (characterObject.Level<=26)
-            {
-                disableReason = new TextObject("Unit needs to reach tier 5 and higher.");
-                return false;
-            }
-            
-            return true;
-        }
-        
-        public override string CareerButtonIcon => "General\\Icons\\Coin@2x";
 
       
     }

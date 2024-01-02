@@ -12,6 +12,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.CharacterDevelopment.CareerSystem.Button;
 using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -301,28 +302,18 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             return false;
         }
 
-
-        public static bool ConditionsMetToShowSuperButton(CharacterObject viewedCharacter)
+        public static CareerButtonBase GetCareerButton()
         {
-            var career= Hero.MainHero.GetCareer();
+            
+            var career = Hero.MainHero.GetCareer();
+
             if (career != null)
             {
-                return TORCareerChoices.Instance.GetCareerChoices(career).ConditionsAreMetToShowButton(viewedCharacter);
+                
+                return career.CareerButton;
             }
 
-            return false;
-        }
-        
-        public static bool ConditionsMetToEnableSuperButton(CharacterObject viewedCharacter, out TextObject disableReason)
-        {
-            var career= Hero.MainHero.GetCareer();
-            if (career != null)
-            {
-                return TORCareerChoices.Instance.GetCareerChoices(career).ConditionsAreMetToEnableButton(viewedCharacter, out  disableReason);
-            }
-
-            disableReason = new TextObject();
-            return false;
+            return null;
         }
         
         public static string GetButtonSprite()

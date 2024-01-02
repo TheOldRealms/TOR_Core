@@ -48,6 +48,7 @@ using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignSupport.TownBehaviours;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Extensions.UI;
@@ -139,7 +140,6 @@ namespace TOR_Core
                 starter.AddBehavior(new InkStoryCampaignBehavior());
                 starter.AddBehavior(new ReligionCampaignBehavior());
                 starter.AddBehavior(new TORKingdomDecisionProposalBehavior());
-                starter.AddBehavior(new MercenaryCareerButtonCampaignBehavior());
                 starter.AddBehavior(new BountyMasterCampaignBehavior());
                 starter.AddBehavior(new HuntCultistsQuestCampaignBehavior());
                 starter.AddBehavior(new TORCareerPerkCampaignBehavior());
@@ -279,6 +279,7 @@ namespace TOR_Core
                 _ = new TORCareerChoiceGroups();
                 _ = new TORCareerChoices();
                 _ = new TORCampaignEvents();
+                
                 MBObjectManager.Instance.LoadXML("Religions", false);
             }
         }

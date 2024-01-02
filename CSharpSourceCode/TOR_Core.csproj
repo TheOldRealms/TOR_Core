@@ -486,7 +486,6 @@
     <Compile Include="CampaignMechanics\BountyMaster\BountyMasterCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Careers\DamselEnvoyOfTheLadyPerkBehavior.cs" />
     <Compile Include="CampaignMechanics\Careers\GrailKnightCareerButtonCampaignBehavior.cs" />
-    <Compile Include="CampaignMechanics\Careers\MercenaryCareerButtonCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Careers\TORCareerPerkCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Careers\WitchHunterRetinueRecruitment.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
@@ -524,7 +523,6 @@
     <Compile Include="CampaignMechanics\Religion\ReligionObject.cs" />
     <Compile Include="CampaignMechanics\SkillBooks\TORSkillBookCampaignBehavior.cs" />
     <Compile Include="BattleMechanics\TORBattleAgentLogic.cs" />
-    <Compile Include="CampaignMechanics\SpecialbuttonHandler.cs" />
     <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCaptivityCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORBaseSettlementComponent.cs" />
@@ -537,7 +535,11 @@
     <Compile Include="CampaignMechanics\TORSpecialSettlementBehavior.cs" />
     <Compile Include="CampaignMechanics\TORWanderersCampaignBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerAbilityChargeSupplier.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\CareerButtonBase.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\CareerButtons.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\MercenaryButton.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerAbilityEffectVM.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\SpecialbuttonHandler.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceGroupObject.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceGroupObjectVM.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceObject.cs" />

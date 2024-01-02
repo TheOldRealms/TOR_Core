@@ -12,6 +12,8 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
+using TOR_Core.CharacterDevelopment.CareerSystem.Button;
+using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
@@ -29,6 +31,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         public bool RequiresAbilityTargeting { get; private set; }
         public CareerChoiceObject RootNode { get; set; }
         public List<CareerChoiceGroupObject> ChoiceGroups { get; private set; } = new List<CareerChoiceGroupObject>();
+
+        public CareerButtonBase CareerButton;
         
         public delegate float ChargeFunction(Agent affectorAgent,Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask, CareerHelper.ChargeCollisionFlag collisionFlag);
         private ChargeFunction _handler;
