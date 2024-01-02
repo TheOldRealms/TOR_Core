@@ -1,9 +1,8 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics;
-using TOR_Core.CampaignMechanics.Choices;
 
-namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
+namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 {
     public abstract  class CareerButtonBehaviorBase
     {

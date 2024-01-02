@@ -16,6 +16,7 @@ using TaleWorlds.ScreenSystem;
 using TOR_Core.CampaignMechanics.Careers;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem.Button;
+using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics

@@ -8,17 +8,18 @@ using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.Choices;
+using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
 {
-    public class MercenaryButtonBehavior : CareerButtonBehaviorBase
+    public class MercenaryCareerButtonBehavior : CareerButtonBehaviorBase
     {
         private bool _mercenaryCompanionDialogBegins;
         private CharacterObject _currentTemplate;
         private int _price = 50000;
         
-        public MercenaryButtonBehavior(CareerObject career) : base(career)
+        public MercenaryCareerButtonBehavior(CareerObject career) : base(career)
         {
             if(career != TORCareers.Mercenary) return;
             
