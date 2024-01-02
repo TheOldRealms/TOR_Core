@@ -406,7 +406,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             return attacker.Character.UnitBelongsToCult("cult_of_lady");
         }
         
-        public override string CareerButtonIcon => "CareerSystem\\Grail";
+        /*public override string CareerButtonIcon => "CareerSystem\\Grail";
         
         public override bool ConditionsAreMetToShowButton(CharacterObject viewedCharacterObject)
         {
@@ -427,6 +427,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         {
             disableReason = new TextObject();
            return true;
-        }
+        }*/
     }
 }

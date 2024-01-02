@@ -6,6 +6,7 @@ using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.Choices;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
@@ -15,7 +16,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 {
     public class GrailDamselCareerChoices : TORCareerChoicesBase
     {
-        public GrailDamselCareerChoices(CareerObject id) : base(id) {}
+        public GrailDamselCareerChoices(CareerObject id) : base(id)
+        {
+            var grailDamselEnvoyOfTheLadyPerkBehavior = new GrailDamselEnvoyOfTheLadyPerkBehavior();
+        }
         private CareerChoiceObject _grailDamselRootNode;
         
         private CareerChoiceObject _feyEnchantmentKeystone;

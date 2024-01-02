@@ -38,7 +38,7 @@ namespace TOR_Core.Extensions.UI
         {
             _buttonHint = new BasicTooltipViewModel(GetButtonHintText);
 
-            var career = Hero.MainHero.GetCareer().CareerButton;
+            var career = Hero.MainHero.GetCareer().CareerButtonBehavior;
             if (career != null)
             {
                 career.Register();

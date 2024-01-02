@@ -12,22 +12,26 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
 {
-    public class MercenaryButton : CareerButtonBase
+    public class MercenaryButtonBehavior : CareerButtonBehaviorBase
     {
         private bool _mercenaryCompanionDialogBegins;
         private CharacterObject _currentTemplate;
         private int _price = 50000;
         
-        public MercenaryButton(CareerObject career) : base(career)
+        public MercenaryButtonBehavior(CareerObject career) : base(career)
         {
             if(career != TORCareers.Mercenary) return;
             
+            
+            
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
         }
+        
+        public override string CareerButtonIcon => "CareerSystem\\ghal_maraz";
 
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
-            starter.AddDialogLine("mercenaryCompanion_bodyguard_start", "start", "mercenaryCompanion_bodyguard_1", new TextObject("Aye what can I do for you?").ToString(), mercenaryCompanionCondition, DeactivateCondition, 200,null);
+            starter.AddDialogLine("mercenaryCompanion_bodyguard_start", "start", "mercenaryCompanion_bodyguard_1", new TextObject("Aye what can I do for you?").ToString(), mercenaryCompanionCondition, disableDialogCondition, 200,null);
             starter.AddPlayerLine("mercenaryCompanion_bodyguard_1", "mercenaryCompanion_bodyguard_1", "mercenaryCompanion_bodyguard_2",new TextObject("Your employment has gone quite well and I want to bring you on as a partner").ToString(), null, null,200, null);
             starter.AddDialogLine("mercenaryCompanion_bodyguard_2", "mercenaryCompanion_bodyguard_2", "mercenaryCompanion_bodyguard_3", new TextObject("As a partner?").ToString(), null, null, 200,null);
             starter.AddPlayerLine("mercenaryCompanion_bodyguard_3", "mercenaryCompanion_bodyguard_3", "mercenaryCompanion_bodyguard_4",new TextObject("You get part of the share and need to accomplish a few advanced organisational matters. I will however not pay your wage anymore.").ToString(), null, null,200, null);
@@ -85,7 +89,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
             return _mercenaryCompanionDialogBegins;
         }
 
-        private void  DeactivateCondition()
+        private void  disableDialogCondition()
         {
             _mercenaryCompanionDialogBegins=false;
         }

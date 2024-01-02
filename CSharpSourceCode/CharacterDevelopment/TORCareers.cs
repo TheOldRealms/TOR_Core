@@ -34,7 +34,7 @@ namespace TOR_Core.CharacterDevelopment
         {
             foreach (var career in All)
             {
-                career.CareerButton = CareerButtons.Instance.GetCareerButtons(career);
+                career.CareerButtonBehavior = CareerButtons.Instance.GetCareerButtons(career);
             }
         }
 

@@ -5,7 +5,7 @@ using TOR_Core.CampaignMechanics.Choices;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
 {
-    public abstract  class CareerButtonBase
+    public abstract  class CareerButtonBehaviorBase
     {
         public delegate void OnCareerButtonClickedEvent(CharacterObject troopID);
         public delegate bool OnShouldButtonBeVisible(CharacterObject characterObject);
@@ -13,7 +13,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
 
         public bool IsIntialized;
 
-        protected CareerButtonBase(CareerObject career)
+        protected CareerButtonBehaviorBase(CareerObject career)
         {
             Register();
         }

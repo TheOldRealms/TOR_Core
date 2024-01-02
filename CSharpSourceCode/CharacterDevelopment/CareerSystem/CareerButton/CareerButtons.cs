@@ -19,9 +19,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         
         public CareerButtons()
         {
-            _careerButtons.Add(TORCareers.Mercenary, new MercenaryButton(TORCareers.Mercenary));
-            _careerButtons.Add(TORCareers.GrailKnight, new MercenaryButton(TORCareers.GrailKnight));
-            _careerButtons.Add(TORCareers.WitchHunter, new MercenaryButton(TORCareers.WitchHunter));
+            _careerButtons.Add(TORCareers.Mercenary, new MercenaryButtonBehavior(TORCareers.Mercenary));
+            _careerButtons.Add(TORCareers.GrailKnight, new MercenaryButtonBehavior(TORCareers.GrailKnight));
+            _careerButtons.Add(TORCareers.WitchHunter, new MercenaryButtonBehavior(TORCareers.WitchHunter));
         }
         
         private static CareerButtons _instance;
@@ -46,10 +46,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             }
         }
         
-        private Dictionary<CareerObject, CareerButtonBase> _careerButtons =new Dictionary<CareerObject, CareerButtonBase>();
+        private Dictionary<CareerObject, CareerButtonBehaviorBase> _careerButtons =new Dictionary<CareerObject, CareerButtonBehaviorBase>();
        
         
-        public CareerButtonBase GetCareerButtons(CareerObject careerObject)
+        public CareerButtonBehaviorBase GetCareerButtons(CareerObject careerObject)
         {
             if (_careerButtons.ContainsKey(careerObject))
             {

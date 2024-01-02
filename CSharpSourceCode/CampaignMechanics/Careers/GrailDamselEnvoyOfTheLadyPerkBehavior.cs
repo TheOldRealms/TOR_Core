@@ -7,14 +7,19 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics
 {
-    public class DamselEnvoyOfTheLadyPerkBehavior : CampaignBehaviorBase
+    public class GrailDamselEnvoyOfTheLadyPerkBehavior
     {
+        public GrailDamselEnvoyOfTheLadyPerkBehavior()
+        {
+            RegisterEvents();
+        }
+        
           private List<Kingdom> _factionsAtWarWith;
         private List<Kingdom> _factionsRuleBretonnianSettlement;
         
-        public override void RegisterEvents()
+        public void RegisterEvents()
         {
-            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this,EnvoyOfTheLadyDialogOptions);
+            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, EnvoyOfTheLadyDialogOptions);
         }
 
         private void EnvoyOfTheLadyDialogOptions(CampaignGameStarter campaignGameStarter)
@@ -191,7 +196,7 @@ namespace TOR_Core.CampaignMechanics
             return false;
         }
 
-        public bool CivilWarCondition()
+        private bool CivilWarCondition()
         {
             var character = Campaign.Current.ConversationManager.OneToOneConversationCharacter.HeroObject;
             
@@ -213,10 +218,6 @@ namespace TOR_Core.CampaignMechanics
             var choices = Hero.MainHero.GetAllCareerChoices();
                 
             return choices.Contains("EnvoyOfTheLadyPassive4");
-        }
-
-        public override void SyncData(IDataStore dataStore)
-        {
         }
     }
 }

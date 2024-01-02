@@ -301,7 +301,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         }
         
         
-        public override bool ConditionsAreMetToShowButton(CharacterObject characterObject)
+        /*public override bool ConditionsAreMetToShowButton(CharacterObject characterObject)
         {
             if (!Hero.MainHero.HasCareerChoice("SilverHammerPassive4")) return false;
             
@@ -330,7 +330,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             }
             
             return true;
-        }
+        }*/
         
     }
 }

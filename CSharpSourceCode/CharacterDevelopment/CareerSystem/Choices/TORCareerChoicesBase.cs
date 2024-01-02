@@ -12,8 +12,6 @@ namespace TOR_Core.CampaignMechanics.Choices
     public abstract class TORCareerChoicesBase
     {
         protected CareerObject CareerID=null;
-
-        protected CareerButtonBase _careerButton;
         
 
 
@@ -29,11 +27,7 @@ namespace TOR_Core.CampaignMechanics.Choices
             InitializePassives();
             InitializeKeyStones();
         }
-
-        public CareerButtonBase CareerButton;
-
-       
-
+        
         protected TORCareerChoicesBase()
         {
             RegisterAll();
@@ -86,19 +80,6 @@ namespace TOR_Core.CampaignMechanics.Choices
         public virtual void InitialCareerSetup()
         {
             //this should only be meaningful in 
-        }
-        
-        public virtual string CareerButtonIcon => "winds_icon_45"; 
-
-        public virtual bool ConditionsAreMetToShowButton(CharacterObject characterObject)
-        {
-            return false;
-        }
-        
-        public virtual bool ConditionsAreMetToEnableButton(CharacterObject characterObject, out TextObject disableReason)
-        {
-            disableReason = new TextObject();
-            return false;
         }
     }
 }

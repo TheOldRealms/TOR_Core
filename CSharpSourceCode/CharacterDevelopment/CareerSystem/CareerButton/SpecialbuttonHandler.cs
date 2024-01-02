@@ -24,9 +24,9 @@ namespace TOR_Core.CampaignMechanics
     { 
         public event EventHandler<TroopEventArgs> ButtonClickedEventHandler;
         
-        private CareerButtonBase.OnCareerButtonClickedEvent  _clickEvent;
-        private CareerButtonBase.OnShouldButtonBeVisible _shouldButtonBeVisible;
-        private CareerButtonBase.OnShouldButtonBeActive _shouldButtonBeActive;
+        private CareerButtonBehaviorBase.OnCareerButtonClickedEvent  _clickEvent;
+        private CareerButtonBehaviorBase.OnShouldButtonBeVisible _shouldButtonBeVisible;
+        private CareerButtonBehaviorBase.OnShouldButtonBeActive _shouldButtonBeActive;
         
         
         private static SpecialbuttonEventManagerHandler _instance;
@@ -40,12 +40,12 @@ namespace TOR_Core.CampaignMechanics
             _witchHunterRetinueRecruitment = new WitchHunterRetinueRecruitment();
         }
 
-        public void RegisterNewButton(CareerButtonBase button)
+        public void RegisterNewButton(CareerButtonBehaviorBase buttonBehavior)
         {
          
-            _shouldButtonBeActive = button.ShouldButtonBeActive;
-            _shouldButtonBeVisible = button.ShouldButtonBeVisible;
-            _clickEvent = button.ButtonClickedEvent;
+            _shouldButtonBeActive = buttonBehavior.ShouldButtonBeActive;
+            _shouldButtonBeVisible = buttonBehavior.ShouldButtonBeVisible;
+            _clickEvent = buttonBehavior.ButtonClickedEvent;
         }
 
         public void Disable()
