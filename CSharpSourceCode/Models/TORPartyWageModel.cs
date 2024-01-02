@@ -135,17 +135,17 @@ namespace TOR_Core.Models
             foreach (var choiceID in choices)
             {
                 var choice = TORCareerChoices.GetChoice(choiceID);
-                
                 if (choice == null)
                     continue;
-                    
+                
+                if (choice.Passive.PassiveEffectType != PassiveEffectType.TroopWages) continue;
+                
                 if (!choice.Passive.IsValidCharacterObject(unit.Character))
                 {
                     continue;
                 }
 
-                TextObject textObject;
-                var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, choiceID, out textObject);
+                var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, choice, out var textObject);
                 resultValue.Add(value, textObject);
             }
                 

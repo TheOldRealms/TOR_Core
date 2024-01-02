@@ -247,17 +247,18 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         }
 
 
-        public static float CalculateTroopWageCareerPerkEffect(TroopRosterElement troop, string careerPerkID, out TextObject description)
+        public static float CalculateTroopWageCareerPerkEffect(TroopRosterElement troop, CareerChoiceObject careerPerk, out TextObject description)
         {
             float value = 0;
+            description = new TextObject("");
+            if (careerPerk == null) return 0;
+            
+            float effect = careerPerk.GetPassiveValue();
+            value = (troop.Character.TroopWage*troop.Number) * effect;
+            description = careerPerk.BelongsToGroup.Name;
+            
+            
             description = new TextObject();
-            var choice = TORCareerChoices.GetChoice(careerPerkID);
-            if (choice != null)
-            {
-                float effect = choice.GetPassiveValue();
-                value = (troop.Character.TroopWage*troop.Number) *effect;
-                description = choice.BelongsToGroup.Name;
-            }
 
             return value;
         }
