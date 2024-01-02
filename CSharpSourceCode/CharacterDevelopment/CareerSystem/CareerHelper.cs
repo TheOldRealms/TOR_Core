@@ -11,6 +11,7 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -67,11 +68,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
             return skillValue*scalingFactor;
         }
+
+
         
         
-        
-        
-        public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, AttackTypeMask mask,bool asFactor = false)
+        public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, AttackTypeMask mask, bool asFactor = false)
         {
             var choices = hero.GetAllCareerChoices();
             foreach (var choiceID in choices)
@@ -180,8 +181,26 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 }
             }
         }
-        
-        public static AgentPropertyContainer AddBasicCareerPassivesToPropertyContainerForMainAgent(Agent agent, AgentPropertyContainer propertyContainer, AttackTypeMask attackTypeMaskmask, PropertyMask mask)
+
+        public static float[] AddCareerPassivesForTroopDamageValues(Agent attacker, Agent victim, AttackTypeMask attackTypeMask, PropertyMask mask)
+        {
+            var damageValues = new float[(int)DamageType.All + 1];
+
+            if (mask == PropertyMask.Attack)
+            {
+                ApplyCareerPassivesForDamageValues(attacker, victim, ref damageValues, attackTypeMask, PassiveEffectType.TroopDamage);
+                return damageValues;
+            }
+            
+            else if (mask == PropertyMask.Defense)
+            {
+                ApplyCareerPassivesForDamageValues(victim, attacker, ref damageValues, attackTypeMask, PassiveEffectType.TroopResistance);
+                return damageValues;
+            }
+
+            return null;
+        }
+        public static AgentPropertyContainer AddBasicCareerPassivesToPropertyContainerForMainAgent(Agent agent, AgentPropertyContainer propertyContainer, AttackTypeMask attackType, PropertyMask mask)
         {
             if (!agent.GetHero().HasAnyCareer()) return propertyContainer;
 
@@ -189,71 +208,57 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             var resistanceValues = propertyContainer.ResistancePercentages;
             if (mask == PropertyMask.Attack)
             {
-                ApplyCareerPassivesForDamageValues(agent, ref damageValues, attackTypeMaskmask);
+                ApplyCareerPassivesForDamageValues(agent, null, ref damageValues, attackType,PassiveEffectType.Damage);
             }
 
             if (mask == PropertyMask.Defense)
             {
-                ApplyCareerPassivesForResistanceValues(agent, ref resistanceValues, attackTypeMaskmask);
+                ApplyCareerPassivesForDamageValues(agent, null, ref damageValues, attackType,PassiveEffectType.Resistance);
             }
             return new AgentPropertyContainer(propertyContainer.DamageProportions, propertyContainer.DamagePercentages, resistanceValues, damageValues);
         }
 
-        private static void ApplyCareerPassivesForDamageValues(Agent agent, ref float[] damageAmplifications, AttackTypeMask attackMask)
+        private static void ApplyCareerPassivesForDamageValues(Agent agent,Agent victim, ref float[] values, AttackTypeMask attackMask, PassiveEffectType type)
         {
-            var choices = agent.GetHero().GetAllCareerChoices();
+            if (type != PassiveEffectType.Damage &&
+                type != PassiveEffectType.TroopDamage &&
+                type != PassiveEffectType.Resistance &&
+                type != PassiveEffectType.TroopResistance) return;
+            
+            var choices = Hero.MainHero.GetAllCareerChoices();
             foreach (var choiceID in choices)
             {
                 var choice = TORCareerChoices.GetChoice(choiceID);
                 if (choice == null)
                     continue;
 
-                if (choice.Passive != null && (choice.Passive.PassiveEffectType == PassiveEffectType.Damage))
+                if (choice.Passive != null && (choice.Passive.PassiveEffectType == type))
                 {
+                    if(!choice.Passive.IsValidCombatInteraction(agent, victim, attackMask)) continue;
                     var passive = choice.Passive;
                     var mask = passive.AttackTypeMask;
                     if ((mask & attackMask) == 0) //if mask does NOT contains attackmask
                         continue;
 
                     var damageType = passive.DamageProportionTuple.DamageType;
-                    damageAmplifications[(int)damageType] += (passive.DamageProportionTuple.Percent / 100);
-                }
-            }
-        }
-
-        private static void ApplyCareerPassivesForResistanceValues(Agent agent, ref float[] resistancePropotions, AttackTypeMask attackMask)
-        {
-            var choices = agent.GetHero().GetAllCareerChoices();
-            foreach (var choiceID in choices)
-            {
-                var choice = TORCareerChoices.GetChoice(choiceID);
-                if (choice == null)
-                    continue;
-
-                if (choice.Passive != null && (choice.Passive.PassiveEffectType == PassiveEffectType.Resistance))
-                {
-                    var passive = choice.Passive;
-                    var mask = passive.AttackTypeMask;
-                    if ((mask & attackMask) == 0) //if mask does NOT contains attackmask
-                        continue;
-                    var damageType = passive.DamageProportionTuple.DamageType;
-                    resistancePropotions[(int)damageType] += (passive.DamageProportionTuple.Percent / 100);
+                    values[(int)damageType] += (passive.DamageProportionTuple.Percent / 100);
                 }
             }
         }
 
 
-        public static float CalculateTroopWageCareerPerkEffect(TroopRosterElement troop, string careerPerkID, out TextObject description)
+        public static float CalculateTroopWageCareerPerkEffect(TroopRosterElement troop, CareerChoiceObject careerPerk, out TextObject description)
         {
             float value = 0;
+            description = new TextObject("");
+            if (careerPerk == null) return 0;
+            
+            float effect = careerPerk.GetPassiveValue();
+            value = (troop.Character.TroopWage*troop.Number) * effect;
+            description = careerPerk.BelongsToGroup.Name;
+            
+            
             description = new TextObject();
-            var choice = TORCareerChoices.GetChoice(careerPerkID);
-            if (choice != null)
-            {
-                float effect = choice.GetPassiveValue();
-                value = (troop.Character.TroopWage*troop.Number) *effect;
-                description = choice.BelongsToGroup.Name;
-            }
 
             return value;
         }

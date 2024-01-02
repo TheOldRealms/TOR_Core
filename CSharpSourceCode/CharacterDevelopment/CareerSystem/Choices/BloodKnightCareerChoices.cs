@@ -4,6 +4,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.DamageSystem;
@@ -14,13 +15,13 @@ using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
+using FaceGen = TaleWorlds.Core.FaceGen;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 {
     public class BloodKnightCareerChoices : TORCareerChoicesBase
     {
         public BloodKnightCareerChoices(CareerObject id) : base(id) {}
-
         
         private CareerChoiceObject _bloodKnightRoot;
 
@@ -377,17 +378,36 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _controlledHungerPassive1.Initialize(CareerID, "Immune to sunlight malus.", "ControlledHunger", false, ChoiceType.Passive, null); //TORPartySpeedCalculatingModel 46
             _controlledHungerPassive2.Initialize(CareerID, "Increases Hitpoints by 50.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
             _controlledHungerPassive3.Initialize(CareerID, "Mount health is increased by 35%.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(35f, PassiveEffectType.HorseHealth, true));
-            _controlledHungerPassive4.Initialize(CareerID, "Ward save for all vampire units.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
+            _controlledHungerPassive4.Initialize(CareerID, "Ward save for all vampire units.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 25), AttackTypeMask.Spell, ControlledHungerPassive4));
 
             _avatarOfDeathPassive1.Initialize(CareerID, "{=avatar_of_death_passive1_str}Gain 25% physical resistance to melee and ranged attacks.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 25), AttackTypeMask.Ranged | AttackTypeMask.Melee));
-            _avatarOfDeathPassive2.Initialize(CareerID, "{=avatar_of_death_passive2_str}All vampire units wages are reduced by 35%.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-35, PassiveEffectType.Special, true)); //TORPartyWageModel 85
+            _avatarOfDeathPassive2.Initialize(CareerID, "{=avatar_of_death_passive2_str}All vampire units wages are reduced by 35%.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-35, PassiveEffectType.TroopWages, true, AvatarOfDeathPassive2)); 
             _avatarOfDeathPassive3.Initialize(CareerID, "{=avatar_of_death_passive3_str}The player gains 35% Magic resistance against spells.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 35), AttackTypeMask.Spell));
             _avatarOfDeathPassive4.Initialize(CareerID, "{=avatar_of_death_passive4_str}For every 100 above 500 inflicted damage the player gets healed by 1 Hit point(Maximum 5).", "AvatarOfDeath", false, ChoiceType.Passive, null);
 
             _dreadKnightPassive1.Initialize(CareerID, "Increases Hitpoints by 50.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
             _dreadKnightPassive2.Initialize(CareerID, "Horse charge damage is increased by 50%.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseChargeDamage, true));
-            _dreadKnightPassive3.Initialize(CareerID, "Cavalry units get a 20% damage increase in damage.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
+            _dreadKnightPassive3.Initialize(CareerID, "Cavalry units get a 20% damage increase in damage.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Melee,DreadKnightPassive3));
             _dreadKnightPassive4.Initialize(CareerID, "Extra 25% armor penetration of melee attacks.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
+        }
+        
+        private static bool AvatarOfDeathPassive2(CharacterObject characterObject)
+        {
+            if(!characterObject.IsHero) return false;
+            return characterObject.IsVampire();
+        }
+
+        private static bool ControlledHungerPassive4(Agent attacker, Agent victim, AttackTypeMask mask)
+        {
+            if (!victim.BelongsToMainParty()) return false;
+            if (victim.IsHero) return false;
+            return victim.IsVampire();
+        }
+
+        private static bool DreadKnightPassive3(Agent attacker, Agent victim, AttackTypeMask mask)
+        {
+            if (!attacker.BelongsToMainParty()) return false;
+            return !attacker.IsHero && attacker.HasMount && mask== AttackTypeMask.Melee;
         }
         
         public override void InitialCareerSetup()

@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.DamageSystem;
@@ -273,7 +274,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _duelistPassive1.Initialize(CareerID, "Increases Hitpoints by 20.", "Duelist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Health));
             _duelistPassive2.Initialize(CareerID, "Increases influence gain from battles  by 15%.", "Duelist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.InfluenceGainFromBattles, true));
-
             _duelistPassive3.Initialize(CareerID, "Increases melee damage by 10%.", "Duelist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
             _duelistPassive4.Initialize(CareerID, "Increases health regeneration on the campaign map by 3.", "Duelist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.HealthRegeneration));
 
@@ -289,20 +289,43 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             _paymasterPassive1.Initialize(CareerID, "Wounded troops in your party heal faster.", "Paymaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration));
             _paymasterPassive2.Initialize(CareerID, "40% chance to recruit an extra unit of the same type free of charge.", "Paymaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Special, true)); //TORCareerPerkCampaignBehavior 29
-            _paymasterPassive3.Initialize(CareerID, "Wages of Tier 4 troops and above are reduced by 20%.", "Paymaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.Special, true)); //TORWageModel 100
+            _paymasterPassive3.Initialize(CareerID, "Wages of Tier 4 troops and above are reduced by 20%.", "Paymaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.TroopWages, true,PaymasterPassive3));
             _paymasterPassive4.Initialize(CareerID, "Bodyguard perk", "Paymaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.Special, true)); //TORPartyWageModel 84
             
             _mercenaryLordPassive1.Initialize(CareerID, "4 extra special ammo like grenades or buckshot.", "MercenaryLord", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(4, PassiveEffectType.Special, false));  //TORAgentStatCalculateModel 97
-            _mercenaryLordPassive2.Initialize(CareerID, "Increases the damage of all ranged troops by 15%.", "MercenaryLord", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special, true));          //TORAgentStatCalculateModel 458
+            _mercenaryLordPassive2.Initialize(CareerID, "Increases the damage of all ranged troops by 15%.", "MercenaryLord", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Ranged, MercenaryLordPassive2));
             _mercenaryLordPassive3.Initialize(CareerID, "Higher mercenary contract payment, lower Influence loss. Scales with the Trade skill.", "MercenaryLord", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special, true)); // TOR_Core.Models.TORClanFinanceModel. 53
             _mercenaryLordPassive4.Initialize(CareerID, "Ranged shots can penetrate multiple targets.", "MercenaryLord", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special)); //TORAgentApplyDamage 29
 
             _commanderPassive1.Initialize(CareerID, "Companion limit of party is increased by 5.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
-            _commanderPassive2.Initialize(CareerID, "Increases the damage of all melee troops by 15%.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special, true)); //TORAgentStatCalculateModel 467
+            _commanderPassive2.Initialize(CareerID, "Increases the damage of all melee troops by 15%.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Melee, CommanderPassive2));
             _commanderPassive3.Initialize(CareerID, "Hits below 15 damage do not stagger the player.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special)); // Agent extension 83
             _commanderPassive4.Initialize(CareerID, "Companion health of party is increased by 25.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special));
+        }
+        
+        private static bool PaymasterPassive3(CharacterObject characterObject)
+        {
+            if (characterObject.IsHero) return false;
+            
+            return characterObject.Tier>4;
+        }
+        
+        private static bool MercenaryLordPassive2(Agent attacker, Agent victim, AttackTypeMask mask)
+        {
+            if (!attacker.BelongsToMainParty()) return false;
+            if (attacker.IsMainAgent || attacker.IsHero) return false;
 
-            //_commanderPassive4.
+            return mask == AttackTypeMask.Ranged;
+
+        }
+        
+        private static bool CommanderPassive2(Agent attacker, Agent victim, AttackTypeMask mask)
+        {
+            if (!attacker.BelongsToMainParty()) return false;
+            if (attacker.IsMainAgent || attacker.IsHero) return false;
+
+            return mask == AttackTypeMask.Melee;
+
         }
         
         public override bool ConditionsAreMetToShowButton(CharacterObject characterObject)

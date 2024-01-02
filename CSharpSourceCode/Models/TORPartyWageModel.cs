@@ -58,8 +58,7 @@ namespace TOR_Core.Models
                     TroopRosterElement elementCopyAtIndex = mobileParty.MemberRoster.GetElementCopyAtIndex(index);
                     if (mobileParty.LeaderHero.HasAnyCareer())
                     {
-                        var careerID = mobileParty.LeaderHero.GetCareer().StringId;
-                        var careerFactors = new ExplainedNumber(0, true);
+                        var careerFactors = new ExplainedNumber(0, true); 
                         careerFactors = AddCareerSpecificWagePerks(careerFactors, mobileParty.LeaderHero, elementCopyAtIndex);
                         foreach (var line in careerFactors.GetLines())
                         {
@@ -123,6 +122,7 @@ namespace TOR_Core.Models
                     if (buyerHero.GetPerkValue(DefaultPerks.Charm.SlickNegotiator))
                         explainedNumber.AddFactor(DefaultPerks.Charm.SlickNegotiator.PrimaryBonus);
                 }
+                
                 troopRecruitmentCost = MathF.Max(1, MathF.Round((float)troopRecruitmentCost * explainedNumber.ResultNumber));
             }
             return troopRecruitmentCost;
@@ -131,120 +131,26 @@ namespace TOR_Core.Models
 
         private ExplainedNumber AddCareerSpecificWagePerks(ExplainedNumber resultValue, Hero hero, TroopRosterElement unit)
         {
+            if (hero != Hero.MainHero || !Hero.MainHero.HasAnyCareer()) return resultValue;
             var choices = hero.GetAllCareerChoices();
-
-            if (choices.Contains("SigmarsProclaimerPassive2"))
+            foreach (var choiceID in choices)
             {
-                if (unit.Character.IsSoldier)
+                var choice = TORCareerChoices.GetChoice(choiceID);
+                if (choice == null)
+                    continue;
+                
+                if (choice.Passive.PassiveEffectType != PassiveEffectType.TroopWages) continue;
+                
+                if (!choice.Passive.IsValidCharacterObject(unit.Character))
                 {
-                    var choice = TORCareerChoices.GetChoice("SigmarsProclaimerPassive2");
-                    var includeRegularTroops = choices.Contains("ArchLectorPassive4");
-                    var value = CalculateSigmarsProclaimerPerk(unit, includeRegularTroops, choice);
-                    resultValue.Add(value, choice.BelongsToGroup.Name);
-                }
-            }
-
-            if (choices.Contains("DuelistPassive3"))
-            {
-                if (!unit.Character.IsMounted)
-                {
-                    TextObject text;
-                    var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "DuelistPassive3", out text);
-                    resultValue.Add(value, text);
-                }
-            }
-
-            if (choices.Contains("PaymasterPassive3"))
-            {
-                if (unit.Character.Tier > 4 && !unit.Character.IsHero)
-                {
-                    TextObject text;
-                    var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "PaymasterPassive3", out text);
-                    resultValue.Add(value, text);
-                }
-            }
-
-            if (choices.Contains("LordlyPassive3"))
-            {
-                if (unit.Character.IsVampire() && unit.Character != Hero.MainHero.CharacterObject)
-                {
-                    TextObject text;
-                    var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "LordlyPassive3", out text);
-                    resultValue.Add(value, text);
-                }
-            }
-
-            if (choices.Contains("InspirationOfTheLadyPassive3"))
-            {
-                if (unit.Character.IsKnightUnit())
-                {
-                    TextObject text;
-                    var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "LordlyPassive3", out text);
-                    resultValue.Add(value, text);
-                }
-            }
-
-            if (choices.Contains("AvatarOfDeathPassive2"))
-            {
-                if (unit.Character.IsVampire() && unit.Character != Hero.MainHero.CharacterObject)
-                {
-                    TextObject text;
-                    var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "AvatarOfDeathPassive2", out text);
-                    resultValue.Add(value, text);
-                }
-            }
-
-            if (choices.Contains("MonsterSlayerPassive4"))
-            {
-                if (unit.Character != Hero.MainHero.CharacterObject && !unit.Character.IsKnightUnit() && unit.Character.Culture.StringId == "vlandia")
-                {
-                    TextObject text;
-                    var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "MonsterSlayerPassive4", out text);
-                    resultValue.Add(value, text);
-                }
-            }
-
-            if (choices.Contains("MasterHorsemanPassive4"))
-            {
-                if (unit.Character != Hero.MainHero.CharacterObject && unit.Character.IsKnightUnit())
-                {
-                    TextObject text;
-                    var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "MasterHorsemanPassive4", out text);
-                    resultValue.Add(value, text);
+                    continue;
                 }
 
+                var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, choice, out var textObject);
+                resultValue.Add(value, textObject);
             }
-            
-            if (choices.Contains("HuntTheWickedPassive2"))
-            {
-                if (unit.Character != Hero.MainHero.CharacterObject && unit.Character.IsRanged&& !unit.Character.IsMounted)
-                {
-                    TextObject text;
-                    var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, "HuntTheWickedPassive2", out text);
-                    resultValue.Add(value, text);
-                }
-            }
-
+                
             return resultValue;
         }
-
-
-
-        private float CalculateSigmarsProclaimerPerk(TroopRosterElement unit, bool includeRegularTroops, CareerChoiceObject choice)
-        {
-            if (!unit.Character.UnitBelongsToCult("cult_of_sigmar"))
-            {
-                if (!includeRegularTroops)
-                {
-                    return 0f;
-                }
-            }
-            if (choice?.Passive == null) return 0;
-            var effectMagnitude = choice.Passive.EffectMagnitude;
-            if (choice.Passive.InterpretAsPercentage) effectMagnitude /= 100;
-            var value = -(unit.Character.TroopWage * unit.Number) * (effectMagnitude);
-            return value;
-        }
-
     }
 }

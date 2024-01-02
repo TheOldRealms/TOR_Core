@@ -132,7 +132,6 @@ namespace TOR_Core.AbilitySystem
         {
             if (!IsActive)
             {
-                //TORCommon.Say(_currentCharge + amount + " charged of " + _maxCharge);
                 _currentCharge += amount;
                 _currentCharge = Math.Min(_maxCharge, _currentCharge);
             }

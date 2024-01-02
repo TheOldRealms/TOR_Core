@@ -53,6 +53,29 @@ namespace TOR_Core.HarmonyPatches
             var wardSaveFactor = 1f;
             if (Game.Current.GameType is Campaign)
             {
+                if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(attacker, victim) && !(attacker.IsMainAgent || victim.IsMainAgent))
+                {
+                    var property = PropertyMask.All;
+                    if (attacker.BelongsToMainParty())
+                    {
+                        property = PropertyMask.Attack;
+                        var careerBonuses = CareerHelper.AddCareerPassivesForTroopDamageValues(attacker, victim, attackTypeMask, property);
+                        for (var index = 0; index < careerBonuses.Length; index++)
+                        {
+                            additionalDamagePercentages[index] += careerBonuses[index];
+                        } 
+                    }
+                    else
+                    {
+                        property = PropertyMask.Defense;
+                        var careerBonuses = CareerHelper.AddCareerPassivesForTroopDamageValues(attacker, victim, attackTypeMask, property);
+                        for (var index = 0; index < careerBonuses.Length; index++)
+                        {
+                            resistancePercentages[index] += careerBonuses[index];
+                        } 
+                    }
+                }
+                
                 var model = MissionGameModels.Current.AgentApplyDamageModel;
                 if(model != null && model is TORAgentApplyDamageModel)
                 {
@@ -60,55 +83,8 @@ namespace TOR_Core.HarmonyPatches
                     wardSaveFactor = torModel.CalculateWardSaveFactor(victim, attackTypeMask);
                 }
 
-                if (attacker.GetOriginMobileParty()!=null&& attacker.GetOriginMobileParty()==MobileParty.MainParty)
-                {
-                    var choices = Hero.MainHero.GetAllCareerChoices();
 
-                    if ((victim.Character.Race == 0||victim.Character.IsCultist()) && choices.Contains("MartiallePassive3"))        //other humans should be added if applicable
-                    {
-                        var choice = TORCareerChoices.GetChoice("MartiallePassive3");
-                        if (choice != null)
-                        {
-                            var value = choice.GetPassiveValue();
-                            additionalDamagePercentages[(int)DamageType.Physical] += value;
-                        }
-                    }
-                    
-                    
-                    
-                    //Need to stay here because they need information about victim
-                    
-                    
-                    if (victim.Character.Race != 0 && choices.Contains("HolyPurgePassive3"))
-                    {
-                        var choice = TORCareerChoices.GetChoice("HolyPurgePassive3");
-                        if (choice != null)
-                        {
-                            var value = choice.GetPassiveValue();
-                            additionalDamagePercentages[(int)DamageType.Physical] += value;
-                        }
-                    }
-                    
-                    if (victim.Character.Race != 0 && choices.Contains("SilverHammerPassive2"))
-                    {
-                        var choice = TORCareerChoices.GetChoice("SilverHammerPassive2");
-                        if (choice != null)
-                        {
-                            var value = choice.GetPassiveValue();
-                            additionalDamagePercentages[(int)DamageType.Physical] += value;
-                        }
-                    }
-                    
-                    if (!attacker.IsHero&&attacker.HasMount&&choices.Contains("DreadKnightPassive3"))
-                    {
-                        var choice = TORCareerChoices.GetChoice("DreadKnightPassive3");
-                        if (choice != null)
-                        {
-                            var value = choice.GetPassiveValue();
-                            additionalDamagePercentages[(int)DamageType.Physical] += value;
-                        }
-                    }
-                }
+                
             }
 
             string abilityName = "";
