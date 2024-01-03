@@ -1,12 +1,9 @@
 ﻿using System.Linq;
 using SandBox.Objects.Usables;
-using TaleWorlds.Core;
 using TaleWorlds.Engine;
-using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.SFX
 {

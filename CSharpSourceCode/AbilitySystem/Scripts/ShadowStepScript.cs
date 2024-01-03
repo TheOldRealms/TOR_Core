@@ -1,10 +1,7 @@
-using System.Collections.Generic;
 using TaleWorlds.Engine;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.MountAndBlade.View.Screens;
-using TaleWorlds.ScreenSystem;
 using TOR_Core.BattleMechanics.SFX;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -83,8 +80,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             if (IsFading) return;
             _timeSinceLastTick += dt;
             UpdateLifeTime(dt);
-
-
+            
             if (_casterAgent != null && _casterAgent.Health > 0)
             {
                 UpdateSound(_casterAgent.Position);
@@ -100,7 +96,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                     }
                 }
             }
-
+            
             if (_timeSinceLastTick >= effectTickInterval)
             {
                 if (_casterAgent != null)

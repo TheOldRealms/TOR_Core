@@ -21,69 +21,54 @@ namespace TOR_Core.BattleMechanics
 {
     public class CareerPerkMissionBehavior : MissionLogic
     {
-        public delegate void AgentHitEvent(
-            Agent affectedAgent,
-            Agent affectorAgent,
-            MissionWeapon affectorWeapon,
-            Blow blow,
-            KillingBlow killingBlow);
         
-        public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
+        public override void OnAgentHit (Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
-            if(affectedAgent==null) return;
-            if(affectedAgent.IsMount) return;
-            if(affectorAgent == null) return;
-            if(affectorAgent.IsMount) return;
-            
-            
+            if(!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
 
-            if( affectorAgent.IsHero 
-                                    && (affectorAgent.IsMainAgent && affectorAgent.GetHero().HasCareer(TORCareers.WitchHunter) || affectorAgent.IsHero&&
-                                        (affectorAgent.GetHero().PartyBelongedTo == MobileParty.MainParty && Hero.MainHero.HasCareerChoice("NoRestAgainstEvilKeystone"))))
+            if (( !affectorAgent.IsMainAgent || !affectorAgent.GetHero().HasCareer(TORCareers.WitchHunter) ) &&
+                ( !affectorAgent.BelongsToMainParty() || !Hero.MainHero.HasCareerChoice("NoRestAgainstEvilKeystone") )) return;
+            
+            var comp = affectedAgent.GetComponent<StatusEffectComponent>();
+            if(comp==null) return;
+            var temporaryEffects = comp.GetTemporaryAttributes();
+            if (!temporaryEffects.Contains("AccusationMark")) return;
+                
+            var choices = Hero.MainHero.GetAllCareerChoices();
+                    
+            AbilityTemplate ability = affectorAgent.GetComponent<AbilityComponent>().CareerAbility.Template;
+
+            var reapplyChance = 0.5f;
+
+            reapplyChance = Mathf.Clamp(reapplyChance, 0.1f, 1);
+
+            var targets = new MBList<Agent>();
+
+            if (choices.Contains("EndsJustifiesMeansKeystone")&&affectedAgent.HealthLimit <= blow.InflictedDamage)
             {
-                var comp = affectedAgent.GetComponent<StatusEffectComponent>();
-                if(comp==null) return;
-                var temporaryEffects = comp.GetTemporaryAttributes();
-
-                if (temporaryEffects.Contains("AccusationMark"))
+                var amount = AccusationScript.CalculateAdditonalTargetAmount(ability.ScaleVariable1);
+                targets.AddRange(AccusationScript.GetAdditionalAccusationMarkTargets(affectedAgent.Position.AsVec2,amount+1));
+            }
+                    
+            var script = (AccusationScript)affectorAgent.GetComponent<AbilityComponent>().CareerAbility.AbilityScript;
+            var triggeredEffect = script.GetEffects()[0];
+            targets.Add(affectedAgent);
+            if (MBRandom.RandomFloat <= reapplyChance|| choices.Contains("NoRestAgainstEvilKeystone"))
+            {
+                targets.Add(affectedAgent);
+            }
+            else
+            {
+                affectedAgent.GetComponent<StatusEffectComponent>().RemoveStatusEffect("accusation_debuff",true);
+            }
+                    
+            if(triggeredEffect==null) return;
+                    
+            foreach (var target in targets)
+            {
+                foreach (var statusEffect in triggeredEffect.StatusEffects)
                 {
-                    var choices = Hero.MainHero.GetAllCareerChoices();
-                    
-                    AbilityTemplate ability = affectorAgent.GetComponent<AbilityComponent>().CareerAbility.Template;
-
-                    var reapplyChance = 0.5f;
-
-                    reapplyChance = Mathf.Clamp(reapplyChance, 0.1f, 1);
-
-                    var targets = new MBList<Agent>();
-
-                    if (choices.Contains("EndsJustifiesMeansKeystone")&&affectedAgent.HealthLimit <= blow.InflictedDamage)
-                    {
-                        var amount = AccusationScript.CalculateAdditonalTargetAmount(ability.ScaleVariable1);
-                        targets.AddRange(AccusationScript.GetAdditionalAccusationMarkTargets(affectedAgent.Position.AsVec2,amount+1));
-                    }
-                    
-                    var script = (AccusationScript)affectorAgent.GetComponent<AbilityComponent>().CareerAbility.AbilityScript;
-                    var triggeredEffect = script.GetEffects()[0];
-                    targets.Add(affectedAgent);
-                    if (MBRandom.RandomFloat <= reapplyChance|| choices.Contains("NoRestAgainstEvilKeystone"))
-                    {
-                        targets.Add(affectedAgent);
-                    }
-                    else
-                    {
-                        affectedAgent.GetComponent<StatusEffectComponent>().RemoveStatusEffect("accusation_debuff",true);
-                    }
-                    
-                    if(triggeredEffect==null) return;
-                    
-                    foreach (var target in targets)
-                    {
-                        foreach (var statusEffect in triggeredEffect.StatusEffects)
-                        {
-                            target.GetComponent<StatusEffectComponent>().RunStatusEffect(statusEffect, affectorAgent, triggeredEffect.ImbuedStatusEffectDuration,true,true);
-                        }
-                    }
+                    target.GetComponent<StatusEffectComponent>().RunStatusEffect(statusEffect, affectorAgent, triggeredEffect.ImbuedStatusEffectDuration,true,true);
                 }
             }
         }
@@ -91,7 +76,6 @@ namespace TOR_Core.BattleMechanics
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
             if (affectorAgent == null) return;
-            if(affectedAgent.IsMount) return;
             if (!affectorAgent.IsMainAgent) return;
             
             var playerHero = affectorAgent.GetHero();
