@@ -8,27 +8,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 {
     public class CareerButtons
     {
-        private CareerObject _bloodKnight;
-        private CareerObject _grailDamsel;
-        private CareerObject _grailKnight;
-        private CareerObject _mercenary;
-        private CareerObject _minorVampire;
-        private CareerObject _necromancer;
-        private CareerObject _warriorPriest;
-        private CareerObject _witchHunter;
-        
-        public CareerButtons()
-        {
-            _careerButtons.Add(TORCareers.Mercenary, new MercenaryCareerButtonBehavior(TORCareers.Mercenary));
-            _careerButtons.Add(TORCareers.GrailKnight, new GrailKnightCareerButtonBehavior(TORCareers.GrailKnight));
-            _careerButtons.Add(TORCareers.WitchHunter, new MercenaryCareerButtonBehavior(TORCareers.WitchHunter));
-            _careerButtons.Add(TORCareers.WitchHunter, new WitchHunterCareerButtonBehavior(TORCareers.WitchHunter));
-        }
-        
+        private Dictionary<CareerObject, CareerButtonBehaviorBase> _careerButtons = new Dictionary<CareerObject, CareerButtonBehaviorBase>();
         private static CareerButtons _instance;
-
-
-
+        
         public static CareerButtons Instance
         {
             get
@@ -38,17 +20,16 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     _instance = new CareerButtons();
                     return _instance;
                 }
-                else
-                {
-                    return _instance;
-                }
-
-                return null;
+                return _instance;
             }
         }
-        
-        private Dictionary<CareerObject, CareerButtonBehaviorBase> _careerButtons =new Dictionary<CareerObject, CareerButtonBehaviorBase>();
-       
+        public CareerButtons()
+        {
+            _careerButtons.Add(TORCareers.Mercenary, new MercenaryCareerButtonBehavior(TORCareers.Mercenary));
+            _careerButtons.Add(TORCareers.GrailKnight, new GrailKnightCareerButtonBehavior(TORCareers.GrailKnight));
+            _careerButtons.Add(TORCareers.WitchHunter, new MercenaryCareerButtonBehavior(TORCareers.WitchHunter));
+            _careerButtons.Add(TORCareers.WitchHunter, new WitchHunterCareerButtonBehavior(TORCareers.WitchHunter));
+        }
         
         public CareerButtonBehaviorBase GetCareerButtons(CareerObject careerObject)
         {

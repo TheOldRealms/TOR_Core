@@ -18,27 +18,26 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         private int level;
 
         private const string retinueID = "tor_wh_retinue";
-        
+
         public override string CareerButtonIcon => "CareerSystem\\ghal_maraz";
-        
+
         public WitchHunterCareerButtonBehavior(CareerObject career) : base(career)
         {
-            
         }
 
         public void SetUpRetinueExchange(CharacterObject characterTemplate)
         {
-            originalTroop = characterTemplate; 
+            originalTroop = characterTemplate;
             level = characterTemplate.Level;
-            var index= Hero.MainHero.PartyBelongedTo.MemberRoster.FindIndexOfTroop(characterTemplate);
+            var index = Hero.MainHero.PartyBelongedTo.MemberRoster.FindIndexOfTroop(characterTemplate);
             var count = Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementCopyAtIndex(index).Number;
             _retinue = MBObjectManager.Instance.GetObject<CharacterObject>(retinueID);
 
             if (_retinue != null)
-            { 
+            {
                 var roster = TroopRoster.CreateDummyTroopRoster();
                 roster.AddToCounts(_retinue, count);
-                copiedTroopRoster =TroopRoster.CreateDummyTroopRoster();
+                copiedTroopRoster = TroopRoster.CreateDummyTroopRoster();
                 foreach (var elem in Hero.MainHero.PartyBelongedTo.MemberRoster.ToFlattenedRoster())
                 {
                     if (!elem.Troop.IsHero)
@@ -47,34 +46,32 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                         copiedTroopRoster.AddToCounts(elem.Troop, 1);
                     }
                 }
-               
-                PartyScreenManager.OpenScreenAsReceiveTroops(roster,new TextObject("Witch Hunter Retinues"), AddRetinuesAndCalculateXPGain); 
+
+                PartyScreenManager.OpenScreenAsReceiveTroops(roster, new TextObject("Witch Hunter Retinues"), AddRetinuesAndCalculateXPGain);
             }
         }
 
         private void AddRetinuesAndCalculateXPGain(PartyBase leftownerparty, TroopRoster leftmemberroster, TroopRoster leftPrisonRoster, PartyBase rightownerparty, TroopRoster rightmemberroster, TroopRoster rightprisonroster, bool fromcancel)
         {
             //TODO rework, needs a bit more love
-            var count = rightmemberroster.TotalManCount-rightmemberroster.TotalHeroes;
-            if(count<=0)
+            var count = rightmemberroster.TotalManCount - rightmemberroster.TotalHeroes;
+            if (count <= 0)
                 return;
             rightownerparty.MemberRoster.Add(copiedTroopRoster);
             rightownerparty.AddMember(originalTroop, -count);
 
-          
-                
-            var retinues = rightownerparty.MobileParty.MemberRoster.ToFlattenedRoster().ToList(); 
-            retinues= retinues.Where(x => x.Troop.StringId.Contains(retinueID)).ToList();
-            
+
+            var retinues = rightownerparty.MobileParty.MemberRoster.ToFlattenedRoster().ToList();
+            retinues = retinues.Where(x => x.Troop.StringId.Contains(retinueID)).ToList();
+
             var xpGain = CalculateXPGainForRetinues(count, level, retinues.Count);
-            if(xpGain==0) return;
+            if (xpGain == 0) return;
             foreach (var retinue in retinues)
             {
                 var index = MobileParty.MainParty.MemberRoster.FindIndexOfTroop(retinue.Troop);
                 MobileParty.MainParty.MemberRoster.SetElementXp(index, MobileParty.MainParty.MemberRoster.GetElementXp(retinue.Troop) + xpGain);
             }
-                
-                
+
 
             _retinue = null;
             Game.Current.GameStateManager.PopState();
@@ -83,13 +80,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         private int CalculateXPGainForRetinues(int unitCount, int level, int retinueCount)
         {
             if (retinueCount <= 0) return 0;
-            
-            return ( 15 * level * unitCount )/retinueCount;
+
+            return ( 15 * level * unitCount ) / retinueCount;
         }
         
-        
-       
-
         public override void ButtonClickedEvent(CharacterObject characterObject)
         {
             SetUpRetinueExchange(characterObject);
@@ -98,13 +92,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         public override bool ShouldButtonBeVisible(CharacterObject characterObject)
         {
             if (!Hero.MainHero.HasCareerChoice("SilverHammerPassive4")) return false;
-            
+
             if (characterObject.StringId == "tor_wh_retinue")
                 return false;
 
             if (!characterObject.IsHero)
                 return true;
-            
+
             return false;
         }
 
@@ -117,12 +111,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 return false;
             }
 
-            if (characterObject.Culture.StringId == "vlandia" || characterObject.Race !=0)
+            if (characterObject.Culture.StringId == "vlandia" || characterObject.Race != 0)
             {
                 displayText = new TextObject("Needs to be part of the empire or southern realms");
                 return false;
             }
-            
+
             return true;
         }
     }
