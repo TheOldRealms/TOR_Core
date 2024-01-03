@@ -320,9 +320,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         public static string GetButtonSprite()
         {
             var career= Hero.MainHero.GetCareer();
-            if (career != null)
+            if (career == null) return "";
+            
+            var button = CareerButtons.Instance.GetCareerButtons(career);
+            if (button != null)
             {
-                return CareerButtons.Instance.GetCareerButtons(Hero.MainHero.GetCareer()).CareerButtonIcon;
+                return CareerButtons.Instance.GetCareerButtons(career).CareerButtonIcon;
             }
 
             return "";

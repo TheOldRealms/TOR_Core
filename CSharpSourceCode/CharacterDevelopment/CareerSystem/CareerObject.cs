@@ -68,8 +68,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             RequiresAbilityTargeting = requiresAbilityTargeting;
             
             _chargeFunction = function;
-            if (_chargeFunction != null)
+            if (_chargeFunction == null)
                 ChargeType = ChargeType.CooldownOnly;
+            else
+            {
+                ChargeType = ChargeType.Custom;     //you can either have cooldown or custom, but in game the Charge types are still applicable. 
+            }
             
             AfterInitialized();
         }

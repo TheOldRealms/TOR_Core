@@ -10,4 +10,5 @@
     NumberOfMaximumBanditPartiesInEachHideout="3"
     NumberOfInitialHideoutsAtEachBanditFaction="40"
     NumberOfMaximumHideoutsAtEachBanditFaction="80"
+	MaximumNumberOfCareerPerkPoints="30"
 />

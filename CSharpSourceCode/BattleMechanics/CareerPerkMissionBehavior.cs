@@ -19,17 +19,23 @@ namespace TOR_Core.BattleMechanics
         {
             if(!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
 
-            if (( !affectorAgent.IsMainAgent || !affectorAgent.GetHero().HasCareer(TORCareers.WitchHunter) ) &&
-                ( !affectorAgent.BelongsToMainParty() || !Hero.MainHero.HasCareerChoice("NoRestAgainstEvilKeystone") )) return;
-            
+            if (( affectorAgent.IsMainAgent && affectorAgent.GetHero().HasCareer(TORCareers.WitchHunter) ) ||
+                ( affectorAgent.BelongsToMainParty()&&affectorAgent.IsHero && Hero.MainHero.HasCareerChoice("NoRestAgainstEvilKeystone") ))
+            {
+                WitchHunterAccusationBehavior(affectorAgent,affectedAgent, blow.InflictedDamage);
+            }
+        }
+
+        private void WitchHunterAccusationBehavior(Agent affectorAgent, Agent affectedAgent, int inflictedDamge)
+        {
             var comp = affectedAgent.GetComponent<StatusEffectComponent>();
             if(comp==null) return;
             var temporaryEffects = comp.GetTemporaryAttributes();
             if (!temporaryEffects.Contains("AccusationMark")) return;
                 
             var choices = Hero.MainHero.GetAllCareerChoices();
-                    
-            AbilityTemplate ability = affectorAgent.GetComponent<AbilityComponent>().CareerAbility.Template;
+
+            CareerAbility ability = affectorAgent.GetComponent<AbilityComponent>().CareerAbility;
 
             var reapplyChance = 0.5f;
 
@@ -37,38 +43,42 @@ namespace TOR_Core.BattleMechanics
 
             var targets = new MBList<Agent>();
 
-            if (choices.Contains("EndsJustifiesMeansKeystone")&&affectedAgent.HealthLimit <= blow.InflictedDamage)
+            if (choices.Contains("EndsJustifiesMeansKeystone")&&affectedAgent.HealthLimit <= inflictedDamge)
             {
-                var amount = AccusationScript.CalculateAdditonalTargetAmount(ability.ScaleVariable1);
+                var amount = AccusationScript.CalculateAdditonalTargetAmount(ability.Template.ScaleVariable1);
                 targets.AddRange(AccusationScript.GetAdditionalAccusationMarkTargets(affectedAgent.Position.AsVec2,amount+1));
             }
-                    
-            var script = (AccusationScript)affectorAgent.GetComponent<AbilityComponent>().CareerAbility.AbilityScript;
-            var triggeredEffect = script.GetEffects()[0];
-            targets.Add(affectedAgent);
-            if (MBRandom.RandomFloat <= reapplyChance|| choices.Contains("NoRestAgainstEvilKeystone"))
+
+            var script = (CareerAbilityScript)( ability.AbilityScript );
+            var triggeredEffects = script.AccessEffectsToTrigger();
+            foreach (var triggeredEffect in triggeredEffects)
             {
                 targets.Add(affectedAgent);
-            }
-            else
-            {
-                affectedAgent.GetComponent<StatusEffectComponent>().RemoveStatusEffect("accusation_debuff",true);
-            }
-                    
-            if(triggeredEffect==null) return;
-                    
-            foreach (var target in targets)
-            {
-                foreach (var statusEffect in triggeredEffect.StatusEffects)
+                if (MBRandom.RandomFloat <= reapplyChance|| choices.Contains("NoRestAgainstEvilKeystone"))
                 {
-                    target.GetComponent<StatusEffectComponent>().RunStatusEffect(statusEffect, affectorAgent, triggeredEffect.ImbuedStatusEffectDuration,true,true);
+                    targets.Add(affectedAgent);
+                }
+                else
+                {
+                    affectedAgent.RemoveStatusEffect("accusation_debuff");
+                }
+                    
+                if(triggeredEffect==null) return;
+                    
+                foreach (var target in targets)
+                {
+                    foreach (var statusEffect in triggeredEffect.StatusEffects)
+                    {
+                        target.ApplyStatusEffect(statusEffect, affectorAgent, triggeredEffect.ImbuedStatusEffectDuration,true,true);
+                    }
                 }
             }
         }
 
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
-            if (affectorAgent == null) return;
+            if(!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
+            
             if (!affectorAgent.IsMainAgent) return;
             
             var playerHero = affectorAgent.GetHero();
@@ -95,6 +105,20 @@ namespace TOR_Core.BattleMechanics
                         affectorAgent.ApplyStatusEffect("accusation_buff_ats",affectorAgent,choice.GetPassiveValue(),false,false);
                         affectorAgent.ApplyStatusEffect("accusation_buff_rls",affectorAgent,choice.GetPassiveValue(),false,false);
                     }
+                }
+
+                if (choices.Contains("ToolsOfJudgementPassive4"))
+                {
+                    var multiplier = 1;
+                    if (affectedAgent.Character != null)
+                    {
+                        multiplier = affectedAgent.Character.Level;
+                        if (affectedAgent.HasAttribute("AccusationMark"))
+                            multiplier *= 2;
+                    }
+
+                    var value = ( (int)blow.InflictedDamage * multiplier ) / 10;
+                    Hero.MainHero.AddSkillXp(DefaultSkills.Roguery,value);
                 }
                     
             }
@@ -140,16 +164,19 @@ namespace TOR_Core.BattleMechanics
                     Hero.MainHero.AddWindsOfMagic(1);
                 }
 
+                var multiplier = 1;
                 if (affectedAgent.Character != null)
                 {
-                    var level = affectedAgent.Character.Level;
-                    Hero.MainHero.AddSkillXp(TORSkills.SpellCraft,5*level);
-                    if (Hero.MainHero.HasCareerChoice("LiberNecrisPassive2"))
-                    {
-                        Hero.MainHero.AddSkillXp(DefaultSkills.Roguery,5*level);
-                    }
+                     multiplier = affectedAgent.Character.Level;
+                }
+                
+                Hero.MainHero.AddSkillXp(TORSkills.SpellCraft,5*multiplier);
+                if (Hero.MainHero.HasCareerChoice("LiberNecrisPassive2"))
+                {
+                    Hero.MainHero.AddSkillXp(DefaultSkills.Roguery,5*multiplier);
                 }
             }
+            
         }
     }
 }

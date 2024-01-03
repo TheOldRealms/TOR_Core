@@ -15,14 +15,7 @@ namespace TOR_Core.AbilitySystem.Scripts
     public class AccusationScript : CareerAbilityScript
     {
         private Agent _target;
-
-        private List<TriggeredEffect> _effects;
-
-        public List<TriggeredEffect> GetEffects()
-        {
-            return _effects;
-        }
-
+        
         public override void SetExplicitSingleTarget(Agent agent)
         {
             base.SetExplicitSingleTarget(agent);
@@ -31,10 +24,6 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         protected override void TriggerEffects(Vec3 position, Vec3 normal)
         {
-            if (GetEffectsToTrigger().Any())
-            {
-                _effects= GetEffectsToTrigger();
-            }
             base.TriggerEffects(position,normal);
 
             if (_target == null) return;

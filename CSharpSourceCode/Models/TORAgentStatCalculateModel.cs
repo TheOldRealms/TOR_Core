@@ -464,23 +464,6 @@ namespace TOR_Core.Models
                 
                 var choices = Agent.Main.GetHero().GetAllCareerChoices();
                 
-                if(( mask== PropertyMask.Attack&& attackMask == AttackTypeMask.Ranged &&choices.Contains("ToolsOfJudgementPassive4")))
-                {
-                    var equipment = agent.Character.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Weapon3);
-
-                    var choice = TORCareerChoices.GetChoice("ToolsOfJudgementPassive4");
-                    foreach (var weapon in equipment)
-                    {
-                        foreach (var data in weapon.Weapons)
-                        {
-                            if (data.IsMeleeWeapon)
-                            {
-                                result.DamagePercentages[(int)DamageType.All] += choice.GetPassiveValue();
-                            }
-                        }
-                    }
-                }
-                
                 if(( mask== PropertyMask.Attack&& attackMask == AttackTypeMask.Melee &&choices.Contains("HuntTheWickedPassive3")))
                 {
                     var equipment = agent.Character.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Weapon3);
