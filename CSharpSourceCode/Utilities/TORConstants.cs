@@ -8,7 +8,7 @@ namespace TOR_Core.Utilities
 {
     public static class TORConstants
     {
-        public const int TotalNumberOfUniqueLoadingScreenImages = 8;
+        public const int TotalNumberOfUniqueLoadingScreenImages = 9;
         public const int MIRACLE_CHANCE = 5;
         public const int MAXIMUM_DEVOTION_LEVEL = 99;
         public const int DEVOTED_TRESHOLD = 50;
@@ -29,6 +29,5 @@ namespace TOR_Core.Utilities
         public const int EMPIRE_VOICES_COUNT = 2;
         public const int BRETONNIA_VOICE_INDEX_START = 29;
         public const int BRETONNIA_VOICES_COUNT = 3;
-        public const int MAXIMUM_CAREER_POINTS = 30;
     }
 }

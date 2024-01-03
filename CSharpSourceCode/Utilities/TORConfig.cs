@@ -26,6 +26,8 @@ namespace TOR_Core.Utilities
         public static int NumberOfInitialHideoutsAtEachBanditFaction => _config.NumberOfInitialHideoutsAtEachBanditFaction;
         public static int NumberOfMaximumHideoutsAtEachBanditFaction => _config.NumberOfMaximumHideoutsAtEachBanditFaction;
 
+        public static int MaximumNumberOfCareerPerkPoints => _config.MaximumNumberOfCareerPerkPoints;
+
         public static void ReadConfig()
         {
             try
@@ -64,6 +66,8 @@ namespace TOR_Core.Utilities
             public int NumberOfInitialHideoutsAtEachBanditFaction;
             [XmlAttribute]
             public int NumberOfMaximumHideoutsAtEachBanditFaction;
+            [XmlAttribute]
+            public int MaximumNumberOfCareerPerkPoints;
         }
     }
 }
