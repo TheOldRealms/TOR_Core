@@ -363,7 +363,7 @@ namespace TOR_Core.Extensions
                 var info = hero.GetExtendedInfo();
                 if (info != null && !info.CareerChoices.Contains(choice.StringId))
                 {
-                    int maxChoices = Math.Min(hero.Level+1,TORConstants.MAXIMUM_CAREER_POINTS + 1);
+                    int maxChoices = Math.Min(hero.Level+1, TORConfig.MaximumNumberOfCareerPerkPoints + 1);
                     if(info.CareerChoices.Count < maxChoices)
                     {
                         info.CareerChoices.Add(choice.StringId);
