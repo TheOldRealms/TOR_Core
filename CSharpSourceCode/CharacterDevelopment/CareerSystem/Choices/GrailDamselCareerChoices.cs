@@ -19,7 +19,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
     {
         public GrailDamselCareerChoices(CareerObject id) : base(id)
         {
-            var grailDamselEnvoyOfTheLadyPerkBehavior = new GrailDamselEnvoyOfTheLadyPerkBehavior();
         }
         private CareerChoiceObject _grailDamselRootNode;
         

@@ -68,7 +68,6 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
                         if (!_isCareerSingleTargetCrosshairActive)
                         {
                             _isCareerSingleTargetCrosshairActive = true;
-                            //_abilityComponent.CareerAbility.Crosshair.Show();
                         }
                         
                     }

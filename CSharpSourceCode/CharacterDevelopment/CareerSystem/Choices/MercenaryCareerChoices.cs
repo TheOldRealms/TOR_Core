@@ -20,9 +20,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 {
     public class MercenaryCareerChoices : TORCareerChoicesBase
     {
-        public MercenaryCareerChoices(CareerObject id) : base(id)
-        {
-        }
+        public MercenaryCareerChoices(CareerObject id) : base(id) {}
+     
 
         private CareerChoiceObject _mercenaryRootNode;
 
@@ -266,8 +265,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         {
             _survivalistPassive1.Initialize(CareerID, "5 extra ammo", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Ammo));
             _survivalistPassive2.Initialize(CareerID, "Increases ranged damage by 10%.", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Ranged));
-            _survivalistPassive3.Initialize(CareerID, "Party movement speed is increased by 20% in forest terrain.", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.PartyMovementSpeed, true, SurvivalistPassive3, true));
-            _survivalistPassive4.Initialize(CareerID, "Party movement speed is increased by 20% in mountain and swamp terrain.", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.PartyMovementSpeed, true, SurvivalistPassive4, true));
+            _survivalistPassive3.Initialize(CareerID, "Party movement speed is increased by 20% in forest, mountain and swamp terrain.", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.PartyMovementSpeed, true, SurvivalistPassive3, true));
+            _survivalistPassive4.Initialize(CareerID, "Go for a hunt once a day (success chance based on Scouting, Polearm and ranged skills).", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0));
 
             _duelistPassive1.Initialize(CareerID, "Increases Hitpoints by 20.", "Duelist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Health));
             _duelistPassive2.Initialize(CareerID, "Increases melee damage resistance of melee troops by 10%.", "Duelist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee, DuelistPassive2));
@@ -306,16 +305,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             var party = characterObject.HeroObject.PartyBelongedTo;
             TerrainType faceTerrainType = Campaign.Current.MapSceneWrapper.GetFaceTerrainType(party.CurrentNavigationFace);
 
-            return faceTerrainType == TerrainType.Forest;
-        }
-
-        private static bool SurvivalistPassive4(CharacterObject characterObject)
-        {
-            if (characterObject.HeroObject != Hero.MainHero) return false;
-            var party = characterObject.HeroObject.PartyBelongedTo;
-            TerrainType faceTerrainType = Campaign.Current.MapSceneWrapper.GetFaceTerrainType(party.CurrentNavigationFace);
-
-            return faceTerrainType == TerrainType.Mountain || faceTerrainType == TerrainType.Swamp;
+            return faceTerrainType == TerrainType.Forest || faceTerrainType == TerrainType.Mountain || faceTerrainType == TerrainType.Swamp;
         }
 
         private static bool DuelistPassive2(Agent attacker, Agent victim, AttackTypeMask mask)

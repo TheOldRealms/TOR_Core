@@ -5,8 +5,6 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
-using TOR_Core.CampaignMechanics;
-using TOR_Core.CharacterDevelopment.CareerSystem.Button;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton

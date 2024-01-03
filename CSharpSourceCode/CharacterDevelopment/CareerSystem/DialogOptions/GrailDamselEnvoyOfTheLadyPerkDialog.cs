@@ -7,29 +7,24 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.Careers
 {
-    public class GrailDamselEnvoyOfTheLadyPerkBehavior
+    public class GrailDamselEnvoyOfTheLadyPerkDialog
     {
-        public GrailDamselEnvoyOfTheLadyPerkBehavior()
+        public GrailDamselEnvoyOfTheLadyPerkDialog(CampaignGameStarter campaignGameStarter)
         {
-            RegisterEvents();
+            EnvoyOfTheLadyDialogOptions(campaignGameStarter);
         }
 
         private List<Kingdom> _factionsAtWarWith;
         private List<Kingdom> _factionsRuleBretonnianSettlement;
-
-        public void RegisterEvents()
-        {
-            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, EnvoyOfTheLadyDialogOptions);
-        }
-
+        
         private void EnvoyOfTheLadyDialogOptions(CampaignGameStarter campaignGameStarter)
         {
-            campaignGameStarter.AddPlayerLine("convincelord0", "lord_talk_speak_diplomacy_2", "convincelord1", "The Lady demands you to stop your atrocious War against the People of Bretonnia!", () => FullfillsEnvoyOfTheLadyCondition() && CivilWarCondition(), null);
+            campaignGameStarter.AddPlayerLine("convincelord0", "lord_talk_speak_diplomacy_2", "convincelord1", "The Lady demands that you stop slaughtering your fellow Bretonnians!", () => FullfillsEnvoyOfTheLadyCondition() && CivilWarCondition(), null);
 
             campaignGameStarter.AddDialogLine("convincelord1", "convincelord1", "convincelord2", "Mylady, how dare you demand me... oh she does?", null, null, 200, null);
             campaignGameStarter.AddDialogLine("convincelord2", "convincelord2", "convincelordplayerchoice", "I guess, I can't deny your biding. If the lady demands, I will obey.", null, null, 200, null);
 
-            campaignGameStarter.AddPlayerLine("convincelordwar0", "lord_talk_speak_diplomacy_2", "convincelordWar1", "The People of Bretonnia of need to unite against our enemies!", () => FullfillsEnvoyOfTheLadyCondition() && foreignForceRulesSettlementinbretonnia(), null, 200, null, null);
+            campaignGameStarter.AddPlayerLine("convincelordwar0", "lord_talk_speak_diplomacy_2", "convincelordWar1", "Our fair and noble land has been invaded! The lady demands that you strike her enemies!", () => FullfillsEnvoyOfTheLadyCondition() && foreignForceRulesSettlementinbretonnia(), null, 200, null, null);
             campaignGameStarter.AddDialogLine("convincelordWar1", "convincelordWar1", "convincelordWar2", "Ah yeah so you know better, which thread bothers us most ?", null, null, 200, null);
             campaignGameStarter.AddDialogLine("convincelordWar2", "convincelordWar2", "convincelordplayerchoicewar", "I guess, I can't deny you your biding. If the lady demands, I will obey.", null, null, 200, null);
 
@@ -42,7 +37,7 @@ namespace TOR_Core.CampaignMechanics.Careers
             campaignGameStarter.AddPlayerLine("convincelordplayerchoicewar2", "convincelordplayerchoicewar", "convincelord_end", "We need to unite against {FACTION_NAME_2}.", condition_enemy2, consequence_declareWar2, 200, null, null);
             campaignGameStarter.AddPlayerLine("convincelordplayerchoicewar3", "convincelordplayerchoicewar", "convincelord_end", "We need to unite against {FACTION_NAME_3}.", condition_enemy3, consequence_declareWar3, 200, null, null);
             campaignGameStarter.AddPlayerLine("convincelordplayerchoicewar3", "convincelordplayerchoicewar", "lord_pretalk", "Actually never mind", null, null, 200, null, null);
-
+            
             campaignGameStarter.AddDialogLine("convincelord_end", "convincelord_end", "lord_pretalk", "As you wish Mylady.", null, null, 200, null);
         }
         
