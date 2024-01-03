@@ -30,14 +30,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public delegate float ChargeFunction(Agent affectorAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask, CareerHelper.ChargeCollisionFlag collisionFlag);
 
-        private ChargeFunction _handler;
+        private ChargeFunction _chargeFunction;
 
         public float GetCalculatedCareerAbilityCharge(Agent affector, Agent affected, ChargeType chargeType, int chargeValue, AttackTypeMask mask, CareerHelper.ChargeCollisionFlag collisionFlag)
         {
             float result = 0f;
-            if (_handler != null)
+            if (_chargeFunction != null)
             {
-                return _handler.Invoke(affector, affected, chargeType, chargeValue, mask, collisionFlag);
+                return _chargeFunction.Invoke(affector, affected, chargeType, chargeValue, mask, collisionFlag);
             }
 
             return result;
@@ -57,19 +57,20 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public override string ToString() => Name.ToString();
 
-        public void Initialize(string name, Predicate<Hero> condition, string abilityID, ChargeType chargeType = ChargeType.CooldownOnly, ChargeFunction function = null, int maxCharge = 100, Type abilityScriptType = null, bool requiresAbilityTargeting = false)
+        public void Initialize(string name, Predicate<Hero> condition, string abilityID, ChargeFunction function = null, int maxCharge = 100, Type abilityScriptType = null, bool requiresAbilityTargeting = false)
         {
             var description = GameTexts.FindText("career_description", StringId);
             base.Initialize(new TextObject(name), description);
             _condition = condition;
-            ChargeType = chargeType;
             MaxCharge = maxCharge;
             AbilityTemplateID = abilityID;
             AbilityScriptType = abilityScriptType;
             RequiresAbilityTargeting = requiresAbilityTargeting;
-
-            _handler = function;
-
+            
+            _chargeFunction = function;
+            if (_chargeFunction != null)
+                ChargeType = ChargeType.CooldownOnly;
+            
             AfterInitialized();
         }
 

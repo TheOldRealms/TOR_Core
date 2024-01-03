@@ -19,6 +19,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
         private const string retinueID = "tor_wh_retinue";
         
+        public override string CareerButtonIcon => "CareerSystem\\ghal_maraz";
         
         public WitchHunterCareerButtonBehavior(CareerObject career) : base(career)
         {
@@ -91,7 +92,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
         public override void ButtonClickedEvent(CharacterObject characterObject)
         {
-            
+            SetUpRetinueExchange(characterObject);
         }
 
         public override bool ShouldButtonBeVisible(CharacterObject characterObject)
@@ -109,7 +110,20 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
         public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText)
         {
-            throw new System.NotImplementedException();
+            displayText = new TextObject("Upgrades troop to a Witch Hunter Retinue");
+            if (characterObject.IsEliteTroop())
+            {
+                displayText = new TextObject("Knights Cant be upgraded to Retinues");
+                return false;
+            }
+
+            if (characterObject.Culture.StringId == "vlandia" || characterObject.Race !=0)
+            {
+                displayText = new TextObject("Needs to be part of the empire or southern realms");
+                return false;
+            }
+            
+            return true;
         }
     }
 }

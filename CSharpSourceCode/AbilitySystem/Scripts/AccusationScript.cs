@@ -17,12 +17,6 @@ namespace TOR_Core.AbilitySystem.Scripts
         private Agent _target;
 
         private List<TriggeredEffect> _effects;
-        protected override void OnInit()
-        {
-            base.OnInit();
-            
-            
-        }
 
         public List<TriggeredEffect> GetEffects()
         {

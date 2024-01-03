@@ -300,37 +300,5 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             return true;
         }
         
-        
-        /*public override bool ConditionsAreMetToShowButton(CharacterObject characterObject)
-        {
-            if (!Hero.MainHero.HasCareerChoice("SilverHammerPassive4")) return false;
-            
-            if (characterObject.StringId == "tor_wh_retinue")
-                return false;
-
-            if (!characterObject.IsHero)
-                return true;
-            
-            return false;
-        }
-        
-        public override bool ConditionsAreMetToEnableButton(CharacterObject characterObject, out TextObject disableReason)
-        {
-            disableReason = new TextObject("Upgrades troop to a Witch Hunter Retinue");
-            if (characterObject.IsEliteTroop())
-            {
-                disableReason = new TextObject("Knights Cant be upgraded to Retinues");
-                return false;
-            }
-
-            if (characterObject.Culture.StringId == "vlandia" || characterObject.Race !=0)
-            {
-                disableReason = new TextObject("Needs to be part of the empire or southern realms");
-                return false;
-            }
-            
-            return true;
-        }*/
-        
     }
 }
