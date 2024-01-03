@@ -27,6 +27,15 @@ namespace TOR_Core.AbilitySystem.CrossHairs
             }
         }
 
+        public void DisableTargetGadgetOpacities()
+        {
+            for (int i = 0; i < this._targetGadgetOpacities.Length; i++)
+            {
+                this._targetGadgetOpacities[i] = 0.0;
+            }
+            _crosshairVM.SetArrowProperties(this._targetGadgetOpacities[0], this._targetGadgetOpacities[1], this._targetGadgetOpacities[2], this._targetGadgetOpacities[3]);
+        }
+
         public void FinalizeCrosshair()
         {
             CombatLogManager.OnGenerateCombatLog -= this.OnCombatLogGenerated;

@@ -483,7 +483,6 @@ namespace TOR_Core.Extensions
             Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>().DeactivateSpellcasterMode();
         }
         
-
         public static Hero GetHero(this Agent agent)
         {
             if (agent == null) return null;

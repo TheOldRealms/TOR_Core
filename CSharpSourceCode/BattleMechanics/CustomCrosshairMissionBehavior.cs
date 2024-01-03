@@ -43,6 +43,9 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
             {
                 if (CanUseAbilityCrosshair())
                 {
+                    if (_currentCrosshair == _weaponCrosshair)
+                        _weaponCrosshair.DisableTargetGadgetOpacities();
+                    
                     if (_currentCrosshair != _abilityCrosshair)
                         ChangeCrosshair(_abilityCrosshair);
                 }

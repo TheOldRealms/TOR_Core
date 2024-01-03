@@ -52,8 +52,7 @@ namespace TOR_Core.Extensions
                 if (endString.Contains("LA")) return true;
                 if (endString.Contains("CO")) return true;
             }
-
-
+            
             return false;
         }
     }
