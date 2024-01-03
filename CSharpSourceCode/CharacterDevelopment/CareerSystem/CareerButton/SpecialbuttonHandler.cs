@@ -10,8 +10,6 @@ namespace TOR_Core.CampaignMechanics
 {
     public class SpecialbuttonEventManagerHandler
     { 
-        public event EventHandler<TroopEventArgs> ButtonClickedEventHandler;
-        
         private CareerButtonBehaviorBase.OnCareerButtonClickedEvent  _clickEvent;
         private CareerButtonBehaviorBase.OnShouldButtonBeVisible _shouldButtonBeVisible;
         private CareerButtonBehaviorBase.OnShouldButtonBeActive _shouldButtonBeActive;
@@ -46,7 +44,6 @@ namespace TOR_Core.CampaignMechanics
             }
         }
         
-        
         public void OnButtonClicked(CharacterObject troopID)
         {
             if (_clickEvent != null)
@@ -71,23 +68,5 @@ namespace TOR_Core.CampaignMechanics
             return value;
         }
         
-        private void HandleBasicTroopExchanges(string troopID)
-        {
-            
-            /*var characterTemplate = MBObjectManager.Instance.GetObject<CharacterObject>(troopID);
-            if (Hero.MainHero.GetCareer() == TORCareers.WitchHunter)
-            {
-                _witchHunterRetinueRecruitment.SetUpRetinueExchange(characterTemplate);
-            }*/
-        }
-        
-    }
-    
-    
-  
-
-    public class TroopEventArgs: EventArgs
-    {
-        public string TroopId { get; set; }
     }
 }

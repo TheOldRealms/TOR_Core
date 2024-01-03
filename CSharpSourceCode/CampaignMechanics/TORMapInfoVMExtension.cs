@@ -39,7 +39,7 @@ namespace TOR_Core.CampaignMechanics
         private List<TooltipProperty> GetCultureResourceHintText()
         {
 	        string customResourceTitle = Hero.MainHero.GetCultureSpecificCustomResource().LocalizedName.ToString();
-	        var value = Hero.MainHero.GetCultureSpecificCustomResourceValue().ToString("0.00");
+	        var value = Hero.MainHero.GetCultureSpecificCustomResourceValue().ToString("0");
 	        var icon = Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText();
 	        var change = Hero.MainHero.GetCultureSpecificCustomResourceChange();
 
@@ -106,7 +106,7 @@ namespace TOR_Core.CampaignMechanics
             HasCultureResource = resource != null;
 			if(resource != null)
 			{
-				CultureResourceText = Hero.MainHero.GetCultureSpecificCustomResourceValue().ToString("0.0");
+				CultureResourceText = Hero.MainHero.GetCultureSpecificCustomResourceValue().ToString();
 			}
 			
 		}

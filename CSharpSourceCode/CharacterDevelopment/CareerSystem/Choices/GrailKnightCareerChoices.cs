@@ -406,27 +406,5 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             return attacker.Character.UnitBelongsToCult("cult_of_lady");
         }
         
-        /*public override string CareerButtonIcon => "CareerSystem\\Grail";
-        
-        public override bool ConditionsAreMetToShowButton(CharacterObject viewedCharacterObject)
-        {
-            if (viewedCharacterObject.IsHero) return false;
-            if (viewedCharacterObject.StringId != "tor_br_grail_knight") return false;
-            
-            var choices = Hero.MainHero.GetAllCareerChoices();
-
-            if (choices.Contains("HolyCrusaderPassive3"))
-            {
-                return true;
-            }
-
-            return false;
-        }
-        
-        public override bool ConditionsAreMetToEnableButton(CharacterObject viewedCharacterObject,  out TextObject disableReason)
-        {
-            disableReason = new TextObject();
-           return true;
-        }*/
     }
 }

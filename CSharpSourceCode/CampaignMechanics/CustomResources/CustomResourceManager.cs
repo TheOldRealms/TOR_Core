@@ -31,6 +31,10 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         {
             _instance = new CustomResourceManager();
             _instance._resources.Clear();
+            _instance._resources.Add("Prestige", 
+                new CustomResource("Prestige", "Prestige", "Is used for upgrading special units of Bretonnia and special actions.", "winds_icon_45", "empire"));
+            _instance._resources.Add("Chivalry", 
+                new CustomResource("Chivalry", "Chivalry", "Is used for upgrading special units of Bretonnia and special actions.", "winds_icon_45", "vlandia"));
             _instance._resources.Add("DarkEnergy", 
                 new CustomResource("DarkEnergy", "Dark Energy", "Dark Energy is used by practitioners of necromancy to raise and upkeep their undead minions.", "darkenergy_icon_45", "khuzait"));
             _instance._resources.Add("WindsOfMagic",
