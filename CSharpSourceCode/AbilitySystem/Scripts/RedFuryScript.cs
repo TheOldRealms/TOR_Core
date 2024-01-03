@@ -12,11 +12,8 @@ namespace TOR_Core.AbilitySystem.Scripts
         public override void Initialize(Ability ability)
         {
             base.Initialize (ability);
-
             var timeRequest = new Mission.TimeSpeedRequest (0.60f,_timeRequestID);
-
             _timeRequestID = timeRequest.RequestID;
-
             Mission.Current.AddTimeSpeedRequest (timeRequest);
         }
 
@@ -27,7 +24,6 @@ namespace TOR_Core.AbilitySystem.Scripts
             {
                 Mission.Current.RemoveTimeSpeedRequest (_timeRequestID);
             }
-            
         }
     }
 }

@@ -7,6 +7,7 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.CampaignMechanics;
+using TOR_Core.CampaignMechanics.Careers;
 using TOR_Core.CampaignMechanics.Choices;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
@@ -208,7 +209,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _envoyOfTheLadyPassive4.Initialize(CareerID, "{=ambassador_of_the_lady_Passive4_str}Diplomatic force options for all Brettonnian Leaders.", "EnvoyOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special, true));
         }
         
-        
         private static bool InspirationOfTheLadyPassive3(CharacterObject troop)
         {
             if (troop.IsHero) return false;
@@ -261,7 +261,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             return IsBretonnianUnit(victim);
         }
         
-        
         protected override void UnlockCareerBenefitsTier2()
         {
             if(Hero.MainHero.HasKnownLore("LoreOfLife"))
@@ -281,8 +280,5 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             Hero.MainHero.AddKnownLore("LoreOfHeavens");
             Hero.MainHero.AddAttribute("SecondLoreForDamselCompanions");
         }
-
-
-       
     }
 }

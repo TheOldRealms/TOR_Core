@@ -9,8 +9,6 @@ using TaleWorlds.Library;
 using TaleWorlds.Core;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using System;
-using System.Diagnostics.Tracing;
-using TaleWorlds.CampaignSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.SFX;
