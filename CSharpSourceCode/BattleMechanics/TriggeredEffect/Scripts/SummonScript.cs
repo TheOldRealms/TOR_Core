@@ -27,20 +27,17 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             Vec3 lastPosition = position;
             var bonus = 0;
 
-            if (triggeredByAgent.GetHero() == Hero.MainHero)
+            if (triggeredByAgent.GetHero() == Hero.MainHero && Hero.MainHero.HasCareer(TORCareers.Necromancer))
             {
-                if (Hero.MainHero.HasCareer(TORCareers.Necromancer))
+                if(Hero.MainHero.HasCareerChoice("GrimoireNecrisPassive4"))
                 {
-                    if(Hero.MainHero.HasCareerChoice("GrimoireNecrisPassive4"))
-                    {
-                        var equipmentItems = triggeredByAgent.Character.GetCharacterEquipment();
+                    var equipmentItems = triggeredByAgent.Character.GetCharacterEquipment();
 
-                        foreach (var item in equipmentItems)
+                    foreach (var item in equipmentItems)
+                    {
+                        if (item.IsMagicalItem())
                         {
-                            if (item.IsMagicalItem())
-                            {
-                                bonus++;
-                            }
+                            bonus++;
                         }
                     }
                 }
