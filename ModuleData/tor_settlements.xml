@@ -3767,7 +3767,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_NL3" name="{=Settlements.Settlement.name.town_NL3}Neue Emskrank" owner="Faction.reikland_clan_3" posX="1349.906" posY="1355.517" culture="Culture.empire" gate_posX="1349.383" gate_posY="1354.708" text="{=!}At the head of the Axe Bite pass sits the town of Helmgart. Ruled by Margrave Reinhardt von Mackensen, the fortress town serves as both the economic and military border between Bretonnia and the Empire. Axe Bite is one of three mountain passes through the Grey mountains; as such the safety of passage through it is a primary concern. Helmgart itself is a market town, surrounded by several curtain walls. One of these walls traverses the entire width of the pass itself, meaning all travel must pass through its single gate or be stuck on either the Bretonnian or Imperial side of the border.">
+  <Settlement id="town_NL3" name="{=Settlements.Settlement.name.town_NL3}Neue Emskrank" owner="Faction.reikland_clan_3" posX="1349.906" posY="1355.517" culture="Culture.empire" gate_posX="1349.735" gate_posY="1362.322" text="{=!}At the head of the Axe Bite pass sits the town of Helmgart. Ruled by Margrave Reinhardt von Mackensen, the fortress town serves as both the economic and military border between Bretonnia and the Empire. Axe Bite is one of three mountain passes through the Grey mountains; as such the safety of passage through it is a primary concern. Helmgart itself is a market town, surrounded by several curtain walls. One of these walls traverses the entire width of the pass itself, meaning all travel must pass through its single gate or be stuck on either the Bretonnian or Imperial side of the border.">
     <Components>
       <Town id="town_comp_NL3" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -3787,7 +3787,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_NL3_1" name="{=Settlements.Settlement.name.village_NL3_1}Heiligdorf" posX="1371.951" posY="1346.734" culture="Culture.empire" text="{=Settlements.Settlement.text.village_NL3_1}Ussingen is a small village located on the road between Holthusen and Osburg. The town is at the furthest point that the River Schilder remains navigable by barge, meaning that many shipments bound for Helmgart will arrive first here. The people here raise crops along the river Schilder and will venture into the nearby Grey Mountains to mine seams of ore. The town is well protected by the walls at Helmgart, and really only worries about the denizens of the Reikwald.">
+  <Settlement id="village_NL3_1" name="{=Settlements.Settlement.name.village_NL3_1}Heiligdorf" posX="1370.245" posY="1345.502" culture="Culture.empire" text="{=Settlements.Settlement.text.village_NL3_1}Ussingen is a small village located on the road between Holthusen and Osburg. The town is at the furthest point that the River Schilder remains navigable by barge, meaning that many shipments bound for Helmgart will arrive first here. The people here raise crops along the river Schilder and will venture into the nearby Grey Mountains to mine seams of ore. The town is well protected by the walls at Helmgart, and really only worries about the denizens of the Reikwald.">
     <Components>
       <Village id="village_comp_NL3_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_NL3" bound="Settlement.town_NL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3847,7 +3847,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_NL4_3" name="{=Settlements.Settlement.name.village_NL4_3}Kreideklippe" posX="1439.719" posY="1345.678" culture="Culture.empire" text="{=Settlements.Settlement.text.village_NL4_3}At the foot of the Axe Bite Pass sits the village of Osburg, the last Imperial settlement before the Market fortress of Helmgart and the Imperial/Bretonnian border. Any shipments bound for Helmgart must pass first through Osburg, and this source of trade makes the merchants here fairly prosperous.">
+  <Settlement id="village_NL4_3" name="{=Settlements.Settlement.name.village_NL4_3}Kreideklippe" posX="1439.718" posY="1345.678" culture="Culture.empire" text="{=Settlements.Settlement.text.village_NL4_3}At the foot of the Axe Bite Pass sits the village of Osburg, the last Imperial settlement before the Market fortress of Helmgart and the Imperial/Bretonnian border. Any shipments bound for Helmgart must pass first through Osburg, and this source of trade makes the merchants here fairly prosperous.">
     <Components>
       <Village id="village_comp_NL4_3" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_NL4" bound="Settlement.town_NL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3933,7 +3933,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_NL1" name="{=Settlements.Settlement.name.castle_NL1}Manaansheim" owner="Faction.talabecland_clan_2" posX="1396.149" posY="1362" culture="Culture.empire" gate_posX="1394.254" gate_posY="1362.436" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_NL1" name="{=Settlements.Settlement.name.castle_NL1}Manaansheim" owner="Faction.talabecland_clan_2" posX="1396.003" posY="1361.51" culture="Culture.empire" gate_posX="1396.31" gate_posY="1359.159" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
       <Town id="castle_comp_NL1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -3943,7 +3943,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_NL1_1" name="{=Settlements.Settlement.name.castle_village_NL1_1}Wilhelmskoog" posX="1402.446" posY="1357.594" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_NL1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
+  <Settlement id="castle_village_NL1_1" name="{=Settlements.Settlement.name.castle_village_NL1_1}Wilhelmskoog" posX="1407.636" posY="1356.528" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_NL1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
     <Components>
       <Village id="castle_village_comp_NL1_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_NL6" bound="Settlement.castle_NL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3956,7 +3956,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_NL1_2" name="{=Settlements.Settlement.name.castle_village_NL1_2}Ockholm" posX="1410.118" posY="1345.601" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_NL1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
+  <Settlement id="castle_village_NL1_2" name="{=Settlements.Settlement.name.castle_village_NL1_2}Ockholm" posX="1409.827" posY="1343.647" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_NL1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
     <Components>
       <Village id="castle_village_comp_NL1_2" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_NL6" bound="Settlement.castle_NL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4029,7 +4029,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_OL1_4" name="{=Settlements.Settlement.name.village_OL1_4}Smallhof" posX="1516.846" posY="1235.242" culture="Culture.empire" text="{=Settlements.Settlement.text.village_OL1_3}Directly west of Altdorf, between the river Reik and the Weissbruck canal is the village of Hochloff. The town is known for the type of grain it raises the Hochloffkorn which is very well regarded for making a high quality flour.">
+  <Settlement id="village_OL1_4" name="{=Settlements.Settlement.name.village_OL1_4}Smallhof" posX="1516.852" posY="1235.224" culture="Culture.empire" text="{=Settlements.Settlement.text.village_OL1_3}Directly west of Altdorf, between the river Reik and the Weissbruck canal is the village of Hochloff. The town is known for the type of grain it raises the Hochloffkorn which is very well regarded for making a high quality flour.">
     <Components>
       <Village id="village_comp_OL1_4" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_OL1" bound="Settlement.town_OL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4160,7 +4160,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_OL3_3" name="{=Settlements.Settlement.name.village_OL3_3}Fleckeby" posX="1472.841" posY="1290.57" culture="Culture.empire" text="{=Settlements.Settlement.text.village_OL3_2}Morlenfurt is a small village near the headwaters of the river Bogen. The town is known for its silver mines and the small community of Dwarfs which contribute to the silver trade within the Reikland.">
+  <Settlement id="village_OL3_3" name="{=Settlements.Settlement.name.village_OL3_3}Fleckeby" posX="1472.83" posY="1290.577" culture="Culture.empire" text="{=Settlements.Settlement.text.village_OL3_2}Morlenfurt is a small village near the headwaters of the river Bogen. The town is known for its silver mines and the small community of Dwarfs which contribute to the silver trade within the Reikland.">
     <Components>
       <Village id="village_comp_OL3_3" village_type="VillageType.silver_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_OL3" bound="Settlement.town_OL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4186,7 +4186,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_OL4" name="{=Settlements.Settlement.name.town_OL4}Salkalten" owner="Faction.reikland_clan_4" posX="1467.025" posY="1339.18" culture="Culture.empire" gate_posX="1467.744" gate_posY="1338.242" text="{=!}Bögenhafen is a prominent market town that sits on either side of the River Bögen. It is midway between Altdorf and Montfort allowing the town to maintain its economic importance through nearly any hardship. The northside of the town, known as the Pit, is the smallest and poorest section of Bögenhafen. The Southside of the town is where most of the wealth and all of the town’s important institutions reside, including its religious temples and town hall. A town council rules in the name of Graf Wilhelm von Saponatheim.">
+  <Settlement id="town_OL4" name="{=Settlements.Settlement.name.town_OL4}Salkalten" owner="Faction.reikland_clan_4" posX="1467.025" posY="1339.18" culture="Culture.empire" gate_posX="1467.704" gate_posY="1338.352" text="{=!}Bögenhafen is a prominent market town that sits on either side of the River Bögen. It is midway between Altdorf and Montfort allowing the town to maintain its economic importance through nearly any hardship. The northside of the town, known as the Pit, is the smallest and poorest section of Bögenhafen. The Southside of the town is where most of the wealth and all of the town’s important institutions reside, including its religious temples and town hall. A town council rules in the name of Graf Wilhelm von Saponatheim.">
     <Components>
       <Town id="town_comp_OL4" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -4289,7 +4289,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_OL3_1" name="{=Settlements.Settlement.name.castle_village_OL3_1}Vandengart" posX="1542.817" posY="1214.089" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_OL2_1}Diesdorf is a small town on the river Reik located between Altdorf and Kemperbad. Diesdorf is a major holy site of the Cult of Sigmar, it is said that Magnus the Pious once made a powerful and stirring speech to the crowds who had gathered to hear him. Around sixty years ago, Emperor Wilhelm III founded the Diesdorf Military college to train those who have proven their leadership abilities in battle.">
+  <Settlement id="castle_village_OL3_1" name="{=Settlements.Settlement.name.castle_village_OL3_1}Vandengart" posX="1542.81" posY="1214.074" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_OL2_1}Diesdorf is a small town on the river Reik located between Altdorf and Kemperbad. Diesdorf is a major holy site of the Cult of Sigmar, it is said that Magnus the Pious once made a powerful and stirring speech to the crowds who had gathered to hear him. Around sixty years ago, Emperor Wilhelm III founded the Diesdorf Military college to train those who have proven their leadership abilities in battle.">
     <Components>
       <Village id="castle_village_comp_OL3_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_OL1" bound="Settlement.castle_OL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
