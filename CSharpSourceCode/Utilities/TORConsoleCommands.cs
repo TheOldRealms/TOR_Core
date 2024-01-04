@@ -305,6 +305,8 @@ namespace TOR_Core.Utilities
         [CommandLineFunctionality.CommandLineArgumentFunction("add_custom_resource", "tor")]
         public static string AddCustomResource(List<string> arguments)
         {
+            if(arguments.Count!= 2) return string.Format("Incorrect arguments. Usage is \"tor.add_custom_resource resourcename amount\" ");
+            
             string resourceId = arguments[0];
             int amount = 0;
             if(int.TryParse(arguments[1], out amount))

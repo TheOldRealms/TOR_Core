@@ -310,8 +310,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
             if (career != null)
             {
-                
-                return career.CareerButtonBehavior;
+                return CareerButtons.Instance.GetCareerButton(career);
             }
 
             return null;
@@ -322,10 +321,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             var career= Hero.MainHero.GetCareer();
             if (career == null) return "";
             
-            var button = CareerButtons.Instance.GetCareerButtons(career);
+            var button = GetCareerButton();
             if (button != null)
             {
-                return CareerButtons.Instance.GetCareerButtons(career).CareerButtonIcon;
+                return CareerButtons.Instance.GetCareerButton(career).CareerButtonIcon;
             }
 
             return "";

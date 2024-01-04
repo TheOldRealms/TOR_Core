@@ -96,12 +96,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
             InitiateDialog(characterObject.StringId);
         }
 
-        public override bool ShouldButtonBeVisible(CharacterObject characterObject)
+        public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner=false)
         {
             return Hero.MainHero.HasCareerChoice("PaymasterPassive4")&& !characterObject.IsHero&&  (!characterObject.IsEliteTroop()||characterObject.IsEliteTroop()&& characterObject.IsRanged);
         }
 
-        public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText)
+        public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner=false)
         { 
             displayText = new TextObject("Makes the current unit a companion");
             if (Campaign.Current.Models.ClanTierModel.GetCompanionLimit(Hero.MainHero.Clan) <= Hero.MainHero.CompanionsInParty.Count())

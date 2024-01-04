@@ -26,8 +26,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         public CareerChoiceObject RootNode { get; set; }
         public List<CareerChoiceGroupObject> ChoiceGroups { get; private set; } = new List<CareerChoiceGroupObject>();
 
-        public CareerButtonBehaviorBase CareerButtonBehavior;
-
         public delegate float ChargeFunction(Agent affectorAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask, CareerHelper.ChargeCollisionFlag collisionFlag);
 
         private ChargeFunction _chargeFunction;

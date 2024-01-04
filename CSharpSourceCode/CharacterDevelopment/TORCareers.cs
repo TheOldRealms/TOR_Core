@@ -33,8 +33,8 @@ namespace TOR_Core.CharacterDevelopment
         private void AssignCareerButtons()
         {
             foreach (var career in All)
-            {
-                career.CareerButtonBehavior = CareerButtons.Instance.GetCareerButtons(career);
+            { 
+                CareerButtons.Instance.GetCareerButton(career);
             }
         }
 

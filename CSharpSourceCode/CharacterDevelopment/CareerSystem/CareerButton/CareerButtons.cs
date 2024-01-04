@@ -30,7 +30,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             _careerButtons.Add(TORCareers.WitchHunter, new WitchHunterCareerButtonBehavior(TORCareers.WitchHunter));
         }
         
-        public CareerButtonBehaviorBase GetCareerButtons(CareerObject careerObject)
+        public CareerButtonBehaviorBase GetCareerButton(CareerObject careerObject)
         {
             if (_careerButtons.ContainsKey(careerObject))
             {

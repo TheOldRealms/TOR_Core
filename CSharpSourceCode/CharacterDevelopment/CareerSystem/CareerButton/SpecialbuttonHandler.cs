@@ -52,19 +52,19 @@ namespace TOR_Core.CampaignMechanics
             }
         }
 
-        public bool ShouldButtonBeVisible(CharacterObject characterObject)
+        public bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner)
         {
             if (_shouldButtonBeVisible == null) return false;
             
-            return _shouldButtonBeVisible(characterObject);
+            return _shouldButtonBeVisible(characterObject, isPrisoner);
         }
         
-        public bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText )
+        public bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrsioner)
         {
             displayText = new TextObject();
             if (_shouldButtonBeActive == null) return false;
             
-            var value =  _shouldButtonBeActive(characterObject, out displayText);
+            var value =  _shouldButtonBeActive(characterObject, out displayText, isPrsioner);
             return value;
         }
         

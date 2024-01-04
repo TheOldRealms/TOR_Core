@@ -3027,7 +3027,7 @@
 	
 	<AbilityTemplate StringID="FeyPaths" 
       Name="Fey Paths" 
-      SpriteName="summonskeleton_icon" 
+      SpriteName="fegypaths_icon" 
       CoolDown="5" 
       BaseMisCastChance="0.3" 
       Duration="2" 
@@ -3057,7 +3057,7 @@
       MaxDistance="60"
       TargetCapturingRadius="1"
       SpellTier="2"
-      TooltipDescription="Raise old bones from the ground. Summon 5 Skeletons for the duration of any single battle.">
+      TooltipDescription="The Damsel wanders on the fey paths. Instantly teleports the player to the targeted ground position. Charges with dealt or healed damage by magic.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>

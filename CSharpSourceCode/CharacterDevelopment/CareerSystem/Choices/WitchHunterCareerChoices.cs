@@ -59,16 +59,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         private CareerChoiceObject _endsJustifiesMeansPassive2;
         private CareerChoiceObject _endsJustifiesMeansPassive3;
         private CareerChoiceObject _endsJustifiesMeansPassive4;
-        
-
-
         public WitchHunterCareerChoices(CareerObject id) : base(id) {}
 
 
         protected override void RegisterAll()
         {
             _witchHunterRoot = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("WitchHunterRoot"));
-
             _huntTheWickedKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("HuntTheWickedKeystone"));
             _huntTheWickedPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("HuntTheWickedPassive1"));
             _huntTheWickedPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("HuntTheWickedPassive2"));
@@ -227,8 +223,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Add
                     }
                 });
-
-            
         }
 
         protected override void InitializePassives()

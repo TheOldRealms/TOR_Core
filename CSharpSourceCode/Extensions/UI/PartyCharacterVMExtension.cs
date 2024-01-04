@@ -38,15 +38,19 @@ namespace TOR_Core.Extensions.UI
         {
             _buttonHint = new BasicTooltipViewModel(GetButtonHintText);
 
-            var career = Hero.MainHero.GetCareer().CareerButtonBehavior;
-            if (career != null)
+            if (Hero.MainHero.HasAnyCareer())
             {
-                career.Register();
+                var careerButton = CareerHelper.GetCareerButton();
+                if (careerButton != null)
+                {
+                    careerButton.Register();
+                }
+                else
+                {
+                    SpecialbuttonEventManagerHandler.Instance.Disable();
+                }
             }
-            else
-            {
-                SpecialbuttonEventManagerHandler.Instance.Disable();
-            }
+            
             
             RefreshValues();
             
@@ -56,15 +60,20 @@ namespace TOR_Core.Extensions.UI
         {
             //Update datasource properties here. Gets called every time the base ViewModel would get refreshed.
             //Careful to always update the property, not the field behind it directly, because then the engine won't get notified and events won't be raised.
-            var troop = ( (PartyCharacterVM)_vm ).Troop.Character;
-            if(troop==null) return;
+            
+            var troopCharacter = ( (PartyCharacterVM)_vm ).Troop.Character;
+            
 
-            ShouldButtonBeVisible = SpecialbuttonEventManagerHandler.Instance.ShouldButtonBeVisible(troop);
+            var isPrisoner = ( (PartyCharacterVM)_vm ).IsPrisonerOfPlayer;
+            if(troopCharacter==null) return;
+            
+
+            ShouldButtonBeVisible = SpecialbuttonEventManagerHandler.Instance.ShouldButtonBeVisible(troopCharacter, isPrisoner);
             
             var textObect = new TextObject();
             
             
-            IsButtonEnabled =  SpecialbuttonEventManagerHandler.Instance.ShouldButtonBeActive(troop, out var displaytext);
+            IsButtonEnabled =  SpecialbuttonEventManagerHandler.Instance.ShouldButtonBeActive(troopCharacter, out var displaytext, isPrisoner);
             disableReason = displaytext;
             
             SpriteTORButton = CareerHelper.GetButtonSprite();

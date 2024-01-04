@@ -80,7 +80,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             InitiateDialog(characterObject.StringId);
         }
 
-        public override bool ShouldButtonBeVisible(CharacterObject characterObject)
+        public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner=false)
         {
             if (characterObject.IsHero) return false;
             if (characterObject.StringId != "tor_br_grail_knight") return false;
@@ -95,7 +95,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             return false;
         }
 
-        public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText)
+        public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner=false)
         {
             displayText = new TextObject("Promotes your Grail Knight to a companion");
             return true;
