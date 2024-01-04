@@ -33,7 +33,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             _instance = new CustomResourceManager();
             _instance._resources.Clear();
             _instance._resources.Add("Prestige", 
-                new CustomResource("Prestige", "Prestige", "Is used for upgrading special units of Bretonnia and special actions.", "prestige_icon_45", "empire"));
+                new CustomResource("Prestige", "Prestige", "Is used for upgrading special units of the Empire and special actions.", "prestige_icon_45", "empire"));
             _instance._resources.Add("Chivalry", 
                 new CustomResource("Chivalry", "Chivalry", "Is used for upgrading special units of Bretonnia and special actions.", "winds_icon_45", "vlandia"));
             _instance._resources.Add("DarkEnergy", 

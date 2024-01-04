@@ -1,3 +1,4 @@
+using System;
 using SandBox.Missions.MissionLogics;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
@@ -5,8 +6,10 @@ using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View.MissionViews;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.GameManagers;
+using TOR_Core.HarmonyPatches;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem.Scripts
@@ -22,7 +25,11 @@ namespace TOR_Core.AbilitySystem.Scripts
         private GameKey _specialMoveKey;
         private string _summonedChampionId;
         private Vec3 _targetPosition;
+        private HideoutMissionController _hideoutMissionController;
+
+        public Delegate deli;
         
+         
         protected override void OnInit()
         {
             var effects = GetEffectsToTrigger();
@@ -34,9 +41,15 @@ namespace TOR_Core.AbilitySystem.Scripts
                     if (_summonedChampionId.Contains("_plate") && _summonedChampionId.Contains("two_handed")) _summonedChampionId = "tor_vc_harbinger_champion_plate_two_handed";
                     break;
                 }
+            
+            _hideoutMissionController = Mission.Current.GetMissionBehavior<HideoutMissionController>();
+            if (_hideoutMissionController != null)
+            {
+                MissionPatches.InitBossFight += OnHideOutMissionStateChanged;
+                _isHideOutMission = true;
 
-            if (Mission.Current.GetMissionBehavior<HideoutMissionController>() != null) _isHideOutMission = true;
-
+            }
+            
             Mission.Current.OnBeforeAgentRemoved += AgentRemoved;
 
             _cameraView = Mission.Current.GetMissionBehavior<MissionCameraFadeView>();
@@ -44,6 +57,19 @@ namespace TOR_Core.AbilitySystem.Scripts
             _specialMoveKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("SpecialMove");
 
             _targetPosition = GameEntity.GlobalPosition;
+        }
+
+        private  void OnHideOutMissionStateChanged()
+        {
+            if (_champion.IsActive())
+            {
+                TORCommon.Say("lol");
+                KillChampion();
+                _casterAgent.GetComponent<AbilityComponent>().CareerAbility.AddCharge(TORCareers.Necromancer.MaxCharge);
+                Stop();
+            }
+            MissionPatches.InitBossFight -= OnHideOutMissionStateChanged;
+            
         }
 
         private void AgentRemoved(Agent affectedagent, Agent affectoragent, AgentState agentstate, KillingBlow killingblow)
@@ -57,10 +83,7 @@ namespace TOR_Core.AbilitySystem.Scripts
 
             if (!_casterAgent.IsActive() && !_isDisabled)
             {
-                var blow = new Blow();
-                blow.OwnerId = _casterAgent.Index;
-                _champion.Die(blow);
-                _isDisabled = true;
+                KillChampion();
                 Stop();
             }
 
@@ -72,19 +95,17 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         public override void Stop()
         {
-            Mission.Current.OnBeforeAgentRemoved -= AgentRemoved;
-            base.Stop();
-            if (_championIsActive) ShiftControllerToCaster();
-            _casterAgent.RemoveStatusEffect("greater_harbinger_ward_protection");
-            //TORCommon.Say("stop");
+                Mission.Current.OnBeforeAgentRemoved -= AgentRemoved;
+                base.Stop();
+                if (_championIsActive) ShiftControllerToCaster();
+                _casterAgent.RemoveStatusEffect("greater_harbinger_ward_protection");
+           
         }
 
         private void InitialShiftToChampion()
         {
             var data = TORSummonHelper.GetAgentBuildData(_casterAgent, _summonedChampionId);
-
             _champion = TORSummonHelper.SpawnAgent(data, _targetPosition);
-
             _casterAgent.UnsetSpellCasterMode();
 
 
@@ -141,6 +162,14 @@ namespace TOR_Core.AbilitySystem.Scripts
             _championIsActive = false;
         }
 
+        private void KillChampion()
+        {
+            var blow = new Blow();
+            blow.OwnerId = _casterAgent.Index;
+            _champion.Die(blow);
+            _isDisabled = true;
+        }
+
 
         private void switchBetweenAgents()
         {
@@ -150,4 +179,5 @@ namespace TOR_Core.AbilitySystem.Scripts
                 ShiftControllerToCaster();
         }
     }
+    
 }
