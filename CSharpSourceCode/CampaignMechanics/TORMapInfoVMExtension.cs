@@ -106,7 +106,7 @@ namespace TOR_Core.CampaignMechanics
             HasCultureResource = resource != null;
 			if(resource != null)
 			{
-				CultureResourceText = Hero.MainHero.GetCultureSpecificCustomResourceValue().ToString();
+				CultureResourceText = ((int)Hero.MainHero.GetCultureSpecificCustomResourceValue()).ToString();
 			}
 			
 		}
