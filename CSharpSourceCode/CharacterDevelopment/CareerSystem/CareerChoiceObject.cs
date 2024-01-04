@@ -171,7 +171,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             
             public delegate bool SpecialCombatInteractionFunction(Agent attacker, Agent victim, AttackTypeMask mask);
             private readonly SpecialCombatInteractionFunction _specialCombatInteractionFunction;
-            public delegate bool SpecialCharacterEvaluationFunction(CharacterObject troop);
+            public delegate bool SpecialCharacterEvaluationFunction(CharacterObject characterObject);
             private readonly SpecialCharacterEvaluationFunction _specialCharacterEvaluationFunction;
 
             public bool IsValidCombatInteraction(Agent attacker, Agent victim, AttackTypeMask mask) =>  _specialCombatInteractionFunction==null||_specialCombatInteractionFunction.Invoke(attacker,victim, mask);

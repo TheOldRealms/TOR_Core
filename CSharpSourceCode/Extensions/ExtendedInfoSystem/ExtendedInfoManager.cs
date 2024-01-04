@@ -6,6 +6,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
@@ -37,10 +38,28 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             CampaignEvents.MobilePartyCreated.AddNonSerializedListener(this, OnPartyCreated);
             CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this, OnPartyDestroyed);
             CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
-            CampaignEvents.OnQuarterDailyPartyTick.AddNonSerializedListener(_instance, QuarterDailyTick);
+            CampaignEvents.OnQuarterDailyPartyTick.AddNonSerializedListener(this, QuarterDailyTick);
             CustomResourceManager.RegisterEvents();
+            
+            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this,CalculateCustomResourceGainFromBattles);
         }
-        
+
+        private void CalculateCustomResourceGainFromBattles(MapEvent obj)
+        {
+            float renownChange; 
+            float influenceChange;
+            float moraleChange;
+            float goldChange;
+            float playerEarnedLootPercentage;
+
+            obj.GetBattleRewards(MobileParty.MainParty.Party, out renownChange, out influenceChange, out moraleChange, out goldChange, out playerEarnedLootPercentage);
+
+            if (MobileParty.MainParty.LeaderHero.GetCultureSpecificCustomResource() == CustomResourceManager.GetResourceObject("Prestige"))
+            {
+                MobileParty.MainParty.LeaderHero.AddCustomResource("Prestige",(int)(1 + renownChange));
+            }
+        }
+
         private static void QuarterDailyTick(MobileParty mobileParty)
         {
             if(!mobileParty.IsLordParty) return;

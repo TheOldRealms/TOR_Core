@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
@@ -32,7 +33,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             _instance = new CustomResourceManager();
             _instance._resources.Clear();
             _instance._resources.Add("Prestige", 
-                new CustomResource("Prestige", "Prestige", "Is used for upgrading special units of Bretonnia and special actions.", "winds_icon_45", "empire"));
+                new CustomResource("Prestige", "Prestige", "Is used for upgrading special units of Bretonnia and special actions.", "prestige_icon_45", "empire"));
             _instance._resources.Add("Chivalry", 
                 new CustomResource("Chivalry", "Chivalry", "Is used for upgrading special units of Bretonnia and special actions.", "winds_icon_45", "vlandia"));
             _instance._resources.Add("DarkEnergy", 
@@ -61,9 +62,10 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         {
             ScreenManager.OnPushScreen += ScreenManager_OnPushScreen;
             ScreenManager.OnPopScreen += ScreenManager_OnPopScreen;
+            
         }
 
-        
+       
 
 
         private static void ScreenManager_OnPopScreen(ScreenBase poppedScreen)

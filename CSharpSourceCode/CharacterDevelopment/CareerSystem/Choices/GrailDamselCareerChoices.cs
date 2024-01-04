@@ -171,18 +171,23 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializePassives()
         {
-            _feyEnchantmentPassive1.Initialize(CareerID, "{=fey_enchantment_passive1_str}Increases magic spell damage by 15%.", "FeyEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 15), AttackTypeMask.Spell));
+            _feyEnchantmentPassive1.Initialize(CareerID, "Increases magic spell damage by 15%.", "FeyEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 15), AttackTypeMask.Spell));
             _feyEnchantmentPassive2.Initialize(CareerID, "{=fey_enchantment_passive2_str}Increases max Winds of Magic by 10.", "FeyEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
-            _feyEnchantmentPassive3.Initialize(CareerID, "{=fey_enchantment_passive3_str}All troops gain 15% extra magic damage.", "FeyEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Magical, 15), AttackTypeMask.All, FeyEnchantmentPassive3));
-            _feyEnchantmentPassive4.Initialize(CareerID, "{=fey_enchantment_passive4_str}All Knight troops gain 15% Ward save.", "FeyEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.All, FeyEnchantmentPassive4));
+            _feyEnchantmentPassive3.Initialize(CareerID, "{=fey_enchantment_passive3_str}All troops gain 15% extra magic damage.", "FeyEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Magical, 15), AttackTypeMask.All,
+                ((attacker, victim, mask) => IsBretonnianUnit(attacker))));
+            _feyEnchantmentPassive4.Initialize(CareerID, "All Knight troops gain 15% Ward save.", "FeyEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.All, 
+                    (attacker, victim, attackTypeMask) => attacker.BelongsToMainParty()&& attacker.Character.IsKnightUnit()&& IsBretonnianUnit(attacker)));
             
             _inspirationOfTheLadyPassive1.Initialize(CareerID, "25% chance to recruit an extra unit free of charge.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true)); 
             _inspirationOfTheLadyPassive2.Initialize(CareerID, "Wounded troops in your party heal faster.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration));
-            _inspirationOfTheLadyPassive3.Initialize(CareerID, "All Knight troops wages are reduced by 25%.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.TroopWages, true, InspirationOfTheLadyPassive3));
-            _inspirationOfTheLadyPassive4.Initialize(CareerID, "10% Ward save if your armor weight does not exceed 11 weight.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.All, InspirationOfTheLadyPassive4));
+            _inspirationOfTheLadyPassive3.Initialize(CareerID, "All Knight troops wages are reduced by 25%.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.TroopWages, true, 
+                characterObject => !characterObject.IsHero && characterObject.IsKnightUnit()));
+            _inspirationOfTheLadyPassive4.Initialize(CareerID, "10% Ward save if your armor weight does not exceed 11 weight.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.All, 
+                 (attacker, victim, attackmask) => HeroArmorWeightUndershootCheck(attacker) ));
 
             _talesOfGilesPassive1.Initialize(CareerID, "{=tales_of_giles_passive1_str}Increases max Winds of Magic by 10.", "TalesOfGiles", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
-            _talesOfGilesPassive2.Initialize(CareerID, "{=tales_of_giles_passive2_str}Bretonnian units receive 10% Ward save.", "TalesOfGiles", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.Spell, TalesOfGilesPassive2));
+            _talesOfGilesPassive2.Initialize(CareerID, "{=tales_of_giles_passive2_str}Bretonnian units receive 10% Ward save.", "TalesOfGiles", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.Spell,
+                ( (attacker, victim, mask) => IsBretonnianUnit(attacker) )));
             _talesOfGilesPassive3.Initialize(CareerID, "{=tales_of_giles_passive3_str}When praying at a shrine of the Lady, all wounded troops get healed.", "TalesOfGiles", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special, true));
             _talesOfGilesPassive4.Initialize(CareerID, "{=tales_of_giles_passive4_str}20% spell cooldown reduction.", "TalesOfGiles", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.WindsCooldownReduction, true)); 
             
@@ -207,23 +212,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _envoyOfTheLadyPassive4.Initialize(CareerID, "{=ambassador_of_the_lady_Passive4_str}Diplomatic force options for all Brettonnian Leaders.", "EnvoyOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special, true));
         }
         
-        private static bool InspirationOfTheLadyPassive3(CharacterObject troop)
-        {
-            if (troop.IsHero) return false;
-            return troop.IsKnightUnit();
-        }
-        
-        private static bool InspirationOfTheLadyPassive4(Agent attacker, Agent victim, AttackTypeMask mask)
-        {
-            return ArmorWeightUndershootCheck(victim);
-        }
         
         private static bool JustCausePassive3(Agent attacker, Agent victim, AttackTypeMask mask)
         {
-            return ArmorWeightUndershootCheck(victim);
+            return HeroArmorWeightUndershootCheck(victim);
         }
         
-        private static bool ArmorWeightUndershootCheck(Agent agent)
+        private static bool HeroArmorWeightUndershootCheck(Agent agent)
         {
             if (!agent.BelongsToMainParty()) return false;
             if (!agent.IsMainAgent) return false;
@@ -233,30 +228,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         private static bool IsBretonnianUnit(Agent agent)
         {
+            if (agent.IsHero) return false;
             if (!agent.BelongsToMainParty()) return false;
             if (agent.IsMainAgent) return false;
-            if (agent.IsHero) return false;
+            
             
             return agent.Character.Culture.Name.ToString() == "vlandia";
-        }
-
-        private static bool FeyEnchantmentPassive3(Agent attacker, Agent victim, AttackTypeMask mask)
-        {
-            return IsBretonnianUnit(attacker);
-        }
-        
-        private static bool FeyEnchantmentPassive4(Agent attacker, Agent victim, AttackTypeMask mask)
-        {
-            if (!victim.BelongsToMainParty()) return false;
-            if (victim.IsMainAgent) return false;
-            if (victim.IsHero) return false;
-            
-            return victim.Character.IsKnightUnit();
-        }
-        
-        private static bool TalesOfGilesPassive2(Agent attacker, Agent victim, AttackTypeMask mask)
-        {
-            return IsBretonnianUnit(victim);
         }
         
         protected override void UnlockCareerBenefitsTier2()

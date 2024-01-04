@@ -347,21 +347,26 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _questingVowPassive1.Initialize(CareerID, "Increases Hitpoints by 40.", "QuestingVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Health)); //
             _questingVowPassive2.Initialize(CareerID, "Gain 15% physical resistance to melee and ranged attacks.", "QuestingVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Ranged | AttackTypeMask.Melee));
-            _questingVowPassive3.Initialize(CareerID, "All Knight troops gain 10% physical resistance.", "QuestingVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.All, QuestingVow3));
+            _questingVowPassive3.Initialize(CareerID, "All Knight troops gain 10% physical resistance.", "QuestingVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.All, 
+                (attacker, victim, mask) => !victim.BelongsToMainParty()&&!victim.IsHero&&victim.Character.IsKnightUnit()));
+            
             _questingVowPassive4.Initialize(CareerID, "Hits below 15 damage will not stagger the player.", "QuestingVow", false, ChoiceType.Passive, null); // Agent extension 83,
 
             _monsterSlayerPassive1.Initialize(CareerID, "10% extra melee fire damage.", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 10), AttackTypeMask.Melee));
             _monsterSlayerPassive2.Initialize(CareerID, "20% extra armor penetration of melee attacks.", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
             _monsterSlayerPassive3.Initialize(CareerID, "40% chance to recruit an extra unit of the same type free of charge.", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Special, true));
-            _monsterSlayerPassive4.Initialize(CareerID, "All Peasant troops wages are reduced by 75%.", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-75, PassiveEffectType.TroopWages, true, MonsterSlayerPassive4));
+            _monsterSlayerPassive4.Initialize(CareerID, "All Peasant troops wages are reduced by 75%.", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-75, PassiveEffectType.TroopWages, true, 
+                characterObject => characterObject.IsKnightUnit()));
 
             _masterHorsemanPassive1.Initialize(CareerID, "Horse charge damage is increased by 50%.", "MasterHorseman", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.HorseChargeDamage, true));
             _masterHorsemanPassive2.Initialize(CareerID, "Party movement speed is increased by 2.", "MasterHorseman", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.PartyMovementSpeed));
             _masterHorsemanPassive3.Initialize(CareerID, "+4 health regeneration on the campaign map.", "MasterHorseman", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(4, PassiveEffectType.HealthRegeneration, false));
-            _masterHorsemanPassive4.Initialize(CareerID, "All Knight troops wages are reduced by 25%.", "MasterHorseman", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopWages, true, MasterHorsemanPassive4));
+            _masterHorsemanPassive4.Initialize(CareerID, "All Knight troops wages are reduced by 25%.", "MasterHorseman", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopWages, true, 
+                characterObject => characterObject.IsKnightUnit()));
 
             _grailVowPassive1.Initialize(CareerID, "{=grail_vow_passive1_str}Increases Hitpoints by 40.", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Health));
             _grailVowPassive2.Initialize(CareerID, "{=grail_vow_passive2_str}20% extra holy damage for Battle pilgrim troops.", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Melee, GrailVowPassive2));
+            
             _grailVowPassive3.Initialize(CareerID, "{=grail_vow_passive3_str}20% extra melee holy damage.", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 20), AttackTypeMask.Melee));
             _grailVowPassive4.Initialize(CareerID, "{=grail_vow_passive4_str}Gain 15% Ward save.", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.All));
             
@@ -370,18 +375,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _holyCrusaderPassive3.Initialize(CareerID, "{=holy_crusader_passive3_str}Grail Knights can be upgraded to Companions.", "HolyCrusader", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
             _holyCrusaderPassive4.Initialize(CareerID, "{=holy_crusader_passive4_str}Companion limit of party is increased by 10.", "HolyCrusader", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.CompanionLimit));
         }
-        
-        private static bool MonsterSlayerPassive4(CharacterObject characterObject)
-        {
-            if(!characterObject.IsHero) return false;
-            return !characterObject.IsKnightUnit() && characterObject.Culture.StringId == "vlandia";
-        }
-        
-        private static bool MasterHorsemanPassive4(CharacterObject characterObject)
-        {
-            if(!characterObject.IsHero) return false;
-            return characterObject.IsKnightUnit() && characterObject.Culture.StringId == "vlandia";
-        }
 
         private static bool EnhancedHorseCombatPassive2(Agent attacker, Agent victim, AttackTypeMask mask)
         {
@@ -389,13 +382,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             if (mask != AttackTypeMask.Melee) return false;
             
             return attacker.HasMount;
-        }
-        
-        private static bool QuestingVow3(Agent attacker, Agent victim, AttackTypeMask mask)
-        {
-            if (!victim.BelongsToMainParty()) return false;
-            if (victim.IsHero) return false;
-            return victim.Character.IsKnightUnit();
         }
         
         private static bool GrailVowPassive2(Agent attacker, Agent victim, AttackTypeMask mask)
