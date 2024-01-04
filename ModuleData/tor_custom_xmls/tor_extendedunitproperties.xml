@@ -2466,7 +2466,8 @@
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.75" />
+      <DamageProportionTuple DamageType="Magical" Percent="0.25" />
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wh_retinue_hunter">
@@ -2475,7 +2476,8 @@
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.75" />
+      <DamageProportionTuple DamageType="Magical" Percent="0.35" />
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="15" />
   </CharacterExtendedInfo>
@@ -2485,7 +2487,8 @@
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.75" />
+      <DamageProportionTuple DamageType="Magical" Percent="0.50" />
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="50" />
   </CharacterExtendedInfo>

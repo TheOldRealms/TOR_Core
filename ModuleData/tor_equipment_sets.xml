@@ -3130,7 +3130,7 @@
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_vc_hell_knight_001" />
     </EquipmentSet>
   </EquipmentRoster>
-  <EquipmentRoster id="tor_vc_harbinger_champion_plate__two_handed_template" culture="Culture.khuzait">
+  <EquipmentRoster id="tor_vc_harbinger_champion_plate_two_handed_template" culture="Culture.khuzait">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_thsword_grave_guard_001" />
       <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_001" />
