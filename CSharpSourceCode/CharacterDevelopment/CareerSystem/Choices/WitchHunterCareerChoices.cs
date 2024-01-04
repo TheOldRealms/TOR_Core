@@ -233,13 +233,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _toolsOfJudgementPassive4.Initialize(CareerID, "Every equipped weapon increases ranged damage by 10%.", "ToolsOfJudgement", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10,PassiveEffectType.Special,true));
            
             _huntTheWickedPassive1.Initialize(CareerID, "Increases health regeneration after battles by 3.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.HealthRegeneration));
-            _huntTheWickedPassive2.Initialize(CareerID, "Ranged Infantry wages are 15% reduced.", "HuntTheWicked", false, ChoiceType.Passive, null, 
-                new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.TroopWages,true,HuntTheWickedPassive2));
+            _huntTheWickedPassive2.Initialize(CareerID, "Ranged Infantry wages are 15% reduced.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.TroopWages,true, 
+                characterObject => !characterObject.IsHero && !characterObject.IsMounted && characterObject.IsRanged));
             _huntTheWickedPassive3.Initialize(CareerID, "Every  equipped ranged weapon increases melee damage by 10%.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10,PassiveEffectType.Special,true));
-            _huntTheWickedPassive4.Initialize(CareerID, "Increases the damage of all ranged troops by 10%.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 10), AttackTypeMask.Ranged, HuntTheWickedPassive4));  
+            _huntTheWickedPassive4.Initialize(CareerID, "Increases the damage of all ranged troops by 10%.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Melee,
+                (attacker, victim, mask) => !attacker.BelongsToMainParty() && !(attacker.IsMainAgent || attacker.IsHero)&& mask == AttackTypeMask.Ranged));
 
             _silverHammerPassive1.Initialize(CareerID, "Exterminated Undead and Ruinous powers increase faith per fallen Unit.", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10,PassiveEffectType.Special));
-            _silverHammerPassive2.Initialize(CareerID, "All units deal more damage against undead and chaos.", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 15), AttackTypeMask.All,SilverHammerPassive2));
+            _silverHammerPassive2.Initialize(CareerID, "All units deal more damage against undead and chaos.", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 15), AttackTypeMask.All,
+                (attacker, victim, mask) => victim.Character.Race != 0));
             _silverHammerPassive3.Initialize(CareerID, "Increases Hitpoints by 25.", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
             _silverHammerPassive4.Initialize(CareerID, "Troops can be upgraded to Witch Hunter Retinues.", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));          //TORAgentStatCalculateModel 458
 
@@ -259,40 +261,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _endsJustifiesMeansPassive4.Initialize(CareerID, "Ranged shots can penetrate multiple targets.", "EndsJustifiesMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special)); //TORAgentApplyDamage 29
 
             _guiltyByAssociationPassive1.Initialize(CareerID, "Increases troop regeneration by 2.", "GuiltyByAssociation", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration)); //TORAgentApplyDamage 29
-            _guiltyByAssociationPassive2.Initialize(CareerID, "Every ranged troop deals 15% extra holy damage.", "GuiltyByAssociation", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 10), AttackTypeMask.Ranged, GuiltyByAssociationPassive2)); 
+            _guiltyByAssociationPassive2.Initialize(CareerID, "Every ranged troop deals 15% extra holy damage.", "GuiltyByAssociation", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 10), AttackTypeMask.Ranged, 
+                (attacker, victim, mask) => attacker.BelongsToMainParty()&& attacker.IsMainAgent && mask == AttackTypeMask.Ranged)); 
+            
             _guiltyByAssociationPassive3.Initialize(CareerID, "Companions have 50 additional health points.", "GuiltyByAssociation", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special));
             _guiltyByAssociationPassive4.Initialize(CareerID, "Killing blows in the head increase temporary reload & swing speed", "GuiltyByAssociation", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special));
-        }
-        
-        private static bool SilverHammerPassive2(Agent attacker, Agent victim, AttackTypeMask mask)
-        {
-            return victim.Character.Race != 0; 
-        }
-        
-        private static bool HuntTheWickedPassive2(CharacterObject characterObject)
-        {
-            if (characterObject.IsHero) return false;
-            if(characterObject.IsMounted) return false;
-            
-            return characterObject.IsRanged;
-        }
-        
-        private static bool HuntTheWickedPassive4(Agent attacker, Agent victim, AttackTypeMask mask)
-        {
-            if (!attacker.BelongsToMainParty()) return false;
-            if (attacker.IsMainAgent) return false;
-            if (mask != AttackTypeMask.Ranged) return false;
-            
-            return true;
-        }
-        
-        private static bool GuiltyByAssociationPassive2(Agent attacker, Agent victim, AttackTypeMask mask)
-        {
-            if (!attacker.BelongsToMainParty()) return false;
-            if (attacker.IsMainAgent) return false;
-            if (mask != AttackTypeMask.Ranged) return false;
-            
-            return true;
         }
     }
 }

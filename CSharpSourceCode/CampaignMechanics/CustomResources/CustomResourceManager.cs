@@ -62,7 +62,6 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         {
             ScreenManager.OnPushScreen += ScreenManager_OnPushScreen;
             ScreenManager.OnPopScreen += ScreenManager_OnPopScreen;
-            
         }
 
        

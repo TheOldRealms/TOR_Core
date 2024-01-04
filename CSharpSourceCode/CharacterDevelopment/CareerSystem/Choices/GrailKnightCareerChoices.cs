@@ -341,7 +341,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _errantryWarPassive4.Initialize(CareerID, "All melee troops in the party gain 25 exp per day.", "ErrantryWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special)); //
 
             _enhancedHorseCombatPassive1.Initialize(CareerID, "50% additional Hitpoints for the player's mount.", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseHealth, true)); //
-            _enhancedHorseCombatPassive2.Initialize(CareerID, "10% extra melee damage while on horseback.", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,EnhancedHorseCombatPassive2));
+            _enhancedHorseCombatPassive2.Initialize(CareerID, "10% extra melee damage while on horseback.", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee, 
+                (attacker, victim, mask) => attacker.IsMainAgent&& mask == AttackTypeMask.Melee && attacker.HasMount));
+            
             _enhancedHorseCombatPassive3.Initialize(CareerID, "Upgrade costs are reduced by 25%.", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopUpgradeCost, true)); //
             _enhancedHorseCombatPassive4.Initialize(CareerID, "All Knight troops receive 30 bonus points in their Polearm skill.", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special)); //
 
@@ -365,8 +367,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 characterObject => characterObject.IsKnightUnit()));
 
             _grailVowPassive1.Initialize(CareerID, "{=grail_vow_passive1_str}Increases Hitpoints by 40.", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Health));
-            _grailVowPassive2.Initialize(CareerID, "{=grail_vow_passive2_str}20% extra holy damage for Battle pilgrim troops.", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Melee, GrailVowPassive2));
-            
+            _grailVowPassive2.Initialize(CareerID, "{=grail_vow_passive2_str}20% extra holy damage for Battle pilgrim troops.", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Melee, 
+                (attacker, victim, mask) => mask == AttackTypeMask.Melee && attacker.BelongsToMainParty() && attacker.Character.UnitBelongsToCult("cult_of_lady")));
             _grailVowPassive3.Initialize(CareerID, "{=grail_vow_passive3_str}20% extra melee holy damage.", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 20), AttackTypeMask.Melee));
             _grailVowPassive4.Initialize(CareerID, "{=grail_vow_passive4_str}Gain 15% Ward save.", "GrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.All));
             
@@ -374,22 +376,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _holyCrusaderPassive2.Initialize(CareerID, "{=holy_crusader_passive2_str}Companion Health increases by 15 for every 'Knight' Companion.", "HolyCrusader", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special));
             _holyCrusaderPassive3.Initialize(CareerID, "{=holy_crusader_passive3_str}Grail Knights can be upgraded to Companions.", "HolyCrusader", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
             _holyCrusaderPassive4.Initialize(CareerID, "{=holy_crusader_passive4_str}Companion limit of party is increased by 10.", "HolyCrusader", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.CompanionLimit));
-        }
-
-        private static bool EnhancedHorseCombatPassive2(Agent attacker, Agent victim, AttackTypeMask mask)
-        {
-            if (!attacker.IsMainAgent) return false;
-            if (mask != AttackTypeMask.Melee) return false;
-            
-            return attacker.HasMount;
-        }
-        
-        private static bool GrailVowPassive2(Agent attacker, Agent victim, AttackTypeMask mask)
-        {
-            if (mask != AttackTypeMask.Melee) return false;
-            if (!attacker.BelongsToMainParty()) return false;
-            if (attacker.IsHero) return false;
-            return attacker.Character.UnitBelongsToCult("cult_of_lady");
         }
         
     }
