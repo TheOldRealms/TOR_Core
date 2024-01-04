@@ -582,7 +582,7 @@
             TargetType="Friendly" 
             DamageVariance="0"
 			ImbuedStatusEffectDuration="1" 
-            TroopIdToSummon="tor_vc_grave_guard_champion"
+            TroopIdToSummon="tor_vc_harbinger_champion"
             NumberToSummon="1">
 			<ImbuedStatusEffect>greater_harbinger_debuff</ImbuedStatusEffect>
 	  </TriggeredEffectTemplate>

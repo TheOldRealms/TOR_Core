@@ -31,7 +31,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                 if (effect.SummonedTroopId != "none")
                 {
                     _summonedChampionId = effect.SummonedTroopId;
-                    if (_summonedChampionId.Contains("_plate") && _summonedChampionId.Contains("two_handed")) _summonedChampionId = "tor_vc_grave_guard_champion_plate_two_handed";
+                    if (_summonedChampionId.Contains("_plate") && _summonedChampionId.Contains("two_handed")) _summonedChampionId = "tor_vc_harbinger_champion_plate_two_handed";
                     break;
                 }
 
