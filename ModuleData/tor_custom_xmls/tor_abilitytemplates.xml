@@ -3027,7 +3027,7 @@
 	
 	<AbilityTemplate StringID="FeyPaths" 
       Name="Fey Paths" 
-      SpriteName="fegypaths_icon" 
+      SpriteName="feypaths_icon" 
       CoolDown="5" 
       BaseMisCastChance="0.3" 
       Duration="2" 
