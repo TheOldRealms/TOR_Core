@@ -12,7 +12,7 @@ namespace TOR_Core.Utilities
 {
     public static class TORMissionHelper
     {
-        public static void DamageAgents(IEnumerable<Agent> agents, int minDamage, int maxDamage = -1, Agent damager = null, TargetType targetType = TargetType.All, TriggeredEffectTemplate triggeredeffectTemplate = null, DamageType damageType = DamageType.Physical, bool hasShockWave = false, Vec3 impactPosition = new Vec3(), AbilityTemplate originSpellTemplate = null)
+        public static void DamageAgents(IEnumerable<Agent> agents, int minDamage, int maxDamage = -1, Agent damager = null, TargetType targetType = TargetType.All, TriggeredEffectTemplate triggeredeffectTemplate = null, DamageType damageType = DamageType.Physical, bool hasShockWave = false, Vec3 impactPosition = default, AbilityTemplate originSpellTemplate = null)
         {
             if (agents != null)
             {
@@ -22,7 +22,12 @@ namespace TOR_Core.Utilities
                         TORSpellBlowHelper.EnqueueSpellBlowInfo(agent.Index, damager.Index, triggeredeffectTemplate.StringID, damageType, originSpellTemplate == null ? string.Empty : originSpellTemplate.StringID);
 
                     var damage = maxDamage < minDamage ? minDamage : MBRandom.RandomInt(minDamage, maxDamage);
-                    agent.ApplyDamage(damage, impactPosition, damager, doBlow: true, hasShockWave: hasShockWave);
+                    if (impactPosition != default && hasShockWave && triggeredeffectTemplate != null)
+                    {
+                        var distance = agent.Position.Distance(impactPosition);
+                        damage = (int)((triggeredeffectTemplate.Radius - distance) / triggeredeffectTemplate.Radius * damage);
+                    }
+                    agent.ApplyDamage(damage, impactPosition, damager, doBlow: true, hasShockWave: hasShockWave, originatesFromAbility: originSpellTemplate != null);
                 }
             }
         }

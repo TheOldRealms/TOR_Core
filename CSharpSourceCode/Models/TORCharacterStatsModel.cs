@@ -1,5 +1,6 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -20,6 +21,10 @@ namespace TOR_Core.Models
 
         private ExplainedNumber CalculateHitPoints(ExplainedNumber number, CharacterObject character)
         {
+            if (character.Race == FaceGen.GetRaceOrDefault("large_humanoid_monster"))
+            {
+                number.Add(1000f, new TextObject("Large Monster"));
+            }
             if (character.IsHero)
             {
                 return CalculateHeroHealth(number, character.HeroObject);

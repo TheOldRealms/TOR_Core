@@ -15,7 +15,7 @@ namespace TOR_Core.AbilitySystem.Spells
             if (hero != null && hero.GetExtendedInfo() != null)
             {
                 var info = hero.GetExtendedInfo();
-                if (info.CurrentWindsOfMagic < hero.GetEffectiveWindsCostForSpell(this))
+                if (info.GetCustomResourceValue("WindsOfMagic") < hero.GetEffectiveWindsCostForSpell(this))
                 {
                     return false;
                 }
@@ -30,7 +30,7 @@ namespace TOR_Core.AbilitySystem.Spells
             if (hero != null && hero.GetExtendedInfo() != null)
             {
                 var info = hero.GetExtendedInfo();
-                info.CurrentWindsOfMagic -= hero.GetEffectiveWindsCostForSpell(this);
+                info.AddCustomResource("WindsOfMagic", -hero.GetEffectiveWindsCostForSpell(this));
             }
         }
     }
