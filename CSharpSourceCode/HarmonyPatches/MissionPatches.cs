@@ -69,7 +69,7 @@ namespace TOR_Core.HarmonyPatches
             ref float placementPerturbation,
             ref float placementAngle)
         {
-            InitBossFight.Invoke();
+            InitBossFight?.Invoke();
             return true;
         }
         

@@ -77,105 +77,111 @@ namespace TOR_Core.BattleMechanics
 
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
+            
             if(!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
             
-            if (!affectorAgent.IsMainAgent) return;
-            
             var playerHero = affectorAgent.GetHero();
-            var choices = Hero.MainHero.GetAllCareerChoices();
+            
             var hitBodyPart = blow.VictimBodyPart;
 
-            if (hitBodyPart == BoneBodyPartType.Head || hitBodyPart == BoneBodyPartType.Neck)
+            if (affectorAgent.IsMainAgent)
             {
-                if(choices.Contains("CourtleyPassive4"))
+                var choices = Hero.MainHero.GetAllCareerChoices();
+                if (hitBodyPart == BoneBodyPartType.Head || hitBodyPart == BoneBodyPartType.Neck)
                 {
-                    var choice = TORCareerChoices.GetChoice("CourtleyPassive4");
-                    if (choice != null)
+                    if(choices.Contains("CourtleyPassive4"))
                     {
-                        var value = choice.GetPassiveValue();
-                        playerHero.AddWindsOfMagic(value);
+                        var choice = TORCareerChoices.GetChoice("CourtleyPassive4");
+                        if (choice != null)
+                        {
+                            var value = choice.GetPassiveValue();
+                            playerHero.AddWindsOfMagic(value);
+                        }
                     }
-                }
                     
-                if(choices.Contains("GuiltyByAssociationPassive4"))
-                {
-                    var choice = TORCareerChoices.GetChoice("GuiltyByAssociationKeystone");
-                    if (choice != null)
+                    if(choices.Contains("GuiltyByAssociationPassive4"))
                     {
-                        affectorAgent.ApplyStatusEffect("accusation_buff_ats",affectorAgent,choice.GetPassiveValue(),false,false);
-                        affectorAgent.ApplyStatusEffect("accusation_buff_rls",affectorAgent,choice.GetPassiveValue(),false,false);
+                        var choice = TORCareerChoices.GetChoice("GuiltyByAssociationKeystone");
+                        if (choice != null)
+                        {
+                            affectorAgent.ApplyStatusEffect("accusation_buff_ats",affectorAgent,choice.GetPassiveValue(),false,false);
+                            affectorAgent.ApplyStatusEffect("accusation_buff_rls",affectorAgent,choice.GetPassiveValue(),false,false);
+                        }
                     }
+
+                    if (choices.Contains("ToolsOfJudgementPassive4"))
+                    {
+                        var multiplier = 1;
+                        if (affectedAgent.Character != null)
+                        {
+                            multiplier = affectedAgent.Character.Level;
+                            if (affectedAgent.HasAttribute("AccusationMark"))
+                                multiplier *= 2;
+                        }
+
+                        var value = ( (int)blow.InflictedDamage * multiplier ) / 10;
+                        Hero.MainHero.AddSkillXp(DefaultSkills.Roguery,value);
+                    }
+                    
                 }
 
-                if (choices.Contains("ToolsOfJudgementPassive4"))
+                if (choices.Contains ("AvatarOfDeathPassive4"))
                 {
+                    var choice = TORCareerChoices.GetChoice("AvatarOfDeathPassive4");
+
+                    if (choice != null)
+                    {
+                        var threshold = 500;
+                        var damage = blow.InflictedDamage - threshold;
+                        if (damage >= 0)
+                        { 
+                            var bonus =  Mathf.Clamp(damage / 100,0, 5);
+                            affectorAgent.Heal (bonus);
+                        }
+                    }
+                }
+                
+                if (choices.Contains ("SilverHammerPassive1"))
+                {
+                    var choice = TORCareerChoices.GetChoice("SilverHammerPassive1");
+
+                    if (choice != null)
+                    {
+                        if (affectedAgent.IsEnemyOf(affectorAgent) && affectedAgent.Character.Race != 0)
+                        {
+                            Hero.MainHero.AddSkillXp(TORSkills.Faith,choice.GetPassiveValue());
+                        }
+                    }
+                }
+                
+                if (affectorAgent.HasAttribute("NecromancerChampion"))
+                {
+                    if (choices.Contains("GrimoireNecrisKeystone"))
+                    {
+                        affectorAgent.Heal(2);
+                    } 
+                    
+                    if (choices.Contains("BooksOfNagashKeystone"))
+                    {
+                        Hero.MainHero.AddWindsOfMagic(1);
+                    }
+
                     var multiplier = 1;
                     if (affectedAgent.Character != null)
                     {
                         multiplier = affectedAgent.Character.Level;
-                        if (affectedAgent.HasAttribute("AccusationMark"))
-                            multiplier *= 2;
                     }
-
-                    var value = ( (int)blow.InflictedDamage * multiplier ) / 10;
-                    Hero.MainHero.AddSkillXp(DefaultSkills.Roguery,value);
-                }
-                    
-            }
-
-            if (choices.Contains ("AvatarOfDeathPassive4"))
-            {
-                var choice = TORCareerChoices.GetChoice("AvatarOfDeathPassive4");
-
-                if (choice != null)
-                {
-                    var threshold = 500;
-                    var damage = blow.InflictedDamage - threshold;
-                    if (damage >= 0)
-                    { 
-                        var bonus =  Mathf.Clamp(damage / 100,0, 5);
-                        affectorAgent.Heal (bonus);
-                    }
-                }
-            }
                 
-            if (choices.Contains ("SilverHammerPassive1"))
-            {
-                var choice = TORCareerChoices.GetChoice("SilverHammerPassive1");
-
-                if (choice != null)
-                {
-                    if (affectedAgent.IsEnemyOf(affectorAgent) && affectedAgent.Character.Race != 0)
+                    Hero.MainHero.AddSkillXp(TORSkills.SpellCraft,5*multiplier);
+                    if (Hero.MainHero.HasCareerChoice("LiberNecrisPassive2"))
                     {
-                        Hero.MainHero.AddSkillXp(TORSkills.Faith,choice.GetPassiveValue());
+                        Hero.MainHero.AddSkillXp(DefaultSkills.Roguery,5*multiplier);
                     }
                 }
             }
 
-            if (affectorAgent.HasAttribute("NecromancerChampion"))
-            {
-                if (choices.Contains("GrimoireNecrisKeystone"))
-                {
-                    affectorAgent.Heal(2);
-                } 
-                    
-                if (choices.Contains("BooksOfNagashKeystone"))
-                {
-                    Hero.MainHero.AddWindsOfMagic(1);
-                }
-
-                var multiplier = 1;
-                if (affectedAgent.Character != null)
-                {
-                     multiplier = affectedAgent.Character.Level;
-                }
-                
-                Hero.MainHero.AddSkillXp(TORSkills.SpellCraft,5*multiplier);
-                if (Hero.MainHero.HasCareerChoice("LiberNecrisPassive2"))
-                {
-                    Hero.MainHero.AddSkillXp(DefaultSkills.Roguery,5*multiplier);
-                }
-            }
+            
+            
             
         }
     }

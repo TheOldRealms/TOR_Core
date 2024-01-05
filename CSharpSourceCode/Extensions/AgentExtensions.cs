@@ -12,6 +12,7 @@ using TaleWorlds.MountAndBlade.CustomBattle;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
@@ -83,6 +84,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsDamageShruggedOff(this Agent agent, int inflictedDamge=0)
         {
+            if (Campaign.Current == null) return false;
             if (inflictedDamge > 15) return false;
             
             if (agent.IsMainAgent && agent.GetHero().HasAnyCareer())
@@ -97,8 +99,11 @@ namespace TOR_Core.Extensions
                     return true;
             }
 
-            if (Hero.MainHero.HasCareerChoice("BookofWsoranKeystone") && agent.HasAttribute("NecromancerChampion"))
-                return true;
+            if (Hero.MainHero.HasCareer(TORCareers.Necromancer))
+            {
+                if (Hero.MainHero.HasCareerChoice("BookofWsoranKeystone") && agent.HasAttribute("NecromancerChampion"))
+                    return true;
+            }
 
             return false;
         }
