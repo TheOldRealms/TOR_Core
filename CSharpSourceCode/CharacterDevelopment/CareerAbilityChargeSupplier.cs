@@ -1,6 +1,8 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using System;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -169,6 +171,49 @@ namespace TOR_Core.CharacterDevelopment
                 }
             }
 
+            //The more key stones the more charge needs to be added. This is a good early start bonus
+            var chargeMalus = 0.2f;
+            var malusCount=0;
+            if (!Hero.MainHero.HasCareerChoice("NightRiderKeystone"))
+            {
+                malusCount += 1;
+            }
+            
+            if (!Hero.MainHero.HasCareerChoice("BladeMasterKeystone"))
+            {
+                malusCount += 1;
+            }
+            
+            if (!Hero.MainHero.HasCareerChoice("DoomRiderKeystone"))
+            {
+                malusCount += 1;
+            }
+            
+            if (!Hero.MainHero.HasCareerChoice("AvatarOfDeathKeystone"))
+            {
+                malusCount += 1;
+            }
+            
+            if (!Hero.MainHero.HasCareerChoice("ControlledHungerKeystone"))
+            {
+                malusCount += 1;
+            }
+            
+            if (!Hero.MainHero.HasCareerChoice("DreadKnightKeystone"))
+            {
+                malusCount += 1;
+            }
+            
+            if (!Hero.MainHero.HasCareerChoice("PeerlessWarriorKeystone"))
+            {
+                malusCount += 1;
+            }
+
+            malusCount = Math.Min(malusCount, 5);
+            chargeMalus = Mathf.Clamp(malusCount * chargeMalus, 0, 1); // "never higher than 1 :  2 charge for 1 kill"
+            
+            explainedNumber.AddFactor(chargeMalus);
+            
             return explainedNumber.ResultNumber;
         }
 
