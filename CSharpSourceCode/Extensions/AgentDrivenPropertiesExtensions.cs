@@ -6,6 +6,13 @@ namespace TOR_Core.Extensions
 {
     public static class AgentDrivenPropertiesExtensions
     {
+        
+        public static void SetDynamicReloadProperties(this AgentDrivenProperties agentDrivenProperties, StatusEffectComponent statusEffectComponent, float multiplier)
+        {
+            agentDrivenProperties.ReloadSpeed = statusEffectComponent.GetBaseValueForDrivenProperty(DrivenProperty.ReloadSpeed) * multiplier;
+            agentDrivenProperties.BipedalRangedReloadSpeedMultiplier = statusEffectComponent.GetBaseValueForDrivenProperty(DrivenProperty.BipedalRangedReloadSpeedMultiplier) * multiplier;
+        }
+        
         public static void SetDynamicCombatProperties(this AgentDrivenProperties agentDrivenProperties, StatusEffectComponent statusEffectComponent, float multiplier)
         {
             agentDrivenProperties.SwingSpeedMultiplier = statusEffectComponent.GetBaseValueForDrivenProperty(DrivenProperty.ThrustOrRangedReadySpeedMultiplier) * multiplier;

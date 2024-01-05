@@ -208,7 +208,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             }
         }
 
-        protected void TriggerEffects(Vec3 position, Vec3 normal)
+        protected virtual void TriggerEffects(Vec3 position, Vec3 normal)
         {
             var effects = GetEffectsToTrigger();
             foreach(var effect in effects)

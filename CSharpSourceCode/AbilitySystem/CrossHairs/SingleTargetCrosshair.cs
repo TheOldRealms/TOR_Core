@@ -83,7 +83,15 @@ namespace TOR_Core.AbilitySystem.Crosshairs
 
         public void UnlockTarget()
         {
-            _cachedTarget?.AgentVisuals?.SetContourColor(colorLess);
+            if (Mission.Current.CurrentState != Mission.State.Over)
+            {
+                if (_cachedTarget!=null&& !_cachedTarget.IsFadingOut())
+                {
+                    _cachedTarget.AgentVisuals?.SetContourColor(colorLess);
+                }
+                
+            }
+            
             _isTargetLocked = false;
         }
 

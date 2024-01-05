@@ -6,11 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
 using TaleWorlds.Core;
 using TaleWorlds.ScreenSystem;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -30,6 +32,10 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         {
             _instance = new CustomResourceManager();
             _instance._resources.Clear();
+            _instance._resources.Add("Prestige", 
+                new CustomResource("Prestige", "Prestige", "Is used for upgrading special units of the Empire and special actions.", "prestige_icon_45", "empire"));
+            _instance._resources.Add("Chivalry", 
+                new CustomResource("Chivalry", "Chivalry", "Is used for upgrading special units of Bretonnia and special actions.", "winds_icon_45", "vlandia"));
             _instance._resources.Add("DarkEnergy", 
                 new CustomResource("DarkEnergy", "Dark Energy", "Dark Energy is used by practitioners of necromancy to raise and upkeep their undead minions.", "darkenergy_icon_45", "khuzait"));
             _instance._resources.Add("WindsOfMagic",
@@ -57,6 +63,9 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             ScreenManager.OnPushScreen += ScreenManager_OnPushScreen;
             ScreenManager.OnPopScreen += ScreenManager_OnPopScreen;
         }
+
+       
+
 
         private static void ScreenManager_OnPopScreen(ScreenBase poppedScreen)
         {
@@ -94,15 +103,43 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             _instance._resourceChanges.Clear();
             if ((Hero.MainHero.IsVampire() || Hero.MainHero.IsNecromancer()) && PartyScreenManager.Instance.CurrentMode == PartyScreenMode.Loot)
             {
-                if (leftMemberRoster != null && leftMemberRoster.TotalManCount > 0)
-                {
-                    Hero.MainHero.AddCultureSpecificCustomResource(leftMemberRoster.TotalManCount / 10);
+                var result = 0f;
+                if (leftMemberRoster!=null && leftMemberRoster.Count > 0)
+                { 
+                    result = adjustedGainsForDarkEnergy(leftMemberRoster);
                 }
-                if (leftPrisonRoster != null && leftPrisonRoster.TotalManCount > 0)
-                {
-                    Hero.MainHero.AddCultureSpecificCustomResource(leftPrisonRoster.TotalManCount / 10);
+                
+                if (leftPrisonRoster!=null&& leftPrisonRoster.Count > 0)
+                { 
+                    result = adjustedGainsForDarkEnergy(leftPrisonRoster, true);
                 }
+                
+                Hero.MainHero.AddCultureSpecificCustomResource(result);
             }
+        }
+
+
+        private static float adjustedGainsForDarkEnergy(TroopRoster leftUnits, bool isPrisoner=false)
+        {
+            var explainedNumber = new ExplainedNumber();
+            float reduction = 10;
+            if (isPrisoner)
+            {
+                reduction /= 2;
+            }
+                
+            foreach (var troop in leftUnits.GetTroopRoster().ToList())
+            {
+                if(troop.Character.IsHero) continue;
+                
+                var level = troop.Character.Level;
+                
+                explainedNumber.Add(level*troop.Number);
+            }
+            
+            
+
+            return explainedNumber.ResultNumber/reduction;
         }
 
         public static void OnPartyScreenTroopUpgrade(PartyVM partyVM, PartyScreenLogic.PartyCommand command)
@@ -112,7 +149,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             {
                 CharacterObject troopToUpgrade = command.Character;
                 CharacterObject upgradeTarget = troopToUpgrade.UpgradeTargets[command.UpgradeTarget];
-                var requirement = upgradeTarget.GetCustomResourceRequiredForUpgrade();
+                var requirement = upgradeTarget.GetCustomResourceRequiredForUpgrade(true);
 
                 if(requirement != null)
                 {

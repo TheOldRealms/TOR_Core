@@ -16,6 +16,7 @@ namespace TOR_Core.Models
             var result = base.CalculateAdjustedArmorForBlow(baseArmor, attackerCharacter, attackerCaptainCharacter, victimCharacter, victimCaptainCharacter, weaponComponent);
             ExplainedNumber resultArmor = new ExplainedNumber(result);
             var attacker = attackerCharacter as CharacterObject;
+            var attackerCaptain = attackerCharacter as CharacterObject;
             if (weaponComponent != null && attacker != null)
             {
                 if (attacker.GetPerkValue(TORPerks.GunPowder.PiercingShots) && weaponComponent.IsGunPowderWeapon())
@@ -23,12 +24,25 @@ namespace TOR_Core.Models
                     PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.PiercingShots, attacker, true, ref resultArmor);
                 }
 
-                if (attacker.IsPlayerCharacter)
+                if (attacker.IsPlayerCharacter&& attacker.HeroObject == Hero.MainHero)
                 {
                     var attackMask = AttackTypeMask.Melee;
                     if (weaponComponent.IsRangedWeapon) attackMask = AttackTypeMask.Ranged;
                     CareerHelper.ApplyBasicCareerPassives(attacker.HeroObject, ref resultArmor, PassiveEffectType.ArmorPenetration, attackMask, true);
                 }
+
+                if (attackerCharacter.IsUndead() &&attackerCaptain.IsPlayerCharacter&& attackerCaptain.HeroObject == Hero.MainHero)
+                {
+                    if (Hero.MainHero.HasCareer(TORCareers.Necromancer))
+                    {
+                        if (Hero.MainHero.HasCareerChoice("LiberMortisPassive2"))
+                        {
+                            var choice = TORCareerChoices.GetChoice("LiberMortisPassive2");
+                            resultArmor.AddFactor(choice.GetPassiveValue());
+                        }
+                    }
+                }
+                
             }
             
             return resultArmor.ResultNumber;

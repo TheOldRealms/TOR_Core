@@ -7,8 +7,14 @@ using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.CharacterDevelopment.CareerSystem.Button;
+using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
+using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
@@ -26,11 +32,21 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             {
                 if (onlyWielded)
                 {
+                    var getWeaponEquipment = agent.Character.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Weapon3);
                     int skillValueWielded = 0;
-                    if (agent.WieldedWeapon.Item != null)
+                    if (!getWeaponEquipment.IsEmpty())
                     {
-                        wieldedWeaponSkill = agent.WieldedWeapon.Item?.PrimaryWeapon?.RelevantSkill;
-                        skillValueWielded= agent.GetHero().GetSkillValue(wieldedWeaponSkill);
+                        var value = 0;
+                        foreach (var weapon in getWeaponEquipment)
+                        {
+                            var skill = weapon.PrimaryWeapon.RelevantSkill;
+                            if (relevantSkills.Contains(skill)&& value<agent.GetHero().GetSkillValue(skill))
+                            {
+                                value = agent.GetHero().GetSkillValue(skill);
+                            }
+                        }
+                        
+                        skillValueWielded= value;
                     }
                     skillValue= skillValueWielded;
                 }
@@ -54,8 +70,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
             return skillValue*scalingFactor;
         }
+
+
         
-        public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, AttackTypeMask mask,bool asFactor = false)
+        
+        public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, AttackTypeMask mask, bool asFactor = false)
         {
             var choices = hero.GetAllCareerChoices();
             foreach (var choiceID in choices)
@@ -86,33 +105,120 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             }
         }
         
-        public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, bool asFactor = false)
+        public static bool IsValidCareerMissionInteractionBetweenAgents(Agent affectorAgent , Agent affectedAgent)
+        {
+            if (!Hero.MainHero.HasAnyCareer()) return false;
+            if(Agent.Main==null)return false;
+            
+            if(affectorAgent==null)return false;
+            if(affectorAgent.IsMount||affectedAgent.IsMount) return false;
+
+            return affectorAgent.BelongsToMainParty() || affectedAgent.BelongsToMainParty();
+        }
+        
+        public static void ApplyCareerAbilityCharge( int amount, ChargeType chargeType, AttackTypeMask attackTypeMask,Agent affector=null,Agent affected =null, AttackCollisionData collisionData = new AttackCollisionData())
+        {
+            if(Agent.Main==null) return;
+            var cAbility = Agent.Main.GetComponent<AbilityComponent>();
+            if (cAbility != null)
+            {
+                var value = CalculateChargeForCareer(chargeType, amount, affector,affected, attackTypeMask, collisionData);
+                if (value > 0)
+                {
+                    cAbility.CareerAbility.AddCharge(value);
+                }
+                
+            }
+        }
+
+        public static float CalculateChargeForCareer(ChargeType chargeType, int chargeValue, Agent agent, Agent affected, AttackTypeMask mask, AttackCollisionData collisionData)
+        {
+            ChargeCollisionFlag flag = ChargeCollisionFlag.None;
+
+            if (collisionData.AttackBlockedWithShield)
+                flag |= ChargeCollisionFlag.HitShield;
+
+            if (collisionData.VictimHitBodyPart == BoneBodyPartType.Head || collisionData.VictimHitBodyPart == BoneBodyPartType.Neck)
+            {
+                flag |= ChargeCollisionFlag.HeadShot;
+            }
+            
+            var heroCareer = Hero.MainHero.GetCareer();
+
+
+            var result = heroCareer.GetCalculatedCareerAbilityCharge(agent,affected, chargeType, chargeValue, mask, flag);
+
+
+            if (!result.ApproximatelyEqualsTo(0))
+            {
+                return  result;
+            }
+
+            return 0;
+        }
+        
+        
+        public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, bool asFactor = true, CharacterObject characterObject=null)
         {
             var choices = hero.GetAllCareerChoices();
             foreach (var choiceID in choices)
             {
                 var choice = TORCareerChoices.GetChoice(choiceID);
-                if (choice == null)
-                    continue;
 
-                if (choice.Passive != null && choice.Passive.PassiveEffectType == passiveEffectType)
+                if (choice?.Passive == null || choice.Passive.PassiveEffectType != passiveEffectType) continue;
+                
+                if (characterObject == null)
                 {
-                    var value = choice.Passive.EffectMagnitude;
-                    if (choice.Passive.InterpretAsPercentage)
-                    {
-                        value /= 100;
-                    }
-                    if (asFactor)
-                    {
-                        number.AddFactor(value, new TextObject(choice.BelongsToGroup.Name.ToString()));
-                        return;
-                    }
-                    number.Add(value, new TextObject(choice.BelongsToGroup.Name.ToString()));
+                    characterObject = hero.CharacterObject;
                 }
+                    
+                var passive = choice.Passive;
+                
+                if(!passive.IsValidCharacterObject(characterObject)) continue;
+                    
+                if (passive.WithFactorFlatSwitch)
+                {
+                    asFactor = !asFactor;
+                }
+                    
+                var value = passive.EffectMagnitude;
+                var text = choice.BelongsToGroup.Name;
+                    
+                if(!passive.IsValidCharacterObject(characterObject)) continue;
+                    
+                if (passive.InterpretAsPercentage)
+                {
+                    value /= 100;
+                }
+                    
+                if (asFactor)
+                {
+                    number.AddFactor(value, text);
+                    return;
+                }
+                number.Add(value, text);
             }
         }
-        
-        public static AgentPropertyContainer AddBasicCareerPassivesToPropertyContainerForMainAgent(Agent agent, AgentPropertyContainer propertyContainer, AttackTypeMask attackTypeMaskmask, PropertyMask mask)
+
+        public static float[] AddCareerPassivesForTroopDamageValues(Agent attacker, Agent victim, AttackTypeMask attackTypeMask, PropertyMask mask)
+        {
+            var damageValues = new float[(int)DamageType.All + 1];
+
+            if (mask == PropertyMask.Attack)
+            {
+                ApplyCareerPassivesForDamageValues(attacker, victim, ref damageValues, attackTypeMask, PassiveEffectType.TroopDamage);
+                return damageValues;
+            }
+            
+            else if (mask == PropertyMask.Defense)
+            {
+                ApplyCareerPassivesForDamageValues(victim, attacker, ref damageValues, attackTypeMask, PassiveEffectType.TroopResistance);
+                return damageValues;
+            }
+
+            return null;
+        }
+        public static AgentPropertyContainer AddBasicCareerPassivesToPropertyContainerForMainAgent(Agent agent, AgentPropertyContainer propertyContainer, AttackTypeMask attackType, PropertyMask mask)
         {
             if (!agent.GetHero().HasAnyCareer()) return propertyContainer;
 
@@ -120,71 +226,54 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             var resistanceValues = propertyContainer.ResistancePercentages;
             if (mask == PropertyMask.Attack)
             {
-                ApplyCareerPassivesForDamageValues(agent, ref damageValues, attackTypeMaskmask);
+                ApplyCareerPassivesForDamageValues(agent, null, ref damageValues, attackType,PassiveEffectType.Damage);
             }
 
             if (mask == PropertyMask.Defense)
             {
-                ApplyCareerPassivesForResistanceValues(agent, ref resistanceValues, attackTypeMaskmask);
+                ApplyCareerPassivesForDamageValues(agent, null, ref damageValues, attackType,PassiveEffectType.Resistance);
             }
             return new AgentPropertyContainer(propertyContainer.DamageProportions, propertyContainer.DamagePercentages, resistanceValues, damageValues);
         }
 
-        private static void ApplyCareerPassivesForDamageValues(Agent agent, ref float[] damageAmplifications, AttackTypeMask attackMask)
+        private static void ApplyCareerPassivesForDamageValues(Agent agent,Agent victim, ref float[] values, AttackTypeMask attackMask, PassiveEffectType type)
         {
-            var choices = agent.GetHero().GetAllCareerChoices();
+            if (type != PassiveEffectType.Damage &&
+                type != PassiveEffectType.TroopDamage &&
+                type != PassiveEffectType.Resistance &&
+                type != PassiveEffectType.TroopResistance) return;
+            
+            var choices = Hero.MainHero.GetAllCareerChoices();
             foreach (var choiceID in choices)
             {
                 var choice = TORCareerChoices.GetChoice(choiceID);
                 if (choice == null)
                     continue;
 
-                if (choice.Passive != null && (choice.Passive.PassiveEffectType == PassiveEffectType.Damage))
+                if (choice.Passive != null && (choice.Passive.PassiveEffectType == type))
                 {
+                    if(!choice.Passive.IsValidCombatInteraction(agent, victim, attackMask)) continue;
                     var passive = choice.Passive;
                     var mask = passive.AttackTypeMask;
                     if ((mask & attackMask) == 0) //if mask does NOT contains attackmask
                         continue;
 
                     var damageType = passive.DamageProportionTuple.DamageType;
-                    damageAmplifications[(int)damageType] += (passive.DamageProportionTuple.Percent / 100);
-                }
-            }
-        }
-
-        private static void ApplyCareerPassivesForResistanceValues(Agent agent, ref float[] resistancePropotions, AttackTypeMask attackMask)
-        {
-            var choices = agent.GetHero().GetAllCareerChoices();
-            foreach (var choiceID in choices)
-            {
-                var choice = TORCareerChoices.GetChoice(choiceID);
-                if (choice == null)
-                    continue;
-
-                if (choice.Passive != null && (choice.Passive.PassiveEffectType == PassiveEffectType.Resistance))
-                {
-                    var passive = choice.Passive;
-                    var mask = passive.AttackTypeMask;
-                    if ((mask & attackMask) == 0) //if mask does NOT contains attackmask
-                        continue;
-                    var damageType = passive.DamageProportionTuple.DamageType;
-                    resistancePropotions[(int)damageType] += (passive.DamageProportionTuple.Percent / 100);
+                    values[(int)damageType] += (passive.DamageProportionTuple.Percent / 100);
                 }
             }
         }
 
 
-        public static float CalculateTroopWageCareerPerkEffect(TroopRosterElement troop, string careerPerkID, out TextObject description)
+        public static float CalculateTroopWageCareerPerkEffect(TroopRosterElement troop, CareerChoiceObject careerPerk, out TextObject description)
         {
             float value = 0;
-            description = new TextObject();
-            var choice = TORCareerChoices.GetChoice(careerPerkID);
-            if (choice != null)
-            {
-                float effect = choice.GetPassiveValue();
-                value = (troop.Character.TroopWage*troop.Number) *effect;
-                description = choice.BelongsToGroup.Name;
-            }
+            description = new TextObject("");
+            if (careerPerk == null) return 0;
+            
+            float effect = careerPerk.GetPassiveValue();
+            value = (troop.Character.TroopWage*troop.Number) * effect;
+            description = careerPerk.BelongsToGroup.Name;
 
             return value;
         }
@@ -212,6 +301,41 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 return true;
             }
             return false;
+        }
+
+        public static CareerButtonBehaviorBase GetCareerButton()
+        {
+            
+            var career = Hero.MainHero.GetCareer();
+
+            if (career != null)
+            {
+                return CareerButtons.Instance.GetCareerButton(career);
+            }
+
+            return null;
+        }
+        
+        public static string GetButtonSprite()
+        {
+            var career= Hero.MainHero.GetCareer();
+            if (career == null) return "";
+            
+            var button = GetCareerButton();
+            if (button != null)
+            {
+                return CareerButtons.Instance.GetCareerButton(career).CareerButtonIcon;
+            }
+
+            return "";
+        }
+        
+        
+        public enum ChargeCollisionFlag
+        {
+            None,
+            HitShield,
+            HeadShot
         }
     }
 }

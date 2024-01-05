@@ -2,6 +2,7 @@ using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NAudio.SoundFont;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
@@ -95,6 +96,9 @@ namespace TOR_Core.Extensions
                 if (agent.GetHero().GetAllCareerChoices().Contains("QuestingVowPassive4"))
                     return true;
             }
+
+            if (Hero.MainHero.HasCareerChoice("BookofWsoranKeystone") && agent.HasAttribute("NecromancerChampion"))
+                return true;
 
             return false;
         }
@@ -463,6 +467,22 @@ namespace TOR_Core.Extensions
             }
         }
 
+        public static void SetSpellCasterMode(this Agent agent)
+        {
+            if(agent!=Agent.Main) return;
+            if (Mission.Current == null) return;
+            
+            Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>().ActivateSpellcasterMode();
+        }
+        
+        public static void UnsetSpellCasterMode(this Agent agent)
+        {
+            if(agent!=Agent.Main) return;
+            if (Mission.Current == null) return;
+            
+            Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>().DeactivateSpellcasterMode();
+        }
+        
         public static Hero GetHero(this Agent agent)
         {
             if (agent == null) return null;
@@ -475,6 +495,12 @@ namespace TOR_Core.Extensions
                 if (character != null && character.IsHero) hero = character.HeroObject;
             }
             return hero;
+        }
+
+        public static bool isSummoned(this Agent agent)
+        {
+            if (agent == null) return false;
+            return agent.Origin != null && agent.Origin.GetType() == typeof(SummonedAgentOrigin);
         }
 
         public static int GetPlaceableArtilleryCount(this Agent agent)
@@ -507,6 +533,16 @@ namespace TOR_Core.Extensions
                 return agent.Character.GetAbilities();
             }
             else return new List<string>();
+        }
+
+        public static CareerAbility GetCareerAbility(this Agent agent)
+        {
+            if (agent.IsMainAgent && agent.GetHero().HasAnyCareer())
+            {
+                return agent.GetComponent<AbilityComponent>().CareerAbility;
+            }
+
+            return null;
         }
         
 
@@ -543,7 +579,11 @@ namespace TOR_Core.Extensions
             return null;
         }
 
-        
+        public static bool BelongsToMainParty(this Agent agent)
+        {
+            var party = agent.GetOriginMobileParty();
+            return party != null && party.IsMainParty;
+        }
 
         public static List<string> GetAttributes(this Agent agent)
         {
@@ -700,8 +740,16 @@ namespace TOR_Core.Extensions
 
         public static void ApplyStatusEffect(this Agent agent, string effectId, Agent applierAgent, float duration = 5, bool append = true, bool isMutated = false)
         {
+            TORCommon.Say(effectId+" "+duration);
             var comp = agent.GetComponent<StatusEffectComponent>();
             if (comp != null) comp.RunStatusEffect(effectId, applierAgent, duration, append, isMutated);
+        }
+        
+        public static void RemoveStatusEffect(this Agent agent, string effectId)
+        {
+            TORCommon.Say(effectId+" removed");
+            var comp = agent.GetComponent<StatusEffectComponent>();
+            if (comp != null) comp.RemoveStatusEffect(effectId);
         }
 
         public static void FallDown(this Agent agent)

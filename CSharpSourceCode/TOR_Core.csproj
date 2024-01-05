@@ -372,6 +372,7 @@
     <Compile Include="AbilitySystem\ItemBoundAbility.cs" />
     <Compile Include="AbilitySystem\Prayer.cs" />
     <Compile Include="AbilitySystem\Scripts\AbilityScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\AccusationScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ArtilleryPlacementScript.cs" />
     <Compile Include="AbilitySystem\Scripts\AugmentScript.cs" />
     <Compile Include="AbilitySystem\Scripts\BlastScript.cs" />
@@ -381,8 +382,11 @@
     <Compile Include="AbilitySystem\Scripts\HexScript.cs" />
     <Compile Include="AbilitySystem\Scripts\MissileScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ProjectileScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\RedFuryScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ShadowStepScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\SummonChampionScript.cs" />
     <Compile Include="AbilitySystem\Scripts\SummoningScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\TeleportScript.cs" />
     <Compile Include="AbilitySystem\Scripts\VortexScript.cs" />
     <Compile Include="AbilitySystem\Scripts\WindScript.cs" />
     <Compile Include="AbilitySystem\SeekerController.cs" />
@@ -458,6 +462,7 @@
     <Compile Include="BattleMechanics\SFX\TORLightDampener.cs" />
     <Compile Include="BattleMechanics\SFX\TORSimpleObjectAnimator.cs" />
     <Compile Include="BattleMechanics\SFX\TORSpinner.cs" />
+    <Compile Include="BattleMechanics\SFX\PlayerFlyableObjectScript.cs" />
     <Compile Include="BattleMechanics\SniperScope\SniperScope.cs" />
     <Compile Include="BattleMechanics\StatusEffect\StatusEffect.cs" />
     <Compile Include="BattleMechanics\StatusEffect\StatusEffectComponent.cs" />
@@ -479,6 +484,8 @@
     <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\RaceFixCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\BountyMaster\BountyMasterCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\Careers\CareerDialogOptionsCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\Careers\TORCareerPerkCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\FaceGenHelper.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissCampaignBehavior.cs" />
@@ -517,7 +524,6 @@
     <Compile Include="BattleMechanics\TORBattleAgentLogic.cs" />
     <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCaptivityCampaignBehavior.cs" />
-    <Compile Include="CampaignMechanics\TORCareerPerkCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORBaseSettlementComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORSettlementComponents.cs" />
@@ -527,7 +533,14 @@
     <Compile Include="CampaignMechanics\TORAIRecruitmentCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORSpecialSettlementBehavior.cs" />
     <Compile Include="CampaignMechanics\TORWanderersCampaignBehavior.cs" />
+    <Compile Include="CharacterDevelopment\CareerAbilityChargeSupplier.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\CareerButtonBehaviorBase.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\CareerButtons.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\GrailKnightCareerButtonBehavior.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\MercenaryCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerAbilityEffectVM.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\SpecialbuttonHandler.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\WitchHunterCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceGroupObject.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceGroupObjectVM.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceObject.cs" />
@@ -543,9 +556,12 @@
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\GrailKnightCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\GrailDamselCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\MercenaryCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\NecromancerCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\TORCareerChoicesBase.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\VampireCountCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\WarriorPriestCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\WitchHunterCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\DialogOptions\GrailDamselEnvoyOfTheLadyPerkDialog.cs" />
     <Compile Include="CharacterDevelopment\TORAttributes.cs" />
     <Compile Include="CharacterDevelopment\TORCareerChoiceGroups.cs" />
     <Compile Include="CharacterDevelopment\TORCareerChoices.cs" />
@@ -575,6 +591,7 @@
     <Compile Include="Extensions\TeamExtensions.cs" />
     <Compile Include="Extensions\UI\BaseViewModelExtension.cs" />
     <Compile Include="Extensions\UI\HeroEncyclopediaVMExtension.cs" />
+    <Compile Include="Extensions\UI\PartyCharacterVMExtension.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionAttribute.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionManager.cs" />
     <Compile Include="Extensions\ViewModelExtensions.cs" />
@@ -707,6 +724,7 @@
     <Compile Include="Utilities\TORParticleSystem.cs" />
     <Compile Include="Utilities\TORPaths.cs" />
     <Compile Include="Utilities\TORSpellBlowHelper.cs" />
+    <Compile Include="Utilities\TORSummonHelper.cs" />
     <Compile Include="Utilities\TORWorldMapScript.cs" />
     <Compile Include="Utilities\TORTextHelper.cs" />
   </ItemGroup>

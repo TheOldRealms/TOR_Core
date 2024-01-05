@@ -1022,6 +1022,9 @@
       <hair_tags>
         <hair_tag name="ElfHair" />
       </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_we_eternal_guard" />
@@ -1037,6 +1040,9 @@
       <hair_tags>
         <hair_tag name="ElfHair" />
       </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
     </face>
     <upgrade_targets />
     <Equipments>
@@ -1050,6 +1056,9 @@
       <hair_tags>
         <hair_tag name="Bald" />
       </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
     </face>
     <upgrade_targets />
     <Equipments>
@@ -2770,6 +2779,85 @@
     <Equipments>
       <EquipmentSet id="tor_ror_bergerac_bowman_template" />
       <EquipmentSet id="tor_ror_bergerac_bowman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_wh_retinue" default_group="ranged" level="16" name="{=str_tor_wh_retinue}Retinue Apprentice" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_wh_retinue_hunter" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_empire_wh_retinue_template" />
+      <EquipmentSet id="tor_empire_wh_retinue_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_wh_retinue_hunter" default_group="ranged" level="36" name="{=str_tor_wh_retinue_hunter}Retinue Hunter" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level36">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_wh_retinue_headhunter" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_empire_wh_retinue_hunter_template" />
+      <EquipmentSet id="tor_empire_wh_retinue_hunter_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_wh_retinue_headhunter" default_group="ranged" level="46" name="{=str_tor_wh_retinue_headhunter}Retinue Headhunter" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level46">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_empire_wh_retinue_headhunter_template" />
+      <EquipmentSet id="tor_empire_wh_retinue_headhunter_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_harbinger_champion" default_group="infantry" level="31" name="{=str_tor_vc_harbinger_champion}Necromancer Champion" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level31" is_basic_troop="true" race="skeleton">
+    <face>
+      <face_key_template value="BodyProperty.skeleton" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_vc_harbinger_champion_two_handed" />
+      <upgrade_target id="NPCCharacter.tor_vc_harbinger_champion_plate" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_vc_harbinger_champion_template" />
+      <EquipmentSet id="tor_vc_harbinger_champion_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_harbinger_champion_two_handed" default_group="infantry" level="36" name="{=str_tor_vc_harbinger_champion_two_handed}Necromancer Champion Two-Handed" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level36" race="skeleton">
+    <face>
+      <face_key_template value="BodyProperty.skeleton" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_vc_harbinger_champion_two_handed_template" />
+      <EquipmentSet id="tor_vc_harbinger_champion_two_handed_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_harbinger_champion_plate" default_group="cavalry" level="41" name="{=str_tor_vc_harbinger_champion_plate}Necromancer Champion Plate" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level41" race="skeleton">
+    <face>
+      <face_key_template value="BodyProperty.skeleton" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_vc_harbinger_champion_plate_two_handed" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_vc_harbinger_champion_plate_template" />
+      <EquipmentSet id="tor_vc_harbinger_champion_plate_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_harbinger_champion_plate_two_handed" default_group="cavalry" level="46" name="{=str_tor_vc_harbinger_champion_plate_two_handed}Necromancer Champion Two-Handed-Plate" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level46" race="skeleton">
+    <face>
+      <face_key_template value="BodyProperty.skeleton" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_vc_harbinger_champion_plate_two_handed_template" />
+      <EquipmentSet id="tor_vc_harbinger_champion_plate_two_handed_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_cult_acolyte" default_group="infantry" level="11" name="{=str_tor_chaos_cult_acolyte}Cultist of Chaos" occupation="Bandit" culture="Culture.forest_bandits" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="chaos_ud_cultist">

@@ -31,6 +31,7 @@ using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.AICompanions;
 using TOR_Core.CampaignMechanics.Assimilation;
 using TOR_Core.CampaignMechanics.BountyMaster;
+using TOR_Core.CampaignMechanics.Careers;
 using TOR_Core.CampaignMechanics.Chaos;
 using TOR_Core.CampaignMechanics.CustomDialogs;
 using TOR_Core.CampaignMechanics.CustomEncounterDialogs;
@@ -48,6 +49,7 @@ using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignSupport.TownBehaviours;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Extensions.UI;
@@ -147,7 +149,7 @@ namespace TOR_Core
                 starter.AddBehavior(new TORSpecialSettlementBehavior());
                 starter.AddBehavior(new CustomEventsCampaignBehavior());
                 starter.AddBehavior(new PlaguedVillageQuestCampaignBehavior());
-
+                starter.AddBehavior(new CareerDialogOptionsCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
@@ -278,6 +280,7 @@ namespace TOR_Core
                 _ = new TORCareerChoiceGroups();
                 _ = new TORCareerChoices();
                 _ = new TORCampaignEvents();
+                
                 MBObjectManager.Instance.LoadXML("Religions", false);
             }
         }
