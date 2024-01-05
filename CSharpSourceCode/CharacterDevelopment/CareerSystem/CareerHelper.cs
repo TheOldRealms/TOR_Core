@@ -109,10 +109,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         {
             if (Campaign.Current == null) return false;
             if (!Hero.MainHero.HasAnyCareer()) return false;
+            if(affectorAgent==null)return false;
             if (Hero.MainHero.HasCareer(TORCareers.Necromancer) && affectorAgent.HasAttribute("NecromancerChampion")) return true;
             if(Agent.Main==null)return false;
             
-            if(affectorAgent==null)return false;
+            
             if(affectorAgent.IsMount||affectedAgent.IsMount) return false;
 
             return affectorAgent.BelongsToMainParty() || affectedAgent.BelongsToMainParty();
