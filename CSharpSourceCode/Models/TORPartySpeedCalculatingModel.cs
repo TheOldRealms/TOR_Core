@@ -49,23 +49,6 @@ namespace TOR_Core.Models
                         result.AddFactor(-0.2f, new TextObject("Suffering from sun light"));
                     }
                 }
-
-                if (MobileParty.MainParty.LeaderHero == Hero.MainHero)
-                {
-                    var choices = Hero.MainHero.GetAllCareerChoices();
-
-                    if (faceTerrainType == TerrainType.Forest && choices.Contains("SurvivalistPassive3"))
-                    {
-                        var choice = TORCareerChoices.GetChoice("SurvivalistPassive3");
-                        if (choice != null)
-                        {
-                            result.AddFactor(choice.GetPassiveValue(), new TextObject(choice.BelongsToGroup.ToString()));
-                        }
-
-                    }
-
-
-                }
             }
 
             if (mobileParty.HasBlessing("cult_of_taal"))
@@ -85,7 +68,7 @@ namespace TOR_Core.Models
             if (party.LeaderHero == null) return;
             if (party.LeaderHero.HasAnyCareer())
             {
-                CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.PartyMovementSpeed);
+                CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.PartyMovementSpeed, false);
             }
         }
     }

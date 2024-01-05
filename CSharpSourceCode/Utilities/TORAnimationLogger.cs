@@ -21,7 +21,7 @@ namespace TOR_Core.Utilities
                     if(_actionName != action.Name)
                     {
                         _actionName = action.Name;
-                        TORCommon.Say("New action: " +  _actionName);
+                      //  TORCommon.Say("New action: " +  _actionName);
                     }
                 }
             }

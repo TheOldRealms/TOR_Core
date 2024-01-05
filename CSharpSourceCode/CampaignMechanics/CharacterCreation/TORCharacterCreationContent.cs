@@ -214,6 +214,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             Hero.MainHero.AddAttribute("AbilityUser");
             Hero.MainHero.AddAttribute("CanPlaceArtillery");
+
+            
             
             if (IsMagicianCharacterCreationID (id) || IsDamselCharacterCreationID (id))
             {
@@ -225,6 +227,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
             }
 
+            if (IsWitchHunterCharacterCreationID(id))
+            {
+                Hero.MainHero.AddCareer(TORCareers.WitchHunter);
+            }
+            
             if (IsKnightErrantCharacterCreationID(id))
             {
                 Hero.MainHero.AddCareer(TORCareers.GrailKnight);
@@ -261,6 +268,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                Hero.MainHero.AddCareer(TORCareers.Necromancer);
                 Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 25);
             }
             else if (IsVampireCharacterCreationID (id))
@@ -317,7 +325,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             Hero.MainHero.SetBirthDay(CampaignTime.YearsFromNow(-age));
         }
 
-        
+        private bool IsWitchHunterCharacterCreationID(string characterCreationOptionID) =>  characterCreationOptionID == "option14";
         private bool IsKnightErrantCharacterCreationID(string characterCreationOptionID) =>  characterCreationOptionID == "option41";
         private bool IsVampireCharacterCreationID(string characterCreationOptionID) => characterCreationOptionID == "option26" || characterCreationOptionID == "option57";
         private bool IsMagicianCharacterCreationID(string characterCreationOptionID) => characterCreationOptionID == "option12";

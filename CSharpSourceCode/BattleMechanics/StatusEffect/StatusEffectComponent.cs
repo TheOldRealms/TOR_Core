@@ -9,9 +9,10 @@ using TaleWorlds.Library;
 using TaleWorlds.Core;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using System;
-using System.Diagnostics.Tracing;
 using TaleWorlds.TwoDimension;
+using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.SFX;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
 {
@@ -27,7 +28,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         private bool _initBaseValues;
         private bool _disabled;
         private Dictionary<DrivenProperty, float> _baseValues;
-       
 
         public StatusEffectComponent(Agent agent) : base(agent)
         {
@@ -36,7 +36,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             _dummyEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
             _dummyEntity.Name = "_dummyEntity_" + Agent.Index;
             _baseValues = new Dictionary<DrivenProperty, float>();
-     
         }
 
         public void SynchronizeBaseValues(bool mountOnly = false)
@@ -47,6 +46,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 _baseValues.AddOrReplace(DrivenProperty.MaxSpeedMultiplier, this.Agent.AgentDrivenProperties.MaxSpeedMultiplier);
                 _baseValues.AddOrReplace(DrivenProperty.SwingSpeedMultiplier, this.Agent.AgentDrivenProperties.SwingSpeedMultiplier);
                 _baseValues.AddOrReplace(DrivenProperty.ThrustOrRangedReadySpeedMultiplier, this.Agent.AgentDrivenProperties.ThrustOrRangedReadySpeedMultiplier);
+                _baseValues.AddOrReplace(DrivenProperty.ReloadSpeed, this.Agent.AgentDrivenProperties.ReloadSpeed);
+                _baseValues.AddOrReplace(DrivenProperty.BipedalRangedReloadSpeedMultiplier, this.Agent.AgentDrivenProperties.BipedalRangedReloadSpeedMultiplier);
             }
 
             if (!this.Agent.HasMount) return;
@@ -63,12 +64,19 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             StatusEffect effect = _currentEffects.Keys.Where(e => e.Template.StringID.Equals(effectId)).FirstOrDefault();
             if (effect != null)
             {
-                if (append) effect.CurrentDuration += duration;
+                if (append)
+                {
+                    effect.CurrentDuration += duration;
+                }
+                else
+                {
+                    effect.CurrentDuration = duration; 
+                }
             }
             else
             {
                 effect = StatusEffectManager.CreateNewStatusEffect(effectId, applierAgent, isMutated);
-                if (applierAgent.IsHero)
+                if (applierAgent!=null&&applierAgent.IsHero)
                 {
                     var career = applierAgent.GetHero().GetCareer();
                     if (career != null) career.MutateStatusEffect(effect.Template, applierAgent);
@@ -85,6 +93,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         }
 
         public override void OnAgentRemoved() => CleanUp();
+        
         public override void OnComponentRemoved() => CleanUp();
 
         public void OnElapsed(float dt)
@@ -106,8 +115,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
 
             CalculateEffectAggregate();
-            StatusEffect dotEffect = _currentEffects.Keys.Where(x => x.Template.Type == StatusEffectTemplate.EffectType.DamageOverTime).FirstOrDefault();
-
+            
             if (Agent.IsActive() && Agent != null && !Agent.IsFadingOut())
             {
                 if (_effectAggregate == null) return;
@@ -121,21 +129,45 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
                 if (_effectAggregate.DamageOverTime > 0)
                 {
-                    Agent.ApplyDamage((int)_effectAggregate.DamageOverTime, Agent.Position, dotEffect.ApplierAgent, false, false);
+                    var value = _effectAggregate.DamageOverTime;
+                    var effect = _currentEffects.Keys.FirstOrDefault(x => x.Template.Type == StatusEffectTemplate.EffectType.DamageOverTime&& x.ApplierAgent == Agent.Main) ?? 
+                                  _currentEffects.Keys.FirstOrDefault(x => x.Template.Type == StatusEffectTemplate.EffectType.DamageOverTime);
+                    
+                    var applier = effect?.ApplierAgent;
+
+                    if (applier!=null&&(applier.IsMainAgent||applier.BelongsToMainParty()))
+                    {
+                        CareerHelper.ApplyCareerAbilityCharge((int)value,ChargeType.Healed,AttackTypeMask.Spell,applier);
+                    }
+
+                    Agent.ApplyDamage((int)_effectAggregate.DamageOverTime, Agent.Position, applier, false, false);
                 }
                 else if (_effectAggregate.HealthOverTime > 0)
                 {
-                    Agent.Heal((int)_effectAggregate.HealthOverTime);
+                    
+                    var healingValue =(int) _effectAggregate.HealthOverTime;
+                    Agent.Heal(healingValue);
 
                     if (Agent.HasMount && Agent.HasAttribute("HorseLink"))
                     {
-                        Agent.MountAgent.Heal(_effectAggregate.HealthOverTime);
+                        Agent.MountAgent.Heal(healingValue);
                     }
+                    
+                    var effect = _currentEffects.Keys.FirstOrDefault(x => x.Template.Type == StatusEffectTemplate.EffectType.HealthOverTime&& x.ApplierAgent == Agent.Main) ?? 
+                                  _currentEffects.Keys.FirstOrDefault(x => x.Template.Type == StatusEffectTemplate.EffectType.HealthOverTime);
+
+                    var applier = effect?.ApplierAgent;
+
+                    if (applier!=null&&(applier.IsMainAgent||applier.BelongsToMainParty()))
+                    {
+                        CareerHelper.ApplyCareerAbilityCharge(healingValue,ChargeType.Healed,AttackTypeMask.Spell,applier);
+                    }
+                    
                 }
 
                 if (_effectAggregate == null) return;
 
-                ModifiedDrivenProperties = _effectAggregate.SpeedProperties != 0 || _effectAggregate.AttackSpeedProperties != 0;
+                ModifiedDrivenProperties = _effectAggregate.SpeedProperties != 0 || _effectAggregate.AttackSpeedProperties != 0 || _effectAggregate.ReloadSpeedProperties != 0;
 
                 if (!ModifiedDrivenProperties)
                 {
@@ -253,6 +285,13 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             if (_effectAggregate == null) _effectAggregate = new EffectAggregate();
             return _effectAggregate.AttackSpeedProperties;
         }
+        
+        public float GetReloadSpeedModifier()
+        {
+            if (_effectAggregate == null) _effectAggregate = new EffectAggregate();
+            return _effectAggregate.ReloadSpeedProperties;
+        }
+
 
         public float GetLanceSteadinessModifier()
         {
@@ -360,6 +399,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             public Dictionary<AttackTypeMask, float[]> Resistances { get; }
             public float SpeedProperties;
             public float AttackSpeedProperties;
+            public float ReloadSpeedProperties;
             public float LanceSteadinessChance;
 
             public EffectAggregate()
@@ -404,6 +444,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     case StatusEffectTemplate.EffectType.AttackSpeedManipulation:
                         AttackSpeedProperties += strength;
                         break;
+                    case StatusEffectTemplate.EffectType.ReloadSpeedManipulation:
+                        ReloadSpeedProperties += strength;
+                        break;
                     case StatusEffectTemplate.EffectType.TemporaryAttributeOnly:
                         break;
                 }
@@ -444,6 +487,24 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     DamageAmplifications[AttackTypeMask.Melee][(int)damageType] += value;
                 }
             }
+        }
+
+        public void RemoveStatusEffect(string StatusEffectID, bool allEffects=false)
+        {
+            if (allEffects)
+            {
+                var targetEffects = _currentEffects.Keys.Where(x => x.Template.StringID.Contains(StatusEffectID)).ToList();
+                foreach (var statusEffect in targetEffects)
+                {
+                    TORCommon.Say("remove "+statusEffect.Template.StringID);
+                    RemoveEffect(statusEffect);
+                }
+            }
+            var targetEffect = _currentEffects.Keys.FirstOrDefault(x => x.Template.StringID.Contains(StatusEffectID));
+            
+            if(targetEffect==null) return;
+
+            RemoveEffect(targetEffect);
         }
     }
 }

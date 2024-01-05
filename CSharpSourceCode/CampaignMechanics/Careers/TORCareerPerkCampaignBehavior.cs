@@ -1,17 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Helpers;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.Conversation;
+using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics
 {
+   
     public class TORCareerPerkCampaignBehavior : CampaignBehaviorBase
     {
         public override void RegisterEvents()
@@ -21,6 +28,7 @@ namespace TOR_Core.CampaignMechanics
             CampaignEvents.OnUnitRecruitedEvent.AddNonSerializedListener(this, PlayerRecruitmentEvent);
         }
         
+
         private void PlayerRecruitmentEvent(CharacterObject characterObject, int amount)
         {
             if (Hero.MainHero.HasAnyCareer())
@@ -28,9 +36,9 @@ namespace TOR_Core.CampaignMechanics
                 var party = Hero.MainHero.PartyBelongedTo;
                 var choices = Hero.MainHero.GetAllCareerChoices();
                 
-                if (choices.Contains("CommanderPassive4"))
+                if (choices.Contains("PaymasterPassive2"))
                 {
-                    var choice = TORCareerChoices.GetChoice("CommanderPassive4");
+                    var choice = TORCareerChoices.GetChoice("PaymasterPassive2");
                     if (choice != null)
                         AddExtraTroopsWithChanceIfPossible(characterObject, amount, party, choice.GetPassiveValue());
                 }

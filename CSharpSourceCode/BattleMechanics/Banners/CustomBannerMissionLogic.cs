@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -108,6 +108,7 @@ namespace TOR_Core.BattleMechanics.Banners
                 if (!party.MobileParty.IsLordParty) return false;
             }
             
+            if (agent.isSummoned()) return false;
             var equipment = agent.Equipment;
             if(equipment.HasAnyWeaponWithFlags(WeaponFlags.NotUsableWithOneHand)) return false;
             var weaponList = GetWeaponItems(equipment).ToList();

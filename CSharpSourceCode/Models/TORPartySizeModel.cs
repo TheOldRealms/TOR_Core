@@ -60,7 +60,7 @@ namespace TOR_Core.Models
             if (playerHero == null) return;
             if (playerHero.HasAnyCareer())
             {
-                CareerHelper.ApplyBasicCareerPassives(playerHero, ref number, PassiveEffectType.PartySize);
+                CareerHelper.ApplyBasicCareerPassives(playerHero, ref number, PassiveEffectType.PartySize,false);
             }
         }
     }

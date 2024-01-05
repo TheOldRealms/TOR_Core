@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Map.MapBar;
@@ -37,7 +38,23 @@ namespace TOR_Core.CampaignMechanics
 
         private List<TooltipProperty> GetCultureResourceHintText()
         {
-			return new List<TooltipProperty> { new TooltipProperty(Hero.MainHero.GetCultureSpecificCustomResource().LocalizedName.ToString() + ": ", Hero.MainHero.GetCultureSpecificCustomResourceValue().ToString() + Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText(), 0, false, TooltipProperty.TooltipPropertyFlags.None) };
+	        string customResourceTitle = Hero.MainHero.GetCultureSpecificCustomResource().LocalizedName.ToString();
+	        var value = Hero.MainHero.GetCultureSpecificCustomResourceValue().ToString("0");
+	        var icon = Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText();
+	        var change = Hero.MainHero.GetCultureSpecificCustomResourceChange();
+
+	        List<TooltipProperty> list = new List<TooltipProperty>();
+	        list.Add(new TooltipProperty(customResourceTitle, value+icon, 0, false, TooltipProperty.TooltipPropertyFlags.Title));
+	        
+	        foreach (var elem in change.GetLines())
+	        {
+		        if (!elem.number.ApproximatelyEqualsTo(0.0f))
+		        {
+			        list.Add(new TooltipProperty(elem.name, elem.number.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+		        }
+	        }
+	        
+	        return list;
         }
 
         private List<TooltipProperty> GetArtilleryHintText()
@@ -47,9 +64,9 @@ namespace TOR_Core.CampaignMechanics
 			string artilleryDeployable = new TextObject ("{=tor_ui_winds_of_magic_recharge_rate_str}Maximum Deployable Artillery Pieces:").ToString();
 			
 			List<TooltipProperty> list = new List<TooltipProperty>();
-			list.Add(new TooltipProperty("Artillery", _maxArtillery.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.Title));
-			list.Add(new TooltipProperty("Current Artillery Pieces in Inventory:", _currentArtilleryItems.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
-			list.Add(new TooltipProperty("Maximum Deployable Artillery Pieces:", _maxArtillery.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
+			list.Add(new TooltipProperty(artilleryTitle, _maxArtillery.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.Title));
+			list.Add(new TooltipProperty(artilleryInventory, _currentArtilleryItems.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
+			list.Add(new TooltipProperty(artilleryDeployable, _maxArtillery.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
 			return list;
 		}
 
@@ -89,7 +106,7 @@ namespace TOR_Core.CampaignMechanics
             HasCultureResource = resource != null;
 			if(resource != null)
 			{
-				CultureResourceText = Hero.MainHero.GetCultureSpecificCustomResourceValue().ToString();
+				CultureResourceText = ((int)Hero.MainHero.GetCultureSpecificCustomResourceValue()).ToString();
 			}
 			
 		}

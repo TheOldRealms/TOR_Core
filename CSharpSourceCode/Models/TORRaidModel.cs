@@ -18,9 +18,11 @@ namespace TOR_Core.Models
                 {
                     var choices = MobileParty.MainParty.LeaderHero.GetAllCareerChoices();
 
-                    if (choices.Contains("BladeMasterPassive4"))
+                    float daytime = CampaignTime.Hours(Campaign.CurrentTime).CurrentHourInDay;
+                    var isNight = daytime > 18 || daytime < 6;
+                    if (choices.Contains("NightRiderPassive3")&& isNight)
                     {
-                        var choice = TORCareerChoices.GetChoice("BladeMasterPassive4");
+                        var choice = TORCareerChoices.GetChoice("NightRiderPassive3");
                         if (choice != null)
                         {
                             explainedNumber.AddFactor(choice.GetPassiveValue());

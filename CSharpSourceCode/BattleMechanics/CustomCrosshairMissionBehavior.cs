@@ -1,4 +1,5 @@
-﻿using TaleWorlds.Core;
+﻿using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -16,6 +17,8 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
     [OverrideView(typeof(MissionCrosshair))]
     public class CustomCrosshairMissionBehavior : MissionView
     {
+        private bool _hasCareerSingleTargetCrosshair;
+        private bool _isCareerSingleTargetCrosshairActive;
         private bool _areCrosshairsInitialized;
         private ICrosshair _currentCrosshair;
         private Crosshair _weaponCrosshair;
@@ -23,6 +26,7 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
         private AbilityCrosshair _abilityCrosshair;
         private AbilityComponent _abilityComponent;
         private AbilityManagerMissionLogic _missionLogic;
+        private CareerAbility _careerAbility;
 
         public ICrosshair CurrentCrosshair { get => _currentCrosshair; }
 
@@ -39,12 +43,16 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
             {
                 if (CanUseAbilityCrosshair())
                 {
+                    if (_currentCrosshair == _weaponCrosshair)
+                        _weaponCrosshair.DisableTargetGadgetOpacities();
+                    
                     if (_currentCrosshair != _abilityCrosshair)
                         ChangeCrosshair(_abilityCrosshair);
                 }
-                else if (!Agent.Main.WieldedWeapon.IsEmpty && Agent.Main.WieldedWeapon.CurrentUsageItem.IsRangedWeapon)
+                else if (!Agent.Main.WieldedWeapon.IsEmpty)
                 {
-                    if (CanUseSniperScope())
+                    
+                    if (CanUseSniperScope()&&Agent.Main.WieldedWeapon.CurrentUsageItem.IsRangedWeapon)
                     {
                         if (_currentCrosshair != _sniperScope)
                             ChangeCrosshair(_sniperScope);
@@ -54,11 +62,32 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
                         if (_currentCrosshair != _weaponCrosshair)
                             ChangeCrosshair(_weaponCrosshair);
                     }
+                    
+                    if (_hasCareerSingleTargetCrosshair&&_abilityComponent.CareerAbility.IsCharged && !_abilityComponent.CareerAbility.IsOnCooldown())
+                    {
+                        if (!_isCareerSingleTargetCrosshairActive)
+                        {
+                            _isCareerSingleTargetCrosshairActive = true;
+                        }
+                        
+                    }
+                    else if (_isCareerSingleTargetCrosshairActive)
+                    {
+                        _isCareerSingleTargetCrosshairActive = false; 
+                        _abilityComponent.CareerAbility.Crosshair.Hide();
+                    }
                 }
-                else ChangeCrosshair(null);
+                else
+                {
+                    ChangeCrosshair(null);
+                }
                 if (_currentCrosshair != null) _currentCrosshair.Tick();
+                
+                if(_isCareerSingleTargetCrosshairActive) _abilityComponent.CareerAbility.Crosshair.Tick();
+                
             }
-            else if(_currentCrosshair != null) ChangeCrosshair(null);
+            else if(_currentCrosshair != null) 
+                ChangeCrosshair(null);
         }
 
         private void ChangeCrosshair(ICrosshair crosshair)
@@ -70,22 +99,22 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
 
         private bool CanUseCrosshair()
         {
+            var careerAbilityDeactivateCondition= _careerAbility!=null && _careerAbility.RequiresDisabledCrosshairDuringAbility && _careerAbility.IsActive;        //vampire bat swarm shouldnt have crosshair
+            
             return Agent.Main != null &&
                    Agent.Main.State == AgentState.Active &&
-                   (_abilityComponent == null ||
-                   _abilityComponent.CareerAbility == null ||
-                   !_abilityComponent.CareerAbility.IsActive) &&
-                   Mission.Mode != MissionMode.Conversation &&
-                   Mission.Mode != MissionMode.Deployment &&
-                   Mission.Mode != MissionMode.CutScene &&
-                   MissionScreen != null &&
-                   MissionScreen.CustomCamera == null &&
-                   (MissionScreen.OrderFlag == null || !MissionScreen.OrderFlag.IsVisible) &&
-                   !MissionScreen.IsViewingCharacter() &&
-                   !MissionScreen.IsPhotoModeEnabled &&
-                   !MBEditor.EditModeEnabled &&
-                   BannerlordConfig.DisplayTargetingReticule &&
-                   !ScreenManager.GetMouseVisibility();
+                    !careerAbilityDeactivateCondition &&
+                     Mission.Mode != MissionMode.Conversation &&
+                     Mission.Mode != MissionMode.Deployment &&
+                     Mission.Mode != MissionMode.CutScene &&
+                     MissionScreen != null &&
+                     MissionScreen.CustomCamera == null &&
+                     (MissionScreen.OrderFlag == null || !MissionScreen.OrderFlag.IsVisible) &&
+                     !MissionScreen.IsViewingCharacter() &&
+                     !MissionScreen.IsPhotoModeEnabled &&
+                     !MBEditor.EditModeEnabled &&
+                     BannerlordConfig.DisplayTargetingReticule &&
+                     !ScreenManager.GetMouseVisibility();
         }
 
         private bool CanUseAbilityCrosshair()
@@ -108,8 +137,15 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
                 _abilityComponent.CurrentAbilityChanged += ChangeAbilityCrosshair;
                 _abilityComponent.InitializeCrosshairs();
                 _abilityCrosshair = _abilityComponent.CurrentAbility?.Crosshair;
+                if (Game.Current.GameType is Campaign)
+                { 
+                    _careerAbility = _abilityComponent?.CareerAbility;
+                    _hasCareerSingleTargetCrosshair = _abilityComponent.CareerAbility.IsSingleTarget;
+                }
+                
             }
             _areCrosshairsInitialized = true;
+            
         }
 
         public override void OnMissionScreenFinalize()

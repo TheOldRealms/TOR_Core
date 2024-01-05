@@ -49,7 +49,7 @@ namespace TOR_Core.Utilities
             {
                 return item;
             }
-
+            //this should be null 
             return item;
         }
 
@@ -61,6 +61,11 @@ namespace TOR_Core.Utilities
         public static bool IsSpellBlow(Blow b)
         {
             return b.StrikeType == StrikeType.Thrust && b.AttackType == AgentAttackType.Kick && b.DamageCalculated && b.BlowFlag.HasFlag(BlowFlags.NoSound) && b.VictimBodyPart == BoneBodyPartType.Chest;
+        }
+        
+        public static bool IsSpellBlow(KillingBlow b)
+        {
+            return  b.AttackType == AgentAttackType.Kick &&  b.WeaponItemKind ==-1 &&b.VictimBodyPart == BoneBodyPartType.Chest;
         }
     }
     public struct SpellBlowInfo
