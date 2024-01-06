@@ -301,7 +301,7 @@ namespace TOR_Core.AbilitySystem
                         if (!Input.IsKeyDown(_quickCastMenuKey.KeyboardKey.InputKey) && !Input.IsKeyDown(_quickCastMenuKey.ControllerKey.InputKey))
                         {
                             TextObject failureReason;
-                            if (!_abilityComponent.CurrentAbility.CanCast(Agent.Main, out failureReason))
+                            if (_abilityComponent.CurrentAbility.IsDisabled(Agent.Main, out failureReason))
                             {
                                 DisableAbilityMode(false, failureReason);
                                 return;
