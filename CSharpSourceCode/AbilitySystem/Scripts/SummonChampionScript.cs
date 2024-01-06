@@ -61,7 +61,7 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         private  void OnHideOutMissionStateChanged()
         {
-            if (_champion.IsActive())
+            if (_champion!=null&&_champion.IsActive())
             {
                 TORCommon.Say("lol");
                 KillChampion();
