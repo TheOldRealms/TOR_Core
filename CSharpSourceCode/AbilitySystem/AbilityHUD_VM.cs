@@ -21,13 +21,15 @@ namespace TOR_Core.AbilitySystem
         private bool _isSpell;
         private float _windsOfMagicValue;
         private string _windsCost = "";
+        private AbilityManagerMissionLogic _abilityLogic;
 
         public AbilityHUD_VM() : base() { }
 
-        public void UpdateProperties()
+        public override void RefreshValues()
         {
             _ability = Agent.Main.GetCurrentAbility();
-            IsVisible = _ability != null && (Mission.Current.Mode == MissionMode.Battle || Mission.Current.Mode == MissionMode.Stealth);
+            if(_abilityLogic == null) _abilityLogic = Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>();
+            IsVisible = _ability != null && _abilityLogic != null && (Mission.Current.Mode == MissionMode.Battle || Mission.Current.Mode == MissionMode.Stealth);
             if (IsVisible)
             {
                 IsSpell = _ability is Spell;

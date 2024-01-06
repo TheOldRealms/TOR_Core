@@ -106,7 +106,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         {
             var data = TORSummonHelper.GetAgentBuildData(_casterAgent, _summonedChampionId);
             _champion = TORSummonHelper.SpawnAgent(data, _targetPosition);
-            _casterAgent.UnsetSpellCasterMode();
+            _casterAgent.DisableAbilityMode();
 
 
             _champion.ApplyStatusEffect("greater_harbinger_debuff", null, 9999f);

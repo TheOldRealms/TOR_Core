@@ -1,0 +1,21 @@
+﻿<Prefab>
+  <Window>
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+        <Children>
+            <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="@IsVisible">
+                <Children>
+                  <CircleActionSelectorWidget DataSource="{Abilities}" 
+                    WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="200" SuggestedHeight="200" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" DirectionWidget="..\..\DirectionWidget" 
+                    ActivateOnlyWithController="false" DirectionWidgetDistanceMultiplier="0.7" DistanceFromCenterModifier="200">
+                    <ItemTemplate>
+                      <AbilityRadialSelectionItemWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="50" Sprite="@SpriteName" HorizontalAlignment="Center" VerticalAlignment="Center" Command.OnSelected="OnSelected" />
+                    </ItemTemplate>
+                  </CircleActionSelectorWidget>
+                </Children>
+            </Widget>
+            <Widget Id="DirectionWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="13" SuggestedHeight="13" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="BlankWhiteCircle" AlphaFactor="0.5"/>
+        </Children>
+    </Widget>
+  </Window>
+</Prefab>

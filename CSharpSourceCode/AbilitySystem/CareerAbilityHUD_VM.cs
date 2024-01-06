@@ -13,7 +13,7 @@ namespace TOR_Core.AbilitySystem
 
         public CareerAbilityHUD_VM() : base() { }
 
-        public void UpdateProperties()
+        public override void RefreshValues()
         {
             IsVisible = true;
             float value = CareerAbility.ChargeLevel;

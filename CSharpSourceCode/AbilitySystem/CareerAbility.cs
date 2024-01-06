@@ -18,11 +18,12 @@ namespace TOR_Core.AbilitySystem
         private float _currentCharge;
         private readonly int _maxCharge = 1000;
         private readonly Hero _ownerHero;
-        private bool _requiresSpellTargeting;
-        private bool _readyToLaunch;
-        private int previousAbilityIndex;
         private bool _doubleUse;
-
+        private bool _requiresDisabledCrosshair = false;
+        public bool RequiresDisabledCrosshairDuringAbility => _requiresDisabledCrosshair;
+        public ChargeType ChargeType { get; } = ChargeType.CooldownOnly;
+        public float ChargeLevel => _currentCharge / _maxCharge;
+        public bool IsCharged => ChargeType == ChargeType.CooldownOnly || _currentCharge >= _maxCharge;
 
         public CareerAbility(AbilityTemplate template, Agent agent) : base(template)
         {
@@ -38,37 +39,23 @@ namespace TOR_Core.AbilitySystem
 
                     Template = (AbilityTemplate)template.Clone(template.StringID + "*cloned*" + _ownerHero.StringId);
                     _career.MutateAbility(Template, agent);
-                    _requiresSpellTargeting = _career.RequiresAbilityTargeting;
-                    
-                    if(Template.StringID.Contains("ShadowStep"))
+
+                    if (Template.StringID.Contains("ShadowStep"))
                     {
-                        RequiresDisabledCrosshairDuringAbility = true;
+                        _requiresDisabledCrosshair = true;
                     }
-                    
                 }
-                
+
                 if (Hero.MainHero.HasCareer(TORCareers.WitchHunter)
-                    ||Hero.MainHero.HasCareerChoice("CourtleyKeystone") 
+                    || Hero.MainHero.HasCareerChoice("CourtleyKeystone")
                     || Hero.MainHero.HasCareerChoice("EnhancedHorseCombatKeystone")
                     || Hero.MainHero.HasCareerChoice("NoRestAgainstEvilKeystone")
                     || Hero.MainHero.HasCareerChoice("LiberMortisKeystone"))
                     _currentCharge = _maxCharge;
                 else
                     SetCoolDown(Template.CoolDown);
-                
-                
-                IsSingleTarget = Template.AbilityTargetType == AbilityTargetType.SingleAlly||Template.AbilityTargetType == AbilityTargetType.SingleEnemy;
             }
         }
-
-
-        public bool IsSingleTarget { get; }
-
-        public bool RequiresDisabledCrosshairDuringAbility { get; } = false;
-
-        public ChargeType ChargeType { get; } = ChargeType.CooldownOnly;
-        public float ChargeLevel => _currentCharge / _maxCharge;
-        public bool IsCharged => ChargeType == ChargeType.CooldownOnly || _currentCharge >= _maxCharge;
 
         protected override void AddExactBehaviour<TAbilityScript>(GameEntity parentEntity, Agent casterAgent)
         {
@@ -88,39 +75,26 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-        public bool RequiresSpellTargeting()
-        {
-            return _requiresSpellTargeting;
-        }
-
-        
-
         public override void ActivateAbility(Agent casterAgent)
         {
             base.ActivateAbility(casterAgent);
             if (ChargeType != ChargeType.CooldownOnly) _currentCharge = 0;
-            if (_requiresSpellTargeting)
-            {
-                previousAbilityIndex= 0;
-                _readyToLaunch = false;
-            }
 
-            if (this._career.AllChoices.Any(x=> x.StringId == "SecretsOfTheGrailKeystone") &&_doubleUse==false)
+            if (_career.AllChoices.Any(x => x.StringId == "SecretsOfTheGrailKeystone") && _doubleUse == false)
             {
                 _currentCharge = _maxCharge;
                 _doubleUse = true;
             }
-            
         }
 
         public override bool CanCast(Agent casterAgent)
         {
-            
+
             if (Template.StringID.Contains("ShadowStep") && casterAgent.HasMount) return false;
 
             if (IsSingleTarget && !((SingleTargetCrosshair)Crosshair).IsTargetLocked) return false;
-            
-            return !_isLocked&&!IsCasting &&
+
+            return !_isLocked && !IsCasting &&
                    !IsOnCooldown() &&
                    IsCharged &&
                    casterAgent.IsPlayerControlled;
@@ -139,8 +113,6 @@ namespace TOR_Core.AbilitySystem
                 _doubleUse = false;
             }
         }
-        
-        
     }
 
     public enum ChargeType

@@ -99,11 +99,11 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
 
         private bool CanUseCrosshair()
         {
-            var careerAbilityDeactivateCondition= _careerAbility!=null && _careerAbility.RequiresDisabledCrosshairDuringAbility && _careerAbility.IsActive;        //vampire bat swarm shouldnt have crosshair
-            
+            var careerAbilityPreventCrosshairCondition = _careerAbility != null && _careerAbility.RequiresDisabledCrosshairDuringAbility && _careerAbility.IsActive;        //vampire bat swarm shouldnt have crosshair
+
             return Agent.Main != null &&
                    Agent.Main.State == AgentState.Active &&
-                    !careerAbilityDeactivateCondition &&
+                    !careerAbilityPreventCrosshairCondition &&
                      Mission.Mode != MissionMode.Conversation &&
                      Mission.Mode != MissionMode.Deployment &&
                      Mission.Mode != MissionMode.CutScene &&
@@ -121,7 +121,7 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
         {
             return !Mission.IsFriendlyMission &&
                    _missionLogic != null &&
-                   _missionLogic.CurrentState != AbilityModeState.Off &&
+                   _missionLogic.CurrentState == AbilityModeState.Targeting &&
                    _abilityComponent.CurrentAbility.CanCast(Agent.Main);
         }
 

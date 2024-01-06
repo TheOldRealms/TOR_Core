@@ -197,7 +197,7 @@ namespace TOR_Core.AbilitySystem
         
         public void SelectAbility(Ability ability)
         {
-            CurrentAbility = ability;
+            if(KnownAbilitySystem.Contains(ability)) CurrentAbility = ability;
         }
 
         public void SelectAbility(int index)
@@ -206,32 +206,6 @@ namespace TOR_Core.AbilitySystem
             {
                 CurrentAbility = _knownAbilitySystem[index];
             }
-        }
-
-        public void SelectNextAbility()
-        {
-            if (_currentAbilityIndex < _knownAbilitySystem.Count - 1)
-            {
-                _currentAbilityIndex++;
-            }
-            else
-            {
-                _currentAbilityIndex = 0;
-            }
-            SelectAbility(_currentAbilityIndex);
-        }
-
-        public void SelectPreviousAbility()
-        {
-            if (_currentAbilityIndex > 0)
-            {
-                _currentAbilityIndex--;
-            }
-            else
-            {
-                _currentAbilityIndex = _knownAbilitySystem.Count - 1;
-            }
-            SelectAbility(_currentAbilityIndex);
         }
 
         public void OnInterrupt()

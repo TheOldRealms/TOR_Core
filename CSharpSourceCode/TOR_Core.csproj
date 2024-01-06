@@ -355,6 +355,9 @@
     <Compile Include="AbilitySystem\AbilityHUDMissionView.cs" />
     <Compile Include="AbilitySystem\AbilityHUD_VM.cs" />
     <Compile Include="AbilitySystem\AbilityManagerMissionLogic.cs" />
+    <Compile Include="AbilitySystem\AbilityRadialSelectionItemWidget.cs" />
+    <Compile Include="AbilitySystem\AbilityRadialSelectionItem_VM.cs" />
+    <Compile Include="AbilitySystem\AbilityRadialSelection_VM.cs" />
     <Compile Include="AbilitySystem\AbilityTemplate.cs" />
     <Compile Include="AbilitySystem\AbilityType.cs" />
     <Compile Include="AbilitySystem\CareerAbility.cs" />

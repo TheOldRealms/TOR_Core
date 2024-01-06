@@ -412,7 +412,7 @@ namespace TOR_Core.Extensions
             return !hero.IsSpellCaster() && hero.Culture.StringId == "vlandia";
         }
 
-        public static bool HasAnyCareer(this Hero hero) => Game.Current.GameType is Campaign&& hero.GetCareer() != null;
+        public static bool HasAnyCareer(this Hero hero) => Game.Current.GameType is Campaign && hero.GetCareer() != null;
 
         public static CareerObject GetCareer(this Hero hero)
         {

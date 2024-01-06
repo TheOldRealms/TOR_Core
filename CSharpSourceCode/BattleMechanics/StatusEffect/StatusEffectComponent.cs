@@ -13,6 +13,7 @@ using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.SFX;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TaleWorlds.CampaignSystem;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
 {
@@ -135,7 +136,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     
                     var applier = effect?.ApplierAgent;
 
-                    if (applier!=null&&(applier.IsMainAgent||applier.BelongsToMainParty()))
+                    if (Campaign.Current != null && applier != null && (applier.IsMainAgent || applier.BelongsToMainParty()))
                     {
                         CareerHelper.ApplyCareerAbilityCharge((int)value,ChargeType.Healed,AttackTypeMask.Spell,applier);
                     }
@@ -158,9 +159,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
                     var applier = effect?.ApplierAgent;
 
-                    if (applier!=null&&(applier.IsMainAgent||applier.BelongsToMainParty()))
+                    if (Campaign.Current != null && applier != null && (applier.IsMainAgent || applier.BelongsToMainParty()))
                     {
-                        CareerHelper.ApplyCareerAbilityCharge(healingValue,ChargeType.Healed,AttackTypeMask.Spell,applier);
+                        CareerHelper.ApplyCareerAbilityCharge(healingValue, ChargeType.Healed, AttackTypeMask.Spell, applier);
                     }
                     
                 }

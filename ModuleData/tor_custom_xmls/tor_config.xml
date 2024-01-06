@@ -11,4 +11,5 @@
     NumberOfInitialHideoutsAtEachBanditFaction="40"
     NumberOfMaximumHideoutsAtEachBanditFaction="80"
 	MaximumNumberOfCareerPerkPoints="30"
+    QuickAbilitySelectionRadialMenuIsToggle="false"
 />

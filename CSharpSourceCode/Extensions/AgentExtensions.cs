@@ -108,13 +108,10 @@ namespace TOR_Core.Extensions
             return false;
         }
 
-       
-
         public static bool ShouldNotBleed(this Agent agent)
         {
             return agent.GetAttributes().Contains("ClearBloodBurst");
         }
-
 
         public static bool IsVampire(this Agent agent)
         {
@@ -445,24 +442,6 @@ namespace TOR_Core.Extensions
             else return null;
         }
 
-        public static void SelectNextAbility(this Agent agent)
-        {
-            var abilitycomponent = agent.GetComponent<AbilityComponent>();
-            if (abilitycomponent != null)
-            {
-                abilitycomponent.SelectNextAbility();
-            }
-        }
-
-        public static void SelectPreviousAbility(this Agent agent)
-        {
-            var abilitycomponent = agent.GetComponent<AbilityComponent>();
-            if (abilitycomponent != null)
-            {
-                abilitycomponent.SelectPreviousAbility();
-            }
-        }
-
         public static void SelectAbility(this Agent agent, int abilityindex)
         {
             var abilitycomponent = agent.GetComponent<AbilityComponent>();
@@ -472,20 +451,21 @@ namespace TOR_Core.Extensions
             }
         }
 
-        public static void SetSpellCasterMode(this Agent agent)
+        public static void SelectAbility(this Agent agent, Ability ability)
         {
-            if(agent!=Agent.Main) return;
-            if (Mission.Current == null) return;
-            
-            Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>().ActivateSpellcasterMode();
+            var abilitycomponent = agent.GetComponent<AbilityComponent>();
+            if (abilitycomponent != null)
+            {
+                abilitycomponent.SelectAbility(ability);
+            }
         }
-        
-        public static void UnsetSpellCasterMode(this Agent agent)
+
+        public static void DisableAbilityMode(this Agent agent)
         {
             if(agent!=Agent.Main) return;
             if (Mission.Current == null) return;
             
-            Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>().DeactivateSpellcasterMode();
+            Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>().DeactivateAbilityMode();
         }
         
         public static Hero GetHero(this Agent agent)

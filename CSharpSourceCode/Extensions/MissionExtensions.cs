@@ -10,11 +10,10 @@ namespace TOR_Core.Extensions
     public static class MissionExtensions
     {
         
-        public static bool IsPlayerInSpellCasterMode(this Mission mission)
+        public static AbilityModeState GetPlayerAbilityModeState(this Mission mission)
         {
             var abilityManagerMissionLogic = mission.GetMissionBehavior<AbilityManagerMissionLogic>();
-            return abilityManagerMissionLogic.CurrentState == AbilityModeState.Casting ||
-                   abilityManagerMissionLogic.CurrentState == AbilityModeState.Casting;
+            return abilityManagerMissionLogic.CurrentState;
         }
         
         public static void AddMissionLogicAtIndexOf(this Mission mission, MissionLogic missionCombatantsLogic, MissionLogic torMissionCombatantsLogic)
