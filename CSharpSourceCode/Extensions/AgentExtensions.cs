@@ -462,14 +462,6 @@ namespace TOR_Core.Extensions
                 abilitycomponent.SelectAbility(ability);
             }
         }
-
-        public static void DisableAbilityMode(this Agent agent)
-        {
-            if(agent!=Agent.Main) return;
-            if (Mission.Current == null) return;
-            
-            Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>().DeactivateAbilityMode();
-        }
         
         public static Hero GetHero(this Agent agent)
         {
