@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.AbilitySystem.Scripts;
@@ -87,17 +88,36 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-        public override bool CanCast(Agent casterAgent)
+        public override bool IsDisabled(Agent casterAgent, out TextObject disabledReason)
         {
+            if (!IsCharged)
+            {
+                disabledReason = new TextObject("{=!}Ability not charged");
+                return true;
+            }
+            if (Template.StringID.Contains("ShadowStep") && casterAgent.HasMount)
+            {
+                disabledReason = new TextObject("{=!}Not usable mounted");
+                return true;
+            }
 
-            if (Template.StringID.Contains("ShadowStep") && casterAgent.HasMount) return false;
+            return base.IsDisabled(casterAgent, out disabledReason);
+        }
 
-            if (IsSingleTarget && !((SingleTargetCrosshair)Crosshair).IsTargetLocked) return false;
+        public override bool CanCast(Agent casterAgent, out TextObject failureReason)
+        {
+            if (IsSingleTarget && !((SingleTargetCrosshair)Crosshair).IsTargetLocked)
+            {
+                failureReason = new TextObject("No target locked");
+                return false;
+            }
+            if (!casterAgent.IsPlayerControlled)
+            {
+                failureReason = new TextObject("Caster is not player controlled");
+                return false;
+            }
 
-            return !_isLocked && !IsCasting &&
-                   !IsOnCooldown() &&
-                   IsCharged &&
-                   casterAgent.IsPlayerControlled;
+            return base.CanCast(casterAgent, out failureReason);
         }
 
         public void AddCharge(float amount)

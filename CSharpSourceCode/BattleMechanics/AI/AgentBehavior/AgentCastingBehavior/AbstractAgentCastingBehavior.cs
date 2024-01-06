@@ -69,7 +69,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
 
         protected virtual void CastSpellAtCurrentTarget()
         {
-            Agent.CastCurrentAbility();
+            Agent.TryCastCurrentAbility(out _);
         }
 
         protected Vec3 ComputeSpellAngleVelocityCorrection(Vec3 targetPosition, Vec3 targetVelocity)
@@ -119,7 +119,7 @@ namespace TOR_Core.BattleMechanics.AI.AgentBehavior.AgentCastingBehavior
         protected virtual float CalculateUtility(Target target)
         {
             var ability = Agent.GetAbility(AbilityIndex);
-            if (ability.IsOnCooldown() || !ability.CanCast(Agent) || target.Formation == null && target.TacticalPosition == null)
+            if (ability.IsOnCooldown() || !ability.CanCast(Agent, out _) || target.Formation == null && target.TacticalPosition == null)
             {
                 return 0.0f;
             }

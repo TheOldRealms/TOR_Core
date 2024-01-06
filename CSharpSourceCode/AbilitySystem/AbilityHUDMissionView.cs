@@ -62,6 +62,11 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
+        public void DisplayErrorMessage(string message)
+        {
+            if(_abilityRadialSelection_VM != null) _abilityRadialSelection_VM.DisplayErrorMessage(message);
+        }
+
         public override void OnMissionTick(float dt)
         {
             if (_isInitialized)

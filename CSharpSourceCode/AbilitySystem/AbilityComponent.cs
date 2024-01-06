@@ -17,6 +17,15 @@ namespace TOR_Core.AbilitySystem
 {
     public class AbilityComponent : AgentComponent
     {
+        private Ability _currentAbility = null;
+        private readonly List<Ability> _knownAbilitySystem = new List<Ability>();
+        public bool LastCastWasQuickCast;
+        public delegate void CurrentAbilityChangedHandler(AbilityCrosshair crosshair);
+        public event CurrentAbilityChangedHandler CurrentAbilityChanged;
+        public CareerAbility CareerAbility { get; private set; }
+        public List<Ability> KnownAbilitySystem { get => _knownAbilitySystem; }
+        
+
         public AbilityComponent(Agent agent) : base(agent)
         {
             if(Game.Current.GameType is Campaign && agent.GetHero() != null && agent.GetHero() == Hero.MainHero)
@@ -30,8 +39,7 @@ namespace TOR_Core.AbilitySystem
                         CareerAbility = (CareerAbility)ability;
                         CareerAbility.OnCastStart += OnCastStart;
                         CareerAbility.OnCastComplete += OnCastComplete;
-                        if(!agent.IsSpellCaster())
-                            _knownAbilitySystem.Add(CareerAbility);
+                        _knownAbilitySystem.Add(CareerAbility);
                     }
                 }
             }
@@ -252,9 +260,6 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-        private Ability _currentAbility = null;
-        private readonly List<Ability> _knownAbilitySystem = new List<Ability>();
-        private int _currentAbilityIndex;
         public Ability CurrentAbility
         {
             get => _currentAbility;
@@ -294,10 +299,5 @@ namespace TOR_Core.AbilitySystem
                 }
             }
         }
-        
-        public CareerAbility CareerAbility { get; private set; }
-        public List<Ability> KnownAbilitySystem { get => _knownAbilitySystem; }
-        public delegate void CurrentAbilityChangedHandler(AbilityCrosshair crosshair);
-        public event CurrentAbilityChangedHandler CurrentAbilityChanged;
     }
 }

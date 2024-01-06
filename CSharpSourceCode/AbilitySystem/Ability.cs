@@ -13,6 +13,7 @@ using TOR_Core.Extensions;
 using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
 using TOR_Core.BattleMechanics.AI.Decision;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TaleWorlds.Localization;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -44,7 +45,6 @@ namespace TOR_Core.AbilitySystem
 
         public event OnCastStartHandler OnCastStart;
 
-
         public Ability(AbilityTemplate template)
         {
             StringID = template.StringID;
@@ -75,25 +75,65 @@ namespace TOR_Core.AbilitySystem
             _timer.Stop();
         }
 
-        public virtual void TryCast(Agent casterAgent)
+        public virtual bool IsDisabled(Agent casterAgent, out TextObject disabledReason)
         {
-            if (CanCast(casterAgent))
+            disabledReason = new TextObject("{=!}Enabled");
+            if (IsOnCooldown())
             {
-                DoCast(casterAgent);
+                disabledReason = new TextObject("{=!}On cooldown");
+                return true;
             }
-        }
-
-        public virtual bool CanCast(Agent casterAgent)
-        {
-            var preventCastCondition = false;
+            if (_isLocked)
+            {
+                disabledReason = new TextObject("{=!}Mission is over");
+                return true;
+            }
+            if (IsCasting)
+            {
+                disabledReason = new TextObject("{=!}Casting");
+                return true;
+            }
             if (casterAgent.IsMainAgent && casterAgent.GetHero().HasAnyCareer())
             {
-                preventCastCondition = casterAgent.GetCareerAbility().RequiresDisabledCrosshairDuringAbility && casterAgent.GetCareerAbility().IsActive;
+                if(casterAgent.GetCareerAbility().RequiresDisabledCrosshairDuringAbility && casterAgent.GetCareerAbility().IsActive)
+                {
+                    disabledReason = new TextObject("{=!}In Mistform");
+                    return true;
+                }
             }
-            return !preventCastCondition && !_isLocked && !IsCasting &&
-                   !IsOnCooldown() &&
-                   ((casterAgent.IsPlayerControlled && IsRightAngleToCast()) ||
-                    (casterAgent.IsActive() && casterAgent.Health > 0 && casterAgent.GetMorale() > 1 && casterAgent.IsAbilityUser()));
+
+            return false;
+        }
+
+        public bool TryCast(Agent casterAgent, out TextObject failureReason)
+        {
+            if (CanCast(casterAgent, out failureReason))
+            {
+                DoCast(casterAgent);
+                failureReason = null;
+                return true;
+            }
+            return false;
+        }
+
+        public virtual bool CanCast(Agent casterAgent, out TextObject failureReason)
+        {
+            if(IsDisabled(casterAgent, out failureReason))
+            {
+                return false;
+            }
+            if(casterAgent.IsPlayerControlled && !IsRightAngleToCast())
+            {
+                failureReason = new TextObject("Can only cast in a frontal cone");
+                return false;
+            }
+            if(!casterAgent.IsActive() || casterAgent.Health <= 0 || (casterAgent.IsAIControlled && casterAgent.GetMorale() <= 1) || !casterAgent.IsAbilityUser())
+            {
+                failureReason = new TextObject("Caster is dead or routed");
+                return false;
+            }
+            failureReason = null;
+            return true;
         }
 
         protected virtual void DoCast(Agent casterAgent)
@@ -160,7 +200,6 @@ namespace TOR_Core.AbilitySystem
                 SetCoolDown((int)Cooldown.ResultNumber);
             }
 
-
             var frame = GetSpawnFrame(casterAgent);
 
             if (Template.DoNotAlignParticleEffectPrefab)
@@ -198,11 +237,17 @@ namespace TOR_Core.AbilitySystem
 
         protected MatrixFrame GetSpawnFrame(Agent casterAgent)
         {
-            if (casterAgent.IsMainAgent)
+            if (casterAgent.IsPlayerControlled)
             {
-                return Mission.Current.GetPlayerAbilityModeState() == AbilityModeState.Targeting ? CalculatePlayerCastMatrixFrame(casterAgent) : CalculateQuickCastMatrixFrame(casterAgent);
+                var comp = casterAgent.GetComponent<AbilityComponent>();
+                if (comp != null)
+                {
+                    return comp.LastCastWasQuickCast ? CalculateQuickCastMatrixFrame(casterAgent) : CalculatePlayerCastMatrixFrame(casterAgent);
+                }
+                else throw new NullReferenceException("casterAgent's abilitycomponent is null");
             }
-            return casterAgent.IsAIControlled ? CalculateAICastMatrixFrame(casterAgent) : CalculatePlayerCastMatrixFrame(casterAgent);
+            else if (casterAgent.IsAIControlled) return CalculateAICastMatrixFrame(casterAgent);
+            else throw new ArgumentException("casterAgent's controller is none");
         }
 
         private MatrixFrame CalculateQuickCastMatrixFrame(Agent casterAgent)

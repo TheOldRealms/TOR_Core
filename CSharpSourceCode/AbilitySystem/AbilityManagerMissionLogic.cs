@@ -27,6 +27,7 @@ using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.HarmonyPatches;
 using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.MountAndBlade.View.MissionViews;
+using TaleWorlds.Localization;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -52,6 +53,7 @@ namespace TOR_Core.AbilitySystem
         private GameKey _quickCast;
         private GameKey _specialMoveKey;
         private AbilityHUDMissionView _abilityView;
+        private int _timeRequestID = 1338;
 
         public AbilityModeState CurrentState => _currentState;
 
@@ -103,6 +105,7 @@ namespace TOR_Core.AbilitySystem
             _currentState = AbilityModeState.Targeting;
             _abilityView.MissionScreen.SetRadialMenuActiveState(false);
             ChangeKeyBindings();
+            SlowDownTime(true);
             var traitcomp = Agent.Main.GetComponent<ItemTraitAgentComponent>();
             if (traitcomp != null)
             {
@@ -117,9 +120,26 @@ namespace TOR_Core.AbilitySystem
             _currentState = AbilityModeState.QuickMenuSelection;
             _abilityView.MissionScreen.SetRadialMenuActiveState(true);
             ChangeKeyBindings();
+            SlowDownTime(true);
         }
 
-        private void DisableAbilityMode(bool isTakingNewWeapon)
+        private void SlowDownTime(bool enable)
+        {
+            bool isSlowTimeActive = Mission.Current.GetRequestedTimeSpeed(_timeRequestID, out _);
+            if(isSlowTimeActive && !enable)
+            {
+                Mission.Current.RemoveTimeSpeedRequest(_timeRequestID);
+                return;
+            }
+            else if(!isSlowTimeActive && enable)
+            {
+                Mission.TimeSpeedRequest timeRequest = new Mission.TimeSpeedRequest(0.3f, _timeRequestID);
+                _timeRequestID = timeRequest.RequestID;
+                Mission.Current.AddTimeSpeedRequest(timeRequest);
+            }
+        }
+
+        private void DisableAbilityMode(bool isTakingNewWeapon, TextObject errorMessage)
         {
             if (isTakingNewWeapon)
             {
@@ -132,7 +152,9 @@ namespace TOR_Core.AbilitySystem
             }
 
             _currentState = AbilityModeState.Off;
+            _abilityComponent.LastCastWasQuickCast = false;
             ChangeKeyBindings();
+            SlowDownTime(false);
             _abilityView.MissionScreen.SetRadialMenuActiveState(false);
             var traitcomp = Agent.Main.GetComponent<ItemTraitAgentComponent>();
             if (traitcomp != null)
@@ -141,13 +163,17 @@ namespace TOR_Core.AbilitySystem
             }
 
             EnableCastStanceParticles(false);
+            if(errorMessage != null)
+            {
+                _abilityView.DisplayErrorMessage(errorMessage.ToString());
+            }
         }
 
         internal void OnCastStart(Ability ability, Agent agent)
         {
             if (agent == Agent.Main)
             {
-                if (CurrentState == AbilityModeState.Targeting) _currentState = AbilityModeState.Casting;
+                _currentState = AbilityModeState.Casting;
             }
 
             if (agent.GetHero().HasAnyCareer())
@@ -186,7 +212,7 @@ namespace TOR_Core.AbilitySystem
 
             if (agent == Agent.Main)
             {
-                if (CurrentState == AbilityModeState.Casting) DisableAbilityMode(false);
+                if (CurrentState == AbilityModeState.Casting) DisableAbilityMode(false, null);
                 if (Game.Current.GameType is Campaign)
                 {
                     var quest = TORQuestHelper.GetCurrentActiveIfExists<SpecializeLoreQuest>();
@@ -220,7 +246,7 @@ namespace TOR_Core.AbilitySystem
             {
                 if (Input.IsKeyPressed(InputKey.RightMouseButton))
                 {
-                    DisableAbilityMode(false);
+                    DisableAbilityMode(false, null);
                     return;
                 }
             }
@@ -229,30 +255,68 @@ namespace TOR_Core.AbilitySystem
             {
                 case AbilityModeState.Off:
                     {
-                        if (Input.IsKeyPressed(_quickCastMenuKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCastMenuKey.ControllerKey.InputKey))
+                        if (Input.IsKeyPressed(InputKey.RightMouseButton) || Input.IsKeyPressed(InputKey.LeftMouseButton))
+                        {
+                            if (_abilityComponent.CareerAbility != null && _abilityComponent.CareerAbility.IsActive) _abilityComponent.OnInterrupt();
+                        }
+                        else if (Input.IsKeyPressed(_quickCastMenuKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCastMenuKey.ControllerKey.InputKey))
                         {
                             EnableQuickSelectionMenuMode();
+                        }
+                        else if (Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey))
+                        {
+                            if ( _abilityComponent.CareerAbility != null && !_abilityComponent.CareerAbility.IsDisabled(Agent.Main, out _) && IsSniperScopeDisabled())
+                            {
+                                _abilityComponent.SelectAbility(_abilityComponent.CareerAbility);
+                                if (_abilityComponent.CurrentAbility.RequiresTargeting)
+                                {
+                                    EnableTargetingMode();
+                                }
+                                else
+                                {
+                                    TextObject failureReason;
+                                    if (!Agent.Main.TryCastCurrentAbility(out failureReason))
+                                    {
+                                        DisableAbilityMode(false, failureReason);
+                                    }
+                                }
+                            }
+                        }
+                        else if (Input.IsKeyPressed(_quickCast.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCast.ControllerKey.InputKey))
+                        {
+                            if (_abilityComponent.CurrentAbility != null && !_abilityComponent.CurrentAbility.IsDisabled(Agent.Main, out _) && IsSniperScopeDisabled())
+                            {
+                                _abilityComponent.LastCastWasQuickCast = true;
+                                TextObject failureReason;
+                                if (!Agent.Main.TryCastCurrentAbility(out failureReason))
+                                {
+                                    DisableAbilityMode(false, failureReason);
+                                }
+                            }
                         }
                     }
                     break;
                 case AbilityModeState.QuickMenuSelection:
                     {
-                        if (!TORConfig.QuickAbilitySelectionRadialMenuIsToggle)
+                        if (!Input.IsKeyDown(_quickCastMenuKey.KeyboardKey.InputKey) && !Input.IsKeyDown(_quickCastMenuKey.ControllerKey.InputKey))
                         {
-                            if (!Input.IsKeyDown(_quickCastMenuKey.KeyboardKey.InputKey) && !Input.IsKeyDown(_quickCastMenuKey.ControllerKey.InputKey))
+                            TextObject failureReason;
+                            if (!_abilityComponent.CurrentAbility.CanCast(Agent.Main, out failureReason))
                             {
-                                if (_abilityComponent.CurrentAbility.RequiresTargeting)
-                                {
-                                    EnableTargetingMode();
-                                }
-                                else Agent.Main.CastCurrentAbility();
+                                DisableAbilityMode(false, failureReason);
+                                return;
                             }
-                        }
-                        else
-                        {
-                            if (Input.IsKeyPressed(_quickCastMenuKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCastMenuKey.ControllerKey.InputKey))
+
+                            if (_abilityComponent.CurrentAbility.RequiresTargeting)
                             {
-                                DisableAbilityMode(false);
+                                EnableTargetingMode();
+                            }
+                            else
+                            {
+                                if (!Agent.Main.TryCastCurrentAbility(out failureReason))
+                                {
+                                    DisableAbilityMode(false, failureReason);
+                                }
                             }
                         }
                     }
@@ -267,94 +331,22 @@ namespace TOR_Core.AbilitySystem
                                          !((SingleTargetCrosshair)_abilityComponent.CurrentAbility.Crosshair).IsTargetLocked);
                             if (!flag)
                             {
-                                Agent.Main.CastCurrentAbility();
+                                TextObject failureReason;
+                                if (!Agent.Main.TryCastCurrentAbility(out failureReason))
+                                {
+                                    DisableAbilityMode(false, failureReason);
+                                }
                             }
+                        }
+                        else if (Input.IsKeyPressed(_quickCastMenuKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCastMenuKey.ControllerKey.InputKey))
+                        {
+                            EnableQuickSelectionMenuMode();
                         }
                     }
                     break;
                 default:
                     break;
             }
-            /*
-            if (Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) ||
-                Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey))
-            {
-                if (_abilityComponent != null && _abilityComponent.CareerAbility != null)
-                    if (_currentState == AbilityModeState.Off &&
-                        IsSniperScopeDisabled())
-                    {
-                        if (_abilityComponent.CareerAbility.RequiresSpellTargeting())
-                        {
-                            ShiftToCareerAbility();
-                        }
-                        else
-                        {
-                            _abilityComponent.CareerAbility.TryCast(Agent.Main);
-                        }
-                    }
-                    else if (_currentState == AbilityModeState.Targeting)
-                    {
-                        if (_careerAbilitySelected)
-                        {
-                            ShiftBackFromCareerAbility();
-                        }
-                        else
-                        {
-                            ShiftToCareerAbility();
-                        }
-                    }
-            }
-
-
-            if (Input.IsKeyPressed(_quickCast.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCast.ControllerKey.InputKey))
-            {
-                if (_abilityComponent != null && _abilityComponent.CurrentAbility.AbilityEffectType != AbilityEffectType.SeekerMissile)
-                    Agent.Main.CastCurrentAbility();
-            }
-
-
-            if (Input.IsKeyPressed(_quickCastMenuKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCastMenuKey.ControllerKey.InputKey))
-            {
-                if (_abilityComponent.KnownAbilitySystem.Count > 1 || _abilityComponent.CurrentAbility.Template.AbilityTargetType != AbilityTargetType.Self)
-                {
-                    switch (_currentState)
-                    {
-                        case AbilityModeState.Off:
-                            ShiftBackFromCareerAbility();
-                            EnableTargetingMode();
-                            break;
-                        case AbilityModeState.Targeting:
-                            ShiftBackFromCareerAbility();
-                            DisableAbilityMode(false);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-            else if (Input.IsKeyPressed(InputKey.LeftMouseButton))
-            {
-                bool flag = _abilityComponent.CurrentAbility.Crosshair == null ||
-                            !_abilityComponent.CurrentAbility.Crosshair.IsVisible ||
-                            _currentState != AbilityModeState.Targeting ||
-                            (_abilityComponent.CurrentAbility.Crosshair.CrosshairType == CrosshairType.SingleTarget &&
-                             !((SingleTargetCrosshair)_abilityComponent.CurrentAbility.Crosshair).IsTargetLocked);
-                if (!flag)
-                {
-                    Agent.Main.CastCurrentAbility();
-                    if (_careerAbilitySelected)
-                    {
-                        ShiftBackFromCareerAbility();
-                    }
-                }
-
-                if (_abilityComponent.CareerAbility != null && _abilityComponent.CareerAbility.IsActive) _abilityComponent.OnInterrupt();
-            }
-            else if (Input.IsKeyPressed(InputKey.RightMouseButton))
-            {
-                if (_abilityComponent.CareerAbility != null && _abilityComponent.CareerAbility.IsActive) _abilityComponent.OnInterrupt();
-            }
-            */
         }
 
         private void CheckIfMainAgentHasPendingActivation()
@@ -469,7 +461,7 @@ namespace TOR_Core.AbilitySystem
                 {
                     if (agent.IsMainAgent && agent.IsActive())
                     {
-                        DisableAbilityMode(true);
+                        DisableAbilityMode(true, null);
                     }
 
                     var abilityComponent = agent.GetComponent<AbilityComponent>();
@@ -639,7 +631,7 @@ namespace TOR_Core.AbilitySystem
 
         private void OnItemPickup(Agent agent, SpawnedItemEntity item)
         {
-            if (agent == Agent.Main) DisableAbilityMode(true);
+            if (agent == Agent.Main) DisableAbilityMode(true, null);
         }
 
         public SummonedCombatant GetSummoningCombatant(Team team)
@@ -725,7 +717,7 @@ namespace TOR_Core.AbilitySystem
         {
             if (IsAbilityModeAvailableForMainAgent())
             {
-                DisableAbilityMode(true);
+                DisableAbilityMode(true, null);
             }
         }
 
@@ -735,7 +727,7 @@ namespace TOR_Core.AbilitySystem
             {
                 if (_currentState == AbilityModeState.Targeting || _currentState == AbilityModeState.QuickMenuSelection)
                 {
-                    DisableAbilityMode(false);
+                    DisableAbilityMode(false, null);
                 }
             }
         }

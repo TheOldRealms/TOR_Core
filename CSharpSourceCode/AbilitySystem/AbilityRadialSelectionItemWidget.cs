@@ -12,7 +12,11 @@ namespace TOR_Core.AbilitySystem
     {
         public AbilityRadialSelectionItemWidget(UIContext context) : base(context)
         {
-
+            if (!ContainsState("Selected")) AddState("Selected");
+            if (!ContainsState("Default")) AddState("Default");
+            if (!ContainsState("Pressed")) AddState("Pressed");
+            if (!ContainsState("Hovered")) AddState("Hovered");
+            if (!ContainsState("Disabled")) AddState("Disabled");
         }
 
         protected override void OnConnectedToRoot()
@@ -29,9 +33,14 @@ namespace TOR_Core.AbilitySystem
 
         private void AbilityRadialSelectionItemWidget_boolPropertyChanged(PropertyOwnerObject widget, string propertyName, bool value)
         {
-            if(propertyName == "IsSelected" && value)
+            if(propertyName == "IsSelected")
             {
-                EventFired("OnSelected", Array.Empty<object>());
+                if(value)
+                {
+                    SetState("Selected");
+                    EventFired("OnSelected", Array.Empty<object>());
+                }
+                else SetState("Default");
             }
         }
     }

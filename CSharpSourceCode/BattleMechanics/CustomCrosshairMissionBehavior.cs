@@ -122,7 +122,7 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
             return !Mission.IsFriendlyMission &&
                    _missionLogic != null &&
                    _missionLogic.CurrentState == AbilityModeState.Targeting &&
-                   _abilityComponent.CurrentAbility.CanCast(Agent.Main);
+                   _abilityComponent.CurrentAbility.CanCast(Agent.Main, out _);
         }
 
         private void InitializeCrosshairs()

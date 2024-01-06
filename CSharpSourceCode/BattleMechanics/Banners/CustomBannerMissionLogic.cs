@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.AgentOrigins;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
@@ -100,15 +101,24 @@ namespace TOR_Core.BattleMechanics.Banners
         private bool CheckEligibleAndAddBanner(Agent agent, Banner banner)
         {
             if (agent.IsHero) return false;
-            if(Game.Current.GameType is Campaign && Campaign.Current != null)
+            if (agent.IsSummoned()) return false;
+            if (Game.Current.GameType is Campaign && Campaign.Current != null)
             {
-                if (!(agent.Origin is PartyAgentOrigin)) return false;
-                var party = ((PartyAgentOrigin)agent.Origin).Party;
-                if (!party.IsMobile) return false;
-                if (!party.MobileParty.IsLordParty) return false;
+                if (agent.Origin is PartyAgentOrigin)
+                {
+                    var party = ((PartyAgentOrigin)agent.Origin).Party;
+                    if (!party.IsMobile) return false;
+                    if (!party.MobileParty.IsLordParty) return false;
+                }
+                else if (agent.Origin is PartyGroupAgentOrigin)
+                {
+                    var party = ((PartyGroupAgentOrigin)agent.Origin).Party;
+                    if (!party.IsMobile) return false;
+                    if (!party.MobileParty.IsLordParty) return false;
+                }
+                else return false;
             }
             
-            if (agent.isSummoned()) return false;
             var equipment = agent.Equipment;
             if(equipment.HasAnyWeaponWithFlags(WeaponFlags.NotUsableWithOneHand)) return false;
             var weaponList = GetWeaponItems(equipment).ToList();

@@ -26,7 +26,6 @@ namespace TOR_Core.Utilities
         public static int NumberOfInitialHideoutsAtEachBanditFaction => _config.NumberOfInitialHideoutsAtEachBanditFaction;
         public static int NumberOfMaximumHideoutsAtEachBanditFaction => _config.NumberOfMaximumHideoutsAtEachBanditFaction;
         public static int MaximumNumberOfCareerPerkPoints => _config.MaximumNumberOfCareerPerkPoints;
-        public static bool QuickAbilitySelectionRadialMenuIsToggle => _config.QuickAbilitySelectionRadialMenuIsToggle;
 
         public static void ReadConfig()
         {
@@ -68,8 +67,6 @@ namespace TOR_Core.Utilities
             public int NumberOfMaximumHideoutsAtEachBanditFaction;
             [XmlAttribute]
             public int MaximumNumberOfCareerPerkPoints;
-            [XmlAttribute]
-            public bool QuickAbilitySelectionRadialMenuIsToggle;
         }
     }
 }
