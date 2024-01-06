@@ -153,16 +153,42 @@ namespace TOR_Core.CharacterDevelopment
             if (chargeType != ChargeType.NumberOfKills) return 0;
 
             if (!affectingAgent.IsHero) return 0;
-
-            ExplainedNumber explainedNumber = new ExplainedNumber();
-
-            if (affectingAgent.IsMainAgent || affectingAgent.GetOriginMobileParty().IsMainParty && Hero.MainHero.HasCareerChoice("NightRiderKeystone"))
+            
+            var explainedNumber = new ExplainedNumber();   //charge value is always 1, this is added with the calculated value  below
+            
+            var maxCharge = Hero.MainHero.GetCareer().MaxCharge;
+            
+            var malus = 0f;
+            
+            if (Hero.MainHero.HasCareerChoice("NightRiderKeystone"))
             {
-                explainedNumber.Add(chargeValue);
+                malus += 1;
             }
-
+            
+            if (Hero.MainHero.HasCareerChoice("BladeMasterKeystone"))
+            {
+                malus += 1;
+            }
+            
+            if (Hero.MainHero.HasCareerChoice("DoomRiderKeystone"))
+            {
+                malus += 1;
+            }
+            
+            if (Hero.MainHero.HasCareerChoice("AvatarOfDeathKeystone"))
+            {
+                malus += 1;
+            }
+            
+            if (Hero.MainHero.HasCareerChoice("ControlledHungerKeystone"))
+            {
+                malus += 1;
+            }
+            
             if (Hero.MainHero.HasCareerChoice("DreadKnightKeystone"))
             {
+                malus += 1;
+                
                 var choice = TORCareerChoices.GetChoice("DreadKnightKeystone");
                 if (choice != null)
                 {
@@ -170,49 +196,17 @@ namespace TOR_Core.CharacterDevelopment
                     explainedNumber.AddFactor(value);
                 }
             }
+            
+            if (Hero.MainHero.HasCareerChoice("PeerlessWarriorKeystone"))
+            {
+                malus += 1;
+            }
+            
+            malus = Math.Min(5, malus);
+            
+            var change = maxCharge / ( 5 + malus );
 
-            //The more key stones the more charge needs to be added. This is a good early start bonus
-            var chargeBonus = 0.2f;
-            var bonusCount=0;
-            if (!Hero.MainHero.HasCareerChoice("NightRiderKeystone"))
-            {
-                bonusCount += 1;
-            }
-            
-            if (!Hero.MainHero.HasCareerChoice("BladeMasterKeystone"))
-            {
-                bonusCount += 1;
-            }
-            
-            if (!Hero.MainHero.HasCareerChoice("DoomRiderKeystone"))
-            {
-                bonusCount += 1;
-            }
-            
-            if (!Hero.MainHero.HasCareerChoice("AvatarOfDeathKeystone"))
-            {
-                bonusCount += 1;
-            }
-            
-            if (!Hero.MainHero.HasCareerChoice("ControlledHungerKeystone"))
-            {
-                bonusCount += 1;
-            }
-            
-            if (!Hero.MainHero.HasCareerChoice("DreadKnightKeystone"))
-            {
-                bonusCount += 1;
-            }
-            
-            if (!Hero.MainHero.HasCareerChoice("PeerlessWarriorKeystone"))
-            {
-                bonusCount += 1;
-            }
-
-            bonusCount = Math.Min(bonusCount, 5);
-            chargeBonus = Mathf.Clamp(bonusCount * chargeBonus, 0, 1); // "never higher than 1 :  2 charge for 1 kill"
-            
-            explainedNumber.Add(chargeBonus);
+           explainedNumber.Add(change);
             
             return explainedNumber.ResultNumber;
         }
