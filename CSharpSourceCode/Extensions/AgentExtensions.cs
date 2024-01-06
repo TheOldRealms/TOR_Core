@@ -752,7 +752,7 @@ namespace TOR_Core.Extensions
         
         public static void RemoveStatusEffect(this Agent agent, string effectId)
         {
-            TORCommon.Say(effectId+" removed");
+            if(agent==null)return;
             var comp = agent.GetComponent<StatusEffectComponent>();
             if (comp != null) comp.RemoveStatusEffect(effectId);
         }
