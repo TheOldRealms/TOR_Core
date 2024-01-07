@@ -5,7 +5,6 @@ using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.InputSystem;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.Utilities;
@@ -18,16 +17,13 @@ using TaleWorlds.CampaignSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.GameManagers;
 using TOR_Core.Quests;
-using NLog;
-using TaleWorlds.Library;
-using TaleWorlds.TwoDimension;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment.CareerSystem;
-using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.HarmonyPatches;
 using TaleWorlds.MountAndBlade.View;
-using TaleWorlds.MountAndBlade.View.MissionViews;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade.View.MissionViews;
+using TaleWorlds.Library;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -35,8 +31,8 @@ namespace TOR_Core.AbilitySystem
     {
         private bool _shouldSheathWeapon;
         private bool _shouldWieldWeapon;
+        private bool _shouldPlayIdleCastStanceAnim;
         private bool _hasInitializedForMainAgent;
-        private bool _careerAbilitySelected;
         private AbilityModeState _currentState = AbilityModeState.Off;
         private EquipmentIndex _mainHand;
         private EquipmentIndex _offHand;
@@ -54,8 +50,14 @@ namespace TOR_Core.AbilitySystem
         private GameKey _specialMoveKey;
         private AbilityHUDMissionView _abilityView;
         private int _timeRequestID = 1338;
+        private float _lastActivationDeltaTime;
+        private float _disableCombatActionsDuration = 0.3f;
+        private bool _disableCombatActionsAfterCast;
+        private float _elapsedTimeSinceLastActivation;
 
         public AbilityModeState CurrentState => _currentState;
+
+        public bool ShouldSuppressCombatActions => CurrentState == AbilityModeState.Targeting || CurrentState == AbilityModeState.Casting || _disableCombatActionsAfterCast;
 
         public override void OnBehaviorInitialize()
         {
@@ -73,8 +75,14 @@ namespace TOR_Core.AbilitySystem
             _specialMoveKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("CareerAbilityCast");
         }
 
-        public override void OnMissionTick(float dt)
+        public override void OnPreMissionTick(float dt)
         {
+            _elapsedTimeSinceLastActivation += dt;
+            if(_disableCombatActionsAfterCast && _elapsedTimeSinceLastActivation > (_lastActivationDeltaTime + _disableCombatActionsDuration))
+            {
+                _disableCombatActionsAfterCast = false;
+            }
+
             if (!_hasInitializedForMainAgent)
             {
                 if (Agent.Main != null)
@@ -89,7 +97,7 @@ namespace TOR_Core.AbilitySystem
             {
                 CheckIfMainAgentHasPendingActivation();
 
-                HandleInput();
+                HandleInput(dt);
 
                 UpdateWieldedItems();
 
@@ -101,18 +109,30 @@ namespace TOR_Core.AbilitySystem
         {
             _mainHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.MainHand);
             _offHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.OffHand);
-            _shouldSheathWeapon = true;
             _currentState = AbilityModeState.Targeting;
             _abilityView.MissionScreen.SetRadialMenuActiveState(false);
+
             ChangeKeyBindings();
             SlowDownTime(true);
-            var traitcomp = Agent.Main.GetComponent<ItemTraitAgentComponent>();
-            if (traitcomp != null)
-            {
-                traitcomp.EnableAllParticles(false);
-            }
 
-            EnableCastStanceParticles(true);
+            if (_abilityComponent.CurrentAbility.Template.AbilityType == AbilityType.Spell || 
+                _abilityComponent.CurrentAbility.Template.AbilityType == AbilityType.Prayer)
+            {
+                _shouldSheathWeapon = true;
+                _shouldPlayIdleCastStanceAnim = true;
+                var traitcomp = Agent.Main.GetComponent<ItemTraitAgentComponent>();
+                if (traitcomp != null)
+                {
+                    traitcomp.EnableAllParticles(false);
+                }
+
+                EnableCastStanceParticles(true);
+            }
+            else
+            {
+                _shouldSheathWeapon = false;
+                _shouldPlayIdleCastStanceAnim = false;
+            }
         }
 
         private void EnableQuickSelectionMenuMode()
@@ -153,6 +173,7 @@ namespace TOR_Core.AbilitySystem
 
             _currentState = AbilityModeState.Off;
             _abilityComponent.LastCastWasQuickCast = false;
+
             ChangeKeyBindings();
             SlowDownTime(false);
             _abilityView.MissionScreen.SetRadialMenuActiveState(false);
@@ -194,7 +215,6 @@ namespace TOR_Core.AbilitySystem
                                 playerHero.AddWindsOfMagic(15);
                             }
                         }
-
                     }
                 }
             }
@@ -220,7 +240,6 @@ namespace TOR_Core.AbilitySystem
                     {
                         quest.IncrementCast();
                     }
-
                 }
             }
 
@@ -237,7 +256,7 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-        private void HandleInput()
+        private void HandleInput(float dt)
         {
             if (Input.IsKeyDown(InputKey.Tab))
                 return;
@@ -265,7 +284,8 @@ namespace TOR_Core.AbilitySystem
                         }
                         else if (Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey))
                         {
-                            if ( _abilityComponent.CareerAbility != null && !_abilityComponent.CareerAbility.IsDisabled(Agent.Main, out _) && IsSniperScopeDisabled())
+                            TextObject disabledReason = new TextObject("Error Casting Career Ability");
+                            if ( _abilityComponent.CareerAbility != null && !_abilityComponent.CareerAbility.IsDisabled(Agent.Main, out disabledReason) && IsSniperScopeDisabled())
                             {
                                 _abilityComponent.SelectAbility(_abilityComponent.CareerAbility);
                                 if (_abilityComponent.CurrentAbility.RequiresTargeting)
@@ -279,7 +299,17 @@ namespace TOR_Core.AbilitySystem
                                     {
                                         DisableAbilityMode(false, failureReason);
                                     }
+                                    else
+                                    {
+                                        _lastActivationDeltaTime = dt;
+                                        _elapsedTimeSinceLastActivation = 0;
+                                        _disableCombatActionsAfterCast = true;
+                                    }
                                 }
+                            }
+                            else
+                            {
+                                _abilityView.DisplayErrorMessage(disabledReason.ToString());
                             }
                         }
                         else if (Input.IsKeyPressed(_quickCast.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCast.ControllerKey.InputKey))
@@ -317,6 +347,12 @@ namespace TOR_Core.AbilitySystem
                                 {
                                     DisableAbilityMode(false, failureReason);
                                 }
+                                else
+                                {
+                                    _lastActivationDeltaTime = dt;
+                                    _elapsedTimeSinceLastActivation = 0;
+                                    _disableCombatActionsAfterCast = true;
+                                }
                             }
                         }
                     }
@@ -335,6 +371,12 @@ namespace TOR_Core.AbilitySystem
                                 if (!Agent.Main.TryCastCurrentAbility(out failureReason))
                                 {
                                     DisableAbilityMode(false, failureReason);
+                                }
+                                else
+                                {
+                                    _lastActivationDeltaTime = dt;
+                                    _elapsedTimeSinceLastActivation = 0;
+                                    _disableCombatActionsAfterCast = true;
                                 }
                             }
                         }
@@ -359,7 +401,7 @@ namespace TOR_Core.AbilitySystem
             if (CurrentState != AbilityModeState.Off)
             {
                 var action = Agent.Main.GetCurrentAction(1);
-                if (CurrentState == AbilityModeState.Targeting && action != _idleAnimation)
+                if (CurrentState == AbilityModeState.Targeting && _shouldPlayIdleCastStanceAnim && action != _idleAnimation)
                 {
                     Agent.Main.SetActionChannel(1, _idleAnimation);
                 }
@@ -521,7 +563,6 @@ namespace TOR_Core.AbilitySystem
                 var attackMask = DamagePatch.DetermineMask(blow);
                 CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage,ChargeType.DamageDone, attackMask,affectorAgent,affectedAgent, attackCollisionData);
             }
-            
         }
 
         protected override void OnAgentControllerChanged(Agent agent, Agent.ControllerType oldController)
@@ -541,24 +582,6 @@ namespace TOR_Core.AbilitySystem
                 if (behaviour.CurrentCrosshair is SniperScope) return !behaviour.CurrentCrosshair.IsVisible;
                 else return true;
             }
-        }
-        
-        private void ShiftToCareerAbility()
-        {
-           if(!(_abilityComponent.CareerAbility.RequiresTargeting && _abilityComponent.CareerAbility.IsCharged))
-               return;
-            
-            _abilityComponent.SelectAbility(_abilityComponent.CareerAbility);
-            EnableTargetingMode();
-            _careerAbilitySelected = true;
-
-        }
-
-        private void ShiftBackFromCareerAbility()
-        {
-            _abilityComponent.SelectAbility(_abilityComponent.GetCurrentAbilityIndex());
-            
-            _careerAbilitySelected = false;
         }
 
         public bool IsCastingMission()
@@ -710,14 +733,6 @@ namespace TOR_Core.AbilitySystem
                 if (!(Game.Current.GameType is Campaign)) return;
                 if (hero.HasAnyCareer() && hero.HasCareerChoice("ArchLectorPassive1")) return;
                 Agent.Main.GetComponent<AbilityComponent>().SetIntialPrayerCoolDown();
-            }
-        }
-
-        public void DeactivateAbilityMode()
-        {
-            if (IsAbilityModeAvailableForMainAgent())
-            {
-                DisableAbilityMode(true, null);
             }
         }
 
