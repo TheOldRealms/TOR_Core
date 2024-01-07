@@ -136,6 +136,7 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         public override void Stop()
         {
+            if (IsFading || _casterAgent == null) return;
             base.Stop();
             RestoreKeyBindings();
             _casterAgent.Appear();

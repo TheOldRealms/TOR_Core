@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.AbilitySystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -23,6 +24,17 @@ namespace TOR_Core.HarmonyPatches
             if (__instance.IsExpendable())
             {
                 __result = 0;
+            }
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(Agent), "CombatActionsEnabled", MethodType.Getter)]
+        public static void CombatActionsEnabledPatch(ref bool __result, Agent __instance)
+        {
+            if(__instance.IsMainAgent && __result)
+            {
+                var logic = Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>();
+                if (logic != null && logic.ShouldSuppressCombatActions) __result = false;
             }
         }
 

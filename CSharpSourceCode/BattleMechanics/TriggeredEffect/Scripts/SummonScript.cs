@@ -27,23 +27,26 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             Vec3 lastPosition = position;
             var bonus = 0;
 
-            if (triggeredByAgent.GetHero() == Hero.MainHero && Hero.MainHero.HasCareer(TORCareers.Necromancer))
+            if(Game.Current.GameType is Campaign)
             {
-                if(Hero.MainHero.HasCareerChoice("GrimoireNecrisPassive4"))
+                if (triggeredByAgent.GetHero() == Hero.MainHero && Hero.MainHero.HasCareer(TORCareers.Necromancer))
                 {
-                    var equipmentItems = triggeredByAgent.Character.GetCharacterEquipment();
-
-                    foreach (var item in equipmentItems)
+                    if (Hero.MainHero.HasCareerChoice("GrimoireNecrisPassive4"))
                     {
-                        if (item.IsMagicalItem())
+                        var equipmentItems = triggeredByAgent.Character.GetCharacterEquipment();
+
+                        foreach (var item in equipmentItems)
                         {
-                            bonus++;
+                            if (item.IsMagicalItem())
+                            {
+                                bonus++;
+                            }
                         }
                     }
                 }
             }
-            
-            for(int i = 1; i < NumberToSummon + 1+bonus; i++)
+
+            for (int i = 1; i < NumberToSummon + 1 + bonus; i++)
             {
                 lastPosition = leftSide ? new Vec3(lastPosition.X - i * 1, lastPosition.Y) : new Vec3(lastPosition.X + i * 1, lastPosition.Y);
                 leftSide = !leftSide;

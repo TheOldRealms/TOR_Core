@@ -40,44 +40,25 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
             CampaignEvents.OnQuarterDailyPartyTick.AddNonSerializedListener(this, QuarterDailyTick);
             CustomResourceManager.RegisterEvents();
-            
-            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this,CalculateCustomResourceGainFromBattles);
-        }
-
-        private void CalculateCustomResourceGainFromBattles(MapEvent obj)
-        {
-            float renownChange; 
-            float influenceChange;
-            float moraleChange;
-            float goldChange;
-            float playerEarnedLootPercentage;
-
-            obj.GetBattleRewards(MobileParty.MainParty.Party, out renownChange, out influenceChange, out moraleChange, out goldChange, out playerEarnedLootPercentage);
-
-            if (MobileParty.MainParty.LeaderHero.GetCultureSpecificCustomResource() == CustomResourceManager.GetResourceObject("Prestige"))
-            {
-                MobileParty.MainParty.LeaderHero.AddCustomResource("Prestige",(int)(1 + renownChange));
-            }
         }
 
         private static void QuarterDailyTick(MobileParty mobileParty)
         {
-            if(!mobileParty.IsLordParty) return;
+            if (!mobileParty.IsLordParty) return;
             PunishmentForMissingResource(mobileParty);
         }
 
         private static void PunishmentForMissingResource(MobileParty mobileParty)
         {
-            
             var hero = mobileParty.LeaderHero;
-            if(hero==null) return;
-            if (hero.GetCultureSpecificCustomResourceValue()<=0)
+            if (hero == null) return;
+            if (hero.GetCultureSpecificCustomResourceValue() <= 0)
             {
-                if (hero.IsVampire()||hero.IsNecromancer())
+                if (hero.IsVampire() || hero.IsNecromancer())
                 {
                     var upkeep = hero.GetCalculatedCustomResourceUpkeep();
-                    hero.AddWindsOfMagic( upkeep*3); //takes winds
-                }  
+                    hero.AddWindsOfMagic(upkeep * 3); //takes winds
+                }
             }
         }
 
@@ -86,14 +67,14 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             foreach (var entry in _heroInfos)
             {
                 var hero = Hero.FindFirst(x => x.StringId == entry.Key);
-                
-                if(hero.GetCultureSpecificCustomResource()==null) continue;
-                
-                var id=  hero.GetCultureSpecificCustomResource().StringId;
+
+                if (hero.GetCultureSpecificCustomResource() == null) continue;
+
+                var id = hero.GetCultureSpecificCustomResource().StringId;
 
                 var resourceChange = hero.GetCultureSpecificCustomResourceChange();
-                
-                entry.Value.AddCustomResource(id,resourceChange.ResultNumber);
+
+                entry.Value.AddCustomResource(id, resourceChange.ResultNumber);
             }
         }
 
@@ -136,7 +117,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
         private void OnNewGameCreatedPartialFollowUpEnd(CampaignGameStarter campaignGameStarter, int index)
         {
-            if(index == CampaignEvents.OnNewGameCreatedPartialFollowUpEventMaxIndex - 2)
+            if (index == CampaignEvents.OnNewGameCreatedPartialFollowUpEventMaxIndex - 2)
             {
                 InitializeHeroes();
                 EnsurePartyInfos();
@@ -152,7 +133,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 {
                     var hero = Hero.FindFirst(x => x.StringId == entry.Key);
                     float bonusRegen = 1f;
-                    if(hero != null && hero.GetPerkValue(TORPerks.SpellCraft.Catalyst) && hero.CurrentSettlement != null && hero.CurrentSettlement.IsTown)
+                    if (hero != null && hero.GetPerkValue(TORPerks.SpellCraft.Catalyst) && hero.CurrentSettlement != null && hero.CurrentSettlement.IsTown)
                     {
                         bonusRegen += TORPerks.SpellCraft.Catalyst.SecondaryBonus;
                     }
@@ -160,9 +141,9 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 }
             }
             //count down blessing duration
-            foreach(var entry in _partyInfos)
+            foreach (var entry in _partyInfos)
             {
-                if(!string.IsNullOrWhiteSpace(entry.Value.CurrentBlessingStringId) && entry.Value.CurrentBlessingRemainingDuration > 0)
+                if (!string.IsNullOrWhiteSpace(entry.Value.CurrentBlessingStringId) && entry.Value.CurrentBlessingRemainingDuration > 0)
                 {
                     entry.Value.CurrentBlessingRemainingDuration--;
                 }
@@ -284,7 +265,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
         private void EnsurePartyInfos()
         {
-            foreach(var party in MobileParty.AllLordParties)
+            foreach (var party in MobileParty.AllLordParties)
             {
                 OnPartyCreated(party);
             }

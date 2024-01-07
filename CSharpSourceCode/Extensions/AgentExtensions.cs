@@ -18,6 +18,7 @@ using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Models;
 using TOR_Core.Utilities;
+using TaleWorlds.Localization;
 
 namespace TOR_Core.Extensions
 {
@@ -108,13 +109,10 @@ namespace TOR_Core.Extensions
             return false;
         }
 
-       
-
         public static bool ShouldNotBleed(this Agent agent)
         {
             return agent.GetAttributes().Contains("ClearBloodBurst");
         }
-
 
         public static bool IsVampire(this Agent agent)
         {
@@ -141,14 +139,16 @@ namespace TOR_Core.Extensions
             return agent.GetAttributes().Contains(attributeName);
         }
 
-        public static void CastCurrentAbility(this Agent agent)
+        public static bool TryCastCurrentAbility(this Agent agent, out TextObject failureReason)
         {
             var abilitycomponent = agent.GetComponent<AbilityComponent>();
 
             if (abilitycomponent != null)
             {
-                if (abilitycomponent.CurrentAbility != null) abilitycomponent.CurrentAbility.TryCast(agent);
+                if (abilitycomponent.CurrentAbility != null) return abilitycomponent.CurrentAbility.TryCast(agent, out failureReason);
             }
+            failureReason = new TextObject("{=tor_cast_fail_comp_null}Abilitycomponent is null!");
+            return false;
         }
 
         /// <summary>
@@ -445,24 +445,6 @@ namespace TOR_Core.Extensions
             else return null;
         }
 
-        public static void SelectNextAbility(this Agent agent)
-        {
-            var abilitycomponent = agent.GetComponent<AbilityComponent>();
-            if (abilitycomponent != null)
-            {
-                abilitycomponent.SelectNextAbility();
-            }
-        }
-
-        public static void SelectPreviousAbility(this Agent agent)
-        {
-            var abilitycomponent = agent.GetComponent<AbilityComponent>();
-            if (abilitycomponent != null)
-            {
-                abilitycomponent.SelectPreviousAbility();
-            }
-        }
-
         public static void SelectAbility(this Agent agent, int abilityindex)
         {
             var abilitycomponent = agent.GetComponent<AbilityComponent>();
@@ -472,20 +454,13 @@ namespace TOR_Core.Extensions
             }
         }
 
-        public static void SetSpellCasterMode(this Agent agent)
+        public static void SelectAbility(this Agent agent, Ability ability)
         {
-            if(agent!=Agent.Main) return;
-            if (Mission.Current == null) return;
-            
-            Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>().ActivateSpellcasterMode();
-        }
-        
-        public static void UnsetSpellCasterMode(this Agent agent)
-        {
-            if(agent!=Agent.Main) return;
-            if (Mission.Current == null) return;
-            
-            Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>().DeactivateSpellcasterMode();
+            var abilitycomponent = agent.GetComponent<AbilityComponent>();
+            if (abilitycomponent != null)
+            {
+                abilitycomponent.SelectAbility(ability);
+            }
         }
         
         public static Hero GetHero(this Agent agent)
@@ -502,7 +477,7 @@ namespace TOR_Core.Extensions
             return hero;
         }
 
-        public static bool isSummoned(this Agent agent)
+        public static bool IsSummoned(this Agent agent)
         {
             if (agent == null) return false;
             return agent.Origin != null && agent.Origin.GetType() == typeof(SummonedAgentOrigin);
@@ -740,8 +715,6 @@ namespace TOR_Core.Extensions
             //Cap healing at the agent's max hit points
             agent.Health = Math.Min(agent.Health + healingAmount, agent.HealthLimit);
         }
-        
-
 
         public static void ApplyStatusEffect(this Agent agent, string effectId, Agent applierAgent, float duration = 5, bool append = true, bool isMutated = false)
         {
@@ -766,8 +739,6 @@ namespace TOR_Core.Extensions
         {
             agent.AgentVisuals?.SetVisible(true);
         }
-        
-        
 
         public static void Disappear(this Agent agent)
         {

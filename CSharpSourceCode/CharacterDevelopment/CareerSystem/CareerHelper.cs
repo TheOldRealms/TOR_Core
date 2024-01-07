@@ -109,9 +109,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         {
             if (Campaign.Current == null) return false;
             if (!Hero.MainHero.HasAnyCareer()) return false;
-            if(affectorAgent==null)return false;
+            if (affectorAgent == null) return false;
             if (Hero.MainHero.HasCareer(TORCareers.Necromancer) && affectorAgent.HasAttribute("NecromancerChampion")) return true;
-            if(Agent.Main==null)return false;
+            if (Agent.Main == null) return false;
             
             
             if(affectorAgent.IsMount||affectedAgent.IsMount) return false;
@@ -121,7 +121,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         
         public static void ApplyCareerAbilityCharge( int amount, ChargeType chargeType, AttackTypeMask attackTypeMask,Agent affector=null,Agent affected =null, AttackCollisionData collisionData = new AttackCollisionData())
         {
-            if(Agent.Main==null) return;
+            if (Agent.Main == null) return;
             var cAbility = Agent.Main.GetComponent<AbilityComponent>();
             if (cAbility != null)
             {
@@ -130,7 +130,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 {
                     cAbility.CareerAbility.AddCharge(value);
                 }
-                
             }
         }
 
@@ -145,16 +144,16 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             {
                 flag |= ChargeCollisionFlag.HeadShot;
             }
-            
+
+            if (Hero.MainHero == null || Hero.MainHero.GetCareer() == null) return 0;
+
             var heroCareer = Hero.MainHero.GetCareer();
 
-
-            var result = heroCareer.GetCalculatedCareerAbilityCharge(agent,affected, chargeType, chargeValue, mask, flag);
-
+            var result = heroCareer.GetCalculatedCareerAbilityCharge(agent, affected, chargeType, chargeValue, mask, flag);
 
             if (!result.ApproximatelyEqualsTo(0))
             {
-                return  result;
+                return result;
             }
 
             return 0;
