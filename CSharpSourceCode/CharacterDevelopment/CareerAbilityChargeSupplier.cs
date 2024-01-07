@@ -1,6 +1,8 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using System;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -151,16 +153,42 @@ namespace TOR_Core.CharacterDevelopment
             if (chargeType != ChargeType.NumberOfKills) return 0;
 
             if (!affectingAgent.IsHero) return 0;
-
-            ExplainedNumber explainedNumber = new ExplainedNumber();
-
-            if (affectingAgent.IsMainAgent || affectingAgent.GetOriginMobileParty().IsMainParty && Hero.MainHero.HasCareerChoice("NightRiderKeystone"))
+            
+            var explainedNumber = new ExplainedNumber();   //charge value is always 1, this is added with the calculated value  below
+            
+            var maxCharge = Hero.MainHero.GetCareer().MaxCharge;
+            
+            var malus = 0f;
+            
+            if (Hero.MainHero.HasCareerChoice("NightRiderKeystone"))
             {
-                explainedNumber.Add(chargeValue);
+                malus += 1;
             }
-
+            
+            if (Hero.MainHero.HasCareerChoice("BladeMasterKeystone"))
+            {
+                malus += 1;
+            }
+            
+            if (Hero.MainHero.HasCareerChoice("DoomRiderKeystone"))
+            {
+                malus += 1;
+            }
+            
+            if (Hero.MainHero.HasCareerChoice("AvatarOfDeathKeystone"))
+            {
+                malus += 1;
+            }
+            
+            if (Hero.MainHero.HasCareerChoice("ControlledHungerKeystone"))
+            {
+                malus += 1;
+            }
+            
             if (Hero.MainHero.HasCareerChoice("DreadKnightKeystone"))
             {
+                malus += 1;
+                
                 var choice = TORCareerChoices.GetChoice("DreadKnightKeystone");
                 if (choice != null)
                 {
@@ -168,7 +196,18 @@ namespace TOR_Core.CharacterDevelopment
                     explainedNumber.AddFactor(value);
                 }
             }
+            
+            if (Hero.MainHero.HasCareerChoice("PeerlessWarriorKeystone"))
+            {
+                malus += 1;
+            }
+            
+            malus = Math.Min(5, malus);
+            
+            var change = maxCharge / ( 5 + malus );
 
+           explainedNumber.Add(change);
+            
             return explainedNumber.ResultNumber;
         }
 

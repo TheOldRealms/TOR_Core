@@ -61,9 +61,8 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         private  void OnHideOutMissionStateChanged()
         {
-            if (_champion.IsActive())
+            if (_champion!=null&&_champion.IsActive())
             {
-                TORCommon.Say("lol");
                 KillChampion();
                 _casterAgent.GetComponent<AbilityComponent>().CareerAbility.AddCharge(TORCareers.Necromancer.MaxCharge);
                 Stop();
@@ -79,6 +78,7 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         protected override void OnTick(float dt)
         {
+            
             if (!_summoned) InitialShiftToChampion();
 
             if (!_casterAgent.IsActive() && !_isDisabled)
@@ -86,11 +86,20 @@ namespace TOR_Core.AbilitySystem.Scripts
                 KillChampion();
                 Stop();
             }
+            if (_isDisabled)
+            {
+                Stop();
+            }
 
             if (( Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) ||
                   Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey) )
                 && Hero.MainHero.HasCareerChoice("DeArcanisKadonKeystone"))
                 switchBetweenAgents();
+            
+            if (_champion!=null&&_champion.Health <= 1)
+            {
+                KillChampion();
+            }
         }
 
         public override void Stop()
@@ -99,6 +108,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                 base.Stop();
                 if (_championIsActive) ShiftControllerToCaster();
                 _casterAgent.RemoveStatusEffect("greater_harbinger_ward_protection");
+                
            
         }
 
@@ -164,10 +174,13 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         private void KillChampion()
         {
-            var blow = new Blow();
-            blow.OwnerId = _casterAgent.Index;
-            _champion.Die(blow);
-            _isDisabled = true;
+            if (_champion != null)
+            {
+                var blow = new Blow();
+                blow.OwnerId = _casterAgent.Index;
+                _champion.Die(blow);
+                _isDisabled = true;
+            }
         }
 
 
