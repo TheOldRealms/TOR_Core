@@ -74,8 +74,10 @@ namespace TOR_Core.Models
             var nativeScoreOfDeclaringWar = base.GetScoreOfDeclaringWar(factionDeclaresWar, factionDeclaredWar, evaluatingClan, out warReason);
 
             /// Applying extra multiplers to increase wars
-            torScoreOfDeclaringWar *= 8;
-            nativeScoreOfDeclaringWar *= 2;
+            //torScoreOfDeclaringWar *= 8;
+            torScoreOfDeclaringWar *= TORConfig.DeclareWarScoreMultiplierTor;
+            //nativeScoreOfDeclaringWar *= 2;
+            nativeScoreOfDeclaringWar *= TORConfig.DeclareWarScoreMultiplierNative;
 
             TORCommon.Say($"War between {factionDeclaredWar.Name} vs {factionDeclaresWar.Name}; \n\t\t" +
                 $"Native Score: {nativeScoreOfDeclaringWar}, TOR Score: {torScoreOfDeclaringWar}; \n\t\t" +

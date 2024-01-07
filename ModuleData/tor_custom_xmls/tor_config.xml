@@ -11,4 +11,6 @@
     NumberOfInitialHideoutsAtEachBanditFaction="40"
     NumberOfMaximumHideoutsAtEachBanditFaction="80"
 	MaximumNumberOfCareerPerkPoints="30"
+	DeclareWarScoreMultiplierTor="8"
+	DeclareWarScoreMultiplierNative="2"
 />
