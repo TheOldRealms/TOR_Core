@@ -188,13 +188,6 @@ namespace TOR_Core.CharacterDevelopment
             if (Hero.MainHero.HasCareerChoice("DreadKnightKeystone"))
             {
                 malus += 1;
-                
-                var choice = TORCareerChoices.GetChoice("DreadKnightKeystone");
-                if (choice != null)
-                {
-                    var value = choice.GetPassiveValue();
-                    explainedNumber.AddFactor(value);
-                }
             }
             
             if (Hero.MainHero.HasCareerChoice("PeerlessWarriorKeystone"))
