@@ -102,7 +102,7 @@ namespace TOR_Core.Extensions
             var number = new ExplainedNumber(0,true);
             if (hero.GetCultureSpecificCustomResource() != null)
             {
-                var upkeep = GetCalculatedCustomResourceUpkeep(hero);
+                var upkeep = (int) GetCalculatedCustomResourceUpkeep(hero);
 
                 if (upkeep < 0)
                 {
@@ -125,14 +125,22 @@ namespace TOR_Core.Extensions
             {
                 if (element.Troop.HasCustomResourceUpkeepRequirement())
                 {
-                    upkeep.Add(element.Troop.GetCustomResourceRequiredForUpkeep().Item2,new TextObject("Upkeep"));
+                    var unitUpkeet = new ExplainedNumber(element.Troop.GetCustomResourceRequiredForUpkeep().Item2);
+                    if (hero == Hero.MainHero)
+                    {
+                        CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref unitUpkeet,PassiveEffectType.CustomResourceUpkeepModifier, true, element.Troop); 
+                    }
+                    
+                    
+                    
+                    upkeep.Add(unitUpkeet.ResultNumber,new TextObject("Upkeep"));
+                    
                 }
+                
+                
             }
                 
-            if (hero == Hero.MainHero)
-            {
-                CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref upkeep,PassiveEffectType.CustomResourceUpkeepModifier, true); 
-            }
+            
             
             return -upkeep.ResultNumber;
         }

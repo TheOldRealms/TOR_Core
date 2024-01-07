@@ -78,10 +78,7 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         protected override void OnTick(float dt)
         {
-            if (_isDisabled)
-            {
-                Stop();
-            }
+            
             if (!_summoned) InitialShiftToChampion();
 
             if (!_casterAgent.IsActive() && !_isDisabled)
@@ -89,11 +86,20 @@ namespace TOR_Core.AbilitySystem.Scripts
                 KillChampion();
                 Stop();
             }
+            if (_isDisabled)
+            {
+                Stop();
+            }
 
             if (( Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) ||
                   Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey) )
                 && Hero.MainHero.HasCareerChoice("DeArcanisKadonKeystone"))
                 switchBetweenAgents();
+            
+            if (_champion!=null&&_champion.Health <= 1)
+            {
+                KillChampion();
+            }
         }
 
         public override void Stop()
