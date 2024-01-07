@@ -32,19 +32,13 @@ namespace TOR_Core.GameManagers
             ContextTitleElement.AddVariationWithId(context, new TaleWorlds.Localization.TextObject("The Old Realms"), new List<GameTextManager.ChoiceTag>());
             
             var KeyElementBindings = Module.CurrentModule.GlobalTextManager.GetGameText("str_key_name");
-            var spellcastingModeKey = context + "_"+(int)TorKeyMap.SpellcastingMode;
-            KeyElementBindings.AddVariationWithId(spellcastingModeKey, new TextObject ("{=tor_spellcasting_mode_key_str}Spell Casting Mode"), new List<GameTextManager.ChoiceTag>());
-            
-            var nextSpellKey = context + "_"+(int)TorKeyMap.SelectNextAbility;
-            KeyElementBindings.AddVariationWithId(nextSpellKey, new TaleWorlds.Localization.TextObject("{=tor_next_ability_key_str}Next Ability"), new List<GameTextManager.ChoiceTag>());
-            
-            var previousSpellKey = context + "_"+(int)TorKeyMap.SelectPreviousAbility;
-            KeyElementBindings.AddVariationWithId(previousSpellKey, new TaleWorlds.Localization.TextObject("{=tor_last_ability_key_str}Last Ability"), new List<GameTextManager.ChoiceTag>());
+            var spellcastingModeKey = context + "_"+(int)TorKeyMap.QuickCastSelectionMenu;
+            KeyElementBindings.AddVariationWithId(spellcastingModeKey, new TextObject ("{=tor_spellcasting_mode_key_str}Quick Cast Selection Menu"), new List<GameTextManager.ChoiceTag>());
             
             var quickCast = context + "_"+(int)TorKeyMap.QuickCast;
             KeyElementBindings.AddVariationWithId(quickCast, new TaleWorlds.Localization.TextObject("{=tor_quick_cast_key_str}Quick Cast"), new List<GameTextManager.ChoiceTag>());
             
-            var specialMove = context+ "_"+(int)TorKeyMap.SpecialMove;
+            var specialMove = context+ "_"+(int)TorKeyMap.CareerAbilityCast;
             KeyElementBindings.AddVariationWithId(specialMove, new TaleWorlds.Localization.TextObject("{=tor_career_ability_key_str}Career Ability"), new List<GameTextManager.ChoiceTag>());
 
 
@@ -54,10 +48,6 @@ namespace TOR_Core.GameManagers
                                                      "4) Spells are reliant on the user's Winds of Magic (mana), this is fairly self-explanatory. It is regained over time on the campaign map.");
             var KeyDescriptionElement = Module.CurrentModule.GlobalTextManager.GetGameText("str_key_description");
             KeyDescriptionElement.AddVariationWithId(spellcastingModeKey, spellCastingModeDescription, new List<GameTextManager.ChoiceTag>());
-            KeyDescriptionElement.AddVariationWithId(nextSpellKey, new TaleWorlds.Localization.TextObject(
-                "{=tor_next_ability_description_str}Select next Spell without need to switch to spell cast mode"), new List<GameTextManager.ChoiceTag>());
-            KeyDescriptionElement.AddVariationWithId(previousSpellKey, new TaleWorlds.Localization.TextObject(
-                "{=tor_last_ability_description_str}Select previous Spell without need to switch to spell cast mode"), new List<GameTextManager.ChoiceTag>());
             KeyDescriptionElement.AddVariationWithId(quickCast, new TaleWorlds.Localization.TextObject(
                 "{=tor_quick_cast_description_str}Cast spells or prayers without needing to switch to spell cast mode. Warning: There is no target indication and the Spells follow predefined casting order. For targeted casting, always use the Spellcaster mode"), new List<GameTextManager.ChoiceTag>());
             KeyDescriptionElement.AddVariationWithId(specialMove, new TaleWorlds.Localization.TextObject(

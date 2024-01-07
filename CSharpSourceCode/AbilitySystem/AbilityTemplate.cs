@@ -105,11 +105,12 @@ namespace TOR_Core.AbilitySystem
         public bool ShouldRotateVisuals { get; set; } = false;
         [XmlAttribute]
         public bool DoNotAlignParticleEffectPrefab { get; set; } = false;
+        [XmlElement] 
+        public SeekerParameters SeekerParameters { get; set; } = null;
         [XmlIgnore] 
         public float ScaleVariable1 { get; set; } = 0f;
         public float VisualsRotationVelocity { get; set; } = 0f;
-        [XmlIgnore]
-        public SeekerParameters SeekerParameters { get; set; }
+        
         [XmlIgnore]
         public bool IsSpell => AbilityType == AbilityType.Spell;
         [XmlIgnore]

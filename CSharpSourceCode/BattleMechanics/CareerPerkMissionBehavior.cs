@@ -140,6 +140,36 @@ namespace TOR_Core.BattleMechanics
                         }
                     }
                 }
+
+                if (choices.Contains("DreadKnightKeystone"))
+                {
+                    var choice = TORCareerChoices.GetChoice("DreadKnightKeystone");
+
+                    if (choice != null)
+                    {
+                        
+                      var careerAbility = (Ability) affectorAgent.GetComponent<AbilityComponent>().CareerAbility;
+
+                      if (careerAbility.IsActive)
+                      {
+
+                          
+                          var script = (RedFuryScript)( careerAbility.AbilityScript );
+                          var triggeredEffects = script.AccessEffectsToTrigger();
+
+                          foreach (var effect in triggeredEffects)
+                          {
+                              foreach (var statuseffect in effect.StatusEffects)
+                              {
+                                  affectorAgent.ApplyStatusEffect(statuseffect,affectorAgent,3);
+                                  script.ExtendLifeTime(3);
+                              }
+                  
+                          }
+                      }
+                    }
+                }
+                
                 
                 if (choices.Contains ("SilverHammerPassive1"))
                 {

@@ -10,13 +10,15 @@ namespace TOR_Core.AbilitySystem
     [DefaultView]
     class AbilityHUDMissionView : MissionView
     {
-        private bool _hasAbility;
+        private int _countOfAbilities;
         private bool _hasCareerAbility;
         private bool _isInitialized;
         private AbilityHUD_VM _abilityHUD_VM;
         private CareerAbilityHUD_VM _careerAbilityHUD_VM;
+        private AbilityRadialSelection_VM _abilityRadialSelection_VM;
         private GauntletLayer _abilityLayer;
         private GauntletLayer _careerAbilityLayer;
+        private GauntletLayer _radialMenuLayer;
 
         public override void OnBehaviorInitialize()
         {
@@ -33,6 +35,11 @@ namespace TOR_Core.AbilitySystem
             _careerAbilityLayer.LoadMovie("SpecialMoveHUD", _careerAbilityHUD_VM);
             MissionScreen.AddLayer(_careerAbilityLayer);
 
+            _abilityRadialSelection_VM = new AbilityRadialSelection_VM();
+            _radialMenuLayer = new GauntletLayer(98);
+            _radialMenuLayer.LoadMovie("AbilityRadialSelection", _abilityRadialSelection_VM);
+            MissionScreen.AddLayer(_radialMenuLayer);
+
             _isInitialized = true;
         }
 
@@ -43,15 +50,21 @@ namespace TOR_Core.AbilitySystem
                 var component = Agent.Main.GetComponent<AbilityComponent>();
                 if (component != null)
                 {
-                    _hasAbility = component.CurrentAbility != null;
+                    _countOfAbilities = component.KnownAbilitySystem.Count;
                     var careerAbility = component.CareerAbility;
                     if (careerAbility != null)
                     {
                         _careerAbilityHUD_VM.CareerAbility = careerAbility;
                         _hasCareerAbility = true;
                     }
+                    if (_abilityRadialSelection_VM != null) _abilityRadialSelection_VM.FillAbilities(Agent.Main);
                 }
             }
+        }
+
+        public void DisplayErrorMessage(string message)
+        {
+            if(_abilityRadialSelection_VM != null) _abilityRadialSelection_VM.DisplayErrorMessage(message);
         }
 
         public override void OnMissionTick(float dt)
@@ -68,18 +81,21 @@ namespace TOR_Core.AbilitySystem
                                        !ScreenManager.GetMouseVisibility();
                 if (canHudBeVisible)
                 {
-                    if (_hasAbility)
+                    if (_countOfAbilities > 0)
                     {
-                        _abilityHUD_VM.UpdateProperties();
+                        _abilityHUD_VM.RefreshValues();
+                        _abilityRadialSelection_VM.RefreshValues();
+
                     }
                     if (_hasCareerAbility)
                     {
-                        _careerAbilityHUD_VM.UpdateProperties();
+                        _careerAbilityHUD_VM.RefreshValues();
                     }
                     return;
                 }
                 _abilityHUD_VM.IsVisible = false;
                 _careerAbilityHUD_VM.IsVisible = false;
+                _abilityRadialSelection_VM.IsVisible = false;
             }
         }
     }

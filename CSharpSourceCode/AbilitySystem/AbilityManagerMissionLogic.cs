@@ -5,7 +5,6 @@ using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.InputSystem;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.Utilities;
@@ -18,13 +17,13 @@ using TaleWorlds.CampaignSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.GameManagers;
 using TOR_Core.Quests;
-using NLog;
-using TaleWorlds.Library;
-using TaleWorlds.TwoDimension;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment.CareerSystem;
-using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.HarmonyPatches;
+using TaleWorlds.MountAndBlade.View;
+using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade.View.MissionViews;
+using TaleWorlds.Library;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -32,8 +31,8 @@ namespace TOR_Core.AbilitySystem
     {
         private bool _shouldSheathWeapon;
         private bool _shouldWieldWeapon;
+        private bool _shouldPlayIdleCastStanceAnim;
         private bool _hasInitializedForMainAgent;
-        private bool _careerAbilitySelected;
         private AbilityModeState _currentState = AbilityModeState.Off;
         private EquipmentIndex _mainHand;
         private EquipmentIndex _offHand;
@@ -46,14 +45,403 @@ namespace TOR_Core.AbilitySystem
         private SummonedCombatant _attackerSummoningCombatant;
         private readonly float DamagePortionForChargingCareerAbility = 1f;
         private Dictionary<Team, int> _artillerySlots = new Dictionary<Team, int>();
-
-        private GameKey _spellcastingModeKey;
-        private GameKey _nextAbilitySelection;
-        private GameKey _previousAbilitySelection;
+        private GameKey _quickCastMenuKey;
         private GameKey _quickCast;
         private GameKey _specialMoveKey;
+        private AbilityHUDMissionView _abilityView;
+        private int _timeRequestID = 1338;
+        private float _lastActivationDeltaTime;
+        private float _disableCombatActionsDuration = 0.3f;
+        private bool _disableCombatActionsAfterCast;
+        private float _elapsedTimeSinceLastActivation;
 
         public AbilityModeState CurrentState => _currentState;
+
+        public bool ShouldSuppressCombatActions => CurrentState == AbilityModeState.Targeting || CurrentState == AbilityModeState.Casting || _disableCombatActionsAfterCast;
+
+        public override void OnBehaviorInitialize()
+        {
+            base.OnBehaviorInitialize();
+            Mission.OnItemPickUp += OnItemPickup;
+        }
+
+        public override void EarlyStart()
+        {
+            base.EarlyStart();
+            _abilityView = Mission.Current.GetMissionBehavior<AbilityHUDMissionView>();
+            Game.Current.EventManager.RegisterEvent(new Action<MissionPlayerToggledOrderViewEvent>(OnPlayerToggleOrder));
+            _quickCastMenuKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("QuickCastSelectionMenu");
+            _quickCast = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("QuickCast");
+            _specialMoveKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("CareerAbilityCast");
+        }
+
+        public override void OnPreMissionTick(float dt)
+        {
+            _elapsedTimeSinceLastActivation += dt;
+            if(_disableCombatActionsAfterCast && _elapsedTimeSinceLastActivation > (_lastActivationDeltaTime + _disableCombatActionsDuration))
+            {
+                _disableCombatActionsAfterCast = false;
+            }
+
+            if (!_hasInitializedForMainAgent)
+            {
+                if (Agent.Main != null)
+                {
+                    _abilityComponent = Agent.Main.GetComponent<AbilityComponent>();
+                    SetUpCastStanceParticles();
+                    AddPerkEffectsToStartingWindsOfMagic();
+                    _hasInitializedForMainAgent = true;
+                }
+            }
+            else if (IsAbilityModeAvailableForMainAgent())
+            {
+                CheckIfMainAgentHasPendingActivation();
+
+                HandleInput(dt);
+
+                UpdateWieldedItems();
+
+                HandleAnimations();
+            }
+        }
+
+        private void EnableTargetingMode()
+        {
+            _mainHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.MainHand);
+            _offHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.OffHand);
+            _currentState = AbilityModeState.Targeting;
+            _abilityView.MissionScreen.SetRadialMenuActiveState(false);
+
+            ChangeKeyBindings();
+            SlowDownTime(true);
+
+            if (_abilityComponent.CurrentAbility.Template.AbilityType == AbilityType.Spell || 
+                _abilityComponent.CurrentAbility.Template.AbilityType == AbilityType.Prayer)
+            {
+                _shouldSheathWeapon = true;
+                _shouldPlayIdleCastStanceAnim = true;
+                var traitcomp = Agent.Main.GetComponent<ItemTraitAgentComponent>();
+                if (traitcomp != null)
+                {
+                    traitcomp.EnableAllParticles(false);
+                }
+
+                EnableCastStanceParticles(true);
+            }
+            else
+            {
+                _shouldSheathWeapon = false;
+                _shouldPlayIdleCastStanceAnim = false;
+            }
+        }
+
+        private void EnableQuickSelectionMenuMode()
+        {
+            _currentState = AbilityModeState.QuickMenuSelection;
+            _abilityView.MissionScreen.SetRadialMenuActiveState(true);
+            ChangeKeyBindings();
+            SlowDownTime(true);
+        }
+
+        private void SlowDownTime(bool enable)
+        {
+            bool isSlowTimeActive = Mission.Current.GetRequestedTimeSpeed(_timeRequestID, out _);
+            if(isSlowTimeActive && !enable)
+            {
+                Mission.Current.RemoveTimeSpeedRequest(_timeRequestID);
+                return;
+            }
+            else if(!isSlowTimeActive && enable)
+            {
+                Mission.TimeSpeedRequest timeRequest = new Mission.TimeSpeedRequest(0.3f, _timeRequestID);
+                _timeRequestID = timeRequest.RequestID;
+                Mission.Current.AddTimeSpeedRequest(timeRequest);
+            }
+        }
+
+        private void DisableAbilityMode(bool isTakingNewWeapon, TextObject errorMessage)
+        {
+            if (isTakingNewWeapon)
+            {
+                _mainHand = EquipmentIndex.None;
+                _offHand = EquipmentIndex.None;
+            }
+            else
+            {
+                _shouldWieldWeapon = true;
+            }
+
+            _currentState = AbilityModeState.Off;
+            _abilityComponent.LastCastWasQuickCast = false;
+
+            ChangeKeyBindings();
+            SlowDownTime(false);
+            _abilityView.MissionScreen.SetRadialMenuActiveState(false);
+            var traitcomp = Agent.Main.GetComponent<ItemTraitAgentComponent>();
+            if (traitcomp != null)
+            {
+                traitcomp.EnableAllParticles(true);
+            }
+
+            EnableCastStanceParticles(false);
+            if(errorMessage != null)
+            {
+                _abilityView.DisplayErrorMessage(errorMessage.ToString());
+            }
+        }
+
+        internal void OnCastStart(Ability ability, Agent agent)
+        {
+            if (agent == Agent.Main)
+            {
+                _currentState = AbilityModeState.Casting;
+            }
+
+            if (agent.GetHero().HasAnyCareer())
+            {
+                var playerHero = agent.GetHero();
+                var choices = playerHero.GetAllCareerChoices();
+
+                if (choices.Contains("SecretsOFTheGrailPassive3"))
+                {
+                    if (ability.Template.AbilityType == AbilityType.Prayer)
+                    {
+                        var choice = TORCareerChoices.GetChoice("SecretsOFTheGrailPassive3");
+                        if (choice != null)
+                        {
+                            float random = MBRandom.RandomFloatRanged(0, 1);
+                            if (random < choice.GetPassiveValue())
+                            {
+                                playerHero.AddWindsOfMagic(15);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        internal void OnCastComplete(Ability ability, Agent agent)
+        {
+            if (ability is ItemBoundAbility && ability.Template.AbilityEffectType == AbilityEffectType.ArtilleryPlacement)
+            {
+                if (_artillerySlots.ContainsKey(agent.Team))
+                {
+                    _artillerySlots[agent.Team]--;
+                }
+            }
+
+            if (agent == Agent.Main)
+            {
+                if (CurrentState == AbilityModeState.Casting) DisableAbilityMode(false, null);
+                if (Game.Current.GameType is Campaign)
+                {
+                    var quest = TORQuestHelper.GetCurrentActiveIfExists<SpecializeLoreQuest>();
+                    if (quest != null)
+                    {
+                        quest.IncrementCast();
+                    }
+                }
+            }
+
+            if (agent.IsHero && Game.Current.GameType is Campaign)
+            {
+                var hero = agent.GetHero();
+                var model = Campaign.Current.Models.GetAbilityModel();
+                if (model != null && hero != null)
+                {
+                    var skill = model.GetRelevantSkillForAbility(ability.Template);
+                    var amount = model.GetSkillXpForCastingAbility(ability.Template);
+                    hero.AddSkillXp(skill, amount);
+                }
+            }
+        }
+
+        private void HandleInput(float dt)
+        {
+            if (Input.IsKeyDown(InputKey.Tab))
+                return;
+
+            if(_currentState == AbilityModeState.QuickMenuSelection || _currentState == AbilityModeState.Targeting)
+            {
+                if (Input.IsKeyPressed(InputKey.RightMouseButton))
+                {
+                    DisableAbilityMode(false, null);
+                    return;
+                }
+            }
+
+            switch (_currentState)
+            {
+                case AbilityModeState.Off:
+                    {
+                        if (Input.IsKeyPressed(InputKey.RightMouseButton) || Input.IsKeyPressed(InputKey.LeftMouseButton))
+                        {
+                            if (_abilityComponent.CareerAbility != null && _abilityComponent.CareerAbility.IsActive) _abilityComponent.OnInterrupt();
+                        }
+                        else if (Input.IsKeyPressed(_quickCastMenuKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCastMenuKey.ControllerKey.InputKey))
+                        {
+                            EnableQuickSelectionMenuMode();
+                        }
+                        else if (Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey))
+                        {
+                            TextObject disabledReason = new TextObject("Error Casting Career Ability");
+                            if ( _abilityComponent.CareerAbility != null && !_abilityComponent.CareerAbility.IsDisabled(Agent.Main, out disabledReason) && IsSniperScopeDisabled())
+                            {
+                                _abilityComponent.SelectAbility(_abilityComponent.CareerAbility);
+                                if (_abilityComponent.CurrentAbility.RequiresTargeting)
+                                {
+                                    EnableTargetingMode();
+                                }
+                                else
+                                {
+                                    TextObject failureReason;
+                                    if (!Agent.Main.TryCastCurrentAbility(out failureReason))
+                                    {
+                                        DisableAbilityMode(false, failureReason);
+                                    }
+                                    else
+                                    {
+                                        _lastActivationDeltaTime = dt;
+                                        _elapsedTimeSinceLastActivation = 0;
+                                        _disableCombatActionsAfterCast = true;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                _abilityView.DisplayErrorMessage(disabledReason.ToString());
+                            }
+                        }
+                        else if (Input.IsKeyPressed(_quickCast.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCast.ControllerKey.InputKey))
+                        {
+                            if (_abilityComponent.CurrentAbility != null && !_abilityComponent.CurrentAbility.IsDisabled(Agent.Main, out _) && IsSniperScopeDisabled())
+                            {
+                                _abilityComponent.LastCastWasQuickCast = true;
+                                TextObject failureReason;
+                                if (!Agent.Main.TryCastCurrentAbility(out failureReason))
+                                {
+                                    DisableAbilityMode(false, failureReason);
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case AbilityModeState.QuickMenuSelection:
+                    {
+                        if (!Input.IsKeyDown(_quickCastMenuKey.KeyboardKey.InputKey) && !Input.IsKeyDown(_quickCastMenuKey.ControllerKey.InputKey))
+                        {
+                            TextObject failureReason;
+                            if (_abilityComponent.CurrentAbility.IsDisabled(Agent.Main, out failureReason))
+                            {
+                                DisableAbilityMode(false, failureReason);
+                                return;
+                            }
+
+                            if (_abilityComponent.CurrentAbility.RequiresTargeting)
+                            {
+                                EnableTargetingMode();
+                            }
+                            else
+                            {
+                                if (!Agent.Main.TryCastCurrentAbility(out failureReason))
+                                {
+                                    DisableAbilityMode(false, failureReason);
+                                }
+                                else
+                                {
+                                    _lastActivationDeltaTime = dt;
+                                    _elapsedTimeSinceLastActivation = 0;
+                                    _disableCombatActionsAfterCast = true;
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case AbilityModeState.Targeting:
+                    {
+                        if (Input.IsKeyPressed(InputKey.LeftMouseButton))
+                        {
+                            bool flag = _abilityComponent.CurrentAbility.Crosshair == null ||
+                                        !_abilityComponent.CurrentAbility.Crosshair.IsVisible ||
+                                        (_abilityComponent.CurrentAbility.Crosshair.CrosshairType == CrosshairType.SingleTarget &&
+                                         !((SingleTargetCrosshair)_abilityComponent.CurrentAbility.Crosshair).IsTargetLocked);
+                            if (!flag)
+                            {
+                                TextObject failureReason;
+                                if (!Agent.Main.TryCastCurrentAbility(out failureReason))
+                                {
+                                    DisableAbilityMode(false, failureReason);
+                                }
+                                else
+                                {
+                                    _lastActivationDeltaTime = dt;
+                                    _elapsedTimeSinceLastActivation = 0;
+                                    _disableCombatActionsAfterCast = true;
+                                }
+                            }
+                        }
+                        else if (Input.IsKeyPressed(_quickCastMenuKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCastMenuKey.ControllerKey.InputKey))
+                        {
+                            EnableQuickSelectionMenuMode();
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void CheckIfMainAgentHasPendingActivation()
+        {
+            if (_abilityComponent.CurrentAbility.IsActivationPending) _abilityComponent.CurrentAbility.ActivateAbility(Agent.Main);
+        }
+
+        private void HandleAnimations()
+        {
+            if (CurrentState != AbilityModeState.Off)
+            {
+                var action = Agent.Main.GetCurrentAction(1);
+                if (CurrentState == AbilityModeState.Targeting && _shouldPlayIdleCastStanceAnim && action != _idleAnimation)
+                {
+                    Agent.Main.SetActionChannel(1, _idleAnimation);
+                }
+            }
+        }
+
+        private void UpdateWieldedItems()
+        {
+            if (_currentState == AbilityModeState.Targeting && _shouldSheathWeapon)
+            {
+                if (Agent.Main.GetWieldedItemIndex(Agent.HandIndex.MainHand) != EquipmentIndex.None)
+                {
+                    Agent.Main.TryToSheathWeaponInHand(Agent.HandIndex.MainHand, Agent.WeaponWieldActionType.WithAnimation);
+                }
+                else if (Agent.Main.GetWieldedItemIndex(Agent.HandIndex.OffHand) != EquipmentIndex.None)
+                {
+                    Agent.Main.TryToSheathWeaponInHand(Agent.HandIndex.OffHand, Agent.WeaponWieldActionType.WithAnimation);
+                }
+                else
+                {
+                    _shouldSheathWeapon = false;
+                }
+            }
+
+            if (_currentState == AbilityModeState.Off && _shouldWieldWeapon)
+            {
+                if (Agent.Main.GetWieldedItemIndex(Agent.HandIndex.MainHand) != _mainHand)
+                {
+                    Agent.Main.TryToWieldWeaponInSlot(_mainHand, Agent.WeaponWieldActionType.WithAnimation, false);
+                }
+                else if (Agent.Main.GetWieldedItemIndex(Agent.HandIndex.OffHand) != _offHand)
+                {
+                    Agent.Main.TryToWieldWeaponInSlot(_offHand, Agent.WeaponWieldActionType.WithAnimation, false);
+                }
+                else
+                {
+                    _shouldWieldWeapon = false;
+                }
+            }
+        }
 
         public int GetArtillerySlotsLeftForTeam(Team team)
         {
@@ -105,11 +493,36 @@ namespace TOR_Core.AbilitySystem
                 RefreshMaxArtilleryCountForTeam(team);
             }
         }
-        
-        public override void OnBehaviorInitialize()
+
+        public override void OnMissionResultReady(MissionResult missionResult)
         {
-            base.OnBehaviorInitialize();
-            Mission.OnItemPickUp += OnItemPickup;
+            if (missionResult.PlayerDefeated || missionResult.PlayerVictory)
+            {
+                var agents = Mission.Current.Agents;
+                foreach (var agent in agents)
+                {
+                    if (agent.IsMainAgent && agent.IsActive())
+                    {
+                        DisableAbilityMode(true, null);
+                    }
+
+                    var abilityComponent = agent.GetComponent<AbilityComponent>();
+                    if (abilityComponent != null)
+                    {
+                        var abilities = abilityComponent.KnownAbilitySystem;
+                        foreach (var ability in abilities)
+                        {
+                            ability.DeactivateAbility();
+                        }
+                    }
+
+                    var comp = agent.GetComponent<StatusEffectComponent>();
+                    if (comp != null)
+                    {
+                        comp.Dispose();
+                    }
+                }
+            }
         }
 
         protected override void OnEndMission()
@@ -117,310 +530,6 @@ namespace TOR_Core.AbilitySystem
             base.OnEndMission();
             BindWeaponKeys();
             Mission.OnItemPickUp -= OnItemPickup;
-        }
-        
-
-        public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
-        {
-
-            if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent))
-            {
-                var attackMask = DamagePatch.DetermineMask(blow);
-                CareerHelper.ApplyCareerAbilityCharge(1,ChargeType.NumberOfKills,attackMask,affectorAgent,affectedAgent);
-            }
-            
-        }
-
-        public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
-        {
-            if(CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent))
-            {
-                var attackMask = DamagePatch.DetermineMask(blow);
-                CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage,ChargeType.DamageDone, attackMask,affectorAgent,affectedAgent, attackCollisionData);
-            }
-            
-        }
-
-        public override void OnMissionTick(float dt)
-        {
-            if (!_hasInitializedForMainAgent)
-            {
-                if (Agent.Main != null)
-                {
-                    SetUpCastStanceParticles();
-                    AddPerkEffectsToStartingWindsOfMagic();
-                    _hasInitializedForMainAgent = true;
-                }
-            }
-            else if (IsAbilityModeAvailableForMainAgent())
-            {
-                CheckIfMainAgentHasPendingActivation();
-
-                HandleInput();
-
-                UpdateWieldedItems();
-
-                HandleAnimations();
-            }
-        }
-
-        private void CheckIfMainAgentHasPendingActivation()
-        {
-            if (_abilityComponent.CurrentAbility.IsActivationPending) _abilityComponent.CurrentAbility.ActivateAbility(Agent.Main);
-        }
-
-        private void HandleAnimations()
-        {
-            if (CurrentState != AbilityModeState.Off)
-            {
-                var action = Agent.Main.GetCurrentAction(1);
-                if (CurrentState == AbilityModeState.Idle && action != _idleAnimation)
-                {
-                    Agent.Main.SetActionChannel(1, _idleAnimation);
-                }
-            }
-        }
-
-        internal void OnCastComplete(Ability ability, Agent agent)
-        {
-            if (ability is ItemBoundAbility && ability.Template.AbilityEffectType == AbilityEffectType.ArtilleryPlacement)
-            {
-                if (_artillerySlots.ContainsKey(agent.Team))
-                {
-                    _artillerySlots[agent.Team]--;
-                }
-            }
-
-            if (agent == Agent.Main)
-            {
-                if (CurrentState == AbilityModeState.Casting) _currentState = AbilityModeState.Idle;
-                if (Game.Current.GameType is Campaign)
-                {
-                    var quest = TORQuestHelper.GetCurrentActiveIfExists<SpecializeLoreQuest>();
-                    if (quest != null)
-                    {
-                        quest.IncrementCast();
-                    }
-
-                }
-            }
-
-            if (agent.IsHero && Game.Current.GameType is Campaign)
-            {
-                var hero = agent.GetHero();
-                var model = Campaign.Current.Models.GetAbilityModel();
-                if (model != null && hero != null)
-                {
-                    var skill = model.GetRelevantSkillForAbility(ability.Template);
-                    var amount = model.GetSkillXpForCastingAbility(ability.Template);
-                    hero.AddSkillXp(skill, amount);
-                }
-            }
-        }
-
-        internal void OnCastStart(Ability ability, Agent agent)
-        {
-            if (agent == Agent.Main)
-            {
-                if (CurrentState == AbilityModeState.Idle) _currentState = AbilityModeState.Casting;
-            }
-            
-            if (agent.GetHero().HasAnyCareer())
-            {
-                var playerHero = agent.GetHero();
-                var choices = playerHero.GetAllCareerChoices();
-
-                if (choices.Contains("SecretsOFTheGrailPassive3"))
-                {
-                    if (ability.Template.AbilityType == AbilityType.Prayer)
-                    {
-                        var choice = TORCareerChoices.GetChoice("SecretsOFTheGrailPassive3");
-                        if (choice != null)
-                        {
-                            float random = MBRandom.RandomFloatRanged(0, 1);
-                            if (random < choice.GetPassiveValue())
-                            {
-                                playerHero.AddWindsOfMagic(15);
-                            }
-                        }
-                                
-                    }
-                }
-            }
-        }
-
-        private void UpdateWieldedItems()
-        {
-            if (_currentState == AbilityModeState.Idle && _shouldSheathWeapon)
-            {
-                if (Agent.Main.GetWieldedItemIndex(Agent.HandIndex.MainHand) != EquipmentIndex.None)
-                {
-                    Agent.Main.TryToSheathWeaponInHand(Agent.HandIndex.MainHand, Agent.WeaponWieldActionType.WithAnimation);
-                }
-                else if (Agent.Main.GetWieldedItemIndex(Agent.HandIndex.OffHand) != EquipmentIndex.None)
-                {
-                    Agent.Main.TryToSheathWeaponInHand(Agent.HandIndex.OffHand, Agent.WeaponWieldActionType.WithAnimation);
-                }
-                else
-                {
-                    _shouldSheathWeapon = false;
-                }
-            }
-
-            if (_currentState == AbilityModeState.Off && _shouldWieldWeapon)
-            {
-                if (Agent.Main.GetWieldedItemIndex(Agent.HandIndex.MainHand) != _mainHand)
-                {
-                    Agent.Main.TryToWieldWeaponInSlot(_mainHand, Agent.WeaponWieldActionType.WithAnimation, false);
-                }
-                else if (Agent.Main.GetWieldedItemIndex(Agent.HandIndex.OffHand) != _offHand)
-                {
-                    Agent.Main.TryToWieldWeaponInSlot(_offHand, Agent.WeaponWieldActionType.WithAnimation, false);
-                }
-                else
-                {
-                    _shouldWieldWeapon = false;
-                }
-            }
-        }
-
-        private void HandleInput()
-        {
-            //Turning ability mode on/off
-
-            if (Input.IsKeyDown(InputKey.Tab))
-                return;
-
-            if (Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) ||
-                Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey))
-            {
-                if (_abilityComponent != null && _abilityComponent.CareerAbility != null)
-                    if (_currentState == AbilityModeState.Off &&
-                        IsCurrentCrossHairCompatible())
-                    {
-                        if (_abilityComponent.CareerAbility.RequiresSpellTargeting())
-                        {
-                            ShiftToCareerAbility();
-                        }
-                        else
-                        {
-                            _abilityComponent.CareerAbility.TryCast(Agent.Main);
-                        }
-                    }
-                    else if (_currentState == AbilityModeState.Idle)
-                    {
-                        if (_careerAbilitySelected)
-                        {
-                            ShiftBackFromCareerAbility();
-                        }
-                        else
-                        {
-                            ShiftToCareerAbility();
-                        }
-                        
-                    }
-                
-            }
-
-            if (Input.IsKeyPressed(_nextAbilitySelection.KeyboardKey.InputKey) || Input.IsKeyPressed(_nextAbilitySelection.ControllerKey.InputKey))
-            {
-                Agent.Main.SelectNextAbility();
-                _careerAbilitySelected = false;
-            }
-
-
-            if (Input.IsKeyPressed(_previousAbilitySelection.KeyboardKey.InputKey) || Input.IsKeyPressed(_previousAbilitySelection.ControllerKey.InputKey))
-            {
-                Agent.Main.SelectPreviousAbility();
-                _careerAbilitySelected = false;
-            }
-                
-
-            if (Input.IsKeyPressed(_quickCast.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCast.ControllerKey.InputKey))
-            {
-                if (_abilityComponent != null && _abilityComponent.CurrentAbility.AbilityEffectType != AbilityEffectType.SeekerMissile)
-                    Agent.Main.CastCurrentAbility();
-            }
-
-
-            if (Input.IsKeyPressed(_spellcastingModeKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_spellcastingModeKey.ControllerKey.InputKey))
-            {
-                if (_abilityComponent.KnownAbilitySystem.Count > 1 || _abilityComponent.CurrentAbility.Template.AbilityTargetType != AbilityTargetType.Self)
-                {
-                    switch (_currentState)
-                    {
-                        case AbilityModeState.Off:
-                            ShiftBackFromCareerAbility();
-                            EnableAbilityMode();
-                            break;
-                        case AbilityModeState.Idle:
-                            ShiftBackFromCareerAbility();
-                            DisableAbilityMode(false);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-            else if (Input.IsKeyPressed(InputKey.LeftMouseButton))
-            {
-                bool flag = _abilityComponent.CurrentAbility.Crosshair == null ||
-                            !_abilityComponent.CurrentAbility.Crosshair.IsVisible ||
-                            _currentState != AbilityModeState.Idle ||
-                            (_abilityComponent.CurrentAbility.Crosshair.CrosshairType == CrosshairType.SingleTarget &&
-                             !((SingleTargetCrosshair)_abilityComponent.CurrentAbility.Crosshair).IsTargetLocked);
-                if (!flag)
-                {
-                    Agent.Main.CastCurrentAbility();
-                    if (_careerAbilitySelected)
-                    {
-                        ShiftBackFromCareerAbility();
-                    }
-                }
-
-                if (_abilityComponent.CareerAbility != null && _abilityComponent.CareerAbility.IsActive) _abilityComponent.OnInterrupt();
-            }
-            else if (Input.IsKeyPressed(InputKey.RightMouseButton))
-            {
-                if (_abilityComponent.CareerAbility != null && _abilityComponent.CareerAbility.IsActive) _abilityComponent.OnInterrupt();
-            }
-            else if (Input.IsKeyPressed(InputKey.MouseScrollUp) && _currentState != AbilityModeState.Off)
-            {
-                if(_abilityComponent.KnownAbilitySystem.Count > 1) Agent.Main.SelectNextAbility();
-            }
-            else if (Input.IsKeyPressed(InputKey.MouseScrollDown) && _currentState != AbilityModeState.Off)
-            {
-                if (_abilityComponent.KnownAbilitySystem.Count > 1) Agent.Main.SelectPreviousAbility();
-            }
-        }
-
-        private bool IsCurrentCrossHairCompatible()
-        {
-            var behaviour = Mission.Current.GetMissionBehavior<CustomCrosshairMissionBehavior>();
-            if (behaviour == null) return true;
-            else
-            {
-                if (behaviour.CurrentCrosshair is SniperScope) return !behaviour.CurrentCrosshair.IsVisible;
-                else return true;
-            }
-        }
-        
-        private void ShiftToCareerAbility()
-        {
-           if(!(_abilityComponent.CareerAbility.RequiresSpellTargeting() && _abilityComponent.CareerAbility.IsCharged))
-               return;
-            
-            _abilityComponent.SelectAbility(_abilityComponent.CareerAbility);
-            EnableAbilityMode();
-            _careerAbilitySelected = true;
-
-        }
-
-        private void ShiftBackFromCareerAbility()
-        {
-            _abilityComponent.SelectAbility(_abilityComponent.GetCurrentAbilityIndex());
-            
-            _careerAbilitySelected = false;
         }
 
         public override void OnAgentCreated(Agent agent)
@@ -438,14 +547,41 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-        public override void EarlyStart()
+        public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
-            base.EarlyStart();
-            _spellcastingModeKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("Spellcasting");
-            _nextAbilitySelection = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("NextAbility");
-            _previousAbilitySelection = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("PreviousAbility");
-            _quickCast = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("QuickCast");
-            _specialMoveKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("SpecialMove");
+            if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent))
+            {
+                var attackMask = DamagePatch.DetermineMask(blow);
+                CareerHelper.ApplyCareerAbilityCharge(1, ChargeType.NumberOfKills, attackMask, affectorAgent, affectedAgent);
+            }
+        }
+
+        public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
+        {
+            if(CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent))
+            {
+                var attackMask = DamagePatch.DetermineMask(blow);
+                CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage,ChargeType.DamageDone, attackMask,affectorAgent,affectedAgent, attackCollisionData);
+            }
+        }
+
+        protected override void OnAgentControllerChanged(Agent agent, Agent.ControllerType oldController)
+        {
+            if (agent.Controller == Agent.ControllerType.Player)
+            {
+                _hasInitializedForMainAgent = false;
+            }
+        }
+
+        private bool IsSniperScopeDisabled()
+        {
+            var behaviour = Mission.Current.GetMissionBehavior<CustomCrosshairMissionBehavior>();
+            if (behaviour == null) return true;
+            else
+            {
+                if (behaviour.CurrentCrosshair is SniperScope) return !behaviour.CurrentCrosshair.IsVisible;
+                else return true;
+            }
         }
 
         public bool IsCastingMission()
@@ -462,50 +598,12 @@ namespace TOR_Core.AbilitySystem
                    Agent.Main.IsActive() &&
                    !ScreenManager.GetMouseVisibility() &&
                    IsCastingMission() &&
-                   !(ScreenManager.TopScreen as MissionScreen).IsPhotoModeEnabled &&
+                   !Mission.IsInPhotoMode &&
+                   !Mission.IsOrderMenuOpen &&
                    (Mission.Mode == MissionMode.Battle ||
                     Mission.Mode == MissionMode.Stealth) &&
                    _abilityComponent != null &&
                    _abilityComponent.CurrentAbility != null;
-        }
-
-        private void EnableAbilityMode()
-        {
-            _mainHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.MainHand);
-            _offHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.OffHand);
-            _shouldSheathWeapon = true;
-            _currentState = AbilityModeState.Idle;
-            ChangeKeyBindings();
-            var traitcomp = Agent.Main.GetComponent<ItemTraitAgentComponent>();
-            if (traitcomp != null)
-            {
-                traitcomp.EnableAllParticles(false);
-            }
-
-            EnableCastStanceParticles(true);
-        }
-
-        private void DisableAbilityMode(bool isTakingNewWeapon)
-        {
-            if (isTakingNewWeapon)
-            {
-                _mainHand = EquipmentIndex.None;
-                _offHand = EquipmentIndex.None;
-            }
-            else
-            {
-                _shouldWieldWeapon = true;
-            }
-
-            _currentState = AbilityModeState.Off;
-            ChangeKeyBindings();
-            var traitcomp = Agent.Main.GetComponent<ItemTraitAgentComponent>();
-            if (traitcomp != null)
-            {
-                traitcomp.EnableAllParticles(true);
-            }
-
-            EnableCastStanceParticles(false);
         }
 
         private void EnableCastStanceParticles(bool enable)
@@ -553,41 +651,10 @@ namespace TOR_Core.AbilitySystem
             _keyContext.GetGameKey(20).KeyboardKey.ChangeKey(InputKey.Invalid);
             _keyContext.GetGameKey(21).KeyboardKey.ChangeKey(InputKey.Invalid);
         }
-        
-        public override void OnMissionResultReady(MissionResult missionResult)
-        {
-            if (missionResult.PlayerDefeated || missionResult.PlayerVictory)
-            {
-                var agents = Mission.Current.Agents;
-                foreach (var agent in agents)
-                {
-                    if (agent.IsMainAgent&&agent.IsActive())
-                    {
-                        DisableAbilityMode(true);
-                    }
-
-                    var abilityComponent = agent.GetComponent<AbilityComponent>();
-                    if (abilityComponent != null)
-                    {
-                        var abilities = abilityComponent.KnownAbilitySystem;
-                        foreach (var ability in abilities)
-                        {
-                            ability.DeactivateAbility();
-                        }
-                    }
-                    
-                    var comp = agent.GetComponent<StatusEffectComponent>();
-                    if (comp != null)
-                    {
-                        comp.Dispose();
-                    }
-                }
-            }
-        }
 
         private void OnItemPickup(Agent agent, SpawnedItemEntity item)
         {
-            if (agent == Agent.Main) DisableAbilityMode(true);
+            if (agent == Agent.Main) DisableAbilityMode(true, null);
         }
 
         public SummonedCombatant GetSummoningCombatant(Team team)
@@ -620,17 +687,8 @@ namespace TOR_Core.AbilitySystem
             return combatantToReturn;
         }
 
-        protected override void OnAgentControllerChanged(Agent agent, Agent.ControllerType oldController)
-        {
-            if (agent.Controller == Agent.ControllerType.Player)
-            {
-                _hasInitializedForMainAgent = false;
-            }
-        }
-
         private void SetUpCastStanceParticles()
         {
-            _abilityComponent = Agent.Main.GetComponent<AbilityComponent>();
             if (_abilityComponent != null)
             {
                 _psys = new ParticleSystem[2];
@@ -678,19 +736,14 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-        public void ActivateSpellcasterMode()
+        private void OnPlayerToggleOrder(MissionPlayerToggledOrderViewEvent @event)
         {
-            if (IsAbilityModeAvailableForMainAgent())
+            if (@event.IsOrderEnabled)
             {
-                EnableAbilityMode();
-            }
-        }
-
-        public void DeactivateSpellcasterMode()
-        {
-            if (IsAbilityModeAvailableForMainAgent())
-            {
-                DisableAbilityMode(true);
+                if (_currentState == AbilityModeState.Targeting || _currentState == AbilityModeState.QuickMenuSelection)
+                {
+                    DisableAbilityMode(false, null);
+                }
             }
         }
     }
@@ -698,7 +751,8 @@ namespace TOR_Core.AbilitySystem
     public enum AbilityModeState
     {
         Off,
-        Idle,
+        QuickMenuSelection,
+        Targeting,
         Casting
     }
 }

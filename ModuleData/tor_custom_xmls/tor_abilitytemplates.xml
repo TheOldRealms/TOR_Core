@@ -10,7 +10,7 @@
       Duration="300" 
       Radius="0.4" 
       AbilityType="Spell" 
-      AbilityEffectType="Missile" 
+      AbilityEffectType="SeekerMissile" 
       BaseMovementSpeed="15" 
       TickInterval="-1" 
       TriggerType="OnCollision" 
@@ -27,20 +27,23 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_stone" 
+      TriggeredEffectID="dart_explosion"
       SpellTier="1"
       BelongsToLoreID="MinorMagic"
       MaxDistance="100"
-      CrosshairType="Missile"
-      AbilityTargetType="WorldPosition"
-      TooltipDescription="{=dart_description_str}Hurl a magical bolt at the enemy. The missile homes in on the target and does 40 damage in a 3 meter radius on contact.">
-		<LightColorRGB x="0" y="204" z="255" w="-1">
-			<AsVec2>
-				<y>204</y>
-				<z>255</z>
-			</AsVec2>
-		</LightColorRGB>
-		<TriggeredEffect>dart_explosion</TriggeredEffect>
+      CrosshairType="SingleTarget"
+      AbilityTargetType="SingleEnemy"
+      TooltipDescription="Hurl a magical bolt at the enemy. The missile homes in on the target and does 40 damage in a 3 meter radius on contact.">
+      <LightColorRGB x="0" y="204" z="255" w="-1">
+        <AsVec2>
+          <y>204</y>
+          <z>255</z>
+        </AsVec2>
+      </LightColorRGB>
+	  <TriggeredEffect>dart_explosion</TriggeredEffect>
+      <SeekerParameters Proportional="0.5" Derivative="0" DisableDistance="10"/>
 	</AbilityTemplate>
+  
 	<AbilityTemplate StringID="WardOfArrows" 
       Name="{=ward_of_arrows_label_str}Ward of Arrows" 
       SpriteName="ward_of_arrows_icon" 
@@ -1405,11 +1408,11 @@
       CoolDown="20" 
       WindsOfMagicCost="8" 
       BaseMisCastChance="0.05" 
-      Duration="10" 
+      Duration="300" 
       Radius="0.4" 
       AbilityType="Spell" 
-      AbilityEffectType="Missile" 
-      BaseMovementSpeed="25" 
+      AbilityEffectType="SeekerMissile" 
+      BaseMovementSpeed="15" 
       TickInterval="-1" 
       TriggerType="OnCollision" 
       HasLight="false" 
@@ -1419,6 +1422,7 @@
       LightFlickeringInterval="0.7" 
       ShadowCastEnabled="true" 
       ParticleEffectPrefab="shadowblood" 
+	  MaxDistance="120"
       ParticleEffectSizeModifier="1" 
       SoundEffectToPlay="evilbolt_cast" 
       ShouldSoundLoopOverDuration="false" 
@@ -1426,8 +1430,8 @@
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
       Offset="2"
-      CrosshairType="Missile"
-      AbilityTargetType="WorldPosition"
+      CrosshairType="SingleTarget"
+      AbilityTargetType="SingleEnemy"
       SpellTier="2"
       BelongsToLoreID="Necromancy"
       TooltipDescription="{=shadowblood_description_str}Shadowy orbs of blood fly towards the target staining the ground beneath every step of the way.">
@@ -1438,6 +1442,7 @@
 			</AsVec2>
 		</LightColorRGB>
 		<TriggeredEffect>shadowblood_explosion</TriggeredEffect>
+		<SeekerParameters Proportional="0.5" Derivative="0" DisableDistance="10"/>
 	</AbilityTemplate>
 	<AbilityTemplate StringID="Morkharn"
       Name="{=morkharn_label_str}Morkharn - Breath of Darkness"

@@ -151,7 +151,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             charInfo.HasSecondaryCharacter = false;
             charInfo.ClearFaceGenMounts();
             _isFemale = CharacterObject.PlayerCharacter.IsFemale;
-            if(Debugger.IsAttached) _originalRace = CharacterObject.PlayerCharacter.Race; //This is to allow becoming different races by selecting them at character creation for development purposes.
+            _originalRace = CharacterObject.PlayerCharacter.Race;
+            //if(Debugger.IsAttached) _originalRace = CharacterObject.PlayerCharacter.Race; //This is to allow becoming different races by selecting them at character creation for development purposes.
         }
 
         private void OnOptionSelected(TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation charInfo, string optionId)

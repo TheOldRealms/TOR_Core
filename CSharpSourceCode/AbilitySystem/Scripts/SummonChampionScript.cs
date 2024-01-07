@@ -54,7 +54,7 @@ namespace TOR_Core.AbilitySystem.Scripts
 
             _cameraView = Mission.Current.GetMissionBehavior<MissionCameraFadeView>();
 
-            _specialMoveKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("SpecialMove");
+            _specialMoveKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("CareerAbilityCast");
 
             _targetPosition = GameEntity.GlobalPosition;
         }
@@ -116,7 +116,6 @@ namespace TOR_Core.AbilitySystem.Scripts
         {
             var data = TORSummonHelper.GetAgentBuildData(_casterAgent, _summonedChampionId);
             _champion = TORSummonHelper.SpawnAgent(data, _targetPosition);
-            _casterAgent.UnsetSpellCasterMode();
 
 
             _champion.ApplyStatusEffect("greater_harbinger_debuff", null, 9999f);
