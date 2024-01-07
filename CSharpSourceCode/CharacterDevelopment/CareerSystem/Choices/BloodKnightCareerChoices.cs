@@ -118,7 +118,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _bloodKnightRoot.Initialize(CareerID, "The Blood Knight is channeling focus and rage towards the enemies. Damage increased by 45% and physical resistance by 10% for the next 6 seconds. Both bonuses increase with the skill of the equipped weapon by 0.05% per point. Requires 10 kills to be charged.", null, true,
+            _bloodKnightRoot.Initialize(CareerID, "The Blood Knight is channeling focus and rage towards the enemies. Damage increased by 45% and physical resistance by 10% for the next 6 seconds. Both bonuses increase with the skill of the equipped weapon by 0.05% per point. Requires 5 kills to recharge, +1 kill per a final perk picked up to max 10.", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -303,7 +303,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _avatarOfDeathKeystone.Initialize(CareerID, "Red Fury also increases attack speed. Scales the same as base ability.", "AvatarOfDeath", false,
+            _avatarOfDeathKeystone.Initialize(CareerID, "Red Fury resistance effect is now Ward save and also increases attack speed. Scales the same as base ability.", "AvatarOfDeath", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -313,9 +313,17 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         PropertyName = "ImbuedStatusEffects",
                         PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "redfury_effect_ats" }).ToList(),
                         MutationType = OperationType.Replace
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_res",
+                        PropertyName = "DamageType",
+                        PropertyValue = (choice, originalValue, agent) => DamageType.All,
+                        MutationType = OperationType.Replace
                     }
                 });
-            _dreadKnightKeystone.Initialize(CareerID, "Red Fury effect scales with Riding and its resistance effect is now Ward save. Recharges faster.", "DreadKnight", false,
+            _dreadKnightKeystone.Initialize(CareerID, "Red Fury effect scales with Riding and consecutive kills during ability increase duration by 2 sec each.", "DreadKnight", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -341,14 +349,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         PropertyName = "BaseEffectValue",
                         PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Riding }, 0.0005f, false, false),
                         MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "redfury_effect_res",
-                        PropertyName = "DamageType",
-                        PropertyValue = (choice, originalValue, agent) => DamageType.All,
-                        MutationType = OperationType.Replace
                     }
                 }, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special, true));
         }

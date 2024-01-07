@@ -745,9 +745,9 @@ namespace TOR_Core.Extensions
 
         public static void ApplyStatusEffect(this Agent agent, string effectId, Agent applierAgent, float duration = 5, bool append = true, bool isMutated = false)
         {
-            TORCommon.Say(effectId+" "+duration);
             var comp = agent.GetComponent<StatusEffectComponent>();
             if (comp != null) comp.RunStatusEffect(effectId, applierAgent, duration, append, isMutated);
+            
         }
         
         public static void RemoveStatusEffect(this Agent agent, string effectId)
