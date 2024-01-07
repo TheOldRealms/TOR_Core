@@ -26,6 +26,8 @@ namespace TOR_Core.Utilities
         public static int NumberOfInitialHideoutsAtEachBanditFaction => _config.NumberOfInitialHideoutsAtEachBanditFaction;
         public static int NumberOfMaximumHideoutsAtEachBanditFaction => _config.NumberOfMaximumHideoutsAtEachBanditFaction;
         public static int MaximumNumberOfCareerPerkPoints => _config.MaximumNumberOfCareerPerkPoints;
+        public static float DeclareWarScoreMultiplierTor => _config.DeclareWarScoreMultiplierTor;
+        public static float DeclareWarScoreMultiplierNative => _config.DeclareWarScoreMultiplierNative;
 
         public static void ReadConfig()
         {
@@ -67,6 +69,10 @@ namespace TOR_Core.Utilities
             public int NumberOfMaximumHideoutsAtEachBanditFaction;
             [XmlAttribute]
             public int MaximumNumberOfCareerPerkPoints;
+            [XmlAttribute]
+            public float DeclareWarScoreMultiplierTor;
+            [XmlAttribute]
+            public float DeclareWarScoreMultiplierNative;
         }
     }
 }
