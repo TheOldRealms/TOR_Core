@@ -32,7 +32,7 @@
       BelongsToLoreID="MinorMagic"
       MaxDistance="100"
       CrosshairType="SingleTarget"
-      AbilityTargetType="SingleEnemy"
+      AbilityTargetType="EnemiesInAOE"
       TooltipDescription="Hurl a magical bolt at the enemy. The missile homes in on the target and does 40 damage in a 3 meter radius on contact.">
       <LightColorRGB x="0" y="204" z="255" w="-1">
         <AsVec2>
@@ -1431,7 +1431,7 @@
       AnimationActionName="act_release_heavy_thrown" 
       Offset="2"
       CrosshairType="SingleTarget"
-      AbilityTargetType="SingleEnemy"
+      AbilityTargetType="EnemiesInAOE"
       SpellTier="2"
       BelongsToLoreID="Necromancy"
       TooltipDescription="{=shadowblood_description_str}Shadowy orbs of blood fly towards the target staining the ground beneath every step of the way.">
