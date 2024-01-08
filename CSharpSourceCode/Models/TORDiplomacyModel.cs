@@ -79,9 +79,9 @@ namespace TOR_Core.Models
             //nativeScoreOfDeclaringWar *= 2;
             nativeScoreOfDeclaringWar *= TORConfig.DeclareWarScoreMultiplierNative;
 
-            TORCommon.Say($"War between {factionDeclaredWar.Name} vs {factionDeclaresWar.Name}; \n\t\t" +
-                $"Native Score: {nativeScoreOfDeclaringWar}, TOR Score: {torScoreOfDeclaringWar}; \n\t\t" +
-                $"Faction Score: {factionScore}, Distance Score: {distanceScore}, Religion Score = {religionScore} ");
+            //TORCommon.Say($"War between {factionDeclaredWar.Name} vs {factionDeclaresWar.Name}; \n\t\t" +
+            //    $"Native Score: {nativeScoreOfDeclaringWar}, TOR Score: {torScoreOfDeclaringWar}; \n\t\t" +
+            //    $"Faction Score: {factionScore}, Distance Score: {distanceScore}, Religion Score = {religionScore} ");
             return nativeScoreOfDeclaringWar + torScoreOfDeclaringWar;
         }
 
