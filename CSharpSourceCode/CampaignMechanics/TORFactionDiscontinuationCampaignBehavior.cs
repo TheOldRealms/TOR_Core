@@ -54,7 +54,7 @@ namespace TOR_Core.CampaignMechanics
             {
                 _independentClans.Remove(clan.StringId);
             }
-            if (oldKingdom != null && CanKingdomBeDiscontinued(oldKingdom))
+            if (clan == Clan.PlayerClan && oldKingdom != null && CanKingdomBeDiscontinued(oldKingdom))
             {
                 DiscontinueKingdom(oldKingdom);
             }
@@ -117,7 +117,7 @@ namespace TOR_Core.CampaignMechanics
 
         private bool CanClanBeDiscontinued(Clan clan)
         {
-            return clan.Kingdom == null && !clan.IsRebelClan && !clan.IsBanditFaction && !clan.IsMinorFaction && clan != Clan.PlayerClan && clan.Settlements.IsEmpty<Settlement>();
+            return clan.Kingdom == null && !clan.IsRebelClan && !clan.IsBanditFaction && !clan.IsMinorFaction && clan != Clan.PlayerClan && clan.Settlements.IsEmpty();
         }
 
         private void DiscontinueClan(Clan clan)
