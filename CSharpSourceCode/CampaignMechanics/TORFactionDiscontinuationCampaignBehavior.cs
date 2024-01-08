@@ -93,22 +93,22 @@ namespace TOR_Core.CampaignMechanics
         {
             foreach (WarPartyComponent warPartyComponent in clan.WarPartyComponents.ToList())
             {
-                if (warPartyComponent.MobileParty.MapEvent != null)
+                if (warPartyComponent?.MobileParty?.MapEvent != null)
                 {
                     warPartyComponent.MobileParty.MapEvent.FinalizeEvent();
                 }
-                if (warPartyComponent.MobileParty.SiegeEvent != null)
+                if (warPartyComponent?.MobileParty?.SiegeEvent != null)
                 {
                     warPartyComponent.MobileParty.SiegeEvent.FinalizeSiegeEvent();
                 }
             }
             foreach (Settlement settlement in clan.Settlements.ToList())
             {
-                if (settlement.Party.MapEvent != null)
+                if (settlement?.Party?.MapEvent != null)
                 {
                     settlement.Party.MapEvent.FinalizeEvent();
                 }
-                if (settlement.Party.SiegeEvent != null)
+                if (settlement?.Party?.SiegeEvent != null)
                 {
                     settlement.Party.SiegeEvent.FinalizeSiegeEvent();
                 }
