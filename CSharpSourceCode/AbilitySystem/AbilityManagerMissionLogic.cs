@@ -172,7 +172,7 @@ namespace TOR_Core.AbilitySystem
             }
 
             _currentState = AbilityModeState.Off;
-            _abilityComponent.LastCastWasQuickCast = false;
+            if (_abilityComponent != null) _abilityComponent.LastCastWasQuickCast = false;
 
             ChangeKeyBindings();
             SlowDownTime(false);
