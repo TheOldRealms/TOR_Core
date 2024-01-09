@@ -318,6 +318,24 @@
             <ImbuedStatusEffect>net_amyn_movementimpair__100</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
+	  
+<!--LoreOfMetal-->
+
+<TriggeredEffectTemplate StringID="apply_quicksilver_sword_trait" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="4" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="30" 
+            DamageVariance="0" 
+            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyQuickSilverWeaponItemTraitScript" />
+
+
+	  
 <!--LifeMagic-->
   
   	   <TriggeredEffectTemplate StringID="dwellers_below_tick" 

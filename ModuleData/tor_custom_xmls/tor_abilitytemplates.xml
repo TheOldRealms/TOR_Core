@@ -2650,7 +2650,7 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>apply_flaming_sword_trait</TriggeredEffect>
+		<TriggeredEffect>apply_quicksilver_sword_trait</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="GleamingArrow" 
