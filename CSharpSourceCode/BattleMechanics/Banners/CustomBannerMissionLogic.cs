@@ -67,7 +67,8 @@ namespace TOR_Core.BattleMechanics.Banners
         {
             if (_agentsWithBanners.ContainsKey(affectedAgent.Index))
             {
-                if (!affectedAgent.Equipment[_agentsWithBanners[affectedAgent.Index]].IsEmpty)
+                if (affectedAgent.Equipment != null && 
+                    !affectedAgent.Equipment[_agentsWithBanners[affectedAgent.Index]].IsEmpty)
                 {
                     affectedAgent.RemoveEquippedWeapon(_agentsWithBanners[affectedAgent.Index]);
                 }
