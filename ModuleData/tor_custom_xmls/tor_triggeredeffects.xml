@@ -321,6 +321,38 @@
 	  
 <!--LoreOfMetal-->
 
+      <TriggeredEffectTemplate StringID="meteoric_ironclad" 
+            BurstParticleEffectPrefab="" 
+            SoundEffectId="fireball_explosion" 
+            SoundEffectLength="2.5" 
+            DamageType="Fire" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="8" 
+            DamageVariance="0.2" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>ironclad_phys_res</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+
+      <TriggeredEffectTemplate StringID="golden_globe_explosion" 
+            BurstParticleEffectPrefab="golden_explosion" 
+            SoundEffectId="fireball_explosion" 
+            SoundEffectLength="2.5" 
+            DamageType="Fire" 
+            DamageAmount="60" 
+            Radius="5" 
+            HasShockWave="true" 
+            TargetType="All" 
+            ImbuedStatusEffectDuration="8" 
+            DamageVariance="0.2" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>golden_globe_dot</ImbuedStatusEffect>
+			<ImbuedStatusEffect>golden_globe_mov_50</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+
+
       <TriggeredEffectTemplate StringID="gleaming_arrow_explosion" 
             BurstParticleEffectPrefab="yellow_particle_explosion" 
             SoundEffectId="dart_explosion" 
@@ -333,7 +365,7 @@
             DamageVariance="0.2" 
             ScriptNameToTrigger="none"/>
 
-<TriggeredEffectTemplate StringID="apply_quicksilver_sword_trait" 
+       <TriggeredEffectTemplate StringID="apply_quicksilver_sword_trait" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
             SoundEffectLength="0" 

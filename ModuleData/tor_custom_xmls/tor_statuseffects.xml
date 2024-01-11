@@ -345,6 +345,35 @@
 		type="AttackSpeedManipulation"
 		damage_type="Physical">
   	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
+		id="ironclad_phys_res"
+		particle_id="meteoric_iron_clad"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+    	base_effect_value="0.6"
+		type="Resistance"
+		damage_type="Physical">
+  	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
+		id="golden_globe_mov_50"
+		particle_id="golden_globe_dot"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="false"
+    	base_effect_value="-0.5"
+		type="MovementManipulation"
+		damage_type="Physical">
+  	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="golden_globe_dot" 
+		particle_id=""
+		particle_intensity="High"
+		base_effect_value="2"
+		type="DamageOverTime"
+		damage_type="Fire">
+	</StatusEffectTemplate>
+	
 	<StatusEffectTemplate 
 		id="righteous_fury_regeneration" 
 		particle_id="healing_hand"

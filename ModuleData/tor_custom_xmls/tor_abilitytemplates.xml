@@ -2725,7 +2725,7 @@
       Offset="0.5"
       AbilityTargetType="AlliesInAOE"
       TargetCapturingRadius="4"
-      MaxDistance="0.5"
+      MaxDistance="30"
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="LoreOfMetal"
@@ -2736,7 +2736,7 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>bark_skin</TriggeredEffect>
+		<TriggeredEffect>meteoric_ironclad</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="PlagueOfRust"
@@ -2832,11 +2832,11 @@
       CoolDown="30" 
       WindsOfMagicCost="8" 
       BaseMisCastChance="0.05" 
-      Duration="3" 
+      Duration="100" 
       Radius="0.4" 
-      AbilityType="Prayer" 
+      AbilityType="Spell" 
       AbilityEffectType="Missile" 
-      BaseMovementSpeed="35" 
+      BaseMovementSpeed="25" 
       TickInterval="-1" 
       TriggerType="OnCollision" 
       HasLight="true" 
@@ -2864,7 +2864,7 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>comet_of_sigmar_explosion</TriggeredEffect>
+		<TriggeredEffect>golden_globe_explosion</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="FinalTransmutation"
