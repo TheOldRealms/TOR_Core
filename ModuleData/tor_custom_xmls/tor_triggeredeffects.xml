@@ -321,6 +321,18 @@
 	  
 <!--LoreOfMetal-->
 
+      <TriggeredEffectTemplate StringID="gleaming_arrow_explosion" 
+            BurstParticleEffectPrefab="yellow_particle_explosion" 
+            SoundEffectId="dart_explosion" 
+            SoundEffectLength="2.5" 
+            DamageType="Physical" 
+            DamageAmount="40" 
+            Radius="3" 
+            HasShockWave="false" 
+            TargetType="All" 
+            DamageVariance="0.2" 
+            ScriptNameToTrigger="none"/>
+
 <TriggeredEffectTemplate StringID="apply_quicksilver_sword_trait" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 

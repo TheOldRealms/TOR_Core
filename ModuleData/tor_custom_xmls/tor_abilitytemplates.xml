@@ -2663,7 +2663,7 @@
       Radius="0.4" 
       AbilityType="Spell" 
       AbilityEffectType="SeekerMissile" 
-      BaseMovementSpeed="15" 
+      BaseMovementSpeed="45" 
       TickInterval="-1" 
       TriggerType="OnCollision" 
       HasLight="true" 
@@ -2672,7 +2672,7 @@
       LightFlickeringMagnitude="3" 
       LightFlickeringInterval="0.7" 
       ShadowCastEnabled="true" 
-      ParticleEffectPrefab="dart_particle" 
+      ParticleEffectPrefab="gleaming_arrow" 
       ParticleEffectSizeModifier="1" 
       SoundEffectToPlay="dart" 
       ShouldSoundLoopOverDuration="true" 
@@ -2686,13 +2686,13 @@
       CrosshairType="SingleTarget"
       AbilityTargetType="SingleEnemy"
       TooltipDescription="Hurl a magical bolt at the enemy. The missile homes in on the target and does 40 damage in a 3 meter radius on contact.">
-      <LightColorRGB x="0" y="204" z="255" w="-1">
+      <LightColorRGB x="255" y="200" z="0" w="-1">
         <AsVec2>
-          <y>204</y>
-          <z>255</z>
+          <x>204</x>
+          <y>255</y>
         </AsVec2>
       </LightColorRGB>
-	  <TriggeredEffect>dart_explosion</TriggeredEffect>
+	  <TriggeredEffect>gleaming_arrow_explosion</TriggeredEffect>
       <SeekerParameters Proportional="0.5" Derivative="0" DisableDistance="10"/>
 	</AbilityTemplate>
 	
@@ -2782,7 +2782,7 @@
 		<TriggeredEffect>curse_of_years_hex</TriggeredEffect>
 	</AbilityTemplate>
 	
-	<AbilityTemplate StringID="SearingDoom" 
+<!-- 	<AbilityTemplate StringID="SearingDoom" 
       Name="{=wind_blast_label_str}Wind Blast" 
       SpriteName="wind_blast_icon" 
       CoolDown="20" 
@@ -2824,7 +2824,7 @@
 			</AsVec2>
 		</LightColorRGB>
 		<TriggeredEffect>windblast_burst</TriggeredEffect>
-	</AbilityTemplate>
+	</AbilityTemplate> -->
 	
 	<AbilityTemplate StringID="GehennasGoldenGlobe" 
       Name="{=gehennas_golden_globe_label_str}Gehennas Golden Globe" 
@@ -2845,7 +2845,7 @@
       LightFlickeringMagnitude="3" 
       LightFlickeringInterval="0.7" 
       ShadowCastEnabled="true" 
-      ParticleEffectPrefab="comet_of_sigmar" 
+      ParticleEffectPrefab="gehennas_golden_globe" 
       ParticleEffectSizeModifier="1" 
       SoundEffectToPlay="fireball" 
       ShouldSoundLoopOverDuration="true" 
