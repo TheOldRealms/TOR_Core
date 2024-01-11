@@ -323,7 +323,7 @@
 
       <TriggeredEffectTemplate StringID="meteoric_ironclad" 
             BurstParticleEffectPrefab="" 
-            SoundEffectId="fireball_explosion" 
+            SoundEffectId="" 
             SoundEffectLength="2.5" 
             DamageType="Fire" 
             DamageAmount="0" 
@@ -334,6 +334,21 @@
             DamageVariance="0.2" 
             ScriptNameToTrigger="none">
 			<ImbuedStatusEffect>ironclad_phys_res</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+	  
+      <TriggeredEffectTemplate StringID="plague_of_rust" 
+            BurstParticleEffectPrefab="" 
+            SoundEffectId="" 
+            SoundEffectLength="2.5" 
+            DamageType="Fire" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            ImbuedStatusEffectDuration="8" 
+            DamageVariance="0.2" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>plague_of_rust_hex</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 
       <TriggeredEffectTemplate StringID="golden_globe_explosion" 

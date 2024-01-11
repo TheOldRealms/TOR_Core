@@ -2779,7 +2779,7 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>curse_of_years_hex</TriggeredEffect>
+		<TriggeredEffect>plague_of_rust</TriggeredEffect>
 	</AbilityTemplate>
 	
 <!-- 	<AbilityTemplate StringID="SearingDoom" 
