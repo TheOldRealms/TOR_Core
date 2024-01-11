@@ -852,5 +852,13 @@
 			</particle_system_instanced_component>
 		</components>
 	</game_entity>
+	<game_entity name="gleaming_arrow" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{52191349-AF46-4FD4-9130-8CC1071886CA}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
 </prefabs>
 
