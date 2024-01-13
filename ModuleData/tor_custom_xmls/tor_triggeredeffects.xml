@@ -322,17 +322,18 @@
 <!--LoreOfMetal-->
 
 	<TriggeredEffectTemplate StringID="final_transmutation" 
-            BurstParticleEffectPrefab="curse_of_anraheir_ground" 
+            BurstParticleEffectPrefab="final_transmutation_ground" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
             DamageType="Physical" 
-			ImbuedStatusEffectDuration="15" 
+			ImbuedStatusEffectDuration="4" 
             DamageAmount="0" 
             Radius="15" 
             HasShockWave="false" 
             TargetType="Enemy" 
             DamageVariance="2" >
 			<ImbuedStatusEffect>final_transmutation_dot</ImbuedStatusEffect>
+			<ImbuedStatusEffect>final_transmutation_mov_90</ImbuedStatusEffect>
 	</TriggeredEffectTemplate>
 
       <TriggeredEffectTemplate StringID="golden_hounds_tick" 
