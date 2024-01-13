@@ -51,7 +51,8 @@ namespace TOR_Core.AbilitySystem.Scripts
             var distance = _ability.Template.BaseMovementSpeed * dt;
             oldFrame.Advance(distance);
             var heightAtPosition = Mission.Current.Scene.GetGroundHeightAtPosition(oldFrame.origin);
-            oldFrame.origin.z = heightAtPosition + _ability.Template.Radius / 2;
+            oldFrame.origin.z = heightAtPosition + _ability.Template.Offset;
+           // oldFrame.origin.z = heightAtPosition + _ability.Template.Radius / 2;
             return oldFrame;
         }
     }

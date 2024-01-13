@@ -321,6 +321,33 @@
 	  
 <!--LoreOfMetal-->
 
+	<TriggeredEffectTemplate StringID="final_transmutation" 
+            BurstParticleEffectPrefab="curse_of_anraheir_ground" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+			ImbuedStatusEffectDuration="15" 
+            DamageAmount="0" 
+            Radius="15" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            DamageVariance="2" >
+			<ImbuedStatusEffect>final_transmutation_dot</ImbuedStatusEffect>
+	</TriggeredEffectTemplate>
+
+      <TriggeredEffectTemplate StringID="golden_hounds_tick" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Fire" 
+            DamageAmount="40" 
+            Radius="3" 
+            HasShockWave="false" 
+            TargetType="All" 
+            DamageVariance="0.15" 
+            ScriptNameToTrigger="none"/>
+
+
       <TriggeredEffectTemplate StringID="meteoric_ironclad" 
             BurstParticleEffectPrefab="" 
             SoundEffectId="" 

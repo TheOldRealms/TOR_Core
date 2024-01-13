@@ -2907,20 +2907,20 @@
 					<y>170</y>
 				</AsVec2>
 			</LightColorRGB>
-			<TriggeredEffect>curse_of_anraheir</TriggeredEffect>
+			<TriggeredEffect>final_transmutation</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="GehennasGoldenHounds" 
-      Name="{=black_horror_label_str}Gehennas Golden Hounds" 
+      Name="{=gehennas_golden_hounds_label_str}Gehennas Golden Hounds" 
       SpriteName="arzipalsblackhorror_icon" 
       CoolDown="40" 
       WindsOfMagicCost="30" 
       BaseMisCastChance="0.3" 
-      Duration="8" 
-      Radius="2" 
+      Duration="20" 
+      Radius="6" 
       AbilityType="Spell" 
-      AbilityEffectType="Bombardment" 
-      BaseMovementSpeed="2" 
+      AbilityEffectType="Vortex" 
+      BaseMovementSpeed="1" 
       TickInterval="0.5" 
       TriggerType="EveryTick" 
       HasLight="false" 
@@ -2936,25 +2936,25 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      Offset="3"
+      Offset="0.1"
       AbilityTargetType="GroundAtPosition"
       CrosshairType="TargetedAOE"
       MinDistance="3"
       MaxDistance="20"
-      TargetCapturingRadius="2"
-      MaxRandomDeviation="2"
+      TargetCapturingRadius="6"
+      MaxRandomDeviation="0.1"
       ShouldRotateVisuals="false"
-      VisualsRotationVelocity="0"
+      VisualsRotationVelocity="10"
       SpellTier="4"
       BelongsToLoreID="LoreOfMetal"
-      TooltipDescription="{=black_horror_description_str}The caster tears down the walls between realities, and a black cloud of roiling energy sweeps across the battlefield. As the darkness travels, slimy tentacles lash out from its depths, draggin unfortunate victims screaming to an unknown fate.">
+      TooltipDescription="{=gehennas_golden_hounds_description_str}The caster tears down the walls between realities, and a black cloud of roiling energy sweeps across the battlefield. As the darkness travels, slimy tentacles lash out from its depths, draggin unfortunate victims screaming to an unknown fate.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>witheringwave_tick</TriggeredEffect>
+		<TriggeredEffect>golden_hounds_tick</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<!-- Artillery -->
