@@ -38,7 +38,7 @@ namespace TOR_Core.AbilitySystem
         private EquipmentIndex _offHand;
         private AbilityComponent _abilityComponent;
         private GameKeyContext _keyContext = HotKeyManager.GetCategory("CombatHotKeyCategory");
-        private static readonly ActionIndexCache _idleAnimation = ActionIndexCache.Create("act_spellcasting_idle");
+        private ActionIndexCache _idleAnimation = ActionIndexCache.Create("act_spellcasting_idle");
         private ParticleSystem[] _psys = null;
         private readonly string _castingStanceParticleName = "psys_spellcasting_stance";
         private SummonedCombatant _defenderSummoningCombatant;
@@ -54,6 +54,7 @@ namespace TOR_Core.AbilitySystem
         private float _disableCombatActionsDuration = 0.3f;
         private bool _disableCombatActionsAfterCast;
         private float _elapsedTimeSinceLastActivation;
+        private bool _wieldOffHandStaff;
 
         public AbilityModeState CurrentState => _currentState;
 
@@ -114,6 +115,7 @@ namespace TOR_Core.AbilitySystem
 
             ChangeKeyBindings();
             SlowDownTime(true);
+            SetOffHandWeaponRelatedParameters();
 
             if (_abilityComponent.CurrentAbility.Template.AbilityType == AbilityType.Spell || 
                 _abilityComponent.CurrentAbility.Template.AbilityType == AbilityType.Prayer)
@@ -133,6 +135,24 @@ namespace TOR_Core.AbilitySystem
                 _shouldSheathWeapon = false;
                 _shouldPlayIdleCastStanceAnim = false;
             }
+        }
+
+        private void SetOffHandWeaponRelatedParameters()
+        {
+            if (!Agent.Main.WieldedOffhandWeapon.IsEmpty)
+            {
+                if(Agent.Main.WieldedOffhandWeapon.Item.StringId.Contains("staff"))
+                {
+                    _wieldOffHandStaff = true;
+                    _idleAnimation = ActionIndexCache.Create("act_ready_continue_throwing_axe_with_handshield");
+                    return;
+                }
+                
+            }
+            _idleAnimation = ActionIndexCache.Create("act_spellcasting_idle");
+            _wieldOffHandStaff = false;
+            return;
+            
         }
 
         private void EnableQuickSelectionMenuMode()
@@ -418,7 +438,7 @@ namespace TOR_Core.AbilitySystem
                 }
                 else if (Agent.Main.GetWieldedItemIndex(Agent.HandIndex.OffHand) != EquipmentIndex.None)
                 {
-                    Agent.Main.TryToSheathWeaponInHand(Agent.HandIndex.OffHand, Agent.WeaponWieldActionType.WithAnimation);
+                   // Agent.Main.TryToSheathWeaponInHand(Agent.HandIndex.OffHand, Agent.WeaponWieldActionType.WithAnimation);
                 }
                 else
                 {
@@ -610,6 +630,11 @@ namespace TOR_Core.AbilitySystem
         {
             if (_psys != null)
             {
+                if (_wieldOffHandStaff)
+                {
+                    _psys[0].SetEnable(enable);
+                    return;
+                }
                 foreach (var psys in _psys)
                 {
                     if (psys != null)

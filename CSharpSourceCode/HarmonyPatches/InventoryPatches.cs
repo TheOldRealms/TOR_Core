@@ -60,6 +60,46 @@ namespace TOR_Core.HarmonyPatches
                 __instance.ItemMenu = new TorItemMenuVM((Action<ItemVM, int>)reset, ____inventoryLogic, ____getItemUsageSetFlags, (Func<EquipmentIndex, SPItemVM>)itemindex);
             }
         }
+        
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(InventoryLogic), "TransferIsMovementValid")]
+        public static bool IsItemEquipmentPossible(ref TransferCommand transferCommand, ref bool __result)
+        {
+            var item = transferCommand.ElementToTransfer.EquipmentElement.Item;
+            
+            if (item.StringId.Contains("staff"))
+            {
+
+                if (transferCommand.ToEquipmentIndex == EquipmentIndex.ExtraWeaponSlot)
+                {
+                    __result = false;
+                    return false;
+                }
+
+                if (transferCommand.ToEquipmentIndex != EquipmentIndex.Weapon0&&
+                transferCommand.ToEquipmentIndex != EquipmentIndex.Weapon1&&
+                transferCommand.ToEquipmentIndex != EquipmentIndex.Weapon2&&
+                transferCommand.ToEquipmentIndex != EquipmentIndex.Weapon3) return true;
+                
+                __result = true;
+                return false;
+            }
+            
+            return true;
+        }
+        
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(SPInventoryVM), "IsItemEquipmentPossible")]
+        public static bool IsItemEquipmentPossible(SPItemVM itemVM, ref bool __result)
+        {
+            if (itemVM.StringId.Contains("staff"))
+            {
+                __result = true;
+                return false;
+            }
+            
+            return true;
+        }
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(SPInventoryVM), "UpdateFilteredStatusOfItem")]
