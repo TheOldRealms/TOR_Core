@@ -34,25 +34,6 @@ namespace TOR_Core.BattleMechanics.Banners
                 _hasUnprocessedAgents = true;
                 _unprocessedAgents.Enqueue(agent);
             }
-
-            if (agent.IsMainAgent)
-            {
-                for (int i = 0; i < (int)EquipmentIndex.NumAllWeaponSlots; i++)
-                {
-                    var index = (EquipmentIndex)i;
-                    if(agent.Equipment[index].IsEmpty)continue;
-                    if((agent.Equipment[index].CurrentUsageItem.WeaponClass == WeaponClass.LargeShield)&& agent.Equipment[index].Item.StringId.Contains("staff"))
-                    {
-
-                        var id = agent.Equipment[index].Item.StringId;
-                        var modifier = agent.Equipment[index].ItemModifier;
-                        agent.RemoveEquippedWeapon(index);
-                        var bannerStaff = MBObjectManager.Instance.GetObject<ItemObject>(id+"_banner");
-                        var missionWeapon = new MissionWeapon(bannerStaff, modifier, banner);
-                        agent.EquipWeaponWithNewEntity((EquipmentIndex)i, ref missionWeapon);
-                    }
-                }
-            }
         }
 
         public override void OnMissionTick(float dt)
