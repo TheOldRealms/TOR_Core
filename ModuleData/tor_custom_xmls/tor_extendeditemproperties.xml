@@ -411,6 +411,12 @@
   <ExtendedItemObjectProperties ItemStringId="tor_we_head_helmet_lord_002">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_head_helmet_lord_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_head_helmet_lord_004">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_head_sister_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -421,6 +427,9 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_head_ancient_treeman_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_head_hood_ranger_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_de_head_helmet_infantry_001">
@@ -704,10 +713,16 @@
   <ExtendedItemObjectProperties ItemStringId="tor_we_shoulder_cape_lord_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_shoulder_cape_lord_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_shoulder_cape_wildrider_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_shoulder_cape_gladeguard_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_shoulder_cape_ranger_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_infantry_001">
@@ -1042,10 +1057,40 @@
   <ExtendedItemObjectProperties ItemStringId="tor_mousillon_body_armor_bgk_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_body_armor_civil_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_body_armor_civil_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_body_armor_civil_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_body_armor_militia_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_body_armor_militia_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_body_armor_militia_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_body_armor_eternalguard_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_body_armor_eternalguard_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_body_armor_ranger_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_body_armor_ranger_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_body_armor_lord_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_body_armor_lord_002">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_body_armor_sister_001">
@@ -1299,7 +1344,13 @@
   <ExtendedItemObjectProperties ItemStringId="tor_we_arm_bracers_eternalguard_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_arm_bracers_ranger_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_arm_bracers_lord_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_arm_bracers_lord_002">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_arm_bracers_sister_001">
@@ -1586,10 +1637,25 @@
   <ExtendedItemObjectProperties ItemStringId="tor_mousillon_leg_boots_bgk_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_leg_boots_militia_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_leg_boots_militia_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_leg_boots_militia_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_leg_boots_eternalguard_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_leg_boots_ranger_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_leg_boots_lord_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_leg_boots_lord_002">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_leg_boots_sister_001">
