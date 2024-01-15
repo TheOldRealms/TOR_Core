@@ -61,13 +61,7 @@ namespace TOR_Core.HarmonyPatches
         
         [HarmonyPrefix]
         [HarmonyPatch(typeof(HideoutMissionController), "OnInitialFadeOutOver")]
-        public static bool PostOnInitialFadeOutOver(
-            ref Agent playerAgent,
-            ref List<Agent> playerCompanions,
-            ref Agent bossAgent,
-            ref List<Agent> bossCompanions,
-            ref float placementPerturbation,
-            ref float placementAngle)
+        public static bool PostOnInitialFadeOutOver()
         {
             InitBossFight?.Invoke();
             return true;

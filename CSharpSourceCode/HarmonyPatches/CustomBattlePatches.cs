@@ -15,9 +15,9 @@ namespace TOR_Core.HarmonyPatches
     public static class CustomBattlePatches
     {
         //Fill available characters
-        [HarmonyPostfix]
+        [HarmonyPrefix]
         [HarmonyPatch(typeof(CustomBattleData), "Characters", MethodType.Getter)]
-        public static void Postfix2(ref IEnumerable<BasicCharacterObject> __result)
+        public static bool GetCustomBattleCommanders(ref IEnumerable<BasicCharacterObject> __result)
         {
             var list = new List<BasicCharacterObject>();
             try
@@ -37,8 +37,11 @@ namespace TOR_Core.HarmonyPatches
             catch (Exception e)
             {
                 TORCommon.Log(e.Message, NLog.LogLevel.Error);
+                return true;
             }
             if (list.Count > 1) __result = list;
+            else return true;
+            return false;
         }
 
         //Fill available cultures

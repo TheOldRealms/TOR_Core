@@ -276,12 +276,12 @@ EXTERNAL OpenCultistLairMission(missionName)
 ===function OpenCultistLairMission(missionName)===
     ~ return ""
 
-//Opens the duel mission
+//Gets player tag
 EXTERNAL GetPlayerHasCustomTag(tag)
 ===function GetPlayerHasCustomTag(tag)===
     ~ return false
     
-//Opens the duel mission
+//Sets player tag
 EXTERNAL SetPlayerCustomTag(tag)
 ===function SetPlayerCustomTag(tag)===
     ~ return ""

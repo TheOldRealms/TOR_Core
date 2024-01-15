@@ -530,6 +530,7 @@
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORBaseSettlementComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORSettlementComponents.cs" />
+    <Compile Include="CampaignMechanics\TORFactionDiscontinuationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TorMapBarSpriteWidget.cs" />
     <Compile Include="CampaignMechanics\TORMapInfoVMExtension.cs" />
     <Compile Include="CampaignMechanics\TORPartyUpgraderCampaignBehavior.cs" />

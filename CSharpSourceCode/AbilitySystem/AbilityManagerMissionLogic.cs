@@ -192,7 +192,7 @@ namespace TOR_Core.AbilitySystem
             }
 
             _currentState = AbilityModeState.Off;
-            _abilityComponent.LastCastWasQuickCast = false;
+            if (_abilityComponent != null) _abilityComponent.LastCastWasQuickCast = false;
 
             ChangeKeyBindings();
             SlowDownTime(false);
@@ -440,10 +440,7 @@ namespace TOR_Core.AbilitySystem
                 {
                    // Agent.Main.TryToSheathWeaponInHand(Agent.HandIndex.OffHand, Agent.WeaponWieldActionType.WithAnimation);
                 }
-                else
-                {
-                    _shouldSheathWeapon = false;
-                }
+                _shouldSheathWeapon = false;
             }
 
             if (_currentState == AbilityModeState.Off && _shouldWieldWeapon)
@@ -456,10 +453,7 @@ namespace TOR_Core.AbilitySystem
                 {
                     Agent.Main.TryToWieldWeaponInSlot(_offHand, Agent.WeaponWieldActionType.WithAnimation, false);
                 }
-                else
-                {
-                    _shouldWieldWeapon = false;
-                }
+                _shouldWieldWeapon = false;
             }
         }
 
