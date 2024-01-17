@@ -46,7 +46,8 @@ namespace TOR_Core.HarmonyPatches
                     bool doesPartyHaveRequiredPerks = Campaign.Current.Models.PartyTroopUpgradeModel.DoesPartyHaveRequiredPerksForUpgrade(PartyBase.MainParty, troopToUpgrade, upgradeTarget, out requiredPerk);
                     bool doesPartyHaveRequiredItems = doesUpgradeRequireItems ? __instance.GetNumOfCategoryItemPartyHas(partyScreenLogic.RightOwnerParty.ItemRoster, upgradeTarget.UpgradeRequiresItemFromCategory) > 0 : true;
                     bool doesPartyHaveEnoughGold = Hero.MainHero.Gold + partyScreenLogic.CurrentData.PartyGoldChangeAmount >= upgradeGoldCost;
-                    bool doesPartyHaveEnoughResources = doesUpgradeRequireResources ? Hero.MainHero.GetCustomResourceValue(customResourceRequirement.Item1.StringId) > customResourceRequirement.Item2 : true;
+                    int pendingResourceChange = CustomResourceManager.GetPendingResources().ContainsKey(customResourceRequirement.Item1) ? CustomResourceManager.GetPendingResources()[customResourceRequirement.Item1] : 0;
+                    bool doesPartyHaveEnoughResources = doesUpgradeRequireResources ? Hero.MainHero.GetCustomResourceValue(customResourceRequirement.Item1.StringId) - pendingResourceChange > customResourceRequirement.Item2 : true;
                     bool doesTroopHaveEnoughXp = __instance.Troop.Xp >= upgradeXpCost;
 
                     bool isUpgradePossible = !partyScreenLogic.IsTroopUpgradesDisabled &&
@@ -140,9 +141,8 @@ namespace TOR_Core.HarmonyPatches
                 var resource = characterObject.GetCustomResourceRequiredForUpgrade(true);
                 if (resource != null)
                 {
-                    TextObject resourceText = new TextObject("{=partyscreen_resource_text}Required: {NEEDED_AMOUNT} {RESOURCE_ICON} (You have {CURRENT_AMOUNT})", null);
+                    TextObject resourceText = new TextObject("{=partyscreen_resource_text}Required: {NEEDED_AMOUNT} {RESOURCE_ICON}", null);
                     resourceText.SetTextVariable("NEEDED_AMOUNT", resource.Item2);
-                    resourceText.SetTextVariable("CURRENT_AMOUNT", Hero.MainHero.GetCustomResourceValue(resource.Item1.StringId));
                     resourceText.SetTextVariable("RESOURCE_ICON", resource.Item1.GetCustomResourceIconAsText());
                     GameTexts.SetVariable("STR1", text);
                     GameTexts.SetVariable("STR2", resourceText);
