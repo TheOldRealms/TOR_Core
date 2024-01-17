@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Ink.Parsed;
 using TaleWorlds.CampaignSystem;
@@ -89,7 +89,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             for (var index = 0; index < targets.Count; index++)
             {
                 var target = targets[index];
-                if (target.Team!=null&&target.Team.IsPlayerTeam)
+                if (target.Team.MBTeam.IsValid&&target.Team.IsPlayerTeam)
                 {
                     targets.Remove(target);
                     continue;
