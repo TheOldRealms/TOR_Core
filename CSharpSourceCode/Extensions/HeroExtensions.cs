@@ -22,6 +22,12 @@ namespace TOR_Core.Extensions
 {
     public static class HeroExtensions
     {
+
+        public static bool IsEnlisted(this Hero hero)
+        {
+            return hero.HasAttribute("enlisted");
+        }
+    
         public static bool CanRaiseDead(this Hero hero)
         {
             return hero.IsHumanPlayerCharacter && hero.IsNecromancer();

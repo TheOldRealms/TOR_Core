@@ -12,8 +12,11 @@ using TaleWorlds.CampaignSystem.Overlay;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade;
+using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.ServeAsAMerc
@@ -28,58 +31,76 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         {
             return _enlisted;
         }
-        
-         public override void RegisterEvents()
+
+        public override void RegisterEvents()
         {
-            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this,ServeAsAMercDialog);
-            CampaignEvents.TickEvent.AddNonSerializedListener(this,OnTick);
-            CampaignEvents.MapEventStarted.AddNonSerializedListener(this,EnlistingLordPartyEncounter);
-            CampaignEvents.OnHeroJoinedPartyEvent.AddNonSerializedListener(this,EnlistingLordPartyJoinsBattle);
+            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, ServeAsAMercDialog);
+            CampaignEvents.TickEvent.AddNonSerializedListener(this, OnTick);
+            CampaignEvents.MapEventStarted.AddNonSerializedListener(this, EnlistingLordPartyEncounter);
             CampaignEvents.SettlementEntered.AddNonSerializedListener(this, EnlistingLordPartyEntersSettlement);
             CampaignEvents.OnSettlementLeftEvent.AddNonSerializedListener(this, EnlistingLordPartyLeavesSettlement);
+            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, controlPlayerLoot);                //Those events are never executed when the player lose a battle!
+            CampaignEvents.MapEventEnded.AddNonSerializedListener(this, mapEventEnded);
         }
 
 
-         private void EnlistingLordPartyLeavesSettlement(MobileParty mobileParty, Settlement settlement)
-         {
-             if(!_enlisted) return;
-             if (_enlistingLord.PartyBelongedTo == mobileParty)
-             {
-                 
-                 LeaveSettlementAction.ApplyForParty(PartyBase.MainParty.MobileParty);
-             }
-         }
-         private void EnlistingLordPartyEntersSettlement(MobileParty mobileParty, Settlement settlement, Hero arg3)
-         {
-             if(!_enlisted) return;
-             if (_enlistingLord.PartyBelongedTo == mobileParty)
-             {
-               
-                
-                    bool isTown = settlement.IsTown;
-                    if (isTown)
-                    {
-                        Campaign.Current.TimeControlMode = CampaignTimeControlMode.Stop;
-                    }
-                
-                EnterSettlementAction.ApplyForParty(PartyBase.MainParty.MobileParty,settlement);
-             }
-         }
-         
-         private void EnlistingLordPartyJoinsBattle(Hero hero, MobileParty otherEventParty)
-         {
-             if(!_enlisted) return;
-             if (_enlistingLord == hero)
-             {
-                 
-                 EncounterManager.StartPartyEncounter(PartyBase.MainParty, otherEventParty.Party);
-             }
-         }
+        private void mapEventEnded(MapEvent mapEvent)
+        {
+            if (!mapEvent.IsPlayerMapEvent) return;
+            _enlisted = true;
+            GameMenu.ActivateGameMenu("hireling_menu");
+            TORCommon.Say("test");
+        }
 
-         private void EnlistingLordPartyEncounter(MapEvent mapEvent, PartyBase attacker, PartyBase defender)
-         {
-             if(!_enlisted) return;
-             if (!_enlisted) return;
+        private void controlPlayerLoot(MapEvent mapEvent)
+        {
+            if (mapEvent.PlayerSide == mapEvent.WinningSide && Hero.MainHero.IsEnlisted())
+            {
+
+                PlayerEncounter.Current.RosterToReceiveLootItems.Clear();
+                PlayerEncounter.Current.RosterToReceiveLootMembers.Clear();
+                PlayerEncounter.Current.RosterToReceiveLootPrisoners.Clear();
+
+
+            }
+
+        }
+
+        private void EnlistingLordPartyLeavesSettlement(MobileParty mobileParty, Settlement settlement)
+        {
+            if (!_enlisted) return;
+            if (_enlistingLord.PartyBelongedTo == mobileParty)
+            {
+
+                LeaveSettlementAction.ApplyForParty(PartyBase.MainParty.MobileParty);
+            }
+        }
+        private void EnlistingLordPartyEntersSettlement(MobileParty mobileParty, Settlement settlement, Hero arg3)
+        {
+            if (!_enlisted) return;
+            if (_enlistingLord.PartyBelongedTo == mobileParty)
+            {
+
+
+                bool isTown = settlement.IsTown;
+                if (isTown)
+                {
+                    Campaign.Current.TimeControlMode = CampaignTimeControlMode.Stop;
+                }
+
+                EnterSettlementAction.ApplyForParty(PartyBase.MainParty.MobileParty, settlement);
+            }
+        }
+
+
+        private void EnlistingLordPartyEncounter(MapEvent mapEvent, PartyBase attacker, PartyBase defender)
+        {
+            if (!_enlisted) return;
+            if (defender.Name.Contains("George"))
+            {
+                TORCommon.Say("Hello");
+            }
+
             if (attacker != _enlistingLord.PartyBelongedTo.Party && defender != _enlistingLord.PartyBelongedTo.Party) return;
             else
             {
@@ -87,33 +108,63 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                 GameMenu.ExitToLast();
 
             }
-            if (attacker == _enlistingLord.PartyBelongedTo.Party) {
-                EncounterManager.StartPartyEncounter(PartyBase.MainParty, defender);
-
-
-            } else if (defender == _enlistingLord.PartyBelongedTo.Party)
+            if (attacker == _enlistingLord.PartyBelongedTo.Party)
+            {
+                StartBattleAction.Apply(attacker, defender);
+            }
+            else if (defender == _enlistingLord.PartyBelongedTo.Party)
             {
                 EncounterManager.StartPartyEncounter(attacker, PartyBase.MainParty);
             }
+
         }
 
 
-         private void OnTick(float dt)
-         {
-             if (_enlisted && _enlistingLord != null)
-             {
-                 HidePlayerParty();
-                 PartyBase.MainParty.MobileParty.Position2D = _enlistingLord.PartyBelongedTo.Position2D;
-             }
-         }
-
-        public static void LeaveLordPartyAction(bool keepgear)
+        private void OnTick(float dt)
         {
-            bool flag2 = PlayerEncounter.Current != null;
-            if (flag2)
+            if (_enlisted && _enlistingLord != null)
             {
-                PlayerEncounter.Finish(true);
+                HidePlayerParty();
+                PartyBase.MainParty.MobileParty.Position2D = _enlistingLord.PartyBelongedTo.Position2D;
+                if (_enlistingLord.PartyBelongedTo.MapEvent != null && MobileParty.MainParty.MapEvent == null)
+                {
+                    TORCommon.Say("Lord starts encounter");
+                    var mapEvent = _enlistingLord.PartyBelongedTo.MapEvent;
+                    var flagIsEnlistingLordAttacker = false;
+                    foreach (var party in mapEvent.AttackerSide.Parties)
+                    {
+                        if (party.Party == _enlistingLord.PartyBelongedTo.Party)
+                        {
+                            TORCommon.Say("Lord is attacking");
+                            flagIsEnlistingLordAttacker = true;
+                            break;
+                        }
+                    }
+                    if (flagIsEnlistingLordAttacker)
+                    {
+                        StartBattleAction.Apply(PartyBase.MainParty, mapEvent.DefenderSide.LeaderParty);
+                    } else
+                    {
+                        StartBattleAction.Apply(mapEvent.AttackerSide.LeaderParty, PartyBase.MainParty);
+                    }
+
+                }
             }
+        }
+
+        private void UndoDiplomacy()
+        {
+            ChangeKingdomAction.ApplyByLeaveKingdomAsMercenary(Hero.MainHero.Clan, false);
+        }
+
+        public void LeaveLordPartyAction(bool keepgear)
+        {
+            Hero.MainHero.RemoveAttribute("enlisted");
+            PlayerEncounter.Finish(true);
+            UndoDiplomacy();
+            showPlayerParty();
+            _enlisted = false;
+            _enlistingLord = null;
         }
 
         public override void SyncData(IDataStore dataStore)
@@ -123,7 +174,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
         private void party_wait_talk_to_other_members_on_init(MenuCallbackArgs args)
         {
-     
+
         }
 
         private void ServeAsAMercDialog(CampaignGameStarter campaignGameStarter)
@@ -131,12 +182,12 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
 
             campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword", "I am hereby offering my sword.", null, EnlistPlayer);
-            campaignGameStarter.AddDialogLine("payedsword", "payedsword", "end", "As you wish.", null,null,200,null);
-            TextObject infotext = new TextObject("Following {ENLISTINGLORDNAME}", null);        
-        campaignGameStarter.AddWaitGameMenu("hireling_menu", infotext.Value, new OnInitDelegate(this.party_wait_talk_to_other_members_on_init), new OnConditionDelegate(this.wait_on_condition),
-                null, new OnTickDelegate(this.wait_on_tick), GameMenu.MenuAndOptionType.WaitMenuHideProgressAndHoursOption, GameOverlays.MenuOverlayType.None, 0f, GameMenu.MenuFlags.None, null);
-            
-            
+            campaignGameStarter.AddDialogLine("payedsword", "payedsword", "end", "As you wish.", null, null, 200, null);
+            TextObject infotext = new TextObject("Following {ENLISTINGLORDNAME}", null);
+            campaignGameStarter.AddWaitGameMenu("hireling_menu", infotext.Value, new OnInitDelegate(this.party_wait_talk_to_other_members_on_init), new OnConditionDelegate(this.wait_on_condition),
+                    null, new OnTickDelegate(this.wait_on_tick), GameMenu.MenuAndOptionType.WaitMenuHideProgressAndHoursOption, GameOverlays.MenuOverlayType.None, 0f, GameMenu.MenuFlags.None, null);
+
+
             TextObject textObject = new TextObject("Desert", null);
             TextObject textObject25 = new TextObject("{=FLT0000044}Abandon Party", null);
             campaignGameStarter.AddGameMenuOption("hireling_menu", "party_wait_leave", textObject25.ToString(), delegate (MenuCallbackArgs args)
@@ -168,7 +219,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                                 bool isLord = lord.IsLord;
                                 if (isLord)
                                 {
-                                  //  Test.ChangeLordRelation(lord, -100000);
+                                    //  Test.ChangeLordRelation(lord, -100000);
                                 }
                             }
                         }
@@ -205,65 +256,69 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             }
             else
             {
-                
-                 args.MenuContext.SetBackgroundMeshName(_enlistingLord.MapFaction.Culture.EncounterBackgroundMesh);
+
+                args.MenuContext.SetBackgroundMeshName(_enlistingLord.MapFaction.Culture.EncounterBackgroundMesh);
                 TextObject text = args.MenuContext.GameMenu.GetText();
                 text.SetTextVariable("PARTY_LEADER", _enlistingLord.EncyclopediaLinkWithName);
             }
         }
 
         private void EnlistPlayer()
-         {
-             HidePlayerParty();
-             DisbandParty();
+        {
+            HidePlayerParty();
+            DisbandParty();
+            Hero.MainHero.AddAttribute("enlisted");
             _enlistingLord = CharacterObject.OneToOneConversationCharacter.HeroObject;
-             ChangeKingdomAction.ApplyByJoinFactionAsMercenary(Hero.MainHero.Clan, _enlistingLord.Clan.Kingdom,25,false);
-             MBTextManager.SetTextVariable("ENLISTINGLORDNAME", _enlistingLord.EncyclopediaLinkWithName);
+            ChangeKingdomAction.ApplyByJoinFactionAsMercenary(Hero.MainHero.Clan, _enlistingLord.Clan.Kingdom, 25, false);
+            MBTextManager.SetTextVariable("ENLISTINGLORDNAME", _enlistingLord.EncyclopediaLinkWithName);
 
 
 
             while (Campaign.Current.CurrentMenuContext != null)
-                 GameMenu.ExitToLast();
-
-             //GameMenu.ActivateGameMenu("party_wait");
-             
-             _enlisted = true;
+                GameMenu.ExitToLast();
+            _enlisted = true;
             GameMenu.ActivateGameMenu("hireling_menu");
 
 
         }
 
-        private void HidePlayerParty()
-         {
+        private void showPlayerParty()
+        {
+            // Currently not working
+            PartyBase.MainParty.MobileParty.IsVisible = true;
+        }
 
+        private void HidePlayerParty()
+        {
+            // Currently not working
             PartyBase.MainParty.MobileParty.IsVisible = false;
-             
-             
-             /*if (((PartyVisual) ).HumanAgentVisuals != null)
-                 ((PartyVisual) PartyBase.MainParty.Visuals).HumanAgentVisuals.GetEntity().SetVisibilityExcludeParents(false);
-             if (((PartyVisual) PartyBase.MainParty.Visuals).MountAgentVisuals == null)
-                 return;
-             ((PartyVisual) PartyBase.MainParty.Visuals).MountAgentVisuals.GetEntity().SetVisibilityExcludeParents(false);*/
-         }
-         
-         
-         private void DisbandParty()
-         {
-             if (MobileParty.MainParty.MemberRoster.TotalManCount <= 1)
-                 return;
-             List<TroopRosterElement> troopRosterElementList = new List<TroopRosterElement>();
-             foreach (TroopRosterElement troopRosterElement in (List<TroopRosterElement>) MobileParty.MainParty.MemberRoster.GetTroopRoster())
-             {
-                 if (troopRosterElement.Character != Hero.MainHero.CharacterObject && troopRosterElement.Character.HeroObject == null)
-                     troopRosterElementList.Add(troopRosterElement);
-             }
-             if (troopRosterElementList.Count == 0)
-                 return;
-             foreach (TroopRosterElement troopRosterElement in troopRosterElementList)
-             {
-                 //Test.followingHero.PartyBelongedTo.MemberRoster.AddToCounts(troopRosterElement.Character, troopRosterElement.Number);
-                 MobileParty.MainParty.MemberRoster.AddToCounts(troopRosterElement.Character, -1 * troopRosterElement.Number);
-             }
-         }
+
+
+            /*if (((PartyVisual) ).HumanAgentVisuals != null)
+                ((PartyVisual) PartyBase.MainParty.Visuals).HumanAgentVisuals.GetEntity().SetVisibilityExcludeParents(false);
+            if (((PartyVisual) PartyBase.MainParty.Visuals).MountAgentVisuals == null)
+                return;
+            ((PartyVisual) PartyBase.MainParty.Visuals).MountAgentVisuals.GetEntity().SetVisibilityExcludeParents(false);*/
+        }
+
+
+        private void DisbandParty()
+        {
+            if (MobileParty.MainParty.MemberRoster.TotalManCount <= 1)
+                return;
+            List<TroopRosterElement> troopRosterElementList = new List<TroopRosterElement>();
+            foreach (TroopRosterElement troopRosterElement in (List<TroopRosterElement>)MobileParty.MainParty.MemberRoster.GetTroopRoster())
+            {
+                if (troopRosterElement.Character != Hero.MainHero.CharacterObject && troopRosterElement.Character.HeroObject == null)
+                    troopRosterElementList.Add(troopRosterElement);
+            }
+            if (troopRosterElementList.Count == 0)
+                return;
+            foreach (TroopRosterElement troopRosterElement in troopRosterElementList)
+            {
+                //Test.followingHero.PartyBelongedTo.MemberRoster.AddToCounts(troopRosterElement.Character, troopRosterElement.Number);
+                MobileParty.MainParty.MemberRoster.AddToCounts(troopRosterElement.Character, -1 * troopRosterElement.Number);
+            }
+        }
     }
 }
