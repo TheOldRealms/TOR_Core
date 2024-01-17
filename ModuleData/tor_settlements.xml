@@ -2172,7 +2172,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_RL1_1" name="{=Settlements.Settlement.name.village_RL1_1}Frederheim" posX="1249.628" posY="1084.826" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL1_1}Frederheim is a small Reiklander village just north of Altdorf on the Altdorf-Middenheim road. While the town is a possession of Karl-Franz and is a part of Altdorf’s demesne, the Emperor has seen fit to give oversight of it in all but name to the Cult of Shallya. This is a result of the cult's request for an area in which to establish a walled hospice and sanatorium.">
+  <Settlement id="village_RL1_1" name="{=Settlements.Settlement.name.village_RL1_1}Frederheim" posX="1249.628" posY="1084.829" culture="Culture.empire" text="{=Settlements.Settlement.text.village_RL1_1}Frederheim is a small Reiklander village just north of Altdorf on the Altdorf-Middenheim road. While the town is a possession of Karl-Franz and is a part of Altdorf’s demesne, the Emperor has seen fit to give oversight of it in all but name to the Cult of Shallya. This is a result of the cult's request for an area in which to establish a walled hospice and sanatorium.">
     <Components>
       <Village id="village_comp_RL1_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_RL1" bound="Settlement.town_RL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2303,7 +2303,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_RL4" name="{=Settlements.Settlement.name.town_RL4}Bögenhafen" owner="Faction.reikland_clan_4" posX="1238.612" posY="1041.357" culture="Culture.empire" gate_posX="1239.778" gate_posY="1041.903" text="{=!}Bögenhafen is a prominent market town that sits on either side of the River Bögen. It is midway between Altdorf and Montfort allowing the town to maintain its economic importance through nearly any hardship. The northside of the town, known as the Pit, is the smallest and poorest section of Bögenhafen. The Southside of the town is where most of the wealth and all of the town’s important institutions reside, including its religious temples and town hall. A town council rules in the name of Graf Wilhelm von Saponatheim.">
+  <Settlement id="town_RL4" name="{=Settlements.Settlement.name.town_RL4}Bögenhafen" owner="Faction.reikland_clan_4" posX="1238.612" posY="1041.357" culture="Culture.empire" gate_posX="1238.907" gate_posY="1040.823" text="{=!}Bögenhafen is a prominent market town that sits on either side of the River Bögen. It is midway between Altdorf and Montfort allowing the town to maintain its economic importance through nearly any hardship. The northside of the town, known as the Pit, is the smallest and poorest section of Bögenhafen. The Southside of the town is where most of the wealth and all of the town’s important institutions reside, including its religious temples and town hall. A town council rules in the name of Graf Wilhelm von Saponatheim.">
     <Components>
       <Town id="town_comp_RL4" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -2647,7 +2647,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_ML1_3" name="{=Settlements.Settlement.name.village_ML1_3}Arenberg" posX="1362.235" posY="1233.213" culture="Culture.empire" text="{=Settlements.Settlement.text.village_ML1_3}Directly west of Altdorf, between the river Reik and the Weissbruck canal is the village of Hochloff. The town is known for the type of grain it raises the Hochloffkorn which is very well regarded for making a high quality flour.">
+  <Settlement id="village_ML1_3" name="{=Settlements.Settlement.name.village_ML1_3}Arenberg" posX="1363.118" posY="1236.231" culture="Culture.empire" text="{=Settlements.Settlement.text.village_ML1_3}Directly west of Altdorf, between the river Reik and the Weissbruck canal is the village of Hochloff. The town is known for the type of grain it raises the Hochloffkorn which is very well regarded for making a high quality flour.">
     <Components>
       <Village id="village_comp_ML1_3" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ML1" bound="Settlement.town_ML1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2660,7 +2660,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_ML1_3" name="{=Settlements.Settlement.name.village_ML1_3}Jägerhausen" posX="1362.235" posY="1233.213" culture="Culture.empire" text="{=Settlements.Settlement.text.village_ML1_3}Directly west of Altdorf, between the river Reik and the Weissbruck canal is the village of Hochloff. The town is known for the type of grain it raises the Hochloffkorn which is very well regarded for making a high quality flour.">
+  <Settlement id="village_ML1_3" name="{=Settlements.Settlement.name.village_ML1_3}Jägerhausen" posX="1363.118" posY="1236.231" culture="Culture.empire" text="{=Settlements.Settlement.text.village_ML1_3}Directly west of Altdorf, between the river Reik and the Weissbruck canal is the village of Hochloff. The town is known for the type of grain it raises the Hochloffkorn which is very well regarded for making a high quality flour.">
     <Components>
       <Village id="village_comp_ML1_3" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ML1" bound="Settlement.town_ML1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2838,7 +2838,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_ML4_2" name="{=Settlements.Settlement.name.village_ML4_2}Harsum" posX="1353.338" posY="1218.49" culture="Culture.empire" text="{=Settlements.Settlement.text.village_ML4_2}To the north northwest of Bögenhafen is the timber producing village of Herzhald. Situated deep in the Reikwald, Herzhald is known for the quality and lengths of its timber samples, much of which is sent to Bögenhafen and Grünburg for their boatbuilding.">
+  <Settlement id="village_ML4_2" name="{=Settlements.Settlement.name.village_ML4_2}Harsum" posX="1355.583" posY="1215.956" culture="Culture.empire" text="{=Settlements.Settlement.text.village_ML4_2}To the north northwest of Bögenhafen is the timber producing village of Herzhald. Situated deep in the Reikwald, Herzhald is known for the quality and lengths of its timber samples, much of which is sent to Bögenhafen and Grünburg for their boatbuilding.">
     <Components>
       <Village id="village_comp_ML4_2" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ML4" bound="Settlement.town_ML4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2877,7 +2877,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_ML5" name="{=Settlements.Settlement.name.town_ML5}Delberz" owner="Faction.reikland_clan_2" posX="1327.393" posY="1177.404" culture="Culture.empire" gate_posX="1326.895" gate_posY="1176.579" text="{=!}Ubersreik is one of the most important trade centers in Reikland. It sits astride and important bridge on the road from from Bögenhafen to Dunkelburg. Trade flows along the road as well as downriver to Auerswald, Grünburg, Kemperbad, and Altdorf. In addition, because it is located near Grey Lady Pass, Ubersreik is the ideal location for merchants travelling over the Grey Mountains to move their wares from the river to overland transportation, and vice versa.">
+  <Settlement id="town_ML5" name="{=Settlements.Settlement.name.town_ML5}Delberz" owner="Faction.reikland_clan_2" posX="1327.393" posY="1177.404" culture="Culture.empire" gate_posX="1320.876" gate_posY="1174.619" text="{=!}Ubersreik is one of the most important trade centers in Reikland. It sits astride and important bridge on the road from from Bögenhafen to Dunkelburg. Trade flows along the road as well as downriver to Auerswald, Grünburg, Kemperbad, and Altdorf. In addition, because it is located near Grey Lady Pass, Ubersreik is the ideal location for merchants travelling over the Grey Mountains to move their wares from the river to overland transportation, and vice versa.">
     <Components>
       <Town id="town_comp_ML5" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -2898,7 +2898,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_ML5_1" name="{=Settlements.Settlement.name.village_ML5_1}Mittelmund" posX="1314.795" posY="1167.498" culture="Culture.empire" text="{=Settlements.Settlement.text.village_ML5_1}Geissbach is a forest village just north of Ubersreik. The people here carefully timber the woods nearby and grow what crops they can in the clearings around the village. For a long time there have been rumors and worries about a dark estate just east of the village, which is said to house great evil.">
+  <Settlement id="village_ML5_1" name="{=Settlements.Settlement.name.village_ML5_1}Mittelmund" posX="1314.79" posY="1167.498" culture="Culture.empire" text="{=Settlements.Settlement.text.village_ML5_1}Geissbach is a forest village just north of Ubersreik. The people here carefully timber the woods nearby and grow what crops they can in the clearings around the village. For a long time there have been rumors and worries about a dark estate just east of the village, which is said to house great evil.">
     <Components>
       <Village id="village_comp_ML5_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ML5" bound="Settlement.town_ML5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2937,7 +2937,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_ML6" name="{=Settlements.Settlement.name.town_ML6}Scheinfeld" owner="Faction.reikland_clan_1" posX="1182.629" posY="1126.743" culture="Culture.empire" gate_posX="1182.883" gate_posY="1127.673" text="{=!}On the northern bank of the River Grissen is the market town of Dunkelburg. Dunkelburg benefits from being along the Stimmigen canal, which allows access to many of the market towns in Reikland’s southern region. The town is known for its rustic feel which seems to be preserved in the town despite its continued increase in size. Unfortunately, Dunkelburg’s proximity to the Grey Mountains has doomed it to be plagued by Goblins, who regularly raid the town. One of the results of these raids is that the town has a much higher population of Orphans than many other parts of the Empire. These orphans are provided for by the von Wallensteins however, as long as they work in the town’s several Bleachfields that is.">
+  <Settlement id="town_ML6" name="{=Settlements.Settlement.name.town_ML6}Scheinfeld" owner="Faction.reikland_clan_1" posX="1182.629" posY="1126.743" culture="Culture.empire" gate_posX="1183.876" gate_posY="1125.266" text="{=!}On the northern bank of the River Grissen is the market town of Dunkelburg. Dunkelburg benefits from being along the Stimmigen canal, which allows access to many of the market towns in Reikland’s southern region. The town is known for its rustic feel which seems to be preserved in the town despite its continued increase in size. Unfortunately, Dunkelburg’s proximity to the Grey Mountains has doomed it to be plagued by Goblins, who regularly raid the town. One of the results of these raids is that the town has a much higher population of Orphans than many other parts of the Empire. These orphans are provided for by the von Wallensteins however, as long as they work in the town’s several Bleachfields that is.">
     <Components>
       <Town id="town_comp_ML6" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -3402,7 +3402,7 @@
     </CommonAreas>
   </Settlement>
   <!-- Hochland -->
-  <Settlement id="town_HL1" name="{=Settlements.Settlement.name.town_HL1}Hergig" owner="Faction.reikland_clan_1" posX="1449.102" posY="1161.434" culture="Culture.empire" gate_posX="1442.587" gate_posY="1163.693" text="{=!}Altdorf is at once perhaps the greatest city of the Empire and perhaps the entire known woHLd, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor KaHL Franz rules both the Grand Principality of the Reikland and the Empire of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the Empire; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, StiHLand, Wissenland and AveHLand must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
+  <Settlement id="town_HL1" name="{=Settlements.Settlement.name.town_HL1}Hergig" owner="Faction.reikland_clan_1" posX="1449.102" posY="1161.434" culture="Culture.empire" gate_posX="1442.915" gate_posY="1161.666" text="{=!}Altdorf is at once perhaps the greatest city of the Empire and perhaps the entire known woHLd, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor KaHL Franz rules both the Grand Principality of the Reikland and the Empire of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the Empire; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, StiHLand, Wissenland and AveHLand must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
     <Components>
       <Town id="town_comp_HL1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -3520,7 +3520,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_HL3" name="{=Settlements.Settlement.name.town_HL3}Krudenwald" owner="Faction.reikland_clan_3" posX="1370.8" posY="1220.302" culture="Culture.empire" gate_posX="1370.171" gate_posY="1219.301" text="{=!}At the head of the Axe Bite pass sits the town of Helmgart. Ruled by Margrave Reinhardt von Mackensen, the fortress town serves as both the economic and military border between Bretonnia and the Empire. Axe Bite is one of three mountain passes through the Grey mountains; as such the safety of passage through it is a primary concern. Helmgart itself is a market town, surrounded by several curtain walls. One of these walls traverses the entire width of the pass itself, meaning all travel must pass through its single gate or be stuck on either the Bretonnian or Imperial side of the border.">
+  <Settlement id="town_HL3" name="{=Settlements.Settlement.name.town_HL3}Krudenwald" owner="Faction.reikland_clan_3" posX="1370.8" posY="1220.302" culture="Culture.empire" gate_posX="1365.016" gate_posY="1225.933" text="{=!}At the head of the Axe Bite pass sits the town of Helmgart. Ruled by Margrave Reinhardt von Mackensen, the fortress town serves as both the economic and military border between Bretonnia and the Empire. Axe Bite is one of three mountain passes through the Grey mountains; as such the safety of passage through it is a primary concern. Helmgart itself is a market town, surrounded by several curtain walls. One of these walls traverses the entire width of the pass itself, meaning all travel must pass through its single gate or be stuck on either the Bretonnian or Imperial side of the border.">
     <Components>
       <Town id="town_comp_HL3" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -3566,7 +3566,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_HL3_3" name="{=Settlements.Settlement.name.village_HL3_3}Selmigerholz" posX="1360.05" posY="1227.646" culture="Culture.empire" text="{=Settlements.Settlement.text.village_HL3_2}MoHLenfurt is a small village near the headwaters of the river Bogen. The town is known for its silver mines and the small community of Dwarfs which contribute to the silver trade within the Reikland.">
+  <Settlement id="village_HL3_3" name="{=Settlements.Settlement.name.village_HL3_3}Selmigerholz" posX="1355.391" posY="1228.965" culture="Culture.empire" text="{=Settlements.Settlement.text.village_HL3_2}MoHLenfurt is a small village near the headwaters of the river Bogen. The town is known for its silver mines and the small community of Dwarfs which contribute to the silver trade within the Reikland.">
     <Components>
       <Village id="village_comp_HL3_3" village_type="VillageType.silver_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_HL3" bound="Settlement.town_HL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -8551,7 +8551,7 @@
       <Hideout id="hideout_beastmen_28" map_icon="bandit_hideout_a" scene_name="hideout_steppe_002" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="hideout_beastmen_29" name="{=Settlements.Settlement.name.hideout_beastmen_29}Ungor Camp" type="Hideout" posX="1259.165" posY="1085.311" culture="Culture.steppe_bandits">
+  <Settlement id="hideout_beastmen_29" name="{=Settlements.Settlement.name.hideout_beastmen_29}Ungor Camp" type="Hideout" posX="1258.583" posY="1085.505" culture="Culture.steppe_bandits">
     <Components>
       <Hideout id="hideout_beastmen_29" map_icon="bandit_hideout_a" scene_name="hideout_steppe_001" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
