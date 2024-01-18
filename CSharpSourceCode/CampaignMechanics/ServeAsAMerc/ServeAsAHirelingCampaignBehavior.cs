@@ -114,7 +114,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             }
             else if (defender == _enlistingLord.PartyBelongedTo.Party)
             {
-                EncounterManager.StartPartyEncounter(attacker, PartyBase.MainParty);
+                PlayerEncounter.JoinBattle(BattleSideEnum.Defender);
             }
 
         }
@@ -145,7 +145,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                         StartBattleAction.Apply(PartyBase.MainParty, mapEvent.DefenderSide.LeaderParty);
                     } else
                     {
-                        StartBattleAction.Apply(mapEvent.AttackerSide.LeaderParty, PartyBase.MainParty);
+                        EncounterManager.StartPartyEncounter(mapEvent.AttackerSide.LeaderParty, PartyBase.MainParty);
                     }
 
                 }
