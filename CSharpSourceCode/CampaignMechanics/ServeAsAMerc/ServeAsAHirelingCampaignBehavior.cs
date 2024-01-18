@@ -78,7 +78,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         private void EnlistingLordPartyEntersSettlement(MobileParty mobileParty, Settlement settlement, Hero arg3)
         {
             if (!_enlisted) return;
-            if (_enlistingLord.PartyBelongedTo == mobileParty)
+            if (_enlistingLord!=null&&_enlistingLord.PartyBelongedTo == mobileParty)
             {
 
 
@@ -145,7 +145,16 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                         StartBattleAction.Apply(PartyBase.MainParty, mapEvent.DefenderSide.LeaderParty);
                     } else
                     {
-                        EncounterManager.StartPartyEncounter(mapEvent.AttackerSide.LeaderParty, PartyBase.MainParty);
+                        //Campaign.Current.MainParty.Party.MapEventSide = mapEvent.GetMapEventSide(BattleSideEnum.Defender);
+                       // PlayerEncounter.StartBattle(); 
+                        
+                       while (Campaign.Current.CurrentMenuContext != null)
+                       {
+                           GameMenu.ExitToLast();
+                       }
+                        //EncounterManager.StartPartyEncounter(mapEvent.AttackerSide.LeaderParty, PartyBase.MainParty);
+                        
+                        StartBattleAction.Apply(Campaign.Current.MainParty.Party, mapEvent.AttackerSide.LeaderParty);
                     }
 
                 }

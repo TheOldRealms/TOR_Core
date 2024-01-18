@@ -592,6 +592,7 @@
     <Compile Include="Extensions\UI\UnitEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionAttribute.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionManager.cs" />
+    <Compile Include="CampaignMechanics\ServeAsAMerc\ServeAsAHirelingCampaignBehavior.cs" />
     <Compile Include="Extensions\ViewModelExtensions.cs" />
     <Compile Include="GameManagers\TORKeyInputManager.cs" />
     <Compile Include="GameManagers\TORGameKeyContext.cs" />
