@@ -43,6 +43,7 @@ using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.CampaignMechanics.ServeAsAMerc;
 using TOR_Core.CampaignMechanics.SkillBooks;
 using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
@@ -151,6 +152,7 @@ namespace TOR_Core
                 starter.AddBehavior(new PlaguedVillageQuestCampaignBehavior());
                 starter.AddBehavior(new CareerDialogOptionsCampaignBehavior());
                 starter.AddBehavior(new TORFactionDiscontinuationCampaignBehavior());
+                starter.AddBehavior(new ServeAsAHirelingCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
