@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
@@ -54,10 +55,19 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 {
                     if (!elem.Troop.IsHero)
                     {
+                        var indexOfTroop = Hero.MainHero.PartyBelongedTo.MemberRoster.FindIndexOfTroop(elem.Troop);
+                        if (elem.IsWounded)
+                        {
+                            copiedTroopRoster.AddToCounts(elem.Troop, 0,false,1,elem.Xp,true,indexOfTroop);
+                        }
+                        else
+                        {
+                            copiedTroopRoster.AddToCounts(elem.Troop, 1,false,0,elem.Xp,true);
+                        }
                         Hero.MainHero.PartyBelongedTo.MemberRoster.RemoveTroop(elem.Troop);
-                        copiedTroopRoster.AddToCounts(elem.Troop, 1);
                     }
                 }
+                copiedTroopRoster.RemoveZeroCounts();
                 PartyScreenManager.OpenScreenAsReceiveTroops(roster, new TextObject("Witch Hunter Retinues"), AddRetinuesAndCalculateXPGain);
             }
         }
@@ -76,21 +86,37 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
                 var retinues = rightownerparty.MobileParty.MemberRoster.ToFlattenedRoster().ToList();
                 retinues = retinues.Where(x => x.Troop.StringId.Contains(retinueID)).ToList();
-
-                var xpGain = CalculateXPGainForRetinues(count, level, retinues.Count);
-                foreach (var retinue in retinues)
+                
+                var xpGain = CalculateXPGainForRetinues(count, level, retinues);
+                if (xpGain >= 0)
                 {
-                    var index = MobileParty.MainParty.MemberRoster.FindIndexOfTroop(retinue.Troop);
-                    MobileParty.MainParty.MemberRoster.SetElementXp(index, MobileParty.MainParty.MemberRoster.GetElementXp(retinue.Troop) + xpGain);
+                    foreach (var retinue in rightownerparty.MobileParty.MemberRoster.GetTroopRoster().Where(x=> x.Character.StringId.Contains(retinueID)))
+                    {
+                        if (retinue.Character.UpgradeTargets.Length <= 0) continue;
+                        MobileParty.MainParty.MemberRoster.AddXpToTroop(xpGain * retinue.Number, retinue.Character);
+                    }
                 }
+                
             }
             
             _retinue = null;
             Game.Current.GameStateManager.PopState();
         }
 
-        private int CalculateXPGainForRetinues(int unitCount, int level, int retinueCount)
+        private int CalculateXPGainForRetinues(int unitCount, int level, List<FlattenedTroopRosterElement> retinues)
         {
+            var retinueCount = retinues.Count;
+            foreach (var elem in retinues)
+            {
+                if (elem.Troop.UpgradeTargets.Length > 0)
+                {
+                    if (elem.Troop.GetUpgradeXpCost(PartyBase.MainParty, 0)<=0)
+                    {
+                        retinueCount--;
+                    }
+                }
+            }
+            
             if (retinueCount <= 0) return 0;
 
             return ( 15 * level * unitCount ) / retinueCount;
@@ -112,7 +138,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             if (Hero.MainHero.GetCustomResourceValue("Prestige") < retinueCost) return false;
 
-            if (characterObject.StringId == "tor_wh_retinue")
+            if (characterObject.StringId.Contains(retinueID))
                 return false;
 
             if (!characterObject.IsHero)
