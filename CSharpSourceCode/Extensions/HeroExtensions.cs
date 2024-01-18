@@ -5,11 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.BountyMaster;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CharacterDevelopment;
@@ -34,15 +37,19 @@ namespace TOR_Core.Extensions
         }
 
         /// <summary>
-        /// Returns raise dead chance, where, for example, 0.1 is a 10% chance.
+        /// Calculates the Raise dead chance based on the Spellcraft Skillvalue and applies Career Perks.
+        /// 0.005 would allow with 200 spell craft an 80% chance of raising dead.
         /// </summary>
         /// <param name="hero"></param>
         /// <returns></returns>
         public static float GetRaiseDeadChance(this Hero hero)
         {
-            var explainedNumber = new ExplainedNumber();
-            var attributes = hero.GetAttributeValue(TORAttributes.Discipline); //was intelligence Intentional?
-           explainedNumber.Add(attributes * 0.07f);
+            if (!hero.IsNecromancer()) return 0f;
+            
+            var chance = new ExplainedNumber();
+            var skillValue = Mathf.Min(200,hero.GetSkillValue(TORSkills.SpellCraft));
+            
+           chance.Add(skillValue * 0.005f);
 
             if (hero.HasAnyCareer())
             {
@@ -50,13 +57,113 @@ namespace TOR_Core.Extensions
 
                 if (choices.Contains("MasterOfDeadPassive3"))
                 {
-                    var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive2");
+                    var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive3");
                     if(choice!=null)
-                        explainedNumber.AddFactor(choice.GetPassiveValue());
+                        chance.AddFactor(choice.GetPassiveValue());
                 }
             }
 
-            return explainedNumber.ResultNumber;
+            return chance.ResultNumber;
+        }
+
+        public static void AddCustomResource(this Hero hero, string id, float amount)
+        {
+            var info = hero.GetExtendedInfo();
+            if (info != null)
+            {
+                info.AddCustomResource(id, amount);
+            }
+        }
+
+        public static float GetCustomResourceValue(this Hero hero, string id)
+        {
+            var info = hero.GetExtendedInfo();
+            if (info != null)
+            {
+                return info.GetCustomResourceValue(id);
+            }
+            else return 0;
+        }
+
+        public static CustomResource GetCultureSpecificCustomResource(this Hero hero)
+        {
+            if (hero == null)
+                return null;
+            return CustomResourceManager.GetResourceObject(x => x.FirstOrDefault(y => y.Culture == hero.Culture.StringId));
+        }
+
+        public static float GetCultureSpecificCustomResourceValue(this Hero hero)
+        {
+            if (hero.GetCultureSpecificCustomResource() != null)
+            {
+                return hero.GetCustomResourceValue(hero.GetCultureSpecificCustomResource().StringId);
+            }
+            else return 0;
+        }
+        
+        public static ExplainedNumber GetCultureSpecificCustomResourceChange(this Hero hero)
+        {
+            if (hero.PartyBelongedTo == null) return new ExplainedNumber();
+
+            var number = new ExplainedNumber(0,true);
+            if (hero.GetCultureSpecificCustomResource() != null)
+            {
+                var upkeep = (int) GetCalculatedCustomResourceUpkeep(hero);
+
+                if (upkeep < 0)
+                {
+                    number.Add(upkeep,new TextObject("Upkeep"));
+                }
+
+                if (hero == Hero.MainHero)
+                {
+                    CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref number,PassiveEffectType.CustomResourceGain, false); 
+                }
+                
+            } 
+            return number;
+        }
+
+        public static float GetCalculatedCustomResourceUpkeep(this Hero hero)
+        {
+            var upkeep = new ExplainedNumber(0,true,new TextObject("Upkeep"));
+            foreach (var element in hero.PartyBelongedTo.MemberRoster.ToFlattenedRoster())
+            {
+                if (element.Troop.HasCustomResourceUpkeepRequirement())
+                {
+                    var unitUpkeet = new ExplainedNumber(element.Troop.GetCustomResourceRequiredForUpkeep().Item2);
+                    if (hero == Hero.MainHero)
+                    {
+                        CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref unitUpkeet,PassiveEffectType.CustomResourceUpkeepModifier, true, element.Troop); 
+                    }
+                    
+                    
+                    
+                    upkeep.Add(unitUpkeet.ResultNumber,new TextObject("Upkeep"));
+                    
+                }
+                
+                
+            }
+                
+            
+            
+            return -upkeep.ResultNumber;
+        }
+
+        public static void AddCultureSpecificCustomResource(this Hero hero, float amount)
+        {
+            if(hero.GetCultureSpecificCustomResource() != null) hero.AddCustomResource(hero.GetCultureSpecificCustomResource().StringId, amount);
+        }
+
+        public static Dictionary<CustomResource, float> GetCustomResources(this Hero hero)
+        {
+            var info = hero.GetExtendedInfo();
+            if (info != null)
+            {
+                return info.GetCustomResources();
+            }
+            else return null;
         }
 
         public static float AddWindsOfMagic(this Hero hero, float amount)
@@ -65,8 +172,7 @@ namespace TOR_Core.Extensions
             var info = hero.GetExtendedInfo();
             if(info != null)
             {
-                result= Mathf.Clamp(info.CurrentWindsOfMagic+amount, 0, info.MaxWindsOfMagic);
-                hero.GetExtendedInfo().CurrentWindsOfMagic = result;
+                info.AddCustomResource("WindsOfMagic", amount);
             }
             
             return result;
@@ -271,7 +377,7 @@ namespace TOR_Core.Extensions
                 var info = hero.GetExtendedInfo();
                 if (info != null && !info.CareerChoices.Contains(choice.StringId))
                 {
-                    int maxChoices = Math.Min(hero.Level+1,TORConstants.MAXIMUM_CAREER_POINTS + 1);
+                    int maxChoices = Math.Min(hero.Level+1, TORConfig.MaximumNumberOfCareerPerkPoints + 1);
                     if(info.CareerChoices.Count < maxChoices)
                     {
                         info.CareerChoices.Add(choice.StringId);
@@ -317,10 +423,10 @@ namespace TOR_Core.Extensions
 
         public static bool IsBretonnianKnight(this Hero hero)       //Potentially a cleaner way to check that
         {
-            return !hero.IsSpellCaster() && hero.Culture.StringId != "vlandia";
+            return !hero.IsSpellCaster() && hero.Culture.StringId == "vlandia";
         }
 
-        public static bool HasAnyCareer(this Hero hero) => Game.Current.GameType is Campaign&& hero.GetCareer() != null;
+        public static bool HasAnyCareer(this Hero hero) => Game.Current.GameType is Campaign && hero.GetCareer() != null;
 
         public static CareerObject GetCareer(this Hero hero)
         {

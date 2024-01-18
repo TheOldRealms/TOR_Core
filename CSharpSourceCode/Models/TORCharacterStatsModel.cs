@@ -1,10 +1,15 @@
 ﻿using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade;
+using TOR_Core.AbilitySystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
+using FaceGen = TaleWorlds.Core.FaceGen;
 
 namespace TOR_Core.Models
 {
@@ -21,6 +26,10 @@ namespace TOR_Core.Models
 
         private ExplainedNumber CalculateHitPoints(ExplainedNumber number, CharacterObject character)
         {
+            if (character.Race == FaceGen.GetRaceOrDefault("large_humanoid_monster"))
+            {
+                number.Add(1000f, new TextObject("Large Monster"));
+            }
             if (character.IsHero)
             {
                 return CalculateHeroHealth(number, character.HeroObject);
@@ -49,10 +58,19 @@ namespace TOR_Core.Models
                     number.Add(character.Tier * 10);
                     break;
             }
-            if (character.IsUndead()&&!character.IsHero)
+            if (character.IsUndead()&&!character.IsHero && !character.HasAttribute("NecromancerChampion"))
             {
                 number.Add(-50);
             }
+
+            if (character.HasAttribute("NecromancerChampion"))
+            {
+                var playerMainAgent = Mission.Current.Agents.FirstOrDefault(x => x.IsHero && x.GetHero() == Hero.MainHero);
+                var value = playerMainAgent.GetComponent<AbilityComponent>().CareerAbility.Template.ScaleVariable1;
+                TORCommon.Say("value :"+(int)value);
+                number.Add((int)value);
+            }
+            
             return number;
         }
 
@@ -84,31 +102,28 @@ namespace TOR_Core.Models
 
                 if (hero.HasAnyCareer())
                 {
-                    CareerHelper.ApplyBasicCareerPassives(hero, ref number, PassiveEffectType.Health);
+                    CareerHelper.ApplyBasicCareerPassives(hero, ref number, PassiveEffectType.Health, false);
                 }
 
-                if (hero.PartyBelongedTo != null && hero.PartyBelongedTo.IsMainParty && hero != Hero.MainHero)
+                if (hero.PartyBelongedTo!=null&& hero.IsPlayerCompanion)
                 {
-                    
-                } 
-
-                if (Hero.MainHero.HasCareerChoice("AmbassadorOfTheLadyPassive2"))
-                {
-                    if (hero.PartyBelongedTo != null && hero.PartyBelongedTo.IsMainParty && hero != Hero.MainHero && Hero.MainHero.HasAnyCareer())
+                    if (Hero.MainHero.HasCareerChoice("GuiltyByAssociationPassive3"))
                     {
-                            var choice = TORCareerChoices.GetChoice("AmbassadorOfTheLadyPassive2");
-                            number.AddFactor(choice.GetPassiveValue());
+                        var choice = TORCareerChoices.GetChoice("GuiltyByAssociationPassive3");
+                        number.Add(choice.GetPassiveValue());
                     }
-                }
-
-                if (hero.PartyBelongedTo!=null&& hero.PartyBelongedTo.IsMainParty && hero != Hero.MainHero)
-                {
                     
-                    if (Hero.MainHero.HasCareerChoice("AmbassadorOfTheLadyPassive2"))
+                    if (Hero.MainHero.HasCareerChoice("CommanderPassive4"))
+                    {
+                        var choice = TORCareerChoices.GetChoice("CommanderPassive4");
+                        number.Add(choice.GetPassiveValue());
+                    }
+                    
+                    if (Hero.MainHero.HasCareerChoice("EnvoyOfTheLadyPassive2"))
                     {
                         if (hero.IsBretonnianKnight())
                         {
-                            var choice = TORCareerChoices.GetChoice("AmbassadorOfTheLadyPassive2");
+                            var choice = TORCareerChoices.GetChoice("EnvoyOfTheLadyPassive2");
                             number.AddFactor(choice.GetPassiveValue());
                         }
                     }
@@ -116,12 +131,15 @@ namespace TOR_Core.Models
                     {
                         if (hero.IsBretonnianKnight())
                         {
+                            var choice = TORCareerChoices.GetChoice("HolyCrusaderPassive2");
                             var heroes =Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
                             heroes.Remove(Hero.MainHero);
                             var extraHealth= heroes.Where(knight => hero.IsBretonnianKnight()).Sum(knight=> 15);
-                            number.Add(extraHealth);
+                            number.Add(extraHealth,choice.BelongsToGroup.Name);
                         }
                     }
+                    
+                    
                     
                 }
 

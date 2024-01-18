@@ -2,6 +2,7 @@
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.Invasions;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 
@@ -43,6 +44,11 @@ namespace TOR_Core.Models
             {
                 AddCareerPassivesForPartySize(Hero.MainHero, ref num);
             }
+
+            if(party != null && party.LeaderHero != null && party.MobileParty != null && party.MobileParty.PartyComponent is IInvasionParty)
+            {
+                num.Add(1500, new TextObject("Invasion Force Bonus"));
+            }
             
             return num;
         }
@@ -54,7 +60,7 @@ namespace TOR_Core.Models
             if (playerHero == null) return;
             if (playerHero.HasAnyCareer())
             {
-                CareerHelper.ApplyBasicCareerPassives(playerHero, ref number, PassiveEffectType.PartySize);
+                CareerHelper.ApplyBasicCareerPassives(playerHero, ref number, PassiveEffectType.PartySize,false);
             }
         }
     }

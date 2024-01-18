@@ -199,7 +199,7 @@
 			<string>Crossbow</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Cunning</AttributeToIncrease>
-		<OptionText>{=tor_cc_option14_label_str}Trainee Templar</OptionText>
+		<OptionText>{=tor_cc_option14_label_str}Witch Hunter Initiate</OptionText>
 		<OptionFlavourText>{=tor_cc_option14_text_str}Heresy was the bane of the good people of the Empire, a rot that needed to be removed. Learning the arts of the Witch Hunters you readied yourself to face all manner of unholy beasts and magicians, with faith and silver. </OptionFlavourText>
 	</CharacterCreationOption> 
 

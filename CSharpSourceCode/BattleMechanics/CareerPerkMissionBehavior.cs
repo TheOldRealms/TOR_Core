@@ -1,90 +1,128 @@
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
+using TOR_Core.AbilitySystem.Scripts;
+using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
-using TOR_Core.Extensions.ExtendedInfoSystem;
-using TOR_Core.HarmonyPatches;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics
 {
     public class CareerPerkMissionBehavior : MissionLogic
     {
         
-        
-        public void OnAgentHealed(Agent affectorAgent, Agent affectedAgent, int totalAmountOfHeal)
+        public override void OnAgentHit (Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
-            if ((affectorAgent == Agent.Main || affectorAgent.GetOriginMobileParty().IsMainParty) && affectorAgent.IsHero)
+            if(!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
+
+            if (( affectorAgent.IsMainAgent && affectorAgent.GetHero().HasCareer(TORCareers.WitchHunter) ) ||
+                ( affectorAgent.BelongsToMainParty()&&affectorAgent.IsHero && Hero.MainHero.HasCareerChoice("NoRestAgainstEvilKeystone") ))
             {
-                if (Agent.Main.GetHero().HasAnyCareer())
-                {
-                    if (Agent.Main.GetHero().GetCareer() == TORCareers.GrailDamsel)
-                    {
-                        var choices = Agent.Main.GetHero().GetAllCareerChoices();
-                        if (affectorAgent.IsMainAgent || affectorAgent.IsSpellCaster() && choices.Contains("InspirationOfTheLadyKeystone"))
-                        {
-                            var cAbility = Agent.Main.GetComponent<AbilityComponent>();
-                            if (cAbility != null)
-                            {
-                               // var value = CareerHelper.CalculateChargeForCareer(ChargeType.DamageDone, totalAmountOfHeal, AttackTypeMask.Spell);
-                                
-                               // cAbility.CareerAbility.AddCharge(value);
-                            }
-                        }
-                    }
-                }
+                WitchHunterAccusationBehavior(affectorAgent,affectedAgent, blow.InflictedDamage);
             }
         }
-        public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
+
+        private void WitchHunterAccusationBehavior(Agent affectorAgent, Agent affectedAgent, int inflictedDamge)
         {
-            if(affectorAgent.IsMount) return;
-            if (affectorAgent.GetOriginMobileParty().IsMainParty && Agent.Main!=null&&  affectorAgent!= Agent.Main && affectorAgent.IsHero)
-            {
+            var comp = affectedAgent.GetComponent<StatusEffectComponent>();
+            if(comp==null) return;
+            var temporaryEffects = comp.GetTemporaryAttributes();
+            if (!temporaryEffects.Contains("AccusationMark")) return;
                 
-                var choices = Agent.Main.GetHero().GetAllCareerChoices();
-                if (choices.Contains("InspirationOfTheLadyKeystone"))
+            var choices = Hero.MainHero.GetAllCareerChoices();
+
+            CareerAbility ability = affectorAgent.GetComponent<AbilityComponent>().CareerAbility;
+
+            var reapplyChance = 0.5f;
+
+            reapplyChance = Mathf.Clamp(reapplyChance, 0.1f, 1);
+
+            var targets = new MBList<Agent>();
+
+            if (choices.Contains("EndsJustifiesMeansKeystone")&&affectedAgent.HealthLimit <= inflictedDamge)
+            {
+                var amount = AccusationScript.CalculateAdditonalTargetAmount(ability.Template.ScaleVariable1);
+                targets.AddRange(AccusationScript.GetAdditionalAccusationMarkTargets(affectedAgent.Position.AsVec2,amount+1));
+            }
+
+            var script = (CareerAbilityScript)( ability.AbilityScript );
+            var triggeredEffects = script.AccessEffectsToTrigger();
+            foreach (var triggeredEffect in triggeredEffects)
+            {
+                targets.Add(affectedAgent);
+                if (MBRandom.RandomFloat <= reapplyChance|| choices.Contains("NoRestAgainstEvilKeystone"))
                 {
-                    if (!affectorAgent.IsSpellCaster()) return;
+                    targets.Add(affectedAgent);
+                }
+                else
+                {
+                    affectedAgent.RemoveStatusEffect("accusation_debuff");
+                }
                     
-                    AttackTypeMask mask= DamagePatch.DetermineMask(blow);
-                    if (mask == AttackTypeMask.Spell)
+                if(triggeredEffect==null) return;
+                    
+                foreach (var target in targets)
+                {
+                    foreach (var statusEffect in triggeredEffect.StatusEffects)
                     {
-                       // var value = CareerHelper.CalculateChargeForCareer(ChargeType.DamageDone, blow.InflictedDamage, mask);
-                        var cAbility = Agent.Main.GetComponent<AbilityComponent>();
-                        if (cAbility != null)
-                        {
-                        //    cAbility.CareerAbility.AddCharge(value);
-                        }
-                        
+                        target.ApplyStatusEffect(statusEffect, affectorAgent, triggeredEffect.ImbuedStatusEffectDuration,true,true);
                     }
-                    
                 }
             }
         }
 
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
-            if (affectorAgent == null) return;
+            
+            if(!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
+            
+            var playerHero = affectorAgent.GetHero();
+            
+            var hitBodyPart = blow.VictimBodyPart;
+
             if (affectorAgent.IsMainAgent)
             {
-                var playerHero = affectorAgent.GetHero();
-                var choices = playerHero.GetAllCareerChoices();
-                var hitBodyPart = blow.VictimBodyPart;
-
-                if ((hitBodyPart == BoneBodyPartType.Head || hitBodyPart == BoneBodyPartType.Abdomen) && choices.Contains("CourtleyPassive4"))
+                var choices = Hero.MainHero.GetAllCareerChoices();
+                if (hitBodyPart == BoneBodyPartType.Head || hitBodyPart == BoneBodyPartType.Neck)
                 {
-                    var choice = TORCareerChoices.GetChoice("CourtleyPassive4");
-                    if (choice != null)
+                    if(choices.Contains("CourtleyPassive4"))
                     {
-                        var value = choice.GetPassiveValue();
-                        playerHero.AddWindsOfMagic(value);
+                        var choice = TORCareerChoices.GetChoice("CourtleyPassive4");
+                        if (choice != null)
+                        {
+                            var value = choice.GetPassiveValue();
+                            playerHero.AddWindsOfMagic(value);
+                        }
                     }
+                    
+                    if(choices.Contains("GuiltyByAssociationPassive4"))
+                    {
+                        var choice = TORCareerChoices.GetChoice("GuiltyByAssociationKeystone");
+                        if (choice != null)
+                        {
+                            affectorAgent.ApplyStatusEffect("accusation_buff_ats",affectorAgent,choice.GetPassiveValue(),false,false);
+                            affectorAgent.ApplyStatusEffect("accusation_buff_rls",affectorAgent,choice.GetPassiveValue(),false,false);
+                        }
+                    }
+
+                    if (choices.Contains("ToolsOfJudgementPassive4"))
+                    {
+                        var multiplier = 1;
+                        if (affectedAgent.Character != null)
+                        {
+                            multiplier = affectedAgent.Character.Level;
+                            if (affectedAgent.HasAttribute("AccusationMark"))
+                                multiplier *= 2;
+                        }
+
+                        var value = ( (int)blow.InflictedDamage * multiplier ) / 10;
+                        Hero.MainHero.AddSkillXp(DefaultSkills.Roguery,value);
+                    }
+                    
                 }
 
                 if (choices.Contains ("AvatarOfDeathPassive4"))
@@ -99,69 +137,82 @@ namespace TOR_Core.BattleMechanics
                         { 
                             var bonus =  Mathf.Clamp(damage / 100,0, 5);
                             affectorAgent.Heal (bonus);
-                       
                         }
-                        
                     }
                 }
-                
-                
-            }
-            
-            if(!affectorAgent.IsMount&&affectorAgent.GetOriginMobileParty().IsMainParty&& Agent.Main!=null&&   affectorAgent!=Agent.Main&& affectorAgent.IsHero)
-            {
-                var playerHero = Agent.Main.GetHero();
-                var choices = playerHero.GetAllCareerChoices();
-                if (choices.Contains ("NightRiderKeystone") && !(blow.IsMissile || TORSpellBlowHelper.IsSpellBlow(blow)))
+
+                if (choices.Contains("DreadKnightKeystone"))
                 {
-                    var choice = TORCareerChoices.GetChoice("NightRiderKeystone");
-                    if (choice != null && affectorAgent.GetOriginMobileParty().IsMainParty && !affectorAgent.IsMainAgent)
-                    {
-                        var careerAbility = Agent.Main.GetComponent<AbilityComponent>()?.CareerAbility;
+                    var choice = TORCareerChoices.GetChoice("DreadKnightKeystone");
 
-                //        var charge = CareerHelper.CalculateChargeForCareer(ChargeType.NumberOfKills, 1);
-                //      careerAbility?.AddCharge(charge);
-                    }
-                }
-            }
-            
-            if (affectorAgent.IsMainAgent || affectorAgent.GetOriginMobileParty() == MobileParty.MainParty)
-            {
-                var playerHero = affectorAgent.GetHero();
-                var choices = playerHero.GetAllCareerChoices();
-
-                if (choices.Contains("HeadhunterPassive3"))
-                {
-                    if(affectedAgent.IsMount) return;
-                    if(affectedAgent.Team == affectorAgent.Team) return;
-                    
-                    var isHighValueTarget = false;
-                    if (affectedAgent.Character.Culture.IsBandit)
-                    {
-                        if (Mission.Current.Mode == MissionMode.Tournament) return;
-
-                        var cultureObject = affectedAgent.Character.GetCultureObject();
-                        if (cultureObject != null && cultureObject.BanditBoss == affectedAgent.Character) 
-                            isHighValueTarget = true;
-                    }
-                    else
-                    {
-                        if (playerHero.PartyBelongedTo.ActualClan.MapFaction.IsKingdomFaction && playerHero.Clan.IsUnderMercenaryService &&
-                            affectedAgent.IsHero && affectedAgent.GetHero().Occupation == Occupation.Lord)
-                            isHighValueTarget = true;
-                    }
-
-                    if (!isHighValueTarget) return;
-
-                    var choice = TORCareerChoices.GetChoice("HeadhunterPassive3");
                     if (choice != null)
                     {
-                        var value = (int)choice.GetPassiveValue();
-                        playerHero.Gold += value;
-                        InformationManager.DisplayMessage(new InformationMessage($"Contract Complete. You earned {value} from a bounty", Color.FromUint(16744448)));
+                        
+                      var careerAbility = (Ability) affectorAgent.GetComponent<AbilityComponent>().CareerAbility;
+
+                      if (careerAbility.IsActive)
+                      {
+
+                          
+                          var script = (RedFuryScript)( careerAbility.AbilityScript );
+                          var triggeredEffects = script.AccessEffectsToTrigger();
+
+                          foreach (var effect in triggeredEffects)
+                          {
+                              foreach (var statuseffect in effect.StatusEffects)
+                              {
+                                  affectorAgent.ApplyStatusEffect(statuseffect,affectorAgent,3);
+                                  script.ExtendLifeTime(3);
+                              }
+                  
+                          }
+                      }
+                    }
+                }
+                
+                
+                if (choices.Contains ("SilverHammerPassive1"))
+                {
+                    var choice = TORCareerChoices.GetChoice("SilverHammerPassive1");
+
+                    if (choice != null)
+                    {
+                        if (affectedAgent.IsEnemyOf(affectorAgent) && affectedAgent.Character.Race != 0)
+                        {
+                            Hero.MainHero.AddSkillXp(TORSkills.Faith,choice.GetPassiveValue());
+                        }
+                    }
+                }
+                
+                if (affectorAgent.HasAttribute("NecromancerChampion"))
+                {
+                    if (choices.Contains("GrimoireNecrisKeystone"))
+                    {
+                        affectorAgent.Heal(2);
+                    } 
+                    
+                    if (choices.Contains("BooksOfNagashKeystone"))
+                    {
+                        Hero.MainHero.AddWindsOfMagic(1);
+                    }
+
+                    var multiplier = 1;
+                    if (affectedAgent.Character != null)
+                    {
+                        multiplier = affectedAgent.Character.Level;
+                    }
+                
+                    Hero.MainHero.AddSkillXp(TORSkills.SpellCraft,5*multiplier);
+                    if (Hero.MainHero.HasCareerChoice("LiberNecrisPassive2"))
+                    {
+                        Hero.MainHero.AddSkillXp(DefaultSkills.Roguery,5*multiplier);
                     }
                 }
             }
+
+            
+            
+            
         }
     }
 }

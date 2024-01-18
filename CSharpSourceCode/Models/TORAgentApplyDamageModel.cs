@@ -26,10 +26,15 @@ namespace TOR_Core.Models
                 {
                     var choices = Hero.MainHero.GetAllCareerChoices();
 
-                    if (choices.Contains("MercenaryLordPassive4"))
+                    if (choices.Contains("MercenaryLordPassive4") || choices.Contains("EndsJustifiesMeansPassive4") )
                     {
                         missileWeaponFlags |= WeaponFlags.MultiplePenetration;
                     }
+                }
+
+                if (attackerAgent.HasAttribute("ShieldPenetration"))
+                {
+                    missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
                 }
             }
         }

@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
@@ -11,8 +8,9 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
+using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
@@ -21,12 +19,26 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         private Predicate<Hero> _condition;
         public ChargeType ChargeType { get; private set; }
         public int MaxCharge { get; private set; }
-        
         public string AbilityTemplateID { get; private set; }
         public Type AbilityScriptType { get; private set; }
-        public bool RequiresAbilityTargeting { get; private set; }
         public CareerChoiceObject RootNode { get; set; }
         public List<CareerChoiceGroupObject> ChoiceGroups { get; private set; } = new List<CareerChoiceGroupObject>();
+
+        public delegate float ChargeFunction(Agent affectorAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask, CareerHelper.ChargeCollisionFlag collisionFlag);
+
+        private ChargeFunction _chargeFunction;
+
+        public float GetCalculatedCareerAbilityCharge(Agent affector, Agent affected, ChargeType chargeType, int chargeValue, AttackTypeMask mask, CareerHelper.ChargeCollisionFlag collisionFlag)
+        {
+            float result = 0f;
+            if (_chargeFunction != null)
+            {
+                return _chargeFunction.Invoke(affector, affected, chargeType, chargeValue, mask, collisionFlag);
+            }
+
+            return result;
+        }
+
         public List<CareerChoiceObject> AllChoices
         {
             get
@@ -41,16 +53,23 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public override string ToString() => Name.ToString();
 
-        public void Initialize(string name, Predicate<Hero> condition, string abilityID, ChargeType chargeType = ChargeType.CooldownOnly, int maxCharge = 100, Type abilityScriptType = null, bool requiresAbilityTargeting=false)
+        public void Initialize(string name, Predicate<Hero> condition, string abilityID, ChargeFunction function = null, int maxCharge = 100, Type abilityScriptType = null)
         {
             var description = GameTexts.FindText("career_description", StringId);
             base.Initialize(new TextObject(name), description);
             _condition = condition;
-            ChargeType = chargeType;
             MaxCharge = maxCharge;
             AbilityTemplateID = abilityID;
             AbilityScriptType = abilityScriptType;
-            RequiresAbilityTargeting = requiresAbilityTargeting;
+            
+            _chargeFunction = function;
+            if (_chargeFunction == null)
+                ChargeType = ChargeType.CooldownOnly;
+            else
+            {
+                ChargeType = ChargeType.Custom;     //you can either have cooldown or custom, but in game the Charge types are still applicable. 
+            }
+            
             AfterInitialized();
         }
 
@@ -61,7 +80,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public void MutateAbility(AbilityTemplate ability, Agent casterAgent)
         {
-            if(casterAgent != null && casterAgent.GetHero()?.GetExtendedInfo() != null)
+            if (casterAgent != null && casterAgent.GetHero()?.GetExtendedInfo() != null)
             {
                 var info = casterAgent.GetHero().GetExtendedInfo();
                 var root = casterAgent.GetHero().GetCareer().RootNode;
@@ -87,7 +106,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     var choices = AllChoices.Where(x => info.CareerChoices.Contains(x.StringId));
                     foreach (var choice in choices)
                     {
-                        if(choice.HasMutations())
+                        if (choice.HasMutations())
                             choice.MutateTriggeredEffect(effect, triggererAgent);
                     }
                 }
@@ -100,10 +119,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             {
                 var info = applierAgent.GetHero().GetExtendedInfo();
                 if (info.CareerID != StringId) return;
-                var choices = new List<CareerChoiceObject>(); 
+                var choices = new List<CareerChoiceObject>();
                 choices.Add(RootNode);
                 choices.AddRange(AllChoices.Where(x => info.CareerChoices.Contains(x.StringId)));
-                    
+
                 foreach (var choice in choices.Where(choice => choice.HasMutations()))
                 {
                     choice.MutateStatusEffect(effect, applierAgent);
@@ -117,10 +136,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         {
             var lines = new List<TextObject>();
             string[] s = RootNode.Description.ToString().Split(new string[] { "\\n" }, StringSplitOptions.RemoveEmptyEntries);
-            foreach(var line in s)
+            foreach (var line in s)
             {
                 lines.Add(new TextObject(line.Trim()));
             }
+
             return lines;
         }
     }

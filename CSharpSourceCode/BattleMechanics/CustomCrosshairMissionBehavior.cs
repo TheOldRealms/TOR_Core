@@ -1,4 +1,5 @@
-﻿using TaleWorlds.Core;
+﻿using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -23,6 +24,7 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
         private AbilityCrosshair _abilityCrosshair;
         private AbilityComponent _abilityComponent;
         private AbilityManagerMissionLogic _missionLogic;
+        private CareerAbility _careerAbility;
 
         public ICrosshair CurrentCrosshair { get => _currentCrosshair; }
 
@@ -39,12 +41,16 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
             {
                 if (CanUseAbilityCrosshair())
                 {
+                    if (_currentCrosshair == _weaponCrosshair)
+                        _weaponCrosshair.DisableTargetGadgetOpacities();
+
                     if (_currentCrosshair != _abilityCrosshair)
                         ChangeCrosshair(_abilityCrosshair);
                 }
-                else if (!Agent.Main.WieldedWeapon.IsEmpty && Agent.Main.WieldedWeapon.CurrentUsageItem.IsRangedWeapon)
+                else if (!Agent.Main.WieldedWeapon.IsEmpty)
                 {
-                    if (CanUseSniperScope())
+
+                    if (CanUseSniperScope() && Agent.Main.WieldedWeapon.CurrentUsageItem.IsRangedWeapon)
                     {
                         if (_currentCrosshair != _sniperScope)
                             ChangeCrosshair(_sniperScope);
@@ -55,45 +61,50 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
                             ChangeCrosshair(_weaponCrosshair);
                     }
                 }
-                else ChangeCrosshair(null);
+                else
+                {
+                    ChangeCrosshair(null);
+                }
                 if (_currentCrosshair != null) _currentCrosshair.Tick();
+
             }
-            else if(_currentCrosshair != null) ChangeCrosshair(null);
+            else if (_currentCrosshair != null)
+                ChangeCrosshair(null);
         }
 
         private void ChangeCrosshair(ICrosshair crosshair)
         {
             _currentCrosshair?.Hide();
             _currentCrosshair = crosshair;
-            if(_currentCrosshair != null) _currentCrosshair.Show();
+            if (_currentCrosshair != null) _currentCrosshair.Show();
         }
 
         private bool CanUseCrosshair()
         {
+            var careerAbilityPreventCrosshairCondition = _careerAbility != null && _careerAbility.RequiresDisabledCrosshairDuringAbility && _careerAbility.IsActive;        //vampire bat swarm shouldnt have crosshair
+
             return Agent.Main != null &&
                    Agent.Main.State == AgentState.Active &&
-                   (_abilityComponent == null ||
-                   _abilityComponent.CareerAbility == null ||
-                   !_abilityComponent.CareerAbility.IsActive) &&
-                   Mission.Mode != MissionMode.Conversation &&
-                   Mission.Mode != MissionMode.Deployment &&
-                   Mission.Mode != MissionMode.CutScene &&
-                   MissionScreen != null &&
-                   MissionScreen.CustomCamera == null &&
-                   (MissionScreen.OrderFlag == null || !MissionScreen.OrderFlag.IsVisible) &&
-                   !MissionScreen.IsViewingCharacter() &&
-                   !MissionScreen.IsPhotoModeEnabled &&
-                   !MBEditor.EditModeEnabled &&
-                   BannerlordConfig.DisplayTargetingReticule &&
-                   !ScreenManager.GetMouseVisibility();
+                    !careerAbilityPreventCrosshairCondition &&
+                     Mission.Mode != MissionMode.Conversation &&
+                     Mission.Mode != MissionMode.Deployment &&
+                     Mission.Mode != MissionMode.CutScene &&
+                     MissionScreen != null &&
+                     MissionScreen.CustomCamera == null &&
+                     (MissionScreen.OrderFlag == null || !MissionScreen.OrderFlag.IsVisible) &&
+                     !MissionScreen.IsViewingCharacter() &&
+                     !MissionScreen.IsPhotoModeEnabled &&
+                     !MBEditor.EditModeEnabled &&
+                     BannerlordConfig.DisplayTargetingReticule &&
+                     !ScreenManager.GetMouseVisibility();
         }
 
         private bool CanUseAbilityCrosshair()
         {
             return !Mission.IsFriendlyMission &&
                    _missionLogic != null &&
-                   _missionLogic.CurrentState != AbilityModeState.Off &&
-                   _abilityComponent.CurrentAbility.CanCast(Agent.Main);
+                   _missionLogic.CurrentState == AbilityModeState.Targeting &&
+                   !_abilityComponent.CurrentAbility.IsDisabled(Agent.Main, out _);
         }
 
         private void InitializeCrosshairs()
@@ -108,8 +119,14 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
                 _abilityComponent.CurrentAbilityChanged += ChangeAbilityCrosshair;
                 _abilityComponent.InitializeCrosshairs();
                 _abilityCrosshair = _abilityComponent.CurrentAbility?.Crosshair;
+                if (Game.Current.GameType is Campaign)
+                {
+                    _careerAbility = _abilityComponent?.CareerAbility;
+                }
+
             }
             _areCrosshairsInitialized = true;
+
         }
 
         public override void OnMissionScreenFinalize()

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TaleWorlds.TwoDimension;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -44,7 +45,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             _name = GameTexts.FindText("career_title", _career.StringId).ToString();
             _spriteName = "CareerSystem\\Illustrations\\" + career.StringId;
             _abilitySpriteName = _career.GetAbilityTemplate()?.SpriteName;      //in case no career ability is found deactivate this screen
-            _abilityName = _career.GetAbilityTemplate()?.Name;
+            _abilityName = new TextObject(_career.GetAbilityTemplate()?.Name).ToString();
             _abilityDescription = new MBBindingList<CareerAbilityEffectVM>();
             _career.GetAbilityEffectLines().ForEach(x => _abilityDescription.Add(new CareerAbilityEffectVM(x)));
             _description = _career.Description.ToString();
@@ -91,7 +92,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             {
                 int usedPoints = info.CareerChoices.Count - 1; //Account for root choice, does not need to be taken into consideration.
 
-                var min = Mathf.Min(TORConstants.MAXIMUM_CAREER_POINTS, Hero.MainHero.Level);
+                var min = Mathf.Min(TORConfig.MaximumNumberOfCareerPerkPoints, Hero.MainHero.Level);
                 FreeCareerPoints = "Free career points: " + (min - usedPoints).ToString();
             }
         }

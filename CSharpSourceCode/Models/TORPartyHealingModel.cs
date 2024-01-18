@@ -41,6 +41,12 @@ namespace TOR_Core.Models
                     if (choice != null)
                         return result + choice.GetPassiveValue();
                 }
+                if(choices.Contains( "CodexMortificaPassive4"))
+                {
+                    var choice = TORCareerChoices.GetChoice("CodexMortificaPassive4");
+                    if (choice != null)
+                        return result + choice.GetPassiveValue();
+                }
             }
 
             
@@ -86,7 +92,7 @@ namespace TOR_Core.Models
         {
             if (party.LeaderHero.HasAnyCareer())
             {
-                CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.TroopRegeneration);
+                CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.TroopRegeneration, false);
             }
         }
         
@@ -94,7 +100,7 @@ namespace TOR_Core.Models
         {
             if (party.LeaderHero.HasAnyCareer())
             {
-                CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.HealthRegeneration);
+                CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.HealthRegeneration, false);
             }
         }
     }

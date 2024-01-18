@@ -1,7 +1,9 @@
 ﻿using TaleWorlds.Engine;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.TwoDimension;
 using TaleWorlds.TwoDimension.Standalone.Native.OpenGL;
 using TOR_Core.GameManagers;
+using TOR_Core.Utilities;
 using Shader = TaleWorlds.TwoDimension.Standalone.Shader;
 
 namespace TOR_Core.AbilitySystem.Scripts
@@ -12,12 +14,15 @@ namespace TOR_Core.AbilitySystem.Scripts
         public override void Initialize(Ability ability)
         {
             base.Initialize (ability);
-
             var timeRequest = new Mission.TimeSpeedRequest (0.60f,_timeRequestID);
-
             _timeRequestID = timeRequest.RequestID;
-
             Mission.Current.AddTimeSpeedRequest (timeRequest);
+            
+        }
+
+        public void ExtendLifeTime(float time)
+        {
+            _abilityLife = Mathf.Max(0,_abilityLife-time);
         }
 
         public override void Stop()
@@ -27,7 +32,6 @@ namespace TOR_Core.AbilitySystem.Scripts
             {
                 Mission.Current.RemoveTimeSpeedRequest (_timeRequestID);
             }
-            
         }
     }
 }

@@ -2,13 +2,14 @@ using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.AbilitySystem.Scripts;
+using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -18,10 +19,12 @@ namespace TOR_Core.AbilitySystem
         private float _currentCharge;
         private readonly int _maxCharge = 1000;
         private readonly Hero _ownerHero;
-        private bool _requiresSpellTargeting;
-        private bool _readyToLaunch;
-        private int previousAbilityIndex;
         private bool _doubleUse;
+        private bool _requiresDisabledCrosshair = false;
+        public bool RequiresDisabledCrosshairDuringAbility => _requiresDisabledCrosshair;
+        public ChargeType ChargeType { get; } = ChargeType.CooldownOnly;
+        public float ChargeLevel => _currentCharge / _maxCharge;
+        public bool IsCharged => ChargeType == ChargeType.CooldownOnly || _currentCharge >= _maxCharge;
 
         public CareerAbility(AbilityTemplate template, Agent agent) : base(template)
         {
@@ -37,22 +40,23 @@ namespace TOR_Core.AbilitySystem
 
                     Template = (AbilityTemplate)template.Clone(template.StringID + "*cloned*" + _ownerHero.StringId);
                     _career.MutateAbility(Template, agent);
-                    _requiresSpellTargeting = _career.RequiresAbilityTargeting;
-                    
-                }
-                
-                //_currentCharge = _maxCharge;
 
-                if (Hero.MainHero.GetAllCareerChoices().Contains("CourtleyKeystone") || Hero.MainHero.GetAllCareerChoices().Contains("EnhancedHorseCombatKeystone"))
+                    if (Template.StringID.Contains("ShadowStep"))
+                    {
+                        _requiresDisabledCrosshair = true;
+                    }
+                }
+
+                if (Hero.MainHero.HasCareer(TORCareers.WitchHunter)
+                    || Hero.MainHero.HasCareerChoice("CourtleyKeystone")
+                    || Hero.MainHero.HasCareerChoice("EnhancedHorseCombatKeystone")
+                    || Hero.MainHero.HasCareerChoice("NoRestAgainstEvilKeystone")
+                    || Hero.MainHero.HasCareerChoice("LiberMortisKeystone"))
                     _currentCharge = _maxCharge;
                 else
                     SetCoolDown(Template.CoolDown);
             }
         }
-
-        public ChargeType ChargeType { get; } = ChargeType.CooldownOnly;
-        public float ChargeLevel => _currentCharge / _maxCharge;
-        public bool IsCharged => ChargeType == ChargeType.CooldownOnly || _currentCharge >= _maxCharge;
 
         protected override void AddExactBehaviour<TAbilityScript>(GameEntity parentEntity, Agent casterAgent)
         {
@@ -72,43 +76,54 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-        public bool RequiresSpellTargeting()
-        {
-            return _requiresSpellTargeting;
-        }
-
         public override void ActivateAbility(Agent casterAgent)
         {
             base.ActivateAbility(casterAgent);
             if (ChargeType != ChargeType.CooldownOnly) _currentCharge = 0;
-            if (_requiresSpellTargeting)
-            {
-                previousAbilityIndex= 0;
-                _readyToLaunch = false;
-            }
 
-            if (this._career.AllChoices.Any(x=> x.StringId == "SecretsOfTheGrailKeystone") &&_doubleUse==false)
+            if (_career.AllChoices.Any(x => x.StringId == "SecretsOfTheGrailKeystone") && _doubleUse == false)
             {
                 _currentCharge = _maxCharge;
                 _doubleUse = true;
             }
         }
 
-        public override bool CanCast(Agent casterAgent)
+        public override bool IsDisabled(Agent casterAgent, out TextObject disabledReason)
         {
-            
-            if (Template.StringID.Contains("ShadowStep") && casterAgent.HasMount) return false;
-            return !_isLocked&&!IsCasting &&
-                   !IsOnCooldown() &&
-                   IsCharged &&
-                   casterAgent.IsPlayerControlled;
+            if (!IsCharged)
+            {
+                disabledReason = new TextObject("{=!}Ability not charged");
+                return true;
+            }
+            if (Template.StringID.Contains("ShadowStep") && casterAgent.HasMount)
+            {
+                disabledReason = new TextObject("{=!}Not usable mounted");
+                return true;
+            }
+
+            return base.IsDisabled(casterAgent, out disabledReason);
+        }
+
+        public override bool CanCast(Agent casterAgent, out TextObject failureReason)
+        {
+            if (IsSingleTarget && !((SingleTargetCrosshair)Crosshair).IsTargetLocked)
+            {
+                failureReason = new TextObject("No target locked");
+                return false;
+            }
+            if (!casterAgent.IsPlayerControlled)
+            {
+                failureReason = new TextObject("Caster is not player controlled");
+                return false;
+            }
+
+            return base.CanCast(casterAgent, out failureReason);
         }
 
         public void AddCharge(float amount)
         {
             if (!IsActive)
             {
-                //TORCommon.Say(_currentCharge + amount + " charged of " + _maxCharge);
                 _currentCharge += amount;
                 _currentCharge = Math.Min(_maxCharge, _currentCharge);
             }
@@ -118,8 +133,6 @@ namespace TOR_Core.AbilitySystem
                 _doubleUse = false;
             }
         }
-        
-        
     }
 
     public enum ChargeType
@@ -127,6 +140,8 @@ namespace TOR_Core.AbilitySystem
         CooldownOnly,
         NumberOfKills,
         DamageDone,
-        DamageTaken
+        Healed,
+        DamageTaken,
+        Custom,
     }
 }

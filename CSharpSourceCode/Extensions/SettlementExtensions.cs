@@ -47,10 +47,12 @@ namespace TOR_Core.Extensions
                 if (endString.Contains("BE")) return true;
                 if (endString.Contains("CC")) return true;
                 if (endString.Contains("QU")) return true;
-                //Lyonesse , Artois, Coronne
+                if (endString.Contains("GX")) return true;
+                if (endString.Contains("LY")) return true;
+                if (endString.Contains("LA")) return true;
+                if (endString.Contains("CO")) return true;
             }
-
-
+            
             return false;
         }
     }

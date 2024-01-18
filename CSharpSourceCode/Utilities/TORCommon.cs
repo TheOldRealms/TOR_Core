@@ -46,14 +46,6 @@ namespace TOR_Core.Utilities
 
             return b[0];
         }
-        /// <summary>
-        /// Gets the winds of magic icon as an inline string.
-        /// </summary>
-        /// <returns></returns>
-        public static string GetWindsIconAsText()
-        {
-            return "<img src=\"winds_icon_45\"/>";
-        }
 
         public static void Log(string message, LogLevel severity)
         {

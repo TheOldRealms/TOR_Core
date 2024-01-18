@@ -2,12 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Utilities;
 
@@ -29,11 +32,50 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionStart);
             CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, OnNewGameCreatedPartialFollowUpEnd);
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, HourlyTick);
+            CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, DailyTick);
             CampaignEvents.HeroCreated.AddNonSerializedListener(this, OnHeroCreated);
             CampaignEvents.HeroKilledEvent.AddNonSerializedListener(this, OnHeroKilled);
             CampaignEvents.MobilePartyCreated.AddNonSerializedListener(this, OnPartyCreated);
             CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this, OnPartyDestroyed);
             CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
+            CampaignEvents.OnQuarterDailyPartyTick.AddNonSerializedListener(this, QuarterDailyTick);
+            CustomResourceManager.RegisterEvents();
+        }
+
+        private static void QuarterDailyTick(MobileParty mobileParty)
+        {
+            if (!mobileParty.IsLordParty) return;
+            PunishmentForMissingResource(mobileParty);
+        }
+
+        private static void PunishmentForMissingResource(MobileParty mobileParty)
+        {
+            var hero = mobileParty.LeaderHero;
+            if (hero == null) return;
+            if (hero.GetCultureSpecificCustomResourceValue() <= 0)
+            {
+                if (hero.IsVampire() || hero.IsNecromancer())
+                {
+                    var upkeep = hero.GetCalculatedCustomResourceUpkeep();
+                    hero.AddWindsOfMagic(upkeep * 3); //takes winds
+                }
+            }
+        }
+
+        private void DailyTick()
+        {
+            foreach (var entry in _heroInfos)
+            {
+                var hero = Hero.FindFirst(x => x.StringId == entry.Key);
+
+                if (hero.GetCultureSpecificCustomResource() == null) continue;
+
+                var id = hero.GetCultureSpecificCustomResource().StringId;
+
+                var resourceChange = hero.GetCultureSpecificCustomResourceChange();
+
+                entry.Value.AddCustomResource(id, resourceChange.ResultNumber);
+            }
         }
 
         public static CharacterExtendedInfo GetCharacterInfoFor(string id)
@@ -69,12 +111,13 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             if (_characterInfos.Count > 0) _characterInfos.Clear();
             TryLoadCharacters(out _characterInfos);
+            var success = _characterInfos.Any(x => x.Value.ResourceCost != null);
             EnsurePartyInfos();
         }
 
         private void OnNewGameCreatedPartialFollowUpEnd(CampaignGameStarter campaignGameStarter, int index)
         {
-            if(index == CampaignEvents.OnNewGameCreatedPartialFollowUpEventMaxIndex - 2)
+            if (index == CampaignEvents.OnNewGameCreatedPartialFollowUpEventMaxIndex - 2)
             {
                 InitializeHeroes();
                 EnsurePartyInfos();
@@ -90,18 +133,17 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 {
                     var hero = Hero.FindFirst(x => x.StringId == entry.Key);
                     float bonusRegen = 1f;
-                    if(hero != null && hero.GetPerkValue(TORPerks.SpellCraft.Catalyst) && hero.CurrentSettlement != null && hero.CurrentSettlement.IsTown)
+                    if (hero != null && hero.GetPerkValue(TORPerks.SpellCraft.Catalyst) && hero.CurrentSettlement != null && hero.CurrentSettlement.IsTown)
                     {
                         bonusRegen += TORPerks.SpellCraft.Catalyst.SecondaryBonus;
                     }
-                    entry.Value.CurrentWindsOfMagic += entry.Value.WindsOfMagicRechargeRate * bonusRegen;
-                    entry.Value.CurrentWindsOfMagic = Math.Min(entry.Value.CurrentWindsOfMagic, entry.Value.MaxWindsOfMagic);
+                    entry.Value.AddCustomResource("WindsOfMagic", entry.Value.WindsOfMagicRechargeRate * bonusRegen);
                 }
             }
             //count down blessing duration
-            foreach(var entry in _partyInfos)
+            foreach (var entry in _partyInfos)
             {
-                if(!string.IsNullOrWhiteSpace(entry.Value.CurrentBlessingStringId) && entry.Value.CurrentBlessingRemainingDuration > 0)
+                if (!string.IsNullOrWhiteSpace(entry.Value.CurrentBlessingStringId) && entry.Value.CurrentBlessingRemainingDuration > 0)
                 {
                     entry.Value.CurrentBlessingRemainingDuration--;
                 }
@@ -120,6 +162,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 var info = new HeroExtendedInfo(hero.CharacterObject);
                 _heroInfos.Add(hero.GetInfoKey(), info);
                 if (hero.Template != null) InitializeTemplatedHeroStats(hero);
+                hero.AddCultureSpecificCustomResource(0);
             }
         }
 
@@ -175,6 +218,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 {
                     var info = new HeroExtendedInfo(hero.CharacterObject);
                     _heroInfos.Add(hero.GetInfoKey(), info);
+                    hero.AddCultureSpecificCustomResource(0);
                 }
             }
         }
@@ -221,7 +265,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
         private void EnsurePartyInfos()
         {
-            foreach(var party in MobileParty.AllLordParties)
+            foreach (var party in MobileParty.AllLordParties)
             {
                 OnPartyCreated(party);
             }

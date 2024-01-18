@@ -20,6 +20,24 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _protectorOfTheWeak;
         private CareerChoiceGroupObject _holyPurge;
         private CareerChoiceGroupObject _archLector;
+        private CareerChoiceGroupObject _twinTailedComet;
+        //Witch Hunter
+        private CareerChoiceGroupObject _toolsOfJudgement;
+        private CareerChoiceGroupObject _huntTheWicked;
+        private CareerChoiceGroupObject _silverHammer;
+        private CareerChoiceGroupObject _endsJustifiesMeans;
+        private CareerChoiceGroupObject _swiftProcedure;
+        private CareerChoiceGroupObject _guiltyByAssociation;
+        private CareerChoiceGroupObject _noRestAgainstEvil;
+        //Necromancer
+        private CareerChoiceGroupObject _liberNecris;
+        private CareerChoiceGroupObject _bookOfWsoran;
+        private CareerChoiceGroupObject _deArcanisKadon;
+        private CareerChoiceGroupObject _grimoireNecris;
+        private CareerChoiceGroupObject _liberMortis;
+        private CareerChoiceGroupObject _codexMortifica;
+        private CareerChoiceGroupObject _booksOfNagash;
+        
         //Minor Vampire
         private CareerChoiceGroupObject _newBlood;
         private CareerChoiceGroupObject _arkayne;
@@ -27,6 +45,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _lordly;
         private CareerChoiceGroupObject _martialle;
         private CareerChoiceGroupObject _masterOfDead;
+        private CareerChoiceGroupObject _feral;
         //Blood Knight
         private CareerChoiceGroupObject _peerlessWarrior;
         private CareerChoiceGroupObject _nightRider;
@@ -40,6 +59,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _duelist;
         private CareerChoiceGroupObject _headhunter;
         private CareerChoiceGroupObject _knightly;
+        private CareerChoiceGroupObject _paymaster;
         private CareerChoiceGroupObject _mercenaryLord;
         private CareerChoiceGroupObject _commander;
         //Grail Knight
@@ -60,6 +80,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _envoyOfTheLady;
 
 
+
         public TORCareerChoiceGroups()
         {
             Instance = this;
@@ -69,20 +90,45 @@ namespace TOR_Core.CharacterDevelopment
 
         private void RegisterAll()
         {
+            //WarriorPriest
             _bookOfSigmar = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("BookOfSigmar"));
             _sigmarProclaimer = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("SigmarsProclaimer"));
             _relentlessFanatic = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("RelentlessFanatic"));
             _protectorOfTheWeak = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("ProtectorOfTheWeak"));
             _holyPurge = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("HolyPurge"));
             _archLector = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("ArchLector"));
+            _twinTailedComet = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("TwinTailedComet"));
             
+            //Witch Hunter
+            _toolsOfJudgement = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("ToolsOfJudgement"));
+            _huntTheWicked = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("HuntTheWicked"));
+            _silverHammer = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("SilverHammer"));
+            _endsJustifiesMeans= Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("EndsJustifiesMeans"));
+            _swiftProcedure = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("SwiftProcedure"));
+            _guiltyByAssociation = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("GuiltyByAssociation"));
+            _noRestAgainstEvil = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("NoRestAgainstEvil"));
+            
+            //Necromancer
+            
+            _liberNecris = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("LiberNecris"));
+            _deArcanisKadon = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("DeArcanisKadon"));
+            _grimoireNecris = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("GrimoireNecris"));
+            _bookOfWsoran = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("BookOfWsoran"));
+            _liberMortis = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("LiberMortis"));
+            _booksOfNagash = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("BooksOfNagash"));
+            _codexMortifica = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("CodexMortifica"));
+     
+            
+            //Vampire Count
             _newBlood = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("NewBlood"));
+            _feral = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Feral"));
             _arkayne = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Arkayne"));
             _courtley = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Courtley"));
             _lordly = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Lordly"));
             _martialle = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Martialle"));
             _masterOfDead = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("MasterOfDead"));
             
+            //Blood Knight
             _peerlessWarrior = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("PeerlessWarrior"));
             _nightRider = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("NightRider"));
             _bladeMaster = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("BladeMaster"));
@@ -91,13 +137,16 @@ namespace TOR_Core.CharacterDevelopment
             _avatarOfDeath = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("AvatarOfDeath"));
             _dreadKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("DreadKnight"));
             
+            //Mercenary
             _survivalist = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Survivalist"));
             _duelist = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Duelist"));
             _headhunter = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Headhunter"));
             _knightly = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Knightly"));
+            _paymaster = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Paymaster"));
             _mercenaryLord = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("MercenaryLord"));
             _commander = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("Commander"));
             
+            //Grail Knight
             _errantryWar = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("ErrantryWar"));
             _enhancedHorseCombat = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("EnhancedHorseCombat"));; 
             _questingVow = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("QuestingVow"));
@@ -106,6 +155,7 @@ namespace TOR_Core.CharacterDevelopment
             _grailVow = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("GrailVow"));
             _holyCrusader = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("HolyCrusader"));
             
+            //Grail Damsel
             _feyEnchantment = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("FeyEnchantment"));
             _inspirationOfTheLady = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("InspirationOfTheLady")); 
             _talesOfGiles = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("TalesOfGiles"));
@@ -113,6 +163,8 @@ namespace TOR_Core.CharacterDevelopment
             _justCause = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("JustCause")); 
             _secretsOfTheGrail = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("SecretsOfTheGrail"));
             _envoyOfTheLady = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("EnvoyOfTheLady"));
+            
+     
             
         }
 
@@ -151,10 +203,99 @@ namespace TOR_Core.CharacterDevelopment
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
+            _twinTailedComet.Initialize("{=arch_lector_choice_group_str}Twin Tailed Comet", TORCareers.WarriorPriest, 3, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier >= 4;
+            });
+            
+            //Witch Hunter
+            _toolsOfJudgement.Initialize("{=book_of_sigmar_choice_group_str}Tools of Judgement", TORCareers.WitchHunter, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _huntTheWicked.Initialize("{=sigmar_proclaimer_choice_group_str}Hunt the Wicked", TORCareers.WitchHunter, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _silverHammer.Initialize("{=relentless_fanatic_choice_group_str}The Silver Hammer", TORCareers.WitchHunter, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            _noRestAgainstEvil.Initialize("{=arch_lector_choice_group_str}No Rest Against Evil", TORCareers.WitchHunter, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            _endsJustifiesMeans.Initialize("{=protector_of_the_weak_choice_group_str}Ends Justifies Means", TORCareers.WitchHunter, 3, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier >= 4;
+            });
+            _swiftProcedure.Initialize("{=holy_purge_choice_group_str}Swift Procedure", TORCareers.WitchHunter, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            _guiltyByAssociation.Initialize("{=arch_lector_choice_group_str}Guilty by Association", TORCareers.WitchHunter, 3, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier >= 4;
+            });
+            
+            //Necromancer
+            _liberNecris.Initialize("{=arch_lector_choice_group_str}Liber Necris", TORCareers.Necromancer, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _deArcanisKadon.Initialize("{=arch_lector_choice_group_str}De Arcanis Kardon", TORCareers.Necromancer, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _codexMortifica.Initialize("{=arch_lector_choice_group_str}Codex Mortifica", TORCareers.Necromancer, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            
+            _liberMortis.Initialize("{=arch_lector_choice_group_str}Liber Mortis", TORCareers.Necromancer, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+
+            _bookOfWsoran.Initialize("{=arch_lector_choice_group_str}Book of W'soran", TORCareers.Necromancer, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            
+            _grimoireNecris.Initialize("{=arch_lector_choice_group_str}Grimore Necris", TORCareers.Necromancer, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            
+            _booksOfNagash.Initialize("{=arch_lector_choice_group_str}Books of Nagash", TORCareers.Necromancer, 3, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier >= 4;
+            });
+            
             
             //Vampire Count
             
             _newBlood.Initialize("{=new_blood_choice_group_str}New Blood", TORCareers.MinorVampire, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _feral.Initialize("{=new_blood_choice_group_str}The Feral", TORCareers.MinorVampire, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
@@ -246,6 +387,11 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.Clan.Tier >= 2;
             });
             _knightly.Initialize("{=knightly_choice_group_str}The Knightly", TORCareers.Mercenary, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            _paymaster.Initialize("{=knightly_choice_group_str}The Paymaster", TORCareers.Mercenary, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;

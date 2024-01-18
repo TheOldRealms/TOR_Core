@@ -4,6 +4,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.DamageSystem;
@@ -14,13 +15,13 @@ using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
+using FaceGen = TaleWorlds.Core.FaceGen;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 {
     public class BloodKnightCareerChoices : TORCareerChoicesBase
     {
         public BloodKnightCareerChoices(CareerObject id) : base(id) {}
-
         
         private CareerChoiceObject _bloodKnightRoot;
 
@@ -32,7 +33,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         
         private CareerChoiceObject _nightRiderKeystone;
         private CareerChoiceObject _nightRiderPassive1;
-        private CareerChoiceObject _nightRidePassive2;
+        private CareerChoiceObject _nightRiderPassive2;
         private CareerChoiceObject _nightRiderPassive3;
         private CareerChoiceObject _nightRiderPassive4;
 
@@ -79,10 +80,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _peerlessWarriorPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("PeerlessWarriorPassive4"));
             
             _nightRiderKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NightRiderKeystone"));
-            _nightRiderPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NightRidePassive1"));
-            _nightRidePassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NightRidePassive2"));
-            _nightRiderPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NightRidePassive3"));
-            _nightRiderPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NightRidePassive4"));
+            _nightRiderPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NightRiderPassive1"));
+            _nightRiderPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NightRiderPassive2"));
+            _nightRiderPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NightRiderPassive3"));
+            _nightRiderPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("NightRiderPassive4"));
 
             _bladeMasterKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BladeMasterKeystone"));
             _bladeMasterPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BladeMasterPassive1"));
@@ -117,7 +118,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _bloodKnightRoot.Initialize(CareerID, "The Blood Knight is channeling focus and rage towards the enemies. Damage increased by 45% and physical resistance by 10% for the next 6 seconds. Both bonuses increase with the skill of the equipped weapon by 0.05% per point. Requires 10 kills to be charged.", null, true,
+            _bloodKnightRoot.Initialize(CareerID, "The Blood Knight is channeling focus and rage towards the enemies. Damage increased by 45% and physical resistance by 10% for the next 6 seconds. Both bonuses increase with the skill of the equipped weapon by 0.05% per point. Requires 5 kills to recharge, +1 kill per a final perk picked up to max 10.", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -146,7 +147,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
             
-            _nightRiderKeystone.Initialize(CareerID, "Companion Kills will count for career charge","NightRider",false,ChoiceType.Keystone,new List<CareerChoiceObject.MutationObject>(),new CareerChoiceObject.PassiveEffect (0, PassiveEffectType.Special));
+            _nightRiderKeystone.Initialize(CareerID, "Companion Kills will count for career charge.","NightRider",false,ChoiceType.Keystone,new List<CareerChoiceObject.MutationObject>(),new CareerChoiceObject.PassiveEffect (0, PassiveEffectType.Special));
             
             _bladeMasterKeystone.Initialize(CareerID, "All melee weapon skills, wielded or not, count towards the career ability effects.", "BladeMaster", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
@@ -302,7 +303,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _avatarOfDeathKeystone.Initialize(CareerID, "Red Fury also increases attack speed. Scales the same as base ability.", "AvatarOfDeath", false,
+            _avatarOfDeathKeystone.Initialize(CareerID, "Red Fury resistance effect is now Ward save and also increases attack speed. Scales the same as base ability.", "AvatarOfDeath", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -312,9 +313,17 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         PropertyName = "ImbuedStatusEffects",
                         PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "redfury_effect_ats" }).ToList(),
                         MutationType = OperationType.Replace
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "redfury_effect_res",
+                        PropertyName = "DamageType",
+                        PropertyValue = (choice, originalValue, agent) => DamageType.All,
+                        MutationType = OperationType.Replace
                     }
                 });
-            _dreadKnightKeystone.Initialize(CareerID, "Red Fury effect scales with Riding and its resistance effect is now Ward save. Recharges faster.", "DreadKnight", false,
+            _dreadKnightKeystone.Initialize(CareerID, "Red Fury scales with Riding and consecutive kills during ability increase duration by 2 sec each.", "DreadKnight", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -340,48 +349,49 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         PropertyName = "BaseEffectValue",
                         PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Riding }, 0.0005f, false, false),
                         MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "redfury_effect_res",
-                        PropertyName = "DamageType",
-                        PropertyValue = (choice, originalValue, agent) => DamageType.All,
-                        MutationType = OperationType.Replace
                     }
                 }, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special, true));
         }
 
         protected override void InitializePassives()
         {
-            _peerlessWarriorPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
-            _peerlessWarriorPassive2.Initialize(CareerID, "Extra melee damage (10%).", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
-            _peerlessWarriorPassive3.Initialize(CareerID, "Every troop of Tier 4 and above gains an extra 20% exp for kills.", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
-            _peerlessWarriorPassive4.Initialize(CareerID, "You gain 100 exp in one of the melee combat skills at random every day.", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special, false));  // CareerChoicePerkCampaignBehavior 123
-
-            _bladeMasterPassive1.Initialize(CareerID, "20% extra melee damage.", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
-            _bladeMasterPassive2.Initialize(CareerID, "Increases health regeneration after battles by 5.", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.HealthRegeneration));
-            _bladeMasterPassive3.Initialize(CareerID, "Hits below 15 damage will not stagger the player.", "BladeMaster", false, ChoiceType.Passive, null); // Agent extension 83,
-            _bladeMasterPassive4.Initialize(CareerID, "All troops, the player included, gain exp when raiding villages.", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //TorRaidModel 23  AND TorCareerPerkCampaignBehavior 73
+            _peerlessWarriorPassive1.Initialize(CareerID, "{=peerless_warrior_passive1_str}Increases Hitpoints by 25.", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+            _peerlessWarriorPassive2.Initialize(CareerID, "{=peerless_warrior_passive2_str}Extra melee damage (10%).", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
+            _peerlessWarriorPassive3.Initialize(CareerID, "{=peerless_warrior_passive3_str}Every troop of Tier 4 and above gains an extra 20% exp for kills.", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
+            _peerlessWarriorPassive4.Initialize(CareerID, "{=peerless_warrior_passive4_str}You gain 100 exp in one of the melee combat skills at random every day.", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special, false));  // CareerChoicePerkCampaignBehavior 123
             
-            _doomRiderPassive1.Initialize(CareerID, "20% extra melee damage.", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Melee));
-            _doomRiderPassive2.Initialize(CareerID, "Increases Hitpoints by 50.", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
-            _doomRiderPassive3.Initialize(CareerID, "Party speed increases by 2.", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2.0f, PassiveEffectType.PartyMovementSpeed));
-            _doomRiderPassive4.Initialize(CareerID, "Recruit defeated units as Blood Knights with a chance of 15% (40% for Tier >4).", "DoomRider", false, ChoiceType.Passive, null);
+            _nightRiderPassive1.Initialize(CareerID, "{=night_rider_passive1_str}Increases Hitpoints by 25.", "NightRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+            _nightRiderPassive2.Initialize(CareerID, "{=night_rider_passive2_str}All undead and vampires receive 20 points to their melee skills.", "NightRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special));
+            _nightRiderPassive3.Initialize(CareerID, "{=night_rider_passive3_str}Raiding is at Night 50% faster.", "NightRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, true));
+            _nightRiderPassive4.Initialize(CareerID, "{=night_rider_passive4_str}Attacks deal bonus damage against shields.", "NightRider", false, ChoiceType.Passive, null);
+            
+            _bladeMasterPassive1.Initialize(CareerID, "{=blade_master_passive1_str}20% extra melee damage.", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
+            _bladeMasterPassive2.Initialize(CareerID, "{=blade_master_passive2_str}Increases health regeneration after battles by 5.", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.HealthRegeneration));
+            _bladeMasterPassive3.Initialize(CareerID, "{=blade_master_passive3_str}Hits below 15 damage will not stagger the player.", "BladeMaster", false, ChoiceType.Passive, null); // Agent extension 83,
+            _bladeMasterPassive4.Initialize(CareerID, "{=blade_master_passive4_str}All troops, the player included, gain exp when raiding villages.", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //TorRaidModel 23  AND TorCareerPerkCampaignBehavior 73
+            
+            _doomRiderPassive1.Initialize(CareerID, "{=doom_rider_passive1_str}20% extra melee damage.", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Melee));
+            _doomRiderPassive2.Initialize(CareerID, "{=doom_rider_passive2_str}Increases Hitpoints by 25.", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+            _doomRiderPassive3.Initialize(CareerID, "{=doom_rider_passive3_str}Party speed increases by 2.", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2.0f, PassiveEffectType.PartyMovementSpeed));
+            _doomRiderPassive4.Initialize(CareerID, "{=doom_rider_passive4_str}Recruit defeated units as Blood Knights with a chance of 15% (40% for Tier >4).", "DoomRider", false, ChoiceType.Passive, null);
 
             _controlledHungerPassive1.Initialize(CareerID, "Immune to sunlight malus.", "ControlledHunger", false, ChoiceType.Passive, null); //TORPartySpeedCalculatingModel 46
             _controlledHungerPassive2.Initialize(CareerID, "Increases Hitpoints by 50.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
             _controlledHungerPassive3.Initialize(CareerID, "Mount health is increased by 35%.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(35f, PassiveEffectType.HorseHealth, true));
-            _controlledHungerPassive4.Initialize(CareerID, "Ward save for all vampire units.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
+            _controlledHungerPassive4.Initialize(CareerID, "25% Ward save for all vampire units.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 25), AttackTypeMask.Spell, 
+                (attacker, victim, mask) =>  !victim.BelongsToMainParty()&& victim.IsHero && victim.IsVampire()));
 
-            _avatarOfDeathPassive1.Initialize(CareerID, "Gain 25% physical resistance to melee and ranged attacks.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 25), AttackTypeMask.Ranged | AttackTypeMask.Melee));
-            _avatarOfDeathPassive2.Initialize(CareerID, "All vampire units wages are reduced by 35%.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-35, PassiveEffectType.Special, true)); //TORPartyWageModel 85
-            _avatarOfDeathPassive3.Initialize(CareerID, "The player gains 35% Magic resistance against spells.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 35), AttackTypeMask.Spell));
-            _avatarOfDeathPassive4.Initialize(CareerID, "Attacks deal bonus damage against shields.", "AvatarOfDeath", false, ChoiceType.Passive, null);
+            _avatarOfDeathPassive1.Initialize(CareerID, "{=avatar_of_death_passive1_str}Gain 25% physical resistance to melee and ranged attacks.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 25), AttackTypeMask.Ranged | AttackTypeMask.Melee));
+            _avatarOfDeathPassive2.Initialize(CareerID, "{=avatar_of_death_passive2_str}All vampire units wages are reduced by 35%.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-35, PassiveEffectType.TroopWages, true, 
+                characterObject => !characterObject.IsHero && characterObject.IsKnightUnit())); 
+            _avatarOfDeathPassive3.Initialize(CareerID, "{=avatar_of_death_passive3_str}The player gains 35% Magic resistance against spells.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 35), AttackTypeMask.Spell));
+            _avatarOfDeathPassive4.Initialize(CareerID, "{=avatar_of_death_passive4_str}For every 100 above 500 inflicted damage the player gets healed by 1 Hit point(Maximum 5).", "AvatarOfDeath", false, ChoiceType.Passive, null);
 
             _dreadKnightPassive1.Initialize(CareerID, "Increases Hitpoints by 50.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
             _dreadKnightPassive2.Initialize(CareerID, "Horse charge damage is increased by 50%.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseChargeDamage, true));
-            _dreadKnightPassive3.Initialize(CareerID, "Cavalry units get a 20% damage increase in damage.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
+            _dreadKnightPassive3.Initialize(CareerID, "Cavalry units get a 20% damage increase in damage.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Melee,
+                (attacker, victim, mask) => attacker.BelongsToMainParty() && !attacker.IsHero && attacker.HasMount && mask== AttackTypeMask.Melee));
+           
             _dreadKnightPassive4.Initialize(CareerID, "Extra 25% armor penetration of melee attacks.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
         }
         
@@ -403,8 +413,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 99);
             
-            
-
             playerHero.SetSkillValue(TORSkills.SpellCraft,0);
             var toRemoveSpellcraft= Hero.MainHero.HeroDeveloper.GetFocus(TORSkills.SpellCraft);
             playerHero.HeroDeveloper.RemoveFocus(TORSkills.SpellCraft,toRemoveSpellcraft);
