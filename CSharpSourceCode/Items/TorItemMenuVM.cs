@@ -161,7 +161,11 @@ namespace TOR_Core.Items
 			if (!equipmentElement.Item.HasWeaponComponent) return;
 			var comparedEquipmentElement = comparedItem == null ? EquipmentElement.Invalid : comparedItem.ItemRosterElement.EquipmentElement;
 			var weaponData = equipmentElement.Item.GetWeaponWithUsageIndex(AlternativeUsageIndex);
-			var comparedWeaponData = comparedEquipmentElement.Item == null ? null : comparedEquipmentElement.Item.GetWeaponWithUsageIndex(AlternativeUsageIndex);
+
+			int comparedWeaponUsageIndex = -1;
+			if(!comparedEquipmentElement.IsEmpty) ItemHelper.IsWeaponComparableWithUsage(comparedEquipmentElement.Item, weaponData.WeaponDescriptionId, out comparedWeaponUsageIndex);
+            var comparedWeaponData = comparedEquipmentElement.Item == null ? null : comparedEquipmentElement.Item.GetWeaponWithUsageIndex(comparedWeaponUsageIndex);
+			
 			var weaponClass = weaponData.WeaponClass;
 			if (weaponClass != WeaponClass.Musket && weaponClass != WeaponClass.Pistol) return;
 
