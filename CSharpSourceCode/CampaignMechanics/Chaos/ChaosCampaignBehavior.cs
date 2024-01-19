@@ -129,6 +129,8 @@ namespace TOR_Core.CampaignMechanics.Chaos
             else if (chaosKingdom.IsEliminated)
             {
                 chaosKingdom.ReactivateKingdom();
+                ChangeKingdomAction.ApplyByJoinToKingdom(clan, chaosKingdom);
+                chaosKingdom.RulingClan = clan;
             }
             EnforceWarWithChaos(null);
         }
