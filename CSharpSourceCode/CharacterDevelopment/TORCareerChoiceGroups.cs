@@ -84,7 +84,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _swampRider;
         private CareerChoiceGroupObject _unbreakableArmy;
         private CareerChoiceGroupObject _scourgeOfMousillon;
-        private CareerChoiceGroupObject _robberBaron;
+        private CareerChoiceGroupObject _robberKnight;
         private CareerChoiceGroupObject _lieOfLady;
         private CareerChoiceGroupObject _blackGrailVow;
 
@@ -177,7 +177,7 @@ namespace TOR_Core.CharacterDevelopment
             _swampRider = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_swampRider).UnderscoreFirstCharToUpper()));
             _unbreakableArmy = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_unbreakableArmy).UnderscoreFirstCharToUpper()));
             _scourgeOfMousillon = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_scourgeOfMousillon).UnderscoreFirstCharToUpper()));
-            _robberBaron = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_robberBaron).UnderscoreFirstCharToUpper()));
+            _robberKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_robberKnight).UnderscoreFirstCharToUpper()));
             _lieOfLady = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_lieOfLady).UnderscoreFirstCharToUpper()));
             _blackGrailVow = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_blackGrailVow).UnderscoreFirstCharToUpper()));
             
@@ -484,7 +484,7 @@ namespace TOR_Core.CharacterDevelopment
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _robberBaron.Initialize("{=robber_baron_choice_group_str}Robber Baron", TORCareers.BlackGrailKnight, 2, (Hero hero, out string text) =>
+            _robberKnight.Initialize("{=robber_baron_choice_group_str}Robber Baron", TORCareers.BlackGrailKnight, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
