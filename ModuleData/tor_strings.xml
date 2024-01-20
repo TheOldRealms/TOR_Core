@@ -1016,7 +1016,7 @@
 	<string id="inky_Meadow.IsNight_False" text="{=inky_Meadow_is_night_false_str}Golden sunlight" />
 	
 	
-	<string id="inky_Meadow.STR_Start3" text="{inky_IsNight} filters through the tree canopy, bathing the meadow in warmth. A gentle aroma of blooming flowers perfumes the air. Birds serenade with their melodies, filling the clearing with a symphony that feels like a balm to your weary spirit. #STR_Start3"/>
+	<string id="inky_Meadow.STR_Start3" text="{inky_IsNight} filters through the tree canopy, bathing the meadow in warmth. A gentle aroma of blooming flowers perfumes the air. Birds serenade with their melodies, filling the clearing with a symphony that feels like a balm to your weary spirit."/>
 	
 	
 	<!--Overturned Cart ! -->

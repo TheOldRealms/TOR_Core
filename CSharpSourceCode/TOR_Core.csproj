@@ -633,6 +633,7 @@
     <Compile Include="HarmonyPatches\PerkResetRelatedPatch.cs" />
     <Compile Include="HarmonyPatches\RotatingMainMenuScenePatch.cs" />
     <Compile Include="HarmonyPatches\SettlementPatches.cs" />
+    <Compile Include="HarmonyPatches\TableauRenderPatches.cs" />
     <Compile Include="HarmonyPatches\ViewModelPatches.cs" />
     <Compile Include="HarmonyPatches\ViewModelRefreshPatch.cs" />
     <Compile Include="Ink\InkFakeMarketData.cs" />

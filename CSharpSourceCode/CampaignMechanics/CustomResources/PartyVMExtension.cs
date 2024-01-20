@@ -37,6 +37,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             PendingResourceCosts.Clear();
 
             var pendingResourceCost = CustomResourceManager.GetPendingResources();
+            ((PartyVM)(_vm)).CurrentCharacter.InitializeUpgrades();
             foreach(var item in pendingResourceCost)
             {
                 MBTextManager.SetTextVariable("PAY_OR_GET", (item.Value > 0) ? 0 : 1);
