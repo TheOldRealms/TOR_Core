@@ -240,7 +240,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
             
-            _robberKnightKeystone.Initialize(CareerID, "Reduces cooldown of Knightly Charge by 30s. During the ability, all healing affects the horse.", "RobberBaron", false,
+            _robberKnightKeystone.Initialize(CareerID, "Reduces cooldown of Knightly Charge by 30s. During the ability, all healing affects the horse.", "RobberKnight", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -365,11 +365,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _scourgeOfMousillonPassive4.Initialize(CareerID, "All mousillon Knight units gain 10% Physical resistance.", "ScourgeOfMousillon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-75, PassiveEffectType.TroopWages, true, 
                 characterObject =>  characterObject.IsEliteTroop() && isMousillonKnight(characterObject)));
 
-            _robberKnightPassive1.Initialize(CareerID, "Horse charge damage is increased by 50%.", "RobberBaron", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.HorseChargeDamage, true));
-            _robberKnightPassive2.Initialize(CareerID, "Party movement speed is increased by 2.", "RobberBaron", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.PartyMovementSpeed));
-            _robberKnightPassive3.Initialize(CareerID, "Mousillon Cavalry unit damage against infantry .", "RobberBaron", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 25), AttackTypeMask.Spell, 
+            _robberKnightPassive1.Initialize(CareerID, "Horse charge damage is increased by 50%.", "RobberKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.HorseChargeDamage, true));
+            _robberKnightPassive2.Initialize(CareerID, "Party movement speed is increased by 2.", "RobberKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.PartyMovementSpeed));
+            _robberKnightPassive3.Initialize(CareerID, "Mousillon Cavalry unit damage against infantry .", "RobberKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 25), AttackTypeMask.Spell, 
                 (attacker, victim, mask) => attacker.BelongsToMainParty()&& isMousillonKnight(attacker.Character as CharacterObject)&&victim.Character.IsInfantry));
-            _robberKnightPassive4.Initialize(CareerID, "All Knight troops wages are reduced by 25%.", "RobberBaron", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopWages, true, 
+            _robberKnightPassive4.Initialize(CareerID, "All Knight troops wages are reduced by 25%.", "RobberKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopWages, true, 
                 characterObject => isMousillonKnight(characterObject)));
 
             _lieOfLadyPassive1.Initialize(CareerID, "{=grail_vow_passive3_str}15% extra melee magic damage.", "LieOfLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 15), AttackTypeMask.Melee));
