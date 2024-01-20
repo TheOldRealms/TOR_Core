@@ -10,6 +10,7 @@ using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.HarmonyPatches;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -56,6 +57,8 @@ namespace TOR_Core.AbilitySystem
                 else
                     SetCoolDown(Template.CoolDown);
             }
+            
+            MissionPatches.InitBossFight = null;
         }
 
         protected override void AddExactBehaviour<TAbilityScript>(GameEntity parentEntity, Agent casterAgent)

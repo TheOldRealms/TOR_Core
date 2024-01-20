@@ -109,7 +109,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                 if (_championIsActive) ShiftControllerToCaster();
                 _casterAgent.RemoveStatusEffect("greater_harbinger_ward_protection");
                 
-           
+                MissionPatches.InitBossFight -= OnHideOutMissionStateChanged;   // maybe use manager classes for this
         }
 
         private void InitialShiftToChampion()
