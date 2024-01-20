@@ -72,6 +72,7 @@ namespace TOR_Core.Extensions
         public static float GetCustomResourceValue(this Hero hero, string id)
         {
             var info = hero.GetExtendedInfo();
+            
             if (info != null)
             {
                 return info.GetCustomResourceValue(id);
@@ -83,7 +84,8 @@ namespace TOR_Core.Extensions
         {
             if (hero == null)
                 return null;
-            return CustomResourceManager.GetResourceObject(x => x.FirstOrDefault(y => y.Culture == hero.Culture.StringId));
+            
+            return CustomResourceManager.GetResourceObject(x => x.FirstOrDefault(y => y.Cultures.Contains(hero.Culture.StringId)));
         }
 
         public static float GetCultureSpecificCustomResourceValue(this Hero hero)
