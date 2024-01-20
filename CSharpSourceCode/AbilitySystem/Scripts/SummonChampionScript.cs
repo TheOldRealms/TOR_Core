@@ -25,9 +25,6 @@ namespace TOR_Core.AbilitySystem.Scripts
         private GameKey _specialMoveKey;
         private string _summonedChampionId;
         private Vec3 _targetPosition;
-        private HideoutMissionController _hideoutMissionController;
-
-        public Delegate deli;
         
          
         protected override void OnInit()
@@ -42,10 +39,14 @@ namespace TOR_Core.AbilitySystem.Scripts
                     break;
                 }
             
-            _hideoutMissionController = Mission.Current.GetMissionBehavior<HideoutMissionController>();
-            if (_hideoutMissionController != null)
+            var hideoutMissionController = Mission.Current.GetMissionBehavior<HideoutMissionController>();
+            if (hideoutMissionController != null)
             {
-                MissionPatches.InitBossFight += OnHideOutMissionStateChanged;
+                var abilityManagerLogic = Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>();
+                if (abilityManagerLogic != null)
+                {
+                    abilityManagerLogic.OnInitHideOutBossFight += OnHideOutMissionStateChanged;
+                }
                 _isHideOutMission = true;
 
             }
@@ -67,8 +68,6 @@ namespace TOR_Core.AbilitySystem.Scripts
                 _casterAgent.GetComponent<AbilityComponent>().CareerAbility.AddCharge(TORCareers.Necromancer.MaxCharge);
                 Stop();
             }
-            MissionPatches.InitBossFight -= OnHideOutMissionStateChanged;
-            
         }
 
         private void AgentRemoved(Agent affectedagent, Agent affectoragent, AgentState agentstate, KillingBlow killingblow)
@@ -109,7 +108,11 @@ namespace TOR_Core.AbilitySystem.Scripts
                 if (_championIsActive) ShiftControllerToCaster();
                 _casterAgent.RemoveStatusEffect("greater_harbinger_ward_protection");
                 
-                MissionPatches.InitBossFight -= OnHideOutMissionStateChanged;   // maybe use manager classes for this
+                var abilityManagerLogic = Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>();
+                if (abilityManagerLogic != null)
+                {
+                    abilityManagerLogic.OnInitHideOutBossFight -= OnHideOutMissionStateChanged;
+                }
         }
 
         private void InitialShiftToChampion()

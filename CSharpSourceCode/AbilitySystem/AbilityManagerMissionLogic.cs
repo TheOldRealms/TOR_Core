@@ -54,6 +54,8 @@ namespace TOR_Core.AbilitySystem
         private float _disableCombatActionsDuration = 0.3f;
         private bool _disableCombatActionsAfterCast;
         private float _elapsedTimeSinceLastActivation;
+        public delegate void OnHideOutBossFightInit();
+        public event OnHideOutBossFightInit OnInitHideOutBossFight;
 
         public AbilityModeState CurrentState => _currentState;
 
@@ -65,9 +67,15 @@ namespace TOR_Core.AbilitySystem
             Mission.OnItemPickUp += OnItemPickup;
         }
 
+        public void InitHideOutBossFight()
+        {
+            OnInitHideOutBossFight?.Invoke();
+        }
+        
         public override void EarlyStart()
         {
             base.EarlyStart();
+            OnInitHideOutBossFight = null;
             _abilityView = Mission.Current.GetMissionBehavior<AbilityHUDMissionView>();
             Game.Current.EventManager.RegisterEvent(new Action<MissionPlayerToggledOrderViewEvent>(OnPlayerToggleOrder));
             _quickCastMenuKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("QuickCastSelectionMenu");

@@ -57,8 +57,6 @@ namespace TOR_Core.AbilitySystem
                 else
                     SetCoolDown(Template.CoolDown);
             }
-            
-            MissionPatches.InitBossFight = null;
         }
 
         protected override void AddExactBehaviour<TAbilityScript>(GameEntity parentEntity, Agent casterAgent)
