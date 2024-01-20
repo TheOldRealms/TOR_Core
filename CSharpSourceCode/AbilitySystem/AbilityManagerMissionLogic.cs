@@ -147,6 +147,8 @@ namespace TOR_Core.AbilitySystem
         {
             _currentState = AbilityModeState.QuickMenuSelection;
             _abilityView.MissionScreen.SetRadialMenuActiveState(true);
+            _mainHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.MainHand);
+            _offHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.OffHand);
             ChangeKeyBindings();
             SlowDownTime(true);
         }
@@ -309,6 +311,8 @@ namespace TOR_Core.AbilitySystem
                                     }
                                     else
                                     {
+                                        _mainHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.MainHand);
+                                        _offHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.OffHand);
                                         _lastActivationDeltaTime = dt;
                                         _elapsedTimeSinceLastActivation = 0;
                                         _disableCombatActionsAfterCast = true;
@@ -357,6 +361,8 @@ namespace TOR_Core.AbilitySystem
                                 }
                                 else
                                 {
+                                    _mainHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.MainHand);
+                                    _offHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.OffHand);
                                     _lastActivationDeltaTime = dt;
                                     _elapsedTimeSinceLastActivation = 0;
                                     _disableCombatActionsAfterCast = true;
