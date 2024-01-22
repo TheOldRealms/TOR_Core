@@ -4474,6 +4474,9 @@
   <CharacterExtendedInfo id="tor_wanderer_mousillon_0">
     <Abilities />
     <Attributes />
+	<Attributes>
+      <string>IllFaited</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wanderer_vampire_0">
     <Abilities>

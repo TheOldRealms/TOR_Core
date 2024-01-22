@@ -11,6 +11,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -171,6 +172,57 @@ namespace TOR_Core.CampaignMechanics
                     }
                 }
             }
+
+            if (choices.Contains("CurseOfMousillonPassive4"))
+            {
+                var heroes = mobileParty.GetMemberHeroes();
+                var chance = 0.0f + heroes.Where(hero => hero.HasAttribute("IllFaited")).Sum(hero => 0.1f);
+                
+                if(chance<=0.0f) return;
+
+                var moraleValue = mobileParty.Morale/200;
+
+                chance += moraleValue;
+
+                var memberList = mobileParty.MemberRoster.GetTroopRoster();
+
+                var bretones = memberList.FindAll(x => !x.Character.IsEliteTroop()&& x.Character.Culture.StringId == "vlandia");
+                
+                
+                
+                for (var index = 0; index < bretones.Count; index++)
+                {
+                    var member = bretones[index];
+                    for (int i = 0; i < member.Number; i++)
+                    {
+                        var randomFloat = MBRandom.RandomFloat;
+
+                        if (!( randomFloat < chance )) continue;
+                        
+                        var mousillonEquivalent = GetMousillonEquivalent(member.Character);
+
+                        if (mousillonEquivalent == null) continue;
+                            
+                        mobileParty.AddElementToMemberRoster(mousillonEquivalent, 1);
+                        mobileParty.AddElementToMemberRoster(member.Character, -1);
+                    }
+                    
+                }
+            }
+        }
+
+        private CharacterObject GetMousillonEquivalent(CharacterObject bretonnianTroop)
+        {
+            if (bretonnianTroop.StringId.Contains("warden") || bretonnianTroop.StringId.Contains("foot_squire"))
+                return null;
+
+            var reducedId = bretonnianTroop.StringId.Substring(7);
+
+            var mousillonID = "tor_m_" + reducedId;
+
+            var troop = MBObjectManager.Instance.GetObject<CharacterObject>(mousillonID);
+            
+            return troop;
         }
         
         private static void LaunchHuntingEvent(MobileParty mobileParty)

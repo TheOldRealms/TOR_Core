@@ -735,6 +735,7 @@
   <string id="career_title.BloodKnight" text="{=tor_career_title_blood_knight_str}Blood Knight" />
   <string id="career_title.Mercenary" text="{=tor_career_title_mercenary_str}Mercenary" />
   <string id="career_title.Necromancer" text="{=tor_career_title_necromancer_str}Necromancer" />
+  <string id="career_title.BlackGrailKnight" text="{=tor_career_title_black_grail_knight_str}Knight of Mousillon" />
   
   
   
@@ -772,6 +773,12 @@
   <string id="career_choicegroup2_name.GrailDamsel" text="{=career_choicegroup2_grail_damsel_str}Grail Damsel" />
   <string id="career_choicegroup3_name.GrailDamsel" text="{=career_choicegroup3_grail_damsel_str}Prophetess" />
   
+  <string id="career_choicegroup1_name.BlackGrailKnight" text="{=career_choicegroup1_black_grail_knight_str}Ill-faited Noble" />
+  <string id="career_choicegroup2_name.BlackGrailKnight" text="{=career_choicegroup2_black_grail_knight_str}Ill-faited Questing Knight" />
+  <string id="career_choicegroup3_name.BlackGrailKnight" text="{=career_choicegroup3_black_grail_knight_str}Knight of the Black Grail" />
+  
+  <string id="career_description.BlackGrailKnight" text="{=career_description_witchHunter_str}Kriegan was autistic." />
+
   
   <!--TOR Damage type related !-->
   <string id="tor_damagetype.Invalid" text="{=tor_damagetype_invalid_str}Invalid"/>

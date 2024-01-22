@@ -39,11 +39,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         private CareerChoiceObject _unbreakableArmyPassive3;
         private CareerChoiceObject _unbreakableArmyPassive4;
 
-        private CareerChoiceObject _scourgeOfMousillonKeystone;
-        private CareerChoiceObject _scourgeOfMousillonPassive1;
-        private CareerChoiceObject _scourgeOfMousillonPassive2;
-        private CareerChoiceObject _scourgeOfMousillonPassive3;
-        private CareerChoiceObject _scourgeOfMousillonPassive4;
+        private CareerChoiceObject _scourgeOfBretonniaKeystone;
+        private CareerChoiceObject _scourgeOfBretonniaPassive1;
+        private CareerChoiceObject _scourgeOfBretonniaPassive2;
+        private CareerChoiceObject _scourgeOfBretonniaPassive3;
+        private CareerChoiceObject _scourgeOfBretonniaPassive4;
 
         private CareerChoiceObject _robberKnightKeystone;
         private CareerChoiceObject _robberKnightPassive1;
@@ -85,11 +85,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _unbreakableArmyPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_unbreakableArmyPassive3).UnderscoreFirstCharToUpper()));
             _unbreakableArmyPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_unbreakableArmyPassive4).UnderscoreFirstCharToUpper()));
 
-            _scourgeOfMousillonKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_scourgeOfMousillonKeystone).UnderscoreFirstCharToUpper()));
-            _scourgeOfMousillonPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_scourgeOfMousillonPassive1).UnderscoreFirstCharToUpper()));
-            _scourgeOfMousillonPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_scourgeOfMousillonPassive2).UnderscoreFirstCharToUpper()));
-            _scourgeOfMousillonPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_scourgeOfMousillonPassive3).UnderscoreFirstCharToUpper()));
-            _scourgeOfMousillonPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_scourgeOfMousillonPassive4).UnderscoreFirstCharToUpper()));
+            _scourgeOfBretonniaKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_scourgeOfBretonniaKeystone).UnderscoreFirstCharToUpper()));
+            _scourgeOfBretonniaPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_scourgeOfBretonniaPassive1).UnderscoreFirstCharToUpper()));
+            _scourgeOfBretonniaPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_scourgeOfBretonniaPassive2).UnderscoreFirstCharToUpper()));
+            _scourgeOfBretonniaPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_scourgeOfBretonniaPassive3).UnderscoreFirstCharToUpper()));
+            _scourgeOfBretonniaPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_scourgeOfBretonniaPassive4).UnderscoreFirstCharToUpper()));
 
             _robberKnightKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_robberKnightKeystone).UnderscoreFirstCharToUpper()));
             _robberKnightPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_robberKnightPassive1).UnderscoreFirstCharToUpper()));
@@ -211,7 +211,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _scourgeOfMousillonKeystone.Initialize(CareerID, "Ability duration scales with Polearm and Riding. The lance attack scales with Two Handed.", "ScourgeOfMousillon", false,
+            _scourgeOfBretonniaKeystone.Initialize(CareerID, "Ability duration scales with Polearm and Riding. The lance attack scales with Two Handed.", "ScourgeOfBretonnia", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -340,7 +340,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         protected override void InitializePassives()
         {
             _curseOfMousillonPassive1.Initialize(CareerID, "Increases Hitpoints by 40.", "CurseOfMousillon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Health));
-            _curseOfMousillonPassive2.Initialize(CareerID, "All Knight troops receive 30 bonus points in their Polearm skill.", "SwampRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special)); //
+            _curseOfMousillonPassive2.Initialize(CareerID, "All Knight troops receive 30 bonus points in their Polearm skill.", "CurseOfMousillon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special)); //
             _curseOfMousillonPassive3.Initialize(CareerID, "Mousillon ranged troops gain 15 extra ranged damage.", "CurseOfMousillon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.All, 
                 (attacker, victim, mask) => attacker.BelongsToMainParty()&&!attacker.IsHero&& mask == AttackTypeMask.Ranged && attacker.Character.Culture.StringId=="mousillon"&&attacker.Character.IsRanged) );
             _curseOfMousillonPassive4.Initialize(CareerID, "All melee troops in the party gain 25 exp per day.", "CurseOfMousillon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special)); //
@@ -359,10 +359,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             _unbreakableArmyPassive4.Initialize(CareerID, "PLACEHOLDER.", "UnbreakableArmy", false, ChoiceType.Passive, null); // Agent extension 83,
 
-            _scourgeOfMousillonPassive1.Initialize(CareerID, "Increases Hitpoints by 40.", "ScourgeOfMousillon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Health));
-            _scourgeOfMousillonPassive2.Initialize(CareerID, "Gain 15 Dark Energy daily.", "ScourgeOfMousillon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.CustomResourceGain));
-            _scourgeOfMousillonPassive3.Initialize(CareerID, "PLACEHOLDER", "ScourgeOfMousillon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Special, true));
-            _scourgeOfMousillonPassive4.Initialize(CareerID, "All mousillon Knight units gain 10% Physical resistance.", "ScourgeOfMousillon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-75, PassiveEffectType.TroopWages, true, 
+            _scourgeOfBretonniaPassive1.Initialize(CareerID, "Increases Hitpoints by 40.", "ScourgeOfBretonnia", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Health));
+            _scourgeOfBretonniaPassive2.Initialize(CareerID, "Gain 15 Dark Energy daily.", "ScourgeOfBretonnia", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.CustomResourceGain));
+            _scourgeOfBretonniaPassive3.Initialize(CareerID, "PLACEHOLDER", "ScourgeOfBretonnia", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Special, true));
+            _scourgeOfBretonniaPassive4.Initialize(CareerID, "All mousillon Knight units gain 10% Physical resistance.", "ScourgeOfBretonnia", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-75, PassiveEffectType.TroopWages, true, 
                 characterObject =>  characterObject.IsEliteTroop() && isMousillonKnight(characterObject)));
 
             _robberKnightPassive1.Initialize(CareerID, "Horse charge damage is increased by 50%.", "RobberKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.HorseChargeDamage, true));
