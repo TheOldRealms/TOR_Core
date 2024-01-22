@@ -116,6 +116,25 @@ namespace TOR_Core.Extensions
                 {
                     CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref number,PassiveEffectType.CustomResourceGain, false); 
                 }
+
+                if (hero.HasCareer(TORCareers.BlackGrailKnight)&& hero.HasCareerChoice("BlackGrailVowPassive4"))
+                {
+                    var choice = TORCareerChoices.GetChoice("BlackGrailVowPassive4");
+                    if (hero.PartyBelongedTo != null)
+                    {
+                        var heroes = hero.PartyBelongedTo.GetMemberHeroes();
+                        heroes.Remove(Hero.MainHero);
+
+                        foreach (var companion in heroes)
+                        {
+                            if (companion.IsVampire() || companion.IsNecromancer())
+                            {
+                                number.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                            }
+                        }
+                    }
+                    
+                }
                 
             } 
             return number;

@@ -375,17 +375,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _lieOfLadyPassive2.Initialize(CareerID, "Necromancer companions gain 25 Winds of magic.", "LieOfLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true)); 
             _lieOfLadyPassive3.Initialize(CareerID, "Dark Energy upkeep for Knights of the black grail is reduced by 25%.", "LieOfLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpkeepModifier,true, 
                 characterObject => characterObject.StringId.Contains("tor_m_knight_of_the_black_grail")));
-            _lieOfLadyPassive4.Initialize(CareerID, "Knights of the black grail deal 15% magical damage.", "LieOfLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Magical, 25), AttackTypeMask.Melee, 
+            _lieOfLadyPassive4.Initialize(CareerID, "Knights of the black grail deal 15% magical damage.", "LieOfLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Magical, 15), AttackTypeMask.Melee, 
                 (attacker, victim, mask) => attacker.BelongsToMainParty()&& attacker.Character.StringId == "tor_m_knight_of_the_black_grail"));
             
             _blackGrailVowPassive1.Initialize(CareerID, "{=holy_crusader_passive4_str}Companion limit of party is increased by 10.", "BlackGrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.CompanionLimit));
             _blackGrailVowPassive2.Initialize(CareerID, "{=holy_crusader_passive2_str}All Vampire Units count as Mousillon Knights", "BlackGrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special));
             _blackGrailVowPassive3.Initialize(CareerID, "{=holy_crusader_passive3_str}Mousillon Knights gain 15% Wardsave.", "BlackGrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.All, 
                 (attacker, victim, mask) =>victim.BelongsToMainParty()&&isMousillonKnight(victim.Character as CharacterObject )));
-            _blackGrailVowPassive4.Initialize(CareerID, "Every necromancer and Vampire companion gains 5 dark energy per day.", "BlackGrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.CompanionLimit));
+            _blackGrailVowPassive4.Initialize(CareerID, "Every necromancer and Vampire companion gains 10 dark energy per day.", "BlackGrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.CompanionLimit));
         }
-
-        
         
         private bool isMousillonKnight(CharacterObject characterObject)
         {
