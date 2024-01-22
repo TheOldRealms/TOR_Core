@@ -35,12 +35,20 @@ namespace TOR_Core.CampaignMechanics
         private void BonusGarrision()
         {
             var bloodKeep = Campaign.Current.Settlements.FirstOrDefault(x => x.IsBloodKeep());
-            if(bloodKeep==null) return;
-            if (bloodKeep.Owner.IsVampire())
+            if (bloodKeep != null && bloodKeep.Owner.IsVampire())
             {
                 var bloodDragon = MBObjectManager.Instance.GetObject<CharacterObject>("tor_bd_blooddragon_templar");
                 bloodKeep.MilitiaPartyComponent.Party.AddMember(bloodDragon, 500);
                 bloodKeep.SetGarrisonWagePaymentLimit(800000);
+            }
+
+
+            var castleMousillon = Campaign.Current.Settlements.FirstOrDefault(x => x.StringId == "town_MS1");
+
+            if (castleMousillon != null)
+            {
+                var undead = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_crypt_guard");
+                castleMousillon.MilitiaPartyComponent.Party.AddMember(undead, 500);
             }
         }
 

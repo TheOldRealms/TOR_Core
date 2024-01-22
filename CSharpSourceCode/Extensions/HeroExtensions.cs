@@ -27,7 +27,8 @@ namespace TOR_Core.Extensions
     {
         public static bool CanRaiseDead(this Hero hero)
         {
-            return hero.IsHumanPlayerCharacter && hero.IsNecromancer();
+            return hero.PartyBelongedTo != null && hero.PartyBelongedTo.GetMemberHeroes().Any(x => x.IsNecromancer());
+            //return hero.IsHumanPlayerCharacter && hero.IsNecromancer();
         }
 
         /// <summary>

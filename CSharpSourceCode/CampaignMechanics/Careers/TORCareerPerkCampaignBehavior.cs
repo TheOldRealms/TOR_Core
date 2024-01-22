@@ -180,9 +180,9 @@ namespace TOR_Core.CampaignMechanics
                 
                 if(chance<=0.0f) return;
 
-                var moraleValue = mobileParty.Morale/200;
+                var moralebonus = mobileParty.Morale/200;
 
-                chance += moraleValue;
+                chance += moralebonus;
 
                 var memberList = mobileParty.MemberRoster.GetTroopRoster();
 
@@ -197,7 +197,7 @@ namespace TOR_Core.CampaignMechanics
                     {
                         var randomFloat = MBRandom.RandomFloat;
 
-                        if (!( randomFloat < chance )) continue;
+                        if (randomFloat >= chance) continue;
                         
                         var mousillonEquivalent = GetMousillonEquivalent(member.Character);
 
@@ -209,6 +209,44 @@ namespace TOR_Core.CampaignMechanics
                     
                 }
             }
+            
+            if (choices.Contains("CurseOfMousillonPassive4"))
+            {
+                var heroes = mobileParty.GetMemberHeroes();
+                var chance = 0.0f + heroes.Where(hero => hero.HasAttribute("IllFaited")).Sum(hero => 0.1f);
+                
+                if(chance<=0.0f) return;
+
+                var moralebonus = mobileParty.Morale/200;
+
+                chance += moralebonus;
+
+                var memberList = mobileParty.MemberRoster.GetTroopRoster();
+
+                var bretones = memberList.FindAll(x => !x.Character.IsEliteTroop()&& x.Character.Culture.StringId == "vlandia");
+                
+                
+                
+                for (var index = 0; index < bretones.Count; index++)
+                {
+                    var member = bretones[index];
+                    for (int i = 0; i < member.Number; i++)
+                    {
+                        var randomFloat = MBRandom.RandomFloat;
+
+                        if (randomFloat >= chance) continue;
+                        
+                        var mousillonEquivalent = GetMousillonEquivalent(member.Character);
+
+                        if (mousillonEquivalent == null) continue;
+                            
+                        mobileParty.AddElementToMemberRoster(mousillonEquivalent, 1);
+                        mobileParty.AddElementToMemberRoster(member.Character, -1);
+                    }
+                    
+                }
+            }
+            
         }
 
         private CharacterObject GetMousillonEquivalent(CharacterObject bretonnianTroop)

@@ -116,7 +116,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 }
             }
             Instance._resourceChanges.Clear();
-            if ((Hero.MainHero.IsVampire() || Hero.MainHero.IsNecromancer()) && PartyScreenManager.Instance.CurrentMode == PartyScreenMode.Loot)
+            if ((Hero.MainHero.IsVampire() || Hero.MainHero.CanRaiseDead()) && PartyScreenManager.Instance.CurrentMode == PartyScreenMode.Loot)
             {
                 var result = 0f;
                 if (leftMemberRoster != null && leftMemberRoster.Count > 0)

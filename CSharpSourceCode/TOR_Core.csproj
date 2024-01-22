@@ -538,6 +538,7 @@
     <Compile Include="CampaignMechanics\TORSpecialSettlementBehavior.cs" />
     <Compile Include="CampaignMechanics\TORWanderersCampaignBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerAbilityChargeSupplier.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\BlackGrailKnightCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\CareerButtonBehaviorBase.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\CareerButtons.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\GrailKnightCareerButtonBehavior.cs" />

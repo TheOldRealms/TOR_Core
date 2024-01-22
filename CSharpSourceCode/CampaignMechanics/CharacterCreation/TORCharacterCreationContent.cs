@@ -216,7 +216,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             Hero.MainHero.AddAttribute("AbilityUser");
             Hero.MainHero.AddAttribute("CanPlaceArtillery");
 
-            
+            if (Hero.MainHero.Culture.StringId == "mousillon")
+            {
+                Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 60, false);
+            }
             
             if (IsMagicianCharacterCreationID (id) || IsDamselCharacterCreationID (id))
             {
