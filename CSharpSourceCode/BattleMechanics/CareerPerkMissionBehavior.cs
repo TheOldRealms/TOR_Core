@@ -192,7 +192,7 @@ namespace TOR_Core.BattleMechanics
                     {
                         if (affectedAgent.IsEnemyOf(affectorAgent) && !blow.IsMissile)
                         {
-                            Hero.MainHero.AddSkillXp(DefaultSkills.Roguery,choice.GetPassiveValue());
+                            Hero.MainHero.AddSkillXp(DefaultSkills.Roguery,blow.InflictedDamage);
                         }
                     }
                 }

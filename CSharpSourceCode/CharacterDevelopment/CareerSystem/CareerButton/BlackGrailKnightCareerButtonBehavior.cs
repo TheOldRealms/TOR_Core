@@ -77,7 +77,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     }
                 }
                 _copiedTroopRoster.RemoveZeroCounts();
-                PartyScreenManager.OpenScreenAsReceiveTroops(roster, new TextObject("Witch Hunter Retinues"), ExchangeKnights);
+                PartyScreenManager.OpenScreenAsReceiveTroops(roster, new TextObject("Ill fated Knights"), ExchangeKnights);
             }
             
         }

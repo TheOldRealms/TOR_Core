@@ -240,6 +240,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 Hero.MainHero.AddCareer(TORCareers.GrailKnight);
             }
+
+            if (IsKnightOfMousillonCharacterCreationId(id))
+            {
+                Hero.MainHero.AddCareer(TORCareers.BlackGrailKnight);
+            }
             
             if(IsDamselCharacterCreationID (id))
             {
@@ -329,6 +334,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             Hero.MainHero.SetBirthDay(CampaignTime.YearsFromNow(-age));
         }
 
+        private bool IsKnightOfMousillonCharacterCreationId(string characterCreationOptionID) =>  characterCreationOptionID == "option56";
+        
         private bool IsWitchHunterCharacterCreationID(string characterCreationOptionID) =>  characterCreationOptionID == "option14";
         private bool IsKnightErrantCharacterCreationID(string characterCreationOptionID) =>  characterCreationOptionID == "option41";
         private bool IsVampireCharacterCreationID(string characterCreationOptionID) => characterCreationOptionID == "option26" || characterCreationOptionID == "option57";

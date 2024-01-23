@@ -79,7 +79,7 @@ namespace TOR_Core.CampaignMechanics.Choices
 
         public virtual void InitialCareerSetup()
         {
-            //this should only be meaningful in 
+            
         }
     }
 }
