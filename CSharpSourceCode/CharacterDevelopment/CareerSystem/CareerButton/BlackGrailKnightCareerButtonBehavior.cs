@@ -18,6 +18,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         private CharacterObject _convertedKnight;
         private bool _isPrisoner;
         private int _exchangeCost = 15;
+        
+        public override string CareerButtonIcon => "CareerSystem\\blackgrail";
+        
         public BlackGrailKnightCareerButtonBehavior(CareerObject career) : base(career)
         {
         }

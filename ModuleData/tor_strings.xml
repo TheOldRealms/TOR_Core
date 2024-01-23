@@ -777,7 +777,7 @@
   <string id="career_choicegroup2_name.BlackGrailKnight" text="{=career_choicegroup2_black_grail_knight_str}Ill-faited Questing Knight" />
   <string id="career_choicegroup3_name.BlackGrailKnight" text="{=career_choicegroup3_black_grail_knight_str}Knight of the Black Grail" />
   
-  <string id="career_description.BlackGrailKnight" text="{=career_description_witchHunter_str}Kriegan was autistic." />
+  
 
   
   <!--TOR Damage type related !-->
@@ -803,7 +803,7 @@
   
   <string id="career_description.Necromancer" text="{=career_description_necromancer_str}While many of these dark magisters serve under immortal vampires, it is actually the study of death and undeath that predates the vampire. Necromancers dedicate their lives researching the ultimate question facing every mortal; how to live forever? To the philosophically virtuous necromancer, vampirism is but one of the more successful failures at answering this question. The true answer is believed by these fell scholars to lay in study and innovation of the work of Nagash, the first and greatest necromancer of all time." />
   <string id="career_description.WitchHunter" text="{=career_description_witchHunter_str}Whether in the name of faith, purity or reward, Witch Hunters are charged with ending the threat created by all those who spread the taint of darkness. They justify their weapons, unconventional instruments and methods of investigations in the name of protecting innocent souls. A mostly thankless task, as even those who they are sworn to protect fear the shadow of a Witch Hunter at their threshold." />
-
+  <string id="career_description.BlackGrailKnight" text="{=career_description_black_grail_knight_str}Kriegan was autistic." />
    <!-- Begin FaceGen Entries -->
   <string id="str_facegen_skin.TorsoBelly" text="{=!}Belly Girth" />
   <string id="str_facegen_skin.TorsoHips" text="{=!}Hip Size" />

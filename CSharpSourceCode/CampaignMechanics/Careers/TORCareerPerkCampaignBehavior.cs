@@ -176,7 +176,7 @@ namespace TOR_Core.CampaignMechanics
             if (choices.Contains("CurseOfMousillonPassive4"))
             {
                 var heroes = mobileParty.GetMemberHeroes();
-                var chance = 0.0f + heroes.Where(hero => hero.HasAttribute("IllFaited")).Sum(hero => 0.1f);
+                var chance = 0.0f + heroes.Where(hero => hero.HasAttribute("IllFated")).Sum(hero => 0.1f);
                 
                 if(chance<=0.0f) return;
 
@@ -213,7 +213,7 @@ namespace TOR_Core.CampaignMechanics
             if (choices.Contains("CurseOfMousillonPassive4"))
             {
                 var heroes = mobileParty.GetMemberHeroes();
-                var chance = 0.0f + heroes.Where(hero => hero.HasAttribute("IllFaited")).Sum(hero => 0.1f);
+                var chance = 0.0f + heroes.Where(hero => hero.HasAttribute("IllFated")).Sum(hero => 0.1f);
                 
                 if(chance<=0.0f) return;
 

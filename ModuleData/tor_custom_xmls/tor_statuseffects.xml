@@ -126,6 +126,7 @@
 		applies_for_attack_type="Melee">
 		<temporary_attribute>HorseLink</temporary_attribute>
 	</StatusEffectTemplate> 
+	
 	<StatusEffectTemplate 
 		id="knightly_charge_healing" 
 		particle_id=""
@@ -133,6 +134,33 @@
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="5"
 		type="HealthOverTime"/>
+	<StatusEffectTemplate 
+		id="knightly_charge_healing_dark" 
+		particle_id="breath_of_darkness"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="5"
+		type="HealthOverTime"/>
+		
+	<StatusEffectTemplate 
+		id="black_knightly_charge_phys_res" 
+		particle_id="black_knightly_charge_res"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.2"
+		type= "Resistance"
+		damage_type="Physical"
+		applies_for_attack_type="Melee">
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
+		id="knightly_charge_magic_dmg" 
+		particle_id=""
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		type= "DamageAmplification"
+		base_effect_value="0.2"
+		damage_type="Magical"
+		applies_for_attack_type="Melee"/>
 	<StatusEffectTemplate 
 		id="redfury_effect_dmg" 
 		particle_id="redfury_rage"
