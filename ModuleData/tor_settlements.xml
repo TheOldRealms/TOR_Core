@@ -4500,7 +4500,7 @@
     </CommonAreas>
   </Settlement>
   <!--- Mousillon-->
-  <Settlement id="town_MS1" name="{=Settlements.Settlement.name.town_MS1}Castle Mousillon" owner="Faction.mousillon_clan_1" posX="921.125" posY="1016.838" culture="Culture.mousillon" gate_posX="919.65" gate_posY="1022.8" text="{=Settlements.Settlement.text.town_MS1} In the abyssal, death-ridden swamps formed by the slowing of the River Grismerie, Castle Mousillon slowly descends into the boundless depths of Mousillon’s murky waters. Mousillon itself thrives on barter and trade within the walls itself, many believe even more unsavoury acts happen deep within the city. Laden with dark lit taverns, unsavoury brothels, and dens of thieves, Mousillon is a haven for the enemies of Bretonnia.">
+  <Settlement id="town_MS1" name="{=Settlements.Settlement.name.town_MS1}Castle Mousillon" owner="Faction.mousillon_clan_1" posX="921.125" posY="1016.838" culture="Culture.mousillon" gate_posX="919.65" gate_posY="1022.8" text="{=Settlements.Settlement.text.town_MS1} In the abyssal, death-ridden swamps formed by the slowing of the River Grismerie, Castle Mousillon slowly descends into the boundless depths of Mousillon’s murky waters. Mousillon itself thrives on barter and trade within the walls itself, many believe even more unsavoury acts happen deep within the city. Laden with dark lit taverns, unsavoury brothels, and dens of thieves, Mousillon is a haven for the enemies of Bretonnia. {TOR_CURSEDLOCATIONS}">
     <Components>
       <Town id="town_comp_MS1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>

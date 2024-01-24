@@ -552,6 +552,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             var component = settlement.SettlementComponent as CursedSiteComponent;
             args.optionLeaveType = GameMenuOption.LeaveType.ForceToGiveTroops;
             
+            
             if (!(Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x=> x.IsNecromancer() ) || Hero.MainHero.IsVampire()))
             {
                 args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_not_necromancer_text_str}You are not a practitioner of necromancy.");

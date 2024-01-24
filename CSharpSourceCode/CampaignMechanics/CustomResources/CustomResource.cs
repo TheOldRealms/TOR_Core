@@ -20,7 +20,24 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         public string LargeIconName { get; private set; }
         public List<string> Cultures { get; private set; }
 
-        public CustomResource(string id, string name, string description, string icon, string[] associatedCulturesIds =  null)
+        public CustomResource(string id, string name, string description, string icon, string associatedCulturesId =  null)
+        {
+            if (associatedCulturesId == null)
+            {
+                associatedCulturesId = "neutral_culture";
+            }
+            StringId = id;
+            Name = name;
+            Description = description;
+            SmallIconName = icon;
+            LargeIconName = icon.Replace("_45", "_100");
+            LocalizedName = new TextObject("{=resname_" + StringId + "}" + Name);
+            LocalizedDescription = new TextObject("{=resdesc_" + StringId + "}" + Description);
+            
+            Cultures = new List<string>(){associatedCulturesId};
+        }
+        
+        public CustomResource(string id, string name, string description, string icon, string[] associatedCulturesIds)
         {
             if (associatedCulturesIds == null)
             {

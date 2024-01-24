@@ -6,6 +6,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
@@ -13,7 +14,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
     public class BlackGrailKnightCareerButtonBehavior : CareerButtonBehaviorBase
     {
         private TroopRoster _copiedTroopRoster;
-        private string _knightId = "tor_m_knight_of_misfortune";
+        private const string _knightId = "tor_m_knight_of_misfortune";
         private CharacterObject _originalTroop;
         private CharacterObject _convertedKnight;
         private bool _isPrisoner;
@@ -37,12 +38,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             var count = 0;
             if (index != -1)
             { 
-                count = Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementCopyAtIndex(index).Number;
+                count += Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementCopyAtIndex(index).Number;
             }
             else
             {
                 index = Hero.MainHero.PartyBelongedTo.PrisonRoster.FindIndexOfTroop(characterObject);
-                count = Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementCopyAtIndex(index).Number;
+                count = Hero.MainHero.PartyBelongedTo.PrisonRoster.GetElementCopyAtIndex(index).Number;
+                _isPrisoner = true;
             }
             
             
@@ -88,17 +90,26 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             if (count >= 0)
             {
                 rightownerparty.MemberRoster.Add(_copiedTroopRoster);
-                rightownerparty.AddMember(_originalTroop, -count);
+                if (!_isPrisoner)
+                {
+                    rightownerparty.AddMember(_originalTroop, -count);
+                }
+                else
+                {
+                    rightownerparty.AddPrisoner(_originalTroop, -count);
+                }
+                
                 Hero.MainHero.AddCustomResource("DarkEnergy", - _exchangeCost*count);
                 
             }
             
-            _knightId = null;
             Game.Current.GameStateManager.PopState();
         }
 
         public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner = false)
         {
+
+            if (!Hero.MainHero.HasCareerChoice("ScourgeOfBretonniaPassive4")) return false;
             if (characterObject.IsHero) return false;
 
             if (characterObject.Culture.StringId != "vlandia") return false;
@@ -110,6 +121,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
         public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)
         {
+            if (_exchangeCost > Hero.MainHero.GetCustomResourceValue("DarkEnergy"))
+            {
+                displayText = new TextObject("Requires atleast "+_exchangeCost +" "+CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
+                return false;
+            }
             displayText = new TextObject("");
 
             if (characterObject.StringId == "tor_br_grail_knight")

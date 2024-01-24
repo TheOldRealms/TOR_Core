@@ -808,7 +808,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-	<ResourceCost ResourceType="DarkEnergy" UpkeepCost="5" UpgradeCost="0" />
+	<ResourceCost ResourceType="DarkEnergy" UpkeepCost="5" UpgradeCost="200" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_caravan_guard">
     <Abilities />
@@ -4477,6 +4477,16 @@
     <Attributes />
 	<Attributes>
       <string>IllFated</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_wanderer_mousillon_1">
+    <Abilities>
+      <string>FoetidCloud</string>
+      <string>SummonSkeleton</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wanderer_vampire_0">
