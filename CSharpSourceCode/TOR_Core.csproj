@@ -455,6 +455,8 @@
     <Compile Include="BattleMechanics\CustomCrosshairMissionBehavior.cs" />
     <Compile Include="BattleMechanics\DamageSystem\DamageType.cs" />
     <Compile Include="BattleMechanics\Dismemberment\DismembermentMissionLogic.cs" />
+    <Compile Include="BattleMechanics\DualWield\DualWieldAgentComponent.cs" />
+    <Compile Include="BattleMechanics\DualWield\DualWieldMissionLogic.cs" />
     <Compile Include="BattleMechanics\Firearms\FirearmsMissionLogic.cs" />
     <Compile Include="BattleMechanics\Jousting\JoustLaneEndVolumeBox.cs" />
     <Compile Include="BattleMechanics\Jousting\JoustTournamentBehavior.cs" />

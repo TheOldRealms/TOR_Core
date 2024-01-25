@@ -118,7 +118,7 @@ namespace TOR_Core.AbilitySystem
             _mainHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.MainHand);
             _offHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.OffHand);
             _currentState = AbilityModeState.Targeting;
-            _abilityView.MissionScreen.SetRadialMenuActiveState(false);
+            _abilityView.MissionScreen?.SetRadialMenuActiveState(false);
 
             ChangeKeyBindings();
             SlowDownTime(true);
@@ -146,7 +146,7 @@ namespace TOR_Core.AbilitySystem
         private void EnableQuickSelectionMenuMode()
         {
             _currentState = AbilityModeState.QuickMenuSelection;
-            _abilityView.MissionScreen.SetRadialMenuActiveState(true);
+            _abilityView.MissionScreen?.SetRadialMenuActiveState(true);
             _mainHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.MainHand);
             _offHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.OffHand);
             ChangeKeyBindings();
@@ -186,7 +186,7 @@ namespace TOR_Core.AbilitySystem
 
             ChangeKeyBindings();
             SlowDownTime(false);
-            _abilityView.MissionScreen.SetRadialMenuActiveState(false);
+            _abilityView.MissionScreen?.SetRadialMenuActiveState(false);
             var traitcomp = Agent.Main.GetComponent<ItemTraitAgentComponent>();
             if (traitcomp != null)
             {
