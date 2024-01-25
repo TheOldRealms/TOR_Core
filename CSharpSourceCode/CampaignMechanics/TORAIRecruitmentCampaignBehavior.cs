@@ -4,6 +4,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.CampaignMechanics;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -40,6 +41,27 @@ namespace TOR_Core.Models
                 if(recruitmentSource!=null)
                     recruitmentSource.SetPersonalRelation(recruiter, recruitmentSource.GetBaseHeroRelation(recruiter)-1);
                 recruiter.PartyBelongedTo.Party.AddMember(troop, -amount);
+            }
+
+            if (recruiter.IsLord&&troop.Culture.StringId == "mousillon" && recruiter.Culture.StringId == "vlandia")
+            {
+                var mousillonEquivalent = TorRecruitmentHelpers.GetMousillonEquivalent(troop);
+                if (mousillonEquivalent != null)
+                {
+                    recruiter.PartyBelongedTo.Party.AddMember(mousillonEquivalent,amount);
+                    recruiter.PartyBelongedTo.Party.AddMember(troop, -amount);
+                }
+            }
+            
+            if (recruiter.IsLord&&troop.Culture.StringId == "vlandia" && recruiter.Culture.StringId == "mousillon")
+            {
+                var bretonniaEquivalent = TorRecruitmentHelpers.GetMousillonEquivalent(troop);
+                if (bretonniaEquivalent != null)
+                {
+                    recruiter.PartyBelongedTo.Party.AddMember(bretonniaEquivalent,amount);
+                    recruiter.PartyBelongedTo.Party.AddMember(troop, -amount);
+                }
+                
             }
         }
     }

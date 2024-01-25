@@ -55,7 +55,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             var canAfford = (int) value/_exchangeCost;
 
             var availableKnights = (int) Mathf.Min(count, canAfford);
-            
+            availableKnights -= Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementWoundedNumber(index);
             
             _convertedKnight = MBObjectManager.Instance.GetObject<CharacterObject>(_knightId);
             
@@ -68,10 +68,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 {
                     if (!elem.Troop.IsHero)
                     {
-                        var indexOfTroop = Hero.MainHero.PartyBelongedTo.MemberRoster.FindIndexOfTroop(elem.Troop);
                         if (elem.IsWounded)
                         {
-                            _copiedTroopRoster.AddToCounts(elem.Troop, 0,false,1,elem.Xp,true,indexOfTroop);
+                            _copiedTroopRoster.AddToCounts(elem.Troop, 0,false,1,elem.Xp,true);
                         }
                         else
                         {
@@ -81,7 +80,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     }
                 }
                 _copiedTroopRoster.RemoveZeroCounts();
-                PartyScreenManager.OpenScreenAsReceiveTroops(roster, new TextObject("Ill fated Knights"), ExchangeKnights);
+                PartyScreenManager.OpenScreenAsReceiveTroops(roster, new TextObject("Ill fated Knights: Exchange "+_originalTroop.Name.ToString()+ "for mousillon Knights"), ExchangeKnights);
             }
             
         }
@@ -127,6 +126,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)
         {
 
+            displayText = new TextObject("");
             var index = -1;
             if (!isPrisoner)
             {
@@ -136,7 +136,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             {
                 index = Hero.MainHero.PartyBelongedTo.PrisonRoster.FindIndexOfTroop(characterObject);
             }
-            
+
+            if (index == -1) return false;
             
             if (isPrisoner)
             {
@@ -144,7 +145,17 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 var woundedPrisoners = Hero.MainHero.PartyBelongedTo.PrisonRoster.GetElementWoundedNumber(index);
                 if (healthyPrisoners - woundedPrisoners < 0 )
                 {
-                    displayText = new TextObject("Not enough healthy Prisoners are available");
+                    displayText = new TextObject("Not enough healthy prisoners available");
+                    return false;
+                }
+            }
+            else
+            {
+                var healthyPrisoners= Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementNumber(index);
+                var woundedPrisoners = Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementWoundedNumber(index);
+                if (healthyPrisoners - woundedPrisoners < 0 )
+                {
+                    displayText = new TextObject("Not enough healthy troops available");
                     return false;
                 }
             }

@@ -535,6 +535,7 @@
     <Compile Include="CampaignMechanics\TORMapInfoVMExtension.cs" />
     <Compile Include="CampaignMechanics\TORPartyUpgraderCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORAIRecruitmentCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\TorRecruitmentHelpers.cs" />
     <Compile Include="CampaignMechanics\TORSpecialSettlementBehavior.cs" />
     <Compile Include="CampaignMechanics\TORWanderersCampaignBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerAbilityChargeSupplier.cs" />
