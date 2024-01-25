@@ -122,13 +122,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             return ( 15 * level * unitCount ) / retinueCount;
         }
         
-        public override void ButtonClickedEvent(CharacterObject characterObject)
+        public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner=false)
         {
             SetUpRetinueExchange(characterObject);
         }
 
         public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner)
         {
+            
+            if (PartyScreenManager.Instance.CurrentMode != PartyScreenMode.Normal) return false;
 
             if (characterObject.IsHero) return false;
 

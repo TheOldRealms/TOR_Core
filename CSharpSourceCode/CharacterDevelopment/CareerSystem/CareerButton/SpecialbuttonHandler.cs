@@ -44,11 +44,11 @@ namespace TOR_Core.CampaignMechanics
             }
         }
         
-        public void OnButtonClicked(CharacterObject troopID)
+        public void OnButtonClicked(CharacterObject troopID, bool isPrisoner)
         {
             if (_clickEvent != null)
             {
-                _clickEvent.Invoke(troopID);
+                _clickEvent.Invoke(troopID, isPrisoner);
             }
         }
 

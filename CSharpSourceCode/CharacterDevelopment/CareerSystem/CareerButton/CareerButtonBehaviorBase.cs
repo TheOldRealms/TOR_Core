@@ -6,7 +6,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 {
     public abstract  class CareerButtonBehaviorBase
     {
-        public delegate void OnCareerButtonClickedEvent(CharacterObject troopID);
+        public delegate void OnCareerButtonClickedEvent(CharacterObject troopID, bool isPrisoner);
         public delegate bool OnShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner);
         public delegate bool OnShouldButtonBeActive(CharacterObject characterObject, out TextObject deactivateCondition, bool isPrsioner);
 
@@ -24,7 +24,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         }
 
 
-        public abstract void ButtonClickedEvent(CharacterObject characterObject);
+        public abstract void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner=false);
 
         public abstract bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner=false);
 
