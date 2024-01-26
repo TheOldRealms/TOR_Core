@@ -10,7 +10,6 @@ namespace TOR_Core.AbilitySystem.Scripts
     {
         private MissionCameraFadeView _cameraView;
         private Vec3 targetPosition;
-        private bool teleported;
         
         protected override void OnInit()
         {
@@ -18,31 +17,26 @@ namespace TOR_Core.AbilitySystem.Scripts
             _cameraView = Mission.Current.GetMissionBehavior<MissionCameraFadeView>();
         }
 
-        protected override void OnTick(float dt)
+        protected override void OnAfterTick(float dt)
         {
-            if (teleported) return;
-            base.OnTick(dt);
-
-            TORCommon.Say(GameEntity.GlobalPosition.ToWorldPosition().GetGroundVec3().ToString());
-            if (_casterAgent == null) return;
-
-            if (_casterAgent.GetHero().HasCareerChoice("EnvoyOfTheLadyKeystone"))
+            if (CasterAgent == null)
             {
-                var troops = Mission.Current.GetNearbyAllyAgents(_casterAgent.Position.AsVec2, 5f, _casterAgent.Team, new MBList<Agent>());
-                troops.Remove(_casterAgent); // so the player is not affected
+                Stop();
+                return;
+            }
+            if (CasterAgent.GetHero().HasCareerChoice("EnvoyOfTheLadyKeystone"))
+            {
+                var troops = Mission.Current.GetNearbyAllyAgents(CasterAgent.Position.AsVec2, 5f, CasterAgent.Team, new MBList<Agent>());
+                troops.Remove(CasterAgent); // so the player is not affected
 
                 foreach (var troop in troops) troop.TeleportToPosition(Mission.Current.GetRandomPositionAroundPoint(targetPosition, 1, 3));
             }
 
             _cameraView.BeginFadeOutAndIn(0.1f, 0.1f, 0.5f);
 
-            _casterAgent.TeleportToPosition(targetPosition);
-
-
-            TriggerEffects(targetPosition, Vec3.Up);
-            teleported = true;
-
-            IsFading = true;
+            CasterAgent.TeleportToPosition(targetPosition);
+            
+            Stop();
         }
     }
 }

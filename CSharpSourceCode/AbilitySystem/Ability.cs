@@ -568,11 +568,11 @@ namespace TOR_Core.AbilitySystem
                 {
                     var wizardAIComponent = casterAgent.GetComponent<WizardAIComponent>();
                     var target = wizardAIComponent.CurrentCastingBehavior.CurrentTarget;
-                    AbilityScript.SetExplicitSingleTarget(target.Agent);
+                    AbilityScript.SetExplicitTargetAgents(new MBList<Agent> { target.Agent });
                 }
                 else if (Crosshair.CrosshairType == CrosshairType.SingleTarget)
                 {
-                    AbilityScript.SetExplicitSingleTarget((Crosshair as SingleTargetCrosshair).CachedTarget);
+                    AbilityScript.SetExplicitTargetAgents(new MBList<Agent> { (Crosshair as SingleTargetCrosshair).CachedTarget });
                 }
             }
 
@@ -607,7 +607,7 @@ namespace TOR_Core.AbilitySystem
             var prefabEntity = SpawnEntity();
             parentEntity.AddChild(prefabEntity);
             AbilityScript?.Initialize(this);
-            AbilityScript?.SetAgent(casterAgent);
+            AbilityScript?.SetCasterAgent(casterAgent);
             parentEntity.CallScriptCallbacks();
         }
 
