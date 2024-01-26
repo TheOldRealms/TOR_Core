@@ -14,25 +14,24 @@ namespace TOR_Core.BattleMechanics
 {
     public class CareerPerkMissionBehavior : MissionLogic
     {
-        
-        public override void OnAgentHit (Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
+        public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
-            if(!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
+            if (!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
 
-            if (( affectorAgent.IsMainAgent && affectorAgent.GetHero().HasCareer(TORCareers.WitchHunter) ) ||
-                ( affectorAgent.BelongsToMainParty()&&affectorAgent.IsHero && Hero.MainHero.HasCareerChoice("NoRestAgainstEvilKeystone") ))
+            if ((affectorAgent.IsMainAgent && affectorAgent.GetHero().HasCareer(TORCareers.WitchHunter)) ||
+                (affectorAgent.BelongsToMainParty() && affectorAgent.IsHero && Hero.MainHero.HasCareerChoice("NoRestAgainstEvilKeystone")))
             {
-                WitchHunterAccusationBehavior(affectorAgent,affectedAgent, blow.InflictedDamage);
+                WitchHunterAccusationBehavior(affectorAgent, affectedAgent, blow.InflictedDamage);
             }
         }
 
         private void WitchHunterAccusationBehavior(Agent affectorAgent, Agent affectedAgent, int inflictedDamge)
         {
             var comp = affectedAgent.GetComponent<StatusEffectComponent>();
-            if(comp==null) return;
+            if (comp == null) return;
             var temporaryEffects = comp.GetTemporaryAttributes();
             if (!temporaryEffects.Contains("AccusationMark")) return;
-                
+
             var choices = Hero.MainHero.GetAllCareerChoices();
 
             CareerAbility ability = affectorAgent.GetComponent<AbilityComponent>().CareerAbility;
@@ -43,18 +42,17 @@ namespace TOR_Core.BattleMechanics
 
             var targets = new MBList<Agent>();
 
-            if (choices.Contains("EndsJustifiesMeansKeystone")&&affectedAgent.HealthLimit <= inflictedDamge)
+            if (choices.Contains("EndsJustifiesMeansKeystone") && affectedAgent.HealthLimit <= inflictedDamge)
             {
                 var amount = AccusationScript.CalculateAdditonalTargetAmount(ability.Template.ScaleVariable1);
-                targets.AddRange(AccusationScript.GetAdditionalAccusationMarkTargets(affectedAgent.Position.AsVec2,amount+1));
+                targets.AddRange(AccusationScript.GetAdditionalAccusationMarkTargets(affectedAgent.Position.AsVec2, amount + 1));
             }
 
-            var script = (CareerAbilityScript)( ability.AbilityScript );
-            var triggeredEffects = script.AccessEffectsToTrigger();
-            foreach (var triggeredEffect in triggeredEffects)
+            var script = (CareerAbilityScript)(ability.AbilityScript);
+            foreach (var triggeredEffect in script.EffectsToTrigger)
             {
                 targets.Add(affectedAgent);
-                if (MBRandom.RandomFloat <= reapplyChance|| choices.Contains("NoRestAgainstEvilKeystone"))
+                if (MBRandom.RandomFloat <= reapplyChance || choices.Contains("NoRestAgainstEvilKeystone"))
                 {
                     targets.Add(affectedAgent);
                 }
@@ -62,14 +60,14 @@ namespace TOR_Core.BattleMechanics
                 {
                     affectedAgent.RemoveStatusEffect("accusation_debuff");
                 }
-                    
-                if(triggeredEffect==null) return;
-                    
+
+                if (triggeredEffect == null) return;
+
                 foreach (var target in targets)
                 {
                     foreach (var statusEffect in triggeredEffect.StatusEffects)
                     {
-                        target.ApplyStatusEffect(statusEffect, affectorAgent, triggeredEffect.ImbuedStatusEffectDuration,true,true);
+                        target.ApplyStatusEffect(statusEffect, affectorAgent, triggeredEffect.ImbuedStatusEffectDuration, true, true);
                     }
                 }
             }
@@ -77,11 +75,11 @@ namespace TOR_Core.BattleMechanics
 
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
-            
-            if(!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
-            
+
+            if (!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
+
             var playerHero = affectorAgent.GetHero();
-            
+
             var hitBodyPart = blow.VictimBodyPart;
 
             if (affectorAgent.IsMainAgent)
@@ -89,7 +87,7 @@ namespace TOR_Core.BattleMechanics
                 var choices = Hero.MainHero.GetAllCareerChoices();
                 if (hitBodyPart == BoneBodyPartType.Head || hitBodyPart == BoneBodyPartType.Neck)
                 {
-                    if(choices.Contains("CourtleyPassive4"))
+                    if (choices.Contains("CourtleyPassive4"))
                     {
                         var choice = TORCareerChoices.GetChoice("CourtleyPassive4");
                         if (choice != null)
@@ -98,14 +96,14 @@ namespace TOR_Core.BattleMechanics
                             playerHero.AddWindsOfMagic(value);
                         }
                     }
-                    
-                    if(choices.Contains("GuiltyByAssociationPassive4"))
+
+                    if (choices.Contains("GuiltyByAssociationPassive4"))
                     {
                         var choice = TORCareerChoices.GetChoice("GuiltyByAssociationKeystone");
                         if (choice != null)
                         {
-                            affectorAgent.ApplyStatusEffect("accusation_buff_ats",affectorAgent,choice.GetPassiveValue(),false,false);
-                            affectorAgent.ApplyStatusEffect("accusation_buff_rls",affectorAgent,choice.GetPassiveValue(),false,false);
+                            affectorAgent.ApplyStatusEffect("accusation_buff_ats", affectorAgent, choice.GetPassiveValue(), false, false);
+                            affectorAgent.ApplyStatusEffect("accusation_buff_rls", affectorAgent, choice.GetPassiveValue(), false, false);
                         }
                     }
 
@@ -119,13 +117,12 @@ namespace TOR_Core.BattleMechanics
                                 multiplier *= 2;
                         }
 
-                        var value = ( (int)blow.InflictedDamage * multiplier ) / 10;
-                        Hero.MainHero.AddSkillXp(DefaultSkills.Roguery,value);
+                        var value = ((int)blow.InflictedDamage * multiplier) / 10;
+                        Hero.MainHero.AddSkillXp(DefaultSkills.Roguery, value);
                     }
-                    
                 }
 
-                if (choices.Contains ("AvatarOfDeathPassive4"))
+                if (choices.Contains("AvatarOfDeathPassive4"))
                 {
                     var choice = TORCareerChoices.GetChoice("AvatarOfDeathPassive4");
 
@@ -134,9 +131,9 @@ namespace TOR_Core.BattleMechanics
                         var threshold = 500;
                         var damage = blow.InflictedDamage - threshold;
                         if (damage >= 0)
-                        { 
-                            var bonus =  Mathf.Clamp(damage / 100,0, 5);
-                            affectorAgent.Heal (bonus);
+                        {
+                            var bonus = Mathf.Clamp(damage / 100, 0, 5);
+                            affectorAgent.Heal(bonus);
                         }
                     }
                 }
@@ -147,31 +144,26 @@ namespace TOR_Core.BattleMechanics
 
                     if (choice != null)
                     {
-                        
-                      var careerAbility = (Ability) affectorAgent.GetComponent<AbilityComponent>().CareerAbility;
+                        var careerAbility = (Ability)affectorAgent.GetComponent<AbilityComponent>().CareerAbility;
 
-                      if (careerAbility.IsActive)
-                      {
+                        if (careerAbility.IsActive)
+                        {
+                            var script = (RedFuryScript)(careerAbility.AbilityScript);
 
-                          
-                          var script = (RedFuryScript)( careerAbility.AbilityScript );
-                          var triggeredEffects = script.AccessEffectsToTrigger();
-
-                          foreach (var effect in triggeredEffects)
-                          {
-                              foreach (var statuseffect in effect.StatusEffects)
-                              {
-                                  affectorAgent.ApplyStatusEffect(statuseffect,affectorAgent,3);
-                                  script.ExtendLifeTime(3);
-                              }
-                  
-                          }
-                      }
+                            foreach (var effect in script.EffectsToTrigger)
+                            {
+                                foreach (var statuseffect in effect.StatusEffects)
+                                {
+                                    affectorAgent.ApplyStatusEffect(statuseffect, affectorAgent, 3);
+                                    script.ExtendLifeTime(3);
+                                }
+                            }
+                        }
                     }
                 }
-                
-                
-                if (choices.Contains ("SilverHammerPassive1"))
+
+
+                if (choices.Contains("SilverHammerPassive1"))
                 {
                     var choice = TORCareerChoices.GetChoice("SilverHammerPassive1");
 
@@ -179,18 +171,18 @@ namespace TOR_Core.BattleMechanics
                     {
                         if (affectedAgent.IsEnemyOf(affectorAgent) && affectedAgent.Character.Race != 0)
                         {
-                            Hero.MainHero.AddSkillXp(TORSkills.Faith,choice.GetPassiveValue());
+                            Hero.MainHero.AddSkillXp(TORSkills.Faith, choice.GetPassiveValue());
                         }
                     }
                 }
-                
+
                 if (affectorAgent.HasAttribute("NecromancerChampion"))
                 {
                     if (choices.Contains("GrimoireNecrisKeystone"))
                     {
                         affectorAgent.Heal(2);
-                    } 
-                    
+                    }
+
                     if (choices.Contains("BooksOfNagashKeystone"))
                     {
                         Hero.MainHero.AddWindsOfMagic(1);
@@ -201,18 +193,14 @@ namespace TOR_Core.BattleMechanics
                     {
                         multiplier = affectedAgent.Character.Level;
                     }
-                
-                    Hero.MainHero.AddSkillXp(TORSkills.SpellCraft,5*multiplier);
+
+                    Hero.MainHero.AddSkillXp(TORSkills.SpellCraft, 5 * multiplier);
                     if (Hero.MainHero.HasCareerChoice("LiberNecrisPassive2"))
                     {
-                        Hero.MainHero.AddSkillXp(DefaultSkills.Roguery,5*multiplier);
+                        Hero.MainHero.AddSkillXp(DefaultSkills.Roguery, 5 * multiplier);
                     }
                 }
             }
-
-            
-            
-            
         }
     }
 }
