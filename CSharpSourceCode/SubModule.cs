@@ -227,7 +227,7 @@ namespace TOR_Core
             if (missionCombatantsLogic == null)
                 return;
             
-            mission.AddMissionLogicAtIndexOf(missionCombatantsLogic, TorMissionCombatantsLogic.CreateFromInstanace(missionCombatantsLogic));
+            mission.AddMissionLogicAtIndexOf(missionCombatantsLogic, TorMissionCombatantsLogic.CreateFromInstance(missionCombatantsLogic));
         }
 
         public override void OnMissionBehaviorInitialize(Mission mission)
