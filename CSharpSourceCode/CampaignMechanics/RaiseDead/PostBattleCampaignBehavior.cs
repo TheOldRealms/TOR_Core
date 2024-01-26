@@ -100,13 +100,13 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                     
                     if (rosterMember.Troop.Tier<4)
                     {
-                        if (MBRandom.RandomFloat >= 0.15f) continue;
+                        if (MBRandom.RandomFloat >= 0.1f) continue;
                         elements.Add(BloodKnightTemplate);
                         reduced++;
                     }
                     else
                     {
-                        if (MBRandom.RandomFloat >= 0.4f) continue;
+                        if (MBRandom.RandomFloat >= 0.2f) continue;
                         elements.Add(BloodKnightTemplate);
                         reduced++;
                     }
