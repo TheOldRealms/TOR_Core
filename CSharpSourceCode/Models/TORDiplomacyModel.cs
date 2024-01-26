@@ -83,7 +83,7 @@ namespace TOR_Core.Models
             nativeScoreOfDeclaringPeace *= TORConfig.DeclareWarScoreMultiplierNative;
             torScore *= TORConfig.DeclareWarScoreMultiplierTor;
 
-            TORCommon.Say($"Declaring war between {factionDeclaresPeace.Name} and {factionDeclaredPeace.Name}\n\t\t" +
+            TORCommon.Say($"Declaring peace between {factionDeclaresPeace.Name} and {factionDeclaredPeace.Name}\n\t\t" +
                 $"Native Score: {nativeScoreOfDeclaringPeace},\tTOR Score: {torScore}");
 
             return nativeScoreOfDeclaringPeace - torScore;
