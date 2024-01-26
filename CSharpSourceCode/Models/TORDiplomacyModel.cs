@@ -81,7 +81,7 @@ namespace TOR_Core.Models
 
             /// Apply same multipliers as declaration of war to try to them in agreement as much as possible
             nativeScoreOfDeclaringPeace *= TORConfig.DeclareWarScoreMultiplierNative;
-            torScore *= TORConfig.DeclareWarScoreMultiplierTor;
+            torScore *= TORConfig.DeclareWarScoreMultiplierTor/3f;
 
             TORCommon.Say($"Declaring peace between {factionDeclaresPeace.Name} and {factionDeclaredPeace.Name}\n\t\t" +
                 $"Native Score: {nativeScoreOfDeclaringPeace},\tTOR Score: {torScore}");
