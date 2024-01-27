@@ -887,6 +887,35 @@
             TargetType="Self" 
             DamageVariance="0" 
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.KnockDownScript"/>
+			
+	  <TriggeredEffectTemplate StringID="apply_netherball" 
+            BurstParticleEffectPrefab="psys_fireball_explosion_1" 
+            SoundEffectId="fireball_explosion" 
+            SoundEffectLength="2.5" 
+            DamageType="Magical" 
+            DamageAmount="80" 
+            Radius="3" 
+            HasShockWave="false" 
+            TargetType="All" 
+            ImbuedStatusEffectDuration="5" 
+            DamageVariance="0.05" 
+            ScriptNameToTrigger="none">
+      </TriggeredEffectTemplate>
+	  
+	  <TriggeredEffectTemplate StringID="summon_wraith" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="All" 
+            DamageVariance="0" 
+            TroopIdToSummon="tor_vc_spirit_host"
+            NumberToSummon="1"
+            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.SummonScript"/>
+
 
 
 		<TriggeredEffectTemplate StringID="apply_knightly_charge" 

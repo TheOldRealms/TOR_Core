@@ -656,6 +656,16 @@
 		rotation_speed="200"
 		/>
 		
+	<StatusEffectTemplate 
+		id="netherball_dot" 
+		particle_id="breath_of_darkness"
+		do_not_attach_to_agent_skeleton="true"
+		particle_intensity="High"
+		base_effect_value="5"
+		type="DamageOverTime"
+		damage_type="Magical">
+	</StatusEffectTemplate> 
+		
 		
 	<StatusEffectTemplate 
 		id="pans_pelt" 

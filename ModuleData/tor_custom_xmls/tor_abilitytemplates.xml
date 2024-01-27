@@ -3042,7 +3042,8 @@
       TriggerType="OnCollision" 
       HasLight="true" 
       LightIntensity="50" 
-      LightRadius="10" 
+      LightRadius="10"
+	  MaxDistance="120"
       LightFlickeringMagnitude="3" 
       LightFlickeringInterval="0.7" 
       ShadowCastEnabled="true" 
@@ -3065,7 +3066,8 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>fireball_explosion</TriggeredEffect>
+		<TriggeredEffect>apply_netherball</TriggeredEffect>
+		
 	</AbilityTemplate>
 	
 	

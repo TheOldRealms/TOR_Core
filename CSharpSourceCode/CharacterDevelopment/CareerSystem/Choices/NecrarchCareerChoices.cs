@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.Core;
+using TOR_Core.AbilitySystem;
+using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
 using TOR_Core.Utilities;
 
@@ -104,32 +108,69 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _necrarchRoot.Initialize(CareerID, "The Blood Knight is channeling focus and rage towards the enemies. Damage increased by 45% and physical resistance by 10% for the next 6 seconds. Both bonuses increase with the skill of the equipped weapon by 0.05% per point. Requires 5 kills to recharge, +1 kill per a final perk picked up to max 10.", null, true,
+            _necrarchRoot.Initialize(CareerID, "Summoned out of the realm of the dead, a projectile spell is casted and deals X damage the radius of the netherball enlarges for every point in spellcraft. The Netherball can be modified with several upgrades from the career tree. The netherball is free of any cost.", null, true,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                });
+            
+            _discipleOfAccursedKeystone.Initialize(CareerID, "Netherball is now target seeking.", "DiscipleOfAccursed", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
                     {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "redfury_effect_dmg",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.OneHanded, DefaultSkills.TwoHanded, DefaultSkills.Polearm }, 0.0005f, false, true),
-                        MutationType = OperationType.Add
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "NetherBall",
+                        PropertyName = "SeekerParameters",
+                        PropertyValue = (choice, originalValue, agent) =>
+                        {
+                            var seeker = new SeekerParameters();
+                            seeker.Derivative = 0;
+                            seeker.Proportional = 0.5f;
+                            seeker.DisableDistance = 10f;
+                            return seeker;
+                        },
+                        MutationType = OperationType.Replace
                     },
                     new CareerChoiceObject.MutationObject()
                     {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "redfury_effect_res",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.OneHanded, DefaultSkills.TwoHanded, DefaultSkills.Polearm }, 0.0005f, false, true),
-                        MutationType = OperationType.Add
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "NetherBall",
+                        PropertyName = "CrosshairType",
+                        PropertyValue = (choice, originalValue, agent) =>CrosshairType.SingleTarget,
+                        MutationType = OperationType.Replace
                     },
                     new CareerChoiceObject.MutationObject()
                     {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "redfury_effect_ats",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.OneHanded, DefaultSkills.TwoHanded, DefaultSkills.Polearm }, 0.0005f, false, true),
-                        MutationType = OperationType.Add
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "NetherBall",
+                        PropertyName = "AbilityTargetType",
+                        PropertyValue = (choice, originalValue, agent) =>AbilityTargetType.EnemiesInAOE,
+                        MutationType = OperationType.Replace
+                    },
+                });
+            
+            _witchSightKeystone.Initialize(CareerID, "Netherball applies a dot on impact", "WitchSight", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_netherball",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "netherball_dot" }).ToList(),
+                        MutationType = OperationType.Replace
+                    }
+                });
+            _darkVisionKeystone.Initialize(CareerID, "Summons a Wraith on impact", "DarkVision", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "NetherBall",
+                        PropertyName = "TriggeredEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "summon_wraith" }).ToList(),
+                        MutationType = OperationType.Replace
                     }
                 });
         }
