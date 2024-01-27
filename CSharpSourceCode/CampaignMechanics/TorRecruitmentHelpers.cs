@@ -9,7 +9,7 @@ namespace TOR_Core.CampaignMechanics
         public static CharacterObject GetMousillonEquivalent(CharacterObject bretonnianTroop)
         {
             if (bretonnianTroop.IsHero) return null;
-            
+
             if (!bretonnianTroop.IsEliteTroop())
             {
                 if (bretonnianTroop.StringId.Contains("warden") || bretonnianTroop.StringId.Contains("foot_squire"))
@@ -20,7 +20,7 @@ namespace TOR_Core.CampaignMechanics
                 var mousillonID = "tor_m_" + reducedId;
 
                 var troop = MBObjectManager.Instance.GetObject<CharacterObject>(mousillonID);
-            
+
                 return troop;
             }
 
@@ -45,25 +45,23 @@ namespace TOR_Core.CampaignMechanics
             }
 
             if (knightID == "") return null;
-            
+
             var knight = MBObjectManager.Instance.GetObject<CharacterObject>(knightID);
             return knight;
-
         }
-        
+
         public static CharacterObject GetBretonnianEquivalent(CharacterObject mousillonTroop)
         {
             if (mousillonTroop.IsHero) return null;
-            
+
             if (!mousillonTroop.IsEliteTroop())
             {
-                
                 var reducedId = mousillonTroop.StringId.Substring(7);
 
                 var bretonnianID = "tor_br_" + reducedId;
 
                 var troop = MBObjectManager.Instance.GetObject<CharacterObject>(bretonnianID);
-            
+
                 return troop;
             }
 
@@ -88,10 +86,9 @@ namespace TOR_Core.CampaignMechanics
             }
 
             if (knightID == "") return null;
-            
+
             var knight = MBObjectManager.Instance.GetObject<CharacterObject>(knightID);
             return knight;
-
         }
     }
 }

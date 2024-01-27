@@ -55,7 +55,7 @@ namespace TOR_Core.Models
             
             if (recruiter.IsLord&&troop.Culture.StringId == "vlandia" && recruiter.Culture.StringId == "mousillon")
             {
-                var bretonniaEquivalent = TorRecruitmentHelpers.GetMousillonEquivalent(troop);
+                var bretonniaEquivalent = TorRecruitmentHelpers.GetBretonnianEquivalent(troop);
                 if (bretonniaEquivalent != null)
                 {
                     recruiter.PartyBelongedTo.Party.AddMember(bretonniaEquivalent,amount);

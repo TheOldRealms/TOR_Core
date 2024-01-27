@@ -41,8 +41,7 @@ namespace TOR_Core.CampaignMechanics
                 bloodKeep.MilitiaPartyComponent.Party.AddMember(bloodDragon, 500);
                 bloodKeep.SetGarrisonWagePaymentLimit(800000);
             }
-
-
+            
             var castleMousillon = Campaign.Current.Settlements.FirstOrDefault(x => x.StringId == "town_MS1");
 
             if (castleMousillon != null)
