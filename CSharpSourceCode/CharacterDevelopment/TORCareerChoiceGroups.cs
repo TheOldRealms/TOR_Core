@@ -87,6 +87,15 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _robberKnight;
         private CareerChoiceGroupObject _lieOfLady;
         private CareerChoiceGroupObject _blackGrailVow;
+        
+        //Necrarch
+        private CareerChoiceGroupObject _discipleOfAccursed;
+        private CareerChoiceGroupObject _witchSight;
+        private CareerChoiceGroupObject _darkVision;
+        private CareerChoiceGroupObject _unhallowedSoul;
+        private CareerChoiceGroupObject _hungerForKnowledge;
+        private CareerChoiceGroupObject _wellspringOfDhar;
+        private CareerChoiceGroupObject _everlingsSecret;
 
 
         public TORCareerChoiceGroups()
@@ -125,7 +134,6 @@ namespace TOR_Core.CharacterDevelopment
             _liberMortis = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("LiberMortis"));
             _booksOfNagash = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("BooksOfNagash"));
             _codexMortifica = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("CodexMortifica"));
-     
             
             //Vampire Count
             _newBlood = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("NewBlood"));
@@ -180,6 +188,15 @@ namespace TOR_Core.CharacterDevelopment
             _robberKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_robberKnight).UnderscoreFirstCharToUpper()));
             _lieOfLady = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_lieOfLady).UnderscoreFirstCharToUpper()));
             _blackGrailVow = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_blackGrailVow).UnderscoreFirstCharToUpper()));
+            
+            //Necrarch
+            _discipleOfAccursed = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_discipleOfAccursed).UnderscoreFirstCharToUpper()));
+            _witchSight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_witchSight).UnderscoreFirstCharToUpper()));
+            _darkVision = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_darkVision).UnderscoreFirstCharToUpper()));
+            _unhallowedSoul = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_unhallowedSoul).UnderscoreFirstCharToUpper()));
+            _hungerForKnowledge = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_hungerForKnowledge).UnderscoreFirstCharToUpper()));
+            _wellspringOfDhar = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_wellspringOfDhar).UnderscoreFirstCharToUpper()));
+            _everlingsSecret = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_everlingsSecret).UnderscoreFirstCharToUpper()));
             
         }
 
@@ -545,6 +562,44 @@ namespace TOR_Core.CharacterDevelopment
             });
             
             _envoyOfTheLady.Initialize("{=envoy_of_the_lady_choice_group_str}Envoy of the Lady", TORCareers.GrailDamsel, 3, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier >= 4;
+            });
+            
+            //Necrarch
+            
+            _discipleOfAccursed.Initialize("Disciple of the Accursed", TORCareers.Necrarch, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _witchSight.Initialize("Witch Sight", TORCareers.Necrarch, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _darkVision.Initialize("{=relentless_fanatic_choice_group_str}Dark Visions", TORCareers.Necrarch, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _unhallowedSoul.Initialize("{=protector_of_the_weak_choice_group_str}Unhallowed Soul", TORCareers.Necrarch, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            _hungerForKnowledge.Initialize("{=holy_purge_choice_group_str}Hunger for Knowledge", TORCareers.Necrarch, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            _wellspringOfDhar.Initialize("{=arch_lector_choice_group_str}Wellspring of Dhar", TORCareers.Necrarch, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            _everlingsSecret.Initialize("{=arch_lector_choice_group_str}The Everlings Secret", TORCareers.Necrarch, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;

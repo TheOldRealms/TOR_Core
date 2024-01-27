@@ -380,6 +380,7 @@
     <Compile Include="AbilitySystem\Scripts\AugmentScript.cs" />
     <Compile Include="AbilitySystem\Scripts\BlastScript.cs" />
     <Compile Include="AbilitySystem\Scripts\BombardmentScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\CareerAbilityMissleScript.cs" />
     <Compile Include="AbilitySystem\Scripts\CareerAbilityScript.cs" />
     <Compile Include="AbilitySystem\Scripts\HealScript.cs" />
     <Compile Include="AbilitySystem\Scripts\HexScript.cs" />
@@ -565,6 +566,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\GrailKnightCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\GrailDamselCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\MercenaryCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\NecrarchCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\NecromancerCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\TORCareerChoicesBase.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\VampireCountCareerChoices.cs" />
