@@ -167,7 +167,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamBehavior
             }
         }
 
-        public static TorMissionCombatantsLogic CreateFromInstanace(MissionCombatantsLogic missionCombatantsLogic)
+        public static TorMissionCombatantsLogic CreateFromInstance(MissionCombatantsLogic missionCombatantsLogic)
         {
             return new TorMissionCombatantsLogic(
                 Traverse.Create(missionCombatantsLogic).Field("_battleCombatants").GetValue() as IEnumerable<IBattleCombatant>,

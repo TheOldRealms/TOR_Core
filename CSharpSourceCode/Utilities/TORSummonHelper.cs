@@ -1,4 +1,5 @@
 ﻿using TaleWorlds.Core;
+using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
@@ -37,7 +38,12 @@ namespace TOR_Core.Utilities
         public static Agent SpawnAgent(AgentBuildData buildData, Vec3 position)
         {
             Agent troop = Mission.Current.SpawnAgent(buildData, false);
-            troop.TeleportToPosition(position);
+            Vec3 spawnPos = position;
+            if(!Mission.Current.Scene.GetNavigationMeshForPosition(ref position))
+            {
+                spawnPos = Mission.Current.GetRandomPositionAroundPoint(position, 0.05f, 5f, true);
+            }
+            troop.TeleportToPosition(spawnPos);
             troop.FadeIn();
             troop.SetWatchState(Agent.WatchState.Alarmed);
             return troop;

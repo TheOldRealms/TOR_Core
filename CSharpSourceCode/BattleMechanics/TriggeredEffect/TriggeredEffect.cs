@@ -57,8 +57,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             if(Game.Current.GameType is Campaign && originAbilityTemplate != null)
             {
                 var model = Campaign.Current.Models.GetAbilityModel();
-                var character = triggererAgent.Character as CharacterObject;
-                if(model != null && character != null)
+                if (model != null && triggererAgent.Character is CharacterObject character)
                 {
                     damageMultiplier = model.GetSkillEffectivenessForAbilityDamage(character, originAbilityTemplate);
                     statusEffectDuration = model.CalculateStatusEffectDurationForAbility(character, originAbilityTemplate, statusEffectDuration);

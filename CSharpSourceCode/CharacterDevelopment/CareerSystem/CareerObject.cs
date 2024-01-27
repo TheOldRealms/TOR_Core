@@ -85,9 +85,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 var info = casterAgent.GetHero().GetExtendedInfo();
                 var root = casterAgent.GetHero().GetCareer().RootNode;
                 var choices = AllChoices.Where(x => info.CareerChoices.Contains(x.StringId));
-                List<CareerChoiceObject> modifications = new List<CareerChoiceObject>();
-
-                modifications.Add(root);
+                List<CareerChoiceObject> modifications = new List<CareerChoiceObject> { root };
                 modifications.AddRange(choices);
                 foreach (var choice in modifications.Where(choice => choice.HasMutations()))
                 {

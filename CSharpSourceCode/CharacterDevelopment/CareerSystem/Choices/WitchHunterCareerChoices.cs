@@ -181,7 +181,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _noRestAgainstEvilKeystone.Initialize(CareerID, "The marker never vanishes from the target. Shield penetration for the duration of the ability", "NoRestAgainstEvil", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
-                }); // special
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "Accusation",
+                        PropertyName = "TriggeredEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "apply_accusation_selfbuff" }).ToList(),
+                        MutationType = OperationType.Replace
+                    }
+                });
 
             
             _swiftProcedureKeystone.Initialize(CareerID, "Marked enemies movement & swing speed is decreased. Ability scales with athletics", "SwiftProcedure", false,
