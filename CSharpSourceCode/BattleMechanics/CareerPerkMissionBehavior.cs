@@ -18,8 +18,8 @@ namespace TOR_Core.BattleMechanics
         {
             if (!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
 
-            if ((affectorAgent.IsMainAgent && affectorAgent.GetHero().HasCareer(TORCareers.WitchHunter)) ||
-                (affectorAgent.BelongsToMainParty() && affectorAgent.IsHero && Hero.MainHero.HasCareerChoice("NoRestAgainstEvilKeystone")))
+            if (affectorAgent.BelongsToMainParty()&& ((Hero.MainHero.HasCareer(TORCareers.WitchHunter)&& affectorAgent.IsMainAgent) ||
+                (Agent.Main!=null&& Agent.Main.IsActive()&&Hero.MainHero.HasCareerChoice("GuiltyByAssociationKeystone")&& (affectorAgent.IsHero || affectorAgent.Character.StringId.Contains("retinue")))))
             {
                 WitchHunterAccusationBehavior(affectorAgent, affectedAgent, blow.InflictedDamage);
             }
@@ -31,10 +31,10 @@ namespace TOR_Core.BattleMechanics
             if (comp == null) return;
             var temporaryEffects = comp.GetTemporaryAttributes();
             if (!temporaryEffects.Contains("AccusationMark")) return;
-
+            
             var choices = Hero.MainHero.GetAllCareerChoices();
 
-            CareerAbility ability = affectorAgent.GetComponent<AbilityComponent>().CareerAbility;
+            CareerAbility ability = Agent.Main.GetComponent<AbilityComponent>().CareerAbility;
 
             var reapplyChance = 0.5f;
 
@@ -99,7 +99,7 @@ namespace TOR_Core.BattleMechanics
 
                     if (choices.Contains("GuiltyByAssociationPassive4"))
                     {
-                        var choice = TORCareerChoices.GetChoice("GuiltyByAssociationKeystone");
+                        var choice = TORCareerChoices.GetChoice("GuiltyByAssociationPassive4");
                         if (choice != null)
                         {
                             affectorAgent.ApplyStatusEffect("accusation_buff_ats", affectorAgent, choice.GetPassiveValue(), false, false);
