@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
+using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.BattleMechanics.AI.Decision;
 using TOR_Core.BattleMechanics.TriggeredEffect;
@@ -12,36 +14,47 @@ namespace TOR_Core.AbilitySystem.Scripts
 {
     public abstract class AbilityScript : ScriptComponentBehavior
     {
-        protected Ability _ability;
+        private Ability _ability;
         private int _soundIndex = -1;
         private SoundEvent _sound;
-        protected Agent _casterAgent;
-        protected float _abilityLife = -1;
-        public bool IsFading { get; protected set; }
-        protected float _timeSinceLastTick = 0;
-        protected bool _hasCollided;
+        private Agent _casterAgent;
+        private float _abilityLife = -1;
+        private float _timeSinceLastTick = 0;
+        private bool _hasCollided;
         private bool _hasTickedOnce;
-        protected bool _hasTriggered;
-        protected Vec3 _previousFrameOrigin;
+        private bool _hasTriggered;
         private float _minArmingTimeForCollision = 0.1f;
         private bool _canCollide;
         private SeekerController _controller;
         private bool _soundStarted;
-        private Agent _targetAgent = null;
+        private MBList<Agent> _targetAgents;
+        private float _additionalDuration = 0;
+        private Vec3 _previousFrameOrigin = Vec3.Zero;
+        private bool _lifeTimeExpired;
 
-        public void SetTargetSeeking(Target target, SeekerParameters parameters)
+        public Agent CasterAgent => _casterAgent;
+        public MBReadOnlyList<Agent> ExplicitTargetAgents
         {
-            _controller = new SeekerController(target, parameters);
+            get
+            {
+                if (_targetAgents == null) return new MBReadOnlyList<Agent>();
+                else return new MBReadOnlyList<Agent>(_targetAgents);
+            }
         }
-        public virtual void SetAgent(Agent agent)
-        {
-            _casterAgent = agent;
-        }
-        public virtual void SetExplicitSingleTarget(Agent agent)
-        {
-            _targetAgent = agent;
-        }
+        public Ability Ability => _ability;
+        public bool IsFading { get; private set; }
+        public Vec3 CurrentGlobalPosition => GameEntity.GetGlobalFrame().origin;
+        public Vec3 LastFrameGlobalPosition => _previousFrameOrigin;
+        public bool HasTickedOnce => _hasTickedOnce;
+
+        public void SetTargetSeeking(Target target, SeekerParameters parameters) => _controller = new SeekerController(target, parameters);
+
+        public void SetCasterAgent(Agent agent) => _casterAgent = agent;
+        
+        public void SetExplicitTargetAgents(MBList<Agent> agents) => _targetAgents = agents;
+
         protected override bool MovesEntity() => true;
+
         protected virtual bool ShouldMove()
         {
             return _ability.Template.AbilityEffectType == AbilityEffectType.Missile ||
@@ -54,7 +67,6 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         protected override void OnInit()
         {
-            base.OnInit();
             SetScriptComponentToTick(GetTickRequirement());
         }
 
@@ -73,13 +85,28 @@ namespace TOR_Core.AbilitySystem.Scripts
             }
         }
 
-        protected override void OnTick(float dt)
+        protected virtual void OnBeforeTick(float dt) { } 
+        protected virtual void OnAfterTick(float dt) { }
+
+        protected sealed override void OnTick(float dt)
         {
-            base.OnTick(dt);
+            if (Mission.Current.CurrentState != Mission.State.Continuing || 
+                Mission.Current.MissionEnded || 
+                Mission.Current.IsMissionEnding ||
+                Mission.Current.MissionIsEnding)
+            {
+                Stop(); 
+                return;
+            }
+
             if (_ability == null) return;
-            if (IsFading) return;
+
+            OnBeforeTick(dt);
+
             _timeSinceLastTick += dt;
             UpdateLifeTime(dt);
+
+            if (IsFading) return;
 
             var frame = GameEntity.GetGlobalFrame();
             if (_controller != null) frame = _controller.CalculateRotatedFrame(frame, dt);
@@ -89,12 +116,12 @@ namespace TOR_Core.AbilitySystem.Scripts
             {
                 HandleCollision(frame.origin, frame.origin.NormalizedCopy());
             }
-            if(_ability.Template.TriggerType == TriggerType.EveryTick && !_hasTriggered)
+            else if (_ability.Template.TriggerType == TriggerType.EveryTick && !_hasTriggered)
             {
                 TriggerEffects(frame.origin, frame.origin.NormalizedCopy());
                 _hasTriggered = true;
             }
-            if (_ability.Template.TriggerType == TriggerType.EveryTick && _timeSinceLastTick > _ability.Template.TickInterval)
+            else if (_ability.Template.TriggerType == TriggerType.EveryTick && _timeSinceLastTick > _ability.Template.TickInterval)
             {
                 _timeSinceLastTick = 0;
                 TriggerEffects(frame.origin, frame.origin.NormalizedCopy());
@@ -112,34 +139,42 @@ namespace TOR_Core.AbilitySystem.Scripts
                 _hasTriggered = true;
             }
             _hasTickedOnce = true;
+
             if (ShouldMove())
             {
                 UpdatePosition(frame, dt);
             }
+
+            OnAfterTick(dt);
+
+            if (_lifeTimeExpired)
+            {
+                Stop();
+            }
         }
 
-        protected virtual void UpdatePosition(MatrixFrame frame, float dt)
+        private void UpdatePosition(MatrixFrame frame, float dt)
         {
-            var newframe = GetNextFrame(frame, dt);
+            _previousFrameOrigin = frame.origin;
+            var newframe = GetNextGlobalFrame(frame, dt);
             GameEntity.SetGlobalFrame(newframe);
             if (GameEntity.GetBodyShape() != null) GameEntity.GetBodyShape().ManualInvalidate();
         }
 
-        protected virtual MatrixFrame GetNextFrame(MatrixFrame oldFrame, float dt)
+        protected virtual MatrixFrame GetNextGlobalFrame(MatrixFrame oldFrame, float dt)
         {
-            _previousFrameOrigin = oldFrame.origin;
             return oldFrame.Advance(_ability.Template.BaseMovementSpeed * dt);
         }
 
-        protected void UpdateLifeTime(float dt)
+        private void UpdateLifeTime(float dt)
         {
             if (_abilityLife < 0) _abilityLife = 0;
             else _abilityLife += dt;
             if (_ability != null)
             {
-                if (_abilityLife > _ability.Template.Duration && !IsFading)
+                if (_abilityLife > (_ability.Template.Duration + _additionalDuration) && !IsFading)
                 {
-                    Stop();
+                    _lifeTimeExpired = true;
                 }
             }
             if (_abilityLife > _minArmingTimeForCollision)
@@ -148,7 +183,12 @@ namespace TOR_Core.AbilitySystem.Scripts
             }
         }
 
-        protected void UpdateSound(Vec3 position)
+        public void ExtendLifeTime(float time)
+        {
+            _additionalDuration += time;
+        }
+
+        private void UpdateSound(Vec3 position)
         {
             if(_sound != null)
             {
@@ -181,13 +221,14 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         protected virtual bool CollidedWithAgent()
         {
+            if(!_canCollide) return false;
             var collisionRadius = _ability.Template.Radius + 1;
             MBList<Agent> agents = new MBList<Agent>();
             agents = Mission.Current.GetNearbyAgents(GameEntity.GetGlobalFrame().origin.AsVec2, collisionRadius, agents);
             return agents.Any(agent => agent != _casterAgent && Math.Abs(GameEntity.GetGlobalFrame().origin.Z - agent.Position.Z) < collisionRadius);
         }
 
-        protected override void OnPhysicsCollision(ref PhysicsContact contact)
+        protected sealed override void OnPhysicsCollision(ref PhysicsContact contact)
         {
             base.OnPhysicsCollision(ref contact);
             if (_ability.Template.TriggerType == TriggerType.OnCollision && _canCollide)
@@ -201,14 +242,13 @@ namespace TOR_Core.AbilitySystem.Scripts
             if (!_hasTickedOnce) return;
             if (!_hasCollided && position.IsValid && position.IsNonZero)
             {
-                GameEntity.FadeOut(0.05f, true);
-                IsFading = true;
                 TriggerEffects(position, normal);
                 _hasCollided = true;
+                Stop();
             }
         }
 
-        protected virtual void TriggerEffects(Vec3 position, Vec3 normal)
+        private void TriggerEffects(Vec3 position, Vec3 normal)
         {
             var effects = GetEffectsToTrigger();
             foreach(var effect in effects)
@@ -219,9 +259,9 @@ namespace TOR_Core.AbilitySystem.Scripts
                     {
                         effect.Trigger(position, normal, _casterAgent, _ability.Template, new MBList<Agent>(1) { _casterAgent });
                     }
-                    else if (IsSingleTarget() && _targetAgent != null)
+                    else if(_targetAgents != null && _targetAgents.Count() > 0)
                     {
-                        effect.Trigger(position, normal, _casterAgent, _ability.Template, new MBList<Agent>(1) { _targetAgent });
+                        effect.Trigger(position, normal, _casterAgent, _ability.Template, _targetAgents.ToMBList());
                     }
                     else effect.Trigger(position, normal, _casterAgent, _ability.Template);
                 }
@@ -239,20 +279,27 @@ namespace TOR_Core.AbilitySystem.Scripts
             return effects;
         }
 
-        protected override void OnRemoved(int removeReason)
+        protected sealed override void OnRemoved(int removeReason)
         {
-            base.OnRemoved(removeReason);
+            OnBeforeRemoved(removeReason);
             _sound?.Release();
             _sound = null;
             _ability = null;
             _casterAgent = null;
         }
 
-        public virtual void Stop()
+        protected virtual void OnBeforeRemoved(int removeReason) { }
+
+        public void Stop()
         {
             if(IsFading) return;
-            GameEntity.FadeOut(0.05f, true);
+            if(GameEntity != null && Ability.Template.TriggerType == TriggerType.OnStop)
+            {
+                var frame = GameEntity.GetGlobalFrame();
+                TriggerEffects(frame.origin, frame.origin.NormalizedCopy());
+            }
             IsFading = true;
+            GameEntity?.FadeOut(0.05f, true);
         }
     }
 }

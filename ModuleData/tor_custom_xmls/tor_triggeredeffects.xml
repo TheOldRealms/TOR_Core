@@ -581,10 +581,10 @@
             HasShockWave="false" 
             TargetType="Friendly" 
             DamageVariance="0"
-			ImbuedStatusEffectDuration="1" 
+		ImbuedStatusEffectDuration="1" 
             TroopIdToSummon="tor_vc_harbinger_champion"
             NumberToSummon="1">
-			<ImbuedStatusEffect>greater_harbinger_debuff</ImbuedStatusEffect>
+		<ImbuedStatusEffect>greater_harbinger_debuff</ImbuedStatusEffect>
 	  </TriggeredEffectTemplate>
 	  
       <TriggeredEffectTemplate StringID="summon_kandorak" 
@@ -965,7 +965,7 @@
             <ImbuedStatusEffect>righteous_fury_effect</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
-	  <TriggeredEffectTemplate StringID="apply_accusation" 
+	<TriggeredEffectTemplate StringID="apply_accusation" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
@@ -979,7 +979,21 @@
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>accusation_debuff</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
-	  
+	
+      <TriggeredEffectTemplate StringID="apply_accusation_selfbuff" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="3" 
+            HasShockWave="false" 
+            TargetType="Self" 
+            ImbuedStatusEffectDuration="8" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>accusation_buff_penetration</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
 	  
 	  <TriggeredEffectTemplate StringID="apply_mistwalk" 
             BurstParticleEffectPrefab="none" 
@@ -993,7 +1007,7 @@
             ImbuedStatusEffectDuration="3" 
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
-			<ImbuedStatusEffect>mistwalk_base</ImbuedStatusEffect>
+		<ImbuedStatusEffect>mistwalk_base</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	  <TriggeredEffectTemplate StringID="apply_mistwalk_area" 

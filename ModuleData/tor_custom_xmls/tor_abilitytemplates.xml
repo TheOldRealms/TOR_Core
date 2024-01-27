@@ -2061,14 +2061,13 @@
       CoolDown="5" 
       WindsOfMagicCost="8" 
       BaseMisCastChance="0.05" 
-      Duration="0.3" 
+      Duration="2" 
       Radius="0.4" 
       AbilityType="Spell" 
       AbilityEffectType="Projectile" 
       BaseMovementSpeed="100" 
-	  TickOnce ="false"
       TickInterval="-1" 
-      TriggerType="EveryTick" 
+      TriggerType="OnStop" 
       HasLight="false" 
       LightIntensity="50" 
       LightRadius="10" 
@@ -2329,9 +2328,8 @@
       AbilityType="Spell" 
       AbilityEffectType="Projectile" 
       BaseMovementSpeed="60"
-	  TickOnce="false"
       TickInterval="1" 
-      TriggerType="EveryTick" 
+      TriggerType="OnStop" 
       HasLight="false" 
       LightIntensity="50" 
       LightRadius="10" 
@@ -2827,7 +2825,7 @@
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="Accusation"
-       Name="{=righteous_fury_label_str}Accusation"
+       Name="{=accusation_str}Accusation"
        SpriteName="righteousfury_icon"
        CoolDown="5"
        WindsOfMagicCost="0"
@@ -2842,7 +2840,7 @@
        HasLight="false"
        LightIntensity="0"
        LightRadius="0"
-	   MaxDistance="150"
+	    MaxDistance="150"
        LightFlickeringMagnitude="0"
        LightFlickeringInterval="0"
        ShadowCastEnabled="false"
@@ -2850,12 +2848,12 @@
        ParticleEffectSizeModifier="0"
        SoundEffectToPlay=""
        ShouldSoundLoopOverDuration="false"
-	   AbilityTargetType="SingleEnemy"
+	    AbilityTargetType="SingleEnemy"
        CastType="Instant"
        CastTime="0.5"
        AnimationActionName="none"
        Offset="0"
-	   CrosshairType="SingleTarget"
+	    CrosshairType="SingleTarget"
        TargetCapturingRadius="4">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
 			<AsVec2>
@@ -2992,13 +2990,13 @@
       SpriteName="theharbinger_icon" 
       CoolDown="5" 
       BaseMisCastChance="0.3" 
-      Duration="2" 
+      Duration="9999" 
       Radius="2" 
       AbilityType="CareerAbility" 
       AbilityEffectType="CareerAbilityEffect" 
       BaseMovementSpeed="0" 
       TickInterval="2" 
-      TriggerType="TickOnce" 
+      TriggerType="None" 
       HasLight="false" 
       LightIntensity="0" 
       LightRadius="0" 
@@ -3026,7 +3024,7 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-	<TriggeredEffect>summon_champion</TriggeredEffect>
+	   <TriggeredEffect>summon_champion</TriggeredEffect>
 	</AbilityTemplate>
 	
 	

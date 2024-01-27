@@ -223,7 +223,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         private void UpdateDummyEntity(float dt)
         {
-            _dummyEntity?.SetGlobalFrameMT(new MatrixFrame(_dummyEntity.GetFrame().rotation, Agent.GetChestGlobalPosition()));
+            _dummyEntity?.SetGlobalFrame(new MatrixFrame(_dummyEntity.GetFrame().rotation, Agent.GetChestGlobalPosition()));
         }
 
         private void RemoveEffect(StatusEffect effect)
@@ -259,8 +259,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     _currentEffects[currEffect].Particles.Add(ParticleSystem.CreateParticleSystemAttachedToEntity(currEffect.Template.ParticleId, _dummyEntity, ref frame));
                 }
             }
-
-            
         }
 
         public float[] GetAmplifiers(AttackTypeMask mask)
@@ -330,7 +328,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             return list;
         }
 
-
         private void AddEffect(StatusEffect effect)
         {
             EffectData data;
@@ -366,7 +363,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
             _currentEffects.Clear();
             _effectAggregate = null;
-            _dummyEntity?.FadeOut(1, true);
+            _dummyEntity?.RemoveAllChildren();
+            _dummyEntity?.Remove(0);
             _dummyEntity = null;
             _disabled = true;
         }

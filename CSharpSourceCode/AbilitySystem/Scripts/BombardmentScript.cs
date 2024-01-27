@@ -14,10 +14,9 @@ namespace TOR_Core.AbilitySystem.Scripts
     {
         private bool _impulseGiven;
 
-        protected override void OnTick(float dt)
+        protected override void OnAfterTick(float dt)
         {
-            base.OnTick(dt);
-            if (!_impulseGiven && _ability.Template.TriggerType == TriggerType.OnCollision)
+            if (!_impulseGiven && Ability.Template.TriggerType == TriggerType.OnCollision)
             {
                 _impulseGiven = true;
                 GameEntity.ApplyLocalImpulseToDynamicBody(GameEntity.CenterOfMass, new Vec3(0, 0, -100));

@@ -12,29 +12,26 @@ namespace TOR_Core.AbilitySystem.Scripts
 {
     public class CareerAbilityScript : AbilityScript
     {
-        public List<TriggeredEffect> AccessEffectsToTrigger()
-        {
-            return GetEffectsToTrigger();
-        }
-        
+        public List<TriggeredEffect> EffectsToTrigger => GetEffectsToTrigger();
+
         protected override List<TriggeredEffect> GetEffectsToTrigger()
         {
             List<TriggeredEffect> result = new List<TriggeredEffect>();
-            var effects = _ability?.Template.TriggeredEffects;
+            var effects = Ability?.Template.TriggeredEffects;
             if (effects == null) return result;
             foreach (var effect in effects)
             {
                 if (effect == null || string.IsNullOrEmpty(effect)) continue;
-                if (_casterAgent.GetHero() == null) continue;
+                if (CasterAgent.GetHero() == null) continue;
                 
-                var info = _casterAgent.GetHero().GetExtendedInfo();
+                var info = CasterAgent.GetHero().GetExtendedInfo();
                 if (info != null && !string.IsNullOrEmpty(info.CareerID))
                 {
-                    var career = _casterAgent.GetHero().GetCareer();
+                    var career = CasterAgent.GetHero().GetCareer();
                     if (career != null)
                     {
-                        TriggeredEffectTemplate template = (TriggeredEffectTemplate)TriggeredEffectManager.GetTemplateWithId(effect).Clone(effect + "*cloned*" + _casterAgent.Index);
-                        career.MutateTriggeredEffect(template, _casterAgent);
+                        TriggeredEffectTemplate template = (TriggeredEffectTemplate)TriggeredEffectManager.GetTemplateWithId(effect).Clone(effect + "*cloned*" + CasterAgent.Index);
+                        career.MutateTriggeredEffect(template, CasterAgent);
                         result.Add(new TriggeredEffect(template, true));
                     }
                 }
@@ -42,17 +39,16 @@ namespace TOR_Core.AbilitySystem.Scripts
             return result;
         }
 
-        protected override void OnTick(float dt)
+        protected override void OnBeforeTick(float dt)
         {
-            if (!_casterAgent.IsActive()) Stop();
-            base.OnTick(dt);
+            if (!CasterAgent.IsActive()) Stop();
         }
 
         protected override bool ShouldMove() => true;
 
-        protected override MatrixFrame GetNextFrame(MatrixFrame oldFrame, float dt)
+        protected override MatrixFrame GetNextGlobalFrame(MatrixFrame oldFrame, float dt)
         {
-            return new MatrixFrame(_casterAgent.LookRotation, _casterAgent.GetChestGlobalPosition());
+            return new MatrixFrame(CasterAgent.LookRotation, CasterAgent.GetChestGlobalPosition());
         }
     }
 }
