@@ -99,8 +99,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
             TextObject hirelingBattleTextMenu = new TextObject("This is a test of Hireling BattleMenu", null);
 
-            campaignGameStarter.AddGameMenu("hireling_battle_menu", hirelingBattleTextMenu.Value, new OnInitDelegate(this.party_wait_talk_to_other_members_on_init), GameOverlays.MenuOverlayType.Encounter, GameMenu.MenuFlags.AutoSelectFirst, null);
-            campaignGameStarter.AddGameMenuOption("hireling_battle_menu", "attack", "Attack", new GameMenuOption.OnConditionDelegate(this.game_menu_attack_hideout_parties_on_condition), new GameMenuOption.OnConsequenceDelegate(this.game_menu_encounter_attack_on_consequence), false, -1, false, null);
+            campaignGameStarter.AddGameMenu("hireling_battle_menu", hirelingBattleTextMenu.Value, party_wait_talk_to_other_members_on_init, GameOverlays.MenuOverlayType.Encounter, GameMenu.MenuFlags.None, null);
+            campaignGameStarter.AddGameMenuOption("hireling_battle_menu", "attack", "Attack", game_menu_attack_hideout_parties_on_condition, game_menu_encounter_attack_on_consequence, false, -1, false, null);
         }
 
         public void LeaveLordPartyAction(bool keepgear)
@@ -138,7 +138,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         // Token: 0x06000159 RID: 345 RVA: 0x000112C1 File Offset: 0x0000F4C1
         private void wait_on_tick(MenuCallbackArgs args, CampaignTime time)
         {
-            TORCommon.Say("WAIT ON TICK");
+        //    TORCommon.Say("WAIT ON TICK");
 
             this.updatePartyMenu(args);
         }
