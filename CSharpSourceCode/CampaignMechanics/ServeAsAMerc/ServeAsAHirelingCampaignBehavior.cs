@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Helpers;
@@ -147,7 +147,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         // Token: 0x06000159 RID: 345 RVA: 0x000112C1 File Offset: 0x0000F4C1
         private void wait_on_tick(MenuCallbackArgs args, CampaignTime time)
         {
-            TORCommon.Say("WAIT ON TICK");
+        //    TORCommon.Say("WAIT ON TICK");
 
             this.updatePartyMenu(args);
         }
