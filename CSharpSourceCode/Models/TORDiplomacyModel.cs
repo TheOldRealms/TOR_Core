@@ -68,8 +68,8 @@ namespace TOR_Core.Models
             torScoreOfDeclaringWar *= TORConfig.DeclareWarScoreMultiplierTor;
             nativeScoreOfDeclaringWar *= TORConfig.DeclareWarScoreMultiplierNative;
 
-            TORCommon.Say($"Declaring war between {factionDeclaresWar.Name} and {factionDeclaredWar.Name}\n\t\t" +
-                $"Native Score: {nativeScoreOfDeclaringWar},\tTOR Score: {torScoreOfDeclaringWar}");
+            //TORCommon.Say($"Declaring war between {factionDeclaresWar.Name} and {factionDeclaredWar.Name}\n\t\t" +
+            //    $"Native Score: {nativeScoreOfDeclaringWar},\tTOR Score: {torScoreOfDeclaringWar}");
 
             return nativeScoreOfDeclaringWar + torScoreOfDeclaringWar;
         }
@@ -83,8 +83,8 @@ namespace TOR_Core.Models
             nativeScoreOfDeclaringPeace *= TORConfig.DeclareWarScoreMultiplierNative;
             torScore *= TORConfig.DeclareWarScoreMultiplierTor/3f;
 
-            TORCommon.Say($"Declaring peace between {factionDeclaresPeace.Name} and {factionDeclaredPeace.Name}\n\t\t" +
-                $"Native Score: {nativeScoreOfDeclaringPeace},\tTOR Score: {torScore}");
+            //TORCommon.Say($"Declaring peace between {factionDeclaresPeace.Name} and {factionDeclaredPeace.Name}\n\t\t" +
+            //    $"Native Score: {nativeScoreOfDeclaringPeace},\tTOR Score: {torScore}");
 
             return nativeScoreOfDeclaringPeace - torScore;
         }

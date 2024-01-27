@@ -11,7 +11,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
         {
             foreach(Agent agent in triggeredAgents)
             {
-                if (agent != null && (agent.State == TaleWorlds.Core.AgentState.Active || agent.State == TaleWorlds.Core.AgentState.Routed))
+                if (agent != null && agent.IsHuman && (agent.State == TaleWorlds.Core.AgentState.Active || agent.State == TaleWorlds.Core.AgentState.Routed))
                 {
                     agent.FallDown();
                 }

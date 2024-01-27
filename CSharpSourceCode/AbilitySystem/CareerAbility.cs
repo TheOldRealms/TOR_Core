@@ -68,7 +68,7 @@ namespace TOR_Core.AbilitySystem
                 var prefabEntity = SpawnEntity();
                 parentEntity.AddChild(prefabEntity);
                 AbilityScript?.Initialize(this);
-                AbilityScript?.SetAgent(casterAgent);
+                AbilityScript?.SetCasterAgent(casterAgent);
                 parentEntity.CallScriptCallbacks();
             }
             else

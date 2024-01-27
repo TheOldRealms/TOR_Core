@@ -19,6 +19,10 @@ using TOR_Core.Items;
 using TOR_Core.Models;
 using TOR_Core.Utilities;
 using TaleWorlds.Localization;
+using System.Runtime.ExceptionServices;
+using System.Security;
+using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace TOR_Core.Extensions
 {
@@ -606,6 +610,8 @@ namespace TOR_Core.Extensions
         /// <param name="damageAmount">How much damage the agent will receive.</param>
         /// <param name="damager">The agent who is applying the damage</param>
         /// <param name="doBlow">A mask that controls whether the unit receives a blow or direct health manipulation</param>
+        [SecurityCritical]
+        [HandleProcessCorruptedStateExceptions]
         public static void ApplyDamage(this Agent agent, int damageAmount, Vec3 impactPosition, Agent damager = null, bool doBlow = true, bool hasShockWave = false, bool originatesFromAbility = true)
         {
             if (agent == null || !agent.IsHuman || !agent.IsActive() || agent.Health < 1)
@@ -698,6 +704,12 @@ namespace TOR_Core.Extensions
                         Vec3.Up);
                     agent.RegisterBlow(blow, attackCollisionData);
                 }
+            }
+            catch(AccessViolationException a)
+            {
+                TORCommon.Log("ApplyDamage: attempted to damage agent, but application quit with access violation.", LogLevel.Error);
+                TORCommon.Log(a.ToString(), LogLevel.Error);
+                Process.GetCurrentProcess().Kill();
             }
             catch (Exception e)
             {

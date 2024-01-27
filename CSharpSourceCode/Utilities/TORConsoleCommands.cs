@@ -323,6 +323,13 @@ namespace TOR_Core.Utilities
             return string.Format("Incorrect arguments. Usage is \"tor.add_custom_resource resourcename amount\" ");
         }
 
+        [CommandLineFunctionality.CommandLineArgumentFunction("trigger_fatal_crash", "tor")]
+        public static string TriggerFatalCrash(List<string> arguments)
+        {
+            TORTests.Instance.TriggerCorruptedMemoryStateException();
+            return "Should crash before this gets returned.";
+        }
+
         private static string AggregateOutput(string topicHeader, List<string> matchedSpells) =>
             matchedSpells.Aggregate(
                 $"\n{topicHeader}\n",

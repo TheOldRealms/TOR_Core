@@ -732,6 +732,7 @@
     <Compile Include="Utilities\TORPaths.cs" />
     <Compile Include="Utilities\TORSpellBlowHelper.cs" />
     <Compile Include="Utilities\TORSummonHelper.cs" />
+    <Compile Include="Utilities\TORTests.cs" />
     <Compile Include="Utilities\TORWorldMapScript.cs" />
     <Compile Include="Utilities\TORTextHelper.cs" />
   </ItemGroup>
