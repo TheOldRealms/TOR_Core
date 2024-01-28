@@ -4328,7 +4328,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_OL4" name="{=Settlements.Settlement.name.castle_OL3}Roezfels" owner="Faction.talabecland_clan_3" posX="1436.242" posY="1250.658" culture="Culture.empire" gate_posX="1438.01" gate_posY="1251.467" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
+  <Settlement id="castle_OL4" name="{=Settlements.Settlement.name.castle_OL3}Roezfels" owner="Faction.talabecland_clan_3" posX="1436.242" posY="1250.658" culture="Culture.empire" gate_posX="1438.01" gate_posY="1251.468" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
     <Components>
       <Town id="castle_comp_OL4" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4723,7 +4723,7 @@
   </Settlement>
   <!-- Bretonnia -->
   <!-- Couronne -->
-  <Settlement id="town_CO1" name="{=Settlements.Settlement.name.town_CO1}Coronne" owner="Faction.parravon_clan_1" posX="969.195" posY="1229.499" culture="Culture.vlandia" gate_posX="970.688" gate_posY="1226.941" text="{=Settlements.Settlement.text.town_CO1}The city of Parravon, built by the elves long ago, was cut from a lone mountain, Les Monts Seuls, and runs directly along the Grismerie river. Surrounded by deep chasms, it is  a key fortress city in holding off any enemies from the Grey Mountains and beyond, from reaching central Bretonnia. Due to the location, many Dwarf families have flocked to Parravon. It is also notable for being the only place in Bretonnia where peasants can live in Stone houses. This is due to a trick of legal language; the homes the peasants carve out of the rock of Les Monts Seuls are considered ‘Caves’ and thus are not prohibited.">
+  <Settlement id="town_CO1" name="{=Settlements.Settlement.name.town_CO1}Coronne" owner="Faction.parravon_clan_1" posX="981.31" posY="1225.16" culture="Culture.vlandia" gate_posX="974.014" gate_posY="1228.307" text="{=Settlements.Settlement.text.town_CO1}The city of Parravon, built by the elves long ago, was cut from a lone mountain, Les Monts Seuls, and runs directly along the Grismerie river. Surrounded by deep chasms, it is  a key fortress city in holding off any enemies from the Grey Mountains and beyond, from reaching central Bretonnia. Due to the location, many Dwarf families have flocked to Parravon. It is also notable for being the only place in Bretonnia where peasants can live in Stone houses. This is due to a trick of legal language; the homes the peasants carve out of the rock of Les Monts Seuls are considered ‘Caves’ and thus are not prohibited.">
     <Components>
       <Town id="town_comp_CO1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -4743,7 +4743,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_CO1_1" name="{=Settlements.Settlement.name.village_CO1_1}Rennesse" posX="940.07" posY="1235.127" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CO1_1}The village of Allobroges is a renowned settlement for its particular horse breeders, even among Paravon which sees use of mainly Pegusi. Allobroges has a fair population and sees many visits by Nobles and Travelers alike.">
+  <Settlement id="village_CO1_1" name="{=Settlements.Settlement.name.village_CO1_1}Rennesse" posX="939.3869" posY="1240.93" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CO1_1}The village of Allobroges is a renowned settlement for its particular horse breeders, even among Paravon which sees use of mainly Pegusi. Allobroges has a fair population and sees many visits by Nobles and Travelers alike.">
     <Components>
       <Village id="village_comp_CO1_1" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CO1" bound="Settlement.town_CO1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4769,7 +4769,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_CO1_3" name="{=Settlements.Settlement.name.village_CO1_3}Sanz" posX="952.268" posY="1260.143" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CO1_3}Near the Grey Lady Pass, Goyarde holds a decent size of villagers, and militia alike. Being the first village into Bretonnia from Grey Lady pass, it is quite defensible and strategic in nature.">
+  <Settlement id="village_CO1_3" name="{=Settlements.Settlement.name.village_CO1_3}Sanz" posX="944.2609" posY="1259.676" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CO1_3}Near the Grey Lady Pass, Goyarde holds a decent size of villagers, and militia alike. Being the first village into Bretonnia from Grey Lady pass, it is quite defensible and strategic in nature.">
     <Components>
       <Village id="village_comp_CO1_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CO1" bound="Settlement.town_CO1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4802,7 +4802,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_CO2_1" name="{=Settlements.Settlement.name.village_CO2_1}Euresbourg" posX="1027.306" posY="1285.949" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CO2_1}Holthusen is a town in western Reikland on the river Schilder. By road it lies between Eilhart and Schilderheim. The town's primary trade good is the Holthusen Hogshead barrel which is used across the empire to age or ferment their products before shipment. The barrels are said to be so sturdy as to be able to protect their contents even from direct cannon fire. Every year Holthusen hosts the Weinfest, a great gathering for wine tasting that requires an invite to enter. Of course the lack of invite does not stop the horde of wastrels and rogues who wish to drink the free wine provided by the festival. Weinfest also marks the only time of year during which the Golden Cask is brought out, which is said to contain the best wine in the Empire if not the entire Old World. Due to the town's forested location, it is frequently attacked by beastmen. The palisades and guards are normally strong enough to see the monsters off, but the townspeople fear the day this defence falls short. As such, some of the townspeople have been leaving casks of cheap wine at the edge of the woods in an attempt to appease the beastmen with tribute. This dubious practice likely will not be allowed to continue much longer.">
+  <Settlement id="village_CO2_1" name="{=Settlements.Settlement.name.village_CO2_1}Euresbourg" posX="1027.213" posY="1282.026" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CO2_1}Holthusen is a town in western Reikland on the river Schilder. By road it lies between Eilhart and Schilderheim. The town's primary trade good is the Holthusen Hogshead barrel which is used across the empire to age or ferment their products before shipment. The barrels are said to be so sturdy as to be able to protect their contents even from direct cannon fire. Every year Holthusen hosts the Weinfest, a great gathering for wine tasting that requires an invite to enter. Of course the lack of invite does not stop the horde of wastrels and rogues who wish to drink the free wine provided by the festival. Weinfest also marks the only time of year during which the Golden Cask is brought out, which is said to contain the best wine in the Empire if not the entire Old World. Due to the town's forested location, it is frequently attacked by beastmen. The palisades and guards are normally strong enough to see the monsters off, but the townspeople fear the day this defence falls short. As such, some of the townspeople have been leaving casks of cheap wine at the edge of the woods in an attempt to appease the beastmen with tribute. This dubious practice likely will not be allowed to continue much longer.">
     <Components>
       <Village id="village_comp_CO2_1" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CO2" bound="Settlement.town_CO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4815,7 +4815,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_CO2_2" name="{=Settlements.Settlement.name.village_CO2_2}Entrammes" posX="1011.2" posY="1249.902" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CO2_2}The small mining village of Vettard resides due south of the City of Grunere, past the Hills of the Dead. They are destitute and have learned to fend for their own when things get  perilous.">
+  <Settlement id="village_CO2_2" name="{=Settlements.Settlement.name.village_CO2_2}Entrammes" posX="1011.243" posY="1250.728" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CO2_2}The small mining village of Vettard resides due south of the City of Grunere, past the Hills of the Dead. They are destitute and have learned to fend for their own when things get  perilous.">
     <Components>
       <Village id="village_comp_CO2_2" village_type="VillageType.iron_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CO2" bound="Settlement.town_CO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4848,7 +4848,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_CO3_1" name="{=Settlements.Settlement.name.village_CO2_1}Alencon" posX="960.567" posY="1281.839" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CO2_1}Holthusen is a town in western Reikland on the river Schilder. By road it lies between Eilhart and Schilderheim. The town's primary trade good is the Holthusen Hogshead barrel which is used across the empire to age or ferment their products before shipment. The barrels are said to be so sturdy as to be able to protect their contents even from direct cannon fire. Every year Holthusen hosts the Weinfest, a great gathering for wine tasting that requires an invite to enter. Of course the lack of invite does not stop the horde of wastrels and rogues who wish to drink the free wine provided by the festival. Weinfest also marks the only time of year during which the Golden Cask is brought out, which is said to contain the best wine in the Empire if not the entire Old World. Due to the town's forested location, it is frequently attacked by beastmen. The palisades and guards are normally strong enough to see the monsters off, but the townspeople fear the day this defence falls short. As such, some of the townspeople have been leaving casks of cheap wine at the edge of the woods in an attempt to appease the beastmen with tribute. This dubious practice likely will not be allowed to continue much longer.">
+  <Settlement id="village_CO3_1" name="{=Settlements.Settlement.name.village_CO2_1}Alencon" posX="953.5215" posY="1284.281" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CO2_1}Holthusen is a town in western Reikland on the river Schilder. By road it lies between Eilhart and Schilderheim. The town's primary trade good is the Holthusen Hogshead barrel which is used across the empire to age or ferment their products before shipment. The barrels are said to be so sturdy as to be able to protect their contents even from direct cannon fire. Every year Holthusen hosts the Weinfest, a great gathering for wine tasting that requires an invite to enter. Of course the lack of invite does not stop the horde of wastrels and rogues who wish to drink the free wine provided by the festival. Weinfest also marks the only time of year during which the Golden Cask is brought out, which is said to contain the best wine in the Empire if not the entire Old World. Due to the town's forested location, it is frequently attacked by beastmen. The palisades and guards are normally strong enough to see the monsters off, but the townspeople fear the day this defence falls short. As such, some of the townspeople have been leaving casks of cheap wine at the edge of the woods in an attempt to appease the beastmen with tribute. This dubious practice likely will not be allowed to continue much longer.">
     <Components>
       <Village id="village_comp_CO3_1" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CO2" bound="Settlement.town_CO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4861,7 +4861,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_CO3_2" name="{=Settlements.Settlement.name.village_CO2_2}Caen" posX="923.402" posY="1278.344" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CO2_2}The small mining village of Vettard resides due south of the City of Grunere, past the Hills of the Dead. They are destitute and have learned to fend for their own when things get  perilous.">
+  <Settlement id="village_CO3_2" name="{=Settlements.Settlement.name.village_CO2_2}Caen" posX="921.4941" posY="1272.124" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CO2_2}The small mining village of Vettard resides due south of the City of Grunere, past the Hills of the Dead. They are destitute and have learned to fend for their own when things get  perilous.">
     <Components>
       <Village id="village_comp_CO3_2" village_type="VillageType.iron_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CO2" bound="Settlement.town_CO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4887,7 +4887,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_CO1" name="{=Settlements.Settlement.name.castle_CO1}Castle Brilloinne" owner="Faction.parravon_clan_1" posX="947.422" posY="1308.276" culture="Culture.vlandia" gate_posX="948.694" gate_posY="1308.559" text="{=Settlements.Settlement.name.castle_CO1}Located on the border of Montfort, Castle Vingtiennes holds the northern province of Parravon from attack, and overlooks the river Grismerie and Massif Orcal.">
+  <Settlement id="castle_CO1" name="{=Settlements.Settlement.name.castle_CO1}Castle Brilloinne" owner="Faction.parravon_clan_1" posX="947.422" posY="1308.276" culture="Culture.vlandia" gate_posX="948.7783" gate_posY="1307.87" text="{=Settlements.Settlement.name.castle_CO1}Located on the border of Montfort, Castle Vingtiennes holds the northern province of Parravon from attack, and overlooks the river Grismerie and Massif Orcal.">
     <Components>
       <Town id="castle_comp_CO1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4897,7 +4897,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_CO1_1" name="{=Settlements.Settlement.name.castle_village_CO1_1}Caudebec" posX="978.342" posY="1291.196" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CO1_1} In the west of Parravon, near the borders of Montfort, Laval holds a tight knit relationship with its neighbour, Etoy. They often trade goods, such as raw materials for leather and hides. During the Lily Day, the two villages have many weddings and hold a small festival.">
+  <Settlement id="castle_village_CO1_1" name="{=Settlements.Settlement.name.castle_village_CO1_1}Caudebec" posX="976.5325" posY="1285.619" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CO1_1} In the west of Parravon, near the borders of Montfort, Laval holds a tight knit relationship with its neighbour, Etoy. They often trade goods, such as raw materials for leather and hides. During the Lily Day, the two villages have many weddings and hold a small festival.">
     <Components>
       <Village id="castle_village_comp_CO1_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.town_CO1" bound="Settlement.castle_CO1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4920,7 +4920,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_CO2_1" name="{=Settlements.Settlement.name.castle_village_MO2_1}Bruleaux" posX="949.368" posY="1226.637" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CO2_1}Just south west of Castle Paravon lies the village of Lesevre, which hosts large deposits of Wood. Lesevre is very rich in wealth due to Castle Paravon needing coal to fuel the smithies for production of weapons and armour.">
+  <Settlement id="castle_village_CO2_1" name="{=Settlements.Settlement.name.castle_village_MO2_1}Bruleaux" posX="945.5085" posY="1219.628" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CO2_1}Just south west of Castle Paravon lies the village of Lesevre, which hosts large deposits of Wood. Lesevre is very rich in wealth due to Castle Paravon needing coal to fuel the smithies for production of weapons and armour.">
     <Components>
       <Village id="castle_village_comp_CO2_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.town_CO2" bound="Settlement.castle_CO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4933,7 +4933,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_CO3" name="{=Settlements.Settlement.name.castle_CO2}Castle Tancred" owner="Faction.parravon_clan_1" posX="1101.953" posY="1232.211" culture="Culture.vlandia" gate_posX="1101.56" gate_posY="1233.453" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
+  <Settlement id="castle_CO3" name="{=Settlements.Settlement.name.castle_CO2}Castle Tancred" owner="Faction.parravon_clan_1" posX="1101.953" posY="1232.211" culture="Culture.vlandia" gate_posX="1102.199" gate_posY="1233.638" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
     <Components>
       <Town id="castle_comp_CO3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4957,7 +4957,7 @@
     </CommonAreas>
   </Settlement>
   <!-- L' Anguille -->
-  <Settlement id="town_LA1" name="{=Settlements.Settlement.name.town_LA1}Castle L’Anguille" owner="Faction.bastonne_clan_1" posX="894.692" posY="1230.889" culture="Culture.vlandia" gate_posX="893.5344" gate_posY="1228.163" text="{=Settlements.Settlement.text.town_LA1}Located in the heart of Bastonne, Castle Bastonne and the surrounding villages show many indications of their founder, the first king Gilles le Breton, or Gilles the Unifier. Castle Bastonne itself is almost always a pilgrimage for any Grail Knights, or any who wish to see the testimony of Gilles le Breton’s accomplishments.">
+  <Settlement id="town_LA1" name="{=Settlements.Settlement.name.town_LA1}Castle L’Anguille" owner="Faction.bastonne_clan_1" posX="894.692" posY="1230.889" culture="Culture.vlandia" gate_posX="893.3494" gate_posY="1227.649" text="{=Settlements.Settlement.text.town_LA1}Located in the heart of Bastonne, Castle Bastonne and the surrounding villages show many indications of their founder, the first king Gilles le Breton, or Gilles the Unifier. Castle Bastonne itself is almost always a pilgrimage for any Grail Knights, or any who wish to see the testimony of Gilles le Breton’s accomplishments.">
     <Components>
       <Town id="town_comp_LA1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -5016,7 +5016,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LA1" name="{=Settlements.Settlement.name.castle_LA1}Castle Grasgar" owner="Faction.bastonne_clan_2" posX="909.453" posY="1193.38" culture="Culture.vlandia" gate_posX="908.7064" gate_posY="1192.312" text="{=Settlements.Settlement.text.castle_LA1}Castle Garamont holds the southern border of Bastonne from the western border of Bordeleaux, and provides a watchful lookout of the forest of Chȃlons and the feet of the mountains of Massif Orcal. The garrison has held off many Greenskin invaders.">
+  <Settlement id="castle_LA1" name="{=Settlements.Settlement.name.castle_LA1}Castle Grasgar" owner="Faction.bastonne_clan_2" posX="909.453" posY="1193.38" culture="Culture.vlandia" gate_posX="908.3972" gate_posY="1192.405" text="{=Settlements.Settlement.text.castle_LA1}Castle Garamont holds the southern border of Bastonne from the western border of Bordeleaux, and provides a watchful lookout of the forest of Chȃlons and the feet of the mountains of Massif Orcal. The garrison has held off many Greenskin invaders.">
     <Components>
       <Town id="castle_comp_LA1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -5039,7 +5039,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LA2" name="{=Settlements.Settlement.name.castle_LA2}Castle Serrac" owner="Faction.bastonne_clan_1" posX="872.62" posY="1245.636" culture="Culture.vlandia" gate_posX="873.7745" gate_posY="1246.24" text="{=Settlements.Settlement.text.castle_LA2}Lying just before the borders of Gisoreux, the fortress of Sangasse is a sentinel for any monsters or creatures that wish to venture out from the Arden forest. Indeed, many Beastmen raids have been thwarted by the garrison of knights stationed here.">
+  <Settlement id="castle_LA2" name="{=Settlements.Settlement.name.castle_LA2}Castle Serrac" owner="Faction.bastonne_clan_1" posX="879.6334" posY="1254.572" culture="Culture.vlandia" gate_posX="878.8237" gate_posY="1252.773" text="{=Settlements.Settlement.text.castle_LA2}Lying just before the borders of Gisoreux, the fortress of Sangasse is a sentinel for any monsters or creatures that wish to venture out from the Arden forest. Indeed, many Beastmen raids have been thwarted by the garrison of knights stationed here.">
     <Components>
       <Town id="castle_comp_LA2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -5062,7 +5062,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LA3" name="{=Settlements.Settlement.name.castle_LA3}Castle Sannez" owner="Faction.bastonne_clan_1" posX="931.421" posY="1211.423" culture="Culture.vlandia" gate_posX="931.028" gate_posY="1212.665" text="{=Settlements.Settlement.name.castle_LA3}On the Grismerie river, right across from the cursed city of Mousillon, Castle Riom stand firm directly in sight of the undead that many dread to plague Bretonnia. Many of the militia stationed in Castle Riom have heard dreadful noises coming from just across the river.">
+  <Settlement id="castle_LA3" name="{=Settlements.Settlement.name.castle_LA3}Castle Sannez" owner="Faction.bastonne_clan_1" posX="931.421" posY="1211.423" culture="Culture.vlandia" gate_posX="930.7709" gate_posY="1212.883" text="{=Settlements.Settlement.name.castle_LA3}On the Grismerie river, right across from the cursed city of Mousillon, Castle Riom stand firm directly in sight of the undead that many dread to plague Bretonnia. Many of the militia stationed in Castle Riom have heard dreadful noises coming from just across the river.">
     <Components>
       <Town id="castle_comp_LA3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -5086,7 +5086,7 @@
     </CommonAreas>
   </Settlement>
   <!-- Lyonesse -->
-  <Settlement id="town_LY1" name="{=Settlements.Settlement.name.town_LY1}Castle Lyonesse" owner="Faction.quenelles_clan_1" posX="713.57" posY="1187.337" culture="Culture.vlandia" gate_posX="716.5153" gate_posY="1187.028" text="{=Settlements.Settlement.name.town_LY1}Right on the border between the Land of Chivalry and the Forest of Loren, is Ducal Capital and Fortress-City of Quenelles. The city is so close to the Forest in fact, that the fey have demanded of the Quenellians to tear down the wall on the eastern side. Where the wall ends is met with a broad road and then immediately the fringes of the fey forest.">
+  <Settlement id="town_LY1" name="{=Settlements.Settlement.name.town_LY1}Castle Lyonesse" owner="Faction.quenelles_clan_1" posX="713.57" posY="1187.337" culture="Culture.vlandia" gate_posX="725.3942" gate_posY="1192.703" text="{=Settlements.Settlement.name.town_LY1}Right on the border between the Land of Chivalry and the Forest of Loren, is Ducal Capital and Fortress-City of Quenelles. The city is so close to the Forest in fact, that the fey have demanded of the Quenellians to tear down the wall on the eastern side. Where the wall ends is met with a broad road and then immediately the fringes of the fey forest.">
     <Components>
       <Town id="town_comp_LY1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -5106,7 +5106,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_LY1_1" name="{=Settlements.Settlement.name.village_LY1_1}Barfleur" posX="757.635" posY="1200.719" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_LY1_1}Perrach is a small farming community on the road between Castle Quenelles and Merceaux Descloux. The peasants here nar to go towards the woods in any way, so in fear they are of the Fey who watch over them from the shade of the trees.">
+  <Settlement id="village_LY1_1" name="{=Settlements.Settlement.name.village_LY1_1}Barfleur" posX="756.512" posY="1192.785" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_LY1_1}Perrach is a small farming community on the road between Castle Quenelles and Merceaux Descloux. The peasants here nar to go towards the woods in any way, so in fear they are of the Fey who watch over them from the shade of the trees.">
     <Components>
       <Village id="village_comp_LY1_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_LY1" bound="Settlement.town_LY1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -5119,7 +5119,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_LY1_2" name="{=Settlements.Settlement.name.village_LY1_2}Sablé" posX="799.714" posY="1181.295" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_LY1_2}In the flatlands of Quenelles, surrounded by a sea of grassgrasses and farmlands, is the village of Nailloux. The peasants here raise cattle on the fine grasses for most of the year. When it comes time to drive the cattle to market in Quenelles, the village becomes nearly uninhabited, as most of the population leaves along with their cattle.">
+  <Settlement id="village_LY1_2" name="{=Settlements.Settlement.name.village_LY1_2}Sablé" posX="799.4817" posY="1182.673" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_LY1_2}In the flatlands of Quenelles, surrounded by a sea of grassgrasses and farmlands, is the village of Nailloux. The peasants here raise cattle on the fine grasses for most of the year. When it comes time to drive the cattle to market in Quenelles, the village becomes nearly uninhabited, as most of the population leaves along with their cattle.">
     <Components>
       <Village id="village_comp_LY1_2" village_type="VillageType.cattle_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_LY1" bound="Settlement.town_LY1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -5132,7 +5132,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_LY2" name="{=Settlements.Settlement.name.town_LY2}Martel" owner="Faction.quenelles_clan_1" posX="863.549" posY="1050.05" culture="Culture.vlandia" gate_posX="865.395" gate_posY="1052.366" text="{=Settlements.Settlement.name.town_LY2}Nestled in the hills bordering Massif Orcal, sits the fortress town of Viefin. Viefin was established originally as a garrison to protect Quenelles from Greenskins that come down out of the mountains, as well as a position to launch attempts at founding new villages in the region.">
+  <Settlement id="town_LY2" name="{=Settlements.Settlement.name.town_LY2}Martel" owner="Faction.quenelles_clan_1" posX="863.549" posY="1050.05" culture="Culture.vlandia" gate_posX="865.3591" gate_posY="1053.927" text="{=Settlements.Settlement.name.town_LY2}Nestled in the hills bordering Massif Orcal, sits the fortress town of Viefin. Viefin was established originally as a garrison to protect Quenelles from Greenskins that come down out of the mountains, as well as a position to launch attempts at founding new villages in the region.">
     <Components>
       <Town id="town_comp_LY2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -5165,7 +5165,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_LY2_2" name="{=Settlements.Settlement.name.village_LY2_2}Voiron" posX="817.629" posY="1096.783" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_LY2_2}Gien is an old timber enterprise, founded long ago to provide building material for the Dukedom. With only the fools willing to even step foot near the forest of the fey, Quenelles sought out a new source of wood. Despite the dangers present in the Forest of Chalons, it is far safer to deal with the cloven ones than anger the elves.">
+  <Settlement id="village_LY2_2" name="{=Settlements.Settlement.name.village_LY2_2}Voiron" posX="819.1505" posY="1097.674" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_LY2_2}Gien is an old timber enterprise, founded long ago to provide building material for the Dukedom. With only the fools willing to even step foot near the forest of the fey, Quenelles sought out a new source of wood. Despite the dangers present in the Forest of Chalons, it is far safer to deal with the cloven ones than anger the elves.">
     <Components>
       <Village id="village_comp_LY2_2" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_LY2" bound="Settlement.town_LY2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -5178,7 +5178,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_LY3" name="{=Settlements.Settlement.name.town_LY3}Soreil" owner="Faction.quenelles_clan_1" posX="777.034" posY="1265.813" culture="Culture.vlandia" gate_posX="778.8809" gate_posY="1263.498" text="{=Settlements.Settlement.name.town_LY2}Nestled in the hills bordering Massif Orcal, sits the fortress town of Viefin. Viefin was established originally as a garrison to protect Quenelles from Greenskins that come down out of the mountains, as well as a position to launch attempts at founding new villages in the region.">
+  <Settlement id="town_LY3" name="{=Settlements.Settlement.name.town_LY3}Soreil" owner="Faction.quenelles_clan_1" posX="782.5954" posY="1263.055" culture="Culture.vlandia" gate_posX="784.1822" gate_posY="1260.984" text="{=Settlements.Settlement.name.town_LY2}Nestled in the hills bordering Massif Orcal, sits the fortress town of Viefin. Viefin was established originally as a garrison to protect Quenelles from Greenskins that come down out of the mountains, as well as a position to launch attempts at founding new villages in the region.">
     <Components>
       <Town id="town_comp_LY3" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -5211,7 +5211,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LY1" name="{=Settlements.Settlement.name.castle_LY1}Barley Motte" owner="Faction.quenelles_clan_1" posX="838.565" posY="1235.31" culture="Culture.vlandia" gate_posX="837.8184" gate_posY="1234.242" text="{=Settlements.Settlement.text.castle_LY1}Castle Beaumarchais sits strategically between three important areas; Massif Orcal, the border with Parravon and the Loren forest. While Quenellian relations with the fey are… amicable, The Castle was built far enough from the border of the woods to prevent the wood elves interference with its walls such as at Castle Quenelles.">
+  <Settlement id="castle_LY1" name="{=Settlements.Settlement.name.castle_LY1}Barley Motte" owner="Faction.quenelles_clan_1" posX="838.565" posY="1235.31" culture="Culture.vlandia" gate_posX="837.9255" gate_posY="1234.519" text="{=Settlements.Settlement.text.castle_LY1}Castle Beaumarchais sits strategically between three important areas; Massif Orcal, the border with Parravon and the Loren forest. While Quenellian relations with the fey are… amicable, The Castle was built far enough from the border of the woods to prevent the wood elves interference with its walls such as at Castle Quenelles.">
     <Components>
       <Town id="castle_comp_LY1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -5457,7 +5457,7 @@
     </CommonAreas>
   </Settlement>
   <!-- Artois -->
-  <Settlement id="town_AS1" name="{=Settlements.Settlement.name.town_AS1}Castle Artois" owner="Faction.carcassonne_clan_1" posX="923.052" posY="1170.046" culture="Culture.vlandia" gate_posX="922.9792" gate_posY="1167.085" text="{=Settlements.Settlement.text.town_AS1} The fortress city and the ducal capital of Carcassonne, Castle Carcassonne sits on an island surrounded by the river Songez. Due to the defensive location Castle Carcassonne is designed to be more of a fortress rather than a city, however there is a small town attached to the castle that acts as a marketplace and hub for many travelers and Knights who seek services.">
+  <Settlement id="town_AS1" name="{=Settlements.Settlement.name.town_AS1}Castle Artois" owner="Faction.carcassonne_clan_1" posX="924.8146" posY="1165.995" culture="Culture.vlandia" gate_posX="922.04" gate_posY="1161.374" text="{=Settlements.Settlement.text.town_AS1} The fortress city and the ducal capital of Carcassonne, Castle Carcassonne sits on an island surrounded by the river Songez. Due to the defensive location Castle Carcassonne is designed to be more of a fortress rather than a city, however there is a small town attached to the castle that acts as a marketplace and hub for many travelers and Knights who seek services.">
     <Components>
       <Town id="town_comp_AS1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -5477,7 +5477,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AS1_1" name="{=Settlements.Settlement.name.village_AS1_1}Uesin" posX="936.444" posY="1169.484" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_AS1_1}Located near the Border of Carcassonne and Brionne on the river Brienne, maintains a trusting relationship with the outlying villages of Lunel and Vauvert, having been trade partners for ages past.">
+  <Settlement id="village_AS1_1" name="{=Settlements.Settlement.name.village_AS1_1}Uesin" posX="943.8026" posY="1182.01" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_AS1_1}Located near the Border of Carcassonne and Brionne on the river Brienne, maintains a trusting relationship with the outlying villages of Lunel and Vauvert, having been trade partners for ages past.">
     <Components>
       <Village id="village_comp_AS1_1" village_type="VillageType.cattle_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AS1" bound="Settlement.town_AS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -5490,7 +5490,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AS1_2" name="{=Settlements.Settlement.name.village_AS1_2}Odemar" posX="942.411" posY="1138.261" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_AS1_2}Located at the base of the Irana Mountains, the village of Albi has been host to countless raids from Greenskin tribes. As such, the shepherds have become battle hardened and will defend their village from any oncoming monstrosities.">
+  <Settlement id="village_AS1_2" name="{=Settlements.Settlement.name.village_AS1_2}Odemar" posX="946.9768" posY="1140.856" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_AS1_2}Located at the base of the Irana Mountains, the village of Albi has been host to countless raids from Greenskin tribes. As such, the shepherds have become battle hardened and will defend their village from any oncoming monstrosities.">
     <Components>
       <Village id="village_comp_AS1_2" village_type="VillageType.sheep_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AS1" bound="Settlement.town_AS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -5503,7 +5503,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AS2" name="{=Settlements.Settlement.name.town_AS2}Larret" owner="Faction.carcassonne_clan_1" posX="893.029" posY="1129.92" culture="Culture.vlandia" gate_posX="892.9562" gate_posY="1126.959" text="{=Settlements.Settlement.text.town_AS2}Located in the Vaults , the City of Turin is the capital of the Barony of Savoie. The region is influenced heavily by nearby Tilea, despite this the city and people are steadfastly loyal to Bretonnia. Holding the famed relic, the “Shroud of Gilles le Breton” the City of Turin is a Pilgrimage site to all who follow the Lady of the Lake, and all who seek visions of the Lady.">
+  <Settlement id="town_AS2" name="{=Settlements.Settlement.name.town_AS2}Larret" owner="Faction.carcassonne_clan_1" posX="893.2474" posY="1129.321" culture="Culture.vlandia" gate_posX="888.3123" gate_posY="1134.073" text="{=Settlements.Settlement.text.town_AS2}Located in the Vaults , the City of Turin is the capital of the Barony of Savoie. The region is influenced heavily by nearby Tilea, despite this the city and people are steadfastly loyal to Bretonnia. Holding the famed relic, the “Shroud of Gilles le Breton” the City of Turin is a Pilgrimage site to all who follow the Lady of the Lake, and all who seek visions of the Lady.">
     <Components>
       <Town id="town_comp_AS2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
