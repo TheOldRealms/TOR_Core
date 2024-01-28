@@ -151,9 +151,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             }
             else
             {
-                var healthyPrisoners= Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementNumber(index);
-                var woundedPrisoners = Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementWoundedNumber(index);
-                if (healthyPrisoners - woundedPrisoners < 0 )
+                var healthytroops= Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementNumber(index);
+                var woundedtroops = Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementWoundedNumber(index);
+                if (healthytroops - woundedtroops < 0 )
                 {
                     displayText = new TextObject("Not enough healthy troops available");
                     return false;
