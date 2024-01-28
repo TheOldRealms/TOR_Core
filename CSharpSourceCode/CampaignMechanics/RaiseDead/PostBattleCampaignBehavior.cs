@@ -120,7 +120,6 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         {
             List<CharacterObject> elements = new List<CharacterObject>();
             var num = mapEvent.GetMapEventSide(mapEvent.DefeatedSide).Casualties- reduction;
-            
             double raiseDeadChance = 0;
 
             raiseDeadChance= Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Select(hero => hero.GetRaiseDeadChance()).Max();
