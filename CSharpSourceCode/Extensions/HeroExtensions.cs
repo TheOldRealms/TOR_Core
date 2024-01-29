@@ -133,9 +133,7 @@ namespace TOR_Core.Extensions
                             }
                         }
                     }
-                    
                 }
-                
             } 
             return number;
         }
@@ -153,16 +151,10 @@ namespace TOR_Core.Extensions
                         CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref unitUpkeet,PassiveEffectType.CustomResourceUpkeepModifier, true, element.Troop); 
                     }
                     
-                    
-                    
                     upkeep.Add(unitUpkeet.ResultNumber,new TextObject("Upkeep"));
                     
                 }
-                
-                
             }
-                
-            
             
             return -upkeep.ResultNumber;
         }

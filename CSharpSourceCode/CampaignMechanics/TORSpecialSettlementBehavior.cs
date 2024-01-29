@@ -10,8 +10,8 @@ namespace TOR_Core.CampaignMechanics
     {
         public override void RegisterEvents()
         {
-            CampaignEvents.HourlyTickSettlementEvent.AddNonSerializedListener(this,ExtraFood);    
-            CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this,AfterNewGameStart);
+            CampaignEvents.HourlyTickSettlementEvent.AddNonSerializedListener(this, ExtraFood);
+            CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, AfterNewGameStart);
         }
 
         public void ExtraFood(Settlement settlement)
@@ -28,7 +28,7 @@ namespace TOR_Core.CampaignMechanics
 
         private void AfterNewGameStart(CampaignGameStarter starter, int index)
         {
-            if(index != CampaignEvents.OnNewGameCreatedPartialFollowUpEventMaxIndex - 1) return;
+            if (index != CampaignEvents.OnNewGameCreatedPartialFollowUpEventMaxIndex - 1) return;
             BonusGarrision();
         }
 
@@ -41,7 +41,7 @@ namespace TOR_Core.CampaignMechanics
                 bloodKeep.MilitiaPartyComponent.Party.AddMember(bloodDragon, 500);
                 bloodKeep.SetGarrisonWagePaymentLimit(800000);
             }
-            
+
             var castleMousillon = Campaign.Current.Settlements.FirstOrDefault(x => x.StringId == "town_MS1");
 
             if (castleMousillon != null)
@@ -50,10 +50,7 @@ namespace TOR_Core.CampaignMechanics
                 castleMousillon.MilitiaPartyComponent.Party.AddMember(undead, 500);
             }
         }
-
-   
-
-
+        
         public override void SyncData(IDataStore dataStore)
         {
         }

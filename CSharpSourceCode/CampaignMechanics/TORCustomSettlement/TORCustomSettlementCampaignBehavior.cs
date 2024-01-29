@@ -629,10 +629,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                     {
                         hero.AddReligiousInfluence(nagash,1,false);
                     }
-                    
                 }
-
-                
             }
         }
 

@@ -737,14 +737,10 @@
   <string id="career_title.Necromancer" text="{=tor_career_title_necromancer_str}Necromancer" />
   <string id="career_title.BlackGrailKnight" text="{=tor_career_title_black_grail_knight_str}Knight of Mousillon" />
   
-  
-  
   <string id="career_choicegroup1_name.WitchHunter" text="{=career_choicegroup1_warrior_priest_str}Witch Hunter Initiate" />
   <string id="career_choicegroup2_name.WitchHunter" text="{=career_choicegroup2_warrior_priest_str}Witch Hunter Captain" />
   <string id="career_choicegroup3_name.WitchHunter" text="{=career_choicegroup3_warrior_priest_str}Master Witch Hunter" />
   
-
-
   <string id="career_choicegroup1_name.WarriorPriest" text="{=career_choicegroup1_warrior_priest_str}Cultist of Sigmar" />
   <string id="career_choicegroup2_name.WarriorPriest" text="{=career_choicegroup2_warrior_priest_str}Warrior Priest" />
   <string id="career_choicegroup3_name.WarriorPriest" text="{=career_choicegroup3_warrior_priest_str}Arch Lector" />
@@ -776,9 +772,6 @@
   <string id="career_choicegroup1_name.BlackGrailKnight" text="{=career_choicegroup1_black_grail_knight_str}Ill-fated Noble" />
   <string id="career_choicegroup2_name.BlackGrailKnight" text="{=career_choicegroup2_black_grail_knight_str}Ill-fated Questing Knight" />
   <string id="career_choicegroup3_name.BlackGrailKnight" text="{=career_choicegroup3_black_grail_knight_str}Knight of the Black Grail" />
-  
-  
-
   
   <!--TOR Damage type related !-->
   <string id="tor_damagetype.Invalid" text="{=tor_damagetype_invalid_str}Invalid"/>
