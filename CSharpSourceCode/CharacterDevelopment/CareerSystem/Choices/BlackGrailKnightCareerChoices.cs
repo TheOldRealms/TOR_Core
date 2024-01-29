@@ -163,6 +163,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Add
                     }
                 });
+            
             _swampRiderKeystone.Initialize(CareerID, "+20% speed during the ability, which now scales with the Polearm skill and starts recharged.", "SwampRider", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
