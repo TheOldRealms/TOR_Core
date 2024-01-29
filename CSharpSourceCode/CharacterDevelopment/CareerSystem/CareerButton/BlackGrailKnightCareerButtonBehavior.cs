@@ -47,8 +47,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 index = Hero.MainHero.PartyBelongedTo.PrisonRoster.FindIndexOfTroop(characterObject);
                 count = Hero.MainHero.PartyBelongedTo.PrisonRoster.GetElementNumber(index);
             }
-
-
+            
             var value = Hero.MainHero.GetCustomResourceValue("DarkEnergy");
 
             var canAfford = (int)value / _exchangeCost;
@@ -156,8 +155,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     return false;
                 }
             }
-
-
+            
             if (_exchangeCost > Hero.MainHero.GetCustomResourceValue("DarkEnergy"))
             {
                 displayText = new TextObject("Requires atleast " + _exchangeCost + " " + CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
