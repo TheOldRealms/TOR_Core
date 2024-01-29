@@ -98,9 +98,19 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
 
             TextObject hirelingBattleTextMenu = new TextObject("This is a test of Hireling BattleMenu", null);
-
-            campaignGameStarter.AddGameMenu("hireling_battle_menu", hirelingBattleTextMenu.Value, new OnInitDelegate(this.party_wait_talk_to_other_members_on_init), GameOverlays.MenuOverlayType.Encounter, GameMenu.MenuFlags.AutoSelectFirst, null);
-            campaignGameStarter.AddGameMenuOption("hireling_battle_menu", "attack", "Attack", new GameMenuOption.OnConditionDelegate(this.game_menu_attack_hideout_parties_on_condition), new GameMenuOption.OnConsequenceDelegate(this.game_menu_encounter_attack_on_consequence), false, -1, false, null);
+            campaignGameStarter.AddGameMenu("hireling_battle_menu", hirelingBattleTextMenu.Value, new OnInitDelegate(this.party_wait_talk_to_other_members_on_init), GameOverlays.MenuOverlayType.Encounter, GameMenu.MenuFlags.None, null);
+            campaignGameStarter.AddGameMenuOption("hireling_battle_menu", "hireling_attack", "Attack", 
+                game_menu_attack_hideout_parties_on_condition,
+                delegate (MenuCallbackArgs args)
+                {
+                    while (Campaign.Current.CurrentMenuContext != null)
+                    {
+                        GameMenu.ExitToLast();
+                    }
+                    StartBattleAction.Apply(PartyBase.MainParty, _enlistingLord.PartyBelongedTo.MapEvent.DefenderSide.LeaderParty);
+                    TORCommon.Say("ATTACK MENU 2");
+                }
+                , false, 4, false);
         }
 
         public void LeaveLordPartyAction(bool keepgear)
@@ -123,9 +133,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         // Token: 0x0600375E RID: 14174 RVA: 0x000FA630 File Offset: 0x000F8830
         private void game_menu_encounter_attack_on_consequence(MenuCallbackArgs args)
         {
-            StartBattleAction.Apply(PartyBase.MainParty, Campaign.Current.MainParty.MapEvent.DefenderSide.LeaderParty);
 
-            TORCommon.Say("ATTACK MENU 2");
+           
         }
 
 
