@@ -111,6 +111,9 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                     TORCommon.Say("ATTACK MENU 2");
                 }
                 , false, 4, false);
+
+            campaignGameStarter.AddGameMenu("hireling_battle_menu", hirelingBattleTextMenu.Value, party_wait_talk_to_other_members_on_init, GameOverlays.MenuOverlayType.Encounter, GameMenu.MenuFlags.None, null);
+            campaignGameStarter.AddGameMenuOption("hireling_battle_menu", "attack", "Attack", game_menu_attack_hideout_parties_on_condition, game_menu_encounter_attack_on_consequence, false, -1, false, null);
         }
 
         public void LeaveLordPartyAction(bool keepgear)
