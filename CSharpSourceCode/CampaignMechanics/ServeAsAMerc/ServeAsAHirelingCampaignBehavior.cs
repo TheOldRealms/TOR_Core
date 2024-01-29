@@ -27,6 +27,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
         private bool _enlisted;
         private Hero _enlistingLord;
+        private bool _startBattle;
 
         public bool IsEnlisted()
         {
@@ -41,7 +42,23 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             CampaignEvents.OnSettlementLeftEvent.AddNonSerializedListener(this, EnlistingLordPartyLeavesSettlement);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, controlPlayerLoot);                //Those events are never executed when the player lose a battle!
             CampaignEvents.MapEventEnded.AddNonSerializedListener(this, mapEventEnded);
+           //CampaignEvents.BattleStarted.AddNonSerializedListener(this,OnBattleStarted);
+            CampaignEvents.GameMenuOpened.AddNonSerializedListener(this,BattleMenuOpened);
         }
+
+        private void BattleMenuOpened(MenuCallbackArgs obj)
+        {
+            TORCommon.Say("lol");
+
+            if (_startBattle && obj.MenuContext.GameMenu.StringId == "encounter")
+            {
+                _startBattle = false;
+                
+                MenuHelper.EncounterAttackConsequence(obj);
+            }
+           
+        }
+
         // INIT PHASE
         private void ServeAsAMercDialog(CampaignGameStarter campaignGameStarter)
         {
@@ -109,11 +126,12 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                     }
                     StartBattleAction.Apply(PartyBase.MainParty, _enlistingLord.PartyBelongedTo.MapEvent.DefenderSide.LeaderParty);
                     TORCommon.Say("ATTACK MENU 2");
+                    _startBattle = true;
                 }
                 , false, 4, false);
 
             campaignGameStarter.AddGameMenu("hireling_battle_menu", hirelingBattleTextMenu.Value, party_wait_talk_to_other_members_on_init, GameOverlays.MenuOverlayType.Encounter, GameMenu.MenuFlags.None, null);
-            campaignGameStarter.AddGameMenuOption("hireling_battle_menu", "attack", "Attack", game_menu_attack_hideout_parties_on_condition, game_menu_encounter_attack_on_consequence, false, -1, false, null);
+           // campaignGameStarter.AddGameMenuOption("hireling_battle_menu", "attack", "Attack", game_menu_attack_hideout_parties_on_condition, game_menu_encounter_attack_on_consequence, false, -1, false, null);
         }
 
         public void LeaveLordPartyAction(bool keepgear)
@@ -136,8 +154,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         // Token: 0x0600375E RID: 14174 RVA: 0x000FA630 File Offset: 0x000F8830
         private void game_menu_encounter_attack_on_consequence(MenuCallbackArgs args)
         {
-
-           
+            
         }
 
 
@@ -270,22 +287,11 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                         }
                     }
                     GameMenu.ActivateGameMenu("hireling_battle_menu");
-
-                    //while (Campaign.Current.CurrentMenuContext != null) { 
-                      //      GameMenu.ExitToLast();
-                        //    GameMenu.ActivateGameMenu("hireling_battle_menu");
-                        //}
-
-                   
-                   // if (flagIsEnlistingLordAttacker)
-                    //{
-                      //  StartBattleAction.Apply(PartyBase.MainParty, mapEvent.DefenderSide.LeaderParty);
-                    //}
-                    //else { 
-                      //  StartBattleAction.Apply(Campaign.Current.MainParty.Party, mapEvent.AttackerSide.LeaderParty);
-                    //}
-
                 }
+
+                
+                
+                
             }
         }
 
