@@ -34,10 +34,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             originalTroop = characterTemplate;
             level = characterTemplate.Level;
             var index = Hero.MainHero.PartyBelongedTo.MemberRoster.FindIndexOfTroop(characterTemplate);
-            var count = Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementCopyAtIndex(index).Number;
-
             
-
+            var healthyTroops= Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementNumber(index);
+            var woundedTroops = Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementWoundedNumber(index);
+            
+            var count = healthyTroops - woundedTroops;
+            
             var value = Hero.MainHero.GetCustomResourceValue("Prestige");
             
             var canAfford = (int) value/retinueCost;
@@ -55,15 +57,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 {
                     if (!elem.Troop.IsHero)
                     {
-                        var indexOfTroop = Hero.MainHero.PartyBelongedTo.MemberRoster.FindIndexOfTroop(elem.Troop);
-                        if (elem.IsWounded)
-                        {
-                            copiedTroopRoster.AddToCounts(elem.Troop, 0,false,1,elem.Xp,true,indexOfTroop);
-                        }
-                        else
-                        {
-                            copiedTroopRoster.AddToCounts(elem.Troop, 1,false,0,elem.Xp,true);
-                        }
+                        copiedTroopRoster.AddToCounts(elem.Troop, 1,false,0,elem.Xp,true);
                         Hero.MainHero.PartyBelongedTo.MemberRoster.RemoveTroop(elem.Troop);
                     }
                 }
@@ -122,13 +116,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             return ( 15 * level * unitCount ) / retinueCount;
         }
         
-        public override void ButtonClickedEvent(CharacterObject characterObject)
+        public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner=false)
         {
             SetUpRetinueExchange(characterObject);
         }
 
         public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner)
         {
+            
+            if (PartyScreenManager.Instance.CurrentMode != PartyScreenMode.Normal) return false;
 
             if (characterObject.IsHero) return false;
 
@@ -149,10 +145,24 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
         public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner=false)
         {
+            var index = -1;
+            displayText = new TextObject();
+            index = Hero.MainHero.PartyBelongedTo.MemberRoster.FindIndexOfTroop(characterObject);
+
+            if (index == -1) return false;
+            
             displayText = new TextObject("Upgrades troop to a Witch Hunter Retinue");
             if (characterObject.IsEliteTroop())
             {
                 displayText = new TextObject("Knights Cant be upgraded to Retinues");
+                return false;
+            }
+            
+            var healthyTroops= Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementNumber(index);
+            var woundedTroops = Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementWoundedNumber(index);
+            if (healthyTroops - woundedTroops < 0 )
+            {
+                displayText = new TextObject("Not enough healthy troops available");
                 return false;
             }
 

@@ -673,7 +673,6 @@
   <string id="response_2.tor_wanderer_bretonnia_1" text="{=!}I understand." />
   <string id="backstory_d.tor_wanderer_bretonnia_1" text="{=!}Right." />
 
-  
   <string id="prebackstory.tor_wanderer_mousillon_0" text="{=!}Hmmph. You'd like to hear my story?" />
   <string id="backstory_a.tor_wanderer_mousillon_0" text="{=!}I was one of those questing knights a long time ago, dedicating my entire life for that damned Lady." />
   <string id="backstory_b.tor_wanderer_mousillon_0" text="{=!}But years pass, quest after quest, kill after kill, she still does not think I'm worthy! The bastard! " />
@@ -682,6 +681,15 @@
   <string id="response_2.tor_wanderer_mousillon_0" text="{=!}I hope that is the only thing you're looking for."/>
   <string id="backstory_d.tor_wanderer_mousillon_0" text="{=!}Well, don't waste my time." />
   <string id="generic_backstory.tor_wanderer_mousillon_0" text="{=!}I was still once a Brettonian knight, if you need anything to be slain, I am your warrior." />
+  
+  <string id="prebackstory.tor_wanderer_mousillon_1" text="{=!}Hm, you wish to know of my life? It is a tale I can share." />
+  <string id="backstory_a.tor_wanderer_mousillon_1" text="{=!}I have always been surrounded by death, death is everything in the swamps of mousillon" />
+  <string id="backstory_b.tor_wanderer_mousillon_1" text="{=!}My fate was never to join the undead roaming the land, but to control them. To raise them and bend them to my will." />
+  <string id="backstory_c.tor_wanderer_mousillon_1" text="{=!}It has taken time but the dead do my bidding and my powers are ever growing." />
+  <string id="response_1.tor_wanderer_mousillon_1" text="{=!}Intriguing." />
+  <string id="response_2.tor_wanderer_mousillon_1" text="{=!}I couldn't really care less about your wretched origin." />
+  <string id="backstory_d.tor_wanderer_mousillon_1" text="{=!}Right." />
+  <string id="generic_backstory.tor_wanderer_mousillon_1" text="{=!}I am a master of death and undeath, many fear me. Do you? " />
   
   
   <!-- Religions -->
@@ -735,15 +743,12 @@
   <string id="career_title.BloodKnight" text="{=tor_career_title_blood_knight_str}Blood Knight" />
   <string id="career_title.Mercenary" text="{=tor_career_title_mercenary_str}Mercenary" />
   <string id="career_title.Necromancer" text="{=tor_career_title_necromancer_str}Necromancer" />
-  
-  
+  <string id="career_title.BlackGrailKnight" text="{=tor_career_title_black_grail_knight_str}Knight of Mousillon" />
   
   <string id="career_choicegroup1_name.WitchHunter" text="{=career_choicegroup1_warrior_priest_str}Witch Hunter Initiate" />
   <string id="career_choicegroup2_name.WitchHunter" text="{=career_choicegroup2_warrior_priest_str}Witch Hunter Captain" />
   <string id="career_choicegroup3_name.WitchHunter" text="{=career_choicegroup3_warrior_priest_str}Master Witch Hunter" />
   
-
-
   <string id="career_choicegroup1_name.WarriorPriest" text="{=career_choicegroup1_warrior_priest_str}Cultist of Sigmar" />
   <string id="career_choicegroup2_name.WarriorPriest" text="{=career_choicegroup2_warrior_priest_str}Warrior Priest" />
   <string id="career_choicegroup3_name.WarriorPriest" text="{=career_choicegroup3_warrior_priest_str}Arch Lector" />
@@ -772,6 +777,9 @@
   <string id="career_choicegroup2_name.GrailDamsel" text="{=career_choicegroup2_grail_damsel_str}Grail Damsel" />
   <string id="career_choicegroup3_name.GrailDamsel" text="{=career_choicegroup3_grail_damsel_str}Prophetess" />
   
+  <string id="career_choicegroup1_name.BlackGrailKnight" text="{=career_choicegroup1_black_grail_knight_str}Ill-fated Noble" />
+  <string id="career_choicegroup2_name.BlackGrailKnight" text="{=career_choicegroup2_black_grail_knight_str}Ill-fated Questing Knight" />
+  <string id="career_choicegroup3_name.BlackGrailKnight" text="{=career_choicegroup3_black_grail_knight_str}Knight of the Black Grail" />
   
   <!--TOR Damage type related !-->
   <string id="tor_damagetype.Invalid" text="{=tor_damagetype_invalid_str}Invalid"/>
@@ -796,7 +804,7 @@
   
   <string id="career_description.Necromancer" text="{=career_description_necromancer_str}While many of these dark magisters serve under immortal vampires, it is actually the study of death and undeath that predates the vampire. Necromancers dedicate their lives researching the ultimate question facing every mortal; how to live forever? To the philosophically virtuous necromancer, vampirism is but one of the more successful failures at answering this question. The true answer is believed by these fell scholars to lay in study and innovation of the work of Nagash, the first and greatest necromancer of all time." />
   <string id="career_description.WitchHunter" text="{=career_description_witchHunter_str}Whether in the name of faith, purity or reward, Witch Hunters are charged with ending the threat created by all those who spread the taint of darkness. They justify their weapons, unconventional instruments and methods of investigations in the name of protecting innocent souls. A mostly thankless task, as even those who they are sworn to protect fear the shadow of a Witch Hunter at their threshold." />
-
+  <string id="career_description.BlackGrailKnight" text="{=career_description_black_grail_knight_str}Foreboding and Dreadful, Knights of the Black Grail are the personal retinue of the mysterious Serpent of Mousillon. As strong as they are cunning, Knights of the Black Grail have a knack for strategy and show great aptitude when faced with the many politics of Bretonnia. Even so, their honeyed words and forked tongue often reach into the hearts of many, drawing more to their cause of &quot;freeing&quot; Bretonnia from the filthy lie of the Lady." />
    <!-- Begin FaceGen Entries -->
   <string id="str_facegen_skin.TorsoBelly" text="{=!}Belly Girth" />
   <string id="str_facegen_skin.TorsoHips" text="{=!}Hip Size" />

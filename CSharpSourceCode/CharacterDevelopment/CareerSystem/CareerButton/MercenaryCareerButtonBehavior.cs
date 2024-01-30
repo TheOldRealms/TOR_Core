@@ -91,7 +91,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
             _mercenaryCompanionDialogBegins=false;
         }
 
-        public override void ButtonClickedEvent(CharacterObject characterObject)
+        public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner=false)
         {
             InitiateDialog(characterObject.StringId);
         }

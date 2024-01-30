@@ -94,13 +94,16 @@ namespace TOR_Core.Extensions
             
             if (agent.IsMainAgent && agent.GetHero().HasAnyCareer())
             {
-                if (agent.GetHero().GetAllCareerChoices().Contains("ProtectorOfTheWeakPassive4"))
+                var choices = agent.GetHero().GetAllCareerChoices();
+                if (choices.Contains("ProtectorOfTheWeakPassive4"))
                     return true;
-                if (agent.GetHero().GetAllCareerChoices().Contains("BladeMasterPassive3"))
+                if (choices.Contains("BladeMasterPassive3"))
                     return true;
-                if (agent.GetHero().GetAllCareerChoices().Contains("CommanderPassive3"))
+                if (choices.Contains("CommanderPassive3"))
                     return true;
-                if (agent.GetHero().GetAllCareerChoices().Contains("QuestingVowPassive4"))
+                if (choices.Contains("QuestingVowPassive4"))
+                    return true;
+                if (choices.Contains("BlackGrailVowPassive2"))
                     return true;
             }
 

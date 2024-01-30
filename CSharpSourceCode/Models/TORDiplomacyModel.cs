@@ -85,6 +85,26 @@ namespace TOR_Core.Models
             return nativeScoreOfDeclaringWar + torScoreOfDeclaringWar;
         }
 
+        public override float GetScoreOfMercenaryToJoinKingdom(Clan mercenaryClan, Kingdom kingdom)
+        {
+            var score = base.GetScoreOfMercenaryToJoinKingdom(mercenaryClan, kingdom);
+
+            if (kingdom == null) return score;
+            if (mercenaryClan == null) return score;
+
+            if (kingdom.Culture.StringId == "vlandia" && mercenaryClan.Culture.StringId != "vlandia")
+            {
+                score = - 10000;
+            }
+            
+            if (mercenaryClan.StringId == "tor_dog_clan_hero_curse" && kingdom.Culture.StringId == "khuzait" || kingdom.Culture.StringId == "mousillon" || kingdom.Culture.StringId== "vlandia")
+            {
+                score = - 10000;
+            }
+
+            return score;
+        }
+
 
         private float DetermineEffectOfReligion(IFaction factionDeclaresWar, IFaction factionToDeclareWarOn, IFaction evaluatingClan)
         {

@@ -88,7 +88,8 @@ namespace TOR_Core.Extensions.UI
         public void ExecuteButtonClick()
         {
             var troop = ( (PartyCharacterVM)_vm ).Troop.Character;
-            SpecialbuttonEventManagerHandler.Instance.OnButtonClicked(troop);
+            var isPrisoner = ( (PartyCharacterVM)_vm ).IsPrisonerOfPlayer;
+            SpecialbuttonEventManagerHandler.Instance.OnButtonClicked(troop,isPrisoner );
             
             ((PartyCharacterVM)_vm).RefreshValues();
 

@@ -136,7 +136,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
 
         public override void SyncData(IDataStore dataStore)
         {
-            //throw new NotImplementedException();
+            
         }
     }
 }

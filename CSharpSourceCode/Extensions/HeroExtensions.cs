@@ -27,7 +27,8 @@ namespace TOR_Core.Extensions
     {
         public static bool CanRaiseDead(this Hero hero)
         {
-            return hero.IsHumanPlayerCharacter && hero.IsNecromancer();
+            return hero.PartyBelongedTo != null && hero.PartyBelongedTo.GetMemberHeroes().Any(x => x.IsNecromancer());
+            //return hero.IsHumanPlayerCharacter && hero.IsNecromancer();
         }
 
         /// <summary>
@@ -72,6 +73,7 @@ namespace TOR_Core.Extensions
         public static float GetCustomResourceValue(this Hero hero, string id)
         {
             var info = hero.GetExtendedInfo();
+            
             if (info != null)
             {
                 return info.GetCustomResourceValue(id);
@@ -83,7 +85,8 @@ namespace TOR_Core.Extensions
         {
             if (hero == null)
                 return null;
-            return CustomResourceManager.GetResourceObject(x => x.FirstOrDefault(y => y.Culture == hero.Culture.StringId));
+            
+            return CustomResourceManager.GetResourceObject(x => x.FirstOrDefault(y => y.Cultures.Contains(hero.Culture.StringId)));
         }
 
         public static float GetCultureSpecificCustomResourceValue(this Hero hero)
@@ -113,7 +116,24 @@ namespace TOR_Core.Extensions
                 {
                     CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref number,PassiveEffectType.CustomResourceGain, false); 
                 }
-                
+
+                if (hero.HasCareer(TORCareers.BlackGrailKnight)&& hero.HasCareerChoice("BlackGrailVowPassive4"))
+                {
+                    var choice = TORCareerChoices.GetChoice("BlackGrailVowPassive4");
+                    if (hero.PartyBelongedTo != null)
+                    {
+                        var heroes = hero.PartyBelongedTo.GetMemberHeroes();
+                        heroes.Remove(Hero.MainHero);
+
+                        foreach (var companion in heroes)
+                        {
+                            if (companion.IsVampire() || companion.IsNecromancer())
+                            {
+                                number.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                            }
+                        }
+                    }
+                }
             } 
             return number;
         }
@@ -131,16 +151,10 @@ namespace TOR_Core.Extensions
                         CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref unitUpkeet,PassiveEffectType.CustomResourceUpkeepModifier, true, element.Troop); 
                     }
                     
-                    
-                    
                     upkeep.Add(unitUpkeet.ResultNumber,new TextObject("Upkeep"));
                     
                 }
-                
-                
             }
-                
-            
             
             return -upkeep.ResultNumber;
         }

@@ -22,6 +22,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerObject _necromancer;
         private CareerObject _warriorPriest;
         private CareerObject _witchHunter;
+        private CareerObject _blackGrailKnight;
         public TORCareers()
         {
             Instance = this;
@@ -48,6 +49,8 @@ namespace TOR_Core.CharacterDevelopment
         public static CareerObject WarriorPriest => Instance._warriorPriest;
         public static CareerObject Mercenary => Instance._mercenary;
         public static CareerObject BloodKnight => Instance._bloodKnight;
+        
+        public static CareerObject BlackGrailKnight => Instance._blackGrailKnight;
 
         public static MBReadOnlyList<CareerObject> All => Instance._allCareers;
 
@@ -62,6 +65,7 @@ namespace TOR_Core.CharacterDevelopment
             _mercenary = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Mercenary"));
             _witchHunter = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("WitchHunter"));
             _necromancer = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Necromancer"));
+            _blackGrailKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("BlackGrailKnight"));
 
             _allCareers.Add(_grailKnight);
             _allCareers.Add(_warriorPriest);
@@ -71,6 +75,7 @@ namespace TOR_Core.CharacterDevelopment
             _allCareers.Add(_grailDamsel);
             _allCareers.Add(_necromancer);
             _allCareers.Add(_witchHunter);
+            _allCareers.Add(_blackGrailKnight);
         }
 
         private void InitializeAll()
@@ -83,6 +88,7 @@ namespace TOR_Core.CharacterDevelopment
             _mercenary.Initialize("Mercenary", null, "LetThemHaveIt" );
             _witchHunter.Initialize("Witch Hunter", null, "Accusation", CareerAbilityChargeSupplier.WitchHunterCareerCharge, 200, typeof(AccusationScript));
             _necromancer.Initialize("Necromancer", null, "GreaterHarbinger", CareerAbilityChargeSupplier.NecromancerCareerCharge, 2000, typeof(SummonChampionScript));
+            _blackGrailKnight.Initialize("Knight of the Black Grail", null, "KnightlyCharge");
         }
     }
 }
