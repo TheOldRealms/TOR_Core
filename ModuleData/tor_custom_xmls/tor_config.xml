@@ -13,4 +13,5 @@
 	MaximumNumberOfCareerPerkPoints="30"
 	DeclareWarScoreMultiplierTor="8"
 	DeclareWarScoreMultiplierNative="2"
+	DeclarePeaceMultiplier="3"
 />
