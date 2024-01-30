@@ -543,9 +543,11 @@
     <Compile Include="CampaignMechanics\TORMapInfoVMExtension.cs" />
     <Compile Include="CampaignMechanics\TORPartyUpgraderCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORAIRecruitmentCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\TorRecruitmentHelpers.cs" />
     <Compile Include="CampaignMechanics\TORSpecialSettlementBehavior.cs" />
     <Compile Include="CampaignMechanics\TORWanderersCampaignBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerAbilityChargeSupplier.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\BlackGrailKnightCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\CareerButtonBehaviorBase.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\CareerButtons.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\GrailKnightCareerButtonBehavior.cs" />
@@ -564,6 +566,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\CareerScreenGameState.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerScreenVM.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CharacterDeveloperVMExtension.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\BlackGrailKnightCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\BloodKnightCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\GrailKnightCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\GrailDamselCareerChoices.cs" />
@@ -719,6 +722,7 @@
     <Compile Include="SubModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\DictionaryExtensions.cs" />
+    <Compile Include="Utilities\StringExtensions.cs" />
     <Compile Include="Utilities\TORAnimationLogger.cs" />
     <Compile Include="Utilities\TORCommon.cs" />
     <Compile Include="Utilities\TORConfig.cs" />

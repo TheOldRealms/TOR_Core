@@ -30,6 +30,25 @@ namespace TOR_Core.Models
                     }
                 }
             }
+            
+            if (attackerSide.IsMainPartyAmongParties())
+            {
+                if (MobileParty.MainParty.LeaderHero.HasAnyCareer())
+                {
+                    var choices = MobileParty.MainParty.LeaderHero.GetAllCareerChoices();
+                    
+                    if (choices.Contains("RobberKnightPassive3"))
+                    {
+                        var choice = TORCareerChoices.GetChoice("RobberKnightPassive3");
+                        if (choice != null)
+                        {
+                            explainedNumber.AddFactor(-choice.GetPassiveValue());
+                        }
+                        
+                        Hero.MainHero.AddCustomResource("DarkEnergy",explainedNumber.ResultNumber*50);
+                    }
+                }
+            }
 
             return explainedNumber.ResultNumber;
         }

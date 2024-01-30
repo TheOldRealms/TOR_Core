@@ -2,7 +2,7 @@
 <TORConfiguration 
     FakeBannerFrequency="10"
     NumberOfTroopsPerFormationWithStandard="1"
-    MaximumCustomResourceValue="1000"
+    MaximumCustomResourceValue="5000"
     NumberOfMaximumLooterPartiesEarly="200"
     NumberOfMaximumLooterParties="400"
     NumberOfMaximumLooterPartiesLate="600"
