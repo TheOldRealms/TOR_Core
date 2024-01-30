@@ -228,12 +228,36 @@
       <Trait id="BalancedFightingSkills" value="8" />
       <Trait id="Commander" value="5" />
       <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="1" />
+      <Trait id="Mercy" value="-1" />
       <Trait id="Valor" value="1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_fallen_knight" />
       <EquipmentSet id="tor_fallen_knight" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_wanderer_mousillon_1" default_group="infantry" name="{=str_tor_wanderer_mousillon_1}{FIRSTNAME} the Necromancer of Mousillon" occupation="Wanderer" culture="Culture.mousillon" voice="ironic" age="55" is_template="true" is_hero="false">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+      <hair_tags>
+        <hair_tag name="ShortAndThin" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="1" />
+      <Trait id="Manager" value="3" />
+      <Trait id="Surgeon" value="3" />
+      <Trait id="Calculating" value="3" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="SpellCasterSkills" value="7" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_necromancer_template" />
+      <EquipmentSet id="tor_necromancer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_wanderer_vampire_0" default_group="infantry" name="{=str_tor_wanderer_vampire_0}{FIRSTNAME} the Necromancer" occupation="Wanderer" culture="Culture.khuzait" voice="ironic" age="55" is_template="true" is_hero="false">

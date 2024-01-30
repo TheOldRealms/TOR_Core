@@ -175,7 +175,20 @@ namespace TOR_Core.BattleMechanics
                         }
                     }
                 }
+                
+                if (choices.Contains ("SwampRiderPassive3"))
+                {
+                    var choice = TORCareerChoices.GetChoice("SwampRiderPassive3");
 
+                    if (choice != null)
+                    {
+                        if (affectedAgent.IsEnemyOf(affectorAgent) && !blow.IsMissile)
+                        {
+                            Hero.MainHero.AddSkillXp(DefaultSkills.Roguery,blow.InflictedDamage);
+                        }
+                    }
+                }
+                
                 if (affectorAgent.HasAttribute("NecromancerChampion"))
                 {
                     if (choices.Contains("GrimoireNecrisKeystone"))

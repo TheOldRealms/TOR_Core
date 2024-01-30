@@ -75,7 +75,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             _grailKnightCompanionDialogBegins = false;
         }
         
-        public override void ButtonClickedEvent(CharacterObject characterObject)
+        public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner=false)
         {
             InitiateDialog(characterObject.StringId);
         }
