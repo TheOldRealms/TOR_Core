@@ -14,32 +14,34 @@ namespace TOR_Core.CharacterDevelopment
     {
         public static float WitchHunterCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
+            
             if (chargeType != ChargeType.DamageDone) return 0;
             if (!affectingAgent.BelongsToMainParty()) return 0;
 
-            ExplainedNumber explainedNumber = new ExplainedNumber(0);
-
-            if (affectingAgent.IsHero && affectingAgent.IsMainAgent)
+            if (affectingAgent.IsMainAgent || ( affectingAgent.IsHero && Hero.MainHero.HasCareerChoice("GuiltyByAssociationKeystone") ))
             {
-                explainedNumber.Add(chargeValue);
-            }
-
-            if (mask == AttackTypeMask.Ranged || mask == AttackTypeMask.Melee && Hero.MainHero.HasCareerChoice("HuntTheWickedKeystone"))
-            {
-                if (mask == AttackTypeMask.Ranged)
+                ExplainedNumber explainedNumber = new ExplainedNumber(0);
+            
+                if (mask == AttackTypeMask.Ranged || mask == AttackTypeMask.Melee && Hero.MainHero.HasCareerChoice("HuntTheWickedKeystone"))
                 {
-                    explainedNumber.AddFactor(-0.5f);
+                    if (mask == AttackTypeMask.Ranged)
+                    {
+                        explainedNumber.AddFactor(-0.5f);
+                    }
+
+                    if (collisionFlag == CareerHelper.ChargeCollisionFlag.HeadShot)
+                    {
+                        explainedNumber.AddFactor(1f);
+                    }
+
+                    explainedNumber.Add(chargeValue);
                 }
 
-                if (collisionFlag == CareerHelper.ChargeCollisionFlag.HeadShot)
-                {
-                    explainedNumber.AddFactor(1f);
-                }
-
-                explainedNumber.Add(chargeValue);
+                return explainedNumber.ResultNumber;
+                
             }
-
-            return explainedNumber.ResultNumber;
+            
+            return 0;
         }
 
         public static float NecromancerCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)

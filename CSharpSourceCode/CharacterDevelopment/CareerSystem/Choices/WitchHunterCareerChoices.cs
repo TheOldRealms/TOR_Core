@@ -178,7 +178,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
             
-            _noRestAgainstEvilKeystone.Initialize(CareerID, "The marker never vanishes from the target. Shield penetration for the duration of the ability", "NoRestAgainstEvil", false,
+            _noRestAgainstEvilKeystone.Initialize(CareerID, "Shield penetration for the duration of the ability. Enemy stays marked", "NoRestAgainstEvil", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -213,7 +213,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
             
-            _guiltyByAssociationKeystone.Initialize(CareerID, "Companions and Retinues can trigger mark effects. Ability starts charged.", "GuiltyByAssociation", false,
+            _guiltyByAssociationKeystone.Initialize(CareerID, "Companions and Retinues can trigger mark effects. Companions can charge ability", "GuiltyByAssociation", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     
@@ -227,7 +227,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(AbilityTemplate),
                         MutationTargetOriginalId = "Accusation",
                         PropertyName = "ScaleVariable1",
-                        PropertyValue = (choice, originalValue, agent) =>CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Roguery}, 0.0005f),
+                        PropertyValue = (choice, originalValue, agent) =>CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Roguery}, 0.001f),
                         MutationType = OperationType.Add
                     }
                 });
@@ -238,7 +238,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _toolsOfJudgementPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "ToolsOfJudgement", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
             _toolsOfJudgementPassive2.Initialize(CareerID, "5 extra ammo", "ToolsOfJudgement", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Ammo));
             _toolsOfJudgementPassive3.Initialize(CareerID, "Extra melee damage (10%).", "ToolsOfJudgement", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
-            _toolsOfJudgementPassive4.Initialize(CareerID, "Every equipped weapon increases ranged damage by 10%.", "ToolsOfJudgement", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10,PassiveEffectType.Special,true));
+            _toolsOfJudgementPassive4.Initialize(CareerID, "Every headshot kill gains you roguery, count twice for marked targets.", "ToolsOfJudgement", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10,PassiveEffectType.Special,true));
            
             _huntTheWickedPassive1.Initialize(CareerID, "Increases health regeneration after battles by 3.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.HealthRegeneration));
             _huntTheWickedPassive2.Initialize(CareerID, "Ranged Infantry wages are 15% reduced.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.TroopWages,true, 
