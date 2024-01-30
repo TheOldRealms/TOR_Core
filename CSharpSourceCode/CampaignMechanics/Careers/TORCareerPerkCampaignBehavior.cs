@@ -186,13 +186,11 @@ namespace TOR_Core.CampaignMechanics
 
                 var memberList = mobileParty.MemberRoster.GetTroopRoster();
 
-                var bretones = memberList.FindAll(x => !x.Character.IsEliteTroop()&& x.Character.Culture.StringId == "vlandia");
+                var bretonnes = memberList.FindAll(x => !x.Character.IsEliteTroop()&& x.Character.Culture.StringId == "vlandia");
                 
-                
-                
-                for (var index = 0; index < bretones.Count; index++)
+                for (var index = 0; index < bretonnes.Count; index++)
                 {
-                    var member = bretones[index];
+                    var member = bretonnes[index];
                     for (int i = 0; i < member.Number; i++)
                     {
                         var randomFloat = MBRandom.RandomFloat;
@@ -206,10 +204,8 @@ namespace TOR_Core.CampaignMechanics
                         mobileParty.AddElementToMemberRoster(mousillonEquivalent, 1);
                         mobileParty.AddElementToMemberRoster(member.Character, -1);
                     }
-                    
                 }
             }
-            
         }
         
         private static void LaunchHuntingEvent(MobileParty mobileParty)

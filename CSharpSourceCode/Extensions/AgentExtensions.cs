@@ -22,6 +22,7 @@ using TaleWorlds.Localization;
 using System.Runtime.ExceptionServices;
 using System.Security;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace TOR_Core.Extensions
 {
@@ -711,7 +712,7 @@ namespace TOR_Core.Extensions
             {
                 TORCommon.Log("ApplyDamage: attempted to damage agent, but application quit with access violation.", LogLevel.Error);
                 TORCommon.Log(a.ToString(), LogLevel.Error);
-                Application.Exit();
+                Process.GetCurrentProcess().Kill();
             }
             catch (Exception e)
             {

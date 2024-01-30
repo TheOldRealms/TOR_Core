@@ -52,7 +52,6 @@ namespace TOR_Core.AbilitySystem
                     || Hero.MainHero.HasCareerChoice("CourtleyKeystone")
                     || Hero.MainHero.HasCareerChoice("EnhancedHorseCombatKeystone")
                     || Hero.MainHero.HasCareerChoice("SwampRiderKeystone")
-                    || Hero.MainHero.HasCareerChoice("NoRestAgainstEvilKeystone")
                     || Hero.MainHero.HasCareerChoice("LiberMortisKeystone"))
                     _currentCharge = _maxCharge;
                 else

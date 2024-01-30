@@ -22,12 +22,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         private bool _isPrisoner;
 
         public override string CareerButtonIcon => "CareerSystem\\blackgrail";
-        
+
         public BlackGrailKnightCareerButtonBehavior(CareerObject career) : base(career)
         {
         }
 
-        public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner=false)
+        public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner = false)
         {
             SetupKnightExchange(characterObject, isPrisoner);
         }
@@ -39,26 +39,24 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             var index = Hero.MainHero.PartyBelongedTo.MemberRoster.FindIndexOfTroop(characterObject);
             var count = 0;
             if (!_isPrisoner)
-            { 
+            {
                 count += Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementCopyAtIndex(index).Number;
             }
             else
             {
                 index = Hero.MainHero.PartyBelongedTo.PrisonRoster.FindIndexOfTroop(characterObject);
                 count = Hero.MainHero.PartyBelongedTo.PrisonRoster.GetElementNumber(index);
-                
             }
             
-            
             var value = Hero.MainHero.GetCustomResourceValue("DarkEnergy");
-            
-            var canAfford = (int) value/_exchangeCost;
 
-            var availableKnights = (int) Mathf.Min(count, canAfford);
+            var canAfford = (int)value / _exchangeCost;
+
+            var availableKnights = (int)Mathf.Min(count, canAfford);
             availableKnights -= Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementWoundedNumber(index);
-            
+
             _convertedKnight = MBObjectManager.Instance.GetObject<CharacterObject>(_knightId);
-            
+
             if (_convertedKnight != null)
             {
                 var roster = TroopRoster.CreateDummyTroopRoster();
@@ -70,21 +68,22 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     {
                         if (elem.IsWounded)
                         {
-                            _copiedTroopRoster.AddToCounts(elem.Troop, 0,false,1,elem.Xp,true);
+                            _copiedTroopRoster.AddToCounts(elem.Troop, 0, false, 1, elem.Xp, true);
                         }
                         else
                         {
-                            _copiedTroopRoster.AddToCounts(elem.Troop, 1,false,0,elem.Xp,true);
+                            _copiedTroopRoster.AddToCounts(elem.Troop, 1, false, 0, elem.Xp, true);
                         }
+
                         Hero.MainHero.PartyBelongedTo.MemberRoster.RemoveTroop(elem.Troop);
                     }
                 }
+
                 _copiedTroopRoster.RemoveZeroCounts();
-                PartyScreenManager.OpenScreenAsReceiveTroops(roster, new TextObject("Ill fated Knights: Exchange "+_originalTroop.Name.ToString()+ "for mousillon Knights"), ExchangeKnights);
+                PartyScreenManager.OpenScreenAsReceiveTroops(roster, new TextObject("Ill fated Knights: Exchange " + _originalTroop.Name.ToString() + "for mousillon Knights"), ExchangeKnights);
             }
-            
         }
-        
+
         private void ExchangeKnights(PartyBase leftownerparty, TroopRoster leftmemberroster, TroopRoster leftPrisonRoster, PartyBase rightownerparty, TroopRoster rightmemberroster, TroopRoster rightprisonroster, bool fromcancel)
         {
             var count = rightmemberroster.TotalManCount - rightmemberroster.TotalHeroes;
@@ -99,23 +98,21 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 {
                     rightownerparty.AddPrisoner(_originalTroop, -count);
                 }
-                
-                Hero.MainHero.AddCustomResource("DarkEnergy", - _exchangeCost*count);
-                
+
+                Hero.MainHero.AddCustomResource("DarkEnergy", -_exchangeCost * count);
             }
-            
+
             Game.Current.GameStateManager.PopState();
         }
 
         public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner = false)
         {
-            
             if (PartyScreenManager.Instance.CurrentMode != PartyScreenMode.Normal) return false;
 
             if (!Hero.MainHero.HasCareerChoice("ScourgeOfBretonniaPassive4")) return false;
             if (characterObject.IsHero) return false;
-            
-            
+
+
             if (characterObject.Culture.StringId != "vlandia") return false;
 
             if (!characterObject.IsKnightUnit()) return false;
@@ -125,7 +122,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
         public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)
         {
-
             displayText = new TextObject("");
             var index = -1;
             if (!isPrisoner)
@@ -138,12 +134,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             }
 
             if (index == -1) return false;
-            
+
             if (isPrisoner)
             {
-                var healthyPrisoners= Hero.MainHero.PartyBelongedTo.PrisonRoster.GetElementNumber(index);
+                var healthyPrisoners = Hero.MainHero.PartyBelongedTo.PrisonRoster.GetElementNumber(index);
                 var woundedPrisoners = Hero.MainHero.PartyBelongedTo.PrisonRoster.GetElementWoundedNumber(index);
-                if (healthyPrisoners - woundedPrisoners < 0 )
+                if (healthyPrisoners - woundedPrisoners < 0)
                 {
                     displayText = new TextObject("Not enough healthy prisoners available");
                     return false;
@@ -151,21 +147,21 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             }
             else
             {
-                var healthyPrisoners= Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementNumber(index);
-                var woundedPrisoners = Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementWoundedNumber(index);
-                if (healthyPrisoners - woundedPrisoners < 0 )
+                var healthytroops = Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementNumber(index);
+                var woundedtroops = Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementWoundedNumber(index);
+                if (healthytroops - woundedtroops < 0)
                 {
                     displayText = new TextObject("Not enough healthy troops available");
                     return false;
                 }
             }
             
-            
             if (_exchangeCost > Hero.MainHero.GetCustomResourceValue("DarkEnergy"))
             {
-                displayText = new TextObject("Requires atleast "+_exchangeCost +" "+CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
+                displayText = new TextObject("Requires atleast " + _exchangeCost + " " + CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
                 return false;
             }
+
             displayText = new TextObject("");
 
             if (characterObject.StringId == "tor_br_grail_knight")

@@ -134,6 +134,7 @@
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="5"
 		type="HealthOverTime"/>
+		
 	<StatusEffectTemplate 
 		id="knightly_charge_healing_dark" 
 		particle_id="breath_of_darkness"
@@ -152,6 +153,7 @@
 		damage_type="Physical"
 		applies_for_attack_type="Melee">
 	</StatusEffectTemplate>
+	
 	<StatusEffectTemplate 
 		id="knightly_charge_magic_dmg" 
 		particle_id=""
@@ -161,6 +163,7 @@
 		base_effect_value="0.2"
 		damage_type="Magical"
 		applies_for_attack_type="Melee"/>
+		
 	<StatusEffectTemplate 
 		id="redfury_effect_dmg" 
 		particle_id="redfury_rage"
@@ -171,6 +174,7 @@
 		damage_type="Physical"
 		applies_for_attack_type="Melee">
 	</StatusEffectTemplate>
+	
 	<StatusEffectTemplate 
 		id="redfury_effect_dmg_2" 
 		particle_id="redfury_rage_2"
@@ -183,6 +187,7 @@
 		rotation="true"
 		rotation_speed="200">
 	</StatusEffectTemplate> 
+	
 	<StatusEffectTemplate 
 		id="redfury_effect_res" 
 		particle_id=""
@@ -193,6 +198,7 @@
 		damage_type="Physical"
 		applies_for_attack_type="Melee">
 	</StatusEffectTemplate>
+	
 	<StatusEffectTemplate 
 		id="redfury_effect_ats" 
 		particle_id="berzerk_effect"
