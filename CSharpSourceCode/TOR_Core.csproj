@@ -406,6 +406,12 @@
     <Compile Include="AbilitySystem\Spells\SpellBook\StatItemVM.cs" />
     <Compile Include="AbilitySystem\Spells\SpellCastingLevel.cs" />
     <Compile Include="AbilitySystem\SummonedAgentOrigin.cs" />
+    <Compile Include="Audio\CachedSound.cs" />
+    <Compile Include="Audio\CachedSoundInstance.cs" />
+    <Compile Include="Audio\TORAudioAmbientSoundEmitter.cs" />
+    <Compile Include="Audio\TORAudioEngine.cs" />
+    <Compile Include="Audio\TORAudioManager.cs" />
+    <Compile Include="Audio\TORMixingSampleProvider.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehaviorConfiguration.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehavior\AbstractAgentCastingBehavior.cs" />
     <Compile Include="BattleMechanics\AI\AgentBehavior\AgentCastingBehavior\AoEAdjacentCastingBehavior.cs" />
@@ -714,7 +720,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\DictionaryExtensions.cs" />
     <Compile Include="Utilities\TORAnimationLogger.cs" />
-    <Compile Include="Utilities\TORAudio.cs" />
     <Compile Include="Utilities\TORCommon.cs" />
     <Compile Include="Utilities\TORConfig.cs" />
     <Compile Include="Utilities\TORConsoleCommands.cs" />
