@@ -68,14 +68,14 @@ namespace TOR_Core.Audio
 
         public void RewindToStart() => CurrentPosition = 0;
 
-        public void SkipToEnd() => CurrentPosition = AudioData.Length;
+        public void SkipToEnd()
+        {
+            if (IsLoaded) CurrentPosition = AudioData.Length;
+        }
 
         public void Play()
         {
-            if (IsLoaded)
-            {
-                TORAudioEngine.Instance.PlaySound(this);
-            }
+            if (IsLoaded) TORAudioEngine.Instance.PlaySound(this);
         }
 
         public void Remove()

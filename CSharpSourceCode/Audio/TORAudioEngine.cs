@@ -17,9 +17,9 @@ namespace TOR_Core.Audio
         public int Channels { get; private set; }
         public TORMixingSampleProvider Mixer => _mixer;
 
-        public static readonly TORAudioEngine Instance = new TORAudioEngine(44100, 2);
+        public static readonly TORAudioEngine Instance = new TORAudioEngine(48000, 2);
 
-        public TORAudioEngine(int sampleRate = 44100, int channelCount = 2)
+        public TORAudioEngine(int sampleRate = 48000, int channelCount = 2)
         {
             SampleRate = sampleRate;
             Channels = channelCount;
