@@ -76,6 +76,13 @@ namespace TOR_Core.Models
 
         public override float GetScoreOfDeclaringPeace(IFaction factionDeclaresPeace, IFaction factionDeclaredPeace, IFaction evaluatingClan, out TextObject peaceReason)
         {
+            // Chaos really shouldn't be allowed to make peace
+            if (evaluatingClan.Culture.StringId == "chaos_culture")
+            {
+                peaceReason = new TextObject("Chaos will fight to the death!");
+                return float.MinValue;
+            }
+
             var nativeScoreOfDeclaringPeace = base.GetScoreOfDeclaringPeace(factionDeclaresPeace, factionDeclaredPeace, evaluatingClan, out peaceReason);
             var torScore = torAggressionScore(factionDeclaresPeace, factionDeclaredPeace);
 
