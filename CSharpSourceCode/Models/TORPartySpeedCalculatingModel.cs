@@ -49,6 +49,14 @@ namespace TOR_Core.Models
                         result.AddFactor(-0.2f, new TextObject("Suffering from sun light"));
                     }
                 }
+
+                if (MobileParty.MainParty.LeaderHero == Hero.MainHero)
+                {
+                    if (Hero.MainHero.GetCustomResourceValue("DarkEnergy")==0&&Hero.MainHero.GetCalculatedCustomResourceUpkeep("DarkEnergy")<=-25)
+                    {
+                        result.AddFactor(-0.9f,new TextObject("Burden of Dark Energy Costs is too high!") );
+                    }
+                }
             }
 
             if (mobileParty.HasBlessing("cult_of_taal"))

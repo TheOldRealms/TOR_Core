@@ -160,10 +160,7 @@ namespace TOR_Core.Models
                 }
                 if (character.IsPlayerCharacter && character.IsHero&& character.HeroObject== Hero.MainHero)
                 {
-                    if(victimLeader != null && character == victimLeader)
-                    {
-                        CareerHelper.ApplyBasicCareerPassives(Hero.MainHero,ref explainedNumber,PassiveEffectType.Spelleffectiveness, true);
-                    }
+                    CareerHelper.ApplyBasicCareerPassives(Hero.MainHero,ref explainedNumber,PassiveEffectType.Spelleffectiveness, true);
                 }
                 if (character.GetPerkValue(TORPerks.SpellCraft.OverCaster) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
                 {

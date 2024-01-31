@@ -124,11 +124,10 @@ namespace TOR_Core.HarmonyPatches
                     abilityId = spellInfo.OriginAbilityTemplateId;
                     damageCategories[damageType] = b.InflictedDamage;
                 }
+                
+                
 
-                damageAmplifications[damageType] += additionalDamagePercentages[damageType];
-                damageAmplifications[damageType] -= resistancePercentages[damageType];
-                damageCategories[damageType] *= 1 + damageAmplifications[damageType];
-                resultDamage = (int)damageCategories[damageType];
+                
                 
                 if(Game.Current.GameType is Campaign && abilityId != string.Empty && abilityId != null)
                 {
@@ -143,9 +142,32 @@ namespace TOR_Core.HarmonyPatches
                             var skill = model.GetRelevantSkillForAbility(abilityTemplate);
                             var amount = model.GetSkillXpForAbilityDamage(abilityTemplate, resultDamage);
                             hero.AddSkillXp(skill, amount);
+
+                            if (hero.HasAnyCareer())
+                            {
+                                if (hero.HasCareerChoice("UnhallowedSoulPassive1"))
+                                {
+                                    hero.AddSkillXp(DefaultSkills.Roguery, amount);
+                                }
+                                
+                                if (hero.HasCareerChoice("EverlingsSecretPassive4"))
+                                {
+                                    for (int i = (int) DamageType.Magical; i < (int) DamageType.All; i++)
+                                    {
+                                        if(i == damageType) continue;
+                                        damageAmplifications[damageType] += additionalDamagePercentages[i];
+                                        damageAmplifications[damageType] += damageAmplifications[i];
+                                    }
+                                }
+                            }
                         }
                     }
                 }
+                
+                damageAmplifications[damageType] += additionalDamagePercentages[damageType];
+                damageAmplifications[damageType] -= resistancePercentages[damageType];
+                damageCategories[damageType] *= 1 + damageAmplifications[damageType];
+                resultDamage = (int)damageCategories[damageType];
                 
                 resultDamage = (int)(resultDamage * wardSaveFactor);
                 b.InflictedDamage = resultDamage;

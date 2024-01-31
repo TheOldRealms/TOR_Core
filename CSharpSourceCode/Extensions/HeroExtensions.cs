@@ -42,9 +42,10 @@ namespace TOR_Core.Extensions
             if (!hero.IsNecromancer()) return 0f;
             
             var chance = new ExplainedNumber();
-            var skillValue = Mathf.Min(200,hero.GetSkillValue(TORSkills.SpellCraft));
-            
-           chance.Add(skillValue * 0.005f);
+            var skillValue = hero.GetSkillValue(TORSkills.SpellCraft);
+
+            var chanceValue = Mathf.Clamp(skillValue * 0.005f, 0.05f, 0.7f);
+           chance.Add(chanceValue);
 
             if (hero.HasAnyCareer())
             {
@@ -105,7 +106,7 @@ namespace TOR_Core.Extensions
             var number = new ExplainedNumber(0,true);
             if (hero.GetCultureSpecificCustomResource() != null)
             {
-                var upkeep = (int) GetCalculatedCustomResourceUpkeep(hero);
+                var upkeep = (int) GetCalculatedCustomResourceUpkeep(hero, hero.GetCultureSpecificCustomResource().StringId);
 
                 if (upkeep < 0)
                 {
@@ -138,14 +139,24 @@ namespace TOR_Core.Extensions
             return number;
         }
 
-        public static float GetCalculatedCustomResourceUpkeep(this Hero hero)
+        public static float GetCalculatedCustomResourceUpkeep(this Hero hero, string resourceID="")
         {
+            if (resourceID == "")
+            {
+                resourceID = hero.GetCultureSpecificCustomResource().StringId;
+            }
             var upkeep = new ExplainedNumber(0,true,new TextObject("Upkeep"));
             foreach (var element in hero.PartyBelongedTo.MemberRoster.ToFlattenedRoster())
             {
+                
+                
+               
                 if (element.Troop.HasCustomResourceUpkeepRequirement())
                 {
-                    var unitUpkeet = new ExplainedNumber(element.Troop.GetCustomResourceRequiredForUpkeep().Item2);
+                    var resource = element.Troop.GetCustomResourceRequiredForUpkeep();
+                
+                    if(resource.Item1.StringId !=resourceID) continue;
+                    var unitUpkeet = new ExplainedNumber(resource.Item2);
                     if (hero == Hero.MainHero)
                     {
                         CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref unitUpkeet,PassiveEffectType.CustomResourceUpkeepModifier, true, element.Troop); 

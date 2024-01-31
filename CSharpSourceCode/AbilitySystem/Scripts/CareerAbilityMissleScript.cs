@@ -7,9 +7,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         private float movementSpeed;
         protected override bool ShouldMove()
         {
-            //return base.ShouldMove();
             return true;
-            
         }
         
         protected override MatrixFrame GetNextGlobalFrame(MatrixFrame oldFrame, float dt)

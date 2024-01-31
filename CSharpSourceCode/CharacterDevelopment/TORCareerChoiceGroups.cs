@@ -581,7 +581,7 @@ namespace TOR_Core.CharacterDevelopment
             });
             _darkVision.Initialize("{=relentless_fanatic_choice_group_str}Dark Visions", TORCareers.Necrarch, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = string.Empty; 
                 return true;
             });
             _unhallowedSoul.Initialize("{=protector_of_the_weak_choice_group_str}Unhallowed Soul", TORCareers.Necrarch, 2, (Hero hero, out string text) =>
