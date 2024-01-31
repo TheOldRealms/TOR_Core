@@ -91,7 +91,6 @@ namespace TOR_Core
             UIConfig.DoNotUseGeneratedPrefabs = true;
 
             TORConfig.ReadConfig();
-            TORAudio.Initialize();
             TORKeyInputManager.Initialize();
             StatusEffectManager.LoadStatusEffects();
             TriggeredEffectManager.LoadTemplates();

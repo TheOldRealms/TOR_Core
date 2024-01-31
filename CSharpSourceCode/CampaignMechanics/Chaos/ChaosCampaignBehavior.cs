@@ -152,6 +152,20 @@ namespace TOR_Core.CampaignMechanics.Chaos
             List<Clan> chaosBanditFactions = Clan.BanditFactions.Where(x => x.StringId == "steppe_bandits" || x.StringId == "forest_bandits").ToList();
             List<Kingdom> nonChaosKingdoms = Kingdom.All.Where(x => x.Culture.StringId != "chaos_culture").ToList();
 
+            //Set chaos kingdoms eternal enemy of all non-chaos kingdoms
+            foreach (var nonChaosKingdom in nonChaosKingdoms)
+            {
+                foreach (var chaosKingdom in chaosKingdoms)
+                {
+                    if (!chaosKingdom.IsAtWarWith(nonChaosKingdom))
+                    {
+                        FactionManager.DeclareWar(chaosKingdom, nonChaosKingdom, true);
+                    }
+                    var stance = chaosKingdom.GetStanceWith(nonChaosKingdom);
+                    stance.IsAtConstantWar = true;
+                    stance.IsAtWar = true;
+                }
+            }
             //Set roaming minor faction named chaos clans enemy of all non-chaos kingdoms
             foreach (var nonChaosKingdom in nonChaosKingdoms)
             {

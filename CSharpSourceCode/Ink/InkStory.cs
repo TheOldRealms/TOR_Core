@@ -25,6 +25,7 @@ using TaleWorlds.InputSystem;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.Audio;
 using TOR_Core.CampaignMechanics.CustomEvents;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CharacterDevelopment;
@@ -45,7 +46,7 @@ namespace TOR_Core.Ink
         public readonly bool IsDevelopmentVersion;
         public readonly string StringId;
         public readonly int Cooldown;
-
+        private CachedSoundInstance _currentAudio;
         private string _currentLine;
 
         public InkStory(string id, string file)
@@ -74,18 +75,15 @@ namespace TOR_Core.Ink
                 {
                     Cooldown = 300;
                 }
-
-             
             }
         }
 
         public void CleanUp()
         {
-            if(TORAudio.IsPlaying)
+            if(_currentAudio != null)
             {
-                TORAudio.StopAudio();
+                _currentAudio.Remove();
             }
-            TORAudio.CleanUp();
             MBMusicManager.Current.UnpauseMusicManagerSystem();
             MBMusicManager.Current.ActivateCampaignMode();
         }
@@ -487,12 +485,12 @@ namespace TOR_Core.Ink
 
         private void PlayMusic(string songName)
         {
-            var file = TORPaths.TORArmoryModuleRootPath + "ModuleSounds/" + songName + ".ogg";
-            if(File.Exists(file))
+            _currentAudio = TORAudioManager.CreateSoundInstance(songName, false, 1);
+            if(_currentAudio != null )
             {
                 MBMusicManager.Current.DeactivateCurrentMode();
                 MBMusicManager.Current.PauseMusicManagerSystem();
-                TORAudio.PlayAudio(file);
+                _currentAudio.Play();
             }
         }
 

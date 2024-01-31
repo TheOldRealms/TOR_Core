@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
@@ -118,15 +119,21 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             Instance._resourceChanges.Clear();
             if ((Hero.MainHero.IsVampire() || Hero.MainHero.CanRaiseDead()) && PartyScreenManager.Instance.CurrentMode == PartyScreenMode.Loot)
             {
+                var prisoners = PlayerEncounter.Current.RosterToReceiveLootPrisoners.TotalManCount;
+                var totalCausalties = Hero.MainHero.PartyBelongedTo.MapEvent.GetMapEventSide(BattleSideEnum.Defender).Casualties;
+               
+                
                 var result = 0f;
+
+                result += totalCausalties - prisoners;
                 if (leftMemberRoster != null && leftMemberRoster.Count > 0)
                 {
-                    result = AdjustGainsForDarkEnergy(leftMemberRoster);
+                    result += AdjustGainsForDarkEnergy(leftMemberRoster);
                 }
 
                 if (leftPrisonRoster != null && leftPrisonRoster.Count > 0)
                 {
-                    result = AdjustGainsForDarkEnergy(leftPrisonRoster, true);
+                    result += AdjustGainsForDarkEnergy(leftPrisonRoster, true);
                 }
 
                 Hero.MainHero.AddCultureSpecificCustomResource(result);
@@ -137,7 +144,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         private static float AdjustGainsForDarkEnergy(TroopRoster leftUnits, bool isPrisoner=false)
         {
             var explainedNumber = new ExplainedNumber();
-            float reduction = 10;
+            float reduction = 5;
             if (isPrisoner)
             {
                 reduction /= 2;
