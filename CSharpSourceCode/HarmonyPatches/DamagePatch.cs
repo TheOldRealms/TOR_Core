@@ -145,7 +145,7 @@ namespace TOR_Core.HarmonyPatches
 
                             if (hero.HasAnyCareer())
                             {
-                                if (hero.HasCareerChoice("UnhallowedSoulPassive1"))
+                                if (hero.HasCareerChoice("DarkVisionPassive3"))
                                 {
                                     hero.AddSkillXp(DefaultSkills.Roguery, amount);
                                 }

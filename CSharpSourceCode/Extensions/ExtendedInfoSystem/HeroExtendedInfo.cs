@@ -107,6 +107,13 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                         if (BaseCharacter.HeroObject == Hero.MainHero)
                         {
                             CareerHelper.ApplyBasicCareerPassives(Hero.MainHero,ref  explainedNumber, PassiveEffectType.WindsOfMagic,false);
+                            
+                            if (CareerChoices.Contains("DarkVisionPassive4"))
+                            {
+                                var spellCount = Hero.MainHero.GetExtendedInfo().AcquiredAbilities.Count - 1;
+                                var choice = TORCareerChoices.GetChoice("DarkVisionPassive4");
+                                explainedNumber.Add(choice.GetPassiveValue() * spellCount);
+                            }
                         }
                         else if (BaseCharacter.HeroObject.PartyBelongedTo!=null && BaseCharacter.HeroObject.PartyBelongedTo.IsMainParty)
                         {

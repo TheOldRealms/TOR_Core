@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
@@ -134,6 +135,19 @@ namespace TOR_Core.Extensions
                             }
                         }
                     }
+                }
+
+                if (hero.HasCareer(TORCareers.Necrarch) && hero.HasCareerChoice("EverlingsSecretPassive3"))
+                {
+                    var choice = TORCareerChoices.GetChoice("EverlingsSecretPassive3");
+                    if (choice!=null)
+                    {
+                        if (hero.GetExtendedInfo().MaxWindsOfMagic <= hero.GetCustomResourceValue("WindsOfMagic"))
+                        {
+                            number.Add(hero.GetExtendedInfo().WindsOfMagicRechargeRate * CampaignTime.HoursInDay, choice.BelongsToGroup.Name);
+                        }
+                    }
+                    
                 }
             } 
             return number;
