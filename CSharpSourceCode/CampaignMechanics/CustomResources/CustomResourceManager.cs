@@ -128,12 +128,12 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 result += totalCausalties - prisoners;
                 if (leftMemberRoster != null && leftMemberRoster.Count > 0)
                 {
-                    result += AdjustGainsForDarkEnergy(leftMemberRoster);
+                    result += AdjustBattleSpoilsForDarkEnergy(leftMemberRoster);
                 }
 
                 if (leftPrisonRoster != null && leftPrisonRoster.Count > 0)
                 {
-                    result += AdjustGainsForDarkEnergy(leftPrisonRoster, true);
+                    result += AdjustBattleSpoilsForDarkEnergy(leftPrisonRoster, true);
                 }
 
                 Hero.MainHero.AddCultureSpecificCustomResource(result);
@@ -141,14 +141,10 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         }
 
 
-        private static float AdjustGainsForDarkEnergy(TroopRoster leftUnits, bool isPrisoner=false)
+        private static float AdjustBattleSpoilsForDarkEnergy(TroopRoster leftUnits, bool isPrisoner=false)
         {
             var explainedNumber = new ExplainedNumber();
             float reduction = 5;
-            if (isPrisoner)
-            {
-                reduction /= 2;
-            }
                 
             foreach (var troop in leftUnits.GetTroopRoster().ToList())
             {
