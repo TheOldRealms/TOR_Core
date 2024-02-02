@@ -77,7 +77,7 @@ namespace TOR_Core.CharacterDevelopment
             if (!affectingAgent.IsHero && affectingAgent.IsUndead() && Hero.MainHero.HasCareerChoice("DiscipleOfAccursedKeystone"))
             {
                 explainedNumber.Add(chargeValue);
-                explainedNumber.AddFactor(-0.9f);
+                explainedNumber.AddFactor(-0.75f);
                 return explainedNumber.ResultNumber;
             }
 
@@ -85,11 +85,7 @@ namespace TOR_Core.CharacterDevelopment
             explainedNumber.Add(chargeValue);
             if (!affectingAgent.IsMainAgent && !Hero.MainHero.HasCareerChoice("HungerForKnowledgeKeystone")) 
                 return 0;
-                
-            if (mask == AttackTypeMask.Spell)
-            {
-                explainedNumber.AddFactor(-0.5f);
-            }
+            
 
             return explainedNumber.ResultNumber;
         }

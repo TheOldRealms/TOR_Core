@@ -20,6 +20,12 @@
 		base_effect_value="20"
 		type="HealthOverTime"/>
 	<StatusEffectTemplate 
+		id="minor_healing_regeneration" 
+		particle_id="healing_regeneration"
+		particle_intensity="High"
+		base_effect_value="3"
+		type="HealthOverTime"/>
+	<StatusEffectTemplate 
 		id="breath_of_darkness" 
 		particle_id="breath_of_darkness"
 		particle_intensity="High"

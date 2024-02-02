@@ -90,7 +90,7 @@
       Name="{=minor_heal_label_str}Petty Heal" 
       SpriteName="petty_healing_icon" 
       CoolDown="20" 
-      WindsOfMagicCost="4" 
+      WindsOfMagicCost="10" 
       BaseMisCastChance="0.05" 
       Duration="0" 
       Radius="0" 
