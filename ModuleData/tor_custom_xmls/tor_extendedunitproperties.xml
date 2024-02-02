@@ -1918,6 +1918,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="20" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dog_cursed_company_03">
     <Abilities />
@@ -1930,6 +1931,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="30" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dog_leopard_01">
     <Abilities />
