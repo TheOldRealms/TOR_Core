@@ -115,11 +115,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _necrarchRoot.Initialize(CareerID, "Summoned out of the realm of the dead, a projectile spell is casted and deals X damage the radius of the netherball enlarges for every point in spellcraft. The Netherball can be modified with several upgrades from the career tree. The netherball is free of any cost.", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
-                });
-            
-            _discipleOfAccursedKeystone.Initialize(CareerID, "Netherball is now target seeking.", "DiscipleOfAccursed", false,
-                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
-                {
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(TriggeredEffectTemplate),
@@ -128,6 +123,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.SpellCraft}, 0.01f),
                         MutationType = OperationType.Add
                     },
+                });
+            
+            _discipleOfAccursedKeystone.Initialize(CareerID, "Netherball is now target seeking. Undead troops can charge career ability", "DiscipleOfAccursed", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(AbilityTemplate),
@@ -185,7 +186,19 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Replace
                     }
                 });
-            _unhallowedSoulKeystone.Initialize(CareerID, "Ability scales with roguery. For every killed unit on impact of NB heal 1 point.", "UnhallowedSoul", false,
+            _unhallowedSoulKeystone.Initialize(CareerID, "Increase impact damage of netherball by 25%", "HungerForKnowledge", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_netherball",
+                        PropertyName = "DamageAmount",
+                        PropertyValue = (choice, originalValue, agent) => (float)originalValue*1.25f,
+                        MutationType = OperationType.Add
+                    }
+                });
+            _hungerForKnowledgeKeystone.Initialize(CareerID, "Ability scales with Rougery. Companions can charge ability", "HungerForKnowledge", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -194,18 +207,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetOriginalId = "apply_netherball",
                         PropertyName = "Radius",
                         PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Roguery}, 0.01f),
-                        MutationType = OperationType.Add
-                    }
-                });
-            _hungerForKnowledgeKeystone.Initialize(CareerID, "Ability scales with Medicine. Starts charged", "HungerForKnowledge", false,
-                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
-                {
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_netherball",
-                        PropertyName = "Radius",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Medicine}, 0.01f),
                         MutationType = OperationType.Add
                     }
                 });
@@ -229,7 +230,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         {
             
             _discipleOfAccursedPassive1.Initialize(CareerID, "Increases max Winds of Magic by 5.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
-            _discipleOfAccursedPassive2.Initialize(CareerID, "Increases Party size by 25.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.PartySize, false));
+            _discipleOfAccursedPassive2.Initialize(CareerID, "Increases Party size by 20.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.PartySize, false));
             _discipleOfAccursedPassive3.Initialize(CareerID, "10% cost reduction for spells.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-10, PassiveEffectType.WindsCostReduction, true));
             _discipleOfAccursedPassive4.Initialize(CareerID, "Reduce the Dark Energy upkeep for wraith troops by 25%.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpkeepModifier,true, 
                 characterObject => characterObject.StringId.Contains("wraith")|| characterObject.StringId.Contains("spirit_host")));
@@ -241,7 +242,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 (characterObject => Hero.MainHero.BattleEquipment.GetTotalWeightOfArmor(true)<11f)));
             
             _darkVisionPassive1.Initialize(CareerID, "Increases max Winds of Magic by 5.", "DarkVision", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
-            _darkVisionPassive2.Initialize(CareerID, "Gain 10 Dark Energy daily.", "DarkVision", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CustomResourceGain));
+            _darkVisionPassive2.Initialize(CareerID, "Gain 5 Dark Energy daily.", "DarkVision", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CustomResourceGain));
             _darkVisionPassive3.Initialize(CareerID, "Spell damage increase roguery.", "DarkVision", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect()); 
             _darkVisionPassive4.Initialize(CareerID, "For every known spell your winds capacity rises by 1.", "DarkVision", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1,PassiveEffectType.Special, true));
             

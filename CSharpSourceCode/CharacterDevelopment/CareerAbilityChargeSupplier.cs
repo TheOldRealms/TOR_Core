@@ -68,7 +68,32 @@ namespace TOR_Core.CharacterDevelopment
             explainedNumber.Add(chargeValue);
             return explainedNumber.ResultNumber;
         }
+        
+        public static float NecrarchCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
+        {
+            if (chargeType != ChargeType.DamageDone && chargeType != ChargeType.Healed) return 0;
+            ExplainedNumber explainedNumber = new ExplainedNumber();
+            
+            if (!affectingAgent.IsHero && affectingAgent.IsUndead() && Hero.MainHero.HasCareerChoice("DiscipleOfAccursedKeystone"))
+            {
+                explainedNumber.Add(chargeValue);
+                explainedNumber.AddFactor(-0.9f);
+                return explainedNumber.ResultNumber;
+            }
 
+            if (!affectingAgent.IsHero || mask != AttackTypeMask.Spell) return explainedNumber.ResultNumber;
+            explainedNumber.Add(chargeValue);
+            if (!affectingAgent.IsMainAgent && !Hero.MainHero.HasCareerChoice("HungerForKnowledgeKeystone")) 
+                return 0;
+                
+            if (mask == AttackTypeMask.Spell)
+            {
+                explainedNumber.AddFactor(-0.5f);
+            }
+
+            return explainedNumber.ResultNumber;
+        }
+        
         public static float GrailDamselCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
             if (chargeType != ChargeType.DamageDone || chargeType != ChargeType.Healed) return 0;

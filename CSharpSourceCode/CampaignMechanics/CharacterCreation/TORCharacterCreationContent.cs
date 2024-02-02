@@ -382,6 +382,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             List<InquiryElement> list = new List<InquiryElement>();
             list.Add(new InquiryElement("generic_vampire", "Von Carstein Vampire", null));
             list.Add(new InquiryElement("blood_knight", "Blood Knight", null));
+            list.Add(new InquiryElement("necrarch", "Necrarch", null));
             var inquirydata = new MultiSelectionInquiryData("Choose Bloodline", "Choose your vampiric bloodline.", list, false, 1, 1, "Confirm", "Cancel", OnChooseBloodline, OnCancel);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
         }
@@ -405,6 +406,19 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             if (choice == "blood_knight")
             {
                 Hero.MainHero.AddCareer(TORCareers.BloodKnight);
+            }
+
+            if (choice == "necrarch")
+            {
+                Hero.MainHero.AddAttribute("SpellCaster");
+                Hero.MainHero.AddAbility("NagashGaze");
+                Hero.MainHero.AddKnownLore("MinorMagic");
+                Hero.MainHero.AddKnownLore("Necromancy");
+                Hero.MainHero.AddCareer(TORCareers.Necrarch);
+                var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
+                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
+                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
             }
         }
     }
