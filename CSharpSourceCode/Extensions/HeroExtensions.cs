@@ -495,6 +495,14 @@ namespace TOR_Core.Extensions
             }
         }
 
+        public static bool HasUnlockedCareerChoiceTier(this Hero hero, int tier)
+        {
+            var tierText = "CareerTier";
+            if(hero.HasAnyCareer()&& hero.HasAttribute(tierText + tier))return true;
+            
+            return false;
+        }
+
         public static bool HasAnyReligion(this Hero hero) => hero.GetDominantReligion() != null;
 
         public static ReligionObject GetDominantReligion(this Hero hero) => hero.GetExtendedInfo() != null ? hero.GetExtendedInfo().DominantReligion : null;

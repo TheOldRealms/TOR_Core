@@ -83,7 +83,7 @@ namespace TOR_Core.CharacterDevelopment
 
             if (!affectingAgent.IsHero || mask != AttackTypeMask.Spell) return explainedNumber.ResultNumber;
             explainedNumber.Add(chargeValue);
-            if (!affectingAgent.IsMainAgent && !Hero.MainHero.HasCareerChoice("HungerForKnowledgeKeystone")) 
+            if (!affectingAgent.IsMainAgent && !Hero.MainHero.HasCareerChoice("WellspringOfDharKeystone")) 
                 return 0;
             
 

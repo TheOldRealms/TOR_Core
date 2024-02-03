@@ -114,6 +114,19 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                                 var choice = TORCareerChoices.GetChoice("DarkVisionPassive4");
                                 explainedNumber.Add(choice.GetPassiveValue() * spellCount);
                             }
+
+                            if (CareerChoices.Contains("DiscipleOfAccursedPassive4"))
+                            {
+                                var characterEquipment = Hero.MainHero.CharacterObject.GetCharacterEquipment();
+                                foreach (var item in characterEquipment)
+                                {
+                                    var choice = TORCareerChoices.GetChoice("DiscipleOfAccursedPassive4");
+                                    if (item.IsMagicalItem())
+                                    {
+                                        explainedNumber.Add(choice.GetPassiveValue());
+                                    } 
+                                }
+                            }
                         }
                         else if (BaseCharacter.HeroObject.PartyBelongedTo!=null && BaseCharacter.HeroObject.PartyBelongedTo.IsMainParty)
                         {

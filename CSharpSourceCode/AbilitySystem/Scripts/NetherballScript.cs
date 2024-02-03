@@ -39,7 +39,13 @@ namespace TOR_Core.AbilitySystem.Scripts
         {
             base.HandleCollision(position, normal);
             
-            var agents = Mission.Current.GetNearbyEnemyAgents(position.AsVec2, _radius, CasterAgent.Team, new MBList<Agent>());
+           
+            
+            if(Hero.MainHero.HasCareerChoice("HungerForKnowledgeKeystone"))
+            { 
+                var agents = Mission.Current.GetNearbyEnemyAgents(position.AsVec2, _radius, CasterAgent.Team, new MBList<Agent>());
+                Hero.MainHero.AddWindsOfMagic(agents.Count);
+            }
 
            
         }

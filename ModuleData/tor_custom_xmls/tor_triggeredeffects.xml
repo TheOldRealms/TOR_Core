@@ -40,7 +40,7 @@
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>healing_regeneration</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
-	  <TriggeredEffectTemplate StringID="apply_healing_statuseffect" 
+	  <TriggeredEffectTemplate StringID="apply_minor_healing_statuseffect" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
@@ -52,7 +52,7 @@
             ImbuedStatusEffectDuration="10" 
             DamageVariance="0.1" 
             ScriptNameToTrigger="none">
-            <ImbuedStatusEffect>healing_regeneration</ImbuedStatusEffect>
+            <ImbuedStatusEffect>minor_healing_regeneration</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
       <TriggeredEffectTemplate StringID="foetid_cloud_burst" 
             BurstParticleEffectPrefab="none" 

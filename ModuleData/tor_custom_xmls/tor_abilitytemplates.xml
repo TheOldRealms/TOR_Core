@@ -126,7 +126,7 @@
 				<z>255</z>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>apply_healing_statuseffect</TriggeredEffect>
+		<TriggeredEffect>apply_minor_healing_statuseffect</TriggeredEffect>
 	</AbilityTemplate>
 	<AbilityTemplate StringID="FoetidCloud" 
       Name="{=foetid_cloud_label_str}Foetid Cloud" 
