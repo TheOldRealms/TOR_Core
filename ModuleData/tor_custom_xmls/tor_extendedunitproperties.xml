@@ -1173,7 +1173,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="10" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="1" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_skeleton_warrior">
     <Abilities />
@@ -1188,7 +1188,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="20" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="3" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_crypt_warrior">
     <Abilities />
@@ -1202,7 +1202,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="40" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="10" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_grave_guard_warrior">
     <Abilities />
@@ -1216,7 +1216,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="50" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="35" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_grave_guard_seneschal">
     <Abilities />
@@ -1245,7 +1245,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="10" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="1" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_skeleton_guard">
     <Abilities />
@@ -1260,7 +1260,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="20" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="3" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_crypt_guard">
     <Abilities />
@@ -1274,7 +1274,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="40" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="10" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_grave_guard_spearman">
     <Abilities />
@@ -1288,7 +1288,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="50" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="35" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_grave_guardian">
     <Abilities />
@@ -1491,7 +1491,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="5" UpgradeCost="100" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="5" UpgradeCost="10" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_bd_blooddragon_templar">
     <Abilities />
@@ -1506,7 +1506,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="6" UpgradeCost="150" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="6" UpgradeCost="75" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_bd_blooddragon_kastelan">
     <Abilities />
@@ -1521,7 +1521,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="8" UpgradeCost="200" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="8" UpgradeCost="100" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lahmian_sister">
     <Abilities />
@@ -1918,7 +1918,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="20" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="3" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dog_cursed_company_03">
     <Abilities />
@@ -1931,7 +1931,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="30" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="10" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dog_leopard_01">
     <Abilities />
@@ -2502,7 +2502,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="75" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="35" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_sternieste_sternsmen">
     <Abilities />
@@ -2514,7 +2514,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="100" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="75" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_sternieste_black_knight">
     <Abilities />
@@ -2872,6 +2872,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="1" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_roaming_undead_warrior">
     <Abilities />
@@ -2883,6 +2884,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="3" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_outlaw">
     <Abilities />
