@@ -67,7 +67,8 @@ namespace TOR_Core.Models
 
         public int GetSkillXpForAbilityDamage(AbilityTemplate ability, int damageAmount)
         {
-            return damageAmount;
+            
+            return (int)damageAmount /5;
         }
 
         public float GetSkillEffectivenessForAbilityDamage(CharacterObject character, AbilityTemplate ability)

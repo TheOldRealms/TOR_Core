@@ -16,6 +16,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
@@ -28,9 +29,14 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
 {
     public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     {
+        private const int _empoweringUndeadCost = 100;
+        
         private CampaignTime _startWaitTime = CampaignTime.Now;
         private int _numberOfTroops = 0;
+        private int _empoweredUndead = 0;
+        private Dictionary<string, int> leveledUpUndead = new Dictionary<string, int>();
         private int _minimumDaysBetweenRaisingGhosts = 3;
+       
         [SaveableField(0)] private Dictionary<string, bool> _customSettlementActiveStates = new Dictionary<string, bool>();
         [SaveableField(1)] private Dictionary<string, int> _cursedSiteWardDurationLeft = new Dictionary<string, int>();
         [SaveableField(2)] private Dictionary<string, int> _lastGhostRecruitmentTime = new Dictionary<string, int>();
@@ -465,9 +471,12 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
 
         private void AddCursedSiteMenus(CampaignGameStarter starter)
         {
+            MBTextManager.SetTextVariable("DARKENERGYICON", CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
+            
             starter.AddGameMenu("cursedsite_menu", "{LOCATION_DESCRIPTION}", CursedSiteMenuInit);
             starter.AddGameMenuOption("cursedsite_menu", "purify", "{PURIFY_TEXT}", PurifyCondition, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu_purifying"));
             starter.AddGameMenuOption("cursedsite_menu", "ghosts", "{tor_custom_settlement_menu_cursed_site_ghost_str}Tap into the congealed essence of Dark Magic and bind some wraiths to your will.", GhostsCondition, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu_ghosts"));
+            starter.AddGameMenuOption("cursedsite_menu", "ghosts", "{tor_custom_settlement_menu_cursed_site_ghost_str}Empower your undead minions using Dark Energy (100{DARKENERGYICON}) .", EmpoweringUndeadCondition, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu_empower_minions"));
             starter.AddGameMenuOption("cursedsite_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate (MenuCallbackArgs args)
             {
                 args.optionLeaveType = GameMenuOption.LeaveType.Leave;
@@ -493,14 +502,30 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 }, null, GhostConsequence,
                 BindingTick,
                 GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameOverlays.MenuOverlayType.None, 4f, GameMenu.MenuFlags.None, null);
+            starter.AddWaitGameMenu("cursedsite_menu_empower_minions", "{=tor_custom_settlement_cursed_site_ghosts_progress_str}Empowering your minions...",
+                delegate (MenuCallbackArgs args)
+                {
+                    _startWaitTime = CampaignTime.Now;
+                    PlayerEncounter.Current.IsPlayerWaiting = true;
+                    args.MenuContext.GameMenu.StartWait();
+                }, null, EmporingConsequence,
+                EmpowerUndeadMinionsTick,
+                GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameOverlays.MenuOverlayType.None, 4f, GameMenu.MenuFlags.None, null);
             starter.AddGameMenu("purification_result", "{PURIFICATION_RESULT} {NEWLINE} {WOUNDED_RESULT}", PurificationResultInit);
             starter.AddGameMenu("ghost_result", "{GHOST_RESULT}", GhostResultInit);
+            starter.AddGameMenu("empowering_result", "{EMPOWERING_RESULT} \n{EMPOWERING_LIST}", EmporingResultInit);
             starter.AddGameMenuOption("purification_result", "return_to_root", "{tor_custom_settlement_menu_continue_str}Continue", delegate (MenuCallbackArgs args)
             {
                 args.optionLeaveType = GameMenuOption.LeaveType.Continue;
                 return true;
             }, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu"), true);
             starter.AddGameMenuOption("ghost_result", "return_to_root", "{tor_custom_settlement_menu_continue_str}Continue", delegate (MenuCallbackArgs args)
+            {
+                args.optionLeaveType = GameMenuOption.LeaveType.Continue;
+                return true;
+            }, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu"), true);
+            
+            starter.AddGameMenuOption("empowering_result", "return_to_root", "{tor_custom_settlement_menu_continue_str}Continue", delegate (MenuCallbackArgs args)
             {
                 args.optionLeaveType = GameMenuOption.LeaveType.Continue;
                 return true;
@@ -564,6 +589,29 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             }
             return component.IsActive;
         }
+        
+        private bool EmpoweringUndeadCondition(MenuCallbackArgs args)
+        {
+            var settlement = Settlement.CurrentSettlement;
+            var component = settlement.SettlementComponent as CursedSiteComponent;
+            
+            if (!(Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x=> x.IsNecromancer() ) || Hero.MainHero.IsVampire()))
+            {
+                args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_not_necromancer_text_str}You are not a practitioner of necromancy.");
+                args.IsEnabled = false;
+            }
+            if (!Hero.MainHero.PartyBelongedTo.MemberRoster.ToFlattenedRoster().Any(x=> x.Troop.IsUndead()))
+            {
+                args.Tooltip = new TextObject("There are no undead in your party.");
+                args.IsEnabled = false;
+            }
+            if (Hero.MainHero.GetCustomResourceValue("DarkEnergy")<_empoweringUndeadCost)
+            {
+                args.Tooltip = new TextObject("You have not enough Dark Energy({DARKENERGYICON}).");
+                args.IsEnabled = false;
+            }
+            return component.IsActive;
+        }
 
         private void PurificationConsequence(MenuCallbackArgs args)
         {
@@ -579,6 +627,14 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             args.MenuContext.GameMenu.EndWait();
             args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(0f);
             GameMenu.SwitchToMenu("ghost_result");
+        }
+        
+        private void EmporingConsequence(MenuCallbackArgs args)
+        {
+            PlayerEncounter.Current.IsPlayerWaiting = false;
+            args.MenuContext.GameMenu.EndWait();
+            args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(0f);
+            GameMenu.SwitchToMenu("empowering_result");
         }
 
         private void PurifyingTick(MenuCallbackArgs args, CampaignTime dt)
@@ -633,6 +689,51 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             }
         }
 
+        private void EmpowerUndeadMinionsTick(MenuCallbackArgs args, CampaignTime dt)
+        {
+            var xp = 250;
+            float progress = args.MenuContext.GameMenu.Progress;
+            int diff = (int)_startWaitTime.ElapsedHoursUntilNow;
+            if (diff > 0)
+            {
+                args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(diff * 0.25f);
+                if (args.MenuContext.GameMenu.Progress != progress)
+                {
+                    var party = Hero.MainHero.PartyBelongedTo;
+                    for (int i = 0; i < Hero.MainHero.PartyBelongedTo.MemberRoster.Count; i++)
+                    {
+                        var troopCharacter = party.MemberRoster.GetCharacterAtIndex(i);
+                        if(!troopCharacter.IsUndead()) continue;
+                        if(troopCharacter.IsHero) continue;
+                        var t = Hero.MainHero.PartyBelongedTo.Party.MemberRoster.GetElementCopyAtIndex(i).DeltaXp ;
+                        var a = Hero.MainHero.PartyBelongedTo.Party.MemberRoster.GetElementCopyAtIndex(i).Xp ;
+
+                        var model = Campaign.Current.Models.PartyTroopUpgradeModel;
+                        
+                        if (model.IsTroopUpgradeable(Hero.MainHero.PartyBelongedTo.Party, troopCharacter))
+                        {
+                            var xpa = Campaign.Current.Models.PartyTroopUpgradeModel.GetXpCostForUpgrade(Hero.MainHero.PartyBelongedTo.Party, troopCharacter, troopCharacter.UpgradeTargets[0]);
+                            a %= xpa;
+                            if (a+ xp>= xpa&& a !=0)
+                            {
+                                _empoweredUndead++;
+                                if (leveledUpUndead.ContainsKey(troopCharacter.Name.ToString()))
+                                {
+                                    leveledUpUndead[troopCharacter.Name.ToString()]++;
+                                }
+                                else
+                                {
+                                    leveledUpUndead.Add(troopCharacter.Name.ToString(), 1);
+                                }
+                            
+                            }
+                            Hero.MainHero.PartyBelongedTo.MemberRoster.AddXpToTroop(250,troopCharacter);
+                        }
+                    }
+                }
+            }
+        }
+
         private void PurificationResultInit(MenuCallbackArgs args)
         {
             var settlement = Settlement.CurrentSettlement;
@@ -666,6 +767,24 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                     _lastGhostRecruitmentTime.Add(Hero.MainHero.StringId, (int)CampaignTime.Now.ToDays);
                 }
             }
+        }
+        
+        private void EmporingResultInit(MenuCallbackArgs args)
+        {
+            if (_empoweredUndead > 0)
+            {
+                MBTextManager.SetTextVariable("UNDEAD_UPGRADES", _empoweredUndead);
+                MBTextManager.SetTextVariable("EMPOWERING_RESULT", "{UNDEAD_UPGRADES} of your minions grew stronger.");
+                var result = "";
+                foreach (var item in leveledUpUndead)
+                {
+                    result += item.Key + " - " + item.Value +"\n";
+                }
+                MBTextManager.SetTextVariable("EMPOWERING_LIST", result);
+                _empoweredUndead = 0;
+                leveledUpUndead.Clear();
+            }
+            Hero.MainHero.AddCustomResource("DarkEnergy",-100);
         }
 
         #endregion

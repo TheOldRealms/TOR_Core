@@ -125,10 +125,6 @@ namespace TOR_Core.HarmonyPatches
                     damageCategories[damageType] = b.InflictedDamage;
                 }
                 
-                
-
-                
-                
                 if(Game.Current.GameType is Campaign && abilityId != string.Empty && abilityId != null)
                 {
                     var abilityTemplate = AbilityFactory.GetTemplate(abilityId);
@@ -138,18 +134,21 @@ namespace TOR_Core.HarmonyPatches
                         var model = Campaign.Current.Models.GetAbilityModel();
                         if (model != null)
                         {
-                            resultDamage = (int)(resultDamage * model.GetPerkEffectsOnAbilityDamage(hero.CharacterObject, victim, abilityTemplate));
+                            resultDamage = (int)(b.InflictedDamage * model.GetPerkEffectsOnAbilityDamage(hero.CharacterObject, victim, abilityTemplate));
                             var skill = model.GetRelevantSkillForAbility(abilityTemplate);
                             var amount = model.GetSkillXpForAbilityDamage(abilityTemplate, resultDamage);
                             hero.AddSkillXp(skill, amount);
 
                             if (hero.HasAnyCareer())
                             {
-                                if (hero.HasCareerChoice("DarkVisionPassive3"))
+                                if (amount > 0)
                                 {
-                                    hero.AddSkillXp(DefaultSkills.Roguery, amount);
+                                    if (hero.HasCareerChoice("DarkVisionPassive3"))
+                                    {
+                                        hero.AddSkillXp(DefaultSkills.Roguery, amount);
+                                    }
                                 }
-                                
+
                                 if (hero.HasCareerChoice("EverlingsSecretPassive4"))
                                 {
                                     for (int i = (int) DamageType.Magical; i < (int) DamageType.All; i++)
@@ -170,6 +169,7 @@ namespace TOR_Core.HarmonyPatches
                 resultDamage = (int)damageCategories[damageType];
                 
                 resultDamage = (int)(resultDamage * wardSaveFactor);
+                if (victim.Team != attacker.Team && resultDamage < 0) resultDamage = 0;
                 b.InflictedDamage = resultDamage;
                 b.BaseMagnitude = resultDamage;
                 if (attacker == Agent.Main || victim == Agent.Main)
