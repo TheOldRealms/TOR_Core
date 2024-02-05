@@ -196,7 +196,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 if (asFactor)
                 {
                     number.AddFactor(value, text);
-                    return;
+                    continue;
                 }
                 number.Add(value, text);
             }
