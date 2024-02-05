@@ -122,9 +122,9 @@ namespace TOR_Core.BattleMechanics
                     }
                 }
 
-                if (choices.Contains("AvatarOfDeathPassive4"))
+                if (choices.Contains("ControlledHungerPassive4"))
                 {
-                    var choice = TORCareerChoices.GetChoice("AvatarOfDeathPassive4");
+                    var choice = TORCareerChoices.GetChoice("ControlledHungerPassive4");
 
                     if (choice != null)
                     {
