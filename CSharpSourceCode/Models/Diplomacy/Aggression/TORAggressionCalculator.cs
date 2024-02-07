@@ -1,4 +1,5 @@
 ﻿using TaleWorlds.CampaignSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models.Diplomacy.Aggression
 {
@@ -15,11 +16,16 @@ namespace TOR_Core.Models.Diplomacy.Aggression
             // normalize effect of religion based on average hero "agro" to approximately between 0.0 and 1.0
             religionScore = religionScore / ((faction2.Heroes.Count + faction1.Heroes.Count) * 100);
 
-            //TORCommon.Say($"Aggression between {faction1.Name} vs {faction2.Name}; \n\t\t" +
-            //    $"Faction Score: {factionScore}, Distance Score: {distanceScore}, Religion Score = {religionScore} ");
+            // apply faction score to both scores
+            religionScore *= nativeFactionScore;
+            var distanceScore = nativeFactionScore * nativeDistanceScore;
 
-            // weigh religion as much as faction strength, distance is kinda between 0-1
-            return (religionScore * nativeFactionScore) + (nativeDistanceScore * nativeFactionScore);
+            // Logging
+            TORCommon.Say($"Aggression between {faction1.Name} vs {faction2.Name}; \n\t\t" +
+                $"Faction Score: {nativeFactionScore}, Distance Score: {distanceScore}, Religion Score = {religionScore} ");
+
+            // return aggregate score
+            return religionScore + distanceScore;
         }
 
 
