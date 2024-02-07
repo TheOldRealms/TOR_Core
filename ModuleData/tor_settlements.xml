@@ -2911,7 +2911,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_ML5_2" name="{=Settlements.Settlement.name.village_ML5_2}Schwarzmarkt" posX="1335.278" posY="1193.075" culture="Culture.empire" text="{=Settlements.Settlement.text.village_ML1_2}Tallerhof is a small village that sits where the Grey Lady Road meets the Dwarf Road. It astrides the river Teufel and marks the highest place where the river is still navigable by barge. If it were not for the dwarf trade passing through from Karak Azgaraz for Ubersreik, the village would have long been abandoned.">
+  <Settlement id="village_ML5_2" name="{=Settlements.Settlement.name.village_ML5_2}Schwarzmarkt" posX="1335.882" posY="1192.589" culture="Culture.empire" text="{=Settlements.Settlement.text.village_ML1_2}Tallerhof is a small village that sits where the Grey Lady Road meets the Dwarf Road. It astrides the river Teufel and marks the highest place where the river is still navigable by barge. If it were not for the dwarf trade passing through from Karak Azgaraz for Ubersreik, the village would have long been abandoned.">
     <Components>
       <Village id="village_comp_ML5_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ML5" bound="Settlement.town_ML5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2993,7 +2993,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_ML1_1" name="{=Settlements.Settlement.name.castle_village_ML1_1}Kammendun" posX="1310.886" posY="1233.653" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_ML1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
+  <Settlement id="castle_village_ML1_1" name="{=Settlements.Settlement.name.castle_village_ML1_1}Kammendun" posX="1310.677" posY="1232.984" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_ML1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
     <Components>
       <Village id="castle_village_comp_ML1_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_ML1" bound="Settlement.castle_ML1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3032,7 +3032,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_ML1_4" name="{=Settlements.Settlement.name.castle_village_ML1_4}Vorbegwerk" posX="1306.899" posY="1250.822" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_ML1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_ML1_4" name="{=Settlements.Settlement.name.castle_village_ML1_4}Vorbegwerk" posX="1307.062" posY="1250.849" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_ML1_2}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the Reikland Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
     <Components>
       <Village id="castle_village_comp_ML1_4" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_ML6" bound="Settlement.castle_ML1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3045,7 +3045,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_ML2" name="{=Settlements.Settlement.name.castle_ML2}Middenstag" owner="Faction.talabecland_clan_1" posX="1347.485" posY="1160.849" culture="Culture.empire" gate_posX="1348.987" gate_posY="1162.084" text="{=!}The Grand Freistadt of Kemperbad is a major trade city that sits at the confluences of the rivers Riek and Stir. The city holds a commanding position over this portion of the river trade and is crucial to ensuring the southern empires continued economic prosperity. The city purchased its charter from Emperor Boris the Incompetent in 1066 IC, from then on being ruled directly by the Council of Thirteen which represents the largest merchants in town plus representatives from the local temples of Sigmar and Shallya.">
+  <Settlement id="castle_ML2" name="{=Settlements.Settlement.name.castle_ML2}Middenstag" owner="Faction.talabecland_clan_1" posX="1344.808" posY="1160.875" culture="Culture.empire" gate_posX="1346.72" gate_posY="1160.52" text="{=!}The Grand Freistadt of Kemperbad is a major trade city that sits at the confluences of the rivers Riek and Stir. The city holds a commanding position over this portion of the river trade and is crucial to ensuring the southern empires continued economic prosperity. The city purchased its charter from Emperor Boris the Incompetent in 1066 IC, from then on being ruled directly by the Council of Thirteen which represents the largest merchants in town plus representatives from the local temples of Sigmar and Shallya.">
     <Components>
       <Town id="castle_comp_ML2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
