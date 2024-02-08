@@ -14,10 +14,6 @@ namespace TOR_Core.Models
 
         public override ExplainedNumber CalculateMilitiaChange(Settlement settlement, bool includeDescriptions = false)
         {
-            if (settlement.IsBloodKeep())
-            {
-                int i = 0;
-            }
             var result = base.CalculateMilitiaChange(settlement, includeDescriptions);
             if (settlement.IsCastle)
             {
