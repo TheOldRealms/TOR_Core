@@ -3695,7 +3695,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_NL1_2" name="{=Settlements.Settlement.name.village_NL1_2}Grafenrich" posX="1345.993" posY="1281.765" culture="Culture.empire" text="{=Settlements.Settlement.text.village_NL1_2}On the eastern side of the confluence of the rivers Taal and Reik sits the village of Kaldach. The town is notable particularly for being the demarcation of the Reikland/Talabecland border. Besides this, it remains a small farming community.">
+  <Settlement id="village_NL1_2" name="{=Settlements.Settlement.name.village_NL1_2}Grafenrich" posX="1345.993" posY="1281.773" culture="Culture.empire" text="{=Settlements.Settlement.text.village_NL1_2}On the eastern side of the confluence of the rivers Taal and Reik sits the village of Kaldach. The town is notable particularly for being the demarcation of the Reikland/Talabecland border. Besides this, it remains a small farming community.">
     <Components>
       <Village id="village_comp_NL1_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_NL1" bound="Settlement.town_NL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3721,7 +3721,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_NL1_4" name="{=Settlements.Settlement.name.village_NL1_4}Oldenlitz" posX="1339.068" posY="1294.229" culture="Culture.empire" text="{=Settlements.Settlement.text.village_NL1_3}Directly west of Altdorf, between the river Reik and the Weissbruck canal is the village of Hochloff. The town is known for the type of grain it raises the Hochloffkorn which is very well regarded for making a high quality flour.">
+  <Settlement id="village_NL1_4" name="{=Settlements.Settlement.name.village_NL1_4}Oldenlitz" posX="1339.063" posY="1294.24" culture="Culture.empire" text="{=Settlements.Settlement.text.village_NL1_3}Directly west of Altdorf, between the river Reik and the Weissbruck canal is the village of Hochloff. The town is known for the type of grain it raises the Hochloffkorn which is very well regarded for making a high quality flour.">
     <Components>
       <Village id="village_comp_NL1_4" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_NL1" bound="Settlement.town_NL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3754,7 +3754,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_NL2_1" name="{=Settlements.Settlement.name.village_NL2_1}Luftberg" posX="1380.917" posY="1318.473" culture="Culture.empire" text="{=Settlements.Settlement.text.village_NL2_1}Holthusen is a town in western Reikland on the river Schilder. By road it lies between Eilhart and Schilderheim. The town's primary trade good is the Holthusen Hogshead barrel which is used across the empire to age or ferment their products before shipment. The barrels are said to be so sturdy as to be able to protect their contents even from direct cannon fire. Every year Holthusen hosts the Weinfest, a great gathering for wine tasting that requires an invite to enter. Of course the lack of invite does not stop the horde of wastrels and rogues who wish to drink the free wine provided by the festival. Weinfest also marks the only time of year during which the Golden Cask is brought out, which is said to contain the best wine in the Empire if not the entire Old World. Due to the town's forested location, it is frequently attacked by beastmen. The palisades and guards are normally strong enough to see the monsters off, but the townspeople fear the day this defence falls short. As such, some of the townspeople have been leaving casks of cheap wine at the edge of the woods in an attempt to appease the beastmen with tribute. This dubious practice likely will not be allowed to continue much longer.">
+  <Settlement id="village_NL2_1" name="{=Settlements.Settlement.name.village_NL2_1}Luftberg" posX="1379.266" posY="1319.157" culture="Culture.empire" text="{=Settlements.Settlement.text.village_NL2_1}Holthusen is a town in western Reikland on the river Schilder. By road it lies between Eilhart and Schilderheim. The town's primary trade good is the Holthusen Hogshead barrel which is used across the empire to age or ferment their products before shipment. The barrels are said to be so sturdy as to be able to protect their contents even from direct cannon fire. Every year Holthusen hosts the Weinfest, a great gathering for wine tasting that requires an invite to enter. Of course the lack of invite does not stop the horde of wastrels and rogues who wish to drink the free wine provided by the festival. Weinfest also marks the only time of year during which the Golden Cask is brought out, which is said to contain the best wine in the Empire if not the entire Old World. Due to the town's forested location, it is frequently attacked by beastmen. The palisades and guards are normally strong enough to see the monsters off, but the townspeople fear the day this defence falls short. As such, some of the townspeople have been leaving casks of cheap wine at the edge of the woods in an attempt to appease the beastmen with tribute. This dubious practice likely will not be allowed to continue much longer.">
     <Components>
       <Village id="village_comp_NL2_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_NL2" bound="Settlement.town_NL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3821,7 +3821,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_NL4_1" name="{=Settlements.Settlement.name.village_NL4_1}Beelen" posX="1419.933" posY="1339.307" culture="Culture.empire" text="{=Settlements.Settlement.text.village_NL4_1}At the foot of the Axe Bite Pass sits the village of Osburg, the last Imperial settlement before the Market fortress of Helmgart and the Imperial/Bretonnian border. Any shipments bound for Helmgart must pass first through Osburg, and this source of trade makes the merchants here fairly prosperous.">
+  <Settlement id="village_NL4_1" name="{=Settlements.Settlement.name.village_NL4_1}Beelen" posX="1420.958" posY="1339.208" culture="Culture.empire" text="{=Settlements.Settlement.text.village_NL4_1}At the foot of the Axe Bite Pass sits the village of Osburg, the last Imperial settlement before the Market fortress of Helmgart and the Imperial/Bretonnian border. Any shipments bound for Helmgart must pass first through Osburg, and this source of trade makes the merchants here fairly prosperous.">
     <Components>
       <Village id="village_comp_NL4_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_NL4" bound="Settlement.town_NL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3860,7 +3860,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_NL4_4" name="{=Settlements.Settlement.name.village_NL4_4}Salzmorast" posX="1432.066" posY="1327.578" culture="Culture.empire" text="{=Settlements.Settlement.text.village_NL4_4}At the foot of the Axe Bite Pass sits the village of Osburg, the last Imperial settlement before the Market fortress of Helmgart and the Imperial/Bretonnian border. Any shipments bound for Helmgart must pass first through Osburg, and this source of trade makes the merchants here fairly prosperous.">
+  <Settlement id="village_NL4_4" name="{=Settlements.Settlement.name.village_NL4_4}Salzmorast" posX="1433.925" posY="1326.61" culture="Culture.empire" text="{=Settlements.Settlement.text.village_NL4_4}At the foot of the Axe Bite Pass sits the village of Osburg, the last Imperial settlement before the Market fortress of Helmgart and the Imperial/Bretonnian border. Any shipments bound for Helmgart must pass first through Osburg, and this source of trade makes the merchants here fairly prosperous.">
     <Components>
       <Village id="village_comp_NL4_4" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_NL4" bound="Settlement.town_NL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3894,7 +3894,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_NL5_1" name="{=Settlements.Settlement.name.village_NL5_1}Beilen" posX="1294.962" posY="1340.285" culture="Culture.empire" text="{=Settlements.Settlement.text.village_NL4_1}At the foot of the Axe Bite Pass sits the village of Osburg, the last Imperial settlement before the Market fortress of Helmgart and the Imperial/Bretonnian border. Any shipments bound for Helmgart must pass first through Osburg, and this source of trade makes the merchants here fairly prosperous.">
+  <Settlement id="village_NL5_1" name="{=Settlements.Settlement.name.village_NL5_1}Beilen" posX="1295.443" posY="1339.449" culture="Culture.empire" text="{=Settlements.Settlement.text.village_NL4_1}At the foot of the Axe Bite Pass sits the village of Osburg, the last Imperial settlement before the Market fortress of Helmgart and the Imperial/Bretonnian border. Any shipments bound for Helmgart must pass first through Osburg, and this source of trade makes the merchants here fairly prosperous.">
     <Components>
       <Village id="village_comp_NL5_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_NL4" bound="Settlement.town_NL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3956,7 +3956,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_NL1_2" name="{=Settlements.Settlement.name.castle_village_NL1_2}Ockholm" posX="1409.827" posY="1343.647" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_NL1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
+  <Settlement id="castle_village_NL1_2" name="{=Settlements.Settlement.name.castle_village_NL1_2}Ockholm" posX="1409.618" posY="1343.18" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_NL1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
     <Components>
       <Village id="castle_village_comp_NL1_2" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_NL6" bound="Settlement.castle_NL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4279,7 +4279,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_OL3" name="{=Settlements.Settlement.name.castle_OL3}Grenzburg" owner="Faction.talabecland_clan_3" posX="1559.159" posY="1208.449" culture="Culture.empire" gate_posX="1558.284" gate_posY="1206.713" text="{=!}The Grand Freistadt of Kemperbad is a major trade city that sits at the confluences of the rivers Riek and Stir. The city holds a commanding position over this portion of the river trade and is crucial to ensuring the southern empires continued economic prosperity. The city purchased its charter from Emperor Boris the Incompetent in 1066 IC, from then on being ruled directly by the Council of Thirteen which represents the largest merchants in town plus representatives from the local temples of Sigmar and Shallya.">
+  <Settlement id="castle_OL3" name="{=Settlements.Settlement.name.castle_OL3}Grenzburg" owner="Faction.talabecland_clan_3" posX="1553.584" posY="1207.562" culture="Culture.empire" gate_posX="1553.38" gate_posY="1209.496" text="{=!}The Grand Freistadt of Kemperbad is a major trade city that sits at the confluences of the rivers Riek and Stir. The city holds a commanding position over this portion of the river trade and is crucial to ensuring the southern empires continued economic prosperity. The city purchased its charter from Emperor Boris the Incompetent in 1066 IC, from then on being ruled directly by the Council of Thirteen which represents the largest merchants in town plus representatives from the local temples of Sigmar and Shallya.">
     <Components>
       <Town id="castle_comp_OL3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4352,7 +4352,7 @@
     </CommonAreas>
   </Settlement>
   <!-- Brass Keep-->
-  <Settlement id="castle_BK2" name="{=Settlements.Settlement.name.castle_BK2}Brass Keep" owner="Faction.reikland_clan_1" posX="1405.619" posY="1257.948" culture="Culture.empire" gate_posX="1407.407" gate_posY="1257.184" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
+  <Settlement id="castle_BK2" name="{=Settlements.Settlement.name.castle_BK2}Brass Keep" owner="Faction.reikland_clan_1" posX="1406.786" posY="1257.798" culture="Culture.empire" gate_posX="1408.287" gate_posY="1256.562" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
     <Components>
       <Town id="castle_comp_BK2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
