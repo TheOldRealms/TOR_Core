@@ -7,7 +7,7 @@ using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem.Crosshairs;
-using TOR_Core.BattleMechanics.AI.Decision;
+using TOR_Core.BattleMechanics.AI.CommonAIFunctions;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 
 namespace TOR_Core.AbilitySystem.Scripts

@@ -81,6 +81,7 @@ namespace TOR_Core.Missions
 
 		private void StartBattle()
         {
+			_battleStarted = true;
 			Mission.SetMissionMode(MissionMode.Battle, false);
 			foreach (var agent in Mission.Agents)
 			{

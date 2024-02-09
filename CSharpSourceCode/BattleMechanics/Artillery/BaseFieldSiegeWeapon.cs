@@ -7,7 +7,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
-using TOR_Core.BattleMechanics.AI.Decision;
+using TOR_Core.BattleMechanics.AI.CommonAIFunctions;
 
 namespace TOR_Core.BattleMechanics.Artillery
 {

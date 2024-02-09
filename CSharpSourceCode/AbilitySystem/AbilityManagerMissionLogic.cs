@@ -9,7 +9,7 @@ using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.Utilities;
 using TOR_Core.Extensions;
-using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
+using TOR_Core.BattleMechanics.AI.CastingAI.Components;
 using TOR_Core.Items;
 using TOR_Core.BattleMechanics.Crosshairs;
 using TOR_Core.Battle.CrosshairMissionBehavior;

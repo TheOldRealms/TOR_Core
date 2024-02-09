@@ -10,8 +10,8 @@ using Timer = System.Timers.Timer;
 using TOR_Core.AbilitySystem.Scripts;
 using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.Extensions;
-using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
-using TOR_Core.BattleMechanics.AI.Decision;
+using TOR_Core.BattleMechanics.AI.CastingAI.Components;
+using TOR_Core.BattleMechanics.AI.CommonAIFunctions;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TaleWorlds.Localization;
 

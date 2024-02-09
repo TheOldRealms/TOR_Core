@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
-using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
-using TOR_Core.BattleMechanics.AI.TeamBehavior;
+using TOR_Core.BattleMechanics.AI.ArtilleryAI;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.Artillery
