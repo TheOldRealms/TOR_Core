@@ -201,17 +201,6 @@ namespace TOR_Core.HarmonyPatches
             return true;
         }
 
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(Agent), "Die")]
-        public static void RagdollOnDeathPatch(Agent __instance, Blow b, Agent.KillInfo overrideKillInfo = Agent.KillInfo.Invalid)
-        {
-            if (b.BlowFlag.HasFlag(BlowFlags.KnockDown) && !__instance.IsPlayerControlled)
-            {
-                __instance.AgentVisuals.GetSkeleton().ActivateRagdoll();
-            }
-        }
-
-
         public static AttackTypeMask DetermineMask(Blow blow)
         {
             if (TORSpellBlowHelper.IsSpellBlow(blow)) return AttackTypeMask.Spell;

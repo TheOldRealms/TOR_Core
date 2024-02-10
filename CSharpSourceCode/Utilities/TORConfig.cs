@@ -30,6 +30,7 @@ namespace TOR_Core.Utilities
         public static int MaximumNumberOfCareerPerkPoints => _config.MaximumNumberOfCareerPerkPoints;
         public static float DeclareWarScoreMultiplierTor => _config.DeclareWarScoreMultiplierTor;
         public static float DeclareWarScoreMultiplierNative => _config.DeclareWarScoreMultiplierNative;
+        public static float DeclarePeaceMultiplier => _config.DeclarePeaceMultiplier;
 
         public static void ReadConfig()
         {
@@ -79,6 +80,8 @@ namespace TOR_Core.Utilities
             public float DeclareWarScoreMultiplierTor;
             [XmlAttribute]
             public float DeclareWarScoreMultiplierNative;
+            [XmlAttribute]
+            public float DeclarePeaceMultiplier;
         }
     }
 }

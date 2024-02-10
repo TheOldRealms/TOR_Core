@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
@@ -37,7 +38,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             Instance._resources.Add("Chivalry", 
                 new CustomResource("Chivalry", "Chivalry", "Is used for upgrading special units of Bretonnia and special actions.", "winds_icon_45", "vlandia"));
             Instance._resources.Add("DarkEnergy", 
-                new CustomResource("DarkEnergy", "Dark Energy", "Dark Energy is used by practitioners of necromancy to raise and upkeep their undead minions.", "darkenergy_icon_45", "khuzait"));
+                new CustomResource("DarkEnergy", "Dark Energy", "Dark Energy is used by practitioners of necromancy to raise and upkeep their undead minions.", "darkenergy_icon_45",new []{"khuzait", "mousillon"}));
             Instance._resources.Add("WindsOfMagic",
                 new CustomResource("WindsOfMagic", "Winds of Magic", "Winds of Magic is used by spellcasters to cast spells.", "winds_icon_45"));
         }
@@ -116,17 +117,23 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 }
             }
             Instance._resourceChanges.Clear();
-            if ((Hero.MainHero.IsVampire() || Hero.MainHero.IsNecromancer()) && PartyScreenManager.Instance.CurrentMode == PartyScreenMode.Loot)
+            if ((Hero.MainHero.IsVampire() || Hero.MainHero.CanRaiseDead()) && PartyScreenManager.Instance.CurrentMode == PartyScreenMode.Loot)
             {
+                var prisoners = PlayerEncounter.Current.RosterToReceiveLootPrisoners.TotalManCount;
+                var totalCausalties = Hero.MainHero.PartyBelongedTo.MapEvent.GetMapEventSide(BattleSideEnum.Defender).Casualties;
+               
+                
                 var result = 0f;
+
+                result += totalCausalties - prisoners;
                 if (leftMemberRoster != null && leftMemberRoster.Count > 0)
                 {
-                    result = AdjustGainsForDarkEnergy(leftMemberRoster);
+                    result += AdjustBattleSpoilsForDarkEnergy(leftMemberRoster);
                 }
 
                 if (leftPrisonRoster != null && leftPrisonRoster.Count > 0)
                 {
-                    result = AdjustGainsForDarkEnergy(leftPrisonRoster, true);
+                    result += AdjustBattleSpoilsForDarkEnergy(leftPrisonRoster, true);
                 }
 
                 Hero.MainHero.AddCultureSpecificCustomResource(result);
@@ -134,14 +141,10 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         }
 
 
-        private static float AdjustGainsForDarkEnergy(TroopRoster leftUnits, bool isPrisoner=false)
+        private static float AdjustBattleSpoilsForDarkEnergy(TroopRoster leftUnits, bool isPrisoner=false)
         {
             var explainedNumber = new ExplainedNumber();
-            float reduction = 10;
-            if (isPrisoner)
-            {
-                reduction /= 2;
-            }
+            float reduction = 5;
                 
             foreach (var troop in leftUnits.GetTroopRoster().ToList())
             {

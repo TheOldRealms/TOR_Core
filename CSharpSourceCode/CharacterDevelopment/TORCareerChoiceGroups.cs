@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment
 {
@@ -78,7 +79,14 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _justCause;
         private CareerChoiceGroupObject _secretsOfTheGrail;
         private CareerChoiceGroupObject _envoyOfTheLady;
-
+        //Black Grail Knight
+        private CareerChoiceGroupObject _curseOfMousillon;
+        private CareerChoiceGroupObject _swampRider;
+        private CareerChoiceGroupObject _unbreakableArmy;
+        private CareerChoiceGroupObject _scourgeOfBretonnia;
+        private CareerChoiceGroupObject _robberKnight;
+        private CareerChoiceGroupObject _lieOfLady;
+        private CareerChoiceGroupObject _blackGrailVow;
 
 
         public TORCareerChoiceGroups()
@@ -164,7 +172,14 @@ namespace TOR_Core.CharacterDevelopment
             _secretsOfTheGrail = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("SecretsOfTheGrail"));
             _envoyOfTheLady = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject("EnvoyOfTheLady"));
             
-     
+            //Black Grail Knight
+            _curseOfMousillon = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_curseOfMousillon).UnderscoreFirstCharToUpper()));
+            _swampRider = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_swampRider).UnderscoreFirstCharToUpper()));
+            _unbreakableArmy = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_unbreakableArmy).UnderscoreFirstCharToUpper()));
+            _scourgeOfBretonnia = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_scourgeOfBretonnia).UnderscoreFirstCharToUpper()));
+            _robberKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_robberKnight).UnderscoreFirstCharToUpper()));
+            _lieOfLady = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_lieOfLady).UnderscoreFirstCharToUpper()));
+            _blackGrailVow = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_blackGrailVow).UnderscoreFirstCharToUpper()));
             
         }
 
@@ -445,6 +460,46 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.Clan.Tier >= 4;
             });
             
+            //Black Grail Knight
+            
+            _curseOfMousillon.Initialize("{=curse_of_mousillon_group_str}Curse of Mousillon", TORCareers.BlackGrailKnight, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            
+            _swampRider.Initialize("{=swamp_rider_choice_group_str}Swamp Rider", TORCareers.BlackGrailKnight, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            
+            _unbreakableArmy.Initialize("{uunbreakable_army_choice_group_str}Unbreakable Army", TORCareers.BlackGrailKnight, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            _scourgeOfBretonnia.Initialize("{=scourge_of_Mousillon_choice_group_str}Scourge of Bretonnia", TORCareers.BlackGrailKnight, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            _robberKnight.Initialize("{=robber_baron_choice_group_str}Robber Knight", TORCareers.BlackGrailKnight, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            _lieOfLady.Initialize("{=lie_of_lady_choice_group_str}The Lady’s Lie", TORCareers.BlackGrailKnight, 3, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier >= 4;
+            });
+            _blackGrailVow.Initialize("{=_black_grail_vow_choice_group_str}The Vow of the Black Grail", TORCareers.BlackGrailKnight, 3, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier >= 4;
+            });
+            
             //Grail Damsel
             
             _inspirationOfTheLady.Initialize("{=inspiration_of_the_lady_choice_group_str}Inspiration of the Lady", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
@@ -462,11 +517,13 @@ namespace TOR_Core.CharacterDevelopment
                 text = string.Empty;
                 return true;
             });
+            
             _vividVisions.Initialize("{=vivid_visions_choice_group_str}Vivid Visions", TORCareers.GrailDamsel, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
+            
             _justCause.Initialize("{=just_cause_choice_group_str}A Just Cause", TORCareers.GrailDamsel, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
@@ -476,6 +533,7 @@ namespace TOR_Core.CharacterDevelopment
                 unlockText = "Unlocks 2nd Lore";
                 return hero.Clan.Tier >= 2;
             });
+            
             _secretsOfTheGrail.Initialize("{=secrets_of_the_grail_choice_group_str}Secrets of the Grail", TORCareers.GrailDamsel, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
@@ -485,11 +543,13 @@ namespace TOR_Core.CharacterDevelopment
                 unlockText = "Unlocks Lore of Heavens";
                 return hero.Clan.Tier >= 4;
             });
+            
             _envoyOfTheLady.Initialize("{=envoy_of_the_lady_choice_group_str}Envoy of the Lady", TORCareers.GrailDamsel, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
+            
 
         }
     }

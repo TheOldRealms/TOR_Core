@@ -60,41 +60,89 @@ namespace TOR_Core.Models
         
         public override float GetScoreOfDeclaringWar(IFaction factionDeclaresWar, IFaction factionDeclaredWar, IFaction evaluatingClan, out TextObject warReason)
         {
-            /// Reverse engineered values to make calculations fall in line with native
-            var factionScore = baseFactionFactor(factionDeclaresWar, factionDeclaredWar);
-            var distanceScore = baseDistanceFactor(factionDeclaresWar, factionDeclaredWar);
-
-            /// TOR internal score calculations
-            var religionScore = DetermineEffectOfReligion(factionDeclaresWar, factionDeclaredWar, (Clan)evaluatingClan);
-            // normalize effect of religion based on average hero "agro" to approximately between 0.0 and 1.0
-            religionScore = religionScore / ((factionDeclaredWar.Heroes.Count + factionDeclaresWar.Heroes.Count) * 100);
-            // weigh religion as much as faction strength, distance is kinda between 0-1
-            var torScoreOfDeclaringWar = religionScore * factionScore * distanceScore;
+            var torScoreOfDeclaringWar = torAggressionScore(factionDeclaresWar, factionDeclaredWar);
 
             var nativeScoreOfDeclaringWar = base.GetScoreOfDeclaringWar(factionDeclaresWar, factionDeclaredWar, evaluatingClan, out warReason);
 
             /// Applying extra multiplers to increase wars
-            //torScoreOfDeclaringWar *= 8;
             torScoreOfDeclaringWar *= TORConfig.DeclareWarScoreMultiplierTor;
-            //nativeScoreOfDeclaringWar *= 2;
             nativeScoreOfDeclaringWar *= TORConfig.DeclareWarScoreMultiplierNative;
 
-            //TORCommon.Say($"War between {factionDeclaredWar.Name} vs {factionDeclaresWar.Name}; \n\t\t" +
-            //    $"Native Score: {nativeScoreOfDeclaringWar}, TOR Score: {torScoreOfDeclaringWar}; \n\t\t" +
-            //    $"Faction Score: {factionScore}, Distance Score: {distanceScore}, Religion Score = {religionScore} ");
+            //TORCommon.Say($"Declaring war between {factionDeclaresWar.Name} and {factionDeclaredWar.Name}\n\t\t" +
+            //    $"Native Score: {nativeScoreOfDeclaringWar},\tTOR Score: {torScoreOfDeclaringWar}");
+
             return nativeScoreOfDeclaringWar + torScoreOfDeclaringWar;
         }
 
-
-        private float DetermineEffectOfReligion(IFaction factionDeclaresWar, IFaction factionToDeclareWarOn, IFaction evaluatingClan)
+        public override float GetScoreOfDeclaringPeace(IFaction factionDeclaresPeace, IFaction factionDeclaredPeace, IFaction evaluatingClan, out TextObject peaceReason)
         {
-            var kingdomHeroes = factionDeclaresWar.Heroes;
+            // Chaos really shouldn't be allowed to make peace
+            if (evaluatingClan.Culture.StringId == "chaos_culture")
+            {
+                peaceReason = new TextObject("Chaos will fight to the death!");
+                return float.MinValue;
+            }
+
+            var nativeScoreOfDeclaringPeace = base.GetScoreOfDeclaringPeace(factionDeclaresPeace, factionDeclaredPeace, evaluatingClan, out peaceReason);
+            var torScore = torAggressionScore(factionDeclaresPeace, factionDeclaredPeace);
+
+            /// Apply same multipliers as declaration of war to try to them in agreement as much as possible
+            nativeScoreOfDeclaringPeace *= TORConfig.DeclareWarScoreMultiplierNative;
+            torScore *= TORConfig.DeclareWarScoreMultiplierTor/TORConfig.DeclarePeaceMultiplier;
+
+            //TORCommon.Say($"Declaring peace between {factionDeclaresPeace.Name} and {factionDeclaredPeace.Name}\n\t\t" +
+            //    $"Native Score: {nativeScoreOfDeclaringPeace},\tTOR Score: {torScore}");
+
+            return nativeScoreOfDeclaringPeace - torScore;
+        }
+
+        public override float GetScoreOfMercenaryToJoinKingdom(Clan mercenaryClan, Kingdom kingdom)
+        {
+            var score = base.GetScoreOfMercenaryToJoinKingdom(mercenaryClan, kingdom);
+
+            if (kingdom == null) return score;
+            if (mercenaryClan == null) return score;
+
+            if (kingdom.Culture.StringId == "vlandia" && mercenaryClan.Culture.StringId != "vlandia")
+            {
+                score = - 10000;
+            }
+            
+            if (mercenaryClan.StringId == "tor_dog_clan_hero_curse" && kingdom.Culture.StringId == "khuzait" || kingdom.Culture.StringId == "mousillon" || kingdom.Culture.StringId== "vlandia")
+            {
+                score = - 10000;
+            }
+
+            return score;
+        }
+
+        private float torAggressionScore(IFaction faction1, IFaction faction2)
+        {
+            /// Reverse engineered values to make calculations fall in line with native
+            var factionScore = baseFactionFactor(faction1, faction2);
+            var distanceScore = baseDistanceFactor(faction1, faction2);
+
+            /// TOR internal score calculations
+            var religionScore = determineEffectOfReligion(faction1, faction2);
+            // normalize effect of religion based on average hero "agro" to approximately between 0.0 and 1.0
+            religionScore = religionScore / ((faction2.Heroes.Count + faction1.Heroes.Count) * 100);
+
+            //TORCommon.Say($"Aggression between {faction1.Name} vs {faction2.Name}; \n\t\t" +
+            //    $"Faction Score: {factionScore}, Distance Score: {distanceScore}, Religion Score = {religionScore} ");
+
+            // weigh religion as much as faction strength, distance is kinda between 0-1
+            return religionScore * factionScore * distanceScore;
+        }
+
+        private float determineEffectOfReligion(IFaction faction1, IFaction faction2)
+        {
+            var kingdomHeroes = faction1.Heroes;
 
             float religionValue = 0f;
 
             foreach (var hero in kingdomHeroes)
             {
-                var otherSideHeroes = factionToDeclareWarOn.Heroes;
+                var otherSideHeroes = faction2.Heroes;
                 foreach (var enemy in otherSideHeroes)
                 {
                     foreach (var religion in ReligionObject.All)
@@ -104,7 +152,7 @@ namespace TOR_Core.Models
                         foreach (var comparedToReligion in ReligionObject.All)
                         {
                             religionValue += DeterminePositiveEffect(hero, religion, enemy, comparedToReligion);
-                            religionValue += DetermineNegativeEffect(hero, religion, enemy, comparedToReligion);
+                            religionValue += determineNegativeEffect(hero, religion, enemy, comparedToReligion);
                         }
                     }
                 }
@@ -181,7 +229,7 @@ namespace TOR_Core.Models
 
         // Max Score = 0
         // Min Score = -125
-        private float DetermineNegativeEffect(Hero hero, ReligionObject religion, Hero enemy, ReligionObject comparedToReligion)
+        private float determineNegativeEffect(Hero hero, ReligionObject religion, Hero enemy, ReligionObject comparedToReligion)
         {
             var value = 0;
 
@@ -334,8 +382,8 @@ namespace TOR_Core.Models
         {
             if (factionDeclaresWar.Fiefs.Count != 0 && factionDeclaredWar.Fiefs.Count != 0)
             {
-                ValueTuple<Settlement, float>[] closestSettlementsToOtherFactionsNearestSettlementToMidPoint = GetClosestSettlementsToOtherFactionsNearestSettlementToMidPoint(factionDeclaredWar, factionDeclaresWar);
-                ValueTuple<Settlement, float>[] closestSettlementsToOtherFactionsNearestSettlementToMidPoint2 = this.GetClosestSettlementsToOtherFactionsNearestSettlementToMidPoint(factionDeclaresWar, factionDeclaredWar);
+                ValueTuple<Settlement, float>[] closestSettlementsToOtherFactionsNearestSettlementToMidPoint = getClosestSettlementsToOtherFactionsNearestSettlementToMidPoint(factionDeclaredWar, factionDeclaresWar);
+                ValueTuple<Settlement, float>[] closestSettlementsToOtherFactionsNearestSettlementToMidPoint2 = this.getClosestSettlementsToOtherFactionsNearestSettlementToMidPoint(factionDeclaresWar, factionDeclaredWar);
                 float[] array = new float[]
                 {
                     float.MaxValue,
@@ -391,7 +439,7 @@ namespace TOR_Core.Models
         /// This code is from the decompiler
         /// Date of binary: 11/30/2023
         /// </summary>
-        private ValueTuple<Settlement, float>[] GetClosestSettlementsToOtherFactionsNearestSettlementToMidPoint(IFaction faction1, IFaction faction2)
+        private ValueTuple<Settlement, float>[] getClosestSettlementsToOtherFactionsNearestSettlementToMidPoint(IFaction faction1, IFaction faction2)
         {
             Settlement toSettlement = null;
             float num = float.MaxValue;

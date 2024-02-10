@@ -19,6 +19,8 @@ namespace TOR_Core.Models
         {
             var value =  base.GetGoldCostForUpgrade(party, characterObject, upgradeTarget);
 
+            if (characterObject.IsUndead()) return 0;
+
             var explainedNumber = new ExplainedNumber();
             
             explainedNumber.Add(value);

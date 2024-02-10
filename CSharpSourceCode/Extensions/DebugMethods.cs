@@ -1,5 +1,5 @@
 ﻿using TaleWorlds.Engine;
-using TOR_Core.BattleMechanics.AI.Decision;
+using TOR_Core.BattleMechanics.AI.CommonAIFunctions;
 
 namespace TOR_Core.Extensions
 {

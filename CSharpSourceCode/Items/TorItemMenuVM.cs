@@ -161,16 +161,20 @@ namespace TOR_Core.Items
 			if (!equipmentElement.Item.HasWeaponComponent) return;
 			var comparedEquipmentElement = comparedItem == null ? EquipmentElement.Invalid : comparedItem.ItemRosterElement.EquipmentElement;
 			var weaponData = equipmentElement.Item.GetWeaponWithUsageIndex(AlternativeUsageIndex);
-			var comparedWeaponData = comparedEquipmentElement.Item == null ? null : comparedEquipmentElement.Item.GetWeaponWithUsageIndex(AlternativeUsageIndex);
+
+			int comparedWeaponUsageIndex = -1;
+			if(!comparedEquipmentElement.IsEmpty) ItemHelper.IsWeaponComparableWithUsage(comparedEquipmentElement.Item, weaponData.WeaponDescriptionId, out comparedWeaponUsageIndex);
+            var comparedWeaponData = comparedEquipmentElement.Item == null ? null : comparedEquipmentElement.Item.GetWeaponWithUsageIndex(comparedWeaponUsageIndex);
+			
 			var weaponClass = weaponData.WeaponClass;
 			if (weaponClass != WeaponClass.Musket && weaponClass != WeaponClass.Pistol) return;
 
-			this.AddIntProperty(speedText, equipmentElement.GetModifiedSwingSpeedForUsage(AlternativeUsageIndex), comparedEquipmentElement.IsEmpty ? null : new int?(comparedEquipmentElement.GetModifiedSwingSpeedForUsage(AlternativeUsageIndex)));
-			this.AddThrustDamageProperty(damageText, equipmentElement, AlternativeUsageIndex, comparedEquipmentElement, AlternativeUsageIndex);
-			this.AddIntProperty(accuracyText, weaponData.Accuracy, (comparedWeaponData != null) ? new int?(comparedWeaponData.Accuracy) : null);
-			this.AddIntProperty(missileSpeedText, equipmentElement.GetModifiedMissileSpeedForUsage(AlternativeUsageIndex), comparedEquipmentElement.IsEmpty ? null : new int?(comparedEquipmentElement.GetModifiedMissileSpeedForUsage(AlternativeUsageIndex)));
+            AddIntProperty(speedText, equipmentElement.GetModifiedSwingSpeedForUsage(AlternativeUsageIndex), comparedEquipmentElement.IsEmpty ? null : new int?(comparedEquipmentElement.GetModifiedSwingSpeedForUsage(AlternativeUsageIndex)));
+            AddThrustDamageProperty(damageText, equipmentElement, AlternativeUsageIndex, comparedEquipmentElement, AlternativeUsageIndex);
+            AddIntProperty(accuracyText, weaponData.Accuracy, (comparedWeaponData != null) ? new int?(comparedWeaponData.Accuracy) : null);
+            AddIntProperty(missileSpeedText, equipmentElement.GetModifiedMissileSpeedForUsage(AlternativeUsageIndex), comparedEquipmentElement.IsEmpty ? null : new int?(comparedEquipmentElement.GetModifiedMissileSpeedForUsage(AlternativeUsageIndex)));
 			short? num = (comparedWeaponData != null) ? new short?(comparedWeaponData.MaxDataValue) : null;
-			this.AddIntProperty(ammoLimitText, weaponData.MaxDataValue, (num != null) ? new int?((int)num.GetValueOrDefault()) : null);
+            AddIntProperty(ammoLimitText, weaponData.MaxDataValue, (num != null) ? new int?(num.GetValueOrDefault()) : null);
 		}
 
 		private void UpdateReadButton(ItemObject selectedItem)
@@ -221,13 +225,13 @@ namespace TOR_Core.Items
 					WeaponComponentData weaponWithUsageIndex2 = equipmentElement.Item.GetWeaponWithUsageIndex(comparedWeaponUsageIndex);
 					equipmentElement = comparedWeapon;
 					string value2 = ItemHelper.GetThrustDamageText(weaponWithUsageIndex2, equipmentElement.ItemModifier).ToString();
-					int result = this.CompareValues(modifiedThrustDamageForUsage, modifiedThrustDamageForUsage2);
-					this.CreateColoredProperty(this.TargetItemProperties, description.ToString(), value, this.GetColorFromComparison(result, false), 0, null, TooltipProperty.TooltipPropertyFlags.None);
-					this.CreateColoredProperty(this.ComparedItemProperties, " ", value2, this.GetColorFromComparison(result, true), 0, null, TooltipProperty.TooltipPropertyFlags.None);
+					int result = CompareValues(modifiedThrustDamageForUsage, modifiedThrustDamageForUsage2);
+					CreateColoredProperty(this.TargetItemProperties, description.ToString(), value, GetColorFromComparison(result, false), 0, null, TooltipProperty.TooltipPropertyFlags.None);
+					CreateColoredProperty(this.ComparedItemProperties, " ", value2, GetColorFromComparison(result, true), 0, null, TooltipProperty.TooltipPropertyFlags.None);
 					return;
 				}
 			}
-			this.CreateColoredProperty(this.TargetItemProperties, description.ToString(), value, this.GetColorFromComparison(0, true), 0, null, TooltipProperty.TooltipPropertyFlags.None);
+			CreateColoredProperty(this.TargetItemProperties, description.ToString(), value, GetColorFromComparison(0, true), 0, null, TooltipProperty.TooltipPropertyFlags.None);
 		}
 
 		private void AddIntProperty(TextObject description, int targetValue, int? comparedValue)
@@ -236,19 +240,19 @@ namespace TOR_Core.Items
 			if (this.IsComparing && comparedValue != null)
 			{
 				string value2 = comparedValue.Value.ToString();
-				int result = this.CompareValues(targetValue, comparedValue.Value);
-				this.CreateColoredProperty(this.TargetItemProperties, description.ToString(), value, this.GetColorFromComparison(result, false), 0, null, TooltipProperty.TooltipPropertyFlags.None);
-				this.CreateColoredProperty(this.ComparedItemProperties, " ", value2, this.GetColorFromComparison(result, true), 0, null, TooltipProperty.TooltipPropertyFlags.None);
+				int result = CompareValues(targetValue, comparedValue.Value);
+				CreateColoredProperty(this.TargetItemProperties, description.ToString(), value, GetColorFromComparison(result, false), 0, null, TooltipProperty.TooltipPropertyFlags.None);
+				CreateColoredProperty(this.ComparedItemProperties, " ", value2, GetColorFromComparison(result, true), 0, null, TooltipProperty.TooltipPropertyFlags.None);
 				return;
 			}
-			this.CreateColoredProperty(this.TargetItemProperties, description.ToString(), value, this.GetColorFromComparison(0, false), 0, null, TooltipProperty.TooltipPropertyFlags.None);
+			CreateColoredProperty(this.TargetItemProperties, description.ToString(), value, GetColorFromComparison(0, false), 0, null, TooltipProperty.TooltipPropertyFlags.None);
 		}
 
 		private ItemMenuTooltipPropertyVM CreateColoredProperty(MBBindingList<ItemMenuTooltipPropertyVM> targetList, string definition, string value, Color color, int textHeight = 0, HintViewModel hint = null, TooltipProperty.TooltipPropertyFlags propertyFlags = TooltipProperty.TooltipPropertyFlags.None)
 		{
 			if (color == Colors.Black)
 			{
-				this.CreateProperty(targetList, definition, value, textHeight, hint);
+				CreateProperty(targetList, definition, value, textHeight, hint);
 				return null;
 			}
 			ItemMenuTooltipPropertyVM itemMenuTooltipPropertyVM = new ItemMenuTooltipPropertyVM(definition, value, textHeight, color, false, hint, propertyFlags);

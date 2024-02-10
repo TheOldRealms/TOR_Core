@@ -10,104 +10,67 @@ namespace TOR_Core.AbilitySystem.Scripts
 {
     public class ProjectileScript : AbilityScript
     {
-        private int _id;
-        private float _lifeTime;
-        private bool init;
-        private bool triggered;
+        private int _missileId;
 
-        public override void SetAgent(Agent agent)
+        protected override bool ShouldMove() => true;
+
+        protected override void OnBeforeTick(float dt)
         {
-            base.SetAgent(agent);
-            var id = this._ability.StringID;
-            var arrowItem = MBObjectManager.Instance.GetObject<ItemObject>(id);
-            
+            if (HasTickedOnce) CheckMissile();
+            else if (CasterAgent != null) FireMissile();
+        }
+
+        private void FireMissile()
+        {
+            var arrowItem = MBObjectManager.Instance.GetObject<ItemObject>(Ability.StringID);
+
+            _missileId = CasterAgent.Index;
+
+            if (Mission.Current.Missiles.FirstOrDefault(x => x.Index == _missileId) != null)
+            {
+                RemoveProjectile();
+            }
+
+            var speed = Ability.Template.BaseMovementSpeed;
             var projectile = new MissionWeapon(arrowItem, null, null);
-            _id = agent.Index;
-            var speed = this._ability.Template.BaseMovementSpeed;
-            if (Mission.Current.Missiles.FirstOrDefault(x => x.Index == _id)!=null)
-            {
-                RemoveProjectile();
-            }
 
-            Mission.Current.AddCustomMissile(agent, projectile,
-                agent.GetEyeGlobalPosition(),agent.LookDirection,
-                orientation: Mat3.CreateMat3WithForward(agent.LookDirection),
-                speed,speed,false,null,_id);
-            init = true;
-           _lifeTime = 0;
-        }
-        
-        protected override void OnTick(float dt)
-        {
-            if(!init)
-                return;
-            
-            var frame = GameEntity.GetGlobalFrame();
-            var missile = Mission.Current.Missiles.FirstOrDefault(x => x.Index == _id);
-            if (missile == null)
-            {
-                Stop();
-                OnRemoved(0);
-            }
-            if(_ability==null)
-                return;
-            
-            UpdatePosition(frame,dt);
-            UpdateSound(GameEntity.GlobalPosition);
-            _lifeTime += dt;
-            if (_lifeTime>_ability.Template.Duration)
-            {
-                RemoveProjectile();
-            }
+            Mission.Current.AddCustomMissile(CasterAgent, projectile,
+                CasterAgent.GetEyeGlobalPosition(), CasterAgent.LookDirection,
+                orientation: Mat3.CreateMat3WithForward(CasterAgent.LookDirection),
+                speed, speed, false, null, _missileId);
         }
 
-        protected override void UpdatePosition(MatrixFrame frame, float dt)
+        private void CheckMissile()
         {
-            var missile = Mission.Current.Missiles.FirstOrDefault(x => x.Index == _id);
-            if (missile == null)
-            {
-                Stop();
-                OnRemoved(0);
-                return;
-            }
-            frame.origin= missile.GetPosition();
-            GameEntity.SetGlobalFrame(frame);
+            var missile = Mission.Current.Missiles.FirstOrDefault(x => x.Index == _missileId);
+            if (missile == null) Stop();
         }
-        
-        protected override void OnRemoved(int removeReason)
-        {
-            init = false;
-            if (!triggered)
-            {
-                RemoveProjectile();
-            }
 
-            base.OnRemoved(removeReason);
+        protected override MatrixFrame GetNextGlobalFrame(MatrixFrame oldFrame, float dt)
+        {
+            var missile = Mission.Current.Missiles.FirstOrDefault(x => x.Index == _missileId);
+            if (missile != null)
+            {
+                MatrixFrame newFrame = oldFrame;
+                newFrame.origin = missile.GetPosition();
+                return newFrame;
+            }
+            return MatrixFrame.Identity;
+        }
+
+        protected override void OnBeforeRemoved(int removeReason)
+        {
+            RemoveProjectile();
         }
 
         private void RemoveProjectile()
         {
-            if (Mission.Current.CurrentState == Mission.State.Over)
-            {
-                triggered = true;   //I hate myself for this fix. there is no good way to find out if the mission is currently in a loading state or in a transition to menu. 
-                                    //later in the triggered effect , the effect would happen for these projectile based spells too late, and cause a crash in custom battle (in campaign this will most likely not happen due to the short lifetime of such projectiles)
-                                    // the fix now restricts the projectiles to only work during mission, but in the "after(Over) mission state, like cheering of the troops and the "mission won" info.
-                                    // Tthe effect is not triggered anymore and the Spell entity will be removed by the TW garbage collector
-                                    
-                return;
-            }
-            
-            TriggerEffects(this.GameEntity.GlobalPosition, this.GameEntity.GlobalPosition.NormalizedCopy());
-
-            var missile = Mission.Current.Missiles.FirstOrDefault(x => x.Index == _id);
+            var missile = Mission.Current.Missiles.FirstOrDefault(x => x.Index == _missileId);
             if (missile != null)
             {
-                Mission.Current.RemoveMissileAsClient(_id);
+                Mission.Current.RemoveMissileAsClient(_missileId);
                 missile.Entity.Remove(0);
             }
-
-            triggered = true;
-
         }
     }
 }

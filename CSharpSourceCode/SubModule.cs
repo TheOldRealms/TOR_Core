@@ -19,10 +19,11 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics;
-using TOR_Core.BattleMechanics.AI.TeamBehavior;
+using TOR_Core.BattleMechanics.AI.TeamAI;
 using TOR_Core.BattleMechanics.Atmosphere;
 using TOR_Core.BattleMechanics.Banners;
 using TOR_Core.BattleMechanics.Dismemberment;
+using TOR_Core.BattleMechanics.DualWield;
 using TOR_Core.BattleMechanics.Firearms;
 using TOR_Core.BattleMechanics.Morale;
 using TOR_Core.BattleMechanics.StatusEffect;
@@ -90,7 +91,6 @@ namespace TOR_Core
             UIConfig.DoNotUseGeneratedPrefabs = true;
 
             TORConfig.ReadConfig();
-            TORAudio.Initialize();
             TORKeyInputManager.Initialize();
             StatusEffectManager.LoadStatusEffects();
             TriggeredEffectManager.LoadTemplates();
@@ -226,7 +226,7 @@ namespace TOR_Core
             if (missionCombatantsLogic == null)
                 return;
             
-            mission.AddMissionLogicAtIndexOf(missionCombatantsLogic, TorMissionCombatantsLogic.CreateFromInstanace(missionCombatantsLogic));
+            mission.AddMissionLogicAtIndexOf(missionCombatantsLogic, TORMissionCombatantsLogic.CreateFromInstance(missionCombatantsLogic));
         }
 
         public override void OnMissionBehaviorInitialize(Mission mission)
@@ -246,6 +246,7 @@ namespace TOR_Core
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new ForceAtmosphereMissionLogic());
             mission.AddMissionBehavior(new AnimationTriggerMissionLogic());
+            mission.AddMissionBehavior(new DualWieldMissionLogic());
 
 
             if (Game.Current.GameType is Campaign)
