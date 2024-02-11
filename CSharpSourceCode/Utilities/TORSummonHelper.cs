@@ -9,6 +9,8 @@ namespace TOR_Core.Utilities
 {
     public static class TORSummonHelper
     {
+        private static readonly ActionIndexCache act_raise_from_ground = ActionIndexCache.Create("act_raisefromground");
+
         public static AgentBuildData GetAgentBuildData(Agent caster, string summonedUnitID)
         {
             BasicCharacterObject troopCharacter = MBObjectManager.Instance.GetObject<BasicCharacterObject>(summonedUnitID);
@@ -46,6 +48,7 @@ namespace TOR_Core.Utilities
             troop.TeleportToPosition(spawnPos);
             troop.FadeIn();
             troop.SetWatchState(Agent.WatchState.Alarmed);
+            troop.SetActionChannel(0, act_raise_from_ground);
             return troop;
         }
     }
