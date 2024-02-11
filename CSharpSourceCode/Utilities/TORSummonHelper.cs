@@ -37,7 +37,7 @@ namespace TOR_Core.Utilities
         
         
         
-        public static Agent SpawnAgent(AgentBuildData buildData, Vec3 position)
+        public static Agent SpawnAgent(AgentBuildData buildData, Vec3 position, bool withAnimation = false)
         {
             Agent troop = Mission.Current.SpawnAgent(buildData, false);
             Vec3 spawnPos = position;
@@ -48,7 +48,7 @@ namespace TOR_Core.Utilities
             troop.TeleportToPosition(spawnPos);
             troop.FadeIn();
             troop.SetWatchState(Agent.WatchState.Alarmed);
-            troop.SetActionChannel(0, act_raise_from_ground);
+            if(withAnimation) troop.SetActionChannel(0, act_raise_from_ground);
             return troop;
         }
     }

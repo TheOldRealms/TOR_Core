@@ -50,7 +50,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             {
                 lastPosition = leftSide ? new Vec3(lastPosition.X - i * 1, lastPosition.Y) : new Vec3(lastPosition.X + i * 1, lastPosition.Y);
                 leftSide = !leftSide;
-                TORSummonHelper.SpawnAgent(data, lastPosition);
+                TORSummonHelper.SpawnAgent(data, lastPosition, true);
             }
         }
         
