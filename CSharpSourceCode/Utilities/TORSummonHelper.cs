@@ -47,8 +47,14 @@ namespace TOR_Core.Utilities
             }
             troop.TeleportToPosition(spawnPos);
             troop.FadeIn();
+            troop.WieldInitialWeapons();
             troop.SetWatchState(Agent.WatchState.Alarmed);
-            if(withAnimation) troop.SetActionChannel(0, act_raise_from_ground);
+            if (withAnimation)
+            {
+                troop.SetActionChannel(0, act_raise_from_ground);
+                troop.SetCurrentActionProgress(0, 0f);
+                troop.SetCurrentActionSpeed(0, 1f);
+            }
             return troop;
         }
     }

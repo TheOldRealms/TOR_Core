@@ -23,8 +23,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
             var data = TORSummonHelper.GetAgentBuildData(triggeredByAgent, SummonedUnitID);
-            bool leftSide = false;
-            Vec3 lastPosition = position;
             var bonus = 0;
 
             if(Game.Current.GameType is Campaign)
@@ -46,11 +44,11 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                 }
             }
 
+            var spawnPosition = position;
             for (int i = 1; i < NumberToSummon + 1 + bonus; i++)
             {
-                lastPosition = leftSide ? new Vec3(lastPosition.X - i * 1, lastPosition.Y) : new Vec3(lastPosition.X + i * 1, lastPosition.Y);
-                leftSide = !leftSide;
-                TORSummonHelper.SpawnAgent(data, lastPosition, true);
+                spawnPosition = Mission.Current.GetRandomPositionAroundPoint(spawnPosition, 0.1f, 0.6f);
+                TORSummonHelper.SpawnAgent(data, spawnPosition, true);
             }
         }
         
