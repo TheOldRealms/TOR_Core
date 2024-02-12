@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TOR_Core.CampaignMechanics.Invasions;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -17,6 +18,11 @@ namespace TOR_Core.Extensions
         public static bool IsRaidingParty(this MobileParty party)
         {
             return party.PartyComponent is IRaidingParty;
+        }
+
+        public static bool IsInvasionParty(this MobileParty party)
+        {
+            return party.PartyComponent is IInvasionParty;
         }
 
         public static MobilePartyExtendedInfo GetPartyInfo(this MobileParty party)

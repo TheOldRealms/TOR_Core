@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
 
@@ -19,9 +20,19 @@ namespace TOR_Core.AbilitySystem
             _chargeNum = amount;
         }
 
-        public override bool CanCast(Agent casterAgent)
+        public override bool IsDisabled(Agent casterAgent, out TextObject disabledReason)
         {
-            return base.CanCast(casterAgent) && _chargeNum > 0 && Mission.Current.GetArtillerySlotsLeftForTeam(casterAgent.Team) > 0;
+            if(_chargeNum <= 0) 
+            {
+                disabledReason = new TextObject("{=!}No more artillery pieces in inventory");
+                return true;
+            }
+            if(Mission.Current.GetArtillerySlotsLeftForTeam(casterAgent.Team) <= 0)
+            {
+                disabledReason = new TextObject("{=!}Party cannot field more artillery pieces");
+                return true;
+            }
+            return base.IsDisabled(casterAgent, out disabledReason);
         }
 
         protected override void DoCast(Agent casterAgent)

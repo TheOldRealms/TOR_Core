@@ -6,6 +6,7 @@ using SandBox.Missions.MissionLogics.Towns;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Xml.Serialization;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.MapEvents;
@@ -28,6 +29,7 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class MissionPatches
     {
+        
         [HarmonyPrefix]
         [HarmonyPatch(typeof(CampaignAgentComponent), "OwnerParty", MethodType.Getter)]
         public static bool PatchOwnerPartyForSummons(Agent ___Agent, ref PartyBase __result)
@@ -51,6 +53,22 @@ namespace TOR_Core.HarmonyPatches
             }
             return true;
         }
+
+        
+        
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(HideoutMissionController), "OnInitialFadeOutOver")]
+        public static bool PostOnInitialFadeOutOver()
+        {
+            var abilityManagerMissionLogic = Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>();
+            if (abilityManagerMissionLogic != null)
+            {
+                abilityManagerMissionLogic.InitHideOutBossFight();
+            }
+            
+            return true;
+        }
+        
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(MissionAgentSpawnLogic), "IsSideDepleted")]

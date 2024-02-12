@@ -18,6 +18,7 @@ namespace TOR_Core.CampaignMechanics.Religion
     public class ReligionObject : MBObjectBase
     {
         public TextObject Name { get; set; }
+        public TextObject DeityName { get; set; }
         public TextObject LoreText { get; private set; }
         public CultureObject Culture { get; private set; }
         public List<ReligionObject> HostileReligions { get; private set; } = new List<ReligionObject>();
@@ -38,6 +39,7 @@ namespace TOR_Core.CampaignMechanics.Religion
         {
             base.Deserialize(objectManager, node);
             Name = new TextObject(node.Attributes.GetNamedItem("Name").Value);
+            DeityName = new TextObject(node.Attributes.GetNamedItem("DeityName").Value);
             Culture = MBObjectManager.Instance.ReadObjectReferenceFromXml<CultureObject>("Culture", node);
             Affinity = (ReligionAffinity)Enum.Parse(typeof(ReligionAffinity), node.Attributes.GetNamedItem("Affinity").Value);
             LoreText = GameTexts.FindText("tor_religion_description", StringId);

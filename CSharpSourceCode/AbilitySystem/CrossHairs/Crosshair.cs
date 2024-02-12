@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using TaleWorlds.Core;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.GauntletUI.Data;
@@ -7,6 +7,7 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.MountAndBlade.ViewModelCollection.HUD;
 using TaleWorlds.ScreenSystem;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.AbilitySystem.CrossHairs
 {
@@ -24,6 +25,15 @@ namespace TOR_Core.AbilitySystem.CrossHairs
             {
                 _missionScreen.AddLayer(_weaponLayer);
             }
+        }
+
+        public void DisableTargetGadgetOpacities()
+        {
+            for (int i = 0; i < this._targetGadgetOpacities.Length; i++)
+            {
+                this._targetGadgetOpacities[i] = 0.0;
+            }
+            _crosshairVM.SetArrowProperties(this._targetGadgetOpacities[0], this._targetGadgetOpacities[1], this._targetGadgetOpacities[2], this._targetGadgetOpacities[3]);
         }
 
         public void FinalizeCrosshair()
@@ -51,16 +61,20 @@ namespace TOR_Core.AbilitySystem.CrossHairs
             }
             _crosshairVM.CrosshairType = BannerlordConfig.CrosshairType;
             Agent mainAgent = Mission.Current.MainAgent;
+            if(mainAgent==null) return;
+            
+            WeaponInfo wieldedWeaponInfo = mainAgent.GetWieldedWeaponInfo(Agent.HandIndex.MainHand);
+            _crosshairVM.IsVisible = wieldedWeaponInfo.IsValid && wieldedWeaponInfo.IsRangedWeapon ; // this only is relevant for the actual ranged crosshair not the entire vm
+            
             double num = (double)(_missionScreen.CameraViewAngle * _viewAngleConst);
             double accuracy = 2.0 * Math.Tan((double)(mainAgent.CurrentAimingError + mainAgent.CurrentAimingTurbulance) * (0.5 / Math.Tan(num * 0.5)));
             _crosshairVM.SetProperties(accuracy, (double)(1f + (_missionScreen.CombatCamera.HorizontalFov - _crosshairAngleConstant) / _crosshairAngleConstant));
-            WeaponInfo wieldedWeaponInfo = mainAgent.GetWieldedWeaponInfo(Agent.HandIndex.MainHand);
             float numberToCheck = MBMath.WrapAngle(mainAgent.LookDirection.AsVec2.RotationInRadians - mainAgent.GetMovementDirection().RotationInRadians);
             if (wieldedWeaponInfo.IsValid && wieldedWeaponInfo.IsRangedWeapon && BannerlordConfig.DisplayTargetingReticule)
             {
                 Agent.ActionCodeType currentActionType = mainAgent.GetCurrentActionType(1);
                 MissionWeapon wieldedWeapon = mainAgent.WieldedWeapon;
-                if (wieldedWeapon.ReloadPhaseCount > 1 && wieldedWeapon.IsReloading && currentActionType == Agent.ActionCodeType.Reload)
+                if ((wieldedWeapon.ReloadPhaseCount > 1|| mainAgent.WieldedWeapon.CurrentUsageItem.IsGunPowderWeapon()) && wieldedWeapon.IsReloading && currentActionType == Agent.ActionCodeType.Reload)
                 {
                     StackArray.StackArray10FloatFloatTuple array = default(StackArray.StackArray10FloatFloatTuple);
                     var itemUsageReloadActionCode = MBItem.GetItemUsageReloadActionCode(wieldedWeapon.CurrentUsageItem.ItemUsage, 9, mainAgent.HasMount, -1, mainAgent.GetIsLeftStance());

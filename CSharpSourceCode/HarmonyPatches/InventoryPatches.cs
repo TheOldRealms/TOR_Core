@@ -38,7 +38,7 @@ namespace TOR_Core.HarmonyPatches
                 thread.SetApartmentState(ApartmentState.STA);
                 thread.Start();
                 thread.Join(); //Wait for the thread to end
-                var list = text.Split('\t');
+                var list = text.Split(',');
                 var logic = AccessTools.Field(typeof(SPInventoryVM), "_inventoryLogic").GetValue(____dataSource) as InventoryLogic;
                 List<Tuple<string, int>> itemList = new List<Tuple<string, int>>();
                 for(int i = 0; i < list.Length; i++)

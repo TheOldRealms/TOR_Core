@@ -1,3 +1,4 @@
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
 
@@ -9,18 +10,19 @@ namespace TOR_Core.AbilitySystem.Spells
         {
         }
 
-        public override bool CanCast(Agent casterAgent)
+        public override bool IsDisabled(Agent casterAgent, out TextObject disabledReason)
         {
             var hero = casterAgent.GetHero();
             if (hero != null && hero.GetExtendedInfo() != null)
             {
                 var info = hero.GetExtendedInfo();
-                if (info.CurrentWindsOfMagic < hero.GetEffectiveWindsCostForSpell(this))
+                if (info.GetCustomResourceValue("WindsOfMagic") < hero.GetEffectiveWindsCostForSpell(this))
                 {
-                    return false;
+                    disabledReason = new TextObject("{=!}Not enough winds of magic");
+                    return true;
                 }
             }
-            return base.CanCast(casterAgent);
+            return base.IsDisabled(casterAgent, out disabledReason);
         }
 
         protected override void DoCast(Agent casterAgent)
@@ -30,7 +32,7 @@ namespace TOR_Core.AbilitySystem.Spells
             if (hero != null && hero.GetExtendedInfo() != null)
             {
                 var info = hero.GetExtendedInfo();
-                info.CurrentWindsOfMagic -= hero.GetEffectiveWindsCostForSpell(this);
+                info.AddCustomResource("WindsOfMagic", -hero.GetEffectiveWindsCostForSpell(this));
             }
         }
     }

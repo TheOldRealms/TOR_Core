@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +25,19 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         public List<ResistanceTuple> Resistances = new List<ResistanceTuple>();
         [XmlArray("DamageAmplifiers")]
         public List<AmplifierTuple> DamageAmplifiers = new List<AmplifierTuple>();
+        [XmlElement("ResourceCost")]
+        public ResourceCostTuple ResourceCost = null;
+    }
+
+    [Serializable]
+    public class ResourceCostTuple
+    {
+        [XmlAttribute]
+        public string ResourceType = string.Empty;
+        [XmlAttribute]
+        public int UpkeepCost = 0;
+        [XmlAttribute]
+        public int UpgradeCost = 0;
     }
 
     [Serializable]

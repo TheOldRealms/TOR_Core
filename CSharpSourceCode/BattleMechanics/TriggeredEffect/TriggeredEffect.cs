@@ -29,7 +29,10 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             _template = template;
             _isTemplateMutated = isTemplateMutated;
         }
-        
+
+        public string SummonedTroopId => _template.TroopIdToSummon;
+        public float ImbuedStatusEffectDuration => _template.ImbuedStatusEffectDuration;
+        public List<string> StatusEffects => _template.ImbuedStatusEffects;
         public void Trigger(Vec3 position, Vec3 normal, Agent triggererAgent, AbilityTemplate originAbilityTemplate = null, MBList<Agent> targets = null)
         {
             if (_template == null) return;
@@ -54,8 +57,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             if(Game.Current.GameType is Campaign && originAbilityTemplate != null)
             {
                 var model = Campaign.Current.Models.GetAbilityModel();
-                var character = triggererAgent.Character as CharacterObject;
-                if(model != null && character != null)
+                if (model != null && triggererAgent.Character is CharacterObject character)
                 {
                     damageMultiplier = model.GetSkillEffectivenessForAbilityDamage(character, originAbilityTemplate);
                     statusEffectDuration = model.CalculateStatusEffectDurationForAbility(character, originAbilityTemplate, statusEffectDuration);

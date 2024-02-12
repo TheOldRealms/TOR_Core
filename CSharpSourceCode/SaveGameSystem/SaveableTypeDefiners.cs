@@ -60,6 +60,7 @@ namespace TOR_Core.SaveGameSystem
             ConstructContainerDefinition(typeof(List<KingdomDecision>));
             ConstructContainerDefinition(typeof(Dictionary<Settlement, Dictionary<CharacterObject, int>>));
             ConstructContainerDefinition(typeof(Dictionary<string, double>));
+            ConstructContainerDefinition(typeof(Dictionary<string, float>));
         }
     }
 }

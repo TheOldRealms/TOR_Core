@@ -138,10 +138,10 @@ namespace TOR_Core.CampaignMechanics.SkillBooks
             _currentSkillTuples.ForEach(skillTuple => CalculateSkillTupleProgression(skillTuple, startProgression, hours));
 
             _readingProgress[CurrentBook] = Math.Min(endProgression, hoursToComplete);
-            var progressText = ( 100 * ( (float)endProgression / hoursToComplete ) ).ToString ("{1:0.00}");
-            GameTexts.SetVariable ("BOOK_PROGRESS", progressText);
+            string progressText = (100 * ((float)endProgression / hoursToComplete)).ToString("0.00");
             
-            var displayText = new TextObject ("{=tor_skill_book_progress_notification_str} Reading for {SKILLBOOK} has progressed to {BOOK_PROGRESS}");
+            var displayText = new TextObject ("{=tor_skill_book_progress_notification_str} Reading for {SKILLBOOK} has progressed to {BOOK_PROGRESS}%");
+            GameTexts.SetVariable("BOOK_PROGRESS", progressText);
 
             TORCommon.Say( displayText );
         }

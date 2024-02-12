@@ -234,7 +234,7 @@
             HasShockWave="false" />
       <TriggeredEffectTemplate StringID="comet_explosion" 
             BurstParticleEffectPrefab="comet_explosion"
-			DoNotAlignParticleEffectPrefabOnImpact="true"			
+		DoNotAlignParticleEffectPrefabOnImpact="true"
             SoundEffectId="fireball_explosion" 
             SoundEffectLength="2.5" 
             DamageType="Magical" 
@@ -247,7 +247,7 @@
 			
       <TriggeredEffectTemplate StringID="doom_bolt_explosion" 
             BurstParticleEffectPrefab="doom_bolt_explosion"
-			DoNotAlignParticleEffectPrefabOnImpact="true"			
+		DoNotAlignParticleEffectPrefabOnImpact="true"
             SoundEffectId="fireball_explosion" 
             SoundEffectLength="2.5" 
             DamageType="Magical" 
@@ -364,7 +364,7 @@
 			<ImbuedStatusEffect>summerheat_fireres_debuff_25</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
   
-        <TriggeredEffectTemplate StringID="regrowth_heal" 
+      <TriggeredEffectTemplate StringID="regrowth_heal" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
@@ -377,14 +377,9 @@
 			ImbuedStatusEffectDuration="12" 
             ScriptNameToTrigger="none">
 			<ImbuedStatusEffect>regrowth_heal</ImbuedStatusEffect>
-	  </TriggeredEffectTemplate>
+	</TriggeredEffectTemplate>
 	  
-	  
-
-	  
-	  
-	  
-		<TriggeredEffectTemplate StringID="drain_life" 
+	<TriggeredEffectTemplate StringID="drain_life" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
@@ -400,7 +395,7 @@
       </TriggeredEffectTemplate>
 	  
 	  
-		<TriggeredEffectTemplate StringID="storm_of_renewal" 
+	<TriggeredEffectTemplate StringID="storm_of_renewal" 
             BurstParticleEffectPrefab="storm_of_renewal_ground" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
@@ -416,7 +411,7 @@
       </TriggeredEffectTemplate>
 	  
 	  
-		<TriggeredEffectTemplate StringID="green_eye_end" 
+	<TriggeredEffectTemplate StringID="green_eye_end" 
             BurstParticleEffectPrefab="green_eye_end" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
@@ -575,6 +570,23 @@
             TroopIdToSummon="tor_vc_summoned_skeleton"
             NumberToSummon="5"
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.SummonScript"/>
+			
+      <TriggeredEffectTemplate StringID="summon_champion" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="1" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            DamageVariance="0"
+		ImbuedStatusEffectDuration="1" 
+            TroopIdToSummon="tor_vc_harbinger_champion"
+            NumberToSummon="1">
+		<ImbuedStatusEffect>greater_harbinger_debuff</ImbuedStatusEffect>
+	  </TriggeredEffectTemplate>
+	  
       <TriggeredEffectTemplate StringID="summon_kandorak" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
@@ -641,7 +653,7 @@
             ImbuedStatusEffectDuration="10" 
             DamageVariance="0"
             ScriptNameToTrigger="none">
-            <ImbuedStatusEffect>soulstealer</ImbuedStatusEffect>
+                  <ImbuedStatusEffect>soulstealer</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 
 <!-- Artillery -->
@@ -709,7 +721,7 @@
             HasShockWave="false" 
             TargetType="Friendly" 
             DamageVariance="0.0" 
-			ImbuedStatusEffectDuration="2" 
+		ImbuedStatusEffectDuration="2" 
             ScriptNameToTrigger="none">
 			<ImbuedStatusEffect>healing_hand_tick</ImbuedStatusEffect>
 	  </TriggeredEffectTemplate>
@@ -740,7 +752,7 @@
             TargetType="Friendly" 
             ImbuedStatusEffectDuration="8" 
             ScriptNameToTrigger="none" >
-            <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
+                  <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 
 <!-- Power of the Lady -->
@@ -755,7 +767,7 @@
             HasShockWave="false" 
             TargetType="Friendly" 
             DamageVariance="0.0" 
-			ImbuedStatusEffectDuration="2" 
+		ImbuedStatusEffectDuration="2" 
             ScriptNameToTrigger="none">
 			<ImbuedStatusEffect>ladysfavour_tick</ImbuedStatusEffect>
 	  </TriggeredEffectTemplate>
@@ -770,7 +782,7 @@
             HasShockWave="false" 
             TargetType="Friendly" 
             DamageVariance="0.0" 
-			ImbuedStatusEffectDuration="15" 
+		ImbuedStatusEffectDuration="15" 
             ScriptNameToTrigger="none">
 			<ImbuedStatusEffect>aura_of_lady_magic</ImbuedStatusEffect>
 			<ImbuedStatusEffect>aura_of_lady_fire</ImbuedStatusEffect>
@@ -787,7 +799,7 @@
             HasShockWave="false" 
             TargetType="Friendly" 
             DamageVariance="0.0" 
-			ImbuedStatusEffectDuration="15" 
+		ImbuedStatusEffectDuration="15" 
             ScriptNameToTrigger="none">
 			<ImbuedStatusEffect>shield_of_combat</ImbuedStatusEffect>
 	  </TriggeredEffectTemplate>
@@ -802,7 +814,7 @@
             HasShockWave="false" 
             TargetType="Friendly" 
             DamageVariance="0.0" 
-			ImbuedStatusEffectDuration="1.05" 
+		ImbuedStatusEffectDuration="1.05" 
             ScriptNameToTrigger="none">
 			<ImbuedStatusEffect>aerial_shield_tick</ImbuedStatusEffect>
 	  </TriggeredEffectTemplate>
@@ -823,6 +835,21 @@
             DamageVariance="0.2" 
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>fireball_dot</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+
+      <TriggeredEffectTemplate StringID="treeman_smash" 
+            BurstParticleEffectPrefab="treeman_smash" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+            DamageAmount="200" 
+            Radius="5" 
+            HasShockWave="true" 
+            DoNotAlignParticleEffectPrefabOnImpact="true"
+            TargetType="Enemy" 
+            ImbuedStatusEffectDuration="0" 
+            DamageVariance="0.2" 
+            ScriptNameToTrigger="none">
       </TriggeredEffectTemplate>
 
       <TriggeredEffectTemplate StringID="grenade_explosion" 
@@ -868,7 +895,7 @@
             SoundEffectLength="0" 
             DamageType="Invalid" 
             DamageAmount="0" 
-            Radius="8" 
+            Radius="5" 
             HasShockWave="false" 
             TargetType="Self" 
             ImbuedStatusEffectDuration="2.1" 
@@ -906,6 +933,23 @@
 			<ImbuedStatusEffect>redfury_effect_res</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
+	  <TriggeredEffectTemplate StringID="apply_let_them_have_it" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="3" 
+            HasShockWave="false" 
+            TargetType="Self" 
+            ImbuedStatusEffectDuration="2.1" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>let_them_have_it_unstoppable</ImbuedStatusEffect>
+			<ImbuedStatusEffect>let_them_have_it_unbreakable</ImbuedStatusEffect>
+			
+      </TriggeredEffectTemplate>
+	  
       <TriggeredEffectTemplate StringID="apply_righteous_fury" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
@@ -921,6 +965,36 @@
             <ImbuedStatusEffect>righteous_fury_effect</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
+	<TriggeredEffectTemplate StringID="apply_accusation" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="3" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            ImbuedStatusEffectDuration="8" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>accusation_debuff</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+	
+      <TriggeredEffectTemplate StringID="apply_accusation_selfbuff" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="3" 
+            HasShockWave="false" 
+            TargetType="Self" 
+            ImbuedStatusEffectDuration="8" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>accusation_buff_penetration</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+	  
 	  <TriggeredEffectTemplate StringID="apply_mistwalk" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
@@ -933,7 +1007,7 @@
             ImbuedStatusEffectDuration="3" 
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
-			<ImbuedStatusEffect>mistwalk_base</ImbuedStatusEffect>
+		<ImbuedStatusEffect>mistwalk_base</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	  <TriggeredEffectTemplate StringID="apply_mistwalk_area" 
@@ -949,6 +1023,22 @@
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>mistwalk_healing_group</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+	  
+	  <TriggeredEffectTemplate StringID="apply_vanhelsdansemacabre" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="10" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="2.1" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>vanhelsdansemacabre_ats</ImbuedStatusEffect>
+			<ImbuedStatusEffect>vanhelsdansemacabre_mvs</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
       
       <TriggeredEffectTemplate StringID="apply_righteous_fury_pulse" 
@@ -978,7 +1068,6 @@
             DamageVariance="0" 
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyFlamingItemTraitScript"/>
 			
-			
 		 <TriggeredEffectTemplate StringID="amber_spear" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
@@ -989,7 +1078,6 @@
             TargetType="Enemy" 
             DamageVariance="0" />
 
-      
       <TriggeredEffectTemplate StringID="attackspeed_bonus_20" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
@@ -1004,6 +1092,7 @@
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>attackspeed_bonus_20</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
+	  
 	   <TriggeredEffectTemplate StringID="apply_fire_cloak_augment" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
@@ -1035,6 +1124,48 @@
             <ImbuedStatusEffect>ward_of_arrows</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
+	  <TriggeredEffectTemplate StringID="fey_paths_self" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="4" 
+            HasShockWave="false" 
+            TargetType="Self" 
+            ImbuedStatusEffectDuration="6" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>fey_path_res</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
 	  
+	  <TriggeredEffectTemplate StringID="fey_paths_enemy" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Magical" 
+            DamageAmount="1" 
+            Radius="5" 
+            HasShockWave="true" 
+            TargetType="Enemy" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+      </TriggeredEffectTemplate>
+	  
+	  
+	  <TriggeredEffectTemplate StringID="fey_paths_friendly" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="4" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="5" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>fey_path_dmg</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
 	  
 </TriggeredEffectTemplates>

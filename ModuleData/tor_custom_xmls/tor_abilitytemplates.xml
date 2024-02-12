@@ -10,7 +10,7 @@
       Duration="300" 
       Radius="0.4" 
       AbilityType="Spell" 
-      AbilityEffectType="Missile" 
+      AbilityEffectType="SeekerMissile" 
       BaseMovementSpeed="15" 
       TickInterval="-1" 
       TriggerType="OnCollision" 
@@ -27,20 +27,23 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_stone" 
+      TriggeredEffectID="dart_explosion"
       SpellTier="1"
       BelongsToLoreID="MinorMagic"
       MaxDistance="100"
-      CrosshairType="Missile"
-      AbilityTargetType="WorldPosition"
-      TooltipDescription="{=dart_description_str}Hurl a magical bolt at the enemy. The missile homes in on the target and does 40 damage in a 3 meter radius on contact.">
-		<LightColorRGB x="0" y="204" z="255" w="-1">
-			<AsVec2>
-				<y>204</y>
-				<z>255</z>
-			</AsVec2>
-		</LightColorRGB>
-		<TriggeredEffect>dart_explosion</TriggeredEffect>
+      CrosshairType="SingleTarget"
+      AbilityTargetType="EnemiesInAOE"
+      TooltipDescription="Hurl a magical bolt at the enemy. The missile homes in on the target and does 40 damage in a 3 meter radius on contact.">
+      <LightColorRGB x="0" y="204" z="255" w="-1">
+        <AsVec2>
+          <y>204</y>
+          <z>255</z>
+        </AsVec2>
+      </LightColorRGB>
+	  <TriggeredEffect>dart_explosion</TriggeredEffect>
+      <SeekerParameters Proportional="0.5" Derivative="0" DisableDistance="10"/>
 	</AbilityTemplate>
+  
 	<AbilityTemplate StringID="WardOfArrows" 
       Name="{=ward_of_arrows_label_str}Ward of Arrows" 
       SpriteName="ward_of_arrows_icon" 
@@ -1362,12 +1365,12 @@
       CoolDown="20" 
       WindsOfMagicCost="4" 
       BaseMisCastChance="0.3" 
-      Duration="2" 
-      Radius="2" 
+      Duration="4" 
+      Radius="2.5" 
       AbilityType="Spell" 
       AbilityEffectType="Summoning" 
       BaseMovementSpeed="0" 
-      TickInterval="2" 
+      TickInterval="1" 
       TriggerType="TickOnce" 
       HasLight="false" 
       LightIntensity="0" 
@@ -1384,7 +1387,7 @@
       AnimationActionName="act_release_heavy_thrown" 
       Offset="10"
       AbilityTargetType="GroundAtPosition"
-      CrosshairType="Pointer"
+      CrosshairType="TargetedAOE"
       MinDistance="1"
       MaxDistance="30"
       TargetCapturingRadius="5"
@@ -1405,11 +1408,11 @@
       CoolDown="20" 
       WindsOfMagicCost="8" 
       BaseMisCastChance="0.05" 
-      Duration="10" 
+      Duration="300" 
       Radius="0.4" 
       AbilityType="Spell" 
-      AbilityEffectType="Missile" 
-      BaseMovementSpeed="25" 
+      AbilityEffectType="SeekerMissile" 
+      BaseMovementSpeed="15" 
       TickInterval="-1" 
       TriggerType="OnCollision" 
       HasLight="false" 
@@ -1419,6 +1422,7 @@
       LightFlickeringInterval="0.7" 
       ShadowCastEnabled="true" 
       ParticleEffectPrefab="shadowblood" 
+	  MaxDistance="120"
       ParticleEffectSizeModifier="1" 
       SoundEffectToPlay="evilbolt_cast" 
       ShouldSoundLoopOverDuration="false" 
@@ -1426,8 +1430,8 @@
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
       Offset="2"
-      CrosshairType="Missile"
-      AbilityTargetType="WorldPosition"
+      CrosshairType="SingleTarget"
+      AbilityTargetType="EnemiesInAOE"
       SpellTier="2"
       BelongsToLoreID="Necromancy"
       TooltipDescription="{=shadowblood_description_str}Shadowy orbs of blood fly towards the target staining the ground beneath every step of the way.">
@@ -1438,6 +1442,7 @@
 			</AsVec2>
 		</LightColorRGB>
 		<TriggeredEffect>shadowblood_explosion</TriggeredEffect>
+		<SeekerParameters Proportional="0.5" Derivative="0" DisableDistance="10"/>
 	</AbilityTemplate>
 	<AbilityTemplate StringID="Morkharn"
       Name="{=morkharn_label_str}Morkharn - Breath of Darkness"
@@ -1481,95 +1486,49 @@
 		</LightColorRGB>
 		<TriggeredEffect>breath_of_darkness</TriggeredEffect>
 	</AbilityTemplate>
-<!-- 	<AbilityTemplate StringID="WitheringWave" 
-      Name="Withering Wave " 
-      SpriteName="witheringwave_icon" 
-      CoolDown="30" 
-      WindsOfMagicCost="16" 
-      BaseMisCastChance="0.3" 
-      Duration="8" 
-      Radius="2" 
-      AbilityType="Spell" 
-      AbilityEffectType="Vortex" 
-      BaseMovementSpeed="3" 
-      TickInterval="0.5" 
-      TriggerType="EveryTick" 
-      HasLight="false" 
-      LightIntensity="50" 
-      LightRadius="10" 
-      LightFlickeringMagnitude="0" 
-      LightFlickeringInterval="0" 
-      ShadowCastEnabled="false" 
-      ParticleEffectPrefab="withering_wave" 
-      ParticleEffectSizeModifier="1" 
-      SoundEffectToPlay="windofdeath_whispers" 
-      ShouldSoundLoopOverDuration="true"
-      CastType="WindUp" 
-      CastTime="0.5" 
-      AnimationActionName="act_release_heavy_thrown" 
-      Offset="3"
-      AbilityTargetType="GroundAtPosition"
-      CrosshairType="TargetedAOE"
-      MinDistance="3"
+	<AbilityTemplate StringID="VanHelsDanseMacabre"
+      Name="{=vanhelsdansemacabre_label_str}Vanhel's Danse Macabre"
+      SpriteName="breathofdarkness_icon"
+      CoolDown="30"
+      WindsOfMagicCost="12"
+      BaseMisCastChance="0.05"
+      Duration="0"
+      Radius="3"
+      AbilityType="Spell"
+      AbilityEffectType="Heal"
+      BaseMovementSpeed="0"
+      TickInterval="-1"
+      TriggerType="TickOnce"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab=""
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.5"
+      AbilityTargetType="AlliesInAOE"
+      TargetCapturingRadius="4"
       MaxDistance="20"
-      TargetCapturingRadius="2"
-      MaxRandomDeviation="2"
-      ShouldRotateVisuals="false"
-      VisualsRotationVelocity="0"
+      CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="Necromancy"
-      TooltipDescription="A withering wave rolls over randomly the countryside consuming the life energy of those caught within.">
+      TooltipDescription="{=vanhelsdansemacabre_description_str}The animated dead are normally ungainly and cumbersome; this spell, however, gives them grace and speed - and makes then all the more deadly as a result.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>witheringwave_tick</TriggeredEffect>
-	</AbilityTemplate> -->
-	<AbilityTemplate StringID="Kandorak" 
-      Name="{=kandorak_label_str}Kandorak - The Harbinger" 
-      SpriteName="theharbinger_icon" 
-      CoolDown="30" 
-      WindsOfMagicCost="6" 
-      BaseMisCastChance="0.3" 
-      Duration="2" 
-      Radius="2" 
-      AbilityType="Spell" 
-      AbilityEffectType="Summoning" 
-      BaseMovementSpeed="0" 
-      TickInterval="2" 
-      TriggerType="TickOnce" 
-      HasLight="false" 
-      LightIntensity="0" 
-      LightRadius="0" 
-      LightFlickeringMagnitude="0" 
-      LightFlickeringInterval="0" 
-      ShadowCastEnabled="false" 
-      ParticleEffectPrefab="raise_dead" 
-      ParticleEffectSizeModifier="1" 
-      SoundEffectToPlay="rocks_grinding" 
-      ShouldSoundLoopOverDuration="true"
-      CastType="Instant" 
-      CastTime="0" 
-      AnimationActionName="act_release_heavy_thrown" 
-      Offset="10"
-      AbilityTargetType="GroundAtPosition"
-      CrosshairType="Pointer"
-      MinDistance="1"
-      MaxDistance="30"
-      TargetCapturingRadius="2.5"
-      SpellTier="3"
-      BelongsToLoreID="Necromancy"
-      TooltipDescription="{=kandorak_description_str}Raises champions of death to serve the caster. Summon 4 Grave Guard units for the remainder of the battle.">
-		<LightColorRGB x="255" y="170" z="0" w="-1">
-			<AsVec2>
-				<x>255</x>
-				<y>170</y>
-			</AsVec2>
-		</LightColorRGB>
-		<TriggeredEffect>summon_kandorak</TriggeredEffect>
+		<TriggeredEffect>apply_vanhelsdansemacabre</TriggeredEffect>
 	</AbilityTemplate>
+	
 	<AbilityTemplate StringID="ScreamingSkull" 
       Name="{=screaming_skull_label_str}Screaming Skull" 
       SpriteName="screamingskull_icon" 
@@ -1663,12 +1622,12 @@
       CoolDown="40" 
       WindsOfMagicCost="14" 
       BaseMisCastChance="0.3" 
-      Duration="2" 
-      Radius="2" 
+      Duration="4" 
+      Radius="2.5" 
       AbilityType="Spell" 
       AbilityEffectType="Summoning" 
       BaseMovementSpeed="0" 
-      TickInterval="2" 
+      TickInterval="1" 
       TriggerType="TickOnce" 
       HasLight="false" 
       LightIntensity="0" 
@@ -1685,7 +1644,7 @@
       AnimationActionName="act_release_heavy_thrown" 
       Offset="10"
       AbilityTargetType="GroundAtPosition"
-      CrosshairType="Pointer"
+      CrosshairType="TargetedAOE"
       MinDistance="1"
       MaxDistance="30"
       TargetCapturingRadius="2.5"
@@ -2102,14 +2061,13 @@
       CoolDown="5" 
       WindsOfMagicCost="8" 
       BaseMisCastChance="0.05" 
-      Duration="0.3" 
+      Duration="2" 
       Radius="0.4" 
       AbilityType="Spell" 
       AbilityEffectType="Projectile" 
       BaseMovementSpeed="100" 
-	  TickOnce ="false"
       TickInterval="-1" 
-      TriggerType="EveryTick" 
+      TriggerType="OnStop" 
       HasLight="false" 
       LightIntensity="50" 
       LightRadius="10" 
@@ -2370,9 +2328,8 @@
       AbilityType="Spell" 
       AbilityEffectType="Projectile" 
       BaseMovementSpeed="60"
-	  TickOnce="false"
       TickInterval="1" 
-      TriggerType="EveryTick" 
+      TriggerType="OnStop" 
       HasLight="false" 
       LightIntensity="50" 
       LightRadius="10" 
@@ -2830,7 +2787,7 @@
 	<AbilityTemplate StringID="RighteousFury"
        Name="{=righteous_fury_label_str}Righteous Fury"
        SpriteName="righteousfury_icon"
-       CoolDown="10"
+       CoolDown="15"
        WindsOfMagicCost="0"
        BaseMisCastChance="0"
        Duration="8"
@@ -2866,6 +2823,48 @@
 		</LightColorRGB>
 		<TriggeredEffect>apply_righteous_fury</TriggeredEffect>
 	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="Accusation"
+       Name="{=accusation_str}Accusation"
+       SpriteName="righteousfury_icon"
+       CoolDown="5"
+       WindsOfMagicCost="0"
+       BaseMisCastChance="0"
+       Duration="5"
+       Radius="1"
+       AbilityType="CareerAbility"
+       AbilityEffectType="CareerAbilityEffect"
+       BaseMovementSpeed="0"
+       TickInterval="0.5"
+       TriggerType="TickOnce"
+       HasLight="false"
+       LightIntensity="0"
+       LightRadius="0"
+	    MaxDistance="150"
+       LightFlickeringMagnitude="0"
+       LightFlickeringInterval="0"
+       ShadowCastEnabled="false"
+       ParticleEffectPrefab=""
+       ParticleEffectSizeModifier="0"
+       SoundEffectToPlay=""
+       ShouldSoundLoopOverDuration="false"
+	    AbilityTargetType="SingleEnemy"
+       CastType="Instant"
+       CastTime="0.5"
+       AnimationActionName="none"
+       Offset="0"
+	    CrosshairType="SingleTarget"
+       TargetCapturingRadius="4">
+		<LightColorRGB x="255" y="255" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>apply_accusation</TriggeredEffect>
+	</AbilityTemplate>
+
 	
 	<AbilityTemplate StringID="RedFury"
        Name="{=red_fury_label_str}Red Fury"
@@ -2905,6 +2904,45 @@
 			</AsVec2>
 		</LightColorRGB>
 		<TriggeredEffect>apply_red_fury</TriggeredEffect>
+	
+	</AbilityTemplate>
+		<AbilityTemplate StringID="LetThemHaveIt"
+       Name="{=red_fury_label_str}Let Them Have It"
+       SpriteName="redfury_icon"
+       CoolDown="15"
+       WindsOfMagicCost="0"
+       BaseMisCastChance="0"
+       Duration="15"
+       Radius="1"
+       AbilityType="CareerAbility"
+       AbilityEffectType="CareerAbilityEffect"
+       BaseMovementSpeed="0"
+       TickInterval="2"
+       TriggerType="EveryTick"
+       HasLight="false"
+       LightIntensity="0"
+       LightRadius="0"
+       LightFlickeringMagnitude="0"
+       LightFlickeringInterval="0"
+       ShadowCastEnabled="false"
+       ParticleEffectPrefab=""
+       ParticleEffectSizeModifier="0"
+       SoundEffectToPlay=""
+       ShouldSoundLoopOverDuration="false"
+       CastType="Instant"
+       CastTime="0.5"
+       AnimationActionName=""
+       Offset="0"
+       AbilityTargetType="Self"
+       TargetCapturingRadius="4">
+		<LightColorRGB x="255" y="255" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>apply_let_them_have_it</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="KnightlyCharge"
@@ -2946,7 +2984,90 @@
 		</LightColorRGB>
 		<TriggeredEffect>apply_knightly_charge</TriggeredEffect>
 	</AbilityTemplate>
+
+	<AbilityTemplate StringID="GreaterHarbinger" 
+      Name="Greater Harbinger" 
+      SpriteName="theharbinger_icon" 
+      CoolDown="5" 
+      BaseMisCastChance="0.3" 
+      Duration="9999" 
+      Radius="2" 
+      AbilityType="CareerAbility" 
+      AbilityEffectType="CareerAbilityEffect" 
+      BaseMovementSpeed="0" 
+      TickInterval="2" 
+      TriggerType="None" 
+      HasLight="false" 
+      LightIntensity="0" 
+      LightRadius="0" 
+      LightFlickeringMagnitude="0" 
+      LightFlickeringInterval="0" 
+      ShadowCastEnabled="false" 
+      ParticleEffectPrefab="" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="" 
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant" 
+      CastTime="0" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="10"
+      AbilityTargetType="GroundAtPosition"
+      CrosshairType="Pointer"
+      MinDistance="1"
+      MaxDistance="60"
+      TargetCapturingRadius="1"
+      SpellTier="2"
+      TooltipDescription="Summon a champion on the target location.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+	   <TriggeredEffect>summon_champion</TriggeredEffect>
+	</AbilityTemplate>
 	
+	
+	<AbilityTemplate StringID="FeyPaths" 
+      Name="Fey Paths" 
+      SpriteName="feypaths_icon" 
+      CoolDown="5" 
+      BaseMisCastChance="0.3" 
+      Duration="2" 
+      Radius="2" 
+      AbilityType="CareerAbility" 
+      AbilityEffectType="CareerAbilityEffect" 
+      BaseMovementSpeed="0" 
+      TickInterval="2" 
+      TriggerType="TickOnce" 
+      HasLight="false" 
+      LightIntensity="0" 
+      LightRadius="0" 
+      LightFlickeringMagnitude="0" 
+      LightFlickeringInterval="0" 
+      ShadowCastEnabled="false" 
+      ParticleEffectPrefab="" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="rocks_grinding" 
+      ShouldSoundLoopOverDuration="true"
+      CastType="Instant" 
+      CastTime="0" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="10"
+      AbilityTargetType="GroundAtPosition"
+      CrosshairType="Pointer"
+      MinDistance="1"
+      MaxDistance="60"
+      TargetCapturingRadius="1"
+      SpellTier="2"
+      TooltipDescription="The Damsel wanders on the fey paths. Instantly teleports the player to the targeted ground position. Charges with dealt or healed damage by magic.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+	</AbilityTemplate>
 	
 	<!-- Sigmarite Prayers -->
 	
@@ -3012,7 +3133,6 @@
       LightFlickeringInterval="0" 
       ShadowCastEnabled="false" 
       ParticleEffectPrefab="healing_hand_ground"
-	    
       ParticleEffectSizeModifier="1" 
       SoundEffectToPlay="empire_heal" 
       ShouldSoundLoopOverDuration="false"

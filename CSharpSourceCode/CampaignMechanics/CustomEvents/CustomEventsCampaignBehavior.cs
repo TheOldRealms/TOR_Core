@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TOR_Core.Extensions;
 using TOR_Core.Ink;
 using TOR_Core.Utilities;
@@ -29,6 +31,12 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionStart);
             CampaignEvents.HourlyTickPartyEvent.AddNonSerializedListener(this, HourlyTick);
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, DailyTick);
+            TORCampaignEvents.Instance.ChaosUprisingStarted += OnChaosUprisingStarted;
+        }
+
+        private void OnChaosUprisingStarted(object sender, ChaosUprisingStartedEventArgs e)
+        {
+            MBInformationManager.AddQuickInformation(new TextObject("TODO: REPLACE WITH INK! A chaos uprising started in settlement: " + e.Settlement.Name.ToString()));
         }
 
         private void DailyTick()
@@ -103,6 +111,11 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
         public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData("_triggerTimes", ref _triggerTimes);
+        }
+
+        ~CustomEventsCampaignBehavior()
+        {
+            TORCampaignEvents.Instance.ChaosUprisingStarted -= OnChaosUprisingStarted;
         }
     }
 }

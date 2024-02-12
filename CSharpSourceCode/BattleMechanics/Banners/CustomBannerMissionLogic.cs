@@ -1,14 +1,18 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.AgentOrigins;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.Source.Missions;
 using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.AbilitySystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 using static TaleWorlds.Core.ItemObject;
@@ -19,6 +23,8 @@ namespace TOR_Core.BattleMechanics.Banners
     {
         private Queue<Agent> _unprocessedAgents = new Queue<Agent>();
         private bool _hasUnprocessedAgents;
+        private int _indexOfCurrentAgent = 0;
+        private Dictionary<int, EquipmentIndex> _agentsWithBanners = new Dictionary<int, EquipmentIndex>();
 
         public override void OnAgentBuild(Agent agent, Banner banner)
         {
@@ -42,6 +48,11 @@ namespace TOR_Core.BattleMechanics.Banners
                     try
                     {
                         SwitchTableauPatterns(agent, banner);
+                        if (_indexOfCurrentAgent > TORConfig.FakeBannerFrequency)
+                        {
+                            if(CheckEligibleAndAddBanner(agent, banner)) _indexOfCurrentAgent = 0;
+                        }
+                        _indexOfCurrentAgent++;
                     }
                     catch
                     {
@@ -49,6 +60,18 @@ namespace TOR_Core.BattleMechanics.Banners
                     }
                 }
                 _hasUnprocessedAgents = false;
+            }
+        }
+
+        public override void OnEarlyAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
+        {
+            if (_agentsWithBanners.ContainsKey(affectedAgent.Index))
+            {
+                if (affectedAgent.Equipment != null && 
+                    !affectedAgent.Equipment[_agentsWithBanners[affectedAgent.Index]].IsEmpty)
+                {
+                    affectedAgent.RemoveEquippedWeapon(_agentsWithBanners[affectedAgent.Index]);
+                }
             }
         }
 
@@ -62,29 +85,6 @@ namespace TOR_Core.BattleMechanics.Banners
                     var equipment = agent.Equipment[i];
                     if (!equipment.IsEmpty && equipment.Item != null)
                     {
-                        /* THIS DOES NOT WORK FOR SOME REASON
-                        if (equipment.Item.IsBannerItem)
-                        {
-                            var multiMesh = equipment.GetMultiMesh(agent.IsFemale, false, true);
-                            var visual = banner.BannerVisual as BannerVisual;
-
-                            if (multiMesh != null && visual != null)
-                            {
-                                for (int j = 0; j < multiMesh.MeshCount; j++)
-                                {
-                                    var currentMesh = multiMesh.GetMeshAtIndex(j);
-                                    bool noTableau = currentMesh.HasTag("dont_use_tableau");
-                                    bool isBannerReplacementMesh = currentMesh.HasTag("banner_replacement_mesh");
-                                    if (currentMesh != null && !noTableau && isBannerReplacementMesh)
-                                    {
-                                        visual.GetTableauTextureLarge(t => ApplyTextureToMesh(t, currentMesh));
-                                        currentMesh.ManualInvalidate();
-                                    }
-                                }
-                                multiMesh.ManualInvalidate();
-                            }
-                        }
-                        */
                         if(equipment.Item.ItemType == ItemTypeEnum.Shield)
                         {
                             if (equipment.Item.IsUsingTableau)
@@ -93,39 +93,75 @@ namespace TOR_Core.BattleMechanics.Banners
                                 var missionWeapon = new MissionWeapon(equipment.Item, equipment.ItemModifier, banner);
                                 agent.EquipWeaponWithNewEntity((EquipmentIndex)i, ref missionWeapon);
                             }
-                            /* THIS BLOODY DOESNT WORK EITHER
-                            else if(equipment.Item.IsUsingTeamColor)
-                            {
-                                var multiMesh = equipment.GetMultiMesh(agent.IsFemale, false, true);
-
-                                if (multiMesh != null)
-                                {
-                                    for (int j = 0; j < multiMesh.MeshCount; j++)
-                                    {
-                                        var currentMesh = multiMesh.GetMeshAtIndex(j);
-
-                                        if (currentMesh != null)
-                                        {
-                                            currentMesh.Color = agent.Team.Color;
-                                            currentMesh.Color2 = agent.Team.Color2;
-                                            Material material = currentMesh.GetMaterial().CreateCopy();
-                                            material.AddMaterialShaderFlag("use_double_colormap_with_mask_texture", false);
-                                            currentMesh.SetMaterial(material);
-                                            //material.ManualInvalidate();
-                                            currentMesh.ManualInvalidate();
-                                        }
-                                    }
-                                    multiMesh.ManualInvalidate();
-                                }
-                            }
-                            */
                         }
                     }
                 }
-                
             }
         }
 
+        private bool CheckEligibleAndAddBanner(Agent agent, Banner banner)
+        {
+            if (agent.IsHero) return false;
+            if (agent.IsSummoned()) return false;
+            if (Game.Current.GameType is Campaign && Campaign.Current != null)
+            {
+                if (agent.Origin is PartyAgentOrigin)
+                {
+                    var party = ((PartyAgentOrigin)agent.Origin).Party;
+                    if (!party.IsMobile) return false;
+                    if (!party.MobileParty.IsLordParty) return false;
+                }
+                else if (agent.Origin is PartyGroupAgentOrigin)
+                {
+                    var party = ((PartyGroupAgentOrigin)agent.Origin).Party;
+                    if (!party.IsMobile) return false;
+                    if (!party.MobileParty.IsLordParty) return false;
+                }
+                else return false;
+            }
+            
+            var equipment = agent.Equipment;
+            if(equipment.HasAnyWeaponWithFlags(WeaponFlags.NotUsableWithOneHand)) return false;
+            var weaponList = GetWeaponItems(equipment).ToList();
+            if (weaponList.Any(x => !x.IsEmpty && x.Item != null && x.Item.ItemType == ItemTypeEnum.TwoHandedWeapon)) return false;
+
+            int freeSlotIndex = GetFirstFreeSlot(equipment);
+            if (freeSlotIndex >= 0)
+            {
+                var fakeBanner = GetFakeBannerObject(agent.Character.GetBattleTier());
+                var missionWeapon = new MissionWeapon(fakeBanner, null, banner);
+                agent.EquipWeaponWithNewEntity((EquipmentIndex)freeSlotIndex, ref missionWeapon);
+                _agentsWithBanners.Add(agent.Index, (EquipmentIndex)freeSlotIndex);
+                return true;
+            }
+            return false;
+        }
+
+        private ItemObject GetFakeBannerObject(int agentTier)
+        {
+            if(agentTier > 6) return MBObjectManager.Instance.GetObject<ItemObject>("tor_fake_faction_banner_001_t3");
+            else if(agentTier > 3) return MBObjectManager.Instance.GetObject<ItemObject>("tor_fake_faction_banner_001_t2");
+            return MBObjectManager.Instance.GetObject<ItemObject>("tor_fake_faction_banner_001_t1");
+        }
+
+        private IEnumerable<MissionWeapon> GetWeaponItems(MissionEquipment equipment)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                yield return equipment[i];
+            }
+        }
+
+        private int GetFirstFreeSlot(MissionEquipment equipment)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                if (equipment[i].IsEmpty) return i;
+            }
+            return -1;
+        }
+
+        //does not work, although it should. No error, just nothing happens
         private void ApplyTextureToMesh(Texture t, Mesh currentMesh)
         {
             if (currentMesh != null)

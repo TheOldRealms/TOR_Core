@@ -1,7 +1,9 @@
+using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.BattleMechanics.SFX;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -11,39 +13,35 @@ namespace TOR_Core.AbilitySystem.Scripts
     {
         private readonly InputKey[] _axisKeys = new InputKey[4];
         private readonly GameKeyContext _keyContext = HotKeyManager.GetCategory("Generic");
-
+        private const float _minimalDistance = 2;
         private float _speed = 10f;
-        private float currentTick;
-
-        private float effectTickIntervall;
+        private float _effectTickInterval;
+        private PlayerFlyableObjectScript _playerFlyableObjectScript;
 
         public override void Initialize(Ability ability)
         {
             base.Initialize(ability);
-            var sphere = GameEntity.Instantiate(Mission.Current.Scene, "flying_sphere", true);
-            sphere.BodyFlag = BodyFlags.Barrier3D;
-            sphere.BodyFlag |= BodyFlags.DontCollideWithCamera;
-            sphere.EntityVisibilityFlags |= EntityVisibilityFlags.VisibleOnlyForEnvmap;
-            GameEntity.AddChild(sphere);
             SaveKeyBindings();
             _speed = 10;
-            if (Agent.Main.GetHero().GetAllCareerChoices().Contains("NewBloodKeystone"))
+            if (Agent.Main.GetHero().GetAllCareerChoices().Contains("FeralKeystone"))
             {
                 _speed *= 1.2f;
             }
 
-            effectTickIntervall = ability.Template.TickInterval;
+            Mission.CameraAddedDistance = 200;
+            _effectTickInterval = ability.Template.TickInterval;
         }
 
-        public override void SetAgent(Agent agent)
+        private void InstantiateFlightPrefab(MatrixFrame frame)
         {
-            base.SetAgent(agent);
-            agent.Disappear();
-            agent.ToggleInvulnerable();
-            TriggerEffects(agent.Position, agent.Position.NormalizedCopy());
-            if (agent.IsPlayerControlled) DisbindKeyBindings();
-            var frame = _casterAgent.Frame.Elevate(1f);
-            GameEntity.SetGlobalFrame(frame);
+            var chair = GameEntity.Instantiate(Mission.Current.Scene, "FlyableObject", frame);
+            chair.BodyFlag = BodyFlags.Barrier3D;
+            chair.BodyFlag |= BodyFlags.DontCollideWithCamera;
+            chair.BodyFlag |= BodyFlags.CommonCollisionExcludeFlagsForAgent;
+            chair.EntityVisibilityFlags |= EntityVisibilityFlags.VisibleOnlyForEnvmap;
+
+            _playerFlyableObjectScript = chair.GetFirstScriptOfType<PlayerFlyableObjectScript>();
+            _playerFlyableObjectScript.ActivateFlying();
         }
 
         private void SaveKeyBindings()
@@ -64,72 +62,71 @@ namespace TOR_Core.AbilitySystem.Scripts
             for (var i = 0; i < 4; i++) _keyContext.GetGameKey(i).KeyboardKey.ChangeKey(InputKey.Invalid);
         }
 
-        protected override void OnTick(float dt)
+        protected override void OnBeforeTick(float dt)
         {
-            if (_ability == null) return;
-            if (IsFading) return;
-            _timeSinceLastTick += dt;
-            UpdateLifeTime(dt);
-
-
-            if (_casterAgent != null && _casterAgent.Health > 0)
+            if (!HasTickedOnce)
             {
-                UpdateSound(_casterAgent.Position);
-                var dist = GetDistance();
-                if (Input.IsKeyDown(InputKey.W) || Input.IsKeyPressed(InputKey.W))
-                    if (dist > 3 || dist.Equals(float.NaN))
-                        Fly(dt);
+                CasterAgent.Disappear();
+                CasterAgent.ToggleInvulnerable();
+                if (CasterAgent.IsPlayerControlled) DisbindKeyBindings();
+                var frame = CasterAgent.Frame.Elevate(3f);
+                Agent.Main.TeleportToPosition(frame.origin);
+                GameEntity.SetGlobalFrame(frame);
+                InstantiateFlightPrefab(frame);
             }
-
-
-            var agents = new MBList<Agent>();
-            agents = Mission.Current.GetNearbyAgents(_casterAgent.Position.AsVec2, 2, agents);
-            foreach (var agent in agents)
-                if (agent != _casterAgent && MathF.Abs(_casterAgent.Position.Z - agent.Position.Z) < 1)
-                {
-                    var pos = agent.Position - _casterAgent.Position;
-                    pos.Normalize();
-                    pos.z = 0;
-                    agent.TeleportToPosition(agent.Position + pos);
-                }
-            
-            if (_timeSinceLastTick >= effectTickIntervall)
+            else
             {
-                TriggerEffects(_casterAgent.Position, -_casterAgent.Position.NormalizedCopy());
-                _timeSinceLastTick = 0f;
+                if (CasterAgent != null && CasterAgent.Health > 0)
+                {
+                    if (Input.IsKeyDown(InputKey.W) || Input.IsKeyPressed(InputKey.W))
+                    {
+                        if (_playerFlyableObjectScript.IsReady() && GetDistance() > _minimalDistance)
+                        {
+                            Fly(dt);
+                        }
+                        else
+                        {
+                            Fly(-dt * 0.5f);
+                        }
+                    }
+                }
             }
         }
 
         private float GetDistance()
         {
             float num;
-            var pos = _casterAgent.LookFrame.Advance(3).origin;
-            Mission.Current.Scene.RayCastForClosestEntityOrTerrain(_casterAgent.Position + new Vec3(0f, 0f, _casterAgent.GetEyeGlobalHeight()), pos, out num);
-            return num;
+            var pos2 = GameEntity.GetGlobalFrame().origin;
+            var pos = GameEntity.GetGlobalFrame().Elevate(-_minimalDistance).origin;
+            if (Mission.Current.Scene.RayCastForClosestEntityOrTerrain(pos2, pos, out num))
+            {
+                TORCommon.Say(num + "");
+                return num;
+            }
+
+            return 3;
         }
 
         private void Fly(float dt)
         {
-            var frame = GameEntity.GetGlobalFrame();
-            frame.rotation = _casterAgent.LookRotation;
-            frame.Advance(_speed * dt);
+            if (_playerFlyableObjectScript.GameEntity == null) return;
+
+            var frame = _playerFlyableObjectScript.GameEntity.GetGlobalFrame();
+            frame.rotation = Mission.Current.GetCameraFrame().rotation;
+            frame.Elevate(-_speed * dt);
+
+            _playerFlyableObjectScript.Advance(frame);
             GameEntity.SetGlobalFrame(frame);
         }
 
-        public override void Stop()
-        {
-            base.Stop();
-            RestoreKeyBindings();
-            _casterAgent.Appear();
-            _casterAgent.ToggleInvulnerable();
-
-            TriggerEffects(_casterAgent.Position, -_casterAgent.Position.NormalizedCopy());
-        }
-
-        protected override void OnRemoved(int removeReason)
+        protected override void OnBeforeRemoved(int removeReason)
         {
             RestoreKeyBindings();
-            base.OnRemoved(removeReason);
+            CasterAgent.Appear();
+            CasterAgent.ToggleInvulnerable();
+            _playerFlyableObjectScript.DeactivateFlying();
+            _playerFlyableObjectScript.GameEntity.Remove(0);
+            Mission.CameraAddedDistance = 0;
         }
     }
 }

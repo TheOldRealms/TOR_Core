@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Religions>
-    <Religion id="cult_of_sigmar" Name="{=tor_religion_cult_name_cult_of_sigmar_str}Cult of Sigmar" Culture="Culture.empire" Affinity="Order">
+    <Religion id="cult_of_sigmar" Name="{=tor_religion_cult_name_cult_of_sigmar_str}Cult of Sigmar" Culture="Culture.empire" Affinity="Order" DeityName="Sigmar">
         <HostileReligions>
             <HostileReligion id="Religion.cult_of_nagash" /> 
             <HostileReligion id="Religion.cult_of_slaanesh" /> 
@@ -19,7 +19,7 @@
             <ArtifactItem id="Item.tor_empire_weapon_mace_holy_hammer" />
         </ReligiousArtifacts>
     </Religion>
-    <Religion id="cult_of_taal" Name="Cult of Taal" Culture="Culture.empire" Affinity="Order">
+    <Religion id="cult_of_taal" Name="Cult of Taal" Culture="Culture.empire" Affinity="Order" DeityName="Taal">
         <HostileReligions>
             <HostileReligion id="Religion.cult_of_nagash" /> 
             <HostileReligion id="Religion.cult_of_slaanesh" /> 
@@ -40,7 +40,7 @@
             <ArtifactItem id="Item.tor_empire_weapon_thaxe_taal" />
         </ReligiousArtifacts>
     </Religion>
-    <Religion id="cult_of_lady" Name="Cult of The Lady" Culture="Culture.vlandia" Affinity="Order">
+    <Religion id="cult_of_lady" Name="Cult of The Lady" Culture="Culture.vlandia" Affinity="Order" DeityName="The Lady">
         <HostileReligions>
             <HostileReligion id="Religion.cult_of_nagash" /> 
             <HostileReligion id="Religion.cult_of_slaanesh" /> 
@@ -58,7 +58,7 @@
             <ArtifactItem id="Item.tor_bretonnia_weapon_thsword_de_lyonesse" />
         </ReligiousArtifacts>
     </Religion>
-    <Religion id="cult_of_nagash" Name="Children of Nagash" Culture="Culture.khuzait" Affinity="Vampire">
+    <Religion id="cult_of_nagash" Name="Children of Nagash" Culture="Culture.khuzait" Affinity="Vampire" DeityName="Nagash">
         <HostileReligions>
             <HostileReligion id="Religion.cult_of_sigmar" /> 
             <HostileReligion id="Religion.cult_of_taal" /> 
@@ -75,7 +75,7 @@
         <ReligiousTroops>
         </ReligiousTroops>
     </Religion>
-    <Religion id="chaos_undivided" Name="Chaos Undivided" Culture="Culture.chaos_culture" Affinity="Chaos">
+    <Religion id="chaos_undivided" Name="Chaos Undivided" Culture="Culture.chaos_culture" Affinity="Chaos" DeityName="Chaos">
         <HostileReligions>
             <HostileReligion id="Religion.cult_of_sigmar" /> 
             <HostileReligion id="Religion.cult_of_taal" /> 
@@ -89,7 +89,7 @@
         <ReligiousTroops>
         </ReligiousTroops>
     </Religion>
-    <Religion id="cult_of_slaanesh" Name="Cult of Slaanesh" Culture="Culture.chaos_culture" Affinity="Chaos">
+    <Religion id="cult_of_slaanesh" Name="Cult of Slaanesh" Culture="Culture.chaos_culture" Affinity="Chaos" DeityName="Slaanesh">
         <HostileReligions>
             <HostileReligion id="Religion.cult_of_sigmar" /> 
             <HostileReligion id="Religion.cult_of_taal" /> 
@@ -101,7 +101,7 @@
         <ReligiousTroops>
         </ReligiousTroops>
     </Religion>
-    <Religion id="cult_of_nurgle" Name="Cult of Nurgle" Culture="Culture.chaos_culture" Affinity="Chaos">
+    <Religion id="cult_of_nurgle" Name="Cult of Nurgle" Culture="Culture.chaos_culture" Affinity="Chaos" DeityName="Nurgle">
         <HostileReligions>
             <HostileReligion id="Religion.cult_of_sigmar" /> 
             <HostileReligion id="Religion.cult_of_taal" /> 
@@ -114,7 +114,7 @@
         <ReligiousTroops>
         </ReligiousTroops>
     </Religion>
-    <Religion id="cult_of_khorne" Name="Cult of Khorne" Culture="Culture.chaos_culture" Affinity="Chaos">
+    <Religion id="cult_of_khorne" Name="Cult of Khorne" Culture="Culture.chaos_culture" Affinity="Chaos" DeityName="Khorne">
         <HostileReligions>
             <HostileReligion id="Religion.cult_of_sigmar" /> 
             <HostileReligion id="Religion.cult_of_taal" /> 
@@ -126,7 +126,7 @@
         <ReligiousTroops>
         </ReligiousTroops>
     </Religion>
-    <Religion id="cult_of_tzeentch" Name="Cult of Tzeentch" Culture="Culture.chaos_culture" Affinity="Chaos">
+    <Religion id="cult_of_tzeentch" Name="Cult of Tzeentch" Culture="Culture.chaos_culture" Affinity="Chaos" DeityName="Tzeench">
         <HostileReligions>
             <HostileReligion id="Religion.cult_of_sigmar" /> 
             <HostileReligion id="Religion.cult_of_taal" /> 

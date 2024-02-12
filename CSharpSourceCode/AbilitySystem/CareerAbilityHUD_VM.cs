@@ -2,6 +2,7 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -12,10 +13,12 @@ namespace TOR_Core.AbilitySystem
 
         public CareerAbilityHUD_VM() : base() { }
 
-        public void UpdateProperties()
+        public override void RefreshValues()
         {
             IsVisible = true;
-            ChargeLevel = Convert.ToInt32(CareerAbility.ChargeLevel) * 100;
+            float value = CareerAbility.ChargeLevel;
+            value *= 100;
+            ChargeLevel = Convert.ToInt32(value);
         }
 
         public CareerAbility CareerAbility { get; set; }
@@ -49,6 +52,7 @@ namespace TOR_Core.AbilitySystem
                 if (value != _chargeLevel)
                 {
                     _chargeLevel = value;
+                    TORCommon.Say(_chargeLevel.ToString() +"%");
                     base.OnPropertyChangedWithValue(value, "ChargeLevel");
                 }
             }

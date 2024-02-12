@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
@@ -150,6 +151,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             charInfo.HasSecondaryCharacter = false;
             charInfo.ClearFaceGenMounts();
             _isFemale = CharacterObject.PlayerCharacter.IsFemale;
+            _originalRace = CharacterObject.PlayerCharacter.Race;
+            //if(Debugger.IsAttached) _originalRace = CharacterObject.PlayerCharacter.Race; //This is to allow becoming different races by selecting them at character creation for development purposes.
         }
 
         private void OnOptionSelected(TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation charInfo, string optionId)
@@ -212,6 +215,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             Hero.MainHero.AddAttribute("AbilityUser");
             Hero.MainHero.AddAttribute("CanPlaceArtillery");
+
+            if (Hero.MainHero.Culture.StringId == "mousillon")
+            {
+                Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 60, false);
+            }
             
             if (IsMagicianCharacterCreationID (id) || IsDamselCharacterCreationID (id))
             {
@@ -223,9 +231,19 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
             }
 
+            if (IsWitchHunterCharacterCreationID(id))
+            {
+                Hero.MainHero.AddCareer(TORCareers.WitchHunter);
+            }
+            
             if (IsKnightErrantCharacterCreationID(id))
             {
                 Hero.MainHero.AddCareer(TORCareers.GrailKnight);
+            }
+
+            if (IsKnightOfMousillonCharacterCreationId(id))
+            {
+                Hero.MainHero.AddCareer(TORCareers.BlackGrailKnight);
             }
             
             if(IsDamselCharacterCreationID (id))
@@ -259,6 +277,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                Hero.MainHero.AddCareer(TORCareers.Necromancer);
                 Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 25);
             }
             else if (IsVampireCharacterCreationID (id))
@@ -277,6 +296,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         public override void OnCharacterCreationFinalized()
         {
             CultureObject culture = CharacterObject.PlayerCharacter.Culture;
+            Hero.MainHero.AddCultureSpecificCustomResource(0);
             Vec2 position2D = default(Vec2);
 
             switch (culture.StringId)
@@ -314,7 +334,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             Hero.MainHero.SetBirthDay(CampaignTime.YearsFromNow(-age));
         }
 
-        
+        private bool IsKnightOfMousillonCharacterCreationId(string characterCreationOptionID) =>  characterCreationOptionID == "option56";
+        private bool IsWitchHunterCharacterCreationID(string characterCreationOptionID) =>  characterCreationOptionID == "option14";
         private bool IsKnightErrantCharacterCreationID(string characterCreationOptionID) =>  characterCreationOptionID == "option41";
         private bool IsVampireCharacterCreationID(string characterCreationOptionID) => characterCreationOptionID == "option26" || characterCreationOptionID == "option57";
         private bool IsMagicianCharacterCreationID(string characterCreationOptionID) => characterCreationOptionID == "option12";

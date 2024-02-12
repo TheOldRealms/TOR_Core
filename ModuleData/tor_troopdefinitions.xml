@@ -1016,6 +1016,344 @@
       <EquipmentSet id="tor_br_manatarms_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_we_servant" default_group="infantry" level="1" name="{=str_tor_we_servant}Asrai Servant" occupation="Villager" culture="Culture.battania" skill_template="SkillSet.tor_skills_level1" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_we_militia" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_we_servant_template" />
+      <EquipmentSet id="tor_we_servant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_militia" default_group="infantry" level="6" name="{=str_tor_we_militia}Asrai Militia" occupation="Villager" culture="Culture.battania" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_we_eternal_guard" />
+      <upgrade_target id="NPCCharacter.tor_we_glade_guard" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_we_militia_template" />
+      <EquipmentSet id="tor_we_militia_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_glade_guard" default_group="ranged" level="11" name="{=str_tor_we_glade_guard}Asrai Glade Guard" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level11" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_we_deepwood_scout" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_guard_template" />
+      <EquipmentSet id="tor_we_glade_guard_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_eternal_guard" default_group="infantry" level="11" name="{=str_tor_we_eternal_guard}Asrai Eternal Guard" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level11" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_we_glade_rider" />
+      <upgrade_target id="NPCCharacter.tor_we_eternal_warden" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_we_eternal_guard_template" />
+      <EquipmentSet id="tor_we_eternal_guard_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_deepwood_scout" default_group="ranged" level="16" name="{=str_tor_we_deepwood_scout}Asrai Deepwood Scout" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level16" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_we_master_scout" />
+      <upgrade_target id="NPCCharacter.tor_we_waywatcher" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_we_deepwood_scout_template" />
+      <EquipmentSet id="tor_we_deepwood_scout_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_glade_rider" default_group="horsearcher" level="16" name="{=str_tor_we_glade_rider}Asrai Glade Rider" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level16" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_we_glade_knight" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_rider_template" />
+      <EquipmentSet id="tor_we_glade_rider_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_eternal_warden" default_group="infantry" level="16" name="{=str_tor_we_eternal_warden}Asrai Eternal Warden" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level16" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_we_eternal_warden_template" />
+      <EquipmentSet id="tor_we_eternal_warden_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_master_scout" default_group="ranged" level="21" name="{=str_tor_we_master_scout}Asrai Master Scout" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_we_master_scout_template" />
+      <EquipmentSet id="tor_we_master_scout_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_waywatcher" default_group="ranged" level="21" name="{=str_tor_we_waywatcher}Asrai Waywatcher" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_we_waywatcher_sentinel" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_we_waywatcher_template" />
+      <EquipmentSet id="tor_we_waywatcher_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_glade_knight" default_group="cavalry" level="21" name="{=str_tor_we_glade_knight}Asrai Glade Knight" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_knight_template" />
+      <EquipmentSet id="tor_we_glade_knight_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_waywatcher_sentinel" default_group="ranged" level="26" name="{=str_tor_we_waywatcher_sentinel}Asrai Waywatcher Sentinel" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level26" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_we_waywatcher_sentinel_template" />
+      <EquipmentSet id="tor_we_waywatcher_sentinel_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_wardancer" default_group="infantry" level="16" name="{=str_tor_we_wardancer}Asrai Wardancer" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true" is_female="true" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.female_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_we_shadowdancer" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_we_wardancer_template" />
+      <EquipmentSet id="tor_we_wardancer_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_shadowdancer" default_group="infantry" level="21" name="{=str_tor_we_shadowdancer}Asrai Shadowdancer" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" is_female="true" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.female_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_we_bladesinger" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_we_shadowdancer_template" />
+      <EquipmentSet id="tor_we_shadowdancer_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_bladesinger" default_group="infantry" level="26" name="{=str_tor_we_bladesinger}Asrai Bladesinger" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level26" is_female="true" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.female_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_we_bladesinger_template" />
+      <EquipmentSet id="tor_we_bladesinger_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_wildwood_ranger" default_group="infantry" level="16" name="{=str_tor_we_wildwood_ranger}Cythrali Wildwood Ranger" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_we_wildwood_warden" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_we_wildwood_ranger_template" />
+      <EquipmentSet id="tor_we_wildwood_ranger_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_wildwood_warden" default_group="infantry" level="26" name="{=str_tor_we_wildwood_warden}Cythrali Wildwood Warden" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level26" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_we_wildwood_warden_template" />
+      <EquipmentSet id="tor_we_wildwood_warden_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_wild_rider" default_group="cavalry" level="31" name="{=str_tor_we_wild_rider}Wild Rider" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level31" is_basic_troop="true" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_we_great_stag_knight" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_we_wild_rider_template" />
+      <EquipmentSet id="tor_we_wild_rider_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_great_stag_knight" default_group="cavalry" level="36" name="{=str_tor_we_great_stag_knight}Great Stag Knight" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level36" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_we_great_stag_knight_template" />
+      <EquipmentSet id="tor_we_great_stag_knight_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_treeman" default_group="infantry" level="41" name="{=str_tor_we_treeman}Treeman" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level41" is_basic_troop="true" race="large_humanoid_monster">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+      <hair_tags>
+        <hair_tag name="Bald" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_we_ancient_treeman" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_we_treeman_template" />
+      <EquipmentSet id="tor_we_treeman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_ancient_treeman" default_group="infantry" level="46" name="{=str_tor_we_ancient_treeman}Ancient Treeman" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level46" race="large_humanoid_monster">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+      <hair_tags>
+        <hair_tag name="Bald" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_we_ancient_treeman_template" />
+      <EquipmentSet id="tor_we_ancient_treeman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_vc_villager" default_group="infantry" level="1" name="{=str_tor_vc_villager}Sylvanian Peasant" occupation="Villager" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level1">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
@@ -1496,67 +1834,289 @@
       <EquipmentSet id="tor_empire_caravan_ranged_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_nurgle_warrior" default_group="infantry" level="21" name="{=str_tor_chaos_nurgle_warrior}Putrid Blightking" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
+  <NPCCharacter id="tor_chaos_enslaved_villager" default_group="infantry" level="1" name="{=str_tor_chaos_enslaved_villager}Thrall" occupation="Villager" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level1" race="chaos_ud_cultist">
     <face>
-      <face_key_template value="BodyProperty.brute" />
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_chaos_norscan_tribesman" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_empire_villager_template" />
+      <EquipmentSet id="tor_empire_villager_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_norscan_tribesman" default_group="infantry" level="6" name="{=str_tor_chaos_norscan_tribesman}Norscan Tribesman" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="marauder">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_chaos_norscan_raider" />
+      <upgrade_target id="NPCCharacter.tor_chaos_norscan_whaler" />
+      <upgrade_target id="NPCCharacter.tor_chaos_norscan_horseman" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_chaos_norscan_tribesman_template" />
+      <EquipmentSet id="tor_chaos_norscan_tribesman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_norscan_raider" default_group="infantry" level="11" name="{=str_tor_chaos_norscan_raider}Norscan Raider" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level11" race="marauder">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_chaos_norscan_marauder" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_chaos_norscan_raider_template" />
+      <EquipmentSet id="tor_chaos_norscan_raider_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_norscan_marauder" default_group="infantry" level="16" name="{=str_tor_chaos_norscan_marauder}Norscan Marauder" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level16" race="marauder">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_chaos_norscan_champion" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_chaos_norscan_marauder_template" />
+      <EquipmentSet id="tor_chaos_norscan_marauder_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_norscan_champion" default_group="infantry" level="26" name="{=str_tor_chaos_norscan_champion}Norscan Marauder Champion" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level26" race="marauder">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_chaos_nurgle_warrior_template" />
-      <EquipmentSet id="tor_chaos_nurgle_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_chaos_norscan_champion_template" />
+      <EquipmentSet id="tor_chaos_norscan_champion_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_nurgle_warrior_002" default_group="infantry" level="21" name="{=str_tor_chaos_nurgle_warrior_002}Nurgle Warrior" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
+  <NPCCharacter id="tor_chaos_norscan_whaler" default_group="ranged" level="11" name="{=str_tor_chaos_norscan_whaler}Norscan Whaler" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level11" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.brute" />
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_chaos_norscan_reaver" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_chaos_norscan_whaler_template" />
+      <EquipmentSet id="tor_chaos_norscan_whaler_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_norscan_reaver" default_group="ranged" level="16" name="{=str_tor_chaos_norscan_reaver}Norscan Reaver" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level16" race="marauder">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_chaos_nurgle_warrior_002_template" />
-      <EquipmentSet id="tor_chaos_nurgle_warrior_002_template" civilian="true" />
+      <EquipmentSet id="tor_chaos_norscan_reaver_template" />
+      <EquipmentSet id="tor_chaos_norscan_reaver_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_nurgle_warrior_003" default_group="infantry" level="21" name="{=str_tor_chaos_nurgle_warrior_003}Nurgle Chosen" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
+  <NPCCharacter id="tor_chaos_norscan_horseman" default_group="horsearcher" level="11" name="{=str_tor_chaos_norscan_horseman}Norscan Horseman" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level11" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.brute" />
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_chaos_norscan_horsemaster" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_chaos_norscan_horseman_template" />
+      <EquipmentSet id="tor_chaos_norscan_horseman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_norscan_horsemaster" default_group="horsearcher" level="16" name="{=str_tor_chaos_norscan_horsemaster}Norscan Horsemaster" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level16" race="marauder">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_chaos_nurgle_warrior_003_template" />
-      <EquipmentSet id="tor_chaos_nurgle_warrior_003_template" civilian="true" />
+      <EquipmentSet id="tor_chaos_norscan_horsemaster_template" />
+      <EquipmentSet id="tor_chaos_norscan_horsemaster_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_chosen" default_group="infantry" level="21" name="{=str_tor_chaos_chosen}Chaos Chosen" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
+  <NPCCharacter id="tor_chaos_aspiring_warrior" default_group="infantry" level="26" name="{=str_tor_chaos_aspiring_warrior}Aspiring Warrior" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level26" is_basic_troop="true" race="chaos_ud_cultist">
     <face>
-      <face_key_template value="BodyProperty.brute" />
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_chaos_pit_fighter" />
+      <upgrade_target id="NPCCharacter.tor_chaos_undivided_warrior" />
+      <upgrade_target id="NPCCharacter.tor_chaos_nobletree_t6_3" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_empire_villager_template" />
+      <EquipmentSet id="tor_empire_villager_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_pit_fighter" default_group="infantry" level="31" name="{=str_tor_chaos_pit_fighter}Chaos Pit Fighter" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level31" race="chaos_ud_cultist">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_chaos_slaanesh_warrior" />
+      <upgrade_target id="NPCCharacter.tor_chaos_khorne_warrior" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_empire_villager_template" />
+      <EquipmentSet id="tor_empire_villager_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_undivided_warrior" default_group="infantry" level="31" name="{=str_tor_chaos_undivided_warrior}Undivided Chaos Warrior" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level31" race="chaos_ud_cultist">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_chaos_undivided_knight" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_empire_villager_template" />
+      <EquipmentSet id="tor_empire_villager_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_nobletree_t6_3" default_group="infantry" level="31" name="{=str_tor_chaos_nobletree_t6_3}Chaos Placeholder" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level31" race="chaos_ud_cultist">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_chaos_nurgle_warrior" />
+      <upgrade_target id="NPCCharacter.tor_chaos_tzeench_warrior" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_empire_villager_template" />
+      <EquipmentSet id="tor_empire_villager_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_slaanesh_warrior" default_group="infantry" level="36" name="{=str_tor_chaos_slaanesh_warrior}Chaos Warrior of Slaanesh" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level36" race="chaos_ud_cultist">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_chaos_chosen_template" />
-      <EquipmentSet id="tor_chaos_chosen_template" civilian="true" />
+      <EquipmentSet id="tor_empire_villager_template" />
+      <EquipmentSet id="tor_empire_villager_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_khorne_warrior" default_group="infantry" level="21" name="{=str_tor_chaos_khorne_warrior}Khorne Warrior" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
+  <NPCCharacter id="tor_chaos_khorne_warrior" default_group="infantry" level="36" name="{=str_tor_chaos_khorne_warrior}Chaos Warrior of Khorne" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level36" race="chaos_ud_cultist">
     <face>
-      <face_key_template value="BodyProperty.brute" />
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_chaos_khorne_warrior_template" />
-      <EquipmentSet id="tor_chaos_khorne_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_empire_villager_template" />
+      <EquipmentSet id="tor_empire_villager_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_chaos_knight" default_group="cavalry" level="21" name="{=str_tor_chaos_chaos_knight}Chaos Knight" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
+  <NPCCharacter id="tor_chaos_nurgle_warrior" default_group="infantry" level="36" name="{=str_tor_chaos_nurgle_warrior}Chaos Warrior of Nurgle" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level36" race="chaos_ud_cultist">
     <face>
-      <face_key_template value="BodyProperty.brute" />
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_chaos_chaos_knight_template" />
-      <EquipmentSet id="tor_chaos_chaos_knight_template" civilian="true" />
+      <EquipmentSet id="tor_empire_villager_template" />
+      <EquipmentSet id="tor_empire_villager_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beast_ungor" default_group="infantry" level="11" name="{=str_tor_beast_ungor}Ungor" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="ungor">
+  <NPCCharacter id="tor_chaos_tzeench_warrior" default_group="infantry" level="36" name="{=str_tor_chaos_tzeench_warrior}Chaos Warrior of Tzeench" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level36" race="chaos_ud_cultist">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_empire_villager_template" />
+      <EquipmentSet id="tor_empire_villager_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_undivided_knight" default_group="cavalry" level="36" name="{=str_tor_chaos_undivided_knight}Undivided Chaos Knight" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level36" race="chaos_ud_cultist">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_empire_villager_template" />
+      <EquipmentSet id="tor_empire_villager_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_caravan_ranged" default_group="ranged" level="21" name="{=str_tor_chaos_caravan_ranged}Enthralled Caravan Bowman" occupation="CaravanGuard" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_br_peasant_archer_template" />
+      <EquipmentSet id="tor_br_peasant_archer_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_caravan_guard" default_group="ranged" level="21" name="{=str_tor_chaos_caravan_guard}Enthralled Caravan Guard" occupation="CaravanGuard" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_chaos_caravan_horseman" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_br_hunter_template" />
+      <EquipmentSet id="tor_br_hunter_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_caravan_horseman" default_group="cavalry" level="26" name="{=str_tor_chaos_caravan_horseman}Enthralled Caravan Horseman" occupation="CaravanGuard" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level26" race="chaos_ud_cultist">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_br_mounted_yeoman_template" />
+      <EquipmentSet id="tor_br_mounted_yeoman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_caravan_captain" default_group="infantry" level="26" name="{=str_tor_chaos_caravan_captain}Enthralled Caravan Master" occupation="CaravanGuard" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level26" race="chaos_ud_cultist">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_br_manatarms_template" />
+      <EquipmentSet id="tor_br_manatarms_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_cultist_of_chaos" default_group="infantry" level="6" name="{=str_tor_chaos_cultist_of_chaos}Cultist Militia of Chaos" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="chaos_ud_cultist">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_chaos_darksoul_of_chaos" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_chaos_cult_acolyte_template" />
+      <EquipmentSet id="tor_chaos_cult_acolyte_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_darksoul_of_chaos" default_group="infantry" level="11" name="{=str_tor_chaos_darksoul_of_chaos}Darksoul Militia of Chaos" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level11" race="chaos_ud_cultist">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_chaos_acolyte_of_chaos" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_chaos_cult_darksoul_template" />
+      <EquipmentSet id="tor_chaos_cult_darksoul_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_acolyte_of_chaos" default_group="infantry" level="16" name="{=str_tor_chaos_acolyte_of_chaos}Acolyte of Chaos" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level16" race="chaos_ud_cultist">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_chaos_cult_magister_template" />
+      <EquipmentSet id="tor_chaos_cult_magister_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beast_ungor" default_group="infantry" level="11" name="{=str_tor_beast_ungor}Ungor" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level11" race="ungor">
     <face>
       <face_key_template value="BodyProperty.ungor" />
     </face>
@@ -2507,6 +3067,85 @@
     <Equipments>
       <EquipmentSet id="tor_ror_bergerac_bowman_template" />
       <EquipmentSet id="tor_ror_bergerac_bowman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_wh_retinue" default_group="ranged" level="16" name="{=str_tor_wh_retinue}Retinue Apprentice" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_wh_retinue_hunter" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_empire_wh_retinue_template" />
+      <EquipmentSet id="tor_empire_wh_retinue_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_wh_retinue_hunter" default_group="ranged" level="36" name="{=str_tor_wh_retinue_hunter}Retinue Hunter" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level36">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_wh_retinue_headhunter" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_empire_wh_retinue_hunter_template" />
+      <EquipmentSet id="tor_empire_wh_retinue_hunter_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_wh_retinue_headhunter" default_group="ranged" level="46" name="{=str_tor_wh_retinue_headhunter}Retinue Headhunter" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level46">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_empire_wh_retinue_headhunter_template" />
+      <EquipmentSet id="tor_empire_wh_retinue_headhunter_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_harbinger_champion" default_group="infantry" level="31" name="{=str_tor_vc_harbinger_champion}Necromancer Champion" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level31" is_basic_troop="true" race="skeleton">
+    <face>
+      <face_key_template value="BodyProperty.skeleton" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_vc_harbinger_champion_two_handed" />
+      <upgrade_target id="NPCCharacter.tor_vc_harbinger_champion_plate" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_vc_harbinger_champion_template" />
+      <EquipmentSet id="tor_vc_harbinger_champion_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_harbinger_champion_two_handed" default_group="infantry" level="36" name="{=str_tor_vc_harbinger_champion_two_handed}Necromancer Champion Two-Handed" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level36" race="skeleton">
+    <face>
+      <face_key_template value="BodyProperty.skeleton" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_vc_harbinger_champion_two_handed_template" />
+      <EquipmentSet id="tor_vc_harbinger_champion_two_handed_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_harbinger_champion_plate" default_group="cavalry" level="41" name="{=str_tor_vc_harbinger_champion_plate}Necromancer Champion Plate" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level41" race="skeleton">
+    <face>
+      <face_key_template value="BodyProperty.skeleton" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_vc_harbinger_champion_plate_two_handed" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_vc_harbinger_champion_plate_template" />
+      <EquipmentSet id="tor_vc_harbinger_champion_plate_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_harbinger_champion_plate_two_handed" default_group="cavalry" level="46" name="{=str_tor_vc_harbinger_champion_plate_two_handed}Necromancer Champion Two-Handed-Plate" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level46" race="skeleton">
+    <face>
+      <face_key_template value="BodyProperty.skeleton" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_vc_harbinger_champion_plate_two_handed_template" />
+      <EquipmentSet id="tor_vc_harbinger_champion_plate_two_handed_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_cult_acolyte" default_group="infantry" level="11" name="{=str_tor_chaos_cult_acolyte}Cultist of Chaos" occupation="Bandit" culture="Culture.forest_bandits" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="chaos_ud_cultist">

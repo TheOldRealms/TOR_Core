@@ -1,14 +1,17 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Helpers;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.TriggeredEffect;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Ink;
@@ -72,13 +75,43 @@ namespace TOR_Core.Utilities
                     result+=partResult;
                     continue;
                 }
-
-
-
             }
-
-
             return result;
+        }
+        
+        [CommandLineFunctionality.CommandLineArgumentFunction("declare_peace", "tor")]
+        public static string DeclarePeace(List<string> strings)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+            string str1 = "campaign.declare_peace [Faction1] | [Faction2]";
+            if (CampaignCheats.CheckParameters(strings, 0) || CampaignCheats.CheckParameters(strings, 1) || CampaignCheats.CheckHelp(strings))
+                return str1;
+            List<string> separatedNames = CampaignCheats.GetSeparatedNames(strings, "|");
+            if (separatedNames.Count != 2)
+                return str1;
+            string kingdom_str1 = separatedNames[0].ToLower().Replace(" ", "");
+            string kingdom_str2 = separatedNames[1].ToLower().Replace(" ", "");
+            Kingdom faction1 = null;
+            Kingdom faction2 =  null;
+            foreach (var kingdom in Campaign.Current.Kingdoms)
+            {
+                if (kingdom_str1 == kingdom.StringId)
+                {
+                    faction1 = kingdom;
+                }
+                if (kingdom_str2 == kingdom.StringId)
+                {
+                    faction2= kingdom;
+                }
+            }
+            
+            if (faction1 != null && faction2 != null)
+            {
+                MakePeaceAction.Apply(faction1, faction2);
+                return "Peace declared between " + (object) faction1.Name + " and " + (object) faction2.Name;
+            }
+            return faction1 == null ? "Faction is not found: " + kingdom_str1 + "\n" + str1 : "Faction is not found: " + kingdom_str2;
         }
         
         
@@ -242,6 +275,59 @@ namespace TOR_Core.Utilities
             var template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_cultists");
             TorMissionManager.OpenQuestMission("TOR_cultist_lair_001", template, 9);
             return "Scene opened.";
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("add_player_attribute", "tor")]
+        public static string AddPlayerAttribute(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+
+            if (arguments == null || arguments.Count == 0)
+            {
+                return "Argument cannot be null. Pass in the name of the story to open. \n";
+            }
+
+            var attribute = arguments[0];
+            Hero.MainHero.AddAttribute(attribute);
+
+            return string.Format("Successfully added attribute: {0} to player.", attribute);
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("reload_animation_triggers", "tor")]
+        public static string ReloadAnimationTriggers(List<string> arguments)
+        {
+            AnimationTriggerManager.ReloadAnimationTriggers();
+            
+            return string.Format("Successfully reloaded animation triggers");
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("add_custom_resource", "tor")]
+        public static string AddCustomResource(List<string> arguments)
+        {
+            if(arguments.Count!= 2) return string.Format("Incorrect arguments. Usage is \"tor.add_custom_resource resourcename amount\" ");
+            
+            string resourceId = arguments[0];
+            int amount = 0;
+            if(int.TryParse(arguments[1], out amount))
+            {
+                var resource = CustomResourceManager.GetResourceObject(resourceId);
+                if(resource != null)
+                {
+                    Hero.MainHero.AddCustomResource(resourceId, amount);
+                    return string.Format("Successfully added {0} {1} to main hero.", amount.ToString(), resource.Name);
+                }
+                return string.Format("Custom resource with id {0} not found.", resourceId);
+            }
+
+            return string.Format("Incorrect arguments. Usage is \"tor.add_custom_resource resourcename amount\" ");
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("trigger_fatal_crash", "tor")]
+        public static string TriggerFatalCrash(List<string> arguments)
+        {
+            TORTests.Instance.TriggerCorruptedMemoryStateException();
+            return "Should crash before this gets returned.";
         }
 
         private static string AggregateOutput(string topicHeader, List<string> matchedSpells) =>

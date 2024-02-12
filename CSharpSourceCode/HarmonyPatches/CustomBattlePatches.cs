@@ -15,9 +15,9 @@ namespace TOR_Core.HarmonyPatches
     public static class CustomBattlePatches
     {
         //Fill available characters
-        [HarmonyPostfix]
+        [HarmonyPrefix]
         [HarmonyPatch(typeof(CustomBattleData), "Characters", MethodType.Getter)]
-        public static void Postfix2(ref IEnumerable<BasicCharacterObject> __result)
+        public static bool GetCustomBattleCommanders(ref IEnumerable<BasicCharacterObject> __result)
         {
             var list = new List<BasicCharacterObject>();
             try
@@ -31,12 +31,16 @@ namespace TOR_Core.HarmonyPatches
                 list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_necromancer_lord"));
                 list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_prophetess_lw"));
                 list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_prophetess_bw"));
+                list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_glade_lord"));
             }
             catch (Exception e)
             {
                 TORCommon.Log(e.Message, NLog.LogLevel.Error);
+                return true;
             }
             if (list.Count > 1) __result = list;
+            else return true;
+            return false;
         }
 
         //Fill available cultures
@@ -50,6 +54,7 @@ namespace TOR_Core.HarmonyPatches
                 list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>("empire"));
                 list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>("khuzait"));
                 list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>("vlandia"));
+                list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>("battania"));
             }
             catch (Exception e)
             {
@@ -72,6 +77,9 @@ namespace TOR_Core.HarmonyPatches
                     break;
                 case CultureCode.Vlandia:
                     __result = Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_br_peasant_levy");
+                    break;
+                case CultureCode.Battania:
+                    __result = Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_we_eternal_guard");
                     break;
                 default:
                     __result = Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_empire_recruit");

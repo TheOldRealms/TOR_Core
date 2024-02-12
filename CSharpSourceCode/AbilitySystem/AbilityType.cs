@@ -48,7 +48,9 @@
     {
         EveryTick,
         OnCollision,
-        TickOnce
+        TickOnce,
+        OnStop,
+        None
     }
 
     //This is for triggeredeffects.

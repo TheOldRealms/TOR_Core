@@ -26,7 +26,7 @@ namespace TOR_Core.Models
                 case AbilityType.Prayer:
                     return TORSkills.Faith;
                 default:
-                    return null;
+                    return TORSkills.SpellCraft;
             }
         }
 
@@ -85,9 +85,30 @@ namespace TOR_Core.Models
 
         public float CalculateStatusEffectDurationForAbility(CharacterObject character, AbilityTemplate originAbilityTemplate, float statusEffectDuration)
         {
+            
             float skillmultiplier = GetSkillEffectivenessForAbilityDuration(character, originAbilityTemplate);
             float perkmultiplier = 1f;
             if (character.IsHero) perkmultiplier = GetPerkEffectsOnAbilityDuration(character, originAbilityTemplate);
+            
+            if (character.IsHero&& character.HeroObject == Hero.MainHero)
+            {
+                var player = character.HeroObject;
+                var explainedNumber = new ExplainedNumber();
+                
+                if (originAbilityTemplate.AbilityEffectType == AbilityEffectType.Augment || originAbilityTemplate.AbilityEffectType == AbilityEffectType.Heal)
+                {
+                    CareerHelper.ApplyBasicCareerPassives(player,ref explainedNumber,PassiveEffectType.BuffDuration, true);
+                }
+                else if (originAbilityTemplate.AbilityEffectType == AbilityEffectType.Hex)
+                {
+                    CareerHelper.ApplyBasicCareerPassives(player,ref explainedNumber,PassiveEffectType.DebuffDuration, true);
+                }
+                
+
+                perkmultiplier += explainedNumber.ResultNumber;
+            }
+            
+            
             return statusEffectDuration * skillmultiplier * perkmultiplier;
         }
 
@@ -135,6 +156,13 @@ namespace TOR_Core.Models
                     if(victimLeader != null && character == victimLeader)
                     {
                         PerkHelper.AddPerkBonusForCharacter(TORPerks.SpellCraft.WellControlled, character, true, ref explainedNumber);
+                    }
+                }
+                if (character.IsPlayerCharacter && character.IsHero&& character.HeroObject== Hero.MainHero)
+                {
+                    if(victimLeader != null && character == victimLeader)
+                    {
+                        CareerHelper.ApplyBasicCareerPassives(Hero.MainHero,ref explainedNumber,PassiveEffectType.Spelleffectiveness, true);
                     }
                 }
                 if (character.GetPerkValue(TORPerks.SpellCraft.OverCaster) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)

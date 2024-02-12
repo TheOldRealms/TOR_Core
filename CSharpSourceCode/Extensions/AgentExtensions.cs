@@ -2,6 +2,7 @@ using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NAudio.SoundFont;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
@@ -11,11 +12,17 @@ using TaleWorlds.MountAndBlade.CustomBattle;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Models;
 using TOR_Core.Utilities;
+using TaleWorlds.Localization;
+using System.Runtime.ExceptionServices;
+using System.Security;
+using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace TOR_Core.Extensions
 {
@@ -82,30 +89,37 @@ namespace TOR_Core.Extensions
 
         public static bool IsDamageShruggedOff(this Agent agent, int inflictedDamge=0)
         {
+            if (Campaign.Current == null) return false;
             if (inflictedDamge > 15) return false;
             
             if (agent.IsMainAgent && agent.GetHero().HasAnyCareer())
             {
-                if (agent.GetHero().GetAllCareerChoices().Contains("ProtectorOfTheWeakPassive4"))
+                var choices = agent.GetHero().GetAllCareerChoices();
+                if (choices.Contains("ProtectorOfTheWeakPassive4"))
                     return true;
-                if (agent.GetHero().GetAllCareerChoices().Contains("BladeMasterPassive3"))
+                if (choices.Contains("BladeMasterPassive3"))
                     return true;
-                if (agent.GetHero().GetAllCareerChoices().Contains("CommanderPassive3"))
+                if (choices.Contains("CommanderPassive3"))
                     return true;
-                if (agent.GetHero().GetAllCareerChoices().Contains("QuestingVowPassive4"))
+                if (choices.Contains("QuestingVowPassive4"))
+                    return true;
+                if (choices.Contains("BlackGrailVowPassive2"))
+                    return true;
+            }
+
+            if (Hero.MainHero.HasCareer(TORCareers.Necromancer))
+            {
+                if (Hero.MainHero.HasCareerChoice("BookofWsoranKeystone") && agent.HasAttribute("NecromancerChampion"))
                     return true;
             }
 
             return false;
         }
 
-       
-
         public static bool ShouldNotBleed(this Agent agent)
         {
             return agent.GetAttributes().Contains("ClearBloodBurst");
         }
-
 
         public static bool IsVampire(this Agent agent)
         {
@@ -132,14 +146,16 @@ namespace TOR_Core.Extensions
             return agent.GetAttributes().Contains(attributeName);
         }
 
-        public static void CastCurrentAbility(this Agent agent)
+        public static bool TryCastCurrentAbility(this Agent agent, out TextObject failureReason)
         {
             var abilitycomponent = agent.GetComponent<AbilityComponent>();
 
             if (abilitycomponent != null)
             {
-                if (abilitycomponent.CurrentAbility != null) abilitycomponent.CurrentAbility.TryCast(agent);
+                if (abilitycomponent.CurrentAbility != null) return abilitycomponent.CurrentAbility.TryCast(agent, out failureReason);
             }
+            failureReason = new TextObject("{=tor_cast_fail_comp_null}Abilitycomponent is null!");
+            return false;
         }
 
         /// <summary>
@@ -436,24 +452,6 @@ namespace TOR_Core.Extensions
             else return null;
         }
 
-        public static void SelectNextAbility(this Agent agent)
-        {
-            var abilitycomponent = agent.GetComponent<AbilityComponent>();
-            if (abilitycomponent != null)
-            {
-                abilitycomponent.SelectNextAbility();
-            }
-        }
-
-        public static void SelectPreviousAbility(this Agent agent)
-        {
-            var abilitycomponent = agent.GetComponent<AbilityComponent>();
-            if (abilitycomponent != null)
-            {
-                abilitycomponent.SelectPreviousAbility();
-            }
-        }
-
         public static void SelectAbility(this Agent agent, int abilityindex)
         {
             var abilitycomponent = agent.GetComponent<AbilityComponent>();
@@ -463,6 +461,15 @@ namespace TOR_Core.Extensions
             }
         }
 
+        public static void SelectAbility(this Agent agent, Ability ability)
+        {
+            var abilitycomponent = agent.GetComponent<AbilityComponent>();
+            if (abilitycomponent != null)
+            {
+                abilitycomponent.SelectAbility(ability);
+            }
+        }
+        
         public static Hero GetHero(this Agent agent)
         {
             if (agent == null) return null;
@@ -475,6 +482,12 @@ namespace TOR_Core.Extensions
                 if (character != null && character.IsHero) hero = character.HeroObject;
             }
             return hero;
+        }
+
+        public static bool IsSummoned(this Agent agent)
+        {
+            if (agent == null) return false;
+            return agent.Origin != null && agent.Origin.GetType() == typeof(SummonedAgentOrigin);
         }
 
         public static int GetPlaceableArtilleryCount(this Agent agent)
@@ -507,6 +520,16 @@ namespace TOR_Core.Extensions
                 return agent.Character.GetAbilities();
             }
             else return new List<string>();
+        }
+
+        public static CareerAbility GetCareerAbility(this Agent agent)
+        {
+            if (agent.IsMainAgent && agent.GetHero().HasAnyCareer())
+            {
+                return agent.GetComponent<AbilityComponent>().CareerAbility;
+            }
+
+            return null;
         }
         
 
@@ -543,7 +566,11 @@ namespace TOR_Core.Extensions
             return null;
         }
 
-        
+        public static bool BelongsToMainParty(this Agent agent)
+        {
+            var party = agent.GetOriginMobileParty();
+            return party != null && party.IsMainParty;
+        }
 
         public static List<string> GetAttributes(this Agent agent)
         {
@@ -586,7 +613,9 @@ namespace TOR_Core.Extensions
         /// <param name="damageAmount">How much damage the agent will receive.</param>
         /// <param name="damager">The agent who is applying the damage</param>
         /// <param name="doBlow">A mask that controls whether the unit receives a blow or direct health manipulation</param>
-        public static void ApplyDamage(this Agent agent, int damageAmount, Vec3 impactPosition, Agent damager = null, bool doBlow = true, bool hasShockWave = false)
+        [SecurityCritical]
+        [HandleProcessCorruptedStateExceptions]
+        public static void ApplyDamage(this Agent agent, int damageAmount, Vec3 impactPosition, Agent damager = null, bool doBlow = true, bool hasShockWave = false, bool originatesFromAbility = true)
         {
             if (agent == null || !agent.IsHuman || !agent.IsActive() || agent.Health < 1)
             {
@@ -615,8 +644,9 @@ namespace TOR_Core.Extensions
                     blow.GlobalPosition = agent.GetChestGlobalPosition();
                     blow.BaseMagnitude = damageAmount;
                     blow.WeaponRecord.FillAsMeleeBlow(null, null, -1, -1);
+                    blow.WeaponRecord.Weight = 5f;
                     blow.InflictedDamage = damageAmount;
-                    var direction = agent.Position == impactPosition ? agent.LookDirection : agent.Position - impactPosition;
+                    var direction = blow.GlobalPosition == impactPosition ? -agent.LookDirection : blow.GlobalPosition - impactPosition;
                     direction.Normalize();
                     blow.Direction = direction;
                     blow.SwingDirection = direction;
@@ -629,7 +659,14 @@ namespace TOR_Core.Extensions
                     {
                         if (agent.HasMount) blow.BlowFlag |= BlowFlags.CanDismount;
                         else blow.BlowFlag |= BlowFlags.KnockDown;
+                        blow.BaseMagnitude = 1000;
+                        
                     }
+                    if (!originatesFromAbility)
+                    {
+                        blow.AttackType = AgentAttackType.Standard;
+                    }
+                    blow.WeaponRecord.Velocity = direction * blow.BaseMagnitude;
 
                     if (agent.Health <= damageAmount && !doBlow)
                     {
@@ -671,6 +708,12 @@ namespace TOR_Core.Extensions
                     agent.RegisterBlow(blow, attackCollisionData);
                 }
             }
+            catch(AccessViolationException a)
+            {
+                TORCommon.Log("ApplyDamage: attempted to damage agent, but application quit with access violation.", LogLevel.Error);
+                TORCommon.Log(a.ToString(), LogLevel.Error);
+                Process.GetCurrentProcess().Kill();
+            }
             catch (Exception e)
             {
                 TORCommon.Log("ApplyDamage: attempted to damage agent, but: " + e.Message, LogLevel.Error);
@@ -687,13 +730,19 @@ namespace TOR_Core.Extensions
             //Cap healing at the agent's max hit points
             agent.Health = Math.Min(agent.Health + healingAmount, agent.HealthLimit);
         }
-        
-
 
         public static void ApplyStatusEffect(this Agent agent, string effectId, Agent applierAgent, float duration = 5, bool append = true, bool isMutated = false)
         {
             var comp = agent.GetComponent<StatusEffectComponent>();
             if (comp != null) comp.RunStatusEffect(effectId, applierAgent, duration, append, isMutated);
+            
+        }
+        
+        public static void RemoveStatusEffect(this Agent agent, string effectId)
+        {
+            if(agent==null)return;
+            var comp = agent.GetComponent<StatusEffectComponent>();
+            if (comp != null) comp.RemoveStatusEffect(effectId);
         }
 
         public static void FallDown(this Agent agent)
@@ -705,8 +754,6 @@ namespace TOR_Core.Extensions
         {
             agent.AgentVisuals?.SetVisible(true);
         }
-        
-        
 
         public static void Disappear(this Agent agent)
         {

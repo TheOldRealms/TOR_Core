@@ -4,4 +4,5 @@
 	<XMLDirectory>../WOTS/Modules/TOR_Core/</XMLDirectory>
 	<ModuleAssemblyDirectory>../WOTS/bin/</ModuleAssemblyDirectory>
 	<file id="soln_module_sound" name="ModuleData/tor_sounds.xml" type="module_sound" />
+	<file id="soln_skins" name="ModuleData/tor_skin_sliders.xml" type="skin" />
 </base>

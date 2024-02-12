@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -77,7 +77,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             {
                 var info = c.GetAttributes();
             }
-            _raiseableCharacters = characters.Where(character => character.IsUndead() && character.IsBasicTroop && character.Race == TaleWorlds.Core.FaceGen.GetRaceOrDefault("skeleton")).ToList();
+            _raiseableCharacters = characters.Where(character => character.IsUndead()&& !character.HasAttribute("NecromancerChampion") && character.IsBasicTroop && character.Race == TaleWorlds.Core.FaceGen.GetRaceOrDefault("skeleton")).ToList();
         }
 
         private List<CharacterObject> CalculateBloodKnightsCandidates(MapEvent mapEvent, out int reduced)
@@ -100,13 +100,13 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                     
                     if (rosterMember.Troop.Tier<4)
                     {
-                        if (MBRandom.RandomFloat >= 0.15f) continue;
+                        if (MBRandom.RandomFloat >= 0.05f) continue;
                         elements.Add(BloodKnightTemplate);
                         reduced++;
                     }
                     else
                     {
-                        if (MBRandom.RandomFloat >= 0.4f) continue;
+                        if (MBRandom.RandomFloat >= 0.1f) continue;
                         elements.Add(BloodKnightTemplate);
                         reduced++;
                     }
@@ -120,7 +120,10 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         {
             List<CharacterObject> elements = new List<CharacterObject>();
             var num = mapEvent.GetMapEventSide(mapEvent.DefeatedSide).Casualties- reduction;
-            double raiseDeadChance = Hero.MainHero.GetRaiseDeadChance();
+            double raiseDeadChance = 0;
+
+            raiseDeadChance= Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Select(hero => hero.GetRaiseDeadChance()).Max();
+            
             for (int i = 0; i <= num; i++)
             {
                 if(MBRandom.RandomFloat <= raiseDeadChance)
@@ -133,7 +136,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
 
         public override void SyncData(IDataStore dataStore)
         {
-            //throw new NotImplementedException();
+            
         }
     }
 }

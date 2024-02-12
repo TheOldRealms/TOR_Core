@@ -252,7 +252,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             var settlement = Settlement.CurrentSettlement;
             var component = settlement.SettlementComponent as BaseRaiderSpawnerComponent;
             PartyTemplateObject template = settlement.Culture?.DefaultPartyTemplate;
-            if(template == null) template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_patrol");
+            if(template == null) template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_lordparty_template");
             Clan ownerClan = settlement.OwnerClan;
             if(ownerClan == null) ownerClan = Clan.FindFirst(x => x.StringId == "chaos_clan_1");
             template = ownerClan.DefaultPartyTemplate;
@@ -551,7 +551,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             var settlement = Settlement.CurrentSettlement;
             var component = settlement.SettlementComponent as CursedSiteComponent;
             args.optionLeaveType = GameMenuOption.LeaveType.ForceToGiveTroops;
-            if (!(Hero.MainHero.IsNecromancer() || Hero.MainHero.IsVampire()))
+            
+            if (!(Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x=> x.IsNecromancer() ) || Hero.MainHero.IsVampire()))
             {
                 args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_not_necromancer_text_str}You are not a practitioner of necromancy.");
                 args.IsEnabled = false;
@@ -618,6 +619,15 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                         MobileParty.MainParty.MemberRoster.AddToCounts(troop, count);
                         CampaignEventDispatcher.Instance.OnTroopRecruited(Hero.MainHero, Settlement.CurrentSettlement, null, troop, count);
                         _numberOfTroops += count;
+                    }
+                }
+                
+                foreach (var hero in MobileParty.MainParty.GetMemberHeroes())
+                {
+                    var nagash = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash");
+                    if (nagash != null)
+                    {
+                        hero.AddReligiousInfluence(nagash,1,false);
                     }
                 }
             }

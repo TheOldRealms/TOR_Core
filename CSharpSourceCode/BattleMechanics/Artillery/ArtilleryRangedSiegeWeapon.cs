@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
@@ -7,11 +6,8 @@ using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.TwoDimension;
-using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
-using TOR_Core.BattleMechanics.AI.Decision;
-using TOR_Core.BattleMechanics.AI.TeamBehavior;
-using TOR_Core.BattleMechanics.TriggeredEffect.Scripts;
+using TOR_Core.BattleMechanics.AI.ArtilleryAI;
+using TOR_Core.BattleMechanics.AI.TeamAI.FormationBehavior;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.Artillery
