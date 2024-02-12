@@ -47,7 +47,6 @@ namespace TOR_Core.Ink
         public readonly string StringId;
         public readonly int Cooldown;
         private CachedSoundInstance _currentAudio;
-        private string _currentLine;
 
         public InkStory(string id, string file)
         {

@@ -9,6 +9,7 @@ using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics
 {
@@ -128,12 +129,14 @@ namespace TOR_Core.BattleMechanics
 
                     if (choice != null)
                     {
-                        var threshold = 500;
-                        var damage = blow.InflictedDamage - threshold;
-                        if (damage >= 0)
+                        var damage = blow.InflictedDamage;
+                        
+                        if (damage >= 200)
                         {
-                            var bonus = Mathf.Clamp(damage / 100, 0, 5);
+                            damage /= 200;
+                            var bonus = Mathf.Clamp(damage, 0, 5);
                             affectorAgent.Heal(bonus);
+                            InformationManager.DisplayMessage(new InformationMessage(affectorAgent.Health + "health + bonus " + bonus, Color.FromUint(16095298)));   //TODO REMOVE
                         }
                     }
                 }

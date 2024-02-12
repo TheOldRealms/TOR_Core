@@ -379,7 +379,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _controlledHungerPassive1.Initialize(CareerID, "Immune to sunlight malus.", "ControlledHunger", false, ChoiceType.Passive, null); //TORPartySpeedCalculatingModel 46
             _controlledHungerPassive2.Initialize(CareerID, "Increases Hitpoints by 50.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
             _controlledHungerPassive3.Initialize(CareerID, "Mount health is increased by 35%.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(35f, PassiveEffectType.HorseHealth, true));
-            _controlledHungerPassive4.Initialize(CareerID, "For every 100 above 500 inflicted damage the player gets healed by 1 Hit point(Maximum 5).", "ControlledHunger", false, ChoiceType.Passive, null);
+            _controlledHungerPassive4.Initialize(CareerID, "For every 200 inflicted damage the player gets healed by 1 Hit point(Maximum 5).", "ControlledHunger", false, ChoiceType.Passive, null);
 
             _avatarOfDeathPassive1.Initialize(CareerID, "{=avatar_of_death_passive1_str}Gain 25% physical resistance to melee and ranged attacks.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 25), AttackTypeMask.Ranged | AttackTypeMask.Melee));
             _avatarOfDeathPassive2.Initialize(CareerID, "Reduce the Dark Energy upkeep for vampire troops by 20%.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.CustomResourceUpkeepModifier,true, 

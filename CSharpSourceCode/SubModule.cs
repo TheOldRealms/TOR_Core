@@ -19,7 +19,7 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics;
-using TOR_Core.BattleMechanics.AI.TeamBehavior;
+using TOR_Core.BattleMechanics.AI.TeamAI;
 using TOR_Core.BattleMechanics.Atmosphere;
 using TOR_Core.BattleMechanics.Banners;
 using TOR_Core.BattleMechanics.Dismemberment;
@@ -226,7 +226,7 @@ namespace TOR_Core
             if (missionCombatantsLogic == null)
                 return;
             
-            mission.AddMissionLogicAtIndexOf(missionCombatantsLogic, TorMissionCombatantsLogic.CreateFromInstance(missionCombatantsLogic));
+            mission.AddMissionLogicAtIndexOf(missionCombatantsLogic, TORMissionCombatantsLogic.CreateFromInstance(missionCombatantsLogic));
         }
 
         public override void OnMissionBehaviorInitialize(Mission mission)
