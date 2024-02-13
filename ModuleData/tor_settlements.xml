@@ -3365,7 +3365,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_OM2" name="{=Settlements.Settlement.name.castle_OM2}Fortenhaf" owner="Faction.stirland_clan_3" posX="1682.452" posY="1156.155" culture="Culture.empire" gate_posX="1682.7" gate_posY="1157.475" text="{=Settlements.Settlement.text.castle_OM2}Franzen is a somewhat unremarkable town, sitting in the shadow of large settlements nearby. It has a healthy fishing trade from the Lammer and the Aver, and also boasts a well-used ferry across the Lammer which allows travellers to continue the road West to Russbach.">
+  <Settlement id="castle_OM2" name="{=Settlements.Settlement.name.castle_OM2}Fortenhaf" owner="Faction.sylvania_clan_1" posX="1682.452" posY="1156.155" culture="Culture.empire" gate_posX="1682.7" gate_posY="1157.475" text="{=Settlements.Settlement.text.castle_OM2}Franzen is a somewhat unremarkable town, sitting in the shadow of large settlements nearby. It has a healthy fishing trade from the Lammer and the Aver, and also boasts a well-used ferry across the Lammer which allows travellers to continue the road West to Russbach.">
     <Components>
       <Town id="castle_comp_OM2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -3375,7 +3375,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_OM2_1" name="{=Settlements.Settlement.name.castle_village_OM2_1}Gerdouen" owner="Faction.stirland_clan_3" posX="1663.28" posY="1156.353" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_OM2_1}Chrobok is a small farming community situated in the low wetlands between the rivers Mattid, Lammer and Aver. The natural irrigation provided by the rivers has made the region perfect arable land, and the nearby Franzen and Averheim enjoy a bountiful supply of grain from the village.">
+  <Settlement id="castle_village_OM2_1" name="{=Settlements.Settlement.name.castle_village_OM2_1}Gerdouen" owner="Faction.sylvania_clan_1" posX="1663.28" posY="1156.353" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_OM2_1}Chrobok is a small farming community situated in the low wetlands between the rivers Mattid, Lammer and Aver. The natural irrigation provided by the rivers has made the region perfect arable land, and the nearby Franzen and Averheim enjoy a bountiful supply of grain from the village.">
     <Components>
       <Village id="castle_village_comp_OM2_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_OM1" bound="Settlement.castle_OM2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3388,7 +3388,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_OM2_2" name="{=Settlements.Settlement.name.castle_village_OM2_2}Rheden" owner="Faction.stirland_clan_3" posX="1698.988" posY="1139.064" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_OM2_2}Russbach is a hamlet situated in the sodden fens to the South of the Stirhügel hills. Just beneath the surface of the earth are deep clay pits, and the people of Russbach make a living by mining the building material. Travellers know they’re near the village when they can smell the acrid smoke of the brickmakers’ kilns.">
+  <Settlement id="castle_village_OM2_2" name="{=Settlements.Settlement.name.castle_village_OM2_2}Rheden" owner="Faction.sylvania_clan_1" posX="1698.988" posY="1139.064" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_OM2_2}Russbach is a hamlet situated in the sodden fens to the South of the Stirhügel hills. Just beneath the surface of the earth are deep clay pits, and the people of Russbach make a living by mining the building material. Travellers know they’re near the village when they can smell the acrid smoke of the brickmakers’ kilns.">
     <Components>
       <Village id="castle_village_comp_OM2_2" village_type="VillageType.swine_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_OM1" bound="Settlement.castle_OM2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
