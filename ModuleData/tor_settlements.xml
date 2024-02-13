@@ -4782,7 +4782,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_CO2" name="{=Settlements.Settlement.name.town_CO2}Chantillon" owner="Faction.parravon_clan_1" posX="1003.917" posY="1286.447" culture="Culture.vlandia" gate_posX="1000.487" gate_posY="1283.733" text="{=Settlements.Settlement.text.town_CO2}Found north of the Parravon forest, just north of the Hills of the Dead, and east of Castle Parravon lies Grunere. Its location offers it a decent defensive position at the base of the Grey Mountains, and the Hills of the Dead aids in its defence of the south from attack.">
+  <Settlement id="town_CO2" name="{=Settlements.Settlement.name.town_CO2}Chantillon" owner="Faction.parravon_clan_1" posX="1003.917" posY="1286.447" culture="Culture.vlandia" gate_posX="1000.486" gate_posY="1283.732" text="{=Settlements.Settlement.text.town_CO2}Found north of the Parravon forest, just north of the Hills of the Dead, and east of Castle Parravon lies Grunere. Its location offers it a decent defensive position at the base of the Grey Mountains, and the Hills of the Dead aids in its defence of the south from attack.">
     <Components>
       <Town id="town_comp_CO2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -4828,7 +4828,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_CO3" name="{=Settlements.Settlement.name.town_CO3}Hendaye" owner="Faction.parravon_clan_1" posX="911.847" posY="1311.955" culture="Culture.vlandia" gate_posX="911.7126" gate_posY="1307.126" text="{=Settlements.Settlement.text.town_CO2}Found north of the Parravon forest, just north of the Hills of the Dead, and east of Castle Parravon lies Grunere. Its location offers it a decent defensive position at the base of the Grey Mountains, and the Hills of the Dead aids in its defence of the south from attack.">
+  <Settlement id="town_CO3" name="{=Settlements.Settlement.name.town_CO3}Hendaye" owner="Faction.parravon_clan_1" posX="911.847" posY="1311.955" culture="Culture.vlandia" gate_posX="911.7126" gate_posY="1307.123" text="{=Settlements.Settlement.text.town_CO2}Found north of the Parravon forest, just north of the Hills of the Dead, and east of Castle Parravon lies Grunere. Its location offers it a decent defensive position at the base of the Grey Mountains, and the Hills of the Dead aids in its defence of the south from attack.">
     <Components>
       <Town id="town_comp_CO3" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -4887,7 +4887,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_CO1" name="{=Settlements.Settlement.name.castle_CO1}Castle Brilloinne" owner="Faction.parravon_clan_1" posX="947.422" posY="1308.276" culture="Culture.vlandia" gate_posX="948.5643" gate_posY="1307.799" text="{=Settlements.Settlement.name.castle_CO1}Located on the border of Montfort, Castle Vingtiennes holds the northern province of Parravon from attack, and overlooks the river Grismerie and Massif Orcal.">
+  <Settlement id="castle_CO1" name="{=Settlements.Settlement.name.castle_CO1}Castle Brilloinne" owner="Faction.parravon_clan_1" posX="947.422" posY="1308.276" culture="Culture.vlandia" gate_posX="948.5649" gate_posY="1307.799" text="{=Settlements.Settlement.name.castle_CO1}Located on the border of Montfort, Castle Vingtiennes holds the northern province of Parravon from attack, and overlooks the river Grismerie and Massif Orcal.">
     <Components>
       <Town id="castle_comp_CO1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -5327,7 +5327,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_GX2" name="{=Settlements.Settlement.name.town_GX2}Hautmont" owner="Faction.carcassonne_clan_1" posX="1047.242" posY="1131.908" culture="Culture.vlandia" gate_posX="1044.244" gate_posY="1136.571" text="{=Settlements.Settlement.text.town_GX2}Located in the Vaults , the City of Turin is the capital of the Barony of Savoie. The region is influenced heavily by nearby Tilea, despite this the city and people are steadfastly loyal to Bretonnia. Holding the famed relic, the “Shroud of Gilles le Breton” the City of Turin is a Pilgrimage site to all who follow the Lady of the Lake, and all who seek visions of the Lady.">
+  <Settlement id="town_GX2" name="{=Settlements.Settlement.name.town_GX2}Hautmont" owner="Faction.carcassonne_clan_1" posX="1047.242" posY="1131.908" culture="Culture.vlandia" gate_posX="1044.244" gate_posY="1136.573" text="{=Settlements.Settlement.text.town_GX2}Located in the Vaults , the City of Turin is the capital of the Barony of Savoie. The region is influenced heavily by nearby Tilea, despite this the city and people are steadfastly loyal to Bretonnia. Holding the famed relic, the “Shroud of Gilles le Breton” the City of Turin is a Pilgrimage site to all who follow the Lady of the Lake, and all who seek visions of the Lady.">
     <Components>
       <Town id="town_comp_GX2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -7961,7 +7961,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_AL2_1" name="{=Settlements.Settlement.name.castle_village_AL2_1}Tal Amara" posX="1226.302" posY="734.517" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_AL2_1}Diesdorf is a small town on the river Reik located between Altdorf and Kemperbad. Diesdorf is a major holy site of the Cult of Sigmar, it is said that Magnus the Pious once made a powerful and stirring speech to the crowds who had gathered to hear him. Around sixty years ago, Emperor Wilhelm III founded the Diesdorf Military college to train those who have proven their leadership abilities in battle.">
+  <Settlement id="castle_village_AL2_1" name="{=Settlements.Settlement.name.castle_village_AL2_1}Tal Amara" posX="1213.803" posY="749.1058" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_AL2_1}Diesdorf is a small town on the river Reik located between Altdorf and Kemperbad. Diesdorf is a major holy site of the Cult of Sigmar, it is said that Magnus the Pious once made a powerful and stirring speech to the crowds who had gathered to hear him. Around sixty years ago, Emperor Wilhelm III founded the Diesdorf Military college to train those who have proven their leadership abilities in battle.">
     <Components>
       <Village id="castle_village_comp_AL2_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_AL5" bound="Settlement.castle_AL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
