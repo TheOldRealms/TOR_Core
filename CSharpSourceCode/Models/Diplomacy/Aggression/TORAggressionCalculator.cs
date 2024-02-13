@@ -18,7 +18,7 @@ namespace TOR_Core.Models.Diplomacy.Aggression
 
             // apply faction score to both scores
             religionScore *= nativeFactionScore;
-            var distanceScore = nativeFactionScore * nativeDistanceScore * 2;
+            var distanceScore = nativeFactionScore * nativeDistanceScore;
 
             // Logging
             TORCommon.Say($"Aggression between {faction1.Name} vs {faction2.Name}; \n\t\t" +
