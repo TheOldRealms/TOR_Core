@@ -302,8 +302,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Add
                     }
                 });
-
-            _avatarOfDeathKeystone.Initialize(CareerID, "Red Fury resistance effect is now Ward save and also increases attack speed. Scales the same as base ability.", "AvatarOfDeath", false,
+            _avatarOfDeathKeystone.Initialize(CareerID, "Red Fury's resistance is now Ward save. The ability grants a scaling attack speed boost.", "AvatarOfDeath", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -374,7 +373,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _doomRiderPassive2.Initialize(CareerID, "Reduce the Dark Energy upkeep for vampire troops by 10%.", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-10, PassiveEffectType.CustomResourceUpkeepModifier,true, 
                 characterObject => !characterObject.IsHero && characterObject.IsVampire() && characterObject.IsKnightUnit())); 
             _doomRiderPassive3.Initialize(CareerID, "{=doom_rider_passive3_str}Party speed increases by 2.", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2.0f, PassiveEffectType.PartyMovementSpeed));
-            _doomRiderPassive4.Initialize(CareerID, "{=doom_rider_passive4_str}Recruit defeated units as Blood Knights with a chance of 15% (40% for Tier >4).", "DoomRider", false, ChoiceType.Passive, null);
+            _doomRiderPassive4.Initialize(CareerID, "{=doom_rider_passive4_str}Recruit defeated units as Blood Knights with a chance of 5% (10% for Tier >4).", "DoomRider", false, ChoiceType.Passive, null);
 
             _controlledHungerPassive1.Initialize(CareerID, "Immune to sunlight malus.", "ControlledHunger", false, ChoiceType.Passive, null); //TORPartySpeedCalculatingModel 46
             _controlledHungerPassive2.Initialize(CareerID, "Increases Hitpoints by 50.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
