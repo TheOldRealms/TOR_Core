@@ -2621,7 +2621,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_ML1_1" name="{=Settlements.Settlement.name.village_ML1_1}Norderingen" posX="1332.343" posY="1256.328" culture="Culture.empire" text="{=Settlements.Settlement.text.village_ML1_1}Frederheim is a small Reiklander village just north of Altdorf on the Altdorf-Middenheim road. While the town is a possession of Karl-Franz and is a part of Altdorf’s demesne, the Emperor has seen fit to give oversight of it in all but name to the Cult of Shallya. This is a result of the cult's request for an area in which to establish a walled hospice and sanatorium.">
+  <Settlement id="village_ML1_1" name="{=Settlements.Settlement.name.village_ML1_1}Norderingen" posX="1330.928" posY="1257.85" culture="Culture.empire" text="{=Settlements.Settlement.text.village_ML1_1}Frederheim is a small Reiklander village just north of Altdorf on the Altdorf-Middenheim road. While the town is a possession of Karl-Franz and is a part of Altdorf’s demesne, the Emperor has seen fit to give oversight of it in all but name to the Cult of Shallya. This is a result of the cult's request for an area in which to establish a walled hospice and sanatorium.">
     <Components>
       <Village id="village_comp_ML1_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ML1" bound="Settlement.town_ML1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -2634,7 +2634,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_ML1_2" name="{=Settlements.Settlement.name.village_ML1_2}Schoninghagen" posX="1340.357" posY="1237.964" culture="Culture.empire" text="{=Settlements.Settlement.text.village_ML1_2}On the eastern side of the confluence of the rivers Taal and Reik sits the village of Kaldach. The town is notable particularly for being the demarcation of the Reikland/Talabecland border. Besides this, it remains a small farming community.">
+  <Settlement id="village_ML1_2" name="{=Settlements.Settlement.name.village_ML1_2}Schoninghagen" posX="1337.932" posY="1237.722" culture="Culture.empire" text="{=Settlements.Settlement.text.village_ML1_2}On the eastern side of the confluence of the rivers Taal and Reik sits the village of Kaldach. The town is notable particularly for being the demarcation of the Reikland/Talabecland border. Besides this, it remains a small farming community.">
     <Components>
       <Village id="village_comp_ML1_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_ML1" bound="Settlement.town_ML1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
