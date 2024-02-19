@@ -6,15 +6,17 @@ namespace TOR_Core.Models
 {
     public class TORBanditDensityModel : DefaultBanditDensityModel
     {
+        // 21 days per season, 4 seasons
+        public const int DAYS_IN_YEAR = 84;
         public override int NumberOfMaximumLooterParties
         {
             get
             {
-                if (Campaign.Current.CampaignStartTime.ElapsedDaysUntilNow < 10)
+                if (Campaign.Current.CampaignStartTime.ElapsedDaysUntilNow < TORConfig.YearsToEndEarlyCampaign * DAYS_IN_YEAR)
                 {
                     return TORConfig.NumberOfMaximumLooterPartiesEarly;
                 }
-                else if(Campaign.Current.CampaignStartTime.ElapsedDaysUntilNow < 20)
+                else if(Campaign.Current.CampaignStartTime.ElapsedDaysUntilNow < TORConfig.YearsToEndMidCampaign * DAYS_IN_YEAR)
                 {
                     return TORConfig.NumberOfMaximumLooterParties;
                 }

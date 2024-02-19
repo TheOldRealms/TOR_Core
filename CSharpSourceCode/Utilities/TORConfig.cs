@@ -18,6 +18,8 @@ namespace TOR_Core.Utilities
         public static int FakeBannerFrequency => _config.FakeBannerFrequency;
         public static int MaximumCustomResourceValue => _config.MaximumCustomResourceValue;
         public static int NumberOfTroopsPerFormationWithStandard => _config.NumberOfTroopsPerFormationWithStandard;
+        public static double YearsToEndEarlyCampaign => _config.YearsToEndEarlyCampaign;
+        public static double YearsToEndMidCampaign => _config.YearsToEndMidCampaign;
         public static int NumberOfMaximumLooterPartiesEarly => _config.NumberOfMaximumLooterPartiesEarly;
         public static int NumberOfMaximumLooterParties => _config.NumberOfMaximumLooterParties;
         public static int NumberOfMaximumLooterPartiesLate => _config.NumberOfMaximumLooterPartiesLate;
@@ -54,6 +56,10 @@ namespace TOR_Core.Utilities
             public int MaximumCustomResourceValue;
             [XmlAttribute]
             public int NumberOfTroopsPerFormationWithStandard;
+            [XmlAttribute]
+            public double YearsToEndEarlyCampaign;
+            [XmlAttribute]
+            public double YearsToEndMidCampaign;
             [XmlAttribute]
             public int NumberOfMaximumLooterPartiesEarly;
             [XmlAttribute]
