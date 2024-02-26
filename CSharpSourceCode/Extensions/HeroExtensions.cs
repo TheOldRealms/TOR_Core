@@ -15,6 +15,7 @@ using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.BountyMaster;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.CampaignMechanics.ServeAsAMerc;
 using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -30,7 +31,12 @@ namespace TOR_Core.Extensions
 
         public static bool IsEnlisted(this Hero hero)
         {
-            return hero.HasAttribute("enlisted");
+            var hirelingCampaignBehavior = Campaign.Current.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>();
+            if (hirelingCampaignBehavior != null)
+            {
+                return hirelingCampaignBehavior.IsEnlisted();
+            }
+            return false;
         }
     
         public static bool CanRaiseDead(this Hero hero)
