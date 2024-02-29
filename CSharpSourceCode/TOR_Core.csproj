@@ -468,10 +468,13 @@
     <Compile Include="CampaignMechanics\CustomResources\CustomResource.cs" />
     <Compile Include="CampaignMechanics\CustomResources\CustomResourceManager.cs" />
     <Compile Include="CampaignMechanics\CustomResources\PartyVMExtension.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\Alliance\AllianceEvent.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\TORDeclareWarDecision.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\TORDiplomacyEvents.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\TORKingdomDecisionProposalBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEvent.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEventsCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\View\TORDiplomacyVMExtension.cs" />
     <Compile Include="CampaignMechanics\Invasions\InvasionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Invasions\InvasionPartyComponent.cs" />
     <Compile Include="CampaignMechanics\MasterEngineer\MasterEngineerTownBehavior.cs" />
@@ -556,6 +559,7 @@
     <Compile Include="Extensions\ExtendedInfoSystem\ExtendedInfoMissionLogic.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\HeroExtendedInfo.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\MobilePartyExtendedInfo.cs" />
+    <Compile Include="Extensions\KingdomExtension.cs" />
     <Compile Include="Extensions\FormationExtensions.cs" />
     <Compile Include="Extensions\GameModelsExtensions.cs" />
     <Compile Include="Extensions\HeroExtensions.cs" />
@@ -629,9 +633,9 @@
     <Compile Include="Missions\JoustFightMissionController.cs" />
     <Compile Include="Missions\QuestFightMissionController.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleMoraleModel.cs" />
-    <Compile Include="Models\Diplomacy\Aggression\DecompiledNativeAggression.cs" />
-    <Compile Include="Models\Diplomacy\Aggression\TORAggressionCalculator.cs" />
-    <Compile Include="Models\Diplomacy\Aggression\ReligiousAggressionCalculator.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\ModelMechanics\Aggression\DecompiledNativeAggression.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\ModelMechanics\Aggression\TORAggressionCalculator.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\ModelMechanics\Aggression\ReligiousAggressionCalculator.cs" />
     <Compile Include="Models\TORAgentApplyDamageModel.cs" />
     <Compile Include="Models\TORAgentStatCalculateModel.cs" />
     <Compile Include="Models\TORBanditDensityModel.cs" />

@@ -1,7 +1,7 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TOR_Core.Utilities;
 
-namespace TOR_Core.Models.Diplomacy.Aggression
+namespace TOR_Core.CampaignMechanics.Diplomacy.ModelMechanics.Aggression
 {
     public static class TORAggressionCalculator
     {
