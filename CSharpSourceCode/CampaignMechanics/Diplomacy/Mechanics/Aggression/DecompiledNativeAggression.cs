@@ -3,7 +3,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Library;
 
-namespace TOR_Core.CampaignMechanics.Diplomacy.ModelMechanics.Aggression
+namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Aggression
 {
     sealed internal class DecompiledNativeAggression
     {

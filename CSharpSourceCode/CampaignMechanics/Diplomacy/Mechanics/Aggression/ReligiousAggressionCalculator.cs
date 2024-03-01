@@ -2,7 +2,7 @@
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 
-namespace TOR_Core.CampaignMechanics.Diplomacy.ModelMechanics.Aggression
+namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Aggression
 {
     public static class ReligiousAggressionCalculator
     {

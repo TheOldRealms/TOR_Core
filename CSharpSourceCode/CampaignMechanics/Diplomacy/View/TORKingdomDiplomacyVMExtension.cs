@@ -1,22 +1,19 @@
-﻿using JetBrains.Annotations;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.Diplomacy;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
-using TaleWorlds.Localization;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.UI;
 
 namespace TOR_Core.CampaignMechanics.Diplomacy.View
 {
-    [ViewModelExtension(typeof(KingdomDiplomacyVM), "RefreshKingdomDiplomacyView")]
-    public class TORDiplomacyVMExtension : BaseViewModelExtension
+    [ViewModelExtension(typeof(KingdomDiplomacyVM))]
+    public class TORKingdomDiplomacyVMExtension : BaseViewModelExtension
     {
-        private static readonly TextObject _TAlliances = new TextObject("Alliances");
         [DataSourceProperty]
-        public string PlayerAlliancesText { get; }
+        public string PlayerAlliancesText = GameTexts.FindText("str_diplomacy_alliance_label").ToString();
 
         protected MBBindingList<KingdomTruceItemVM> _playerAlliances;
 
@@ -42,16 +39,12 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.View
                 _vm.OnPropertyChanged(nameof(NumOfPlayerAlliancesText));
             }
         }
-        public TORDiplomacyVMExtension(ViewModel vm) : base(vm)
+        public TORKingdomDiplomacyVMExtension(ViewModel vm) : base(vm)
         {
             _playerAlliances = new MBBindingList<KingdomTruceItemVM>();
 
-            PlayerAlliancesText = _TAlliances.ToString();
-
             TORDiplomacyEvents.AllianceFormed.AddNonSerializedListener(this, _ => _vm.RefreshValues());
             TORDiplomacyEvents.AllianceBroken.AddNonSerializedListener(this, _ => _vm.RefreshValues());
-
-            vm.RefreshValues();
         }
 
         public override void OnFinalize()
@@ -71,10 +64,8 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.View
 
                 RefreshAlliances(alliances);
 
-                GameTexts.SetVariable("STR", view.PlayerTruces.Count);
-                view.NumOfPlayerTrucesText = GameTexts.FindText("str_STR_in_parentheses").ToString();
-                GameTexts.SetVariable("STR", view.PlayerWars.Count);
-                view.NumOfPlayerWarsText = GameTexts.FindText("str_STR_in_parentheses").ToString();
+                view.NumOfPlayerTrucesText = view.PlayerTruces.Count.ToString();
+                view.NumOfPlayerWarsText = view.PlayerWars.Count.ToString();
             }
         }
 
@@ -84,8 +75,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.View
 
             foreach (var alliance in alliances) PlayerAlliances.Add(alliance);
 
-            GameTexts.SetVariable("STR", PlayerAlliances.Count);
-            NumOfPlayerAlliancesText = GameTexts.FindText("str_STR_in_parentheses").ToString();
+            NumOfPlayerAlliancesText = PlayerAlliances.Count.ToString();
         }
     }
 }

@@ -1,7 +1,7 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Localization;
-using TOR_Core.CampaignMechanics.Diplomacy.ModelMechanics.Aggression;
+using TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Aggression;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
