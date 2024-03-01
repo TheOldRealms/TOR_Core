@@ -9,7 +9,7 @@ namespace TOR_Core.Extensions
 {
     public static class KingdomExtensions
     {
-        public static MBReadOnlyList<Kingdom> AllActiveKingdoms => (MBReadOnlyList<Kingdom>)Kingdom.All.Where(k => !k.IsEliminated).ToList();
+        public static List<Kingdom> AllActiveKingdoms => Kingdom.All.Where(k => !k.IsEliminated).ToList();
         public static float GetExpansionism(this Kingdom kingdom) => TORExpansionismManager.Instance.GetExpansionism(kingdom);
         public static float GetExpansionismDiplomaticPenalty(this Kingdom kingdom) => Math.Min(-(GetExpansionism(kingdom) - 50), 0f);
         public static float GetMinimumExpansionism(this Kingdom kingdom) => TORExpansionismManager.Instance.GetMinimumExpansionism(kingdom);

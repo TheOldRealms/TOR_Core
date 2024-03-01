@@ -36,8 +36,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.ViewModelExtensions
         [DataSourceProperty]
         public DiplomacyPropertiesVM DiplomacyProperties { get; set; }
 
-        protected readonly Kingdom _faction1;
-        protected readonly Kingdom _faction2;
         protected readonly bool _isAlliance;
 
         public TORKingdomTruceItemVMExtension(ViewModel vm) : base(vm)
@@ -45,8 +43,8 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.ViewModelExtensions
             AllianceActionName = GameTexts.FindText("str_diplomacy_form_alliance_label").ToString();
 
             var view = (KingdomTruceItemVM)vm;
-            _faction1 = (Kingdom)view.Faction1;
-            _faction2 = (Kingdom)view.Faction2;
+            var _faction1 = (Kingdom)view.Faction1;
+            var _faction2 = (Kingdom)view.Faction2;
 
             if (_faction1 != null && _faction2 != null)
             {
@@ -57,6 +55,10 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.ViewModelExtensions
         public override void RefreshValues()
         {
             base.RefreshValues();
+
+            var view = (KingdomTruceItemVM)_vm;
+            var _faction1 = (Kingdom)view.Faction1;
+            var _faction2 = (Kingdom)view.Faction2;
 
             if (DiplomacyProperties is null)
                 DiplomacyProperties = new DiplomacyPropertiesVM(_faction1, _faction2);
@@ -78,6 +80,9 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.ViewModelExtensions
                     IsAllianceVisible = false;
                     return;
                 }
+
+                var _faction1 = (Kingdom)view.Faction1;
+                var _faction2 = (Kingdom)view.Faction2;
 
                 var allianceException = FormAllianceConditions.Instance.CanApplyExceptions(view).FirstOrDefault();
 

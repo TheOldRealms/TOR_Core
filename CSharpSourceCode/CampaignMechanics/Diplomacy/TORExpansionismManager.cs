@@ -13,7 +13,8 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
     {
         [SaveableField(1)][UsedImplicitly] private Dictionary<IFaction, float> _expansionism;
 
-        public static TORExpansionismManager Instance { get; private set; }
+        private static readonly Lazy<TORExpansionismManager> lazy = new Lazy<TORExpansionismManager>(() => new TORExpansionismManager());
+        public static TORExpansionismManager Instance { get => lazy.Value; }
         public float SiegeExpansionism => 20;
         public float ExpansionismDecayPerDay => 1;
         public float MinimumExpansionismPerFief => 3;
@@ -22,7 +23,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
         public TORExpansionismManager()
         {
             _expansionism = new Dictionary<IFaction, float>();
-            Instance = this;
         }
 
         public float GetMinimumExpansionism(Kingdom kingdom)
@@ -52,11 +52,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 _expansionism[faction] = Math.Max(value - ExpansionismDecayPerDay, GetMinimumExpansionism(faction));
             else
                 _expansionism[faction] = GetMinimumExpansionism(faction);
-        }
-
-        internal void Sync()
-        {
-            Instance = this;
         }
     }
 }
