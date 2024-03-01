@@ -3,9 +3,11 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.KingdomManagement.Diplomacy;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
+using TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Cost;
+using TOR_Core.CampaignMechanics.Diplomacy.ViewModels;
 using TOR_Core.Extensions.UI;
 
-namespace TOR_Core.CampaignMechanics.Diplomacy.View
+namespace TOR_Core.CampaignMechanics.Diplomacy.ViewModelExtensions
 {
     [ViewModelExtension(typeof(KingdomTruceItemVM))]
     public class TORKingdomTruceItemVMExtension : BaseViewModelExtension
@@ -26,6 +28,9 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.View
         [DataSourceProperty]
         public BasicTooltipViewModel AllianceScoreHint { get; set; }
 
+        [DataSourceProperty]
+        public DiplomacyPropertiesVM DiplomacyProperties { get; set; }
+
         protected readonly Kingdom _faction1;
         protected readonly Kingdom _faction2;
         protected readonly bool _isAlliance;
@@ -37,6 +42,14 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.View
             _faction2 = (Kingdom)view.Faction2;
 
             _isAlliance = _faction1.GetStanceWith(_faction2).IsAllied;
+        }
+
+        public override void RefreshValues()
+        {
+            base.RefreshValues();
+
+            if (DiplomacyProperties is null)
+                DiplomacyProperties = new DiplomacyPropertiesVM(_faction1, _faction2);
         }
     }
 }

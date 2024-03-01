@@ -7,7 +7,7 @@ using TaleWorlds.Library;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.UI;
 
-namespace TOR_Core.CampaignMechanics.Diplomacy.View
+namespace TOR_Core.CampaignMechanics.Diplomacy.ViewModelExtensions
 {
     [ViewModelExtension(typeof(KingdomDiplomacyVM))]
     public class TORKingdomDiplomacyVMExtension : BaseViewModelExtension

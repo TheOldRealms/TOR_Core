@@ -513,6 +513,7 @@
   <!--diplomacy-->
   <string id="str_diplomacy_alliance_label" text="{=!}Alliance" />
   <string id="str_diplomacy_form_alliance_label" text="{=!}Form Alliance" />
+  <string id="str_diplomacy_days_remaining_label" text="{!=}Days Remaining: {DAYS_LEFT}" />
 
   <!--custom settlements e.g. chaos portal, shrines, herdstones -->
   <string id="customsettlement_intro.chaos_portal_01" text="{=!}You arrive at an active chaos portal. The vile thing pulses with arcane magic, chaos forces are invading in minor numbers from their realm." />

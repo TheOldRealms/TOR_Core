@@ -469,6 +469,7 @@
     <Compile Include="CampaignMechanics\CustomResources\CustomResourceManager.cs" />
     <Compile Include="CampaignMechanics\CustomResources\PartyVMExtension.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\Alliance\AllianceEvent.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\TORCooldownManager.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Actions\GiveGoldToClanAction.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Actions\GiveGoldToKingdomAction.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Cost\AbstractDiplomacyCost.cs" />
@@ -484,8 +485,10 @@
     <Compile Include="CampaignMechanics\Diplomacy\TORKingdomDecisionProposalBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEvent.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEventsCampaignBehavior.cs" />
-    <Compile Include="CampaignMechanics\Diplomacy\View\TORKingdomDiplomacyVMExtension.cs" />
-    <Compile Include="CampaignMechanics\Diplomacy\View\TORKingdomTruceItemVMExtension.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\ViewModels\DiplomacyFactionRelationshipVM.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\ViewModels\DiplomacyPropertiesVM.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\ViewModelExtensions\TORKingdomDiplomacyVMExtension.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\ViewModelExtensions\TORKingdomTruceItemVMExtension.cs" />
     <Compile Include="CampaignMechanics\Invasions\InvasionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Invasions\InvasionPartyComponent.cs" />
     <Compile Include="CampaignMechanics\MasterEngineer\MasterEngineerTownBehavior.cs" />
