@@ -3,7 +3,7 @@
     FakeBannerFrequency="10"
     NumberOfTroopsPerFormationWithStandard="1"
     MaximumCustomResourceValue="5000"
-    NumberOfMaximumLooterPartiesEarly="200"
+    NumberOfMaximumLooterPartiesEarly="100"
     NumberOfMaximumLooterParties="400"
     NumberOfMaximumLooterPartiesLate="600"
     NumberOfMaximumBanditPartiesAroundEachHideout="24"
