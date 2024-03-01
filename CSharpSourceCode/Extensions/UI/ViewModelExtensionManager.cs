@@ -5,7 +5,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using NLog.Fluent;
 using TaleWorlds.Library;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions.UI
 {
@@ -59,7 +61,7 @@ namespace TOR_Core.Extensions.UI
 
         public bool HasViewModelExtension(ViewModel vm)
         {
-            return false;
+            Console.Write(vm.ToString() + System.Environment.NewLine);
             return ExtensionTypes.Any(x => x.GetCustomAttribute<ViewModelExtensionAttribute>().BaseType == vm.GetType());
         }
 
