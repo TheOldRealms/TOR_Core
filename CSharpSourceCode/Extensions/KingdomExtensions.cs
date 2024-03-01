@@ -1,13 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
+using TOR_Core.CampaignMechanics.Diplomacy;
 
 namespace TOR_Core.Extensions
 {
-    public static class KingdomExtension
+    public static class KingdomExtensions
     {
         public static MBReadOnlyList<Kingdom> AllActiveKingdoms => (MBReadOnlyList<Kingdom>)Kingdom.All.Where(k => !k.IsEliminated).ToList();
+        public static float GetExpansionism(this Kingdom kingdom) => TORExpansionismManager.Instance.GetExpansionism(kingdom);
+        public static float GetExpansionismDiplomaticPenalty(this Kingdom kingdom) => Math.Min(-(GetExpansionism(kingdom) - 50), 0f);
+        public static float GetMinimumExpansionism(this Kingdom kingdom) => TORExpansionismManager.Instance.GetMinimumExpansionism(kingdom);
 
         public static bool IsAlliedWith(this IFaction faction1, IFaction faction2)
         {

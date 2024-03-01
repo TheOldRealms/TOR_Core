@@ -7,13 +7,11 @@ using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
-using TOR_Core.CampaignMechanics.Diplomacy;
-using TOR_Core.CampaignMechanics.Diplomacy.ViewModels;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.Diplomacy.ViewModels
 {
-    public sealed class DiplomacyPropertiesVM : TaleWorlds.Library.ViewModel
+    public sealed class DiplomacyPropertiesVM : ViewModel
     {
         private static readonly TextObject _TDaysRemaining = GameTexts.FindText("str_diplomacy_days_remaining_label");
 
@@ -57,7 +55,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.ViewModels
             AddWarRelationships(Faction1.Stances);
             AddWarRelationships(Faction2.Stances);
 
-            foreach (var kingdom in KingdomExtension.AllActiveKingdoms)
+            foreach (var kingdom in KingdomExtensions.AllActiveKingdoms)
             {
                 if (FactionManager.IsAlliedWithFaction(kingdom, Faction1) && kingdom != Faction1)
                     Faction1Allies.Add(new DiplomacyFactionRelationshipVM(kingdom, CreateAllianceHint(kingdom, (Faction1 as Kingdom))));

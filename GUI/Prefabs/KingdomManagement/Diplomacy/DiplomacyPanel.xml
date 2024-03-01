@@ -461,9 +461,10 @@
 
                 <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="25" MarginRight="25" Brush.FontSize="40" IsHidden="@IsAcceptableItemSelected" Text="@NoItemSelectedText" />
 
+                <DiplomacyPanelButtons />
                 <!-- Form Alliance Button -->
                 <!-- <ListPanel DataSource="{CurrentSelectedDiplomacyItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginLeft="10" MarginRight="10" IsVisible="@IsAllianceVisible">
-                  <Children>
+                <Children>
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop">
                       <Children>
                         <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!ButtonWidth" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="FormAlliance" IsEnabled="@IsAllianceAvailable">
@@ -471,7 +472,7 @@
                             <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@AllianceActionName" />
                           </Children>
                         </ButtonWidget>
-                        <ListPanel UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginTop="5">
+                          <ListPanel UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginTop="5">
                           <Children>
                             <ListPanel DoNotPassEventsToChildren="true"  WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" >
                               <Children>
@@ -492,40 +493,8 @@
                       </Children>
                     </ListPanel>
                   </Children>
-                </ListPanel> -->
-                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginLeft="10" MarginRight="10" IsVisible="@IsAllianceVisible">
-                  <Children>
-                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" LayoutImp.LayoutMethod="VerticalBottomToTop">
-                      <Children>
-                        <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!ButtonWidth" SuggestedHeight="30" Brush="ButtonBrush2" UpdateChildrenStates="true" Command.Click="FormAlliance" IsEnabled="@IsAllianceAvailable">
-                          <Children>
-                            <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Kingdom.GeneralButtons.Text" Text="@AllianceActionName" />
-                          </Children>
-                        </ButtonWidget>
-                        <ListPanel UpdateChildrenStates="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginTop="5">
-                          <Children>
-                            <ListPanel DoNotPassEventsToChildren="true"  WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" >
-                              <Children>
-                                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="17" SuggestedHeight="27" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SPKingdom\influence_icon_small" />
-                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" Brush="Kingdom.GeneralButtons.Text" IntText="@AllianceInfluenceCost"/>
-                                <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" MarginLeft="5" HorizontalAlignment="Left" VerticalAlignment="Center" Brush="Diplomacy.Icon.Gold" />
-                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="-4" Brush="Kingdom.GeneralButtons.Text" IntText="@AllianceGoldCost"/>
-                              </Children>
-                            </ListPanel>
-                            <!-- <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="27" SuggestedHeight="27" HorizontalAlignment="Left" Sprite="MapBar\monocular_icon" VerticalAlignment="Center">
-                              <Children>
-                                <HintWidget Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" DataSource="{AllianceScoreHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"  />
-                              </Children>
-                            </Widget> -->
-                          </Children>
-                        </ListPanel>
-                        <!-- <HintWidget DataSource="{AllianceHint}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/> -->
-                      </Children>
-                    </ListPanel>
-                  </Children>
                 </ListPanel>
                 
-                <!-- Make Peace Or Declare War Button -->
                 <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" HorizontalAlignment="Center" VerticalAlignment="Bottom" PositionYOffset="40" IsVisible="@IsAcceptableItemSelected">
                   <Children>
                     <TextWidget WidthSizePolicy="Fixed" SuggestedWidth="360" HeightSizePolicy="CoverChildren" Brush="Kingdom.ParagraphSmall.Text" MarginBottom="10" IsEnabled="true" Text="@ProposeActionExplanationText" DoNotAcceptEvents="true" ClipContents="false"/>
@@ -547,7 +516,8 @@
                       </Children>
                     </ListPanel>
                   </Children>
-                </ListPanel>
+                </ListPanel> -->
+                <!-- Make Peace Or Declare War Button -->
 
                 <NavigationScopeTargeter ScopeID="KingdomDiplomacyChangeStatTypeScope" ScopeParent="..\StatTypes" ScopeMovements="Vertical" HasCircularMovement="false" />
                 <NavigatableListPanel Id="StatTypes" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Center" MarginRight="50" StackLayout.LayoutMethod="VerticalBottomToTop" IsVisible="@IsWar">

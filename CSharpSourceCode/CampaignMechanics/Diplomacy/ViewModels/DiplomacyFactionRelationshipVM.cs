@@ -9,7 +9,7 @@ using TaleWorlds.Library;
 
 namespace TOR_Core.CampaignMechanics.Diplomacy.ViewModels
 {
-    public sealed class DiplomacyFactionRelationshipVM : TaleWorlds.Library.ViewModel
+    public sealed class DiplomacyFactionRelationshipVM : ViewModel
     {
         public IFaction Faction { get; }
 
@@ -22,7 +22,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.ViewModels
         }
 
         [UsedImplicitly]
-        private void ExecuteLink() => Campaign.Current.EncyclopediaManager.GoToLink(Faction.EncyclopediaLink);
+        public void ExecuteLink() => Campaign.Current.EncyclopediaManager.GoToLink(Faction.EncyclopediaLink);
 
         public override bool Equals(object obj) => obj is DiplomacyFactionRelationshipVM vm && Equals(vm);
 

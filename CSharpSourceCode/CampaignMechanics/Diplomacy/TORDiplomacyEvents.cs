@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
-using TOR_Core.CampaignMechanics.Diplomacy.Alliance;
+using TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Actions.Alliance;
 
 namespace TOR_Core.CampaignMechanics.Diplomacy
 {

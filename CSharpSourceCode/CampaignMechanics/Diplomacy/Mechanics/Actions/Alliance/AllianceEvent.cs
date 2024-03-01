@@ -1,6 +1,6 @@
 ﻿using TaleWorlds.CampaignSystem;
 
-namespace TOR_Core.CampaignMechanics.Diplomacy.Alliance
+namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Actions.Alliance
 {
     public readonly struct AllianceEvent
     {

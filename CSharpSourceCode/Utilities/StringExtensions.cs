@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Input;
 
 namespace TOR_Core.Utilities
 {
@@ -12,6 +13,11 @@ namespace TOR_Core.Utilities
                 case "": throw new ArgumentException($"{nameof(input)} cannot be empty", nameof(input));
                 default: return input[1].ToString().ToUpper() + input.Substring(2);
             }
+        }
+
+        public static string GetPlusPrefixed(this float value)
+        {
+            return $"{(value >= 0.0005f ? "{=!}+" : string.Empty)}{value:0.##}";
         }
     }
 }

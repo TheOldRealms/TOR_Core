@@ -512,9 +512,19 @@
 
   <!--diplomacy-->
   <string id="str_diplomacy_alliance_label" text="{=!}Alliance" />
-  <string id="str_diplomacy_form_alliance_label" text="{=!}Form Alliance" />
-  <string id="str_diplomacy_days_remaining_label" text="{!=}Days Remaining: {DAYS_LEFT}" />
-
+  <string id="str_diplomacy_formAlliance_label" text="{=!}Form Alliance" />
+  <string id="str_diplomacy_daysRemaining_label" text="{!=}Days Remaining: {DAYS_LEFT}" />
+  <string id="str_diplomacy_alliance_atWarTooRecently_text" text="{!=}You have been at war too recently to consider an alliance. It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days." />
+  <string id="str_diplomacy_alliance_notLongEnoughAllianceToBreak_text" text="{!=}This alliance hasn't gone on long enough to consider breaking it! It has only been {ELAPSED_DAYS} days out of a required {REQUIRED_DAYS} days." />
+  <string id="str_diplomacy_cannotBeAtWar_text" text="{!=}Cannot be at war." />
+  <string id="str_diplomacy_cannotBeInAlliance_text" text="{!=}Cannot be in an alliance." />
+  <string id="str_diplomacy_notEnoughInfluence_text" text="{!=}Not enough influence!" />
+  <string id="str_diplomacy_notEnoughGold_text" text="{!=}Not enough gold!" />
+  <string id="str_diplomacy_factionEliminated_text" text="{!=}Faction has been eliminated." />
+  <string id="str_diplomacy_youDontHaveAuthority_text" text="{!=}You don't have the authority to perform this action." />
+  <string id="str_diplomacy_currentScore_text" text="{!=}Current Score." />
+  <string id="str_diplomacy_requiredScore_text" text="{!=}Required Score." />
+  
   <!--custom settlements e.g. chaos portal, shrines, herdstones -->
   <string id="customsettlement_intro.chaos_portal_01" text="{=!}You arrive at an active chaos portal. The vile thing pulses with arcane magic, chaos forces are invading in minor numbers from their realm." />
   <string id="customsettlement_disabled.chaos_portal_01" text="{=!}The portal lies dormant. Come back at a later time." />

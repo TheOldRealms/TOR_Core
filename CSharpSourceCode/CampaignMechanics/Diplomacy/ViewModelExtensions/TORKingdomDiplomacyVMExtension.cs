@@ -13,7 +13,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.ViewModelExtensions
     public class TORKingdomDiplomacyVMExtension : BaseViewModelExtension
     {
         [DataSourceProperty]
-        public string PlayerAlliancesText = GameTexts.FindText("str_diplomacy_alliance_label").ToString();
+        public string PlayerAlliancesText { get; }
 
         protected MBBindingList<KingdomTruceItemVM> _playerAlliances;
 
@@ -41,7 +41,8 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.ViewModelExtensions
         }
         public TORKingdomDiplomacyVMExtension(ViewModel vm) : base(vm)
         {
-            _playerAlliances = new MBBindingList<KingdomTruceItemVM>();
+            PlayerAlliancesText = GameTexts.FindText("str_diplomacy_alliance_label").ToString();
+            PlayerAlliances = new MBBindingList<KingdomTruceItemVM>();
 
             TORDiplomacyEvents.AllianceFormed.AddNonSerializedListener(this, _ => _vm.RefreshValues());
             TORDiplomacyEvents.AllianceBroken.AddNonSerializedListener(this, _ => _vm.RefreshValues());
