@@ -59,6 +59,7 @@ namespace TOR_Core.Extensions.UI
 
         public bool HasViewModelExtension(ViewModel vm)
         {
+            return false;
             return ExtensionTypes.Any(x => x.GetCustomAttribute<ViewModelExtensionAttribute>().BaseType == vm.GetType());
         }
 
