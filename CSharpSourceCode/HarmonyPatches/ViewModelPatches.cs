@@ -15,6 +15,11 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class ViewModelPatches
     {
+        private const string Headposition = "HeadPosition";
+        private const string Position = "Position";
+        private const string DistanceToCamera = "DistanceToCamera";
+        
+        
         [HarmonyPostfix]
         [HarmonyPatch(typeof(ViewModel), MethodType.Constructor)]
         public static void PatchVMConstructor(ViewModel __instance)
@@ -82,14 +87,10 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(ViewModel), "SetPropertyValue")]
         public static bool PatchPropertySetter(ViewModel __instance, string name, object value)
         {
-            //if (value is bool&& (bool) value == false) return true;
-            var headposition = String.Intern("HeadPosition");
-            var position = String.Intern("Position");
-            var distanceToCamera = String.Intern("DistanceToCamera");
-            if(name==distanceToCamera) return true;
-            if(name==position) return true;
-            if(name==headposition) return true;
-            if (__instance.HasExtension())
+            if(name==DistanceToCamera) return true;
+            if(name==Position) return true;
+            if(name==Headposition) return true;
+            else if (__instance.HasExtension())
             {
                 __instance.GetExtension().SetPropertyValue(name, value);
                 return false;
