@@ -8,7 +8,7 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Scoring
 {
-    internal abstract class AbstractScoringModel<T> where T : AbstractScoringModel<T>, new()
+    internal abstract partial class AbstractScoringModel<T> where T : AbstractScoringModel<T>, new()
     {
         public static T Instance { get; } = new T();
 
@@ -88,29 +88,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Scoring
 
         public virtual bool ShouldForm(Kingdom ourKingdom, Kingdom otherKingdom)
             => GetScore(ourKingdom, otherKingdom).ResultNumber >= ScoreThreshold;
-
-        public interface IDiplomacyScores
-        {
-            int Base { get; }
-
-            int BelowMedianStrength { get; }
-
-            int HasCommonEnemy { get; }
-
-            int ExistingAllianceWithEnemy { get; }
-
-            int ExistingAllianceWithNeutral { get; }
-
-            int NonAggressionPactWithEnemy { get; }
-
-            int NonAggressionPactWithNeutral { get; }
-
-            int Relationship { get; }
-
-            int Tendency { get; }
-
-            int LeaderClanMarriage { get; }
-        }
 
         private static readonly TextObject _TWeakKingdom = new TextObject("{=!}Weak Kingdom");
         private static readonly TextObject _TRelationship = new TextObject("{=!}Relationship");

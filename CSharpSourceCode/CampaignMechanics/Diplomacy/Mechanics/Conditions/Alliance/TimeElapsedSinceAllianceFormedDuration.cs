@@ -16,7 +16,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Conditions.Alliance
             var hasEnoughTimeElapsed = !TORCooldownManager.HasBreakAllianceCooldown(kingdom, otherKingdom, out var elapsedDaysUntilNow);
             if (!hasEnoughTimeElapsed)
             {
-                textObject = _TTooSoon.CopyTextObject();
+                textObject = GameTexts.FindText("str_diplomacy_alliance_notLongEnoughAllianceToBreak_text");
                 textObject.SetTextVariable("ELAPSED_DAYS", (float) Math.Floor(elapsedDaysUntilNow));
                 textObject.SetTextVariable("REQUIRED_DAYS", 42);
             }

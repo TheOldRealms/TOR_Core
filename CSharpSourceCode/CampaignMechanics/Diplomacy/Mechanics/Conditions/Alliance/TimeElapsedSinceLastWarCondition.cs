@@ -7,7 +7,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Conditions.Alliance
 {
     internal class TimeElapsedSinceLastWarCondition : IDiplomacyCondition
     {
-        private static readonly TextObject _TTooSoon = GameTexts.FindText("str_diplomacy_alliance_atWarTooRecently_text");
         private const double MinimumTimeFromLastWar = 30.0;
 
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
@@ -30,7 +29,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Conditions.Alliance
             var hasEnoughTimeElapsed = lastPeaceTime == CampaignTime.Never || daysSinceLastWar > MinimumTimeFromLastWar;
             if (!hasEnoughTimeElapsed)
             {
-                textObject = _TTooSoon.CopyTextObject();
+                textObject = GameTexts.FindText("str_diplomacy_alliance_atWarTooRecently_text");
                 textObject.SetTextVariable("ELAPSED_DAYS", (int) daysSinceLastWar);
                 textObject.SetTextVariable("REQUIRED_DAYS", (int) MinimumTimeFromLastWar);
             }

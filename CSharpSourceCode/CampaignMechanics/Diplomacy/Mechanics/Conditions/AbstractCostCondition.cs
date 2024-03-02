@@ -5,8 +5,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Conditions
 {
     abstract class AbstractCostCondition : IDiplomacyCondition
     {
-        protected abstract TextObject FailedConditionText { get; }
-
         public bool ApplyCondition(Kingdom kingdom, Kingdom otherKingdom, out TextObject textObject, bool forcePlayerCharacterCosts = false, bool bypassCosts = false)
         {
             textObject = null;

@@ -471,6 +471,7 @@
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Conditions\Alliance\ReligiouslyAlignedCondition.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Conditions\GenericConditions\HasAuthorityCondition.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Conditions\GenericConditions\NotEliminatedCondition.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Scoring\IDiplomacyScores.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\TORExpansionismManager.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\FactionPair.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Actions\DiplomaticAgreement.cs" />
@@ -478,7 +479,6 @@
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Conditions\AbstractConditionEvaluator.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Actions\Alliance\AllianceEvent.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Conditions\AbstractCostCondition.cs" />
-    <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Conditions\Alliance\AlliancesEnabled.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Conditions\Alliance\BreakAllianceConditions.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Conditions\Alliance\FormAllianceConditions.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Conditions\Alliance\HasEnoughGoldCondition.cs" />

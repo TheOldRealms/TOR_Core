@@ -8,7 +8,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Conditions.Alliance
     {
         private static readonly List<IDiplomacyCondition> Conditions = new List<IDiplomacyCondition>()
         {
-            new AlliancesEnabledCondition(),
             new AtPeaceCondition(),
             new TimeElapsedSinceLastWarCondition(),
             new NotInAllianceCondition(),

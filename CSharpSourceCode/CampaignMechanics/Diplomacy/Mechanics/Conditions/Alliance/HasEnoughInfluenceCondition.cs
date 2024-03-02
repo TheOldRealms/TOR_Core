@@ -7,14 +7,12 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Conditions.Alliance
 {
     class HasEnoughInfluenceCondition : AbstractCostCondition
     {
-        protected override TextObject FailedConditionText => GameTexts.FindText("str_diplomacy_notEnoughInfluence_text");
-
         protected override bool ApplyConditionInternal(Kingdom kingdom, Kingdom otherKingdom, ref TextObject textObject, bool forcePlayerCharacterCosts = false)
         {
             var hasEnoughInfluence = DiplomacyCostCalculator.DetermineCostForFormingAlliance(kingdom, otherKingdom, forcePlayerCharacterCosts).InfluenceCost.CanPayCost();
             if (!hasEnoughInfluence)
             {
-                textObject = FailedConditionText;
+                textObject = GameTexts.FindText("str_diplomacy_notEnoughInfluence_text");
             }
 
             return hasEnoughInfluence;
