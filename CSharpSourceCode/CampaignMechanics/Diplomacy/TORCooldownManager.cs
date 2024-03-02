@@ -16,10 +16,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
         internal static Dictionary<Kingdom, CampaignTime> LastPeaceProposalTime => Instance._lastPeaceProposalTime;
         internal static Dictionary<string, CampaignTime> LastAllianceFormedTime => Instance._lastAllianceFormedTime;
 
-        [SaveableField(1)]
-        [UsedImplicitly]
-        private Dictionary<string, CampaignTime> _lastWarTime; //Unused. Keep to maintain saves' backwards compatibility.
-
         [SaveableField(2)]
         [UsedImplicitly]
         private Dictionary<Kingdom, CampaignTime> _lastPeaceProposalTime;
@@ -32,7 +28,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         internal TORCooldownManager()
         {
-            _lastWarTime = new Dictionary<string, CampaignTime>();
             _lastPeaceProposalTime = new Dictionary<Kingdom, CampaignTime>();
             _lastAllianceFormedTime = new Dictionary<string, CampaignTime>();
         }

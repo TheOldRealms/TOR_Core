@@ -11,9 +11,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Aggression
             var nativeDistanceScore = DecompiledNativeAggression.BaseDistanceFactor(faction1, faction2);
 
             /// TOR internal score calculations
-            var religionScore = ReligiousAggressionCalculator.DetermineEffectOfReligion(faction1, faction2);
-            // normalize effect of religion based on average hero "agro" to approximately between 0.0 and 1.0
-            religionScore = religionScore / ((faction2.Heroes.Count + faction1.Heroes.Count) * 100);
+            var religionScore = ReligiousAggressionCalculator.CalculateReligionMultiplier(faction1, faction2);
 
             // apply faction score to both scores
             religionScore *= nativeFactionScore;

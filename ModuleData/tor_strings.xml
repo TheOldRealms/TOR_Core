@@ -524,6 +524,9 @@
   <string id="str_diplomacy_youDontHaveAuthority_text" text="{!=}You don't have the authority to perform this action." />
   <string id="str_diplomacy_currentScore_text" text="{!=}Current Score." />
   <string id="str_diplomacy_requiredScore_text" text="{!=}Required Score." />
+  <string id="str_diplomacy_alliance_notInterested_text" text="{!=}This faction is not interested in forming an alliance with you." />
+  <string id="str_diplomacy_alliance_notReligiouslyAligned_text" text="{!=}This faction is not religiously aligned enough to form an alliance with you." />
+  
   
   <!--custom settlements e.g. chaos portal, shrines, herdstones -->
   <string id="customsettlement_intro.chaos_portal_01" text="{=!}You arrive at an active chaos portal. The vile thing pulses with arcane magic, chaos forces are invading in minor numbers from their realm." />

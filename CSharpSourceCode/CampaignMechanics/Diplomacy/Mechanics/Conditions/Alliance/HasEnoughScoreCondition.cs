@@ -1,4 +1,5 @@
 ﻿using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Scoring;
 
@@ -12,8 +13,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Conditions.Alliance
             var scoreTooLow = AllianceScoringModel.Instance.GetScore(otherKingdom, kingdom).ResultNumber < AllianceScoringModel.Instance.ScoreThreshold;
             if (scoreTooLow)
             {
-                var scoreTooLowText = new TextObject("{=VvTTrRpl}This faction is not interested in forming an alliance with you.");
-                textObject = scoreTooLowText;
+                textObject = GameTexts.FindText("str_diplomacy_alliance_notInterested_text");
             }
             return !scoreTooLow;
         }

@@ -17,7 +17,7 @@ namespace TOR_Core.Utilities
 
         public static string GetPlusPrefixed(this float value)
         {
-            return $"{(value >= 0.0005f ? "{=!}+" : string.Empty)}{value:0.##}";
+            return $"{(value >= 0.0005f ? "+" : string.Empty)}{value:0.##}";
         }
     }
 }

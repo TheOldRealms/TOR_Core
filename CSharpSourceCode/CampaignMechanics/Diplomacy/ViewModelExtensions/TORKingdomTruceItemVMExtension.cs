@@ -28,28 +28,37 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.ViewModelExtensions
         [DataSourceProperty]
         public string AllianceActionName { get; set; }
 
+        protected HintViewModel _allianceHint;
         [DataSourceProperty]
-        public HintViewModel AllianceHint {  get; set; }
+        public HintViewModel AllianceHint
+        {
+            get => _allianceHint;
+            set
+            {
+                _allianceHint = value;
+                _vm.OnPropertyChanged(nameof(AllianceHint));
+            }
+        }
+        protected BasicTooltipViewModel _allianceScoreHint;
         [DataSourceProperty]
-        public BasicTooltipViewModel AllianceScoreHint { get; set; }
+        public BasicTooltipViewModel AllianceScoreHint
+        {
+            get => _allianceScoreHint;
+            set
+            {
+                _allianceScoreHint = value;
+                _vm.OnPropertyChanged(nameof(AllianceScoreHint));
+            }
+        }
 
         [DataSourceProperty]
         public DiplomacyPropertiesVM DiplomacyProperties { get; set; }
 
-        protected readonly bool _isAlliance;
-
         public TORKingdomTruceItemVMExtension(ViewModel vm) : base(vm)
         {
-            AllianceActionName = GameTexts.FindText("str_diplomacy_form_alliance_label").ToString();
+            AllianceActionName = GameTexts.FindText("str_diplomacy_formAlliance_label").ToString();
 
             var view = (KingdomTruceItemVM)vm;
-            var _faction1 = (Kingdom)view.Faction1;
-            var _faction2 = (Kingdom)view.Faction2;
-
-            if (_faction1 != null && _faction2 != null)
-            {
-                _isAlliance = _faction1.GetStanceWith(_faction2).IsAllied;
-            }
         }
 
         public override void RefreshValues()
@@ -74,15 +83,15 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.ViewModelExtensions
             if (_vm is KingdomDiplomacyItemVM)
             {
                 var view = (KingdomDiplomacyItemVM)_vm;
-                if (_isAlliance)
+                var _faction1 = (Kingdom)view.Faction1;
+                var _faction2 = (Kingdom)view.Faction2;
+
+                if (_faction1 != _faction2 && _faction1.GetStanceWith(_faction2).IsAllied)
                 {
-                    var breakAllianceException = BreakAllianceConditions.Instance.CanApplyExceptions(view).FirstOrDefault();
+                    BreakAllianceConditions.Instance.CanApplyExceptions(view).FirstOrDefault();
                     IsAllianceVisible = false;
                     return;
                 }
-
-                var _faction1 = (Kingdom)view.Faction1;
-                var _faction2 = (Kingdom)view.Faction2;
 
                 var allianceException = FormAllianceConditions.Instance.CanApplyExceptions(view).FirstOrDefault();
 

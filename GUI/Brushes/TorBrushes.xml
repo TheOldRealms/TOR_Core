@@ -254,4 +254,16 @@
             </Style>
         </Styles>
     </Brush>
+    <Brush Name="TorDiplomacy.Icon.Gold">
+        <Layers>
+            <BrushLayer Name="Default" Sprite="General\Icons\Coin@2x" />
+            <BrushLayer Name="Pre161" Sprite="Icons\Coin@2x" />
+        </Layers>
+        <Styles>
+            <Style Name="Default">
+            <BrushLayer Name="Default" AlphaFactor="1" />
+            <BrushLayer Name="Pre161" AlphaFactor="1" />
+            </Style>
+        </Styles>
+    </Brush>
 </Brushes>

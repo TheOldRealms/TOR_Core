@@ -6,6 +6,20 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Aggression
 {
     public static class ReligiousAggressionCalculator
     {
+        /// <summary>
+        /// Determines the scale of -1.0 to 1.0 of how religiously compatible 2 factions are. 
+        /// Negative is not compatible and positive is compatible.
+        /// </summary>
+        /// <param name="faction1"></param>
+        /// <param name="faction2"></param>
+        /// <returns></returns>
+        public static float CalculateReligionMultiplier(IFaction faction1, IFaction faction2)
+        {
+            var religionScore = DetermineEffectOfReligion(faction1, faction2);
+            // normalize effect of religion based on average hero "agro" to approximately between 0.0 and 1.0
+            religionScore = religionScore / ((faction2.Heroes.Count + faction1.Heroes.Count) * 100);
+            return religionScore;
+        }
         public static float DetermineEffectOfReligion(IFaction faction1, IFaction faction2)
         {
             var kingdomHeroes = faction1.Heroes;
