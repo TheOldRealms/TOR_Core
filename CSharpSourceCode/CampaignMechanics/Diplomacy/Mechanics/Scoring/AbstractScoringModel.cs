@@ -4,6 +4,7 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Aggression;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Scoring
@@ -12,7 +13,8 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Scoring
     {
         public static T Instance { get; } = new T();
 
-        public virtual float ScoreThreshold { get; } = 100.0f;
+        // Increased to 200 for religion
+        public virtual float ScoreThreshold { get; } = 200.0f;
 
         protected IDiplomacyScores Scores { get; }
 
@@ -80,6 +82,9 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Scoring
             // Tendency
             explainedNum.Add(Scores.Tendency, _TTendency);
 
+            var religiousAffinity = ReligiousAggressionCalculator.CalculateReligionMultiplier(ourKingdom, otherKingdom);
+            explainedNum.Add(religiousAffinity * 100, _TReligion);
+
             return explainedNum;
         }
 
@@ -93,6 +98,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Scoring
         private static readonly TextObject _TRelationship = new TextObject("{=!}Relationship");
         private static readonly TextObject _TExpansionism = new TextObject("{=!}Expansionism");
         private static readonly TextObject _TTendency = new TextObject("{=!}Action Tendency");
+        private static readonly TextObject _TReligion = new TextObject("{=!}Religious Difference");
 
         private const string SWarWithKingdom = "{=!}War with {KINGDOM}";
         private const string SAllianceWithKingdom = "{=!}Alliance with {KINGDOM}";

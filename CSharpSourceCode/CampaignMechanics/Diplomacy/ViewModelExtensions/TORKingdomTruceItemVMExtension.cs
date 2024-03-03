@@ -17,16 +17,61 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.ViewModelExtensions
     [ViewModelExtension(typeof(KingdomTruceItemVM))]
     public class TORKingdomTruceItemVMExtension : BaseViewModelExtension
     {
+        protected bool _isAllianceVisible { get; set; }
         [DataSourceProperty]
-        public bool IsAllianceVisible { get; set; }
+        public bool IsAllianceVisible
+        {
+            get => _isAllianceVisible;
+            set
+            {
+                _isAllianceVisible = value;
+                _vm.OnPropertyChanged(nameof(IsAllianceVisible));
+            }
+        }
+        protected bool _isAllianceAvailable { get; set; }
         [DataSourceProperty]
-        public bool IsAllianceAvailable { get; set; }
+        public bool IsAllianceAvailable
+        {
+            get => _isAllianceAvailable;
+            set
+            {
+                _isAllianceAvailable = value;
+                _vm.OnPropertyChanged(nameof(IsAllianceAvailable));
+            }
+        }
+        protected int _allianceInfluenceCost { get; set; }
         [DataSourceProperty]
-        public int AllianceInfluenceCost { get; set; }
+        public int AllianceInfluenceCost
+        {
+            get => _allianceInfluenceCost;
+            set
+            {
+                _allianceInfluenceCost = value;
+                _vm.OnPropertyChanged(nameof(AllianceInfluenceCost));
+            }
+        }
+        protected int _allianceGoldCost { get; set; }
         [DataSourceProperty]
-        public int AllianceGoldCost { get; set; }
+        public int AllianceGoldCost
+        {
+            get => _allianceGoldCost;
+            set
+            {
+                _allianceGoldCost = value;
+                _vm.OnPropertyChanged(nameof(AllianceGoldCost));
+            }
+        }
+        protected string _allianceActionName { get; set; }
         [DataSourceProperty]
-        public string AllianceActionName { get; set; }
+        public string AllianceActionName
+        {
+            get => _allianceActionName;
+            set
+            {
+                _allianceActionName = value;
+                _vm.OnPropertyChanged(nameof(AllianceActionName));
+            }
+        }
 
         protected HintViewModel _allianceHint;
         [DataSourceProperty]
@@ -57,8 +102,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.ViewModelExtensions
         public TORKingdomTruceItemVMExtension(ViewModel vm) : base(vm)
         {
             AllianceActionName = GameTexts.FindText("str_diplomacy_formAlliance_label").ToString();
-
-            var view = (KingdomTruceItemVM)vm;
         }
 
         public override void RefreshValues()

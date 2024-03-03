@@ -14,9 +14,8 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Conditions.GenericCondi
         {
             textObject = null;
 
-            var authority = Clan.PlayerClan.Kingdom != kingdom
-                || (kingdom?.Leader.IsHumanPlayerCharacter ?? false)
-                || !forcePlayerCosts;
+            var authority = !Clan.PlayerClan.IsClanTypeMercenary
+                && Clan.PlayerClan.Kingdom == kingdom;
 
             if (!authority)
                 textObject = GameTexts.FindText("str_diplomacy_youDontHaveAuthority_text");
