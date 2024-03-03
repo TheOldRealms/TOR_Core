@@ -522,8 +522,8 @@
   <string id="str_diplomacy_notEnoughGold_text" text="{=!}Not enough gold!" />
   <string id="str_diplomacy_factionEliminated_text" text="{=!}Faction has been eliminated." />
   <string id="str_diplomacy_youDontHaveAuthority_text" text="{=!}You don't have the authority to perform this action." />
-  <string id="str_diplomacy_currentScore_text" text="{=!}Current Score." />
-  <string id="str_diplomacy_requiredScore_text" text="{=!}Required Score." />
+  <string id="str_diplomacy_currentScore_text" text="{=!}Current Score" />
+  <string id="str_diplomacy_requiredScore_text" text="{=!}Required Score" />
   <string id="str_diplomacy_alliance_notInterested_text" text="{=!}This faction is not interested in forming an alliance with you." />
   <string id="str_diplomacy_alliance_notReligiouslyAligned_text" text="{=!}This faction is not religiously aligned enough to form an alliance with you." />
   

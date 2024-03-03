@@ -98,7 +98,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Scoring
         private static readonly TextObject _TRelationship = new TextObject("{=!}Relationship");
         private static readonly TextObject _TExpansionism = new TextObject("{=!}Expansionism");
         private static readonly TextObject _TTendency = new TextObject("{=!}Action Tendency");
-        private static readonly TextObject _TReligion = new TextObject("{=!}Religious Difference");
+        private static readonly TextObject _TReligion = new TextObject("{=!}Religious Similarity");
 
         private const string SWarWithKingdom = "{=!}War with {KINGDOM}";
         private const string SAllianceWithKingdom = "{=!}Alliance with {KINGDOM}";
