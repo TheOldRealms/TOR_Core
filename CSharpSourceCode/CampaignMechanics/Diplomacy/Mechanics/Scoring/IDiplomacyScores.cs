@@ -1,28 +1,24 @@
 ﻿namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Scoring
 {
-    internal abstract partial class AbstractScoringModel<T> where T : AbstractScoringModel<T>, new()
+    public interface IDiplomacyScores
     {
-        public interface IDiplomacyScores
-        {
-            int Base { get; }
+        int ScoreThreshold { get; }
+        int Base { get; }
 
-            int BelowMedianStrength { get; }
+        int BelowMedianStrength { get; }
 
-            int HasCommonEnemy { get; }
+        int HasCommonEnemy { get; }
 
-            int ExistingAllianceWithEnemy { get; }
+        int ExistingAllianceWithEnemy { get; }
 
-            int ExistingAllianceWithNeutral { get; }
+        int ExistingAllianceWithNeutral { get; }
 
-            int NonAggressionPactWithEnemy { get; }
+        int Relationship { get; }
 
-            int NonAggressionPactWithNeutral { get; }
+        int Tendency { get; }
 
-            int Relationship { get; }
+        int Religion { get; }
 
-            int Tendency { get; }
-
-            int LeaderClanMarriage { get; }
-        }
+        int RelationToLeader { get; }
     }
 }

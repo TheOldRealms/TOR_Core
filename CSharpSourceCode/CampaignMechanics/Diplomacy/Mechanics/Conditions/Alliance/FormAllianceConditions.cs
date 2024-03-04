@@ -13,9 +13,9 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Conditions.Alliance
             new NotInAllianceCondition(),
             new HasEnoughInfluenceCondition(),
             new HasEnoughGoldCondition(),
+            new ReligiouslyAlignedCondition(),
             new HasEnoughScoreCondition(),
-            new NotEliminatedCondition(),
-            new ReligiouslyAlignedCondition()
+            new NotEliminatedCondition()
         };
 
         public FormAllianceConditions() : base(Conditions) { }

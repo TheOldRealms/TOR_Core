@@ -7,7 +7,7 @@ using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Conditions.Alliance;
 using TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Cost;
-using TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Scoring;
+using TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Scoring.Alliance;
 using TOR_Core.CampaignMechanics.Diplomacy.ViewModels;
 using TOR_Core.Extensions.UI;
 using TOR_Core.Utilities;
@@ -143,11 +143,11 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.ViewModelExtensions
 
                 AllianceHint = !(allianceException is null) ? new HintViewModel(allianceException) : new HintViewModel();
 
-                var allianceCost = DiplomacyCostCalculator.DetermineCostForFormingAlliance(_faction1, _faction2, true);
+                var allianceCost = DiplomacyCostCalculator.DetermineCostForFormingAlliance(_faction1, _faction2);
                 AllianceInfluenceCost = (int)allianceCost.InfluenceCost.Value;
                 AllianceGoldCost = (int)allianceCost.GoldCost.Value;
 
-                var allianceScore = AllianceScoringModel.Instance.GetScore(_faction2, _faction1, true);
+                var allianceScore = AllianceScoringModel.ScoringModelInstance.GetScore(_faction1, _faction2);
                 AllianceScoreHint = UpdateDiplomacyTooltip(allianceScore);
             }
         }
@@ -164,7 +164,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.ViewModelExtensions
                 list.Add(new TooltipProperty(name, number.GetPlusPrefixed(), 0));
 
             list.Add(new TooltipProperty(string.Empty, string.Empty, 0, false, TooltipProperty.TooltipPropertyFlags.RundownSeperator));
-            list.Add(new TooltipProperty(GameTexts.FindText("str_diplomacy_requiredScore_text").ToString(), $"{AllianceScoringModel.Instance.ScoreThreshold:0.##}", 0, false,
+            list.Add(new TooltipProperty(GameTexts.FindText("str_diplomacy_requiredScore_text").ToString(), $"{AllianceScoringModel.ScoringModelInstance.ScoreThreshold:0.##}", 0, false,
                 TooltipProperty.TooltipPropertyFlags.RundownResult));
 
             return new BasicTooltipViewModel(() => list);

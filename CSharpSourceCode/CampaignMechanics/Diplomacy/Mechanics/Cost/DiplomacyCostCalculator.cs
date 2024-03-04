@@ -62,34 +62,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Cost
 
         private static float GetKingdomScalingFactorForGold(Kingdom kingdom) => MathF.Floor(GetKingdomTierCount(kingdom) * 5f); // or 100f
 
-        public static HybridCost DetermineCostForFormingNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
-        {
-            return new HybridCost(
-                DetermineInfluenceCostForFormingNonAggressionPact(kingdom, otherKingdom, forcePlayerCharacterCosts),
-                DetermineGoldCostForFormingNonAggressionPact(kingdom, otherKingdom, forcePlayerCharacterCosts));
-        }
-
-        public static InfluenceCost DetermineInfluenceCostForFormingNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
-        {
-            var clanPayingInfluence = forcePlayerCharacterCosts ? Clan.PlayerClan : kingdom.Leader.Clan;
-
-            return new InfluenceCost(clanPayingInfluence, GetKingdomScalingFactorForInfluence(kingdom));
-        }
-
-        private static GoldCost DetermineGoldCostForFormingNonAggressionPact(Kingdom kingdom, Kingdom otherKingdom, bool forcePlayerCharacterCosts = false)
-        {
-            var giver = forcePlayerCharacterCosts ? Hero.MainHero : kingdom.Leader;
-
-            var otherKingdomWarLoad = GetKingdomWarLoad(otherKingdom) + 1;
-
-            var baseGoldCost = 500;
-            var goldCostFactor = 100;
-            var goldCost = (int) ((MBMath.ClampFloat((1 / otherKingdomWarLoad), 0f, 1f) * GetKingdomScalingFactorForGold(kingdom) * goldCostFactor) + baseGoldCost);
-
-            //This is a cost of organization process and thus has no addressee
-            return new GoldCost(giver, goldCost);
-        }
-
         private static float GetKingdomWarLoad(Kingdom kingdom)
         {
             return FactionManager.GetEnemyFactions(kingdom)?.Select(x => x.TotalStrength).Aggregate(0f, (result, item) => result + item) / kingdom.TotalStrength ?? 0f;

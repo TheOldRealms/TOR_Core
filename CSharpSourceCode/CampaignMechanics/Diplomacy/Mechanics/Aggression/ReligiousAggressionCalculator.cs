@@ -17,10 +17,10 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Aggression
         {
             var religionScore = DetermineEffectOfReligion(faction1, faction2);
             // normalize effect of religion based on average hero "agro" to approximately between 0.0 and 1.0
-            religionScore = religionScore / ((faction2.Heroes.Count + faction1.Heroes.Count) * 100);
+            religionScore = religionScore / ((faction2.Heroes.Count + faction1.Heroes.Count) * ReligionObject.All.Count);
             return religionScore;
         }
-        public static float DetermineEffectOfReligion(IFaction faction1, IFaction faction2)
+        private static float DetermineEffectOfReligion(IFaction faction1, IFaction faction2)
         {
             var kingdomHeroes = faction1.Heroes;
 
@@ -37,8 +37,8 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Aggression
                             continue;
                         foreach (var comparedToReligion in ReligionObject.All)
                         {
-                            religionValue += DeterminePositiveEffect(hero, religion, enemy, comparedToReligion);
-                            religionValue += DetermineNegativeEffect(hero, religion, enemy, comparedToReligion);
+                            religionValue += DeterminePositiveEffect(hero, religion, enemy, comparedToReligion)/100;
+                            religionValue += DetermineNegativeEffect(hero, religion, enemy, comparedToReligion)/100;
                         }
                     }
                 }

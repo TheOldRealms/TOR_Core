@@ -471,6 +471,17 @@
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Conditions\Alliance\ReligiouslyAlignedCondition.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Conditions\GenericConditions\HasAuthorityCondition.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Conditions\GenericConditions\NotEliminatedCondition.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Scoring\Alliance\AllianceScores.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Scoring\Alliance\Factors\AlliedWithEnemyFactor.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Scoring\Alliance\Factors\AlliedWithNeutral.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Scoring\Alliance\Factors\CommonEnemiesFactor.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Scoring\Alliance\Factors\LeaderToLeaderRelationshipFactor.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Scoring\Alliance\Factors\PlayerRelationshipWithFactionLeader.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Scoring\Alliance\Factors\ReligiousFactor.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Scoring\Alliance\Factors\TendencyFactor.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Scoring\Alliance\Factors\TheyAreExpansionistFactor.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Scoring\Alliance\Factors\WeAreWeakFactor.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Scoring\IDiplomacyScoreFactor.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Scoring\IDiplomacyScores.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\TORExpansionismManager.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\FactionPair.cs" />
@@ -490,7 +501,7 @@
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Conditions\GenericConditions\NotInAllianceCondition.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\IDiplomacyCondition.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Scoring\AbstractScoringModel.cs" />
-    <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Scoring\AllianceScoringModel.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Scoring\Alliance\AllianceScoringModel.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\TORCooldownManager.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Actions\GiveGoldToClanAction.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\Mechanics\Actions\GiveGoldToKingdomAction.cs" />
