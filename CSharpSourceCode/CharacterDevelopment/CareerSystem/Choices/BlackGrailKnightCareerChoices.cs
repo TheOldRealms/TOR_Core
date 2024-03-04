@@ -293,7 +293,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _blackGrailVowKeystone.Initialize(CareerID, "Ability scales with Leadership and propagates from all heroes to units in a 5m radius ", "BlackGrailVow", false,
+            _blackGrailVowKeystone.Initialize(CareerID, "Ability scales with Leadership and propagates from all heroes to units in a 5m radius.", "BlackGrailVow", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
