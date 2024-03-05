@@ -172,6 +172,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 Hero.MainHero.UpdatePlayerGender(true);
             }
+            else if(IsKnightErrantCharacterCreationID(optionId) && CharacterObject.PlayerCharacter.IsFemale)
+            {
+                Hero.MainHero.UpdatePlayerGender(false);
+            }
             UpdateVisuals(race, charInfo);
             UpdateEquipment(selectedOption, charInfo);
             

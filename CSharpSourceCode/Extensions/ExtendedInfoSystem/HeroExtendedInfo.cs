@@ -130,10 +130,20 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                         }
                         else if (BaseCharacter.HeroObject.PartyBelongedTo!=null && BaseCharacter.HeroObject.PartyBelongedTo.IsMainParty)
                         {
-                            if (CareerChoices.Contains("EnvoyOfTheLadyPassive3"))
+                            if (Hero.MainHero != null)
                             {
-                                var choice = TORCareerChoices.GetChoice("EnvoyOfTheLadyPassive3");
-                                explainedNumber.Add(choice.GetPassiveValue());
+                                var choices = Hero.MainHero.GetAllCareerChoices();
+                                if (choices.Contains("EnvoyOfTheLadyPassive3"))
+                                {
+                                    var choice = TORCareerChoices.GetChoice("EnvoyOfTheLadyPassive3");
+                                    explainedNumber.Add(choice.GetPassiveValue());
+                                }
+                            
+                                if (choices.Contains("LieOfLadyPassive2"))
+                                {
+                                    var choice = TORCareerChoices.GetChoice("LieOfLadyPassive2");
+                                    explainedNumber.Add(choice.GetPassiveValue());
+                                }
                             }
                             
                             if (CareerChoices.Contains("LieOfLadyPassive2"))

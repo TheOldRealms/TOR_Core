@@ -2826,7 +2826,7 @@
 	
 	<AbilityTemplate StringID="Accusation"
        Name="{=accusation_str}Accusation"
-       SpriteName="righteousfury_icon"
+       SpriteName="accusation_icon"
        CoolDown="5"
        WindsOfMagicCost="0"
        BaseMisCastChance="0"
