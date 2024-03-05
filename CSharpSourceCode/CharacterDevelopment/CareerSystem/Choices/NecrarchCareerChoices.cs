@@ -249,7 +249,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             _unhallowedSoulPassive1.Initialize(CareerID, "Increase buff durations by 25%.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.25f, PassiveEffectType.BuffDuration,true));
             _unhallowedSoulPassive2.Initialize(CareerID, "Increases Party size by 50.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.PartySize));
-            _unhallowedSoulPassive3.Initialize(CareerID, "While wielding a staff, every kill with a one handed weapon gains you 1 winds of magic.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.Special, false));
+            _unhallowedSoulPassive3.Initialize(CareerID, "Unmounted, wielding an offhand artefact, gain you 1 winds of magic for every melee-kill.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.Special, false));
             _unhallowedSoulPassive4.Initialize(CareerID, "Increases lightning spell damage by 10%.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 10), AttackTypeMask.Spell));
             
             _hungerForKnowledgePassive1.Initialize(CareerID, "Increase hex durations by 25%.", "HungerForKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.25f, PassiveEffectType.DebuffDuration,true));

@@ -123,7 +123,7 @@ namespace TOR_Core.BattleMechanics
                     }
                 }
                 
-                if (affectorAgent.HasMount&&!affectorAgent.WieldedOffhandWeapon.IsEmpty&&affectorAgent.WieldedOffhandWeapon.Item!=null&&affectorAgent.WieldedOffhandWeapon.Item.IsMagicalStaff()&& choices.Contains("UnhallowedSoulPassive3"))
+                if (!affectorAgent.HasMount&&!affectorAgent.WieldedOffhandWeapon.IsEmpty&&affectorAgent.WieldedOffhandWeapon.Item!=null&&affectorAgent.WieldedOffhandWeapon.Item.IsMagicalStaff()&& choices.Contains("UnhallowedSoulPassive3"))
                 {
                     var choice = TORCareerChoices.GetChoice("UnhallowedSoulPassive3");  
                     var value = choice.GetPassiveValue();
