@@ -107,7 +107,7 @@ namespace TOR_Core.BattleMechanics
                             affectorAgent.ApplyStatusEffect("accusation_buff_rls", affectorAgent, choice.GetPassiveValue(), false, false);
                         }
                     }
-
+                    
                     if (choices.Contains("ToolsOfJudgementPassive4"))
                     {
                         var multiplier = 1;
@@ -121,6 +121,13 @@ namespace TOR_Core.BattleMechanics
                         var value = ((int)blow.InflictedDamage * multiplier) / 10;
                         Hero.MainHero.AddSkillXp(DefaultSkills.Roguery, value);
                     }
+                }
+                
+                if (affectorAgent.HasMount&&!affectorAgent.WieldedOffhandWeapon.IsEmpty&&affectorAgent.WieldedOffhandWeapon.Item!=null&&affectorAgent.WieldedOffhandWeapon.Item.IsMagicalStaff()&& choices.Contains("UnhallowedSoulPassive3"))
+                {
+                    var choice = TORCareerChoices.GetChoice("UnhallowedSoulPassive3");  
+                    var value = choice.GetPassiveValue();
+                    playerHero.AddWindsOfMagic(value);
                 }
 
                 if (choices.Contains("ControlledHungerPassive4"))
@@ -136,7 +143,6 @@ namespace TOR_Core.BattleMechanics
                             damage /= 200;
                             var bonus = Mathf.Clamp(damage, 0, 5);
                             affectorAgent.Heal(bonus);
-                            InformationManager.DisplayMessage(new InformationMessage(affectorAgent.Health + "health + bonus " + bonus, Color.FromUint(16095298)));   //TODO REMOVE
                         }
                     }
                 }

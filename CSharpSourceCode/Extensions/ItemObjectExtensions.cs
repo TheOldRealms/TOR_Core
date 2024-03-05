@@ -109,6 +109,11 @@ namespace TOR_Core.Extensions
             return result;
         }
 
+        public static bool IsMagicalStaff(this ItemObject itemObject)
+        {
+            return itemObject.StringId.Contains("staff") && itemObject.WeaponComponent.PrimaryWeapon.IsMeleeWeapon;
+        }
+
         public static bool IsGunPowderWeapon(this ItemObject itemObject)
         {
             return (bool)(itemObject.WeaponComponent?.PrimaryWeapon?.IsGunPowderWeapon());
