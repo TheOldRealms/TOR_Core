@@ -353,7 +353,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _unbreakableArmyPassive4.Initialize(CareerID, "Increases Party size by 50.", "UnbreakableArmy", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.PartySize));
 
             _scourgeOfBretonniaPassive1.Initialize(CareerID, "Increases Hitpoints by 40.", "ScourgeOfBretonnia", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Health));
-            _scourgeOfBretonniaPassive2.Initialize(CareerID, "Gain 15 Dark Energy daily.", "ScourgeOfBretonnia", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.CustomResourceGain));
+            _scourgeOfBretonniaPassive2.Initialize(CareerID, "Gain 25 Dark Energy daily.", "ScourgeOfBretonnia", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.CustomResourceGain));
             _scourgeOfBretonniaPassive3.Initialize(CareerID, "Mousillon Knight damage against infantry  is increased by 15%.", "ScourgeOfBretonnia", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.Spell,
                 (attacker, victim, mask) => attacker.BelongsToMainParty() && isMousillonKnight(attacker.Character as CharacterObject) && victim.Character.IsInfantry));
             _scourgeOfBretonniaPassive4.Initialize(CareerID, "Any Bret. Knight units can be transformed to ill-fated mousillon units.", "ScourgeOfBretonnia", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special, true));
