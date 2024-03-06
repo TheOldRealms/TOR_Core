@@ -2948,7 +2948,7 @@
 	<AbilityTemplate StringID="KnightlyCharge"
        Name="{=knightly_charge_label_str}Knightly Charge"
        SpriteName="knightlycharge_icon"
-       CoolDown="90"
+       CoolDown="60"
        WindsOfMagicCost="0"
        BaseMisCastChance="0"
        Duration="6"
