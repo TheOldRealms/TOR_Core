@@ -93,7 +93,7 @@ namespace TOR_Core.CharacterDevelopment
             _witchHunter.Initialize("Witch Hunter", null, "Accusation", CareerAbilityChargeSupplier.WitchHunterCareerCharge, 200, typeof(AccusationScript));
             _necromancer.Initialize("Necromancer", null, "GreaterHarbinger", CareerAbilityChargeSupplier.NecromancerCareerCharge, 2000, typeof(SummonChampionScript));
             _blackGrailKnight.Initialize("Knight of the Black Grail", null, "KnightlyCharge",null,100, typeof(KnightlyChargeScript));
-            _necrarch.Initialize("Necrarch", null, "NetherBall", CareerAbilityChargeSupplier.NecrarchCareerCharge, 2500, typeof(NetherballScript));
+            _necrarch.Initialize("Necrarch", null, "NetherBall", CareerAbilityChargeSupplier.NecrarchCareerCharge, 1500, typeof(NetherballScript));
         }
     }
 }
