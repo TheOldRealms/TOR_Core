@@ -81,6 +81,11 @@ namespace TOR_Core.CharacterDevelopment
                 return Mathf.Max(explainedNumber.ResultNumber,1);
             }
 
+            if (Hero.MainHero.HasCareerChoice("DarkVisionKeystone"))
+            {
+                explainedNumber.AddFactor(0.25f);
+            }
+
             if (!affectingAgent.IsHero || mask != AttackTypeMask.Spell) return explainedNumber.ResultNumber;
             explainedNumber.Add(chargeValue);
             if (!affectingAgent.IsMainAgent && !Hero.MainHero.HasCareerChoice("WellspringOfDharKeystone")) 

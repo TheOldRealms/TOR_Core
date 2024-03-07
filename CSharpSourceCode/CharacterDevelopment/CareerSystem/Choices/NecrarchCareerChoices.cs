@@ -174,7 +174,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Replace
                     }
                 });
-            _darkVisionKeystone.Initialize(CareerID, "Summons a Wraith on impact.", "DarkVision", false,
+            _darkVisionKeystone.Initialize(CareerID, "Summons a Wraith on impact. Spell damage charge is increased by 25%", "DarkVision", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -185,7 +185,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "summon_wraith" }).ToList(),
                         MutationType = OperationType.Replace
                     }
-                });
+                }); // also adds 25% charge bonus
             _unhallowedSoulKeystone.Initialize(CareerID, "Increase impact damage of netherball by 25%. Charging is 20% more efficient", "UnhallowedSoul", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
