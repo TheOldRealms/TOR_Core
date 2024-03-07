@@ -78,7 +78,7 @@ namespace TOR_Core.CharacterDevelopment
             {
                 explainedNumber.Add(chargeValue);
                 explainedNumber.AddFactor(-0.9f);
-                return explainedNumber.ResultNumber;
+                return Mathf.Max(explainedNumber.ResultNumber,1);
             }
 
             if (!affectingAgent.IsHero || mask != AttackTypeMask.Spell) return explainedNumber.ResultNumber;
