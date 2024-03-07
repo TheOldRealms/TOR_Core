@@ -77,7 +77,7 @@ namespace TOR_Core.CharacterDevelopment
             if (!affectingAgent.IsHero && affectingAgent.IsUndead() && Hero.MainHero.HasCareerChoice("DiscipleOfAccursedKeystone"))
             {
                 explainedNumber.Add(chargeValue);
-                explainedNumber.AddFactor(-0.9f);
+                explainedNumber.AddFactor(-0.75f);
                 return Mathf.Max(explainedNumber.ResultNumber,1);
             }
 
