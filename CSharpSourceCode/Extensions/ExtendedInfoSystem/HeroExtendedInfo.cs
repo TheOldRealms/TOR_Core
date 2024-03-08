@@ -110,7 +110,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                             
                             if (CareerChoices.Contains("DarkVisionPassive4"))
                             {
-                                var spellCount = Hero.MainHero.GetExtendedInfo().AcquiredAbilities.Count - 1;
+                                var spellCount = Hero.MainHero.GetExtendedInfo().AcquiredAbilities.Count;
                                 var choice = TORCareerChoices.GetChoice("DarkVisionPassive4");
                                 explainedNumber.Add(choice.GetPassiveValue() * spellCount);
                             }
