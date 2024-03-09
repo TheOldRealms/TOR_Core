@@ -990,7 +990,21 @@
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>let_them_have_it_unstoppable</ImbuedStatusEffect>
 			<ImbuedStatusEffect>let_them_have_it_unbreakable</ImbuedStatusEffect>
-			
+      </TriggeredEffectTemplate>
+	  
+	  <TriggeredEffectTemplate StringID="blackaxe_smash" 
+            BurstParticleEffectPrefab="treeman_smash" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+            DamageAmount="50" 
+            Radius="5" 
+            HasShockWave="true" 
+            DoNotAlignParticleEffectPrefabOnImpact="true"
+            TargetType="Enemy" 
+            ImbuedStatusEffectDuration="0" 
+            DamageVariance="0.2" 
+            ScriptNameToTrigger="none">
       </TriggeredEffectTemplate>
 	  
       <TriggeredEffectTemplate StringID="apply_righteous_fury" 
