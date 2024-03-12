@@ -1,4 +1,4 @@
-﻿namespace TOR_Core.AbilitySystem
+namespace TOR_Core.AbilitySystem
 {
     public enum AbilityType
     {
