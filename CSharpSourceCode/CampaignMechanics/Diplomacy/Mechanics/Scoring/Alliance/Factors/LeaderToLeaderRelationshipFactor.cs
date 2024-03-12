@@ -17,6 +17,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy.Mechanics.Scoring.Alliance.Factor
                 relationMult = 0;
             else
                 relationMult = MBMath.ClampFloat((float)Math.Log((ourKingdom.Leader.GetRelation(otherKingdom.Leader) + 100f) / 100f, 1.5), -1f, +1f);
+
             result.Add(scores.Relationship * relationMult, _TRelationship);
         }
     }

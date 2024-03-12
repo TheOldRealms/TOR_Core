@@ -81,14 +81,14 @@ namespace TOR_Core.CharacterDevelopment
         private void InitializeAll()
         {
             _grailDamsel.Initialize("Damsel of the Lady", null, "FeyPaths", CareerAbilityChargeSupplier.GrailDamselCareerCharge, 2500, typeof(TeleportScript));
-            _grailKnight.Initialize("Grail Knight", null, "KnightlyCharge");
+            _grailKnight.Initialize("Grail Knight", null, "KnightlyCharge", null,100, typeof(KnightlyChargeScript));
             _bloodKnight.Initialize("Blood Knight", null, "RedFury", CareerAbilityChargeSupplier.BloodKnightCareerCharge, 10, typeof(RedFuryScript));
             _minorVampire.Initialize("Vampire Count", null, "ShadowStep", CareerAbilityChargeSupplier.MinorVampireCareerCharge, 800, typeof(ShadowStepScript));
             _warriorPriest.Initialize("Warrior Priest", hero => { return hero.Culture == MBObjectManager.Instance.GetObject<CultureObject>("empire") && hero.Clan.Tier >= 1; }, "RighteousFury", CareerAbilityChargeSupplier.WarriorPriestCareerCharge, 30 );
             _mercenary.Initialize("Mercenary", null, "LetThemHaveIt" );
             _witchHunter.Initialize("Witch Hunter", null, "Accusation", CareerAbilityChargeSupplier.WitchHunterCareerCharge, 200, typeof(AccusationScript));
             _necromancer.Initialize("Necromancer", null, "GreaterHarbinger", CareerAbilityChargeSupplier.NecromancerCareerCharge, 2000, typeof(SummonChampionScript));
-            _blackGrailKnight.Initialize("Knight of the Black Grail", null, "KnightlyCharge");
+            _blackGrailKnight.Initialize("Knight of the Black Grail", null, "KnightlyCharge",null,100, typeof(KnightlyChargeScript));
         }
     }
 }

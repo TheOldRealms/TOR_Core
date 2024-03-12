@@ -293,7 +293,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _blackGrailVowKeystone.Initialize(CareerID, "Ability scales with Leadership and propagates from all heroes to units in a 5m radius ", "BlackGrailVow", false,
+            _blackGrailVowKeystone.Initialize(CareerID, "Ability scales with Leadership and propagates from all heroes to units in a 5m radius.", "BlackGrailVow", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -353,7 +353,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _unbreakableArmyPassive4.Initialize(CareerID, "Increases Party size by 50.", "UnbreakableArmy", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.PartySize));
 
             _scourgeOfBretonniaPassive1.Initialize(CareerID, "Increases Hitpoints by 40.", "ScourgeOfBretonnia", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Health));
-            _scourgeOfBretonniaPassive2.Initialize(CareerID, "Gain 15 Dark Energy daily.", "ScourgeOfBretonnia", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.CustomResourceGain));
+            _scourgeOfBretonniaPassive2.Initialize(CareerID, "Gain 25 Dark Energy daily.", "ScourgeOfBretonnia", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.CustomResourceGain));
             _scourgeOfBretonniaPassive3.Initialize(CareerID, "Mousillon Knight damage against infantry  is increased by 15%.", "ScourgeOfBretonnia", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.Spell,
                 (attacker, victim, mask) => attacker.BelongsToMainParty() && isMousillonKnight(attacker.Character as CharacterObject) && victim.Character.IsInfantry));
             _scourgeOfBretonniaPassive4.Initialize(CareerID, "Any Bret. Knight units can be transformed to ill-fated mousillon units.", "ScourgeOfBretonnia", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special, true));
@@ -366,7 +366,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 characterObject => isMousillonKnight(characterObject)));
 
             _lieOfLadyPassive1.Initialize(CareerID, "15% extra melee magic damage.", "LieOfLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 15), AttackTypeMask.Melee));
-            _lieOfLadyPassive2.Initialize(CareerID, "Necromancer companions gain 25 Winds of magic.", "LieOfLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
+            _lieOfLadyPassive2.Initialize(CareerID, "Necromancer companions gain 25 Winds of magic.", "LieOfLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, false));
             _lieOfLadyPassive3.Initialize(CareerID, "Dark Energy upkeep for Knights of the black grail is reduced by 25%.", "LieOfLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpkeepModifier, true,
                 characterObject => characterObject.StringId.Contains("tor_m_knight_of_the_black_grail")));
             _lieOfLadyPassive4.Initialize(CareerID, "Knights of the black grail deal 15% magical damage.", "LieOfLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Magical, 15), AttackTypeMask.Melee,

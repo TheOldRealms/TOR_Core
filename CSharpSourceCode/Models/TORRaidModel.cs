@@ -45,7 +45,7 @@ namespace TOR_Core.Models
                             explainedNumber.AddFactor(-choice.GetPassiveValue());
                         }
                         
-                        Hero.MainHero.AddCustomResource("DarkEnergy",explainedNumber.ResultNumber*150);
+                        Hero.MainHero.AddCustomResource("DarkEnergy",explainedNumber.ResultNumber*250);
                     }
                 }
             }
