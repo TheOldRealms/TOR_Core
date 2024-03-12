@@ -111,6 +111,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsMagicalStaff(this ItemObject itemObject)
         {
+            if (itemObject == null) return false;
             return itemObject.StringId.Contains("staff") && itemObject.WeaponComponent.PrimaryWeapon.IsMeleeWeapon;
         }
 
