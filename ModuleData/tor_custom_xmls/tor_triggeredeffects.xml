@@ -1007,8 +1007,8 @@
             DamageVariance="0" 
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.KnockDownScript"/>
 			
-	  <TriggeredEffectTemplate StringID="apply_netherball" 
-            BurstParticleEffectPrefab="psys_fireball_explosion_1" 
+	  <TriggeredEffectTemplate StringID="apply_blastofagony" 
+            BurstParticleEffectPrefab="blast_of_agony_explosion" 
             SoundEffectId="fireball_explosion" 
             SoundEffectLength="2.5" 
             DamageType="Magical" 

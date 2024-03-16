@@ -1081,5 +1081,13 @@
 			</particle_system_instanced_component>
 		</components>
 	</game_entity>
+	<game_entity name="blast_of_agony_prefab" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{4504C731-1AC5-43F8-9798-4727F9C5F90F}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
 </prefabs>
 

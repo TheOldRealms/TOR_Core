@@ -118,7 +118,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_netherball",
+                        MutationTargetOriginalId = "apply_blastofagony",
                         PropertyName = "Radius",
                         PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.SpellCraft}, 0.01f),
                         MutationType = OperationType.Add
@@ -132,7 +132,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "NetherBall",
+                        MutationTargetOriginalId = "BlastOfAgony",
                         PropertyName = "SeekerParameters",
                         PropertyValue = (choice, originalValue, agent) =>
                         {
@@ -147,7 +147,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "NetherBall",
+                        MutationTargetOriginalId = "BlastOfAgony",
                         PropertyName = "CrosshairType",
                         PropertyValue = (choice, originalValue, agent) =>CrosshairType.SingleTarget,
                         MutationType = OperationType.Replace
@@ -155,7 +155,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "NetherBall",
+                        MutationTargetOriginalId = "BlastOfAgony",
                         PropertyName = "AbilityTargetType",
                         PropertyValue = (choice, originalValue, agent) =>AbilityTargetType.EnemiesInAOE,
                         MutationType = OperationType.Replace
@@ -168,7 +168,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_netherball",
+                        MutationTargetOriginalId = "apply_blastofagony",
                         PropertyName = "ImbuedStatusEffects",
                         PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "netherball_dot" }).ToList(),
                         MutationType = OperationType.Replace
@@ -180,7 +180,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "NetherBall",
+                        MutationTargetOriginalId = "BlastOfAgony",
                         PropertyName = "TriggeredEffects",
                         PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "summon_wraith" }).ToList(),
                         MutationType = OperationType.Replace
@@ -192,7 +192,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_netherball",
+                        MutationTargetOriginalId = "apply_blastofagony",
                         PropertyName = "DamageAmount",
                         PropertyValue = (choice, originalValue, agent) => (float)originalValue*1.25f,
                         MutationType = OperationType.Add
@@ -204,7 +204,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_netherball",
+                        MutationTargetOriginalId = "apply_blastofagony",
                         PropertyName = "Radius",
                         PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Roguery}, 0.01f),
                         MutationType = OperationType.Add
@@ -216,7 +216,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_netherball",
+                        MutationTargetOriginalId = "apply_blastofagony",
                         PropertyName = "Radius",
                         PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Medicine}, 0.01f),
                         MutationType = OperationType.Add
