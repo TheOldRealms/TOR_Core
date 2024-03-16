@@ -2610,7 +2610,7 @@
 	
 	<AbilityTemplate StringID="QuicksilverSwords"
       Name="{=quicksilver_swords_label_str}Quicksilver Swords"
-      SpriteName="swordsofrhuin_icon"
+      SpriteName="quicksilversword_icon"
       CoolDown="30"
       WindsOfMagicCost="13"
       BaseMisCastChance="0.05"
@@ -2653,7 +2653,7 @@
 	
 	<AbilityTemplate StringID="GleamingArrow" 
       Name="{=gleaming_arrow_label_str}Gleaming Arrow" 
-      SpriteName="dart_icon" 
+      SpriteName="gleamingarrow_icon" 
       CoolDown="10" 
       WindsOfMagicCost="4" 
       BaseMisCastChance="0.05" 
@@ -3361,8 +3361,8 @@
 	   <TriggeredEffect>summon_champion</TriggeredEffect>
 	</AbilityTemplate>
 	
-	<AbilityTemplate StringID="NetherBall" 
-      Name="Nether ball" 
+	<AbilityTemplate StringID="BlastOfAgony" 
+      Name="Blast of Agony" 
       SpriteName="fireball_icon" 
       CoolDown="10" 
       WindsOfMagicCost="0" 

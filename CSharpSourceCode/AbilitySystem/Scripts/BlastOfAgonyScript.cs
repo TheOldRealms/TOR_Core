@@ -9,7 +9,7 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem.Scripts
 {
-    public class NetherballScript : CareerAbilityMissleScript
+    public class BlastOfAgonyScript : CareerAbilityMissleScript
     {
         private bool _init;
         private float _radius = 0f;

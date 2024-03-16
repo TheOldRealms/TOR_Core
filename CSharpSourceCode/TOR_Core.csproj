@@ -345,7 +345,7 @@
     <Compile Include="AbilitySystem\Scripts\HexScript.cs" />
     <Compile Include="AbilitySystem\Scripts\KnightlyChargeScript.cs" />
     <Compile Include="AbilitySystem\Scripts\MissileScript.cs" />
-    <Compile Include="AbilitySystem\Scripts\NetherballScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\BlastOfAgonyScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ProjectileScript.cs" />
     <Compile Include="AbilitySystem\Scripts\RedFuryScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ShadowStepScript.cs" />
