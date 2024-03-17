@@ -60,7 +60,7 @@ namespace TOR_Core.Models
             }
             if (character.IsUndead()&&!character.IsHero && !character.HasAttribute("NecromancerChampion"))
             {
-                number.Add(-50);
+                //number.Add(-50);
             }
 
             if (character.HasAttribute("NecromancerChampion"))
