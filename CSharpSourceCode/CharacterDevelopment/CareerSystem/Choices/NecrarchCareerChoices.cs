@@ -2,6 +2,7 @@
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.BattleMechanics.DamageSystem;
@@ -125,10 +126,54 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     },
                 });
             
-            _discipleOfAccursedKeystone.Initialize(CareerID, "Netherball is now target seeking. Undead troops can charge career ability", "DiscipleOfAccursed", false,
+            _discipleOfAccursedKeystone.Initialize(CareerID, "Undead troops can charge career ability. Ability scales with Roguery", "DiscipleOfAccursed", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
-                    
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_blastofagony",
+                        PropertyName = "Radius",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Roguery}, 0.01f),
+                        MutationType = OperationType.Add
+                    }
+                });
+            
+            _witchSightKeystone.Initialize(CareerID, "For every hit enemy gain 0.5% of your maximum Winds of magic", "WitchSight", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_blastofagony",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "netherball_dot" }).ToList(),
+                        MutationType = OperationType.Replace
+                    }
+                });
+            _darkVisionKeystone.Initialize(CareerID, "Summons a Wraith on impact. Spell damage charge is increased by 25%", "DarkVision", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "BlastOfAgony",
+                        PropertyName = "TriggeredEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "summon_wraith" }).ToList(),
+                        MutationType = OperationType.Replace
+                    }
+                }); 
+            _unhallowedSoulKeystone.Initialize(CareerID, "Increase impact damage of netherball by 25%. The Projectile is now target seeking", "UnhallowedSoul", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_blastofagony",
+                        PropertyName = "DamageAmount",
+                        PropertyValue = (choice, originalValue, agent) => (float)originalValue*1.25f,
+                        MutationType = OperationType.Add
+                    },
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(AbilityTemplate),
@@ -160,57 +205,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         PropertyValue = (choice, originalValue, agent) =>AbilityTargetType.EnemiesInAOE,
                         MutationType = OperationType.Replace
                     },
+                    
                 });
-            
-            _witchSightKeystone.Initialize(CareerID, "Netherball applies a dot on impact", "WitchSight", false,
+            _hungerForKnowledgeKeystone.Initialize(CareerID, "The Career ability is constantly slowly charged.", "HungerForKnowledge", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_blastofagony",
-                        PropertyName = "ImbuedStatusEffects",
-                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "netherball_dot" }).ToList(),
-                        MutationType = OperationType.Replace
-                    }
+                    
                 });
-            _darkVisionKeystone.Initialize(CareerID, "Summons a Wraith on impact. Spell damage charge is increased by 25%", "DarkVision", false,
-                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
-                {
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "BlastOfAgony",
-                        PropertyName = "TriggeredEffects",
-                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "summon_wraith" }).ToList(),
-                        MutationType = OperationType.Replace
-                    }
-                }); // also adds 25% charge bonus
-            _unhallowedSoulKeystone.Initialize(CareerID, "Increase impact damage of netherball by 25%. Charging is 20% more efficient", "UnhallowedSoul", false,
-                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
-                {
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_blastofagony",
-                        PropertyName = "DamageAmount",
-                        PropertyValue = (choice, originalValue, agent) => (float)originalValue*1.25f,
-                        MutationType = OperationType.Add
-                    }
-                });
-            _hungerForKnowledgeKeystone.Initialize(CareerID, "Ability scales with Rougery. For every hit enemy gain 1 Winds of magic", "HungerForKnowledge", false,
-                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
-                {
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_blastofagony",
-                        PropertyName = "Radius",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Roguery}, 0.01f),
-                        MutationType = OperationType.Add
-                    }
-                });
-            _wellspringOfDharKeystone.Initialize(CareerID, "Ability scales with Medicine. Starts charged. Companions can charge ability.", "WellspringOfDhar", false,
+            _wellspringOfDharKeystone.Initialize(CareerID, "Ability scales with Medicine. Ability starts charged. Companions can charge ability.", "WellspringOfDhar", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -249,7 +251,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             _unhallowedSoulPassive1.Initialize(CareerID, "Increase buff durations by 25%.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.25f, PassiveEffectType.BuffDuration,true));
             _unhallowedSoulPassive2.Initialize(CareerID, "Increases Party size by 50.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.PartySize));
-            _unhallowedSoulPassive3.Initialize(CareerID, "Unmounted, wielding an offhand artefact, gain you 1 winds of magic for every melee-kill.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.Special, false));
+            _unhallowedSoulPassive3.Initialize(CareerID, "20% Ward save if your armor weight does not exceed 11 weight.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 20), AttackTypeMask.All, 
+                (attacker, victim, attackmask) => HeroArmorWeightUndershootCheck(attacker) ));
             _unhallowedSoulPassive4.Initialize(CareerID, "Increases lightning spell damage by 10%.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 10), AttackTypeMask.Spell));
             
             _hungerForKnowledgePassive1.Initialize(CareerID, "Increase hex durations by 25%.", "HungerForKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.25f, PassiveEffectType.DebuffDuration,true));
@@ -268,6 +271,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _everlingsSecretPassive2.Initialize(CareerID, "35% spell cooldown reduction.", "EverlingsSecret", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-35, PassiveEffectType.WindsCooldownReduction, true)); 
             _everlingsSecretPassive3.Initialize(CareerID, "Once your Winds are full, your winds recharge rate is counted towards your Dark Energy.", "EverlingsSecret", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
             _everlingsSecretPassive4.Initialize(CareerID, "Any non-physical damage count towards spell damage type.", "EverlingsSecret", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect()); 
+        }
+        
+        
+        private static bool HeroArmorWeightUndershootCheck(Agent agent)
+        {
+            if (!agent.BelongsToMainParty()) return false;
+            if (!agent.IsMainAgent) return false;
+            var weight = agent.Character.Equipment.GetTotalWeightOfArmor(true);
+            return weight <= 11;
         }
     }
 }

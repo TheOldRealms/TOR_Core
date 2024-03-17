@@ -34,10 +34,13 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         protected override void HandleCollision(Vec3 position, Vec3 normal)
         {
-            if(Hero.MainHero.HasCareerChoice("HungerForKnowledgeKeystone"))
+            if(Hero.MainHero.HasCareerChoice("WitchSightKeystone"))
             { 
                 var agents = Mission.Current.GetNearbyEnemyAgents(position.AsVec2, _radius, CasterAgent.Team, new MBList<Agent>());
-                Hero.MainHero.AddCustomResource("DarkEnergy", agents.Count);
+                var maxWindsOfMagic = Hero.MainHero.GetExtendedInfo().MaxWindsOfMagic;
+
+                var value = maxWindsOfMagic * 0.05f;
+                Hero.MainHero.AddCustomResource("WindsOfMagic", value);
                 TORCommon.Say(agents.Count+ " got added radius "+ _radius);
             }
             base.HandleCollision(position, normal);

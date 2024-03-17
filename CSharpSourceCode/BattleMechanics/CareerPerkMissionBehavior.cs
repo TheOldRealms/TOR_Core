@@ -9,12 +9,40 @@ using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics
 {
     public class CareerPerkMissionBehavior : MissionLogic
     {
+        private float currentSecondTick;
+        public override void OnMissionTick(float dt)
+        {
+            currentSecondTick += dt;
+            if (currentSecondTick > 1)
+            {
+                currentSecondTick = 0f;
+                TickEvents();
+            }
+        }
+
+        private void TickEvents()
+        {
+            if (Hero.MainHero.HasCareer(TORCareers.Necrarch))
+            {
+                if (Hero.MainHero.HasCareerChoice("HungerForKnowledgeKeystone"))
+                {
+                    var cAbility = Mission.Current.MainAgent.GetComponent<AbilityComponent>();
+                    if (cAbility != null)
+                    {
+                        var value = TORCareers.Necrarch.GetCalculatedCareerAbilityCharge(Mission.Current.MainAgent, null, ChargeType.DamageDone, 15, AttackTypeMask.Spell, CareerHelper.ChargeCollisionFlag.None);
+                        cAbility.CareerAbility.AddCharge(value);
+                    }
+                }
+            }
+        }
+
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
             if (!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;

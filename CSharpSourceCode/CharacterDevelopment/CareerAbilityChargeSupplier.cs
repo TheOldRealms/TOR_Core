@@ -80,10 +80,43 @@ namespace TOR_Core.CharacterDevelopment
                 explainedNumber.AddFactor(-0.75f);
                 return Mathf.Max(explainedNumber.ResultNumber,1);
             }
-
+            
             if (Hero.MainHero.HasCareerChoice("DarkVisionKeystone"))
             {
                 explainedNumber.AddFactor(0.25f);
+            }
+
+            if (affectingAgent.IsMainAgent)
+            {
+                if (Hero.MainHero.HasCareerChoice("DiscipleOfAccursedKeystone"))
+                {
+                    explainedNumber.AddFactor(-0.10f);
+                }
+                if (Hero.MainHero.HasCareerChoice("DarkVisionKeystone"))
+                {
+                    explainedNumber.AddFactor(-0.10f);
+                }
+                if (Hero.MainHero.HasCareerChoice("WitchSightKeystone"))
+                {
+                    explainedNumber.AddFactor(-0.10f);
+                }
+                if (Hero.MainHero.HasCareerChoice("UnhallowedSoulKeystone"))
+                {
+                    explainedNumber.AddFactor(-0.10f);
+                }
+                if (Hero.MainHero.HasCareerChoice("HungerForKnowledgeKeystone"))
+                {
+                    explainedNumber.AddFactor(-0.10f);
+                }
+                if (Hero.MainHero.HasCareerChoice("WellspringOfDharKeystone"))
+                {
+                    explainedNumber.AddFactor(-0.10f);
+                }
+                if (Hero.MainHero.HasCareerChoice("EverlingsSecretKeystone"))
+                {
+                    explainedNumber.AddFactor(-0.10f);
+                }
+                
             }
 
             if (!affectingAgent.IsHero || mask != AttackTypeMask.Spell) return explainedNumber.ResultNumber;
