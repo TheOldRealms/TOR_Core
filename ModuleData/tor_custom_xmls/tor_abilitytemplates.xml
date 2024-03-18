@@ -2696,7 +2696,7 @@
 	
 	<AbilityTemplate StringID="MeteroicIronclad"
       Name="{=meteoric_ironclad_label_str}Meteoric Ironclad"
-      SpriteName="barkskin_icon"
+      SpriteName="meteriorironclad_icon"
       CoolDown="10"
       WindsOfMagicCost="6"
       BaseMisCastChance="0.05"
@@ -2739,7 +2739,7 @@
 	
 	<AbilityTemplate StringID="PlagueOfRust"
       Name="{=plague_of_rust_label_str}Plague Of Rust"
-      SpriteName="curseofyears_icon"
+      SpriteName="plagueofrust_icon"
       CoolDown="5"
       WindsOfMagicCost="12"
       BaseMisCastChance="0.05"
@@ -2826,7 +2826,7 @@
 	
 	<AbilityTemplate StringID="GehennasGoldenGlobe" 
       Name="{=gehennas_golden_globe_label_str}Gehennas Golden Globe" 
-      SpriteName="comet_of_sigmar_icon" 
+      SpriteName="gehennasgoldenglobe_icon" 
       CoolDown="30" 
       WindsOfMagicCost="8" 
       BaseMisCastChance="0.05" 
@@ -2867,7 +2867,7 @@
 	
 	<AbilityTemplate StringID="FinalTransmutation"
 	   Name="{=final_transmutation_label_str}Final Transmutation"
-	   SpriteName="curseofanraheir_icon"
+	   SpriteName="finaltransmutation_icon"
 	   CoolDown="20"
 	   WindsOfMagicCost="15"
 	   BaseMisCastChance="0.05"
