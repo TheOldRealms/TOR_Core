@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -34,6 +34,8 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         protected override void HandleCollision(Vec3 position, Vec3 normal)
         {
+            if (Agent.Main == null)
+                return;
             if(Hero.MainHero.HasCareerChoice("WitchSightKeystone"))
             { 
                 var agents = Mission.Current.GetNearbyEnemyAgents(position.AsVec2, _radius, CasterAgent.Team, new MBList<Agent>());

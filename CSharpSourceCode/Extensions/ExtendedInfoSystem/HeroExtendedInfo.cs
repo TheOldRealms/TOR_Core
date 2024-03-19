@@ -144,19 +144,20 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                                     var choice = TORCareerChoices.GetChoice("LieOfLadyPassive2");
                                     explainedNumber.Add(choice.GetPassiveValue());
                                 }
+                                if (choices.Contains("LieOfLadyPassive2"))
+                                {
+                                    var choice = TORCareerChoices.GetChoice("LieOfLadyPassive2");
+                                    explainedNumber.Add(choice.GetPassiveValue());
+                                }
+                            
+                                if (choices.Contains("WellspringOfDharPassive3"))
+                                {
+                                    var choice = TORCareerChoices.GetChoice("WellspringOfDharPassive3");
+                                    explainedNumber.Add(choice.GetPassiveValue());
+                                }
                             }
                             
-                            if (CareerChoices.Contains("LieOfLadyPassive2"))
-                            {
-                                var choice = TORCareerChoices.GetChoice("LieOfLadyPassive2");
-                                explainedNumber.Add(choice.GetPassiveValue());
-                            }
                             
-                            if (CareerChoices.Contains("WellspringOfDharPassive3"))
-                            {
-                                var choice = TORCareerChoices.GetChoice("WellspringOfDharPassive3");
-                                explainedNumber.Add(choice.GetPassiveValue());
-                            }
                         }
                     }
                         
