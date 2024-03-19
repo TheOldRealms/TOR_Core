@@ -9,8 +9,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
     public class NecrarchCareerButtonBehavior : CareerButtonBehaviorBase
     {
         public override string CareerButtonIcon => "winds_icon_45";
-        private readonly int _costForClick = 100;
-        private int gainForClick = 10;
+        private readonly int _costForClick = 200;
+        private int gainForClick = 50;
         public NecrarchCareerButtonBehavior(CareerObject career) : base(career)
         {
         }
@@ -19,6 +19,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         {
             Hero.MainHero.AddCustomResource("WindsOfMagic", gainForClick);
             Hero.MainHero.AddCustomResource("DarkEnergy", -_costForClick);
+            
+            if (characterObject.IsHero && characterObject.HeroObject.IsSpellCaster())
+            {
+                Hero.MainHero.AddCustomResource("WindsOfMagic", gainForClick);
+            }
         }
 
         public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner = false)
