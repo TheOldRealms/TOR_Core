@@ -29,7 +29,8 @@ namespace TOR_Core.BattleMechanics
 
         private void TickEvents()
         {
-            if (Hero.MainHero.HasCareer(TORCareers.Necrarch))
+            
+            if (Agent.Main.IsActive()&&Hero.MainHero.HasCareer(TORCareers.Necrarch))
             {
                 if (Hero.MainHero.HasCareerChoice("HungerForKnowledgeKeystone"))
                 {

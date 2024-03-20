@@ -171,7 +171,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(TriggeredEffectTemplate),
                         MutationTargetOriginalId = "apply_blastofagony",
                         PropertyName = "DamageAmount",
-                        PropertyValue = (choice, originalValue, agent) => (float)originalValue*1.25f,
+                        PropertyValue = (choice, originalValue, agent) => (int)originalValue*1.25f,
                         MutationType = OperationType.Add
                     },
                     new CareerChoiceObject.MutationObject()
