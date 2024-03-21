@@ -181,7 +181,7 @@ namespace TOR_Core.HarmonyPatches
                 if (victim.Team != attacker.Team && resultDamage < 0) resultDamage = 0;
                 b.InflictedDamage = resultDamage;
                 b.BaseMagnitude = resultDamage;
-                if (attacker == Agent.Main || victim == Agent.Main)
+                if ((attacker == Agent.Main || victim == Agent.Main) && resultDamage>0)
                     TORDamageDisplay.DisplaySpellDamageResult((DamageType) damageType, resultDamage, damageAmplifications[damageType],wardSaveFactor);
                 return true;
             }
