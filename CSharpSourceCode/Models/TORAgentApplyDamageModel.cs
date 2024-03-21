@@ -140,19 +140,19 @@ namespace TOR_Core.Models
             return value;
         }
 
-        public float CalculateWardSaveFactor(Agent victim, AttackTypeMask attackTypeMask)
+        public float CalculateWardSaveFactor(Agent victim,float[] resistances, bool friendlyFire)
         {
             var result = new ExplainedNumber(1f);
             var victimCharacter = victim.Character as CharacterObject;
             if (victimCharacter != null)
             {
-                var container = victim.GetProperties(PropertyMask.Defense, attackTypeMask);
 
-                if (container.ResistancePercentages[(int)DamageType.All] > 0)
+                if (resistances[(int)DamageType.All] > 0)
                 {
-                    result.Add(-container.ResistancePercentages[(int)DamageType.All]);
+                    result.Add(-resistances[(int)DamageType.All]);
                 }
-
+                
+                
                 if (victimCharacter.GetPerkValue(TORPerks.SpellCraft.Dampener))
                 {
                     result.AddFactor(TORPerks.SpellCraft.Dampener.SecondaryBonus);
@@ -161,7 +161,10 @@ namespace TOR_Core.Models
             }
 
             result.LimitMax(1);
-            result.LimitMin (0.11f);
+            if (!friendlyFire)
+            {
+                result.LimitMin (0.11f);
+            }
             return result.ResultNumber;
         }
     }
