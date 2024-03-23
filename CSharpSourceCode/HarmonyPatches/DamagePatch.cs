@@ -143,9 +143,9 @@ namespace TOR_Core.HarmonyPatches
                         var model = Campaign.Current.Models.GetAbilityModel();
                         if (model != null)
                         {
-                            resultDamage = (int)(b.InflictedDamage * model.GetPerkEffectsOnAbilityDamage(hero.CharacterObject, victim, abilityTemplate));
+                            damageCategories[damageType] = (int)(b.InflictedDamage * model.GetPerkEffectsOnAbilityDamage(hero.CharacterObject, victim, abilityTemplate));
                             var skill = model.GetRelevantSkillForAbility(abilityTemplate);
-                            var amount = model.GetSkillXpForAbilityDamage(abilityTemplate, resultDamage);
+                            var amount = model.GetSkillXpForAbilityDamage(abilityTemplate, (int) damageCategories[damageType]);
                             hero.AddSkillXp(skill, amount);
 
                             if (hero.HasAnyCareer())
@@ -174,7 +174,7 @@ namespace TOR_Core.HarmonyPatches
                 
                 damageAmplifications[damageType] += additionalDamagePercentages[damageType];
                 damageAmplifications[damageType] -= resistancePercentages[damageType];
-                damageCategories[damageType] *= 1 + damageAmplifications[damageType];
+                damageCategories[damageType] *= (1 + damageAmplifications[damageType]);
                 resultDamage = (int)damageCategories[damageType];
                 
                 resultDamage = (int)(resultDamage * wardSaveFactor);
