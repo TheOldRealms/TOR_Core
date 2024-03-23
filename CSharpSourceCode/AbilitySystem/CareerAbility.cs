@@ -128,13 +128,16 @@ namespace TOR_Core.AbilitySystem
 
         public void AddCharge(float amount)
         {
+            if (_currentCharge >= _maxCharge)
+                return;
+            
             if (!IsActive)
             {
                 _currentCharge += amount;
                 _currentCharge = Math.Min(_maxCharge, _currentCharge);
             }
 
-            if (_currentCharge == _maxCharge)
+            if (_doubleUse) //remove doubleUse in case of special perks that allow for a "second" usage.
             {
                 _doubleUse = false;
             }
