@@ -52,7 +52,7 @@ namespace TOR_Core.Models
 
                 if (MobileParty.MainParty.LeaderHero == Hero.MainHero)
                 {
-                    if (Hero.MainHero.GetCustomResourceValue("DarkEnergy")==0&&Hero.MainHero.GetCalculatedCustomResourceUpkeep("DarkEnergy")<=-100)
+                    if (Hero.MainHero.GetCustomResourceValue("DarkEnergy")==0&&Hero.MainHero.GetCalculatedCustomResourceUpkeep("DarkEnergy").ResultNumber<=-100)
                     {
                         result.AddFactor(-0.9f,new TextObject("Burden of Dark Energy Costs is too high!") );
                     }

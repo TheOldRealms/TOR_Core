@@ -107,11 +107,14 @@ namespace TOR_Core.Extensions
             var number = new ExplainedNumber(0,true);
             if (hero.GetCultureSpecificCustomResource() != null)
             {
-                var upkeep = (int) GetCalculatedCustomResourceUpkeep(hero, hero.GetCultureSpecificCustomResource().StringId);
-
-                if (upkeep < 0)
+                var upkeep =  GetCalculatedCustomResourceUpkeep(hero, hero.GetCultureSpecificCustomResource().StringId);
+                
+                if (upkeep.ResultNumber < 0)
                 {
-                    number.Add(upkeep,new TextObject("Upkeep"));
+                    foreach (var line in upkeep.GetLines())
+                    {
+                        number.Add((int)line.number, new TextObject(line.name));
+                    }
                 }
 
                 if (hero == Hero.MainHero)
@@ -153,35 +156,61 @@ namespace TOR_Core.Extensions
             return number;
         }
 
-        public static float GetCalculatedCustomResourceUpkeep(this Hero hero, string resourceID="")
+        public static ExplainedNumber GetCalculatedCustomResourceUpkeep(this Hero hero, string resourceID="")
         {
             if (resourceID == "")
             {
                 resourceID = hero.GetCultureSpecificCustomResource().StringId;
             }
             var upkeep = new ExplainedNumber(0,true,new TextObject("Upkeep"));
-            foreach (var element in hero.PartyBelongedTo.MemberRoster.ToFlattenedRoster())
+            foreach (var element in hero.PartyBelongedTo.MemberRoster.GetTroopRoster())
             {
-                
-                
-               
-                if (element.Troop.HasCustomResourceUpkeepRequirement())
+                if (element.Character.HasCustomResourceUpkeepRequirement())
                 {
-                    var resource = element.Troop.GetCustomResourceRequiredForUpkeep();
+                    var resource = element.Character.GetCustomResourceRequiredForUpkeep();
                 
                     if(resource.Item1.StringId !=resourceID) continue;
-                    var unitUpkeet = new ExplainedNumber(resource.Item2);
+                    var unitUpkeet = new ExplainedNumber(resource.Item2*element.Number);
                     if (hero == Hero.MainHero)
                     {
-                        CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref unitUpkeet,PassiveEffectType.CustomResourceUpkeepModifier, true, element.Troop); 
+                        CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref unitUpkeet,PassiveEffectType.CustomResourceUpkeepModifier, true, element.Character); 
                     }
                     
-                    upkeep.Add(unitUpkeet.ResultNumber,new TextObject("Upkeep"));
+                    upkeep.Add(-unitUpkeet.ResultNumber,new TextObject("Upkeep"));
                     
                 }
             }
+
+            foreach (var settlement in hero.Clan.Settlements)
+            {
+                if (!settlement.IsCastle && !settlement.IsTown)
+                {
+                    continue;
+                }
+
+                var garrison = settlement.Town.GarrisonParty.MemberRoster.GetTroopRoster();
+                foreach (var elem in garrison)
+                {
+                    if (elem.Character.HasCustomResourceUpgradeRequirement())
+                    {
+                        var resource = elem.Character.GetCustomResourceRequiredForUpkeep();
+                        
+                        if(resource==null) continue;
+                
+                        if(resource.Item1.StringId !=resourceID) continue;
+                        var garrisonFactor = 0.25f; //base reduction bonus 
+                        var garrisonUnitUpkeep = new ExplainedNumber(resource.Item2*elem.Number*garrisonFactor);
+                        if (hero == Hero.MainHero)
+                        {
+                            CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref garrisonUnitUpkeep,PassiveEffectType.CustomResourceUpkeepModifier, true, elem.Character); 
+                        }
+                    
+                        upkeep.Add(-garrisonUnitUpkeep.ResultNumber,new TextObject("Garrison Upkeep"));
+                    }
+                }
+            }
             
-            return -upkeep.ResultNumber;
+            return upkeep;
         }
 
         public static void AddCultureSpecificCustomResource(this Hero hero, float amount)
