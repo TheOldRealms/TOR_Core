@@ -139,7 +139,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
             
-            _witchSightKeystone.Initialize(CareerID, "For every hit enemy gain 0.5% of your maximum Winds of magic", "WitchSight", false,
+            _witchSightKeystone.Initialize(CareerID, "For every hit enemy gain 0.25% of your maximum Winds of magic", "WitchSight", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -232,7 +232,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         {
             
             
-            _discipleOfAccursedPassive1.Initialize(CareerID, "Increases Party size by 20.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.PartySize, false));
+            _discipleOfAccursedPassive1.Initialize(CareerID, "Increases Party size by 35.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(35, PassiveEffectType.PartySize, false));
             _discipleOfAccursedPassive2.Initialize(CareerID, "10% cost reduction for spells.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-10, PassiveEffectType.WindsCostReduction, true));
             _discipleOfAccursedPassive3.Initialize(CareerID, "Reduce the Dark Energy upkeep for wraith troops by 25%.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpkeepModifier,true, 
                 characterObject => characterObject.StringId.Contains("wraith")|| characterObject.StringId.Contains("spirit_host")));
@@ -241,18 +241,18 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _witchSightPassive1.Initialize(CareerID, "{=witch_sight_passive1_str}The Spotting range of the party is increased by 20%.", "WitchSight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
             _witchSightPassive2.Initialize(CareerID, "Increases max Winds of Magic by 10.", "WitchSight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
             _witchSightPassive3.Initialize(CareerID, "Increases Magic resistance against spells by 25%.", "WitchSight", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical,25),AttackTypeMask.Spell));
-            _witchSightPassive4.Initialize(CareerID, "Increases Spell effectiveness by 15% if your armor weight undershoots 11 stones.", "WitchSight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Spelleffectiveness, true,
-                (characterObject => Hero.MainHero.BattleEquipment.GetTotalWeightOfArmor(true)<11f)));
-            
+            _witchSightPassive4.Initialize(CareerID, "Increases max Winds of Magic by 20 if your armor weight undershoots 11 stones.", "WitchSight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.WindsOfMagic,false,
+                ( characterObject => Hero.MainHero.BattleEquipment.GetTotalWeightOfArmor(true) < 11f )));
+           
             _darkVisionPassive1.Initialize(CareerID, "Increases max Winds of Magic by 10.", "DarkVision", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
-            _darkVisionPassive2.Initialize(CareerID, "Gain 5 Dark Energy daily.", "DarkVision", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CustomResourceGain));
+            _darkVisionPassive2.Initialize(CareerID, "Gain 15 Dark Energy daily.", "DarkVision", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.CustomResourceGain));
             _darkVisionPassive3.Initialize(CareerID, "Spell damage increase roguery.", "DarkVision", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect()); 
             _darkVisionPassive4.Initialize(CareerID, "For every known spell your winds capacity rises by 1.", "DarkVision", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1,PassiveEffectType.Special, false));
             
             _unhallowedSoulPassive1.Initialize(CareerID, "Increase buff durations by 25%.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.25f, PassiveEffectType.BuffDuration,true));
-            _unhallowedSoulPassive2.Initialize(CareerID, "Increases Party size by 50.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.PartySize));
-            _unhallowedSoulPassive3.Initialize(CareerID, "20% Ward save if your armor weight does not exceed 11 weight.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 20), AttackTypeMask.All, 
-                (attacker, victim, attackmask) => HeroArmorWeightUndershootCheck(attacker) ));
+            _unhallowedSoulPassive2.Initialize(CareerID, "Gain 30 Dark Energy daily.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.CustomResourceGain));
+            _unhallowedSoulPassive3.Initialize(CareerID, "Increases Spell effectiveness by 30% if your armor weight undershoots 11 stones.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Spelleffectiveness, true,
+                ( characterObject => Hero.MainHero.BattleEquipment.GetTotalWeightOfArmor(true) < 11f )));
             _unhallowedSoulPassive4.Initialize(CareerID, "Increases lightning spell damage by 10%.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 10), AttackTypeMask.Spell));
             
             _hungerForKnowledgePassive1.Initialize(CareerID, "Increase hex durations by 25%.", "HungerForKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.25f, PassiveEffectType.DebuffDuration,true));

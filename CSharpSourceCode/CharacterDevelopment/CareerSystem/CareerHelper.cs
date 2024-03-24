@@ -184,8 +184,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 var value = passive.EffectMagnitude;
                 var text = choice.BelongsToGroup.Name;
                     
-                if(!passive.IsValidCharacterObject(characterObject)) continue;
-                    
                 if (passive.InterpretAsPercentage)
                 {
                     value /= 100;

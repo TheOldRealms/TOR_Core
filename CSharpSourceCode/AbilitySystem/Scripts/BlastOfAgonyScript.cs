@@ -41,7 +41,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                 var agents = Mission.Current.GetNearbyEnemyAgents(position.AsVec2, _radius, CasterAgent.Team, new MBList<Agent>());
                 var maxWindsOfMagic = Hero.MainHero.GetExtendedInfo().MaxWindsOfMagic;
 
-                var value = maxWindsOfMagic * 0.05f;
+                var value = maxWindsOfMagic * 0.025f;
                 Hero.MainHero.AddCustomResource("WindsOfMagic", value);
                 TORCommon.Say(agents.Count+ " got added radius "+ _radius);
             }
