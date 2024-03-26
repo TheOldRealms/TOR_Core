@@ -23,6 +23,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerObject _warriorPriest;
         private CareerObject _witchHunter;
         private CareerObject _blackGrailKnight;
+        private CareerObject _necrarch;
         public TORCareers()
         {
             Instance = this;
@@ -51,6 +52,7 @@ namespace TOR_Core.CharacterDevelopment
         public static CareerObject BloodKnight => Instance._bloodKnight;
         
         public static CareerObject BlackGrailKnight => Instance._blackGrailKnight;
+        public static CareerObject Necrarch => Instance._necrarch;
 
         public static MBReadOnlyList<CareerObject> All => Instance._allCareers;
 
@@ -66,6 +68,7 @@ namespace TOR_Core.CharacterDevelopment
             _witchHunter = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("WitchHunter"));
             _necromancer = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Necromancer"));
             _blackGrailKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("BlackGrailKnight"));
+            _necrarch = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Necrarch"));
 
             _allCareers.Add(_grailKnight);
             _allCareers.Add(_warriorPriest);
@@ -76,6 +79,7 @@ namespace TOR_Core.CharacterDevelopment
             _allCareers.Add(_necromancer);
             _allCareers.Add(_witchHunter);
             _allCareers.Add(_blackGrailKnight);
+            _allCareers.Add(_necrarch);
         }
 
         private void InitializeAll()
@@ -89,6 +93,7 @@ namespace TOR_Core.CharacterDevelopment
             _witchHunter.Initialize("Witch Hunter", null, "Accusation", CareerAbilityChargeSupplier.WitchHunterCareerCharge, 200, typeof(AccusationScript));
             _necromancer.Initialize("Necromancer", null, "GreaterHarbinger", CareerAbilityChargeSupplier.NecromancerCareerCharge, 2000, typeof(SummonChampionScript));
             _blackGrailKnight.Initialize("Knight of the Black Grail", null, "KnightlyCharge",null,100, typeof(KnightlyChargeScript));
+            _necrarch.Initialize("Necrarch", null, "BlastOfAgony", CareerAbilityChargeSupplier.NecrarchCareerCharge, 1500, typeof(BlastOfAgonyScript));
         }
     }
 }

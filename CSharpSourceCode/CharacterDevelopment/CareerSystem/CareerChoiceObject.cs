@@ -196,6 +196,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 InterpretAsPercentage = true;
                 PassiveEffectType = type;
                 DamageProportionTuple = damageProportionTuple;
+                AttackTypeMask = mask;
                 _specialCombatInteractionFunction = function;
             }
 
@@ -256,6 +257,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         HorseChargeDamage,  //Damage When Horse is raced into infantry.
         WindsOfMagic,       //player Winds of Magic, as flat number
         WindsCostReduction, //player Winds of Magic cost reduction as Percentage
+        WindsRegeneration,
         BuffDuration,       //Increases duration for friendly augments     //TODO Radius
         DebuffDuration,     //Increases duration for hex
         Spelleffectiveness, //Damage spell effectiveness - for direct effects

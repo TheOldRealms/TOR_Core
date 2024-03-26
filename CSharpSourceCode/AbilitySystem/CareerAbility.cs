@@ -52,7 +52,8 @@ namespace TOR_Core.AbilitySystem
                     || Hero.MainHero.HasCareerChoice("CourtleyKeystone")
                     || Hero.MainHero.HasCareerChoice("EnhancedHorseCombatKeystone")
                     || Hero.MainHero.HasCareerChoice("SwampRiderKeystone")
-                    || Hero.MainHero.HasCareerChoice("LiberMortisKeystone"))
+                    || Hero.MainHero.HasCareerChoice("LiberMortisKeystone")
+                    || Hero.MainHero.HasCareerChoice("WellspringOfDharKeystone"))
                     _currentCharge = _maxCharge;
                 else
                     SetCoolDown(Template.CoolDown);
@@ -82,7 +83,11 @@ namespace TOR_Core.AbilitySystem
             base.ActivateAbility(casterAgent);
             if (ChargeType != ChargeType.CooldownOnly) _currentCharge = 0;
 
-            if (_career.AllChoices.Any(x => x.StringId == "SecretsOfTheGrailKeystone") && _doubleUse == false)
+            var choices = Hero.MainHero.GetAllCareerChoices();
+
+            if ((choices.Contains("SecretsOfTheGrailKeystone")||
+                 choices.Contains("EverlingsSecretKeystone")
+                ) && _doubleUse == false)
             {
                 _currentCharge = _maxCharge;
                 _doubleUse = true;
@@ -123,13 +128,16 @@ namespace TOR_Core.AbilitySystem
 
         public void AddCharge(float amount)
         {
+            if (_currentCharge >= _maxCharge)
+                return;
+            
             if (!IsActive)
             {
                 _currentCharge += amount;
                 _currentCharge = Math.Min(_maxCharge, _currentCharge);
             }
 
-            if (_currentCharge == _maxCharge)
+            if (_doubleUse) //remove doubleUse in case of special perks that allow for a "second" usage.
             {
                 _doubleUse = false;
             }

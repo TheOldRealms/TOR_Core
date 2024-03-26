@@ -47,6 +47,13 @@ namespace TOR_Core.Models
                     if (choice != null)
                         return result + choice.GetPassiveValue();
                 }
+                
+                if(choices.Contains( "WellspringOfDharPassive2"))
+                {
+                    var choice = TORCareerChoices.GetChoice("WellspringOfDharPassive2");
+                    if (choice != null)
+                        return result + choice.GetPassiveValue();
+                }
             }
 
             

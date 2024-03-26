@@ -107,6 +107,26 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                         if (BaseCharacter.HeroObject == Hero.MainHero)
                         {
                             CareerHelper.ApplyBasicCareerPassives(Hero.MainHero,ref  explainedNumber, PassiveEffectType.WindsOfMagic,false);
+                            
+                            if (CareerChoices.Contains("DarkVisionPassive4"))
+                            {
+                                var spellCount = Hero.MainHero.GetExtendedInfo().AcquiredAbilities.Count;
+                                var choice = TORCareerChoices.GetChoice("DarkVisionPassive4");
+                                explainedNumber.Add(choice.GetPassiveValue() * spellCount);
+                            }
+
+                            if (CareerChoices.Contains("DiscipleOfAccursedPassive4"))
+                            {
+                                var characterEquipment = Hero.MainHero.CharacterObject.GetCharacterEquipment();
+                                foreach (var item in characterEquipment)
+                                {
+                                    var choice = TORCareerChoices.GetChoice("DiscipleOfAccursedPassive4");
+                                    if (item.IsMagicalItem())
+                                    {
+                                        explainedNumber.Add(choice.GetPassiveValue());
+                                    } 
+                                }
+                            }
                         }
                         else if (BaseCharacter.HeroObject.PartyBelongedTo!=null && BaseCharacter.HeroObject.PartyBelongedTo.IsMainParty)
                         {
@@ -124,7 +144,19 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                                     var choice = TORCareerChoices.GetChoice("LieOfLadyPassive2");
                                     explainedNumber.Add(choice.GetPassiveValue());
                                 }
+                                if (choices.Contains("LieOfLadyPassive2"))
+                                {
+                                    var choice = TORCareerChoices.GetChoice("LieOfLadyPassive2");
+                                    explainedNumber.Add(choice.GetPassiveValue());
+                                }
+                            
+                                if (choices.Contains("WellspringOfDharPassive3"))
+                                {
+                                    var choice = TORCareerChoices.GetChoice("WellspringOfDharPassive3");
+                                    explainedNumber.Add(choice.GetPassiveValue());
+                                }
                             }
+                            
                             
                         }
                     }
@@ -145,6 +177,11 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                     if (BaseCharacter.HeroObject != null && BaseCharacter.HeroObject != Hero.MainHero && BaseCharacter.HeroObject.Occupation == Occupation.Lord && BaseCharacter.HeroObject.IsSpellCaster()) return 2f;
                     ExplainedNumber explainedNumber = new ExplainedNumber(1f, false, null);
                     SkillHelper.AddSkillBonusForCharacter(TORSkills.SpellCraft, TORSkillEffects.WindsRechargeRate, BaseCharacter, ref explainedNumber);
+
+                    if ( BaseCharacter.HeroObject != null&& BaseCharacter.HeroObject.PartyBelongedTo!=null&&  BaseCharacter.HeroObject.PartyBelongedTo.IsMainParty )
+                    {
+                        CareerHelper.ApplyBasicCareerPassives(BaseCharacter.HeroObject, ref explainedNumber, PassiveEffectType.WindsRegeneration, false);
+                    }
                     
                     return explainedNumber.ResultNumber;
                 }

@@ -744,6 +744,7 @@
   <string id="career_title.Mercenary" text="{=tor_career_title_mercenary_str}Mercenary" />
   <string id="career_title.Necromancer" text="{=tor_career_title_necromancer_str}Necromancer" />
   <string id="career_title.BlackGrailKnight" text="{=tor_career_title_black_grail_knight_str}Knight of Mousillon" />
+  <string id="career_title.Necrarch" text="{=tor_career_title_necrarch_str}Necrarch" />
   
   <string id="career_choicegroup1_name.WitchHunter" text="{=career_choicegroup1_warrior_priest_str}Witch Hunter Initiate" />
   <string id="career_choicegroup2_name.WitchHunter" text="{=career_choicegroup2_warrior_priest_str}Witch Hunter Captain" />
@@ -780,6 +781,10 @@
   <string id="career_choicegroup1_name.BlackGrailKnight" text="{=career_choicegroup1_black_grail_knight_str}Ill-fated Noble" />
   <string id="career_choicegroup2_name.BlackGrailKnight" text="{=career_choicegroup2_black_grail_knight_str}Ill-fated Questing Knight" />
   <string id="career_choicegroup3_name.BlackGrailKnight" text="{=career_choicegroup3_black_grail_knight_str}Knight of the Black Grail" />
+  
+  <string id="career_choicegroup1_name.Necrarch" text="{=career_choicegroup1_necrarch_str}Apprentise" />
+  <string id="career_choicegroup2_name.Necrarch" text="{=career_choicegroup2_necrarch_str}Seeker" />
+  <string id="career_choicegroup3_name.Necrarch" text="{=career_choicegroup3_necrarch_str}Ascended" />
   
   <!--TOR Damage type related !-->
   <string id="tor_damagetype.Invalid" text="{=tor_damagetype_invalid_str}Invalid"/>

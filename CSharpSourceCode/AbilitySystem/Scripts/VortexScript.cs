@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
@@ -46,7 +46,8 @@ namespace TOR_Core.AbilitySystem.Scripts
             var distance = Ability.Template.BaseMovementSpeed * dt;
             oldFrame.Advance(distance);
             var heightAtPosition = Mission.Current.Scene.GetGroundHeightAtPosition(oldFrame.origin);
-            oldFrame.origin.z = heightAtPosition + Ability.Template.Radius / 2;
+            oldFrame.origin.z = heightAtPosition + Ability.Template.Offset;
+           // oldFrame.origin.z = heightAtPosition + _ability.Template.Radius / 2;
             return oldFrame;
         }
     }

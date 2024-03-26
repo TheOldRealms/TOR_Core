@@ -41,6 +41,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 new CustomResource("DarkEnergy", "Dark Energy", "Dark Energy is used by practitioners of necromancy to raise and upkeep their undead minions.", "darkenergy_icon_45",new []{"khuzait", "mousillon"}));
             Instance._resources.Add("WindsOfMagic",
                 new CustomResource("WindsOfMagic", "Winds of Magic", "Winds of Magic is used by spellcasters to cast spells.", "winds_icon_45"));
+            
         }
 
         public static CustomResource GetResourceObject(string id)

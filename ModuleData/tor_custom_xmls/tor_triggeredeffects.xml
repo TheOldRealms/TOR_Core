@@ -40,6 +40,20 @@
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>healing_regeneration</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
+	  <TriggeredEffectTemplate StringID="apply_minor_healing_statuseffect" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="4" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="10" 
+            DamageVariance="0.1" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>minor_healing_regeneration</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
       <TriggeredEffectTemplate StringID="foetid_cloud_burst" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
@@ -317,6 +331,111 @@
             ScriptNameToTrigger="none" >
             <ImbuedStatusEffect>net_amyn_movementimpair__100</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
+	  
+	  
+<!--LoreOfMetal-->
+
+	<TriggeredEffectTemplate StringID="final_transmutation" 
+            BurstParticleEffectPrefab="final_transmutation_ground" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+			ImbuedStatusEffectDuration="4" 
+            DamageAmount="0" 
+            Radius="15" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            DamageVariance="2" >
+			<ImbuedStatusEffect>final_transmutation_dot</ImbuedStatusEffect>
+			<ImbuedStatusEffect>final_transmutation_mov_90</ImbuedStatusEffect>
+	</TriggeredEffectTemplate>
+
+      <TriggeredEffectTemplate StringID="golden_hounds_tick" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Fire" 
+            DamageAmount="40" 
+            Radius="3" 
+            HasShockWave="false" 
+            TargetType="All" 
+            DamageVariance="0.15" 
+            ScriptNameToTrigger="none"/>
+
+
+      <TriggeredEffectTemplate StringID="meteoric_ironclad" 
+            BurstParticleEffectPrefab="" 
+            SoundEffectId="" 
+            SoundEffectLength="2.5" 
+            DamageType="Fire" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="8" 
+            DamageVariance="0.2" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>ironclad_phys_res</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+	  
+      <TriggeredEffectTemplate StringID="plague_of_rust" 
+            BurstParticleEffectPrefab="" 
+            SoundEffectId="" 
+            SoundEffectLength="2.5" 
+            DamageType="Fire" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            ImbuedStatusEffectDuration="8" 
+            DamageVariance="0.2" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>plague_of_rust_hex</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+
+      <TriggeredEffectTemplate StringID="golden_globe_explosion" 
+            BurstParticleEffectPrefab="golden_explosion" 
+            SoundEffectId="fireball_explosion" 
+            SoundEffectLength="2.5" 
+            DamageType="Fire" 
+            DamageAmount="60" 
+            Radius="5" 
+            HasShockWave="true" 
+            TargetType="All" 
+            ImbuedStatusEffectDuration="8" 
+            DamageVariance="0.2" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>golden_globe_dot</ImbuedStatusEffect>
+			<ImbuedStatusEffect>golden_globe_mov_50</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+
+
+      <TriggeredEffectTemplate StringID="gleaming_arrow_explosion" 
+            BurstParticleEffectPrefab="yellow_particle_explosion" 
+            SoundEffectId="dart_explosion" 
+            SoundEffectLength="2.5" 
+            DamageType="Physical" 
+            DamageAmount="40" 
+            Radius="3" 
+            HasShockWave="false" 
+            TargetType="All" 
+            DamageVariance="0.2" 
+            ScriptNameToTrigger="none"/>
+
+       <TriggeredEffectTemplate StringID="apply_quicksilver_sword_trait" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="4" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="30" 
+            DamageVariance="0" 
+            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyQuickSilverWeaponItemTraitScript" />
+
+
 	  
 <!--LifeMagic-->
   
@@ -887,6 +1006,35 @@
             TargetType="Self" 
             DamageVariance="0" 
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.KnockDownScript"/>
+			
+	  <TriggeredEffectTemplate StringID="apply_blastofagony" 
+            BurstParticleEffectPrefab="blast_of_agony_explosion" 
+            SoundEffectId="fireball_explosion" 
+            SoundEffectLength="2.5" 
+            DamageType="Magical" 
+            DamageAmount="80" 
+            Radius="3" 
+            HasShockWave="false" 
+            TargetType="All" 
+            ImbuedStatusEffectDuration="5" 
+            DamageVariance="0.05" 
+            ScriptNameToTrigger="none">
+      </TriggeredEffectTemplate>
+	  
+	  <TriggeredEffectTemplate StringID="summon_wraith" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="All" 
+            DamageVariance="0" 
+            TroopIdToSummon="tor_vc_spirit_host"
+            NumberToSummon="1"
+            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.SummonScript"/>
+
 
 
 		<TriggeredEffectTemplate StringID="apply_knightly_charge" 

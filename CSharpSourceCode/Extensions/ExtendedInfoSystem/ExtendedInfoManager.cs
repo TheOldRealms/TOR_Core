@@ -56,7 +56,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             {
                 if (hero.IsVampire() || hero.IsNecromancer())
                 {
-                    var upkeep = hero.GetCalculatedCustomResourceUpkeep();
+                    var upkeep = hero.GetCalculatedCustomResourceUpkeep("DarkEnergy").ResultNumber;
                     hero.AddWindsOfMagic(upkeep * 3); //takes winds
                 }
             }
