@@ -38,7 +38,7 @@ namespace TOR_Core.AbilitySystem
         private EquipmentIndex _offHand;
         private AbilityComponent _abilityComponent;
         private GameKeyContext _keyContext = HotKeyManager.GetCategory("CombatHotKeyCategory");
-        private ActionIndexCache _idleAnimation = ActionIndexCache.Create("act_spellcasting_idle");
+        private static ActionIndexCache _idleAnimation = ActionIndexCache.Create("act_spellcasting_idle");
         private ParticleSystem[] _psys = null;
         private readonly string _castingStanceParticleName = "psys_spellcasting_stance";
         private SummonedCombatant _defenderSummoningCombatant;

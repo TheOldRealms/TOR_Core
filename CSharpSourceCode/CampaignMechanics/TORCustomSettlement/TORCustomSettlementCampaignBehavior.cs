@@ -380,11 +380,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                     args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_once_a_day_text_str}You can only perform this action once a day.");
                     args.IsEnabled = false;
                 } 
-                
                 return component.IsActive;
             }
-            
-     
             return false;
         }
 
@@ -429,7 +426,6 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             }
             return component.IsActive && component.Religion != null && !component.Religion.HostileReligions.Contains(Hero.MainHero.GetDominantReligion());
         }
-
         
         private void DefileConsequence(MenuCallbackArgs args)
         {
@@ -501,12 +497,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         {
             var settlement = Settlement.CurrentSettlement;
             var component = settlement.SettlementComponent as ShrineComponent;
-            
             var shrineReligion = component.Religion;
-
-           
-
-
+            
             foreach (var hero in Campaign.Current.AliveHeroes)
             {
                 var dominantReligion = hero.GetDominantReligion();
@@ -547,7 +539,6 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                         hero.SetPersonalRelation(Hero.MainHero, (int) relation-10);
                     }
                 }
-                
             }
         }
 
@@ -591,7 +582,6 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         private void AddCursedSiteMenus(CampaignGameStarter starter)
         {
             MBTextManager.SetTextVariable("DARKENERGYICON", CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
-            
             starter.AddGameMenu("cursedsite_menu", "{LOCATION_DESCRIPTION}", CursedSiteMenuInit);
             starter.AddGameMenuOption("cursedsite_menu", "purify", "{PURIFY_TEXT}", PurifyCondition, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu_purifying"));
             starter.AddGameMenuOption("cursedsite_menu", "ghosts", "{tor_custom_settlement_menu_cursed_site_ghost_str}Tap into the congealed essence of Dark Magic and bind some wraiths to your will.", GhostsCondition, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu_ghosts"));
