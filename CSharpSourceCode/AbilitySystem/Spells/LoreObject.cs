@@ -38,8 +38,8 @@ namespace TOR_Core.AbilitySystem.Spells
                 _lores.Add("LoreOfLife", new LoreObject("LoreOfLife", "Lore of Life", "lifemagic_symbol", new List<string>() { "khuzait", "mousillon" }));
                 _lores.Add("LoreOfMetal", new LoreObject("LoreOfMetal", "Lore of Metal", "lifemagic_symbol", new List<string>() { "khuzait", "mousillon", "vlandia" }));
                 _lores.Add("LoreOfBeasts", new LoreObject("LoreOfBeasts", "Lore of Beasts", "beastmagic_symbol", new List<string>() { "khuzait", "mousillon" }));
-                _lores.Add("DarkMagic", new LoreObject("DarkMagic", "Dark Magic", "darkmagic_symbol", new List<string>() { "vlandia",  }, true));
-                _lores.Add("Necromancy", new LoreObject("Necromancy", "Necromancy", "necromancy_symbol", new List<string>() { "vlandia" }));
+                _lores.Add("DarkMagic", new LoreObject("DarkMagic", "Dark Magic", "darkmagic_symbol", new List<string>() { "empire", "vlandia",  }, true));
+                _lores.Add("Necromancy", new LoreObject("Necromancy", "Necromancy", "necromancy_symbol", new List<string>() { "empire", "vlandia" }));
             }
             return _lores.Values.ToList();
         }

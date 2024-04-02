@@ -47,19 +47,13 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             {
                 var trait = new ItemTrait();
                 var additionalDamage = new DamageProportionTuple();
-                
-
                 additionalDamage.DamageType = DamageType.Physical;
                 additionalDamage.Percent = 0.25f;
-                
-                
-                
                 trait.ItemTraitName = "Quick silver Weapon Enchantment";
                 trait.ItemTraitDescription = "Quicksilver surrounds your weapons.";
                 trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_quicksilver_swords" };
                 trait.AdditionalDamageTuple = additionalDamage;
                 trait.OnHitScriptName = "none";
-                
                 var trait2 = new ItemTrait();
                 
                 var additionalDamage2 = new DamageProportionTuple();

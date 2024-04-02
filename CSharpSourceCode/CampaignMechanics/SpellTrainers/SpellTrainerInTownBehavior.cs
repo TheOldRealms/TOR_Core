@@ -195,7 +195,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             obj.AddPlayerLine("trainer_specialize", "choices", "specializelore", "{SPECALIZE_QUESTION}", specializelorecondition, null, 200, null);
             obj.AddDialogLine("trainer_chooselore", "specializelore", "start", "{SPECIALIZE_PROMPT}.", fillchooseloretext, chooseloreconsequence, 200, null);
 
-            obj.AddPlayerLine("trainer_vampire_learn_magic", "choices", "specializelore_question", "{=tor_spelltrainer_magictest_vc_vampire_player_specialize_lore_str}I can feel my dark power continuing to grow. Provide me access to more forbidden magic, mortal", vampireCasterReachedNewRankCondition,
+            obj.AddPlayerLine("trainer_vampire_learn_magic", "choices", "specializelore_question", "{=tor_spelltrainer_magictest_vc_vampire_player_specialize_lore_str}I can feel my dark power continuing to grow. Provide me access to more forbidden magic, mortal", VampireCasterReachedNewRankCondition,
                 null, 200, null);
             
             obj.AddDialogLine("trainer_vampire_learn_magic2", "specializelore_question", "accept_dark_energy_price", "{=tor_spelltrainer_magictest_vc_vampire_player_specialize_lore_str}Even if you have the everliving-gift, the access to forbidden knowledge is restricted by my master. Provide us a gift and I am not speaking of gold, " +
@@ -217,27 +217,17 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             return Hero.MainHero.GetCustomResourceValue("DarkEnergy") > 2000;
         }
 
-        private bool vampireCasterReachedNewRankCondition()
+        private bool VampireCasterReachedNewRankCondition()
         {
+            if(! Hero.MainHero.HasCareer(TORCareers.Necrarch) && !Hero.MainHero.HasCareer(TORCareers.MinorVampire)) return false;
             MBTextManager.SetTextVariable("DARKENERGYICON", CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
-            
             
             if (Hero.MainHero.GetCareer()==TORCareers.Necrarch&& Hero.MainHero.HasUnlockedCareerChoiceTier(3))
             {
-                if (Hero.MainHero.GetCareer()==TORCareers.Necrarch)
-                {
-                    if (Hero.MainHero.GetExtendedInfo().KnownLores.Count < 5)
-                    {
-                        return true;
-                    }
-
-                    return false;
-                }
-
-                return false;
+                return Hero.MainHero.GetExtendedInfo().KnownLores.Count < 5;
             }
             
-            if(! Hero.MainHero.HasCareer(TORCareers.Necrarch) && !Hero.MainHero.HasCareer(TORCareers.MinorVampire)) return false;
+            
 
             if (Hero.MainHero.HasUnlockedCareerChoiceTier(2))
             {
