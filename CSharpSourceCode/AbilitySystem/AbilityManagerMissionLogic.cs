@@ -123,7 +123,7 @@ namespace TOR_Core.AbilitySystem
 
             ChangeKeyBindings();
             SlowDownTime(true);
-            SetOffHandWeaponRelatedParameters();
+            SwitchOffhandStanceForStaffs();
 
             if (_abilityComponent.CurrentAbility.Template.AbilityType == AbilityType.Spell || 
                 _abilityComponent.CurrentAbility.Template.AbilityType == AbilityType.Prayer)
@@ -145,11 +145,11 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-        private void SetOffHandWeaponRelatedParameters()
+        private void SwitchOffhandStanceForStaffs()
         {
             if (!Agent.Main.WieldedOffhandWeapon.IsEmpty)
             {
-                if(Agent.Main.WieldedOffhandWeapon.Item.StringId.Contains("staff"))
+                if(Agent.Main.WieldedOffhandWeapon.Item.IsMagicalStaff())
                 {
                     _wieldOffHandStaff = true;
                     _idleAnimation = ActionIndexCache.Create("act_ready_continue_throwing_axe_with_handshield");
@@ -450,9 +450,14 @@ namespace TOR_Core.AbilitySystem
                 {
                     Agent.Main.TryToSheathWeaponInHand(Agent.HandIndex.MainHand, Agent.WeaponWieldActionType.WithAnimation);
                 }
-                else if (Agent.Main.GetWieldedItemIndex(Agent.HandIndex.OffHand) != EquipmentIndex.None)
+                
+                if (Agent.Main.GetWieldedItemIndex(Agent.HandIndex.OffHand) != EquipmentIndex.None)
                 {
-                   // Agent.Main.TryToSheathWeaponInHand(Agent.HandIndex.OffHand, Agent.WeaponWieldActionType.WithAnimation);
+                    if (!Agent.Main.WieldedOffhandWeapon.Item.IsMagicalStaff())
+                    {
+                        Agent.Main.TryToSheathWeaponInHand(Agent.HandIndex.OffHand, Agent.WeaponWieldActionType.WithAnimation);
+                    }
+                   
                 }
                 _shouldSheathWeapon = false;
             }
