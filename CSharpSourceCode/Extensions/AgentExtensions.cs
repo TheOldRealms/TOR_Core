@@ -291,8 +291,6 @@ namespace TOR_Core.Extensions
                     {
                         damageAmplifications[i] += statusEffectAmplifiers[i];
                     }
-
-                    
                     
                     //Weapon properties
                     if (attackTypeMask == AttackTypeMask.Ranged)
