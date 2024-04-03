@@ -2910,7 +2910,7 @@
 	
 	<AbilityTemplate StringID="GehennasGoldenHounds" 
       Name="{=gehennas_golden_hounds_label_str}Gehennas Golden Hounds" 
-      SpriteName="arzipalsblackhorror_icon" 
+      SpriteName="gehennasgoldenhounds_icon" 
       CoolDown="40" 
       WindsOfMagicCost="30" 
       BaseMisCastChance="0.3" 
