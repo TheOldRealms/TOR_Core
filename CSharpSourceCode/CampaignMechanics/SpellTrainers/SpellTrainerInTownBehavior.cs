@@ -227,8 +227,6 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 return Hero.MainHero.GetExtendedInfo().KnownLores.Count < 5;
             }
             
-            
-
             if (Hero.MainHero.HasUnlockedCareerChoiceTier(2))
             {
                 if (Hero.MainHero.GetCareer()==TORCareers.Necrarch)
@@ -243,8 +241,6 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                     return true;
                 }
             }
-            
-            
             
             if (Hero.MainHero.GetCareer()==TORCareers.Necrarch&& Hero.MainHero.HasUnlockedCareerChoiceTier(1))
             {
@@ -276,7 +272,6 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
             return false;
         }
-
         
         private bool damselSecondLoreCondition()
         {

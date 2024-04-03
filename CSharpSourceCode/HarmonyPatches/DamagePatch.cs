@@ -203,9 +203,7 @@ namespace TOR_Core.HarmonyPatches
             }
             
             resultDamage = (int)(resultDamage * wardSaveFactor); 
-            var originalDamage = b.InflictedDamage;
             b.InflictedDamage = resultDamage;
-            //b.BaseMagnitude = resultDamage;       this shouldn't be the case
 
             if (victim.GetAttributes().Contains("Unstoppable")||(victim.IsDamageShruggedOff(b.InflictedDamage)))
             {
