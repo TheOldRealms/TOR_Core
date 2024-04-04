@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -294,9 +295,26 @@ namespace TOR_Core.Models
                         }
                     }
                 }
-                
                 return explainedNumber.ResultNumber;
-            
         }
+
+        public bool IsValidLoreForCharacter(Hero hero, LoreObject loreObject)
+        {
+            if (!hero.IsVampire() && loreObject.IsRestrictedToVampires) return false;
+
+            if (hero.HasCareer(TORCareers.Necrarch))
+            {
+                if(loreObject.ID == "LoreOfLife" || loreObject.ID == "LoreOfLight") return false;
+                if(hero.HasUnlockedCareerChoiceTier(3))
+                    if(!hero.HasKnownLore("DarkMagic")&& loreObject.ID!="DarkMagic") 
+                        return false;
+                
+                return true;
+            }
+            
+            return !loreObject.DisabledForCultures.Contains(hero.Culture.StringId);
+        }
+        
+        
     }
 }

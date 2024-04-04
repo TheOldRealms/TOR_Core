@@ -482,24 +482,15 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         {
             List<InquiryElement> list = new List<InquiryElement>();
             var lores = LoreObject.GetAll();
+
+            var model = Campaign.Current.Models.GetAbilityModel();
             foreach (var item in lores)
             {
                 
                 if (item.ID == "MinorMagic"  || Hero.MainHero.GetExtendedInfo().HasKnownLore(item.ID)) continue;
 
-                if (!Hero.MainHero.IsVampire() && item.IsRestrictedToVampires) continue;
-
-                if (Hero.MainHero.HasCareer(TORCareers.Necrarch))
-                {
-                    if(item.ID == "LoreOfLife"||item.ID == "LoreOfLight") continue;
-                    if(Hero.MainHero.HasUnlockedCareerChoiceTier(3))
-                        if(!Hero.MainHero.HasKnownLore("DarkMagic")&& item.ID!="DarkMagic") 
-                            continue;
-                }
-                else
-                {
-                    if (item.DisabledForCultures.Contains(Hero.MainHero.Culture.StringId)) continue;
-                }
+                if(!model.IsValidLoreForCharacter(Hero.MainHero, item)) continue;
+                
                 list.Add(new InquiryElement(item, item.Name, null));
             }
             var inquirydata = new MultiSelectionInquiryData(new TextObject("{=tor_magic_lore_prompt_label_str}Choose Lore").ToString(), new TextObject("{=tor_magic_lore_prompt_description_str}Choose a lore to specialize in.").ToString(), list, true, 1, 1, "Confirm", "Cancel", OnChooseLore, OnCancelLore);
