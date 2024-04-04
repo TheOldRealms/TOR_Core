@@ -217,5 +217,86 @@ namespace TOR_Core.Models
             }
             return (int)cost.ResultNumber;
         }
+
+        public float GetWindsRechargeRate(CharacterObject baseCharacter)
+        {
+            if (baseCharacter.HeroObject != null && baseCharacter.HeroObject != Hero.MainHero && baseCharacter.HeroObject.Occupation == Occupation.Lord && baseCharacter.HeroObject.IsSpellCaster()) return 2f;
+            ExplainedNumber explainedNumber = new ExplainedNumber(1f, false, null);
+            SkillHelper.AddSkillBonusForCharacter(TORSkills.SpellCraft, TORSkillEffects.WindsRechargeRate, baseCharacter, ref explainedNumber);
+
+            if ( baseCharacter.HeroObject != null&& baseCharacter.HeroObject.PartyBelongedTo!=null&&  baseCharacter.HeroObject.PartyBelongedTo.IsMainParty )
+            {
+                CareerHelper.ApplyBasicCareerPassives(baseCharacter.HeroObject, ref explainedNumber, PassiveEffectType.WindsRegeneration, false);
+            }
+                    
+            return explainedNumber.ResultNumber;
+        }
+        public float GetMaximumWindsOfMagic(CharacterObject baseCharacter)
+        {
+            if (baseCharacter.HeroObject == null || baseCharacter.HeroObject != Hero.MainHero && baseCharacter.HeroObject.Occupation == Occupation.Lord && baseCharacter.HeroObject.IsSpellCaster()) return 100f;
+            
+                ExplainedNumber explainedNumber = new ExplainedNumber(10f, false, null);
+                SkillHelper.AddSkillBonusForCharacter(TORSkills.SpellCraft, TORSkillEffects.MaxWinds, baseCharacter, ref explainedNumber);
+                if (Hero.MainHero.HasAnyCareer())
+                {
+                    if (baseCharacter.HeroObject == Hero.MainHero)
+                    {
+                        
+                        CareerHelper.ApplyBasicCareerPassives(Hero.MainHero,ref  explainedNumber, PassiveEffectType.WindsOfMagic,false);
+                        var CareerChoices = Hero.MainHero.GetAllCareerChoices();
+                        if (CareerChoices.Contains("DarkVisionPassive4"))
+                        {
+                            var spellCount = Hero.MainHero.GetExtendedInfo().AcquiredAbilities.Count;
+                            var choice = TORCareerChoices.GetChoice("DarkVisionPassive4");
+                            explainedNumber.Add(choice.GetPassiveValue() * spellCount);
+                        }
+
+                        if (CareerChoices.Contains("DiscipleOfAccursedPassive4"))
+                        {
+                            var characterEquipment = Hero.MainHero.CharacterObject.GetCharacterEquipment();
+                            foreach (var item in characterEquipment)
+                            {
+                                var choice = TORCareerChoices.GetChoice("DiscipleOfAccursedPassive4");
+                                if (item.IsMagicalItem())
+                                {
+                                    explainedNumber.Add(choice.GetPassiveValue());
+                                } 
+                            }
+                        }
+                    }
+                    else if (baseCharacter.HeroObject.PartyBelongedTo!=null && baseCharacter.HeroObject.PartyBelongedTo.IsMainParty)
+                    {
+                        if (Hero.MainHero != null)
+                        {
+                            var choices = Hero.MainHero.GetAllCareerChoices();
+                            if (choices.Contains("EnvoyOfTheLadyPassive3"))
+                            {
+                                var choice = TORCareerChoices.GetChoice("EnvoyOfTheLadyPassive3");
+                                explainedNumber.Add(choice.GetPassiveValue());
+                            }
+                            
+                            if (choices.Contains("LieOfLadyPassive2"))
+                            {
+                                var choice = TORCareerChoices.GetChoice("LieOfLadyPassive2");
+                                explainedNumber.Add(choice.GetPassiveValue());
+                            }
+                            if (choices.Contains("LieOfLadyPassive2"))
+                            {
+                                var choice = TORCareerChoices.GetChoice("LieOfLadyPassive2");
+                                explainedNumber.Add(choice.GetPassiveValue());
+                            }
+                            
+                            if (choices.Contains("WellspringOfDharPassive3"))
+                            {
+                                var choice = TORCareerChoices.GetChoice("WellspringOfDharPassive3");
+                                explainedNumber.Add(choice.GetPassiveValue());
+                            }
+                        }
+                    }
+                }
+                
+                return explainedNumber.ResultNumber;
+            
+        }
     }
 }

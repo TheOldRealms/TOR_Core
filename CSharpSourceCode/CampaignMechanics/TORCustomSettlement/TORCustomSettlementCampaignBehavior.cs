@@ -36,7 +36,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         private int _numberOfTroops = 0;
         private int _defilingDarkEnergy = 0;
         private int _empoweredUndead = 0;
-        private Dictionary<string, int> leveledUpUndead = new Dictionary<string, int>();
+        private Dictionary<string, int> _leveledUpUndead = new Dictionary<string, int>();
         private int _minimumDaysBetweenRaisingGhosts = 3;
        
         [SaveableField(0)] private Dictionary<string, bool> _customSettlementActiveStates = new Dictionary<string, bool>();
@@ -826,13 +826,13 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                             if (a+ xp>= xpa&& a !=0)
                             {
                                 _empoweredUndead++;
-                                if (leveledUpUndead.ContainsKey(troopCharacter.Name.ToString()))
+                                if (_leveledUpUndead.ContainsKey(troopCharacter.Name.ToString()))
                                 {
-                                    leveledUpUndead[troopCharacter.Name.ToString()]++;
+                                    _leveledUpUndead[troopCharacter.Name.ToString()]++;
                                 }
                                 else
                                 {
-                                    leveledUpUndead.Add(troopCharacter.Name.ToString(), 1);
+                                    _leveledUpUndead.Add(troopCharacter.Name.ToString(), 1);
                                 }
                             
                             }
@@ -885,13 +885,13 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 MBTextManager.SetTextVariable("UNDEAD_UPGRADES", _empoweredUndead);
                 MBTextManager.SetTextVariable("EMPOWERING_RESULT", "{UNDEAD_UPGRADES} of your minions grew stronger.");
                 var result = "";
-                foreach (var item in leveledUpUndead)
+                foreach (var item in _leveledUpUndead)
                 {
                     result += item.Key + " - " + item.Value +"\n";
                 }
                 MBTextManager.SetTextVariable("EMPOWERING_LIST", result);
                 _empoweredUndead = 0;
-                leveledUpUndead.Clear();
+                _leveledUpUndead.Clear();
             }
             Hero.MainHero.AddCustomResource("DarkEnergy",-100);
         }
