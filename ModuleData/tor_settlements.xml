@@ -349,7 +349,7 @@
       <Town id="castle_comp_ST1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_f" scene_name_1="empire_castle_f" scene_name_2="empire_castle_f" scene_name_3="empire_castle_f" />
+      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -1270,7 +1270,7 @@
       <Town id="castle_comp_WI2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_f" scene_name_1="empire_castle_f" scene_name_2="empire_castle_f" scene_name_3="empire_castle_f" />
+      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -2048,7 +2048,7 @@
       <Town id="castle_comp_TB2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_f" scene_name_1="empire_castle_f" scene_name_2="empire_castle_f" scene_name_3="empire_castle_f" />
+      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -2569,7 +2569,7 @@
       <Town id="castle_comp_RL4" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_f" scene_name_1="empire_castle_f" scene_name_2="empire_castle_f" scene_name_3="empire_castle_f" />
+      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
       <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>

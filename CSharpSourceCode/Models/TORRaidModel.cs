@@ -37,15 +37,15 @@ namespace TOR_Core.Models
                 {
                     var choices = MobileParty.MainParty.LeaderHero.GetAllCareerChoices();
                     
-                    if (choices.Contains("RobberKnightPassive3"))
+                    if (choices.Contains("RobberKnightPassive4"))
                     {
-                        var choice = TORCareerChoices.GetChoice("RobberKnightPassive3");
+                        var choice = TORCareerChoices.GetChoice("RobberKnightPassive4");
                         if (choice != null)
                         {
                             explainedNumber.AddFactor(-choice.GetPassiveValue());
                         }
                         
-                        Hero.MainHero.AddCustomResource("DarkEnergy",explainedNumber.ResultNumber*50);
+                        Hero.MainHero.AddCustomResource("DarkEnergy",explainedNumber.ResultNumber*250);
                     }
                 }
             }
