@@ -16,13 +16,14 @@ namespace TOR_Core.BattleMechanics
 {
     public class CareerPerkMissionBehavior : MissionLogic
     {
-        private float currentSecondTick;
+        private float _currentTime;
+        private readonly float _frequency=1f;
         public override void OnMissionTick(float dt)
         {
-            currentSecondTick += dt;
-            if (currentSecondTick > 1)
+            _currentTime += dt;
+            if (_currentTime > _frequency)
             {
-                currentSecondTick = 0f;
+                _currentTime = 0f;
                 TickEvents();
             }
         }
@@ -150,13 +151,6 @@ namespace TOR_Core.BattleMechanics
                         var value = ((int)blow.InflictedDamage * multiplier) / 10;
                         Hero.MainHero.AddSkillXp(DefaultSkills.Roguery, value);
                     }
-                }
-                
-                if (!affectorAgent.HasMount&&!affectorAgent.WieldedOffhandWeapon.IsEmpty&&affectorAgent.WieldedOffhandWeapon.Item!=null&&affectorAgent.WieldedOffhandWeapon.Item.IsMagicalStaff()&& choices.Contains("UnhallowedSoulPassive3"))
-                {
-                    var choice = TORCareerChoices.GetChoice("UnhallowedSoulPassive3");  
-                    var value = choice.GetPassiveValue();
-                    playerHero.AddWindsOfMagic(value);
                 }
 
                 if (choices.Contains("ControlledHungerPassive4"))
