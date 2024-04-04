@@ -87,9 +87,9 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(ViewModel), "SetPropertyValue")]
         public static bool PatchPropertySetter(ViewModel __instance, string name, object value)
         {
-            if(name==DistanceToCamera) return true;
-            if(name==Position) return true;
-            if(name==Headposition) return true;
+            if (name == DistanceToCamera) return true;
+            if (name == Position) return true;
+            if (name == Headposition) return true;
             else if (__instance.HasExtension())
             {
                 __instance.GetExtension().SetPropertyValue(name, value);

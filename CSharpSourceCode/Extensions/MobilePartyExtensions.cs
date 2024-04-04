@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.LinQuick;
 using TOR_Core.CampaignMechanics.Invasions;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
@@ -54,7 +55,17 @@ namespace TOR_Core.Extensions
 
         public static bool IsAffectedByCurse(this MobileParty party)
         {
-            return TORCommon.FindSettlementsAroundPosition(party.Position2D, TORConstants.DEFAULT_CURSE_RADIUS, x => x.SettlementComponent is CursedSiteComponent).Count > 0;
+            if (!party.IsLordParty) return false;
+
+            var settlementFound = TORCommon.FindNearestSettlement(party, TORConstants.DEFAULT_CURSE_RADIUS, x => x.SettlementComponent is CursedSiteComponent);
+            if (settlementFound == null) return false;
+
+            var cursedSite = settlementFound.SettlementComponent as CursedSiteComponent;
+            if (cursedSite == null) return false;
+
+            if (party.LeaderHero?.GetDominantReligion() == cursedSite.Religion) return false;
+
+            return true;
         }
 
         public static List<ItemRosterElement> GetArtilleryItems(this MobileParty party)
