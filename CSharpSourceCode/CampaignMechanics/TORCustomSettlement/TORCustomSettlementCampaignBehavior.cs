@@ -34,11 +34,11 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         
         private CampaignTime _startWaitTime = CampaignTime.Now;
         private int _numberOfTroops = 0;
-        private int _defilingDarkEnergy = 0;
+        
         private int _empoweredUndead = 0;
         private Dictionary<string, int> _leveledUpUndead = new Dictionary<string, int>();
-        private int _minimumDaysBetweenRaisingGhosts = 3;
-       
+        private const int _minimumDaysBetweenRaisingGhosts = 3;
+
         [SaveableField(0)] private Dictionary<string, bool> _customSettlementActiveStates = new Dictionary<string, bool>();
         [SaveableField(1)] private Dictionary<string, int> _cursedSiteWardDurationLeft = new Dictionary<string, int>();
         [SaveableField(2)] private Dictionary<string, int> _lastGhostRecruitmentTime = new Dictionary<string, int>();
@@ -371,6 +371,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         {
             var settlement = Settlement.CurrentSettlement;
             var component = settlement.SettlementComponent as ShrineComponent;
+            if (component == null) return false;
+            
             args.optionLeaveType = GameMenuOption.LeaveType.ForceToGiveTroops;
             
             if (Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.IsNecromancer()) || Hero.MainHero.IsVampire())
@@ -389,6 +391,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         {
             var settlement = Settlement.CurrentSettlement;
             var component = settlement.SettlementComponent as ShrineComponent;
+            if(component == null) return;
             var text = component.IsActive ? GameTexts.FindText("customsettlement_intro", settlement.StringId) : GameTexts.FindText("customsettlement_disabled", settlement.StringId);
             if (component.Religion != null)
             {
@@ -402,6 +405,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         {
             var settlement = Settlement.CurrentSettlement;
             var component = settlement.SettlementComponent as ShrineComponent;
+            if (component == null) return false;
             args.optionLeaveType = GameMenuOption.LeaveType.ShowMercy;
             var godName = GameTexts.FindText("tor_religion_name_of_god", component.Religion.StringId);
             MBTextManager.SetTextVariable("GOD_NAME", godName);
@@ -418,6 +422,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         {
             var settlement = Settlement.CurrentSettlement;
             var component = settlement.SettlementComponent as ShrineComponent;
+            if (component == null) return false;
+            
             args.optionLeaveType = GameMenuOption.LeaveType.Trade;
             if (!Hero.MainHero.GetPerkValue(TORPerks.Faith.Offering))
             {
@@ -452,10 +458,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(diff * 0.25f);
                 if (args.MenuContext.GameMenu.Progress != progress)
                 {
-                    var settlement = Settlement.CurrentSettlement;
-                    var component = settlement.SettlementComponent as ShrineComponent;
-
-                    Hero.MainHero.AddCustomResource("DarkEnergy", 125);
+                    Hero.MainHero.AddCustomResource("DarkEnergy",_defilingDarkEnergyPerTick);
                 }
             }
         }
@@ -471,6 +474,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 {
                     var settlement = Settlement.CurrentSettlement;
                     var component = settlement.SettlementComponent as ShrineComponent;
+                    if(component==null) return;
                     var heroReligion = Hero.MainHero.GetDominantReligion();
                     if(heroReligion == component.Religion)
                     {
@@ -497,6 +501,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         {
             var settlement = Settlement.CurrentSettlement;
             var component = settlement.SettlementComponent as ShrineComponent;
+            if(component==null) return;
             var shrineReligion = component.Religion;
             
             foreach (var hero in Campaign.Current.AliveHeroes)
