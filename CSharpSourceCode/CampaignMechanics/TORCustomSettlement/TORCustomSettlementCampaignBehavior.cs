@@ -36,7 +36,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         [SaveableField(2)] private Dictionary<string, int> _lastGhostRecruitmentTime = new Dictionary<string, int>();
         private TORFaithModel _model;
 
-        public static MBReadOnlyList<Settlement> AllCustomSettlements = new MBReadOnlyList<Settlement>();
+        public static MBReadOnlyList<Settlement> AllCustomSettlements { get; private set; } = new MBReadOnlyList<Settlement>();
 
         public override void RegisterEvents()
         {

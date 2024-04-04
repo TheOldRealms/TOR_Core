@@ -59,10 +59,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
                 return;
             }
 
-            var troopwage = 0;
-            if (characterTemplate.TroopWage != null) troopwage = characterTemplate.TroopWage;
-
-            _price = 1000 * characterTemplate.Level + 200 * troopwage;
+            _price = 1000 * characterTemplate.Level + 200 * characterTemplate.TroopWage;
             GameTexts.SetVariable("MERCCOMPANIONPRICE",_price.ToString());
             _currentTemplate = characterTemplate;
             ConversationCharacterData characterData = new ConversationCharacterData(_currentTemplate, null);

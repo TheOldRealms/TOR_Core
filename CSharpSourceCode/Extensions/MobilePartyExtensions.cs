@@ -49,36 +49,12 @@ namespace TOR_Core.Extensions
 
         public static bool IsNearASettlement(this MobileParty party, float threshold = 1.5f)
         {
-            foreach (Settlement settlement in Settlement.All)
-            {
-                float distance;
-                Campaign.Current.Models.MapDistanceModel.GetDistance(settlement, party, Campaign.MapDiagonal, out distance);
-                if (distance < threshold)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return TORCommon.FindSettlementsAroundPosition(party.Position2D, threshold).Count > 0;
         }
 
         public static bool IsAffectedByCurse(this MobileParty party)
         {
-            foreach (Settlement settlement in TORCustomSettlementCampaignBehavior.AllCustomSettlements)
-            {
-                if(settlement.SettlementComponent is CursedSiteComponent)
-                {
-                    var comp = settlement.SettlementComponent as CursedSiteComponent;
-                    if (party.LeaderHero?.GetDominantReligion() == comp.Religion) continue;
-                    float distance;
-                    Campaign.Current.Models.MapDistanceModel.GetDistance(settlement, party, Campaign.MapDiagonal, out distance);
-                    if (distance < TORConstants.DEFAULT_CURSE_RADIUS)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
+            return TORCommon.FindSettlementsAroundPosition(party.Position2D, TORConstants.DEFAULT_CURSE_RADIUS, x => x.SettlementComponent is CursedSiteComponent).Count > 0;
         }
 
         public static List<ItemRosterElement> GetArtilleryItems(this MobileParty party)

@@ -159,18 +159,5 @@ namespace TOR_Core.HarmonyPatches
             contexts = newcontexts;
             return true;
         }
-
-        /*
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(HotKeyManager), "RegisterInitialContexts")]
-        public static void LogGamekeyContexts(IEnumerable<GameKeyContext> contexts, bool loadKeys)
-        {
-            TORCommon.Log("STARTING RegisterInitialContexts --------------------", LogLevel.Debug);
-            foreach (var context in contexts)
-            {
-                TORCommon.Log("Registering context: " + context.GameKeyCategoryId, LogLevel.Debug);
-            }
-        }
-        */
     }
 }
