@@ -3279,6 +3279,46 @@
 		<TriggeredEffect>apply_let_them_have_it</TriggeredEffect>
 	</AbilityTemplate>
 	
+	<AbilityTemplate StringID="BlackAxe"
+       Name="{=red_fury_label_str}Axe of Ulric"
+       SpriteName="redfury_icon"
+       CoolDown="15"
+       WindsOfMagicCost="0"
+       BaseMisCastChance="0"
+       Duration="0.6"
+       Radius="1"
+       AbilityType="CareerAbility"
+       AbilityEffectType="CareerAbilityEffect"
+       BaseMovementSpeed="2"
+       TickInterval="-1"
+       TriggerType="OnStop"
+       HasLight="false"
+       LightIntensity="0"
+       LightRadius="0"
+       LightFlickeringMagnitude="0"
+       LightFlickeringInterval="0"
+       ShadowCastEnabled="false"
+       ParticleEffectPrefab=""
+       ParticleEffectSizeModifier="0"
+       SoundEffectToPlay=""
+       ShouldSoundLoopOverDuration="false"
+       CastType="Instant"
+       CastTime="0.5"
+       AnimationActionName="act_slam_twohanded"
+       Offset="1"
+       AbilityTargetType="GroundAtPosition"
+	    CrosshairType="Self"
+       TargetCapturingRadius="2">
+		<LightColorRGB x="255" y="255" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>blackaxe_smash</TriggeredEffect>
+	</AbilityTemplate>
+	
 	<AbilityTemplate StringID="KnightlyCharge"
        Name="{=knightly_charge_label_str}Knightly Charge"
        SpriteName="knightlycharge_icon"
