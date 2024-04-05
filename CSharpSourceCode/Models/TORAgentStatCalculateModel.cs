@@ -289,6 +289,12 @@ namespace TOR_Core.Models
                 }
             }
 
+
+            if (agent.IsMainAgent)
+            {
+                agentDrivenProperties.MaxSpeedMultiplier += 5;
+            }
+
             UpdateDynamicAgentDrivenProperties(agent, agentDrivenProperties);
         }
 
