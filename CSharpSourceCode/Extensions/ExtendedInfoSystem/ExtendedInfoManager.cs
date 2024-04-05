@@ -67,30 +67,44 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             foreach (var entry in _heroInfos)
             {
                 var hero = Hero.FindFirst(x => x.StringId == entry.Key);
-
-                if (hero.GetCultureSpecificCustomResource() == null) continue;
-
-                var id = hero.GetCultureSpecificCustomResource().StringId;
-
-                var resourceChange = hero.GetCultureSpecificCustomResourceChange();
-
-                entry.Value.AddCustomResource(id, resourceChange.ResultNumber);
+                var resource = hero.GetCultureSpecificCustomResource();
+                if (resource != null)
+                {
+                    var id = resource.StringId;
+                    var resourceChange = hero.GetCultureSpecificCustomResourceChange();
+                    entry.Value.AddCustomResource(id, resourceChange.ResultNumber);
+                }
             }
         }
 
         public static CharacterExtendedInfo GetCharacterInfoFor(string id)
         {
-            return _characterInfos.ContainsKey(id) ? _characterInfos[id] : null;
+            CharacterExtendedInfo value = null;
+            if(_characterInfos.TryGetValue(id, out value)) 
+            {  
+                return value; 
+            }
+            return null;
         }
 
         public HeroExtendedInfo GetHeroInfoFor(string id)
         {
-            return _heroInfos.ContainsKey(id) ? _heroInfos[id] : null;
+            HeroExtendedInfo value = null;
+            if (_heroInfos.TryGetValue(id, out value))
+            {
+                return value;
+            }
+            return null;
         }
 
         public MobilePartyExtendedInfo GetPartyInfoFor(string id)
         {
-            return _partyInfos.ContainsKey(id) ? _partyInfos[id] : null;
+            MobilePartyExtendedInfo value = null;
+            if (_partyInfos.TryGetValue(id, out value))
+            {
+                return value;
+            }
+            return null;
         }
 
         public void ClearInfo(Hero hero)

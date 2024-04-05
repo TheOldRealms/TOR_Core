@@ -477,15 +477,15 @@ namespace TOR_Core.Extensions
         public static DevotionLevel GetDevotionLevelForReligion(this Hero hero, ReligionObject religion)
         {
             var info = hero.GetExtendedInfo();
-            if (info == null || !info.ReligionDevotionLevels.ContainsKey(religion.StringId)) return DevotionLevel.None;
-            else
+            int value = 0;
+            if ((bool)(info?.ReligionDevotionLevels?.TryGetValue(religion.StringId, out value)))
             {
-                var value = info.ReligionDevotionLevels[religion.StringId];
                 if (value <= 0) return DevotionLevel.None;
                 else if (value < TORConstants.DEVOTED_TRESHOLD) return DevotionLevel.Follower;
                 else if (value < TORConstants.FANATIC_TRESHOLD) return DevotionLevel.Devoted;
                 else return DevotionLevel.Fanatic;
             }
+            else return DevotionLevel.None;
         }
 
         public static void AddReligiousInfluence(this Hero hero, ReligionObject religion, int amount, bool shouldNotify = true)

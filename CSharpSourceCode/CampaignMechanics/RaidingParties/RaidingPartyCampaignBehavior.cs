@@ -15,7 +15,6 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
         public override void RegisterEvents()
         {
             CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, DailyTickSettlement);
-            CampaignEvents.TickEvent.AddNonSerializedListener(this, Tick);
             CampaignEvents.AiHourlyTickEvent.AddNonSerializedListener(this, HourlyPartyTick);
         }
 
@@ -25,16 +24,6 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
             {
                 var component = (IRaidingParty)party.PartyComponent;
                 component.HourlyTickAI(thinkParams);
-            }
-        }
-
-        //destroy corrupted parties, not sure if this is needed anymore
-        private void Tick(float dt)
-        {
-            var list = MobileParty.All.WhereQ(x => x.IsRaidingParty() && x.ActualClan == null).ToList();
-            foreach(var item in list)
-            {
-                DestroyPartyAction.Apply(null, item);
             }
         }
 

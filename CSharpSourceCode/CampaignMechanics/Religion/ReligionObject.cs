@@ -17,6 +17,7 @@ namespace TOR_Core.CampaignMechanics.Religion
 {
     public class ReligionObject : MBObjectBase
     {
+        private static MBReadOnlyList<ReligionObject> _all;
         public TextObject Name { get; set; }
         public TextObject DeityName { get; set; }
         public TextObject LoreText { get; private set; }
@@ -27,7 +28,8 @@ namespace TOR_Core.CampaignMechanics.Religion
         public List<string> InitialClans { get; private set; } = new List<string>();
         public ReligionAffinity Affinity { get; private set; }
 
-        public static MBReadOnlyList<ReligionObject> All => MBObjectManager.Instance.GetObjectTypeList<ReligionObject>();
+        public static MBReadOnlyList<ReligionObject> All => _all ?? new MBReadOnlyList<ReligionObject> { };
+        public static void FillAll() => _all = MBObjectManager.Instance.GetObjectTypeList<ReligionObject>();
 
         public MBReadOnlyList<Hero> CurrentFollowers => new MBReadOnlyList<Hero>(Hero.AllAliveHeroes.Where(x => x.GetDominantReligion() == this).ToList());
 

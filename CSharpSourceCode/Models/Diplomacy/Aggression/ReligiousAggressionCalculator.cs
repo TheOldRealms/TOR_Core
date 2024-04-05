@@ -1,4 +1,5 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using System.Drawing;
+using TaleWorlds.CampaignSystem;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 
@@ -9,24 +10,26 @@ namespace TOR_Core.Models.Diplomacy.Aggression
         public static float DetermineEffectOfReligion(IFaction faction1, IFaction faction2)
         {
             var kingdomHeroes = faction1.Heroes;
+            var otherSideHeroes = faction2.Heroes;
 
             float religionValue = 0f;
 
             foreach (var hero in kingdomHeroes)
             {
-                var otherSideHeroes = faction2.Heroes;
+                var heroReligion = hero.GetDominantReligion();
+                if (heroReligion == null || !heroReligion.IsReady || !heroReligion.IsInitialized) continue;
+                var heroDevotionLevel = hero.GetDevotionLevelForReligion(heroReligion);
+                if(heroDevotionLevel == DevotionLevel.None) continue;
+
                 foreach (var enemy in otherSideHeroes)
                 {
-                    foreach (var religion in ReligionObject.All)
-                    {
-                        if (hero.GetDevotionLevelForReligion(religion) == DevotionLevel.None)
-                            continue;
-                        foreach (var comparedToReligion in ReligionObject.All)
-                        {
-                            religionValue += DeterminePositiveEffect(hero, religion, enemy, comparedToReligion);
-                            religionValue += DetermineNegativeEffect(hero, religion, enemy, comparedToReligion);
-                        }
-                    }
+                    var enemyReligion = enemy.GetDominantReligion();
+                    if (enemyReligion == null || !enemyReligion.IsReady || !enemyReligion.IsInitialized) continue;
+                    var enemyDevotionLevel = enemy.GetDevotionLevelForReligion(enemyReligion);
+                    if (enemyDevotionLevel == DevotionLevel.None) continue;
+
+                    religionValue += DeterminePositiveEffect(hero, heroReligion, heroDevotionLevel, enemy, enemyReligion, enemyDevotionLevel);
+                    religionValue += DetermineNegativeEffect(hero, heroReligion, heroDevotionLevel, enemy, enemyReligion, enemyDevotionLevel);
                 }
             }
 
@@ -35,14 +38,12 @@ namespace TOR_Core.Models.Diplomacy.Aggression
 
         // Max Value: 100
         // Min Value: 0
-        private static float DeterminePositiveEffect(Hero hero, ReligionObject religion, Hero enemy, ReligionObject comparedToReligion)
+        private static float DeterminePositiveEffect(Hero hero, ReligionObject religion, DevotionLevel heroDevotion, Hero enemy, ReligionObject comparedToReligion, DevotionLevel enemyDevotion)
         {
             if (religion.HostileReligions.Contains(comparedToReligion))
                 return 0;
 
             var value = 0;
-            var heroDevotion = hero.GetDevotionLevelForReligion(religion);
-            var enemyDevotion = enemy.GetDevotionLevelForReligion(comparedToReligion);
 
             var shareAffinity = religion.Affinity == comparedToReligion.Affinity;
             var isSame = religion.Name == comparedToReligion.Name;
@@ -101,15 +102,9 @@ namespace TOR_Core.Models.Diplomacy.Aggression
 
         // Max Score = 0
         // Min Score = -125
-        private static float DetermineNegativeEffect(Hero hero, ReligionObject religion, Hero enemy, ReligionObject comparedToReligion)
+        private static float DetermineNegativeEffect(Hero hero, ReligionObject religion, DevotionLevel heroDevotion, Hero enemy, ReligionObject comparedToReligion, DevotionLevel enemyDevotion)
         {
             var value = 0;
-
-            var heroDevotion = hero.GetDevotionLevelForReligion(religion);
-            var enemyDevotion = enemy.GetDevotionLevelForReligion(comparedToReligion);
-
-            if (heroDevotion == DevotionLevel.None) //If a hero is not devoted at all, he should also not care about any hostility.
-                return value;
 
             var shareAffinity = religion.Affinity == comparedToReligion.Affinity;
             var isSame = religion.Name == comparedToReligion.Name;

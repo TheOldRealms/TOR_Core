@@ -284,6 +284,7 @@ namespace TOR_Core
                 _ = new TORCampaignEvents();
                 
                 MBObjectManager.Instance.LoadXML("Religions", false);
+                ReligionObject.FillAll();
             }
         }
 

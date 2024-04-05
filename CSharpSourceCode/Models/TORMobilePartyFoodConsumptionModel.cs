@@ -20,11 +20,11 @@ namespace TOR_Core.Models
             var explainedNumber = base.CalculateDailyBaseFoodConsumptionf(party, includeDescription);
             base.CalculateDailyFoodConsumptionf(party, explainedNumber);
             
-            var noneatingMemberRoster = party.Party.MemberRoster.GetTroopRoster().WhereQ(x => x.Character.IsUndead());
-            int noneatingMemberCount = noneatingMemberRoster.Sum(item => item.Number);
             var totalMembers = party.Party.MemberRoster.Sum(item => item.Number);
-            var ratio= (double) noneatingMemberCount / totalMembers;
-            float  saving = (float)-(ratio * explainedNumber.ResultNumber);
+            var noneatingMemberCount = party.Party.MemberRoster.Sum(item => item.Character.IsUndead() ? item.Number : 0);
+
+            var ratio = (double)noneatingMemberCount / totalMembers;
+            float saving = (float)-(ratio * explainedNumber.ResultNumber);
             
             explainedNumber.Add(saving, new TextObject("Saving from undead troops"));
             explainedNumber.LimitMax(0);
