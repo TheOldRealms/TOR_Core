@@ -371,6 +371,29 @@ namespace TOR_Core.Extensions
                             damageProportions[(int)DamageType.Physical] = 1f; //memo , this is for siege weapons, in principle a wielded Item shouldn't be found either in case of spell casting - yet it is found.
                         }
                     }
+                    
+                    if (attackTypeMask == AttackTypeMask.Spell)
+                    {
+                        if (!agent.WieldedOffhandWeapon.IsEmpty && agent.WieldedOffhandWeapon.Item != null && agent.WieldedOffhandWeapon.Item.StringId.Contains("staff"))
+                        {
+                            List<ItemTrait> staffItemTraits = agent.WieldedOffhandWeapon.Item.GetTraits();
+
+                            foreach (var itemTrait in staffItemTraits)
+                            {
+                                var property = itemTrait.AmplifierTuple;
+                                
+                                if(property!=null)
+                                    damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
+
+                                var additionalDamageProperty = itemTrait.AdditionalDamageTuple;
+                                if (additionalDamageProperty != null)
+                                {
+                                    additionalDamagePercentages[(int)additionalDamageProperty.DamageType] += additionalDamageProperty.Percent;
+                                }
+                            }
+                        }
+                    }
+                    
                 }
                 if (propertyMask == PropertyMask.Defense || propertyMask == PropertyMask.All)
                 {

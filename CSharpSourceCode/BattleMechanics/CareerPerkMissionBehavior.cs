@@ -9,12 +9,42 @@ using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics
 {
     public class CareerPerkMissionBehavior : MissionLogic
     {
+        private float _currentTime;
+        private readonly float _frequency=1f;
+        public override void OnMissionTick(float dt)
+        {
+            _currentTime += dt;
+            if (_currentTime > _frequency)
+            {
+                _currentTime = 0f;
+                TickEvents();
+            }
+        }
+
+        private void TickEvents()
+        {
+            
+            if (Agent.Main!=null&&Hero.MainHero.HasCareer(TORCareers.Necrarch))
+            {
+                if (Hero.MainHero.HasCareerChoice("HungerForKnowledgeKeystone"))
+                {
+                    var cAbility = Mission.Current.MainAgent.GetComponent<AbilityComponent>();
+                    if (cAbility != null)
+                    {
+                        var value = TORCareers.Necrarch.GetCalculatedCareerAbilityCharge(Mission.Current.MainAgent, null, ChargeType.DamageDone, 15, AttackTypeMask.Spell, CareerHelper.ChargeCollisionFlag.None);
+                        cAbility.CareerAbility.AddCharge(value);
+                    }
+                }
+            }
+        }
+
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
             if (!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
@@ -107,7 +137,7 @@ namespace TOR_Core.BattleMechanics
                             affectorAgent.ApplyStatusEffect("accusation_buff_rls", affectorAgent, choice.GetPassiveValue(), false, false);
                         }
                     }
-
+                    
                     if (choices.Contains("ToolsOfJudgementPassive4"))
                     {
                         var multiplier = 1;
@@ -136,7 +166,6 @@ namespace TOR_Core.BattleMechanics
                             damage /= 200;
                             var bonus = Mathf.Clamp(damage, 0, 5);
                             affectorAgent.Heal(bonus);
-                            InformationManager.DisplayMessage(new InformationMessage(affectorAgent.Health + "health + bonus " + bonus, Color.FromUint(16095298)));   //TODO REMOVE
                         }
                     }
                 }

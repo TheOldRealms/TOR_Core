@@ -79,7 +79,7 @@ namespace TOR_Core.CampaignMechanics
 			List<TooltipProperty> list = new List<TooltipProperty>();
 			list.Add(new TooltipProperty(womTitle, WindsOfMagic, 0, false, TooltipProperty.TooltipPropertyFlags.Title));
 			list.Add(new TooltipProperty(womMaximum, _maxWinds.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
-			list.Add(new TooltipProperty(womRechargeRate, _windRechargeRate.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
+			list.Add(new TooltipProperty(womRechargeRate, String.Format("{0:0.00}", _windRechargeRate), 0, false, TooltipProperty.TooltipPropertyFlags.None));
 			return list;
 		}
 
