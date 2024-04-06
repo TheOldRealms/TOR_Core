@@ -105,6 +105,8 @@ namespace TOR_Core.Extensions
                     return true;
                 if (choices.Contains("BlackGrailVowPassive2"))
                     return true;
+                if (choices.Contains("FuryOfWarPassive4"))
+                    return true;
             }
 
             if (Hero.MainHero.HasCareer(TORCareers.Necromancer))

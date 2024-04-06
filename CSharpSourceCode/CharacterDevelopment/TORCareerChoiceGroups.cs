@@ -101,7 +101,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _teachingsOfTheWinterfather;
         private CareerChoiceGroupObject _frostsBite;
         private CareerChoiceGroupObject _runesOfTheWhiteWolf;
-        private CareerChoiceGroupObject _furyOfwar;
+        private CareerChoiceGroupObject _furyOfWar;
         private CareerChoiceGroupObject _flameOfUlric;
 
 
@@ -211,8 +211,8 @@ namespace TOR_Core.CharacterDevelopment
             _teachingsOfTheWinterfather = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_teachingsOfTheWinterfather).UnderscoreFirstCharToUpper()));
             _frostsBite = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_frostsBite).UnderscoreFirstCharToUpper()));
             _runesOfTheWhiteWolf = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_runesOfTheWhiteWolf).UnderscoreFirstCharToUpper()));
-            _furyOfwar = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_furyOfwar).UnderscoreFirstCharToUpper()));
-            _flameOfUlric = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_furyOfwar).UnderscoreFirstCharToUpper()));
+            _furyOfWar = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_furyOfWar).UnderscoreFirstCharToUpper()));
+            _flameOfUlric = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_flameOfUlric).UnderscoreFirstCharToUpper()));
         }
 
         private void InitializeAll()
@@ -627,32 +627,32 @@ namespace TOR_Core.CharacterDevelopment
                 text = string.Empty;
                 return true;
             });
-            _wildPack.Initialize("Wild Pack", TORCareers.Necrarch, 1, (Hero hero, out string text) =>
+            _wildPack.Initialize("Wild Pack", TORCareers.WarriorPriestUlric, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _teachingsOfTheWinterfather.Initialize("Teachings of the Winterfather", TORCareers.Necrarch, 2, (Hero hero, out string text) =>
+            _teachingsOfTheWinterfather.Initialize("Teachings of the Winterfather", TORCareers.WarriorPriestUlric, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _frostsBite.Initialize("Frost’s Bite", TORCareers.Necrarch, 2, (Hero hero, out string text) =>
+            _frostsBite.Initialize("Frost’s Bite", TORCareers.WarriorPriestUlric, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _runesOfTheWhiteWolf.Initialize("Runes of the White Wolf", TORCareers.Necrarch, 2, (Hero hero, out string text) =>
+            _runesOfTheWhiteWolf.Initialize("Runes of the White Wolf", TORCareers.WarriorPriestUlric, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _furyOfwar.Initialize("Fury of War", TORCareers.Necrarch, 3, (Hero hero, out string text) =>
+            _furyOfWar.Initialize("Fury of War", TORCareers.WarriorPriestUlric, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
-            _flameOfUlric.Initialize("Flame of Ulric", TORCareers.Necrarch, 3, (Hero hero, out string text) =>
+            _flameOfUlric.Initialize("Flame of Ulric", TORCareers.WarriorPriestUlric, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;

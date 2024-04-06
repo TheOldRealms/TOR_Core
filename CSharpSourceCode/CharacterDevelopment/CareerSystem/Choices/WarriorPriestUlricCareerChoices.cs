@@ -3,15 +3,20 @@ using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
+using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 {
     public class WarriorPriestUlricCareerChoices : TORCareerChoicesBase
     {
+        public WarriorPriestUlricCareerChoices(CareerObject id) : base(id) {}
+        
         private CareerChoiceObject _warriorPriestUlricRoot;
         private CareerChoiceObject _crusherOfTheWeakKeystone;
         private CareerChoiceObject _crusherOfTheWeakPassive1;
@@ -125,12 +130,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Add
                     }
                 });
-            _crusherOfTheWeakKeystone.Initialize(CareerID, "Ability can also be charged by applying damage.", "BookOfSigmar", false,
+            _crusherOfTheWeakKeystone.Initialize(CareerID, "Ability can also be charged by applying damage.", "CrusherOfTheWeak", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                 },new CareerChoiceObject.PassiveEffect());
             
-            _wildPackKeystone.Initialize(CareerID, "Doubles the aura size of Righteous Fury.", "SigmarsProclaimer", false,
+            _wildPackKeystone.Initialize(CareerID, "Doubles the aura size of Righteous Fury.", "WildPack", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -150,7 +155,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Replace
                     },
                 });
-            _teachingsOfTheWinterFatherKeystone.Initialize(CareerID, "Righteous Fury scales with Leadership. Troops affected get unbreakable for the duration.", "RelentlessFanatic", false,
+            _teachingsOfTheWinterFatherKeystone.Initialize(CareerID, "Righteous Fury scales with Leadership. Troops affected get unbreakable for the duration.", "TeachingsOfTheWinterfather", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -186,7 +191,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Replace
                     },
                 });
-            _frostsBiteKeystone.Initialize(CareerID, "Righteous Fury scales with the highest melee weapon skill. Adds 20% physical resistance.", "ProtectorOfTheWeak", false,
+            _frostsBiteKeystone.Initialize(CareerID, "Righteous Fury scales with the highest melee weapon skill. Adds 20% physical resistance.", "FrostsBite", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -230,7 +235,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Replace
                     },
                 });
-            _runesOfTheWhiteWolfKeystone.Initialize(CareerID, "All units affected by Righteous Fury receive a burning weapon buff.", "HolyPurge", false,
+            _runesOfTheWhiteWolfKeystone.Initialize(CareerID, "All units affected by Righteous Fury receive a burning weapon buff.", "RunesOfTheWhiteWolf", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -243,7 +248,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     },
                 });
             
-            _furyOfWarKeystone.Initialize(CareerID, "Adds a healing buff to Righteous Fury that restores 3 Hitpoints per second.", "ArchLector", false,
+            _furyOfWarKeystone.Initialize(CareerID, "Adds a healing buff to Righteous Fury that restores 3 Hitpoints per second.", "FuryOfWar", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -256,7 +261,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     },
                 });
             
-            _flameOfUlricKeystone.Initialize(CareerID, "Righteous Fury adds a damaging aura. Its radius increases slightly when raising relevant skills.", "TwinTailedComet", false,
+            _flameOfUlricKeystone.Initialize(CareerID, "Righteous Fury adds a damaging aura. Its radius increases slightly when raising relevant skills.", "FlameOfUlric", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -288,7 +293,43 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializePassives()
         {
-            throw new System.NotImplementedException();
+            _crusherOfTheWeakPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "CrusherOfTheWeak", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+            _crusherOfTheWeakPassive2.Initialize(CareerID, "Extra melee damage (10%).", "CrusherOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
+            _crusherOfTheWeakPassive3.Initialize(CareerID, "{=peerless_warrior_passive2_str}Extra melee damage (10%).", "CrusherOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,
+                (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee && !victim.IsHero && victim.Character.Level < 16));
+            _crusherOfTheWeakPassive4.Initialize(CareerID, "{=night_rider_passive4_str}Attacks deal bonus damage against shields.", "CrusherOfTheWeak", false, ChoiceType.Passive, null);
+            
+            _wildPackPassive1.Initialize(CareerID, "Increases melee physical resistance by 10%.", "WildPack", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical,10),AttackTypeMask.Melee));
+            _wildPackPassive2.Initialize(CareerID, "Increases Party size by 10.", "WildPack", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.PartySize));
+            _wildPackPassive3.Initialize(CareerID, "Increases health regeneration after battles by 2.", "WildPack", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.HealthRegeneration));
+            _wildPackPassive4.Initialize(CareerID, "Party movement speed is increased by 1.", "WildPack", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1f, PassiveEffectType.PartyMovementSpeed));
+            
+            _teachingsOfTheWinterFatherPassive1.Initialize(CareerID, "Wounded troops in your party heal faster.", "TeachingsOfTheWinterfather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration));
+            _teachingsOfTheWinterFatherPassive2.Initialize(CareerID,"PLACEHOLDER","TeachingsOfTheWinterfather",false,ChoiceType.Passive); //TODO
+            _teachingsOfTheWinterFatherPassive3.Initialize(CareerID,"PLACEHOLDER","TeachingsOfTheWinterfather",false,ChoiceType.Passive); //TODO
+            _teachingsOfTheWinterFatherPassive4.Initialize(CareerID, "Increases range damage resistance of melee troops by 20%.", "TeachingsOfTheWinterfather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Ranged, 
+                (attacker, victim, mask) => !victim.BelongsToMainParty()&& !(victim.IsMainAgent || victim.IsHero)&& mask == AttackTypeMask.Melee ));
+            
+            _frostsBitePassive1.Initialize(CareerID, "Extra electric damage (10%).", "FrostsBite", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 10), AttackTypeMask.Melee));
+            _frostsBitePassive2.Initialize(CareerID, "Add 10% electric damage to melee troops.", "FrostsBite", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Lightning, 10), AttackTypeMask.Melee));
+            _frostsBitePassive3.Initialize(CareerID,"PLACEHOLDER","FrostsBite",false,ChoiceType.Passive); //TODO
+            _frostsBitePassive4.Initialize(CareerID, "Increase hex durations by 20%.", "FrostsBite", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.20f, PassiveEffectType.DebuffDuration,true)); //TODO check if 20% is true?
+            
+            _runesOfTheWhiteWolfPassive1.Initialize(CareerID,"PLACEHOLDER","RunesOfTheWhiteWolf",false,ChoiceType.Passive); //TODO
+            _runesOfTheWhiteWolfPassive2.Initialize(CareerID, "Increases Hitpoints by 50.", "RunesOfTheWhiteWolf", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
+            _runesOfTheWhiteWolfPassive3.Initialize(CareerID, "Increase prayer durations by 20%.", "RunesOfTheWhiteWolf", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.25f, PassiveEffectType.BuffDuration,true));
+            _runesOfTheWhiteWolfPassive4.Initialize(CareerID, "Ulrican troops gain 20% Ward save.", "RunesOfTheWhiteWolf", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 20), AttackTypeMask.All, 
+                (attacker, victim, mask) => victim.IsPlayerTroop && victim.Character.UnitBelongsToCult("ulric") ));
+            
+            _furyOfWarPassive1.Initialize(CareerID,"PLACEHOLDER","FuryOfWar",false,ChoiceType.Passive); //TODO
+            _furyOfWarPassive2.Initialize(CareerID, "Weapon swing speed increased by 10%.", "FuryOfWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10f, PassiveEffectType.SwingSpeed,true)); 
+            _furyOfWarPassive3.Initialize(CareerID,"PLACEHOLDER","FuryOfWar",false,ChoiceType.Passive); //TODO
+            _furyOfWarPassive4.Initialize(CareerID,"Hits below 15 damage do not stagger the player.","FuryOfWar",false,ChoiceType.Passive); //TODO
+            
+            
+            
+
+
         }
     }
 }

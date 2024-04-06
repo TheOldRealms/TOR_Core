@@ -3279,7 +3279,7 @@
 		<TriggeredEffect>apply_let_them_have_it</TriggeredEffect>
 	</AbilityTemplate>
 	
-	<AbilityTemplate StringID="BlackAxe"
+	<AbilityTemplate StringID="AxeOfUlric"
        Name="{=red_fury_label_str}Axe of Ulric"
        SpriteName="redfury_icon"
        CoolDown="15"
