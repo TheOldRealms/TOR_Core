@@ -124,7 +124,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Add
                     },
                 });
-            _crusherOfTheWeakKeystone.Initialize(CareerID, "Ability can also be charged by applying damage.", "CrusherOfTheWeak", false,
+            _crusherOfTheWeakKeystone.Initialize(CareerID, "Enemies are knocked down from the blow of the ability.", "CrusherOfTheWeak", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -137,7 +137,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     },
                 },new CareerChoiceObject.PassiveEffect());
             
-            _wildPackKeystone.Initialize(CareerID, "Doubles the aura size of Righteous Fury.", "WildPack", false,
+            _wildPackKeystone.Initialize(CareerID, "Leadership counts towards career ability", "WildPack", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -224,8 +224,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _teachingsOfTheWinterFatherPassive4.Initialize(CareerID, "Increases range damage resistance of melee troops by 20%.", "TeachingsOfTheWinterfather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Ranged, 
                 (attacker, victim, mask) => !victim.BelongsToMainParty()&& !(victim.IsMainAgent || victim.IsHero)&& mask == AttackTypeMask.Melee ));
             
-            _frostsBitePassive1.Initialize(CareerID, "Extra electric damage (10%).", "FrostsBite", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 10), AttackTypeMask.Melee));
-            _frostsBitePassive2.Initialize(CareerID, "Add 10% electric damage to melee troops.", "FrostsBite", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Lightning, 10), AttackTypeMask.Melee));
+            _frostsBitePassive1.Initialize(CareerID, "Extra frost damage (10%).", "FrostsBite", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Frost, 10), AttackTypeMask.Melee));
+            _frostsBitePassive2.Initialize(CareerID, "Add 10% frost damage to melee troops.", "FrostsBite", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Frost, 10), AttackTypeMask.Melee));
             _frostsBitePassive3.Initialize(CareerID, "Party is not slowed by snow.", "FrostsBite", false, ChoiceType.Passive, null); //TORPartySpeedCalculatingModel 46
             _frostsBitePassive4.Initialize(CareerID, "Increase hex durations by 20%.", "FrostsBite", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20f, PassiveEffectType.DebuffDuration,true)); 
             
@@ -235,7 +235,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _runesOfTheWhiteWolfPassive4.Initialize(CareerID, "Ulrican troops gain 20% Ward save.", "RunesOfTheWhiteWolf", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 20), AttackTypeMask.All, 
                 (attacker, victim, mask) => victim.IsPlayerTroop && victim.Character.UnitBelongsToCult("ulric") ));
             
-            _furyOfWarPassive1.Initialize(CareerID, "Every  equipped melee weapon increases melee damage by 5%.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5,PassiveEffectType.Special,true));
+            _furyOfWarPassive1.Initialize(CareerID, "Every  equipped melee weapon increases melee damage by 5%.", "FuryOfWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5,PassiveEffectType.Special,true));
             _furyOfWarPassive2.Initialize(CareerID, "Weapon swing speed increased by 10%.", "FuryOfWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10f, PassiveEffectType.SwingSpeed,true)); 
             _furyOfWarPassive3.Initialize(CareerID,"Battles with even out odds provide double prestige gain","FuryOfWar",false,ChoiceType.Passive);
             _furyOfWarPassive4.Initialize(CareerID,"Hits below 15 damage do not stagger the player.","FuryOfWar",false,ChoiceType.Passive); 
