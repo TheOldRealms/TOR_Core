@@ -18,7 +18,7 @@ namespace TOR_Core.Models.Diplomacy.Aggression
 
             RelationshipLevel = relationship;
         }
-        public Dictionary<MBGUID, DevotionLevel> HeroesDevotion {  get; set; }
+        public Dictionary<MBGUID, DevotionLevel> HeroesDevotion {  get; }
         public int RelationshipLevel { get; set; }
     }
 }
