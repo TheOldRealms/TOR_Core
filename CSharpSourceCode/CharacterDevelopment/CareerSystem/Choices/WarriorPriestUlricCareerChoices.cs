@@ -306,14 +306,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             _teachingsOfTheWinterFatherPassive1.Initialize(CareerID, "Wounded troops in your party heal faster.", "TeachingsOfTheWinterfather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration));
             _teachingsOfTheWinterFatherPassive2.Initialize(CareerID,"PLACEHOLDER","TeachingsOfTheWinterfather",false,ChoiceType.Passive); //TODO
-            _teachingsOfTheWinterFatherPassive3.Initialize(CareerID,"PLACEHOLDER","TeachingsOfTheWinterfather",false,ChoiceType.Passive); //TODO
+            _teachingsOfTheWinterFatherPassive3.Initialize(CareerID, "All Knight troops receive 20 bonus points in One and Two Handed skills.", "TeachingsOfTheWinterfather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Special)); //
             _teachingsOfTheWinterFatherPassive4.Initialize(CareerID, "Increases range damage resistance of melee troops by 20%.", "TeachingsOfTheWinterfather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Ranged, 
                 (attacker, victim, mask) => !victim.BelongsToMainParty()&& !(victim.IsMainAgent || victim.IsHero)&& mask == AttackTypeMask.Melee ));
             
             _frostsBitePassive1.Initialize(CareerID, "Extra electric damage (10%).", "FrostsBite", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 10), AttackTypeMask.Melee));
             _frostsBitePassive2.Initialize(CareerID, "Add 10% electric damage to melee troops.", "FrostsBite", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Lightning, 10), AttackTypeMask.Melee));
-            _frostsBitePassive3.Initialize(CareerID,"PLACEHOLDER","FrostsBite",false,ChoiceType.Passive); //TODO
-            _frostsBitePassive4.Initialize(CareerID, "Increase hex durations by 20%.", "FrostsBite", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.20f, PassiveEffectType.DebuffDuration,true)); //TODO check if 20% is true?
+            _frostsBitePassive3.Initialize(CareerID, "Party is not slowed by snow.", "FrostsBite", false, ChoiceType.Passive, null); //TORPartySpeedCalculatingModel 46
+            _frostsBitePassive4.Initialize(CareerID, "Increase hex durations by 20%.", "FrostsBite", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20f, PassiveEffectType.DebuffDuration,true)); 
             
             _runesOfTheWhiteWolfPassive1.Initialize(CareerID,"PLACEHOLDER","RunesOfTheWhiteWolf",false,ChoiceType.Passive); //TODO
             _runesOfTheWhiteWolfPassive2.Initialize(CareerID, "Increases Hitpoints by 50.", "RunesOfTheWhiteWolf", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
@@ -323,12 +323,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             _furyOfWarPassive1.Initialize(CareerID,"PLACEHOLDER","FuryOfWar",false,ChoiceType.Passive); //TODO
             _furyOfWarPassive2.Initialize(CareerID, "Weapon swing speed increased by 10%.", "FuryOfWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10f, PassiveEffectType.SwingSpeed,true)); 
-            _furyOfWarPassive3.Initialize(CareerID,"PLACEHOLDER","FuryOfWar",false,ChoiceType.Passive); //TODO
+            _furyOfWarPassive3.Initialize(CareerID,"Battles with even out odds provide double prestige gain","FuryOfWar",false,ChoiceType.Passive); //TODO
             _furyOfWarPassive4.Initialize(CareerID,"Hits below 15 damage do not stagger the player.","FuryOfWar",false,ChoiceType.Passive); //TODO
             
             _flameOfUlricPassive1.Initialize(CareerID,"PLACEHOLDER","FlameOfUlric",false,ChoiceType.Passive); //TODO
             _flameOfUlricPassive2.Initialize(CareerID, "Extra 20% armor penetration of melee attacks.", "FlameOfUlric", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
-            _flameOfUlricPassive3.Initialize(CareerID,"PLACEHOLDER","FlameOfUlric",false,ChoiceType.Passive); //TODO
+            _flameOfUlricPassive3.Initialize(CareerID,"For a fair battle, gain or refresh your Ulric blessing.","FlameOfUlric",false,ChoiceType.Passive); //TODO
             _flameOfUlricPassive4.Initialize(CareerID,"PLACEHOLDER","FlameOfUlric",false,ChoiceType.Passive); //TODO
             
             

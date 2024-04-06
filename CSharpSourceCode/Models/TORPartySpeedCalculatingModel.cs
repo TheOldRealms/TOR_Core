@@ -56,7 +56,21 @@ namespace TOR_Core.Models
                     {
                         result.AddFactor(-0.9f,new TextObject("Burden of Dark Energy Costs is too high!") );
                     }
+                    
+                    if (Hero.MainHero.HasCareerChoice("FrostsBitePassive3"))
+                    {
+                        var terrainTypes = Campaign.Current.MapSceneWrapper.GetEnvironmentTerrainTypes(mobileParty.Position2D);
+
+                        var choice = TORCareerChoices.GetChoice("FrostsBitePassive3");
+                        if (terrainTypes.Contains( TerrainType.Snow))
+                        {
+                            result.AddFactor(+0.1f, choice.BelongsToGroup.Name);
+                        }
+                    }
+                    
                 }
+                
+                
             }
 
             if (mobileParty.HasBlessing("cult_of_taal"))

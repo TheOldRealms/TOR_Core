@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
@@ -40,5 +43,49 @@ namespace TOR_Core.Models
             PerkHelper.AddPerkBonusForCharacter(TORPerks.Faith.Superstitious, party.LeaderHero.CharacterObject, true, ref result);
             return (int)result.ResultNumber;
         }
+
+        public void AddBlessingToParty(MobileParty party, string cultID)
+        {
+            var religion = ReligionObject.All.FirstOrDefault(x => x.StringId == cultID);
+            if(religion==null) return;
+            AddBlessingToParty(party,religion);
+        }
+        
+        public void AddBlessingToParty(MobileParty party, ReligionObject religion)
+        {
+            if(religion==null) return;
+            var cultID = religion.StringId;
+            if(party==null || !party.IsActive|| !party.IsLordParty) return;
+            
+            
+            
+            var duration = CalculateBlessingDurationForParty(party);
+            
+            
+            if (cultID == "cult_of_sigmar" && Hero.MainHero.HasCareerChoice("SigmarProclaimerPassive4"))
+            {
+                var choice = TORCareerChoices.GetChoice("SigmarProclaimerPassive4");
+                if(choice?.Passive == null)return;
+                foreach (var hero in Hero.MainHero.PartyBelongedTo.GetMemberHeroes())
+                {
+                    var value =(int) choice.Passive.EffectMagnitude;
+                    hero.Heal(value,false);
+                }
+            }
+            
+            if (cultID== "cult_of_Ulric" && Hero.MainHero.HasCareerChoice("SigmarProclaimerPassive4"))
+            {
+                var choice = TORCareerChoices.GetChoice("SigmarProclaimerPassive4");
+                if(choice==null||choice.Passive==null)return;
+                Hero.MainHero.Heal(Hero.MainHero.MaxHitPoints,false);
+            }
+            
+            party.LeaderHero.AddReligiousInfluence(religion, duration);
+            party.LeaderHero.AddSkillXp(TORSkills.Faith, CalculateSkillXpForPraying(Hero.MainHero));
+            
+            ExtendedInfoManager.Instance.AddBlessingToParty(party.StringId, cultID, duration);
+        }
+
+        
     }
 }

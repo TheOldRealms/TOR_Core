@@ -43,6 +43,13 @@ namespace TOR_Core.Models
                     number.AddFactor(choice.GetPassiveValue());
                 }
             }
+            
+            if (isFatal&&party.MobileParty == MobileParty.MainParty&&MobileParty.MainParty.HasBlessing("cult_of_ulric"))
+            {
+                number.AddFactor(0.2f);
+            }
+            
+            
             xpAmount = (int) number.ResultNumber;
         }
 

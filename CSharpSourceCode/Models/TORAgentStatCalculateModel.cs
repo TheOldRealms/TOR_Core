@@ -175,7 +175,14 @@ namespace TOR_Core.Models
                             
                             if ((skill == DefaultSkills.OneHanded||skill == DefaultSkills.TwoHanded)&& choices.Contains("SwampRiderPassive4") && agent.Character.IsKnightUnit())
                             {
-                                var choice = TORCareerChoices.GetChoice("ErrantryWarPassive3");
+                                var choice = TORCareerChoices.GetChoice("SwampRiderPassive4");
+                                if(choice.Passive!=null)
+                                    resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                            }
+                            
+                            if ((skill == DefaultSkills.OneHanded||skill == DefaultSkills.TwoHanded)&& choices.Contains("TeachingsOfTheWinterFatherPassive3") && !agent.Character.IsMounted)
+                            {
+                                var choice = TORCareerChoices.GetChoice("TeachingsOfTheWinterFatherPassive3");
                                 if(choice.Passive!=null)
                                     resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
                             }
