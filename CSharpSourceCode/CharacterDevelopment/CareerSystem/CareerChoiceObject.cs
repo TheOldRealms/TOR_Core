@@ -260,7 +260,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         WindsRegeneration,
         BuffDuration,       //Increases duration for friendly augments     //TODO Radius
         DebuffDuration,     //Increases duration for hex
-        Spelleffectiveness, //Damage spell effectiveness - for direct effects
+        SpellEffectiveness, //Damage spell effectiveness - for direct effects
         WindsCooldownReduction, //player cooldown reduction as Percentage
         PrayerCoolDownReduction, //player cooldown reduction as Percentage
         PartyMovementSpeed, //general party speed

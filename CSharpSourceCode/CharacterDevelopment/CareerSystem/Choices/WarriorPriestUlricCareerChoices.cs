@@ -326,6 +326,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _furyOfWarPassive3.Initialize(CareerID,"PLACEHOLDER","FuryOfWar",false,ChoiceType.Passive); //TODO
             _furyOfWarPassive4.Initialize(CareerID,"Hits below 15 damage do not stagger the player.","FuryOfWar",false,ChoiceType.Passive); //TODO
             
+            _flameOfUlricPassive1.Initialize(CareerID,"PLACEHOLDER","FlameOfUlric",false,ChoiceType.Passive); //TODO
+            _flameOfUlricPassive2.Initialize(CareerID, "Extra 20% armor penetration of melee attacks.", "FlameOfUlric", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
+            _flameOfUlricPassive3.Initialize(CareerID,"PLACEHOLDER","FlameOfUlric",false,ChoiceType.Passive); //TODO
+            _flameOfUlricPassive4.Initialize(CareerID,"PLACEHOLDER","FlameOfUlric",false,ChoiceType.Passive); //TODO
             
             
 
