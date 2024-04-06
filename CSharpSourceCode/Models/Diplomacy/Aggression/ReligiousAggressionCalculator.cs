@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using TaleWorlds.CampaignSystem;
+﻿using TaleWorlds.CampaignSystem;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 
@@ -7,6 +6,7 @@ namespace TOR_Core.Models.Diplomacy.Aggression
 {
     public static class ReligiousAggressionCalculator
     {
+
         public static float DetermineEffectOfReligion(IFaction faction1, IFaction faction2)
         {
             var kingdomHeroes = faction1.Heroes;
@@ -28,8 +28,9 @@ namespace TOR_Core.Models.Diplomacy.Aggression
                     var enemyDevotionLevel = enemy.GetDevotionLevelForReligion(enemyReligion);
                     if (enemyDevotionLevel == DevotionLevel.None) continue;
 
-                    religionValue += DeterminePositiveEffect(hero, heroReligion, heroDevotionLevel, enemy, enemyReligion, enemyDevotionLevel);
-                    religionValue += DetermineNegativeEffect(hero, heroReligion, heroDevotionLevel, enemy, enemyReligion, enemyDevotionLevel);
+                    //religionValue += DeterminePositiveEffect(hero, heroReligion, heroDevotionLevel, enemy, enemyReligion, enemyDevotionLevel);
+                    //religionValue += DetermineNegativeEffect(hero, heroReligion, heroDevotionLevel, enemy, enemyReligion, enemyDevotionLevel);
+                    religionValue += ReligiousHeroRelationCache.Instance.GetRelationship(hero, enemy);
                 }
             }
 

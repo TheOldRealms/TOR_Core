@@ -488,6 +488,13 @@ namespace TOR_Core.Extensions
             else return DevotionLevel.None;
         }
 
+        public static DevotionLevel GetDevotionToDominantReligion(this Hero hero)
+        {
+            var myReligion = hero.GetDominantReligion();
+            if (myReligion == null || !myReligion.IsReady || !myReligion.IsInitialized) return DevotionLevel.None;
+            return hero.GetDevotionLevelForReligion(myReligion);
+        }
+
         public static void AddReligiousInfluence(this Hero hero, ReligionObject religion, int amount, bool shouldNotify = true)
         {
             var info = hero.GetExtendedInfo();
