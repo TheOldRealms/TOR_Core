@@ -337,6 +337,7 @@
     <Compile Include="AbilitySystem\Scripts\AccusationScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ArtilleryPlacementScript.cs" />
     <Compile Include="AbilitySystem\Scripts\AugmentScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\AxeOfUlricScript.cs" />
     <Compile Include="AbilitySystem\Scripts\BlastScript.cs" />
     <Compile Include="AbilitySystem\Scripts\BombardmentScript.cs" />
     <Compile Include="AbilitySystem\Scripts\CareerAbilityMissleScript.cs" />

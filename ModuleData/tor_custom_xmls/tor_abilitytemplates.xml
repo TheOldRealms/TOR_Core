@@ -3316,7 +3316,7 @@
 				<z>255</z>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>blackaxe_smash</TriggeredEffect>
+		<TriggeredEffect>ulric_smash</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="KnightlyCharge"

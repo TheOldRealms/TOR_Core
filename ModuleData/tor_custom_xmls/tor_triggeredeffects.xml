@@ -1097,14 +1097,14 @@
 			<ImbuedStatusEffect>let_them_have_it_unbreakable</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
-	  <TriggeredEffectTemplate StringID="blackaxe_smash" 
+	  <TriggeredEffectTemplate StringID="ulric_smash" 
             BurstParticleEffectPrefab="treeman_smash" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
             DamageType="Physical" 
             DamageAmount="50" 
-            Radius="5" 
-            HasShockWave="true" 
+            Radius="2" 
+            HasShockWave="false" 
             DoNotAlignParticleEffectPrefabOnImpact="true"
             TargetType="Enemy" 
             ImbuedStatusEffectDuration="0" 

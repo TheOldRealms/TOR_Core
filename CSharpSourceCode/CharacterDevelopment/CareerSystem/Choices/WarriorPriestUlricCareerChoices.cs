@@ -110,29 +110,31 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _warriorPriestUlricRoot.Initialize(CareerID, "root", null, true,
+            _warriorPriestUlricRoot.Initialize(CareerID, "The Warrior priest is unleashing a furious blow of Ulric, slamming his weapon to the ground as if he wields Blitzbeil itself. " +
+                                                         "The attack can’t be parried and affects targets in a 2-meter radius. For every point of the player’s highest weapon skill damage increases by 0.1% ", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
+                    
                     new CareerChoiceObject.MutationObject()
                     {
-                        MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "RighteousFury",
-                        PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.05f),
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "ulric_smash",
+                        PropertyName = "DamageAmount",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.TwoHanded,DefaultSkills.OneHanded,DefaultSkills.Polearm }, 0.01f,true),
                         MutationType = OperationType.Add
                     },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "righteous_fury_effect",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.0005f),
-                        MutationType = OperationType.Add
-                    }
                 });
             _crusherOfTheWeakKeystone.Initialize(CareerID, "Ability can also be charged by applying damage.", "CrusherOfTheWeak", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "ulric_smash",
+                        PropertyName = "HasShockWave",
+                        PropertyValue = (choice, originalValue, agent) => true,
+                        MutationType = OperationType.Add
+                    },
                 },new CareerChoiceObject.PassiveEffect());
             
             _wildPackKeystone.Initialize(CareerID, "Doubles the aura size of Righteous Fury.", "WildPack", false,
@@ -141,153 +143,65 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_righteous_fury",
-                        PropertyName = "Radius",
-                        PropertyValue = (choice, originalValue, agent) => (float)originalValue * 2,
-                        MutationType = OperationType.Replace
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_righteous_fury_pulse",
-                        PropertyName = "Radius",
-                        PropertyValue = (choice, originalValue, agent) => (float)originalValue * 2,
-                        MutationType = OperationType.Replace
+                        MutationTargetOriginalId = "ulric_smash",
+                        PropertyName = "DamageAmount",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership }, 0.01f),
+                        MutationType = OperationType.Add
                     },
                 });
-            _teachingsOfTheWinterFatherKeystone.Initialize(CareerID, "Righteous Fury scales with Leadership. Troops affected get unbreakable for the duration.", "TeachingsOfTheWinterfather", false,
+            _teachingsOfTheWinterFatherKeystone.Initialize(CareerID, "The radius of the attack is increased by 1 meters. Faith counts towards ability", "TeachingsOfTheWinterfather", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
                     {
-                        MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "RighteousFury",
-                        PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership }, 0.05f),
-                        MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "righteous_fury_effect",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership }, 0.0005f),
-                        MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
                         MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_righteous_fury_pulse",
-                        PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership }, 0.05f),
+                        MutationTargetOriginalId = "ulric_smash",
+                        PropertyName = "Radius",
+                        PropertyValue = (choice, originalValue, agent) => 1,
                         MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "righteous_fury_effect",
-                        PropertyName = "TemporaryAttributes",
-                        PropertyValue = (choice, originalValue, agent) => new List<string>{"Unstoppable", "Unbreakable"},
-                        MutationType = OperationType.Replace
                     },
                 });
-            _frostsBiteKeystone.Initialize(CareerID, "Righteous Fury scales with the highest melee weapon skill. Adds 20% physical resistance.", "FrostsBite", false,
+            _frostsBiteKeystone.Initialize(CareerID, "Enemies affected by the attack are slowed down for 6 seconds. Damage of the attack is now Frost damage.", "FrostsBite", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
                     {
-                        MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "RighteousFury",
-                        PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded, DefaultSkills.TwoHanded, DefaultSkills.Polearm }, 0.05f, true),
-                        MutationType = OperationType.Add
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "ulric_smash",
+                        PropertyName = "damage_type",
+                        PropertyValue = (choice, originalValue, agent) => DamageType.Frost,
+                        MutationType = OperationType.Replace
                     },
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "righteous_fury_effect",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded, DefaultSkills.TwoHanded, DefaultSkills.Polearm }, 0.0005f, true),
-                        MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_righteous_fury_pulse",
-                        PropertyName = "Radius",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded, DefaultSkills.TwoHanded, DefaultSkills.Polearm }, 0.0005f, true),
-                        MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_righteous_fury_pulse",
-                        PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded, DefaultSkills.TwoHanded, DefaultSkills.Polearm }, 0.05f, true),
-                        MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_righteous_fury",
+                        MutationTargetOriginalId = "white_wolf_dot",
                         PropertyName = "ImbuedStatusEffects",
-                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"physical_resistance_20"}).ToList(),
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] {"frost_bite_mov_90" }).ToList(),
                         MutationType = OperationType.Replace
                     },
                 });
-            _runesOfTheWhiteWolfKeystone.Initialize(CareerID, "All units affected by Righteous Fury receive a burning weapon buff.", "RunesOfTheWhiteWolf", false,
+            _runesOfTheWhiteWolfKeystone.Initialize(CareerID, "All Enemies hit by the Axe of Ulric suffer from a dot", "RunesOfTheWhiteWolf", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
                     {
-                        MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "RighteousFury",
-                        PropertyName = "TriggeredEffects",
-                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"apply_fury_sword_trait"}).ToList(),
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "ulric_smash",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "white_wolf_dot" }).ToList(),
                         MutationType = OperationType.Replace
                     },
                 });
             
-            _furyOfWarKeystone.Initialize(CareerID, "Adds a healing buff to Righteous Fury that restores 3 Hitpoints per second.", "FuryOfWar", false,
+            _furyOfWarKeystone.Initialize(CareerID, "Required charge for ability is halved.", "FuryOfWar", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_righteous_fury",
-                        PropertyName = "ImbuedStatusEffects",
-                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"righteous_fury_regeneration"}).ToList(),
-                        MutationType = OperationType.Replace
-                    },
-                });
+                }); // special
             
-            _flameOfUlricKeystone.Initialize(CareerID, "Righteous Fury adds a damaging aura. Its radius increases slightly when raising relevant skills.", "FlameOfUlric", false,
+            _flameOfUlricKeystone.Initialize(CareerID, "For every executed Axe of Ulric one of your prayer cooldowns gets randomly reset.", "FlameOfUlric", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "RighteousFury",
-                        PropertyName = "TriggeredEffects",
-                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"apply_righteous_fury_pulse"}).ToList(),
-                        MutationType = OperationType.Replace
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_righteous_fury_pulse",
-                        PropertyName = "Radius",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.01f),
-                        MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "RighteousFury",
-                        PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.05f),
-                        MutationType = OperationType.Add
-                    },
                 });
         }
 
@@ -326,10 +240,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _furyOfWarPassive3.Initialize(CareerID,"Battles with even out odds provide double prestige gain","FuryOfWar",false,ChoiceType.Passive);
             _furyOfWarPassive4.Initialize(CareerID,"Hits below 15 damage do not stagger the player.","FuryOfWar",false,ChoiceType.Passive); 
             
-            _flameOfUlricPassive1.Initialize(CareerID,"PLACEHOLDER","FlameOfUlric",false,ChoiceType.Passive); //TODO
+            _flameOfUlricPassive1.Initialize(CareerID, "Increases range of prayers by 50%.", "FlameOfUlric", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50f, PassiveEffectType.SpellRadius,true));
             _flameOfUlricPassive2.Initialize(CareerID, "Extra 20% armor penetration of melee attacks.", "FlameOfUlric", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
-            _flameOfUlricPassive3.Initialize(CareerID,"For a fair battle, gain or refresh your Ulric blessing.","FlameOfUlric",false,ChoiceType.Passive); //TODO
-            _flameOfUlricPassive4.Initialize(CareerID,"For every kill through abilities gain 0.25 health points","FlameOfUlric",false,ChoiceType.Passive); //TODO
+            _flameOfUlricPassive3.Initialize(CareerID,"For a fair battle, gain or refresh your Ulric blessing.","FlameOfUlric",false,ChoiceType.Passive);
+            _flameOfUlricPassive4.Initialize(CareerID,"For every kill through abilities gain 0.25 health points","FlameOfUlric",false,ChoiceType.Passive); 
             
             
 

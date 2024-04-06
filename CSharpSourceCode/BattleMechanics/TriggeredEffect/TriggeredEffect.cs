@@ -55,6 +55,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
 
             float damageMultiplier = 1f;
             float statusEffectDuration = _template.ImbuedStatusEffectDuration;
+            float radius = _template.Radius;
             if(Game.Current.GameType is Campaign && originAbilityTemplate != null)
             {
                 var model = Campaign.Current.Models.GetAbilityModel();
@@ -62,6 +63,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 {
                     damageMultiplier = model.GetSkillEffectivenessForAbilityDamage(character, originAbilityTemplate);
                     statusEffectDuration = model.CalculateStatusEffectDurationForAbility(character, originAbilityTemplate, statusEffectDuration);
+                    radius = model.CalculateRadiusForAbility(character, originAbilityTemplate, radius);
                 }
             }
             //Determine targets

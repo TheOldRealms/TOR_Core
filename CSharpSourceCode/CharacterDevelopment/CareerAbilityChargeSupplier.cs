@@ -68,6 +68,25 @@ namespace TOR_Core.CharacterDevelopment
             explainedNumber.Add(chargeValue);
             return explainedNumber.ResultNumber;
         }
+
+        public static float WarriorPriestUlricCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
+        {
+            if (!affectingAgent.IsMainAgent) return 0;
+            if (mask != AttackTypeMask.Melee)
+            {
+                return 0;
+            }
+            
+            ExplainedNumber explainedNumber = new ExplainedNumber();
+            explainedNumber.Add(chargeValue);
+
+            if (Hero.MainHero.HasCareerChoice("FuryOfWarKeystone"))
+            {
+                explainedNumber.AddFactor(1);
+            }
+            
+            return explainedNumber.ResultNumber;
+        }
         
         public static float NecrarchCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
