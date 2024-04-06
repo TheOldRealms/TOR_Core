@@ -16,20 +16,12 @@ namespace TOR_Core.Models.Diplomacy.Aggression
 
             foreach (var hero in kingdomHeroes)
             {
-                var heroReligion = hero.GetDominantReligion();
-                if (heroReligion == null || !heroReligion.IsReady || !heroReligion.IsInitialized) continue;
-                var heroDevotionLevel = hero.GetDevotionLevelForReligion(heroReligion);
-                if(heroDevotionLevel == DevotionLevel.None) continue;
+                if(hero.GetDevotionToDominantReligion() == DevotionLevel.None) continue;
 
                 foreach (var enemy in otherSideHeroes)
                 {
-                    var enemyReligion = enemy.GetDominantReligion();
-                    if (enemyReligion == null || !enemyReligion.IsReady || !enemyReligion.IsInitialized) continue;
-                    var enemyDevotionLevel = enemy.GetDevotionLevelForReligion(enemyReligion);
-                    if (enemyDevotionLevel == DevotionLevel.None) continue;
+                    if (enemy.GetDevotionToDominantReligion() == DevotionLevel.None) continue;
 
-                    //religionValue += DeterminePositiveEffect(hero, heroReligion, heroDevotionLevel, enemy, enemyReligion, enemyDevotionLevel);
-                    //religionValue += DetermineNegativeEffect(hero, heroReligion, heroDevotionLevel, enemy, enemyReligion, enemyDevotionLevel);
                     religionValue += ReligiousHeroRelationCache.Instance.GetRelationship(hero, enemy);
                 }
             }
