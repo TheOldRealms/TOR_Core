@@ -38,6 +38,7 @@ namespace TOR_Core.Models.Diplomacy.Aggression
             else
             {
                 currentInfo = new HeroRelationshipModel(hero1, hero2, GenerateRelationshipScore(hero1, hero2));
+                _relationshipCache.Add((hero1.Id,hero2.Id),currentInfo);
             }
             bool needUpdate = currentInfo.HeroesDevotion[hero1.Id] != hero1.GetDevotionToDominantReligion() ||
                     currentInfo.HeroesDevotion[hero2.Id] != hero2.GetDevotionToDominantReligion();
@@ -47,6 +48,7 @@ namespace TOR_Core.Models.Diplomacy.Aggression
                 currentInfo.HeroesDevotion[hero1.Id] = hero1.GetDevotionToDominantReligion();
                 currentInfo.HeroesDevotion[hero2.Id] = hero2.GetDevotionToDominantReligion();
                 currentInfo.RelationshipLevel = GenerateRelationshipScore(hero1, hero2);
+                _relationshipCache[(hero1.Id, hero2.Id)] = currentInfo;
             }
 
             return currentInfo.RelationshipLevel;
