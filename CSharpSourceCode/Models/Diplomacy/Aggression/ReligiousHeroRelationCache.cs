@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.Religion;
