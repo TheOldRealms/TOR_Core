@@ -631,6 +631,8 @@
     <Compile Include="Missions\QuestFightMissionController.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleMoraleModel.cs" />
     <Compile Include="Models\Diplomacy\Aggression\DecompiledNativeAggression.cs" />
+    <Compile Include="Models\Diplomacy\Aggression\HeroRelationshipModel.cs" />
+    <Compile Include="Models\Diplomacy\Aggression\ReligiousHeroRelationCache.cs" />
     <Compile Include="Models\Diplomacy\Aggression\TORAggressionCalculator.cs" />
     <Compile Include="Models\Diplomacy\Aggression\ReligiousAggressionCalculator.cs" />
     <Compile Include="Models\TORAgentApplyDamageModel.cs" />
