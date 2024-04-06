@@ -491,21 +491,55 @@ namespace TOR_Core.Models
                 
                 var choices = Agent.Main.GetHero().GetAllCareerChoices();
                 
-                if(( mask== PropertyMask.Attack&& attackMask == AttackTypeMask.Melee &&choices.Contains("HuntTheWickedPassive3")))
+                if(mask== PropertyMask.Attack&& attackMask == AttackTypeMask.Melee)
                 {
-                    var equipment = agent.Character.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Weapon3);
-
-                    var choice = TORCareerChoices.GetChoice("HuntTheWickedPassive3");
-                    foreach (var weapon in equipment)
+                    if (choices.Contains("HuntTheWickedPassive3"))
                     {
-                        foreach (var data in weapon.Weapons)
+                        var equipment = agent.Character.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Weapon3);
+                        var choice = TORCareerChoices.GetChoice("HuntTheWickedPassive3");
+                        foreach (var weapon in equipment)
                         {
-                            if (data.IsRangedWeapon)
+                            foreach (var data in weapon.Weapons)
                             {
-                                result.DamagePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                                if (data.IsRangedWeapon)
+                                {
+                                    result.DamagePercentages[(int)DamageType.Physical] += choice.GetPassiveValue();
+                                }
                             }
                         }
                     }
+                    if (choices.Contains("FuryOfWarPassive1"))
+                    {
+                        var equipment = agent.Character.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Weapon3);
+                        var choice = TORCareerChoices.GetChoice("FuryOfWarPassive1");
+                        foreach (var weapon in equipment)
+                        {
+                            foreach (var data in weapon.Weapons)
+                            {
+                                if (data.IsMeleeWeapon)
+                                {
+                                    result.DamagePercentages[(int)DamageType.Physical] += choice.GetPassiveValue();
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (mask == PropertyMask.Defense && attackMask == AttackTypeMask.Melee || attackMask == AttackTypeMask.Ranged)
+                {
+                    if (choices.Contains("RunesOfTheWhiteWolfPassive1"))
+                    {
+                        var equipment = agent.Character.GetCharacterEquipment(EquipmentIndex.Head, EquipmentIndex.Head);
+                        var choice = TORCareerChoices.GetChoice("RunesOfTheWhiteWolfPassive1");
+                        if (!equipment.IsEmpty())
+                        {
+                            if (equipment[0].StringId.Contains("wolf"))
+                            {
+                                result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                            }
+                        }
+                    }
+                    
                 }
                 
             }
