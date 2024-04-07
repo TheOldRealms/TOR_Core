@@ -72,6 +72,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
         private void RegisterCampaignEvents()
         {
+            //CampaignEvents.RenownGained.AddNonSerializedListener(this,RegularRenownGain);
             CampaignEvents.OnMissionStartedEvent.AddNonSerializedListener(this, InitialCombatStrengthCalculation);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, CalculateCustomResourceGainFromBattles);
         }
@@ -118,6 +119,10 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                         model.AddBlessingToParty(MobileParty.MainParty, "cult_of_ulric");
                     }
             
+                    if (MobileParty.MainParty.HasBlessing("cult_of_sigmar"))
+                    {
+                        renownChange*= (renownChange * 1.2f);
+                    }
                 }
                 
                 MobileParty.MainParty.LeaderHero.AddCultureSpecificCustomResource((int)(1 + renownChange));
