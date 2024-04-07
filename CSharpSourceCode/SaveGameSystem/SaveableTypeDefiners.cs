@@ -39,7 +39,6 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(PlaguedVillageQuestCampaignBehavior.PlaguedVillageIssue), 17);
             AddClassDefinition(typeof(PlaguedVillageQuestCampaignBehavior.PlaguedVillageQuest), 18);
             AddClassDefinition(typeof(TORDeclareWarDecision), 19);
-
         }
 
         protected override void DefineEnumTypes()
@@ -61,6 +60,7 @@ namespace TOR_Core.SaveGameSystem
             ConstructContainerDefinition(typeof(Dictionary<Settlement, Dictionary<CharacterObject, int>>));
             ConstructContainerDefinition(typeof(Dictionary<string, double>));
             ConstructContainerDefinition(typeof(Dictionary<string, float>));
+            ConstructContainerDefinition(typeof(Dictionary<string, string>));
         }
     }
 }

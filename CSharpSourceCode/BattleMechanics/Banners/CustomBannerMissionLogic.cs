@@ -21,10 +21,10 @@ namespace TOR_Core.BattleMechanics.Banners
 {
     public class CustomBannerMissionLogic : MissionLogic
     {
-        private Queue<Agent> _unprocessedAgents = new Queue<Agent>();
+        private readonly Queue<Agent> _unprocessedAgents = new();
         private bool _hasUnprocessedAgents;
         private int _indexOfCurrentAgent = 0;
-        private Dictionary<int, EquipmentIndex> _agentsWithBanners = new Dictionary<int, EquipmentIndex>();
+        private readonly Dictionary<int, EquipmentIndex> _agentsWithBanners = [];
 
         public override void OnAgentBuild(Agent agent, Banner banner)
         {
@@ -105,15 +105,15 @@ namespace TOR_Core.BattleMechanics.Banners
             if (agent.IsSummoned()) return false;
             if (Game.Current.GameType is Campaign && Campaign.Current != null)
             {
-                if (agent.Origin is PartyAgentOrigin)
+                if (agent.Origin is PartyAgentOrigin origin)
                 {
-                    var party = ((PartyAgentOrigin)agent.Origin).Party;
+                    var party = origin.Party;
                     if (!party.IsMobile) return false;
                     if (!party.MobileParty.IsLordParty) return false;
                 }
-                else if (agent.Origin is PartyGroupAgentOrigin)
+                else if (agent.Origin is PartyGroupAgentOrigin groupOrigin)
                 {
-                    var party = ((PartyGroupAgentOrigin)agent.Origin).Party;
+                    var party = groupOrigin.Party;
                     if (!party.IsMobile) return false;
                     if (!party.MobileParty.IsLordParty) return false;
                 }

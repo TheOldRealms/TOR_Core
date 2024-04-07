@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.CustomResources;
@@ -18,9 +19,10 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 {
     public class ExtendedInfoManager : CampaignBehaviorBase
     {
-        private static Dictionary<string, CharacterExtendedInfo> _characterInfos = new Dictionary<string, CharacterExtendedInfo>();
-        private Dictionary<string, HeroExtendedInfo> _heroInfos = new Dictionary<string, HeroExtendedInfo>();
-        private Dictionary<string, MobilePartyExtendedInfo> _partyInfos = new Dictionary<string, MobilePartyExtendedInfo>();
+        private static Dictionary<string, CharacterExtendedInfo> _characterInfos = [];
+        private Dictionary<string, HeroExtendedInfo> _heroInfos = [];
+        private Dictionary<string, MobilePartyExtendedInfo> _partyInfos = [];
+        private Dictionary<string, string> _bannerResources = [];
         private static ExtendedInfoManager _instance;
 
         public static ExtendedInfoManager Instance => _instance;
@@ -79,18 +81,16 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
         public static CharacterExtendedInfo GetCharacterInfoFor(string id)
         {
-            CharacterExtendedInfo value = null;
-            if(_characterInfos.TryGetValue(id, out value)) 
-            {  
-                return value; 
+            if (_characterInfos.TryGetValue(id, out CharacterExtendedInfo value))
+            {
+                return value;
             }
             return null;
         }
 
         public HeroExtendedInfo GetHeroInfoFor(string id)
         {
-            HeroExtendedInfo value = null;
-            if (_heroInfos.TryGetValue(id, out value))
+            if (_heroInfos.TryGetValue(id, out HeroExtendedInfo value))
             {
                 return value;
             }
@@ -99,8 +99,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
         public MobilePartyExtendedInfo GetPartyInfoFor(string id)
         {
-            MobilePartyExtendedInfo value = null;
-            if (_partyInfos.TryGetValue(id, out value))
+            if (_partyInfos.TryGetValue(id, out MobilePartyExtendedInfo value))
             {
                 return value;
             }
@@ -199,7 +198,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             //construct character info for all CharacterObject templates loaded by the game.
             //this can be safely reconstructed at each session start without the need to save/load.
-            Dictionary<string, CharacterExtendedInfo> unitlist = new Dictionary<string, CharacterExtendedInfo>();
+            Dictionary<string, CharacterExtendedInfo> unitlist = [];
             infos = unitlist;
             try
             {
@@ -294,11 +293,26 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             }
         }
 
+        public string GetBannerImageResource(Banner banner)
+        {
+            var bannerCode = banner.Serialize();
+            if (_bannerResources.TryGetValue(bannerCode, out var resource))
+            {
+                return resource;
+            }
+            else return null;
+        }
+
+        public void AddBannerImageResource(string bannerCode, string imageResource)
+        {
+            _bannerResources.AddOrReplace(bannerCode, imageResource);
+        }
+
         public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData("_heroInfos", ref _heroInfos);
             dataStore.SyncData("_partyInfos", ref _partyInfos);
+            dataStore.SyncData("_bannerResources", ref _bannerResources);
         }
-
     }
 }
