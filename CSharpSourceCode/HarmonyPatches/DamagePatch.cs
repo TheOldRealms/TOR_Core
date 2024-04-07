@@ -42,9 +42,15 @@ namespace TOR_Core.HarmonyPatches
                 attackerPropertyContainer = attacker.GetProperties(PropertyMask.Attack, attackTypeMask); 
                 victimPropertyContainer = victim.GetProperties(PropertyMask.Defense, attackTypeMask);
             }
- 
+            
+            var friendlyFire = attacker.Team == victim.Team;
+            var damageProportions = new float[7];
             //attack properties;
-            var damageProportions = attackerPropertyContainer.DamageProportions;
+            if (!friendlyFire)
+            {
+                damageProportions = attackerPropertyContainer.DamageProportions;
+            } 
+            
             var damageAmplifications = attackerPropertyContainer.DamagePercentages;
             var additionalDamagePercentages = attackerPropertyContainer.AdditionalDamagePercentages;
             //defense properties
@@ -53,10 +59,11 @@ namespace TOR_Core.HarmonyPatches
             var wardSaveFactor = 1f;
             if (Game.Current.GameType is Campaign)
             {
-                if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(attacker, victim) && !(attacker.IsMainAgent || victim.IsMainAgent))
+                //troop specific benefits
+                if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(attacker, victim))
                 {
                     var property = PropertyMask.All;
-                    if (attacker.BelongsToMainParty())
+                    if (attacker.BelongsToMainParty()&&!attacker.IsHero)
                     {
                         property = PropertyMask.Attack;
                         var careerBonuses = CareerHelper.AddCareerPassivesForTroopDamageValues(attacker, victim, attackTypeMask, property);
@@ -65,7 +72,8 @@ namespace TOR_Core.HarmonyPatches
                             additionalDamagePercentages[index] += careerBonuses[index];
                         } 
                     }
-                    else
+                    
+                    if(victim.BelongsToMainParty()&&!victim.IsHero)
                     {
                         property = PropertyMask.Defense;
                         var careerBonuses = CareerHelper.AddCareerPassivesForTroopDamageValues(attacker, victim, attackTypeMask, property);
@@ -74,13 +82,14 @@ namespace TOR_Core.HarmonyPatches
                             resistancePercentages[index] += careerBonuses[index];
                         } 
                     }
+                    
                 }
                 
                 var model = MissionGameModels.Current.AgentApplyDamageModel;
                 if(model != null && model is TORAgentApplyDamageModel)
                 {
                     var torModel = model as TORAgentApplyDamageModel;
-                    wardSaveFactor = torModel.CalculateWardSaveFactor(victim, attackTypeMask);
+                    wardSaveFactor = torModel.CalculateWardSaveFactor(victim, resistancePercentages, friendlyFire);
                 }
 
 
@@ -124,11 +133,6 @@ namespace TOR_Core.HarmonyPatches
                     abilityId = spellInfo.OriginAbilityTemplateId;
                     damageCategories[damageType] = b.InflictedDamage;
                 }
-
-                damageAmplifications[damageType] += additionalDamagePercentages[damageType];
-                damageAmplifications[damageType] -= resistancePercentages[damageType];
-                damageCategories[damageType] *= 1 + damageAmplifications[damageType];
-                resultDamage = (int)damageCategories[damageType];
                 
                 if(Game.Current.GameType is Campaign && abilityId != string.Empty && abilityId != null)
                 {
@@ -139,18 +143,45 @@ namespace TOR_Core.HarmonyPatches
                         var model = Campaign.Current.Models.GetAbilityModel();
                         if (model != null)
                         {
-                            resultDamage = (int)(resultDamage * model.GetPerkEffectsOnAbilityDamage(hero.CharacterObject, victim, abilityTemplate));
+                            damageCategories[damageType] = (int)(b.InflictedDamage * model.GetPerkEffectsOnAbilityDamage(hero.CharacterObject, victim, abilityTemplate));
                             var skill = model.GetRelevantSkillForAbility(abilityTemplate);
-                            var amount = model.GetSkillXpForAbilityDamage(abilityTemplate, resultDamage);
+                            var amount = model.GetSkillXpForAbilityDamage(abilityTemplate, (int) damageCategories[damageType]);
                             hero.AddSkillXp(skill, amount);
+
+                            if (hero.HasAnyCareer())
+                            {
+                                if (amount > 0)
+                                {
+                                    if (hero.HasCareerChoice("DarkVisionPassive3"))
+                                    {
+                                        hero.AddSkillXp(DefaultSkills.Roguery, amount);
+                                    }
+                                }
+
+                                if (hero.HasCareerChoice("EverlingsSecretPassive4"))
+                                {
+                                    for (int i = (int) DamageType.Magical; i < (int) DamageType.All; i++)
+                                    {
+                                        if(i == damageType) continue;
+                                        damageAmplifications[damageType] += additionalDamagePercentages[i];
+                                        damageAmplifications[damageType] += damageAmplifications[i];
+                                    }
+                                }
+                            }
                         }
                     }
                 }
                 
+                damageAmplifications[damageType] += additionalDamagePercentages[damageType];
+                damageAmplifications[damageType] -= resistancePercentages[damageType];
+                damageCategories[damageType] *= (1 + damageAmplifications[damageType]);
+                resultDamage = (int)damageCategories[damageType];
+                
                 resultDamage = (int)(resultDamage * wardSaveFactor);
+                if (victim.Team != attacker.Team && resultDamage < 0) resultDamage = 0;
                 b.InflictedDamage = resultDamage;
                 b.BaseMagnitude = resultDamage;
-                if (attacker == Agent.Main || victim == Agent.Main)
+                if ((attacker == Agent.Main || victim == Agent.Main) && resultDamage>0)
                     TORDamageDisplay.DisplaySpellDamageResult((DamageType) damageType, resultDamage, damageAmplifications[damageType],wardSaveFactor);
                 return true;
             }
@@ -172,9 +203,7 @@ namespace TOR_Core.HarmonyPatches
             }
             
             resultDamage = (int)(resultDamage * wardSaveFactor); 
-            var originalDamage = b.InflictedDamage;
             b.InflictedDamage = resultDamage;
-            //b.BaseMagnitude = resultDamage;       this shouldn't be the case
 
             if (victim.GetAttributes().Contains("Unstoppable")||(victim.IsDamageShruggedOff(b.InflictedDamage)))
             {

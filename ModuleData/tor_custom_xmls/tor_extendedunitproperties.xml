@@ -4403,13 +4403,14 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_mw_lord">
     <Abilities>
-      <string>LightningBolt</string>
-      <string>WindBlast</string>
-      <string>ChainLightning</string>
-      <string>HarmonicConvergence</string>
-      <string>Blizzard</string>
-      <string>CometOfCasandora</string>
-      <string>Thunderbolt</string>
+      <string>QuicksilverSwords</string>
+      <string>GleamingArrow</string>
+      <string>MeteroicIronclad</string>
+      <string>PlagueOfRust</string>
+      <string>SearingDoom</string>
+      <string>GehennasGoldenGlobe</string>
+      <string>FinalTransmutation</string>
+	    <string>GehennasGoldenHounds</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>

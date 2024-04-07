@@ -20,6 +20,12 @@
 		base_effect_value="20"
 		type="HealthOverTime"/>
 	<StatusEffectTemplate 
+		id="minor_healing_regeneration" 
+		particle_id="healing_regeneration"
+		particle_intensity="High"
+		base_effect_value="3"
+		type="HealthOverTime"/>
+	<StatusEffectTemplate 
 		id="breath_of_darkness" 
 		particle_id="breath_of_darkness"
 		particle_intensity="High"
@@ -379,6 +385,59 @@
 		type="AttackSpeedManipulation"
 		damage_type="Physical">
   	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
+		id="ironclad_phys_res"
+		particle_id="meteoric_iron_clad"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+    	base_effect_value="0.6"
+		type="Resistance"
+		damage_type="Physical">
+  	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
+		id="plague_of_rust_hex"
+		particle_id="plague_of_rust"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+    	base_effect_value="-0.5"
+		type="Resistance"
+		damage_type="Physical">
+  	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
+		id="golden_globe_mov_50"
+		particle_id="final_transmutation_dot"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="false"
+    	base_effect_value="-0.5"
+		type="MovementManipulation"
+		damage_type="Physical">
+  	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate 
+		id="final_transmutation_dot" 
+		particle_id="final_transmutation_dot"
+		particle_intensity="High"
+		base_effect_value="4"
+		type="DamageOverTime"
+		damage_type="Fire">
+	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
+		id="final_transmutation_mov_90"
+		particle_id=""
+		particle_intensity="Low"
+		do_not_attach_to_agent_skeleton="false"
+    	base_effect_value="-0.9"
+		type="MovementManipulation"
+		damage_type="Physical">
+  	</StatusEffectTemplate>
+	
+	
+
+	
 	<StatusEffectTemplate 
 		id="righteous_fury_regeneration" 
 		particle_id="healing_hand"
@@ -661,6 +720,16 @@
 		rotation="true"
 		rotation_speed="200"
 		/>
+		
+	<StatusEffectTemplate 
+		id="netherball_dot" 
+		particle_id="breath_of_darkness"
+		do_not_attach_to_agent_skeleton="true"
+		particle_intensity="High"
+		base_effect_value="5"
+		type="DamageOverTime"
+		damage_type="Magical">
+	</StatusEffectTemplate> 
 		
 		
 	<StatusEffectTemplate 
