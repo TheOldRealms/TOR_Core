@@ -1660,7 +1660,7 @@
 	<AbilityTemplate StringID="CurseOfYears"
       Name="{=curse_of_years_label_str}Curse of Years"
       SpriteName="curseofyears_icon"
-      CoolDown="5"
+      CoolDown="30"
       WindsOfMagicCost="12"
       BaseMisCastChance="0.05"
       Duration="2"

@@ -133,7 +133,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetOriginalId = "ulric_smash",
                         PropertyName = "HasShockWave",
                         PropertyValue = (choice, originalValue, agent) => true,
-                        MutationType = OperationType.Add
+                        MutationType = OperationType.Replace
                     },
                 },new CareerChoiceObject.PassiveEffect());
             
@@ -168,7 +168,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     {
                         MutationTargetType = typeof(TriggeredEffectTemplate),
                         MutationTargetOriginalId = "ulric_smash",
-                        PropertyName = "damage_type",
+                        PropertyName = "DamageType",
                         PropertyValue = (choice, originalValue, agent) => DamageType.Frost,
                         MutationType = OperationType.Replace
                     },
@@ -209,8 +209,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         {
             _crusherOfTheWeakPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "CrusherOfTheWeak", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
             _crusherOfTheWeakPassive2.Initialize(CareerID, "Extra melee damage (10%).", "CrusherOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
-            _crusherOfTheWeakPassive3.Initialize(CareerID, "{=peerless_warrior_passive2_str}Extra melee damage (10%).", "CrusherOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,
-                (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee && !victim.IsHero && victim.Character.Level < 16));
+            _crusherOfTheWeakPassive3.Initialize(CareerID, "{=peerless_warrior_passive2_str}Extra melee damage if the target is below tier 4 (10%).", "CrusherOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,
+                (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee && victim!=null&&victim.IsHero && victim.Character.Level < 16));
             _crusherOfTheWeakPassive4.Initialize(CareerID, "{=night_rider_passive4_str}Attacks deal bonus damage against shields.", "CrusherOfTheWeak", false, ChoiceType.Passive, null);
             
             _wildPackPassive1.Initialize(CareerID, "Increases melee physical resistance by 10%.", "WildPack", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical,10),AttackTypeMask.Melee));
