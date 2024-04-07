@@ -874,6 +874,58 @@
                   <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 
+<!-- Ulrican Prayers -->
+
+	  <TriggeredEffectTemplate StringID="ulrics_gift" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Self" 
+            ImbuedStatusEffectDuration="2.1" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>ulrics_gift_mvs</ImbuedStatusEffect>
+			<ImbuedStatusEffect>ulrics_gift_ats</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+	  
+	  <TriggeredEffectTemplate StringID="heart_of_the_wolf" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            DamageVariance="0.0" 
+		ImbuedStatusEffectDuration="15" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>heart_of_the_wolf_dmg</ImbuedStatusEffect>
+			<ImbuedStatusEffect>heart_of_the_wolf_unb</ImbuedStatusEffect>
+			<ImbuedStatusEffect>heart_of_the_wolf_uns</ImbuedStatusEffect>
+	  </TriggeredEffectTemplate>
+	  
+	  <TriggeredEffectTemplate StringID="ice_storm" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="10" 
+            Radius="10" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            DamageVariance="0.0" 
+		ImbuedStatusEffectDuration="15" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>ice_storm_mvs</ImbuedStatusEffect>
+			<ImbuedStatusEffect>ice_storm_ats</ImbuedStatusEffect>
+			<ImbuedStatusEffect>ice_storm_dot</ImbuedStatusEffect>
+	  </TriggeredEffectTemplate>
+
 <!-- Power of the Lady -->
 
 	  <TriggeredEffectTemplate StringID="ladys_favour" 
