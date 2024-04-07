@@ -377,8 +377,58 @@
              super_faction="Kingdom.wasteland"
              is_noble="true"
              text="{=!}"
-             banner_key="11.128.55.8000.8000.764.764.0.1.0.505.140.64.671.671.764.764.0.0.0"/>
-	<!-- Parravon faction -->
+             banner_key="11.128.55.8000.8000.764.764.0.1.0.505.140.64.671.671.764.764.0.0.0:kingdom_wasteland"/>
+	<!-- Couronne faction -->
+    <Faction id="couronne_clan_1"
+             name="{=!}de Couronne"
+             tier="6"
+             owner="Hero.tor_br_lord_couronne_factionleader"
+             culture="Culture.vlandia"
+             super_faction="Kingdom.couronne"
+             is_noble="true"
+             text="{=!}The Dukedom of Couronne is a founding dukedom of Bretonnia that lies upon the northern shores of that realm and is the current seat of power of the king's Royal Court, located in the dukedom, and the kingdom's capital, Castle Couronne."
+             banner_key="1.12.142.8000.8000.764.764.0.1.0.302.39.116.512.512.596.628.1.0.180.140.39.116.671.671.764.819.1.0.0.340.39.116.134.134.793.494.1.0.0" />
+    <!-- Anguille faction -->
+    <Faction id="anguille_clan_1"
+             name="{=!}d'Anguille"
+             tier="6"
+             owner="Hero.tor_br_lord_anguille_factionleader"
+             culture="Culture.vlandia"
+             super_faction="Kingdom.anguille"
+             is_noble="true"
+             text="{=!}L'Anguille, formally the Dukedom of L'Anguille, is a dukedom of Bretonnia that lies at the northern shores of that kingdom. Known far and wide for having some of the busiest ports in all of Bretonnia, L'Anguille is a rich dukedom that relies heavily on sea-trade for their fortunes. As such, there is a large number of merchants and middle-class commoners amongst the peasant population of the capital."
+             banner_key="11.139.142.8000.8000.764.764.0.1.0.505.12.116.680.680.764.744.0.0.0:kingdom_anguille" />
+    <!-- Lyonesse faction -->
+    <Faction id="lyonesse_clan_1"
+             name="{=!}de Lyonesse"
+             tier="6"
+             owner="Hero.tor_br_lord_lyonesse_factionleader"
+             culture="Culture.vlandia"
+             super_faction="Kingdom.lyonesse"
+             is_noble="true"
+             text="{=!}Lyonesse, formally the Dukedom of Lyonesse, is one of the founding dukedoms of Bretonnia that lies upon the north-western shores of that kingdom. One of the larger dukedoms, the lands of Lyonesse are infamously known for their rivalry not with the other Bretonnian dukedoms, but amongst their own nobility, even in comparison to the feudal conflicts which plague the other realms of Bretonnia. People blame the unusual geography of the dukedom for the prevalence of the internecine strife, particularly the profusion of excellent sites for fortifications, which deters rival dukedoms from waging war or pursuing feuds with the lords of Lyonesse."
+             banner_key="11.110.120.8000.8000.764.764.0.1.0.505.148.64.674.674.764.764.0.0.0:kingdom_lyonesse" />
+    <!-- Artois faction -->
+    <Faction id="artois_clan_1"
+             name="{=!}d'Artois"
+             tier="6"
+             owner="Hero.tor_br_lord_artois_factionleader"
+             culture="Culture.vlandia"
+             super_faction="Kingdom.artois"
+             is_noble="true"
+             text="{=!}Artois, formally the Dukedom of Artois, is a founding dukedom of Bretonnia that lies at the heart of the northern lands of that kingdom. Unlike the lush meadows of Bretonnia's other dukedoms, Artois is famous for being the only dukedom that is covered entirely by forested wilderness, known by the Bretonnians as the Forest of Arden. Due to this, the dukedom is in a constant state of warfare against tribes of Beastmen that have made the forest their new dark home."
+             banner_key="11.148.120.8000.8000.764.764.0.1.0.505.30.123.794.794.764.764.0.0.0:kingdom_artois" />
+    <!-- Gisoreux faction -->
+    <Faction id="gisoreux_clan_1"
+             name="{=!}de Gisoreux"
+             tier="6"
+             owner="Hero.tor_br_lord_gisoreux_factionleader"
+             culture="Culture.vlandia"
+             super_faction="Kingdom.gisoreux"
+             is_noble="true"
+             text="{=!}Gisoreux, formally the Dukedom of Gisoreux, is a founding dukedom of Bretonnia that lies within the treacherous slopes of the Pale Sisters and upon the low woodlands of the Forest of Arden. Unlike in other parts of Bretonnia, where much of the land is either one type of landscape and of one type of people, the diversity in geography of this Dukedom has also created a diversity in cultures and customs. Those living within the arable plains to the south contain the typical farmers and peasants that is universal within all the realms. To the east, the lands are filled with harsh woodlands, where a different people live life as expert trappers and wild woodsmen. Finally, to the north, those people that can eke out a living within the Pale Sisters are seasoned mountaineers who can brave harsh conditions. The Dukedom also contains the Gisoreux Gap, one of only three locations within the entire Grey Mountains that allow passage between Bretonnia and the Empire."
+             banner_key="1.148.116.8000.8000.764.764.0.1.0.133.140.123.769.769.764.764.0.0.0" />
+    <!-- Parravon faction -->
     <Faction id="parravon_clan_1"
              name="{=!}de Parravon"
              tier="6"

@@ -3531,6 +3531,10 @@
       <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_wasteland_factionleader">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_sylvania_factionleader">
     <Abilities>
       <string>Chillwind</string>
@@ -4209,6 +4213,41 @@
       <string>AICompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lord_couronne_factionleader">
+    <Abilities />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lord_anguille_factionleader">
+    <Abilities />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lord_lyonesse_factionleader">
+    <Abilities />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lord_artois_factionleader">
+    <Abilities />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lord_gisoreux_factionleader">
+    <Abilities />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_lord_mousillon_factionleader">
     <Abilities />
     <Attributes>
@@ -4314,6 +4353,10 @@
       <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_lord_brasskeep_factionleader">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ungor_chief_factionleader">
     <Abilities />
     <Attributes />
@@ -4403,14 +4446,13 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_mw_lord">
     <Abilities>
-      <string>QuicksilverSwords</string>
-      <string>GleamingArrow</string>
-      <string>MeteroicIronclad</string>
-      <string>PlagueOfRust</string>
-      <string>SearingDoom</string>
-      <string>GehennasGoldenGlobe</string>
-      <string>FinalTransmutation</string>
-	    <string>GehennasGoldenHounds</string>
+      <string>LightningBolt</string>
+      <string>WindBlast</string>
+      <string>ChainLightning</string>
+      <string>HarmonicConvergence</string>
+      <string>Blizzard</string>
+      <string>CometOfCasandora</string>
+      <string>Thunderbolt</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>

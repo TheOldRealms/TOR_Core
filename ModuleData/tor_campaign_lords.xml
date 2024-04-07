@@ -1836,6 +1836,24 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_wasteland_factionleader" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_factionleader}Luitpold van Raemerswijk" occupation="Lord" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="54" weight="0.1466" build="0.5" key="00168C0E8F00100D3498454E3B52B036407F623595A30218BADC222F546C703D436F1656088D8B6674780010A971675F0000000000005872000000003F144003" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_sylvania_factionleader" default_group="cavalry" name="{=str_tor_vc_lord_sylvania_factionleader}Mannfred von Carstein" occupation="Lord" culture="Culture.khuzait" voice="curt" age="51" skill_template="SkillSet.tor_skills_vampire_lord" race="vampire" is_hero="true">
     <face>
       <BodyProperties version="4" age="19" weight="0.6" build="1" key="0000000008FC1000F02F06CF001F8186BB77F83E62FF1B00A7A9BCEB4C6971B309AFA692FACC480F00000000000000000000000000000000FFFFFFFFC544103F" />
@@ -3456,6 +3474,96 @@
       <EquipmentSet id="tor_prophetess_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_couronne_factionleader" default_group="cavalry" name="{=str_tor_br_lord_couronne_factionleader}King Louen Leoncoeur" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="50" weight="0.3981" build="0.9792" key="000254001400118FB911506E2932A4A4537A766693A5323BA824110A8A845667048F66460844FF16000000000000000000000000000000000000000009044002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="6" />
+      <Trait id="Politician" value="6" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="2" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_3" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_3" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_anguille_factionleader" default_group="cavalry" name="{=str_tor_br_lord_anguille_factionleader}Duke Taubert de L'Anguille" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="50" weight="0.3981" build="0.9792" key="000254001400118FB911506E2932A4A4537A766693A5323BA824110A8A845667048F66460844FF16000000000000000000000000000000000000000009044002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="6" />
+      <Trait id="Politician" value="6" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="2" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_3" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_3" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_lyonesse_factionleader" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_factionleader}Duke Adalhard of Lyonesse" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="50" weight="0.3981" build="0.9792" key="000254001400118FB911506E2932A4A4537A766693A5323BA824110A8A845667048F66460844FF16000000000000000000000000000000000000000009044002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="6" />
+      <Trait id="Politician" value="6" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="2" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_3" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_3" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_artois_factionleader" default_group="cavalry" name="{=str_tor_br_lord_artois_factionleader}Duke Chilfroy of Artois" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="50" weight="0.3981" build="0.9792" key="000254001400118FB911506E2932A4A4537A766693A5323BA824110A8A845667048F66460844FF16000000000000000000000000000000000000000009044002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="6" />
+      <Trait id="Politician" value="6" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="2" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_3" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_3" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_gisoreux_factionleader" default_group="cavalry" name="{=str_tor_br_lord_gisoreux_factionleader}Duke Hagen d'Gisoreux" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="50" weight="0.3981" build="0.9792" key="000254001400118FB911506E2932A4A4537A766693A5323BA824110A8A845667048F66460844FF16000000000000000000000000000000000000000009044002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="6" />
+      <Trait id="Politician" value="6" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="2" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_3" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_3" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_m_lord_mousillon_factionleader" default_group="cavalry" name="{=str_tor_m_lord_mousillon_factionleader}The Serpent of Mousillon" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.2284" build="0.713" key="0002500F170012457C70638A76C1136A6DC98666F4C19600C4B640398A95A03600BB36030BA7A40500000000000000000000000000000000000000003B743080" />
@@ -3637,6 +3745,24 @@
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_lord_factionleader" default_group="cavalry" name="{=str_tor_chaos_lord_factionleader}Archaon" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="80" weight="0.5" build="0.5" key="0039B8000000300FE90675CE1663F9E2334183BAC5AE860C69B35046831589100077760307A6408700000000000000000000000000000000000000003AF46002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_archaon_template" />
+      <EquipmentSet id="tor_archaon_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_lord_brasskeep_factionleader" default_group="cavalry" name="{=str_tor_chaos_lord_factionleader}Magox Rotbringer" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="80" weight="0.5" build="0.5" key="0039B8000000300FE90675CE1663F9E2334183BAC5AE860C69B35046831589100077760307A6408700000000000000000000000000000000000000003AF46002" />
     </face>

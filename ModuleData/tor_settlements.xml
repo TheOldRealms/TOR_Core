@@ -4328,7 +4328,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_OL4" name="{=Settlements.Settlement.name.castle_OL3}Roezfels" owner="Faction.ostland_clan_1" posX="1436.242" posY="1250.658" culture="Culture.empire" gate_posX="1438.01" gate_posY="1251.468" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
+  <Settlement id="castle_OL4" name="{=Settlements.Settlement.name.castle_OL3}Roezfels" owner="Faction.ostland_clan_1" posX="1436.242" posY="1250.658" culture="Culture.empire" gate_posX="1438.081" gate_posY="1251.761" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
     <Components>
       <Town id="castle_comp_OL4" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4723,7 +4723,7 @@
   </Settlement>
   <!-- Bretonnia -->
   <!-- Couronne -->
-  <Settlement id="town_CO1" name="{=Settlements.Settlement.name.town_CO1}Coronne" owner="Faction.parravon_clan_1" posX="981.31" posY="1225.16" culture="Culture.vlandia" gate_posX="974.014" gate_posY="1228.307" text="{=Settlements.Settlement.text.town_CO1}The city of Parravon, built by the elves long ago, was cut from a lone mountain, Les Monts Seuls, and runs directly along the Grismerie river. Surrounded by deep chasms, it is  a key fortress city in holding off any enemies from the Grey Mountains and beyond, from reaching central Bretonnia. Due to the location, many Dwarf families have flocked to Parravon. It is also notable for being the only place in Bretonnia where peasants can live in Stone houses. This is due to a trick of legal language; the homes the peasants carve out of the rock of Les Monts Seuls are considered ‘Caves’ and thus are not prohibited.">
+  <Settlement id="town_CO1" name="{=Settlements.Settlement.name.town_CO1}Coronne" owner="Faction.couronne_clan_1" posX="981.31" posY="1225.16" culture="Culture.vlandia" gate_posX="974.014" gate_posY="1228.307" text="{=Settlements.Settlement.text.town_CO1}The city of Parravon, built by the elves long ago, was cut from a lone mountain, Les Monts Seuls, and runs directly along the Grismerie river. Surrounded by deep chasms, it is  a key fortress city in holding off any enemies from the Grey Mountains and beyond, from reaching central Bretonnia. Due to the location, many Dwarf families have flocked to Parravon. It is also notable for being the only place in Bretonnia where peasants can live in Stone houses. This is due to a trick of legal language; the homes the peasants carve out of the rock of Les Monts Seuls are considered ‘Caves’ and thus are not prohibited.">
     <Components>
       <Town id="town_comp_CO1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -4782,7 +4782,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_CO2" name="{=Settlements.Settlement.name.town_CO2}Chantillon" owner="Faction.parravon_clan_1" posX="1003.917" posY="1286.447" culture="Culture.vlandia" gate_posX="1000.486" gate_posY="1283.732" text="{=Settlements.Settlement.text.town_CO2}Found north of the Parravon forest, just north of the Hills of the Dead, and east of Castle Parravon lies Grunere. Its location offers it a decent defensive position at the base of the Grey Mountains, and the Hills of the Dead aids in its defence of the south from attack.">
+  <Settlement id="town_CO2" name="{=Settlements.Settlement.name.town_CO2}Chantillon" owner="Faction.couronne_clan_1" posX="1003.917" posY="1286.447" culture="Culture.vlandia" gate_posX="1000.486" gate_posY="1283.732" text="{=Settlements.Settlement.text.town_CO2}Found north of the Parravon forest, just north of the Hills of the Dead, and east of Castle Parravon lies Grunere. Its location offers it a decent defensive position at the base of the Grey Mountains, and the Hills of the Dead aids in its defence of the south from attack.">
     <Components>
       <Town id="town_comp_CO2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -4828,7 +4828,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_CO3" name="{=Settlements.Settlement.name.town_CO3}Hendaye" owner="Faction.parravon_clan_1" posX="911.847" posY="1311.955" culture="Culture.vlandia" gate_posX="911.7126" gate_posY="1307.123" text="{=Settlements.Settlement.text.town_CO2}Found north of the Parravon forest, just north of the Hills of the Dead, and east of Castle Parravon lies Grunere. Its location offers it a decent defensive position at the base of the Grey Mountains, and the Hills of the Dead aids in its defence of the south from attack.">
+  <Settlement id="town_CO3" name="{=Settlements.Settlement.name.town_CO3}Hendaye" owner="Faction.couronne_clan_1" posX="911.847" posY="1311.955" culture="Culture.vlandia" gate_posX="911.7126" gate_posY="1307.123" text="{=Settlements.Settlement.text.town_CO2}Found north of the Parravon forest, just north of the Hills of the Dead, and east of Castle Parravon lies Grunere. Its location offers it a decent defensive position at the base of the Grey Mountains, and the Hills of the Dead aids in its defence of the south from attack.">
     <Components>
       <Town id="town_comp_CO3" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -4887,7 +4887,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_CO1" name="{=Settlements.Settlement.name.castle_CO1}Castle Brilloinne" owner="Faction.parravon_clan_1" posX="947.422" posY="1308.276" culture="Culture.vlandia" gate_posX="948.5649" gate_posY="1307.799" text="{=Settlements.Settlement.name.castle_CO1}Located on the border of Montfort, Castle Vingtiennes holds the northern province of Parravon from attack, and overlooks the river Grismerie and Massif Orcal.">
+  <Settlement id="castle_CO1" name="{=Settlements.Settlement.name.castle_CO1}Castle Brilloinne" owner="Faction.couronne_clan_1" posX="947.422" posY="1308.276" culture="Culture.vlandia" gate_posX="948.5649" gate_posY="1307.799" text="{=Settlements.Settlement.name.castle_CO1}Located on the border of Montfort, Castle Vingtiennes holds the northern province of Parravon from attack, and overlooks the river Grismerie and Massif Orcal.">
     <Components>
       <Town id="castle_comp_CO1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4910,7 +4910,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_CO2" name="{=Settlements.Settlement.name.castle_CO2}Castle Orne" owner="Faction.parravon_clan_1" posX="971.829" posY="1201.676" culture="Culture.vlandia" gate_posX="971.2635" gate_posY="1201.113" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
+  <Settlement id="castle_CO2" name="{=Settlements.Settlement.name.castle_CO2}Castle Orne" owner="Faction.couronne_clan_1" posX="971.829" posY="1201.676" culture="Culture.vlandia" gate_posX="971.101" gate_posY="1200.925" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
     <Components>
       <Town id="castle_comp_CO2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4933,7 +4933,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_CO3" name="{=Settlements.Settlement.name.castle_CO2}Castle Tancred" owner="Faction.parravon_clan_1" posX="1101.953" posY="1232.211" culture="Culture.vlandia" gate_posX="1102.199" gate_posY="1233.638" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
+  <Settlement id="castle_CO3" name="{=Settlements.Settlement.name.castle_CO2}Castle Tancred" owner="Faction.couronne_clan_1" posX="1101.953" posY="1232.211" culture="Culture.vlandia" gate_posX="1101.801" gate_posY="1234.01" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
     <Components>
       <Town id="castle_comp_CO3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4957,7 +4957,7 @@
     </CommonAreas>
   </Settlement>
   <!-- L' Anguille -->
-  <Settlement id="town_LA1" name="{=Settlements.Settlement.name.town_LA1}Castle L’Anguille" owner="Faction.bastonne_clan_1" posX="894.692" posY="1230.889" culture="Culture.vlandia" gate_posX="893.3497" gate_posY="1227.65" text="{=Settlements.Settlement.text.town_LA1}Located in the heart of Bastonne, Castle Bastonne and the surrounding villages show many indications of their founder, the first king Gilles le Breton, or Gilles the Unifier. Castle Bastonne itself is almost always a pilgrimage for any Grail Knights, or any who wish to see the testimony of Gilles le Breton’s accomplishments.">
+  <Settlement id="town_LA1" name="{=Settlements.Settlement.name.town_LA1}Castle L’Anguille" owner="Faction.anguille_clan_1" posX="894.692" posY="1230.889" culture="Culture.vlandia" gate_posX="893.6185" gate_posY="1227.888" text="{=Settlements.Settlement.text.town_LA1}Located in the heart of Bastonne, Castle Bastonne and the surrounding villages show many indications of their founder, the first king Gilles le Breton, or Gilles the Unifier. Castle Bastonne itself is almost always a pilgrimage for any Grail Knights, or any who wish to see the testimony of Gilles le Breton’s accomplishments.">
     <Components>
       <Town id="town_comp_LA1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -5016,7 +5016,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LA1" name="{=Settlements.Settlement.name.castle_LA1}Castle Grasgar" owner="Faction.bastonne_clan_2" posX="909.453" posY="1193.38" culture="Culture.vlandia" gate_posX="908.3973" gate_posY="1192.405" text="{=Settlements.Settlement.text.castle_LA1}Castle Garamont holds the southern border of Bastonne from the western border of Bordeleaux, and provides a watchful lookout of the forest of Chȃlons and the feet of the mountains of Massif Orcal. The garrison has held off many Greenskin invaders.">
+  <Settlement id="castle_LA1" name="{=Settlements.Settlement.name.castle_LA1}Castle Grasgar" owner="Faction.anguille_clan_1" posX="909.453" posY="1193.38" culture="Culture.vlandia" gate_posX="908.3973" gate_posY="1192.405" text="{=Settlements.Settlement.text.castle_LA1}Castle Garamont holds the southern border of Bastonne from the western border of Bordeleaux, and provides a watchful lookout of the forest of Chȃlons and the feet of the mountains of Massif Orcal. The garrison has held off many Greenskin invaders.">
     <Components>
       <Town id="castle_comp_LA1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -5039,7 +5039,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LA2" name="{=Settlements.Settlement.name.castle_LA2}Castle Serrac" owner="Faction.bastonne_clan_1" posX="879.633" posY="1254.572" culture="Culture.vlandia" gate_posX="878.824" gate_posY="1252.772" text="{=Settlements.Settlement.text.castle_LA2}Lying just before the borders of Gisoreux, the fortress of Sangasse is a sentinel for any monsters or creatures that wish to venture out from the Arden forest. Indeed, many Beastmen raids have been thwarted by the garrison of knights stationed here.">
+  <Settlement id="castle_LA2" name="{=Settlements.Settlement.name.castle_LA2}Castle Serrac" owner="Faction.anguille_clan_1" posX="879.633" posY="1254.572" culture="Culture.vlandia" gate_posX="878.824" gate_posY="1252.772" text="{=Settlements.Settlement.text.castle_LA2}Lying just before the borders of Gisoreux, the fortress of Sangasse is a sentinel for any monsters or creatures that wish to venture out from the Arden forest. Indeed, many Beastmen raids have been thwarted by the garrison of knights stationed here.">
     <Components>
       <Town id="castle_comp_LA2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -5062,7 +5062,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LA3" name="{=Settlements.Settlement.name.castle_LA3}Castle Sannez" owner="Faction.bastonne_clan_1" posX="931.421" posY="1211.423" culture="Culture.vlandia" gate_posX="930.8517" gate_posY="1212.53" text="{=Settlements.Settlement.name.castle_LA3}On the Grismerie river, right across from the cursed city of Mousillon, Castle Riom stand firm directly in sight of the undead that many dread to plague Bretonnia. Many of the militia stationed in Castle Riom have heard dreadful noises coming from just across the river.">
+  <Settlement id="castle_LA3" name="{=Settlements.Settlement.name.castle_LA3}Castle Sannez" owner="Faction.anguille_clan_1" posX="931.421" posY="1211.423" culture="Culture.vlandia" gate_posX="930.8517" gate_posY="1212.53" text="{=Settlements.Settlement.name.castle_LA3}On the Grismerie river, right across from the cursed city of Mousillon, Castle Riom stand firm directly in sight of the undead that many dread to plague Bretonnia. Many of the militia stationed in Castle Riom have heard dreadful noises coming from just across the river.">
     <Components>
       <Town id="castle_comp_LA3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -5086,7 +5086,7 @@
     </CommonAreas>
   </Settlement>
   <!-- Lyonesse -->
-  <Settlement id="town_LY1" name="{=Settlements.Settlement.name.town_LY1}Castle Lyonesse" owner="Faction.quenelles_clan_1" posX="713.57" posY="1187.337" culture="Culture.vlandia" gate_posX="725.3942" gate_posY="1192.703" text="{=Settlements.Settlement.name.town_LY1}Right on the border between the Land of Chivalry and the Forest of Loren, is Ducal Capital and Fortress-City of Quenelles. The city is so close to the Forest in fact, that the fey have demanded of the Quenellians to tear down the wall on the eastern side. Where the wall ends is met with a broad road and then immediately the fringes of the fey forest.">
+  <Settlement id="town_LY1" name="{=Settlements.Settlement.name.town_LY1}Castle Lyonesse" owner="Faction.lyonesse_clan_1" posX="713.57" posY="1187.337" culture="Culture.vlandia" gate_posX="725.3942" gate_posY="1192.703" text="{=Settlements.Settlement.name.town_LY1}Right on the border between the Land of Chivalry and the Forest of Loren, is Ducal Capital and Fortress-City of Quenelles. The city is so close to the Forest in fact, that the fey have demanded of the Quenellians to tear down the wall on the eastern side. Where the wall ends is met with a broad road and then immediately the fringes of the fey forest.">
     <Components>
       <Town id="town_comp_LY1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -5132,7 +5132,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_LY2" name="{=Settlements.Settlement.name.town_LY2}Martel" owner="Faction.quenelles_clan_1" posX="863.549" posY="1050.05" culture="Culture.vlandia" gate_posX="865.3562" gate_posY="1053.927" text="{=Settlements.Settlement.name.town_LY2}Nestled in the hills bordering Massif Orcal, sits the fortress town of Viefin. Viefin was established originally as a garrison to protect Quenelles from Greenskins that come down out of the mountains, as well as a position to launch attempts at founding new villages in the region.">
+  <Settlement id="town_LY2" name="{=Settlements.Settlement.name.town_LY2}Martel" owner="Faction.lyonesse_clan_1" posX="863.549" posY="1050.05" culture="Culture.vlandia" gate_posX="865.3562" gate_posY="1053.927" text="{=Settlements.Settlement.name.town_LY2}Nestled in the hills bordering Massif Orcal, sits the fortress town of Viefin. Viefin was established originally as a garrison to protect Quenelles from Greenskins that come down out of the mountains, as well as a position to launch attempts at founding new villages in the region.">
     <Components>
       <Town id="town_comp_LY2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -5178,7 +5178,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_LY3" name="{=Settlements.Settlement.name.town_LY3}Soreil" owner="Faction.quenelles_clan_1" posX="782.595" posY="1263.055" culture="Culture.vlandia" gate_posX="784.1835" gate_posY="1260.986" text="{=Settlements.Settlement.name.town_LY2}Nestled in the hills bordering Massif Orcal, sits the fortress town of Viefin. Viefin was established originally as a garrison to protect Quenelles from Greenskins that come down out of the mountains, as well as a position to launch attempts at founding new villages in the region.">
+  <Settlement id="town_LY3" name="{=Settlements.Settlement.name.town_LY3}Soreil" owner="Faction.lyonesse_clan_1" posX="782.595" posY="1263.055" culture="Culture.vlandia" gate_posX="784.1835" gate_posY="1260.986" text="{=Settlements.Settlement.name.town_LY2}Nestled in the hills bordering Massif Orcal, sits the fortress town of Viefin. Viefin was established originally as a garrison to protect Quenelles from Greenskins that come down out of the mountains, as well as a position to launch attempts at founding new villages in the region.">
     <Components>
       <Town id="town_comp_LY3" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -5211,7 +5211,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LY1" name="{=Settlements.Settlement.name.castle_LY1}Barley Motte" owner="Faction.quenelles_clan_1" posX="838.565" posY="1235.31" culture="Culture.vlandia" gate_posX="837.9253" gate_posY="1234.519" text="{=Settlements.Settlement.text.castle_LY1}Castle Beaumarchais sits strategically between three important areas; Massif Orcal, the border with Parravon and the Loren forest. While Quenellian relations with the fey are… amicable, The Castle was built far enough from the border of the woods to prevent the wood elves interference with its walls such as at Castle Quenelles.">
+  <Settlement id="castle_LY1" name="{=Settlements.Settlement.name.castle_LY1}Barley Motte" owner="Faction.lyonesse_clan_1" posX="838.565" posY="1235.31" culture="Culture.vlandia" gate_posX="837.9566" gate_posY="1234.493" text="{=Settlements.Settlement.text.castle_LY1}Castle Beaumarchais sits strategically between three important areas; Massif Orcal, the border with Parravon and the Loren forest. While Quenellian relations with the fey are… amicable, The Castle was built far enough from the border of the woods to prevent the wood elves interference with its walls such as at Castle Quenelles.">
     <Components>
       <Town id="castle_comp_LY1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -5234,7 +5234,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LY2" name="{=Settlements.Settlement.name.castle_LY2}Sigmarsheim" owner="Faction.quenelles_clan_1" posX="900.482" posY="1095.295" culture="Culture.vlandia" gate_posX="901.3842" gate_posY="1095.477" text="{=Settlements.Settlement.text.castle_LY2}Castle Carrad sits on the shore of the River Brienne near the border of Carcassonne and the Forest of Loren. Its lord, Leofric Carrard, has inherited the fief in absentia. His father had given him permission to embark on his Grail Quest but as soon as Leofric left, his father grew gravely ill and passed into the arms of the Lady. Duke Tancred II has taken stewardship here until Leofric returns.">
+  <Settlement id="castle_LY2" name="{=Settlements.Settlement.name.castle_LY2}Sigmarsheim" owner="Faction.lyonesse_clan_1" posX="900.482" posY="1095.295" culture="Culture.vlandia" gate_posX="901.3842" gate_posY="1095.477" text="{=Settlements.Settlement.text.castle_LY2}Castle Carrad sits on the shore of the River Brienne near the border of Carcassonne and the Forest of Loren. Its lord, Leofric Carrard, has inherited the fief in absentia. His father had given him permission to embark on his Grail Quest but as soon as Leofric left, his father grew gravely ill and passed into the arms of the Lady. Duke Tancred II has taken stewardship here until Leofric returns.">
     <Components>
       <Town id="castle_comp_LY2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -5257,7 +5257,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LY3" name="{=Settlements.Settlement.name.castle_LY3}Ora Lamae" owner="Faction.quenelles_clan_1" posX="907.942" posY="1068.241" culture="Culture.vlandia" gate_posX="908.6593" gate_posY="1066.43" text="{=Settlements.Settlement.text.castle_LY3}Castle Laguiller is both a castle and a major river port along the River Brienne. Nearby is the Grave of Cuileux, a Quenellian holy site where the founder of the Dukedom is entered.">
+  <Settlement id="castle_LY3" name="{=Settlements.Settlement.name.castle_LY3}Ora Lamae" owner="Faction.lyonesse_clan_1" posX="907.942" posY="1068.241" culture="Culture.vlandia" gate_posX="908.6593" gate_posY="1066.43" text="{=Settlements.Settlement.text.castle_LY3}Castle Laguiller is both a castle and a major river port along the River Brienne. Nearby is the Grave of Cuileux, a Quenellian holy site where the founder of the Dukedom is entered.">
     <Components>
       <Town id="castle_comp_LY3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -5281,7 +5281,7 @@
     </CommonAreas>
   </Settlement>
   <!-- Gisoreux -->
-  <Settlement id="town_GX1" name="{=Settlements.Settlement.name.town_GX1}Castle Gisoreux" owner="Faction.carcassonne_clan_1" posX="1028.602" posY="1091.355" culture="Culture.vlandia" gate_posX="1031.17" gate_posY="1096.909" text="{=Settlements.Settlement.text.town_GX1} The fortress city and the ducal capital of Carcassonne, Castle Carcassonne sits on an island surrounded by the river Songez. Due to the defensive location Castle Carcassonne is designed to be more of a fortress rather than a city, however there is a small town attached to the castle that acts as a marketplace and hub for many travelers and Knights who seek services.">
+  <Settlement id="town_GX1" name="{=Settlements.Settlement.name.town_GX1}Castle Gisoreux" owner="Faction.gisoreux_clan_1" posX="1028.602" posY="1091.355" culture="Culture.vlandia" gate_posX="1031.17" gate_posY="1096.909" text="{=Settlements.Settlement.text.town_GX1} The fortress city and the ducal capital of Carcassonne, Castle Carcassonne sits on an island surrounded by the river Songez. Due to the defensive location Castle Carcassonne is designed to be more of a fortress rather than a city, however there is a small town attached to the castle that acts as a marketplace and hub for many travelers and Knights who seek services.">
     <Components>
       <Town id="town_comp_GX1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -5327,7 +5327,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_GX2" name="{=Settlements.Settlement.name.town_GX2}Hautmont" owner="Faction.carcassonne_clan_1" posX="1047.242" posY="1131.908" culture="Culture.vlandia" gate_posX="1044.244" gate_posY="1136.573" text="{=Settlements.Settlement.text.town_GX2}Located in the Vaults , the City of Turin is the capital of the Barony of Savoie. The region is influenced heavily by nearby Tilea, despite this the city and people are steadfastly loyal to Bretonnia. Holding the famed relic, the “Shroud of Gilles le Breton” the City of Turin is a Pilgrimage site to all who follow the Lady of the Lake, and all who seek visions of the Lady.">
+  <Settlement id="town_GX2" name="{=Settlements.Settlement.name.town_GX2}Hautmont" owner="Faction.gisoreux_clan_1" posX="1047.242" posY="1131.908" culture="Culture.vlandia" gate_posX="1044.244" gate_posY="1136.573" text="{=Settlements.Settlement.text.town_GX2}Located in the Vaults , the City of Turin is the capital of the Barony of Savoie. The region is influenced heavily by nearby Tilea, despite this the city and people are steadfastly loyal to Bretonnia. Holding the famed relic, the “Shroud of Gilles le Breton” the City of Turin is a Pilgrimage site to all who follow the Lady of the Lake, and all who seek visions of the Lady.">
     <Components>
       <Town id="town_comp_GX2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -5373,7 +5373,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_GX1" name="{=Settlements.Settlement.name.castle_GX1}Castle Oisillon" owner="Faction.carcassonne_clan_1" posX="1011.317" posY="1155.586" culture="Culture.vlandia" gate_posX="1011.374" gate_posY="1155.767" text="{=Settlements.Settlement.text.castle_GX1}Located on the western border of Carcassonne and at the base of the Irana Mountains, Toulouse is a vital defensive position that holds the River Niveau crossing, that separates the border of Carcassonne and Estalia.">
+  <Settlement id="castle_GX1" name="{=Settlements.Settlement.name.castle_GX1}Castle Oisillon" owner="Faction.gisoreux_clan_1" posX="1011.317" posY="1155.586" culture="Culture.vlandia" gate_posX="1011.374" gate_posY="1155.767" text="{=Settlements.Settlement.text.castle_GX1}Located on the western border of Carcassonne and at the base of the Irana Mountains, Toulouse is a vital defensive position that holds the River Niveau crossing, that separates the border of Carcassonne and Estalia.">
     <Components>
       <Town id="castle_comp_GX1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -5397,7 +5397,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_GX2" name="{=Settlements.Settlement.name.castle_GX2}Castle Desfleuve" owner="Faction.carcassonne_clan_1" posX="1078.801" posY="1112.768" culture="Culture.vlandia" gate_posX="1076.765" gate_posY="1114.162" text="{=Settlements.Settlement.text.castle_GX2}A small fortress settlement on the Southern Reach of Bretonnia near the Tilean border. Once besieged by the armies of Tilea, the siege turned to a massacre when Ser Der Raker broke the assailants single handedly.">
+  <Settlement id="castle_GX2" name="{=Settlements.Settlement.name.castle_GX2}Castle Desfleuve" owner="Faction.gisoreux_clan_1" posX="1078.801" posY="1112.768" culture="Culture.vlandia" gate_posX="1076.765" gate_posY="1114.162" text="{=Settlements.Settlement.text.castle_GX2}A small fortress settlement on the Southern Reach of Bretonnia near the Tilean border. Once besieged by the armies of Tilea, the siege turned to a massacre when Ser Der Raker broke the assailants single handedly.">
     <Components>
       <Town id="castle_comp_GX2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -5433,7 +5433,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_GX3" name="{=Settlements.Settlement.name.castle_GX3}Castle Ardé" owner="Faction.carcassonne_clan_2" posX="1017.099" posY="1079.451" culture="Culture.vlandia" gate_posX="1015.156" gate_posY="1078.045" text="{=Settlements.Settlement.text.castle_GX3}Located near the borders of the Loren Forrest, Castle Gaudaron is an ever watchful eye that stands at the base of the Vaults mountain range. Castle Gaudaron is a key position for maintaining Bretonnian rule over the northern end of the Novalone Pass, as well as for guarding the Loren highway.">
+  <Settlement id="castle_GX3" name="{=Settlements.Settlement.name.castle_GX3}Castle Ardé" owner="Faction.gisoreux_clan_1" posX="1017.099" posY="1079.451" culture="Culture.vlandia" gate_posX="1015.156" gate_posY="1078.045" text="{=Settlements.Settlement.text.castle_GX3}Located near the borders of the Loren Forrest, Castle Gaudaron is an ever watchful eye that stands at the base of the Vaults mountain range. Castle Gaudaron is a key position for maintaining Bretonnian rule over the northern end of the Novalone Pass, as well as for guarding the Loren highway.">
     <Components>
       <Town id="castle_comp_GX3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -5457,7 +5457,7 @@
     </CommonAreas>
   </Settlement>
   <!-- Artois -->
-  <Settlement id="town_AS1" name="{=Settlements.Settlement.name.town_AS1}Castle Artois" owner="Faction.carcassonne_clan_1" posX="924.815" posY="1165.995" culture="Culture.vlandia" gate_posX="922.0403" gate_posY="1161.372" text="{=Settlements.Settlement.text.town_AS1} The fortress city and the ducal capital of Carcassonne, Castle Carcassonne sits on an island surrounded by the river Songez. Due to the defensive location Castle Carcassonne is designed to be more of a fortress rather than a city, however there is a small town attached to the castle that acts as a marketplace and hub for many travelers and Knights who seek services.">
+  <Settlement id="town_AS1" name="{=Settlements.Settlement.name.town_AS1}Castle Artois" owner="Faction.artois_clan_1" posX="924.815" posY="1165.995" culture="Culture.vlandia" gate_posX="923.0382" gate_posY="1162.287" text="{=Settlements.Settlement.text.town_AS1} The fortress city and the ducal capital of Carcassonne, Castle Carcassonne sits on an island surrounded by the river Songez. Due to the defensive location Castle Carcassonne is designed to be more of a fortress rather than a city, however there is a small town attached to the castle that acts as a marketplace and hub for many travelers and Knights who seek services.">
     <Components>
       <Town id="town_comp_AS1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -5503,7 +5503,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AS2" name="{=Settlements.Settlement.name.town_AS2}Larret" owner="Faction.carcassonne_clan_1" posX="893.247" posY="1129.321" culture="Culture.vlandia" gate_posX="888.312" gate_posY="1134.07" text="{=Settlements.Settlement.text.town_AS2}Located in the Vaults , the City of Turin is the capital of the Barony of Savoie. The region is influenced heavily by nearby Tilea, despite this the city and people are steadfastly loyal to Bretonnia. Holding the famed relic, the “Shroud of Gilles le Breton” the City of Turin is a Pilgrimage site to all who follow the Lady of the Lake, and all who seek visions of the Lady.">
+  <Settlement id="town_AS2" name="{=Settlements.Settlement.name.town_AS2}Larret" owner="Faction.artois_clan_1" posX="893.247" posY="1129.321" culture="Culture.vlandia" gate_posX="888.7289" gate_posY="1133.811" text="{=Settlements.Settlement.text.town_AS2}Located in the Vaults , the City of Turin is the capital of the Barony of Savoie. The region is influenced heavily by nearby Tilea, despite this the city and people are steadfastly loyal to Bretonnia. Holding the famed relic, the “Shroud of Gilles le Breton” the City of Turin is a Pilgrimage site to all who follow the Lady of the Lake, and all who seek visions of the Lady.">
     <Components>
       <Town id="town_comp_AS2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -5549,7 +5549,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AS1" name="{=Settlements.Settlement.name.castle_AS1}Castle Arras" owner="Faction.carcassonne_clan_1" posX="912.831" posY="1112.075" culture="Culture.vlandia" gate_posX="912.863" gate_posY="1111.393" text="{=Settlements.Settlement.text.castle_AS1}Located on the western border of Carcassonne and at the base of the Irana Mountains, Toulouse is a vital defensive position that holds the River Niveau crossing, that separates the border of Carcassonne and Estalia.">
+  <Settlement id="castle_AS1" name="{=Settlements.Settlement.name.castle_AS1}Castle Arras" owner="Faction.artois_clan_1" posX="912.831" posY="1112.075" culture="Culture.vlandia" gate_posX="912.863" gate_posY="1111.393" text="{=Settlements.Settlement.text.castle_AS1}Located on the western border of Carcassonne and at the base of the Irana Mountains, Toulouse is a vital defensive position that holds the River Niveau crossing, that separates the border of Carcassonne and Estalia.">
     <Components>
       <Town id="castle_comp_AS1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -5573,7 +5573,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AS2" name="{=Settlements.Settlement.name.castle_AS2}Castle Lens" owner="Faction.carcassonne_clan_1" posX="941.473" posY="1076.939" culture="Culture.vlandia" gate_posX="942.3752" gate_posY="1077.121" text="{=Settlements.Settlement.text.castle_AS2}A small fortress settlement on the Southern Reach of Bretonnia near the Tilean border. Once besieged by the armies of Tilea, the siege turned to a massacre when Ser Der Raker broke the assailants single handedly.">
+  <Settlement id="castle_AS2" name="{=Settlements.Settlement.name.castle_AS2}Castle Lens" owner="Faction.artois_clan_1" posX="941.473" posY="1076.939" culture="Culture.vlandia" gate_posX="942.3752" gate_posY="1077.121" text="{=Settlements.Settlement.text.castle_AS2}A small fortress settlement on the Southern Reach of Bretonnia near the Tilean border. Once besieged by the armies of Tilea, the siege turned to a massacre when Ser Der Raker broke the assailants single handedly.">
     <Components>
       <Town id="castle_comp_AS2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -5596,7 +5596,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AS3" name="{=Settlements.Settlement.name.castle_AS3}Castle Béthune" owner="Faction.carcassonne_clan_2" posX="992.208" posY="1122.747" culture="Culture.vlandia" gate_posX="992.6238" gate_posY="1123.831" text="{=Settlements.Settlement.text.castle_AS3}Located near the borders of the Loren Forrest, Castle Gaudaron is an ever watchful eye that stands at the base of the Vaults mountain range. Castle Gaudaron is a key position for maintaining Bretonnian rule over the northern end of the Novalone Pass, as well as for guarding the Loren highway.">
+  <Settlement id="castle_AS3" name="{=Settlements.Settlement.name.castle_AS3}Castle Béthune" owner="Faction.artois_clan_1" posX="992.208" posY="1122.747" culture="Culture.vlandia" gate_posX="992.6238" gate_posY="1123.831" text="{=Settlements.Settlement.text.castle_AS3}Located near the borders of the Loren Forrest, Castle Gaudaron is an ever watchful eye that stands at the base of the Vaults mountain range. Castle Gaudaron is a key position for maintaining Bretonnian rule over the northern end of the Novalone Pass, as well as for guarding the Loren highway.">
     <Components>
       <Town id="castle_comp_AS3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>

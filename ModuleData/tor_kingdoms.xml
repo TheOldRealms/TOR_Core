@@ -273,7 +273,7 @@
     </Kingdom>
     <Kingdom id="wasteland"
              owner="Hero.tor_emp_lord_wasteland_factionleader"
-             banner_key="11.128.55.8000.8000.764.764.0.1.0.505.140.64.671.671.764.764.0.0.0"
+             banner_key="11.128.55.8000.8000.764.764.0.1.0.505.140.64.671.671.764.764.0.0.0:kingdom_wasteland"
              primary_banner_color="0xfffcdf03"
              secondary_banner_color="0xfffc2c03"
              label_color="FFfc2c03"
@@ -313,6 +313,126 @@
              title="{=!}The Moot"
              ruler_title="{=!}Lord"
              text="{=!}The Grand County of the Mootland, commonly referred to as The Moot, is a province of The Empire and homeland of the Halflings. Its capital is the town of Eicheschatten. Its symbol is a Fighting Cockerel and its colours are red and green.">
+        <relationships />
+        <policies>
+            <policy id="policy_senate" />
+            <policy id="policy_feudal_inheritance" />
+        </policies>
+    </Kingdom>
+    <Kingdom id="couronne"
+             owner="Hero.tor_br_lord_couronne_factionleader"
+             banner_key="1.12.142.8000.8000.764.764.0.1.0.302.39.116.512.512.596.628.1.0.180.140.39.116.671.671.764.819.1.0.0.340.39.116.134.134.793.494.1.0.0"
+             primary_banner_color="0xff292625"
+             secondary_banner_color="0xfffad373"
+             label_color="FFfad373"
+             color="FF292625"
+             color2="FFfad373"
+             alternative_color="FFffffff"
+             alternative_color2="FF660653"
+             culture="Culture.vlandia"
+             settlement_banner_mesh="encounter_flag_a"
+             flag_mesh="info_screen_flags_b"
+             name="{=!}Dukedom of Couronne"
+             short_name="{=!}Couronne"
+             title="{=!}Couronne"
+             ruler_title="{=!}Duke"
+             text="{=!}The Dukedom of Couronne is a founding dukedom of Bretonnia that lies upon the northern shores of that realm and is the current seat of power of the king's Royal Court, located in the dukedom, and the kingdom's capital, Castle Couronne.">
+        <relationships />
+        <policies>
+            <policy id="policy_senate" />
+            <policy id="policy_feudal_inheritance" />
+        </policies>
+    </Kingdom>
+    <Kingdom id="anguille"
+             owner="Hero.tor_br_lord_anguille_factionleader"
+             banner_key="11.139.142.8000.8000.764.764.0.1.0.505.12.116.680.680.764.744.0.0.0:kingdom_anguille"
+             primary_banner_color="0xff292625"
+             secondary_banner_color="0xfffad373"
+             label_color="FFfad373"
+             color="FF292625"
+             color2="FFfad373"
+             alternative_color="FFffffff"
+             alternative_color2="FF660653"
+             culture="Culture.vlandia"
+             settlement_banner_mesh="encounter_flag_a"
+             flag_mesh="info_screen_flags_b"
+             name="{=!}Dukedom of L'Anguille"
+             short_name="{=!}L'Anguille"
+             title="{=!}L'Anguille"
+             ruler_title="{=!}Duke"
+             text="{=!}L'Anguille, formally the Dukedom of L'Anguille, is a dukedom of Bretonnia that lies at the northern shores of that kingdom. Known far and wide for having some of the busiest ports in all of Bretonnia, L'Anguille is a rich dukedom that relies heavily on sea-trade for their fortunes. As such, there is a large number of merchants and middle-class commoners amongst the peasant population of the capital.">
+        <relationships />
+        <policies>
+            <policy id="policy_senate" />
+            <policy id="policy_feudal_inheritance" />
+        </policies>
+    </Kingdom>
+    <Kingdom id="lyonesse"
+             owner="Hero.tor_br_lord_lyonesse_factionleader"
+             banner_key="11.110.120.8000.8000.764.764.0.1.0.505.148.64.674.674.764.764.0.0.0:kingdom_lyonesse"
+             primary_banner_color="0xff292625"
+             secondary_banner_color="0xfffad373"
+             label_color="FFfad373"
+             color="FF292625"
+             color2="FFfad373"
+             alternative_color="FFffffff"
+             alternative_color2="FF660653"
+             culture="Culture.vlandia"
+             settlement_banner_mesh="encounter_flag_a"
+             flag_mesh="info_screen_flags_b"
+             name="{=!}Dukedom of Lyonesse"
+             short_name="{=!}Lyonesse"
+             title="{=!}Lyonesse"
+             ruler_title="{=!}Duke"
+             text="{=!}Lyonesse, formally the Dukedom of Lyonesse, is one of the founding dukedoms of Bretonnia that lies upon the north-western shores of that kingdom. One of the larger dukedoms, the lands of Lyonesse are infamously known for their rivalry not with the other Bretonnian dukedoms, but amongst their own nobility, even in comparison to the feudal conflicts which plague the other realms of Bretonnia. People blame the unusual geography of the dukedom for the prevalence of the internecine strife, particularly the profusion of excellent sites for fortifications, which deters rival dukedoms from waging war or pursuing feuds with the lords of Lyonesse.">
+        <relationships />
+        <policies>
+            <policy id="policy_senate" />
+            <policy id="policy_feudal_inheritance" />
+        </policies>
+    </Kingdom>
+    <Kingdom id="artois"
+             owner="Hero.tor_br_lord_artois_factionleader"
+             banner_key="11.148.120.8000.8000.764.764.0.1.0.505.30.123.794.794.764.764.0.0.0:kingdom_artois"
+             primary_banner_color="0xff292625"
+             secondary_banner_color="0xfffad373"
+             label_color="FFfad373"
+             color="FF292625"
+             color2="FFfad373"
+             alternative_color="FFffffff"
+             alternative_color2="FF660653"
+             culture="Culture.vlandia"
+             settlement_banner_mesh="encounter_flag_a"
+             flag_mesh="info_screen_flags_b"
+             name="{=!}Dukedom of Artois"
+             short_name="{=!}Artois"
+             title="{=!}Artois"
+             ruler_title="{=!}Duke"
+             text="{=!}Artois, formally the Dukedom of Artois, is a founding dukedom of Bretonnia that lies at the heart of the northern lands of that kingdom. Unlike the lush meadows of Bretonnia's other dukedoms, Artois is famous for being the only dukedom that is covered entirely by forested wilderness, known by the Bretonnians as the Forest of Arden. Due to this, the dukedom is in a constant state of warfare against tribes of Beastmen that have made the forest their new dark home.">
+        <relationships />
+        <policies>
+            <policy id="policy_senate" />
+            <policy id="policy_feudal_inheritance" />
+        </policies>
+    </Kingdom>
+    <Kingdom id="gisoreux"
+             owner="Hero.tor_br_lord_gisoreux_factionleader"
+             banner_key="1.148.116.8000.8000.764.764.0.1.0.133.140.123.769.769.764.764.0.0.0"
+             primary_banner_color="0xff292625"
+             secondary_banner_color="0xfffad373"
+             label_color="FFfad373"
+             color="FF292625"
+             color2="FFfad373"
+             alternative_color="FFffffff"
+             alternative_color2="FF660653"
+             culture="Culture.vlandia"
+             settlement_banner_mesh="encounter_flag_a"
+             flag_mesh="info_screen_flags_b"
+             name="{=!}Dukedom of Gisoreux"
+             short_name="{=!}Gisoreux"
+             title="{=!}Gisoreux"
+             ruler_title="{=!}Duke"
+             text="{=!}Gisoreux, formally the Dukedom of Gisoreux, is a founding dukedom of Bretonnia that lies within the treacherous slopes of the Pale Sisters and upon the low woodlands of the Forest of Arden. Unlike in other parts of Bretonnia, where much of the land is either one type of landscape and of one type of people, the diversity in geography of this Dukedom has also created a diversity in cultures and customs. Those living within the arable plains to the south contain the typical farmers and peasants that is universal within all the realms. To the east, the lands are filled with harsh woodlands, where a different people live life as expert trappers and wild woodsmen. Finally, to the north, those people that can eke out a living within the Pale Sisters are seasoned mountaineers who can brave harsh conditions. The Dukedom also contains the Gisoreux Gap, one of only three locations within the entire Grey Mountains that allow passage between Bretonnia and the Empire.">
         <relationships />
         <policies>
             <policy id="policy_senate" />
