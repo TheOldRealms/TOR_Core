@@ -569,7 +569,11 @@ namespace TOR_Core.Extensions
                 
                 if (agent.HasAttribute("Priest"))
                 {
-                    abilities.AddRange(hero.GetExtendedInfo().GetAllPrayers());
+                    var prayers = hero.GetExtendedInfo().GetAllPrayers();
+                    foreach (var prayer in from ability in abilities from prayer in prayers where ability != prayer select prayer)  //TODO why do we handle them seperate? Can be avoided if prayers can be part of selection
+                    {
+                        abilities.Add(prayer);
+                    }
                 }
             }
             else if (character != null)

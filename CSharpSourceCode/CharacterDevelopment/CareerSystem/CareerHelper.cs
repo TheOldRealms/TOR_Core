@@ -274,17 +274,53 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             return value;
         }
 
-        public static  bool PlayerOwnsMagicCareer()
+        public static bool IsMagicCareer(CareerObject career)
         {
-            if (Hero.MainHero.HasAnyCareer())
-            {
-               var career = Hero.MainHero.GetCareer();
-
-               if (Hero.MainHero.GetExtendedInfo().CareerID == "Mercenary" || Hero.MainHero.GetExtendedInfo().CareerID == "MinorVampire" || Hero.MainHero.GetExtendedInfo().CareerID == "GrailDamsel")
-                   return true;
-            }
+            if (career == null) return false;
+            
+            if (career == TORCareers.Mercenary|| 
+                career == TORCareers.MinorVampire || 
+                career == TORCareers.GrailDamsel ||
+                career == TORCareers.Necromancer||
+                career == TORCareers.Necrarch)
+                return true;
 
             return false;
+        }
+
+        public static List<(string PrayerID,int Rank) > GetBattlePrayerList(CareerObject career)
+        {
+            List<(string PrayerID, int Rank)> prayers = new List<(string, int)>();
+            
+            
+            if (career == TORCareers.WarriorPriest)
+            {
+                prayers.Add(("HealingHand",1));
+                prayers.Add(("ArmourOfRighteousness",2));
+                prayers.Add(("Vanquish",2));
+                prayers.Add(( "CometOfSigmar", 3));
+                return prayers;
+            }
+
+            if (career == TORCareers.GrailDamsel)
+            {
+                prayers.Add(("AuraOfTheLady", 1));
+                prayers.Add(("ShieldOfCombat", 2));
+                prayers.Add(("LadysFavour", 2));
+                prayers.Add(( "AerialShield", 3));
+                return prayers;
+            }
+
+            if (career == TORCareers.WarriorPriestUlric)
+            {
+                prayers.Add(("UlricsGift",1));
+                prayers.Add(("HeartOfTheWolf",2));
+                prayers.Add(("IceStorm",2));
+                prayers.Add(( "SnowKingDecree", 3));
+                return prayers;
+            }
+
+            return prayers;
         }
 
         public static bool PrayerCooldownIsNotShared(this Agent agent)

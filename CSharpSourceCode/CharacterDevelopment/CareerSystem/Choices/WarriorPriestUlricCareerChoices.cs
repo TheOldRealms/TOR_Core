@@ -245,9 +245,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _flameOfUlricPassive3.Initialize(CareerID,"For a fair battle, gain or refresh your Ulric blessing.","FlameOfUlric",false,ChoiceType.Passive);
             _flameOfUlricPassive4.Initialize(CareerID,"For every kill through abilities gain 0.25 health points","FlameOfUlric",false,ChoiceType.Passive); 
             
-            
-
-
         }
+        
     }
 }

@@ -264,12 +264,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             if (IsPriestAcolyteCharacterCreationID(id))
             {
                 Hero.MainHero.AddAttribute("Priest");
+                Hero.MainHero.AddCareer(TORCareers.WarriorPriest);
                 var skill = Hero.MainHero.GetSkillValue(TORSkills.Faith);
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);
                 Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 60);
-                Hero.MainHero.AddCareer(TORCareers.WarriorPriest);
-                Hero.MainHero.AddAbility("HealingHand");
+               
             }
             else if (IsNecromancerCharacterCreationID (id))
             {
