@@ -445,7 +445,7 @@
   	</StatusEffectTemplate>
 	<StatusEffectTemplate
 		id="frost_bite_mov_90"
-		particle_id=""
+		particle_id="breath_of_darkness"
 		particle_intensity="Low"
 		do_not_attach_to_agent_skeleton="false"
     	base_effect_value="-0.9"
@@ -455,14 +455,13 @@
 	
 	<StatusEffectTemplate
 		id="ulrics_gift_ats"
-		particle_id=""
+		particle_id="fire_cloak_phy_res"
 		particle_intensity="Low"
 		do_not_attach_to_agent_skeleton="false"
     	base_effect_value="0.25"
 		type="AttackSpeedManipulation"
 		damage_type="Frost">
   	</StatusEffectTemplate>
-	
 	<StatusEffectTemplate
 		id="ulrics_gift_mvs"
 		particle_id=""
@@ -475,14 +474,13 @@
 	
 	<StatusEffectTemplate
 		id="heart_of_the_wolf_dmg"
-		particle_id=""
+		particle_id="healing_hand"
 		particle_intensity="Low"
 		do_not_attach_to_agent_skeleton="false"
     	base_effect_value="0.2"
 		type="DamageAmplification"
 		damage_type="Frost">
   	</StatusEffectTemplate>
-	
 	<StatusEffectTemplate
 		id="heart_of_the_wolf_unb"
 		particle_id=""
@@ -493,7 +491,6 @@
 		damage_type="Frost">
 		<temporary_attribute>Unbreakable</temporary_attribute>
   	</StatusEffectTemplate>
-	
 	<StatusEffectTemplate
 		id="heart_of_the_wolf_uns"
 		particle_id=""
@@ -507,7 +504,7 @@
 	
 	<StatusEffectTemplate
 		id="ice_storm_mvs"
-		particle_id=""
+		particle_id="breath_of_darkness"
 		particle_intensity="Low"
 		do_not_attach_to_agent_skeleton="false"
     	base_effect_value="-0.5"

@@ -570,10 +570,9 @@ namespace TOR_Core.Extensions
                 if (agent.HasAttribute("Priest"))
                 {
                     var prayers = hero.GetExtendedInfo().GetAllPrayers();
-                    foreach (var prayer in from ability in abilities from prayer in prayers where ability != prayer select prayer)  //TODO why do we handle them seperate? Can be avoided if prayers can be part of selection
-                    {
-                        abilities.Add(prayer);
-                    }
+                    
+                    abilities.AddRange(prayers);
+                    abilities = abilities.Distinct().ToList();
                 }
             }
             else if (character != null)
@@ -762,6 +761,7 @@ namespace TOR_Core.Extensions
 
         public static void ApplyStatusEffect(this Agent agent, string effectId, Agent applierAgent, float duration = 5, bool append = true, bool isMutated = false)
         {
+        
             var comp = agent.GetComponent<StatusEffectComponent>();
             if (comp != null) comp.RunStatusEffect(effectId, applierAgent, duration, append, isMutated);
             

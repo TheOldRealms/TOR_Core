@@ -73,9 +73,9 @@ namespace TOR_Core.Models
                 }
             }
             
-            if (cultID== "cult_of_Ulric" && Hero.MainHero.HasCareerChoice("SigmarProclaimerPassive4"))
+            if (cultID== "cult_of_ulric" && Hero.MainHero.HasCareerChoice("TeachingsOfTheWinterFatherPassive2"))
             {
-                var choice = TORCareerChoices.GetChoice("SigmarProclaimerPassive4");
+                var choice = TORCareerChoices.GetChoice("TeachingsOfTheWinterFatherPassive2");
                 if(choice==null||choice.Passive==null)return;
                 Hero.MainHero.Heal(Hero.MainHero.MaxHitPoints,false);
             }

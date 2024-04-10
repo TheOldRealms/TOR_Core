@@ -32,6 +32,11 @@ namespace TOR_Core.HarmonyPatches
                 return true;
             }
 
+            if (victim == attacker)
+            {
+                return true;
+            }
+
             AttackTypeMask attackTypeMask = DetermineMask(b);
 
             float[] damageCategories = new float[(int)DamageType.All + 1];

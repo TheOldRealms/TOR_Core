@@ -40,7 +40,7 @@ namespace TOR_Core.Models
             UpdateAgentDrivenProperties(agent, agentDrivenProperties);
         }
 
-        public override float GetWeaponInaccuracy(Agent agent, WeaponComponentData weapon, int weaponSkill)
+        public override float GetWeaponInaccuracy(Agent agent, WeaponComponentData weapon, int weaponSkill)     //TODO Taal inaccuracy?
         {
             var result = base.GetWeaponInaccuracy(agent, weapon, weaponSkill);
             ExplainedNumber accuracy = new ExplainedNumber(result, false, null);
@@ -294,12 +294,6 @@ namespace TOR_Core.Models
                     agentDrivenProperties.MaxSpeedMultiplier *= modificator;
                     agentDrivenProperties.CombatMaxSpeedMultiplier *= modificator;
                 }
-            }
-
-
-            if (agent.IsMainAgent)
-            {
-                agentDrivenProperties.MaxSpeedMultiplier += 5;
             }
 
             UpdateDynamicAgentDrivenProperties(agent, agentDrivenProperties);

@@ -925,6 +925,23 @@
 			<ImbuedStatusEffect>ice_storm_ats</ImbuedStatusEffect>
 			<ImbuedStatusEffect>ice_storm_dot</ImbuedStatusEffect>
 	  </TriggeredEffectTemplate>
+	  
+	  <TriggeredEffectTemplate StringID="snow_king_decree" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Frost" 
+            DamageAmount="10" 
+            Radius="10" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            DamageVariance="0.0" 
+		ImbuedStatusEffectDuration="15" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>ice_storm_mvs</ImbuedStatusEffect>
+			<ImbuedStatusEffect>ice_storm_ats</ImbuedStatusEffect>
+			<ImbuedStatusEffect>ice_storm_dot</ImbuedStatusEffect>
+	  </TriggeredEffectTemplate>
 
 <!-- Power of the Lady -->
 

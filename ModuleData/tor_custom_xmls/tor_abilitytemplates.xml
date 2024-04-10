@@ -3792,31 +3792,31 @@
       CoolDown="70"
       WindsOfMagicCost="0"
       BaseMisCastChance="0.05"
-      Duration="0"
+      Duration="5"
       Radius="3"
       AbilityType="Prayer"
-      AbilityEffectType="Augment"
+      AbilityEffectType="Bombardment"
       BaseMovementSpeed="0"
       TickInterval="-1"
-      TriggerType="TickOnce"
+      TriggerType="EveryTick"
       HasLight="false"
       LightIntensity="0"
       LightRadius="0"
       LightFlickeringMagnitude="0"
       LightFlickeringInterval="0"
       ShadowCastEnabled="true"
-      ParticleEffectPrefab=""
-      ParticleEffectSizeModifier="0"
+      ParticleEffectPrefab="souldrain"
+      ParticleEffectSizeModifier="1"
       SoundEffectToPlay=""
       ShouldSoundLoopOverDuration="false"
       CastType="Instant"
       CastTime="0.5"
       AnimationActionName="act_release_heavy_thrown"
       Offset="0.5"
-      AbilityTargetType="AlliesInAOE"
+      AbilityTargetType="EnemiesInAOE"
       TargetCapturingRadius="4"
-      MaxDistance="0.5"
-      CrosshairType="TargetedAOE"
+      MaxDistance="50"
+      CrosshairType="SingleTarget"
       SpellTier="1"
       BelongsToLoreID="UlricanPrayers"
       TooltipDescription="{=armor_of_righteousness_description_str}Allies in a 3 meter radius gain 35% physical resistance for 8 seconds.">
@@ -3826,7 +3826,7 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>ice_storm</TriggeredEffect>
+		<TriggeredEffect>snow_king_decree</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<!-- Power of the Lady -->
