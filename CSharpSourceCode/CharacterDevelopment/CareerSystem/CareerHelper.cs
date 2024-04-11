@@ -184,8 +184,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 var value = passive.EffectMagnitude;
                 var text = choice.BelongsToGroup.Name;
                     
-                if(!passive.IsValidCharacterObject(characterObject)) continue;
-                    
                 if (passive.InterpretAsPercentage)
                 {
                     value /= 100;
@@ -204,19 +202,17 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         {
             var damageValues = new float[(int)DamageType.All + 1];
 
-            if (mask == PropertyMask.Attack)
+            switch (mask)
             {
-                ApplyCareerPassivesForDamageValues(attacker, victim, ref damageValues, attackTypeMask, PassiveEffectType.TroopDamage);
-                return damageValues;
+                case PropertyMask.Attack:
+                    ApplyCareerPassivesForDamageValues(attacker, victim, ref damageValues, attackTypeMask, PassiveEffectType.TroopDamage);
+                    return damageValues;
+                case PropertyMask.Defense:
+                    ApplyCareerPassivesForDamageValues(attacker, victim, ref damageValues, attackTypeMask, PassiveEffectType.TroopResistance);
+                    return damageValues;
+                default:
+                    return null;
             }
-            
-            else if (mask == PropertyMask.Defense)
-            {
-                ApplyCareerPassivesForDamageValues(victim, attacker, ref damageValues, attackTypeMask, PassiveEffectType.TroopResistance);
-                return damageValues;
-            }
-
-            return null;
         }
         public static AgentPropertyContainer AddBasicCareerPassivesToPropertyContainerForMainAgent(Agent agent, AgentPropertyContainer propertyContainer, AttackTypeMask attackType, PropertyMask mask)
         {

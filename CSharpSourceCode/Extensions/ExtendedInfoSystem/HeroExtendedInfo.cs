@@ -13,6 +13,7 @@ using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.Models;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions.ExtendedInfoSystem
@@ -97,44 +98,11 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             get
             {
                 if (!(Game.Current.GameType is Campaign)) return 50;
-                else
-                {
-                    if (BaseCharacter.HeroObject != null && BaseCharacter.HeroObject != Hero.MainHero && BaseCharacter.HeroObject.Occupation == Occupation.Lord && BaseCharacter.HeroObject.IsSpellCaster()) return 100f;
-                    ExplainedNumber explainedNumber = new ExplainedNumber(10f, false, null);
-                    SkillHelper.AddSkillBonusForCharacter(TORSkills.SpellCraft, TORSkillEffects.MaxWinds, BaseCharacter, ref explainedNumber);
-                    if (Hero.MainHero.HasAnyCareer())
-                    {
-                        if (BaseCharacter.HeroObject == Hero.MainHero)
-                        {
-                            CareerHelper.ApplyBasicCareerPassives(Hero.MainHero,ref  explainedNumber, PassiveEffectType.WindsOfMagic,false);
-                        }
-                        else if (BaseCharacter.HeroObject.PartyBelongedTo!=null && BaseCharacter.HeroObject.PartyBelongedTo.IsMainParty)
-                        {
-                            if (Hero.MainHero != null)
-                            {
-                                var choices = Hero.MainHero.GetAllCareerChoices();
-                                if (choices.Contains("EnvoyOfTheLadyPassive3"))
-                                {
-                                    var choice = TORCareerChoices.GetChoice("EnvoyOfTheLadyPassive3");
-                                    explainedNumber.Add(choice.GetPassiveValue());
-                                }
-                            
-                                if (choices.Contains("LieOfLadyPassive2"))
-                                {
-                                    var choice = TORCareerChoices.GetChoice("LieOfLadyPassive2");
-                                    explainedNumber.Add(choice.GetPassiveValue());
-                                }
-                            }
-                            
-                        }
-                    }
-                        
-                    
-                  
-                    return explainedNumber.ResultNumber;
-                }
+                TORAbilityModel  model = Campaign.Current.Models.GetAbilityModel();
+                return model.GetMaximumWindsOfMagic(this.BaseCharacter);
             }
         }
+
         public float WindsOfMagicRechargeRate
         {
             get
@@ -142,11 +110,9 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 if (!(Game.Current.GameType is Campaign)) return 0.2f;
                 else
                 {
-                    if (BaseCharacter.HeroObject != null && BaseCharacter.HeroObject != Hero.MainHero && BaseCharacter.HeroObject.Occupation == Occupation.Lord && BaseCharacter.HeroObject.IsSpellCaster()) return 2f;
-                    ExplainedNumber explainedNumber = new ExplainedNumber(1f, false, null);
-                    SkillHelper.AddSkillBonusForCharacter(TORSkills.SpellCraft, TORSkillEffects.WindsRechargeRate, BaseCharacter, ref explainedNumber);
-                    
-                    return explainedNumber.ResultNumber;
+                    if (!(Game.Current.GameType is Campaign)) return 50;
+                    TORAbilityModel  model = Campaign.Current.Models.GetAbilityModel();
+                    return model.GetWindsRechargeRate(this.BaseCharacter);
                 }
             }
         }

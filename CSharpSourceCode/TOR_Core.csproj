@@ -339,11 +339,13 @@
     <Compile Include="AbilitySystem\Scripts\AugmentScript.cs" />
     <Compile Include="AbilitySystem\Scripts\BlastScript.cs" />
     <Compile Include="AbilitySystem\Scripts\BombardmentScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\CareerAbilityMissleScript.cs" />
     <Compile Include="AbilitySystem\Scripts\CareerAbilityScript.cs" />
     <Compile Include="AbilitySystem\Scripts\HealScript.cs" />
     <Compile Include="AbilitySystem\Scripts\HexScript.cs" />
     <Compile Include="AbilitySystem\Scripts\KnightlyChargeScript.cs" />
     <Compile Include="AbilitySystem\Scripts\MissileScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\BlastOfAgonyScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ProjectileScript.cs" />
     <Compile Include="AbilitySystem\Scripts\RedFuryScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ShadowStepScript.cs" />
@@ -514,6 +516,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\GrailKnightCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\MercenaryCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerAbilityEffectVM.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\NecrarchCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\SpecialbuttonHandler.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\WitchHunterCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceGroupObject.cs" />
@@ -532,6 +535,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\GrailKnightCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\GrailDamselCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\MercenaryCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\NecrarchCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\NecromancerCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\TORCareerChoicesBase.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\VampireCountCareerChoices.cs" />

@@ -30,6 +30,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             _isTemplateMutated = isTemplateMutated;
         }
 
+        public float EffectRadius => _template.Radius;
         public string SummonedTroopId => _template.TroopIdToSummon;
         public float ImbuedStatusEffectDuration => _template.ImbuedStatusEffectDuration;
         public List<string> StatusEffects => _template.ImbuedStatusEffects;

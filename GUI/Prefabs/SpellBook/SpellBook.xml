@@ -62,15 +62,15 @@
             </Widget>
 
             <!--Spellbook-->
-            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="700" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="710" HorizontalAlignment="Left" VerticalAlignment="Bottom">
               <Children>
 
                 <!--Lore Selector bookmarks-->
                 <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="76" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="spellbook_leftside">
                   <Children>
-                    <ListPanel DataSource="{LoreObjects}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalBottomToTop" HorizontalAlignment="Right" VerticalAlignment="Center" MarginTop="60">
+                    <ListPanel DataSource="{LoreObjects}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalBottomToTop" HorizontalAlignment="Right" VerticalAlignment="Center" MarginTop="40">
                       <ItemTemplate>
-                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="75" SuggestedWidth="75" MarginTop="20">
+                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="60" SuggestedWidth="60" MarginTop="10">
                           <Children>
                             <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="115" HorizontalAlignment="Left" VerticalAlignment="Center" Command.Click="ExecuteSelectLoreObject" Sprite="@SpriteName" IsVisible="@IsVisible"/>
                             <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="115" HorizontalAlignment="Left" VerticalAlignment="Center" Command.Click="ExecuteSelectLoreObject" PositionXOffset="-20" Sprite="@SpriteName" IsVisible="@IsSelected"/>
