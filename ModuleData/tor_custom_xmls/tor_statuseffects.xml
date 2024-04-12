@@ -455,7 +455,7 @@
 	
 	<StatusEffectTemplate
 		id="ulrics_gift_ats"
-		particle_id="fire_cloak_phy_res"
+		particle_id="ulrics_gift"
 		particle_intensity="Low"
 		do_not_attach_to_agent_skeleton="false"
     	base_effect_value="0.25"
@@ -504,9 +504,8 @@
 	
 	<StatusEffectTemplate
 		id="ice_storm_mvs"
-		particle_id="breath_of_darkness"
-		particle_intensity="Low"
-		do_not_attach_to_agent_skeleton="false"
+		particle_id="freeze"
+		particle_intensity="High"
     	base_effect_value="-0.5"
 		type="MovementManipulation"
 		damage_type="Frost">
@@ -514,8 +513,7 @@
 	<StatusEffectTemplate
 		id="ice_storm_ats"
 		particle_id=""
-		particle_intensity="Low"
-		do_not_attach_to_agent_skeleton="false"
+		particle_intensity="High"
     	base_effect_value="-0.5"
 		type="AttackSpeedManipulation"
 		damage_type="Frost">
@@ -524,7 +522,6 @@
 		id="ice_storm_dot"
 		particle_id=""
 		particle_intensity="Low"
-		do_not_attach_to_agent_skeleton="false"
     	base_effect_value="2"
 		type="DamageOverTime"
 		damage_type="Frost">
