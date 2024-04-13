@@ -927,7 +927,7 @@
 	  </TriggeredEffectTemplate>
 	  
 	  <TriggeredEffectTemplate StringID="snow_king_decree" 
-            BurstParticleEffectPrefab="none" 
+            BurstParticleEffectPrefab="snow_king_decree_explosion" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
             DamageType="Frost" 

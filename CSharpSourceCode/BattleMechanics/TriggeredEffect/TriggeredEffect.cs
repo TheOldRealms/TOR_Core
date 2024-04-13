@@ -76,15 +76,15 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 }
                 else if (_template.TargetType == TargetType.Enemy)
                 {
-                    targets = Mission.Current.GetNearbyEnemyAgents(position.AsVec2, _template.Radius, triggererAgent.Team, targets);
+                    targets = Mission.Current.GetNearbyEnemyAgents(position.AsVec2, radius, triggererAgent.Team, targets);
                 }
                 else if (_template.TargetType == TargetType.Friendly)
                 {
-                    targets = Mission.Current.GetNearbyAllyAgents(position.AsVec2, _template.Radius, triggererAgent.Team, targets);
+                    targets = Mission.Current.GetNearbyAllyAgents(position.AsVec2, radius, triggererAgent.Team, targets);
                 }
                 else if (_template.TargetType == TargetType.All)
                 {
-                    targets = Mission.Current.GetNearbyAgents(position.AsVec2, _template.Radius, targets);
+                    targets = Mission.Current.GetNearbyAgents(position.AsVec2, radius, targets);
                 }
             }
             //Cause Damage
