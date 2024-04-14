@@ -5,7 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
+using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TOR_Core.AbilitySystem.SpellBook;
+using TOR_Core.AbilitySystem.Spells.Prayers;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
@@ -24,6 +27,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         private void ExecuteClose()
         {
             _closeAction();
+        }
+
+        private void OpenBattlePrayers()
+        {
+            var state = Game.Current.GameStateManager.CreateState<BattlePrayerBookState>();
+            Game.Current.GameStateManager.PushState(state);
         }
 
         [DataSourceProperty]

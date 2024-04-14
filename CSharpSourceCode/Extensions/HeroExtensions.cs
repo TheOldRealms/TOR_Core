@@ -375,6 +375,11 @@ namespace TOR_Core.Extensions
             return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("vampire");
         }
 
+        public static bool IsPriest(this Hero hero)
+        {
+            return hero.HasAttribute("Priest");
+        }
+
         public static bool IsCultist(this Hero hero)
         {
             return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("chaos_ud_cultist");

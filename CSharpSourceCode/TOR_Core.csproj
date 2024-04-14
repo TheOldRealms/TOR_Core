@@ -358,6 +358,10 @@
     <Compile Include="AbilitySystem\SeekerController.cs" />
     <Compile Include="AbilitySystem\SeekerParameters.cs" />
     <Compile Include="AbilitySystem\CareerAbilityHUD_VM.cs" />
+    <Compile Include="AbilitySystem\Spells\Prayers\BattlePrayerBookState.cs" />
+    <Compile Include="AbilitySystem\Spells\Prayers\BattlePrayerScreen.cs" />
+    <Compile Include="AbilitySystem\Spells\Prayers\BattlePrayersVM.cs" />
+    <Compile Include="AbilitySystem\Spells\Prayers\PrayerLoreObjectVM.cs" />
     <Compile Include="AbilitySystem\Spells\Spell.cs" />
     <Compile Include="AbilitySystem\Spells\LoreObject.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\LoreObjectVM.cs" />
