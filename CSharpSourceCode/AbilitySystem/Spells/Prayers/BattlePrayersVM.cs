@@ -3,6 +3,8 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.AbilitySystem.Spells.Prayers
@@ -11,7 +13,8 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
     {
         private MBBindingList<StatItemVM> _stats;
         private Action _closeAction;
-        private LoreObjectVM _currentLore;
+        private PrayerLoreObjectVM _loreObjectVm;
+        private bool _isVisible;
 
         public BattlePrayersVM(Action closeAction)
         {
@@ -19,7 +22,7 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
             _stats = new MBBindingList<StatItemVM>();
             Initialize();
             RefreshValues();
-           
+            
         }
 
         private void Initialize()
@@ -31,10 +34,32 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
             StatItems.Add(new StatItemVM("Devoted to : ", religion.Name.ToString()));
             StatItems.Add(new StatItemVM("Prayer level: ", info.SpellCastingLevel.ToString()));
 
-            info.GetAllPrayers();
-            
+            var battlePrayers = CareerHelper.GetBattlePrayerList(Hero.MainHero.GetCareer());
+
             
 
+            var prayers = battlePrayers.ConvertAll(input => input.PrayerID);
+
+            _loreObjectVm = new PrayerLoreObjectVM(this, prayers, Hero.MainHero);
+
+
+            foreach (var prayer in _loreObjectVm.PrayerList)
+            {
+                if (!prayer.IsKnown)
+                {
+                    prayer.IsDisabled=true;
+                }
+            }
+            
+        }
+        
+        [DataSourceProperty]
+        public PrayerLoreObjectVM PrayerLore
+        {
+            get
+            {
+                return this._loreObjectVm;
+            }
         }
         
         public override void RefreshValues()
@@ -47,22 +72,11 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
             _closeAction();
         }
         
-        
-        public LoreObjectVM CurrentLore
+        [DataSourceProperty]
+        public bool IsSelected
         {
-            get
-            {
-                return this._currentLore;
-            }
-            set
-            {
-                if (value != this._currentLore)
-                {
-                    this._currentLore = value;
-                    base.OnPropertyChangedWithValue(value, "CurrentLore");
-                    CurrentLore.IsSelected = true;
-                }
-            }
+            get { return _loreObjectVm != null; }
+            
         }
         
         [DataSourceProperty]
@@ -78,6 +92,23 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
                 {
                     this._stats = value;
                     base.OnPropertyChangedWithValue(value, "StatItems");
+                }
+            }
+        }
+        
+        [DataSourceProperty]
+        public bool IsVisible
+        {
+            get
+            {
+                return this._isVisible;
+            }
+            set
+            {
+                if (value != this._isVisible)
+                {
+                    this._isVisible = value;
+                    base.OnPropertyChangedWithValue(value, "IsVisible");
                 }
             }
         }

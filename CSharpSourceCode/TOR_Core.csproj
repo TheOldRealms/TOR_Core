@@ -361,9 +361,11 @@
     <Compile Include="AbilitySystem\Spells\Prayers\BattlePrayerBookState.cs" />
     <Compile Include="AbilitySystem\Spells\Prayers\BattlePrayerScreen.cs" />
     <Compile Include="AbilitySystem\Spells\Prayers\BattlePrayersVM.cs" />
+    <Compile Include="AbilitySystem\Spells\Prayers\PrayerItemVM.cs" />
     <Compile Include="AbilitySystem\Spells\Prayers\PrayerLoreObjectVM.cs" />
     <Compile Include="AbilitySystem\Spells\Spell.cs" />
     <Compile Include="AbilitySystem\Spells\LoreObject.cs" />
+    <Compile Include="AbilitySystem\Spells\SpellBook\AbilityItemVM.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\LoreObjectVM.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookMapIconVM.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\SpellBookScreen.cs" />
