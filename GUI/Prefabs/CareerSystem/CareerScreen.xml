@@ -22,7 +22,7 @@
         <Standard.Background />
 			    <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="HorizontalRightToLeft" HorizontaAlignment="Right" VerticalAlignment="Top" MarginTop="30" MarginRight="70">
           <Children>
-            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="233" SuggestedHeight="75" HorizontalAlignment="Right" Sprite="SPGeneral\spellbook_button" Command.Click="OpenBattlePrayers" IsVisible="true">
+            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="233" SuggestedHeight="75" HorizontalAlignment="Right" Sprite="SPGeneral\spellbook_button" Command.Click="OpenBattlePrayers" IsVisible="@HasBattlePrayers">
               <Children>
                 <HintWidget DataSource="{IconHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
               </Children>

@@ -372,5 +372,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             HitShield,
             HeadShot
         }
+
+        public static bool IsPriestCareer()
+        {
+            var career = Hero.MainHero.GetCareer();
+
+            return career == TORCareers.WarriorPriest ||
+                   career == TORCareers.WarriorPriestUlric ||
+                   career == TORCareers.GrailDamsel;
+        }
     }
 }

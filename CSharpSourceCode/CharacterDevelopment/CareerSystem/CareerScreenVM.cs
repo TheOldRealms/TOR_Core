@@ -17,11 +17,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
     {
         private Action _closeAction;
         private CareerObjectVM _currentCareerVM;
+        private bool _hasBattlePrayers;
 
         public CareerScreenVM(Action closeAction)
         {
             _closeAction = closeAction;
-            _currentCareerVM = new CareerObjectVM(Hero.MainHero.GetCareer());
+            _currentCareerVM = new CareerObjectVM(Hero.MainHero.GetCareer()); 
+            HasBattlePrayers = CareerHelper.IsPriestCareer();
         }
 
         private void ExecuteClose()
@@ -48,6 +50,23 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 {
                     _currentCareerVM = value;
                     OnPropertyChangedWithValue(value, "CurrentCareer");
+                }
+            }
+        }
+        
+        [DataSourceProperty]
+        public bool HasBattlePrayers
+        {
+            get
+            {
+                return this._hasBattlePrayers;
+            }
+            set
+            {
+                if (value != this._hasBattlePrayers)
+                {
+                    this._hasBattlePrayers = value;
+                    base.OnPropertyChangedWithValue(value, "HasBattlePrayers");
                 }
             }
         }
