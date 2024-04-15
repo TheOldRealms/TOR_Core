@@ -566,14 +566,6 @@ namespace TOR_Core.Extensions
             if (hero != null)
             {
                 abilities.AddRange(hero.GetExtendedInfo().SelectedAbilities);
-                
-                if (agent.HasAttribute("Priest"))
-                {
-                    var prayers = hero.GetExtendedInfo().GetAllPrayers();
-                    
-                    abilities.AddRange(prayers);
-                    abilities = abilities.Distinct().ToList();
-                }
             }
             else if (character != null)
             {
