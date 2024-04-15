@@ -2,6 +2,7 @@
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.AbilitySystem.SpellBook
 {
@@ -40,6 +41,15 @@ namespace TOR_Core.AbilitySystem.SpellBook
 
         protected AbilityTemplate Template => this._abilityTemplate;
         protected Hero Hero => this._hero;
+
+
+        public override void RefreshValues()
+        {
+            base.RefreshValues();
+            IsSelected = Hero.GetExtendedInfo().IsAbilitySelected(Template.StringID);
+            IsKnown = Hero.HasAbility(Template.StringID);
+            IsDisabled = !IsKnown;
+        }
 
         [DataSourceProperty]
         public bool IsDisabled
@@ -91,7 +101,11 @@ namespace TOR_Core.AbilitySystem.SpellBook
                 }
             }
         }
-        
+        protected virtual void ExecuteSelectAbility()
+        { 
+            Hero.GetExtendedInfo().ToggleSelectedAbility(Template.StringID);
+            RefreshValues();
+        }
         
         [DataSourceProperty]
         public BasicTooltipViewModel AbilityHint

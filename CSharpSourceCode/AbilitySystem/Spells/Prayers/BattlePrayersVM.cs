@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -27,16 +30,17 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
 
         private void Initialize()
         {
-            var info = Hero.MainHero.GetExtendedInfo();
-
-            var religion = Hero.MainHero.GetDominantReligion();
+            
             StatItems.Clear();
+            var religionID = GetGodCareerIsDevotedTo(Hero.MainHero.GetCareer());
+            var religion = ReligionObject.All.Where(x => x.StringId==religionID).FirstOrDefault();
+            
+            
             StatItems.Add(new StatItemVM("Devoted to : ", religion.Name.ToString()));
-            StatItems.Add(new StatItemVM("Prayer level: ", info.SpellCastingLevel.ToString()));
-
             var battlePrayers = CareerHelper.GetBattlePrayerList(Hero.MainHero.GetCareer());
 
-            
+            var highest= battlePrayers.Max(x => x.Rank);
+            StatItems.Add(new StatItemVM("Prayer level: ", ((PrayerLevel)highest).ToString()));
 
             var prayers = battlePrayers.ConvertAll(input => input.PrayerID);
 
@@ -52,6 +56,27 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
             }
             
         }
+
+        private string GetGodCareerIsDevotedTo(CareerObject careerObject)
+        {
+            if (careerObject == TORCareers.GrailDamsel)
+            {
+                return "cult_of_lady";
+            }
+
+            if (careerObject == TORCareers.WarriorPriest)
+            {
+                return "cult_of_sigmar";
+            }
+
+            if (careerObject == TORCareers.WarriorPriestUlric)
+            {
+                return "cult_of_ulric";
+            }
+
+            return "-";
+        }
+        
         
         [DataSourceProperty]
         public PrayerLoreObjectVM PrayerLore

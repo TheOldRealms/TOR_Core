@@ -50,14 +50,18 @@ namespace TOR_Core.AbilitySystem.SpellBook
             RefreshValues();
         }
 
-        private void ExecuteSelectSpell()
+        protected override void ExecuteSelectAbility()
         {
-            if(!_isTrainerMode) Hero.GetExtendedInfo().ToggleSelectedAbility(Template.StringID);
+            if (_isTrainerMode)
+            {
+                base.ExecuteSelectAbility();
+            }
             RefreshValues();
         }
 
         public override void RefreshValues()
         {
+            base.RefreshValues();
             _goldCost = Template.GoldCost;
             var model = Campaign.Current.Models.GetAbilityModel();
             var info = Hero.GetExtendedInfo();
@@ -66,9 +70,8 @@ namespace TOR_Core.AbilitySystem.SpellBook
                 _goldCost = model.GetSpellGoldCostForHero(Hero, Template);
             }
             LearnText = "Learn " + _goldCost + "<img src=\"General\\Icons\\Coin@2x\"/>";
-            IsKnown = Hero.HasAbility(Template.StringID);
+            
             IsSelected = !_isTrainerMode && info.IsAbilitySelected(Template.StringID);
-            IsDisabled = !IsKnown;
             if (IsDisabled)
             {
                 CanLearn = _isTrainerMode && Template.SpellTier <= (int)info.SpellCastingLevel && Hero.HasKnownLore(Template.BelongsToLoreID);
@@ -86,7 +89,6 @@ namespace TOR_Core.AbilitySystem.SpellBook
                     CanLearn = _isTrainerMode && Template.SpellTier <= (int)info.SpellCastingLevel && Hero.HasKnownLore(Template.BelongsToLoreID);
                 }
             }
-            base.RefreshValues();
         }
         
         [DataSourceProperty]

@@ -3688,7 +3688,7 @@
       TargetCapturingRadius="4"
       MaxDistance="0.5"
       CrosshairType="TargetedAOE"
-      SpellTier="1"
+      SpellTier="2"
       BelongsToLoreID="UlricanPrayers"
       TooltipDescription="{=armor_of_righteousness_description_str}Allies in a 3 meter radius gain 35% physical resistance for 8 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
@@ -3731,7 +3731,7 @@
       TargetCapturingRadius="4"
       MaxDistance="0.5"
       CrosshairType="TargetedAOE"
-      SpellTier="1"
+      SpellTier="3"
       BelongsToLoreID="UlricanPrayers"
       TooltipDescription="{=armor_of_righteousness_description_str}Allies in a 3 meter radius gain 35% physical resistance for 8 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
@@ -3774,7 +3774,7 @@
       TargetCapturingRadius="4"
       MaxDistance="0.5"
       CrosshairType="Self"
-      SpellTier="1"
+      SpellTier="3"
       BelongsToLoreID="UlricanPrayers"
       TooltipDescription="{=armor_of_righteousness_description_str}Allies in a 3 meter radius gain 35% physical resistance for 8 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
@@ -3817,7 +3817,7 @@
       TargetCapturingRadius="4"
       MaxDistance="50"
       CrosshairType="SingleTarget"
-      SpellTier="1"
+      SpellTier="4"
       BelongsToLoreID="UlricanPrayers"
       TooltipDescription="{=armor_of_righteousness_description_str}Allies in a 3 meter radius gain 35% physical resistance for 8 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">

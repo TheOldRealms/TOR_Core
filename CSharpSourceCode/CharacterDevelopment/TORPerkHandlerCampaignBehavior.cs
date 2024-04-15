@@ -70,17 +70,17 @@ namespace TOR_Core.CharacterDevelopment
 
                         if (perk == TORPerks.Faith.NovicePrayers)
                         {
-                            rank = 1;
+                            rank = 2;
                         }
                         
                         else if (perk == TORPerks.Faith.AdeptPrayers)
                         {
-                            rank = 2;
+                            rank = 3;
                         }
                         
                         else if (perk == TORPerks.Faith.GrandPrayers)
                         {
-                            rank = 3;
+                            rank = 4;
                         }
                         
                         var prayersForRank = prayers.Where(X => X.Rank == rank);
