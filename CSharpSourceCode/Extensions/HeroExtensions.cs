@@ -187,7 +187,7 @@ namespace TOR_Core.Extensions
                 {
                     continue;
                 }
-
+                if(settlement.Town.GarrisonParty==null) continue;
                 var garrison = settlement.Town.GarrisonParty.MemberRoster.GetTroopRoster();
                 foreach (var elem in garrison)
                 {

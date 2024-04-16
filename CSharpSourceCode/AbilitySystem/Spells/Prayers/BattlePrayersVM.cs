@@ -36,7 +36,7 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
             var religion = ReligionObject.All.Where(x => x.StringId==religionID).FirstOrDefault();
             
             
-            StatItems.Add(new StatItemVM("Devoted to : ", religion.Name.ToString()));
+            StatItems.Add(new StatItemVM("Devoted to : ", religion.DeityName.ToString()));
             var battlePrayers = CareerHelper.GetBattlePrayerList(Hero.MainHero.GetCareer());
 
             var highest= battlePrayers.Max(x => x.Rank);

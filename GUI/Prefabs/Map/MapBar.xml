@@ -351,7 +351,19 @@
                   </Children>
                 </HintWidget>
 
-                <HintWidget DataSource="{HealthHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" GamepadNavigationIndex="2">
+                <HintWidget DataSource="{BlessingHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" GamepadNavigationIndex="2">
+                  <Children>
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="false">
+                      <Children>
+                        <Widget DataSource="{..}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="33" SuggestedHeight="33" VerticalAlignment="Center" Sprite="General\Icons\Health@2x" IsHidden="@IsMainHeroSick"/>
+                        <Widget DataSource="{..}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="33" SuggestedHeight="33" VerticalAlignment="Center" Sprite="General\Icons\Health_Sick@2x" IsVisible="@IsMainHeroSick"/>
+						<MapBarCustomValueTextWidget DataSource="{..}" WidthSizePolicy="CoverChildren" MinWidth="15" HeightSizePolicy="Fixed" MaxWidth="55" SuggestedHeight="40" VerticalAlignment="Center" PositionYOffset="2" MarginLeft="2" Brush="MapTextBrushWithAnim" Brush.FontSize="20" Brush.TextHorizontalAlignment="Left" NormalColor="!NormalMapBarTextColor" Text="@RemainingBlessingTime" WarningColor="!WarningMapBarTextColor" />
+                      </Children>
+                    </ListPanel>
+                  </Children>
+                </HintWidget>
+				
+				<HintWidget DataSource="{HealthHint}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" GamepadNavigationIndex="2">
                   <Children>
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="false">
                       <Children>

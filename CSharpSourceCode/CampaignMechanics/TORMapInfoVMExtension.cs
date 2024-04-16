@@ -1,13 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Map.MapBar;
 using TaleWorlds.Core.ViewModelCollection.Information;
+using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.TwoDimension;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Extensions.UI;
 
 namespace TOR_Core.CampaignMechanics
@@ -19,7 +24,9 @@ namespace TOR_Core.CampaignMechanics
         private string _cultureResourceText = "0";
         private string _artilleryText = "0";
 		private bool _isSpellCaster = false;
+		private BasicTooltipViewModel _blessingHint;
 		private BasicTooltipViewModel _windsHint;
+		
         private BasicTooltipViewModel _cultureResourceHint;
         private BasicTooltipViewModel _artilleryHint;
 		private float _windRechargeRate = 0f;
@@ -27,12 +34,15 @@ namespace TOR_Core.CampaignMechanics
 		private int _maxArtillery = 0;
 		private int _currentArtilleryItems = 0;
 		private bool _hasCultureResource;
+		private string _remainingBlessingTime;
 
-        public TORMapInfoVMExtension(ViewModel vm) : base(vm)
+		public TORMapInfoVMExtension(ViewModel vm) : base(vm)
 		{
 			_windsHint = new BasicTooltipViewModel(GetWindsHintText);
+			_windsHint.RefreshValues();
 			_artilleryHint = new BasicTooltipViewModel(GetArtilleryHintText);
             _cultureResourceHint = new BasicTooltipViewModel(GetCultureResourceHintText);
+            _blessingHint = new BasicTooltipViewModel(GetBlessingHintText);
             RefreshValues();
 		}
 
@@ -82,6 +92,43 @@ namespace TOR_Core.CampaignMechanics
 			list.Add(new TooltipProperty(womRechargeRate, String.Format("{0:0.00}", _windRechargeRate), 0, false, TooltipProperty.TooltipPropertyFlags.None));
 			return list;
 		}
+		
+		private List<TooltipProperty> GetBlessingHintText()
+		{
+			string blessingTitle = new TextObject ("{=tor_ui_winds_of_magic_title_str}Blessing: ").ToString();
+			string durationTitle = new TextObject ("{=tor_ui_winds_of_magic_maximum_str}Duration:").ToString();
+			string effect = new TextObject ("{=tor_ui_winds_of_magic_recharge_rate_str}Effect:").ToString();
+			
+			List<TooltipProperty> list = new List<TooltipProperty>();
+			if (Hero.MainHero.PartyBelongedTo == null) return list;
+			MobilePartyExtendedInfo info = Hero.MainHero.PartyBelongedTo.GetPartyInfo();
+			var blessing = info.CurrentBlessingStringId;
+			if (blessing == null)
+			{
+				list.Add(new TooltipProperty("currently no active blessing", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+				if (Hero.MainHero.IsVampire())
+				{
+					list.Add(new TooltipProperty("You are a vampire, you are your own god", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+				}
+				return list;
+			}
+			var religionObject = ReligionObject.All.FirstOrDefault(x =>x.StringId== blessing);
+			if (religionObject == null) return list;
+			var effectText = religionObject.BlessingEffectText;
+			var duration = info.CurrentBlessingRemainingDuration;
+			
+			list.Add(new TooltipProperty(blessingTitle, religionObject.DeityName.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.Title));
+			RemainingBlessingTime = GetBlessingTimeInDays(duration);
+			var BlessingText = $"{RemainingBlessingTime} days";
+			list.Add(new TooltipProperty(durationTitle, BlessingText, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+			
+			if (effectText != null)
+			{
+				list.Add(new TooltipProperty(effect, effectText.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+			}
+			
+			return list;
+		}
 
 		public override void RefreshValues()
 		{
@@ -93,7 +140,15 @@ namespace TOR_Core.CampaignMechanics
 				WindsOfMagic = ((int)info.GetCustomResourceValue("WindsOfMagic")).ToString();
 				_maxWinds = (int)info.MaxWindsOfMagic;
 				_windRechargeRate = info.WindsOfMagicRechargeRate;
+				_windsHint.RefreshValues();
 			}
+
+			if (Hero.MainHero.PartyBelongedTo!=null&& Hero.MainHero.PartyBelongedTo.HasAnyActiveBlessing())
+			{
+				var time = Hero.MainHero.PartyBelongedTo.GetPartyInfo().CurrentBlessingRemainingDuration;
+				RemainingBlessingTime = GetBlessingTimeInDays(time);
+			}
+			
 			var artilleryItems = MobileParty.MainParty.GetArtilleryItems();
 			_currentArtilleryItems = 0;
 			foreach (var item in artilleryItems)
@@ -109,6 +164,11 @@ namespace TOR_Core.CampaignMechanics
 				CultureResourceText = ((int)Hero.MainHero.GetCultureSpecificCustomResourceValue()).ToString();
 			}
 			
+		}
+
+		private String GetBlessingTimeInDays(int blessingHours)
+		{
+			return $"{(float)blessingHours / CampaignTime.HoursInDay:0.0}";
 		}
 
 		[DataSourceProperty]
@@ -128,6 +188,23 @@ namespace TOR_Core.CampaignMechanics
 			}
 		}
 
+		[DataSourceProperty]
+		public string RemainingBlessingTime
+		{
+			get
+			{
+				return this._remainingBlessingTime;
+			}
+			set
+			{
+				if (value != this._remainingBlessingTime)
+				{
+					this._remainingBlessingTime = value;
+					_vm.OnPropertyChangedWithValue(value, "RemainingBlessingTime");
+				}
+			}
+		}
+		
 		[DataSourceProperty]
 		public string WindsOfMagic
 		{
@@ -179,6 +256,23 @@ namespace TOR_Core.CampaignMechanics
 			}
 		}
 
+		[DataSourceProperty]
+		public BasicTooltipViewModel BlessingHint
+		{
+			get
+			{
+				return this._blessingHint;
+			}
+			set
+			{
+				if (value != this._blessingHint)
+				{
+					this._blessingHint = value;
+					_vm.OnPropertyChangedWithValue(value, "BlessingHint");
+				}
+			}
+		}
+		
 		[DataSourceProperty]
 		public BasicTooltipViewModel WindsHint
 		{

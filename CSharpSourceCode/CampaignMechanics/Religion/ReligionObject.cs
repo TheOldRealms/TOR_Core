@@ -20,6 +20,8 @@ namespace TOR_Core.CampaignMechanics.Religion
         public TextObject Name { get; set; }
         public TextObject DeityName { get; set; }
         public TextObject LoreText { get; private set; }
+        
+        public TextObject BlessingEffectText { get; private set; }
         public CultureObject Culture { get; private set; }
         public List<ReligionObject> HostileReligions { get; private set; } = new List<ReligionObject>();
         public List<CharacterObject> ReligiousTroops { get; private set; } = new List<CharacterObject>();
@@ -43,6 +45,12 @@ namespace TOR_Core.CampaignMechanics.Religion
             Culture = MBObjectManager.Instance.ReadObjectReferenceFromXml<CultureObject>("Culture", node);
             Affinity = (ReligionAffinity)Enum.Parse(typeof(ReligionAffinity), node.Attributes.GetNamedItem("Affinity").Value);
             LoreText = GameTexts.FindText("tor_religion_description", StringId);
+            var blessingEffect = node.Attributes.GetNamedItem("BlessingEffect");
+            if (blessingEffect != null)
+            {
+                BlessingEffectText = new TextObject(blessingEffect.Value);
+            }
+            
             if (node.HasChildNodes)
             {
                 foreach (XmlNode child in node.ChildNodes)
