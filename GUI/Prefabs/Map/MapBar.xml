@@ -355,8 +355,7 @@
                   <Children>
                     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="false">
                       <Children>
-                        <Widget DataSource="{..}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="33" SuggestedHeight="33" VerticalAlignment="Center" Sprite="General\Icons\Health@2x" IsHidden="@IsMainHeroSick"/>
-                        <Widget DataSource="{..}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="33" SuggestedHeight="33" VerticalAlignment="Center" Sprite="General\Icons\Health_Sick@2x" IsVisible="@IsMainHeroSick"/>
+                        <Widget DataSource="{..}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="33" SuggestedHeight="33" VerticalAlignment="Center" Sprite="blessing_icon_45" IsHidden="@IsMainHeroSick"/>
 						<MapBarCustomValueTextWidget DataSource="{..}" WidthSizePolicy="CoverChildren" MinWidth="15" HeightSizePolicy="Fixed" MaxWidth="55" SuggestedHeight="40" VerticalAlignment="Center" PositionYOffset="2" MarginLeft="2" Brush="MapTextBrushWithAnim" Brush.FontSize="20" Brush.TextHorizontalAlignment="Left" NormalColor="!NormalMapBarTextColor" Text="@RemainingBlessingTime" WarningColor="!WarningMapBarTextColor" />
                       </Children>
                     </ListPanel>
