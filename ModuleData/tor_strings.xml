@@ -11,7 +11,7 @@
   <string id="str_quest_tor_engineer.startRogueEngineerHunt" text= "{= !}Have you changed your mind and want to help hunt down {ROGUE_ENGINEER_NAME}?"/>
 
   <string id="str_quest_tor_engineer.hubGreet" text= "{=!}You again, what do you want?"/>
-  <string id="str_quest_tor_engineer.hubPlayerCannons" text="I would like to buy some cannons."/>
+  <string id="str_quest_tor_engineer.hubPlayerCannons" text="I would like to buy some equipment."/>
   <string id="str_quest_tor_engineer.hubPlayerEngineers" text="I would like to recruit some engineers."/>
   <string id="str_quest_tor_engineer.hubPlayerCannonsInstruction" text="How can I use cannons?"/>
   <string id="str_quest_tor_engineer.hubPlayerCannonsLimitInstruction" text="How can I buy more cannons?"/>

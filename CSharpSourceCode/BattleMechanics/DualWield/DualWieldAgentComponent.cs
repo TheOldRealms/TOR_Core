@@ -63,7 +63,7 @@ namespace TOR_Core.BattleMechanics.DualWield
             if (_pendingDualWieldDeactivation)
             {
                 if(!Agent.WieldedWeapon.IsEmpty&& Agent.WieldedWeapon.Item.IsMagicalStaff())
-                Agent.TryToSheathWeaponInHand(Agent.HandIndex.OffHand, Agent.WeaponWieldActionType.WithAnimation);
+                    Agent.TryToSheathWeaponInHand(Agent.HandIndex.OffHand, Agent.WeaponWieldActionType.WithAnimation);
                 _pendingDualWieldDeactivation = false;
             }
         }
