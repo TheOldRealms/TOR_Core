@@ -416,6 +416,13 @@ namespace TOR_Core.Extensions
                 return hero.Occupation == Occupation.Special&& hero.Name.Contains("Master Engineer");
             return false;
         }
+        
+        public static bool IsZoologist(this Hero hero)
+        {
+            if(hero!=null)
+                return hero.Occupation == Occupation.Special&& hero.Name.Contains("Zoologist");
+            return false;
+        }
 
         public static bool HasCareerChoice(this Hero hero, string choiceID)
         {

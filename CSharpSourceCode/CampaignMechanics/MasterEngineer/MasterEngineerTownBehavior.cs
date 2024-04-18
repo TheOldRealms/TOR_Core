@@ -368,11 +368,6 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             var ammo = MBObjectManager.Instance.GetObject<ItemObject>("tor_neutral_weapon_ammo_musket_ball");
             if (ammo != null) roster.Add(new ItemRosterElement(ammo, MBRandom.RandomInt(2, 5)));
             
-            
-            
-            
-            
-            
             InventoryManager.OpenScreenAsTrade(roster, _nuln.Town);
 
 

@@ -4912,6 +4912,10 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_zoologist_empire">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_spelltrainer_empire_0">
     <Abilities />
     <Attributes />

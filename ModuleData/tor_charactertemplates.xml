@@ -1114,8 +1114,8 @@
       <Trait id="Valor" value="-1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_wight_king_template" />
-      <EquipmentSet id="tor_wight_king_template" civilian="true" />
+      <EquipmentSet id="tor_cult_fsf_archbacillus_template" />
+      <EquipmentSet id="tor_cult_fsf_archbacillus_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_engineerquesthero" default_group="infantry" name="{=str_tor_engineerquesthero}{=!}Goswin" occupation="Lord" culture="Culture.empire" voice="ironic" age="30" is_template="true" is_hero="false">
@@ -1164,6 +1164,22 @@
     <Equipments>
       <EquipmentSet id="tor_qnpc_masterengineer_template" />
       <EquipmentSet id="tor_qnpc_masterengineer_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_zoologist_empire" default_group="infantry" name="{=str_tor_zoologist_empire}{=!}Zoologist" occupation="Special" culture="Culture.empire" voice="ironic" age="30" is_template="true" is_hero="false">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Calculating" value="5" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Valor" value="-2" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_qnpc_zoologist_template" />
+      <EquipmentSet id="tor_qnpc_zoologist_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_spelltrainer_empire_0" default_group="infantry" name="{=str_tor_spelltrainer_empire_0}{=!}College Magister" occupation="Special" culture="Culture.empire" voice="ironic" age="30" is_template="true" is_hero="false">
