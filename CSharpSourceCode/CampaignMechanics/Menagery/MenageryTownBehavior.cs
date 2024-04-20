@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Helpers;
 using TaleWorlds.CampaignSystem;
@@ -48,8 +48,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
                 campaignGameStarter.AddDialogLine("zoologist_foreign", "start", "close_window",
                     "I neither have the time nor the will to talk to strangers.",
                     () => _receivedDemiGryphen && GryphenZoologistStartCondition(), null, 200);
-
-
+                
                 campaignGameStarter.AddDialogLine("zoologist_introduction", "start", "zoologist_task",
                     "Ah hello again, have you thought about my offer?",
                     () => GryphenZoologistStartCondition() && _knowsPlayer, null, 200);
@@ -114,6 +113,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
                 }
             }
         }
+        
 
         private void SelectDemiGryphen()
         {
