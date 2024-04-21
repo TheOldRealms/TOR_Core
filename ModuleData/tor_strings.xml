@@ -792,19 +792,6 @@
   <string id="career_choicegroup2_name.Necrarch" text="{=career_choicegroup2_necrarch_str}Seeker" />
   <string id="career_choicegroup3_name.Necrarch" text="{=career_choicegroup3_necrarch_str}Ascended" />
   
-  <!--TOR Damage type related !-->
-  <string id="tor_damagetype.Invalid" text="{=tor_damagetype_invalid_str}Invalid"/>
-  <string id="tor_damagetype.Physical" text="{=tor_damagetype_physical_str}Physical"/>
-  <string id="tor_damagetype.Magical" text="{=tor_damagetype_magical_str}Magical"/>
-  <string id="tor_damagetype.Fire" text="{=tor_damagetype_fire_str}Fire"/>
-  <string id="tor_damagetype.Holy" text="{=tor_damagetype_holy_str}Holy"/>
-  <string id="tor_damagetype.Lightning" text="{=tor_damagetype_lightning_str}Lightning"/>
-  
-  <string id="tor_attacktype.Melee" text="{=tor_damagetype_lightning_str}Melee"/>
-  <string id="tor_attacktype.Ranged" text="{=tor_damagetype_lightning_str}Ranged"/>
-  <string id="tor_attacktype.Spell" text="{=tor_damagetype_lightning_str}Spell"/>
-  <string id="tor_attacktype.All" text="{=tor_damagetype_lightning_str}All"/>
-  
   <!--Career related related !-->
   <string id="career_description.WarriorPriest" text="{=career_description_warriorpriest_str}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />
   <string id="career_description.BloodKnight" text="{=career_description_bloodknight_str}Sired by Abhorash, the Blood Knight is a dark mockery of everything noble or virtuous that can be said about their mortal counterparts. Where before the Blood Kiss there was honour is now cruelty; faith turns to irreverence and duty falls to wanton ambition. This is true of all vampires but seems particularly tragic for the fallen knights of the Old World." />
@@ -818,6 +805,31 @@
   <string id="career_description.BlackGrailKnight" text="{=career_description_black_grail_knight_str}Foreboding and Dreadful, Knights of the Black Grail are the personal retinue of the mysterious Serpent of Mousillon. As strong as they are cunning, Knights of the Black Grail have a knack for strategy and show great aptitude when faced with the many politics of Bretonnia. Even so, their honeyed words and forked tongue often reach into the hearts of many, drawing more to their cause of &quot;freeing&quot; Bretonnia from the filthy lie of the Lady." />
   
   <string id="career_description.Necrarch" text="{=career_description_necrarch_str}Of all the creations of Nagash, the Necrachs perhaps come the closest to truly emulating the Great Necromancer. Necrachs one and all are dedicated to the furtherance of necromantic studies; hiding away far from mortal civilization and other vampire bloodlines to practice their foul magicks in secret. When they deign to leave their towers, they will almost always bring carnage and ruin wherever they travel, letting nothing stop them from accomplishing their esoteric machinations." />
+
+
+
+  <!--TOR Information and data !-->
+  
+  <string id="tor_extendedInfo.Undead" text="{=tor_extendedInfo_undead_str}Undead- Is not affected by morale and instead of fleeing this unit crumble. If defeated, unit cannot be wounded."/>
+  <string id="tor_extendedInfo.ArtilleryCrew" text="{=tor_extendedInfo_artillerycrew_str}Artillery Crew -  Can and is required to operate a cannon"/>
+  <string id="tor_extendedInfo.Unbreakable" text="{=tor_extendedInfo_unbreakable_str}Unbreakable -  Unit will not flee due to low morale"/>
+  <string id="tor_extendedInfo.Unstoppable" text="{=tor_extendedInfo_unstoppable_str}Unstoppable -  Unit will not show any signs of pain when being hit"/>
+  
+  
+  
+  <string id="tor_damagetype.Invalid" text="{=tor_damagetype_invalid_str}Invalid"/>
+  <string id="tor_damagetype.Physical" text="{=tor_damagetype_physical_str}Physical"/>
+  <string id="tor_damagetype.Magical" text="{=tor_damagetype_magical_str}Magical"/>
+  <string id="tor_damagetype.Fire" text="{=tor_damagetype_fire_str}Fire"/>
+  <string id="tor_damagetype.Holy" text="{=tor_damagetype_holy_str}Holy"/>
+  <string id="tor_damagetype.Lightning" text="{=tor_damagetype_lightning_str}Lightning"/>
+  
+  <string id="tor_attacktype.Melee" text="{=tor_damagetype_lightning_str}Melee"/>
+  <string id="tor_attacktype.Ranged" text="{=tor_damagetype_lightning_str}Ranged"/>
+  <string id="tor_attacktype.Spell" text="{=tor_damagetype_lightning_str}Spell"/>
+  <string id="tor_attacktype.All" text="{=tor_damagetype_lightning_str}All"/>
+  
+
 
   
    <!-- Begin FaceGen Entries -->

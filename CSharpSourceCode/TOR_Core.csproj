@@ -582,6 +582,7 @@
     <Compile Include="Extensions\UI\BaseViewModelExtension.cs" />
     <Compile Include="Extensions\UI\HeroEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\PartyCharacterVMExtension.cs" />
+    <Compile Include="Extensions\UI\UnitEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionAttribute.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionManager.cs" />
     <Compile Include="Extensions\ViewModelExtensions.cs" />
@@ -710,6 +711,7 @@
     <Compile Include="Utilities\TORDamageDisplay.cs" />
     <Compile Include="Utilities\TOREquipmentHelper.cs" />
     <Compile Include="Utilities\TORCampaignEvents.cs" />
+    <Compile Include="Utilities\TORExtendedInfoHelper.cs" />
     <Compile Include="Utilities\TORGameMenuBackgroundSwitcher.cs" />
     <Compile Include="Utilities\TORGameStarterHelper.cs" />
     <Compile Include="Utilities\TORMassMaterialSwitcher.cs" />
