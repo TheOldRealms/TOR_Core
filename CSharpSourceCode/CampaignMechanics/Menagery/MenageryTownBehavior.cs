@@ -162,7 +162,6 @@ namespace TOR_Core.CampaignMechanics.Menagery
                     _zoologist.SupporterOf = _altdorf.OwnerClan;
                     _zoologist.SetName(new TextObject(_zoologist.FirstName.ToString() + " " + template.Name.ToString()),
                         _zoologist.FirstName);
-                    _altdorf.MapFaction.Heroes.Add(_zoologist);
                     HeroHelper.SpawnHeroForTheFirstTime(_zoologist, _altdorf);
                 }
             }
