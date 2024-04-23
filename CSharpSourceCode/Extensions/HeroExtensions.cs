@@ -19,6 +19,7 @@ using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Models;
 using TOR_Core.Utilities;
 using FaceGen = TaleWorlds.Core.FaceGen;
 
@@ -323,6 +324,16 @@ namespace TOR_Core.Extensions
                 return hero.GetExtendedInfo().AllAbilites.Contains(ability);
             }
             else return false;
+        }
+
+        public static ChivalryLevel GetChivalryLevel(this Hero hero)
+        {
+            return ChivalryHelper.GetChivalryLevel(hero);
+        }
+        
+        public static bool HasChivalryLevel(this Hero hero, ChivalryLevel level)
+        {
+            return ChivalryHelper.HasChivalryLevel(hero, level);
         }
 
         public static void SetSpellCastingLevel(this Hero hero, SpellCastingLevel level)

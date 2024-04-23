@@ -17,6 +17,7 @@ using TaleWorlds.ScreenSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Models;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.CustomResources
@@ -40,7 +41,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             Instance._resources.Add("Prestige", 
                 new CustomResource("Prestige", "Prestige", "Is used for upgrading special units of the Empire and special actions.", "prestige_icon_45", "empire"));
             Instance._resources.Add("Chivalry", 
-                new CustomResource("Chivalry", "Chivalry", "Is used for upgrading special units of Bretonnia and special actions.", "winds_icon_45", "vlandia"));
+                new CustomResource("Chivalry", "Chivalry", "Is used for upgrading special units of Bretonnia and special actions.", "winds_icon_45", "vlandia",ChivalryHelper.GetChivalryInfo));
             Instance._resources.Add("DarkEnergy", 
                 new CustomResource("DarkEnergy", "Dark Energy", "Dark Energy is used by practitioners of necromancy to raise and upkeep their undead minions.", "darkenergy_icon_45",new []{"khuzait", "mousillon"}));
             Instance._resources.Add("WindsOfMagic",

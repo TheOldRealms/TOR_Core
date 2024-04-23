@@ -48,13 +48,16 @@ namespace TOR_Core.CampaignMechanics
 
         private List<TooltipProperty> GetCultureResourceHintText()
         {
-	        string customResourceTitle = Hero.MainHero.GetCultureSpecificCustomResource().LocalizedName.ToString();
-	        var value = Hero.MainHero.GetCultureSpecificCustomResourceValue().ToString("0");
-	        var icon = Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText();
+	        var hero = Hero.MainHero;
+	        string customResourceTitle = hero.GetCultureSpecificCustomResource().LocalizedName.ToString();
+	        var value = hero.GetCultureSpecificCustomResourceValue().ToString("0");
+	        var icon = hero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText();
+	        var description = hero.GetCultureSpecificCustomResource().Description;
 	        var change = Hero.MainHero.GetCultureSpecificCustomResourceChange();
 
 	        List<TooltipProperty> list = new List<TooltipProperty>();
 	        list.Add(new TooltipProperty(customResourceTitle, value+icon, 0, false, TooltipProperty.TooltipPropertyFlags.Title));
+	        list.Add(new TooltipProperty(description,"" , 0, false, TooltipProperty.TooltipPropertyFlags.None));
 	        
 	        foreach (var elem in change.GetLines())
 	        {

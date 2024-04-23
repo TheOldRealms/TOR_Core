@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 
@@ -19,8 +20,11 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         public string SmallIconName { get; private set; }
         public string LargeIconName { get; private set; }
         public List<string> Cultures { get; private set; }
+        
+        private TextToolTipFunction _toolTipFunction;
+        public delegate List<TooltipProperty> TextToolTipFunction();
 
-        public CustomResource(string id, string name, string description, string icon, string associatedCulturesId =  null)
+        public CustomResource(string id, string name, string description, string icon, string associatedCulturesId =  null, TextToolTipFunction function = null)
         {
             if (associatedCulturesId == null)
             {
@@ -33,6 +37,10 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             LargeIconName = icon.Replace("_45", "_100");
             LocalizedName = new TextObject("{=resname_" + StringId + "}" + Name);
             LocalizedDescription = new TextObject("{=resdesc_" + StringId + "}" + Description);
+            if (function != null)
+            {
+                _toolTipFunction = function;
+            }
             
             Cultures = new List<string>(){associatedCulturesId};
         }
