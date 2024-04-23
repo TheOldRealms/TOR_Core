@@ -287,23 +287,28 @@ namespace TOR_Core.CharacterDevelopment
         public static float WarriorPriestCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
             if (mask != AttackTypeMask.Melee) return 0;
-            if (chargeType == ChargeType.DamageTaken && ( !affectingAgent.IsMainAgent || !Hero.MainHero.HasCareerChoice("BookOfSigmarKeystone") )) return 0;
-
             ExplainedNumber explainedNumber = new ExplainedNumber();
-            if (affectingAgent.IsMainAgent)
+            if (chargeType != ChargeType.DamageTaken && affectedAgent.IsMainAgent || affectingAgent.IsMainAgent &&
+                Hero.MainHero.HasCareerChoice("BookOfSigmarKeystone"))
             {
-                explainedNumber.Add(chargeValue);
-            }
-            else
-            {
-                explainedNumber.Add(((float)chargeValue / Hero.MainHero.MaxHitPoints)*10); //proportion of lost health 
-            }
+               
+                if (affectingAgent.IsMainAgent)
+                {
+                    explainedNumber.Add(chargeValue);
+                }
+                else
+                {
+                    explainedNumber.Add(((float)chargeValue / Hero.MainHero.MaxHitPoints)*10); //proportion of lost health 
+                }
 
             
 
-            if (collisionFlag == CareerHelper.ChargeCollisionFlag.HitShield)
-            {
-                explainedNumber.AddFactor(-0.85f);
+                if (collisionFlag == CareerHelper.ChargeCollisionFlag.HitShield)
+                {
+                    explainedNumber.AddFactor(-0.85f);
+                }
+
+                
             }
 
             return explainedNumber.ResultNumber;
