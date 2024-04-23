@@ -290,9 +290,16 @@ namespace TOR_Core.CharacterDevelopment
             if (chargeType == ChargeType.DamageTaken && ( !affectingAgent.IsMainAgent || !Hero.MainHero.HasCareerChoice("BookOfSigmarKeystone") )) return 0;
 
             ExplainedNumber explainedNumber = new ExplainedNumber();
-            explainedNumber.Add(chargeValue);
+            if (affectingAgent.IsMainAgent)
+            {
+                explainedNumber.Add(chargeValue);
+            }
+            else
+            {
+                explainedNumber.Add(((float)chargeValue / Hero.MainHero.MaxHitPoints)*10); //proportion of lost health 
+            }
 
-            explainedNumber.Add((float)chargeValue / Hero.MainHero.MaxHitPoints); //proportion of lost health 
+            
 
             if (collisionFlag == CareerHelper.ChargeCollisionFlag.HitShield)
             {
