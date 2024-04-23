@@ -298,7 +298,8 @@ namespace TOR_Core.CharacterDevelopment
                 }
                 else
                 {
-                    explainedNumber.Add(((float)chargeValue / Hero.MainHero.MaxHitPoints)*10); //proportion of lost health 
+                    var value = (float)chargeValue / Hero.MainHero.MaxHitPoints;//proportion of lost health 
+                    explainedNumber.Add((value)*300f); //scaled to maximum charge
                 }
 
             
