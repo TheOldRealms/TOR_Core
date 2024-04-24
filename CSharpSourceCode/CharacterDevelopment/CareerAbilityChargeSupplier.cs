@@ -289,7 +289,7 @@ namespace TOR_Core.CharacterDevelopment
             if (mask != AttackTypeMask.Melee) return 0;
             ExplainedNumber explainedNumber = new ExplainedNumber();
             if (chargeType != ChargeType.DamageTaken && affectedAgent.IsMainAgent || affectingAgent.IsMainAgent &&
-                Hero.MainHero.HasCareerChoice("BookOfSigmarKeystone"))
+                Hero.MainHero.HasCareerChoice("BookOfSigmarKeyStone"))
             {
                
                 if (affectingAgent.IsMainAgent)
