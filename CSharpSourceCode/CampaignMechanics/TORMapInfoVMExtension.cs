@@ -62,11 +62,15 @@ namespace TOR_Core.CampaignMechanics
 	        list.Add(new TooltipProperty(customResourceTitle, value+icon, 0, false, TooltipProperty.TooltipPropertyFlags.Title));
 	        list.Add(new TooltipProperty(description,"" , 0, false, TooltipProperty.TooltipPropertyFlags.None));
 	        list.AddRange(customDescription);
+	        if (change.GetLines().Any())
+	        {
+		        list.Add(new TooltipProperty("Daily Change", "", 0, false, TooltipProperty.TooltipPropertyFlags.RundownResult));
+	        }
 	        foreach (var elem in change.GetLines())
 	        {
 		        if (!elem.number.ApproximatelyEqualsTo(0.0f))
 		        {
-			        list.Add(new TooltipProperty(elem.name, elem.number.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+			        list.Add(new TooltipProperty(elem.name, elem.number.ToString("+#;-#;0"), 0, false, TooltipProperty.TooltipPropertyFlags.None));
 		        }
 	        }
 	        

@@ -105,14 +105,15 @@ namespace TOR_Core.Models
             {
                 case  ChivalryLevel.Unknightly: 
                     list.Add(new TooltipProperty("Knightly wages: ", "+75%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
-                    list.Add(new TooltipProperty("Morale: ", "-50%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+                    list.Add(new TooltipProperty("Morale: ", "-75%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     break;
                 case  ChivalryLevel.Disappointing: 
                     list.Add(new TooltipProperty("Knightly wages: ", "+50%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
-                    list.Add(new TooltipProperty("Morale: ", "-25%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+                    list.Add(new TooltipProperty("Morale: ", "-50%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     break;
                 case ChivalryLevel.Uninspiring:
                     list.Add(new TooltipProperty("Knightly wages: ", "+25%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+                    list.Add(new TooltipProperty("Morale: ", "-20%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     break;
                 case ChivalryLevel.Sincere:
                     list.Add(new TooltipProperty("Knightly wages: ", "+10%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
