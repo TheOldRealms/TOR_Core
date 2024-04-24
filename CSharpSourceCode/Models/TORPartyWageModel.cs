@@ -21,30 +21,47 @@ namespace TOR_Core.Models
         public override int GetCharacterWage(CharacterObject character)
         {
             if (character.IsUndead()) return 0;
-            
+            var value = 0;
             switch (character.Tier)
             {
                 case 0:
-                    return 1;
+                    value =  1;
+                    break;
                 case 1:
-                    return 2;
+                    value =  2;
+                    break;
                 case 2:
-                    return 3;
+                    value =  3;
+                    break;
                 case 3:
-                    return 5;
+                    value =  5;
+                    break;
                 case 4:
-                    return 8;
+                    value =  8;
+                    break;
                 case 5:
-                    return 12;
+                    value =  12;
+                    break;
                 case 6:
-                    return 17;
+                    value =  17;
+                    break;
                 case 7:
-                    return 23;
+                    value =  23;
+                    break;
                 case 8:
-                    return 30;
+                    value =  30;
+                    break;
                 default:
-                    return 40;
+                    value = 40;
+                    break;
             }
+
+            if (character.Culture.StringId == "vlandia" && character.IsKnightUnit())
+            {
+                value *= 2;
+            }
+
+            return value;
         }
 
         public override ExplainedNumber GetTotalWage(MobileParty mobileParty, bool includeDescriptions)
