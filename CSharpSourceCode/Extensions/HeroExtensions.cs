@@ -141,6 +141,20 @@ namespace TOR_Core.Extensions
                     }
                 }
 
+                if (hero.HasCareer(TORCareers.GrailKnight)&&hero.HasCareerChoice("QuestingVowPassive4"))
+                {
+                    var choice = TORCareerChoices.GetChoice("QuestingVowPassive4");
+                    var heroes = hero.PartyBelongedTo.GetMemberHeroes();
+                    heroes.Remove(Hero.MainHero);
+                    foreach (var companion in heroes)
+                    {
+                        if (companion.IsBretonnianKnight())
+                        {
+                            number.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                        }
+                    }
+                }
+
                 if (hero.HasCareer(TORCareers.Necrarch) && hero.HasCareerChoice("EverlingsSecretPassive3"))
                 {
                     var choice = TORCareerChoices.GetChoice("EverlingsSecretPassive3");

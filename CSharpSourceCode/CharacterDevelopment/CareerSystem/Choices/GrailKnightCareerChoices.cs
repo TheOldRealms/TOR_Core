@@ -352,13 +352,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _questingVowPassive3.Initialize(CareerID, "All Knight troops gain 10% physical resistance.", "QuestingVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.All, 
                 (attacker, victim, mask) => !victim.BelongsToMainParty()&&!victim.IsHero&&victim.Character.IsKnightUnit()));
             
-            _questingVowPassive4.Initialize(CareerID, "Hits below 15 damage will not stagger the player.", "QuestingVow", false, ChoiceType.Passive, null); // Agent extension 83,
+            _questingVowPassive4.Initialize(CareerID, "For every Knight Companion you gain 3 Chivalry per Day.", "QuestingVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.Special));
 
             _monsterSlayerPassive1.Initialize(CareerID, "10% extra melee fire damage.", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 10), AttackTypeMask.Melee));
             _monsterSlayerPassive2.Initialize(CareerID, "20% extra armor penetration of melee attacks.", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
             _monsterSlayerPassive3.Initialize(CareerID, "40% chance to recruit an extra unit of the same type free of charge.", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Special, true));
-            _monsterSlayerPassive4.Initialize(CareerID, "All Peasant troops wages are reduced by 75%.", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-75, PassiveEffectType.TroopWages, true, 
-                characterObject => !characterObject.IsKnightUnit()));
+            _monsterSlayerPassive4.Initialize(CareerID, "Hits below 15 damage will not stagger the player.", "MonsterSlayer", false, ChoiceType.Passive, null); // Agent extension 83,
 
             _masterHorsemanPassive1.Initialize(CareerID, "Horse charge damage is increased by 50%.", "MasterHorseman", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.HorseChargeDamage, true));
             _masterHorsemanPassive2.Initialize(CareerID, "Party movement speed is increased by 2.", "MasterHorseman", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.PartyMovementSpeed));
