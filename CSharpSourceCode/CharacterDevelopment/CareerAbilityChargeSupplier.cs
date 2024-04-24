@@ -287,18 +287,21 @@ namespace TOR_Core.CharacterDevelopment
         public static float WarriorPriestCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
             if (mask != AttackTypeMask.Melee) return 0;
+            if (chargeType== ChargeType.NumberOfKills) return 0;
             ExplainedNumber explainedNumber = new ExplainedNumber();
             if (chargeType != ChargeType.DamageTaken && affectedAgent.IsMainAgent || affectingAgent.IsMainAgent &&
                 Hero.MainHero.HasCareerChoice("BookOfSigmarKeyStone"))
             {
                
-                if (affectingAgent.IsMainAgent)
+                
+                if (affectingAgent.IsMainAgent&& chargeType == ChargeType.DamageDone)
                 {
                     explainedNumber.Add(chargeValue);
                 }
                 else
                 {
                     var value = (float)chargeValue / Hero.MainHero.MaxHitPoints;//proportion of lost health 
+                    value *= 3;
                     explainedNumber.Add((value)*300f); //scaled to maximum charge
                 }
 
