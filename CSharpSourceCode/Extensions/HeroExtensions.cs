@@ -370,6 +370,13 @@ namespace TOR_Core.Extensions
             return hero.HasAttribute("Undead");
         }
 
+        public static bool IsChaos(this Hero hero)
+        {
+            if (hero.IsCultist()) return true;
+            if (hero.CharacterObject.IsBeastman()) return true;
+            return false;
+        }
+
         public static bool IsVampire(this Hero hero)
         {
             return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("vampire");

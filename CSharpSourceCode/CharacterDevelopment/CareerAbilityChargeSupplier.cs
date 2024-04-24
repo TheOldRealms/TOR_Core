@@ -309,7 +309,7 @@ namespace TOR_Core.CharacterDevelopment
 
                 if (collisionFlag == CareerHelper.ChargeCollisionFlag.HitShield)
                 {
-                    explainedNumber.AddFactor(-0.85f);
+                    explainedNumber.Add(5);
                 }
 
                 
