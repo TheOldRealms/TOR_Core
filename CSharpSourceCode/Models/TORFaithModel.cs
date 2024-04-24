@@ -62,9 +62,9 @@ namespace TOR_Core.Models
             var duration = CalculateBlessingDurationForParty(party);
             
             
-            if (cultID == "cult_of_sigmar" && Hero.MainHero.HasCareerChoice("SigmarProclaimerPassive4"))
+            if (cultID == "cult_of_sigmar" && Hero.MainHero.HasCareerChoice("SigmarsProclaimerPassive4"))
             {
-                var choice = TORCareerChoices.GetChoice("SigmarProclaimerPassive4");
+                var choice = TORCareerChoices.GetChoice("SigmarsProclaimerPassive4");
                 if(choice?.Passive == null)return;
                 foreach (var hero in Hero.MainHero.PartyBelongedTo.GetMemberHeroes())
                 {

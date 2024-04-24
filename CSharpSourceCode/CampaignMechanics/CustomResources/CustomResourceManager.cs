@@ -1,4 +1,4 @@
-﻿using SandBox;
+using SandBox;
 using SandBox.GauntletUI;
 using System;
 using System.Collections.Generic;
@@ -19,6 +19,7 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ScreenSystem;
 using TaleWorlds.TwoDimension;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Models;
@@ -184,30 +185,38 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
         private void CalculateCustomResourceGainFromBattles(MapEvent mapEvent)
         {
-            mapEvent.GetBattleRewards(MobileParty.MainParty.Party, out float renownChange, out _, out _, out _, out _);
+            mapEvent.GetBattleRewards(MobileParty.MainParty.Party, out var renownChange, out _, out _, out _, out _);
 
             if (MobileParty.MainParty.LeaderHero.GetCultureSpecificCustomResource() == GetResourceObject("Prestige"))
             {
                 var fairBattleOrPlayerInferior = _initialCombatRatio < 1.1f;
 
+                if (MobileParty.MainParty.HasBlessing("cult_of_sigmar")) renownChange *= 1.2f;
+
+
+                if (Hero.MainHero.HasCareerChoice("HolyPurgePassive2"))
+                {
+                    var eventSide = mapEvent.GetMapEventSide(mapEvent.DefeatedSide);
+                    foreach (var party in eventSide.Parties)
+                        if (party.Party.LeaderHero.IsChaos() || party.Party.LeaderHero.IsVampire())
+                        {
+                            var choice = TORCareerChoices.GetChoice("HolyPurgePassive2");
+                            var value = choice.Passive.EffectMagnitude;
+                            if (choice.Passive.InterpretAsPercentage) value /= 100;
+                            renownChange *= value;
+
+                            break;
+                        }
+                }
 
                 if (fairBattleOrPlayerInferior)
                 {
-                    if (Hero.MainHero.HasCareerChoice("FuryOfWarPassive3"))
-                    {
-                        renownChange *= 2f;
-                    }
-
+                    if (Hero.MainHero.HasCareerChoice("FuryOfWarPassive3")) renownChange *= 2f;
                     if (Hero.MainHero.HasCareerChoice("FlameOfUlricPassive3"))
                     {
                         var model = Campaign.Current.Models.GetFaithModel();
 
                         model.AddBlessingToParty(MobileParty.MainParty, "cult_of_ulric");
-                    }
-
-                    if (MobileParty.MainParty.HasBlessing("cult_of_sigmar"))
-                    {
-                        renownChange *= (renownChange * 1.2f);
                     }
                 }
 

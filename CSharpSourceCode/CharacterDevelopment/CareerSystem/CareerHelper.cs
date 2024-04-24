@@ -331,7 +331,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             var hero = agent.GetHero();
             if (hero == null) return false;
 
-            if (hero.HasCareerChoice("ArchLectorPassive4"))
+            if (hero.HasCareerChoice("RelentlessFanaticPassive4"))
             {
                 return true;
             }
