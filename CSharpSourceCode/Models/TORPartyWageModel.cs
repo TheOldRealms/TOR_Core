@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
@@ -65,8 +66,41 @@ namespace TOR_Core.Models
                         }
                     }
 
+                    if (Hero.MainHero.Culture.StringId == "vlandia" && elementCopyAtIndex.Character.IsKnightUnit())
+                    {
+                        var level = mobileParty.LeaderHero.GetChivalryLevel();
+                        var factor = 0f;
+                        switch (level)
+                        {
+                            case ChivalryLevel.Unknightly:
+                                factor=0.75f;
+                                break;
+                            case ChivalryLevel.Disappointing:
+                                factor=0.5f;
+                                break;
+                            case ChivalryLevel.Uninspiring:
+                                factor=0.25f;
+                                break;
+                            case ChivalryLevel.Sincere:
+                                factor=0.1f;
+                                break;
+                            case ChivalryLevel.Honorable:
+                                break;
+                            case ChivalryLevel.PureHearted:
+                                factor=-0.1f;
+                                break;
+                            case ChivalryLevel.TrueChivalrous:
+                                factor=-0.2f;
+                                break;
+                        }
+                        value.AddFactor(factor,new TextObject(level.ToString()));
+                    }
+
 
                 }
+
+                
+                
             }
             return value;
         }

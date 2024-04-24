@@ -149,7 +149,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 if (Hero.MainHero.Culture.StringId == "vlandia")
                 {
                     var settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 150f,
-                        x => x.IsTown && x.Culture.StringId == "vlandia");
+                        x => x.IsTown && x.IsBretonnianMayorSettlement());
 
                     if (settlement != null)
                     {
