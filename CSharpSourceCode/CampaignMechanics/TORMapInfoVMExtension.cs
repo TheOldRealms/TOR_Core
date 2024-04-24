@@ -49,16 +49,19 @@ namespace TOR_Core.CampaignMechanics
         private List<TooltipProperty> GetCultureResourceHintText()
         {
 	        var hero = Hero.MainHero;
-	        string customResourceTitle = hero.GetCultureSpecificCustomResource().LocalizedName.ToString();
-	        var value = hero.GetCultureSpecificCustomResourceValue().ToString("0");
-	        var icon = hero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText();
-	        var description = hero.GetCultureSpecificCustomResource().Description;
+	        var resource = hero.GetCultureSpecificCustomResource();
+	        string customResourceTitle = resource.LocalizedName.ToString();
+	        var value = hero.GetCustomResourceValue(resource.StringId).ToString("0");
+	        var icon = resource.GetCustomResourceIconAsText();
+	        var description = resource.Description;
 	        var change = Hero.MainHero.GetCultureSpecificCustomResourceChange();
+
+	        var customDescription = resource.GetCustomTooltipDescription();
 
 	        List<TooltipProperty> list = new List<TooltipProperty>();
 	        list.Add(new TooltipProperty(customResourceTitle, value+icon, 0, false, TooltipProperty.TooltipPropertyFlags.Title));
 	        list.Add(new TooltipProperty(description,"" , 0, false, TooltipProperty.TooltipPropertyFlags.None));
-	        
+	        list.AddRange(customDescription);
 	        foreach (var elem in change.GetLines())
 	        {
 		        if (!elem.number.ApproximatelyEqualsTo(0.0f))
@@ -66,6 +69,8 @@ namespace TOR_Core.CampaignMechanics
 			        list.Add(new TooltipProperty(elem.name, elem.number.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
 		        }
 	        }
+	        
+	        
 	        
 	        return list;
         }

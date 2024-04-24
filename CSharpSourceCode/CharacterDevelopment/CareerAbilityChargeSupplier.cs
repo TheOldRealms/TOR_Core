@@ -302,14 +302,10 @@ namespace TOR_Core.CharacterDevelopment
                     explainedNumber.Add((value)*300f); //scaled to maximum charge
                 }
 
-            
-
                 if (collisionFlag == CareerHelper.ChargeCollisionFlag.HitShield)
                 {
                     explainedNumber.AddFactor(-0.85f);
                 }
-
-                
             }
 
             return explainedNumber.ResultNumber;

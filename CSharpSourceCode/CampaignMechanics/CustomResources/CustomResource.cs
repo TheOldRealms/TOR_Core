@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -59,6 +59,11 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             LocalizedName = new TextObject("{=resname_" + StringId + "}" + Name);
             LocalizedDescription = new TextObject("{=resdesc_" + StringId + "}" + Description);
             Cultures = associatedCulturesIds.ToList();
+        }
+        
+        public List<TooltipProperty> GetCustomTooltipDescription()
+        {
+            return _toolTipFunction != null ? _toolTipFunction.Invoke() : new List<TooltipProperty>();
         }
 
         public string GetCustomResourceIconAsText(bool useLarge = false)

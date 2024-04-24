@@ -9,6 +9,7 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Core;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -30,14 +31,19 @@ namespace TOR_Core.Models
         public override void GetTraitLevelForTraitXp(Hero hero, TraitObject trait, int xpValue, out int traitLevel, out int clampedTraitXp)
         {
             base.GetTraitLevelForTraitXp(hero, trait, xpValue, out traitLevel, out clampedTraitXp);
-
-            var level = traitLevel;
-            var t = clampedTraitXp;
+            
+            if(xpValue>500) return; //fail save -1500 traitvalue for killing lords is a bit much :)
             if (hero.Culture.StringId == "vlandia")
             {
+                if (trait.StringId == "Valor" && xpValue < 0)
+                {
+                    TORCommon.Say("ignored "+trait.Name+" - "+xpValue);
+                    return;
+                } 
                 if (trait.StringId == "Mercy" || trait.StringId == "Honor" || trait.StringId == "Valor")
                 {
-                    hero.AddCustomResource("Chivilary",xpValue);
+                    hero.AddCustomResource("Chivalry",xpValue);
+                    TORCommon.Say(trait.Name+" - "+xpValue);
                 }
             }
         }

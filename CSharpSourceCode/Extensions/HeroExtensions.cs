@@ -153,6 +153,33 @@ namespace TOR_Core.Extensions
                     }
                     
                 }
+
+                if (hero.Culture.StringId == "vlandia")
+                {
+                    if (hero.PartyBelongedTo != null)
+                    {
+                        if (hero.PartyBelongedTo.HasBlessing("cult_of_lady"))
+                        {
+                            var obj = ReligionObject.All.FirstOrDefault( x=>x.StringId=="cult_of_lady");
+                            if (obj != null)
+                            {
+                                number.Add(15,new TextObject("Blessing of the Lady"));
+                            }
+                            
+                        }
+                    }
+
+                    if (hero.GetChivalryLevel() == ChivalryLevel.PureHearted)
+                    {
+                        number.Add(5,new TextObject(ChivalryLevel.PureHearted.ToString()));
+                    }
+                    
+                    if (hero.GetChivalryLevel() == ChivalryLevel.TrueChivalrous)
+                    {
+                        number.Add(15,new TextObject(ChivalryLevel.PureHearted.ToString()));
+                    }
+                    
+                }
             } 
             return number;
         }
@@ -328,7 +355,8 @@ namespace TOR_Core.Extensions
 
         public static ChivalryLevel GetChivalryLevel(this Hero hero)
         {
-            return ChivalryHelper.GetChivalryLevel(hero);
+            var customResource = GetCustomResourceValue(hero, "Chivalry");
+            return ChivalryHelper.GetChivalryLevelForResource(customResource);
         }
         
         public static bool HasChivalryLevel(this Hero hero, ChivalryLevel level)
