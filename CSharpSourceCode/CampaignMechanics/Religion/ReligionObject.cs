@@ -45,11 +45,6 @@ namespace TOR_Core.CampaignMechanics.Religion
             Culture = MBObjectManager.Instance.ReadObjectReferenceFromXml<CultureObject>("Culture", node);
             Affinity = (ReligionAffinity)Enum.Parse(typeof(ReligionAffinity), node.Attributes.GetNamedItem("Affinity").Value);
             LoreText = GameTexts.FindText("tor_religion_description", StringId);
-            var blessingEffect = node.Attributes.GetNamedItem("BlessingEffect");
-            if (blessingEffect != null)
-            {
-                BlessingEffectText = new TextObject(blessingEffect.Value);
-            }
             
             if (node.HasChildNodes)
             {

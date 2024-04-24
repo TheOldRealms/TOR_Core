@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Religions>
-    <Religion id="cult_of_sigmar" Name="{=tor_religion_cult_name_cult_of_sigmar_str}Cult of Sigmar" Culture="Culture.empire" Affinity="Order" DeityName="Sigmar" BlessingEffect="Earn 20% more Prestige from combat">
+    <Religion id="cult_of_sigmar" Name="{=tor_religion_cult_name_cult_of_sigmar_str}Cult of Sigmar" Culture="Culture.empire" Affinity="Order" DeityName="Sigmar">
         <HostileReligions>
             <HostileReligion id="Religion.cult_of_nagash" /> 
             <HostileReligion id="Religion.cult_of_slaanesh" /> 

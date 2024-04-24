@@ -705,6 +705,26 @@
   
   <string id="tor_religion_description.cult_of_sigmar" text="{=tor_religion_description_cult_of_sigmar_str}The Cult of Sigmar, also sometimes called the Church of Sigmar, the Holy Temple of Sigmar, the Clergy of Sigmar or simply the Sigmarite Cult, is the state church of the Empire that administrates the worship of that realm's patron god, Sigmar Heldenhammer. The Cult of Sigmar was founded by the wild-eyed friar Johann Helstrum in the year 73 IC, when he appeared before the masses to relate a vision that he experienced of Sigmar kneeling before Ulric, the god of war and winter, who placed the crown of godhood upon his brow as Sigmar took his place amongst the deities of the Old World Pantheon. As of today, the Cult of Sigmar has become an essential part of Imperial society. Nearly every city, town or village within the Empire has dedicated a portion of their wealth and land to the creation and maintenance of a Sigmarite temple, from which a priest of the Cult of Sigmar will attend to the spiritual well-being of its citizenry, whether it be through holy words of prayer or through heroic actions and trials by combat." />
   <string id="tor_religion_description.cult_of_taal" text="{=tor_religion_description_cult_of_taal_str}The Cult of Taal and Rhya is among the most ancient and pervasive in the Old World, tracing a direct line to the primal gods from the deepest of history. The cult grew organically, as early Humans tried to explain natural phenomenon, such as thunder, the turning of the seasons, and the rise and ebb of the seas. Over time, the Gods Taal and Rhya came into being, beginning as a single entity, known as Ishnernos. This split occurred many thousands of years ago, and the Cult of Ishnernos faded into distant memory. Taal rules nature and is considered King of the Gods. He claims the wild places as his domain and is primarily worshipped by hardy woodsmen, trackers, and rangers. Rhya's worshippers are found in the cultivated fields and orchards of the Empire, and are found among farmers, fishermen, and young lovers everywhere. The Cult of Taal and Rhya is the sanctioned cult of Talabecland, and is wildly popular in the eastern and northern parts of the Empire. Of the two, Taal receives most recognition, and Rhya's role is much diminished. The grand city of Talabheim is particularly fervent in its worship of both Taal and Rhya. However, in other cities, although Rhya's name is commonly known, he worship is rare, leading many urbanites to conclude that her cult is on the decline." />
+  <string id=
+  "tor_religion_description.cult_of_ulric" text="{=tor_religion_description_cult_of_lady_str}The Ulrican cult, Church of Ulric or simply the Cult of Ulric is the state approved religious organisation that administrates the worship of the god of war, winter, and wolves. It is second in power and influence to the Cult of Sigmar, but is amongst the most ancient religions of the Empire of Man and dates back before the Empire was created by Sigmar. As a god of war, it is through battle and bloodshed that Ulric is worshipped, any who dare oppose him are merely awaiting the ferocious bite of his priests. {newline}
+    {newline}
+  &quot;Ulric give me the fangs of the wolf,   {newline}
+  Ulric give me the claws of the wolf,   {newline}
+  Ulric give me the coat of the wolf,   {newline}
+  And I will show your enemies the mercy of the wolf.&quot;"/>
+
+  <string id="tor_religion_description.cult_of_shallya" text="{=tor_religion_description_cult_of_shallya_str}The Cult of Shallya is dedicated to the White Dove of Mercy, the Lady in White, Shallya. Compassion, mercy and healing are the doctrines of the cult, and her priests offer aid to those in need across the Empire. The Old World is a gruelling place filled with disease, injury and bad fortune that can drive a person to utter despair, it is these folk who turn to Shallya whose priests bring the promise of mercy and comfort. Her temples double as hospitals for those who cannot afford a physician, run by her devout priestesses for few men serve her order." />
+  <string id="tor_religion_description.cult_of_manaan" text=
+  "{=tor_religion_description_cult_of_manaan_str}The religious organisation that oversees and administrates the worship of the god of the sea, oceans, and tides across the Old World. It is most prevalent along the western border of the Empire where the waters of the Sea of Claws touch the shores of man, and most influential within Marienburg. Its members are often navigators, pilots and able-bodied sailors and it is seen as immense luck to have a priest of Manaan aboard your vessel.   {newline}
+  {newline}
+  Manann be praised, for he is the breeze to take us out, {newline}
+  Manann be praised, for he is the wave to bring us home, {newline}
+  Manann be praised, for he is the food to feed us,{newline}
+  Manann be praised, or his be the wrath that drowns us.{newline}
+  " />
+
+
+
   <string id="tor_religion_description.cult_of_lady" text="{=tor_religion_description_cult_of_lady_str}The Cult of the Lady of the Lake, or simply the Cult of the Lady, is a state-official religious cult that serves to follow and uphold the values set upon them by the Lady of the Lake, and to serve the interest of her and the Kingdom of Bretonnia. Since ancient times, the Bretonnians have worshipped the Lady of the Lake as their goddess and their primary deity, a figure of myth and legend who guides their Kings and protects their lands from harm. Worship of the Lady can be traced to the earliest days of the Kingdom. It is said that she arose from a Sacred Lake before Gilles le Breton and his Knightly Companions on the dawn of the Great Victory of Bordeleaux. Wreathed in a fey light, the Lady rose from the water bearing a Grail which overflowed with light that spilled into the waters of the lake, blessing the assembled knights until dawn's light broke over the mountains." />
   <string id="tor_religion_description.cult_of_myrmidia" text="{=tor_religion_description_cult_of_myrmidia_str}" />
   <string id="tor_religion_description.cult_of_nagash" text="{=tor_religion_description_cult_of_nagash_str}Vampires of all kinds loathe the gods. They don't deny their existence, but they don't serve them, seeking to be their equal instead. The closest idea of a religion to vampires would be their shared recognition of Nagash as the creator of undeath. Ultimately, all vampires descend from him. Nagash, known by many names such as the 'Great Necromancer', the 'Great Betrayer', the 'Usurper', the 'Undying King', the 'Supreme Lord of Undeath' or simply 'He Who Shall Not Be Named' is the ultimate personification of death and the Undead, an ancient, evil being who sought to conquer this cruel, chaotic mortal world and bring about an age of Undeath that will rule for all eternity. Nagash is darkness and unreasoning hatred given form, the father and creator of the foul art of necromancy and lord of all Vampires. His every action and deed is self-serving, his achievement horrific and loathsome, and his every whim bent solely to ensure that no one shall ever deny nor challenge his right to rule ever again." />
@@ -717,23 +737,29 @@
   <string id="tor_religion_name_of_god.cult_of_sigmar" text="{=tor_religion_name_of_god_cult_of_sigmar_str}Sigmar" />
   <string id="tor_religion_name_of_god.cult_of_taal" text="{=tor_religion_name_of_god_cult_of_taal_str}Taal" />
   <string id="tor_religion_name_of_god.cult_of_lady" text="{=tor_religion_name_of_god_cult_of_lady_str}the Lady" />
+  <string id="tor_religion_name_of_god.cult_of_shallya" text="{=tor_religion_name_of_god_cult_of_shallya_str}Shallya" />
   <string id="tor_religion_name_of_god.cult_of_myrmidia" text="{=tor_religion_name_of_god_cult_of_myrmidia_str}Myrmidia" />
   <string id="tor_religion_name_of_god.cult_of_nagash" text="{=tor_religion_name_of_god_cult_of_nagash_str}Nagash" />
+  
   <string id="tor_religion_name_of_god.chaos_undivided" text="{=tor_religion_name_of_god_chaos_undivided_str}Ruinous Powers" />
   <string id="tor_religion_name_of_god.cult_of_slaanesh" text="{=tor_religion_name_of_god_cult_of_slaanesh_str}Slaanesh" />
   <string id="tor_religion_name_of_god.cult_of_nurgle" text="{=tor_religion_name_of_god_cult_of_nurgle_str}Nurgle" />
   <string id="tor_religion_name_of_god.cult_of_khorne" text="{=tor_religion_name_of_god_cult_of_khorne_str}Khorne" />
   <string id="tor_religion_name_of_god.cult_of_tzeentch" text="{=tor_religion_name_of_god_cult_of_tzeentch_str}Tzeentch" />
 
-  <string id="tor_religion_blessing_effect_description.cult_of_sigmar" text="{=tor_religion_blessing_effect_description_cult_of_sigmar}Your party members heal their wounds 20% faster." />
+  <string id="tor_religion_blessing_effect_description.cult_of_sigmar" text="{=tor_religion_blessing_effect_description_cult_of_sigmar}Earn 20% more prestige." />
+  <string id="tor_religion_blessing_effect_description.cult_of_shallya" text="{=tor_religion_blessing_effect_description_cult_of_shallya}Your party members heal their wounds 20% faster." />
   <string id="tor_religion_blessing_effect_description.cult_of_taal" text="{=tor_religion_blessing_effect_description_cult_of_taal}Increase your party's movement speed in forests by 20%." />
-  <string id="tor_religion_blessing_effect_description.cult_of_lady" text="{=tor_religion_blessing_effect_description_cult_of_lady}Increase your party's morale by 20." />
-  <string id="tor_religion_blessing_effect_description.cult_of_myrmidia" text="{=tor_religion_blessing_effect_description_cult_of_myrmidia}Earn 20% more xp from battles." />
-  <string id="tor_religion_blessing_name.cult_of_sigmar" text="{=tor_religion_blessing_name_cult_of_sigmar_str}Blessing of Sigmar" />
+  <string id="tor_religion_blessing_effect_description.cult_of_lady" text="{=tor_religion_blessing_effect_description_cult_of_lady}As Bretone, earn every day 15 Chivalry" />
+  <string id="tor_religion_blessing_effect_description.cult_of_ulric" text="{=tor_religion_blessing_name_cult_of_ulric_str}Earn 20% more xp from battles." />
+  
+  <string id="tor_religion_blessing_effect_description.cult_of_myrmidia" text="{=tor_religion_blessing_effect_description_cult_of_sigmar}Blessing of Sigmar" />
+  <string id="tor_religion_blessing_name.cult_of_sigmar" text="{=tor_religion_blessing_name_cult_of_sigmar_str}Earn 20% more Prestige from battles" />
+  <string id="tor_religion_blessing_name.cult_of_shallya" text="{=tor_religion_blessing_name_cult_of_taal_str}Blessing of Shallya" />
   <string id="tor_religion_blessing_name.cult_of_taal" text="{=tor_religion_blessing_name_cult_of_taal_str}Blessing of Taal" />
   <string id="tor_religion_blessing_name.cult_of_lady" text="{=tor_religion_blessing_name_cult_of_lady_str}Blessing of the Lady" />
   <string id="tor_religion_blessing_name.cult_of_myrmidia" text="{=tor_religion_blessing_name_cult_of_myrmidia_str}Blessing of Myrmidia" />
-  <string id="tor_religion_blessing_name.cult_of_ulric" text="{=tor_religion_blessing_name_cult_of_ulric_str}Blessing of Ulric" />
+  <string id="tor_religion_blessing_name.cult_of_ulric" text="{=tor_religion_blessing_name_cult_of_ulric_str}Blessing of Ulric." />
 
   <!-- Career related -->
   <string id="career_title.WarriorPriest" text="{=tor_career_title_warrior_priest_str}Warrior Priest of Sigmar" />
@@ -794,6 +820,8 @@
   
   <!--Career related related !-->
   <string id="career_description.WarriorPriest" text="{=career_description_warriorpriest_str}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />
+  <string id="career_description.WarriorPriestUlric" text="{=career_description_warriorpriest_ulric_str}To be a Wolf Priest is to be one of Ulrics champions, powerful, zealous, and blessed by the feral god himself. The battleground is where the word of Ulric is spread, and it is through bloodshed that he is honoured in worship." />
+  
   <string id="career_description.BloodKnight" text="{=career_description_bloodknight_str}Sired by Abhorash, the Blood Knight is a dark mockery of everything noble or virtuous that can be said about their mortal counterparts. Where before the Blood Kiss there was honour is now cruelty; faith turns to irreverence and duty falls to wanton ambition. This is true of all vampires but seems particularly tragic for the fallen knights of the Old World." />
   <string id="career_description.MinorVampire" text="{=career_description_minorvampire_str}Known and feared by many names, Vampires are the night's dark master. Nighly anyone be they Man or Beast, Holy or Daemonic can face one and survive. All Vampires strive to be the only masters of their unlife, free from any obligations to religions or masters. This egomaniacal drive is what fuels them to greater and greater ambitions, so that one day they may be lord of all they observe." />
   <string id="career_description.Mercenary" text="{=career_description_mercenary_str}To be a Man in the 25th century is to be one of thousands. The Old World finds itself on the precipice of destruction and turmoil, of chaos and death. No one in this age can be weak; some use the times to their advantage and turn warfare into wealth, combat into glory and tragedy into destiny. Mercenary they may call you, whatever the name no one will control your fate." />
