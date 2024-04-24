@@ -110,8 +110,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _warriorPriestUlricRoot.Initialize(CareerID, "The Warrior priest is unleashing a furious blow of Ulric, slamming his weapon to the ground as if he wields Blitzbeil itself. " +
-                                                         "The attack can’t be parried and affects targets in a 2-meter radius. For every point of the player’s highest weapon skill damage increases by 0.1% ", null, true,
+            _warriorPriestUlricRoot.Initialize(CareerID, "The Wolf Priest unleashes a mighty blow in the name of his feral god, bringing the full might of his weapon crashing to the ground as if he were wielding Blitzbeil itself. This attack cannot be parried and affects targets in a 2-meter radius. For every point of the players highest weapon skill, damage is increased by 0.1%.", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     

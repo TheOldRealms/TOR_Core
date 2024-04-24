@@ -5,6 +5,7 @@ using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Map.MapBar;
+using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
@@ -114,17 +115,20 @@ namespace TOR_Core.CampaignMechanics
 			}
 			var religionObject = ReligionObject.All.FirstOrDefault(x =>x.StringId== blessing);
 			if (religionObject == null) return list;
-			var effectText = religionObject.BlessingEffectText;
+			var effectText = GameTexts.FindText("tor_religion_blessing_effect_description", religionObject.StringId);
+			
 			var duration = info.CurrentBlessingRemainingDuration;
 			
-			list.Add(new TooltipProperty(blessingTitle, religionObject.DeityName.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.Title));
+			var blessingText = GameTexts.FindText("tor_religion_blessing_name", religionObject.StringId);
+			
+			list.Add(new TooltipProperty(blessingTitle, blessingText.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.Title));
 			RemainingBlessingTime = GetBlessingTimeInDays(duration);
-			var BlessingText = $"{RemainingBlessingTime} days";
-			list.Add(new TooltipProperty(durationTitle, BlessingText, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+			var BlessingTextTime = $"{RemainingBlessingTime} days";
+			list.Add(new TooltipProperty(durationTitle, BlessingTextTime, 0, false, TooltipProperty.TooltipPropertyFlags.None));
 			
 			if (effectText != null)
 			{
-				list.Add(new TooltipProperty(effect, effectText.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+				list.Add(new TooltipProperty(effect, effectText.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.MultiLine));
 			}
 			
 			return list;
