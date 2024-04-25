@@ -18,7 +18,7 @@ namespace TOR_Core.Utilities
         public const int DEFAULT_PRAYING_DEVOTION_INCREASE = 5;
         public const int DEFAULT_WARDING_DEVOTION_INCREASE = 5;
         public const int DEFAULT_CURSE_WOUND_STRENGTH = 1;
-        public const int DEFAULT_PRAYING_FAITH_XP = 600;
+        public const int DEFAULT_PRAYING_FAITH_XP = 10;
         public const int DEFAULT_CURSE_RADIUS = 25;
         public const int BOUNTY_QUEST_CHANCE = 25;
         public const int SKELETON_VOICE_INDEX = 24;

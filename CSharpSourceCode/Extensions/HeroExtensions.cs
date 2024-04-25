@@ -439,7 +439,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsChaos(this Hero hero)
         {
-            if (hero.IsCultist()) return true;
+            if (hero.CharacterObject.IsCultist()) return true;
             if (hero.CharacterObject.IsBeastman()) return true;
             return false;
         }
@@ -452,11 +452,6 @@ namespace TOR_Core.Extensions
         public static bool IsPriest(this Hero hero)
         {
             return hero.HasAttribute("Priest");
-        }
-
-        public static bool IsCultist(this Hero hero)
-        {
-            return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("chaos_ud_cultist");
         }
         
         public static bool IsAICompanion(this Hero hero)
