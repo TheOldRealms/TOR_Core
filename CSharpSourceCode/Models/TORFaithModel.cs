@@ -24,9 +24,10 @@ namespace TOR_Core.Models
             return (int)result.ResultNumber;
         }
 
-        public int CalculateSkillXpForPraying(Hero hero)
+        public int CalculateSkillXpForPraying(Hero hero, int blessingDuration=1)
         {
             ExplainedNumber result = new ExplainedNumber(TORConstants.DEFAULT_PRAYING_FAITH_XP);
+            result.AddFactor(blessingDuration-1);
             return (int)result.ResultNumber;
         }
 
@@ -81,7 +82,7 @@ namespace TOR_Core.Models
             }
             
             party.LeaderHero.AddReligiousInfluence(religion, duration);
-            party.LeaderHero.AddSkillXp(TORSkills.Faith, CalculateSkillXpForPraying(Hero.MainHero));
+            party.LeaderHero.AddSkillXp(TORSkills.Faith, CalculateSkillXpForPraying(Hero.MainHero, duration));
             
             ExtendedInfoManager.Instance.AddBlessingToParty(party.StringId, cultID, duration);
         }
