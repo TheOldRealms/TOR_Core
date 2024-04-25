@@ -177,9 +177,23 @@ namespace TOR_Core.Extensions
                             var obj = ReligionObject.All.FirstOrDefault( x=>x.StringId=="cult_of_lady");
                             if (obj != null)
                             {
+                                
                                 number.Add(15,new TextObject("Blessing of the Lady"));
                             }
                             
+                        }
+                    }
+
+                    if (hero.IsClanLeader)
+                    {
+                        foreach (var clanmember in hero.Clan.Heroes)
+                        {
+                            if(clanmember==hero) continue;
+
+                            if (clanmember.IsAlive&&clanmember.IsPartyLeader)
+                            {
+                                number.Add(2,new TextObject("Clan members with Party"));
+                            }
                         }
                     }
 
