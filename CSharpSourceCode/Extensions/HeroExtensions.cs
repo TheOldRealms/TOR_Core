@@ -197,14 +197,14 @@ namespace TOR_Core.Extensions
                         }
                     }
 
-                    if (hero.GetChivalryLevel() == ChivalryLevel.PureHearted)
+                    if (hero.GetChivalryLevel() == ChivalryLevel.Honourable)
                     {
-                        number.Add(5,new TextObject(ChivalryLevel.PureHearted.ToString()));
+                        number.Add(5,new TextObject(ChivalryLevel.Honourable.ToString()));
                     }
                     
-                    if (hero.GetChivalryLevel() == ChivalryLevel.TrueChivalrous)
+                    if (hero.GetChivalryLevel() == ChivalryLevel.Chivalrous)
                     {
-                        number.Add(15,new TextObject(ChivalryLevel.PureHearted.ToString()));
+                        number.Add(15,new TextObject(ChivalryLevel.Honourable.ToString()));
                     }
                     
                 }

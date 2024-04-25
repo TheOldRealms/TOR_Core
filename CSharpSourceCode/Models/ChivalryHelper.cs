@@ -10,7 +10,7 @@ namespace TOR_Core.Models
     {
         public static ChivalryLevel GetChivalryLevelForResource(float level)
         {
-            ChivalryLevel result = ChivalryLevel.Uninspiring;
+            ChivalryLevel result = ChivalryLevel.Sincere;
             
             switch (level)
             {
@@ -21,32 +21,32 @@ namespace TOR_Core.Models
                 }
                 case var _ when level < 500:
                 {
-                    result = ChivalryLevel.Disappointing;
+                    result = ChivalryLevel.Uninspiring;
                     break;
                 }
                 case var _ when level > 500 && level <750:
                 {
-                    result = ChivalryLevel.Uninspiring;
+                    result = ChivalryLevel.Sincere;
                     break;
                 }
                 case var _ when level > 750 && level <1000:
                 {
-                    result = ChivalryLevel.Sincere;
+                    result = ChivalryLevel.Noteworthy;
                     break;
                 }
                 case var _ when level > 1000 && level < 1500:
                 {
-                    result = ChivalryLevel.Honorable;
+                    result = ChivalryLevel.PureHearted;
                     break;
                 }
                 case var _ when level > 1500 && level < 2000:
                 {
-                    result = ChivalryLevel.PureHearted;
+                    result = ChivalryLevel.Honourable;
                     break;
                 }
                 case var _ when level > 2000:
                 {
-                    result = ChivalryLevel.TrueChivalrous;
+                    result = ChivalryLevel.Chivalrous;
                     break;
                 }
             }
@@ -57,22 +57,22 @@ namespace TOR_Core.Models
         {
             switch (level)
             {
-                case ChivalryLevel.TrueChivalrous:
+                case ChivalryLevel.Chivalrous:
                     return 2000;
                     break;
-                case ChivalryLevel.PureHearted:
+                case ChivalryLevel.Honourable:
                     return 1500;
                     break;
-                case ChivalryLevel.Honorable:
+                case ChivalryLevel.PureHearted:
                     return 1000;
                     break;
-                case ChivalryLevel.Sincere:
+                case ChivalryLevel.Noteworthy:
                     return 750;
                     break;
-                case ChivalryLevel.Uninspiring:
+                case ChivalryLevel.Sincere:
                     return 500;
                     break;
-                case ChivalryLevel.Disappointing:
+                case ChivalryLevel.Uninspiring:
                     return 250;
                     break;
                 case ChivalryLevel.Unknightly:
@@ -107,33 +107,33 @@ namespace TOR_Core.Models
                     list.Add(new TooltipProperty("Knightly wages: ", "+75%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     list.Add(new TooltipProperty("Morale: ", "-75%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     break;
-                case  ChivalryLevel.Disappointing: 
+                case  ChivalryLevel.Uninspiring: 
                     list.Add(new TooltipProperty("Knightly wages: ", "+50%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     list.Add(new TooltipProperty("Morale: ", "-50%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     break;
-                case ChivalryLevel.Uninspiring:
+                case ChivalryLevel.Sincere:
                     list.Add(new TooltipProperty("Knightly wages: ", "+25%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     list.Add(new TooltipProperty("Morale: ", "-20%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     break;
-                case ChivalryLevel.Sincere:
+                case ChivalryLevel.Noteworthy:
                     list.Add(new TooltipProperty("Knightly wages: ", "+10%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     break;
-                case ChivalryLevel.Honorable:
+                case ChivalryLevel.PureHearted:
                     list.Add(new TooltipProperty("Morale: ", "+10%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     break;
-                case ChivalryLevel.PureHearted:
+                case ChivalryLevel.Honourable:
                     list.Add(new TooltipProperty("Morale", "+10%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     list.Add(new TooltipProperty("Knightly wages", "-10%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     list.Add(new TooltipProperty("Gain extra  Chivalry everyday", "5", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     break;
-                case ChivalryLevel.TrueChivalrous:
+                case ChivalryLevel.Chivalrous:
                     list.Add(new TooltipProperty("Morale", "+20%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     list.Add(new TooltipProperty("Knightly wages", "-20%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     list.Add(new TooltipProperty("Gain extra  Chivalry everyday", "15", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     break;
             }
             list.Add( new TooltipProperty("", " ", 0, false, TooltipProperty.TooltipPropertyFlags.Cost)); //empty line
-            if (chivalryLevel!=ChivalryLevel.TrueChivalrous)
+            if (chivalryLevel!=ChivalryLevel.Chivalrous)
             {
                 list.Add( new TooltipProperty("Next Rank: ", (chivalryLevel+1).ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
                 var result =  GetResourceMinimumForChivalryRank(((ChivalryLevel)chivalryLevel+1)) - value;
@@ -149,12 +149,12 @@ namespace TOR_Core.Models
     
     public enum ChivalryLevel
     {
-        TrueChivalrous = 6,
-        PureHearted = 5 ,
-        Honorable = 4,
-        Sincere = 3 ,
-        Uninspiring = 2,
-        Disappointing = 1,
+        Chivalrous = 6,
+        Honourable = 5 ,
+        PureHearted = 4,
+        Noteworthy = 3 ,
+        Sincere = 2,
+        Uninspiring = 1,
         Unknightly = 0,
     }
     

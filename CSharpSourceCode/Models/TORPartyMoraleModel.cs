@@ -37,23 +37,23 @@ namespace TOR_Core.Models
                 {
                     value = -0.75f;
                 }
-                if (chivalryLevel == ChivalryLevel.Disappointing)
+                if (chivalryLevel == ChivalryLevel.Uninspiring)
                 {
                     value = -0.5f;
                 }
-                if (chivalryLevel == ChivalryLevel.Uninspiring)
+                if (chivalryLevel == ChivalryLevel.Sincere)
                 {
                     value = -0.2f;
                 }
-                if (chivalryLevel == ChivalryLevel.Sincere)
+                if (chivalryLevel == ChivalryLevel.Noteworthy)
                 {
                     value = 0f;
                 }
-                if (chivalryLevel == ChivalryLevel.Honorable)
+                if (chivalryLevel == ChivalryLevel.PureHearted)
                 {
                     value = 0.1f;
                 }
-                if (chivalryLevel == ChivalryLevel.PureHearted)
+                if (chivalryLevel == ChivalryLevel.Honourable)
                 {
                     value = 0.2f;
                 }

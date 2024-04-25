@@ -92,21 +92,21 @@ namespace TOR_Core.Models
                             case ChivalryLevel.Unknightly:
                                 factor=0.75f;
                                 break;
-                            case ChivalryLevel.Disappointing:
+                            case ChivalryLevel.Uninspiring:
                                 factor=0.5f;
                                 break;
-                            case ChivalryLevel.Uninspiring:
+                            case ChivalryLevel.Sincere:
                                 factor=0.25f;
                                 break;
-                            case ChivalryLevel.Sincere:
+                            case ChivalryLevel.Noteworthy:
                                 factor=0.1f;
                                 break;
-                            case ChivalryLevel.Honorable:
-                                break;
                             case ChivalryLevel.PureHearted:
+                                break;
+                            case ChivalryLevel.Honourable:
                                 factor=-0.1f;
                                 break;
-                            case ChivalryLevel.TrueChivalrous:
+                            case ChivalryLevel.Chivalrous:
                                 factor=-0.2f;
                                 break;
                         }
