@@ -112,7 +112,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 {
                     var eventSide = mapEvent.GetMapEventSide(mapEvent.DefeatedSide);
                     foreach (var party in eventSide.Parties)
-                        if (party.Party.LeaderHero.IsChaos() || party.Party.LeaderHero.IsVampire())
+                        if (party.Party.LeaderHero!=null && (party.Party.LeaderHero.IsChaos() || party.Party.LeaderHero.IsVampire()))
                         {
                             var choice = TORCareerChoices.GetChoice("HolyPurgePassive2");
                             var value = choice.Passive.EffectMagnitude;
