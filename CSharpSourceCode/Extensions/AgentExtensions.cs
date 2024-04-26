@@ -181,84 +181,104 @@ namespace TOR_Core.Extensions
             float[] damageAmplifications = new float[(int)DamageType.All + 1];
             float[] damageResistances = new float[(int)DamageType.All + 1];
             float[] additionalDamagePercentages = new float[(int)DamageType.All + 1];
-
-            #region Unit
+            
+            
             if (!agent.IsHero)
             {
-                if (propertyMask == PropertyMask.Attack || propertyMask == PropertyMask.All)
-                {
-                    var unitDamageProportion = agent.Character.GetUnitDamageProportions();
-                    foreach (var proportionTuple in unitDamageProportion)
-                    {
-                        damageProportions[(int)proportionTuple.DamageType] = proportionTuple.Percent;
-                    }
-                    var offenseProperties = agent.Character.GetAttackProperties();
-
-                    //add all offense properties of the Unit
-                    foreach (var property in offenseProperties)
-                    {
-                        damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
-                    }
-                    //add temporary effects like buffs to attack bonuses on items
-                    List<ItemTrait> dynamicTraits = agent.GetComponent<ItemTraitAgentComponent>()
-                        .GetDynamicTraits(agent.WieldedWeapon.Item);
-                    foreach (var dynamicTrait in dynamicTraits)
-                    {
-                        var attackProperty = dynamicTrait.AmplifierTuple;
-
-                        if (attackProperty != null)
-                        {
-                            damageAmplifications[(int)attackProperty.AmplifiedDamageType] += attackProperty.DamageAmplifier;
-                        }
-                        var additionalDamageProperty = dynamicTrait.AdditionalDamageTuple;
-                        if (additionalDamageProperty != null)
-                        {
-                            additionalDamagePercentages[(int)additionalDamageProperty.DamageType] += additionalDamageProperty.Percent;
-                        }
-                    }
-                    var statusEffectAmplifiers = agent.GetComponent<StatusEffectComponent>().GetAmplifiers(attackTypeMask);
-                    for (int i = 0; i < damageAmplifications.Length; i++)
-                    {
-                        damageAmplifications[i] += statusEffectAmplifiers[i];
-                    }
-                }
-                if (propertyMask == PropertyMask.Defense || propertyMask == PropertyMask.All)
-                {
-                    //add all defense properties of the Unit
-                    var defenseProperties = agent.Character.GetDefenseProperties();
-
-                    foreach (var property in defenseProperties)
-                    {
-                        damageResistances[(int)property.ResistedDamageType] += property.ReductionPercent;
-                    }
-
-                    //add temporary effects like buffs to defense bonuses
-                    List<ItemTrait> dynamicTraits = agent.GetComponent<ItemTraitAgentComponent>()
-                        .GetDynamicTraits(agent.WieldedWeapon.Item);
-
-                    foreach (var dynamicTrait in dynamicTraits)
-                    {
-                        var defenseProperty = dynamicTrait.ResistanceTuple;
-                        if (defenseProperty != null)
-                        {
-                            damageResistances[(int)defenseProperty.ResistedDamageType] += defenseProperty.ReductionPercent;
-                        }
-                    }
-
-                    //status effects
-                    var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances(attackTypeMask);
-
-                    for (int i = 0; i < damageResistances.Length; i++)
-                    {
-                        damageResistances[i] += statusEffectResistances[i];
-                    }
-                }
+                AssignUnitProperties();
             }
-            #endregion
-
-            #region Character
 
             else
+            {
+                AssignCharacterProperties();
+            }
+
+            var result = new AgentPropertyContainer(damageProportions, damageAmplifications, damageResistances, additionalDamagePercentages);
+
+            if (Game.Current.GameType is Campaign)
+            {
+                var model = MissionGameModels.Current.AgentStatCalculateModel as TORAgentStatCalculateModel;
+                if(model != null)
+                {
+                    result = model.AddPerkEffectsToAgentPropertyContainer(agent, propertyMask, attackTypeMask, result);
+                }
+            }
+
+            return result;
+            
+            void AssignUnitProperties()
+            {
+                 if (propertyMask == PropertyMask.Attack || propertyMask == PropertyMask.All)
+                 {
+                     var unitDamageProportion = agent.Character.GetUnitDamageProportions();
+                     foreach (var proportionTuple in unitDamageProportion)
+                     {
+                         damageProportions[(int)proportionTuple.DamageType] = proportionTuple.Percent;
+                     }
+                     var offenseProperties = agent.Character.GetAttackProperties();
+
+                     //add all offense properties of the Unit
+                     foreach (var property in offenseProperties)
+                     {
+                         damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
+                     }
+                     //add temporary effects like buffs to attack bonuses on items
+                     List<ItemTrait> dynamicTraits = agent.GetComponent<ItemTraitAgentComponent>()
+                         .GetDynamicTraits(agent.WieldedWeapon.Item);
+                     foreach (var dynamicTrait in dynamicTraits)
+                     {
+                         var attackProperty = dynamicTrait.AmplifierTuple;
+
+                         if (attackProperty != null)
+                         {
+                             damageAmplifications[(int)attackProperty.AmplifiedDamageType] += attackProperty.DamageAmplifier;
+                         }
+                         var additionalDamageProperty = dynamicTrait.AdditionalDamageTuple;
+                         if (additionalDamageProperty != null)
+                         {
+                             additionalDamagePercentages[(int)additionalDamageProperty.DamageType] += additionalDamageProperty.Percent;
+                         }
+                     }
+                     var statusEffectAmplifiers = agent.GetComponent<StatusEffectComponent>().GetAmplifiers(attackTypeMask);
+                     for (int i = 0; i < damageAmplifications.Length; i++)
+                     {
+                         damageAmplifications[i] += statusEffectAmplifiers[i];
+                     }
+                 }
+                 if (propertyMask == PropertyMask.Defense || propertyMask == PropertyMask.All)
+                 {
+                     //add all defense properties of the Unit
+                     var defenseProperties = agent.Character.GetDefenseProperties();
+
+                     foreach (var property in defenseProperties)
+                     {
+                         damageResistances[(int)property.ResistedDamageType] += property.ReductionPercent;
+                     }
+
+                     //add temporary effects like buffs to defense bonuses
+                     List<ItemTrait> dynamicTraits = agent.GetComponent<ItemTraitAgentComponent>()
+                         .GetDynamicTraits(agent.WieldedWeapon.Item);
+
+                     foreach (var dynamicTrait in dynamicTraits)
+                     {
+                         var defenseProperty = dynamicTrait.ResistanceTuple;
+                         if (defenseProperty != null)
+                         {
+                             damageResistances[(int)defenseProperty.ResistedDamageType] += defenseProperty.ReductionPercent;
+                         }
+                     }
+
+                     //status effects
+                     var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances(attackTypeMask);
+
+                     for (int i = 0; i < damageResistances.Length; i++)
+                     {
+                         damageResistances[i] += statusEffectResistances[i];
+                     }
+                 }
+            }
+
+            void AssignCharacterProperties()
             {
                 if (propertyMask == PropertyMask.Attack || propertyMask == PropertyMask.All)
                 {
@@ -451,20 +471,6 @@ namespace TOR_Core.Extensions
                     }
                 }
             }
-            #endregion
-
-            var result = new AgentPropertyContainer(damageProportions, damageAmplifications, damageResistances, additionalDamagePercentages);
-
-            if (Game.Current.GameType is Campaign)
-            {
-                var model = MissionGameModels.Current.AgentStatCalculateModel as TORAgentStatCalculateModel;
-                if(model != null)
-                {
-                    result = model.AddPerkEffectsToAgentPropertyContainer(agent, propertyMask, attackTypeMask, result);
-                }
-            }
-
-            return result;
         }
 
         public static Ability GetCurrentAbility(this Agent agent)
