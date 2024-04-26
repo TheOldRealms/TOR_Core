@@ -1,17 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Crosshairs;
+using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
+using FaceGen = TaleWorlds.Core.FaceGen;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 {
@@ -271,6 +277,79 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _everlingsSecretPassive2.Initialize(CareerID, "35% spell cooldown reduction.", "EverlingsSecret", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-35, PassiveEffectType.WindsCooldownReduction, true)); 
             _everlingsSecretPassive3.Initialize(CareerID, "Once your Winds are full, your winds recharge rate is counted towards your Dark Energy.", "EverlingsSecret", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
             _everlingsSecretPassive4.Initialize(CareerID, "Any non-physical damage count towards spell damage type.", "EverlingsSecret", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect()); 
+        } 
+        
+        public override void InitialCareerSetup()
+        {
+            var playerHero = Hero.MainHero;
+            
+            playerHero.ClearPerks();
+            playerHero.SetSkillValue(TORSkills.Faith, 0);
+            var toRemoveFaith= Hero.MainHero.HeroDeveloper.GetFocus(TORSkills.Faith);
+            Hero.MainHero.HeroDeveloper.RemoveFocus(TORSkills.Faith,toRemoveFaith);
+            
+            playerHero.HeroDeveloper.UnspentFocusPoints += toRemoveFaith;
+
+            if (playerHero.HasAttribute("Priest"))
+            {
+                playerHero.RemoveAttribute("Priest");
+                playerHero.GetExtendedInfo().RemoveAllPrayers();
+               
+            }
+            
+            if (playerHero.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
+            {
+                CultureObject mousillonCulture= MBObjectManager.Instance.GetObject<CultureObject>("mousillon");
+                Hero.MainHero.Culture = mousillonCulture;
+            }
+            
+            if (playerHero.Culture.StringId == "empire")
+            {
+                CultureObject sylvaniaCulture= MBObjectManager.Instance.GetObject<CultureObject>(TORConstants.SYLVANIA_CULTURE);
+                Hero.MainHero.Culture = sylvaniaCulture;
+            }
+            
+            var religions = ReligionObject.All.FindAll(x => x.Affinity == ReligionAffinity.Order);
+
+            foreach (var religion in religions)
+            {
+                Hero.MainHero.AddReligiousInfluence(religion,-100,true);
+            }
+            
+            ReligionObject nagash= ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash");
+            if (nagash != null)
+            {
+                Hero.MainHero.AddReligiousInfluence(nagash,25,true);
+            }
+            
+            List<string> allowedLores = new List<string>() { "MinorMagic", "Necromancy", "DarkMagic", "LoreOfMetal","LoreOfHeavens" };
+            
+            foreach (var lore in LoreObject.GetAll())
+            {
+                if(allowedLores.Contains(lore.ID))
+                    continue;
+                
+                Hero.MainHero.GetExtendedInfo().RemoveKnownLore(lore.ID);
+            }
+
+            Hero.MainHero.GetExtendedInfo().RemoveAllSpells();
+            
+            var race = FaceGen.GetRaceOrDefault("vampire");
+            Hero.MainHero.CharacterObject.Race = race;
+                
+            var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
+            Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
+     
+            Hero.MainHero.AddKnownLore("Necromancy");
+            Hero.MainHero.AddAbility("SummonSkeleton");
+            Hero.MainHero.AddKnownLore("MinorMagic");
+            Hero.MainHero.AddAbility("Dart");
+            
+            Hero.MainHero.AddAttribute("Necromancer");
+            Hero.MainHero.AddAttribute("SpellCaster");
+            
+            
+            MBInformationManager.AddQuickInformation(new TextObject(Hero.MainHero.Name+" became a Vampire"), 0, CharacterObject.PlayerCharacter);
         }
         
         

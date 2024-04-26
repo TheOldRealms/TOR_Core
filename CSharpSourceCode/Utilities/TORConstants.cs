@@ -31,5 +31,7 @@ namespace TOR_Core.Utilities
         public const int BRETONNIA_VOICES_COUNT = 3;
 
         public const string HERRIMAULT_CULTURE = "sea_raiders";
+        public const string BRETONNIA_CULTURE = "vlandia";
+        public const string SYLVANIA_CULTURE = "khuzait";
     }
 }

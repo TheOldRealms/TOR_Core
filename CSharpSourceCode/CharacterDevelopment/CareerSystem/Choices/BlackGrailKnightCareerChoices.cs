@@ -2,11 +2,13 @@
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
@@ -377,6 +379,23 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _blackGrailVowPassive3.Initialize(CareerID, "{=holy_crusader_passive3_str}Mousillon Knights gain 15% Wardsave.", "BlackGrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.All,
                 (attacker, victim, mask) => victim.BelongsToMainParty() && isMousillonKnight(victim.Character as CharacterObject)));
             _blackGrailVowPassive4.Initialize(CareerID, "Every necromancer and Vampire companion gains 10 dark energy per day.", "BlackGrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.CompanionLimit));
+        }
+        
+        public override void InitialCareerSetup()
+        {
+            ReligionObject lady= ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_lady");
+            if (lady != null)
+            {
+                Hero.MainHero.AddReligiousInfluence(lady,-100,false);
+            }
+            ReligionObject nagash= ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash");
+            if (nagash != null)
+            {
+                Hero.MainHero.AddReligiousInfluence(nagash,25,true);
+            }
+            
+            CultureObject mousillonCulture= MBObjectManager.Instance.GetObject<CultureObject>("mousillon");
+            Hero.MainHero.Culture = mousillonCulture;
         }
 
         private bool isMousillonKnight(CharacterObject characterObject)

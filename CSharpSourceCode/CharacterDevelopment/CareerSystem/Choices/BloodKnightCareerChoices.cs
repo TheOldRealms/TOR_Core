@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.DamageSystem;
@@ -410,8 +411,30 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 playerHero.RemoveAttribute("Priest");
                 playerHero.GetExtendedInfo().RemoveAllPrayers();
             }
-
-            Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 99);
+            
+            if (playerHero.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
+            {
+                CultureObject mousillonCulture= MBObjectManager.Instance.GetObject<CultureObject>("mousillon");
+                Hero.MainHero.Culture = mousillonCulture;
+            }
+            
+            if (playerHero.Culture.StringId == "empire")
+            {
+                CultureObject sylvaniaCulture= MBObjectManager.Instance.GetObject<CultureObject>(TORConstants.SYLVANIA_CULTURE);
+                Hero.MainHero.Culture = sylvaniaCulture;
+            }
+            
+            var religions = ReligionObject.All.FindAll(x => x.Affinity == ReligionAffinity.Order);
+            foreach (var religion in religions)
+            {
+                Hero.MainHero.AddReligiousInfluence(religion,-100,true);
+            }
+            
+            ReligionObject nagash= ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash");
+            if (nagash != null)
+            {
+                Hero.MainHero.AddReligiousInfluence(nagash,25,true);
+            }
             
             playerHero.SetSkillValue(TORSkills.SpellCraft,0);
             var toRemoveSpellcraft= Hero.MainHero.HeroDeveloper.GetFocus(TORSkills.SpellCraft);
