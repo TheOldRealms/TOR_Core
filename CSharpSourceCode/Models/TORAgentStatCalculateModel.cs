@@ -436,6 +436,15 @@ namespace TOR_Core.Models
             var agentCharacter = agent.Character as CharacterObject;
             var agentCaptain = agent.GetCaptainCharacter();
             var agentLeader = agent.GetPartyLeaderCharacter();
+            var agentParty = agent.GetOriginMobileParty();
+
+            if (agentParty != null && agentParty.HasAnyActiveBlessing())
+            {
+                if (agentParty.HasBlessing("cult_of_manaan"))
+                {
+                    damagebonuses[(int)DamageType.Lightning] += 0.10f;
+                }
+            }
 
             var wieldedItem = agent.WieldedWeapon.Item;
 

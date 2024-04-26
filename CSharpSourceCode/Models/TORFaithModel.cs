@@ -59,7 +59,6 @@ namespace TOR_Core.Models
             if(party==null || !party.IsActive|| !party.IsLordParty) return;
             
             
-            
             var duration = CalculateBlessingDurationForParty(party);
             
             
