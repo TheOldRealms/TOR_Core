@@ -752,14 +752,16 @@
   <string id="tor_religion_blessing_effect_description.cult_of_taal" text="{=tor_religion_blessing_effect_description_cult_of_taal}Increase your party's movement speed in forests by 20%." />
   <string id="tor_religion_blessing_effect_description.cult_of_lady" text="{=tor_religion_blessing_effect_description_cult_of_lady}As Bretone, earn every day 15 Chivalry" />
   <string id="tor_religion_blessing_effect_description.cult_of_ulric" text="{=tor_religion_blessing_name_cult_of_ulric_str}Earn 20% more xp from battles." />
+  <string id="tor_religion_blessing_effect_description.cult_of_myrmidia" text="{=tor_religion_blessing_effect_description_cult_of_sigmar}No effect" />
+  <string id="tor_religion_blessing_effect_description.cult_of_manaan" text="{=tor_religion_blessing_effect_description_cult_of_sigmar}Extra 10% Lightning damage" />
   
-  <string id="tor_religion_blessing_effect_description.cult_of_myrmidia" text="{=tor_religion_blessing_effect_description_cult_of_sigmar}Blessing of Sigmar" />
   <string id="tor_religion_blessing_name.cult_of_sigmar" text="{=tor_religion_blessing_name_cult_of_sigmar_str}Blessing of Sigmar" />
   <string id="tor_religion_blessing_name.cult_of_shallya" text="{=tor_religion_blessing_name_cult_of_taal_str}Blessing of Shallya" />
   <string id="tor_religion_blessing_name.cult_of_taal" text="{=tor_religion_blessing_name_cult_of_taal_str}Blessing of Taal" />
   <string id="tor_religion_blessing_name.cult_of_lady" text="{=tor_religion_blessing_name_cult_of_lady_str}Blessing of the Lady" />
   <string id="tor_religion_blessing_name.cult_of_myrmidia" text="{=tor_religion_blessing_name_cult_of_myrmidia_str}Blessing of Myrmidia" />
   <string id="tor_religion_blessing_name.cult_of_ulric" text="{=tor_religion_blessing_name_cult_of_ulric_str}Blessing of Ulric." />
+  <string id="tor_religion_blessing_name.cult_of_manaan" text="{=tor_religion_blessing_name_cult_of_ulric_str}Blessing of Manaan." />
 
   <!-- Career related -->
   <string id="career_title.WarriorPriest" text="{=tor_career_title_warrior_priest_str}Warrior Priest of Sigmar" />
