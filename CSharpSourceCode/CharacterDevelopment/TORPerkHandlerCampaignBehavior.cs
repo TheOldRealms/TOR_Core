@@ -59,8 +59,6 @@ namespace TOR_Core.CharacterDevelopment
                         }
                     }
                     
-                    
-
                     if (Hero.MainHero.HasAnyCareer())
                     {
                        

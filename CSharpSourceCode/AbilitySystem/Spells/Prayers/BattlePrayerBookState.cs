@@ -6,6 +6,5 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
     {
         public override bool IsMenuState => true;
         public BattlePrayerBookState() { }
-        
     }
 }
