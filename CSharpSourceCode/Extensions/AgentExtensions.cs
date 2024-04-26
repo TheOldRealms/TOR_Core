@@ -159,19 +159,7 @@ namespace TOR_Core.Extensions
             failureReason = new TextObject("{=tor_cast_fail_comp_null}Abilitycomponent is null!");
             return false;
         }
-
-        /// <summary>
-        /// Get Extended Character properties based on dynamic properties like temporary weapon enhancements
-        /// and status effects and static properties  like equipment and unit information.
-        /// 
-        /// </summary>
-        /// <param name="agent">The agent are accessing. Note that Units are handled differently from Heroes.
-        /// Hero equipment information that gets read out for Heroes specifically resides in the 'tor_extendeditemproperties.xml'
-        /// Unit information gets read out from the tor_extendedunitproperties.xml
-        /// </param>
-        /// <paramref name="agent"/>
-        /// <param name="propertyMask">Which properties needs to be accessed? Be mindful about which information is really required for your specific situation. Not used properties are returned as empty arrays</param>
-        ///<returns>A struct containing 3 arrays, each containing the  properties:  proportions, damage amplifications and resistances.</returns>
+        
         public static AgentPropertyContainer GetProperties(this Agent agent, PropertyMask propertyMask, AttackTypeMask attackTypeMask)
         {
             if (!(MissionGameModels.Current.AgentApplyDamageModel is TORAgentApplyDamageModel damageModel))
@@ -180,7 +168,6 @@ namespace TOR_Core.Extensions
             }
             
             return damageModel.CreateAgentPropertyContainer(agent, propertyMask, attackTypeMask);
-            
         }
         
         
