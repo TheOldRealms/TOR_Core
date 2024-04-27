@@ -17,12 +17,17 @@ namespace TOR_Core.CampaignMechanics.Menagery
     {
         private const string _nobleID = "tor_zoologist_empire";
         private const int DemigryphCost = 1000;
+        private const int RepeatableInfluenceCosts = 25;
+        private const int RepeatablePrestigeGain = 15;
         private Settlement _altdorf;
         private Hero _empireNoble;
         private bool _knowsPlayer;
         private bool _receivedDemiGryphen;
         private List<string> _constructedBuildings = new List<string>();
-        private List<string> _politicalPowerProjects = new List<string>();
+        private readonly List<string> _politicalPowerProjects = new List<string>();
+
+        private const string Firstname = "Berthold";
+        private const string LastName = "Wendehals";
 
         public override void RegisterEvents()
         {
@@ -32,17 +37,19 @@ namespace TOR_Core.CampaignMechanics.Menagery
 
         private void OnSessionLaunched(CampaignGameStarter obj)
         {
-            initializeVariables();
-            AddZoologistDialogLines(obj);
+            InitializeVariables();
+            AddPrestigeNobleDialogLines(obj);
 
-            void initializeVariables()
+            void InitializeVariables()
             {
-                MBTextManager.SetTextVariable("PRESTIGE_ICON",
+                MBTextManager.SetTextVariable("PRESTIGE_ICON", 
                     CustomResourceManager.GetResourceObject("Prestige").GetCustomResourceIconAsText());
                 MBTextManager.SetTextVariable("PRESTIGE_COST", DemigryphCost.ToString());
+                
+                MBTextManager.SetTextVariable("INFLUENCE_ICON","{=!}<img src=\"General\\Icons\\Influence@2x\" extend=\"7\">");
             }
             
-            void AddZoologistDialogLines(CampaignGameStarter campaignGameStarter)
+            void AddPrestigeNobleDialogLines(CampaignGameStarter campaignGameStarter)
             {
                 //not empire
                 campaignGameStarter.AddDialogLine("noble_foreign", "start", "close_window",
@@ -55,7 +62,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
 
                 //knows player false
                 campaignGameStarter.AddDialogLine("noble_introduction_1", "start", "noble_introduction_2",
-                    "It is a pleasure to make your acquaintance, I am Lord Berthold Wendehals. You have been making quite a name for yourself it would seem, many amongst the Imperial courts know of your exploits.",
+                    $"It is a pleasure to make your acquaintance, I am Lord {Firstname} {LastName}. You have been making quite a name for yourself it would seem, many amongst the Imperial courts know of your exploits.",
                     () => !_knowsPlayer && EmpirePrestigeNobleStartCondition(), null, 200);
                 campaignGameStarter.AddDialogLine("noble_introduction_2", "noble_introduction_2",
                     "noble_introduction_3",
@@ -103,13 +110,13 @@ namespace TOR_Core.CampaignMechanics.Menagery
 
                 void InitPrestigeItemDialog()
                 { 
-                    campaignGameStarter.AddDialogLine("noble_prestige_items_hub", "noble_prestige_items_intro",
+                    campaignGameStarter.AddDialogLine("noble_prestige_items_intro", "noble_prestige_items_intro",
                     "noble_prestige_item_hub",
                     "Hmm.. currently there is only one thing I have on hand, but it is very unique. A beast from the Imperial Menagerie, should you be interested?",
                     null, null, 200);
 
                 obj.AddPlayerLine("noble_prestige_item_selection_mount", "noble_prestige_item_hub",
-                    "noble__prestige_item_explain_mount",
+                    "noble_prestige_item_explain_mount",
                     "What sort of beast?",
                     null, null, 200);
 
@@ -122,18 +129,18 @@ namespace TOR_Core.CampaignMechanics.Menagery
                 //selection Mount
                     void InitSelectionMount()
                     {
-                        campaignGameStarter.AddDialogLine("noble_prestige_item_explain_mount",
-                            "noble__prestige_item_explain_mount", "noble__prestige_item_choice",
-                            "Due to some rather unfortunate circumstances, we have a monstrous steed without a rider. A Demigryph, to be precise. While the rider will be missed, the keeper of the Imperial Menagerie doesn't know what to do with it. Luckily, I have contacts within the Order of the fallen Knight and they may be willing to entrust the mount to you... (Cost 1000 Prestige)",
+                        campaignGameStarter.AddDialogLine("noble_prestige_item_explain_mount", "noble_prestige_item_explain_mount", 
+                            "noble__prestige_item_choice",
+                            $"Due to some rather unfortunate circumstances, we have a monstrous steed without a rider. A Demigryph, to be precise. While the rider will be missed, the keeper of the Imperial Menagerie doesn't know what to do with it. Luckily, I have contacts within the Order of the fallen Knight and they may be willing to entrust the mount to you... ({DemigryphCost}{{PRESTIGE_ICON}}",
                             null, null, 200);
 
 
                         obj.AddPlayerLine("noble__prestige_item_choice_agree", "noble__prestige_item_choice",
                             "noble_hub_intro2",
                             "Price is no issue, such a mighty steed would be worth it. ({PRESTIGE_COST}{PRESTIGE_ICON}) ",
-                            () => HasEnoughPrestigeForMount(), SelectDemiGryphen, 200);
+                            HasEnoughPrestigeForMount, SelectDemiGryphen, 200);
 
-                        obj.AddPlayerLine("noble_prestige_item_choice_decline", "noble_prestige_item_choice",
+                        obj.AddPlayerLine("noble_prestige_item_choice_decline", "noble__prestige_item_choice",
                             "noble_hub_intro2",
                             "Not at this time, perhaps later.", null, null, 200);
                         
@@ -154,8 +161,6 @@ namespace TOR_Core.CampaignMechanics.Menagery
 
                     string buildingPrestigeSelection = "noble_prestige_building_selection_";
                     string buildingPrestigeExplain = "noble_prestige_building_explain_";
-
-                    int buildingAmount = 5;
                     
                     string[] buildingsTexts = new[]
                     {
@@ -166,33 +171,43 @@ namespace TOR_Core.CampaignMechanics.Menagery
                         "[Renovate the Heldenhammer]",
                     };
                     
-                    string[] buildingExplainTexts = new[]
+                    int[] buildingCosts = new[]
                     {
-                        "The Cult of Sigmar within Altdorf has ambitions to build a rather sizeable statue of our most glorious Sigmar, upon a hill with a prestigous view of his beloved Empire. They are lacking in some funding to ensure it's timely completion, I can ensure your name is written upon such a wondrous memorial for a measly cost. (200k Gold)",
-                        "There are many who suffer across the Empire and Shallya's priestesses are needed more than ever, however funding a Temple to the Lady in White is no small endeavour. You can be sure that, for a little coin, your name will be praised for generations for aiding in such a selfless act. (200k)",
-                        "The threat we face from Norsca is ever present, the Elector Count of Nordland has called for the construction of a new dry dock to empower the Imperial Navy. It has already been funded by the local lords...however for a little extra I can ensure you are known as the prime contributor. (200k)",
-                        "The forests and the hills of the Empire need constant patrols to ensure the safety of it's citizens, one of the local garrisons is in dire need of training equipment and you have an opportunity to provide it for them. (200k)",
-                        "It takes a lot of coin to keep the mighty Heldenhammer afloat, the Grand Theogonist and the Cult of Sigmar will look very favourably upon any who donate to ensure it is battle ready at all times. (200k)",
+                        200000,
+                        400000,
+                        500000,
+                        250000,
+                        500000
                     };
                     
-                    for (int i = 0; i < buildingAmount; i++)
+                    string[] buildingExplainTexts = new[]
                     {
-                        obj.AddPlayerLine(buildingPrestigeSelection+i, "noble_prestige_infrastructure_hub_selection",
-                            buildingPrestigeExplain+i,
-                            buildingsTexts[i],
-                            ()=> !_constructedBuildings.Any(x=>x.Contains("building"+i)), null, 200);
+                        $"The Cult of Sigmar within Altdorf has ambitions to build a rather sizeable statue of our most glorious Sigmar, upon a hill with a prestigous view of his beloved Empire. They are lacking in some funding to ensure it's timely completion, I can ensure your name is written upon such a wondrous memorial for a measly cost. ({buildingCosts[0]} {{GOLD_ICON}})",
+                        $"There are many who suffer across the Empire and Shallya's priestesses are needed more than ever, however funding a Temple to the Lady in White is no small endeavour. You can be sure that, for a little coin, your name will be praised for generations for aiding in such a selfless act.({buildingCosts[1]} {{GOLD_ICON}})",
+                        $"The threat we face from Norsca is ever present, the Elector Count of Nordland has called for the construction of a new dry dock to empower the Imperial Navy. It has already been funded by the local lords...however for a little extra I can ensure you are known as the prime contributor. ({buildingCosts[2]} {{GOLD_ICON}})",
+                        $"The forests and the hills of the Empire need constant patrols to ensure the safety of it's citizens, one of the local garrisons is in dire need of training equipment and you have an opportunity to provide it for them. ({buildingCosts[3]} {{GOLD_ICON}})",
+                        $"It takes a lot of coin to keep the mighty Heldenhammer afloat, the Grand Theogonist and the Cult of Sigmar will look very favourably upon any who donate to ensure it is battle ready at all times. ({buildingCosts[4]} {{GOLD_ICON}})",
+                    };
+                    
+                    for (int i = 0; i < buildingCosts.Length; i++)
+                    {
+                        var index = i; //I really don't get this one. It's crazy. with i it doesn't work. Maybe somebody else can explain.
+                        obj.AddPlayerLine(buildingPrestigeSelection+index, "noble_prestige_infrastructure_hub_selection",
+                            buildingPrestigeExplain+index,
+                            buildingsTexts[index],
+                            ()=> !_constructedBuildings.Any(x=>x.Contains("building"+index)), null, 200);
                         
                         campaignGameStarter.AddDialogLine(buildingPrestigeExplain+i, buildingPrestigeExplain+i,
-                            $"buildingPrestigeSelection{i}_choice",
-                            buildingExplainTexts[i],
+                            $"buildingPrestigeSelection{index}_choice",
+                            buildingExplainTexts[index],
                             null, null, 200);
                         
-                        campaignGameStarter.AddPlayerLine($"noble_prestige_item_selection_building_{i}_agree", $"buildingPrestigeSelection{i}_choice",
+                        campaignGameStarter.AddPlayerLine($"noble_prestige_item_selection_building_{index}_agree", $"buildingPrestigeSelection{index}_choice",
                             "noble_hub_intro2",
-                            "That sounds good, I will send you the funding.",
-                            null, ()=>_constructedBuildings.Add("building"+i), 200);
+                            $"That sounds good, I will send you the funding. ({buildingCosts[index]}{{GOLD_ICON}})",
+                            () => HasEnoughGold(buildingCosts[index]), ()=> StartTransaction(buildingCosts[index],index) , 200);
                         
-                        campaignGameStarter.AddPlayerLine($"noble_prestige_item_selection_building_{i}_decline", $"buildingPrestigeSelection{i}_choice",
+                        campaignGameStarter.AddPlayerLine($"noble_prestige_item_selection_building_{index}_decline", $"buildingPrestigeSelection{index}_choice",
                             "noble_hub_intro2",
                             "Not at this time, perhaps later.",
                             null,null  , 200);
@@ -203,7 +218,20 @@ namespace TOR_Core.CampaignMechanics.Menagery
                         "noble_hub_intro2",
                         "Maybe something different.(back)",
                         null, null, 200);
-                    
+
+
+                    bool HasEnoughGold(int price)
+                    {
+                        var current = Hero.MainHero.Gold;
+                        return current > price;
+                    }
+
+                    void StartTransaction(int price, int id)
+                    {
+                        Hero.MainHero.ChangeHeroGold(-price);
+                        Hero.MainHero.AddCustomResource("Prestige", (price/1000));
+                        _constructedBuildings.Add("building" + id);
+                    }
                     
                 }
 
@@ -221,15 +249,22 @@ namespace TOR_Core.CampaignMechanics.Menagery
                         "[Support the Traders Guild envoy on a mission to establish gunpowder trade with Cathay]",
                         "[Support the Engineers Guild technological innovation.]",
                         "[Help fund a Huntsmen Expedition to Lustria]",
-                        "[Enlarge your Influence throughout the Empire (Repeatable)]",
+                    };
+                    
+                    int[] costs = new[]
+                    {
+                        200,
+                        400,
+                        200,
+                        400,
                     };
                     
                     string[] explainPowerProjectTexts = new[]
                     {
-                        "A diplomatic mission is set to leave for Ulthuan, but they fear they are lacking in gifts elegent enough to appease the knife ears...elves. Perhaps you could help them? (cost here)",
-                        "It is with faith, steel and gunpowder that we protect the Empire and we need a lot of gunpowder. Cathay also also makes use of black powder and in a hope to bring our two peoples closer, the Trade Guild has sent an envoy to establish trade ties. They require mercenary protection and are looking for funding. (cost here)",
-                        "The wonders of the Engineers Guild are many but they are equally as costly to invent, test and so forth. Funding their experimental endeavours would earn you an ample amount of public opinion. (cost here)",
-                        "Beasts are myriad within the jungles of Lustria, the Huntsmen are set to go on a hunt soon but could use help acquiring provisions for such an arduous journey. (cost here)",
+                        $"A diplomatic mission is set to leave for Ulthuan, but they fear they are lacking in gifts elegent enough to appease the knife ears...elves. Perhaps you could help them? ({costs[0]} {{INFLUENCE_ICON}})",
+                        $"It is with faith, steel and gunpowder that we protect the Empire and we need a lot of gunpowder. Cathay also also makes use of black powder and in a hope to bring our two peoples closer, the Trade Guild has sent an envoy to establish trade ties. Some Elector Counts are not convinced yet. ({costs[1]} {{INFLUENCE_ICON)}})",
+                        $"The wonders of the Engineers Guild are many but they are equally as costly to invent, test and so forth. Funding their experimental endeavours would earn you an ample amount of public opinion. ({costs[2]} {{INFLUENCE_ICON}})",
+                        $"Beasts are myriad within the jungles of Lustria, the Huntsmen are set to go on a hunt soon but could use help acquiring provisions for such an arduous journey. ({costs[3]} {{INFLUENCE_ICON}})",
                     };
                     
                     campaignGameStarter.AddDialogLine("noble_prestige_infrastructure_hub", "noble_prestige_political_power_hub",
@@ -239,22 +274,23 @@ namespace TOR_Core.CampaignMechanics.Menagery
                     
                     for (int i = 0; i < politicalPowerProjects; i++)
                     {
-                        obj.AddPlayerLine(politicalPowerSelection+i, "noble_prestige_political_power_hub_selection",
-                            politicalPowerExplain+i,
-                            politicalPowerProjectTexts[i],
-                            ()=> !_politicalPowerProjects.Any(x=>x.Contains("powerProject"+i)), null, 200);
+                        var index = i;
+                        obj.AddPlayerLine(politicalPowerSelection+index, "noble_prestige_political_power_hub_selection",
+                            politicalPowerExplain+index,
+                            politicalPowerProjectTexts[index],
+                            ()=> !_politicalPowerProjects.Any(x=>x.Contains("powerProject"+index)), null, 200);
                         
-                        campaignGameStarter.AddDialogLine(politicalPowerExplain+i, politicalPowerExplain+i,
-                            $"powerSelection{i}_choice",
-                            explainPowerProjectTexts[i],
+                        campaignGameStarter.AddDialogLine(politicalPowerExplain+index, politicalPowerExplain+index,
+                            $"powerSelection{index}_choice",
+                            explainPowerProjectTexts[index],
                             null, null, 200);
                         
-                        campaignGameStarter.AddPlayerLine($"powerSelection_choice{i}_agree", $"powerSelection{i}_choice",
+                        campaignGameStarter.AddPlayerLine($"powerSelection_choice{index}_agree", $"powerSelection{index}_choice",
                             "noble_hub_intro2",
-                            "This sounds good, I will support this.",
-                            null, ()=>_constructedBuildings.Add("powerProject"+i), 200);
+                            $"This sounds good, I will support this.({costs[index]}{{INFLUENCE_ICON}})",
+                            ()=>HasEnoughInfluence(costs[index]), ()=>_politicalPowerProjects.Add("powerProject"+index), 200);
                         
-                        campaignGameStarter.AddPlayerLine($"powerSelection_choice{i}_decline", $"powerSelection{i}_choice",
+                        campaignGameStarter.AddPlayerLine($"powerSelection_choice{index}_decline", $"powerSelection{index}_choice",
                             "noble_hub_intro2",
                             "Not at this time, perhaps later.",
                             null,null  , 200);
@@ -263,13 +299,18 @@ namespace TOR_Core.CampaignMechanics.Menagery
                     
                     obj.AddPlayerLine(politicalPowerSelection+4, "noble_prestige_political_power_hub_selection",
                         "noble_prestige_political_power_hub",
-                        politicalPowerProjectTexts[4],
-                        null, ()=> ExchangeInfluenceForPrestige(), 200);
+                        "[Enlarge your Influence throughout the Empire (Repeatable)]",
+                        null, ()=> ExchangeInfluenceForPrestige(RepeatableInfluenceCosts,RepeatablePrestigeGain), 200);
                     
-                    
-                    void ExchangeInfluenceForPrestige()
+                    bool HasEnoughInfluence(int cost)
                     {
-                        TORCommon.Say("hello");
+                        return Hero.MainHero.Clan.Influence > cost;
+                    }
+                    
+                    void ExchangeInfluenceForPrestige(int cost, int exchange)
+                    {
+                        Hero.MainHero.AddInfluenceWithKingdom(-cost);
+                        Hero.MainHero.AddCultureSpecificCustomResource(exchange);
                     }
                     
                     obj.AddPlayerLine("noble_prestige_politicalpower_hub_back", "noble_prestige_political_power_hub_selection",
@@ -312,11 +353,11 @@ namespace TOR_Core.CampaignMechanics.Menagery
 
             var inq = new MultiSelectionInquiryData("Choose your demigryph!",
                 "The zoologist offers you his service, one of his demi gryphens he kept in the menagerie is available to you.",
-                list, false, 1, 1, "OK", null, onGryphRewardClaimed, null);
+                list, false, 1, 1, "OK", null, OnGryphRewardClaimed, null);
             MBInformationManager.ShowMultiSelectionInquiry(inq);
         }
 
-        private void onGryphRewardClaimed(List<InquiryElement> obj)
+        private void OnGryphRewardClaimed(List<InquiryElement> obj)
         {
             Hero.MainHero.AddCustomResource("Prestige", -DemigryphCost);
             var item = obj[0].Identifier as ItemObject;
@@ -340,7 +381,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
                 {
                     _empireNoble = HeroCreator.CreateSpecialHero(template, _altdorf, null, null, 50);
                     _empireNoble.SupporterOf = _altdorf.OwnerClan;
-                    _empireNoble.SetName(new TextObject(_empireNoble.FirstName + " " + template.Name),
+                    _empireNoble.SetName(new TextObject(Firstname + " " + LastName),
                         _empireNoble.FirstName);
                     HeroHelper.SpawnHeroForTheFirstTime(_empireNoble, _altdorf);
                 }
@@ -361,10 +402,10 @@ namespace TOR_Core.CampaignMechanics.Menagery
         {
             if (Settlement.CurrentSettlement == null || Settlement.CurrentSettlement != _altdorf) return;
             var locationchar = _altdorf.LocationComplex.GetLocationCharacterOfHero(_empireNoble);
-            var menagery = _altdorf.LocationComplex.GetLocationWithId("lordshall");
+            var lordsHall = _altdorf.LocationComplex.GetLocationWithId("lordshall");
             var currentloc = _altdorf.LocationComplex.GetLocationOfCharacter(locationchar);
-            if (locationchar is null || menagery is null || currentloc is null) return;
-            if (currentloc != menagery) _altdorf.LocationComplex.ChangeLocation(locationchar, currentloc, menagery);
+            if (locationchar is null || lordsHall is null || currentloc is null) return;
+            if (currentloc != lordsHall) _altdorf.LocationComplex.ChangeLocation(locationchar, currentloc, lordsHall);
         }
 
 
@@ -373,6 +414,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
             dataStore.SyncData("_knowsPlayer", ref _knowsPlayer);
             dataStore.SyncData("_receivedDemiGryphen", ref _receivedDemiGryphen);
             dataStore.SyncData("_constructedBuildings", ref _constructedBuildings);
+            dataStore.SyncData("_politicalPowerProjects", ref _constructedBuildings);
         }
     }
 }
