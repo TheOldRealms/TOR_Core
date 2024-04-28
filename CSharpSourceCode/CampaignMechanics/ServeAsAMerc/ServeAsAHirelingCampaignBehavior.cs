@@ -30,7 +30,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         private bool _hireling_enlistingLord_is_attacking;
         private bool _hireling_lord_is_fighting_without_player;
 
-        private bool testingQuick = false;
+        private bool testingQuick = true;
 
         private bool _startBattle;
 
@@ -59,7 +59,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                 _startBattle = false;
                 MenuHelper.EncounterAttackConsequence(obj);
             }
-            if (testingQuick && _hireling_enlistingLord_is_attacking)
+            if (!testingQuick && _hireling_enlistingLord_is_attacking)
             {
                 _startBattle = false;
             }
