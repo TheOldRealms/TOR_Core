@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Ink.Parsed;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
@@ -14,42 +16,24 @@ namespace TOR_Core.AbilitySystem.Scripts
 {
     public class AccusationScript : CareerAbilityScript
     {
-        private Agent _target;
-        
-        public override void SetExplicitSingleTarget(Agent agent)
+
+        protected override void OnBeforeTick(float dt)
         {
-            base.SetExplicitSingleTarget(agent);
-            _target = agent;
-        }
+            if (ExplicitTargetAgents.Count == 0) return;
 
-        protected override void TriggerEffects(Vec3 position, Vec3 normal)
-        {
-            base.TriggerEffects(position,normal);
-
-            if (_target == null) return;
-
-            var chance = _ability.Template.ScaleVariable1;
+            var chance = Ability.Template.ScaleVariable1;
 
             var additionalTargetNumber = CalculateAdditonalTargetAmount(chance);
-            
-            var effects = GetEffectsToTrigger();
-            
-            var targets = GetAdditionalAccusationMarkTargets(_target.Position.AsVec2, additionalTargetNumber);
 
-            foreach (var effect in effects)
-            {
-                effect.Trigger(position, normal, _casterAgent, _ability.Template, targets );
-            }
+            var additionalTargets = GetAdditionalAccusationMarkTargets(ExplicitTargetAgents[0].Position.AsVec2, additionalTargetNumber);
 
-            if (Hero.MainHero.HasCareerChoice("NoRestAgainstEvilKeystone"))
+            MBList<Agent> list = new MBList<Agent>
             {
-                var effect = effects.FirstOrDefault();
-                if (effect != null)
-                {
-                    _casterAgent.ApplyStatusEffect("accusation_buff_penetration", _casterAgent, effect.ImbuedStatusEffectDuration, false);
-                }
-                
-            }
+                ExplicitTargetAgents[0]
+            };
+            list.AddRange(additionalTargets);
+            
+            SetExplicitTargetAgents(list);
         }
 
         public static int CalculateAdditonalTargetAmount(float chance)
@@ -104,12 +88,6 @@ namespace TOR_Core.AbilitySystem.Scripts
             }
             
             return targets;
-        }
-
-        public override void Stop()
-        {
-            TORCommon.Say("Stop");
-            base.Stop();
         }
     }
 }

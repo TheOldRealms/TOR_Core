@@ -1,5 +1,5 @@
 ﻿using TaleWorlds.Library;
-using TOR_Core.BattleMechanics.AI.Decision;
+using TOR_Core.BattleMechanics.AI.CommonAIFunctions;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -23,7 +23,7 @@ namespace TOR_Core.AbilitySystem
 
         public MatrixFrame CalculateRotatedFrame(MatrixFrame globalFrame, float dt)
         {
-            if (enabled && _target != null && (_target.Agent != null || _target.Formation.CountOfUnits > 0))
+            if (enabled && _target != null && (_target.Agent != null || (_target.Formation != null && _target.Formation.CountOfUnits > 0)))
             {
                 var particleDirection = globalFrame.origin + globalFrame.rotation.f.NormalizedCopy();
                 var error = _target.GetPosition() - particleDirection;

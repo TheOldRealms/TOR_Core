@@ -19,7 +19,6 @@ namespace TOR_Core.BattleMechanics.SFX
         private bool _passedFadeIn;
         private float _timer;
         private float _currentIntensity;
-        private float _fadeOutPeriod;
         private float _fadeOutBegin;
         private Light _light;
 

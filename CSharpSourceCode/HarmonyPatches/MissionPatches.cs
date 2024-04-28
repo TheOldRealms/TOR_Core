@@ -29,9 +29,6 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class MissionPatches
     {
-        public delegate void OnBossFightInit();
-
-        public static OnBossFightInit InitBossFight;
         
         [HarmonyPrefix]
         [HarmonyPatch(typeof(CampaignAgentComponent), "OwnerParty", MethodType.Getter)]
@@ -63,7 +60,12 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(HideoutMissionController), "OnInitialFadeOutOver")]
         public static bool PostOnInitialFadeOutOver()
         {
-            InitBossFight?.Invoke();
+            var abilityManagerMissionLogic = Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>();
+            if (abilityManagerMissionLogic != null)
+            {
+                abilityManagerMissionLogic.InitHideOutBossFight();
+            }
+            
             return true;
         }
         

@@ -10,6 +10,7 @@ using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.HarmonyPatches;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -50,7 +51,7 @@ namespace TOR_Core.AbilitySystem
                 if (Hero.MainHero.HasCareer(TORCareers.WitchHunter)
                     || Hero.MainHero.HasCareerChoice("CourtleyKeystone")
                     || Hero.MainHero.HasCareerChoice("EnhancedHorseCombatKeystone")
-                    || Hero.MainHero.HasCareerChoice("NoRestAgainstEvilKeystone")
+                    || Hero.MainHero.HasCareerChoice("SwampRiderKeystone")
                     || Hero.MainHero.HasCareerChoice("LiberMortisKeystone"))
                     _currentCharge = _maxCharge;
                 else
@@ -67,7 +68,7 @@ namespace TOR_Core.AbilitySystem
                 var prefabEntity = SpawnEntity();
                 parentEntity.AddChild(prefabEntity);
                 AbilityScript?.Initialize(this);
-                AbilityScript?.SetAgent(casterAgent);
+                AbilityScript?.SetCasterAgent(casterAgent);
                 parentEntity.CallScriptCallbacks();
             }
             else

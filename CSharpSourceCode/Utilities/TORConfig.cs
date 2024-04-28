@@ -18,6 +18,8 @@ namespace TOR_Core.Utilities
         public static int FakeBannerFrequency => _config.FakeBannerFrequency;
         public static int MaximumCustomResourceValue => _config.MaximumCustomResourceValue;
         public static int NumberOfTroopsPerFormationWithStandard => _config.NumberOfTroopsPerFormationWithStandard;
+        public static double YearsToEndEarlyCampaign => _config.YearsToEndEarlyCampaign;
+        public static double YearsToEndMidCampaign => _config.YearsToEndMidCampaign;
         public static int NumberOfMaximumLooterPartiesEarly => _config.NumberOfMaximumLooterPartiesEarly;
         public static int NumberOfMaximumLooterParties => _config.NumberOfMaximumLooterParties;
         public static int NumberOfMaximumLooterPartiesLate => _config.NumberOfMaximumLooterPartiesLate;
@@ -28,6 +30,7 @@ namespace TOR_Core.Utilities
         public static int MaximumNumberOfCareerPerkPoints => _config.MaximumNumberOfCareerPerkPoints;
         public static float DeclareWarScoreMultiplierTor => _config.DeclareWarScoreMultiplierTor;
         public static float DeclareWarScoreMultiplierNative => _config.DeclareWarScoreMultiplierNative;
+        public static float DeclarePeaceMultiplier => _config.DeclarePeaceMultiplier;
 
         public static void ReadConfig()
         {
@@ -54,6 +57,10 @@ namespace TOR_Core.Utilities
             [XmlAttribute]
             public int NumberOfTroopsPerFormationWithStandard;
             [XmlAttribute]
+            public double YearsToEndEarlyCampaign;
+            [XmlAttribute]
+            public double YearsToEndMidCampaign;
+            [XmlAttribute]
             public int NumberOfMaximumLooterPartiesEarly;
             [XmlAttribute]
             public int NumberOfMaximumLooterParties;
@@ -73,6 +80,8 @@ namespace TOR_Core.Utilities
             public float DeclareWarScoreMultiplierTor;
             [XmlAttribute]
             public float DeclareWarScoreMultiplierNative;
+            [XmlAttribute]
+            public float DeclarePeaceMultiplier;
         }
     }
 }

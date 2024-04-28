@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
@@ -33,10 +34,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             originalTroop = characterTemplate;
             level = characterTemplate.Level;
             var index = Hero.MainHero.PartyBelongedTo.MemberRoster.FindIndexOfTroop(characterTemplate);
-            var count = Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementCopyAtIndex(index).Number;
-
             
-
+            var healthyTroops= Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementNumber(index);
+            var woundedTroops = Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementWoundedNumber(index);
+            
+            var count = healthyTroops - woundedTroops;
+            
             var value = Hero.MainHero.GetCustomResourceValue("Prestige");
             
             var canAfford = (int) value/retinueCost;
@@ -54,10 +57,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 {
                     if (!elem.Troop.IsHero)
                     {
+                        copiedTroopRoster.AddToCounts(elem.Troop, 1,false,0,elem.Xp,true);
                         Hero.MainHero.PartyBelongedTo.MemberRoster.RemoveTroop(elem.Troop);
-                        copiedTroopRoster.AddToCounts(elem.Troop, 1);
                     }
                 }
+                copiedTroopRoster.RemoveZeroCounts();
                 PartyScreenManager.OpenScreenAsReceiveTroops(roster, new TextObject("Witch Hunter Retinues"), AddRetinuesAndCalculateXPGain);
             }
         }
@@ -76,33 +80,51 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
                 var retinues = rightownerparty.MobileParty.MemberRoster.ToFlattenedRoster().ToList();
                 retinues = retinues.Where(x => x.Troop.StringId.Contains(retinueID)).ToList();
-
-                var xpGain = CalculateXPGainForRetinues(count, level, retinues.Count);
-                foreach (var retinue in retinues)
+                
+                var xpGain = CalculateXPGainForRetinues(count, level, retinues);
+                if (xpGain >= 0)
                 {
-                    var index = MobileParty.MainParty.MemberRoster.FindIndexOfTroop(retinue.Troop);
-                    MobileParty.MainParty.MemberRoster.SetElementXp(index, MobileParty.MainParty.MemberRoster.GetElementXp(retinue.Troop) + xpGain);
+                    foreach (var retinue in rightownerparty.MobileParty.MemberRoster.GetTroopRoster().Where(x=> x.Character.StringId.Contains(retinueID)))
+                    {
+                        if (retinue.Character.UpgradeTargets.Length <= 0) continue;
+                        MobileParty.MainParty.MemberRoster.AddXpToTroop(xpGain * retinue.Number, retinue.Character);
+                    }
                 }
+                
             }
             
             _retinue = null;
             Game.Current.GameStateManager.PopState();
         }
 
-        private int CalculateXPGainForRetinues(int unitCount, int level, int retinueCount)
+        private int CalculateXPGainForRetinues(int unitCount, int level, List<FlattenedTroopRosterElement> retinues)
         {
+            var retinueCount = retinues.Count;
+            foreach (var elem in retinues)
+            {
+                if (elem.Troop.UpgradeTargets.Length > 0)
+                {
+                    if (elem.Troop.GetUpgradeXpCost(PartyBase.MainParty, 0)<=0)
+                    {
+                        retinueCount--;
+                    }
+                }
+            }
+            
             if (retinueCount <= 0) return 0;
 
             return ( 15 * level * unitCount ) / retinueCount;
         }
         
-        public override void ButtonClickedEvent(CharacterObject characterObject)
+        public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner=false)
         {
             SetUpRetinueExchange(characterObject);
         }
 
         public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner)
         {
+            
+            if (PartyScreenManager.Instance.CurrentMode != PartyScreenMode.Normal) return false;
 
             if (characterObject.IsHero) return false;
 
@@ -112,7 +134,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             if (Hero.MainHero.GetCustomResourceValue("Prestige") < retinueCost) return false;
 
-            if (characterObject.StringId == "tor_wh_retinue")
+            if (characterObject.StringId.Contains(retinueID))
                 return false;
 
             if (!characterObject.IsHero)
@@ -123,10 +145,24 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
         public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner=false)
         {
+            var index = -1;
+            displayText = new TextObject();
+            index = Hero.MainHero.PartyBelongedTo.MemberRoster.FindIndexOfTroop(characterObject);
+
+            if (index == -1) return false;
+            
             displayText = new TextObject("Upgrades troop to a Witch Hunter Retinue");
             if (characterObject.IsEliteTroop())
             {
                 displayText = new TextObject("Knights Cant be upgraded to Retinues");
+                return false;
+            }
+            
+            var healthyTroops= Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementNumber(index);
+            var woundedTroops = Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementWoundedNumber(index);
+            if (healthyTroops - woundedTroops < 0 )
+            {
+                displayText = new TextObject("Not enough healthy troops available");
                 return false;
             }
 

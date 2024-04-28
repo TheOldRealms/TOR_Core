@@ -9,7 +9,7 @@ using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.Utilities;
 using TOR_Core.Extensions;
-using TOR_Core.BattleMechanics.AI.AgentBehavior.Components;
+using TOR_Core.BattleMechanics.AI.CastingAI.Components;
 using TOR_Core.Items;
 using TOR_Core.BattleMechanics.Crosshairs;
 using TOR_Core.Battle.CrosshairMissionBehavior;
@@ -54,6 +54,8 @@ namespace TOR_Core.AbilitySystem
         private float _disableCombatActionsDuration = 0.3f;
         private bool _disableCombatActionsAfterCast;
         private float _elapsedTimeSinceLastActivation;
+        public delegate void OnHideOutBossFightInit();
+        public event OnHideOutBossFightInit OnInitHideOutBossFight;
 
         public AbilityModeState CurrentState => _currentState;
 
@@ -65,9 +67,15 @@ namespace TOR_Core.AbilitySystem
             Mission.OnItemPickUp += OnItemPickup;
         }
 
+        public void InitHideOutBossFight()
+        {
+            OnInitHideOutBossFight?.Invoke();
+        }
+        
         public override void EarlyStart()
         {
             base.EarlyStart();
+            OnInitHideOutBossFight = null;
             _abilityView = Mission.Current.GetMissionBehavior<AbilityHUDMissionView>();
             Game.Current.EventManager.RegisterEvent(new Action<MissionPlayerToggledOrderViewEvent>(OnPlayerToggleOrder));
             _quickCastMenuKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey("QuickCastSelectionMenu");
@@ -110,7 +118,7 @@ namespace TOR_Core.AbilitySystem
             _mainHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.MainHand);
             _offHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.OffHand);
             _currentState = AbilityModeState.Targeting;
-            _abilityView.MissionScreen.SetRadialMenuActiveState(false);
+            _abilityView.MissionScreen?.SetRadialMenuActiveState(false);
 
             ChangeKeyBindings();
             SlowDownTime(true);
@@ -138,7 +146,9 @@ namespace TOR_Core.AbilitySystem
         private void EnableQuickSelectionMenuMode()
         {
             _currentState = AbilityModeState.QuickMenuSelection;
-            _abilityView.MissionScreen.SetRadialMenuActiveState(true);
+            _abilityView.MissionScreen?.SetRadialMenuActiveState(true);
+            _mainHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.MainHand);
+            _offHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.OffHand);
             ChangeKeyBindings();
             SlowDownTime(true);
         }
@@ -176,7 +186,7 @@ namespace TOR_Core.AbilitySystem
 
             ChangeKeyBindings();
             SlowDownTime(false);
-            _abilityView.MissionScreen.SetRadialMenuActiveState(false);
+            _abilityView.MissionScreen?.SetRadialMenuActiveState(false);
             var traitcomp = Agent.Main.GetComponent<ItemTraitAgentComponent>();
             if (traitcomp != null)
             {
@@ -301,6 +311,8 @@ namespace TOR_Core.AbilitySystem
                                     }
                                     else
                                     {
+                                        _mainHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.MainHand);
+                                        _offHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.OffHand);
                                         _lastActivationDeltaTime = dt;
                                         _elapsedTimeSinceLastActivation = 0;
                                         _disableCombatActionsAfterCast = true;
@@ -349,6 +361,8 @@ namespace TOR_Core.AbilitySystem
                                 }
                                 else
                                 {
+                                    _mainHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.MainHand);
+                                    _offHand = Agent.Main.GetWieldedItemIndex(Agent.HandIndex.OffHand);
                                     _lastActivationDeltaTime = dt;
                                     _elapsedTimeSinceLastActivation = 0;
                                     _disableCombatActionsAfterCast = true;

@@ -1,10 +1,7 @@
 ﻿using SandBox;
 using SandBox.Missions.AgentBehaviors;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.AgentOrigins;
 using TaleWorlds.CampaignSystem.Party;
@@ -13,11 +10,11 @@ using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
-using TOR_Core.BattleMechanics.AI.AgentBehavior.CustomMissionAgentBehaviors;
+using TOR_Core.BattleMechanics.AI.CivilianMissionAI;
 
 namespace TOR_Core.Missions
 {
-	public class TORMissionAgentHandler : MissionLogic
+    public class TORMissionAgentHandler : MissionLogic
 	{
 		private string _playerSpecialSpawnTag = null;
         private Dictionary<string, List<UsableMachine>> _usablePoints;

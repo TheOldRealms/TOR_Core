@@ -173,9 +173,23 @@ namespace TOR_Core.Models
                                     resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
                             }
                             
+                            if ((skill == DefaultSkills.OneHanded||skill == DefaultSkills.TwoHanded)&& choices.Contains("SwampRiderPassive4") && agent.Character.IsKnightUnit())
+                            {
+                                var choice = TORCareerChoices.GetChoice("ErrantryWarPassive3");
+                                if(choice.Passive!=null)
+                                    resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                            }
+                            
                             if (skill == DefaultSkills.Polearm&&choices.Contains("EnhancedHorseCombatPassive4") && agent.Character.IsKnightUnit())
                             {
                                 var choice = TORCareerChoices.GetChoice("EnhancedHorseCombatPassive4");
+                                if(choice.Passive!=null)
+                                    resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                            }
+                            
+                            if (skill == DefaultSkills.Polearm&&choices.Contains("CurseOfMousillonPassive2") && agent.Character.IsKnightUnit())
+                            {
+                                var choice = TORCareerChoices.GetChoice("CurseOfMousillonPassive2");
                                 if(choice.Passive!=null)
                                     resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
                             }

@@ -25,8 +25,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
     {
         public static float AddSkillEffectToValue(CareerChoiceObject careerChoice, Agent agent, List<SkillObject> relevantSkills, float scalingFactor, bool highestOnly = false , bool onlyWielded=false)
         {
-            SkillObject wieldedWeaponSkill = null;
-            
             float skillValue=0f;
             if (agent != null && agent.IsHero && relevantSkills != null && relevantSkills.Count > 0)
             {
@@ -196,7 +194,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 if (asFactor)
                 {
                     number.AddFactor(value, text);
-                    return;
+                    continue;
                 }
                 number.Add(value, text);
             }

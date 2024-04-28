@@ -1,4 +1,5 @@
 ﻿using TaleWorlds.Core;
+using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
@@ -8,6 +9,8 @@ namespace TOR_Core.Utilities
 {
     public static class TORSummonHelper
     {
+        private static readonly ActionIndexCache act_raise_from_ground = ActionIndexCache.Create("act_raisefromground");
+
         public static AgentBuildData GetAgentBuildData(Agent caster, string summonedUnitID)
         {
             BasicCharacterObject troopCharacter = MBObjectManager.Instance.GetObject<BasicCharacterObject>(summonedUnitID);
@@ -34,12 +37,24 @@ namespace TOR_Core.Utilities
         
         
         
-        public static Agent SpawnAgent(AgentBuildData buildData, Vec3 position)
+        public static Agent SpawnAgent(AgentBuildData buildData, Vec3 position, bool withAnimation = false)
         {
             Agent troop = Mission.Current.SpawnAgent(buildData, false);
-            troop.TeleportToPosition(position);
+            Vec3 spawnPos = position;
+            if(!Mission.Current.Scene.GetNavigationMeshForPosition(ref position))
+            {
+                spawnPos = Mission.Current.GetRandomPositionAroundPoint(position, 0.05f, 5f, true);
+            }
+            troop.TeleportToPosition(spawnPos);
             troop.FadeIn();
+            troop.WieldInitialWeapons();
             troop.SetWatchState(Agent.WatchState.Alarmed);
+            if (withAnimation)
+            {
+                troop.SetActionChannel(0, act_raise_from_ground);
+                troop.SetCurrentActionProgress(0, 0f);
+                troop.SetCurrentActionSpeed(0, 1f);
+            }
             return troop;
         }
     }

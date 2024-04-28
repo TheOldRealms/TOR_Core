@@ -1,10 +1,4 @@
-﻿using TaleWorlds.Engine;
-using TaleWorlds.MountAndBlade;
-using TaleWorlds.TwoDimension;
-using TaleWorlds.TwoDimension.Standalone.Native.OpenGL;
-using TOR_Core.GameManagers;
-using TOR_Core.Utilities;
-using Shader = TaleWorlds.TwoDimension.Standalone.Shader;
+﻿using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.AbilitySystem.Scripts
 {
@@ -20,17 +14,11 @@ namespace TOR_Core.AbilitySystem.Scripts
             
         }
 
-        public void ExtendLifeTime(float time)
+        protected override void OnBeforeRemoved(int removeReason)
         {
-            _abilityLife = Mathf.Max(0,_abilityLife-time);
-        }
-
-        public override void Stop()
-        {
-            base.Stop();
-            if (Mission.Current.GetRequestedTimeSpeed (_timeRequestID, out float _))
+            if (Mission.Current.GetRequestedTimeSpeed(_timeRequestID, out float _))
             {
-                Mission.Current.RemoveTimeSpeedRequest (_timeRequestID);
+                Mission.Current.RemoveTimeSpeedRequest(_timeRequestID);
             }
         }
     }

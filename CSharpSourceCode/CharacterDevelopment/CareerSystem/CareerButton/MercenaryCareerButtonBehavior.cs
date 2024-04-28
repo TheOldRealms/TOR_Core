@@ -91,14 +91,18 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
             _mercenaryCompanionDialogBegins=false;
         }
 
-        public override void ButtonClickedEvent(CharacterObject characterObject)
+        public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner=false)
         {
             InitiateDialog(characterObject.StringId);
         }
 
         public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner=false)
         {
-            return Hero.MainHero.HasCareerChoice("PaymasterPassive4")&& !characterObject.IsHero&&  (!characterObject.IsEliteTroop()||characterObject.IsEliteTroop()&& characterObject.IsRanged);
+            return Hero.MainHero.HasCareerChoice("PaymasterPassive4") && 
+                !characterObject.IsHero && 
+                !isPrisoner &&
+                (!characterObject.IsEliteTroop() || 
+                    (characterObject.IsEliteTroop() && characterObject.IsRanged));
         }
 
         public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner=false)
