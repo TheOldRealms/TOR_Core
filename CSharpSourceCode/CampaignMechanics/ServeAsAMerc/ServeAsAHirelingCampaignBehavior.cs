@@ -304,12 +304,9 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         private void OnPartyLeavesSettlement(MobileParty mobileParty, Settlement settlement)
         {
 
-            if (!_hireling_enlisted && _hireling_enlistingLord == null) return;
-            if (MobileParty.MainParty == mobileParty && mobileParty.CurrentSettlement == null)
-            {
-                mobileParty.CurrentSettlement = settlement;
-            }
-            if (_hireling_enlistingLord.PartyBelongedTo == mobileParty)
+            if (!_hireling_enlisted || _hireling_enlistingLord == null) return;
+           
+            if (_hireling_enlistingLord.PartyBelongedTo == mobileParty || (MobileParty.MainParty == mobileParty && mobileParty.CurrentSettlement == null))
             {
 
 
