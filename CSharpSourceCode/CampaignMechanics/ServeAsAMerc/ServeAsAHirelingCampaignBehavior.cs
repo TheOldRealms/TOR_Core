@@ -29,6 +29,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         private Hero _hireling_enlistingLord;
         private bool _hireling_enlistingLord_is_attacking;
         private bool _hireling_lord_is_fighting_without_player;
+        private float _ratioPartyAgainstEnemyStrength = 0;
+        private int _percentageOfBalanceRequiredToAvoidFight = 30;
 
         private bool testingQuick = true;
 
@@ -44,22 +46,23 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, ServeAsAMercDialog);
             CampaignEvents.TickEvent.AddNonSerializedListener(this, OnTick);
             CampaignEvents.SettlementEntered.AddNonSerializedListener(this, EnlistingLordPartyEntersSettlement);
-            CampaignEvents.OnSettlementLeftEvent.AddNonSerializedListener(this, EnlistingLordPartyLeavesSettlement);
+            CampaignEvents.OnSettlementLeftEvent.AddNonSerializedListener(this, OnPartyLeavesSettlement);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, controlPlayerLoot);                //Those events are never executed when the player lose a battle!
             CampaignEvents.MapEventEnded.AddNonSerializedListener(this, mapEventEnded);
             CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, BattleMenuOpened);
+
         }
 
         private void BattleMenuOpened(MenuCallbackArgs obj)
         {
             TORCommon.Say("lol");
 
-            if (_startBattle && obj.MenuContext.GameMenu.StringId == "encounter" && testingQuick)
+            if (_startBattle && obj.MenuContext.GameMenu.StringId == "encounter" && !testingQuick)
             {
                 _startBattle = false;
                 MenuHelper.EncounterAttackConsequence(obj);
             }
-            if (!testingQuick && _hireling_enlistingLord_is_attacking)
+            if (testingQuick && _hireling_enlistingLord_is_attacking)
             {
                 _startBattle = false;
             }
@@ -117,7 +120,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             campaignGameStarter.AddWaitGameMenu("hireling_menu", infotext.Value, new OnInitDelegate(this.party_wait_talk_to_other_members_on_init), new OnConditionDelegate(this.wait_on_condition),
                     null, new OnTickDelegate(this.wait_on_tick), GameMenu.MenuAndOptionType.WaitMenuHideProgressAndHoursOption, GameOverlays.MenuOverlayType.None, 0f, GameMenu.MenuFlags.None, null);
             TextObject textObjectHirelingMenuDesert = new TextObject("Desert", null);
-            TextObject textObjectHirelingEnterSettlement= new TextObject("Enter the settlement", null);
+            TextObject textObjectHirelingEnterSettlement = new TextObject("Enter the settlement", null);
 
 
             campaignGameStarter.AddGameMenuOption("hireling_menu", "party_wait_leave", textObjectHirelingMenuDesert.ToString(), delegate (MenuCallbackArgs args)
@@ -135,7 +138,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
             campaignGameStarter.AddGameMenuOption("hireling_menu", "enter_town", textObjectHirelingEnterSettlement.ToString(), delegate (MenuCallbackArgs args)
             {
-               
+
                 args.optionLeaveType = GameMenuOption.LeaveType.Continue;
                 TORCommon.Say((_hireling_enlistingLord.PartyBelongedTo.CurrentSettlement != null).ToString());
 
@@ -146,7 +149,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                 while (Campaign.Current.CurrentMenuContext != null)
                     GameMenu.ExitToLast();
                 EncounterManager.StartSettlementEncounter(MobileParty.MainParty.Party.MobileParty, _hireling_enlistingLord.PartyBelongedTo.CurrentSettlement);
-                EnterSettlementAction.ApplyForParty(MobileParty.MainParty.Party.MobileParty, _hireling_enlistingLord.CurrentSettlement) ;
+                EnterSettlementAction.ApplyForParty(MobileParty.MainParty.Party.MobileParty, _hireling_enlistingLord.CurrentSettlement);
             }, true, -1, false, null);
 
 
@@ -207,14 +210,20 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             showPlayerParty();
 
         }
-
-        // Token: 0x0600375D RID: 14173 RVA: 0x000FA5A4 File Offset: 0x000F87A4
         private bool hireling_battle_menu_join_battle_on_condition(MenuCallbackArgs args)
         {
             var maxHitPointsHero = Hero.MainHero.MaxHitPoints;
             var hitPointsHero = Hero.MainHero.HitPoints;
-
             return hitPointsHero > maxHitPointsHero * 0.2;
+        }
+
+        // Token: 0x0600375D RID: 14173 RVA: 0x000FA5A4 File Offset: 0x000F87A4
+        private bool hireling_battle_menu_avoid_battle_on_condition(MenuCallbackArgs args)
+        {
+            var maxHitPointsHero = Hero.MainHero.MaxHitPoints;
+            var hitPointsHero = Hero.MainHero.HitPoints;
+
+            return hitPointsHero < maxHitPointsHero * 0.2 || _ratioPartyAgainstEnemyStrength < 0.30; // || ennemy is 30% of our balance;
         }
 
 
@@ -226,7 +235,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
         private bool hireling_battle_menu_avoid_combat_on_condition(MenuCallbackArgs args)
         {
-            return !hireling_battle_menu_join_battle_on_condition(args);
+            return hireling_battle_menu_avoid_battle_on_condition(args);
         }
 
 
@@ -292,13 +301,17 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
         // SETTLEMENTS HANDLERS
 
-        private void EnlistingLordPartyLeavesSettlement(MobileParty mobileParty, Settlement settlement)
+        private void OnPartyLeavesSettlement(MobileParty mobileParty, Settlement settlement)
         {
 
-            if (!_hireling_enlisted) return;
+            if (!_hireling_enlisted && _hireling_enlistingLord == null) return;
+            if (MobileParty.MainParty == mobileParty && mobileParty.CurrentSettlement == null)
+            {
+                mobileParty.CurrentSettlement = settlement;
+            }
             if (_hireling_enlistingLord.PartyBelongedTo == mobileParty)
             {
-                
+
 
                 while (Campaign.Current.CurrentMenuContext != null)
                     GameMenu.ExitToLast();
@@ -337,18 +350,21 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
 
         // MAP EVENT AND ENCOUNTERS
+
+        // If the enlisted lord is fighting (in a map event) without us, we should fight with him
+
+        // If the player is concerned by the end of a map event, we should start displaying the menu.
         private void mapEventEnded(MapEvent mapEvent)
         {
-            if (!mapEvent.IsPlayerMapEvent && getEnlistingLordisInMapEvent(mapEvent))
+            if (_hireling_enlistingLord != null && !mapEvent.IsPlayerMapEvent && getEnlistingLordisInMapEvent(mapEvent))
             {
                 GameMenu.SwitchToMenu("hireling_menu");
                 _hireling_lord_is_fighting_without_player = false;
-            }; 
+            };
             if (mapEvent.IsPlayerMapEvent)
             {
                 GameMenu.SwitchToMenu("hireling_menu");
             }
-            _hireling_enlisted = true;
             // TODO: Refining this part
         }
 
@@ -359,37 +375,46 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         {
             if (_hireling_lord_is_fighting_without_player)
             {
-                var test = new List<string>();
-                test.Add("0");
-                CampaignCheats.SetMainPartyAttackable(test);
-                // TODO: NOT Very confortable with that part, also, the cheat is no reset to false.
+                if (!MobileParty.MainParty.ShouldBeIgnored)
+                {
+                    // This part has not been tested, but it should work.
+                    MobileParty.MainParty.IgnoreForHours(1);
+                }
 
             }
 
             if (_hireling_enlisted && _hireling_enlistingLord != null)
             {
-              
+
 
                 HidePlayerParty();
                 PartyBase.MainParty.MobileParty.Position2D = _hireling_enlistingLord.PartyBelongedTo.Position2D;
                 if (_hireling_enlistingLord.PartyBelongedTo.MapEvent != null && MobileParty.MainParty.MapEvent == null)
                 {
+                    var mapEvent = _hireling_enlistingLord.PartyBelongedTo.MapEvent;
+
+                    
                     // TODO: CHECK THE DEFENDING PART
                     _hireling_enlistingLord_is_attacking = false;
 
                     TORCommon.Say("Lord starts encounter");
-                    var mapEvent = _hireling_enlistingLord.PartyBelongedTo.MapEvent;
                     foreach (var party in mapEvent.AttackerSide.Parties)
                     {
                         if (party.Party == _hireling_enlistingLord.PartyBelongedTo.Party)
                         {
                             TORCommon.Say("Lord is attacking");
+                            float partyStrength = 0;
+                            float enemyStrength = 0;
+                            mapEvent.GetStrengthsRelativeToParty(BattleSideEnum.Attacker, out partyStrength, out enemyStrength);
+                            _ratioPartyAgainstEnemyStrength = enemyStrength / partyStrength;
+
                             _hireling_enlistingLord_is_attacking = true;
                             break;
                         }
                     }
-                    
-                    if (!_hireling_lord_is_fighting_without_player) { 
+
+                    if (!_hireling_lord_is_fighting_without_player)
+                    {
                         GameMenu.ActivateGameMenu("hireling_battle_menu");
                     }
                 }
@@ -471,7 +496,11 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         // GETTERS 
         public bool getEnlistingLordisInMapEvent(MapEvent mapEvent)
         {
+
             var lordIsInMapEvent = false;
+            if (_hireling_enlistingLord == null)
+                return false;
+
             foreach (var party in mapEvent.AttackerSide.Parties)
             {
                 if (party.Party == _hireling_enlistingLord.PartyBelongedTo.Party)
@@ -486,6 +515,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                     lordIsInMapEvent = true;
                 }
             }
+
             return lordIsInMapEvent;
         }
     }
