@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Helpers;
-using SandBox.View.Map;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.BarterSystem.Barterables;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.MapEvents;
@@ -16,7 +12,6 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
-using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -31,10 +26,10 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         private bool _hireling_lord_is_fighting_without_player;
         private float _ratioPartyAgainstEnemyStrength = 0;
         private int _percentageOfBalanceRequiredToAvoidFight = 30;
-
-        private bool testingQuick = true;
+        private bool testingQuick = false;
 
         private bool _startBattle;
+        private bool _siegeBattleMissionStarted;
 
         public bool IsEnlisted()
         {
@@ -50,16 +45,27 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, controlPlayerLoot);                //Those events are never executed when the player lose a battle!
             CampaignEvents.MapEventEnded.AddNonSerializedListener(this, mapEventEnded);
             CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, BattleMenuOpened);
-
+            CampaignEvents.GameMenuOptionSelectedEvent.AddNonSerializedListener(this, ContinueTimeAfterLeftSettlementWhileEnlisted);
         }
+
+       
+
+        private void ContinueTimeAfterLeftSettlementWhileEnlisted(GameMenuOption obj)
+        {
+            if (_hireling_enlisted && obj.IdString =="town_leave")
+            {
+                GameMenu.ActivateGameMenu("hireling_menu");
+                Campaign.Current.TimeControlMode = CampaignTimeControlMode.StoppableFastForward;
+            }
+        }
+        
 
         private void BattleMenuOpened(MenuCallbackArgs obj)
         {
-            TORCommon.Say("lol");
-
             if (_startBattle && obj.MenuContext.GameMenu.StringId == "encounter" && !testingQuick)
             {
                 _startBattle = false;
+                
                 MenuHelper.EncounterAttackConsequence(obj);
             }
             if (testingQuick && _hireling_enlistingLord_is_attacking)
@@ -103,14 +109,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                 GameMenu.ActivateGameMenu(menuToReturn);
             }, "", 0f, null, null, null), false, false);
         }
-
-
-
-
-
-
-
-
+        
         // INIT PHASE
         private void ServeAsAMercDialog(CampaignGameStarter campaignGameStarter)
         {
@@ -168,10 +167,22 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                     {
                         if (_hireling_enlistingLord_is_attacking)
                         {
-                            StartBattleAction.Apply(PartyBase.MainParty, _hireling_enlistingLord.PartyBelongedTo.MapEvent.DefenderSide.LeaderParty);
+                            var mapEvent = _hireling_enlistingLord.PartyBelongedTo.MapEvent;
+                            TORCommon.Say("attack!"); 
+                            StartBattleAction.Apply(PartyBase.MainParty, mapEvent.DefenderSide.LeaderParty);
+                            
+                            MobileParty.MainParty.CurrentSettlement= _hireling_enlistingLord.PartyBelongedTo.MapEvent.MapEventSettlement;
+
+                            if (mapEvent.IsSiegeAssault)
+                            {
+                                Game.Current.AfterTick += InitializeSiegeBattle;    //deliberate waiting until all information is copied over, atleast that's what I assume is happening?
+                                _siegeBattleMissionStarted = true;
+                            }
+                            
                         }
                         else
                         {
+                            TORCommon.Say("defend!");
                             StartBattleAction.Apply(_hireling_enlistingLord.PartyBelongedTo.MapEvent.AttackerSide.LeaderParty, PartyBase.MainParty);
                         }
                         _startBattle = true;
@@ -210,6 +221,20 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             showPlayerParty();
 
         }
+        
+        private void InitializeSiegeBattle(float tick)
+        {
+            if (!_hireling_enlisted) return;
+            if(!_siegeBattleMissionStarted) return;
+            if(MobileParty.MainParty==null) return;
+            var mainPartyMapEvent = MobileParty.MainParty.MapEvent;
+            if (mainPartyMapEvent == null || mainPartyMapEvent.StringId == null) return; //wait until the main party event is assigned correctly
+            
+            StartBattleAction.Apply(PartyBase.MainParty, mainPartyMapEvent.DefenderSide.LeaderParty);
+            _siegeBattleMissionStarted = false;
+            Game.Current.AfterTick -= InitializeSiegeBattle;    //cleanup,  method is afterwards rendered harmless and will not affect performance 
+        }
+        
         private bool hireling_battle_menu_join_battle_on_condition(MenuCallbackArgs args)
         {
             var maxHitPointsHero = Hero.MainHero.MaxHitPoints;
@@ -409,16 +434,13 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                             break;
                         }
                     }
-
+                    
                     if (!_hireling_lord_is_fighting_without_player)
                     {
                         GameMenu.ActivateGameMenu("hireling_battle_menu");
                     }
                 }
-
-
-
-
+                
             }
         }
 
@@ -440,8 +462,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             ChangeKingdomAction.ApplyByJoinFactionAsMercenary(Hero.MainHero.Clan, _hireling_enlistingLord.Clan.Kingdom, 25, false);
             MBTextManager.SetTextVariable("ENLISTINGLORDNAME", _hireling_enlistingLord.EncyclopediaLinkWithName);
 
-
-
+            
             while (Campaign.Current.CurrentMenuContext != null)
                 GameMenu.ExitToLast();
             _hireling_enlisted = true;
