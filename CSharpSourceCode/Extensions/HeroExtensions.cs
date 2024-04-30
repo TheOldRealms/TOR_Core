@@ -419,10 +419,10 @@ namespace TOR_Core.Extensions
             return false;
         }
         
-        public static bool IsZoologist(this Hero hero)
+        public static bool IsPrestigeNoble(this Hero hero)
         {
-            if(hero!=null)
-                return hero.Occupation == Occupation.Special&& hero.Name.Contains("Zoologist");
+            if (hero != null)
+                return hero.Occupation == Occupation.Special && hero.HasAttribute("PrestigeNoble");
             return false;
         }
 

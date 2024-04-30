@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <EquipmentRosters>
   <EquipmentRoster id="tor_empire_villager_template" culture="Culture.empire">
     <EquipmentSet>
@@ -14854,7 +14854,7 @@
       <Equipment slot="Leg" id="Item.mail_cavalier_boots" />
     </EquipmentSet>
   </EquipmentRoster>
-  <EquipmentRoster id="tor_qnpc_zoologist_template" culture="Culture.empire">
+  <EquipmentRoster id="tor_qnpc_prestige_noble_template" culture="Culture.empire">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_empire_weapon_rapier_002" />
       <Equipment slot="Head" id="Item.tor_empire_head_hat_general_001" />
