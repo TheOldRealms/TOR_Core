@@ -15,7 +15,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
 {
     public class PrestigeNobleTownBehavior : CampaignBehaviorBase
     {
-        private const string _nobleID = "tor_zoologist_empire";
+        private const string _nobleID = "tor_prestige_noble_empire";
         private const int DemigryphCost = 1000;
         private const int RepeatableInfluenceCosts = 25;
         private const int RepeatablePrestigeGain = 15;
@@ -54,11 +54,11 @@ namespace TOR_Core.CampaignMechanics.Menagery
                 //not empire
                 campaignGameStarter.AddDialogLine("noble_foreign", "start", "close_window",
                     "You do not serve the Empire stranger, begone.",
-                    () => EmpirePrestigeNobleStartCondition() && !isPartOfEmpire(), null, 200);
+                    () => EmpirePrestigeNobleStartCondition() && !IsPartOfEmpire(), null, 200);
                 // not rank 2
                 campaignGameStarter.AddDialogLine("noble_missRank", "start", "close_window",
                     " I do not do business with nobodies’ stranger, and I do not know you. Now begone. (Low Renown).",
-                    () => EmpirePrestigeNobleStartCondition() && !hasRenown2(), null, 200);
+                    () => EmpirePrestigeNobleStartCondition() && !HasRenown2(), null, 200);
 
                 //knows player false
                 campaignGameStarter.AddDialogLine("noble_introduction_1", "start", "noble_introduction_2",
@@ -229,7 +229,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
                     void StartTransaction(int price, int id)
                     {
                         Hero.MainHero.ChangeHeroGold(-price);
-                        Hero.MainHero.AddCustomResource("Prestige", (price/1000));
+                        Hero.MainHero.AddCustomResource("Prestige", price/1000);
                         _constructedBuildings.Add("building" + id);
                     }
                     
@@ -322,7 +322,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
                 bool EmpirePrestigeNobleStartCondition()
                 {
                     var partner = CharacterObject.OneToOneConversationCharacter;
-                    if (partner != null) return partner.HeroObject.IsZoologist();
+                    if (partner != null) return partner.HeroObject.IsPrestigeNoble();
 
                     return false;
                 }
@@ -330,12 +330,12 @@ namespace TOR_Core.CampaignMechanics.Menagery
             }
         }
 
-        private bool isPartOfEmpire()
+        private bool IsPartOfEmpire()
         {
             return Hero.MainHero.Culture.StringId == "empire";
         }
 
-        private bool hasRenown2()
+        private bool HasRenown2()
         {
             return Clan.PlayerClan.Tier >= 2;
         }
@@ -352,7 +352,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
                 list.Add(new InquiryElement(item, item.Name.ToString(), new ImageIdentifier(item)));
 
             var inq = new MultiSelectionInquiryData("Choose your demigryph!",
-                "The zoologist offers you his service, one of his demi gryphens he kept in the menagerie is available to you.",
+                "The Noble offers you his service, one of his demi gryphens he kept in the menagerie is available to you.",
                 list, false, 1, 1, "OK", null, OnGryphRewardClaimed, null);
             MBInformationManager.ShowMultiSelectionInquiry(inq);
         }
@@ -381,7 +381,9 @@ namespace TOR_Core.CampaignMechanics.Menagery
                 {
                     _empireNoble = HeroCreator.CreateSpecialHero(template, _altdorf, null, null, 50);
                     _empireNoble.SupporterOf = _altdorf.OwnerClan;
-                    _empireNoble.SetName(new TextObject(Firstname + " " + LastName),
+                    var title = _empireNoble.Template.Name;
+                   
+                    _empireNoble.SetName(new TextObject(Firstname + " " + LastName+ ", "+title),
                         _empireNoble.FirstName);
                     HeroHelper.SpawnHeroForTheFirstTime(_empireNoble, _altdorf);
                 }
