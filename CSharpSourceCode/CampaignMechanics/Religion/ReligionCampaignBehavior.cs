@@ -77,7 +77,7 @@ namespace TOR_Core.CampaignMechanics.Religion
                 Hero.MainHero.GetPerkValue(TORPerks.Faith.Offering) &&
                 itemRoster.Count > 0)
             {
-                Hero.MainHero.AddSkillXp(TORSkills.Faith,Math.Max(1, itemRoster.TotalValue / 200));
+                Hero.MainHero.AddSkillXp(TORSkills.Faith, Math.Max(1, itemRoster.TotalValue / 200));
             }
         }
 
