@@ -25,115 +25,73 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
             _stats = new MBBindingList<StatItemVM>();
             Initialize();
             RefreshValues();
-            
         }
 
         private void Initialize()
         {
-            
             StatItems.Clear();
             var religionID = GetGodCareerIsDevotedTo(Hero.MainHero.GetCareer());
-            var religion = ReligionObject.All.Where(x => x.StringId==religionID).FirstOrDefault();
-            
-            
+            var religion = ReligionObject.All.Where(x => x.StringId == religionID).FirstOrDefault();
             StatItems.Add(new StatItemVM("Devoted to : ", religion.DeityName.ToString()));
             var battlePrayers = CareerHelper.GetBattlePrayerList(Hero.MainHero.GetCareer());
-
-            var highest= battlePrayers.Max(x => x.Rank);
+            var highest = battlePrayers.Max(x => x.Rank);
             StatItems.Add(new StatItemVM("Prayer level: ", ((PrayerLevel)highest).ToString()));
-
             var prayers = battlePrayers.ConvertAll(input => input.PrayerID);
-
             _loreObjectVm = new PrayerLoreObjectVM(this, prayers, Hero.MainHero);
-
-
-            foreach (var prayer in _loreObjectVm.PrayerList)
-            {
-                if (!prayer.IsKnown)
-                {
-                    prayer.IsDisabled=true;
-                }
-            }
             
+            foreach (var prayer in _loreObjectVm.PrayerList)
+                if (!prayer.IsKnown)
+                    prayer.IsDisabled = true;
         }
 
         private string GetGodCareerIsDevotedTo(CareerObject careerObject)
         {
-            if (careerObject == TORCareers.GrailDamsel)
-            {
-                return "cult_of_lady";
-            }
-
-            if (careerObject == TORCareers.WarriorPriest)
-            {
-                return "cult_of_sigmar";
-            }
-
-            if (careerObject == TORCareers.WarriorPriestUlric)
-            {
-                return "cult_of_ulric";
-            }
+            if (careerObject == TORCareers.GrailDamsel) return "cult_of_lady";
+            if (careerObject == TORCareers.WarriorPriest) return "cult_of_sigmar";
+            if (careerObject == TORCareers.WarriorPriestUlric) return "cult_of_ulric";
 
             return "-";
         }
-        
-        
-        [DataSourceProperty]
-        public PrayerLoreObjectVM PrayerLore
-        {
-            get
-            {
-                return this._loreObjectVm;
-            }
-        }
-        
+
+
+        [DataSourceProperty] public PrayerLoreObjectVM PrayerLore => _loreObjectVm;
+
         public override void RefreshValues()
         {
             base.RefreshValues();
         }
-        
+
         private void ExecuteClose()
         {
             _closeAction();
         }
-        
-        [DataSourceProperty]
-        public bool IsSelected
-        {
-            get { return _loreObjectVm != null; }
-            
-        }
-        
+
+        [DataSourceProperty] public bool IsSelected => _loreObjectVm != null;
+
         [DataSourceProperty]
         public MBBindingList<StatItemVM> StatItems
         {
-            get
-            {
-                return this._stats;
-            }
+            get => _stats;
             set
             {
-                if (value != this._stats)
+                if (value != _stats)
                 {
-                    this._stats = value;
-                    base.OnPropertyChangedWithValue(value, "StatItems");
+                    _stats = value;
+                    OnPropertyChangedWithValue(value, "StatItems");
                 }
             }
         }
-        
+
         [DataSourceProperty]
         public bool IsVisible
         {
-            get
-            {
-                return this._isVisible;
-            }
+            get => _isVisible;
             set
             {
-                if (value != this._isVisible)
+                if (value != _isVisible)
                 {
-                    this._isVisible = value;
-                    base.OnPropertyChangedWithValue(value, "IsVisible");
+                    _isVisible = value;
+                    OnPropertyChangedWithValue(value, "IsVisible");
                 }
             }
         }
