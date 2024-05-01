@@ -24,14 +24,13 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 {
     public class CustomResourceManager
     {
+        public static CustomResourceManager Instance { get; private set; }
         private Dictionary<string, CustomResource> _resources = new Dictionary<string, CustomResource>();
         private ScreenBase _currentPartyScreen;
         private PartyVM _currentPartyVM;
         private List<Tuple<string, int>> _resourceChanges = new List<Tuple<string, int>>();
-
         private float _initialCombatRatio;
-        public static CustomResourceManager Instance { get; private set; }
-
+        
         private CustomResourceManager() { }
 
         public static void Initialize() 
@@ -73,7 +72,6 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
         private void RegisterCampaignEvents()
         {
-            //CampaignEvents.RenownGained.AddNonSerializedListener(this,RegularRenownGain);
             CampaignEvents.OnMissionStartedEvent.AddNonSerializedListener(this, InitialCombatStrengthCalculation);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, CalculateCustomResourceGainFromBattles);
         }
@@ -176,8 +174,6 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             {
                 var prisoners = PlayerEncounter.Current.RosterToReceiveLootPrisoners.TotalManCount;
                 var totalCausalties = Hero.MainHero.PartyBelongedTo.MapEvent.GetMapEventSide(BattleSideEnum.Defender).Casualties;
-               
-                
                 var result = 0f;
 
                 result += totalCausalties - prisoners;
