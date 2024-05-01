@@ -221,7 +221,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         }
         
         
-        private bool HasUpgradeGunShopCondition(int level)
+        bool HasUpgradeGunShopCondition(int level)
         {
             string engineerupgrade= "EngineerUpgrade" + level;
             return Hero.MainHero.HasAttribute(engineerupgrade);
@@ -244,8 +244,6 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             obj.AddPlayerLine("rogueengineer_playerafterbattle", "rogueengineer_playerafterbattle", "close_window", GameTexts.FindText(questDialogId,"rogueEngineerEncounterPlayerAfterBattleAnswer").ToString(), null, null, 200);
         }
         
-        
-        
         private void OnSessionLaunched(CampaignGameStarter obj)
         {
             MBTextManager.SetTextVariable("PRESTIGE_ICON", CustomResourceManager.GetResourceObject("Prestige").GetCustomResourceIconAsText());
@@ -256,11 +254,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             AddCultistDialogLines(obj);
             AddRogueEngineerDialogLines(obj);
         }
-
         
-        
-       
-
         private bool rogueengineerquestinprogress()
         {
             if (RunawayPartsQuest == null) return false;
@@ -330,9 +324,9 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
                 x.IsTorItem() && x.Culture!=null && x.Culture.StringId == "empire" &&
                 (x.StringId.Contains("gun") || x.StringId.Contains("artillery")));
             
-            var con1 = HasUpgradeGunShopCondition(1);
-            var con2 = HasUpgradeGunShopCondition(2);
-            var con3 = HasUpgradeGunShopCondition(3);
+            var firstLevelShopItems = HasUpgradeGunShopCondition(1);
+            var secondLevelShopItems = HasUpgradeGunShopCondition(2);
+            var thirdLevelShopItems = HasUpgradeGunShopCondition(3);
             
             engineerItems = FilterGuns();
             ItemRoster roster = new ItemRoster();
@@ -345,14 +339,14 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             
             roster.Add(list);
 
-            if (con1)
+            if (firstLevelShopItems)
             {
                 var buckshots = MBObjectManager.Instance.GetObject<ItemObject>("tor_neutral_weapon_ammo_musket_ball_scatter");
                 if (buckshots != null) roster.Add(new ItemRosterElement(buckshots, MBRandom.RandomInt(2, 5)));
                 engineerItems.AddItem(buckshots);
             }
             
-            if (con3)
+            if (thirdLevelShopItems)
             {
                 var cannons = MBObjectManager.Instance.GetObject<ItemObject>("tor_empire_artillery_cannon_001");
                 if (cannons != null) roster.Add(new ItemRosterElement(cannons, MBRandom.RandomInt(1, 1)));
@@ -366,15 +360,14 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             if (ammo != null) roster.Add(new ItemRosterElement(ammo, MBRandom.RandomInt(2, 5)));
             
             InventoryManager.OpenScreenAsTrade(roster, _nuln.Town);
-
-
+            
             List<ItemObject> FilterGuns()
             {
                 var final = new List<ItemObject>();
                 var items = engineerItems.ToList();
                 foreach (var item in items)
                 {
-                    if (!con1)
+                    if (!firstLevelShopItems)
                     {
                         if(item.StringId.Contains("longrifle"))
                             continue;
@@ -386,7 +379,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
                             continue;
                     }
                     
-                    if (!con2)
+                    if (!secondLevelShopItems)
                     {
                         if(item.StringId.Contains("tor_empire_weapon_gun_handgun_002"))
                             continue;
