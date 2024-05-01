@@ -20,27 +20,27 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
         {
             _state = state;
             _state.RegisterListener(this);
-            
         }
-        
+
         protected override void OnFrameTick(float dt)
         {
             LoadingWindow.DisableGlobalLoadingWindow();
             base.OnFrameTick(dt);
-            
         }
+
         public void OnActivate()
         {
-         base.OnActivate();
-         _vm = new BattlePrayersVM(CloseScreen);
-         _gauntletLayer = new GauntletLayer(1, "GauntletLayer", true);
-         _gauntletLayer.LoadMovie("BattlePrayerBook", _vm);
-         _gauntletLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
-         _gauntletLayer.Input.RegisterHotKeyCategory(HotKeyManager.GetCategory("GenericCampaignPanelsGameKeyCategory"));
-         _gauntletLayer.IsFocusLayer = true;
-         
-         base.AddLayer(_gauntletLayer);
-         ScreenManager.TrySetFocus(_gauntletLayer);
+            base.OnActivate();
+            _vm = new BattlePrayersVM(CloseScreen);
+            _gauntletLayer = new GauntletLayer(1, "GauntletLayer", true);
+            _gauntletLayer.LoadMovie("BattlePrayerBook", _vm);
+            _gauntletLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
+            _gauntletLayer.Input.RegisterHotKeyCategory(
+                HotKeyManager.GetCategory("GenericCampaignPanelsGameKeyCategory"));
+            _gauntletLayer.IsFocusLayer = true;
+
+            AddLayer(_gauntletLayer);
+            ScreenManager.TrySetFocus(_gauntletLayer);
         }
 
         public void OnDeactivate()
@@ -55,8 +55,9 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
 
         public void OnFinalize()
         {
+            base.OnFinalize();
         }
-        
+
         private void CloseScreen()
         {
             Game.Current.GameStateManager.PopState(0);
