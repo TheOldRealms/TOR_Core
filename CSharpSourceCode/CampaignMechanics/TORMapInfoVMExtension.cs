@@ -83,16 +83,14 @@ namespace TOR_Core.CampaignMechanics
 
 		private List<TooltipProperty> GetWindsHintText()
 		{
-			var womTitle = new TextObject("{=tor_ui_winds_of_magic_title_str}Winds of Magic").ToString();
-			var womMaximum = new TextObject("{=tor_ui_winds_of_magic_maximum_str}Maximum:").ToString();
-			var womRechargeRate = new TextObject("{=tor_ui_winds_of_magic_recharge_rate_str}Recharge Rate:").ToString();
+			string womTitle = new TextObject("{=tor_ui_winds_of_magic_title_str}Winds of Magic").ToString();
+			string womMaximum = new TextObject("{=tor_ui_winds_of_magic_maximum_str}Maximum:").ToString();
+			string womRechargeRate = new TextObject("{=tor_ui_winds_of_magic_recharge_rate_str}Recharge Rate:").ToString();
 
 			var list = new List<TooltipProperty>();
 			list.Add(new TooltipProperty(womTitle, WindsOfMagic, 0, false, TooltipProperty.TooltipPropertyFlags.Title));
-			list.Add(new TooltipProperty(womMaximum, _maxWinds.ToString(), 0, false,
-				TooltipProperty.TooltipPropertyFlags.None));
-			list.Add(new TooltipProperty(womRechargeRate, string.Format("{0:0.00}", _windRechargeRate), 0, false,
-				TooltipProperty.TooltipPropertyFlags.None));
+			list.Add(new TooltipProperty(womMaximum, _maxWinds.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
+			list.Add(new TooltipProperty(womRechargeRate, string.Format("{0:0.00}", _windRechargeRate), 0, false, TooltipProperty.TooltipPropertyFlags.None));
 			return list;
 		}
 
