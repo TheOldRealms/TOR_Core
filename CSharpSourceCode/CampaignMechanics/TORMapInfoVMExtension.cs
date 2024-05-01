@@ -1,19 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Map.MapBar;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
-using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
-using TaleWorlds.TwoDimension;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
-using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Extensions.UI;
 
 namespace TOR_Core.CampaignMechanics

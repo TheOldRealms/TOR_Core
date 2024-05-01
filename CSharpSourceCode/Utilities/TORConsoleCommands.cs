@@ -24,7 +24,6 @@ namespace TOR_Core.Utilities
     public class TORConsoleCommands
     {
         private static List<string> torSpellNames = AbilityFactory.GetAllSpellNamesAsList();
-
         
         //TODO currently disabled due to missing Engineer Quest
         [CommandLineFunctionality.CommandLineArgumentFunction("whereisgoswin", "tor")]
@@ -114,8 +113,6 @@ namespace TOR_Core.Utilities
             }
             return faction1 == null ? "Faction is not found: " + kingdom_str1 + "\n" + str1 : "Faction is not found: " + kingdom_str2;
         }
-        
-        
         
         [CommandLineFunctionality.CommandLineArgumentFunction("list_spells", "tor")]
         public static string ListSpells(List<string> argumentNames) =>
@@ -243,7 +240,6 @@ namespace TOR_Core.Utilities
             }
             else return "No religion with the given argument found. \n";
         }
-        
         
         [CommandLineFunctionality.CommandLineArgumentFunction("add_career", "tor")]
         public static string AddCareerToPlayer(List<string> arguments)

@@ -40,7 +40,7 @@ namespace TOR_Core.Models
             UpdateAgentDrivenProperties(agent, agentDrivenProperties);
         }
 
-        public override float GetWeaponInaccuracy(Agent agent, WeaponComponentData weapon, int weaponSkill)     //TODO Taal inaccuracy?
+        public override float GetWeaponInaccuracy(Agent agent, WeaponComponentData weapon, int weaponSkill)
         {
             var result = base.GetWeaponInaccuracy(agent, weapon, weaponSkill);
             ExplainedNumber accuracy = new ExplainedNumber(result, false, null);
@@ -542,9 +542,7 @@ namespace TOR_Core.Models
                             }
                         }
                     }
-                    
                 }
-                
             }
             
             if (agent.Character.HasAttribute("NecromancerChampion"))

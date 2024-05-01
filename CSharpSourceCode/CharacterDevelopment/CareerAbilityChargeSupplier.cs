@@ -283,9 +283,7 @@ namespace TOR_Core.CharacterDevelopment
             return explainedNumber.ResultNumber;
         }
 
-        public static float WarriorPriestCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType,
-            int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee,
-            CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
+        public static float WarriorPriestCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
             if (mask != AttackTypeMask.Melee) return 0;
             if (chargeType == ChargeType.NumberOfKills) return 0;
