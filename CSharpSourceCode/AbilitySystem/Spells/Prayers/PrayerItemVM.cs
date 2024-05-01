@@ -11,11 +11,6 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
             RefreshValues();
         }
         
-        private void ExecuteSelectPrayer()
-        {
-            RefreshValues();
-        }
-        
         public override void RefreshValues()
         {
             IsKnown = Hero.HasAbility(Template.StringID);

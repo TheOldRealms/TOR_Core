@@ -17,7 +17,7 @@ namespace TOR_Core.AbilitySystem.Spells
         None = 0, 
         Minor = 1,
         Novice = 2,
-        Adept =3,
+        Adept = 3,
         Grand = 4
     }
 }
