@@ -16,7 +16,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             if (comp == null) return;
 
             var abilities = comp.KnownAbilitySystem.Where(x => x.StringID != Ability.StringID && x.GetCoolDownLeft() > 0);
-            var chosen = abilities.TakeRandom(0).FirstOrDefault();
+            var chosen = abilities.TakeRandom(1).FirstOrDefault();
             
             if (chosen == null) return;
             chosen.SetCoolDown(0);
