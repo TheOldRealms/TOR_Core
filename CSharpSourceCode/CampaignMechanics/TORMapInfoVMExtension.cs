@@ -23,7 +23,6 @@ namespace TOR_Core.CampaignMechanics
 		private bool _isSpellCaster = false;
 		private BasicTooltipViewModel _blessingHint;
 		private BasicTooltipViewModel _windsHint;
-		
         private BasicTooltipViewModel _cultureResourceHint;
         private BasicTooltipViewModel _artilleryHint;
 		private float _windRechargeRate = 0f;
