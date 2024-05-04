@@ -486,7 +486,7 @@
     <Compile Include="CampaignMechanics\Invasions\InvasionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Invasions\InvasionPartyComponent.cs" />
     <Compile Include="CampaignMechanics\MasterEngineer\MasterEngineerTownBehavior.cs" />
-    <Compile Include="CampaignMechanics\Menagery\MenageryTownBehavior.cs" />
+    <Compile Include="CampaignMechanics\PrestigeNoble\PrestigeNobleTownBehavior.cs" />
     <Compile Include="CampaignMechanics\RaidingParties\RaidingPartyComponent.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\CharacterCreationOption.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\TORCharacterCreationContent.cs" />

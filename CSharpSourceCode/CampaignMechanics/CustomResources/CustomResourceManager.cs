@@ -29,14 +29,13 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 {
     public class CustomResourceManager
     {
+        public static CustomResourceManager Instance { get; private set; }
         private Dictionary<string, CustomResource> _resources = new Dictionary<string, CustomResource>();
         private ScreenBase _currentPartyScreen;
         private PartyVM _currentPartyVM;
         private List<Tuple<string, int>> _resourceChanges = new List<Tuple<string, int>>();
-
         private float _initialCombatRatio;
-        public static CustomResourceManager Instance { get; private set; }
-
+        
         private CustomResourceManager() { }
 
         public static void Initialize()
@@ -88,7 +87,6 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
         private void RegisterCampaignEvents()
         {
-            //CampaignEvents.RenownGained.AddNonSerializedListener(this,RegularRenownGain);
             CampaignEvents.OnMissionStartedEvent.AddNonSerializedListener(this, InitialCombatStrengthCalculation);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this,
                 CalculateCustomResourceGainFromBattles);
@@ -198,7 +196,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 {
                     var eventSide = mapEvent.GetMapEventSide(mapEvent.DefeatedSide);
                     foreach (var party in eventSide.Parties)
-                        if (party.Party.LeaderHero.IsChaos() || party.Party.LeaderHero.IsVampire())
+                        if (party.Party.LeaderHero!=null && (party.Party.LeaderHero.IsChaos() || party.Party.LeaderHero.IsVampire()))
                         {
                             var choice = TORCareerChoices.GetChoice("HolyPurgePassive2");
                             var value = choice.Passive.EffectMagnitude;
@@ -271,10 +269,11 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             if ((Hero.MainHero.IsVampire() || Hero.MainHero.CanRaiseDead()) &&
                 PartyScreenManager.Instance.CurrentMode == PartyScreenMode.Loot)
             {
-                result += prisoners;
-                var totalCausalties = Hero.MainHero.PartyBelongedTo.MapEvent.GetMapEventSide(BattleSideEnum.Defender)
-                    .Casualties;
-                result += totalCausalties - prisoners; //add dead
+                var prisoners = PlayerEncounter.Current.RosterToReceiveLootPrisoners.TotalManCount;
+                var totalCausalties = Hero.MainHero.PartyBelongedTo.MapEvent.GetMapEventSide(BattleSideEnum.Defender).Casualties;
+                var result = 0f;
+
+                result += totalCausalties - prisoners;
                 if (leftMemberRoster != null && leftMemberRoster.Count > 0)
                 {
                     result += AdjustBattleSpoilsForDarkEnergy(leftMemberRoster);

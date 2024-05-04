@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfCharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_villager">
     <Abilities />
@@ -4922,9 +4922,11 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_zoologist_empire">
+  <CharacterExtendedInfo id="tor_prestige_noble_empire">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>PrestigeNoble</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_spelltrainer_empire_0">
     <Abilities />

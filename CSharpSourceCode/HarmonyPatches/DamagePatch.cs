@@ -91,9 +91,6 @@ namespace TOR_Core.HarmonyPatches
                     var torModel = model as TORAgentApplyDamageModel;
                     wardSaveFactor = torModel.CalculateWardSaveFactor(victim, resistancePercentages, friendlyFire);
                 }
-
-
-                
             }
 
             string abilityName = "";

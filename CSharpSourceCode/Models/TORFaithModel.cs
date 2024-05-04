@@ -58,9 +58,7 @@ namespace TOR_Core.Models
             var cultID = religion.StringId;
             if(party==null || !party.IsActive|| !party.IsLordParty) return;
             
-            
             var duration = CalculateBlessingDurationForParty(party);
-            
             
             if (cultID == "cult_of_sigmar" && Hero.MainHero.HasCareerChoice("SigmarsProclaimerPassive4"))
             {

@@ -277,7 +277,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             return value;
         }
 
-        public static bool IsMagicCareer(CareerObject career)
+        public static bool IsMagicCapableCareer(CareerObject career)
         {
             if (career == null) return false;
             
@@ -380,6 +380,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             return career == TORCareers.WarriorPriest ||
                    career == TORCareers.WarriorPriestUlric ||
                    career == TORCareers.GrailDamsel;
+        }
+        
+        public static string GetGodCareerIsDevotedTo(CareerObject careerObject)
+        {
+            if (careerObject == TORCareers.GrailDamsel) return "cult_of_lady";
+            if (careerObject == TORCareers.WarriorPriest) return "cult_of_sigmar";
+            if (careerObject == TORCareers.WarriorPriestUlric) return "cult_of_ulric";
+
+            return "-";
         }
     }
 }

@@ -62,20 +62,14 @@ namespace TOR_Core.Models
                     
                     if (Hero.MainHero.HasCareerChoice("FrostsBitePassive3"))
                     {
-                        var terrainTypes = Campaign.Current.MapSceneWrapper.GetEnvironmentTerrainTypes(mobileParty.Position2D);
-                        
                         var snowText = new TextObject("{=vLjgcdgB}Snow");
                         if (Campaign.Current.Models.MapWeatherModel.GetWeatherEventInPosition(mobileParty.Position2D) == MapWeatherModel.WeatherEvent.Snowy ||
                             Campaign.Current.Models.MapWeatherModel.GetWeatherEventInPosition(mobileParty.Position2D) == MapWeatherModel.WeatherEvent.Blizzard)
                         {
                             finalSpeed.AddFactor(0.1f, snowText);
                         }
-                            
                     }
-                    
                 }
-                
-                
             }
 
             if (mobileParty.HasBlessing("cult_of_taal"))

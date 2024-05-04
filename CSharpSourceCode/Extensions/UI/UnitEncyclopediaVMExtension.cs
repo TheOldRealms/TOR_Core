@@ -14,47 +14,35 @@ namespace TOR_Core.Extensions.UI
 
         public UnitEncyclopediaVMExtension(ViewModel vm) : base(vm)
         {
-            
             RefreshValues();
         }
-
-
+        
         public override void RefreshValues()
         {
-            
             var unitVM = _vm as EncyclopediaUnitPageVM;
-            if (_characterObject == null)
-            {
-                _characterObject = unitVM.Obj as CharacterObject;
-            }
-            
-            if(_characterObject==null) return;
+            if (_characterObject == null) _characterObject = unitVM.Obj as CharacterObject;
+
+            if (_characterObject == null) return;
 
             var extendedInfoList = _characterObject.GetExtendedInfoToolTipText();
-            if (!extendedInfoList.IsEmpty())
-            {
-                ExtendedInfoHint = new BasicTooltipViewModel(()=> extendedInfoList);
-            }
+            if (!extendedInfoList.IsEmpty()) ExtendedInfoHint = new BasicTooltipViewModel(() => extendedInfoList);
         }
-
-
-
+        
         public CharacterObject GetCharacterObject()
         {
             return _characterObject;
         }
         
-        
         [DataSourceProperty]
         public BasicTooltipViewModel ExtendedInfoHint
         {
-            get => this._extendedInfoHint;
+            get => _extendedInfoHint;
             set
             {
-                if (value == this._extendedInfoHint)
+                if (value == _extendedInfoHint)
                     return;
-                this._extendedInfoHint = value;
-                this._vm.OnPropertyChangedWithValue(nameof (ExtendedInfoHint));
+                _extendedInfoHint = value;
+                _vm.OnPropertyChangedWithValue(nameof(ExtendedInfoHint));
             }
         }
     }

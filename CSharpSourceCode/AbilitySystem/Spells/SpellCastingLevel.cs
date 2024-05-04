@@ -13,11 +13,11 @@ namespace TOR_Core.AbilitySystem.Spells
     }
     
     public enum PrayerLevel
-    {
-        [SaveableField(0)] None,
-        [SaveableField(1)] Minor,
-        [SaveableField(2)] Novice,
-        [SaveableField(3)] Adept,
-        [SaveableField(4)] Grand
+    { 
+        None = 0, 
+        Minor = 1,
+        Novice = 2,
+        Adept = 3,
+        Grand = 4
     }
 }

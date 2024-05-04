@@ -330,7 +330,5 @@ namespace TOR_Core.Models
             return !loreObject.DisabledForCultures.Contains(hero.Culture.StringId);
         }
 
-
-       
     }
 }
