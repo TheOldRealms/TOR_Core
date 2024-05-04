@@ -20,6 +20,7 @@ using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Ink;
 using TOR_Core.Models;
@@ -413,6 +414,15 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             if (MobileParty.MainParty.HasAnyActiveBlessing())
             {
                 args.Tooltip = new TextObject("{=tor_custom_settlement_shrine_blessing_already_active_str}You already have an active blessing.", null);
+                args.IsEnabled = false;
+            }
+
+            if (CareerHelper.IsPriestCareer()&& CareerHelper.GetGodCareerIsDevotedTo(Hero.MainHero.GetCareer()) != component.Religion.StringId)
+            {
+                var careerGod = CareerHelper.GetGodCareerIsDevotedTo(Hero.MainHero.GetCareer());
+                var god = Religion.ReligionObject.All.FirstOrDefault(x => x.StringId == careerGod);
+                MBTextManager.SetTextVariable("CAREERGOD_NAME", god.DeityName);
+                args.Tooltip = new TextObject("{=tor_custom_settlement_shrine_blessing_already_active_str}You devoted your live to {CAREERGOD_NAME}. You can't pray here.", null);
                 args.IsEnabled = false;
             }
             return component.IsActive && component.Religion != null && !component.Religion.HostileReligions.Contains(Hero.MainHero.GetDominantReligion());

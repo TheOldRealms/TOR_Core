@@ -30,7 +30,7 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
         private void Initialize()
         {
             StatItems.Clear();
-            var religionID = GetGodCareerIsDevotedTo(Hero.MainHero.GetCareer());
+            var religionID = CareerHelper.GetGodCareerIsDevotedTo(Hero.MainHero.GetCareer());
             var religion = ReligionObject.All.Where(x => x.StringId == religionID).FirstOrDefault();
             StatItems.Add(new StatItemVM("Devoted to : ", religion.DeityName.ToString()));
             var battlePrayers = CareerHelper.GetBattlePrayerList(Hero.MainHero.GetCareer());
@@ -44,14 +44,7 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
                     prayer.IsDisabled = true;
         }
 
-        private string GetGodCareerIsDevotedTo(CareerObject careerObject)
-        {
-            if (careerObject == TORCareers.GrailDamsel) return "cult_of_lady";
-            if (careerObject == TORCareers.WarriorPriest) return "cult_of_sigmar";
-            if (careerObject == TORCareers.WarriorPriestUlric) return "cult_of_ulric";
-
-            return "-";
-        }
+        
 
 
         [DataSourceProperty] public PrayerLoreObjectVM PrayerLore => _loreObjectVm;

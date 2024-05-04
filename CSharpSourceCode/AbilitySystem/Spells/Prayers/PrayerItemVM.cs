@@ -1,4 +1,4 @@
-﻿using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.Extensions;
 
