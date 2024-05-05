@@ -251,7 +251,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             _unhallowedSoulPassive1.Initialize(CareerID, "Increase buff durations by 25%.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.25f, PassiveEffectType.BuffDuration,true));
             _unhallowedSoulPassive2.Initialize(CareerID, "Gain 30 Dark Energy daily.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.CustomResourceGain));
-            _unhallowedSoulPassive3.Initialize(CareerID, "Increases Spell effectiveness by 30% if your armor weight undershoots 11 stones.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Spelleffectiveness, true,
+            _unhallowedSoulPassive3.Initialize(CareerID, "Increases Spell effectiveness by 30% if your armor weight undershoots 11 stones.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.SpellEffectiveness, true,
                 ( characterObject => Hero.MainHero.BattleEquipment.GetTotalWeightOfArmor(true) < 11f )));
             _unhallowedSoulPassive4.Initialize(CareerID, "Increases lightning spell damage by 10%.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 10), AttackTypeMask.Spell));
             

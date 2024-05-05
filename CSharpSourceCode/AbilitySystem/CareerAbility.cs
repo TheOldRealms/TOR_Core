@@ -49,6 +49,7 @@ namespace TOR_Core.AbilitySystem
                 }
 
                 if (Hero.MainHero.HasCareer(TORCareers.WitchHunter)
+                    || Hero.MainHero.HasCareer(TORCareers.WarriorPriestUlric)
                     || Hero.MainHero.HasCareerChoice("CourtleyKeystone")
                     || Hero.MainHero.HasCareerChoice("EnhancedHorseCombatKeystone")
                     || Hero.MainHero.HasCareerChoice("SwampRiderKeystone")
@@ -101,13 +102,19 @@ namespace TOR_Core.AbilitySystem
                 disabledReason = new TextObject("{=!}Ability not charged");
                 return true;
             }
-            if (Template.StringID.Contains("ShadowStep") && casterAgent.HasMount)
+            if (IsNotUsableMounted(Template.StringID) && casterAgent.HasMount)
             {
                 disabledReason = new TextObject("{=!}Not usable mounted");
                 return true;
             }
 
             return base.IsDisabled(casterAgent, out disabledReason);
+        }
+
+        private static bool IsNotUsableMounted(string templateID)
+        {
+            return templateID.Contains("ShadowStep" ) || 
+                   templateID.Contains("AxeOfUlric");
         }
 
         public override bool CanCast(Agent casterAgent, out TextObject failureReason)

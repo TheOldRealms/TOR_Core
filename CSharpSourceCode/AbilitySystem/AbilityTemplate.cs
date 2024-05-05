@@ -148,6 +148,13 @@ namespace TOR_Core.AbilitySystem
                 list.Add(new StatItemVM(new TextObject ("{=tor_spell_stat_tag_type_str}Spell Type: ").ToString(), AbilityEffectType.ToString()));
                 list.Add(new StatItemVM(new TextObject ("{=tor_spell_stat_tag_cooldown_str}Cooldown: ").ToString(), CoolDown.ToString()+" seconds"));
             }
+            else if (AbilityType == AbilityType.Prayer)
+            {
+                list.Add(new StatItemVM(new TextObject ("{=tor_spell_stat_tag_name_str}Prayer Name: ").ToString(), new TextObject(Name).ToString()));
+                list.Add(new StatItemVM(new TextObject ("{=tor_spell_stat_tag_tier_str}Prayer Tier: ").ToString(), ((PrayerLevel)SpellTier).ToString()));
+                list.Add(new StatItemVM(new TextObject ("{=tor_spell_stat_tag_type_str}Prayer Type: ").ToString(), AbilityEffectType.ToString()));
+                list.Add(new StatItemVM(new TextObject ("{=tor_spell_stat_tag_cooldown_str}Cooldown: ").ToString(), CoolDown.ToString()+" seconds"));
+            }
             return list;
         }
 

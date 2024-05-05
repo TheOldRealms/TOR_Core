@@ -12,7 +12,10 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
 using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
 using TaleWorlds.ScreenSystem;
+using TaleWorlds.TwoDimension;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -21,12 +24,13 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 {
     public class CustomResourceManager
     {
+        public static CustomResourceManager Instance { get; private set; }
         private Dictionary<string, CustomResource> _resources = new Dictionary<string, CustomResource>();
         private ScreenBase _currentPartyScreen;
         private PartyVM _currentPartyVM;
         private List<Tuple<string, int>> _resourceChanges = new List<Tuple<string, int>>();
-        public static CustomResourceManager Instance { get; private set; }
-
+        private float _initialCombatRatio;
+        
         private CustomResourceManager() { }
 
         public static void Initialize() 
@@ -68,17 +72,66 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
         private void RegisterCampaignEvents()
         {
+            CampaignEvents.OnMissionStartedEvent.AddNonSerializedListener(this, InitialCombatStrengthCalculation);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, CalculateCustomResourceGainFromBattles);
         }
 
+        private void InitialCombatStrengthCalculation(IMission mission)
+        {
+            if (Campaign.Current != null)
+            {
+                _initialCombatRatio = 0;
+                var playerEvent = Campaign.Current.MainParty.MapEvent;
+                
+                if(playerEvent==null) return;
+
+                playerEvent.GetStrengthsRelativeToParty(playerEvent.PlayerSide, out float playerStrength, out float enemyStrength);
+
+                if (enemyStrength > 0)
+                {
+                    _initialCombatRatio = playerStrength / enemyStrength;
+                }
+            }
+        }
+
+
         private void CalculateCustomResourceGainFromBattles(MapEvent mapEvent)
         {
-            float renownChange;
-
-            mapEvent.GetBattleRewards(MobileParty.MainParty.Party, out renownChange, out _, out _, out _, out _);
+            mapEvent.GetBattleRewards(MobileParty.MainParty.Party, out var renownChange, out _, out _, out _, out _);
 
             if (MobileParty.MainParty.LeaderHero.GetCultureSpecificCustomResource() == GetResourceObject("Prestige"))
             {
+                var fairBattleOrPlayerInferior = _initialCombatRatio < 1.1f;
+
+                if (MobileParty.MainParty.HasBlessing("cult_of_sigmar")) renownChange *= 1.2f;
+
+
+                if (Hero.MainHero.HasCareerChoice("HolyPurgePassive2"))
+                {
+                    var eventSide = mapEvent.GetMapEventSide(mapEvent.DefeatedSide);
+                    foreach (var party in eventSide.Parties)
+                        if (party.Party.LeaderHero!=null && (party.Party.LeaderHero.IsChaos() || party.Party.LeaderHero.IsVampire()))
+                        {
+                            var choice = TORCareerChoices.GetChoice("HolyPurgePassive2");
+                            var value = choice.Passive.EffectMagnitude;
+                            if (choice.Passive.InterpretAsPercentage) value /= 100;
+                            renownChange *= value;
+
+                            break;
+                        }
+                }
+
+                if (fairBattleOrPlayerInferior)
+                {
+                    if (Hero.MainHero.HasCareerChoice("FuryOfWarPassive3")) renownChange *= 2f;
+                    if (Hero.MainHero.HasCareerChoice("FlameOfUlricPassive3"))
+                    {
+                        var model = Campaign.Current.Models.GetFaithModel();
+
+                        model.AddBlessingToParty(MobileParty.MainParty, "cult_of_ulric");
+                    }
+                }
+
                 MobileParty.MainParty.LeaderHero.AddCultureSpecificCustomResource((int)(1 + renownChange));
             }
         }
@@ -121,8 +174,6 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             {
                 var prisoners = PlayerEncounter.Current.RosterToReceiveLootPrisoners.TotalManCount;
                 var totalCausalties = Hero.MainHero.PartyBelongedTo.MapEvent.GetMapEventSide(BattleSideEnum.Defender).Casualties;
-               
-                
                 var result = 0f;
 
                 result += totalCausalties - prisoners;

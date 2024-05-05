@@ -32,16 +32,16 @@ namespace TOR_Core.HarmonyPatches
                 return true;
             }
 
+            if (victim == attacker)
+            {
+                return true;
+            }
+
             AttackTypeMask attackTypeMask = DetermineMask(b);
 
             float[] damageCategories = new float[(int)DamageType.All + 1];
-            var attackerPropertyContainer = AgentPropertyContainer.InitNew();
-            var victimPropertyContainer = AgentPropertyContainer.InitNew();
-            if (!Mission.Current.IsArenaMission())
-            { 
-                attackerPropertyContainer = attacker.GetProperties(PropertyMask.Attack, attackTypeMask); 
-                victimPropertyContainer = victim.GetProperties(PropertyMask.Defense, attackTypeMask);
-            }
+            var attackerPropertyContainer = attacker.GetProperties(PropertyMask.Attack, attackTypeMask); 
+            var victimPropertyContainer = victim.GetProperties(PropertyMask.Defense, attackTypeMask);
             
             var friendlyFire = attacker.Team == victim.Team;
             var damageProportions = new float[7];
@@ -91,9 +91,6 @@ namespace TOR_Core.HarmonyPatches
                     var torModel = model as TORAgentApplyDamageModel;
                     wardSaveFactor = torModel.CalculateWardSaveFactor(victim, resistancePercentages, friendlyFire);
                 }
-
-
-                
             }
 
             string abilityName = "";
