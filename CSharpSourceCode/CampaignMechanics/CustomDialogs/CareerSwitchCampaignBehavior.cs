@@ -156,7 +156,14 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
                    !Clan.PlayerClan.IsUnderMercenaryService &&
                    Clan.PlayerClan.Tier >= 4)
                 {
-                    return !Hero.MainHero.IsVampire()&&Hero.MainHero.HasCareer(TORCareers.Mercenary);
+                    var career = Hero.MainHero.GetCareer();
+                    if (career == TORCareers.Mercenary ||
+                        career == TORCareers.Necromancer)
+                    { 
+                        return !Hero.MainHero.IsVampire();
+                    }
+                    
+                    
                 }
                 return false;
             }
