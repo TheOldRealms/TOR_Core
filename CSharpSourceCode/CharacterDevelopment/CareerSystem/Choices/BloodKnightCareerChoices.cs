@@ -437,7 +437,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             }
             
             playerHero.SetSkillValue(TORSkills.SpellCraft,0);
-            var toRemoveSpellcraft= Hero.MainHero.HeroDeveloper.GetFocus(TORSkills.SpellCraft);
+            var toRemoveSpellcraft= Hero.MainHero.HeroDeveloper.GetFocus(TORSkills.SpellCraft); 
+            
+            var spendAttributePoints =Hero.MainHero.GetAttributeValue(TORAttributes.Discipline)-1;
+            Hero.MainHero.HeroDeveloper.RemoveAttribute(TORAttributes.Discipline,spendAttributePoints);
+            Hero.MainHero.HeroDeveloper.UnspentAttributePoints += spendAttributePoints;
+            
+            
             playerHero.HeroDeveloper.RemoveFocus(TORSkills.SpellCraft,toRemoveSpellcraft);
             playerHero.HeroDeveloper.UnspentFocusPoints += toRemoveSpellcraft;
             

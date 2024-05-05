@@ -394,6 +394,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 Hero.MainHero.AddReligiousInfluence(nagash,25,true);
             }
             
+            var spendAttributePoints =Hero.MainHero.GetAttributeValue(TORAttributes.Discipline)-1;
+            Hero.MainHero.HeroDeveloper.RemoveAttribute(TORAttributes.Discipline,spendAttributePoints);
+            Hero.MainHero.HeroDeveloper.UnspentAttributePoints += spendAttributePoints;
+            
+            
             CultureObject mousillonCulture= MBObjectManager.Instance.GetObject<CultureObject>("mousillon");
             Hero.MainHero.Culture = mousillonCulture;
         }

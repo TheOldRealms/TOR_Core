@@ -269,9 +269,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             if ((Hero.MainHero.IsVampire() || Hero.MainHero.CanRaiseDead()) &&
                 PartyScreenManager.Instance.CurrentMode == PartyScreenMode.Loot)
             {
-                var prisoners = PlayerEncounter.Current.RosterToReceiveLootPrisoners.TotalManCount;
                 var totalCausalties = Hero.MainHero.PartyBelongedTo.MapEvent.GetMapEventSide(BattleSideEnum.Defender).Casualties;
-                var result = 0f;
 
                 result += totalCausalties - prisoners;
                 if (leftMemberRoster != null && leftMemberRoster.Count > 0)
