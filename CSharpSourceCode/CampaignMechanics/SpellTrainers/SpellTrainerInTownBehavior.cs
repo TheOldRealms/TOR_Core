@@ -311,7 +311,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         private bool magictestcondition()
         {
             if (isMorgianaLeFay()) return false;
-            if (!CareerHelper.PlayerOwnsMagicCareer()) return false;
+            if (!CareerHelper.IsMagicCapableCareer(Hero.MainHero.GetCareer())) return false;
             
             var flag = false;
             flag = !Hero.MainHero.IsVampire() && !Hero.MainHero.IsSpellCaster() && !Hero.MainHero.HasAttribute("Priest") && _testResult == "";

@@ -258,9 +258,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         WindsOfMagic,       //player Winds of Magic, as flat number
         WindsCostReduction, //player Winds of Magic cost reduction as Percentage
         WindsRegeneration,
-        BuffDuration,       //Increases duration for friendly augments     //TODO Radius
+        BuffDuration,       //Increases duration for friendly augments    
         DebuffDuration,     //Increases duration for hex
-        Spelleffectiveness, //Damage spell effectiveness - for direct effects
+        SpellRadius,
+        SpellEffectiveness, //Damage spell effectiveness - for direct effects
         WindsCooldownReduction, //player cooldown reduction as Percentage
         PrayerCoolDownReduction, //player cooldown reduction as Percentage
         PartyMovementSpeed, //general party speed

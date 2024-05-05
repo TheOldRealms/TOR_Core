@@ -87,7 +87,6 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _robberKnight;
         private CareerChoiceGroupObject _lieOfLady;
         private CareerChoiceGroupObject _blackGrailVow;
-        
         //Necrarch
         private CareerChoiceGroupObject _discipleOfAccursed;
         private CareerChoiceGroupObject _witchSight;
@@ -96,6 +95,14 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _hungerForKnowledge;
         private CareerChoiceGroupObject _wellspringOfDhar;
         private CareerChoiceGroupObject _everlingsSecret;
+        //Warrior Priest of Ulric
+        private CareerChoiceGroupObject _crusherOfTheWeak;
+        private CareerChoiceGroupObject _wildPack;
+        private CareerChoiceGroupObject _teachingsOfTheWinterfather;
+        private CareerChoiceGroupObject _frostsBite;
+        private CareerChoiceGroupObject _runesOfTheWhiteWolf;
+        private CareerChoiceGroupObject _furyOfWar;
+        private CareerChoiceGroupObject _flameOfUlric;
 
 
         public TORCareerChoiceGroups()
@@ -198,6 +205,14 @@ namespace TOR_Core.CharacterDevelopment
             _wellspringOfDhar = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_wellspringOfDhar).UnderscoreFirstCharToUpper()));
             _everlingsSecret = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_everlingsSecret).UnderscoreFirstCharToUpper()));
             
+            //WarriorPriest of Ulric
+            _crusherOfTheWeak = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_crusherOfTheWeak).UnderscoreFirstCharToUpper()));
+            _wildPack = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_wildPack).UnderscoreFirstCharToUpper()));
+            _teachingsOfTheWinterfather = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_teachingsOfTheWinterfather).UnderscoreFirstCharToUpper()));
+            _frostsBite = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_frostsBite).UnderscoreFirstCharToUpper()));
+            _runesOfTheWhiteWolf = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_runesOfTheWhiteWolf).UnderscoreFirstCharToUpper()));
+            _furyOfWar = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_furyOfWar).UnderscoreFirstCharToUpper()));
+            _flameOfUlric = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_flameOfUlric).UnderscoreFirstCharToUpper()));
         }
 
         private void InitializeAll()
@@ -605,6 +620,43 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.Clan.Tier >= 4;
             });
             
+            //Warrior priest of Ulric
+            
+            _crusherOfTheWeak.Initialize("Crusher of the Weak", TORCareers.WarriorPriestUlric, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _wildPack.Initialize("Wild Pack", TORCareers.WarriorPriestUlric, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _teachingsOfTheWinterfather.Initialize("Teachings of the Winterfather", TORCareers.WarriorPriestUlric, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            _frostsBite.Initialize("Frost’s Bite", TORCareers.WarriorPriestUlric, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            _runesOfTheWhiteWolf.Initialize("Runes of the White Wolf", TORCareers.WarriorPriestUlric, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            _furyOfWar.Initialize("Fury of War", TORCareers.WarriorPriestUlric, 3, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier >= 4;
+            });
+            _flameOfUlric.Initialize("Flame of Ulric", TORCareers.WarriorPriestUlric, 3, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier >= 4;
+            });
 
         }
     }

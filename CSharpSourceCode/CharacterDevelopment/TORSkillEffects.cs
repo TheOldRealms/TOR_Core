@@ -80,7 +80,7 @@ namespace TOR_Core.CharacterDevelopment
             _blessingDuration.Initialize(new TextObject("{=tor_skills_blessing_duration_str}Blessing duration increase: +{a0} %", null), new SkillObject[]
             {
                 TORSkills.Faith
-            }, SkillEffect.PerkRole.PartyLeader, 0.05f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.AddFactor, 0f, 0f);
+            }, SkillEffect.PerkRole.PartyLeader, 1f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.AddFactor, 0f, 0f);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <EquipmentRosters>
   <EquipmentRoster id="tor_empire_villager_template" culture="Culture.empire">
     <EquipmentSet>
@@ -3312,7 +3312,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_vc_harbinger_champion_plate_two_handed_template" culture="Culture.khuzait">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_vc_weapon_thsword_grave_guard_001" />
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_thaxe_graveguard_001" />
       <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_001" />
       <Equipment slot="Item2" id="Item.tor_vc_weapon_sword_grave_guard_001" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_hell_knight_001" />
@@ -3322,7 +3322,7 @@
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_vc_hell_knight_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_vc_weapon_thsword_grave_guard_001" />
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_thaxe_graveguard_001" />
       <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_001" />
       <Equipment slot="Item2" id="Item.tor_vc_weapon_sword_grave_guard_001" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_hell_knight_001" />
@@ -14852,6 +14852,24 @@
       <Equipment slot="Body" id="Item.tor_tilean_body_armor_knight_003" />
       <Equipment slot="Gloves" id="Item.tor_tiliean_arm_gauntlet_knight_002" />
       <Equipment slot="Leg" id="Item.mail_cavalier_boots" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_qnpc_prestige_noble_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_rapier_002" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_general_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_cannon_crew_001" />
+      <Equipment slot="Cape" id="Item.empire_cape_a" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_pistolier_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_pistolier_003" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_rapier_002" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_general_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_cannon_crew_001" />
+      <Equipment slot="Cape" id="Item.empire_cape_a" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_pistolier_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_pistolier_003" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_qnpc_collegemagister_template" culture="Culture.empire">

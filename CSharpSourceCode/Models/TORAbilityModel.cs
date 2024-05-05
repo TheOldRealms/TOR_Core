@@ -113,6 +113,21 @@ namespace TOR_Core.Models
             
             return statusEffectDuration * skillmultiplier * perkmultiplier;
         }
+        
+        public float CalculateRadiusForAbility(CharacterObject character, AbilityTemplate originAbilityTemplate, float radius)
+        {
+            if (character.IsHero&& character.HeroObject == Hero.MainHero)
+            {
+                var player = character.HeroObject;
+                var explainedNumber = new ExplainedNumber(radius);
+                
+                CareerHelper.ApplyBasicCareerPassives(player,ref explainedNumber,PassiveEffectType.SpellRadius, true);
+                
+                return explainedNumber.ResultNumber;
+            }
+
+            return radius;
+        }
 
         public float GetSkillEffectivenessForAbilityDuration(CharacterObject character, AbilityTemplate ability)
         {
@@ -162,7 +177,7 @@ namespace TOR_Core.Models
                 }
                 if (character.IsPlayerCharacter && character.IsHero&& character.HeroObject== Hero.MainHero)
                 {
-                    CareerHelper.ApplyBasicCareerPassives(Hero.MainHero,ref explainedNumber,PassiveEffectType.Spelleffectiveness, true);
+                    CareerHelper.ApplyBasicCareerPassives(Hero.MainHero,ref explainedNumber,PassiveEffectType.SpellEffectiveness, true);
                 }
                 if (character.GetPerkValue(TORPerks.SpellCraft.OverCaster) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
                 {
@@ -314,7 +329,6 @@ namespace TOR_Core.Models
             
             return !loreObject.DisabledForCultures.Contains(hero.Culture.StringId);
         }
-        
-        
+
     }
 }
