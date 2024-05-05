@@ -193,7 +193,7 @@
              short_name="{=!}Hochland"
              title="{=!}Hochland"
              ruler_title="{=!}Elector Count"
-             text="{=!}Hochland, officially the Grand Barony of Hochland, is one of the founding Electoral Provinces of the Empire. It lies in the north-central region of the Old World. Within the boundaries of Hochland, like its neighbor Ostland, lies a portion of the Middle Mountains and vast tracts of untamed wilderness.">
+             text="{=!}Hochland, officially the Grand Barony of Hochland, is one of the founding Electoral Provinces of the Empire. It  lies between the northern provinces of Middenland, Ostland and the borders of Talabecland. Hochlanders are therefore known among the friendliest and most tolerant people of the Empire. Besides the Cities Hergig and Krudenwald, there is the untamed wilderness of forests and mountains and very limited ground for agriculture.  The people of Hochland are famous for their love for guns and the best archers and marksmen regiments of the empire originate from this state. It is said that Hochlanders love their guns more than their wives.">
         <relationships />
         <policies>
             <policy id="policy_senate" />

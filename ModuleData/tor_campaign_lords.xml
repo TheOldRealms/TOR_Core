@@ -1692,7 +1692,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_reikland_forth_1" default_group="cavalry" name="{=str_tor_emp_lord_reikland_forth_1}Graf Wilhelm I von Saponatheim" occupation="Lord" culture="Culture.empire" voice="ironic" age="52" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_reikland_fourth_1" default_group="cavalry" name="{=str_tor_emp_lord_reikland_fourth_1}Graf Wilhelm I von Saponatheim" occupation="Lord" culture="Culture.empire" voice="ironic" age="52" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="52" weight="0.7701" build="0.1651" key="000A200140E432DA84B6D58C9A6B55C96C39C7192959AC4877976479567A65980072C603072A97D400000000000000000000000000000000000000001EFC5142" />
     </face>
@@ -1710,7 +1710,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavyblack_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_reikland_forth_2" default_group="cavalry" name="{=str_tor_emp_lord_reikland_forth_2}Uli ‘Kleiner’ Gruber" occupation="Lord" culture="Culture.empire" voice="curt" age="36" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_reikland_fourth_2" default_group="cavalry" name="{=str_tor_emp_lord_reikland_fourth_2}Uli ‘Kleiner’ Gruber" occupation="Lord" culture="Culture.empire" voice="curt" age="36" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="36" weight="0.1767" build="0.688" key="00203C0800B41592BABAB7B32356A217675A57363C847C7AA75785464B851C9C00BA36030B367763000000000000000000000000000000000000000049744102" />
     </face>
@@ -1728,7 +1728,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_reikland_forth_3" default_group="cavalry" name="{=str_tor_emp_lord_reikland_forth_3}Grafchen Wilhelm II von Saponatheim" occupation="Lord" culture="Culture.empire" voice="curt" age="29" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_reikland_fourth_3" default_group="cavalry" name="{=str_tor_emp_lord_reikland_fourth_3}Grafchen Wilhelm II von Saponatheim" occupation="Lord" culture="Culture.empire" voice="curt" age="29" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="29" weight="0.2515" build="0.5694" key="000A200140E4264684B6D58C9A6B55C96834C7192959AC4864976CB65B7A65330069460306C3434800000000000000000000000000000000000000001ECC8142" />
     </face>
@@ -1782,9 +1782,117 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_hochland_factionleader" default_group="cavalry" name="{=str_tor_emp_lord_hochland_factionleader}Elector Count Aldebrand Ludenhof" occupation="Lord" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_hochland_factionleader" default_group="cavalry" name="{=str_tor_emp_lord_hochland_factionleader}Elector Count Aldebrand von Ludenhof" occupation="Lord" culture="Culture.empire" voice="earnest" age="40" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="54" weight="0.1466" build="0.5" key="00168C0E8F00100D3498454E3B52B036407F623595A30218BADC222F546C703D436F1656088D8B6674780010A971675F0000000000005872000000003F144003" />
+      <BodyProperties version="4" age="40" weight="0.1" build="0.6265" key="000D600D0E0032CE94759609FD50FF5775F366CDB7A08C07F006008B8B81A05F007006350BF0AEF29000000000000000000000000000003B0000000029842042" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_heavy_demi_template" />
+      <EquipmentSet id="tor_generic_empire_lord_heavy_demi_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_hochland_first_2" default_group="cavalry" name="{=str_tor_emp_lord_hochland_first_2}Konrad von Ludendorf" occupation="Lord" culture="Culture.empire" voice="earnest" age="20" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="20" weight="0.2824" build="0.8966" key="000D600D0000004F94A5C639FD044F5875F38ACFDB90EE07F006008B8B81A05FD99686D20DF3DEF2D4488535287885CF00000000000000DD0000000029C44042" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="4" />
+      <Trait id="Politician" value="3" />
+      <Trait id="Manager" value="3" />
+      <Trait id="Honor" value="5" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_hochland_first_3" default_group="cavalry" name="{=str_tor_emp_lord_hochland_first_3}Heinrich von Ludendorf" occupation="Lord" culture="Culture.empire" voice="earnest" age="19" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="19" weight="0" build="0.1404" key="000D4C0D0000200994A6A60EFD60CD5571F399CDB7A0CD00F006008B8B81A056623046A20CF0A8F22036C8001003006C00000000000000AF0000000059FC5042" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="4" />
+      <Trait id="Politician" value="3" />
+      <Trait id="Manager" value="3" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="3" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_huntsman_template" />
+      <EquipmentSet id="tor_generic_empire_lord_huntsman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_hochland_first_4" default_group="cavalry" name="{=str_tor_emp_lord_hochland_first_4}Anton von Ludenhof" occupation="Lord" culture="Culture.empire" voice="earnest" age="18" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="18" weight="0.625" build="0.9522" key="001B600D80002005A0746D19BD96F1DB48F188CDB7A5EB03F00755BBDB81A05F767786620BF0DE95E925605000520000000000000000006F0000000029F44042" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="4" />
+      <Trait id="Politician" value="3" />
+      <Trait id="Manager" value="3" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="3" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_huntsman_template" />
+      <EquipmentSet id="tor_generic_empire_lord_huntsman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_hochland_first_5" default_group="cavalry" name="{=str_tor_emp_lord_hochland_first_5}Jens von Ludenhof" occupation="Lord" culture="Culture.empire" voice="earnest" age="17" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="17" weight="0" build="1" key="000D4C0F000020148F97BC8C2FB5489407F6AA33BEC07F12FDB691FE8BA1A23DD44456720BF3EE66F0745A022793570A000000000000007F0000000029FC3042" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="4" />
+      <Trait id="Politician" value="3" />
+      <Trait id="Manager" value="3" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="3" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_huntsman_template" />
+      <EquipmentSet id="tor_generic_empire_lord_huntsman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_hochland_first_6" default_group="cavalry" name="{=str_tor_emp_lord_hochland_first_6}Herman Blütenberg" occupation="Special" culture="Culture.empire" voice="curt" age="54" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="54" weight="0.375" build="0.6034" key="001B900080703B823CDB758C9863876498E5AA688560AF08D099075E957B59B3A177A6560BB5785696660588379015DA000000000000005B000000001F743102" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="3" />
+      <Trait id="Commander" value="2" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="2" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_light_wizard_template" />
+      <EquipmentSet id="tor_light_wizard_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_hochland_second_1" default_group="cavalry" name="{=str_tor_emp_lord_hochland_second_1}Ludwig von Halberwald" occupation="Lord" culture="Culture.empire" voice="ironic" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="30" weight="0.4453" build="0.5883" key="0008200980FC37CE899367A8787A059B89D16699B681BD3E445EA78B946B9263757746030AB36969978737694B6364B7000000000000000A0000000045445042" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -1798,6 +1906,168 @@
     <Equipments>
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_hochland_second_2" default_group="cavalry" name="{=str_tor_emp_lord_hochland_second_2}Bernd von Halberwald" occupation="Lord" culture="Culture.empire" voice="softspoken" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="30" weight="0.7546" build="0.9336" key="000820099AFC2A53890367A8787E059F89D16699B681BD3E445EA78B946B92667577C6030AB36969EB8737694B6364B7000000000000000A00000000454C5042" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_hochland_second_3" default_group="cavalry" name="{=str_tor_emp_lord_hochland_second_3}Horst Trautenfels" occupation="Lord" culture="Culture.empire" voice="earnest" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="30" weight="0.4676" build="0.6344" key="0020780F002C04098632BD677B95267DB3E9698A757067543D8A2BD53968924AB88856030C94C2A1A7E8857685BE7A94000000000000000C000000001BA450C2" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_gsword_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_gsword_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_hochland_second_4" default_group="cavalry" name="{=str_tor_emp_lord_hochland_second_4}Huntsmarshall Kurt Fellhard" occupation="Lord" culture="Culture.empire" voice="curt" age="29" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="29" weight="0.4096" build="0.8781" key="0005B80D12FC1B007BA56B6C629A55678B77675C2371220D184B58836627598F37B3A60309A788A6D6CA188B6489B756000000000000000900000000652C7042" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_huntsman_template" />
+      <EquipmentSet id="tor_generic_empire_lord_huntsman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_hochland_second_5" default_group="cavalry" name="{=str_tor_emp_lord_hochland_second_5}Magarete Heilfroh" occupation="Special" culture="Culture.empire" voice="curt" age="54" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="54" weight="0.5499" build="0.4591" key="0018500080A020154D5788C45939838823878498BD956710D6799C985B7A84C59899D6560575D5BB788D6976687289860000000000000055000000002CA41003" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="3" />
+      <Trait id="Commander" value="2" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="2" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_priestess_of_shallya_template" />
+      <EquipmentSet id="tor_priestess_of_shallya_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_hochland_third_1" default_group="cavalry" name="{=str_tor_emp_lord_hochland_third_1}Martin von Hohenstein" occupation="Lord" culture="Culture.empire" voice="ironic" age="55" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="55" weight="0.4853" build="0.8158" key="0005480B8EB41B40A878C6ADB7B6994CB959BA8799828F11BA5776757317AD7ED9C576560B3AE95CC7D99A35996CA63A000000000000005B000000006F849082" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="-3" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_hochland_third_2" default_group="cavalry" name="{=str_tor_emp_lord_hochland_third_2}Helga von Hohenstein" occupation="Lord" culture="Culture.empire" voice="softspoken" age="21" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="21" weight="0.4853" build="0.8158" key="0005480B80B410019A78C65DB7260948B9E1BA8799828F11BA57E6787317AD7BD9C576030B3AE95CC7D99A35996CA63A000000000000000B000000006F842083" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="4" />
+      <Trait id="Politician" value="3" />
+      <Trait id="Manager" value="3" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_femlord_medium_template" />
+      <EquipmentSet id="tor_generic_empire_femlord_medium_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_hochland_third_3" default_group="cavalry" name="{=str_tor_emp_lord_hochland_third_3}Werner Tross" occupation="Lord" culture="Culture.empire" voice="ironic" age="34" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="34" weight="0.3596" build="0.4764" key="00055C0540E4230D8D4557A62724A45568C856666962A9017634746C74578BAA872E76030D8E9D9B75D4C72866756A7B000000000000000D000000003BAC3042" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="-3" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_gsword_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_gsword_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_hochland_third_4" default_group="cavalry" name="{=str_tor_emp_lord_hochland_third_4}Wolf Priest Gunther" occupation="Lord" culture="Culture.empire" voice="earnest" age="41" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="41" weight="0.3688" build="0.7577" key="000D600AD7442BC55BBD6C42B8E772673964C8BC8C7068137763A9899795C867185996350CCADCBAB6A371563AAB985A000000000000003C000000002F8C3002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="5" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" />
+      <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_hochland_third_5" default_group="cavalry" name="{=str_tor_emp_lord_hochland_third_5}Magister Hans Hellmich" occupation="Special" culture="Culture.empire" voice="curt" age="28" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="28" weight="0.3959" build="0.2947" key="00025C0D80A0184278958A59A85740C669DA7B85A7627888B9A3B67387977956733A561308486567466A835A7AB5B48400000000000000180000000071049082" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="3" />
+      <Trait id="Commander" value="2" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="2" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_light_wizard_template" />
+      <EquipmentSet id="tor_light_wizard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_emp_lord_nordland_factionleader" default_group="cavalry" name="{=str_tor_emp_lord_nordland_factionleader}Elector Count Theoderic Gausser" occupation="Lord" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
@@ -1818,9 +2088,9 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_ostland_factionleader" default_group="cavalry" name="{=str_tor_emp_lord_ostland_factionleader}Elector Count Valmir von Raukov" occupation="Lord" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_ostland_factionleader" default_group="cavalry" name="{=str_tor_emp_lord_ostland_factionleader}Elector Count Valmir von Raukov" occupation="Lord" culture="Culture.empire" voice="ironic" age="37" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="54" weight="0.1466" build="0.5" key="00168C0E8F00100D3498454E3B52B036407F623595A30218BADC222F546C703D436F1656088D8B6674780010A971675F0000000000005872000000003F144003" />
+      <BodyProperties version="4" age="50" weight="0.9933" build="0.6991" key="000D940D80A0150BE3A8858F799832C9CBD0B9B8B8705F0167B677C568B8ADE972C146460E07A8DCAF88588BBDB53D77000000000000004E000000000FCC3142" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -1832,8 +2102,314 @@
       <Trait id="Generosity" value="1" />
     </Traits>
     <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_heavy_demi_template" />
+      <EquipmentSet id="tor_generic_empire_lord_heavy_demi_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_ostland_first_2" default_group="cavalry" name="{=str_tor_emp_lord_ostland_first_2}Prince Vassily von Raukov" occupation="Lord" culture="Culture.empire" voice="earnest" age="23" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="23" weight="0.2454" build="0.483" key="0000CC0D80FC2086549ED7565673C69767A93AC4B9BA929AA2BD7C68D7A67DCA666606030565522574A222683332615800000000000000050000000036B440C2" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="4" />
+      <Trait id="Commander" value="3" />
+      <Trait id="Politician" value="7" />
+      <Trait id="Manager" value="5" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_ostland_first_3" default_group="cavalry" name="{=str_tor_emp_lord_ostland_first_3}Marshal Oleg von Raukov" occupation="Lord" culture="Culture.empire" voice="curt" age="22" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.7824" build="0.5941" key="000A940D80A01452E3A8858779983289CC70B9B81870580167B677C568B8ADA9727146030A07A8DC9C88568BBB853A77000000000000000A000000000F4C3142" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="3" />
+      <Trait id="Manager" value="3" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" />
+      <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_ostland_first_4" default_group="cavalry" name="{=str_tor_emp_lord_ostland_first_4}Grand Master Leopold von Raukov" occupation="Lord" culture="Culture.empire" voice="curt" age="36" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="36" weight="0.8194" build="0.6991" key="0010940FD9883A0083A8858F799832C9CBD0B9B8B8705803A7B677A568B8ADE9727146240D07A8DCAC8BCB8BACA83B67000000000000002D000000000FAC9142" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="6" />
+      <Trait id="Commander" value="6" />
+      <Trait id="Politician" value="3" />
+      <Trait id="Manager" value="3" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_ostland_first_5" default_group="cavalry" name="{=str_tor_emp_lord_ostland_first_5}Lector Krauledat" occupation="Special" culture="Culture.empire" voice="earnest" age="63" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="63" weight="0.6991" build="0.6559" key="0008AC0D9758088093B689688B8333BC6C978844D984680746B76759B57AD5C944C986670C68497CAA9BCC686D23F529000000000000006C0000000065949042" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="4" />
+      <Trait id="Politician" value="2" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="3" />
+      <Trait id="Generosity" value="3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_gsword_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_gsword_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_ostland_first_6" default_group="cavalry" name="{=str_tor_emp_lord_ostland_first_6}Baroness Gisela von Seeckt" occupation="Lord" culture="Culture.empire" voice="softspoken" age="32" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="32" weight="0.6914" build="0.7273" key="000AA80A54E42006371A9754BA9A6C7645D796698ABA9B17454862899A877D8957A86624065D2A58BA285983BCA8DDBA00000000000000260000000044D41043" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="2" />
+      <Trait id="Commander" value="4" />
+      <Trait id="Politician" value="6" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="3" />
+      <Trait id="Generosity" value="3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_femlord_medium_pistol_template" />
+      <EquipmentSet id="tor_generic_empire_femlord_medium_pistol_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_ostland_second_1" default_group="cavalry" name="{=str_tor_emp_lord_ostland_second_1}Marshal Jared von Strudt" occupation="Lord" culture="Culture.empire" voice="earnest" age="31" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="32" weight="0.6065" build="0.6806" key="0000B806C0B4214437883A7B78885A788ABAD68DC769474E97468969A85A4875769476140A507353A95379697D67A658000000000000001A0000000013447102" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Politician" value="4" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_ostland_second_2" default_group="cavalry" name="{=str_tor_emp_lord_ostland_second_2}Baron Marquand Beckburg" occupation="Lord" culture="Culture.empire" voice="curt" age="27" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="27" weight="0.5824" build="0.7554" key="0005C40D8070078259E96BAA2C49966946444CC9148C7798C167693819A5B3B0A96AB61306687B89B93C77375557946C0000000000000016000000004ED41142" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Politician" value="4" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_ostland_second_3" default_group="cavalry" name="{=str_tor_emp_lord_ostland_second_3}Margrave Georg von Döbreiner" occupation="Lord" culture="Culture.empire" voice="ironic" age="52" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="52" weight="0.625" build="0.8077" key="00103C0C40583240636B99456B539B89879579946A7A56944A369B4D75846EA2454A4646082A7888C9A5C495385B949B0000000000000048000000002B0490C2" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="3" />
+      <Trait id="Politician" value="1" />
+      <Trait id="Manager" value="1" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_gsword_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_gsword_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_ostland_second_4" default_group="cavalry" name="{=str_tor_emp_lord_ostland_second_4}Count Otto von Öbelstein" occupation="Lord" culture="Culture.empire" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="24" weight="0.6803" build="0.4645" key="000564028044069B7B149D88A26B468999D775A7B776B667CD5BBF69A88B4B9957A756030666D55A7A2AC9484886C78900000000000000060000000032D480C2" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="4" />
+      <Trait id="Commander" value="3" />
+      <Trait id="Politician" value="2" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="-1" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_ostland_third_1" default_group="cavalry" name="{=str_tor_emp_lord_ostland_third_1}Baron Gustav von Wolder" occupation="Lord" culture="Culture.empire" voice="ironic" age="38" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="38" weight="0.1836" build="0.546" key="0010E80A40E411C13652645BC788A495E48A93B4EA32E4A897696B85865361B4757966240A4785278349A76865789627000000000000002A000000005F5C90C2" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="3" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_ostland_third_2" default_group="cavalry" name="{=str_tor_emp_lord_ostland_third_2}Grand Admiral Hrofil Halfdane" occupation="Lord" culture="Culture.empire" voice="earnest" age="40" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="40" weight="0.5941" build="0.9892" key="000A240554E434CA848B3C921A7B698883AD8BA7CB66C5B9C7A96535A7174C6AA98946350EDA7B69F9FEFEABFF875B37000000000000003E0000000071CC5002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="6" />
+      <Trait id="Politician" value="3" />
+      <Trait id="Manager" value="3" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_ostland_third_3" default_group="cavalry" name="{=str_tor_emp_lord_ostland_third_3}Baron Alois Otterbein" occupation="Lord" culture="Culture.empire" voice="softspoken" age="34" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="34" weight="0.983" build="0.7608" key="0008940AC0A032C3497A4E88DD0FDABE942ABC9DC5573B8955A5CA7B9AAA86A79989E62406F2EFFFBF86674A7C87316B0000000000000026000000003ABC4042" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="3" />
+      <Trait id="Commander" value="3" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="-1" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_ostland_third_4" default_group="cavalry" name="{=str_tor_emp_lord_ostland_third_4}Kannonmeister Gunther Trundlekopf" occupation="Lord" culture="Culture.empire" voice="curt" age="44" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="44" weight="0.4444" build="0.2584" key="00106C0D00A0134F9A4EB87755A84568555D75964563A3737D98AD65676418B2452856350926716A4737476569297A69000000000000003900000000352C9082" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Politician" value="2" />
+      <Trait id="Manager" value="3" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_ostland_third_5" default_group="cavalry" name="{=str_tor_emp_lord_ostland_third_5}Grand Master Aldred Treitszaur" occupation="Lord" culture="Culture.empire" voice="earnest" age="41" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="41" weight="0.4552" build="0.5787" key="0008940E5EA03480E84497D94396336955736C98D66AF91937E83C5785D96889A797963508AFC94E9779A667BA9767780000000000000038000000005B0C9102" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="3" />
+      <Trait id="Politician" value="1" />
+      <Trait id="Manager" value="3" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="3" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_warrior_priest_template" />
+      <EquipmentSet id="tor_warrior_priest_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_ostland_fourth_1" default_group="cavalry" name="{=str_tor_emp_lord_ostland_fourth_1}Baron Pleskai von Wallenstein" occupation="Lord" culture="Culture.empire" voice="softspoken" age="25" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.5128" build="0.5818" key="0002280C40E4008FA8DB87DB43699954AB9BBB447249C89BCC88B97D898C593A9696961307225536986B4A7A7B57297A0000000000000017000000005AF48142" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="3" />
+      <Trait id="Commander" value="3" />
+      <Trait id="Politician" value="7" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="-1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_ostland_fourth_2" default_group="cavalry" name="{=str_tor_emp_lord_ostland_fourth_2}Baron Klemens Gauss" occupation="Lord" culture="Culture.empire" voice="curt" age="59" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="59" weight="0.5773" build="0.7101" key="0008880980CC1608498C96838439447A775248784A94BCA3D8973765679827951C8A965707EA34E6B9788E4886389BA600000000000000570000000048EC60C2" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="3" />
+      <Trait id="Commander" value="3" />
+      <Trait id="Politician" value="4" />
+      <Trait id="Manager" value="3" />
+      <Trait id="Honor" value="-1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_pistol2_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_pistol2_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_ostland_fourth_3" default_group="cavalry" name="{=str_tor_emp_lord_ostland_fourth_3}Margravine Anna Mayer-Schnabel" occupation="Lord" culture="Culture.empire" voice="ironic" age="39" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="39" weight="0.5448" build="0.3873" key="0010840214E40004A86D4773B6C5768B7886DE97669BC9028899A7BA6BAB1CEBCB89663509C577346867D7B59EF8DB98000000000000003900000000332C4043" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="4" />
+      <Trait id="Commander" value="4" />
+      <Trait id="Politician" value="6" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="-3" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_femlord_medium_bow_template" />
+      <EquipmentSet id="tor_generic_empire_femlord_medium_bow_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_emp_lord_wasteland_factionleader" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_factionleader}Luitpold van Raemerswijk" occupation="Lord" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">

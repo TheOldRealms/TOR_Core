@@ -3474,7 +3474,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_HL2" name="{=Settlements.Settlement.name.town_HL2}Breder" owner="Faction.hochland_clan_1" posX="1445.546" posY="1214.458" culture="Culture.empire" gate_posX="1448.404" gate_posY="1207.4" text="{=!}At the Confluence of the River Reik and the River Schilder sits the town of Schilderheim. Ruled by Graf Robert von Uhland, Schilderheim is an important river market down river from altdorf, being one of the last places that trade on the River Reik can stop before reaching Marienburg.">
+  <Settlement id="town_HL2" name="{=Settlements.Settlement.name.town_HL2}Breder" owner="Faction.hochland_clan_2" posX="1445.546" posY="1214.458" culture="Culture.empire" gate_posX="1448.404" gate_posY="1207.4" text="{=!}At the Confluence of the River Reik and the River Schilder sits the town of Schilderheim. Ruled by Graf Robert von Uhland, Schilderheim is an important river market down river from altdorf, being one of the last places that trade on the River Reik can stop before reaching Marienburg.">
     <Components>
       <Town id="town_comp_HL2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -3520,7 +3520,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_HL3" name="{=Settlements.Settlement.name.town_HL3}Krudenwald" owner="Faction.hochland_clan_1" posX="1370.8" posY="1220.302" culture="Culture.empire" gate_posX="1365.017" gate_posY="1225.933" text="{=!}At the head of the Axe Bite pass sits the town of Helmgart. Ruled by Margrave Reinhardt von Mackensen, the fortress town serves as both the economic and military border between Bretonnia and the Empire. Axe Bite is one of three mountain passes through the Grey mountains; as such the safety of passage through it is a primary concern. Helmgart itself is a market town, surrounded by several curtain walls. One of these walls traverses the entire width of the pass itself, meaning all travel must pass through its single gate or be stuck on either the Bretonnian or Imperial side of the border.">
+  <Settlement id="town_HL3" name="{=Settlements.Settlement.name.town_HL3}Krudenwald" owner="Faction.hochland_clan_3" posX="1370.8" posY="1220.302" culture="Culture.empire" gate_posX="1365.017" gate_posY="1225.933" text="{=!}At the head of the Axe Bite pass sits the town of Helmgart. Ruled by Margrave Reinhardt von Mackensen, the fortress town serves as both the economic and military border between Bretonnia and the Empire. Axe Bite is one of three mountain passes through the Grey mountains; as such the safety of passage through it is a primary concern. Helmgart itself is a market town, surrounded by several curtain walls. One of these walls traverses the entire width of the pass itself, meaning all travel must pass through its single gate or be stuck on either the Bretonnian or Imperial side of the border.">
     <Components>
       <Town id="town_comp_HL3" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -3638,7 +3638,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_HL3" name="{=Settlements.Settlement.name.castle_HL3}Fort Denkh" owner="Faction.hochland_clan_1" posX="1387.836" posY="1177.96" culture="Culture.empire" gate_posX="1387.637" gate_posY="1177.205" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as KaHL-Franz’s summer home.">
+  <Settlement id="castle_HL3" name="{=Settlements.Settlement.name.castle_HL3}Fort Denkh" owner="Faction.hochland_clan_3" posX="1387.836" posY="1177.96" culture="Culture.empire" gate_posX="1387.637" gate_posY="1177.205" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as KaHL-Franz’s summer home.">
     <Components>
       <Town id="castle_comp_HL3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4114,7 +4114,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_OL3" name="{=Settlements.Settlement.name.town_OL3}Ferlangen" owner="Faction.ostland_clan_1" posX="1469.623" posY="1266.152" culture="Culture.empire" gate_posX="1470.647" gate_posY="1270.832" text="{=!}At the head of the Axe Bite pass sits the town of Helmgart. Ruled by Margrave Reinhardt von Mackensen, the fortress town serves as both the economic and military border between Bretonnia and the Empire. Axe Bite is one of three mountain passes through the Grey mountains; as such the safety of passage through it is a primary concern. Helmgart itself is a market town, surrounded by several curtain walls. One of these walls traverses the entire width of the pass itself, meaning all travel must pass through its single gate or be stuck on either the Bretonnian or Imperial side of the border.">
+  <Settlement id="town_OL3" name="{=Settlements.Settlement.name.town_OL3}Ferlangen" owner="Faction.ostland_clan_2" posX="1469.623" posY="1266.152" culture="Culture.empire" gate_posX="1470.647" gate_posY="1270.832" text="{=!}At the head of the Axe Bite pass sits the town of Helmgart. Ruled by Margrave Reinhardt von Mackensen, the fortress town serves as both the economic and military border between Bretonnia and the Empire. Axe Bite is one of three mountain passes through the Grey mountains; as such the safety of passage through it is a primary concern. Helmgart itself is a market town, surrounded by several curtain walls. One of these walls traverses the entire width of the pass itself, meaning all travel must pass through its single gate or be stuck on either the Bretonnian or Imperial side of the border.">
     <Components>
       <Town id="town_comp_OL3" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -4256,7 +4256,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_OL2" name="{=Settlements.Settlement.name.castle_OL2}Castle Lenkster" owner="Faction.ostland_clan_1" posX="1473.015" posY="1211.275" culture="Culture.empire" gate_posX="1470.772" gate_posY="1211.327" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_OL2" name="{=Settlements.Settlement.name.castle_OL2}Castle Lenkster" owner="Faction.ostland_clan_2" posX="1473.015" posY="1211.275" culture="Culture.empire" gate_posX="1470.772" gate_posY="1211.327" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
       <Town id="castle_comp_OL2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4328,7 +4328,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_OL4" name="{=Settlements.Settlement.name.castle_OL3}Roezfels" owner="Faction.ostland_clan_1" posX="1436.242" posY="1250.658" culture="Culture.empire" gate_posX="1438.081" gate_posY="1251.761" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
+  <Settlement id="castle_OL4" name="{=Settlements.Settlement.name.castle_OL3}Roezfels" owner="Faction.ostland_clan_2" posX="1436.242" posY="1250.658" culture="Culture.empire" gate_posX="1438.081" gate_posY="1251.761" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
     <Components>
       <Town id="castle_comp_OL4" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>

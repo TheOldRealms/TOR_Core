@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfCharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_villager">
     <Abilities />
@@ -1203,7 +1203,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="10" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="1" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_skeleton_warrior">
     <Abilities />
@@ -1218,7 +1218,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="20" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="3" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_crypt_warrior">
     <Abilities />
@@ -1232,7 +1232,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="40" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="10" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_grave_guard_warrior">
     <Abilities />
@@ -1246,7 +1246,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="50" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="35" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_grave_guard_seneschal">
     <Abilities />
@@ -1275,7 +1275,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="10" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="1" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_skeleton_guard">
     <Abilities />
@@ -1290,7 +1290,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="20" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="3" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_crypt_guard">
     <Abilities />
@@ -1304,7 +1304,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="40" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="10" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_grave_guard_spearman">
     <Abilities />
@@ -1318,7 +1318,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="50" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="35" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_grave_guardian">
     <Abilities />
@@ -1521,7 +1521,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="5" UpgradeCost="100" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="5" UpgradeCost="10" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_bd_blooddragon_templar">
     <Abilities />
@@ -1536,7 +1536,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="6" UpgradeCost="150" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="6" UpgradeCost="75" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_bd_blooddragon_kastelan">
     <Abilities />
@@ -1551,7 +1551,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="8" UpgradeCost="200" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="8" UpgradeCost="100" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lahmian_sister">
     <Abilities />
@@ -1948,7 +1948,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="20" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="3" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dog_cursed_company_03">
     <Abilities />
@@ -1961,7 +1961,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="30" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="10" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dog_leopard_01">
     <Abilities />
@@ -2557,7 +2557,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="75" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="35" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_sternieste_sternsmen">
     <Abilities />
@@ -2569,7 +2569,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="100" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="75" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_sternieste_black_knight">
     <Abilities />
@@ -2933,6 +2933,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="1" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_roaming_undead_warrior">
     <Abilities />
@@ -2944,6 +2945,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="0" UpgradeCost="3" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_outlaw">
     <Abilities />
@@ -3545,15 +3547,15 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_emp_lord_reikland_forth_1">
+  <CharacterExtendedInfo id="tor_emp_lord_reikland_fourth_1">
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_emp_lord_reikland_forth_2">
+  <CharacterExtendedInfo id="tor_emp_lord_reikland_fourth_2">
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_emp_lord_reikland_forth_3">
+  <CharacterExtendedInfo id="tor_emp_lord_reikland_fourth_3">
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
@@ -3573,9 +3575,97 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_hochland_factionleader">
     <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_hochland_first_2">
+    <Abilities />
     <Attributes>
       <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_hochland_first_3">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_hochland_first_4">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_hochland_first_5">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_hochland_first_6">
+    <Abilities>
+      <string>ShemGaze</string>
+      <string>StoneAssault</string>
+      <string>HealingLight</string>
+      <string>PhaProtection</string>
+      <string>DeathlyShards</string>
+      <string>RadiancePillar</string>
+      <string>RadiantGaze</string>
+      <string>NetOfAmyntok</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+      <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_hochland_second_1">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_hochland_second_2">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_hochland_second_3">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_hochland_second_4">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_hochland_second_5">
+    <Abilities />
+    <Attributes>
+      <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_hochland_third_1">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_hochland_third_2">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_hochland_third_3">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_hochland_third_4">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_hochland_third_5">
+    <Abilities>
+      <string>ShemGaze</string>
+      <string>StoneAssault</string>
+      <string>HealingLight</string>
+      <string>PhaProtection</string>
+      <string>DeathlyShards</string>
+      <string>RadiancePillar</string>
+      <string>RadiantGaze</string>
+      <string>NetOfAmyntok</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+      <string>AICompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_nordland_factionleader">
@@ -3591,6 +3681,86 @@
       <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
     </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_ostland_first_2">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_ostland_first_3">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_ostland_first_4">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_ostland_first_5">
+    <Abilities />
+    <Attributes>
+      <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_ostland_first_6">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_ostland_second_1">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_ostland_second_2">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_ostland_second_3">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_ostland_second_4">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_ostland_third_1">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_ostland_third_2">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_ostland_third_3">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_ostland_third_4">
+    <Abilities />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_ostland_third_5">
+    <Abilities>
+      <string>HealingHand</string>
+      <string>CometOfSigmar</string>
+      <string>ArmourOfRighteousness</string>
+      <string>Vanquish</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_ostland_fourth_1">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_ostland_fourth_2">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_ostland_fourth_3">
+    <Abilities />
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_wasteland_factionleader">
     <Abilities />

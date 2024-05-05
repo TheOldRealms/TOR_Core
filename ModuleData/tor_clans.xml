@@ -302,7 +302,7 @@
     <Faction id="reikland_clan_4"
              name="{=!}von Saponatheim"
              tier="6"
-             owner="Hero.tor_emp_lord_reikland_forth_1"
+             owner="Hero.tor_emp_lord_reikland_fourth_1"
              culture="Culture.empire"
              super_faction="Kingdom.reikland"
              is_noble="true"
@@ -330,14 +330,32 @@
              banner_key="11.116.116.0.0.764.764.0.1.0.510.142.142.472.174.764.764.0.0.41.500.142.142.500.500.764.764.0.0.0"/>
 	<!-- Hochland faction -->
     <Faction id="hochland_clan_1"
-             name="{=!}Hochland Clan 1"
+             name="{=!}von Ludendorf"
              tier="6"
              owner="Hero.tor_emp_lord_hochland_factionleader"
              culture="Culture.empire"
              super_faction="Kingdom.hochland"
              is_noble="true"
-             text="{=!}"
-             banner_key="11.116.116.0.0.764.764.0.1.0.510.142.142.472.174.764.764.0.0.41.500.142.142.500.500.764.764.0.0.0"/>
+             text="{=!}The Ludendorfs are the rightful owner of Hochland. Aldebrand enjoys the highest reputation among his people. The land faces several dangers, like Beastmen of the Drakwald forest or the uprising Chaos forces beyond the Middle mountains. Ludendorf, and his sons try to stand their ground against all threats , protecting Hochland, and the Empire itself with all their strength."
+             banner_key="11.83.140.8000.8000.764.764.0.1.0.505.129.116.8000.1348.748.1348.0.0.0.505.140.116.651.651.764.764.1.0.0:kingdom_hochland"/>
+    <Faction id="hochland_clan_2"
+             name="{=!}von Halberwald"
+             tier="6"
+             owner="Hero.tor_emp_lord_hochland_second_1"
+             culture="Culture.empire"
+             super_faction="Kingdom.hochland"
+             is_noble="true"
+             text="{=!}Ruled by one of the twins of the recently deceased Victor von Halberwald, Ludwig war born just 2-minutes earlier and therefore was seen as the rightful ruler of the Halberwalds. The family wealth is based on the many hunting grounds in the Drakwald forest and the mines in the middle mountains, selling several resources and pelts south of the empire. The brothers are as distinct as one could imagine. Ludwig, apart from being a gun-lover, was also a good businessman, being able to maximise the exploitation of the mines and hunting grounds. Bernd on the other hand cares for the people, he devoted his life to Taal and often only takes what nature provides for him. While the brothers are distinctly different and can often be seen arguing, the love of their family and land comes before all else and they would die side by side to protect it."
+             banner_key="11.83.140.8000.8000.764.764.0.1.0.505.129.116.8000.1348.748.1348.0.0.0.505.140.116.651.651.764.764.1.0.0:kingdom_hochland"/>
+    <Faction id="hochland_clan_3"
+             name="{=!}von Hohenstein"
+             tier="6"
+             owner="Hero.tor_emp_lord_hochland_third_1"
+             culture="Culture.empire"
+             super_faction="Kingdom.hochland"
+             is_noble="true"
+             text="{=!}The Hohensteins built their wealth upon the woodwork in the province. They own several lumber mills along the River Drakwasser and Flaschgang. Despite the myriad beastmen threats they never let production stop. Their timber is mostly used for furniture but more importantly is used to craft the famous Hochland long-rifles. While there is nothing particularly unique about their wood, it is especially famous among gunsmiths. Their business is one of the very few very profitable ones throughout Hochland."
+             banner_key="11.83.140.8000.8000.764.764.0.1.0.505.129.116.8000.1348.748.1348.0.0.0.505.140.116.651.651.764.764.1.0.0:kingdom_hochland"/>
 	<!-- Nordland faction -->
     <Faction id="nordland_clan_1"
              name="{=!}Nordland Clan 1"
@@ -350,14 +368,41 @@
              banner_key="11.116.116.0.0.764.764.0.1.0.510.142.142.472.174.764.764.0.0.41.500.142.142.500.500.764.764.0.0.0"/>
 	<!-- Ostland faction -->
     <Faction id="ostland_clan_1"
-             name="{=!}Ostland Clan 1"
+             name="{=!}von Raukov"
              tier="6"
              owner="Hero.tor_emp_lord_ostland_factionleader"
              culture="Culture.empire"
              super_faction="Kingdom.ostland"
              is_noble="true"
-             text="{=!}"
-             banner_key="11.116.116.0.0.764.764.0.1.0.510.142.142.472.174.764.764.0.0.41.500.142.142.500.500.764.764.0.0.0"/>
+             text="{=!}The current ruling house of Ostland, though an ancient and noble clan known for its longstanding loyalty to the Emperors, only recently ascended to rulership of the Grand Principality. Valmir von Raukov was granted the province to restore stability following accusations of heresy and treason against previous lords of Ostland."
+             banner_key="11.14.140.8000.8000.764.764.0.1.0.505.140.116.681.681.764.764.0.0.0:kingdom_ostland"/>
+    <Faction id="ostland_clan_2"
+             name="{=!}von Strudt"
+             tier="6"
+             owner="Hero.tor_emp_lord_ostland_second_1"
+             culture="Culture.empire"
+             super_faction="Kingdom.ostland"
+             is_noble="true"
+             text="{=!}Dominating a sizeable portion of Western Ostland are the Middle Mountains, Lords of key fortresses, garrisons and towns are entrusted to guard vital passes and trails. Those who stand warden are often under the supervision of Marshal von Strudt."
+             banner_key="11.14.140.8000.8000.764.764.0.1.0.505.140.116.681.681.764.764.0.0.0:kingdom_ostland"/>
+    <Faction id="ostland_clan_3"
+             name="{=!}Lords of the Northern March"
+             tier="6"
+             owner="Hero.tor_emp_lord_ostland_third_1"
+             culture="Culture.empire"
+             super_faction="Kingdom.ostland"
+             is_noble="true"
+             text="{=!}While Grand Prince Valmir bears the formal title of Margrave of the Northern March, it is the dutiful lords of Ostland's northern and eastern frontiers who maintain a constant vigil against the incursions of Norscan reavers and the hosts of Chaos."
+             banner_key="11.14.140.8000.8000.764.764.0.1.0.505.140.116.681.681.764.764.0.0.0:kingdom_ostland"/>
+    <Faction id="ostland_clan_4"
+             name="{=!}League of North Talabec"
+             tier="6"
+             owner="Hero.tor_emp_lord_ostland_fourth_1"
+             culture="Culture.empire"
+             super_faction="Kingdom.ostland"
+             is_noble="true"
+             text="{=!}The towns and trading posts of North Talabec (the southernmost region of Ostland), especially those on the Talabec River, are generally cosmopolitan by Ostland standards. They profit not only from trade with Imperial provinces to the south and west, but also their proximity to the confluence of the Rivers Urskoy and Talabec - and therefore to Kislevite Zavastra and Kislev itself."
+             banner_key="11.14.140.8000.8000.764.764.0.1.0.505.140.116.681.681.764.764.0.0.0:kingdom_ostland"/>
     <!-- Brass Keep faction -->
     <Faction id="brasskeep_clan_1"
              name="{=!}The Repugnauts"
