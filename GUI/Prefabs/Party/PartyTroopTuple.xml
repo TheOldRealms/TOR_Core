@@ -325,8 +325,14 @@
 
               </Children>
             </Widget>
+			
+			<Widget DoNotPassEventsToChildren="false" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="30" SuggestedHeight="30" HorizontalAlignment="Right" VerticalAlignment="Center" MarginRight="130" Sprite="extendedinfo_icon_45" IsVisible="@IsTroop">
+              <Children>
+				<HintWidget DataSource="{ExtendedInfoHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+              </Children>
+            </Widget>
 
-            <ButtonWidget Id="LockButton" IsSelected="@IsLocked" ButtonType="Toggle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" MarginRight="8" VerticalAlignment="Center" Brush="Inventory.Lock" IsVisible="@IsTroopTransferrable">
+            <ButtonWidget Id="LockButton" IsSelected="@IsLocked" ButtonType="Toggle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" MarginRight="8" VerticalAlignment="Center" Brush="Inventory.Lock" IsVisible="true">
               <Children>
                 <HintWidget DoNotAcceptEvents="true" DataSource="{LockHint}" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent"/>
               </Children>

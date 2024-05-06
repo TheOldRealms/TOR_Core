@@ -23,6 +23,9 @@ namespace TOR_Core.CharacterDevelopment
         private CareerObject _warriorPriest;
         private CareerObject _witchHunter;
         private CareerObject _blackGrailKnight;
+        private CareerObject _necrarch;
+        private CareerObject _warriorPriestUlric;
+
         public TORCareers()
         {
             Instance = this;
@@ -51,8 +54,10 @@ namespace TOR_Core.CharacterDevelopment
         public static CareerObject BloodKnight => Instance._bloodKnight;
         
         public static CareerObject BlackGrailKnight => Instance._blackGrailKnight;
+        public static CareerObject Necrarch => Instance._necrarch;
 
         public static MBReadOnlyList<CareerObject> All => Instance._allCareers;
+        public static CareerObject WarriorPriestUlric => Instance._warriorPriestUlric;
 
         private void RegisterAll()
         {
@@ -66,6 +71,8 @@ namespace TOR_Core.CharacterDevelopment
             _witchHunter = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("WitchHunter"));
             _necromancer = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Necromancer"));
             _blackGrailKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("BlackGrailKnight"));
+            _necrarch = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Necrarch"));
+            _warriorPriestUlric = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("WarriorPriestUlric"));
 
             _allCareers.Add(_grailKnight);
             _allCareers.Add(_warriorPriest);
@@ -76,6 +83,8 @@ namespace TOR_Core.CharacterDevelopment
             _allCareers.Add(_necromancer);
             _allCareers.Add(_witchHunter);
             _allCareers.Add(_blackGrailKnight);
+            _allCareers.Add(_necrarch);
+            _allCareers.Add(_warriorPriestUlric);
         }
 
         private void InitializeAll()
@@ -84,11 +93,13 @@ namespace TOR_Core.CharacterDevelopment
             _grailKnight.Initialize("Grail Knight", null, "KnightlyCharge", null,100, typeof(KnightlyChargeScript));
             _bloodKnight.Initialize("Blood Knight", null, "RedFury", CareerAbilityChargeSupplier.BloodKnightCareerCharge, 10, typeof(RedFuryScript));
             _minorVampire.Initialize("Vampire Count", null, "ShadowStep", CareerAbilityChargeSupplier.MinorVampireCareerCharge, 800, typeof(ShadowStepScript));
-            _warriorPriest.Initialize("Warrior Priest", hero => { return hero.Culture == MBObjectManager.Instance.GetObject<CultureObject>("empire") && hero.Clan.Tier >= 1; }, "RighteousFury", CareerAbilityChargeSupplier.WarriorPriestCareerCharge, 30 );
+            _warriorPriest.Initialize("Warrior Priest", hero => { return hero.Culture == MBObjectManager.Instance.GetObject<CultureObject>("empire") && hero.Clan.Tier >= 1; }, "RighteousFury", CareerAbilityChargeSupplier.WarriorPriestCareerCharge, 300 );
             _mercenary.Initialize("Mercenary", null, "LetThemHaveIt" );
             _witchHunter.Initialize("Witch Hunter", null, "Accusation", CareerAbilityChargeSupplier.WitchHunterCareerCharge, 200, typeof(AccusationScript));
             _necromancer.Initialize("Necromancer", null, "GreaterHarbinger", CareerAbilityChargeSupplier.NecromancerCareerCharge, 2000, typeof(SummonChampionScript));
             _blackGrailKnight.Initialize("Knight of the Black Grail", null, "KnightlyCharge",null,100, typeof(KnightlyChargeScript));
+            _necrarch.Initialize("Necrarch", null, "BlastOfAgony", CareerAbilityChargeSupplier.NecrarchCareerCharge, 1500, typeof(BlastOfAgonyScript));
+            _warriorPriestUlric.Initialize("Warrior Priest of Ulric", null, "AxeOfUlric", CareerAbilityChargeSupplier.WarriorPriestUlricCharge, 400, typeof(AxeOfUlricScript));
         }
     }
 }

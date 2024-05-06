@@ -37,6 +37,10 @@ namespace TOR_Core.CharacterDevelopment
         public NecromancerCareerChoices NecromancerCareerChoices { get; private set; }
         
         public BlackGrailKnightCareerChoices BlackGrailKnightCareerChoices { get; private set; }
+        
+        public NecrarchCareerChoices NecrarchCareerChoices { get; private set; }
+        
+        public WarriorPriestUlricCareerChoices WarriorPriestUlricCareerChoices { get; private set; }
 
         private List<TORCareerChoicesBase> _allCareers =new List<TORCareerChoicesBase>();
 
@@ -53,6 +57,8 @@ namespace TOR_Core.CharacterDevelopment
             WitchHunterCareerChoices = new WitchHunterCareerChoices(TORCareers.WitchHunter);
             NecromancerCareerChoices = new NecromancerCareerChoices(TORCareers.Necromancer);
             BlackGrailKnightCareerChoices = new BlackGrailKnightCareerChoices(TORCareers.BlackGrailKnight);
+            NecrarchCareerChoices = new NecrarchCareerChoices(TORCareers.Necrarch);
+            WarriorPriestUlricCareerChoices = new WarriorPriestUlricCareerChoices(TORCareers.WarriorPriestUlric);
             
             _allCareers.Add(WarriorPriestCareerChoices);
             _allCareers.Add(WitchHunterCareerChoices);
@@ -62,7 +68,9 @@ namespace TOR_Core.CharacterDevelopment
             _allCareers.Add(GrailKnightCareerChoices);
             _allCareers.Add(GrailDamselCareerChoices);
             _allCareers.Add(NecromancerCareerChoices);
+            _allCareers.Add(NecrarchCareerChoices);
             _allCareers.Add(BlackGrailKnightCareerChoices);
+            _allCareers.Add(WarriorPriestUlricCareerChoices);
         }
 
 

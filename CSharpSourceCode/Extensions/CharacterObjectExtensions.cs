@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
@@ -13,6 +14,7 @@ using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Extensions.UI;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions
@@ -251,6 +253,11 @@ namespace TOR_Core.Extensions
                 return new Tuple<CustomResource, int>(CustomResourceManager.GetResourceObject(info.ResourceCost.ResourceType), cost);
             }
             return null;
+        }
+
+        public static List<TooltipProperty> GetExtendedInfoToolTipText(this CharacterObject character)
+        {
+            return TORExtendedInfoHelper.GenererateExtendedTroopInfoToolTip(character);
         }
 
         public static Tuple<CustomResource, int> GetCustomResourceRequiredForUpkeep(this CharacterObject character)

@@ -26,15 +26,19 @@ namespace TOR_Core.Utilities
                     break;
                 case DamageType.Lightning:
                     displayColor = Color.FromUint(5745663);
-                    displayDamageType = "lightning";
+                    displayDamageType = "Lightning";
                     break;
                 case DamageType.Magical:
                     displayColor = Colors.Cyan;
-                    displayDamageType = "magical";
+                    displayDamageType = "Magical";
                     break;
                 case DamageType.Physical:
                     displayColor = Color.White;
                     displayDamageType = "Physical";
+                    break;
+                case DamageType.Frost:
+                    displayColor = Color.FromUint(8909823);
+                    displayDamageType = "Frost";
                     break;
             }
             InformationManager.DisplayMessage(new InformationMessage(resultDamage + " cast damage consisting of  " + " (" + displayDamageType + ") was applied " + "which was modified by " + (1 + damageAmplifier).ToString("##%", CultureInfo.InvariantCulture), displayColor));

@@ -47,7 +47,7 @@ namespace TOR_Core.CampaignMechanics.Choices
         {
             var mainhero = Hero.MainHero;
             var tierText = "CareerTier";
-            if(mainhero.HasAttribute(tierText + tier))return;
+            if(mainhero.HasUnlockedCareerChoiceTier(tier))return;
             
             switch (tier)
             {

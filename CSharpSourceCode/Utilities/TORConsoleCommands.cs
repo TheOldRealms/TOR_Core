@@ -12,6 +12,7 @@ using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Ink;
@@ -23,7 +24,6 @@ namespace TOR_Core.Utilities
     public class TORConsoleCommands
     {
         private static List<string> torSpellNames = AbilityFactory.GetAllSpellNamesAsList();
-
         
         //TODO currently disabled due to missing Engineer Quest
         [CommandLineFunctionality.CommandLineArgumentFunction("whereisgoswin", "tor")]
@@ -113,8 +113,6 @@ namespace TOR_Core.Utilities
             }
             return faction1 == null ? "Faction is not found: " + kingdom_str1 + "\n" + str1 : "Faction is not found: " + kingdom_str2;
         }
-        
-        
         
         [CommandLineFunctionality.CommandLineArgumentFunction("list_spells", "tor")]
         public static string ListSpells(List<string> argumentNames) =>
@@ -222,7 +220,27 @@ namespace TOR_Core.Utilities
             return "Damaged "+target.Name+" with "+ damage+ "\n";
 
         }
+        
+        [CommandLineFunctionality.CommandLineArgumentFunction("add_blessing", "tor")]
+        public static string AddBlessingToPlayer(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
 
+            var religionId = arguments[0];
+            var religion = ReligionObject.All.FirstOrDefault(x => x.StringId == religionId);
+            if(religion != null)
+            {
+                if (Hero.MainHero.PartyBelongedTo == null) return "not in a party";
+                var blessingText = religion.BlessingEffectName;
+                if (blessingText == null) return "blessing description not found";
+                Hero.MainHero.PartyBelongedTo.AddBlessingToParty(religion.StringId);
+                
+                return string.Format("Player now has the {0}. \n", blessingText); 
+            }
+            else return "No religion with the given argument found. \n";
+        }
+        
         [CommandLineFunctionality.CommandLineArgumentFunction("add_career", "tor")]
         public static string AddCareerToPlayer(List<string> arguments)
         {

@@ -2,12 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.AgentOrigins;
-using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Inventory;
 using TaleWorlds.CampaignSystem.Party;
@@ -17,15 +13,13 @@ using TaleWorlds.CampaignSystem.Settlements.Locations;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
-using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.ObjectSystem;
-using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.SkillBooks;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
-using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 using TOR_Core.Extensions;
 using TOR_Core.Quests;
 using TOR_Core.Utilities;
@@ -200,10 +194,71 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             obj.AddDialogLine("trainer_afterlearnspells", "openbook", "start", "{=tor_spelltrainer_close_book_str}Hmm, come then. I will teach you what I can.", null, openbookconsequence, 200, null);
             obj.AddPlayerLine("trainer_specialize", "choices", "specializelore", "{SPECALIZE_QUESTION}", specializelorecondition, null, 200, null);
             obj.AddDialogLine("trainer_chooselore", "specializelore", "start", "{SPECIALIZE_PROMPT}.", fillchooseloretext, chooseloreconsequence, 200, null);
+
+            obj.AddPlayerLine("trainer_vampire_learn_magic", "choices", "specializelore_question", "{=tor_spelltrainer_magictest_vc_vampire_player_specialize_lore_str}I can feel my dark power continuing to grow. Provide me access to more forbidden magic, mortal", VampireCasterReachedNewRankCondition,
+                null, 200, null);
+            
+            obj.AddDialogLine("trainer_vampire_learn_magic2", "specializelore_question", "accept_dark_energy_price", "{=tor_spelltrainer_magictest_vc_vampire_player_specialize_lore_str}Even if you have the everliving-gift, the access to forbidden knowledge is restricted by my master. Provide us a gift and I am not speaking of gold, " +
+                                                                                                           "I need you to pay with the essence of Life. Then my masters can give you access... (2000{DARKENERGYICON}) ", null,
+                null, 200, null);
+            obj.AddPlayerLine("agree_dark_energy_price", "accept_dark_energy_price", "specializelore", "Take my gift. Now give me what I demand! (Pay 2000{DARKENERGYICON})", HasEnoughDarkEnergy,
+                chooseloreconsequence, 200, null);
+            obj.AddPlayerLine("decline_dark_energy_price", "accept_dark_energy_price", "trainer_vampire_learn_magic3", "I can't provide you this gift",
+                null, null, 200);
+            
+            obj.AddDialogLine("trainer_vampire_learn_magic3", "trainer_vampire_learn_magic3", "choices", "A shame. What else can I help you with? ", null,null, 200, null);
+            
             obj.AddPlayerLine("trainer_playergoodbye", "choices", "saygoodbye", "{=tor_spelltrainer_player_goodbye_str}Farewell Magister.", null, null, 200, null);
-            
-            
             obj.AddDialogLine("trainer_goodbye", "saygoodbye", "close_window", "{=tor_spelltrainer_goodbye_str}Hmm, yes. Farewell.", null, null, 200, null);
+        }
+
+        private bool HasEnoughDarkEnergy()
+        {
+            return Hero.MainHero.GetCustomResourceValue("DarkEnergy") > 2000;
+        }
+
+        private bool VampireCasterReachedNewRankCondition()
+        {
+            if(! Hero.MainHero.HasCareer(TORCareers.Necrarch) && !Hero.MainHero.HasCareer(TORCareers.MinorVampire)) return false;
+            MBTextManager.SetTextVariable("DARKENERGYICON", CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
+            
+            if (Hero.MainHero.GetCareer()==TORCareers.Necrarch&& Hero.MainHero.HasUnlockedCareerChoiceTier(3))
+            {
+                return Hero.MainHero.GetExtendedInfo().KnownLores.Count < 5;
+            }
+            
+            if (Hero.MainHero.HasUnlockedCareerChoiceTier(2))
+            {
+                if (Hero.MainHero.GetCareer()==TORCareers.Necrarch)
+                {
+                    if (Hero.MainHero.GetExtendedInfo().KnownLores.Count < 4)
+                    {
+                        return true;
+                    }
+                }
+                else if (Hero.MainHero.GetExtendedInfo().KnownLores.Count < 3)
+                {
+                    return true;
+                }
+            }
+            
+            if (Hero.MainHero.GetCareer()==TORCareers.Necrarch&& Hero.MainHero.HasUnlockedCareerChoiceTier(1))
+            {
+                if (Hero.MainHero.GetCareer()==TORCareers.Necrarch)
+                {
+                    if (Hero.MainHero.GetExtendedInfo().KnownLores.Count < 3)
+                    {
+                        return true;
+                    }
+
+                    return false;
+                }
+
+                return false;
+            }
+            
+
+            return false;
         }
 
         private bool isMorgianaLeFay()
@@ -217,7 +272,6 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
             return false;
         }
-
         
         private bool damselSecondLoreCondition()
         {
@@ -257,7 +311,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         private bool magictestcondition()
         {
             if (isMorgianaLeFay()) return false;
-            if (!CareerHelper.PlayerOwnsMagicCareer()) return false;
+            if (!CareerHelper.IsMagicCapableCareer(Hero.MainHero.GetCareer())) return false;
             
             var flag = false;
             flag = !Hero.MainHero.IsVampire() && !Hero.MainHero.IsSpellCaster() && !Hero.MainHero.HasAttribute("Priest") && _testResult == "";
@@ -428,9 +482,16 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         {
             List<InquiryElement> list = new List<InquiryElement>();
             var lores = LoreObject.GetAll();
+
+            var model = Campaign.Current.Models.GetAbilityModel();
             foreach (var item in lores)
             {
-                if (item.ID != "MinorMagic" && !item.DisabledForCultures.Contains(CharacterObject.OneToOneConversationCharacter.Culture.StringId) && !Hero.MainHero.GetExtendedInfo().HasKnownLore(item.ID)) list.Add(new InquiryElement(item, item.Name, null));
+                
+                if (item.ID == "MinorMagic"  || Hero.MainHero.GetExtendedInfo().HasKnownLore(item.ID)) continue;
+
+                if(!model.IsValidLoreForCharacter(Hero.MainHero, item)) continue;
+                
+                list.Add(new InquiryElement(item, item.Name, null));
             }
             var inquirydata = new MultiSelectionInquiryData(new TextObject("{=tor_magic_lore_prompt_label_str}Choose Lore").ToString(), new TextObject("{=tor_magic_lore_prompt_description_str}Choose a lore to specialize in.").ToString(), list, true, 1, 1, "Confirm", "Cancel", OnChooseLore, OnCancelLore);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
@@ -447,6 +508,11 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 if (info.SpellCastingLevel < SpellCastingLevel.Entry) Hero.MainHero.SetSpellCastingLevel(SpellCastingLevel.Entry);
                 MBInformationManager.AddQuickInformation(new TextObject("{=tor_magic_lore_prompt_notification_str}Successfully learned lore: " + choiceText));
                 TORQuestHelper.GetCurrentActiveIfExists<SpecializeLoreQuest>()?.CompleteQuestWithSuccess();
+
+                if (Hero.MainHero.IsVampire())
+                { 
+                    Hero.MainHero.AddCustomResource("DarkEnergy",-2000);
+                }
             }
             InformationManager.HideInquiry();
         }

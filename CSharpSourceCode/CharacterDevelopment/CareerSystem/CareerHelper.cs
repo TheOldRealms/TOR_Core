@@ -11,6 +11,9 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.AbilitySystem.SpellBook;
+using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.AbilitySystem.Spells.Prayers;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.CharacterDevelopment.CareerSystem.Button;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
@@ -184,8 +187,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 var value = passive.EffectMagnitude;
                 var text = choice.BelongsToGroup.Name;
                     
-                if(!passive.IsValidCharacterObject(characterObject)) continue;
-                    
                 if (passive.InterpretAsPercentage)
                 {
                     value /= 100;
@@ -204,19 +205,17 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         {
             var damageValues = new float[(int)DamageType.All + 1];
 
-            if (mask == PropertyMask.Attack)
+            switch (mask)
             {
-                ApplyCareerPassivesForDamageValues(attacker, victim, ref damageValues, attackTypeMask, PassiveEffectType.TroopDamage);
-                return damageValues;
+                case PropertyMask.Attack:
+                    ApplyCareerPassivesForDamageValues(attacker, victim, ref damageValues, attackTypeMask, PassiveEffectType.TroopDamage);
+                    return damageValues;
+                case PropertyMask.Defense:
+                    ApplyCareerPassivesForDamageValues(attacker, victim, ref damageValues, attackTypeMask, PassiveEffectType.TroopResistance);
+                    return damageValues;
+                default:
+                    return null;
             }
-            
-            else if (mask == PropertyMask.Defense)
-            {
-                ApplyCareerPassivesForDamageValues(victim, attacker, ref damageValues, attackTypeMask, PassiveEffectType.TroopResistance);
-                return damageValues;
-            }
-
-            return null;
         }
         public static AgentPropertyContainer AddBasicCareerPassivesToPropertyContainerForMainAgent(Agent agent, AgentPropertyContainer propertyContainer, AttackTypeMask attackType, PropertyMask mask)
         {
@@ -278,17 +277,53 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             return value;
         }
 
-        public static  bool PlayerOwnsMagicCareer()
+        public static bool IsMagicCapableCareer(CareerObject career)
         {
-            if (Hero.MainHero.HasAnyCareer())
-            {
-               var career = Hero.MainHero.GetCareer();
-
-               if (Hero.MainHero.GetExtendedInfo().CareerID == "Mercenary" || Hero.MainHero.GetExtendedInfo().CareerID == "MinorVampire" || Hero.MainHero.GetExtendedInfo().CareerID == "GrailDamsel")
-                   return true;
-            }
+            if (career == null) return false;
+            
+            if (career == TORCareers.Mercenary|| 
+                career == TORCareers.MinorVampire || 
+                career == TORCareers.GrailDamsel ||
+                career == TORCareers.Necromancer||
+                career == TORCareers.Necrarch)
+                return true;
 
             return false;
+        }
+
+        public static List<(string PrayerID,int Rank) > GetBattlePrayerList(CareerObject career)
+        {
+            List<(string PrayerID, int Rank)> prayers = new List<(string, int)>();
+            
+            
+            if (career == TORCareers.WarriorPriest)
+            {
+                prayers.Add(("HealingHand",2));
+                prayers.Add(("ArmourOfRighteousness",3));
+                prayers.Add(("Vanquish",3));
+                prayers.Add(( "CometOfSigmar", 4));
+                return prayers;
+            }
+
+            if (career == TORCareers.GrailDamsel)
+            {
+                prayers.Add(("AuraOfTheLady", 2));
+                prayers.Add(("ShieldOfCombat", 3));
+                prayers.Add(("LadysFavour", 3));
+                prayers.Add(( "AerialShield", 4));
+                return prayers;
+            }
+
+            if (career == TORCareers.WarriorPriestUlric)
+            {
+                prayers.Add(("UlricsGift",2));
+                prayers.Add(("HeartOfTheWolf",3));
+                prayers.Add(("IceStorm",3));
+                prayers.Add(( "SnowKingDecree", 4));
+                return prayers;
+            }
+
+            return prayers;
         }
 
         public static bool PrayerCooldownIsNotShared(this Agent agent)
@@ -296,7 +331,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             var hero = agent.GetHero();
             if (hero == null) return false;
 
-            if (hero.HasCareerChoice("ArchLectorPassive4"))
+            if (hero.HasCareerChoice("RelentlessFanaticPassive4"))
             {
                 return true;
             }
@@ -336,6 +371,24 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             None,
             HitShield,
             HeadShot
+        }
+
+        public static bool IsPriestCareer()
+        {
+            var career = Hero.MainHero.GetCareer();
+
+            return career == TORCareers.WarriorPriest ||
+                   career == TORCareers.WarriorPriestUlric ||
+                   career == TORCareers.GrailDamsel;
+        }
+        
+        public static string GetGodCareerIsDevotedTo(CareerObject careerObject)
+        {
+            if (careerObject == TORCareers.GrailDamsel) return "cult_of_lady";
+            if (careerObject == TORCareers.WarriorPriest) return "cult_of_sigmar";
+            if (careerObject == TORCareers.WarriorPriestUlric) return "cult_of_ulric";
+
+            return "-";
         }
     }
 }

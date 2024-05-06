@@ -65,7 +65,7 @@ namespace TOR_Core.CharacterDevelopment
             _windsRechargeRate.Initialize(new TextObject("{=!}Winds of magic recharge rate: +{a0} / hour", null), new SkillObject[]
             {
                 TORSkills.SpellCraft
-            }, SkillEffect.PerkRole.Personal, 0.01f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.Add, 0f, 0f);
+            }, SkillEffect.PerkRole.Personal, 0.0075f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.Add, 0f, 0f);
 
             _maxWinds.Initialize(new TextObject("{=!}Maximum winds of magic: +{a0}", null), new SkillObject[]
             {
@@ -80,7 +80,7 @@ namespace TOR_Core.CharacterDevelopment
             _blessingDuration.Initialize(new TextObject("{=tor_skills_blessing_duration_str}Blessing duration increase: +{a0} %", null), new SkillObject[]
             {
                 TORSkills.Faith
-            }, SkillEffect.PerkRole.PartyLeader, 0.05f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.AddFactor, 0f, 0f);
+            }, SkillEffect.PerkRole.PartyLeader, 1f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.AddFactor, 0f, 0f);
         }
     }
 }
