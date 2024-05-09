@@ -147,10 +147,10 @@ namespace TOR_Core.Models
         public AgentPropertyContainer CreateAgentPropertyContainer(Agent agent, PropertyMask propertyMask, AttackTypeMask attackTypeMask)
         {
             if (agent.IsMount)
-                return new AgentPropertyContainer();
+                return AgentPropertyContainer.InitNew();
             
             if (Mission.Current.IsArenaMission())
-                return new AgentPropertyContainer();
+                return AgentPropertyContainer.InitNew();
             
             float[] damageProportions;
             float[] damageAmplifications;

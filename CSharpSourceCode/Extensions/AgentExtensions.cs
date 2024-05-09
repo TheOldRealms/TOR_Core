@@ -164,14 +164,11 @@ namespace TOR_Core.Extensions
         {
             if (!(MissionGameModels.Current.AgentApplyDamageModel is TORAgentApplyDamageModel damageModel))
             {
-                return new AgentPropertyContainer();
+                return AgentPropertyContainer.InitNew();
             }
             
             return damageModel.CreateAgentPropertyContainer(agent, propertyMask, attackTypeMask);
         }
-        
-        
-        
 
         public static Ability GetCurrentAbility(this Agent agent)
         {
