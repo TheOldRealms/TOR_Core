@@ -110,7 +110,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _imperialMagisterRoot.Initialize(CareerID, "Summon a champion that the necromancer take control of. The Champion loses every 2 seconds 5 health points. For every 3 points in spell casting skill the champion gains 1 health point. Charging: applying spell- damage or healing. Alternatively, Let undead units inflict damage.", null, true,
+            _imperialMagisterRoot.Initialize(CareerID, "You charge with the surrounding winds of magic your own reserves for 6 seconds. During the refreshment your character is vulnerable to any damage intaken and heavily slowed down. Every second you gain 3% of your total amount. For every 50 points in spellcraft you charge 1 second longer. Every key stone gives you one additional usage.", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -140,7 +140,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _teclisTeachingsPassive4.Initialize(CareerID, "PLACEHOLDER", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
             
             _imperialEnchantmentPassive1.Initialize(CareerID, "Increases max Winds of Magic by 10.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
-            _imperialEnchantmentPassive2.Initialize(CareerID, "PLACEHOLDER", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            _imperialEnchantmentPassive2.Initialize(CareerID, "Friendly fire damage is reduced by 30%", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-30, PassiveEffectType.Special,true));
             _imperialEnchantmentPassive3.Initialize(CareerID, "Buffs and healing duration is increased by 50%.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.BuffDuration,true));
             _imperialEnchantmentPassive4.Initialize(CareerID, "PLACEHOLDER", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
             
@@ -164,7 +164,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _arcaneKnowledgePassive2.Initialize(CareerID, "PLACEHOLDER", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
             _arcaneKnowledgePassive3.Initialize(CareerID, "Increases Spell effectiveness by 20% if your armor weight undershoots 11 stones.", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.SpellEffectiveness, true,
                 ( characterObject => Hero.MainHero.BattleEquipment.GetTotalWeightOfArmor(true) < 11f )));
-            _arcaneKnowledgePassive4.Initialize(CareerID, "PLACEHOLDER", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            _arcaneKnowledgePassive4.Initialize(CareerID, "For every imperial Magister in your party, your maximum winds increases by 8", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(8, PassiveEffectType.Special));
         }
 
 

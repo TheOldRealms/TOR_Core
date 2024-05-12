@@ -13,6 +13,7 @@ using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -196,6 +197,18 @@ namespace TOR_Core.Models
                     explainedNumber.AddFactor(-0.3f);
                 }
                 
+                if(character.HeroObject == Hero.MainHero && victimLeader != null && victimLeader.HeroObject == Hero.MainHero && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
+                {
+                    //friendly fire
+
+                    if (Hero.MainHero.HasCareerChoice("ImperialEnchantmentPassive2"))
+                    {
+                        var choice = TORCareerChoices.GetChoice("ImperialEnchantmentPassive2");
+                        explainedNumber.AddFactor(choice.GetPassiveValue());
+                    }
+                    
+                }
+                
             }
             return explainedNumber.ResultNumber;
         }
@@ -277,6 +290,24 @@ namespace TOR_Core.Models
                                 {
                                     explainedNumber.Add(choice.GetPassiveValue());
                                 } 
+                            }
+                        }
+
+                        if (CareerChoices.Contains("ArcaneKnowledgePassive4"))
+                        {
+                            var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
+
+                            heroes.Remove(Hero.MainHero);
+                            foreach (var hero in heroes)
+                            {
+                                if(hero.Culture.StringId!="empire") continue;
+                                
+                                if (hero.IsSpellCaster())
+                                {
+                                    var choice = TORCareerChoices.GetChoice("ArcaneKnowledgePassive4");
+                                    explainedNumber.Add(choice.GetPassiveValue());
+                                }
+                                
                             }
                         }
                     }
