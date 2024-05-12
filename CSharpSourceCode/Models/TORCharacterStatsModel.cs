@@ -68,7 +68,6 @@ namespace TOR_Core.Models
                 if (Mission.Current == null) return number;
                 var playerMainAgent = Mission.Current.Agents.FirstOrDefault(x => x.IsHero && x.GetHero() == Hero.MainHero);
                 var value = playerMainAgent.GetComponent<AbilityComponent>().CareerAbility.Template.ScaleVariable1;
-                TORCommon.Say("value :"+(int)value);
                 number.Add((int)value);
             }
             

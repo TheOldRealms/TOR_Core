@@ -475,7 +475,7 @@ namespace TOR_Core.Models
 
                 if (resistances[(int)DamageType.All] > 0)
                 {
-                    result.Add(-resistances[(int)DamageType.All]);
+                    result.AddFactor(-resistances[(int)DamageType.All]);
                 }
                 
                 
