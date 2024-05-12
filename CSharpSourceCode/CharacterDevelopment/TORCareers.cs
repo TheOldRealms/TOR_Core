@@ -25,6 +25,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerObject _blackGrailKnight;
         private CareerObject _necrarch;
         private CareerObject _warriorPriestUlric;
+        private CareerObject _imperialMagister;
 
         public TORCareers()
         {
@@ -59,6 +60,8 @@ namespace TOR_Core.CharacterDevelopment
         public static MBReadOnlyList<CareerObject> All => Instance._allCareers;
         public static CareerObject WarriorPriestUlric => Instance._warriorPriestUlric;
 
+        public static CareerObject ImperialMagister => Instance._imperialMagister;
+
         private void RegisterAll()
         {
             _allCareers = new MBReadOnlyList<CareerObject>();
@@ -73,6 +76,7 @@ namespace TOR_Core.CharacterDevelopment
             _blackGrailKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("BlackGrailKnight"));
             _necrarch = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Necrarch"));
             _warriorPriestUlric = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("WarriorPriestUlric"));
+            _imperialMagister = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("ImperialMagister"));
 
             _allCareers.Add(_grailKnight);
             _allCareers.Add(_warriorPriest);
@@ -85,6 +89,7 @@ namespace TOR_Core.CharacterDevelopment
             _allCareers.Add(_blackGrailKnight);
             _allCareers.Add(_necrarch);
             _allCareers.Add(_warriorPriestUlric);
+            _allCareers.Add(_imperialMagister);
         }
 
         private void InitializeAll()
@@ -100,6 +105,7 @@ namespace TOR_Core.CharacterDevelopment
             _blackGrailKnight.Initialize("Knight of the Black Grail", null, "KnightlyCharge",null,100, typeof(KnightlyChargeScript));
             _necrarch.Initialize("Necrarch", null, "BlastOfAgony", CareerAbilityChargeSupplier.NecrarchCareerCharge, 1500, typeof(BlastOfAgonyScript));
             _warriorPriestUlric.Initialize("Warrior Priest of Ulric", null, "AxeOfUlric", CareerAbilityChargeSupplier.WarriorPriestUlricCharge, 400, typeof(AxeOfUlricScript));
+            _imperialMagister.Initialize("Imperial Magister", null, "BlastOfAgony", CareerAbilityChargeSupplier.NecrarchCareerCharge, 1500, typeof(BlastOfAgonyScript));
         }
     }
 }
