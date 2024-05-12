@@ -296,9 +296,9 @@ namespace TOR_Core.Models
                                 var choice = TORCareerChoices.GetChoice("LieOfLadyPassive2");
                                 explainedNumber.Add(choice.GetPassiveValue());
                             }
-                            if (choices.Contains("LieOfLadyPassive2"))
+                            if (choices.Contains("CollegeOrdersPassive2"))
                             {
-                                var choice = TORCareerChoices.GetChoice("LieOfLadyPassive2");
+                                var choice = TORCareerChoices.GetChoice("CollegeOrdersPassive2");
                                 explainedNumber.Add(choice.GetPassiveValue());
                             }
                             

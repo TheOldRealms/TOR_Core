@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
@@ -142,15 +144,16 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _imperialEnchantmentPassive3.Initialize(CareerID, "Buffs and healing duration is increased by 50%.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.BuffDuration,true));
             _imperialEnchantmentPassive4.Initialize(CareerID, "PLACEHOLDER", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
             
-            _collegeOrdersPassive1.Initialize(CareerID, "PLACEHOLDER", "CollegeOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
-            _collegeOrdersPassive2.Initialize(CareerID, "PLACEHOLDER", "CollegeOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
-            _collegeOrdersPassive3.Initialize(CareerID, "{=holy_crusader_passive4_str}Companion limit of party is increased by 5.", "CollegeOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
-            _collegeOrdersPassive4.Initialize(CareerID, "PLACEHOLDER", "CollegeOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            _collegeOrdersPassive1.Initialize(CareerID, "Companion limit of party is increased by 5.", "CollegeOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
+            _collegeOrdersPassive2.Initialize(CareerID, "Magister Companions have 25 more Winds of Magic.", "CollegeOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            _collegeOrdersPassive3.Initialize(CareerID, "For every type of  College Wizard gain 10% more Prestige from combat", "CollegeOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            _collegeOrdersPassive4.Initialize(CareerID, "Gain access to Power stones of other College Orders", "CollegeOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
             
-            _magicCombatTrainingPassive1.Initialize(CareerID, "PLACEHOLDER", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
-            _magicCombatTrainingPassive2.Initialize(CareerID, "PLACEHOLDER", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
-            _magicCombatTrainingPassive3.Initialize(CareerID, "Increase hex durations by 50%.", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50f, PassiveEffectType.DebuffDuration,true));
-            _magicCombatTrainingPassive4.Initialize(CareerID, "Increases max Winds of Magic by 10.", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
+            _magicCombatTrainingPassive1.Initialize(CareerID, "Increase hex durations by 50%.", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50f, PassiveEffectType.DebuffDuration,true));
+            _magicCombatTrainingPassive2.Initialize(CareerID, "Increases max Winds of Magic by 10.", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
+            _magicCombatTrainingPassive3.Initialize(CareerID, "Increases Spell effectiveness by 15% if you wield an offhand staff.", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.SpellEffectiveness, true,
+                (CharacterObject character) => HasMagicStaff()));
+            _magicCombatTrainingPassive4.Initialize(CareerID, "Extra 20% armor penetration of melee attacks.", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
             
             _ancientScrollsPassive1.Initialize(CareerID, "Increases max Winds of Magic by 20.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.WindsOfMagic));
             _ancientScrollsPassive2.Initialize(CareerID, "Increases Windsregeneration by 1.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.WindsRegeneration));
@@ -159,8 +162,22 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             _arcaneKnowledgePassive1.Initialize(CareerID, "PLACEHOLDER", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
             _arcaneKnowledgePassive2.Initialize(CareerID, "PLACEHOLDER", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
-            _arcaneKnowledgePassive3.Initialize(CareerID, "PLACEHOLDER", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            _arcaneKnowledgePassive3.Initialize(CareerID, "Increases Spell effectiveness by 20% if your armor weight undershoots 11 stones.", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.SpellEffectiveness, true,
+                ( characterObject => Hero.MainHero.BattleEquipment.GetTotalWeightOfArmor(true) < 11f )));
             _arcaneKnowledgePassive4.Initialize(CareerID, "PLACEHOLDER", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+        }
+
+
+        private bool HasMagicStaff()
+        {
+            var weapons = Hero.MainHero.CharacterObject.GetCharacterEquipment(EquipmentIndex.Weapon0,EquipmentIndex.Weapon3);
+
+            if (weapons.Any(x => x.IsMagicalStaff()))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

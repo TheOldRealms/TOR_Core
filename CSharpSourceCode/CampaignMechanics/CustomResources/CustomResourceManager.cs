@@ -206,6 +206,37 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                             break;
                         }
                 }
+                
+                if (Hero.MainHero.HasCareerChoice("CollegeOrdersPassive3"))
+                {
+                    var eventSide = mapEvent.GetMapEventSide(mapEvent.DefeatedSide);
+
+                    var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
+                    heroes.Remove(Hero.MainHero);
+                    heroes.RemoveAll(x => x.Culture.StringId != "empire");
+                    
+                    var bonus = 1f;
+                    if (heroes.Any(x => x.HasKnownLore("LoreOfMetal")))
+                        bonus += 0.1f;
+                    
+                    if (heroes.Any(x => x.HasKnownLore("LoreOfFire")))
+                        bonus += 0.1f;
+                    
+                    if (heroes.Any(x => x.HasKnownLore("LoreOfHeavens")))
+                        bonus += 0.1f;
+                    
+                    if (heroes.Any(x => x.HasKnownLore("LoreOfLife")))
+                        bonus += 0.1f;
+                    
+                    if (heroes.Any(x => x.HasKnownLore("LoreOfBeasts")))
+                        bonus += 0.1f;
+                    
+                    if (heroes.Any(x => x.HasKnownLore("LoreOfLight")))
+                        bonus += 0.1f;
+
+                    renownChange *= bonus;
+                }
+                
 
                 if (fairBattleOrPlayerInferior)
                 {
