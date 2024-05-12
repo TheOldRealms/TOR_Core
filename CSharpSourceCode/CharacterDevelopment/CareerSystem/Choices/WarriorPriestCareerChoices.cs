@@ -338,7 +338,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         private static bool IsSigmariteTroop(CharacterObject troop)
         {
-            return troop.UnitBelongsToCult("cult_of_sigmar") ||  troop.IsReligiousUnit()&& Hero.MainHero.HasCareerChoice("ArchLector2");
+            return troop.UnitBelongsToCult("cult_of_sigmar") ||  (!troop.IsReligiousUnit()&& Hero.MainHero.HasCareerChoice("ArchLectorPassive2"));
         }
         
         private static bool HolyPurgePassive2(Agent attacker, Agent victim, AttackTypeMask mask)
@@ -346,7 +346,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             if (!victim.BelongsToMainParty()) return false;
             if (victim.IsMainAgent) return false;
 
-            return victim.Character.UnitBelongsToCult("cult_of_sigmar") ||  !victim.Character.IsReligiousUnit()&& Hero.MainHero.HasCareerChoice("ArchLector2");
+            return IsSigmariteTroop(victim.Character as CharacterObject);
         }
         
         private static bool HolyPurgePassive3(Agent attacker, Agent victim, AttackTypeMask mask)
