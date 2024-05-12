@@ -105,6 +105,8 @@ namespace TOR_Core.Extensions
                     return true;
                 if (choices.Contains("BlackGrailVowPassive2"))
                     return true;
+                if (choices.Contains("FuryOfWarPassive4"))
+                    return true;
             }
 
             if (Hero.MainHero.HasCareer(TORCareers.Necromancer))
@@ -157,312 +159,15 @@ namespace TOR_Core.Extensions
             failureReason = new TextObject("{=tor_cast_fail_comp_null}Abilitycomponent is null!");
             return false;
         }
-
-        /// <summary>
-        /// Get Extended Character properties based on dynamic properties like temporary weapon enhancements
-        /// and status effects and static properties  like equipment and unit information.
-        /// 
-        /// </summary>
-        /// <param name="agent">The agent are accessing. Note that Units are handled differently from Heroes.
-        /// Hero equipment information that gets read out for Heroes specifically resides in the 'tor_extendeditemproperties.xml'
-        /// Unit information gets read out from the tor_extendedunitproperties.xml
-        /// </param>
-        /// <paramref name="agent"/>
-        /// <param name="propertyMask">Which properties needs to be accessed? be mindful about which information is really required for your specific situation. Not used properties are returned as empty arrays</param>
-        ///<returns>A struct containing 3 arrays, each containing the  properties:  proportions, damage amplifications and resistances.</returns>
+        
         public static AgentPropertyContainer GetProperties(this Agent agent, PropertyMask propertyMask, AttackTypeMask attackTypeMask)
         {
-            if (agent.IsMount)
-                return new AgentPropertyContainer();
-
-            float[] damageProportions = new float[(int)DamageType.All + 1];
-            float[] damageAmplifications = new float[(int)DamageType.All + 1];
-            float[] damageResistances = new float[(int)DamageType.All + 1];
-            float[] additionalDamagePercentages = new float[(int)DamageType.All + 1];
-
-            #region Unit
-            if (!agent.IsHero)
+            if (!(MissionGameModels.Current.AgentApplyDamageModel is TORAgentApplyDamageModel damageModel))
             {
-                if (propertyMask == PropertyMask.Attack || propertyMask == PropertyMask.All)
-                {
-                    var unitDamageProportion = agent.Character.GetUnitDamageProportions();
-                    foreach (var proportionTuple in unitDamageProportion)
-                    {
-                        damageProportions[(int)proportionTuple.DamageType] = proportionTuple.Percent;
-                    }
-                    var offenseProperties = agent.Character.GetAttackProperties();
-
-                    //add all offense properties of the Unit
-                    foreach (var property in offenseProperties)
-                    {
-                        damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
-                    }
-                    //add temporary effects like buffs to attack bonuses on items
-                    List<ItemTrait> dynamicTraits = agent.GetComponent<ItemTraitAgentComponent>()
-                        .GetDynamicTraits(agent.WieldedWeapon.Item);
-                    foreach (var dynamicTrait in dynamicTraits)
-                    {
-                        var attackProperty = dynamicTrait.AmplifierTuple;
-
-                        if (attackProperty != null)
-                        {
-                            damageAmplifications[(int)attackProperty.AmplifiedDamageType] += attackProperty.DamageAmplifier;
-                        }
-                        var additionalDamageProperty = dynamicTrait.AdditionalDamageTuple;
-                        if (additionalDamageProperty != null)
-                        {
-                            additionalDamagePercentages[(int)additionalDamageProperty.DamageType] += additionalDamageProperty.Percent;
-                        }
-                    }
-                    var statusEffectAmplifiers = agent.GetComponent<StatusEffectComponent>().GetAmplifiers(attackTypeMask);
-                    for (int i = 0; i < damageAmplifications.Length; i++)
-                    {
-                        damageAmplifications[i] += statusEffectAmplifiers[i];
-                    }
-                }
-                if (propertyMask == PropertyMask.Defense || propertyMask == PropertyMask.All)
-                {
-                    //add all defense properties of the Unit
-                    var defenseProperties = agent.Character.GetDefenseProperties();
-
-                    foreach (var property in defenseProperties)
-                    {
-                        damageResistances[(int)property.ResistedDamageType] += property.ReductionPercent;
-                    }
-
-                    //add temporary effects like buffs to defense bonuses
-                    List<ItemTrait> dynamicTraits = agent.GetComponent<ItemTraitAgentComponent>()
-                        .GetDynamicTraits(agent.WieldedWeapon.Item);
-
-                    foreach (var dynamicTrait in dynamicTraits)
-                    {
-                        var defenseProperty = dynamicTrait.ResistanceTuple;
-                        if (defenseProperty != null)
-                        {
-                            damageResistances[(int)defenseProperty.ResistedDamageType] += defenseProperty.ReductionPercent;
-                        }
-                    }
-
-                    //status effects
-                    var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances(attackTypeMask);
-
-                    for (int i = 0; i < damageResistances.Length; i++)
-                    {
-                        damageResistances[i] += statusEffectResistances[i];
-                    }
-                }
+                return AgentPropertyContainer.InitNew();
             }
-            #endregion
-
-            #region Character
-
-            else
-            {
-                if (propertyMask == PropertyMask.Attack || propertyMask == PropertyMask.All)
-                {
-                    //Hero item level attributes 
-                    List<ItemTrait> itemTraits = new List<ItemTrait>();
-                    List<ItemObject> armorItems;
-                    // get all equipment Pieces - here only armor
-                    armorItems = agent.Character.GetCharacterEquipment(EquipmentIndex.ArmorItemBeginSlot);
-                    foreach (var item in armorItems)
-                    {
-                        if (item.HasTrait())
-                            itemTraits.AddRange(item.GetTraits(agent));
-                    }
-                    //equipment amplifiers, also implies dynamic traits
-                    foreach (var itemTrait in itemTraits)
-                    {
-                        var property = itemTrait.AmplifierTuple;
-                        if (property != null)
-                            damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
-
-                        var additionalDamageProperty = itemTrait.AdditionalDamageTuple;
-                        if (additionalDamageProperty != null)
-                        {
-                            additionalDamagePercentages[(int)additionalDamageProperty.DamageType] += additionalDamageProperty.Percent;
-                        }
-
-                    }
-
-                    var statusEffectAmplifiers = agent.GetComponent<StatusEffectComponent>().GetAmplifiers(attackTypeMask);
-
-                    for (int i = 0; i < damageAmplifications.Length; i++)
-                    {
-                        damageAmplifications[i] += statusEffectAmplifiers[i];
-                    }
-                    
-                    //Weapon properties
-                    if (attackTypeMask == AttackTypeMask.Ranged)
-                    {
-                        if (agent.WieldedWeapon.Item != null)
-                        {
-                            var ammoItem = Mission.Current.Missiles.FirstOrDefault(x => x.ShooterAgent == agent)?.Weapon.Item;
-                            var weapon = agent.WieldedWeapon.Item;
-                            List<ItemTrait> rangeItemTraits = new List<ItemTrait>();
-                            
-                            if(ammoItem!=null)
-                                rangeItemTraits.AddRange(ammoItem.GetTraits());
-                            rangeItemTraits.AddRange(weapon.GetTraits());
-                            foreach (var itemTrait in rangeItemTraits)
-                            {
-                                var property = itemTrait.AmplifierTuple;
-                                if(property!=null)
-                                    damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
-
-                                var additionalDamageProperty = itemTrait.AdditionalDamageTuple;
-                                if (additionalDamageProperty != null)
-                                {
-                                    additionalDamagePercentages[(int)additionalDamageProperty.DamageType] += additionalDamageProperty.Percent;
-                                }
-                            }
-                            //range damage Propotions
-                            var weaponProperty = weapon.GetTorSpecificData().DamageProportions;
-                            if (weaponProperty != null)
-                            {
-                                foreach (var tuple in weaponProperty)
-                                {
-                                    damageProportions[(int)tuple.DamageType] = tuple.Percent;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            damageProportions[(int)DamageType.Physical] = 1f; //memo , this is for siege weapons
-                        }
-                    }
-
-                    if (attackTypeMask == AttackTypeMask.Melee)
-                    {
-                        if (agent.WieldedWeapon.Item != null)
-                        {
-                            var weapon = agent.WieldedWeapon.Item;
-                            var offhand = agent.WieldedOffhandWeapon.Item;
-                            List<ItemTrait> meleeItemTraits = new List<ItemTrait>();
-                            meleeItemTraits.AddRange(weapon.GetTraits());
-                            if (offhand != null)
-                                meleeItemTraits.AddRange(offhand.GetTraits());
-                            
-                            foreach (var itemTrait in meleeItemTraits)
-                            {
-                                var property = itemTrait.AmplifierTuple;
-                                
-                                if(property!=null)
-                                    damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
-
-                                var additionalDamageProperty = itemTrait.AdditionalDamageTuple;
-                                if (additionalDamageProperty != null)
-                                {
-                                    additionalDamagePercentages[(int)additionalDamageProperty.DamageType] += additionalDamageProperty.Percent;
-                                }
-                            }
-                            
-                            var weaponProperty = weapon.GetTorSpecificData().DamageProportions;
-                            if (weaponProperty != null)
-                            {
-                                foreach (var tuple in weaponProperty)
-                                {
-                                    damageProportions[(int)tuple.DamageType] = tuple.Percent;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            damageProportions[(int)DamageType.Physical] = 1f; //memo , this is for siege weapons, in principle a wielded Item shouldn't be found either in case of spell casting - yet it is found.
-                        }
-                    }
-                    
-                    if (attackTypeMask == AttackTypeMask.Spell)
-                    {
-                        if (!agent.WieldedOffhandWeapon.IsEmpty && agent.WieldedOffhandWeapon.Item != null && agent.WieldedOffhandWeapon.Item.StringId.Contains("staff"))
-                        {
-                            List<ItemTrait> staffItemTraits = agent.WieldedOffhandWeapon.Item.GetTraits();
-
-                            foreach (var itemTrait in staffItemTraits)
-                            {
-                                var property = itemTrait.AmplifierTuple;
-                                
-                                if(property!=null)
-                                    damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
-
-                                var additionalDamageProperty = itemTrait.AdditionalDamageTuple;
-                                if (additionalDamageProperty != null)
-                                {
-                                    additionalDamagePercentages[(int)additionalDamageProperty.DamageType] += additionalDamageProperty.Percent;
-                                }
-                            }
-                        }
-                    }
-                    
-                }
-                if (propertyMask == PropertyMask.Defense || propertyMask == PropertyMask.All)
-                {
-                    //Hero item level attributes 
-
-                    List<ItemTrait> itemTraits = new List<ItemTrait>();
-                    List<ItemObject> items;
-
-                    items = agent.Character.GetCharacterEquipment(EquipmentIndex.ArmorItemBeginSlot);
-                    foreach (var item in items)
-                    {
-                        if (item.HasTrait())
-                            itemTraits.AddRange(item.GetTraits(agent));
-                    }
-
-                    //equipment resistances , also implies dynamic traits
-                    foreach (var itemTrait in itemTraits)
-                    {
-                        var defenseProperty = itemTrait.ResistanceTuple;
-                        if (defenseProperty == null)
-                            continue;
-                        damageResistances[(int)defenseProperty.ResistedDamageType] += defenseProperty.ReductionPercent;
-                    }
-
-                    //statuseffects
-                    var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances(attackTypeMask);
-
-                    for (int i = 0; i < damageResistances.Length; i++)
-                    {
-                        damageResistances[i] += statusEffectResistances[i];
-                    }
-
-                    if (agent.WieldedWeapon.Item != null)
-                    {
-                        List<ItemTrait> wieldedItemTraits = new List<ItemTrait>();
-                        var weapon = agent.WieldedWeapon.Item;
-
-                        var offHand = agent.WieldedOffhandWeapon.Item;
-                        
-                        wieldedItemTraits.AddRange(weapon.GetTraits());
-                        if (offHand != null)
-                        {
-                            wieldedItemTraits.AddRange(offHand.GetTraits());
-                        }
-                        
-                        foreach (var itemTrait in wieldedItemTraits)
-                        {
-                            var defenseProperty = itemTrait.ResistanceTuple;
-                            if (defenseProperty == null)
-                                continue;
-                            damageResistances[(int)defenseProperty.ResistedDamageType] += defenseProperty.ReductionPercent;
-                        }   
-                    }
-                }
-            }
-            #endregion
-
-            var result = new AgentPropertyContainer(damageProportions, damageAmplifications, damageResistances, additionalDamagePercentages);
-
-            if (Game.Current.GameType is Campaign)
-            {
-                var model = MissionGameModels.Current.AgentStatCalculateModel as TORAgentStatCalculateModel;
-                if(model != null)
-                {
-                    result = model.AddPerkEffectsToAgentPropertyContainer(agent, propertyMask, attackTypeMask, result);
-                }
-            }
-
-            return result;
+            
+            return damageModel.CreateAgentPropertyContainer(agent, propertyMask, attackTypeMask);
         }
 
         public static Ability GetCurrentAbility(this Agent agent)
@@ -564,11 +269,6 @@ namespace TOR_Core.Extensions
             if (hero != null)
             {
                 abilities.AddRange(hero.GetExtendedInfo().SelectedAbilities);
-                
-                if (agent.HasAttribute("Priest"))
-                {
-                    abilities.AddRange(hero.GetExtendedInfo().GetAllPrayers());
-                }
             }
             else if (character != null)
             {
@@ -756,6 +456,7 @@ namespace TOR_Core.Extensions
 
         public static void ApplyStatusEffect(this Agent agent, string effectId, Agent applierAgent, float duration = 5, bool append = true, bool isMutated = false)
         {
+        
             var comp = agent.GetComponent<StatusEffectComponent>();
             if (comp != null) comp.RunStatusEffect(effectId, applierAgent, duration, append, isMutated);
             

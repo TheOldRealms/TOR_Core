@@ -177,23 +177,6 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             }
         }
 
-        public List<string> GetAllPrayers()
-        {
-            var list = new List<string>();
-            foreach (var ability in AllAbilites)
-            {
-                if(list.Contains(ability)) continue;    //shouldn't happen, yet better save then sorry
-                
-                var t  = AbilityFactory.GetTemplate(ability);
-                if (t!=null&&t.AbilityType == AbilityType.Prayer)
-                {
-                    list.Add(ability);
-                }
-            }
-
-            return list;
-        }
-
         public ReligionObject DominantReligion
         {
             get

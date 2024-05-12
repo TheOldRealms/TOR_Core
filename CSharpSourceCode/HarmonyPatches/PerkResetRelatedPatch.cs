@@ -9,6 +9,7 @@ using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Core;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.HarmonyPatches
@@ -34,48 +35,37 @@ namespace TOR_Core.HarmonyPatches
             {
                 hero.HeroDeveloper.UnspentAttributePoints -= 1;
             }
-
-            if (perk == TORPerks.Faith.NovicePrayers)
+            
+            if (Hero.MainHero.HasAnyCareer())
             {
-                if (hero.HasCareer(TORCareers.WarriorPriest))
-                {
-                    
-                    if (hero.HasAbility("HealingHand")) hero.GetExtendedInfo().RemoveAbility("HealingHand");
-                }
+                       
+                var prayers = CareerHelper.GetBattlePrayerList(Hero.MainHero.GetCareer());
 
-                if (hero.HasCareer(TORCareers.GrailDamsel))
+                var rank = 0;
+
+                if (perk == TORPerks.Faith.NovicePrayers)
                 {
-                    if (hero.HasAbility("AuraOfTheLady")) hero.GetExtendedInfo().RemoveAbility("AuraOfTheLady");
+                    rank = 2;
+                }
+                        
+                else if (perk == TORPerks.Faith.AdeptPrayers)
+                {
+                    rank = 3;
+                }
+                        
+                else if (perk == TORPerks.Faith.GrandPrayers)
+                {
+                    rank = 4;
+                }
+                        
+                var prayersForRank = prayers.Where(X => X.Rank == rank);
+                var extendedInfo = hero.GetExtendedInfo(); 
+                foreach (var prayer in prayersForRank)
+                {
+                    extendedInfo.RemoveAbility(prayer.PrayerID);
                 }
             }
             
-            if (perk == TORPerks.Faith.AdeptPrayers)
-            {
-                if (hero.HasCareer(TORCareers.WarriorPriest))
-                {
-                    if (hero.HasAbility("ArmourOfRighteousness")) hero.GetExtendedInfo().RemoveAbility("ArmourOfRighteousness");
-                    if (hero.HasAbility("Vanquish")) hero.GetExtendedInfo().RemoveAbility("Vanquish");
-                }
-                            
-                if (hero.HasCareer(TORCareers.GrailDamsel))
-                {
-                    if (hero.HasAbility("ShieldOfCombat")) hero.GetExtendedInfo().RemoveAbility("ShieldOfCombat");
-                    if (hero.HasAbility("LadysFavour")) hero.GetExtendedInfo().RemoveAbility("LadysFavour");
-                   
-                }
-                            
-            }
-            if (perk == TORPerks.Faith.GrandPrayers)
-            {
-                if (hero.HasCareer(TORCareers.WarriorPriest))
-                {
-                    if (hero.HasAbility("CometOfSigmar")) hero.GetExtendedInfo().RemoveAbility("CometOfSigmar");
-                }
-                if (hero.HasCareer(TORCareers.GrailDamsel))
-                {
-                    if (hero.HasAbility("AerialShield")) hero.GetExtendedInfo().RemoveAbility("AerialShield");
-                }
-            }
         }
     }
 }

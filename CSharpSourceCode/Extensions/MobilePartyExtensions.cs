@@ -30,9 +30,13 @@ namespace TOR_Core.Extensions
             return ExtendedInfoManager.Instance.GetPartyInfoFor(party.StringId);
         }
 
-        public static void AddBlessingToParty(this MobileParty party, string blessingId, int duration)
-        {
-            if(party.IsActive && party.IsLordParty) ExtendedInfoManager.Instance.AddBlessingToParty(party.StringId, blessingId, duration);
+        public static void AddBlessingToParty(this MobileParty party, string blessingId)
+        { 
+            var model = Campaign.Current.Models.GetFaithModel();
+            if (model != null)
+            {
+                model.AddBlessingToParty(party,blessingId);
+            }
         }
 
         public static bool HasAnyActiveBlessing(this MobileParty party)

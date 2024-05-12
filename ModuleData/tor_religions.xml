@@ -40,6 +40,54 @@
             <ArtifactItem id="Item.tor_empire_weapon_thaxe_taal" />
         </ReligiousArtifacts>
     </Religion>
+	<Religion id="cult_of_ulric" Name="Cult of Ulric" Culture="Culture.empire" Affinity="Order" DeityName="Ulric">
+        <HostileReligions>
+            <HostileReligion id="Religion.cult_of_nagash" /> 
+            <HostileReligion id="Religion.cult_of_slaanesh" /> 
+            <HostileReligion id="Religion.cult_of_nurgle" /> 
+            <HostileReligion id="Religion.cult_of_khorne" /> 
+            <HostileReligion id="Religion.cult_of_tzeentch" /> 
+            <HostileReligion id="Religion.chaos_undivided" />
+        </HostileReligions>
+        <Followers>
+        </Followers>
+        <ReligiousTroops>
+        </ReligiousTroops>
+        <ReligiousArtifacts>
+        </ReligiousArtifacts>
+    </Religion>
+	<Religion id="cult_of_shallya" Name="Cult of Shallya" Culture="Culture.empire" Affinity="Order" DeityName="Shallya">
+        <HostileReligions>
+            <HostileReligion id="Religion.cult_of_nagash" /> 
+            <HostileReligion id="Religion.cult_of_slaanesh" /> 
+            <HostileReligion id="Religion.cult_of_nurgle" /> 
+            <HostileReligion id="Religion.cult_of_khorne" /> 
+            <HostileReligion id="Religion.cult_of_tzeentch" /> 
+            <HostileReligion id="Religion.chaos_undivided" />
+        </HostileReligions>
+        <Followers>
+        </Followers>
+        <ReligiousTroops>
+        </ReligiousTroops>
+        <ReligiousArtifacts>
+        </ReligiousArtifacts>
+    </Religion>
+	<Religion id="cult_of_manaan" Name="Cult of Manaan" Culture="Culture.empire" Affinity="Order" DeityName="Manaan">
+        <HostileReligions>
+            <HostileReligion id="Religion.cult_of_nagash" /> 
+            <HostileReligion id="Religion.cult_of_slaanesh" /> 
+            <HostileReligion id="Religion.cult_of_nurgle" /> 
+            <HostileReligion id="Religion.cult_of_khorne" /> 
+            <HostileReligion id="Religion.cult_of_tzeentch" /> 
+            <HostileReligion id="Religion.chaos_undivided" />
+        </HostileReligions>
+        <Followers>
+        </Followers>
+        <ReligiousTroops>
+        </ReligiousTroops>
+        <ReligiousArtifacts>
+        </ReligiousArtifacts>
+    </Religion>
     <Religion id="cult_of_lady" Name="Cult of The Lady" Culture="Culture.vlandia" Affinity="Order" DeityName="The Lady">
         <HostileReligions>
             <HostileReligion id="Religion.cult_of_nagash" /> 

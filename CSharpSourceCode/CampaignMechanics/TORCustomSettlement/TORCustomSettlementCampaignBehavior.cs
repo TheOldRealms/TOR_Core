@@ -20,6 +20,7 @@ using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Ink;
 using TOR_Core.Models;
@@ -103,9 +104,9 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             if(settlement.SettlementComponent is ShrineComponent)
             {
                 var shrine = settlement.SettlementComponent as ShrineComponent;
-                party.AddBlessingToParty(shrine.Religion.StringId, _model.CalculateBlessingDurationForParty(party));
-                party.LeaderHero.AddSkillXp(TORSkills.Faith, _model.CalculateSkillXpForPraying(party.LeaderHero));
-                party.LeaderHero.AddReligiousInfluence(shrine.Religion, _model.CalculateDevotionIncreaseForPraying(party.LeaderHero));
+                if(shrine==null) return;
+                
+                party.AddBlessingToParty(shrine.Religion.StringId);
                 LeaveSettlementAction.ApplyForParty(party);
                 party.Ai.SetMoveModeHold();
                 party.Ai.SetDoNotMakeNewDecisions(false);
@@ -415,6 +416,15 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 args.Tooltip = new TextObject("{=tor_custom_settlement_shrine_blessing_already_active_str}You already have an active blessing.", null);
                 args.IsEnabled = false;
             }
+
+            if (CareerHelper.IsPriestCareer()&& CareerHelper.GetGodCareerIsDevotedTo(Hero.MainHero.GetCareer()) != component.Religion.StringId)
+            {
+                var careerGod = CareerHelper.GetGodCareerIsDevotedTo(Hero.MainHero.GetCareer());
+                var god = Religion.ReligionObject.All.FirstOrDefault(x => x.StringId == careerGod);
+                MBTextManager.SetTextVariable("CAREERGOD_NAME", god.DeityName);
+                args.Tooltip = new TextObject("{=tor_custom_settlement_shrine_blessing_already_active_str}You devoted your live to {CAREERGOD_NAME}. You can't pray here.", null);
+                args.IsEnabled = false;
+            }
             return component.IsActive && component.Religion != null && !component.Religion.HostileReligions.Contains(Hero.MainHero.GetDominantReligion());
         }
 
@@ -561,23 +571,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 MBTextManager.SetTextVariable("FOLLOWER_RESULT_TROOP", troop.EncyclopediaLinkWithName);
                 MBTextManager.SetTextVariable("FOLLOWERS_RESULT", "{=tor_custom_settlement_shrine_follower_result_str}Witnessing your prayers have inspired {FOLLOWER_RESULT_NUMBER} {FOLLOWER_RESULT_TROOP} to join your party.");
             }
-            MobileParty.MainParty.AddBlessingToParty(component.Religion.StringId, _model.CalculateBlessingDurationForParty(MobileParty.MainParty));
-            Hero.MainHero.AddReligiousInfluence(component.Religion, _model.CalculateDevotionIncreaseForPraying(Hero.MainHero));
-            Hero.MainHero.AddSkillXp(TORSkills.Faith, _model.CalculateSkillXpForPraying(Hero.MainHero));
             
-            if (component.Religion.StringId == "cult_of_sigmar")
-            {
-                if (Hero.MainHero.HasCareerChoice("SigmarProclaimerPassive4"))
-                {
-                    var choice = TORCareerChoices.GetChoice("SigmarProclaimerPassive4");
-                    if(choice==null||choice.Passive==null)return;
-                    foreach (var hero in Hero.MainHero.PartyBelongedTo.GetMemberHeroes())
-                    {
-                        var value =(int) choice.Passive.EffectMagnitude;
-                        hero.Heal(value,false);
-                    }
-                }
-            }
+            _model.AddBlessingToParty(MobileParty.MainParty, component.Religion.StringId);
             
         }
         #endregion

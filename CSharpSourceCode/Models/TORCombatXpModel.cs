@@ -27,15 +27,13 @@ namespace TOR_Core.Models
 
             if(missionType != MissionTypeEnum.Battle) return;
             
-
-         
             if(party != PartyBase.MainParty&&!MobileParty.MainParty.LeaderHero.HasAnyCareer()) return;
             
             ExplainedNumber number = new ExplainedNumber();
             number.Add(xpAmount);
             var choices = MobileParty.MainParty.LeaderHero.GetAllCareerChoices();
 
-            if (isFatal&&attackerTroop.Tier>3&&party.MobileParty == MobileParty.MainParty&&choices.Contains("PeerlessWarriorPassive3"))
+            if (isFatal && attackerTroop.Tier>3&&party.MobileParty == MobileParty.MainParty&&choices.Contains("PeerlessWarriorPassive3"))
             {
                 var choice = TORCareerChoices.GetChoice("PeerlessWarriorPassive3");
                 if (choice != null)
@@ -43,6 +41,12 @@ namespace TOR_Core.Models
                     number.AddFactor(choice.GetPassiveValue());
                 }
             }
+            
+            if (isFatal && party.MobileParty == MobileParty.MainParty&&MobileParty.MainParty.HasBlessing("cult_of_ulric"))
+            {
+                number.AddFactor(0.2f);
+            }
+            
             xpAmount = (int) number.ResultNumber;
         }
 

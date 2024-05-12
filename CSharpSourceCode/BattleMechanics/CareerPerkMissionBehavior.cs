@@ -245,6 +245,14 @@ namespace TOR_Core.BattleMechanics
                         Hero.MainHero.AddSkillXp(DefaultSkills.Roguery, 5 * multiplier);
                     }
                 }
+
+                if (TORSpellBlowHelper.IsSpellBlow(blow))
+                {
+                    if (Hero.MainHero.HasCareerChoice("FlameOfUlricPassive4"))
+                    {
+                        affectorAgent.Heal(0.25f);
+                    }
+                }
             }
         }
     }

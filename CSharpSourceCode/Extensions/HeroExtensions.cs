@@ -187,7 +187,7 @@ namespace TOR_Core.Extensions
                 {
                     continue;
                 }
-
+                if(settlement.Town.GarrisonParty==null) continue;
                 var garrison = settlement.Town.GarrisonParty.MemberRoster.GetTroopRoster();
                 foreach (var elem in garrison)
                 {
@@ -370,14 +370,21 @@ namespace TOR_Core.Extensions
             return hero.HasAttribute("Undead");
         }
 
+        public static bool IsChaos(this Hero hero)
+        {
+            if (hero.CharacterObject.IsCultist()) return true;
+            if (hero.CharacterObject.IsBeastman()) return true;
+            return false;
+        }
+
         public static bool IsVampire(this Hero hero)
         {
             return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("vampire");
         }
 
-        public static bool IsCultist(this Hero hero)
+        public static bool IsPriest(this Hero hero)
         {
-            return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("chaos_ud_cultist");
+            return hero.HasAttribute("Priest");
         }
         
         public static bool IsAICompanion(this Hero hero)
@@ -409,6 +416,13 @@ namespace TOR_Core.Extensions
         {
             if(hero!=null)
                 return hero.Occupation == Occupation.Special&& hero.Name.Contains("Master Engineer");
+            return false;
+        }
+        
+        public static bool IsPrestigeNoble(this Hero hero)
+        {
+            if (hero != null)
+                return hero.Occupation == Occupation.Special && hero.HasAttribute("PrestigeNoble");
             return false;
         }
 
