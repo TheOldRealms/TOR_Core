@@ -260,18 +260,20 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
             Instance._resourceChanges.Clear();
             if (PartyScreenManager.Instance.CurrentMode != PartyScreenMode.Loot) return;
-
             if (PlayerEncounter.Current == null) return;
-            var prisoners = PlayerEncounter.Current.RosterToReceiveLootPrisoners.TotalManCount;
+            
+            var prisoners = leftPrisonRoster.TotalManCount;
             var result = 0f;
-            var memberRosterFlatten = leftMemberRoster.ToFlattenedRoster();
 
             if ((Hero.MainHero.IsVampire() || Hero.MainHero.CanRaiseDead()) &&
                 PartyScreenManager.Instance.CurrentMode == PartyScreenMode.Loot)
             {
-                var totalCausalties = Hero.MainHero.PartyBelongedTo.MapEvent.GetMapEventSide(BattleSideEnum.Defender).Casualties;
-
-                result += totalCausalties - prisoners;
+                if (Hero.MainHero.PartyBelongedTo.MapEvent != null)
+                {
+                    var totalCausalties = Hero.MainHero.PartyBelongedTo.MapEvent.GetMapEventSide(BattleSideEnum.Defender).Casualties;
+                    result += Math.Max(0,totalCausalties - prisoners);
+                }
+                
                 if (leftMemberRoster != null && leftMemberRoster.Count > 0)
                 {
                     result += AdjustBattleSpoilsForDarkEnergy(leftMemberRoster);
