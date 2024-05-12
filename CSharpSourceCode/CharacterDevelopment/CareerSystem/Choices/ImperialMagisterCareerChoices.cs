@@ -1,7 +1,11 @@
 ﻿using System.Collections.Generic;
 using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.CampaignMechanics.Choices;
+using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
@@ -122,6 +126,41 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         protected override void InitializePassives()
         {
             _studyAndPractisePassive1.Initialize(CareerID, "Increases max Winds of Magic by 10.", "StudyAndPractise", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
+            _studyAndPractisePassive2.Initialize(CareerID,
+                "10% Ward save if your armor weight does not exceed 11 weight.", "StudyAndPractise", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.All,
+                    (attacker, victim, attackmask) => CareerChoicesHelper.ArmorWeightUndershootCheck(victim, 11)));
+            _studyAndPractisePassive3.Initialize(CareerID, "Increases magic spell damage by 10%.", "StudyAndPractise", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
+            _studyAndPractisePassive4.Initialize(CareerID, "{=vivid_visions_passive3_str}Increases Magic resistance against spells by 25%.", "StudyAndPractise", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical,25),AttackTypeMask.Spell));
+            
+            _teclisTeachingsPassive1.Initialize(CareerID, "Increases fire spell damage by 10%.", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 10), AttackTypeMask.Spell));
+            _teclisTeachingsPassive2.Initialize(CareerID, "Increases electric spell damage by 10%.", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 10), AttackTypeMask.Spell));
+            _teclisTeachingsPassive3.Initialize(CareerID, "Increases max Winds of Magic by 10.", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
+            _teclisTeachingsPassive4.Initialize(CareerID, "PLACEHOLDER", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            
+            _imperialEnchantmentPassive1.Initialize(CareerID, "Increases max Winds of Magic by 10.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
+            _imperialEnchantmentPassive2.Initialize(CareerID, "PLACEHOLDER", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            _imperialEnchantmentPassive3.Initialize(CareerID, "Buffs and healing duration is increased by 50%.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.BuffDuration,true));
+            _imperialEnchantmentPassive4.Initialize(CareerID, "PLACEHOLDER", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            
+            _collegeOrdersPassive1.Initialize(CareerID, "PLACEHOLDER", "CollegeOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            _collegeOrdersPassive2.Initialize(CareerID, "PLACEHOLDER", "CollegeOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            _collegeOrdersPassive3.Initialize(CareerID, "{=holy_crusader_passive4_str}Companion limit of party is increased by 5.", "CollegeOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
+            _collegeOrdersPassive4.Initialize(CareerID, "PLACEHOLDER", "CollegeOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            
+            _magicCombatTrainingPassive1.Initialize(CareerID, "PLACEHOLDER", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            _magicCombatTrainingPassive2.Initialize(CareerID, "PLACEHOLDER", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            _magicCombatTrainingPassive3.Initialize(CareerID, "Increase hex durations by 50%.", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50f, PassiveEffectType.DebuffDuration,true));
+            _magicCombatTrainingPassive4.Initialize(CareerID, "Increases max Winds of Magic by 10.", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
+            
+            _ancientScrollsPassive1.Initialize(CareerID, "Increases max Winds of Magic by 20.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.WindsOfMagic));
+            _ancientScrollsPassive2.Initialize(CareerID, "Increases Windsregeneration by 1.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.WindsRegeneration));
+            _ancientScrollsPassive3.Initialize(CareerID, "{=tales_of_giles_passive4_str}25% spell cooldown reduction.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.WindsCooldownReduction, true)); 
+            _ancientScrollsPassive4.Initialize(CareerID, "PLACEHOLDER", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            
+            _arcaneKnowledgePassive1.Initialize(CareerID, "PLACEHOLDER", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            _arcaneKnowledgePassive2.Initialize(CareerID, "PLACEHOLDER", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            _arcaneKnowledgePassive3.Initialize(CareerID, "PLACEHOLDER", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            _arcaneKnowledgePassive4.Initialize(CareerID, "PLACEHOLDER", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
         }
     }
 }
