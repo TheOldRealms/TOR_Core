@@ -518,6 +518,7 @@
 		type="AttackSpeedManipulation"
 		damage_type="Frost">
   	</StatusEffectTemplate>
+	
 	<StatusEffectTemplate
 		id="ice_storm_dot"
 		particle_id=""
@@ -526,6 +527,54 @@
 		type="DamageOverTime"
 		damage_type="Frost">
   	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
+		id="arcane_conduit_slow"
+		particle_id="freeze"
+		particle_intensity="High"
+    	base_effect_value="-0.5"
+		type="MovementManipulation"
+		damage_type="Frost">
+  	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
+		id="arcane_conduit_res_debuff"
+		particle_id=""
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+    	base_effect_value="-0.75"
+		type="Resistance"
+		damage_type="Physical">
+  	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
+		id="arcane_conduit_res_buff"
+		particle_id=""
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+    	base_effect_value="0.01"
+		type="Resistance"
+		damage_type="Physical">
+  	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate 
+		id="arcane_conduit_dmg_buff" 
+		particle_id=""
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="1"
+		type="WindsOverTime">
+		<temporary_attribute>Arcane_Dmg</temporary_attribute>
+	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate 
+		id="arcane_conduit_winds_reg" 
+		particle_id="mistform_magic"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="1"
+		type="WindsOverTime"/>
+	
 	
 	<StatusEffectTemplate 
 		id="righteous_fury_regeneration" 

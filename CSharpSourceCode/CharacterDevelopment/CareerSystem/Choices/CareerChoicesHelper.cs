@@ -8,6 +8,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         
         public static bool ArmorWeightUndershootCheck(Agent agent, float weightLimit)
         {
+            if (agent == null) return false;
             if (!agent.BelongsToMainParty()) return false;
             if (!agent.IsMainAgent) return false;
             var weight = agent.Character.Equipment.GetTotalWeightOfArmor(true);

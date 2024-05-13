@@ -165,6 +165,11 @@ namespace TOR_Core.HarmonyPatches
                                     }
                                 }
                             }
+                            
+                            if (hero.HasAttribute("Arcane_Dmg"))
+                            {
+                                damageAmplifications[damageType] += 0.3f;
+                            }
                         }
                     }
                 }

@@ -1103,8 +1103,23 @@
             TroopIdToSummon="tor_vc_spirit_host"
             NumberToSummon="1"
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.SummonScript"/>
-
-
+			
+	  <TriggeredEffectTemplate StringID="apply_arcaneconduit" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Self" 
+            ImbuedStatusEffectDuration="10" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+            <ImbuedStatusEffect>arcane_conduit_slow</ImbuedStatusEffect>
+			<ImbuedStatusEffect>arcane_conduit_res_debuff</ImbuedStatusEffect>
+			<ImbuedStatusEffect>arcane_conduit_winds_reg</ImbuedStatusEffect>
+        </TriggeredEffectTemplate>
 
 		<TriggeredEffectTemplate StringID="apply_knightly_charge" 
             BurstParticleEffectPrefab="none" 

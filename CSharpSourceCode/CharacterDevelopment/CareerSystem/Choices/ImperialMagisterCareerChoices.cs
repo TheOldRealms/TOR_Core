@@ -5,6 +5,8 @@ using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -110,18 +112,165 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _imperialMagisterRoot.Initialize(CareerID, "You charge with the surrounding winds of magic your own reserves for 6 seconds. During the refreshment your character is vulnerable to any damage intaken and heavily slowed down. Every second you gain 3% of your total amount. For every 50 points in spellcraft you charge 1 second longer. Every key stone gives you one additional usage.", null, true,
+            _imperialMagisterRoot.Initialize(CareerID, "You charge with the surrounding winds of magic your own reserves for 10 seconds. During the refreshment your character is vulnerable to any damage intaken and heavily slowed down. Every second you gain 3% of your total amount. For every 50 points in spellcraft you charge 1 second longer. Every key stone gives you one additional usage.", null, true,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_arcaneconduit",
+                        PropertyName = "ImbuedStatusEffectDuration",
+                        PropertyValue = (choice, originalValue, agent) => (float) originalValue *  CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.SpellCraft}, 0.01f),
+                        MutationType = OperationType.Add
+                    }
+                });
+            
+            _studyAndPractiseKeystone.Initialize(CareerID, "For every point  counting towards ability gain 1% physical resistance during ability. reduced cooldown by 25%", "StudyAndPractise", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_arcaneconduit",
+                        PropertyName = "CoolDown",
+                        PropertyValue = (choice, originalValue, agent) => -(float) originalValue * 0.25f ,
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_arcaneconduit",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "arcane_conduit_res_buff" }).ToList(),
+                        MutationType = OperationType.Replace
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "arcane_conduit_res_buff",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.SpellCraft}, 0.0025f),
+                        MutationType = OperationType.Add
+                    },
+                });
+            
+            _teclisTeachingsKeystone.Initialize(CareerID, "You charge 25% longer. Ability scales with Steward.", "TeclisTeachings", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_arcaneconduit",
+                        PropertyName = "ImbuedStatusEffectDuration",
+                        PropertyValue = (choice, originalValue, agent) => (float) originalValue * 0.25f ,
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "arcane_conduit_res_buff",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Steward}, 0.0025f),
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "ArcaneConduit",
+                        PropertyName = "Duration",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Steward}, 0.01f),
+                        MutationType = OperationType.Add
+                    }
+                });
+            
+            _imperialEnchantmentKeystone.Initialize(CareerID, "You are no longer slowed down using Arcane Conduit. Scales with leadership", "ImperialEnchantment", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_arcaneconduit",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).FindAll(x=> x!="arcane_conduit_slow").ToList(),
+                        MutationType = OperationType.Replace
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "arcane_conduit_res_buff",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership}, 0.0025f),
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "ArcaneConduit",
+                        PropertyName = "Duration",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership}, 0.01f),
+                        MutationType = OperationType.Add
+                    }
+                });
+            _collegeOrdersKeystone.Initialize(CareerID, "Arcane Conduit also refreshes Winds of Companions.", "CollegeOrders", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+            {
+            }, new CareerChoiceObject.PassiveEffect());
+            
+            _magicCombatTrainingKeystone.Initialize(CareerID, "Your spell damage is increased for 30% during Arcane Conduit.", "MagicCombatTraining", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_arcaneconduit",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "arcane_conduit_dmg_buff" }).ToList(),
+                        MutationType = OperationType.Replace
+                    }
+                });
+            
+            
+            _ancientScrollsKeystone.Initialize(CareerID, "Arcane Conduit increases 50% of total regained magic per tick. Cooldown reduction by 35%", "AncientScrolls", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "arcane_conduit_winds_reg",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => 0.5f*(float)originalValue,
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_arcaneconduit",
+                        PropertyName = "CoolDown",
+                        PropertyValue = (choice, originalValue, agent) => -(float) originalValue * 0.35f ,
+                        MutationType = OperationType.Add
+                    },
+                });
+            
+            _arcaneKnowledgeKeystone.Initialize(CareerID, "Arcane Conduit resets cooldowns of spells. Halves duration and doubles gain.", "ArcaneKnowledge", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "GreaterHarbinger",
-                        PropertyName = "ScaleVariable1",
-                        PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.SpellCraft}, 0.33f),
-                        MutationType = OperationType.Add
-                    }
-                });
+                        MutationTargetOriginalId = "ArcaneConduit",
+                        PropertyName = "Duration",
+                        PropertyValue = (choice, originalValue, agent) => 0.5f,
+                        MutationType = OperationType.Multiply
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "arcane_conduit_winds_reg",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) => 2,
+                        MutationType = OperationType.Multiply
+                    },
+                });//special
+
 
         }
 
@@ -130,7 +279,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _studyAndPractisePassive1.Initialize(CareerID, "Increases max Winds of Magic by 10.", "StudyAndPractise", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
             _studyAndPractisePassive2.Initialize(CareerID,
                 "10% Ward save if your armor weight does not exceed 11 weight.", "StudyAndPractise", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.All,
-                    (attacker, victim, attackmask) => CareerChoicesHelper.ArmorWeightUndershootCheck(victim, 11)));
+                    (attacker, victim, attackmask) => victim == Agent.Main && CareerChoicesHelper.ArmorWeightUndershootCheck(victim, 11) ));
             _studyAndPractisePassive3.Initialize(CareerID, "Increases magic spell damage by 10%.", "StudyAndPractise", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
             _studyAndPractisePassive4.Initialize(CareerID, "{=vivid_visions_passive3_str}Increases Magic resistance against spells by 25%.", "StudyAndPractise", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical,25),AttackTypeMask.Spell));
             

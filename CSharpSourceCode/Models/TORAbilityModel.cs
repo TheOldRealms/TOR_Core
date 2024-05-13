@@ -293,7 +293,7 @@ namespace TOR_Core.Models
                             }
                         }
 
-                        if (CareerChoices.Contains("ArcaneKnowledgePassive4"))
+                        if (Hero.MainHero.PartyBelongedTo!=null&&CareerChoices.Contains("ArcaneKnowledgePassive4"))
                         {
                             var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
 
