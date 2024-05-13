@@ -563,7 +563,7 @@
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="1"
-		type="WindsOverTime">
+		type="TemporaryAttributeOnly">
 		<temporary_attribute>Arcane_Dmg</temporary_attribute>
 	</StatusEffectTemplate>
 	

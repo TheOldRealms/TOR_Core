@@ -63,6 +63,7 @@ namespace TOR_Core.AbilitySystem.Scripts
 
                     foreach (var abilitySpell in abilities)
                     {
+                        if (abilitySpell == this.Ability) continue;
                         abilitySpell.SetCoolDown(0);
                     }
                 }
