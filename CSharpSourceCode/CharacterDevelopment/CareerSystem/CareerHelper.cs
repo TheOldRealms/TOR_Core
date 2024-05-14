@@ -15,11 +15,15 @@ using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.AbilitySystem.Spells.Prayers;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.BattleMechanics.TriggeredEffect;
+using TOR_Core.BattleMechanics.TriggeredEffect.Scripts;
 using TOR_Core.CharacterDevelopment.CareerSystem.Button;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Items;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
@@ -363,6 +367,40 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             }
 
             return "";
+        }
+        
+        
+        public static void PowerstoneEffectAssignment(Agent agent)
+        {
+            var statuseffectComponent = agent.GetComponent<StatusEffectComponent>();
+
+            var button =  CareerHelper.GetCareerButton() as ImperialWizardCareerButtonBehavior;
+            if (statuseffectComponent != null && button!=null)
+            {
+                var powerstones = button.AssignmentOfStones;
+
+                if (powerstones.ContainsKey(agent.Character.Id))
+                {
+                    var template = TriggeredEffectManager.GetTemplateWithId(powerstones[agent.Character.Id]);
+                    
+                    
+
+                    foreach (var effect in template.ImbuedStatusEffects)
+                    {
+                        agent.ApplyStatusEffect(effect,Agent.Main,99999);
+                    }
+
+
+                    if (template.ScriptNameToTrigger != "none")
+                    {
+                        var obj = Activator.CreateInstance(Type.GetType(template.ScriptNameToTrigger));
+                        
+                        var script = obj as ITriggeredScript;
+                        script.OnTrigger(agent.Position, Agent.Main, new List<Agent>(){agent}, 99999);
+                    }
+                }
+                
+            }
         }
         
         

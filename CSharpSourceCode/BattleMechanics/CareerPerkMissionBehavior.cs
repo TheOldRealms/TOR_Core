@@ -18,6 +18,8 @@ namespace TOR_Core.BattleMechanics
     {
         private float _currentTime;
         private readonly float _frequency=1f;
+
+        private bool init;
         public override void OnMissionTick(float dt)
         {
             _currentTime += dt;
@@ -26,7 +28,33 @@ namespace TOR_Core.BattleMechanics
                 _currentTime = 0f;
                 TickEvents();
             }
+
+            if (!init)
+            {
+                init = true;
+            }
         }
+        
+        public override void AfterStart()
+        {
+            base.AfterStart();
+            TORCommon.Say("lol");
+
+            var agents = Mission.Current.Agents;
+        }
+
+        public override void OnAgentBuild(Agent agent, Banner banner)
+        {
+            base.OnAgentBuild(agent, banner);
+            
+            
+            if (agent.BelongsToMainParty()&& Hero.MainHero.HasCareer(TORCareers.ImperialMagister))
+            {
+                CareerHelper.PowerstoneEffectAssignment(agent);
+            }
+        }
+
+    
 
         private void TickEvents()
         {
