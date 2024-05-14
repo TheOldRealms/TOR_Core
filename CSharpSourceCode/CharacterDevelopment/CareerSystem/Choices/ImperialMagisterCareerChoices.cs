@@ -258,8 +258,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(AbilityTemplate),
                         MutationTargetOriginalId = "ArcaneConduit",
                         PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) =>  -(float)originalValue * -0.5f ,
-                        MutationType = OperationType.Add
+                        PropertyValue = (choice, originalValue, agent) =>  0.5f ,
+                        MutationType = OperationType.Multiply
                     },
                     new CareerChoiceObject.MutationObject()
                     {

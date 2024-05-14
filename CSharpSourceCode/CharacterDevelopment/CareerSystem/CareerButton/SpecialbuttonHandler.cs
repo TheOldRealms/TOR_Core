@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
 using TaleWorlds.Localization;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.UI;
 
 namespace TOR_Core.CampaignMechanics
 {
@@ -13,9 +15,13 @@ namespace TOR_Core.CampaignMechanics
         private CareerButtonBehaviorBase.OnCareerButtonClickedEvent  _clickEvent;
         private CareerButtonBehaviorBase.OnShouldButtonBeVisible _shouldButtonBeVisible;
         private CareerButtonBehaviorBase.OnShouldButtonBeActive _shouldButtonBeActive;
+
+        private PartyVM _partyVm;
         
         
         private static SpecialbuttonEventManagerHandler _instance;
+
+        public bool IsInit;
 
         public void RegisterNewButton(CareerButtonBehaviorBase buttonBehavior)
         {
@@ -66,6 +72,21 @@ namespace TOR_Core.CampaignMechanics
             
             var value =  _shouldButtonBeActive(characterObject, out displayText, isPrsioner);
             return value;
+        }
+
+        public void SetCurrentPartyUiExtensionInstance(PartyVM vm)
+        {
+            _partyVm = vm;
+        }
+
+
+        public void RefreshPartyVM()
+        {
+            if (_partyVm != null)
+            {
+                _partyVm.RefreshValues();
+            }
+    
         }
         
     }

@@ -57,7 +57,6 @@ namespace TOR_Core.Extensions.UI
                 }
             }
             
-            
             RefreshValues();
             
         }
@@ -106,8 +105,11 @@ namespace TOR_Core.Extensions.UI
             SpecialbuttonEventManagerHandler.Instance.OnButtonClicked(troop,isPrisoner );
             
             ((PartyCharacterVM)_vm).RefreshValues();
+            RefreshValues();
 
         }
+        
+
         
         [DataSourceProperty]
         public string SpriteTORButton
