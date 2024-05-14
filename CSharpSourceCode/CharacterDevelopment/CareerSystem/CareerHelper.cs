@@ -230,7 +230,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
             if (mask == PropertyMask.Defense)
             {
-                ApplyCareerPassivesForDamageValues(agent, null, ref damageValues, attackType,PassiveEffectType.Resistance);
+                ApplyCareerPassivesForDamageValues(agent, null, ref resistanceValues, attackType,PassiveEffectType.Resistance);
             }
             return new AgentPropertyContainer(propertyContainer.DamageProportions, propertyContainer.DamagePercentages, resistanceValues, damageValues);
         }
