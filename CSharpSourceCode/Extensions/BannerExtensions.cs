@@ -15,7 +15,11 @@ namespace TOR_Core.Extensions
     {
         public static string GetBannerImageResource(this Banner banner)
         {
-            return ExtendedInfoManager.Instance.GetBannerImageResource(banner);
+            if (ExtendedInfoManager.Instance != null)
+            {
+                return ExtendedInfoManager.Instance.GetBannerImageResource(banner);
+            }
+            return null;
         }
 
         public static void AddBannerImageResource(this BannerVisual visual, ref MetaMesh metaMesh, string resourceName)

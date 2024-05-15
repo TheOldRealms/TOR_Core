@@ -28,7 +28,7 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
             base.OnFrameTick(dt);
         }
 
-        public void OnActivate()
+        void IGameStateListener.OnActivate()
         {
             base.OnActivate();
             _vm = new BattlePrayersVM(CloseScreen);
@@ -43,17 +43,17 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
             ScreenManager.TrySetFocus(_gauntletLayer);
         }
 
-        public void OnDeactivate()
+        void IGameStateListener.OnDeactivate()
         {
             base.OnDeactivate();
         }
 
-        public void OnInitialize()
+        void IGameStateListener.OnInitialize()
         {
             base.OnInitialize();
         }
 
-        public void OnFinalize()
+        void IGameStateListener.OnFinalize()
         {
             base.OnFinalize();
         }

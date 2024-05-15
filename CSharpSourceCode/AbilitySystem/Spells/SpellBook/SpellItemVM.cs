@@ -15,14 +15,10 @@ namespace TOR_Core.AbilitySystem.SpellBook
 {
     public class SpellItemVM : AbilityItemVM
     {
-        private MBBindingList<StatItemVM> _statItems;
-        private string _disabledReason;
-        private BasicTooltipViewModel _spellHint;
         private bool _isTrainerMode;
         private bool _canLearn = false;
         private string _learnText;
         private int _goldCost;
-        private bool _isSelected;
 
         public SpellItemVM(AbilityTemplate template, Hero currentHero, bool isTrainerMode = false) : base(template,currentHero)
         {

@@ -8,57 +8,46 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
 {
     //TODO maybe better create common base class with LoreObject
     public class PrayerLoreObjectVM : ViewModel
-
     {
-    private string _name;
-    private LoreObject _lore;
-    private BattlePrayersVM _parent;
-    private MBBindingList<PrayerItemVM> _prayers;
-    private bool _isVisible;
-    private bool _isSelected;
-    private string _spriteName;
+        private MBBindingList<PrayerItemVM> _prayers;
 
-    public PrayerLoreObjectVM(BattlePrayersVM parent, List<string> prayerIDs, Hero hero)
-    {
-        _parent = parent;
-        _prayers = new MBBindingList<PrayerItemVM>();
-        var prayerTemplates = new List <AbilityTemplate>();
-        
-        foreach (var prayerID in prayerIDs)
+        public PrayerLoreObjectVM(BattlePrayersVM parent, List<string> prayerIDs, Hero hero)
         {
-            var template = AbilityFactory.GetTemplate(prayerID);
-            if (template != null)
+            _prayers = new MBBindingList<PrayerItemVM>();
+            var prayerTemplates = new List<AbilityTemplate>();
+
+            foreach (var prayerID in prayerIDs)
             {
-                prayerTemplates.Add(template);
+                var template = AbilityFactory.GetTemplate(prayerID);
+                if (template != null)
+                {
+                    prayerTemplates.Add(template);
+                }
+            }
+
+            foreach (var prayerAbility in prayerTemplates)
+            {
+                _prayers.Add(new PrayerItemVM(prayerAbility, hero));
+            }
+
+            RefreshValues();
+        }
+
+        [DataSourceProperty]
+        public MBBindingList<PrayerItemVM> PrayerList
+        {
+            get
+            {
+                return _prayers;
+            }
+            set
+            {
+                if (value != _prayers)
+                {
+                    _prayers = value;
+                    OnPropertyChangedWithValue(value, "PrayerList");
+                }
             }
         }
-
-        foreach (var prayerAbility in prayerTemplates)
-        {
-            _prayers.Add(new PrayerItemVM(prayerAbility, hero));
-        }
-        
-
-        //IsVisible = true;
-        RefreshValues();
-    }
-    
-    [DataSourceProperty]
-    public MBBindingList<PrayerItemVM> PrayerList
-    {
-        get
-        {
-            return this._prayers;
-        }
-        set
-        {
-            if (value != this._prayers)
-            {
-                this._prayers = value;
-                base.OnPropertyChangedWithValue(value, "PrayerList");
-            }
-        }
-    }
-    
     }
 }

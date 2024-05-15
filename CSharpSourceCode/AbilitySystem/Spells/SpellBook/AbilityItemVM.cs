@@ -6,22 +6,22 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.AbilitySystem.SpellBook
 {
-    public abstract class AbilityItemVM:  ViewModel
+    public abstract class AbilityItemVM : ViewModel
     {
         private readonly Hero _hero;
-        
+
         private readonly AbilityTemplate _abilityTemplate;
         private string _abilityName;
         private string _abilitySpriteName;
 
         private BasicTooltipViewModel _abilityHint;
-        
+
         private bool _isDisabled;
         private bool _isKnown;
         private bool _isSelected;
         private string _disabledReason;
-        
-        private  MBBindingList<StatItemVM> _statItems;
+
+        private MBBindingList<StatItemVM> _statItems;
 
 
         public AbilityItemVM(AbilityTemplate template, Hero hero)
@@ -33,10 +33,10 @@ namespace TOR_Core.AbilitySystem.SpellBook
             AbilityStatItems = template.GetStats(_hero, template);
             AbilityHint = new BasicTooltipViewModel(GetHintText);
         }
-        
+
         private string GetHintText()
         {
-            return new TextObject (_abilityTemplate.TooltipDescription).ToString();
+            return new TextObject(_abilityTemplate.TooltipDescription).ToString();
         }
 
         protected AbilityTemplate Template => this._abilityTemplate;
@@ -67,7 +67,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
                 }
             }
         }
-        
+
         [DataSourceProperty]
         public bool IsKnown
         {
@@ -84,7 +84,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
                 }
             }
         }
-        
+
         [DataSourceProperty]
         public bool IsSelected
         {
@@ -102,11 +102,11 @@ namespace TOR_Core.AbilitySystem.SpellBook
             }
         }
         protected virtual void ExecuteSelectAbility()
-        { 
+        {
             Hero.GetExtendedInfo().ToggleSelectedAbility(Template.StringID);
             RefreshValues();
         }
-        
+
         [DataSourceProperty]
         public BasicTooltipViewModel AbilityHint
         {
@@ -123,7 +123,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
                 }
             }
         }
-        
+
         [DataSourceProperty]
         public string DisabledReason
         {
@@ -140,8 +140,8 @@ namespace TOR_Core.AbilitySystem.SpellBook
                 }
             }
         }
-        
-        
+
+
         [DataSourceProperty]
         public string AbilitySpriteName
         {
@@ -158,7 +158,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
                 }
             }
         }
-        
+
         [DataSourceProperty]
         public MBBindingList<StatItemVM> AbilityStatItems
         {
@@ -175,7 +175,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
                 }
             }
         }
-        
+
         [DataSourceProperty]
         public string AbilityName
         {
