@@ -83,6 +83,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
         public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner=false)
         {
+            if (PartyScreenManager.Instance.CurrentMode != PartyScreenMode.Normal) return false;
+            
             if (characterObject.IsHero) return false;
             if (characterObject.StringId != "tor_br_grail_knight") return false;
 

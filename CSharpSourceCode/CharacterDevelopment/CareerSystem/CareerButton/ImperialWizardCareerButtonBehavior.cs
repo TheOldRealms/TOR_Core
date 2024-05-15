@@ -12,6 +12,7 @@ using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 {
@@ -19,14 +20,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
     {
         
         private List<PowerStone> _availableStones;
-        private Dictionary<MBGUID, string> _assignmentOfStones = new Dictionary<MBGUID, string>();  // character MBGUID and triggered Effect ID
+        private Dictionary<string, string> _assignmentOfStones = new Dictionary<string, string>();  // character MBGUID and triggered Effect ID
 
-        public int LesserStonePrice;
-        public int GreaterStonePrice;
+        public int LesserStonePrice = 10;
+        public int GreaterStonePrice = 20;
 
-
-
-        public Dictionary<MBGUID, string> AssignmentOfStones => _assignmentOfStones;
+        public Dictionary<string, string> AssignmentOfStones => _assignmentOfStones;
         private CharacterObject _setCharacter;
         
         public override string CareerButtonIcon
@@ -48,6 +47,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             MBTextManager.SetTextVariable("WINDS_ICON", CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText());
 
             _availableStones = CreateStoneList();
+
+            var partyId = Hero.MainHero.PartyBelongedTo.Party.Id;
+
+            var partyExtendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(partyId);
+            
+            if(partyExtendedInfo==null) return;
+
+            var attributes = partyExtendedInfo.TroopAttributes;
         }
 
         private List<PowerStone> CreateStoneList()
@@ -88,12 +95,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
         private bool CharacterHasStone()
         {
-            return _setCharacter != null && _assignmentOfStones.ContainsKey(_setCharacter.Id);
+            return _setCharacter != null && _assignmentOfStones.ContainsKey(_setCharacter.StringId);
         }
 
 
         public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner = false)
         {
+            if (PartyScreenManager.Instance.CurrentMode != PartyScreenMode.Normal) return false;
+            
             _setCharacter = characterObject;
             if (!characterObject.IsHero)
             {
@@ -101,7 +110,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             }
             
             return characterObject.HeroObject.PartyBelongedTo == PartyBase.MainParty.MobileParty;
-            if (!characterObject.IsHero) return false;
 
             
         }
@@ -163,11 +171,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             
             
             
-            if (_assignmentOfStones.ContainsKey(characterObject.Id))
+            if (_assignmentOfStones.ContainsKey(characterObject.StringId))
             {
                 list.Add(new InquiryElement("remove", "Remove Stone", null));
             }
-            
             
             var inquirydata = new MultiSelectionInquiryData("Choose Power stone", "Empower your troop with a permanent magical effect of a Power stone. The effect will reduce your total amount of Winds while the stone is active.", list, true, 1, 1, "Confirm", "Cancel", OnSelectedOption, OnCancel);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
@@ -193,20 +200,28 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             if (powerStone[0].Identifier == "remove")
             {
-                var effectID = _assignmentOfStones[_setCharacter.Id];
+                var effectID = _assignmentOfStones[_setCharacter.StringId];
                 var currentStone = getPowerstone(effectID);
-                _assignmentOfStones.Remove(_setCharacter.Id);
+                _assignmentOfStones.Remove(_setCharacter.StringId);
                 Hero.MainHero.AddCustomResource("Prestige",(int)currentStone.Price*0.4f);
+                
+                var extendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.Party.Id);
+                
+                
+                extendedInfo.RemoveTroopAttribute(_setCharacter, currentStone.EffectID);
             }
             else {
                 
-                if (!_assignmentOfStones.ContainsKey(_setCharacter.Id))
+                if (!_assignmentOfStones.ContainsKey(_setCharacter.StringId))
                 {
-                    _assignmentOfStones.Add(_setCharacter.Id,stone.EffectID);
+                    _assignmentOfStones.Add(_setCharacter.StringId,stone.EffectID);
+                    
+                    var extendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.Party.Id);
+                    extendedInfo.AddTroopAttribute(_setCharacter, stone.EffectID);
                 }
                 else
                 {
-                    _assignmentOfStones[_setCharacter.Id] = stone.EffectID;
+                    _assignmentOfStones[_setCharacter.StringId] = stone.EffectID;
                 }
                 
                 Hero.MainHero.AddCustomResource("Prestige",-stone.Price);
@@ -219,22 +234,38 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
         }
         
+        
         public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)
         {
-            if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < LesserStonePrice && !AssignmentOfStones.ContainsKey(characterObject.Id))
+            
+            
+            
+            var hasAlreadyPowerstone = AssignmentOfStones.ContainsKey(characterObject.StringId);
+            
+            
+            if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < LesserStonePrice && !hasAlreadyPowerstone)
             {
                 displayText= new TextObject("You do not have enough prestige to create power stones");
                 return false;
             }
             
-            if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < LesserStonePrice && AssignmentOfStones.ContainsKey(characterObject.Id))
+            if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < LesserStonePrice && hasAlreadyPowerstone)
             {
                 displayText= new TextObject("Remove Powerstone");
                 return true;
             }
-     
+
+            LesserStonePrice = 5;
+
+            if (hasAlreadyPowerstone)
+            {
+                displayText= new TextObject("Create Powerstone empowering your troop or character");
+            }
+            else
+            {
+                displayText= new TextObject("Create Powerstone empowering your troop or character");
+            }
             
-            displayText= new TextObject("Create Powerstone empowering your troop or character");
             return true;
         }
     }

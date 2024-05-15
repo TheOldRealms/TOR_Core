@@ -379,9 +379,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             {
                 var powerstones = button.AssignmentOfStones;
 
-                if (powerstones.ContainsKey(agent.Character.Id))
+                if (powerstones.ContainsKey(agent.Character.StringId))
                 {
-                    var template = TriggeredEffectManager.GetTemplateWithId(powerstones[agent.Character.Id]);
+                    var template = TriggeredEffectManager.GetTemplateWithId(powerstones[agent.Character.StringId]);
                     
                     
 

@@ -5,6 +5,7 @@ using TOR_Core.AbilitySystem;
 
 namespace TOR_Core.BattleMechanics
 {
+    //TODO this needs a renaming
     public class TORBattleAgentLogic : BattleAgentLogic
     {
         public override void OnAgentBuild(Agent agent, Banner banner)

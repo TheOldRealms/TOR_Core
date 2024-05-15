@@ -98,6 +98,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
 
         public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner=false)
         {
+            if (PartyScreenManager.Instance.CurrentMode != PartyScreenMode.Normal) return false;
+            
             return Hero.MainHero.HasCareerChoice("PaymasterPassive4") && 
                 !characterObject.IsHero && 
                 !isPrisoner &&

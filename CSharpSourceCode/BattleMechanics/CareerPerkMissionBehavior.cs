@@ -39,8 +39,6 @@ namespace TOR_Core.BattleMechanics
         {
             base.AfterStart();
             TORCommon.Say("lol");
-
-            var agents = Mission.Current.Agents;
         }
 
         public override void OnAgentBuild(Agent agent, Banner banner)

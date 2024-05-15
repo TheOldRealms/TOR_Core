@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.CustomResources;
@@ -278,6 +279,11 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 _partyInfos[partyId].CurrentBlessingStringId = blessingId;
                 _partyInfos[partyId].CurrentBlessingRemainingDuration = duration;
             }
+        }
+
+        public void AddAttributeToCharacterOfParty(string partyId, CharacterObject characterObject, string attribute)
+        {
+            _partyInfos[partyId].AddTroopAttribute(characterObject, attribute);
         }
 
         public override void SyncData(IDataStore dataStore)
