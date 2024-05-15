@@ -16,7 +16,7 @@ using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 {
-    public class ImperialWizardCareerButtonBehavior : CareerButtonBehaviorBase
+    public class ImperialMagisterCareerButtonBehavior : CareerButtonBehaviorBase
     {
         
         private List<PowerStone> _availableStones;
@@ -42,7 +42,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             }
         }
         
-        public ImperialWizardCareerButtonBehavior(CareerObject career) : base(career)
+        public ImperialMagisterCareerButtonBehavior(CareerObject career) : base(career)
         {
             MBTextManager.SetTextVariable("WINDS_ICON", CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText());
 

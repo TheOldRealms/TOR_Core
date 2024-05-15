@@ -58,6 +58,10 @@ namespace TOR_Core.AbilitySystem
                     _currentCharge = _maxCharge;
                 else
                     SetCoolDown(Template.CoolDown);
+                
+                
+                SetCoolDown(0);
+                _currentCharge = _maxCharge;
             }
         }
 

@@ -374,7 +374,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         {
             var statuseffectComponent = agent.GetComponent<StatusEffectComponent>();
 
-            var button =  CareerHelper.GetCareerButton() as ImperialWizardCareerButtonBehavior;
+            var button =  CareerHelper.GetCareerButton() as ImperialMagisterCareerButtonBehavior;
             if (statuseffectComponent != null && button!=null)
             {
                 var powerstones = button.AssignmentOfStones;

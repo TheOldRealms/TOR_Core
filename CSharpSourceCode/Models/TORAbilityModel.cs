@@ -12,6 +12,7 @@ using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -340,6 +341,11 @@ namespace TOR_Core.Models
                             }
                         }
                     }
+                }
+
+                if (Hero.MainHero.HasCareer(TORCareers.ImperialMagister))
+                {
+                    
                 }
                 return explainedNumber.ResultNumber;
         }
