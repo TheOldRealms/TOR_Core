@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
@@ -40,7 +41,23 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this, OnPartyDestroyed);
             CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
             CampaignEvents.OnQuarterDailyPartyTick.AddNonSerializedListener(this, QuarterDailyTick);
+            CampaignEvents.OnPartySizeChangedEvent.AddNonSerializedListener(this, PartySizeChanged);
             CustomResourceManager.RegisterEvents();
+        }
+
+        private void PartySizeChanged(PartyBase obj)
+        {
+            if(Mission.Current!=null) return;
+            
+            
+            if (obj.IsMobile && obj.MobileParty.IsMainParty)
+            {
+                var info = _partyInfos[obj.Id];
+                ValidatePartyInfos(info,  obj.MobileParty);
+                
+            }
+            
+          
         }
 
         private static void QuarterDailyTick(MobileParty mobileParty)
@@ -76,6 +93,38 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 var resourceChange = hero.GetCultureSpecificCustomResourceChange();
 
                 entry.Value.AddCustomResource(id, resourceChange.ResultNumber);
+            }
+
+            foreach (var entry in _partyInfos)
+            {
+                var party = Campaign.Current.LordParties.FirstOrDefault(x => x.StringId == entry.Key);
+                
+                ValidatePartyInfos(entry.Value,party);
+            }
+        }
+        
+        public void ValidatePartyInfos(MobilePartyExtendedInfo mobilePartyinfo, MobileParty party)
+        {
+            if(mobilePartyinfo==null) return;
+            if (mobilePartyinfo.TroopAttributes == null)
+            {
+                mobilePartyinfo.TroopAttributes = new Dictionary<string, List<string>>();
+                return;
+            }
+
+            var roster = party.MemberRoster.GetTroopRoster();
+
+            foreach (var troopAttribute in mobilePartyinfo.TroopAttributes.Keys.Reverse())
+            {
+                if (roster.All(x => x.Character.StringId != troopAttribute))
+                {
+                    mobilePartyinfo.TroopAttributes.Remove(troopAttribute);
+                }
+            }
+
+            foreach (var element in roster.Where(element => !mobilePartyinfo.TroopAttributes.ContainsKey(element.Character.StringId)))
+            {
+                mobilePartyinfo.TroopAttributes.Add(element.Character.StringId, new List<string>());
             }
         }
 

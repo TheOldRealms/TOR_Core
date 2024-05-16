@@ -379,12 +379,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             {
                 var powerstones = button.AvailablePowerStones;
 
-                if (powerstones.ContainsKey(agent.Character.StringId))
-                {
-                    var template = TriggeredEffectManager.GetTemplateWithId(powerstones[agent.Character.StringId].EffectId);
-                    
-                    
 
+                var powerstone = button.GetPowerstone(agent.Character as CharacterObject);
+
+                if (powerstone!=null)
+                {
+                    var template = TriggeredEffectManager.GetTemplateWithId(powerstone.EffectId);
+                    
                     foreach (var effect in template.ImbuedStatusEffects)
                     {
                         agent.ApplyStatusEffect(effect,Agent.Main,99999);

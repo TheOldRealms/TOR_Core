@@ -49,7 +49,7 @@
                         </ListPanel>
                         
 						<!--TOR specific information-->
-						<Widget DoNotPassEventsToChildren="false" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="35" SuggestedHeight="35" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="15" Sprite="blessing_icon_100" IsVisible="true">
+						<Widget DoNotPassEventsToChildren="false" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="35" SuggestedHeight="35" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="15" Sprite="extendedinfo_icon_45" IsVisible="true">
 						  <Children>
 							<HintWidget DataSource="{ExtendedInfoHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
 						  </Children>

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Ink.Parsed;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 
@@ -14,7 +16,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
 
 
-
+        
 
         public void AddTroopAttribute(CharacterObject troop, string attribute)
         {
@@ -33,17 +35,19 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             }
         }
 
-        public void RemoveTroopAttribute(CharacterObject troop, string attribute)
+        public void RemoveTroopAttribute(string troopId, string attribute)
         {
             if(TroopAttributes==null) return;
             
             
-            if (!TroopAttributes.TryGetValue(troop.StringId, out var list)) return;
+            if (!TroopAttributes.TryGetValue(troopId, out var list)) return;
             if (list.Contains(attribute))
             {
                 list.Remove(attribute);
             }
-            TroopAttributes[troop.StringId] = list;
+            TroopAttributes[troopId] = list;
         }
     }
+    
+    
 }

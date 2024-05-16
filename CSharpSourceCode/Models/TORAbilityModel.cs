@@ -349,28 +349,14 @@ namespace TOR_Core.Models
                         CareerButtons.Instance.GetCareerButton(TORCareers.ImperialMagister) as
                             ImperialMagisterCareerButtonBehavior;
 
-                    var powerstones = stoneBehavior.AvailablePowerStones;
-                    var reserved = 0f;
+                    var powerstones = stoneBehavior.GetAllPowerstones();
+
+                    var reserved = 0;
                     foreach (var stone in powerstones)
                     {
-                        var troopNumber = Hero.MainHero.PartyBelongedTo.MemberRoster.GetTroopRoster()
-                            .FirstOrDefault(x => x.Character.StringId == stone.Key).Number;
-                        switch (stone.Value.StoneLevel)
-                        {
-                            case PowerSize.Lesser:
-                                reserved+= 2*troopNumber;
-                                break;
-                            case PowerSize.Greater:
-                                reserved+= 4*troopNumber;
-                                break;
-                            case PowerSize.Mighty:
-                                reserved+= 4*troopNumber;
-                                break;
-                            default:
-                                break;
-                        }
-                        
+                        reserved += stone.Upkeep;
                     }
+                    
                     
                     explainedNumber.Add(-reserved);
                 }
