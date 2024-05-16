@@ -117,6 +117,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 {
                     new CareerChoiceObject.MutationObject()
                     {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "ArcaneConduit",
+                        PropertyName = "ScaleVariable1",
+                        PropertyValue = (choice, originalValue, agent) => 1,
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
                         MutationTargetType = typeof(TriggeredEffectTemplate),
                         MutationTargetOriginalId = "apply_arcaneconduit",
                         PropertyName = "ImbuedStatusEffectDuration",
@@ -128,6 +136,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _studyAndPractiseKeystone.Initialize(CareerID, "For every point  counting towards ability gain 1% physical resistance during ability. reduced cooldown by 25%", "StudyAndPractise", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "ArcaneConduit",
+                        PropertyName = "ScaleVariable1",
+                        PropertyValue = (choice, originalValue, agent) => 1,
+                        MutationType = OperationType.Add
+                    },
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(TriggeredEffectTemplate),
@@ -159,6 +175,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 {
                     new CareerChoiceObject.MutationObject()
                     {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "ArcaneConduit",
+                        PropertyName = "ScaleVariable1",
+                        PropertyValue = (choice, originalValue, agent) => 1,
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
                         MutationTargetType = typeof(TriggeredEffectTemplate),
                         MutationTargetOriginalId = "apply_arcaneconduit",
                         PropertyName = "ImbuedStatusEffectDuration",
@@ -188,6 +212,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 {
                     new CareerChoiceObject.MutationObject()
                     {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "ArcaneConduit",
+                        PropertyName = "ScaleVariable1",
+                        PropertyValue = (choice, originalValue, agent) => 1,
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
                         MutationTargetType = typeof(TriggeredEffectTemplate),
                         MutationTargetOriginalId = "apply_arcaneconduit",
                         PropertyName = "ImbuedStatusEffects",
@@ -213,11 +245,27 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 });
             _collegeOrdersKeystone.Initialize(CareerID, "Arcane Conduit also refreshes Winds of Companions.", "CollegeOrders", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(AbilityTemplate),
+                    MutationTargetOriginalId = "ArcaneConduit",
+                    PropertyName = "ScaleVariable1",
+                    PropertyValue = (choice, originalValue, agent) => 1,
+                    MutationType = OperationType.Add
+                },
             }, new CareerChoiceObject.PassiveEffect());
             
             _magicCombatTrainingKeystone.Initialize(CareerID, "Your spell damage is increased for 30% during Arcane Conduit.", "MagicCombatTraining", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "ArcaneConduit",
+                        PropertyName = "ScaleVariable1",
+                        PropertyValue = (choice, originalValue, agent) => 1,
+                        MutationType = OperationType.Add
+                    },
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(TriggeredEffectTemplate),
@@ -232,6 +280,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _ancientScrollsKeystone.Initialize(CareerID, "Arcane Conduit increases 50% of total regained magic per tick. Cooldown reduction by 35%", "AncientScrolls", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "ArcaneConduit",
+                        PropertyName = "ScaleVariable1",
+                        PropertyValue = (choice, originalValue, agent) => 1,
+                        MutationType = OperationType.Add
+                    },
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(StatusEffectTemplate),
@@ -253,6 +309,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _arcaneKnowledgeKeystone.Initialize(CareerID, "Arcane Conduit resets cooldowns of spells. Halves duration and doubles gain.", "ArcaneKnowledge", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "ArcaneConduit",
+                        PropertyName = "ScaleVariable1",
+                        PropertyValue = (choice, originalValue, agent) => 1,
+                        MutationType = OperationType.Add
+                    },
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(AbilityTemplate),
