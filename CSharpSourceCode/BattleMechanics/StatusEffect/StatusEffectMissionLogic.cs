@@ -71,7 +71,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         private void CheckPermanentEffectsForAddingPermanentEffects(Agent agent)
         {
-            if(agent==null) return;
+            if(agent.Character==null) return;
             if (agent.WieldedWeapon.IsEmpty || !_unprocessedCharacters.Contains(agent)) return;
             
             if (agent.BelongsToMainParty()&& Hero.MainHero.HasCareer(TORCareers.ImperialMagister))

@@ -19,20 +19,18 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
     public class ImperialMagisterCareerButtonBehavior : CareerButtonBehaviorBase
     {
         
-        private List<PowerStone> _availableStones;
-        private Dictionary<string, string> _assignmentOfStones = new Dictionary<string, string>();  // character MBGUID and triggered Effect ID
+        private Dictionary<string, PowerStone> _availableStones = new Dictionary<string, PowerStone>(); 
+        
 
-        public int LesserStonePrice = 10;
-        public int GreaterStonePrice = 20;
-
-        public Dictionary<string, string> AssignmentOfStones => _assignmentOfStones;
+        public Dictionary<string, PowerStone> AvailablePowerStones => _availableStones;
         private CharacterObject _setCharacter;
         
         public override string CareerButtonIcon
         {
             get
             {
-                if (!CharacterHasStone())
+                var stone = GetPowerstone(_setCharacter);
+                if (stone!=null)
                 {
                     return "winds_icon_45";
                 }
@@ -41,20 +39,32 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 return  "CareerSystem\\grail";
             }
         }
-        
+
+        private PowerStone GetPowerstone(CharacterObject characterObject)
+        {
+            var partyExtendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
+            
+            if (partyExtendedInfo.TroopAttributes.TryGetValue(characterObject.StringId, out var attributes))
+            {
+                foreach (var attribute in attributes)
+                {
+                    if (_availableStones.TryGetValue(attribute, out var powerstone))
+                    {
+                        return powerstone;
+                    }
+                }
+            }
+
+            return null;
+        }
+
         public ImperialMagisterCareerButtonBehavior(CareerObject career) : base(career)
         {
             MBTextManager.SetTextVariable("WINDS_ICON", CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText());
 
-            _availableStones = CreateStoneList();
-
-            var partyId = Hero.MainHero.PartyBelongedTo.Party.Id;
-
-            var partyExtendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(partyId);
+            var stones = CreateStoneList();
             
-            if(partyExtendedInfo==null) return;
-
-            var attributes = partyExtendedInfo.TroopAttributes;
+            
         }
 
         private List<PowerStone> CreateStoneList()
@@ -74,8 +84,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         {
             var list = new List<PowerStone>();
 
-            var stone1 = new PowerStone(new TextObject("Lesser Fire ruby, +15% Fire damage"), "", "apply_flaming_sword_trait", 5,"LoreOfFire", PowerSize.Lesser);
-            var stone2 = new PowerStone(new TextObject("Lesser Lumen Stone, +15% Magic damage"), "", "test", 5,"LoreOfLight", PowerSize.Lesser);
+            var stone1 = new PowerStone("stone1", new TextObject("Lesser Fire ruby, +15% Fire damage"), "", "apply_flaming_sword_trait", 15,2 ,"LoreOfFire", PowerSize.Lesser);
+            var stone2 = new PowerStone("stone2", new TextObject("Lesser Lumen Stone, +15% Magic damage"), "", "test", 10,5,"LoreOfLight", PowerSize.Lesser);
             
             list.Add(stone1);
             list.Add(stone2);
@@ -90,12 +100,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         private List<PowerStone> GetMightyPowerStones()
         {
             return new List<PowerStone>();
-        }
-
-
-        private bool CharacterHasStone()
-        {
-            return _setCharacter != null && _assignmentOfStones.ContainsKey(_setCharacter.StringId);
         }
 
 
@@ -125,14 +129,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             _setCharacter = characterObject;
             var list = new List<InquiryElement>();
 
-
+            var stones = _availableStones.Values.ToList();
+            
             var troopCount= Hero.MainHero.PartyBelongedTo.Party.MemberRoster.GetElementNumber(characterObject);
             
             var availablePrestige = Hero.MainHero.GetCultureSpecificCustomResourceValue();
 
-            var stones = _availableStones.Where(x => x.Price < availablePrestige).ToList();
-
-            var displayedStones = stones.Where(x => Hero.MainHero.HasKnownLore(x.LoreId)).ToList();
+            var displayedStones = stones.Where(x => Hero.MainHero.HasKnownLore(x.LoreId) && x.Price<=availablePrestige).ToList();
             
             if(Hero.MainHero.HasCareerChoice("CollegeOrdersPassive4"))
             {
@@ -146,32 +149,25 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
                     foreach (var lore in lores.Where(lore => hero.HasKnownLore(lore.ID)))
                     {
-                        displayedStones.AddRange(stones.Where(x => x.LoreId == lore.ID));
+                        displayedStones.AddRange(stones.Where(x => x.LoreId == lore.ID &&  x.Price<=availablePrestige));
                     }
                 }
 
-                displayedStones.Distinct();
+                displayedStones= displayedStones.Distinct().ToList();
             }
 
             foreach (var stone in displayedStones)
             {
-                var upkeep = 0;
-                switch (stone.StoneLevel)
-                {
-                    case PowerSize.Lesser : upkeep = 1;
-                        break;
-                    case PowerSize.Greater: upkeep = 2;
-                        break;
-                    case PowerSize.Mighty: upkeep = 3;
-                        break;
-                }
-                var text = $"{stone.EffectText}{{NewLine}}Cost: {stone.Price}{{PRESTIGE_ICON}} Upkeep: {troopCount*upkeep}{{WINDS_ICON}}, {upkeep}{{WINDS_ICON}} per unit)";
+                var upkeep = stone.Upkeep;
+                var price = stone.Price;
+                
+                var text = $"{stone.EffectText}{{NewLine}}Cost: {price}{{PRESTIGE_ICON}} Upkeep: {(troopCount * upkeep)}{{WINDS_ICON}}, {upkeep}{{WINDS_ICON}} per unit)";
                 list.Add(new InquiryElement(stone, new TextObject(text).ToString(), null));
             }
             
             
             
-            if (_assignmentOfStones.ContainsKey(characterObject.StringId))
+            if (GetPowerstone(characterObject)!=null)
             {
                 list.Add(new InquiryElement("remove", "Remove Stone", null));
             }
@@ -179,12 +175,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             var inquirydata = new MultiSelectionInquiryData("Choose Power stone", "Empower your troop with a permanent magical effect of a Power stone. The effect will reduce your total amount of Winds while the stone is active.", list, true, 1, 1, "Confirm", "Cancel", OnSelectedOption, OnCancel);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
         }
-
-
-        private PowerStone getPowerstone(string effectID)
-        {
-            return _availableStones.FirstOrDefault(x => x.EffectID == effectID);
-        }
+        
 
         
 
@@ -195,33 +186,31 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         private void OnSelectedOption(List<InquiryElement> powerStone)
         {
             var stone = powerStone[0].Identifier as PowerStone;
-            
-            
+
+            if (stone == null) throw new Exception("error power stone was not found");
 
             if (powerStone[0].Identifier == "remove")
             {
-                var effectID = _assignmentOfStones[_setCharacter.StringId];
-                var currentStone = getPowerstone(effectID);
-                _assignmentOfStones.Remove(_setCharacter.StringId);
+                var currentStone = _availableStones[_setCharacter.StringId];
                 Hero.MainHero.AddCustomResource("Prestige",(int)currentStone.Price*0.4f);
                 
                 var extendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.Party.Id);
                 
                 
-                extendedInfo.RemoveTroopAttribute(_setCharacter, currentStone.EffectID);
+                extendedInfo.RemoveTroopAttribute(_setCharacter, currentStone.Id );
             }
             else {
                 
-                if (!_assignmentOfStones.ContainsKey(_setCharacter.StringId))
+                if (!_availableStones.ContainsKey(_setCharacter.StringId))
                 {
-                    _assignmentOfStones.Add(_setCharacter.StringId,stone.EffectID);
+                    _availableStones.Add(_setCharacter.StringId,stone);
                     
                     var extendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.Party.Id);
-                    extendedInfo.AddTroopAttribute(_setCharacter, stone.EffectID);
+                    extendedInfo.AddTroopAttribute(_setCharacter, stone.EffectId);
                 }
                 else
                 {
-                    _assignmentOfStones[_setCharacter.StringId] = stone.EffectID;
+                    _availableStones[_setCharacter.StringId] = stone;
                 }
                 
                 Hero.MainHero.AddCustomResource("Prestige",-stone.Price);
@@ -237,29 +226,34 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         
         public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)
         {
+            var powerstones = AvailablePowerStones;
             
             
+            var hasAlreadyPowerstone = powerstones.ContainsKey(characterObject.StringId);
+
+            var lowestPrice = 0;
+            if (powerstones.Any())
+            {
+                lowestPrice = powerstones.Min(x => x.Value.Price);
+            }
             
-            var hasAlreadyPowerstone = AssignmentOfStones.ContainsKey(characterObject.StringId);
             
-            
-            if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < LesserStonePrice && !hasAlreadyPowerstone)
+            if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < lowestPrice && !hasAlreadyPowerstone)
             {
                 displayText= new TextObject("You do not have enough prestige to create power stones");
                 return false;
             }
             
-            if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < LesserStonePrice && hasAlreadyPowerstone)
+            if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < lowestPrice && hasAlreadyPowerstone)
             {
                 displayText= new TextObject("Remove Powerstone");
                 return true;
             }
 
-            LesserStonePrice = 5;
-
             if (hasAlreadyPowerstone)
             {
-                displayText= new TextObject("Create Powerstone empowering your troop or character");
+                var stone = AvailablePowerStones[characterObject.StringId];
+                displayText= new TextObject(stone.EffectText.ToString());
             }
             else
             {
@@ -272,23 +266,61 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
     public class PowerStone
     {
-        public PowerStone(TextObject text, string icon, string effect, int price, string loreID, PowerSize stoneLevel)
+        public PowerStone(string id, TextObject text, string icon, string effect, int price, int upkeep, string loreID, PowerSize stoneLevel)
         {
             EffectText = text;
+            Id = id; 
             Icon = icon;
-            EffectID = effect;
-            Price = price;
+            EffectId = effect;
+            _price = price;
             LoreId = loreID;
             StoneLevel = stoneLevel;
+            _upkeep = upkeep;
         }
 
-        public int Price;
+        public int Upkeep
+        {
+            get
+            {
+                float upkeep = _upkeep;
+                if (Hero.MainHero.HasCareerChoice("ImperialEnchantmentPassive4"))
+                {
+                    upkeep -= upkeep * 0.25f;
+                }
+                    
+                if (Hero.MainHero.HasCareerChoice("ArcaneKnowledgePassive1"))
+                {
+                    upkeep -= upkeep * 0.25f;
+                }
+                
+                return (int) upkeep;
+            }
+            
+        }
+
+        public int Price
+        {
+            get
+            {
+                var value =(float) this._price;
+                if (Hero.MainHero.HasCareerChoice("TeclisTeachingsPassive4"))
+                {
+                    value *= 1 - 0.35f;
+                }
+
+                return (int)value;
+            }
+        }
+
+        public string Id;
+
+        private readonly int _upkeep;
+        private readonly int _price;
         public PowerSize StoneLevel;
         public TextObject EffectText;
         public string Icon;
         public string LoreId;
-        public string EffectID;
-        public float Value;
+        public string EffectId;
     }
 
     public enum PowerSize

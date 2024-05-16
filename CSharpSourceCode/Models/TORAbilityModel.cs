@@ -345,7 +345,34 @@ namespace TOR_Core.Models
 
                 if (Hero.MainHero.HasCareer(TORCareers.ImperialMagister))
                 {
+                    var stoneBehavior =
+                        CareerButtons.Instance.GetCareerButton(TORCareers.ImperialMagister) as
+                            ImperialMagisterCareerButtonBehavior;
+
+                    var powerstones = stoneBehavior.AvailablePowerStones;
+                    var reserved = 0f;
+                    foreach (var stone in powerstones)
+                    {
+                        var troopNumber = Hero.MainHero.PartyBelongedTo.MemberRoster.GetTroopRoster()
+                            .FirstOrDefault(x => x.Character.StringId == stone.Key).Number;
+                        switch (stone.Value.StoneLevel)
+                        {
+                            case PowerSize.Lesser:
+                                reserved+= 2*troopNumber;
+                                break;
+                            case PowerSize.Greater:
+                                reserved+= 4*troopNumber;
+                                break;
+                            case PowerSize.Mighty:
+                                reserved+= 4*troopNumber;
+                                break;
+                            default:
+                                break;
+                        }
+                        
+                    }
                     
+                    explainedNumber.Add(-reserved);
                 }
                 return explainedNumber.ResultNumber;
         }

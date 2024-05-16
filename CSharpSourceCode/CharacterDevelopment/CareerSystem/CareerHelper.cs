@@ -377,11 +377,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             var button =  CareerHelper.GetCareerButton() as ImperialMagisterCareerButtonBehavior;
             if (statuseffectComponent != null && button!=null)
             {
-                var powerstones = button.AssignmentOfStones;
+                var powerstones = button.AvailablePowerStones;
 
                 if (powerstones.ContainsKey(agent.Character.StringId))
                 {
-                    var template = TriggeredEffectManager.GetTemplateWithId(powerstones[agent.Character.StringId]);
+                    var template = TriggeredEffectManager.GetTemplateWithId(powerstones[agent.Character.StringId].EffectId);
                     
                     
 
