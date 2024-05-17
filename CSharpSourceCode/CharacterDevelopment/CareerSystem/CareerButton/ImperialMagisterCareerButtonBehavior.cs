@@ -99,24 +99,119 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
         private List<PowerStone> GetLesserPowerstones()
         {
-            var list = new List<PowerStone>();
+            var list = new List<PowerStone>()
+            {
+                new PowerStone("fire_dmg_10", new TextObject("Lesser Fire ruby, +15% Fire damage"), "",
+                    "apply_flaming_sword_trait", 15, 2, "LoreOfFire", PowerSize.Lesser),
+                new PowerStone("fire_amp_50", new TextObject("Fire damage is amplified by 50%"), "", "PLACEHOLDER", 15,
+                    2, "LoreOfFire", PowerSize.Lesser),
+                new PowerStone("fire_res_20", new TextObject("increase Fire and Frost resistance by 20%"), "",
+                    "PLACEHOLDER", 15, 2, "LoreOfFire", PowerSize.Lesser),
 
-            var stone1 = new PowerStone("stone1", new TextObject("Lesser Fire ruby, +15% Fire damage"), "", "apply_flaming_sword_trait", 15,2 ,"LoreOfFire", PowerSize.Lesser);
-            var stone2 = new PowerStone("stone2", new TextObject("Lesser Lumen Stone, +15% Magic damage"), "", "test", 10,5,"LoreOfLight", PowerSize.Lesser);
+                new PowerStone("light_res_25", new TextObject("Add 20% physical resistance"), "", "test", 15, 3,
+                    "LoreOfLight", PowerSize.Lesser),
+                new PowerStone("light_mov_25", new TextObject("Add 25% movementSpeed"), "", "test", 15, 2,
+                    "LoreOfLight", PowerSize.Lesser),
+                new PowerStone("light_dmg_20", new TextObject("Add 20% movementSpeed"), "", "test", 20, 3,
+                    "LoreOfLight", PowerSize.Lesser),
+
+                new PowerStone("beast_res_25", new TextObject("Add 25% ranged resistance"), "", "test", 15, 1,
+                    "LoreOfBeasts", PowerSize.Lesser),
+                new PowerStone("beast_phys_15", new TextObject("Add 15% physical resistance"), "", "test", 15, 2,
+                    "LoreOfBeasts", PowerSize.Lesser),
+                new PowerStone("beast_phys_20_ranged", new TextObject("Add 20% ranged damage"), "", "test", 15, 4,
+                    "LoreOfBeasts", PowerSize.Lesser),
+                
+                new PowerStone("life_magical_fire_res_25", new TextObject("Add 25% magical and fire resistance"), "", "test", 15, 1,
+                    "LoreOfLife", PowerSize.Lesser),
+                new PowerStone("life_res_20", new TextObject("Add 20% physical resistance"), "", "test", 15, 2,
+                    "LoreOfLife", PowerSize.Lesser),
+                new PowerStone("life_res_20", new TextObject("Add 20% physical resistance"), "", "test", 15, 2,
+                    "LoreOfLife", PowerSize.Lesser),
+                
+                new PowerStone("heavens_dmg_raged_20", new TextObject("Add 20% electric ranged damage"), "", "test", 20, 3,
+                    "LoreOfHeavens", PowerSize.Lesser),
+                new PowerStone("heavens_dmg_melee_20", new TextObject("Add 20% electric melee damage"), "", "test", 20, 3,
+                    "LoreOfHeavens", PowerSize.Lesser),
+                new PowerStone("heavens_res_20", new TextObject("Add 30% electrical resistance"), "", "test", 10, 2,
+                    "LoreOfHeavens", PowerSize.Lesser),
+                
+                new PowerStone("metal_dmg_15", new TextObject("Add 15% physical damge"), "", "test", 15, 2,
+                    "LoreOfLife", PowerSize.Lesser),
+                new PowerStone("metal_magic_dmg_20", new TextObject("Add 20% magical ranged damage"), "", "test", 15, 2,
+                    "LoreOfLife", PowerSize.Lesser),
+                new PowerStone("heavens_dmg_raged_20", new TextObject("Add 20% electric ranged damage"), "", "test", 15, 2,
+                    "LoreOfLife", PowerSize.Lesser),
+                
+            };
             
-            list.Add(stone1);
-            list.Add(stone2);
             return list;
         }
         
         private List<PowerStone> GetGreaterPowerstones()
         {
-            return new List<PowerStone>();
+                      var list = new List<PowerStone>()
+            {
+                new PowerStone("fire_dmg_10", new TextObject("Lesser Fire ruby, +15% Fire damage"), "",
+                    "apply_flaming_sword_trait", 15, 2, "LoreOfFire", PowerSize.Greater),
+                new PowerStone("fire_amp_50", new TextObject("Fire damage is amplified by 50%"), "", "PLACEHOLDER", 15,
+                    2, "LoreOfFire", PowerSize.Greater),
+
+                new PowerStone("light_res_phys_magic_25", new TextObject("Add 25% physical and 25% magical  resistance"), "", "test", 15, 3,
+                    "LoreOfLight", PowerSize.Greater),
+                new PowerStone("light_mov_dmg_25", new TextObject("Add 25% movement Speed and 25% magical melee damage"), "", "test", 15, 2,
+                    "LoreOfLight", PowerSize.Greater),
+
+                new PowerStone("beast_res_25", new TextObject("Add 25% ranged resistance and add 25% movement speed"), "", "test", 15, 1,
+                    "LoreOfBeasts", PowerSize.Greater),
+                new PowerStone("beast_res_range_25", new TextObject("Add 25% ranged resistance and 25% ranged damage"), "", "test", 15, 2,
+                    "LoreOfBeasts", PowerSize.Greater),
+                
+                new PowerStone("life_physical_50", new TextObject("Add 50% physical resistance"), "", "test", 15, 1,
+                    "LoreOfLife", PowerSize.Greater),
+                new PowerStone("life_res_all_35", new TextObject("Add 35% all non physical resistance"), "", "test", 15, 2,
+                    "LoreOfLife", PowerSize.Greater),
+                
+                new PowerStone("heavens_amp_100_15_dmg", new TextObject("Add 100% electric amplyfication, 15% electric damage"), "", "test", 20, 3,
+                    "LoreOfHeavens", PowerSize.Greater),
+                new PowerStone("heavens_res_40", new TextObject("Adds 40% electric, 40% frost resistance. Adds 20% physical resistance"), "", "test", 20, 3,
+                    "LoreOfHeavens", PowerSize.Greater),
+                
+                new PowerStone("metal_dmg_15", new TextObject("Add 20% physical damage, 20% fire damage"), "", "test", 15, 2,
+                    "LoreOfLife", PowerSize.Greater),
+                new PowerStone("metal_magic_dmg_20", new TextObject("Adds 25% Armor penetration"), "", "test", 15, 2,
+                    "LoreOfLife", PowerSize.Greater),
+                
+            };
+            
+            return list;
         }
 
         private List<PowerStone> GetMightyPowerStones()
         {
-            return new List<PowerStone>();
+                                 var list = new List<PowerStone>()
+            {
+                new PowerStone("fire_amp_150", new TextObject("Fire damage is amplified by 150%, 15% Fire damage"), "", "PLACEHOLDER", 15,
+                    2, "LoreOfFire", PowerSize.Mighty),
+                
+                new PowerStone("light_mov_dmg_25", new TextObject("40% magical melee damage, slows enemies on hit"), "", "test", 15, 2,
+                    "LoreOfLight", PowerSize.Mighty),
+
+                new PowerStone("beast_res_25", new TextObject("Add 50% movement speed and  and add 50% physical resistance"), "", "test", 15, 1,
+                    "LoreOfBeasts", PowerSize.Mighty),
+                
+                new PowerStone("life_physical_50", new TextObject("Regenerate 1 Health point every second"), "", "test", 15, 1,
+                    "LoreOfLife", PowerSize.Mighty),
+                
+                new PowerStone("heavens_res_40", new TextObject("Adds 20% electric, 20% frost damage, 20% slowdown"), "", "test", 20, 3,
+                    "LoreOfHeavens", PowerSize.Mighty),
+                
+                new PowerStone("metal_magic_dmg_20", new TextObject("Add 20% magical ranged damage"), "", "test", 15, 2,
+                    "LoreOfLife", PowerSize.Mighty),
+                
+            };
+            
+            return list;
         }
 
 
@@ -172,14 +267,27 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
                 displayedStones= displayedStones.Distinct().ToList();
             }
+            
+            
+            if (Hero.MainHero.HasUnlockedCareerChoiceTier(1))
+            {
+                 displayedStones.Select(x => x.StoneLevel == PowerSize.Lesser).ToList();
+            }
+            else if (Hero.MainHero.HasUnlockedCareerChoiceTier(2))
+            {
+                displayedStones.Select(x => x.StoneLevel == PowerSize.Lesser && x.StoneLevel == PowerSize.Greater);
+            }
+            
+
+            
 
             foreach (var stone in displayedStones)
             {
                 var upkeep = stone.Upkeep;
                 var price = stone.Price;
                 
-                var text = $"{stone.EffectText}{{NewLine}}Cost: {price}{{PRESTIGE_ICON}} Upkeep: {(troopCount * upkeep)}{{WINDS_ICON}}({upkeep}{{WINDS_ICON}} per unit)";
-                list.Add(new InquiryElement(stone, new TextObject(text).ToString(), null));
+                var text = $"{stone.EffectText}{{NewLine}}{price}{{PRESTIGE_ICON}} Upkeep: {(troopCount * upkeep)}{{WINDS_ICON}}({upkeep}{{WINDS_ICON}}/Unit)";
+                list.Add(new InquiryElement(stone, new TextObject(text).ToString(), new ImageIdentifier(ImageIdentifierType.Item)));
             }
             
             
