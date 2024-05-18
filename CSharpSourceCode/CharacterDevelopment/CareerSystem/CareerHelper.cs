@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Helpers;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -386,6 +387,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 {
                     var template = TriggeredEffectManager.GetTemplateWithId(powerstone.EffectId);
                     
+                    if(template==null) return;
+                    
                     foreach (var effect in template.ImbuedStatusEffects)
                     {
                         agent.ApplyStatusEffect(effect,Agent.Main,99999);
@@ -428,6 +431,41 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             if (careerObject == TORCareers.WarriorPriestUlric) return "cult_of_ulric";
 
             return "-";
+        }
+
+        public static void RemovePowerstone(List<string> attributes)
+        {
+            var button =  CareerHelper.GetCareerButton() as ImperialMagisterCareerButtonBehavior;
+
+            if (button != null)
+            {
+                var stones = button.AvailablePowerStones;
+                
+                foreach (var attribute in attributes)
+                {
+                    var removedStone = stones.FirstOrDefault(x => x.Id == attribute);
+
+                    if (removedStone != null)
+                    {
+                        Hero.MainHero.AddCustomResource("Prestige",removedStone.ScrapPrestigeGain);
+                        break;
+                    }
+                }
+                
+                
+            }
+
+        }
+
+        public static void RemoveCareerRelatedTroopAttributes(MobileParty mobileParty, string troopId,
+            MobilePartyExtendedInfo mobilePartyinfo)
+        {
+            if(!mobileParty.IsMainParty) return;
+            
+            if(Hero.MainHero.HasCareer(TORCareers.ImperialMagister))
+            {
+                RemovePowerstone(mobilePartyinfo.TroopAttributes[troopId]);
+            }
         }
     }
 }

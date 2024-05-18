@@ -35,12 +35,6 @@ namespace TOR_Core.BattleMechanics
             }
         }
         
-        public override void AfterStart()
-        {
-            base.AfterStart();
-            TORCommon.Say("lol");
-        }
-
         public override void OnAgentBuild(Agent agent, Banner banner)
         {
             base.OnAgentBuild(agent, banner);

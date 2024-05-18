@@ -774,6 +774,7 @@
   <string id="career_title.BloodKnight" text="{=tor_career_title_blood_knight_str}Blood Knight" />
   <string id="career_title.Mercenary" text="{=tor_career_title_mercenary_str}Mercenary" />
   <string id="career_title.Necromancer" text="{=tor_career_title_necromancer_str}Necromancer" />
+  <string id="career_title.ImperialMagister" text="{=tor_career_title_necromancer_str}Imperial College Magister" />
   <string id="career_title.BlackGrailKnight" text="{=tor_career_title_black_grail_knight_str}Knight of Mousillon" />
   <string id="career_title.Necrarch" text="{=tor_career_title_necrarch_str}Necrarch" />
   
@@ -857,6 +858,10 @@
   <string id="career_choicegroup1_name.Necrarch" text="{=career_choicegroup1_necrarch_str}Apprentise" />
   <string id="career_choicegroup2_name.Necrarch" text="{=career_choicegroup2_necrarch_str}Seeker" />
   <string id="career_choicegroup3_name.Necrarch" text="{=career_choicegroup3_necrarch_str}Ascended" />
+  
+  <string id="career_choicegroup1_name.ImperialMagister" text="{=career_choicegroup1_imperialmagister_str}Apprentise Magister" />
+  <string id="career_choicegroup2_name.ImperialMagister" text="{=career_choicegroup2_imperialmagister_str}Battle Wizard" />
+  <string id="career_choicegroup3_name.ImperialMagister" text="{=career_choicegroup3_imperialmagister_str}Lord Magister" />
   
   <!--Career related related !-->
   <string id="career_description.WarriorPriest" text="{=career_description_warriorpriest_str}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />

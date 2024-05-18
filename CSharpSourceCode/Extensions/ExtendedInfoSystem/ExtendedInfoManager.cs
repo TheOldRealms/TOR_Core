@@ -6,14 +6,18 @@ using System.Linq;
 using System.Xml.Serialization;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.GameState;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions.ExtendedInfoSystem
@@ -41,23 +45,50 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this, OnPartyDestroyed);
             CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
             CampaignEvents.OnQuarterDailyPartyTick.AddNonSerializedListener(this, QuarterDailyTick);
-            CampaignEvents.OnPartySizeChangedEvent.AddNonSerializedListener(this, PartySizeChanged);
-            CustomResourceManager.RegisterEvents();
+            
+            CampaignEvents.PlayerUpgradedTroopsEvent.AddNonSerializedListener(this,TroopUpgraded);
+            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, BattleEnd);
+            CampaignEvents.OnTroopRecruitedEvent.AddNonSerializedListener(this, TroopRecruted);
+            
+            //CampaignEvents.OnTroopRecruitedEvent.
         }
 
-        private void PartySizeChanged(PartyBase obj)
+        private void TroopRecruted(Hero hero, Settlement arg2, Hero arg3, CharacterObject arg4, int arg5)
         {
-            if(Mission.Current!=null) return;
-            
-            
-            if (obj.IsMobile && obj.MobileParty.IsMainParty)
+            if(hero == null) return;
+            if (hero.PartyBelongedTo.Party != null)
             {
-                var info = _partyInfos[obj.Id];
-                ValidatePartyInfos(info,  obj.MobileParty);
-                
+                ValidatePartyInfos(hero.PartyBelongedTo);
             }
+        }
+
+        private void BattleEnd(MapEvent obj)
+        {
+            var t = obj.PartiesOnSide(obj.PlayerSide);
+
+            foreach (var party in t)
+            {
+                if(party.Party.MobileParty==null) continue;
+                ValidatePartyInfos(party.Party.MobileParty);
+            }
+
+
+        }
+
+        private void TroopUpgraded(CharacterObject from, CharacterObject to, int count)
+        {
+            if(!_partyInfos.TryGetValue(MobileParty.MainParty.StringId, out var info)) return;
             
-          
+            
+
+            if (!PartyBase.MainParty.MemberRoster.GetTroopRoster().Any(x => x.Character.StringId == from.StringId))
+            {
+                var characterAttributes = info.TroopAttributes[from.StringId];
+                CareerHelper.RemovePowerstone(characterAttributes);
+ 
+            }
+
+         
         }
 
         private static void QuarterDailyTick(MobileParty mobileParty)
@@ -99,32 +130,36 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             {
                 var party = Campaign.Current.LordParties.FirstOrDefault(x => x.StringId == entry.Key);
                 
-                ValidatePartyInfos(entry.Value,party);
+                ValidatePartyInfos(party);
             }
         }
         
-        public void ValidatePartyInfos(MobilePartyExtendedInfo mobilePartyinfo, MobileParty party)
+        public void ValidatePartyInfos(MobileParty party)
         {
-            if(mobilePartyinfo==null) return;
-            if (mobilePartyinfo.TroopAttributes == null)
+            var partyInfo = _partyInfos[party.StringId];
+            if(partyInfo==null) return;
+            if (partyInfo.TroopAttributes == null)
             {
-                mobilePartyinfo.TroopAttributes = new Dictionary<string, List<string>>();
+                partyInfo.TroopAttributes = new Dictionary<string, List<string>>();
                 return;
             }
 
             var roster = party.MemberRoster.GetTroopRoster();
 
-            foreach (var troopAttribute in mobilePartyinfo.TroopAttributes.Keys.Reverse())
+            foreach (var troopAttribute in partyInfo.TroopAttributes.Keys.Reverse())
             {
                 if (roster.All(x => x.Character.StringId != troopAttribute))
                 {
-                    mobilePartyinfo.TroopAttributes.Remove(troopAttribute);
+                    CareerHelper.RemoveCareerRelatedTroopAttributes(party, troopAttribute, partyInfo);
+                    partyInfo.TroopAttributes.Remove(troopAttribute);
+
+                  
                 }
             }
 
-            foreach (var element in roster.Where(element => !mobilePartyinfo.TroopAttributes.ContainsKey(element.Character.StringId)))
+            foreach (var element in roster.Where(element => !partyInfo.TroopAttributes.ContainsKey(element.Character.StringId)))
             {
-                mobilePartyinfo.TroopAttributes.Add(element.Character.StringId, new List<string>());
+                partyInfo.TroopAttributes.Add(element.Character.StringId, new List<string>());
             }
         }
 

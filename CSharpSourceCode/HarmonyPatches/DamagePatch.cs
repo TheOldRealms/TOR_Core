@@ -165,6 +165,17 @@ namespace TOR_Core.HarmonyPatches
                                     }
                                 }
                             }
+
+                            if (hero.PartyBelongedTo == MobileParty.MainParty)
+                            {
+                                if(MobileParty.MainParty.LeaderHero.HasAnyCareer())
+                                {
+                                    if(Hero.MainHero.HasCareerChoice("AncientScrollsPassive4"))
+                                    {
+                                        damageAmplifications[damageType] += 0.2f;
+                                    }
+                                }
+                            }
                             
                             if (attacker.HasAttribute("Arcane_Dmg"))
                             {
