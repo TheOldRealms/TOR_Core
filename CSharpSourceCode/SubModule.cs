@@ -8,6 +8,7 @@ using NLog.Config;
 using NLog.Targets;
 using SandBox.Missions.MissionLogics;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Engine.GauntletUI;
@@ -164,6 +165,7 @@ namespace TOR_Core
         {
             if (Game.Current.GameType is Campaign && gameStarterObject is CampaignGameStarter)
             {
+                gameStarterObject.Models.RemoveAllOfType(typeof(DefaultMapDistanceModel));
                 gameStarterObject.AddModel(new TORBattleMoraleModel());
                 gameStarterObject.AddModel(new TOREncounterGameMenuModel());
                 gameStarterObject.AddModel(new TORAgentStatCalculateModel());
@@ -208,6 +210,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORSettlementFoodModel());
                 gameStarterObject.AddModel(new TOREquipmentSelectionModel());
                 gameStarterObject.AddModel(new TOREncounterModel());
+                gameStarterObject.AddModel(new TORSettlementDistanceModel());
 
                 CampaignOptions.IsLifeDeathCycleDisabled = true;
             }
