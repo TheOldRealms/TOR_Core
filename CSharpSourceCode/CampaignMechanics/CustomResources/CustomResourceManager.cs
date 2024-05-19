@@ -9,6 +9,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.Encounters;
+using TaleWorlds.CampaignSystem.Issues;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
@@ -93,6 +94,44 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             CampaignEvents.OnHideoutBattleCompletedEvent.AddNonSerializedListener(this, CalculateHideOutCompletedGain);
             CampaignEvents.HeroPrisonerReleased.AddNonSerializedListener(this, PrisonerReleasedChange);
             CampaignEvents.TournamentFinished.AddNonSerializedListener(this, TournamentFinshedChange);
+            CampaignEvents.HeroLevelledUp.AddNonSerializedListener(this,OnHeroLevelUp);
+            CampaignEvents.OnIssueUpdatedEvent.AddNonSerializedListener(this, OnIssueSolved);
+        }
+
+        private void OnIssueSolved(IssueBase issue, IssueBase.IssueUpdateDetails issueState, Hero hero)
+        {
+            if(issueState != IssueBase.IssueUpdateDetails.IssueFinishedWithSuccess) return;
+            
+            if (hero.Clan!=null && hero.Clan == Clan.PlayerClan)
+            {
+                var customResourceGain = new ExplainedNumber(15);
+
+                if (Hero.MainHero.Culture.StringId == "khuzait" || Hero.MainHero.Culture.StringId == "mousillon")
+                {
+                    customResourceGain.AddFactor(0.25f);
+                }
+                 
+                
+                Hero.MainHero.AddCultureSpecificCustomResource(customResourceGain.ResultNumber);
+
+            }
+        }
+
+        private void OnHeroLevelUp(Hero hero, bool shouldNotify)
+        {
+            if (hero.Clan!=null && hero.Clan == Clan.PlayerClan)
+            {
+                var customResourceGain = new ExplainedNumber(10);
+
+                if (Hero.MainHero.Culture.StringId == "khuzait" || Hero.MainHero.Culture.StringId == "mousillon")
+                {
+                    customResourceGain.AddFactor(0.25f);
+                }
+                 
+                
+                Hero.MainHero.AddCultureSpecificCustomResource(customResourceGain.ResultNumber);
+
+            }
         }
 
         private void TournamentFinshedChange(CharacterObject winner, MBReadOnlyList<CharacterObject> participants,
@@ -153,6 +192,17 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                     if (settlement != null)
                     {
                         explainedNumber.AddFactor(1);
+                    }
+                }
+                
+                if (Hero.MainHero.Culture.StringId == "empire")
+                {
+                    var settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 150f,
+                        x => x.IsTown && x.Culture.StringId=="empire");
+
+                    if (settlement != null)
+                    {
+                        explainedNumber.AddFactor(0.5f);
                     }
                 }
 
