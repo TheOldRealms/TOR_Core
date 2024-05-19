@@ -913,7 +913,7 @@
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
-            DamageType="Invalid" 
+            DamageType="Frost" 
             DamageAmount="10" 
             Radius="10" 
             HasShockWave="false" 

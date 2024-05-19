@@ -3403,7 +3403,7 @@
 	
 	<AbilityTemplate StringID="BlastOfAgony" 
       Name="Blast of Agony" 
-      SpriteName="fireball_icon" 
+      SpriteName="blastofagony_icon" 
       CoolDown="10" 
       WindsOfMagicCost="0" 
       BaseMisCastChance="0.05" 
@@ -3813,7 +3813,7 @@
       AbilityTargetType="EnemiesInAOE"
       TargetCapturingRadius="4"
       MaxDistance="0.5"
-      CrosshairType="Self"
+      CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="UlricanPrayers"
       TooltipDescription="{=armor_of_righteousness_description_str}Allies in a 3 meter radius gain 35% physical resistance for 8 seconds.">
