@@ -26,6 +26,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         private string heavens_icon = "CareerSystem\\azyr";
         private string life_icon = "CareerSystem\\ghyran";
         private string beast_icon = "CareerSystem\\ghur";
+        private string metal_icon = "CareerSystem\\chamon";
         
         
         public List<PowerStone> AvailablePowerStones => _availableStones;
@@ -105,6 +106,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             MBTextManager.SetTextVariable("LIGHT_ICON", string.Format("<img src=\"{0}\"/>",light_icon));
             MBTextManager.SetTextVariable("LIFE_ICON", string.Format("<img src=\"{0}\"/>",life_icon));
             MBTextManager.SetTextVariable("BEAST_ICON", string.Format("<img src=\"{0}\"/>",beast_icon));
+            MBTextManager.SetTextVariable("METAL_ICON", string.Format("<img src=\"{0}\"/>",metal_icon));
             _availableStones = CreateStoneList();
         }
 
@@ -308,6 +310,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 displayedStones.Select(x => x.StoneLevel == PowerSize.Lesser && x.StoneLevel == PowerSize.Greater);
 
 
+            displayedStones = stones;
             foreach (var stone in displayedStones)
             {
                 
@@ -346,18 +349,18 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     case "LoreOfHeavens": return heavens_icon;
                     case "LoreOfBeasts": return beast_icon;
                     case "LoreOfLife": return life_icon;
-                    case "LoreOfMetal": return life_icon;
+                    case "LoreOfMetal": return metal_icon;
              
                 }
             }
             switch (stoneLoreId)
             {
-                case "LoreOfFire": return "FIRE_ICON"; return fire_icon;
+                case "LoreOfFire": return "FIRE_ICON";
                 case "LoreOfLight": return "LIGHT_ICON";
                 case "LoreOfHeavens": return "HEAVENS_ICON";
                 case "LoreOfBeasts": return "BEAST_ICON";
                 case "LoreOfLife": return "LIFE_ICON";
-                case "LoreOfMetal": return "LIFE_ICON";
+                case "LoreOfMetal": return "METAL_ICON";
                 default: return "{}"; 
             }
         }
