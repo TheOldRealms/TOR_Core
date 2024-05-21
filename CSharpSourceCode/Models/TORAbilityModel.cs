@@ -351,12 +351,27 @@ namespace TOR_Core.Models
 
                     var powerstones = stoneBehavior.GetAllPowerstones();
 
+                   
+                    
                     var reserved = 0;
-                    foreach (var stone in powerstones)
+                    
+                    
+
+                    foreach (var pair in powerstones)
                     {
-                        reserved += stone.Upkeep;
+                        reserved += (pair.stone.Upkeep * pair.count);
                     }
                     
+                    if (Hero.MainHero.HasCareerChoice("AncientScrollsPassive4"))
+                    {
+                        var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Where(x =>
+                            x != Hero.MainHero && x.IsSpellCaster() && x.Culture.StringId == "empire");
+
+                        if (heroes.Count() != 0)
+                        {
+                            reserved /= 1+heroes.Count();
+                        }
+                    }
                     
                     explainedNumber.Add(-reserved);
                 }

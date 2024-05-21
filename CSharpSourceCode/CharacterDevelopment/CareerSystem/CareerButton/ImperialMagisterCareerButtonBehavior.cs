@@ -6,6 +6,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem.Spells;
@@ -49,20 +50,27 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             }
         }
 
-        public List<PowerStone> GetAllPowerstones()
+        public List<(PowerStone stone, int count)> GetAllPowerstones()
         {
-            var list = new List<PowerStone>();
-            if(Hero.MainHero.PartyBelongedTo==null) return new List<PowerStone>();
+            var list = new List<(PowerStone,int)>();
+            if(Hero.MainHero.PartyBelongedTo==null) return new List<(PowerStone, int)>();
             var partyExtendedInfo =
                 ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
 
             var characterToAttributes = partyExtendedInfo.TroopAttributes;
 
-            foreach (var attributes in characterToAttributes.Values)
-            foreach (var attribute in attributes)
+            foreach (var attributes in characterToAttributes)
+            foreach (var attribute in attributes.Value)
             {
                 var stone = _availableStones.FirstOrDefault(x => x.Id == attribute);
-                if (stone != null) list.Add(stone);
+                if (stone != null)
+                {
+                    var element = Hero.MainHero.PartyBelongedTo.MemberRoster.GetTroopRoster()
+                        .FirstOrDefault(X => X.Character.StringId == attributes.Key);
+                    
+                    
+                   list.Add((stone,element.Number));
+                }
             }
 
             return list;
