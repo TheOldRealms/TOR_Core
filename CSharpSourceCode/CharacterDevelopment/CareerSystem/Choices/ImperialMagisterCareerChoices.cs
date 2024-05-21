@@ -371,7 +371,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _ancientScrollsPassive1.Initialize(CareerID, "Increase hex durations by 50%.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50f, PassiveEffectType.DebuffDuration,true));
             _ancientScrollsPassive2.Initialize(CareerID, "Increases Windsregeneration by 1.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.WindsRegeneration));
             _ancientScrollsPassive3.Initialize(CareerID, "Recover 80% used Prestige from used Powerstones", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
-            _ancientScrollsPassive4.Initialize(CareerID, "Your power stones are not limited.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
+            _ancientScrollsPassive4.Initialize(CareerID, "Your power stones are not limited per category.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
 
             
             _arcaneKnowledgePassive1.Initialize(CareerID, "Spelldamage of companions is increased by 20%", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));

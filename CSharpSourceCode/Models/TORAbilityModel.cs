@@ -350,28 +350,8 @@ namespace TOR_Core.Models
                             ImperialMagisterCareerButtonBehavior;
 
                     var powerstones = stoneBehavior.GetAllPowerstones();
-
-                   
                     
-                    var reserved = 0;
-                    
-                    
-
-                    foreach (var pair in powerstones)
-                    {
-                        reserved += (pair.stone.Upkeep * pair.count);
-                    }
-                    
-                    if (Hero.MainHero.HasCareerChoice("AncientScrollsPassive4"))
-                    {
-                        var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Where(x =>
-                            x != Hero.MainHero && x.IsSpellCaster() && x.Culture.StringId == "empire");
-
-                        if (heroes.Count() != 0)
-                        {
-                            reserved /= 1+heroes.Count();
-                        }
-                    }
+                    var reserved = powerstones.Sum(pair => (pair.Upkeep));
                     
                     explainedNumber.Add(-reserved);
                 }
