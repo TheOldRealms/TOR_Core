@@ -1,4 +1,4 @@
-﻿using NLog;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -71,24 +71,17 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 if(party.Party.MobileParty==null) continue;
                 ValidatePartyInfos(party.Party.MobileParty);
             }
-
-
         }
 
         private void TroopUpgraded(CharacterObject from, CharacterObject to, int count)
         {
             if(!_partyInfos.TryGetValue(MobileParty.MainParty.StringId, out var info)) return;
             
-            
-
             if (!PartyBase.MainParty.MemberRoster.GetTroopRoster().Any(x => x.Character.StringId == from.StringId))
             {
                 var characterAttributes = info.TroopAttributes[from.StringId];
                 CareerHelper.RemovePowerstone(characterAttributes);
- 
             }
-
-         
         }
 
         private static void QuarterDailyTick(MobileParty mobileParty)

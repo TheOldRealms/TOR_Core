@@ -677,6 +677,7 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.Clan.Tier >= 4;
             });
             
+            //Imperial College Magister
             _studyAndPractise.Initialize("Study and Practise", TORCareers.ImperialMagister, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
@@ -690,6 +691,10 @@ namespace TOR_Core.CharacterDevelopment
             _imperialEnchantment.Initialize("Imperial Enchantment", TORCareers.ImperialMagister, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            }, (Hero hero, out string unlockText) =>
+            {
+                unlockText = "Unlocks Greater Powerstones";
                 return hero.Clan.Tier >= 2;
             });
             _collegeOrders.Initialize("College Orders", TORCareers.ImperialMagister, 2, (Hero hero, out string text) =>
@@ -707,6 +712,10 @@ namespace TOR_Core.CharacterDevelopment
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
+            }, (Hero hero, out string unlockText) =>
+            {
+                unlockText = "Unlocks Mighty Powerstones";
+                return hero.Clan.Tier >= 2;
             });
             _arcaneKnowledge.Initialize("Arcane Knowledge", TORCareers.ImperialMagister, 3, (Hero hero, out string text) =>
             {

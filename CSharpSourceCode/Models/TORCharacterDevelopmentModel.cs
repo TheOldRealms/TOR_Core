@@ -15,7 +15,6 @@ namespace TOR_Core.Models
 {
     public class TORCharacterDevelopmentModel : DefaultCharacterDevelopmentModel
     {
-        public EventHandler<TraitLevelIncreaseEventArgs> OntraitLevelIncreased;
         public override List<Tuple<SkillObject, int>> GetSkillsDerivedFromTraits(Hero hero, CharacterObject templateCharacter = null, bool isByNaturalGrowth = false)
         {
             var list = base.GetSkillsDerivedFromTraits(hero, templateCharacter, isByNaturalGrowth);
@@ -37,24 +36,14 @@ namespace TOR_Core.Models
             {
                 if (trait.StringId == "Valor" && xpValue < 0)
                 {
-                    TORCommon.Say("ignored "+trait.Name+" - "+xpValue);
                     return;
                 } 
                 if (trait.StringId == "Mercy" || trait.StringId == "Honor" || trait.StringId == "Valor")
                 {
                     hero.AddCustomResource("Chivalry",xpValue);
-                    TORCommon.Say(trait.Name+" - "+xpValue);
                 }
             }
         }
         public override int AttributePointsAtStart => base.AttributePointsAtStart + 3;
-    }
-
-    public class TraitLevelIncreaseEventArgs : EventArgs
-    {
-        public TraitLevelIncreaseEventArgs(int xpValue, TraitObject traitObject)
-        {
-            
-        }
     }
 }

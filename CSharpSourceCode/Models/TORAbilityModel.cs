@@ -108,7 +108,6 @@ namespace TOR_Core.Models
                     CareerHelper.ApplyBasicCareerPassives(player,ref explainedNumber,PassiveEffectType.DebuffDuration, true);
                 }
                 
-
                 perkmultiplier += explainedNumber.ResultNumber;
             }
             
@@ -207,9 +206,7 @@ namespace TOR_Core.Models
                         var choice = TORCareerChoices.GetChoice("ImperialEnchantmentPassive2");
                         explainedNumber.AddFactor(choice.GetPassiveValue());
                     }
-                    
                 }
-                
             }
             return explainedNumber.ResultNumber;
         }
@@ -371,9 +368,7 @@ namespace TOR_Core.Models
                 
                 return true;
             }
-            
             return !loreObject.DisabledForCultures.Contains(hero.Culture.StringId);
         }
-
     }
 }

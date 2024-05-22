@@ -10,8 +10,8 @@ namespace TOR_Core.Models
     {
         public static ChivalryLevel GetChivalryLevelForResource(float level)
         {
-            ChivalryLevel result = ChivalryLevel.Sincere;
-            
+            var result = ChivalryLevel.Sincere;
+
             switch (level)
             {
                 case var _ when level < 250:
@@ -24,12 +24,12 @@ namespace TOR_Core.Models
                     result = ChivalryLevel.Uninspiring;
                     break;
                 }
-                case var _ when level > 500 && level <750:
+                case var _ when level > 500 && level < 750:
                 {
                     result = ChivalryLevel.Sincere;
                     break;
                 }
-                case var _ when level > 750 && level <1000:
+                case var _ when level > 750 && level < 1000:
                 {
                     result = ChivalryLevel.Noteworthy;
                     break;
@@ -50,6 +50,7 @@ namespace TOR_Core.Models
                     break;
                 }
             }
+
             return result;
         }
 
@@ -82,13 +83,13 @@ namespace TOR_Core.Models
                     return 0;
             }
         }
-        
-        
+
+
         public static bool HasChivalryLevel(Hero hero, ChivalryLevel chivalryLevel)
         {
             return chivalryLevel == hero.GetChivalryLevel();
         }
-        
+
         public static List<TooltipProperty> GetChivalryInfo()
         {
             var list = new List<TooltipProperty>();
@@ -96,18 +97,19 @@ namespace TOR_Core.Models
 
             var title = "Chivalry Rank";
             var chivalryLevel = GetChivalryLevelForResource(value);
-            
-            
+
+
             list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
-            list.Add( new TooltipProperty(title, chivalryLevel.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.RundownResult));
-            
+            list.Add(new TooltipProperty(title, chivalryLevel.ToString, 0, false,
+                TooltipProperty.TooltipPropertyFlags.RundownResult));
+
             switch (chivalryLevel)
             {
-                case  ChivalryLevel.Unknightly: 
+                case ChivalryLevel.Unknightly:
                     list.Add(new TooltipProperty("Knightly wages: ", "+75%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     list.Add(new TooltipProperty("Morale: ", "-75%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     break;
-                case  ChivalryLevel.Uninspiring: 
+                case ChivalryLevel.Uninspiring:
                     list.Add(new TooltipProperty("Knightly wages: ", "+50%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     list.Add(new TooltipProperty("Morale: ", "-50%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     break;
@@ -132,31 +134,29 @@ namespace TOR_Core.Models
                     list.Add(new TooltipProperty("Gain extra  Chivalry everyday", "15", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     break;
             }
-            list.Add( new TooltipProperty("", " ", 0, false, TooltipProperty.TooltipPropertyFlags.Cost)); //empty line
-            if (chivalryLevel!=ChivalryLevel.Chivalrous)
+
+            list.Add(new TooltipProperty("", " ", 0, false, TooltipProperty.TooltipPropertyFlags.Cost)); //empty line
+            if (chivalryLevel != ChivalryLevel.Chivalrous)
             {
-                list.Add( new TooltipProperty("Next Rank: ", (chivalryLevel+1).ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
-                var result =  GetResourceMinimumForChivalryRank(((ChivalryLevel)chivalryLevel+1)) - value;
-                list.Add( new TooltipProperty("Required Chivalry: ", result.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+                list.Add(new TooltipProperty("Next Rank: ", (chivalryLevel + 1).ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
+                var result = GetResourceMinimumForChivalryRank((ChivalryLevel)chivalryLevel + 1) - value;
+                list.Add(new TooltipProperty("Required Chivalry: ", result.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
             }
-            
-            
-            
+
+
             list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
             return list;
         }
     }
-    
+
     public enum ChivalryLevel
     {
         Chivalrous = 6,
-        Honourable = 5 ,
+        Honourable = 5,
         PureHearted = 4,
-        Noteworthy = 3 ,
+        Noteworthy = 3,
         Sincere = 2,
         Uninspiring = 1,
-        Unknightly = 0,
+        Unknightly = 0
     }
-    
-  
 }
