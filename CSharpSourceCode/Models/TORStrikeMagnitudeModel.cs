@@ -42,6 +42,11 @@ namespace TOR_Core.Models
                         }
                     }
                 }
+
+                if (attackerCharacter.HasAttribute("Piercing"))
+                {
+                    resultArmor.AddFactor(-0.4f);
+                }
                 
             }
             

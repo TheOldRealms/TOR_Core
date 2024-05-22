@@ -1513,7 +1513,7 @@
             TargetType="Friendly" 
             ImbuedStatusEffectDuration="8" 
             ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
+                  <ImbuedStatusEffect>powerstone_light_res_1</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	  <TriggeredEffectTemplate StringID="powerstone_light_mov" 
@@ -1527,7 +1527,7 @@
             TargetType="Friendly" 
             ImbuedStatusEffectDuration="8" 
             ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
+                  <ImbuedStatusEffect>powerstone_light_mov</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	  <TriggeredEffectTemplate StringID="powerstone_light_res2" 
@@ -1583,7 +1583,7 @@
             TargetType="Friendly" 
             ImbuedStatusEffectDuration="8" 
             ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
+                  <ImbuedStatusEffect>powerstone_beast_res_range</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	  <TriggeredEffectTemplate StringID="powerstone_beast_res" 
@@ -1597,10 +1597,10 @@
             TargetType="Friendly" 
             ImbuedStatusEffectDuration="8" 
             ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
+                  <ImbuedStatusEffect>powerstone_beast_res</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
-	  <TriggeredEffectTemplate StringID="powerstone_beast_dmg" 
+	  <TriggeredEffectTemplate StringID="powerstone_beast_dmg_range" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
@@ -1611,10 +1611,10 @@
             TargetType="Friendly" 
             ImbuedStatusEffectDuration="8" 
             ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
+                  <ImbuedStatusEffect>powerstone_beast_dmg_range</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
-	  <TriggeredEffectTemplate StringID="powerstone_beast_range_res_wild" 
+	  <TriggeredEffectTemplate StringID="powerstone_beast_wild" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
@@ -1639,7 +1639,8 @@
             TargetType="Friendly" 
             ImbuedStatusEffectDuration="8" 
             ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
+                  <ImbuedStatusEffect>powerstone_beast_res_range2</ImbuedStatusEffect>
+				  <ImbuedStatusEffect>powerstone_beast_dmg_range2</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	  <TriggeredEffectTemplate StringID="powerstone_beast_range_res2" 
@@ -1695,7 +1696,8 @@
             TargetType="Friendly" 
             ImbuedStatusEffectDuration="8" 
             ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
+                  <ImbuedStatusEffect>powerstone_life_res_phys</ImbuedStatusEffect>
+				  <ImbuedStatusEffect>powerstone_life_mov_debuff</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	  <TriggeredEffectTemplate StringID="powerstone_life_thorns" 
@@ -1723,7 +1725,7 @@
             TargetType="Friendly" 
             ImbuedStatusEffectDuration="8" 
             ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
+                  <ImbuedStatusEffect>powerstone_life_res_ward</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	  <TriggeredEffectTemplate StringID="powerstone_life_reg" 
@@ -1751,22 +1753,7 @@
             TargetType="Friendly" 
             ImbuedStatusEffectDuration="8" 
             ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
-      </TriggeredEffectTemplate>
-	  
-	  
-	  <TriggeredEffectTemplate StringID="powerstone_heavens_dmg_melee" 
-            BurstParticleEffectPrefab="none" 
-            SoundEffectId="none" 
-            SoundEffectLength="0" 
-            DamageType="Physical" 
-            DamageAmount="0" 
-            Radius="15" 
-            HasShockWave="false" 
-            TargetType="Friendly" 
-            ImbuedStatusEffectDuration="8" 
-            ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
+                  <ImbuedStatusEffect>powerstone_heavens_dmg_range</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	  <TriggeredEffectTemplate StringID="powerstone_heavens_res" 
@@ -1780,10 +1767,50 @@
             TargetType="Friendly" 
             ImbuedStatusEffectDuration="8" 
             ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
+                  <ImbuedStatusEffect>powerstone_heavens_res_mag</ImbuedStatusEffect>
+				  <ImbuedStatusEffect>powerstone_heavens_res_elec</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
-	  	  <TriggeredEffectTemplate StringID="powerstone_heavens_amp" 
+	  <TriggeredEffectTemplate StringID="powerstone_heavens_trait" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+            DamageAmount="0" 
+            Radius="15" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="8" 
+            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyLesserHeavensItemTraitScript" >
+      </TriggeredEffectTemplate>
+	  
+	  <TriggeredEffectTemplate StringID="powerstone_heavens_trait2" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+            DamageAmount="0" 
+            Radius="15" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="8" 
+            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyHeavensItemTraitScript" >
+      </TriggeredEffectTemplate>
+	  
+	  <TriggeredEffectTemplate StringID="powerstone_heavens_trait3" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+            DamageAmount="0" 
+            Radius="15" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="8" 
+            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyGreaterHeavensItemTraitScript" >
+      </TriggeredEffectTemplate>
+	  
+	  <TriggeredEffectTemplate StringID="powerstone_heavens_res2" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
@@ -1794,52 +1821,12 @@
             TargetType="Friendly" 
             ImbuedStatusEffectDuration="8" 
             ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
+                  <ImbuedStatusEffect>powerstone_heavens_res_mag2</ImbuedStatusEffect>
+				  <ImbuedStatusEffect>powerstone_heavens_res_elec2</ImbuedStatusEffect>
+				  <ImbuedStatusEffect>powerstone_heavens_res</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
-	  <TriggeredEffectTemplate StringID="powerstone_heavens_dmg2" 
-            BurstParticleEffectPrefab="none" 
-            SoundEffectId="none" 
-            SoundEffectLength="0" 
-            DamageType="Physical" 
-            DamageAmount="0" 
-            Radius="15" 
-            HasShockWave="false" 
-            TargetType="Friendly" 
-            ImbuedStatusEffectDuration="8" 
-            ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
-      </TriggeredEffectTemplate>
-	  
-	  <TriggeredEffectTemplate StringID="powerstone_metal_dmg_phy" 
-            BurstParticleEffectPrefab="none" 
-            SoundEffectId="none" 
-            SoundEffectLength="0" 
-            DamageType="Physical" 
-            DamageAmount="0" 
-            Radius="15" 
-            HasShockWave="false" 
-            TargetType="Friendly" 
-            ImbuedStatusEffectDuration="8" 
-            ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
-      </TriggeredEffectTemplate>
-	  
-	  <TriggeredEffectTemplate StringID="powerstone_metal_dmg_mag" 
-            BurstParticleEffectPrefab="none" 
-            SoundEffectId="none" 
-            SoundEffectLength="0" 
-            DamageType="Physical" 
-            DamageAmount="0" 
-            Radius="15" 
-            HasShockWave="false" 
-            TargetType="Friendly" 
-            ImbuedStatusEffectDuration="8" 
-            ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
-      </TriggeredEffectTemplate>
-	  
-	  <TriggeredEffectTemplate StringID="powerstone_metal_res_less" 
+	  <TriggeredEffectTemplate StringID="powerstone_metal_dmg1" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
@@ -1867,6 +1854,35 @@
                   <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
+	  <TriggeredEffectTemplate StringID="powerstone_metal_res_less" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+            DamageAmount="0" 
+            Radius="15" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="8" 
+            ScriptNameToTrigger="none" >
+				  <ImbuedStatusEffect>powerstone_metal_res</ImbuedStatusEffect>
+                  <ImbuedStatusEffect>powerstone_metal_res_debuff</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+	  
+	  
+	  <TriggeredEffectTemplate StringID="powerstone_metal_trait" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+            DamageAmount="0" 
+            Radius="15" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="8" 
+            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyMetalItemTraitScript" >
+      </TriggeredEffectTemplate>
+	  
 	  <TriggeredEffectTemplate StringID="powerstone_metal_pen" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
@@ -1878,7 +1894,21 @@
             TargetType="Friendly" 
             ImbuedStatusEffectDuration="8" 
             ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
+                  <ImbuedStatusEffect>powerstone_metal_pen</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
+	  
+	  <TriggeredEffectTemplate StringID="powerstone_metal_trait2" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+            DamageAmount="0" 
+            Radius="15" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="8" 
+            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyMetalItemTraitScript" >
+			<ImbuedStatusEffect>powerstone_metal_pen</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	  

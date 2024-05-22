@@ -150,7 +150,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     "LoreOfBeasts", PowerSize.Lesser),
                 new PowerStone("beast_phys_15", new TextObject("Lesser Protecting Ghost Amber"),new TextObject("+15% physical resistance"), "powerstone_beast_res", 15, 10,
                     "LoreOfBeasts", PowerSize.Lesser),
-                new PowerStone("beast_phys_20_ranged", new TextObject("Lesser Seeking Ghost Amber"),new TextObject("Add 20% ranged damage"), "powerstone_beast_dmg", 15, 10,
+                new PowerStone("beast_phys_20_ranged", new TextObject("Lesser Seeking Ghost Amber"),new TextObject("Add 20% ranged damage"), "powerstone_beast_dmg_range", 15, 10,
                     "LoreOfBeasts", PowerSize.Lesser),
 
                 new PowerStone("life_magical_fire_res_25", new TextObject("Lesser Dampening Vitaellum"),new TextObject("Add 25% magical and fire resistance"),
@@ -161,25 +161,19 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 new PowerStone("life_res_40_debuff",new TextObject("Lesser Heavy Vitaellum"), new TextObject("Add 40% physical resistance -30% reduced speed"), "powerstone_life_res_debuff", 15, 10,
                     "LoreOfLife", PowerSize.Lesser),
 
-                new PowerStone("heavens_dmg_raged_20", new TextObject("Lesser Wind Saphire"),new TextObject("+20% electric ranged damage"), "powerstone_heavens_dmg_range", 
-                    15,
-                    10,
-                    "LoreOfHeavens", PowerSize.Lesser),
-                new PowerStone("heavens_dmg_melee_20", new TextObject("Lesser Conductive Saphire"), new TextObject("+20% electric melee damage"), "powerstone_heavens_dmg_melee",
-                    15,
-                    10
-                    ,
-                    "LoreOfHeavens", PowerSize.Lesser),
-                new PowerStone("heavens_res_25", new TextObject("Lesser Dissipation  Saphire"), new TextObject("+25% electrical resistance, + 25% magical resistance"),"powerstone_heavens_res",
-                    15, 
-                    10,
-                    "LoreOfHeavens", PowerSize.Lesser),
+                new PowerStone("heavens_dmg_raged_20", new TextObject("Lesser Wind Saphire"),new TextObject("+20% physical ranged damage amplification"), "powerstone_heavens_dmg_range", 
+                    15, 10, "LoreOfHeavens", PowerSize.Lesser),
+                new PowerStone("heavens_dmg_20", new TextObject("Lesser Conductive Saphire"), new TextObject("+20% lightning melee damage"), "powerstone_heavens_dmg_melee",
+                    15, 10, "LoreOfHeavens", PowerSize.Lesser),
+                
+                new PowerStone("heavens_res_25", new TextObject("Lesser Dissipation  Saphire"), new TextObject("+25% lightning resistance, + 25% magical resistance"),"powerstone_heavens_res",
+                    15, 10, "LoreOfHeavens", PowerSize.Lesser),
 
-                new PowerStone("metal_dmg_15", new TextObject("Lesser Hardening Goldstone"), new TextObject("+15% physical damage"),"powerstone_metal_dmg_phy", 
+                new PowerStone("metal_dmg_15", new TextObject("Lesser Hardening Goldstone"), new TextObject("+15% physical damage"),"powerstone_metal_dmg1", 
                     15, 
                     10,
                     "LoreOfMetal", PowerSize.Lesser),
-                new PowerStone("metal_magic_dmg_20", new TextObject("Lesser Sparkling Goldstone"),new TextObject("+20% magical ranged damage"), "powerstone_metal_dmg_mag", 
+                new PowerStone("metal_dmg_20", new TextObject("Lesser Sparkling Goldstone"),new TextObject("+20% physical ranged damage"), "powerstone_metal_dmg2", 
                     15, 
                     10,
                     "LoreOfMetal", PowerSize.Lesser),
@@ -213,27 +207,27 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     "LoreOfLight", PowerSize.Greater),
 
                 new PowerStone("beast_res_wild",new TextObject("Greater Ghost Amber of the Wild"), new TextObject("Unit is unstopable, will not show any sign of pain"), 
-                    "powerstone_beast_range_res_wild", 
+                    "powerstone_beast_wild", 
                     25, 20,
                     "LoreOfBeasts", PowerSize.Greater),
                 new PowerStone("beast_res_range_25", new TextObject("Greater Ghost Amber of the Hunter"),new TextObject("+35% ranged resistance,+25% ranged damage"), "powerstone_beast_range_res_hunt", 
                     25, 20,
                     "LoreOfBeasts", PowerSize.Greater),
 
-                new PowerStone("life_thorns", new TextObject("Greater Spikey Vitalleum"),new TextObject("Received damage is reapplied by 25%  as thorne damage"), "powerstone_life_thorns", 25, 20,
+                new PowerStone("life_thorns", new TextObject("Greater Spiky Vitalleum"),new TextObject("Received damage is reapplied by 25%  as thorne damage"), "powerstone_life_thorns", 25, 20,
                     "LoreOfLife", PowerSize.Greater),
                 new PowerStone("life_res_ward_35", new TextObject("Greater Protecting Vitalleum"),new TextObject("+35% Wardsave"), "powerstone_life_res_ward", 25,
                     20,
                     "LoreOfLife", PowerSize.Greater),
 
-                new PowerStone("heavens_trait",new TextObject("Greater Amplifying True Sapphires"),
-                    new TextObject("+50% electric amplification, +15% electric damage"), "powerstone_heavens_trait", 20, 25,
+                new PowerStone("heavens_trait2",new TextObject("Greater Amplifying True Sapphires"),
+                    new TextObject("+40% lightning damage"), "powerstone_heavens_trait2", 25, 20,
                     "LoreOfHeavens", PowerSize.Greater),
-                new PowerStone("heavens_res_40", new TextObject("Greater True Dissipation Sapphires"),new TextObject("+40% electric, magic & frost resistance"),
-                    "powerstone_heavens_res2", 20, 4,
+                new PowerStone("heavens_res_40", new TextObject("Greater True Dissipation Sapphires"),new TextObject("+40% physical, magic & lightning resistance"),
+                    "powerstone_heavens_res2", 25, 20,
                     "LoreOfHeavens", PowerSize.Greater),
 
-                new PowerStone("metal_dmg_15", new TextObject("Greater Goldstone of Disintegration"),new TextObject("+20% physical damage, 20% fire damage"), "powerstone_metal_dmg2",
+                new PowerStone("metal_dmg_20", new TextObject("Greater Goldstone of Disintegration"),new TextObject("+20% magical damage, 20% fire damage"), "powerstone_metal_dmg2",
                     20, 4,
                     "LoreOfMetal", PowerSize.Greater),
                 new PowerStone("metal_magic_dmg_20", new TextObject("Greater Goldstone of Sharpening"),new TextObject("+50% Armor penetration"), "powerstone_metal_pen", 20, 4,
@@ -267,7 +261,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     "powerstone_heavens_dmg2", 50, 50,
                     "LoreOfHeavens", PowerSize.Mighty),
 
-                new PowerStone("metal_magic_dmg_phys_fire", new TextObject("Mighty Goldstone"),new TextObject("30% Armor penetration, 20% physical, 20% fire"),  "powerstone_metal_dmg3", 50, 50,
+                new PowerStone("metal_magic_dmg_phys", new TextObject("Mighty Goldstone"),new TextObject("40% Armor penetration, 20% magical, 20% fire"),  "powerstone_metal_trait2", 50, 50,
                     "LoreOfMetal", PowerSize.Mighty)
             };
 
@@ -297,8 +291,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             var list = new List<InquiryElement>();
 
             var stones = AvailablePowerStones.ToList();
-
-            var troopCount = Hero.MainHero.PartyBelongedTo.Party.MemberRoster.GetElementNumber(characterObject);
 
             var availablePrestige = Hero.MainHero.GetCultureSpecificCustomResourceValue();
 
