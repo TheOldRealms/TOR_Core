@@ -143,7 +143,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     "LoreOfLight", PowerSize.Lesser),
                 new PowerStone("light_mov_25", new TextObject("Lesser Timewarp Lumen Stone"), new TextObject("+25% movementSpeed"),"powerstone_light_mov", 15, 10,
                     "LoreOfLight", PowerSize.Lesser),
-                new PowerStone("light_dmg_15",new TextObject("Lesser Gleaming Lumen Stone"), new TextObject("+15% physical damage"),"powerstone_light_dmg", 15, 10,
+                new PowerStone("light_dmg_15",new TextObject("Lesser Gleaming Lumen Stone"), new TextObject("+15% physical damage amplification"),"powerstone_light_dmg", 15, 10,
                     "LoreOfLight", PowerSize.Lesser),
 
                 new PowerStone("beast_range_res_25", new TextObject("Lesser Obfuscating Ghost Amber"),new TextObject("+25% ranged resistance"), "powerstone_beast_res_range", 15, 10,
@@ -196,11 +196,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         {
             var list = new List<PowerStone>()
             {
-                new PowerStone("fire_dmg_35", new TextObject("Greater Enlightening Fire Ruby"),new TextObject("+35% Fire damage, +15% speed"),
+                new PowerStone("fire_dmg_35", new TextObject("Greater Enlightening Fire Ruby"),new TextObject("+50% Fire amplification, 15% Fire damage+30% "),
                     "powerstone_fire_trait2", 
                     25, 
                     20, "LoreOfFire", PowerSize.Greater),
-                new PowerStone("fire_amp_50", new TextObject("Greater Nourishing Fire Ruby"),new TextObject("+50% Fire amplification, 15% Fire damage"), "powerstone_fire_amp2", 15,
+                new PowerStone("fire_amp_50", new TextObject("Greater Nourishing Fire Ruby"),new TextObject("Fire amplification, +20% speed"), "powerstone_fire_amp_mov", 15,
                     4, "LoreOfFire", PowerSize.Greater),
 
                 new PowerStone("light_res_phys_magic_40",
@@ -208,7 +208,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     25, 20,
                     "LoreOfLight", PowerSize.Greater),
                 new PowerStone("light_mov_dmg_25",
-                    new TextObject("Greater Timewarp Lumenstone"),new TextObject("Add 25% movement Speed and 25% magical melee damage"), "powerstone_light_mov2",
+                    new TextObject("Greater Timewarp Lumenstone"),new TextObject("Add 25% movement Speed and 25% magical melee damage"), "powerstone_light_trait",
                     25, 20,
                     "LoreOfLight", PowerSize.Greater),
 
@@ -220,14 +220,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     25, 20,
                     "LoreOfBeasts", PowerSize.Greater),
 
-                new PowerStone("life_physical_50", new TextObject("Greater Enduring Vitalleum"),new TextObject("+50% physical resistance"), "powerstone_life_res_phy2", 15, 4,
+                new PowerStone("life_thorns", new TextObject("Greater Spikey Vitalleum"),new TextObject("Received damage is reapplied by 25%  as thorne damage"), "powerstone_life_thorns", 25, 20,
                     "LoreOfLife", PowerSize.Greater),
-                new PowerStone("life_res_ward_35", new TextObject("Greater Protecting Vitalleum"),new TextObject("+35% Wardsave"), "powerstone_life_res_ward", 15,
-                    4,
+                new PowerStone("life_res_ward_35", new TextObject("Greater Protecting Vitalleum"),new TextObject("+35% Wardsave"), "powerstone_life_res_ward", 25,
+                    20,
                     "LoreOfLife", PowerSize.Greater),
 
-                new PowerStone("heavens_amp_100_15_dmg",new TextObject("Greater Amplifying True Sapphires"),
-                    new TextObject("+100% electric amplification, +15% electric damage"), "powerstone_heavens_amp", 20, 25,
+                new PowerStone("heavens_trait",new TextObject("Greater Amplifying True Sapphires"),
+                    new TextObject("+50% electric amplification, +15% electric damage"), "powerstone_heavens_trait", 20, 25,
                     "LoreOfHeavens", PowerSize.Greater),
                 new PowerStone("heavens_res_40", new TextObject("Greater True Dissipation Sapphires"),new TextObject("+40% electric, magic & frost resistance"),
                     "powerstone_heavens_res2", 20, 4,
@@ -251,8 +251,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     "PLACEHOLDER", 50,
                     50, "LoreOfFire", PowerSize.Mighty),
 
-                new PowerStone("light_mov_dmg_40", new TextObject("Mighty Lumen Stone"),new TextObject("40% magical dmg., slows enemies on hit"),
-                    "powerstone_fire_amp3", 50, 50,
+                new PowerStone("light_mov_trait", new TextObject("Mighty Lumen Stone"),new TextObject("40% magical dmg., slows enemies on hit"),
+                    "powerstone_light_trait2", 50, 50,
                     "LoreOfLight", PowerSize.Mighty),
 
                 new PowerStone("beast_res_50", new TextObject("Mighty Ghost Amber"),
@@ -306,7 +306,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             
             var displayedStones = stones.Where(x =>
                 Hero.MainHero.HasKnownLore(x.LoreId) && x.Price <= availablePrestige &&
-                x.Upkeep * troopCount < MaximumWinds).ToList();
+                x.Upkeep < MaximumWinds).ToList();
 
             if (Hero.MainHero.HasCareerChoice("CollegeOrdersPassive4"))
             {
@@ -390,7 +390,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 switch (stoneLoreId)
                 {
                     case "LoreOfFire": return _fireIcon;
-                    case "LoreOfLight": return _lifeIcon;
+                    case "LoreOfLight": return _lightIcon;
                     case "LoreOfHeavens": return _heavensIcon;
                     case "LoreOfBeasts": return _beastIcon;
                     case "LoreOfLife": return _lifeIcon;

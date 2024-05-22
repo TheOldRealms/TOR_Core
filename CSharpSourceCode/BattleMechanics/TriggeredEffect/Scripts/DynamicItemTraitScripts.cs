@@ -69,6 +69,68 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
         }
     }
     
+    public class ApplyLesserLightItemTraitScript : ITriggeredScript
+    {
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
+        {
+            if(triggeredAgents.Count() > 0)
+            {
+                var trait = new ItemTrait();
+                var additionalDamage = new DamageProportionTuple();
+
+                additionalDamage.DamageType = DamageType.Magical;
+                additionalDamage.Percent = 0.25f;
+                
+                trait.ItemTraitName = "Hysh infused Sword";
+                trait.ItemTraitDescription = "This sword is guided by Hysh. It deals magical damage.";
+                trait.ImbuedStatusEffectId = "powerstone_light_mov_debuff";
+                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_light_weapon" };
+                trait.AdditionalDamageTuple = additionalDamage;
+                trait.OnHitScriptName = "none";
+
+                foreach (Agent agent in triggeredAgents)
+                {
+                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
+                    if(comp != null)
+                    {
+                        comp.AddTraitToWieldedWeapon(trait, duration);
+                    }
+                }
+            }
+        }
+    }
+    
+    public class ApplyLightItemTraitScript : ITriggeredScript
+    {
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
+        {
+            if(triggeredAgents.Count() > 0)
+            {
+                var trait = new ItemTrait();
+                var additionalDamage = new DamageProportionTuple();
+
+                additionalDamage.DamageType = DamageType.Magical;
+                additionalDamage.Percent = 0.4f;
+                
+                trait.ItemTraitName = "Hysh infused Sword";
+                trait.ItemTraitDescription = "This sword is guided by Hysh. It deals magical damage.";
+                trait.ImbuedStatusEffectId = "none";
+                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_light_weapon" };
+                trait.AdditionalDamageTuple = additionalDamage;
+                trait.OnHitScriptName = "none";
+
+                foreach (Agent agent in triggeredAgents)
+                {
+                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
+                    if(comp != null)
+                    {
+                        comp.AddTraitToWieldedWeapon(trait, duration);
+                    }
+                }
+            }
+        }
+    }
+    
     public class ApplyQuickSilverWeaponItemTraitScript : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)

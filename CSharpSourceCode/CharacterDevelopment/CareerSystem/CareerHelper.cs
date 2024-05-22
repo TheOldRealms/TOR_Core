@@ -394,13 +394,24 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                         agent.ApplyStatusEffect(effect,Agent.Main,99999);
                     }
 
+                    var position = agent.Position;
+                    
 
-                    if (template.ScriptNameToTrigger != "none")
+                    if (template!=null&&template.ScriptNameToTrigger != "none")
                     {
-                        var obj = Activator.CreateInstance(Type.GetType(template.ScriptNameToTrigger));
-                        
-                        var script = obj as ITriggeredScript;
-                        script.OnTrigger(agent.Position, Agent.Main, new List<Agent>(){agent}, 99999);
+                        try
+                        {
+                            var obj = Activator.CreateInstance(Type.GetType(template.ScriptNameToTrigger));
+                            if (obj is ITriggeredScript)
+                            {
+                                var script = obj as ITriggeredScript;
+                                script.OnTrigger(agent.Position, Agent.Main, new List<Agent>(){agent}, 9999);
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            TORCommon.Log("Tried to spawn TriggeredScript: " + template.ScriptNameToTrigger + ", but failed.", NLog.LogLevel.Error);
+                        }
                     }
                 }
                 

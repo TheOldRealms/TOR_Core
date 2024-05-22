@@ -20,6 +20,8 @@ namespace TOR_Core.BattleMechanics
         private readonly float _frequency=1f;
 
         private bool init;
+        
+        
         public override void OnMissionTick(float dt)
         {
             _currentTime += dt;
@@ -73,6 +75,12 @@ namespace TOR_Core.BattleMechanics
                 (Agent.Main!=null&& Agent.Main.IsActive()&&Hero.MainHero.HasCareerChoice("GuiltyByAssociationKeystone")&& (affectorAgent.IsHero || affectorAgent.Character.StringId.Contains("retinue")))))
             {
                 WitchHunterAccusationBehavior(affectorAgent, affectedAgent, blow.InflictedDamage);
+            }
+            
+            if(affectedAgent.HasAttribute("Thorns"))
+            {
+                TORCommon.Say(blow.InflictedDamage+"");
+                affectorAgent.ApplyDamage((int)(blow.InflictedDamage*0.25f),affectedAgent.Position);
             }
         }
 
