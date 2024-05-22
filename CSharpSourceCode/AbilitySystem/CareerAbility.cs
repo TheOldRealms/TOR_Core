@@ -61,9 +61,6 @@ namespace TOR_Core.AbilitySystem
                 else
                     SetCoolDown(Template.CoolDown);
                 
-                
-                SetCoolDown(0);
-                _currentCharge = _maxCharge;
             }
         }
 
@@ -105,8 +102,6 @@ namespace TOR_Core.AbilitySystem
 
         public override bool IsDisabled(Agent casterAgent, out TextObject disabledReason)
         {
-            
-            
             if (!IsCharged)
             {
                 disabledReason = new TextObject("{=!}Ability not charged");

@@ -14,13 +14,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
     public class StatusEffectMissionLogic : MissionLogic
     {
         private List<Agent> _unprocessedCharacters;
-        private bool _init;
 
         public override void OnCreated()
         {
             base.OnCreated();
-
-           
+            
             _unprocessedCharacters = new List<Agent>();
         }
 

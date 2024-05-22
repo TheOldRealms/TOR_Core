@@ -9,7 +9,7 @@ namespace TOR_Core.AbilitySystem.Scripts
     public class ArcaneConduit : CareerAbilityScript
     {
         private bool _init;
-        
+
         protected override void OnAfterTick(float dt)
         {
             base.OnAfterTick(dt);
@@ -19,35 +19,26 @@ namespace TOR_Core.AbilitySystem.Scripts
                 Init();
             }
         }
+
         private void Init()
         {
+            var effects = GetEffectsToTrigger();
 
-
-            var effects = this.GetEffectsToTrigger();
-            
-            foreach (var effect in effects)
-            {
-       
-                TORCommon.Say(effect.ImbuedStatusEffectDuration+"");
-            }
-            
-
+            foreach (var effect in effects) TORCommon.Say(effect.ImbuedStatusEffectDuration + "");
             
             if (Hero.MainHero.HasCareerChoice("CollegeOrdersKeystone"))
             {
                 var heroAgents = Mission.Current.Agents.Where(x => x.IsHero).ToList();
-
-
+                
                 foreach (var agent in heroAgents)
                 {
                     if (!agent.BelongsToMainParty() && !agent.IsSpellCaster()) continue;
                     
-                    
                     foreach (var effect in effects)
                     {
-                        foreach (var statusEffect in   effect.StatusEffects)
+                        foreach (var statusEffect in effect.StatusEffects)
                         {
-                            agent.ApplyStatusEffect(statusEffect,Agent.Main,effect.ImbuedStatusEffectDuration);
+                            agent.ApplyStatusEffect(statusEffect, Agent.Main, effect.ImbuedStatusEffectDuration);
                         }
                     }
                 }
@@ -63,15 +54,11 @@ namespace TOR_Core.AbilitySystem.Scripts
 
                     foreach (var abilitySpell in abilities)
                     {
-                        if (abilitySpell == this.Ability) continue;
+                        if (abilitySpell == Ability) continue;
                         abilitySpell.SetCoolDown(0);
                     }
                 }
             }
-            
-            
-            
-            
         }
     }
 }

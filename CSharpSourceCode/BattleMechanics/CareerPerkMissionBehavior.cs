@@ -18,9 +18,6 @@ namespace TOR_Core.BattleMechanics
     {
         private float _currentTime;
         private readonly float _frequency=1f;
-
-        private bool init;
-        
         
         public override void OnMissionTick(float dt)
         {
@@ -30,24 +27,7 @@ namespace TOR_Core.BattleMechanics
                 _currentTime = 0f;
                 TickEvents();
             }
-
-            if (!init)
-            {
-                init = true;
-            }
         }
-        
-        public override void OnAgentBuild(Agent agent, Banner banner)
-        {
-            base.OnAgentBuild(agent, banner);
-            
-            
-            if (agent.BelongsToMainParty()&& Hero.MainHero.HasCareer(TORCareers.ImperialMagister))
-            {
-                CareerHelper.PowerstoneEffectAssignment(agent);
-            }
-        }
-
     
 
         private void TickEvents()
@@ -79,7 +59,6 @@ namespace TOR_Core.BattleMechanics
             
             if(affectedAgent.HasAttribute("Thorns"))
             {
-                TORCommon.Say(blow.InflictedDamage+"");
                 affectorAgent.ApplyDamage((int)(blow.InflictedDamage*0.25f),affectedAgent.Position);
             }
         }
