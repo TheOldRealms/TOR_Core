@@ -235,6 +235,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
             }
 
+            if (IsMagicianCharacterCreationID(id))
+            {
+                Hero.MainHero.AddCareer(TORCareers.ImperialMagister);
+            }
+
             if (IsWitchHunterCharacterCreationID(id))
             {
                 Hero.MainHero.AddCareer(TORCareers.WitchHunter);
