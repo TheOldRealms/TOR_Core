@@ -49,7 +49,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                     "empire"));
             Instance._resources.Add("Chivalry",
                 new CustomResource("Chivalry", "Chivalry",
-                    "Is used for upgrading special units of Bretonnia and special actions.", "winds_icon_45", "vlandia",
+                    "Is used for upgrading special units of Bretonnia and special actions.", "chivalry_icon_45", TORConstants.BRETONNIA_CULTURE,
                     ChivalryHelper.GetChivalryInfo));
             Instance._resources.Add("DarkEnergy",
                 new CustomResource("DarkEnergy", "Dark Energy",
