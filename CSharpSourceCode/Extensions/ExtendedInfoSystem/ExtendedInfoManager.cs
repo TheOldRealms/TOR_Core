@@ -50,7 +50,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, BattleEnd);
             CampaignEvents.OnTroopRecruitedEvent.AddNonSerializedListener(this, TroopRecruted);
             
-            //CampaignEvents.OnTroopRecruitedEvent.
+            CustomResourceManager.RegisterEvents();
         }
 
         private void TroopRecruted(Hero hero, Settlement arg2, Hero arg3, CharacterObject arg4, int arg5)
