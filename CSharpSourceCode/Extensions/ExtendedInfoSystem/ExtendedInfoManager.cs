@@ -6,8 +6,8 @@ using System.Linq;
 using System.Xml.Serialization;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
@@ -24,6 +24,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         private Dictionary<string, MobilePartyExtendedInfo> _partyInfos = [];
         private Dictionary<string, string> _bannerResources = [];
         private static ExtendedInfoManager _instance;
+        private static readonly Dictionary<string,List<string>> _settlementInfos = [];
 
         public static ExtendedInfoManager Instance => _instance;
 
@@ -306,6 +307,24 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         public void AddBannerImageResource(string bannerCode, string imageResource)
         {
             _bannerResources.AddOrReplace(bannerCode, imageResource);
+        }
+
+        public static void AddSettlementInfo(Settlement settlement, string tag)
+        {
+            if(_settlementInfos.TryGetValue(settlement.StringId, out var list))
+            {
+                if(!list.Contains(tag)) list.Add(tag);
+            }
+            else
+            {
+                _settlementInfos.Add(settlement.StringId, [tag]);
+            }
+        }
+
+        public static List<string> GetSettlementInfo(Settlement settlement)
+        {
+            if (_settlementInfos.TryGetValue(settlement.StringId, out var list)) return list;
+            else return [];
         }
 
         public override void SyncData(IDataStore dataStore)

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <EquipmentRosters>
   <EquipmentRoster id="tor_empire_villager_template" culture="Culture.empire">
     <EquipmentSet>
@@ -13028,6 +13028,32 @@
       <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_wight_king_001" />
       <Equipment slot="Gloves" id="tor_vc_arm_bracers_wight_king_001" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_vc_wight_king_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_louen_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_kotr_001" />
+      <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_002" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_louen_leoncoeur" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_louen_leoncoeur" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_louen_leoncoeur" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_louen_leoncoeur" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_louen_leoncoeur" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_kotr_001" />
+      <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_002" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_louen_leoncoeur" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_louen_leoncoeur" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_louen_leoncoeur" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_louen_leoncoeur" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_louen_leoncoeur" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_bretonnian_generic_lord_template_realm_1" culture="Culture.vlandia">

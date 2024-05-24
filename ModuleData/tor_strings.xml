@@ -593,7 +593,7 @@
   <string id="backstory_d.tor_wanderer_empire_4" text="{=!}Right." />
   <string id="generic_backstory.tor_wanderer_empire_4" text="{=!}I am a Celestial Wizard from the Imperial Colleges. I have no doubts that you have heard of our immense skill. " />
 
-  <string id="prebackstory.tor_wanderer_empire_5" text="{=!Gladly." />
+  <string id="prebackstory.tor_wanderer_empire_5" text="{=!}Gladly." />
   <string id="backstory_a.tor_wanderer_empire_5" text="{=!}I was born into a family of serfs, but working the fields was no life for me!" />
   <string id="backstory_b.tor_wanderer_empire_5" text="{=!}I became the apprentice of a master alchemist, but the bastard taught me nothing yet worked me to death for years." />
   <string id="backstory_c.tor_wanderer_empire_5" text="{=!}I left him on the side of the road when his wagon broke down one day and joined the army where I learned to maintain equipment. Explosives are my newly found passion." />

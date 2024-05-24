@@ -15,6 +15,7 @@ using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -43,6 +44,10 @@ namespace TOR_Core.HarmonyPatches
                     var comp = __instance.SettlementComponent as TORBaseSettlementComponent;
                     comp.OwnerClan = clan;
                 }
+            }
+            if (node.Attributes["is_unwalled_settlement"]?.Value == "true")
+            {
+                ExtendedInfoManager.AddSettlementInfo(__instance, "IsUnwalledSettlement");
             }
         }
 
