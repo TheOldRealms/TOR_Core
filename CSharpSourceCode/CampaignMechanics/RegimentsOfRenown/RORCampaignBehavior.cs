@@ -258,6 +258,11 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
 
         private int GetWeeklyTroopNumber(int tier)
         {
+            if (tier == 0)
+            {
+                return 0;
+            }
+            
             float ratio = 10 / tier;
             return MBRandom.RandomInt(1, (int)ratio * 3);
         }

@@ -9,10 +9,7 @@ namespace TOR_Core.Extensions.UI
     {
         public PartyViewExtension(ViewModel vm) : base(vm)
         {
-
             var partyVM = vm as PartyVM;
-            
-            
             SpecialbuttonEventManagerHandler.Instance.SetCurrentPartyUiExtensionInstance(partyVM);
         }
     }

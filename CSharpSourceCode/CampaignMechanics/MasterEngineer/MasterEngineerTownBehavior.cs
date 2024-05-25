@@ -29,13 +29,11 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         private bool _unlockWeaponsTier1;
         private bool _explained;
         private readonly string _masterEngineerId = "tor_nulnengineernpc_empire";
-
         private Hero _masterEngineerHero = null;
         private Settlement _nuln;
         private bool _playerIsSkilledEnough;
         private EngineerQuest RunawayPartsQuest;
-
-
+        
         private string questDialogId = "str_quest_tor_engineer";
 
         private string GetRogueEngineerName()
@@ -190,7 +188,6 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             obj.AddPlayerLine("upgrade_gunshop_upgrade_1_agree", "upgrade_gunshop_upgrade1_response", "upgrade_gunshop_upgrade_1_response", "I hope it is worth it. I will support you on this(Spend 500{PRESTIGE_ICON})", HasEnoughPrestige, () => UpgradeGunShopCondition(1), 200, null);
             obj.AddPlayerLine("upgrade_gunshop_upgrade_1_decline", "upgrade_gunshop_upgrade1_response", "upgrade_gunshop_upgrade_decline", "I can't effort me such venture.", null, null, 200, null);
             obj.AddDialogLine("upgrade_gunshop_upgrade_1_response", "upgrade_gunshop_upgrade_1_response", "hub", "May these guns help you to succeed in combat. Just don't shoot yourself in the foot with them.", null, null, 200);
-
             
             obj.AddPlayerLine("upgrade_gunshop_upgrade_2_agree", "upgrade_gunshop_upgrade2_response", "upgrade_gunshop_upgrade_2_response", "I hope it is worth it. I will support you on this(Spend 500{PRESTIGE_ICON})", HasEnoughPrestige, () => UpgradeGunShopCondition(2), 200, null);
             obj.AddPlayerLine("upgrade_gunshop_upgrade_2_decline", "upgrade_gunshop_upgrade2_response", "upgrade_gunshop_upgrade_decline", "I can't effort me such venture.", null, null, 200, null);
@@ -239,7 +236,6 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         private void AddRogueEngineerDialogLines(CampaignGameStarter obj)
         {
             obj.AddDialogLine("rogueengineer_start", "start", "rogueengineer_answerplayer", GameTexts.FindText(questDialogId,"rogueEngineerEncounter").ToString(), rogueengineerdialogstartcondition, null, 200);
-
             //requires dying dialog of the engineer, here is a player response
             obj.AddPlayerLine("rogueengineer_playerafterbattle", "rogueengineer_playerafterbattle", "close_window", GameTexts.FindText(questDialogId,"rogueEngineerEncounterPlayerAfterBattleAnswer").ToString(), null, null, 200);
         }

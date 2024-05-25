@@ -17,7 +17,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         public void AddTroopAttribute(CharacterObject troop, string attribute)
         {
             if (TroopAttributes == null) TroopAttributes = new Dictionary<string, List<string>>();
-            if (!TroopAttributes.ContainsKey(troop.StringId))
+            if (!TroopAttributes.TryGetValue(troop.StringId, out var entryList))
             {
                 var list = new List<string>();
                 list.Add(attribute);
@@ -25,17 +25,15 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             }
             else
             {
-                var list = TroopAttributes[troop.StringId];
-                list.Add(attribute);
-                TroopAttributes[troop.StringId] = list;
+                entryList.Add(attribute);
+                TroopAttributes[troop.StringId] = entryList;
             }
         }
 
         public void RemoveTroopAttribute(string troopId, string attribute)
         {
             if (TroopAttributes == null) return;
-
-
+            
             if (!TroopAttributes.TryGetValue(troopId, out var list)) return;
             if (list.Contains(attribute)) list.Remove(attribute);
             TroopAttributes[troopId] = list;
