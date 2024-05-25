@@ -25,7 +25,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         private bool _hirelingEnlistingLordIsAttacking;
         private bool _hirelingLordIsFightingWithoutPlayer;
         private float _ratioPartyAgainstEnemyStrength = 0;
-        private int _percentageOfBalanceRequiredToAvoidFight = 30;
+        private float _percentageOfBalanceRequiredToAvoidFight = 0.30f;
         private bool debugSkipBattles = false;
 
         private bool _startBattle;
@@ -62,6 +62,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
         private void BattleMenuOpened(MenuCallbackArgs obj)
         {
+            var combatstregth = CampaignEventHelpers.CalculateCombatStrength();
             if (_startBattle && obj.MenuContext.GameMenu.StringId == "encounter" && !debugSkipBattles)
             {
                 _startBattle = false;
@@ -143,14 +144,15 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                 return _hirelingEnlistingLord.PartyBelongedTo.CurrentSettlement != null;
             }, delegate (MenuCallbackArgs args)
             {
-
                 while (Campaign.Current.CurrentMenuContext != null)
+                {
                     GameMenu.ExitToLast();
+                }
+               
                 EncounterManager.StartSettlementEncounter(MobileParty.MainParty.Party.MobileParty, _hirelingEnlistingLord.PartyBelongedTo.CurrentSettlement);
                 EnterSettlementAction.ApplyForParty(MobileParty.MainParty.Party.MobileParty, _hirelingEnlistingLord.CurrentSettlement);
             }, true, -1, false, null);
-
-
+            
             TextObject hirelingBattleTextMenu = new TextObject("This is a test of Hireling BattleMenu", null);
             campaignGameStarter.AddGameMenu("hireling_battle_menu", hirelingBattleTextMenu.Value, new OnInitDelegate(this.party_wait_talk_to_other_members_on_init), GameOverlays.MenuOverlayType.Encounter, GameMenu.MenuFlags.None, null);
             campaignGameStarter.AddGameMenuOption("hireling_battle_menu", "hireling_join_battle", "Join battle",
@@ -475,15 +477,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
         private void HidePlayerParty()
         {
-            // Currently not working
             PartyBase.MainParty.MobileParty.IsVisible = false;
-
-
-            /*if (((PartyVisual) ).HumanAgentVisuals != null)
-                ((PartyVisual) PartyBase.MainParty.Visuals).HumanAgentVisuals.GetEntity().SetVisibilityExcludeParents(false);
-            if (((PartyVisual) PartyBase.MainParty.Visuals).MountAgentVisuals == null)
-                return;
-            ((PartyVisual) PartyBase.MainParty.Visuals).MountAgentVisuals.GetEntity().SetVisibilityExcludeParents(false);*/
         }
 
 

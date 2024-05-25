@@ -467,6 +467,7 @@
     <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\RaceFixCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\BountyMaster\BountyMasterCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\CampaignEventHelpers.cs" />
     <Compile Include="CampaignMechanics\Careers\CareerDialogOptionsCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Careers\TORCareerPerkCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
@@ -589,6 +590,7 @@
     <Compile Include="Extensions\UI\BaseViewModelExtension.cs" />
     <Compile Include="Extensions\UI\HeroEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\PartyCharacterVMExtension.cs" />
+    <Compile Include="Extensions\UI\PartyNameplateItemVMExtension.cs" />
     <Compile Include="Extensions\UI\UnitEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionAttribute.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionManager.cs" />
