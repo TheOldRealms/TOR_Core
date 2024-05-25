@@ -393,6 +393,9 @@
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_head_louen_leoncoeur">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_mousillon_head_helm_kotr_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -699,6 +702,9 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_shoulder_pauldron_pilgrim_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_shoulder_pauldron_louen_leoncoeur">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_mousillon_shoulder_grail_knight_001">
@@ -1051,6 +1057,9 @@
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_body_armor_louen_leoncoeur">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_mousillon_body_armor_kotr_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -1334,6 +1343,9 @@
         <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_arm_gauntlet_louen_leoncoeur">
+    <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_mousillon_arm_gauntlet_kotr_001">
     <ItemTraits />
@@ -1630,6 +1642,9 @@
         <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_leg_boots_louen_leoncoeur">
+    <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_mousillon_leg_boots_kotr_001">
     <ItemTraits />
@@ -2001,6 +2016,12 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_sword_002">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_lord_sword_001">
     <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -2492,6 +2513,12 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_trident_001">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_spear_001">
     <ItemTraits />
     <DamageProportions>
@@ -2505,6 +2532,12 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_spear_003">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_wildrider_spear_001">
     <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />

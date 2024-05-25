@@ -317,7 +317,7 @@
              super_faction="Kingdom.middenland"
              is_noble="true"
              text="{=!}The Todbringers hail from the Teutogen kings of old who ruled what is now the Northern Empire. There has been a lasting rivalry between the north and south that lasts to this day, hostilities flare up at times diplomatically and at times through force of arms. The Todbringers support the need for an Emperor, and Boris sees himself as the perfect candidate for the throne, instead of some puppet of the Sigmarite church. Yet the many threats of the Drakwald, and from the Sea of Claws, keeps the Elector Count too busy to focus on much else."
-             banner_key="11.116.116.0.0.764.764.0.1.0.510.142.142.472.174.764.764.0.0.41.500.142.142.500.500.764.764.0.0.0"/>
+             banner_key="11.14.140.8000.8000.764.764.0.1.0.505.155.116.709.709.764.764.1.0.0.505.14.116.618.618.764.764.1.0.0.505.140.116.558.558.764.764.1.0.0:kingdom_middenland"/>
     <Faction id="middenland_clan_2"
              name="{=!}von Bildhofen"
              tier="5"
@@ -326,7 +326,7 @@
              super_faction="Kingdom.middenland"
              is_noble="true"
              text="{=!}The proximity to the Reikland does not change the fact that the Bildhofens are far more aligned with the northern lands of the empire. The Bildhofens have a long lasting bloodline, traced back to none other than Magnus von Bildhofen, the Pious. However, despite such a glorious lineage there is not much influence left amongst the Bildhofens and the noble family is situated in a peaceful but insignificant role."
-             banner_key="11.116.116.0.0.764.764.0.1.0.510.142.142.472.174.764.764.0.0.41.500.142.142.500.500.764.764.0.0.0"/>
+             banner_key="11.14.140.8000.8000.764.764.0.1.0.505.155.116.709.709.764.764.1.0.0.505.14.116.618.618.764.764.1.0.0.505.140.116.558.558.764.764.1.0.0:kingdom_middenland"/>
     <Faction id="middenland_clan_3"
              name="{=!}Drakwald Guard"
              tier="5"
@@ -335,7 +335,7 @@
              super_faction="Kingdom.middenland"
              is_noble="true"
              text="{=!}The Drakwald Guard was born from the need to fight back the growing beastmen threat, to defend the many caravans and villages throughout the dark forest. The Armies of this Organisation are from former, eradicated or dispersed baronies,  Huntsmen and Mercenaries. However,  devoted followers of Ulric assist in their battles. In the Name of Ulric and the Todbringers, they clean the Drakwald from the taint of Chaos it suffers from."
-             banner_key="11.116.116.0.0.764.764.0.1.0.510.142.142.472.174.764.764.0.0.41.500.142.142.500.500.764.764.0.0.0"/>
+             banner_key="11.14.140.8000.8000.764.764.0.1.0.505.155.116.709.709.764.764.1.0.0.505.14.116.618.618.764.764.1.0.0.505.140.116.558.558.764.764.1.0.0:kingdom_middenland"/>
 	<!-- Ostermark faction -->
     <Faction id="ostermark_clan_1"
              name="{=!}Hertwig"
@@ -345,7 +345,7 @@
              super_faction="Kingdom.ostermark"
              is_noble="true"
              text="{=!}Wolfram Hertwig at age fifteen became the Chancellor of Ostermark, in the year 2485, to fill the void left by an invading Orc Waaagh! The young Wolfram refused to allow the much more experienced Grandmaster of the Knights of the Everlasting Light to lead the forces of Ostermark against the Orcs at the Battle of Black Road. As a result, the inexperienced youth led his men to a terrible defeat; infamously known as Hertwig’s Folly. Today, Wolfram and the Hertwig family have mostly rebuilt their reputation, as many Ostermarkers remember their leadership in the aftermath of Hertwig’s Folly and the success the province has had ever since. Yet to outsiders, the Hertwigs are still remembered for their young count and a defeat snatched out of the jaws of victory."
-             banner_key="11.116.116.0.0.764.764.0.1.0.510.142.142.472.174.764.764.0.0.41.500.142.142.500.500.764.764.0.0.0"/>
+             banner_key="11.19.140.8000.8000.764.764.0.1.0.505.140.116.672.672.764.764.0.0.0:kingdom_ostermark"/>
     <Faction id="ostermark_clan_2"
              name="{=!}Schweissbrau"
              tier="6"
@@ -354,7 +354,7 @@
              super_faction="Kingdom.ostermark"
              is_noble="true"
              text="{=!}Clan Schweissbrau isn’t descended from noble lineage, however, dedication and determination are proven substitutes. Stefan Husserl began his life as a commoner, the son of a local village smith, his village came under attack from a roaming group of beastmen, seeking easy prey, the villagers were quickly cut down as they fled, including his father, whom he looked in the eyes just before he was impaled by an Ungor. Taking up a blade he had forged, he walked past the fleeing townsfolk, and something changed within him. He struck back at the beasts, slaying the ungors and gors that tried to attack him. Some of the fleeing locals turned and recalled seeing him wrapped in a shining light amidst a sea of darkness and blood, wading through unscathed. The villagers, reinvigorated, ran back towards their home with pitchforks and mallets and took the fight to the beastmen. The beasts broke as Stefan himself held the bloodied head of the Beastlord that led the attack on his village. From that day the common folk realised they needed no fancy armour or weapons, only determination and courage to beat back the enemies of man. The surrounding villages came to recognise Stefan as their leader, even the elector count himself acknowledged his right to rule over the commoners in the southwest. Stefan now rules over a court he rarely visits, for there are enemies to be slain and he is now hunting for them."
-             banner_key="11.116.116.0.0.764.764.0.1.0.510.142.142.472.174.764.764.0.0.41.500.142.142.500.500.764.764.0.0.0"/>
+             banner_key="11.19.140.8000.8000.764.764.0.1.0.505.140.116.672.672.764.764.0.0.0:kingdom_ostermark"/>
     <Faction id="ostermark_clan_3"
              name="{=!}Siebentod"
              tier="6"
@@ -363,7 +363,7 @@
              super_faction="Kingdom.ostermark"
              is_noble="true"
              text="{=!}The Siebentod clan has been around for as long as the vampire wars, always on the lookout for the undead and Sigmar knows what else. The fact that there is still an Ostermark to protect speaks volumes about the efficiency of their efforts. Yet it seems their work is never done, it doesn’t matter. For as long as the flag of Ostermark flies high over the Eerie Downs and the siebentod clan has an arse in its seat the undead will be put to rest."
-             banner_key="11.116.116.0.0.764.764.0.1.0.510.142.142.472.174.764.764.0.0.41.500.142.142.500.500.764.764.0.0.0"/>
+             banner_key="11.19.140.8000.8000.764.764.0.1.0.505.140.116.672.672.764.764.0.0.0:kingdom_ostermark"/>
 	<!-- Hochland faction -->
     <Faction id="hochland_clan_1"
              name="{=!}von Ludendorf"
@@ -401,7 +401,7 @@
              super_faction="Kingdom.nordland"
              is_noble="true"
              text="{=!}"
-             banner_key="11.116.116.0.0.764.764.0.1.0.510.142.142.472.174.764.764.0.0.41.500.142.142.500.500.764.764.0.0.0"/>
+             banner_key="11.149.140.8000.8000.764.764.0.1.0.505.140.116.672.672.764.764.0.0.0:kingdom_nordland"/>
     <Faction id="nordland_clan_2"
              name="{=!}Salzblut"
              tier="6"
@@ -410,7 +410,7 @@
              super_faction="Kingdom.nordland"
              is_noble="true"
              text="{=!}"
-             banner_key="11.116.116.0.0.764.764.0.1.0.510.142.142.472.174.764.764.0.0.41.500.142.142.500.500.764.764.0.0.0"/>
+             banner_key="11.149.140.8000.8000.764.764.0.1.0.505.140.116.672.672.764.764.0.0.0:kingdom_nordland"/>
     <Faction id="nordland_clan_3"
              name="{=!}Meergott"
              tier="6"
@@ -419,7 +419,7 @@
              super_faction="Kingdom.nordland"
              is_noble="true"
              text="{=!}"
-             banner_key="11.116.116.0.0.764.764.0.1.0.510.142.142.472.174.764.764.0.0.41.500.142.142.500.500.764.764.0.0.0"/>
+             banner_key="11.149.140.8000.8000.764.764.0.1.0.505.140.116.672.672.764.764.0.0.0:kingdom_nordland"/>
 	<!-- Ostland faction -->
     <Faction id="ostland_clan_1"
              name="{=!}von Raukov"

@@ -130,4 +130,21 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             ((RaidingPartyComponent)raidingParty.PartyComponent).Target = find;
         }
     }
+
+    public class SlaverCampComponent : BaseRaiderSpawnerComponent
+    {
+        public override string BattleSceneName => "TOR_beastmen_herdstone_001";
+
+        public override string RewardItemId => "tor_empire_weapon_sword_runefang_001";
+
+        public override void SpawnNewParty()
+        {
+            PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("druchii_slaver_party");
+            Clan beastmenClan = Clan.FindFirst(x => x.StringId == "beastmen_clan_1");
+            var find = TORCommon.FindSettlementsAroundPosition(Settlement.Position2D, 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
+            var raidingParty = RaidingPartyComponent.CreateRaidingParty("beastmen_clan_1_party_" + RaidingPartyCount + 1, Settlement, new TextObject("{=tor_dark_elf_slavers}Druchii Slavers").ToString(), template, beastmenClan, MBRandom.RandomInt(75, 99));
+            SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, find);
+            ((RaidingPartyComponent)raidingParty.PartyComponent).Target = find;
+        }
+    }
 }

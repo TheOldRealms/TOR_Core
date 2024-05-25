@@ -80,7 +80,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="10" />
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="7" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_greatsword">
     <Abilities />
@@ -92,7 +92,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="10" />
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="7" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_pikeman">
     <Abilities />
@@ -148,7 +148,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="10" />
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="5" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_crossbowman">
     <Abilities />
@@ -196,7 +196,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="15" />
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="10" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_young_noble_squire">
     <Abilities />
@@ -283,7 +283,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="15" />
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="14" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_valiant_outrider_grenade">
     <Abilities />
@@ -293,7 +293,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="15" />
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="14" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_reiksguard_preceptor_innercircle">
     <Abilities />
@@ -1070,6 +1070,53 @@
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.25" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.25" />
     </Resistances>
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_de_conscript">
+    <Abilities />
+    <Attributes>
+      <string>Expendable</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_de_bleaksword">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_de_dreadspear">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_de_darkshard">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_de_darkrider">
+    <Abilities />
+    <Attributes />
+    <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -2341,7 +2388,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="25" />
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="15" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_grundel_defender_defender">
     <Abilities />
@@ -2353,7 +2400,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="30" />
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="20" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_deathjack_longbowman">
     <Abilities />
@@ -2382,7 +2429,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="25" />
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="15" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_ward_of_taal">
     <Abilities />

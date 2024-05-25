@@ -1354,6 +1354,92 @@
       <EquipmentSet id="tor_we_ancient_treeman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_de_conscript" default_group="infantry" level="6" name="{=str_tor_de_conscript}Druchii Conscript" occupation="Soldier" culture="Culture.druchii" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_de_bleaksword" />
+      <upgrade_target id="NPCCharacter.tor_de_dreadspear" />
+      <upgrade_target id="NPCCharacter.tor_de_darkshard" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_de_conscript_template" />
+      <EquipmentSet id="tor_de_conscript_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_de_bleaksword" default_group="infantry" level="16" name="{=str_tor_de_bleaksword}Druchii Bleaksword" occupation="Soldier" culture="Culture.druchii" skill_template="SkillSet.tor_skills_level16" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_de_bleaksword_template" />
+      <EquipmentSet id="tor_de_bleaksword_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_de_dreadspear" default_group="infantry" level="16" name="{=str_tor_de_dreadspear}Druchii Dreadspear" occupation="Soldier" culture="Culture.druchii" skill_template="SkillSet.tor_skills_level16" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_de_dreadspear_template" />
+      <EquipmentSet id="tor_de_dreadspear_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_de_darkshard" default_group="ranged" level="16" name="{=str_tor_de_darkshard}Druchii Darkshard" occupation="Soldier" culture="Culture.druchii" skill_template="SkillSet.tor_skills_level16" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_de_darkrider" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_de_darkshard_template" />
+      <EquipmentSet id="tor_de_darkshard_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_de_darkrider" default_group="cavalry" level="21" name="{=str_tor_de_darkrider}Druchii Dark Rider" occupation="Soldier" culture="Culture.druchii" skill_template="SkillSet.tor_skills_level21" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_de_darkrider_template" />
+      <EquipmentSet id="tor_de_darkrider_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_vc_villager" default_group="infantry" level="1" name="{=str_tor_vc_villager}Sylvanian Peasant" occupation="Villager" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level1">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />

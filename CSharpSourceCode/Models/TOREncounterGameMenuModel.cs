@@ -23,6 +23,7 @@ namespace TOR_Core.Models
                 if (settlement.SettlementComponent is ShrineComponent) return "shrine_menu";
                 else if (settlement.SettlementComponent is ChaosPortalComponent) return "raidingsite_menu";
                 else if (settlement.SettlementComponent is HerdStoneComponent) return "raidingsite_menu";
+                else if (settlement.SettlementComponent is SlaverCampComponent) return "raidingsite_menu";
                 else if (settlement.SettlementComponent is CursedSiteComponent) return "cursedsite_menu";
                 else return string.Empty;
             }

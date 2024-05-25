@@ -330,6 +330,15 @@
 		  <PartyTemplateStack min_value="4" max_value="8" troop="NPCCharacter.tor_beast_ungor_chief" />
 		</stacks>
 	</MBPartyTemplate>
+	<MBPartyTemplate id="druchii_slaver_party" >
+		<stacks>
+		  <PartyTemplateStack min_value="4" max_value="24" troop="NPCCharacter.tor_de_conscript" />
+		  <PartyTemplateStack min_value="8" max_value="18" troop="NPCCharacter.tor_de_bleaksword" />
+		  <PartyTemplateStack min_value="8" max_value="18" troop="NPCCharacter.tor_de_dreadspear" />
+		  <PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_de_darkshard" />
+		  <PartyTemplateStack min_value="4" max_value="8" troop="NPCCharacter.tor_de_darkrider" />
+		</stacks>
+	</MBPartyTemplate>
 	<MBPartyTemplate id="ungor_boss_party" >
 		<stacks>
 		  <PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_beast_shielded_ungor" />

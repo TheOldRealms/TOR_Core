@@ -2262,6 +2262,110 @@
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_ranger_001" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_de_conscript_template" culture="Culture.druchii">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.heavy_heater_shield" />
+      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
+      <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
+      <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
+      <Equipment slot="Gloves" id="Item.tor_de_arm_bracers_infantry_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.heavy_heater_shield" />
+      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
+      <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
+      <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
+      <Equipment slot="Gloves" id="Item.tor_de_arm_bracers_infantry_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_de_bleaksword_template" culture="Culture.druchii">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.heavy_heater_shield" />
+      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
+      <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
+      <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
+      <Equipment slot="Gloves" id="Item.tor_de_arm_bracers_infantry_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.heavy_heater_shield" />
+      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
+      <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
+      <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
+      <Equipment slot="Gloves" id="Item.tor_de_arm_bracers_infantry_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_de_dreadspear_template" culture="Culture.druchii">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.heavy_heater_shield" />
+      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
+      <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
+      <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
+      <Equipment slot="Gloves" id="Item.tor_de_arm_bracers_infantry_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.heavy_heater_shield" />
+      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
+      <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
+      <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
+      <Equipment slot="Gloves" id="Item.tor_de_arm_bracers_infantry_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_de_darkshard_template" culture="Culture.druchii">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.heavy_heater_shield" />
+      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
+      <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
+      <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
+      <Equipment slot="Gloves" id="Item.tor_de_arm_bracers_infantry_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.heavy_heater_shield" />
+      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
+      <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
+      <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
+      <Equipment slot="Gloves" id="Item.tor_de_arm_bracers_infantry_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_de_darkrider_template" culture="Culture.druchii">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.heavy_heater_shield" />
+      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
+      <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
+      <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
+      <Equipment slot="Gloves" id="Item.tor_de_arm_bracers_infantry_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+      <Equipment slot="Horse" id="Item.empire_horse_tournament" />
+      <Equipment slot="HorseHarness" id="Item.light_harness" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.heavy_heater_shield" />
+      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
+      <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
+      <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
+      <Equipment slot="Gloves" id="Item.tor_de_arm_bracers_infantry_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+      <Equipment slot="Horse" id="Item.empire_horse_tournament" />
+      <Equipment slot="HorseHarness" id="Item.light_harness" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_vc_skeleton_template" culture="Culture.khuzait">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_skeleton_002" />
@@ -13054,6 +13158,30 @@
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_louen_leoncoeur" />
       <Equipment slot="Horse" id="Item.charger" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_bretonnian_monk_lord_template_1" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.eastern_steel_mace_t4" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_005" />
+      <Equipment slot="Item2" id="Item.vlandia_lance_2_t4" />
+      <Equipment slot="Body" id="Item.monk_robe" />
+      <Equipment slot="Cape" id="Item.hood" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.sturgia_boots_a" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.halfchain_barding" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.eastern_steel_mace_t4" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_005" />
+      <Equipment slot="Item2" id="Item.vlandia_lance_2_t4" />
+      <Equipment slot="Body" id="Item.monk_robe" />
+      <Equipment slot="Cape" id="Item.hood" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.sturgia_boots_a" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.halfchain_barding" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_bretonnian_generic_lord_template_realm_1" culture="Culture.vlandia">

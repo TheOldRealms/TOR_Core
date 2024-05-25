@@ -45,9 +45,13 @@ namespace TOR_Core.HarmonyPatches
                     comp.OwnerClan = clan;
                 }
             }
-            if (node.Attributes["is_unwalled_settlement"]?.Value == "true")
+            if (node.Attributes["is_unwalled_settlement"]?.Value?.Trim() == "true")
             {
                 ExtendedInfoManager.AddSettlementInfo(__instance, "IsUnwalledSettlement");
+            }
+            if (node.Attributes["has_sea_port"]?.Value?.Trim() == "true")
+            {
+                ExtendedInfoManager.AddSettlementInfo(__instance, "HasSeaPort");
             }
         }
 
