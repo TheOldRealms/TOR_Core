@@ -13,25 +13,17 @@ namespace TOR_Core.Extensions.UI
         
         public PartyNameplateItemVMExtension(ViewModel vm) : base(vm)
         {
-            var hireling = Campaign.Current.CampaignBehaviorManager.GetBehavior<ServeAsAHirelingCampaignBehavior>();
-            if (hireling != null)
+            
+            if (Hero.MainHero.IsEnlisted())
             {
-                if (hireling.IsEnlisted())
-                {
-                    vm.SetPropertyValue("IsPrisoner",true);   // feels sad to write this, but the nameplate disappears
-                }
+                var pvm = vm as PartyNameplateVM;
+                pvm.IsPrisoner = true;
             }
-            RefreshValues();
         }
 
         public override void RefreshValues()
         {
             var vm = _vm as PartyNameplateVM;
-
-            if (Hero.MainHero.IsEnlisted())
-            {
-                vm.SetPropertyValue("IsPrisoner",true); 
-            }
             
         }
     }
