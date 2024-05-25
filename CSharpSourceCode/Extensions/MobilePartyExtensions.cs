@@ -62,7 +62,7 @@ namespace TOR_Core.Extensions
             if (party.IsMainParty)
             {
                 if (party.LeaderHero.IsEnlisted())
-                    return false;
+                    return false;   // optional, might be better to make here a more deliberate check for enlisting lord check
             }
             if (!party.IsLordParty) return false;
 

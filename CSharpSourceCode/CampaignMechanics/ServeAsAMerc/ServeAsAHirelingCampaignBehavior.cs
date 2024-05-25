@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
@@ -60,11 +61,32 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                 Campaign.Current.TimeControlMode = CampaignTimeControlMode.StoppableFastForward;
             }
         }
-        
 
+        private float GetEnlistingLordEventStrengthRatio(MapEvent mapEvent)
+        {
+            var t = mapEvent.GetMapEventSide(BattleSideEnum.Attacker);
+            var side = BattleSideEnum.None;
+            if(t.Parties.Where(x => x.Party == _hirelingEnlistingLord.PartyBelongedTo.Party).Any())
+            {
+                side = BattleSideEnum.Attacker;
+            }
+            else
+            {
+                side = BattleSideEnum.Defender;
+            }
+            mapEvent.GetStrengthsRelativeToParty(side, out float enlistingLordStrength, out float enemyStrength);
+
+            if (enemyStrength != 0)
+            {
+                return enlistingLordStrength / enemyStrength;
+            }
+
+            return 1;
+        }
+        
         private void BattleMenuOpened(MenuCallbackArgs obj)
         {
-            var combatstregth = CampaignEventHelpers.CalculateCombatStrength();
+
             if (_startBattle && obj.MenuContext.GameMenu.StringId == "encounter" && !debugSkipBattles)
             {
                 _startBattle = false;
@@ -118,6 +140,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             TextObject infotext = new TextObject("Following {ENLISTINGLORDNAME}", null);
             campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword", "I am hereby offering my sword.", null, EnlistPlayer);
             campaignGameStarter.AddDialogLine("payedsword", "payedsword", "end", "As you wish.", null, null, 200, null);
+            
             campaignGameStarter.AddWaitGameMenu("hireling_menu", infotext.Value, new OnInitDelegate(this.party_wait_talk_to_other_members_on_init), new OnConditionDelegate(this.wait_on_condition),
                     null, new OnTickDelegate(this.wait_on_tick), GameMenu.MenuAndOptionType.WaitMenuHideProgressAndHoursOption, GameOverlays.MenuOverlayType.None, 0f, GameMenu.MenuFlags.None, null);
             TextObject textObjectHirelingMenuDesert = new TextObject("Desert", null);
@@ -157,6 +180,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             
             TextObject hirelingBattleTextMenu = new TextObject("This is a test of Hireling BattleMenu", null);
             campaignGameStarter.AddGameMenu("hireling_battle_menu", hirelingBattleTextMenu.Value, new OnInitDelegate(this.party_wait_talk_to_other_members_on_init), GameOverlays.MenuOverlayType.Encounter, GameMenu.MenuFlags.None, null);
+
             campaignGameStarter.AddGameMenuOption("hireling_battle_menu", "hireling_join_battle", "Join battle",
                 hireling_battle_menu_join_battle_on_condition,
                 delegate (MenuCallbackArgs args)
@@ -200,8 +224,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                    _hirelingLordIsFightingWithoutPlayer = true;
                    _startBattle = false;
                    args.MenuContext.GameMenu.StartWait();
-
-
                }
                , false, 4, false);
 
@@ -250,8 +272,17 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         {
             var maxHitPointsHero = Hero.MainHero.MaxHitPoints;
             var hitPointsHero = Hero.MainHero.HitPoints;
+            
+            var lordEvent = _hirelingEnlistingLord.PartyBelongedTo.MapEvent;
 
-            return hitPointsHero < maxHitPointsHero * 0.2 || _ratioPartyAgainstEnemyStrength < 0.30; // || ennemy is 30% of our balance;
+            if(lordEvent==null) return false;
+            
+            var partyStrength = GetEnlistingLordEventStrengthRatio(lordEvent);
+           
+            var combatstregthThreshold  = partyStrength > _ratioPartyAgainstEnemyStrength;// || ennemy is 30% of our balance;
+
+            _ratioPartyAgainstEnemyStrength = 0.3f;
+            return hitPointsHero < maxHitPointsHero * 0.2 || combatstregthThreshold; 
         }
         
         private bool hireling_battle_menu_desert_on_condition(MenuCallbackArgs args)
@@ -431,11 +462,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                     {
                         if (party.Party == _hirelingEnlistingLord.PartyBelongedTo.Party)
                         {
-                            TORCommon.Say("Lord is attacking");
-                            float partyStrength = 0;
-                            float enemyStrength = 0;
-                            mapEvent.GetStrengthsRelativeToParty(BattleSideEnum.Attacker, out partyStrength, out enemyStrength);
-                            _ratioPartyAgainstEnemyStrength = enemyStrength / partyStrength;
 
                             _hirelingEnlistingLordIsAttacking = true;
                             break;
