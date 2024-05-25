@@ -304,7 +304,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             switch (culture.StringId)
             {
-                case "empire":
+                case TORConstants.EMPIRE_CULTURE:
                     position2D = new Vec2(1450.97f, 991.37f);
                     break;
                 case TORConstants.SYLVANIA_CULTURE:

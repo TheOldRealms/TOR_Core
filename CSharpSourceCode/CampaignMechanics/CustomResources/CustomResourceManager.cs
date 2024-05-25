@@ -46,7 +46,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             Instance._resources.Add("Prestige",
                 new CustomResource("Prestige", "Prestige",
                     "Is used for upgrading special units of the Empire and special actions.", "prestige_icon_45",
-                    "empire"));
+                    TORConstants.EMPIRE_CULTURE));
             Instance._resources.Add("Chivalry",
                 new CustomResource("Chivalry", "Chivalry",
                     "Is used for upgrading special units of Bretonnia and special actions.", "chivalry_icon_45", TORConstants.BRETONNIA_CULTURE,

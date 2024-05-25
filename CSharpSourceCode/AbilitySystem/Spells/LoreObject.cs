@@ -39,8 +39,8 @@ namespace TOR_Core.AbilitySystem.Spells
                 _lores.Add("LoreOfLife", new LoreObject("LoreOfLife", "Lore of Life", "lifemagic_symbol", new List<string>() { TORConstants.SYLVANIA_CULTURE, "mousillon" }));
                 _lores.Add("LoreOfMetal", new LoreObject("LoreOfMetal", "Lore of Metal", "metalmagic_symbol", new List<string>() { TORConstants.SYLVANIA_CULTURE, "mousillon", TORConstants.BRETONNIA_CULTURE }));
                 _lores.Add("LoreOfBeasts", new LoreObject("LoreOfBeasts", "Lore of Beasts", "beastmagic_symbol", new List<string>() { TORConstants.SYLVANIA_CULTURE, "mousillon" }));
-                _lores.Add("DarkMagic", new LoreObject("DarkMagic", "Dark Magic", "darkmagic_symbol", new List<string>() { "empire", TORConstants.BRETONNIA_CULTURE,  }, true));
-                _lores.Add("Necromancy", new LoreObject("Necromancy", "Necromancy", "necromancy_symbol", new List<string>() { "empire", TORConstants.BRETONNIA_CULTURE }));
+                _lores.Add("DarkMagic", new LoreObject("DarkMagic", "Dark Magic", "darkmagic_symbol", new List<string>() { TORConstants.EMPIRE_CULTURE, TORConstants.BRETONNIA_CULTURE,  }, true));
+                _lores.Add("Necromancy", new LoreObject("Necromancy", "Necromancy", "necromancy_symbol", new List<string>() { TORConstants.EMPIRE_CULTURE, TORConstants.BRETONNIA_CULTURE }));
             }
             return _lores.Values.ToList();
         }

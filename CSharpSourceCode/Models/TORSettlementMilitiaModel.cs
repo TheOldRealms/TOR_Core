@@ -32,7 +32,7 @@ namespace TOR_Core.Models
                     case TORConstants.SYLVANIA_CULTURE:
                         result.Add(2f, new TextObject("Bonus"));
                         break;
-                    case "empire":
+                    case TORConstants.EMPIRE_CULTURE:
                         result.Add(1f, new TextObject("Bonus"));
                         break;
                     default:
@@ -47,7 +47,7 @@ namespace TOR_Core.Models
                     case TORConstants.SYLVANIA_CULTURE:
                         result.Add(4f, new TextObject("Bonus"));
                         break;
-                    case "empire":
+                    case TORConstants.EMPIRE_CULTURE:
                         result.Add(3f, new TextObject("Bonus"));
                         break;
                     default:

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.Core;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem.SpellBook
 {
@@ -12,7 +13,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
         public override bool IsMenuState => true;
 
         public bool IsTrainerMode { get; internal set; } = false;
-        public string TrainerCulture { get; internal set; } = "empire";
+        public string TrainerCulture { get; internal set; } = TORConstants.EMPIRE_CULTURE;
 
         public SpellBookState() { }
     }

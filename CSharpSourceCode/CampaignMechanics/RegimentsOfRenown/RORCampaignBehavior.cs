@@ -12,6 +12,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 using static TaleWorlds.CampaignSystem.Overlay.GameOverlays;
 
 namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
@@ -199,7 +200,7 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                 !mobileParty.IsDisbanding &&
                 mobileParty.LeaderHero != null &&
                 mobileParty.LeaderHero.CanPlaceArtillery() &&
-                mobileParty.LeaderHero.Culture.StringId == "empire" &&
+                mobileParty.LeaderHero.Culture.StringId == TORConstants.EMPIRE_CULTURE &&
                 !mobileParty.Party.IsStarving &&
                 mobileParty.MapFaction.IsKingdomFaction &&
                 mobileParty.Party.NumberOfAllMembers < mobileParty.LimitedPartySize &&

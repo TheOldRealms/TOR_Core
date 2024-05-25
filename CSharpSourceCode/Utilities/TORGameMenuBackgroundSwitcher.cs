@@ -34,7 +34,7 @@ namespace TOR_Core.Utilities
 
             switch (settlement.Culture.StringId)
             {
-                case "empire":
+                case TORConstants.EMPIRE_CULTURE:
                     args.MenuContext.SetBackgroundMeshName("empire_looted_village");
                     return;
                 case TORConstants.SYLVANIA_CULTURE:
@@ -100,7 +100,7 @@ namespace TOR_Core.Utilities
 
             switch (culture.StringId)
             {
-                case "empire":
+                case TORConstants.EMPIRE_CULTURE:
                     args.MenuContext.SetBackgroundMeshName("empire_captive");
                     return;
                 case TORConstants.SYLVANIA_CULTURE:

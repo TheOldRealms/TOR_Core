@@ -92,7 +92,7 @@ namespace TOR_Core.AbilitySystem
                             }
                         }
                     }
-                    else if(hero.Culture?.StringId == "empire")
+                    else if(hero.Culture?.StringId == TORConstants.EMPIRE_CULTURE)
                     {
                         var ability1 = (ItemBoundAbility)AbilityFactory.CreateNew("GreatCannonSpawner", agent);
                         if (ability1 != null)
@@ -129,7 +129,7 @@ namespace TOR_Core.AbilitySystem
                 else if(Game.Current.GameType is CustomGame)
                 {
                     var heroChar = Agent.Character;
-                    if (heroChar.Culture?.StringId == "empire")
+                    if (heroChar.Culture?.StringId == TORConstants.EMPIRE_CULTURE)
                     {
                         var ability1 = (ItemBoundAbility)AbilityFactory.CreateNew("GreatCannonSpawner", agent);
                         if (ability1 != null)
