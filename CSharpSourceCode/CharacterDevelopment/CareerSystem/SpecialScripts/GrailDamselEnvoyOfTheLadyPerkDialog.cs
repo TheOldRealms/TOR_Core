@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Core;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Careers
 {
@@ -66,7 +67,7 @@ namespace TOR_Core.CampaignMechanics.Careers
             _factionsRuleBretonnianSettlement = new List<Kingdom>();
             foreach (var settlement in settlements)
             {
-                if (settlement.IsBretonnianMayorSettlement() && settlement.Owner.Culture.StringId != "vlandia")
+                if (settlement.IsBretonnianMayorSettlement() && settlement.Owner.Culture.StringId != TORConstants.BRETONNIA_CULTURE)
                 {
                     if (settlement.Owner.Clan != null || settlement.Owner.Clan.Kingdom != null)
                     {

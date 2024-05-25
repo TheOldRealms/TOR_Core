@@ -53,7 +53,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
         private void DailyTickSettlement(Settlement settlement)
         {
-            if (settlement.Culture.StringId != "vlandia" || !settlement.IsTown) return;
+            if (settlement.Culture.StringId != TORConstants.BRETONNIA_CULTURE || !settlement.IsTown) return;
             if (settlement.Town.Workshops.Any(x => x.WorkshopType.StringId == "wood_WorkshopType"))
             {
                 var trebuchetItem = MBObjectManager.Instance.GetObject<ItemObject>("tor_bretonnia_artillery_fieldtrebuchet_001");

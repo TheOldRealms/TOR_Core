@@ -78,7 +78,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
                 {
                     LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
                 }
-                else if (_isTrainerMode && Hero.MainHero.HasCareer(TORCareers.GrailDamsel)&& Hero.MainHero.HasKnownLore(lore.ID) && CharacterObject.OneToOneConversationCharacter != null && _trainerCulture == "vlandia")
+                else if (_isTrainerMode && Hero.MainHero.HasCareer(TORCareers.GrailDamsel)&& Hero.MainHero.HasKnownLore(lore.ID) && CharacterObject.OneToOneConversationCharacter != null && _trainerCulture == TORConstants.BRETONNIA_CULTURE)
                 {
                     LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
                 }

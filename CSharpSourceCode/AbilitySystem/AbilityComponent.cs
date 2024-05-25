@@ -112,7 +112,7 @@ namespace TOR_Core.AbilitySystem
                             _knownAbilitySystem.Add(ability2);
                         }
                     }
-                    else if (hero.Culture?.StringId == "vlandia")
+                    else if (hero.Culture?.StringId == TORConstants.BRETONNIA_CULTURE)
                     {
                         var ability3 = (ItemBoundAbility)AbilityFactory.CreateNew("FieldTrebuchetSpawner", agent);
                         if (ability3 != null)
@@ -149,7 +149,7 @@ namespace TOR_Core.AbilitySystem
                             _knownAbilitySystem.Add(ability2);
                         }
                     }
-                    else if (heroChar.Culture?.StringId == "vlandia")
+                    else if (heroChar.Culture?.StringId == TORConstants.BRETONNIA_CULTURE)
                     {
                         var ability3 = (ItemBoundAbility)AbilityFactory.CreateNew("FieldTrebuchetSpawner", agent);
                         if (ability3 != null)

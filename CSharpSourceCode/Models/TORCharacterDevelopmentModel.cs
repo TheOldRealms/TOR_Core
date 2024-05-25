@@ -32,7 +32,7 @@ namespace TOR_Core.Models
             base.GetTraitLevelForTraitXp(hero, trait, xpValue, out traitLevel, out clampedTraitXp);
             
             if(xpValue<-500) return; //fail save -1500 traitvalue for killing lords is a bit much :)
-            if (hero.Culture.StringId == "vlandia")
+            if (hero.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
             {
                 if (trait.StringId == "Valor" && xpValue < 0)
                 {

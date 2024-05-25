@@ -54,7 +54,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             Instance._resources.Add("DarkEnergy",
                 new CustomResource("DarkEnergy", "Dark Energy",
                     "Dark Energy is used by practitioners of necromancy to raise and upkeep their undead minions.",
-                    "darkenergy_icon_45", new[] { "khuzait", "mousillon" }));
+                    "darkenergy_icon_45", new[] { TORConstants.SYLVANIA_CULTURE, "mousillon" }));
             Instance._resources.Add("WindsOfMagic",
                 new CustomResource("WindsOfMagic", "Winds of Magic",
                     "Winds of Magic is used by spellcasters to cast spells.", "winds_icon_45"));
@@ -106,7 +106,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             {
                 var customResourceGain = new ExplainedNumber(15);
 
-                if (Hero.MainHero.Culture.StringId == "khuzait" || Hero.MainHero.Culture.StringId == "mousillon")
+                if (Hero.MainHero.Culture.StringId == TORConstants.SYLVANIA_CULTURE || Hero.MainHero.Culture.StringId == "mousillon")
                 {
                     customResourceGain.AddFactor(0.25f);
                 }
@@ -123,7 +123,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             {
                 var customResourceGain = new ExplainedNumber(10);
 
-                if (Hero.MainHero.Culture.StringId == "khuzait" || Hero.MainHero.Culture.StringId == "mousillon")
+                if (Hero.MainHero.Culture.StringId == TORConstants.SYLVANIA_CULTURE || Hero.MainHero.Culture.StringId == "mousillon")
                 {
                     customResourceGain.AddFactor(0.25f);
                 }
@@ -139,9 +139,9 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         {
             if (winner.IsPlayerCharacter)
             {
-                if (winner.Culture.StringId == "vlandia")
+                if (winner.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
                 {
-                    if (settlement.Culture.StringId == "vlandia")
+                    if (settlement.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
                     {
                         Hero.MainHero.AddCultureSpecificCustomResource(40);
                     }
@@ -154,11 +154,11 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             var explainedNumber = new ExplainedNumber();
             if (party == PartyBase.MainParty && detail == EndCaptivityDetail.ReleasedByChoice)
             {
-                if (Hero.MainHero.Culture.StringId == "vlandia")
+                if (Hero.MainHero.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
                 {
                     explainedNumber.Add(50);
 
-                    if (prisoner.Culture.StringId == "vlandia")
+                    if (prisoner.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
                     {
                         explainedNumber.AddFactor(1);
                     }
@@ -174,7 +174,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             var hideout = eventComponent.MapEvent.MapEventSettlement;
             if (eventComponent.MapEvent.PlayerSide == eventComponent.MapEvent.WinningSide)
             {
-                if (Hero.MainHero.Culture.StringId == "khuzait") return;
+                if (Hero.MainHero.Culture.StringId == TORConstants.SYLVANIA_CULTURE) return;
 
                 var resource = Hero.MainHero.GetCultureSpecificCustomResource();
 
@@ -184,7 +184,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 explainedNumber.Add(20);
 
 
-                if (Hero.MainHero.Culture.StringId == "vlandia")
+                if (Hero.MainHero.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
                 {
                     var settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 150f,
                         x => x.IsTown && x.IsBretonnianMayorSettlement());
@@ -369,7 +369,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 return;
             }
 
-            if (Hero.MainHero.Culture.StringId == "vlandia" &&
+            if (Hero.MainHero.Culture.StringId == TORConstants.BRETONNIA_CULTURE &&
                 PartyScreenManager.Instance.CurrentMode == PartyScreenMode.Loot)
             {
                 var prisonerRoster = leftPrisonRoster.ToFlattenedRoster().ToList();

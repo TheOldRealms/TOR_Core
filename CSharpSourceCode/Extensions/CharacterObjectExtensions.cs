@@ -128,8 +128,8 @@ namespace TOR_Core.Extensions
             }
             
             return characterObject.Culture.StringId == "empire" ||
-                   characterObject.Culture.StringId == "vlandia" ||
-                   characterObject.Culture.StringId == "khuzait" &&
+                   characterObject.Culture.StringId == TORConstants.BRETONNIA_CULTURE ||
+                   characterObject.Culture.StringId == TORConstants.SYLVANIA_CULTURE &&
                    !(characterObject.IsVampire() || characterObject.IsUndead())||
                    characterObject.Culture.StringId == "mousillon" &&
                    !(characterObject.IsVampire() || characterObject.IsUndead());

@@ -11,6 +11,7 @@ using TaleWorlds.Localization;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -29,7 +30,7 @@ namespace TOR_Core.Models
                 result.Add(TORPerks.SpellCraft.StoryTeller.SecondaryBonus, TORPerks.SpellCraft.StoryTeller.Name);
             }
 
-            if (mobileParty.LeaderHero == Hero.MainHero&& Hero.MainHero.Culture.StringId=="vlandia")
+            if (mobileParty.LeaderHero == Hero.MainHero&& Hero.MainHero.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
             {
                 var chivalryLevel = mobileParty.LeaderHero.GetChivalryLevel();
                 var value = 0f;

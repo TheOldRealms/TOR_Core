@@ -53,8 +53,8 @@ namespace TOR_Core.HarmonyPatches
             try
             {
                 list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>("empire"));
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>("khuzait"));
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>("vlandia"));
+                list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>(TORConstants.SYLVANIA_CULTURE));
+                list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>(TORConstants.BRETONNIA_CULTURE));
                 list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>("battania"));
             }
             catch (Exception e)

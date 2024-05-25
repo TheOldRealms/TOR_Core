@@ -12,6 +12,7 @@ using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -56,7 +57,7 @@ namespace TOR_Core.Models
                     break;
             }
 
-            if (character.Culture.StringId == "vlandia" && character.IsKnightUnit())
+            if (character.Culture.StringId == TORConstants.BRETONNIA_CULTURE && character.IsKnightUnit())
             {
                 value *= 2;
             }
@@ -83,7 +84,7 @@ namespace TOR_Core.Models
                         }
                     }
 
-                    if (Hero.MainHero.Culture.StringId == "vlandia" && elementCopyAtIndex.Character.IsKnightUnit())
+                    if (Hero.MainHero.Culture.StringId == TORConstants.BRETONNIA_CULTURE && elementCopyAtIndex.Character.IsKnightUnit())
                     {
                         var level = mobileParty.LeaderHero.GetChivalryLevel();
                         var factor = 0f;
