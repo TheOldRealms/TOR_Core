@@ -895,7 +895,7 @@
   <string id="tor_damagetype.Magical" text="{=tor_damagetype_magical_str}Magical"/>
   <string id="tor_damagetype.Fire" text="{=tor_damagetype_fire_str}Fire"/>
   <string id="tor_damagetype.Holy" text="{=tor_damagetype_holy_str}Holy"/>
-  <string id="tor_damagetype.Frost" text="{=tor_damagetype_holy_str}Holy"/>
+  <string id="tor_damagetype.Frost" text="{=tor_damagetype_frost_str}Frost"/>
   <string id="tor_damagetype.Lightning" text="{=tor_damagetype_lightning_str}Lightning"/>
   
   <string id="tor_attacktype.Melee" text="{=tor_damagetype_lightning_str}Melee"/>
