@@ -264,12 +264,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             if (IsPriestAcolyteCharacterCreationID(id))
             {
                 Hero.MainHero.AddAttribute("Priest");
-                var skill = Hero.MainHero.GetSkillValue(TORSkills.Faith);
-                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
-                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);
-                Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 60);
-                Hero.MainHero.AddCareer(TORCareers.WarriorPriest);
-                Hero.MainHero.AddAbility("HealingHand");
             }
             else if (IsNecromancerCharacterCreationID (id))
             {
@@ -331,6 +325,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             SetHeroAge(25);
             if (Hero.MainHero.IsSpellCaster()) PromptChooseLore();
             if (Hero.MainHero.IsVampire()) PromptChooseBloodline();
+            if (Hero.MainHero.Culture.StringId == "empire" && Hero.MainHero.IsPriest()) PromptChoosePriesthood();
+            
         }
 
         protected void SetHeroAge(float age)
@@ -360,7 +356,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             
             var inquirydata = new MultiSelectionInquiryData("Choose Lore", "Choose a lore to specialize in.", list, false, 1, 1, "Confirm", "Cancel", OnChooseLore, OnCancel);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
-
         }
 
         private void OnChooseLore(List<InquiryElement> obj)
@@ -386,10 +381,39 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             List<InquiryElement> list = new List<InquiryElement>();
             list.Add(new InquiryElement("generic_vampire", "Von Carstein Vampire", null));
             list.Add(new InquiryElement("blood_knight", "Blood Knight", null));
+            list.Add(new InquiryElement("necrarch", "Necrarch", null));
             var inquirydata = new MultiSelectionInquiryData("Choose Bloodline", "Choose your vampiric bloodline.", list, false, 1, 1, "Confirm", "Cancel", OnChooseBloodline, OnCancel);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
         }
+        
+        private void PromptChoosePriesthood()
+        {
+            List<InquiryElement> list = new List<InquiryElement>();
+            list.Add(new InquiryElement("WarriorPriest", "Sigmar", null));
+            list.Add(new InquiryElement("WarriorPriestUlric", "Ulric", null));
+            var inquirydata = new MultiSelectionInquiryData("Choose God", "You are a priest of the Empire. Choose the God you are devoted to.", list, false, 1, 1, "Confirm", "Cancel", OnChoosePriesthood, OnCancel);
+            MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
+        }
 
+        private void OnChoosePriesthood(List<InquiryElement> obj)
+        {
+            var choice = obj[0].Identifier as string;
+            if(choice == "WarriorPriest")
+            {
+                Hero.MainHero.AddCareer(TORCareers.WarriorPriest);
+                Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 60);
+            }
+
+            if (choice == "WarriorPriestUlric")
+            {
+                Hero.MainHero.AddCareer(TORCareers.WarriorPriestUlric);
+                Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_ulric"), 60);
+            }
+            
+            var skill = Hero.MainHero.GetSkillValue(TORSkills.Faith);
+            Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
+            Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);
+        }
         private void OnChooseBloodline(List<InquiryElement> obj)
         {
             var choice = obj[0].Identifier as string;
@@ -409,6 +433,19 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             if (choice == "blood_knight")
             {
                 Hero.MainHero.AddCareer(TORCareers.BloodKnight);
+            }
+
+            if (choice == "necrarch")
+            {
+                Hero.MainHero.AddAttribute("SpellCaster");
+                Hero.MainHero.AddAbility("NagashGaze");
+                Hero.MainHero.AddKnownLore("MinorMagic");
+                Hero.MainHero.AddKnownLore("Necromancy");
+                Hero.MainHero.AddCareer(TORCareers.Necrarch);
+                var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
+                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
+                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
             }
         }
     }

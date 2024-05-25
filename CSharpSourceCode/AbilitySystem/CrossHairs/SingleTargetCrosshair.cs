@@ -60,10 +60,12 @@ namespace TOR_Core.AbilitySystem.Crosshairs
                 }
 
                 LockTarget(newTarget);
+                Position = newTarget.Position;
             }
             else
             {
                 UnlockTarget();
+                Position = new Vec3();
             }
         }
 

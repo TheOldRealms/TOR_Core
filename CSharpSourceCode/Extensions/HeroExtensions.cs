@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
@@ -54,9 +55,10 @@ namespace TOR_Core.Extensions
             if (!hero.IsNecromancer()) return 0f;
             
             var chance = new ExplainedNumber();
-            var skillValue = Mathf.Min(200,hero.GetSkillValue(TORSkills.SpellCraft));
-            
-           chance.Add(skillValue * 0.005f);
+            var skillValue = hero.GetSkillValue(TORSkills.SpellCraft);
+
+            var chanceValue = Mathf.Clamp(skillValue * 0.005f, 0.05f, 0.7f);
+           chance.Add(chanceValue);
 
             if (hero.HasAnyCareer())
             {
@@ -117,11 +119,14 @@ namespace TOR_Core.Extensions
             var number = new ExplainedNumber(0,true);
             if (hero.GetCultureSpecificCustomResource() != null)
             {
-                var upkeep = (int) GetCalculatedCustomResourceUpkeep(hero);
-
-                if (upkeep < 0)
+                var upkeep =  GetCalculatedCustomResourceUpkeep(hero, hero.GetCultureSpecificCustomResource().StringId);
+                
+                if (upkeep.ResultNumber < 0)
                 {
-                    number.Add(upkeep,new TextObject("Upkeep"));
+                    foreach (var line in upkeep.GetLines())
+                    {
+                        number.Add((int)line.number, new TextObject(line.name));
+                    }
                 }
 
                 if (hero == Hero.MainHero)
@@ -146,29 +151,78 @@ namespace TOR_Core.Extensions
                         }
                     }
                 }
+
+                if (hero.HasCareer(TORCareers.Necrarch) && hero.HasCareerChoice("EverlingsSecretPassive3"))
+                {
+                    var choice = TORCareerChoices.GetChoice("EverlingsSecretPassive3");
+                    if (choice!=null)
+                    {
+                        if (hero.GetExtendedInfo().MaxWindsOfMagic <= hero.GetCustomResourceValue("WindsOfMagic"))
+                        {
+                            number.Add(hero.GetExtendedInfo().WindsOfMagicRechargeRate * CampaignTime.HoursInDay, choice.BelongsToGroup.Name);
+                        }
+                    }
+                    
+                }
             } 
             return number;
         }
 
-        public static float GetCalculatedCustomResourceUpkeep(this Hero hero)
+        public static ExplainedNumber GetCalculatedCustomResourceUpkeep(this Hero hero, string resourceID="")
         {
-            var upkeep = new ExplainedNumber(0,true,new TextObject("Upkeep"));
-            foreach (var element in hero.PartyBelongedTo.MemberRoster.ToFlattenedRoster())
+            if (resourceID == "")
             {
-                if (element.Troop.HasCustomResourceUpkeepRequirement())
+                resourceID = hero.GetCultureSpecificCustomResource().StringId;
+            }
+            var upkeep = new ExplainedNumber(0,true,new TextObject("Upkeep"));
+            foreach (var element in hero.PartyBelongedTo.MemberRoster.GetTroopRoster())
+            {
+                if (element.Character.HasCustomResourceUpkeepRequirement())
                 {
-                    var unitUpkeet = new ExplainedNumber(element.Troop.GetCustomResourceRequiredForUpkeep().Item2);
+                    var resource = element.Character.GetCustomResourceRequiredForUpkeep();
+                
+                    if(resource.Item1.StringId !=resourceID) continue;
+                    var unitUpkeet = new ExplainedNumber(resource.Item2*element.Number);
                     if (hero == Hero.MainHero)
                     {
-                        CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref unitUpkeet,PassiveEffectType.CustomResourceUpkeepModifier, true, element.Troop); 
+                        CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref unitUpkeet,PassiveEffectType.CustomResourceUpkeepModifier, true, element.Character); 
                     }
                     
-                    upkeep.Add(unitUpkeet.ResultNumber,new TextObject("Upkeep"));
+                    upkeep.Add(-unitUpkeet.ResultNumber,new TextObject("Upkeep"));
                     
                 }
             }
+
+            foreach (var settlement in hero.Clan.Settlements)
+            {
+                if (!settlement.IsCastle && !settlement.IsTown)
+                {
+                    continue;
+                }
+                if(settlement.Town.GarrisonParty==null) continue;
+                var garrison = settlement.Town.GarrisonParty.MemberRoster.GetTroopRoster();
+                foreach (var elem in garrison)
+                {
+                    if (elem.Character.HasCustomResourceUpgradeRequirement())
+                    {
+                        var resource = elem.Character.GetCustomResourceRequiredForUpkeep();
+                        
+                        if(resource==null) continue;
+                
+                        if(resource.Item1.StringId !=resourceID) continue;
+                        var garrisonFactor = 0.25f; //base reduction bonus 
+                        var garrisonUnitUpkeep = new ExplainedNumber(resource.Item2*elem.Number*garrisonFactor);
+                        if (hero == Hero.MainHero)
+                        {
+                            CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref garrisonUnitUpkeep,PassiveEffectType.CustomResourceUpkeepModifier, true, elem.Character); 
+                        }
+                    
+                        upkeep.Add(-garrisonUnitUpkeep.ResultNumber,new TextObject("Garrison Upkeep"));
+                    }
+                }
+            }
             
-            return -upkeep.ResultNumber;
+            return upkeep;
         }
 
         public static void AddCultureSpecificCustomResource(this Hero hero, float amount)
@@ -328,14 +382,21 @@ namespace TOR_Core.Extensions
             return hero.HasAttribute("Undead");
         }
 
+        public static bool IsChaos(this Hero hero)
+        {
+            if (hero.CharacterObject.IsCultist()) return true;
+            if (hero.CharacterObject.IsBeastman()) return true;
+            return false;
+        }
+
         public static bool IsVampire(this Hero hero)
         {
             return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("vampire");
         }
 
-        public static bool IsCultist(this Hero hero)
+        public static bool IsPriest(this Hero hero)
         {
-            return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("chaos_ud_cultist");
+            return hero.HasAttribute("Priest");
         }
         
         public static bool IsAICompanion(this Hero hero)
@@ -367,6 +428,13 @@ namespace TOR_Core.Extensions
         {
             if(hero!=null)
                 return hero.Occupation == Occupation.Special&& hero.Name.Contains("Master Engineer");
+            return false;
+        }
+        
+        public static bool IsPrestigeNoble(this Hero hero)
+        {
+            if (hero != null)
+                return hero.Occupation == Occupation.Special && hero.HasAttribute("PrestigeNoble");
             return false;
         }
 
@@ -480,6 +548,14 @@ namespace TOR_Core.Extensions
                     careerObj.InitialCareerSetup();
                 }
             }
+        }
+
+        public static bool HasUnlockedCareerChoiceTier(this Hero hero, int tier)
+        {
+            var tierText = "CareerTier";
+            if(hero.HasAnyCareer()&& hero.HasAttribute(tierText + tier))return true;
+            
+            return false;
         }
 
         public static bool HasAnyReligion(this Hero hero) => hero.GetDominantReligion() != null;

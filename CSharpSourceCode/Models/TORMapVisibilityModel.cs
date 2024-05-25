@@ -42,6 +42,12 @@ namespace TOR_Core.Models
                 var choice = TORCareerChoices.GetChoice("VividVisionsPassive4");
                 number.AddFactor(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
             }
+            
+            if (choices.Contains("WitchSightPassive1"))
+            {
+                var choice = TORCareerChoices.GetChoice("WitchSightPassive1");
+                number.AddFactor(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+            }
         }
     }
 }

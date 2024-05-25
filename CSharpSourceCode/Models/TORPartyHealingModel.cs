@@ -47,6 +47,13 @@ namespace TOR_Core.Models
                     if (choice != null)
                         return result + choice.GetPassiveValue();
                 }
+                
+                if(choices.Contains( "WellspringOfDharPassive2"))
+                {
+                    var choice = TORCareerChoices.GetChoice("WellspringOfDharPassive2");
+                    if (choice != null)
+                        return result + choice.GetPassiveValue();
+                }
             }
 
             
@@ -72,7 +79,7 @@ namespace TOR_Core.Models
         {
             var result = base.GetDailyHealingHpForHeroes(party, includeDescriptions);
             if (party == MobileParty.MainParty) AddCareerPassivesForHeroRegeneration(party, ref result);
-            if (party.HasBlessing("cult_of_sigmar")) result.AddFactor(0.2f, GameTexts.FindText("tor_religion_blessing_name", "cult_of_sigmar"));
+            if (party.HasBlessing("cult_of_shallya")) result.AddFactor(0.2f, GameTexts.FindText("tor_religion_blessing_name", "cult_of_shallya"));
             if (party.IsAffectedByCurse())
             {
                 result = new ExplainedNumber(0, true, new TextObject("{=!}Inside a cursed region"));

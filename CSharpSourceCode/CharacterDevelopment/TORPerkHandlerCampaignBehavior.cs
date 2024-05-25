@@ -7,6 +7,8 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics.Choices;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CharacterDevelopment
@@ -56,47 +58,33 @@ namespace TOR_Core.CharacterDevelopment
                                 hero.SetSpellCastingLevel(SpellCastingLevel.Master);
                         }
                     }
-                    if (hero.HasAttribute("Priest"))
+                    
+                    if (Hero.MainHero.HasAnyCareer())
                     {
+                       
+                        var prayers = CareerHelper.GetBattlePrayerList(Hero.MainHero.GetCareer());
+
+                        var rank = 0;
+
                         if (perk == TORPerks.Faith.NovicePrayers)
                         {
-                            if (hero.HasCareer(TORCareers.WarriorPriest))
-                            {
-                                if (!hero.HasAbility("HealingHand")) hero.AddAbility("HealingHand");
-                            }
-
-                            if (hero.HasCareer(TORCareers.GrailDamsel))
-                            {
-                                if (!hero.HasAbility("AuraOfTheLady")) hero.AddAbility("AuraOfTheLady");
-                            }
-                            
+                            rank = 2;
                         }
-                        if (perk == TORPerks.Faith.AdeptPrayers)
+                        
+                        else if (perk == TORPerks.Faith.AdeptPrayers)
                         {
-                            if (hero.HasCareer(TORCareers.WarriorPriest))
-                            {
-                                if (!hero.HasAbility("ArmourOfRighteousness")) hero.AddAbility("ArmourOfRighteousness");
-                                if (!hero.HasAbility("Vanquish")) hero.AddAbility("Vanquish");
-                            }
-                            
-                            if (hero.HasCareer(TORCareers.GrailDamsel))
-                            {
-                                if (!hero.HasAbility("ShieldOfCombat")) hero.AddAbility("ShieldOfCombat");
-                                if (!hero.HasAbility("LadysFavour")) hero.AddAbility("LadysFavour");
-                   
-                            }
-                            
+                            rank = 3;
                         }
-                        if (perk == TORPerks.Faith.GrandPrayers)
+                        
+                        else if (perk == TORPerks.Faith.GrandPrayers)
                         {
-                            if (hero.HasCareer(TORCareers.WarriorPriest))
-                            {
-                                if (!hero.HasAbility("CometOfSigmar")) hero.AddAbility("CometOfSigmar");
-                            }
-                            if (hero.HasCareer(TORCareers.GrailDamsel))
-                            {
-                                if (!hero.HasAbility("AerialShield")) hero.AddAbility("AerialShield");
-                            }
+                            rank = 4;
+                        }
+                        
+                        var prayersForRank = prayers.Where(X => X.Rank == rank);
+                        foreach (var prayer in prayersForRank)
+                        {
+                            hero.AddAbility(prayer.PrayerID);
                         }
                     }
                 }

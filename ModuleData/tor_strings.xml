@@ -11,7 +11,7 @@
   <string id="str_quest_tor_engineer.startRogueEngineerHunt" text= "{= !}Have you changed your mind and want to help hunt down {ROGUE_ENGINEER_NAME}?"/>
 
   <string id="str_quest_tor_engineer.hubGreet" text= "{=!}You again, what do you want?"/>
-  <string id="str_quest_tor_engineer.hubPlayerCannons" text="I would like to buy some cannons."/>
+  <string id="str_quest_tor_engineer.hubPlayerCannons" text="I would like to buy some equipment."/>
   <string id="str_quest_tor_engineer.hubPlayerEngineers" text="I would like to recruit some engineers."/>
   <string id="str_quest_tor_engineer.hubPlayerCannonsInstruction" text="How can I use cannons?"/>
   <string id="str_quest_tor_engineer.hubPlayerCannonsLimitInstruction" text="How can I buy more cannons?"/>
@@ -705,6 +705,26 @@
   
   <string id="tor_religion_description.cult_of_sigmar" text="{=tor_religion_description_cult_of_sigmar_str}The Cult of Sigmar, also sometimes called the Church of Sigmar, the Holy Temple of Sigmar, the Clergy of Sigmar or simply the Sigmarite Cult, is the state church of the Empire that administrates the worship of that realm's patron god, Sigmar Heldenhammer. The Cult of Sigmar was founded by the wild-eyed friar Johann Helstrum in the year 73 IC, when he appeared before the masses to relate a vision that he experienced of Sigmar kneeling before Ulric, the god of war and winter, who placed the crown of godhood upon his brow as Sigmar took his place amongst the deities of the Old World Pantheon. As of today, the Cult of Sigmar has become an essential part of Imperial society. Nearly every city, town or village within the Empire has dedicated a portion of their wealth and land to the creation and maintenance of a Sigmarite temple, from which a priest of the Cult of Sigmar will attend to the spiritual well-being of its citizenry, whether it be through holy words of prayer or through heroic actions and trials by combat." />
   <string id="tor_religion_description.cult_of_taal" text="{=tor_religion_description_cult_of_taal_str}The Cult of Taal and Rhya is among the most ancient and pervasive in the Old World, tracing a direct line to the primal gods from the deepest of history. The cult grew organically, as early Humans tried to explain natural phenomenon, such as thunder, the turning of the seasons, and the rise and ebb of the seas. Over time, the Gods Taal and Rhya came into being, beginning as a single entity, known as Ishnernos. This split occurred many thousands of years ago, and the Cult of Ishnernos faded into distant memory. Taal rules nature and is considered King of the Gods. He claims the wild places as his domain and is primarily worshipped by hardy woodsmen, trackers, and rangers. Rhya's worshippers are found in the cultivated fields and orchards of the Empire, and are found among farmers, fishermen, and young lovers everywhere. The Cult of Taal and Rhya is the sanctioned cult of Talabecland, and is wildly popular in the eastern and northern parts of the Empire. Of the two, Taal receives most recognition, and Rhya's role is much diminished. The grand city of Talabheim is particularly fervent in its worship of both Taal and Rhya. However, in other cities, although Rhya's name is commonly known, he worship is rare, leading many urbanites to conclude that her cult is on the decline." />
+  <string id=
+  "tor_religion_description.cult_of_ulric" text="{=tor_religion_description_cult_of_lady_str}The Ulrican cult, Church of Ulric or simply the Cult of Ulric is the state approved religious organisation that administrates the worship of the god of war, winter, and wolves. It is second in power and influence to the Cult of Sigmar, but is amongst the most ancient religions of the Empire of Man and dates back before the Empire was created by Sigmar. As a god of war, it is through battle and bloodshed that Ulric is worshipped, any who dare oppose him are merely awaiting the ferocious bite of his priests. {newline}
+    {newline}
+  &quot;Ulric give me the fangs of the wolf,   {newline}
+  Ulric give me the claws of the wolf,   {newline}
+  Ulric give me the coat of the wolf,   {newline}
+  And I will show your enemies the mercy of the wolf.&quot;"/>
+
+  <string id="tor_religion_description.cult_of_shallya" text="{=tor_religion_description_cult_of_shallya_str}The Cult of Shallya is dedicated to the White Dove of Mercy, the Lady in White, Shallya. Compassion, mercy and healing are the doctrines of the cult, and her priests offer aid to those in need across the Empire. The Old World is a gruelling place filled with disease, injury and bad fortune that can drive a person to utter despair, it is these folk who turn to Shallya whose priests bring the promise of mercy and comfort. Her temples double as hospitals for those who cannot afford a physician, run by her devout priestesses for few men serve her order." />
+  <string id="tor_religion_description.cult_of_manaan" text=
+  "{=tor_religion_description_cult_of_manaan_str}The religious organisation that oversees and administrates the worship of the god of the sea, oceans, and tides across the Old World. It is most prevalent along the western border of the Empire where the waters of the Sea of Claws touch the shores of man, and most influential within Marienburg. Its members are often navigators, pilots and able-bodied sailors and it is seen as immense luck to have a priest of Manaan aboard your vessel.   {newline}
+  {newline}
+  Manann be praised, for he is the breeze to take us out, {newline}
+  Manann be praised, for he is the wave to bring us home, {newline}
+  Manann be praised, for he is the food to feed us,{newline}
+  Manann be praised, or his be the wrath that drowns us.{newline}
+  " />
+
+
+
   <string id="tor_religion_description.cult_of_lady" text="{=tor_religion_description_cult_of_lady_str}The Cult of the Lady of the Lake, or simply the Cult of the Lady, is a state-official religious cult that serves to follow and uphold the values set upon them by the Lady of the Lake, and to serve the interest of her and the Kingdom of Bretonnia. Since ancient times, the Bretonnians have worshipped the Lady of the Lake as their goddess and their primary deity, a figure of myth and legend who guides their Kings and protects their lands from harm. Worship of the Lady can be traced to the earliest days of the Kingdom. It is said that she arose from a Sacred Lake before Gilles le Breton and his Knightly Companions on the dawn of the Great Victory of Bordeleaux. Wreathed in a fey light, the Lady rose from the water bearing a Grail which overflowed with light that spilled into the waters of the lake, blessing the assembled knights until dawn's light broke over the mountains." />
   <string id="tor_religion_description.cult_of_myrmidia" text="{=tor_religion_description_cult_of_myrmidia_str}" />
   <string id="tor_religion_description.cult_of_nagash" text="{=tor_religion_description_cult_of_nagash_str}Vampires of all kinds loathe the gods. They don't deny their existence, but they don't serve them, seeking to be their equal instead. The closest idea of a religion to vampires would be their shared recognition of Nagash as the creator of undeath. Ultimately, all vampires descend from him. Nagash, known by many names such as the 'Great Necromancer', the 'Great Betrayer', the 'Usurper', the 'Undying King', the 'Supreme Lord of Undeath' or simply 'He Who Shall Not Be Named' is the ultimate personification of death and the Undead, an ancient, evil being who sought to conquer this cruel, chaotic mortal world and bring about an age of Undeath that will rule for all eternity. Nagash is darkness and unreasoning hatred given form, the father and creator of the foul art of necromancy and lord of all Vampires. His every action and deed is self-serving, his achievement horrific and loathsome, and his every whim bent solely to ensure that no one shall ever deny nor challenge his right to rule ever again." />
@@ -717,25 +737,35 @@
   <string id="tor_religion_name_of_god.cult_of_sigmar" text="{=tor_religion_name_of_god_cult_of_sigmar_str}Sigmar" />
   <string id="tor_religion_name_of_god.cult_of_taal" text="{=tor_religion_name_of_god_cult_of_taal_str}Taal" />
   <string id="tor_religion_name_of_god.cult_of_lady" text="{=tor_religion_name_of_god_cult_of_lady_str}the Lady" />
+  <string id="tor_religion_name_of_god.cult_of_shallya" text="{=tor_religion_name_of_god_cult_of_shallya_str}Shallya" />
   <string id="tor_religion_name_of_god.cult_of_myrmidia" text="{=tor_religion_name_of_god_cult_of_myrmidia_str}Myrmidia" />
   <string id="tor_religion_name_of_god.cult_of_nagash" text="{=tor_religion_name_of_god_cult_of_nagash_str}Nagash" />
+  
   <string id="tor_religion_name_of_god.chaos_undivided" text="{=tor_religion_name_of_god_chaos_undivided_str}Ruinous Powers" />
   <string id="tor_religion_name_of_god.cult_of_slaanesh" text="{=tor_religion_name_of_god_cult_of_slaanesh_str}Slaanesh" />
   <string id="tor_religion_name_of_god.cult_of_nurgle" text="{=tor_religion_name_of_god_cult_of_nurgle_str}Nurgle" />
   <string id="tor_religion_name_of_god.cult_of_khorne" text="{=tor_religion_name_of_god_cult_of_khorne_str}Khorne" />
   <string id="tor_religion_name_of_god.cult_of_tzeentch" text="{=tor_religion_name_of_god_cult_of_tzeentch_str}Tzeentch" />
 
-  <string id="tor_religion_blessing_effect_description.cult_of_sigmar" text="{=tor_religion_blessing_effect_description_cult_of_sigmar}Your party members heal their wounds 20% faster." />
+  <string id="tor_religion_blessing_effect_description.cult_of_sigmar" text="{=tor_religion_blessing_effect_description_cult_of_sigmar}Earn 20% more prestige." />
+  <string id="tor_religion_blessing_effect_description.cult_of_shallya" text="{=tor_religion_blessing_effect_description_cult_of_shallya}Your party members heal their wounds 20% faster." />
   <string id="tor_religion_blessing_effect_description.cult_of_taal" text="{=tor_religion_blessing_effect_description_cult_of_taal}Increase your party's movement speed in forests by 20%." />
-  <string id="tor_religion_blessing_effect_description.cult_of_lady" text="{=tor_religion_blessing_effect_description_cult_of_lady}Increase your party's morale by 20." />
-  <string id="tor_religion_blessing_effect_description.cult_of_myrmidia" text="{=tor_religion_blessing_effect_description_cult_of_myrmidia}Earn 20% more xp from battles." />
+  <string id="tor_religion_blessing_effect_description.cult_of_lady" text="{=tor_religion_blessing_effect_description_cult_of_lady}As Bretone, earn every day 15 Chivalry" />
+  <string id="tor_religion_blessing_effect_description.cult_of_ulric" text="{=tor_religion_blessing_name_cult_of_ulric_str}Earn 20% more xp from battles." />
+  <string id="tor_religion_blessing_effect_description.cult_of_myrmidia" text="{=tor_religion_blessing_effect_description_cult_of_sigmar}No effect" />
+  <string id="tor_religion_blessing_effect_description.cult_of_manaan" text="{=tor_religion_blessing_effect_description_cult_of_sigmar}Extra 10% Lightning damage" />
+  
   <string id="tor_religion_blessing_name.cult_of_sigmar" text="{=tor_religion_blessing_name_cult_of_sigmar_str}Blessing of Sigmar" />
+  <string id="tor_religion_blessing_name.cult_of_shallya" text="{=tor_religion_blessing_name_cult_of_taal_str}Blessing of Shallya" />
   <string id="tor_religion_blessing_name.cult_of_taal" text="{=tor_religion_blessing_name_cult_of_taal_str}Blessing of Taal" />
   <string id="tor_religion_blessing_name.cult_of_lady" text="{=tor_religion_blessing_name_cult_of_lady_str}Blessing of the Lady" />
   <string id="tor_religion_blessing_name.cult_of_myrmidia" text="{=tor_religion_blessing_name_cult_of_myrmidia_str}Blessing of Myrmidia" />
+  <string id="tor_religion_blessing_name.cult_of_ulric" text="{=tor_religion_blessing_name_cult_of_ulric_str}Blessing of Ulric." />
+  <string id="tor_religion_blessing_name.cult_of_manaan" text="{=tor_religion_blessing_name_cult_of_ulric_str}Blessing of Manaan." />
 
   <!-- Career related -->
   <string id="career_title.WarriorPriest" text="{=tor_career_title_warrior_priest_str}Warrior Priest of Sigmar" />
+  <string id="career_title.WarriorPriestUlric" text="{=tor_career_title_warrior_priest_str}Warrior Priest of Ulric" />
   <string id="career_title.WitchHunter" text="{=tor_career_title_warrior_priest_str}Witch Hunter" />
   <string id="career_title.MinorVampire" text="{=tor_career_title_minor_vampire_str}Vampire Nobility" />
   <string id="career_title.GrailKnight" text="{=tor_career_title_grail_knight_str}Knight of Bretonnia" />
@@ -744,10 +774,15 @@
   <string id="career_title.Mercenary" text="{=tor_career_title_mercenary_str}Mercenary" />
   <string id="career_title.Necromancer" text="{=tor_career_title_necromancer_str}Necromancer" />
   <string id="career_title.BlackGrailKnight" text="{=tor_career_title_black_grail_knight_str}Knight of Mousillon" />
+  <string id="career_title.Necrarch" text="{=tor_career_title_necrarch_str}Necrarch" />
   
-  <string id="career_choicegroup1_name.WitchHunter" text="{=career_choicegroup1_warrior_priest_str}Witch Hunter Initiate" />
-  <string id="career_choicegroup2_name.WitchHunter" text="{=career_choicegroup2_warrior_priest_str}Witch Hunter Captain" />
-  <string id="career_choicegroup3_name.WitchHunter" text="{=career_choicegroup3_warrior_priest_str}Master Witch Hunter" />
+  <string id="career_choicegroup1_name.WitchHunter" text="{=career_choicegroup1_witch_hunter_str}Witch Hunter Initiate" />
+  <string id="career_choicegroup2_name.WitchHunter" text="{=career_choicegroup2_witch_hunter_str}Witch Hunter Captain" />
+  <string id="career_choicegroup3_name.WitchHunter" text="{=career_choicegroup3_witch_hunter_str}Master Witch Hunter" />
+  
+  <string id="career_choicegroup1_name.WarriorPriestUlric" text="{=career_choicegroup1_warrior_priest_ulric_str}Acolyte" />
+  <string id="career_choicegroup2_name.WarriorPriestUlric" text="{=career_choicegroup2_warrior_priest_ulricstr}Wolf Priest" />
+  <string id="career_choicegroup3_name.WarriorPriestUlric" text="{=career_choicegroup3_nwarrior_priest_ulric_str}High Priest of Ulric" />
   
   <string id="career_choicegroup1_name.WarriorPriest" text="{=career_choicegroup1_warrior_priest_str}Cultist of Sigmar" />
   <string id="career_choicegroup2_name.WarriorPriest" text="{=career_choicegroup2_warrior_priest_str}Warrior Priest" />
@@ -781,7 +816,37 @@
   <string id="career_choicegroup2_name.BlackGrailKnight" text="{=career_choicegroup2_black_grail_knight_str}Ill-fated Questing Knight" />
   <string id="career_choicegroup3_name.BlackGrailKnight" text="{=career_choicegroup3_black_grail_knight_str}Knight of the Black Grail" />
   
-  <!--TOR Damage type related !-->
+  <string id="career_choicegroup1_name.Necrarch" text="{=career_choicegroup1_necrarch_str}Apprentise" />
+  <string id="career_choicegroup2_name.Necrarch" text="{=career_choicegroup2_necrarch_str}Seeker" />
+  <string id="career_choicegroup3_name.Necrarch" text="{=career_choicegroup3_necrarch_str}Ascended" />
+  
+  <!--Career related related !-->
+  <string id="career_description.WarriorPriest" text="{=career_description_warriorpriest_str}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />
+  <string id="career_description.WarriorPriestUlric" text="{=career_description_warriorpriest_ulric_str}To be a Wolf Priest is to be one of Ulrics champions, powerful, zealous, and blessed by the feral god himself. The battleground is where the word of Ulric is spread, and it is through bloodshed that he is honoured in worship." />
+  
+  <string id="career_description.BloodKnight" text="{=career_description_bloodknight_str}Sired by Abhorash, the Blood Knight is a dark mockery of everything noble or virtuous that can be said about their mortal counterparts. Where before the Blood Kiss there was honour is now cruelty; faith turns to irreverence and duty falls to wanton ambition. This is true of all vampires but seems particularly tragic for the fallen knights of the Old World." />
+  <string id="career_description.MinorVampire" text="{=career_description_minorvampire_str}Known and feared by many names, Vampires are the night's dark master. Nighly anyone be they Man or Beast, Holy or Daemonic can face one and survive. All Vampires strive to be the only masters of their unlife, free from any obligations to religions or masters. This egomaniacal drive is what fuels them to greater and greater ambitions, so that one day they may be lord of all they observe." />
+  <string id="career_description.Mercenary" text="{=career_description_mercenary_str}To be a Man in the 25th century is to be one of thousands. The Old World finds itself on the precipice of destruction and turmoil, of chaos and death. No one in this age can be weak; some use the times to their advantage and turn warfare into wealth, combat into glory and tragedy into destiny. Mercenary they may call you, whatever the name no one will control your fate." />
+  <string id="career_description.GrailKnight" text="{=career_description_grailknight_str}To be a knight of Bretonnia is to strive for the blessing of the Lady and her holy grail. Any man deemed worthy to sup from her chalice becomes a holy warrior honored and respected across all of Bretonnia and yet farther. The road to that goal is difficult, so much so that most knights fail to accomplish despite all sharing the same dream." />
+  <string id="career_description.GrailDamsel" text="{=career_description_graildamsel_str}Damsels are sought out as children by the Fey Enchantress for their latent magical potential. Taken away from their families they are raised in secret to be potent guardians of fair Bretonnia. Upon completion of their training they embark out into the land, coming to the aid of the people and influencing knights in order to fulfill their martial potential." />
+  
+  <string id="career_description.Necromancer" text="{=career_description_necromancer_str}While many of these dark magisters serve under immortal vampires, it is actually the study of death and undeath that predates the vampire. Necromancers dedicate their lives researching the ultimate question facing every mortal; how to live forever? To the philosophically virtuous necromancer, vampirism is but one of the more successful failures at answering this question. The true answer is believed by these fell scholars to lay in study and innovation of the work of Nagash, the first and greatest necromancer of all time." />
+  <string id="career_description.WitchHunter" text="{=career_description_witchHunter_str}Whether in the name of faith, purity or reward, Witch Hunters are charged with ending the threat created by all those who spread the taint of darkness. They justify their weapons, unconventional instruments and methods of investigations in the name of protecting innocent souls. A mostly thankless task, as even those who they are sworn to protect fear the shadow of a Witch Hunter at their threshold." />
+  <string id="career_description.BlackGrailKnight" text="{=career_description_black_grail_knight_str}Foreboding and Dreadful, Knights of the Black Grail are the personal retinue of the mysterious Serpent of Mousillon. As strong as they are cunning, Knights of the Black Grail have a knack for strategy and show great aptitude when faced with the many politics of Bretonnia. Even so, their honeyed words and forked tongue often reach into the hearts of many, drawing more to their cause of &quot;freeing&quot; Bretonnia from the filthy lie of the Lady." />
+  
+  <string id="career_description.Necrarch" text="{=career_description_necrarch_str}Of all the creations of Nagash, the Necrachs perhaps come the closest to truly emulating the Great Necromancer. Necrachs one and all are dedicated to the furtherance of necromantic studies; hiding away far from mortal civilization and other vampire bloodlines to practice their foul magicks in secret. When they deign to leave their towers, they will almost always bring carnage and ruin wherever they travel, letting nothing stop them from accomplishing their esoteric machinations." />
+
+
+
+  <!--TOR Information and data !-->
+  
+  <string id="tor_extendedInfo.Undead" text="{=tor_extendedInfo_undead_str}Undead- Is not affected by morale and instead of fleeing this unit crumble. If defeated, unit cannot be wounded."/>
+  <string id="tor_extendedInfo.ArtilleryCrew" text="{=tor_extendedInfo_artillerycrew_str}Artillery Crew -  Can and is required to operate a cannon"/>
+  <string id="tor_extendedInfo.Unbreakable" text="{=tor_extendedInfo_unbreakable_str}Unbreakable -  Unit will not flee due to low morale"/>
+  <string id="tor_extendedInfo.Unstoppable" text="{=tor_extendedInfo_unstoppable_str}Unstoppable -  Unit will not show any signs of pain when being hit"/>
+  
+  
+  
   <string id="tor_damagetype.Invalid" text="{=tor_damagetype_invalid_str}Invalid"/>
   <string id="tor_damagetype.Physical" text="{=tor_damagetype_physical_str}Physical"/>
   <string id="tor_damagetype.Magical" text="{=tor_damagetype_magical_str}Magical"/>
@@ -794,17 +859,9 @@
   <string id="tor_attacktype.Spell" text="{=tor_damagetype_lightning_str}Spell"/>
   <string id="tor_attacktype.All" text="{=tor_damagetype_lightning_str}All"/>
   
-  <!--Career related related !-->
-  <string id="career_description.WarriorPriest" text="{=career_description_warriorpriest_str}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />
-  <string id="career_description.BloodKnight" text="{=career_description_bloodknight_str}Sired by Abhorash, the Blood Knight is a dark mockery of everything noble or virtuous that can be said about their mortal counterparts. Where before the Blood Kiss there was honour is now cruelty; faith turns to irreverence and duty falls to wanton ambition. This is true of all vampires but seems particularly tragic for the fallen knights of the Old World." />
-  <string id="career_description.MinorVampire" text="{=career_description_minorvampire_str}Known and feared by many names, Vampires are the night's dark master. Nighly anyone be they Man or Beast, Holy or Daemonic can face one and survive. All Vampires strive to be the only masters of their unlife, free from any obligations to religions or masters. This egomaniacal drive is what fuels them to greater and greater ambitions, so that one day they may be lord of all they observe." />
-  <string id="career_description.Mercenary" text="{=career_description_mercenary_str}To be a Man in the 25th century is to be one of thousands. The Old World finds itself on the precipice of destruction and turmoil, of chaos and death. No one in this age can be weak; some use the times to their advantage and turn warfare into wealth, combat into glory and tragedy into destiny. Mercenary they may call you, whatever the name no one will control your fate." />
-  <string id="career_description.GrailKnight" text="{=career_description_grailknight_str}To be a knight of Bretonnia is to strive for the blessing of the Lady and her holy grail. Any man deemed worthy to sup from her chalice becomes a holy warrior honored and respected across all of Bretonnia and yet farther. The road to that goal is difficult, so much so that most knights fail to accomplish despite all sharing the same dream." />
-  <string id="career_description.GrailDamsel" text="{=career_description_graildamsel_str}Damsels are sought out as children by the Fey Enchantress for their latent magical potential. Taken away from their families they are raised in secret to be potent guardians of fair Bretonnia. Upon completion of their training they embark out into the land, coming to the aid of the people and influencing knights in order to fulfill their martial potential." />
+
+
   
-  <string id="career_description.Necromancer" text="{=career_description_necromancer_str}While many of these dark magisters serve under immortal vampires, it is actually the study of death and undeath that predates the vampire. Necromancers dedicate their lives researching the ultimate question facing every mortal; how to live forever? To the philosophically virtuous necromancer, vampirism is but one of the more successful failures at answering this question. The true answer is believed by these fell scholars to lay in study and innovation of the work of Nagash, the first and greatest necromancer of all time." />
-  <string id="career_description.WitchHunter" text="{=career_description_witchHunter_str}Whether in the name of faith, purity or reward, Witch Hunters are charged with ending the threat created by all those who spread the taint of darkness. They justify their weapons, unconventional instruments and methods of investigations in the name of protecting innocent souls. A mostly thankless task, as even those who they are sworn to protect fear the shadow of a Witch Hunter at their threshold." />
-  <string id="career_description.BlackGrailKnight" text="{=career_description_black_grail_knight_str}Foreboding and Dreadful, Knights of the Black Grail are the personal retinue of the mysterious Serpent of Mousillon. As strong as they are cunning, Knights of the Black Grail have a knack for strategy and show great aptitude when faced with the many politics of Bretonnia. Even so, their honeyed words and forked tongue often reach into the hearts of many, drawing more to their cause of &quot;freeing&quot; Bretonnia from the filthy lie of the Lady." />
    <!-- Begin FaceGen Entries -->
   <string id="str_facegen_skin.TorsoBelly" text="{=!}Belly Girth" />
   <string id="str_facegen_skin.TorsoHips" text="{=!}Hip Size" />
@@ -831,11 +888,6 @@
   <string id="str_facegen_skin.Weight2" text="{=!}Body Weight" />
   <string id="str_facegen_skin.Build2" text="{=!}Body Muscle" />
   <!-- End FaceGen Entries -->
-
-  <string id="careerchoice_description.ProtectorOfTheWeakPassive1" text="{=protector_of_the_weak_passive1_str}Increases Hitpoints by {EFFECT_VALUE}" />
-  <string id="careerchoice_description.ProtectorOfTheWeakPassive2" text="{=protector_of_the_weak_passive2_str}Increases Hitpoints by {EFFECT_VALUE}" />
-  <string id="careerchoice_description.ProtectorOfTheWeakPassive3" text="{=protector_of_the_weak_passive3_str}Increases Hitpoints by {EFFECT_VALUE}" />
-  <string id="careerchoice_description.ProtectorOfTheWeakPassive4" text="{=protector_of_the_weak_passive4_str}Increases Hitpoints by {EFFECT_VALUE}" />
   
 
   <string id="careerchoice_description.WarriorPriestRoot" text="{=careerchoice_description_warriorpriest_root_str}The Warrior Priest unleashes Sigmar's wrath for 8 seconds, which empowers him and the surrounding allies with 20% stronger melee attacks.  Every point in Faith increases the melee effect by 0.05% and the duration by 0.05 seconds. The ability recharges by taking 50% of damage of total health. Blocked damage counts as 10% of the damage taken." />
@@ -866,48 +918,6 @@
   <string id="tor_careerchoice_basic.Ammo" text="{=str_tor_career_choice_basic_damage}{EFFECT_VALUE} extra ammunition" /> <!--TOR_CHOICE_AMMO !-->
   
     <!--Warrior Priest !-->
-	
-  <string id="careerchoice_description.BookOfSigmarPassive1" text="{TOR_CHOICE_HEALTH}" />
-  <string id="careerchoice_description.BookOfSigmarPassive2" text="{=str_tor_book_of_sigmar_passive2}Increases morale for all troops by {EFFECT_VALUE}" />
-  <string id="careerchoice_description.BookOfSigmarPassive3" text="{=str_tor_book_of_sigmar_passive3}After battle, all wounded companions are healed for {EFFECT_VALUE} Hitpoints" />
-  <string id="careerchoice_description.BookOfSigmarPassive4" text="{TOR_CHOICE_TROOPREGENERATION}" />
-  <string id="careerchoice_description.BookOfSigmarKeyStone" text="{=str_tor_book_of_sigmar_keystone}Ability can also be charged by applying damage." />
-
-  <string id="careerchoice_description.SigmarsProclaimerPassive1" text="{TOR_CHOICE_DAMAGE}" />
-  <string id="careerchoice_description.SigmarsProclaimerPassive2" text="{=str_tor_sigmars_proclaimer_passive2}All Sigmarite troops wages are reduced by {EFFECT_VALUE}%" />
-  <string id="careerchoice_description.SigmarsProclaimerPassive3" text="{=str_tor_sigmars_proclaimer_passive3}All Sigmarite troops consume {EFFECT_VALUE}% less food" />
-  <string id="careerchoice_description.SigmarsProclaimerPassive4" text="{=str_tor_sigmars_proclaimer_passive4}When praying at a shrine of Sigmar, all characters restore {EFFECT_VALUE} Hitpoints" />
-  <string id="careerchoice_description.SigmarsProclaimerKeyStone" text="{=str_tor_sigmars_proclaimer_keystone}Doubles the aura size of Righteous Fury" />
-  
-  <string id="careerchoice_description.RelentlessFanaticPassive1" text="{TOR_CHOICE_HEALTH}" />
-  <string id="careerchoice_description.RelentlessFanaticPassive2" text="{TOR_CHOICE_DAMAGE}" />
-  <string id="careerchoice_description.RelentlessFanaticPassive3" text="{=str_tor_relentless_fanatic_passive3}All Sigmarite troops get {EFFECT_VALUE}% resistance to physical ranged attacks" />
-  <string id="careerchoice_description.RelentlessFanaticPassive4" text="{TOR_CHOICE_PARTYMOVEMENTSPEED}" />
-  <string id="careerchoice_description.RelentlessFanaticKeyStone" text="{=str_tor_relentless_fanatic_keystone}Righteous Fury scales with Leadership. Troops affected get Unbreakable for the duration" />
-  
-  <string id="careerchoice_description.ProtectorOfTheWeakPassive1" text="{TOR_CHOICE_HEALTH}" />
-  <string id="careerchoice_description.ProtectorOfTheWeakPassive2" text="{TOR_CHOICE_RESISTANCE}" />
-  <string id="careerchoice_description.ProtectorOfTheWeakPassive3" text="{TOR_CHOICE_RESISTANCE}" />
-  <string id="careerchoice_description.ProtectorOfTheWeakPassive4" text="{=str_tor_protector_of_the_weak_passive4}Hits below 15 damage do not stagger the player" />
-  <string id="careerchoice_description.ProtectorOfTheWeakKeystone" text="{=str_tor_protector_of_the_weak_keystone}Righteous Fury scales with the highest melee weapon skill. Adds 20% physical resistance." />
-  
-  <string id="careerchoice_description.HolyPurgePassive1" text="{TOR_CHOICE_DAMAGE}" />
-  <string id="careerchoice_description.HolyPurgePassive2" text="{=str_tor_holy_purge_passive2}All Sigmarite troops gain {EFFECT_VALUE}% Ward save" />
-  <string id="careerchoice_description.HolyPurgePassive3" text="{=str_tor_holy_purge_passive3}All troops deal {EFFECT_VALUE}% more melee damage to non-human enemies" />
-  <string id="careerchoice_description.HolyPurgePassive4" text="{=str_tor_holy_purge_passive4}All Sigmarite troops gain {EFFECT_VALUE}% extra holy damage" />
-  <string id="careerchoice_description.HolyPurgeKeystone" text="{=str_tor_holy_purge_keystone}All units affected by Righteous Fury receive a Burning Weapon buff " />
-  
-  <string id="careerchoice_description.ArchLectorPassive1" text="{=str_tor_arch_lector_passive1}Prayers are recharged on battle start" />
-  <string id="careerchoice_description.ArchLectorPassive2" text="{=str_tor_arch_lector_passive2}All neutral Empire troops now count as Sigmarite troops" />
-  <string id="careerchoice_description.ArchLectorPassive3" text="{=str_tor_arch_lector_passive3}Gain {EFFECT_VALUE}% Ward save" />
-  <string id="careerchoice_description.ArchLectorPassive4" text="{=str_tor_arch_lector_passive4}Prayers aren't affected by global cooldowns" />
-  <string id="careerchoice_description.ArchLectorKeyStone" text="{=str_tor_arch_lector_keystone}Adds a healing buff to Righeous Fury that restores 3 Hitpoints per second" />
-
-  <string id="careerchoice_description.TwinTailedCometPassive1" text="{TOR_CHOICE_DAMAGE}" />
-  <string id="careerchoice_description.TwinTailedCometPassive2" text="{TOR_CHOICE_COMPANIONLIMIT}" />
-  <string id="careerchoice_description.TwinTailedCometPassive3" text="{TOR_CHOICE_ARMORPENETRATION}" />
-  <string id="careerchoice_description.TwinTailedCometPassive4" text="{TOR_CHOICE_HEALTH}" />
-  <string id="careerchoice_description.TwinTailedCometKeystone" text="{=str_tor_twin_tailed_comet_keystone}Righteous Fury adds a damaging aura. Its radius increases when raising relevant skills." />
 
 
   <!--Grail Knight !-->

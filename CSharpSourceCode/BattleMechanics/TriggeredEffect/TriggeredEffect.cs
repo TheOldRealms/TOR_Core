@@ -30,6 +30,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             _isTemplateMutated = isTemplateMutated;
         }
 
+        public float EffectRadius => _template.Radius;
         public string SummonedTroopId => _template.TroopIdToSummon;
         public float ImbuedStatusEffectDuration => _template.ImbuedStatusEffectDuration;
         public List<string> StatusEffects => _template.ImbuedStatusEffects;
@@ -54,6 +55,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
 
             float damageMultiplier = 1f;
             float statusEffectDuration = _template.ImbuedStatusEffectDuration;
+            float radius = _template.Radius;
             if(Game.Current.GameType is Campaign && originAbilityTemplate != null)
             {
                 var model = Campaign.Current.Models.GetAbilityModel();
@@ -61,6 +63,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 {
                     damageMultiplier = model.GetSkillEffectivenessForAbilityDamage(character, originAbilityTemplate);
                     statusEffectDuration = model.CalculateStatusEffectDurationForAbility(character, originAbilityTemplate, statusEffectDuration);
+                    radius = model.CalculateRadiusForAbility(character, originAbilityTemplate, radius);
                 }
             }
             //Determine targets
@@ -73,15 +76,15 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 }
                 else if (_template.TargetType == TargetType.Enemy)
                 {
-                    targets = Mission.Current.GetNearbyEnemyAgents(position.AsVec2, _template.Radius, triggererAgent.Team, targets);
+                    targets = Mission.Current.GetNearbyEnemyAgents(position.AsVec2, radius, triggererAgent.Team, targets);
                 }
                 else if (_template.TargetType == TargetType.Friendly)
                 {
-                    targets = Mission.Current.GetNearbyAllyAgents(position.AsVec2, _template.Radius, triggererAgent.Team, targets);
+                    targets = Mission.Current.GetNearbyAllyAgents(position.AsVec2, radius, triggererAgent.Team, targets);
                 }
                 else if (_template.TargetType == TargetType.All)
                 {
-                    targets = Mission.Current.GetNearbyAgents(position.AsVec2, _template.Radius, targets);
+                    targets = Mission.Current.GetNearbyAgents(position.AsVec2, radius, targets);
                 }
             }
             //Cause Damage

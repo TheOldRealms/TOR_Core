@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ink.Parsed;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Conversation;
 using TaleWorlds.CampaignSystem.Encounters;
@@ -17,9 +18,12 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.ScreenSystem;
+using TaleWorlds.TwoDimension;
+using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions.UI
@@ -29,7 +33,9 @@ namespace TOR_Core.Extensions.UI
     {
         private bool _shouldButtonBeVisible;
         private bool _isButtonEnabled;
+        private bool _isTroop;
         private BasicTooltipViewModel _buttonHint;
+        private BasicTooltipViewModel _extendedInfoHint;
         private string _spriteTORButton;
         private TextObject disableReason;
         
@@ -62,16 +68,24 @@ namespace TOR_Core.Extensions.UI
             //Careful to always update the property, not the field behind it directly, because then the engine won't get notified and events won't be raised.
             
             var troopCharacter = ( (PartyCharacterVM)_vm ).Troop.Character;
+
             
 
             var isPrisoner = ( (PartyCharacterVM)_vm ).IsPrisonerOfPlayer;
             if(troopCharacter==null) return;
             
+            IsTroop = !troopCharacter.IsHero;
+
+            if (IsTroop)
+            {
+                var extendedInfoList = TORExtendedInfoHelper.GenererateExtendedTroopInfoToolTip(troopCharacter);
+                if (!extendedInfoList.IsEmpty())
+                {
+                    ExtendedInfoHint = new BasicTooltipViewModel(()=> extendedInfoList);
+                }
+            }
 
             ShouldButtonBeVisible = SpecialbuttonEventManagerHandler.Instance.ShouldButtonBeVisible(troopCharacter, isPrisoner);
-            
-            var textObect = new TextObject();
-            
             
             IsButtonEnabled =  SpecialbuttonEventManagerHandler.Instance.ShouldButtonBeActive(troopCharacter, out var displaytext, isPrisoner);
             disableReason = displaytext;
@@ -122,6 +136,36 @@ namespace TOR_Core.Extensions.UI
                 {
                     _shouldButtonBeVisible = value;
                     _vm.OnPropertyChangedWithValue(value, "ShouldButtonBeVisible");
+                }
+            }
+        }
+        
+        [DataSourceProperty]
+        public BasicTooltipViewModel ExtendedInfoHint
+        {
+            get => this._extendedInfoHint;
+            set
+            {
+                if (value == this._extendedInfoHint)
+                    return;
+                this._extendedInfoHint = value;
+                this._vm.OnPropertyChangedWithValue(nameof (ExtendedInfoHint));
+            }
+        }
+        
+        [DataSourceProperty]
+        public bool IsTroop
+        {
+            get
+            {
+                return _isTroop;
+            }
+            set
+            {
+                if (value != _isTroop)
+                {
+                    _isTroop = value;
+                    _vm.OnPropertyChangedWithValue(value, "IsTroop");
                 }
             }
         }

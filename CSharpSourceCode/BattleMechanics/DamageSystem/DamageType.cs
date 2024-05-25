@@ -8,6 +8,7 @@
         Fire,
         Holy,
         Lightning,
+        Frost,
         All
     }
 }

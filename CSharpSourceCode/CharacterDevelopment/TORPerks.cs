@@ -268,7 +268,7 @@ namespace TOR_Core.CharacterDevelopment
                 SkillEffect.PerkRole.PartyLeader, 0.1f, SkillEffect.EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
 
             _offering.Initialize("{=tor_perk_offering_label_str}Offering", TORSkills.Faith, 150, null,
-                "{=tor_perk_offering_1_str}Obtain the ability to donate items at shrines as sacrifical offering to gain Renown.",
+                "{=tor_perk_offering_1_str}Obtain the ability to donate items at shrines as sacrifical offering to gain Faith.",
                 SkillEffect.PerkRole.Personal, 1f, SkillEffect.EffectIncrementType.Add);
 
             _blessed.Initialize("{=tor_perk_blessed_label_str}Blessed", TORSkills.Faith, 200, _foreSight,

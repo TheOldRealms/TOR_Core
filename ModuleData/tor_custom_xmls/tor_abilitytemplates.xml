@@ -43,7 +43,6 @@
 	  <TriggeredEffect>dart_explosion</TriggeredEffect>
       <SeekerParameters Proportional="0.5" Derivative="0" DisableDistance="10"/>
 	</AbilityTemplate>
-  
 	<AbilityTemplate StringID="WardOfArrows" 
       Name="{=ward_of_arrows_label_str}Ward of Arrows" 
       SpriteName="ward_of_arrows_icon" 
@@ -90,7 +89,7 @@
       Name="{=minor_heal_label_str}Petty Heal" 
       SpriteName="petty_healing_icon" 
       CoolDown="20" 
-      WindsOfMagicCost="4" 
+      WindsOfMagicCost="10" 
       BaseMisCastChance="0.05" 
       Duration="0" 
       Radius="0" 
@@ -126,7 +125,7 @@
 				<z>255</z>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>apply_healing_statuseffect</TriggeredEffect>
+		<TriggeredEffect>apply_minor_healing_statuseffect</TriggeredEffect>
 	</AbilityTemplate>
 	<AbilityTemplate StringID="FoetidCloud" 
       Name="{=foetid_cloud_label_str}Foetid Cloud" 
@@ -1528,7 +1527,6 @@
 		</LightColorRGB>
 		<TriggeredEffect>apply_vanhelsdansemacabre</TriggeredEffect>
 	</AbilityTemplate>
-	
 	<AbilityTemplate StringID="ScreamingSkull" 
       Name="{=screaming_skull_label_str}Screaming Skull" 
       SpriteName="screamingskull_icon" 
@@ -1659,11 +1657,10 @@
 		</LightColorRGB>
 		<TriggeredEffect>summon_gravecall</TriggeredEffect>
 	</AbilityTemplate>
-	
-		<AbilityTemplate StringID="CurseOfYears"
+	<AbilityTemplate StringID="CurseOfYears"
       Name="{=curse_of_years_label_str}Curse of Years"
       SpriteName="curseofyears_icon"
-      CoolDown="5"
+      CoolDown="30"
       WindsOfMagicCost="12"
       BaseMisCastChance="0.05"
       Duration="2"
@@ -1702,8 +1699,6 @@
 		</LightColorRGB>
 		<TriggeredEffect>curse_of_years_hex</TriggeredEffect>
 	</AbilityTemplate>
-	
-	
 	<!-- Dark Magic -->
 	<AbilityTemplate StringID="Chillwind" 
       Name="{=chillwind_label_str}Chillwind" 
@@ -2314,9 +2309,7 @@
 		<TriggeredEffect>storm_of_renewal</TriggeredEffect>
 	</AbilityTemplate>
 	
-	
 	<!-- Lore of Beasts-->
-	
 	<AbilityTemplate StringID="AmberSpear" 
       Name="{=amber_spear_label_str}Amber Spear" 
       SpriteName="amberspear_icon" 
@@ -2401,7 +2394,6 @@
 		<TriggeredEffect>tangling_thorn</TriggeredEffect>
 	</AbilityTemplate>
 	
-	
 	<AbilityTemplate StringID="PannsImpenetrablePelt" 
       Name="{=panns_impenetrable_pelt_label_str}Pann's Impenetrable Pelt" 
       SpriteName="pannsimpenetrablepelt_icon" 
@@ -2444,7 +2436,6 @@
 		</LightColorRGB>
 		<TriggeredEffect>pans_pelt</TriggeredEffect>
 	</AbilityTemplate>
-	
 	
 	<AbilityTemplate StringID="HailStorm" 
       Name="{=hail_storm_label_str}Hail Storm" 
@@ -2489,7 +2480,6 @@
 		</LightColorRGB>
 		<TriggeredEffect>phys_tick</TriggeredEffect>
 	</AbilityTemplate>
-	
 	<AbilityTemplate StringID="FlockOfDoom"
    Name="{=flock_of_doom_label_str}Flock Of Doom"
    SpriteName="flockofdoom_icon"
@@ -2532,8 +2522,6 @@
 		</LightColorRGB>
 		<TriggeredEffect>flock_of_doom</TriggeredEffect>
 	</AbilityTemplate>
-	
-	
 	<AbilityTemplate StringID="TheBeastUnleashed"
       Name="{=the_beast_unleashed_label_str}The Beast Unleashed"
       SpriteName="beastunleashed_icon"
@@ -2576,7 +2564,6 @@
 		</LightColorRGB>
 		<TriggeredEffect>beast_unleashed</TriggeredEffect>
 	</AbilityTemplate>
-	
 	<AbilityTemplate StringID="CurseOfAnraheir"
    Name="{=curse_of_anraheir_label_str}Curse Of Anraheir"
    SpriteName="curseofanraheir_icon"
@@ -2619,7 +2606,354 @@
 		</LightColorRGB>
 		<TriggeredEffect>curse_of_anraheir</TriggeredEffect>
 	</AbilityTemplate>
+	<!-- Lore of Metal-->
 	
+	<AbilityTemplate StringID="QuicksilverSwords"
+      Name="{=quicksilver_swords_label_str}Quicksilver Swords"
+      SpriteName="quicksilversword_icon"
+      CoolDown="30"
+      WindsOfMagicCost="13"
+      BaseMisCastChance="0.05"
+      Duration="0"
+      Radius="0"
+      AbilityType="Spell"
+      AbilityEffectType="Augment"
+      BaseMovementSpeed="0"
+      TickInterval="-1"
+      TriggerType="TickOnce"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab=""
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.5"
+      AbilityTargetType="AlliesInAOE"
+      TargetCapturingRadius="5"
+      MaxDistance="20"
+      CrosshairType="TargetedAOE"
+      SpellTier="3"
+      BelongsToLoreID="LoreOfMetal"
+      TooltipDescription="{=flaming_swords_description_str}Buff the weapons of allies in a 5 meter radius with the Flaming trait for 20 seconds. The weapons burst into fire and burn every enemy they strike.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>apply_quicksilver_sword_trait</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="GleamingArrow" 
+      Name="{=gleaming_arrow_label_str}Gleaming Arrow" 
+      SpriteName="gleamingarrow_icon" 
+      CoolDown="10" 
+      WindsOfMagicCost="4" 
+      BaseMisCastChance="0.05" 
+      Duration="300" 
+      Radius="0.4" 
+      AbilityType="Spell" 
+      AbilityEffectType="SeekerMissile" 
+      BaseMovementSpeed="45" 
+      TickInterval="-1" 
+      TriggerType="OnCollision" 
+      HasLight="true" 
+      LightIntensity="50" 
+      LightRadius="10" 
+      LightFlickeringMagnitude="3" 
+      LightFlickeringInterval="0.7" 
+      ShadowCastEnabled="true" 
+      ParticleEffectPrefab="gleaming_arrow" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="dart" 
+      ShouldSoundLoopOverDuration="true" 
+      CastType="WindUp" 
+      CastTime="0.5" 
+      AnimationActionName="act_release_stone" 
+      TriggeredEffectID="dart_explosion"
+      SpellTier="1"
+      BelongsToLoreID="LoreOfMetal"
+      MaxDistance="100"
+      CrosshairType="SingleTarget"
+      AbilityTargetType="SingleEnemy"
+      TooltipDescription="Hurl a magical bolt at the enemy. The missile homes in on the target and does 40 damage in a 3 meter radius on contact.">
+      <LightColorRGB x="255" y="200" z="0" w="-1">
+        <AsVec2>
+          <x>204</x>
+          <y>255</y>
+        </AsVec2>
+      </LightColorRGB>
+	  <TriggeredEffect>gleaming_arrow_explosion</TriggeredEffect>
+      <SeekerParameters Proportional="0.5" Derivative="0" DisableDistance="10"/>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="MeteroicIronclad"
+      Name="{=meteoric_ironclad_label_str}Meteoric Ironclad"
+      SpriteName="meteriorironclad_icon"
+      CoolDown="10"
+      WindsOfMagicCost="6"
+      BaseMisCastChance="0.05"
+      Duration="0"
+      Radius="3"
+      AbilityType="Spell"
+      AbilityEffectType="Augment"
+      BaseMovementSpeed="0"
+      TickInterval="-1"
+      TriggerType="TickOnce"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab=""
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.5"
+      AbilityTargetType="AlliesInAOE"
+      TargetCapturingRadius="4"
+      MaxDistance="30"
+      CrosshairType="TargetedAOE"
+      SpellTier="3"
+      BelongsToLoreID="LoreOfMetal"
+      TooltipDescription="{=barkskin_description_str}Hardens the skin of targets, making them tougher, providing 35% physical resistance for total duration of 8 secouds">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>meteoric_ironclad</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="PlagueOfRust"
+      Name="{=plague_of_rust_label_str}Plague Of Rust"
+      SpriteName="plagueofrust_icon"
+      CoolDown="5"
+      WindsOfMagicCost="12"
+      BaseMisCastChance="0.05"
+      Duration="2"
+      Radius="20"
+      AbilityType="Spell"
+      AbilityEffectType="Hex"
+      BaseMovementSpeed="0"
+      TickInterval="1.9"
+      TriggerType="TickOnce"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab=""
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.0"
+      AbilityTargetType="EnemiesInAOE"
+      TargetCapturingRadius="4"
+      MaxDistance="50"
+      CrosshairType="TargetedAOE"
+      SpellTier="3"
+      BelongsToLoreID="LoreOfMetal"
+      TooltipDescription="{=curse_of_years_description_str}The caster utters an ancient curse, which causes the foe to age at a horrific rate. Reduces enemy attack and movement speed by 50% for 15 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>plague_of_rust</TriggeredEffect>
+	</AbilityTemplate>
+	
+<!-- 	<AbilityTemplate StringID="SearingDoom" 
+      Name="{=wind_blast_label_str}Wind Blast" 
+      SpriteName="wind_blast_icon" 
+      CoolDown="20" 
+      WindsOfMagicCost="8" 
+      BaseMisCastChance="0.05" 
+      Duration="4" 
+      Radius="1" 
+      AbilityType="Spell" 
+      AbilityEffectType="Blast" 
+      BaseMovementSpeed="0" 
+      TickInterval="-1" 
+      TriggerType="TickOnce" 
+      HasLight="false" 
+      LightIntensity="50" 
+      LightRadius="10" 
+      LightFlickeringMagnitude="0" 
+      LightFlickeringInterval="0" 
+      ShadowCastEnabled="false" 
+      ParticleEffectPrefab="wind_blast" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="dust_storm" 
+      ShouldSoundLoopOverDuration="false"
+      CastType="WindUp" 
+      CastTime="0.5" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="5"
+      AbilityTargetType="WorldPosition"
+      CrosshairType="Wind"
+      MinDistance="1"
+      MaxDistance="2"
+      TargetCapturingRadius="2"
+      SpellTier="2"
+      BelongsToLoreID="LoreOfMetal"
+      TooltipDescription="{=wind_blast_description_str}A gust of wind knocks down victims and applies minor damage.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>windblast_burst</TriggeredEffect>
+	</AbilityTemplate> -->
+	
+	<AbilityTemplate StringID="GehennasGoldenGlobe" 
+      Name="{=gehennas_golden_globe_label_str}Gehennas Golden Globe" 
+      SpriteName="gehennasgoldenglobe_icon" 
+      CoolDown="30" 
+      WindsOfMagicCost="8" 
+      BaseMisCastChance="0.05" 
+      Duration="100" 
+      Radius="0.4" 
+      AbilityType="Spell" 
+      AbilityEffectType="Missile" 
+      BaseMovementSpeed="25" 
+      TickInterval="-1" 
+      TriggerType="OnCollision" 
+      HasLight="true" 
+      LightIntensity="15" 
+      LightRadius="10" 
+      LightFlickeringMagnitude="3" 
+      LightFlickeringInterval="0.7" 
+      ShadowCastEnabled="true" 
+      ParticleEffectPrefab="gehennas_golden_globe" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="fireball" 
+      ShouldSoundLoopOverDuration="true" 
+      CastType="WindUp" 
+      CastTime="0.5" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0.5"
+      CrosshairType="Missile"
+      AbilityTargetType="WorldPosition"
+      SpellTier="3"
+      BelongsToLoreID="LoreOfMetal"
+      TooltipDescription="{=comet_of_sigmar_description_str}You throw a fiery missile that takes the form of Sigmar’s famed twin-tailed comet. A comet of Sigmar is a holy missile dealing 30 damage. It can knock units down, or throw them off horse. Only affects enemies">
+		<LightColorRGB x="245" y="247" z="129" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>golden_globe_explosion</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="FinalTransmutation"
+	   Name="{=final_transmutation_label_str}Final Transmutation"
+	   SpriteName="finaltransmutation_icon"
+	   CoolDown="20"
+	   WindsOfMagicCost="15"
+	   BaseMisCastChance="0.05"
+	   Duration="11"
+	   Radius="10"
+	   AbilityType="Spell"
+	   AbilityEffectType="Hex"
+	   BaseMovementSpeed="0"
+	   TickInterval="2"
+	   TriggerType="EveryTick"
+	   HasLight="false"
+	   LightIntensity="0"
+	   LightRadius="0"
+	   LightFlickeringMagnitude="0"
+	   LightFlickeringInterval="0"
+	   ShadowCastEnabled="true"
+	   ParticleEffectPrefab="final_transmutation_ground"
+	   ParticleEffectSizeModifier="0"
+	   SoundEffectToPlay=""
+	   ShouldSoundLoopOverDuration="false"
+	   CastType="Instant"
+	   CastTime="0.5"
+	   AnimationActionName="act_release_heavy_thrown"
+	   Offset="0.5"
+	   AbilityTargetType="EnemiesInAOE"
+	   TargetCapturingRadius="10"
+	   MaxDistance="75"
+	   CrosshairType="TargetedAOE"
+	   SpellTier="4"
+		BelongsToLoreID="LoreOfMetal"
+		TooltipDescription="{=curse_of_anraheir_description_str}Woodland sprites hinder all enemies caught in an area for 11 seconds, reducing movement (35%) and attack speed (50%) and causing 3 damage per second.">
+			<LightColorRGB x="255" y="170" z="0" w="-1">
+				<AsVec2>
+					<x>255</x>
+					<y>170</y>
+				</AsVec2>
+			</LightColorRGB>
+			<TriggeredEffect>final_transmutation</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="GehennasGoldenHounds" 
+      Name="{=gehennas_golden_hounds_label_str}Gehennas Golden Hounds" 
+      SpriteName="gehennasgoldenhounds_icon" 
+      CoolDown="40" 
+      WindsOfMagicCost="30" 
+      BaseMisCastChance="0.3" 
+      Duration="20" 
+      Radius="6" 
+      AbilityType="Spell" 
+      AbilityEffectType="Vortex" 
+      BaseMovementSpeed="1" 
+      TickInterval="0.5" 
+      TriggerType="EveryTick" 
+      HasLight="false" 
+      LightIntensity="50" 
+      LightRadius="10" 
+      LightFlickeringMagnitude="0" 
+      LightFlickeringInterval="0" 
+      ShadowCastEnabled="false" 
+      ParticleEffectPrefab="gehennas_golden_hound_ground" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="windofdeath_whispers" 
+      ShouldSoundLoopOverDuration="true"
+      CastType="WindUp" 
+      CastTime="0.5" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0.1"
+      AbilityTargetType="GroundAtPosition"
+      CrosshairType="TargetedAOE"
+      MinDistance="3"
+      MaxDistance="20"
+      TargetCapturingRadius="6"
+      MaxRandomDeviation="0.1"
+      ShouldRotateVisuals="false"
+      VisualsRotationVelocity="10"
+      SpellTier="4"
+      BelongsToLoreID="LoreOfMetal"
+      TooltipDescription="{=gehennas_golden_hounds_description_str}The caster tears down the walls between realities, and a black cloud of roiling energy sweeps across the battlefield. As the darkness travels, slimy tentacles lash out from its depths, draggin unfortunate victims screaming to an unknown fate.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>golden_hounds_tick</TriggeredEffect>
+	</AbilityTemplate>
 	
 	<!-- Artillery -->
 	<AbilityTemplate StringID="MortarSpawner" 
@@ -2945,6 +3279,46 @@
 		<TriggeredEffect>apply_let_them_have_it</TriggeredEffect>
 	</AbilityTemplate>
 	
+	<AbilityTemplate StringID="AxeOfUlric"
+       Name="{=red_fury_label_str}Axe of Ulric"
+       SpriteName="redfury_icon"
+       CoolDown="15"
+       WindsOfMagicCost="0"
+       BaseMisCastChance="0"
+       Duration="0.6"
+       Radius="1"
+       AbilityType="CareerAbility"
+       AbilityEffectType="CareerAbilityEffect"
+       BaseMovementSpeed="2"
+       TickInterval="-1"
+       TriggerType="OnStop"
+       HasLight="false"
+       LightIntensity="0"
+       LightRadius="0"
+       LightFlickeringMagnitude="0"
+       LightFlickeringInterval="0"
+       ShadowCastEnabled="false"
+       ParticleEffectPrefab=""
+       ParticleEffectSizeModifier="0"
+       SoundEffectToPlay=""
+       ShouldSoundLoopOverDuration="false"
+       CastType="Instant"
+       CastTime="0.5"
+       AnimationActionName="act_slam_twohanded"
+       Offset="1"
+       AbilityTargetType="GroundAtPosition"
+	    CrosshairType="Self"
+       TargetCapturingRadius="2">
+		<LightColorRGB x="255" y="255" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>ulric_smash</TriggeredEffect>
+	</AbilityTemplate>
+	
 	<AbilityTemplate StringID="KnightlyCharge"
        Name="{=knightly_charge_label_str}Knightly Charge"
        SpriteName="knightlycharge_icon"
@@ -3025,6 +3399,48 @@
 			</AsVec2>
 		</LightColorRGB>
 	   <TriggeredEffect>summon_champion</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="BlastOfAgony" 
+      Name="Blast of Agony" 
+      SpriteName="blastofagony_icon" 
+      CoolDown="10" 
+      WindsOfMagicCost="0" 
+      BaseMisCastChance="0.05" 
+      Duration="3" 
+      Radius="0.4" 
+      AbilityType="CareerAbility" 
+      AbilityEffectType="CareerAbilityEffect" 
+      BaseMovementSpeed="35" 
+      TickInterval="-1" 
+      TriggerType="OnCollision" 
+      HasLight="true" 
+      LightIntensity="50" 
+      LightRadius="10"
+	  MaxDistance="120"
+      LightFlickeringMagnitude="3" 
+      LightFlickeringInterval="0.7" 
+      ShadowCastEnabled="true" 
+      ParticleEffectPrefab="blast_of_agony_prefab" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="fireball" 
+      ShouldSoundLoopOverDuration="true" 
+      CastType="WindUp" 
+      CastTime="0.5" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0.5"
+      CrosshairType="Missile"
+      AbilityTargetType="WorldPosition"
+      SpellTier="3"
+      TooltipDescription="{=fireball_description_str}There is nothing quite as welcoming as a fireball to the face. Does 80 damage in a 3 meter radius and imbues the burning statuseffect for 5 seconds.">
+		<LightColorRGB x="177" y="0" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>apply_blastofagony</TriggeredEffect>
+		
 	</AbilityTemplate>
 	
 	
@@ -3239,6 +3655,178 @@
 			</AsVec2>
 		</LightColorRGB>
 		<TriggeredEffect>apply_holy_sword_trait</TriggeredEffect>
+	</AbilityTemplate>
+	
+		<AbilityTemplate StringID="UlricsGift"
+      Name="{=armor_of_righteousness_label_str}Ulric's Gift"
+      SpriteName="armorofrighteousness_icon"
+      CoolDown="70"
+      WindsOfMagicCost="0"
+      BaseMisCastChance="0.05"
+      Duration="0"
+      Radius="3"
+      AbilityType="Prayer"
+      AbilityEffectType="Augment"
+      BaseMovementSpeed="0"
+      TickInterval="-1"
+      TriggerType="TickOnce"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab=""
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.5"
+      AbilityTargetType="AlliesInAOE"
+      TargetCapturingRadius="4"
+      MaxDistance="0.5"
+      CrosshairType="TargetedAOE"
+      SpellTier="2"
+      BelongsToLoreID="UlricanPrayers"
+      TooltipDescription="{=armor_of_righteousness_description_str}Allies in a 3 meter radius gain 35% physical resistance for 8 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>ulrics_gift</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="HeartOfTheWolf"
+      Name="{=armor_of_righteousness_label_str}Heart of The Wolf"
+      SpriteName="vanquish_icon"
+      CoolDown="70"
+      WindsOfMagicCost="0"
+      BaseMisCastChance="0.05"
+      Duration="0"
+      Radius="3"
+      AbilityType="Prayer"
+      AbilityEffectType="Augment"
+      BaseMovementSpeed="0"
+      TickInterval="-1"
+      TriggerType="TickOnce"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab=""
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.5"
+      AbilityTargetType="AlliesInAOE"
+      TargetCapturingRadius="4"
+      MaxDistance="0.5"
+      CrosshairType="TargetedAOE"
+      SpellTier="3"
+      BelongsToLoreID="UlricanPrayers"
+      TooltipDescription="{=armor_of_righteousness_description_str}Allies in a 3 meter radius gain 35% physical resistance for 8 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>heart_of_the_wolf</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="IceStorm"
+      Name="{=armor_of_righteousness_label_str}Ice Storm"
+      SpriteName="wind_blast_icon"
+      CoolDown="70"
+      WindsOfMagicCost="0"
+      BaseMisCastChance="0.05"
+      Duration="0"
+      Radius="3"
+      AbilityType="Prayer"
+      AbilityEffectType="Hex"
+      BaseMovementSpeed="0"
+      TickInterval="-1"
+      TriggerType="TickOnce"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab=""
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.5"
+      AbilityTargetType="EnemiesInAOE"
+      TargetCapturingRadius="4"
+      MaxDistance="0.5"
+      CrosshairType="TargetedAOE"
+      SpellTier="3"
+      BelongsToLoreID="UlricanPrayers"
+      TooltipDescription="{=armor_of_righteousness_description_str}Allies in a 3 meter radius gain 35% physical resistance for 8 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>ice_storm</TriggeredEffect>
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="SnowKingDecree"
+      Name="{=armor_of_righteousness_label_str}The Snow Kings Decree"
+      SpriteName="wind_blast_icon"
+      CoolDown="70"
+      WindsOfMagicCost="0"
+      BaseMisCastChance="0.05"
+      Duration="5"
+      Radius="6"
+      AbilityType="Prayer"
+      AbilityEffectType="Hex"
+      BaseMovementSpeed="0"
+      TickInterval="-1"
+      TriggerType="TickOnce"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab="snow_king_decree_explosion"
+      ParticleEffectSizeModifier="1"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.5"
+      AbilityTargetType="EnemiesInAOE"
+      TargetCapturingRadius="4"
+      MaxDistance="50"
+      CrosshairType="SingleTarget"
+      SpellTier="4"
+      BelongsToLoreID="UlricanPrayers"
+      TooltipDescription="{=armor_of_righteousness_description_str}Allies in a 3 meter radius gain 35% physical resistance for 8 seconds.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>snow_king_decree</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<!-- Power of the Lady -->

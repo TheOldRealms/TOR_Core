@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.DualWield
 {
@@ -61,7 +62,8 @@ namespace TOR_Core.BattleMechanics.DualWield
             }
             if (_pendingDualWieldDeactivation)
             {
-                Agent.TryToSheathWeaponInHand(Agent.HandIndex.OffHand, Agent.WeaponWieldActionType.WithAnimation);
+                if(!Agent.WieldedWeapon.IsEmpty&& Agent.WieldedWeapon.Item.IsMagicalStaff())
+                    Agent.TryToSheathWeaponInHand(Agent.HandIndex.OffHand, Agent.WeaponWieldActionType.WithAnimation);
                 _pendingDualWieldDeactivation = false;
             }
         }
