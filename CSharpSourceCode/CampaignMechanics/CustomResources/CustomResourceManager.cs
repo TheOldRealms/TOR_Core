@@ -72,29 +72,15 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
         private void RegisterCampaignEvents()
         {
-            CampaignEvents.OnMissionStartedEvent.AddNonSerializedListener(this, InitialCombatStrengthCalculation);
+            CampaignEvents.OnMissionStartedEvent.AddNonSerializedListener(this, OnBeforeBattleStarted);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, CalculateCustomResourceGainFromBattles);
         }
 
-        private void InitialCombatStrengthCalculation(IMission mission)
+        private void OnBeforeBattleStarted(IMission mission)
         {
-            if (Campaign.Current != null)
-            {
-                _initialCombatRatio = 0;
-                var playerEvent = Campaign.Current.MainParty.MapEvent;
-                
-                if(playerEvent==null) return;
-
-                playerEvent.GetStrengthsRelativeToParty(playerEvent.PlayerSide, out float playerStrength, out float enemyStrength);
-
-                if (enemyStrength > 0)
-                {
-                    _initialCombatRatio = playerStrength / enemyStrength;
-                }
-            }
+            _initialCombatRatio = CampaignEventHelpers.CalculateCombatStrength();
         }
-
-
+        
         private void CalculateCustomResourceGainFromBattles(MapEvent mapEvent)
         {
             mapEvent.GetBattleRewards(MobileParty.MainParty.Party, out var renownChange, out _, out _, out _, out _);
