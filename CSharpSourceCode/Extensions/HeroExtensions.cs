@@ -12,6 +12,7 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.BountyMaster;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
@@ -42,7 +43,6 @@ namespace TOR_Core.Extensions
         public static bool CanRaiseDead(this Hero hero)
         {
             return hero.PartyBelongedTo != null && hero.PartyBelongedTo.GetMemberHeroes().Any(x => x.IsNecromancer());
-            //return hero.IsHumanPlayerCharacter && hero.IsNecromancer();
         }
 
         /// <summary>
@@ -540,6 +540,20 @@ namespace TOR_Core.Extensions
                     }
                 }
             }
+            return false;
+        }
+
+        public static bool IsHeroEnlisted(this Hero hero)
+        {
+            if (hero != Hero.MainHero) return false;
+            
+            var hirelingBehavior = Campaign.Current.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>();
+
+            if (hirelingBehavior != null)
+            {
+                return hirelingBehavior.IsEnlisted();
+            }
+
             return false;
         }
 

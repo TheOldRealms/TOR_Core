@@ -31,6 +31,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         private bool _startBattle;
         private bool _siegeBattleMissionStarted;
 
+        private bool _hirelingWaitMenuShown;
+
         public bool IsEnlisted()
         {
             return _hirelingEnlisted;
@@ -217,6 +219,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         {
             _hirelingEnlisted = false;
             _hirelingEnlistingLord = null;
+            _hirelingWaitMenuShown = false;
             PlayerEncounter.Finish(true);
             UndoDiplomacy();
             ShowPlayerParty();
@@ -405,6 +408,12 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
             if (_hirelingEnlisted && _hirelingEnlistingLord != null)
             {
+
+                if (!_hirelingWaitMenuShown)
+                {
+                    GameMenu.ActivateGameMenu("hireling_menu");
+                    _hirelingWaitMenuShown = true;
+                }
 
 
                 HidePlayerParty();
