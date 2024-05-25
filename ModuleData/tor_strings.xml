@@ -1029,6 +1029,14 @@
 	<!--Duel !-->
 	
 	
+	<!--Serve as a Hireling!-->
+	<string id="Hireling.MainText" text="{=inky_duel_denied_before2_false_str} You are enlisted by {ENLISTING_LORD} {new_line} 
+	You are serving  for {ENLISTING_DURATION} days. {ENLISTING_ARMY}" />
+	
+	<string id="Hireling.PauseTime" text="Pause on entering the next settlement: {PAUSE_ONOFF}" />
+		
+	<string id="Hireling.EnlistingArmy" text="is part of: {ENLISTING_ARMY}" />
+	
 	<!--Meadow ! -->
 	<string id="inky_Meadow.IsNight_True" text="{=inky_Meadow_is_night_true_str}Silver moonlight" />
 	<string id="inky_Meadow.IsNight_False" text="{=inky_Meadow_is_night_false_str}Golden sunlight" />

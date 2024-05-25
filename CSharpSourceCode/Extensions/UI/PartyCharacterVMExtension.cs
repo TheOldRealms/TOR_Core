@@ -57,9 +57,7 @@ namespace TOR_Core.Extensions.UI
                 }
             }
             
-            
             RefreshValues();
-            
         }
 
         public override void RefreshValues()
