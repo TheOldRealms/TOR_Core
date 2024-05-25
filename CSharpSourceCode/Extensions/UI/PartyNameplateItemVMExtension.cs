@@ -27,14 +27,10 @@ namespace TOR_Core.Extensions.UI
         public override void RefreshValues()
         {
             var vm = _vm as PartyNameplateVM;
-            
-            var hireling = Campaign.Current.CampaignBehaviorManager.GetBehavior<ServeAsAHirelingCampaignBehavior>();
-            if (hireling != null)
+
+            if (Hero.MainHero.IsEnlisted())
             {
-                if (hireling.IsEnlisted())
-                {
-                    vm.SetPropertyValue("IsPrisoner",true);   // feels sad to write this, but the nameplate disappears
-                }
+                vm.SetPropertyValue("IsPrisoner",true); 
             }
             
         }

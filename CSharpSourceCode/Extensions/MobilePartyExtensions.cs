@@ -68,6 +68,13 @@ namespace TOR_Core.Extensions
 
         public static bool IsAffectedByCurse(this MobileParty party)
         {
+            if (!party.IsLordParty) return false;
+
+            if (party.IsMainParty)
+            {
+                if (party.LeaderHero.IsEnlisted())
+                    return false;
+            }
             foreach (Settlement settlement in TORCustomSettlementCampaignBehavior.AllCustomSettlements)
             {
                 if(settlement.SettlementComponent is CursedSiteComponent)
