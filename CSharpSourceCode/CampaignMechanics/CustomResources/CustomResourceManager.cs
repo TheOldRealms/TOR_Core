@@ -93,7 +93,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 CalculateCustomResourceGainFromBattles);
             CampaignEvents.OnHideoutBattleCompletedEvent.AddNonSerializedListener(this, CalculateHideOutCompletedGain);
             CampaignEvents.HeroPrisonerReleased.AddNonSerializedListener(this, PrisonerReleasedChange);
-            CampaignEvents.TournamentFinished.AddNonSerializedListener(this, TournamentFinshedChange);
+            CampaignEvents.TournamentFinished.AddNonSerializedListener(this, TournamentFinishedChange);
             CampaignEvents.HeroLevelledUp.AddNonSerializedListener(this,OnHeroLevelUp);
             CampaignEvents.OnIssueUpdatedEvent.AddNonSerializedListener(this, OnIssueSolved);
         }
@@ -134,7 +134,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             }
         }
 
-        private void TournamentFinshedChange(CharacterObject winner, MBReadOnlyList<CharacterObject> participants,
+        private void TournamentFinishedChange(CharacterObject winner, MBReadOnlyList<CharacterObject> participants,
             Town settlement, ItemObject wonItem)
         {
             if (winner.IsPlayerCharacter)
