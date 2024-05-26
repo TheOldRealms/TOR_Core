@@ -3420,15 +3420,15 @@
       <EquipmentSet id="tor_generic_empire_femlord_medium_bow_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_wasteland_factionleader" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_factionleader}Luitpold van Raemerswijk" occupation="Lord" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_wasteland_factionleader" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_factionleader}Staadtholder Luitpold von Rasmerswijk" occupation="Lord" culture="Culture.empire" voice="curt" age="62" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="54" weight="0.1466" build="0.5" key="00168C0E8F00100D3498454E3B52B036407F623595A30218BADC222F546C703D436F1656088D8B6674780010A971675F0000000000005872000000003F144003" />
+      <BodyProperties version="4" age="62" weight="0.4383" build="0.4195" key="000D480000A01B4079BA498B47806A48E8A75AD495539410C65B778989E5149A78A776670F9B6A3967C641E9933B3972000000000000006F000000006BFC4002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
       <Trait id="Commander" value="7" />
       <Trait id="Politician" value="5" />
-      <Trait id="Manager" value="6" />
+      <Trait id="Manager" value="7" />
       <Trait id="Honor" value="1" />
       <Trait id="Mercy" value="1" />
       <Trait id="Generosity" value="1" />
@@ -3436,6 +3436,294 @@
     <Equipments>
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_wasteland_first_2" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_first_2}General Escottus van Haaring" occupation="Lord" culture="Culture.empire" voice="ironic" age="49" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="49" weight="0.2052" build="0.4799" key="000A480158B40C058B744D844C970291A8E058B6BDA1878927A697744A91CB39B48B46460FEB99CA73317E9D453B8882000000000000004F000000005FFC2042" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="6" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_wasteland_first_3" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_first_3}Captain Jacopo d’Arezzo" occupation="Lord" culture="Culture.empire" voice="earnest" age="36" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="36" weight="0.2023" build="0.4688" key="000844054FE416C694E7A7AB7D90B2B96587888448839B9D9355AF8785A46D8C785676030E77576973E5A7F676397656000000000000000E0000000027DC3142" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="4" />
+      <Trait id="Manager" value="7" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="-3" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_wasteland_first_4" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_first_4}Governor Ludwig de Beq" occupation="Lord" culture="Culture.empire" voice="softspoken" age="42" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="42" weight="0.7145" build="0.6786" key="001B380140A01BCEA8AD78668AC1CA0AC663BA693762E95BB867C6474A3A725F161E46030F6CE65DABC589E9055C8579000000000000000F000000002FFC7142" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="6" />
+      <Trait id="Commander" value="6" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_wasteland_first_5" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_first_5}Commander Agustijn Zwaan" occupation="Lord" culture="Culture.empire" voice="curt" age="44" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="44" weight="0.3234" build="0.4141" key="000A6002802C1CCF64B6859683A85BA532A1866B99E0AE83B3524A476A195AC147EBC6030E67868A65858A8BE559A8B6000000000000000E000000001DD430C2" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="4" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-3" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_wasteland_first_6" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_first_6}Captain Tomas Boorsboom" occupation="Lord" culture="Culture.empire" voice="ironic" age="32" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="32" weight="0.1054" build="0.6822" key="000D700214882C89A759C67A838337A8696768ADDA73B99A467D96A7D7A2EA33AC2B86030C675775A269873B8AA94A72000000000000000C000000006F944002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="6" />
+      <Trait id="Commander" value="6" />
+      <Trait id="Politician" value="4" />
+      <Trait id="Manager" value="5" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_pistol2_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_pistol2_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_wasteland_first_7" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_first_7}Commandant Benedictus op ten Oordt" occupation="Lord" culture="Culture.empire" voice="curt" age="23" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.7515" build="0.372" key="000A200000E43ACD8236588E4424811AB8E17DA78732B733664973739448BA4A119946030CF389576BA455B784726C72000000000000000C0000000031A43042" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Politician" value="7" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-6" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_wasteland_second_1" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_second_1}Arch-Priest Wouter Berkhout" occupation="Lord" culture="Culture.empire" voice="curt" age="47" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="47" weight="0.3503" build="0.3997" key="0018340AC05818094B3A8A9AE8816A4995D2643C27A188AB64148C8A5E238B89958A86030EC5CA5765359634A267169A000000000000000E000000001DCC7002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="6" />
+      <Trait id="Politician" value="9" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_wasteland_second_2" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_second_2}Grand Master Dietrich Ogg" occupation="Lord" culture="Culture.empire" voice="earnest" age="42" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="42" weight="0.6205" build="0.839" key="0000440B9A5813007F9C968B878676E7B2E15D9967E669076686678A79659A789B9656030E991686D9D5978587E7D96B000000000000000E0000000043E43142" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="9" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="4" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-3" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" />
+      <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_wasteland_second_3" default_group="infantry" name="{=str_tor_emp_lord_wasteland_second_3}Knight-Commander Kjerlan of the Skaelings" occupation="Lord" culture="Culture.empire" voice="curt" age="26" skill_template="SkillSet.tor_skills_warrior_lord" race="marauder" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0" build="0.5804" key="00004C0012A004DB974874CBAA5056D74DA8765770F0854B8A386A58D946935B6E86B603055BA8799075C1728858555300000000000000050000000012B43002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="0" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-9" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_wasteland_norsemerc" />
+      <EquipmentSet id="tor_generic_empire_lord_wasteland_norsemerc" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_wasteland_third_1" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_third_1}Heer Egmond den Euwe" occupation="Lord" culture="Culture.empire" voice="softspoken" age="18" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="18" weight="0.5046" build="0.9969" key="0005E40F000010097C7464ABFF12888B99F3989DB7FFFC43C4B647398C95A077EF5636620BA57935F877BFC5667B9BBF000000000000006F0000000019FC7002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="6" />
+      <Trait id="Commander" value="6" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="5" />
+      <Trait id="Honor" value="-1" />
+      <Trait id="Mercy" value="3" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_wasteland_third_2" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_third_2}Baron Martinus van Buuren" occupation="Lord" culture="Culture.empire" voice="earnest" age="58" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="58" weight="0.7701" build="0.3873" key="001B440200E402125AC653B99C72672C69D959968883B9AE8C753A779A85C9CD3786F6570DF666786C57BB67CB1B857D000000000000005D0000000049B43142" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="6" />
+      <Trait id="Manager" value="7" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_wasteland_third_3" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_third_3}Commander Egbert Huibers" occupation="Lord" culture="Culture.empire" voice="curt" age="40" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="40" weight="0.5818" build="0.5977" key="000D540140143CCEBF2B86722A528AB8DB9E4AB4E9486403495567BCA88EA63B5762B6030E96866399D56AD3508DC907000000000000000E000000001DD43082" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="9" />
+      <Trait id="Commander" value="9" />
+      <Trait id="Politician" value="3" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-3" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_gsword_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_gsword_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_wasteland_third_4" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_third_4}Captain Raoul Delalac" occupation="Lord" culture="Culture.empire" voice="earnest" age="29" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="29" weight="0.2593" build="0.8092" key="0002180D0014280BDAA988AC5C9C7B2642C8C758799587A299E8597251CB668F235D160309275E33C44AC71D77576283000000000000000900000000673420C2" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="7" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_wasteland_fourth_1" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_fourth_1}Heer Crispijn van Haagen" occupation="Lord" culture="Culture.empire" voice="ironic" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="35" weight="0.5587" build="0.6976" key="00050C0F15B410CD87433787A315697D8D4B76D38D789597B874877A5A68377F838476030E76F398A8C66A2363466844000000000000000E0000000063D43142" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="9" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="6" />
+      <Trait id="Manager" value="7" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-3" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_wasteland_fourth_2" default_group="infantry" name="{=str_tor_emp_lord_wasteland_fourth_2}Captain Edvard van der Kraal" occupation="Lord" culture="Culture.empire" voice="ironic" age="39" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="39" weight="0.526" build="0.4912" key="0018A402968815109477477F452618A6B98877C28A917B157B94CEBB0315849DBA8996350AE8567B787937867B7C9969000000000000003A000000005F5430C2" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Politician" value="2" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="-3" />
+      <Trait id="Mercy" value="-3" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_wasteland_pirate1" />
+      <EquipmentSet id="tor_generic_empire_lord_wasteland_pirate1" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_wasteland_fourth_3" default_group="infantry" name="{=str_tor_emp_lord_wasteland_fourth_3}Captain Stefan Jaanszoon" occupation="Lord" culture="Culture.empire" voice="earnest" age="37" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="37" weight="0.4163" build="0.5931" key="00005004DE2C2994B6865B59839BBCA4747BA47652B88565855586443C95B6BD767FD6030CED27599656BC043A4A074B000000000000000C0000000047943102" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="4" />
+      <Trait id="Politician" value="1" />
+      <Trait id="Manager" value="5" />
+      <Trait id="Honor" value="-3" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_wasteland_pirate2" />
+      <EquipmentSet id="tor_generic_empire_lord_wasteland_pirate2" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_sylvania_factionleader" default_group="cavalry" name="{=str_tor_vc_lord_sylvania_factionleader}Mannfred von Carstein" occupation="Lord" culture="Culture.khuzait" voice="curt" age="51" skill_template="SkillSet.tor_skills_vampire_lord" race="vampire" is_hero="true">
@@ -5058,7 +5346,7 @@
       <EquipmentSet id="tor_prophetess_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_couronne_factionleader" default_group="cavalry" name="{=str_tor_br_lord_couronne_factionleader}King Louen Leoncoeur" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="73" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_couronne_factionleader" default_group="cavalry" name="{=str_tor_br_lord_couronne_factionleader}King Louen Leoncoeur" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="43" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4367" build="0.6389" key="0013980F000011CEBB71568E688668531AFDA875A170A80BDCB25F288A84F668017716030C6BB666A750000000000000000000000000000C0000000025944002" />
     </face>
@@ -5074,6 +5362,150 @@
     <Equipments>
       <EquipmentSet id="tor_louen_template" />
       <EquipmentSet id="tor_louen_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_couronne_first_2" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_2}Philippe Baudet" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="37" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="37" weight="0.4836" build="0.5076" key="000D0005407024429C77AA9554745846BA75A82682726CA385579494ABC8116FA264C6030F38ED858753BF9476777576000000000000000F0000000019FC3082" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="4" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="3" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_couronne_first_3" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_3}Jehan le Frelon" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="32" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="32" weight="0.2554" build="0.5175" key="0013180AC02C371457C5616F38A18498A76855C637C6E25C42B2646B6784877B563A86030D2C65B88486AA9A79546356000000000000000D000000002DC430C2" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="6" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_couronne_first_4" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_4}Gillet le Rasage" occupation="Lord" culture="Culture.vlandia" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="35" weight="0.4583" build="0.9813" key="000A38020EE42644A68519EA983995CAA515B699A48438C8BA99883757A594686898A6030F8BCCDBF74ACC7945D4AE68000000000000000F0000000029FC5002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="9" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="2" />
+      <Trait id="Manager" value="7" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="-3" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_1" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_1" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_couronne_first_5" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_5}Gerard the Majordome" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="42" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="42" weight="0.4066" build="0.7869" key="001068054070185C77BAA88957993D59CDA632753844597084773738B68DCA5CA77996030AE78A43C6747B878228AC86000000000000000A000000005D4C3102" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="6" />
+      <Trait id="Politician" value="4" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-3" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_2" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_2" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_couronne_first_6" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_6}Michel la Montagne" occupation="Lord" culture="Culture.vlandia" voice="ironic" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="35" weight="0.2948" build="1" key="0010600F1AA033823F863CB75668E54469899CD28850E502967A549589966BBCBB6446030F94996BF4C78896354A9E4B000000000000000F0000000017FC9002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="9" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="3" />
+      <Trait id="Manager" value="7" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="-3" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_couronne_first_7" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_7}Earl Adalbert du Marais" occupation="Lord" culture="Culture.vlandia" voice="curt" age="44" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="44" weight="0.6899" build="0.8018" key="001E580C5700230C6543A9D798C68B18325D44867896348B942ACAD9C366644CBB7246030B444461CA5A5878E546B778000000000000000B000000002D6C8102" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="-1" />
+      <Trait id="Mercy" value="-3" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_2" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_2" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_couronne_first_8" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_8}Landuin of Couronne" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="31" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="31" weight="0.49" build="0.812" key="0015600FC02C16C094C3D9B76660585BB829A4D6BC5194007BBCC479569A269CAE32860307A4B5E7C7B2A678AAABBD670000000000000007000000002CFC4102" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_2" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_2" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_couronne_first_9" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_9}Alexandre le Gris" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="38" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="38" weight="0.4275" build="0.5201" key="000D140D804400C1985A4CAD6D9992ED6166DE3AA3C27C8A6535664AE688499C645696030DCD88DC8694853277B46A49000000000000000D0000000039AC1042" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Politician" value="2" />
+      <Trait id="Manager" value="5" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_3" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_anguille_factionleader" default_group="cavalry" name="{=str_tor_br_lord_anguille_factionleader}Duke Taubert de L'Anguille" occupation="Lord" culture="Culture.vlandia" voice="curt" age="43" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
@@ -5202,15 +5634,141 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_lyonesse_factionleader" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_factionleader}Duke Adalhard of Lyonesse" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_lyonesse_factionleader" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_factionleader}Duke Adalhard of Lyonesse" occupation="Lord" culture="Culture.vlandia" voice="curt" age="43" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="50" weight="0.3981" build="0.9792" key="000254001400118FB911506E2932A4A4537A766693A5323BA824110A8A845667048F66460844FF16000000000000000000000000000000000000000009044002" />
+      <BodyProperties version="4" age="67" weight="0.2917" build="0.7829" key="0020440417441149B353BBDF8D44383853B9DC45B722746817B84D956D67579FCB7A66680EDCF8C7C4787603264D7099000000000000006E000000001DE47042" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="6" />
+      <Trait id="Commander" value="9" />
       <Trait id="Politician" value="6" />
-      <Trait id="Manager" value="6" />
+      <Trait id="Manager" value="9" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="-3" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_3" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_3" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_lyonesse_first_2" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_first_2}Aldrad" occupation="Lord" culture="Culture.vlandia" voice="ironic" age="17" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="18" weight="0.6497" build="0.9585" key="0005140400580005237782AD158083A5A6E46298A4B45A45A8579C844C7A696AEFBA16720B75C366EA6EFBA2A98CABDE000000000000007F0000000055FC3102" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Politician" value="3" />
+      <Trait id="Manager" value="5" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-3" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_lyonesse_first_3" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_first_3}Shurlay" occupation="Lord" culture="Culture.vlandia" voice="curt" age="25" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.2978" build="0.3657" key="000AA00C400016046A5681478D717616499947336679E96C679659B7C9A886AA017736030B5688DD5400000000000000000000000000000B0000000045843142" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="7" />
+      <Trait id="Honor" value="-1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_lyonesse_first_4" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_first_4}Philippe Beaubrun" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="37" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="37" weight="0.5195" build="0.6757" key="0015780080B420811E78B6B77D317834C3B69BA66A6677226959B79AEABA5C8B5C8656030AB2A437A8854A767B616B98000000000000000A00000000595C3102" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="4" />
+      <Trait id="Manager" value="7" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_lyonesse_first_5" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_first_5}Henry the Red" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="30" weight="0.4028" build="0.5879" key="000A440600B4340E69EB3CA47549B1E598D76168B8C47810A7571B4FAA82B86CA58836030BA777B9968EC497A7788779000000000000000B00000000437C9042" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="9" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="3" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="-3" />
+      <Trait id="Generosity" value="3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_2" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_2" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_lyonesse_first_6" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_first_6}Roland the Marshal" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="29" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.4861" build="0.8657" key="0005480F0088368B646763276A352076989867286C425708345995A62AA7978C6BC856030DEB9636D77572ADC69B7A99000000000000000D0000000023C44102" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="9" />
+      <Trait id="Commander" value="9" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_3" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_3" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_lyonesse_first_7" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_first_7}Orderic" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="53" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="53" weight="1" build="0.338" key="000A940C402C300C35713A0E85BF0C8D52F9571596C126200EB8FD85909D949FFFFEF656086588F35F42F3FEE2C90E4F0000000000000058000000004B140082" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="3" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Politician" value="10" />
+      <Trait id="Manager" value="5" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="6" />
+      <Trait id="Generosity" value="3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_monk_lord_template_1" />
+      <EquipmentSet id="tor_bretonnian_monk_lord_template_1" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_artois_factionleader" default_group="cavalry" name="{=str_tor_br_lord_artois_factionleader}Duke Chilfroy of Artois" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="40" weight="0.2207" build="0.9537" key="000A4C054000100E5DC5EE0E29D8483659FF8085A0108100DFF9CF8CBB23F476EFCE06350F6AEB37E3EEFFC499E8F0BE000000000000003F000000003FFC9002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="6" />
+      <Trait id="Manager" value="7" />
       <Trait id="Honor" value="6" />
       <Trait id="Mercy" value="2" />
       <Trait id="Generosity" value="0" />
@@ -5220,22 +5778,112 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_artois_factionleader" default_group="cavalry" name="{=str_tor_br_lord_artois_factionleader}Duke Chilfroy of Artois" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_artois_first_2" default_group="cavalry" name="{=str_tor_br_lord_artois_first_2}Earl Tobias Larret" occupation="Lord" culture="Culture.vlandia" voice="ironic" age="46" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="40" weight="0.2207" build="0.9537" key="000A4C054000100E5DC5EE0E29D8483659FF8085A0108100DFF9CF8CBB23F476EFCE06350F6AEB37E3EEFFC499E8F0BE000000000000003F000000003FFC9002" />
+      <BodyProperties version="4" age="46" weight="0.7957" build="0.8102" key="0010B80B80B4318859D3366B666F02AAC5355BAA5A859BC6474A2D8B6EA97E69E678F603084360F9CC5A988B852993B70000000000000008000000002B1C10C2" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="6" />
+      <Trait id="Commander" value="6" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-3" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_artois_first_3" default_group="cavalry" name="{=str_tor_br_lord_artois_first_3}Fredemund Larret" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="22" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.5882" build="0.3432" key="0008C80C40B420014CD638AB666502A7C5F55BAAAA609B82474A8D8B6EA97E69493756030A4482AD59C88769458546C2000000000000000A000000003D4C30C2" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Politician" value="4" />
+      <Trait id="Manager" value="5" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_artois_first_4" default_group="cavalry" name="{=str_tor_br_lord_artois_first_4}Baron Chlodegar" occupation="Lord" culture="Culture.vlandia" voice="curt" age="36" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="36" weight="0.4133" build="0.8071" key="00087C0F1D881309BF0B36AFEF480844ADA32B8797116801089F817AFAB4795F694686030C98A58CC6744B9686814883000000000000000C00000000339C0102" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="8" />
       <Trait id="Commander" value="6" />
-      <Trait id="Politician" value="6" />
+      <Trait id="Politician" value="5" />
       <Trait id="Manager" value="6" />
       <Trait id="Honor" value="6" />
-      <Trait id="Mercy" value="2" />
+      <Trait id="Mercy" value="3" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_2" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_2" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_artois_first_5" default_group="cavalry" name="{=str_tor_br_lord_artois_first_5}Sir Madregang" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="30" skill_template="SkillSet.tor_skills_warrior_lord" race="chaos_ud_cultist" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.2088" build="0.4097" key="002A5C0000FC160B8A6C9B6F8860799998E73D8999938964A5198B9845CE8968ABA4A6030C3DB7C56398F9BC66D5A847000000000000000C00000000479C3002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="4" />
+      <Trait id="Politician" value="3" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="3" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_artois_first_6" default_group="cavalry" name="{=str_tor_br_lord_artois_first_6}Lord Roul tueur de bête" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="41" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="41" weight="0.5514" build="0.6127" key="0010580F1E00134C747E74D48785743CBB85365AA781B78897B5757ADD438B6F889BB60309D989699859A54A6788697C00000000000000090000000063242042" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="6" />
+      <Trait id="Commander" value="6" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_3" />
-      <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_3" civilian="true" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_artois_first_7" default_group="cavalry" name="{=str_tor_br_lord_artois_first_7}Lord Guiscard de bûcheron" occupation="Lord" culture="Culture.vlandia" voice="curt" age="29" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="" weight="" build="" key="" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="9" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Politician" value="1" />
+      <Trait id="Manager" value="5" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="-3" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_gisoreux_factionleader" default_group="cavalry" name="{=str_tor_br_lord_gisoreux_factionleader}Duke Hagen d'Gisoreux" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
@@ -5528,7 +6176,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_lord_factionleader" default_group="cavalry" name="{=str_tor_chaos_lord_factionleader}Archaon" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="80" weight="0.5" build="0.5" key="0039B8000000300FE90675CE1663F9E2334183BAC5AE860C69B35046831589100077760307A6408700000000000000000000000000000000000000003AF46002" />
+      <BodyProperties version="4" age="50" weight="0.5" build="0.5" key="0039B8000000300FE90675CE1663F9E2334183BAC5AE860C69B35046831589100077760307A6408700000000000000000000000000000000000000003AF46002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -5544,9 +6192,27 @@
       <EquipmentSet id="tor_archaon_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_brasskeep_factionleader" default_group="cavalry" name="{=str_tor_chaos_lord_factionleader}Magox Rotbringer" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_chaos_lord_brasskeep_factionleader" default_group="cavalry" name="{=str_tor_chaos_lord_brasskeep_factionleader}Magox Rotbringer" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="80" weight="0.5" build="0.5" key="0039B8000000300FE90675CE1663F9E2334183BAC5AE860C69B35046831589100077760307A6408700000000000000000000000000000000000000003AF46002" />
+      <BodyProperties version="4" age="50" weight="0.5" build="0.5" key="0039B8000000300FE90675CE1663F9E2334183BAC5AE860C69B35046831589100077760307A6408700000000000000000000000000000000000000003AF46002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_archaon_template" />
+      <EquipmentSet id="tor_archaon_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_de_lord_factionleader" default_group="cavalry" name="{=str_tor_de_lord_factionleader}Draxor Bloodscar" occupation="Lord" culture="Culture.druchii" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="50" weight="0.5" build="0.5" key="0039B8000000300FE90675CE1663F9E2334183BAC5AE860C69B35046831589100077760307A6408700000000000000000000000000000000000000003AF46002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
