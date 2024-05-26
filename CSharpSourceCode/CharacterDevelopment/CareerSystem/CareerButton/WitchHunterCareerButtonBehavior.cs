@@ -8,6 +8,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 {
@@ -166,7 +167,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 return false;
             }
 
-            if (characterObject.Culture.StringId == "vlandia" || characterObject.Race != 0)
+            if (characterObject.Culture.StringId == TORConstants.BRETONNIA_CULTURE || characterObject.Race != 0)
             {
                 displayText = new TextObject("Needs to be part of the empire or southern realms");
                 return false;

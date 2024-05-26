@@ -235,6 +235,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
             }
 
+            if (IsMagicianCharacterCreationID(id))
+            {
+                Hero.MainHero.AddCareer(TORCareers.ImperialMagister);
+            }
+
             if (IsWitchHunterCharacterCreationID(id))
             {
                 Hero.MainHero.AddCareer(TORCareers.WitchHunter);
@@ -299,13 +304,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             switch (culture.StringId)
             {
-                case "empire":
+                case TORConstants.EMPIRE_CULTURE:
                     position2D = new Vec2(1450.97f, 991.37f);
                     break;
-                case "khuzait":
+                case TORConstants.SYLVANIA_CULTURE:
                     position2D = new Vec2(1617.54f, 969.70f);
                     break;
-                case "vlandia":
+                case TORConstants.BRETONNIA_CULTURE:
                     position2D = new Vec2(998.96f, 830.02f);
                     break;
                 case "mousillon":

@@ -12,6 +12,7 @@ using TOR_Core.CampaignMechanics.Choices;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 {
@@ -228,7 +229,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             if (agent.IsMainAgent) return false;
             
             
-            return agent.Character.Culture.Name.ToString() == "vlandia";
+            return agent.Character.Culture.Name.ToString() == TORConstants.BRETONNIA_CULTURE;
         }
         
         protected override void UnlockCareerBenefitsTier2()

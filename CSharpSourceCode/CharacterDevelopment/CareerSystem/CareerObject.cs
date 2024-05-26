@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
@@ -98,11 +99,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         {
             if (triggererAgent != null && triggererAgent.GetHero()?.GetExtendedInfo() != null)
             {
+         
+                var root = triggererAgent.GetHero().GetCareer().RootNode;
                 var info = triggererAgent.GetHero().GetExtendedInfo();
                 if (info.CareerID == StringId)
                 {
-                    var choices = AllChoices.Where(x => info.CareerChoices.Contains(x.StringId));
-                    foreach (var choice in choices)
+                    List<CareerChoiceObject> modifications = new List<CareerChoiceObject> { root };
+                    modifications.AddRange(AllChoices.Where(x => info.CareerChoices.Contains(x.StringId)));
+                    foreach (var choice in modifications)
                     {
                         if (choice.HasMutations())
                             choice.MutateTriggeredEffect(effect, triggererAgent);

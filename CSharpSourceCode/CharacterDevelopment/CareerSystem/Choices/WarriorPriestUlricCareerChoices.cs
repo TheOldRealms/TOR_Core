@@ -218,7 +218,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _wildPackPassive4.Initialize(CareerID, "Party movement speed is increased by 1.", "WildPack", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1f, PassiveEffectType.PartyMovementSpeed));
             
             _teachingsOfTheWinterFatherPassive1.Initialize(CareerID, "Wounded troops in your party heal faster.", "TeachingsOfTheWinterfather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration));
-            _teachingsOfTheWinterFatherPassive2.Initialize(CareerID,"Praying at a shrine of ulric refills player health completely","TeachingsOfTheWinterfather",false,ChoiceType.Passive); 
+            _teachingsOfTheWinterFatherPassive2.Initialize(CareerID,"Praying at a shrine of ulric refills player health completely","TeachingsOfTheWinterfather",false,ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect()); 
             _teachingsOfTheWinterFatherPassive3.Initialize(CareerID, "All Knight troops receive 20 bonus points in One and Two Handed skills.", "TeachingsOfTheWinterfather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Special)); //
             _teachingsOfTheWinterFatherPassive4.Initialize(CareerID, "Increases range damage resistance of melee troops by 20%.", "TeachingsOfTheWinterfather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Ranged, 
                 (attacker, victim, mask) => !victim.BelongsToMainParty()&& !(victim.IsMainAgent || victim.IsHero)&& mask == AttackTypeMask.Melee ));

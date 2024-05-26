@@ -48,7 +48,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
 
         protected override void ExecuteSelectAbility()
         {
-            if (_isTrainerMode)
+            if (!_isTrainerMode)
             {
                 base.ExecuteSelectAbility();
             }

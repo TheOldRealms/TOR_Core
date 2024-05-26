@@ -115,6 +115,27 @@ namespace TOR_Core.Extensions
             return characterObject.Race == FaceGen.GetRaceOrDefault("vampire");
         }
 
+        public static bool IsHuman(this CharacterObject characterObject)
+        {
+            if (characterObject.Culture.IsBandit)
+            {
+                if (characterObject.IsBeastman() || characterObject.IsCultist())
+                    return false;
+                else
+                {
+                    return true;
+                }
+            }
+            
+            return characterObject.Culture.StringId == TORConstants.EMPIRE_CULTURE||
+                   characterObject.Culture.StringId == TORConstants.BRETONNIA_CULTURE ||
+                   characterObject.Culture.StringId == TORConstants.SYLVANIA_CULTURE &&
+                   !(characterObject.IsVampire() || characterObject.IsUndead())||
+                   characterObject.Culture.StringId == "mousillon" &&
+                   !(characterObject.IsVampire() || characterObject.IsUndead());
+            
+        }
+
         public static bool IsKnightUnit(this BasicCharacterObject characterObject)
         {
             return  !characterObject.IsHero&&characterObject.IsMounted&&IsEliteTroop(characterObject);

@@ -101,7 +101,7 @@ namespace TOR_Core.Extensions
                     return true;
                 if (choices.Contains("CommanderPassive3"))
                     return true;
-                if (choices.Contains("QuestingVowPassive4"))
+                if (choices.Contains("MonsterSlayerPassive4"))
                     return true;
                 if (choices.Contains("BlackGrailVowPassive2"))
                     return true;

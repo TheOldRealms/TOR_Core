@@ -58,6 +58,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         
         private void MakeGrailKnightCompanion()
         {
+            Hero.MainHero.AddCultureSpecificCustomResource(-100);
             var hero = HeroCreator.CreateSpecialHero(_currentCharacterTemplate, Campaign.Current.MainParty.CurrentSettlement, null, null, 40);
 
             AddCompanionAction.Apply(MobileParty.MainParty.ActualClan, hero);
@@ -82,12 +83,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
         public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner=false)
         {
+            if (PartyScreenManager.Instance.CurrentMode != PartyScreenMode.Normal) return false;
+            
             if (characterObject.IsHero) return false;
             if (characterObject.StringId != "tor_br_grail_knight") return false;
 
             var choices = Hero.MainHero.GetAllCareerChoices();
 
-            if (choices.Contains("HolyCrusaderPassive3"))
+            if (choices.Contains("HolyCrusaderPassive3")&& Hero.MainHero.GetCultureSpecificCustomResourceValue()>=100)
             {
                 return true;
             }
@@ -97,7 +100,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
         public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner=false)
         {
-            displayText = new TextObject("Promotes your Grail Knight to a companion");
+            var icon = Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText();
+            displayText = new TextObject($"Promotes your Grail Knight to a companion (Cost 100{icon})");
             return true;
         }
     }

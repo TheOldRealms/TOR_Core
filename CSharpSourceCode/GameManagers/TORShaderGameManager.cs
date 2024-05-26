@@ -6,6 +6,7 @@ using TaleWorlds.MountAndBlade.CustomBattle;
 using TaleWorlds.MountAndBlade.CustomBattle.CustomBattle;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.GameManagers
 {
@@ -36,7 +37,7 @@ namespace TOR_Core.GameManagers
 
         private CustomBattleCombatant GetEnemyParty()
         {
-            var culture = MBObjectManager.Instance.GetObject<BasicCultureObject>("empire");
+            var culture = MBObjectManager.Instance.GetObject<BasicCultureObject>(TORConstants.EMPIRE_CULTURE);
             var enemycharacter = MBObjectManager.Instance.GetObject<BasicCharacterObject>("tor_empire_recruit");
 
             var party = new CustomBattleCombatant(new TextObject("{=0xC75dN6}Enemy Party", null), culture, Banner.CreateRandomBanner());
@@ -48,7 +49,7 @@ namespace TOR_Core.GameManagers
         private CustomBattleCombatant GetPlayerParty(BasicCharacterObject playerCharacter)
         {
             var characters = MBObjectManager.Instance.GetObjectTypeList<BasicCharacterObject>();
-            var culture = MBObjectManager.Instance.GetObject<BasicCultureObject>("empire");
+            var culture = MBObjectManager.Instance.GetObject<BasicCultureObject>(TORConstants.EMPIRE_CULTURE);
             var characterslist = characters.Where(x => x.IsTORTemplate() && x != playerCharacter && (x.IsSoldier || x.IsHero));
             var party = new CustomBattleCombatant(new TextObject("{=!}Player Party", null), culture, Banner.CreateRandomBanner());
             party.AddCharacter(playerCharacter, 1);

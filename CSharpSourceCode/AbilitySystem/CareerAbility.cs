@@ -16,6 +16,7 @@ namespace TOR_Core.AbilitySystem
 {
     public class CareerAbility : Ability
     {
+        private int usageCounter;
         private readonly CareerObject _career;
         private float _currentCharge;
         private readonly int _maxCharge = 1000;
@@ -29,6 +30,7 @@ namespace TOR_Core.AbilitySystem
 
         public CareerAbility(AbilityTemplate template, Agent agent) : base(template)
         {
+            usageCounter = 0;
             _ownerHero = agent.GetHero();
             if (_ownerHero != null)
             {
@@ -58,6 +60,7 @@ namespace TOR_Core.AbilitySystem
                     _currentCharge = _maxCharge;
                 else
                     SetCoolDown(Template.CoolDown);
+                
             }
         }
 
@@ -93,6 +96,8 @@ namespace TOR_Core.AbilitySystem
                 _currentCharge = _maxCharge;
                 _doubleUse = true;
             }
+
+            usageCounter++;
         }
 
         public override bool IsDisabled(Agent casterAgent, out TextObject disabledReason)
@@ -119,6 +124,14 @@ namespace TOR_Core.AbilitySystem
 
         public override bool CanCast(Agent casterAgent, out TextObject failureReason)
         {
+            if (Hero.MainHero.HasCareer(TORCareers.ImperialMagister))
+            {
+                if (usageCounter >= Template.ScaleVariable1)
+                {
+                    failureReason = new TextObject($"Not enough Usages (maximum {Template.ScaleVariable1})");
+                    return false;
+                }
+            }
             if (IsSingleTarget && !((SingleTargetCrosshair)Crosshair).IsTargetLocked)
             {
                 failureReason = new TextObject("No target locked");

@@ -53,9 +53,13 @@ namespace TOR_Core.AbilitySystem
                     IsDisabled = false;
                     DisabledText = string.Empty;
                 }
-                if (Game.Current.GameType is Campaign && _ability is Spell)
+                if (Game.Current.GameType is Campaign)
                 {
-                    SetWindsOfMagicValue((float)(Agent.Main?.GetHero()?.GetCustomResourceValue("WindsOfMagic")));
+                    if (Agent.Main!=null&& Agent.Main.IsSpellCaster())
+                    {
+                        SetWindsOfMagicValue((float)(Agent.Main?.GetHero()?.GetCustomResourceValue("WindsOfMagic")));
+                    }
+                    
                     var windsCost = AddPerkEffectsToWindsCost(Agent.Main?.GetHero(), _ability.Template);
                     WindsCost = windsCost.ToString();
                 }

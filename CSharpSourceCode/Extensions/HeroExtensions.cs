@@ -19,6 +19,7 @@ using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Models;
 using TOR_Core.Utilities;
 using FaceGen = TaleWorlds.Core.FaceGen;
 
@@ -140,6 +141,20 @@ namespace TOR_Core.Extensions
                     }
                 }
 
+                if (hero.HasCareer(TORCareers.GrailKnight)&&hero.HasCareerChoice("QuestingVowPassive4"))
+                {
+                    var choice = TORCareerChoices.GetChoice("QuestingVowPassive4");
+                    var heroes = hero.PartyBelongedTo.GetMemberHeroes();
+                    heroes.Remove(Hero.MainHero);
+                    foreach (var companion in heroes)
+                    {
+                        if (companion.IsBretonnianKnight())
+                        {
+                            number.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                        }
+                    }
+                }
+
                 if (hero.HasCareer(TORCareers.Necrarch) && hero.HasCareerChoice("EverlingsSecretPassive3"))
                 {
                     var choice = TORCareerChoices.GetChoice("EverlingsSecretPassive3");
@@ -149,6 +164,47 @@ namespace TOR_Core.Extensions
                         {
                             number.Add(hero.GetExtendedInfo().WindsOfMagicRechargeRate * CampaignTime.HoursInDay, choice.BelongsToGroup.Name);
                         }
+                    }
+                    
+                }
+
+                if (hero.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
+                {
+                    if (hero.PartyBelongedTo != null)
+                    {
+                        if (hero.PartyBelongedTo.HasBlessing("cult_of_lady"))
+                        {
+                            var obj = ReligionObject.All.FirstOrDefault( x=>x.StringId=="cult_of_lady");
+                            if (obj != null)
+                            {
+                                
+                                number.Add(15,new TextObject("Blessing of the Lady"));
+                            }
+                            
+                        }
+                    }
+
+                    if (hero.IsClanLeader)
+                    {
+                        foreach (var clanmember in hero.Clan.Heroes)
+                        {
+                            if(clanmember==hero) continue;
+
+                            if (clanmember.IsAlive&&clanmember.IsPartyLeader)
+                            {
+                                number.Add(2,new TextObject("Clan members with Party"));
+                            }
+                        }
+                    }
+
+                    if (hero.GetChivalryLevel() == ChivalryLevel.Honourable)
+                    {
+                        number.Add(5,new TextObject(ChivalryLevel.Honourable.ToString()));
+                    }
+                    
+                    if (hero.GetChivalryLevel() == ChivalryLevel.Chivalrous)
+                    {
+                        number.Add(15,new TextObject(ChivalryLevel.Honourable.ToString()));
                     }
                     
                 }
@@ -325,6 +381,17 @@ namespace TOR_Core.Extensions
             else return false;
         }
 
+        public static ChivalryLevel GetChivalryLevel(this Hero hero)
+        {
+            var customResource = GetCustomResourceValue(hero, "Chivalry");
+            return ChivalryHelper.GetChivalryLevelForResource(customResource);
+        }
+        
+        public static bool HasChivalryLevel(this Hero hero, ChivalryLevel level)
+        {
+            return ChivalryHelper.HasChivalryLevel(hero, level);
+        }
+
         public static void SetSpellCastingLevel(this Hero hero, SpellCastingLevel level)
         {
             if (hero.GetExtendedInfo() != null)
@@ -499,7 +566,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsBretonnianKnight(this Hero hero)       //Potentially a cleaner way to check that
         {
-            return !hero.IsSpellCaster() && hero.Culture.StringId == "vlandia";
+            return !hero.IsSpellCaster() && hero.Culture.StringId == TORConstants.BRETONNIA_CULTURE;
         }
 
         public static bool HasAnyCareer(this Hero hero) => Game.Current.GameType is Campaign && hero.GetCareer() != null;

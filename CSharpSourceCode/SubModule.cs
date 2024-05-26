@@ -137,7 +137,7 @@ namespace TOR_Core
                 starter.AddBehavior(new PrestigeNobleTownBehavior());
                 starter.AddBehavior(new TORPerkHandlerCampaignBehavior());
                 starter.AddBehavior(new TORAICompanionCampaignBehavior());
-                starter.AddBehavior(new BloodKissCampaignBehavior());
+                starter.AddBehavior(new CareerSwitchCampaignBehavior());
                 starter.AddBehavior(new TORPartyUpgraderCampaignBehavior());
                 starter.AddBehavior(new InkStoryCampaignBehavior());
                 starter.AddBehavior(new ReligionCampaignBehavior());

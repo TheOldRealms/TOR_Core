@@ -109,7 +109,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                     TORMissionHelper.ApplyStatusEffectToAgents(targets, effect.StringID, triggererAgent, statusEffectDuration, true, _isTemplateMutated);
                 }
             }
-
             if (_template.DoNotAlignParticleEffectPrefabOnImpact)
             {
                 var groundPos = new Vec3(position.x,position.y,position.z-5f);
