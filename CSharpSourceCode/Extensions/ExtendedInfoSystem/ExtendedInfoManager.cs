@@ -67,6 +67,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             foreach (var party in t)
             {
                 if(party.Party.MobileParty==null) continue;
+                
                 ValidatePartyInfos(party.Party.MobileParty);
             }
         }
@@ -126,8 +127,11 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         
         public void ValidatePartyInfos(MobileParty party)
         {
-            var partyInfo = _partyInfos[party.StringId];
-            if(partyInfo==null) return;
+            if (!_partyInfos.TryGetValue(party.StringId, out var partyInfo))
+            {
+                return;
+            }
+            
             if (partyInfo.TroopAttributes == null)
             {
                 partyInfo.TroopAttributes = new Dictionary<string, List<string>>();
