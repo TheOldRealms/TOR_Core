@@ -15,7 +15,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             var comp = Agent.Main.GetComponent<AbilityComponent>();
             if (comp == null) return;
 
-            var abilities = comp.KnownAbilitySystem.Where(x => x.StringID != Ability.StringID && x.GetCoolDownLeft() > 0);
+            var abilities = comp.KnownAbilitySystem.Where(x => x.StringID != "AxeOfUlric" && x.GetCoolDownLeft() > 0).ToList(); ;
             var chosen = abilities.TakeRandom(1).FirstOrDefault();
             
             if (chosen == null) return;
