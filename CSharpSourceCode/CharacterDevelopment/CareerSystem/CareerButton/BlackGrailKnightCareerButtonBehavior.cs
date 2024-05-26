@@ -9,6 +9,7 @@ using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 {
@@ -113,7 +114,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             if (characterObject.IsHero) return false;
 
 
-            if (characterObject.Culture.StringId != "vlandia") return false;
+            if (characterObject.Culture.StringId != TORConstants.BRETONNIA_CULTURE) return false;
 
             if (!characterObject.IsKnightUnit()) return false;
 

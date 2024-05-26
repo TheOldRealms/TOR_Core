@@ -28,6 +28,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
         public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner = false)
         {
+            if (PartyScreenManager.Instance.CurrentMode != PartyScreenMode.Normal) return false;
+            
             if (!characterObject.IsHero) return false;
 
             return characterObject.HeroObject.PartyBelongedTo == MobileParty.MainParty&& characterObject.HeroObject.IsSpellCaster();

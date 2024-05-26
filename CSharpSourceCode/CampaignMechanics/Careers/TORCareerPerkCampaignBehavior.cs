@@ -16,6 +16,7 @@ using TaleWorlds.TwoDimension;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics
 {
@@ -186,7 +187,7 @@ namespace TOR_Core.CampaignMechanics
 
                 var memberList = mobileParty.MemberRoster.GetTroopRoster();
 
-                var bretonnes = memberList.FindAll(x => !x.Character.IsEliteTroop()&& x.Character.Culture.StringId == "vlandia");
+                var bretonnes = memberList.FindAll(x => !x.Character.IsEliteTroop()&& x.Character.Culture.StringId == TORConstants.BRETONNIA_CULTURE);
                 
                 for (var index = 0; index < bretonnes.Count; index++)
                 {

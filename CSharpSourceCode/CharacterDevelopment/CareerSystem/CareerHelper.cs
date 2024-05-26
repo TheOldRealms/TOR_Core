@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Helpers;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -15,11 +16,15 @@ using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.AbilitySystem.Spells.Prayers;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.BattleMechanics.TriggeredEffect;
+using TOR_Core.BattleMechanics.TriggeredEffect.Scripts;
 using TOR_Core.CharacterDevelopment.CareerSystem.Button;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Items;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
@@ -366,6 +371,54 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         }
         
         
+        public static void PowerstoneEffectAssignment(Agent agent)
+        {
+            var statuseffectComponent = agent.GetComponent<StatusEffectComponent>();
+
+            var button =  CareerHelper.GetCareerButton() as ImperialMagisterCareerButtonBehavior;
+            if (statuseffectComponent != null && button!=null)
+            {
+                var powerstones = button.AvailablePowerStones;
+
+
+                var powerstone = button.GetPowerstone(agent.Character as CharacterObject);
+
+                if (powerstone!=null)
+                {
+                    var template = TriggeredEffectManager.GetTemplateWithId(powerstone.EffectId);
+                    
+                    if(template==null) return;
+                    
+                    foreach (var effect in template.ImbuedStatusEffects)
+                    {
+                        agent.ApplyStatusEffect(effect,Agent.Main,99999);
+                    }
+
+                    var position = agent.Position;
+                    
+
+                    if (template!=null&&template.ScriptNameToTrigger != "none")
+                    {
+                        try
+                        {
+                            var obj = Activator.CreateInstance(Type.GetType(template.ScriptNameToTrigger));
+                            if (obj is ITriggeredScript)
+                            {
+                                var script = obj as ITriggeredScript;
+                                script.OnTrigger(agent.Position, Agent.Main, new List<Agent>(){agent}, 9999);
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            TORCommon.Log("Tried to spawn TriggeredScript: " + template.ScriptNameToTrigger + ", but failed.", NLog.LogLevel.Error);
+                        }
+                    }
+                }
+                
+            }
+        }
+        
+        
         public enum ChargeCollisionFlag
         {
             None,
@@ -389,6 +442,41 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             if (careerObject == TORCareers.WarriorPriestUlric) return "cult_of_ulric";
 
             return "-";
+        }
+
+        public static void RemovePowerstone(List<string> attributes)
+        {
+            var button =  CareerHelper.GetCareerButton() as ImperialMagisterCareerButtonBehavior;
+
+            if (button != null)
+            {
+                var stones = button.AvailablePowerStones;
+                
+                foreach (var attribute in attributes)
+                {
+                    var removedStone = stones.FirstOrDefault(x => x.Id == attribute);
+
+                    if (removedStone != null)
+                    {
+                        Hero.MainHero.AddCustomResource("Prestige",removedStone.ScrapPrestigeGain);
+                        break;
+                    }
+                }
+                
+                
+            }
+
+        }
+
+        public static void RemoveCareerRelatedTroopAttributes(MobileParty mobileParty, string troopId,
+            MobilePartyExtendedInfo mobilePartyinfo)
+        {
+            if(!mobileParty.IsMainParty) return;
+            
+            if(Hero.MainHero.HasCareer(TORCareers.ImperialMagister))
+            {
+                RemovePowerstone(mobilePartyinfo.TroopAttributes[troopId]);
+            }
         }
     }
 }

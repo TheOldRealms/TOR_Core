@@ -9,11 +9,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TOR_Core</RootNamespace>
     <AssemblyName>TOR_Core</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <LangVersion>12</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -335,6 +336,7 @@
     <Compile Include="AbilitySystem\Prayer.cs" />
     <Compile Include="AbilitySystem\Scripts\AbilityScript.cs" />
     <Compile Include="AbilitySystem\Scripts\AccusationScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\ArcaneConduit.cs" />
     <Compile Include="AbilitySystem\Scripts\ArtilleryPlacementScript.cs" />
     <Compile Include="AbilitySystem\Scripts\AugmentScript.cs" />
     <Compile Include="AbilitySystem\Scripts\AxeOfUlricScript.cs" />
@@ -469,7 +471,7 @@
     <Compile Include="CampaignMechanics\Careers\TORCareerPerkCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\FaceGenHelper.cs" />
-    <Compile Include="CampaignMechanics\CustomDialogs\BloodKissCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\CustomDialogs\CareerSwitchCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissSceneNotificationItem.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\BloodDragonTag.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\MousillonTag.cs" />
@@ -522,6 +524,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\CareerButtonBehaviorBase.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\CareerButtons.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\GrailKnightCareerButtonBehavior.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\ImperialMagisterCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\MercenaryCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerAbilityEffectVM.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\NecrarchCareerButtonBehavior.cs" />
@@ -540,8 +543,10 @@
     <Compile Include="CharacterDevelopment\CareerSystem\CharacterDeveloperVMExtension.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\BlackGrailKnightCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\BloodKnightCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\CareerChoicesHelper.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\GrailKnightCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\GrailDamselCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\ImperialMagisterCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\MercenaryCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\NecrarchCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\NecromancerCareerChoices.cs" />
@@ -550,7 +555,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\WarriorPriestCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\WarriorPriestUlricCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\WitchHunterCareerChoices.cs" />
-    <Compile Include="CharacterDevelopment\CareerSystem\DialogOptions\GrailDamselEnvoyOfTheLadyPerkDialog.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\SpecialScripts\GrailDamselEnvoyOfTheLadyPerkDialog.cs" />
     <Compile Include="CharacterDevelopment\TORAttributes.cs" />
     <Compile Include="CharacterDevelopment\TORCareerChoiceGroups.cs" />
     <Compile Include="CharacterDevelopment\TORCareerChoices.cs" />
@@ -582,6 +587,7 @@
     <Compile Include="Extensions\UI\BaseViewModelExtension.cs" />
     <Compile Include="Extensions\UI\HeroEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\PartyCharacterVMExtension.cs" />
+    <Compile Include="Extensions\UI\PartyViewExtension.cs" />
     <Compile Include="Extensions\UI\UnitEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionAttribute.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionManager.cs" />
@@ -643,6 +649,7 @@
     <Compile Include="Missions\InkDuelFightMissionController.cs" />
     <Compile Include="Missions\JoustFightMissionController.cs" />
     <Compile Include="Missions\QuestFightMissionController.cs" />
+    <Compile Include="Models\ChivalryHelper.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleMoraleModel.cs" />
     <Compile Include="Models\Diplomacy\Aggression\DecompiledNativeAggression.cs" />
     <Compile Include="Models\Diplomacy\Aggression\TORAggressionCalculator.cs" />
@@ -790,6 +797,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>XCOPY "$(TargetDir)*" "C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\TOR_Core\bin\Win64_Shipping_wEditor\" /S /Y /I</PostBuildEvent>
+    <PostBuildEvent>XCOPY "$(TargetDir)*" "$(TargetDir)..\Win64_Shipping_wEditor\" /S /Y /I</PostBuildEvent>
   </PropertyGroup>
 </Project>

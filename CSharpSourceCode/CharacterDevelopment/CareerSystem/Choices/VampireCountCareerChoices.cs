@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.DamageSystem;
@@ -14,6 +15,7 @@ using TOR_Core.CampaignMechanics.Choices;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Utilities;
 using FaceGen = TaleWorlds.Core.FaceGen;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
@@ -319,6 +321,32 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 playerHero.GetExtendedInfo().RemoveAllPrayers();
                
             }
+
+            if (playerHero.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
+            {
+                CultureObject mousillonCulture= MBObjectManager.Instance.GetObject<CultureObject>("mousillon");
+                Hero.MainHero.Culture = mousillonCulture;
+            }
+            
+            if (playerHero.Culture.StringId == "empire")
+            {
+                CultureObject sylvaniaCulture= MBObjectManager.Instance.GetObject<CultureObject>(TORConstants.SYLVANIA_CULTURE);
+                Hero.MainHero.Culture = sylvaniaCulture;
+            }
+            
+            
+            var religions = ReligionObject.All.FindAll(x => x.Affinity == ReligionAffinity.Order);
+
+            foreach (var religion in religions)
+            {
+                Hero.MainHero.AddReligiousInfluence(religion,-100,true);
+            }
+            
+            ReligionObject nagash= ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash");
+            if (nagash != null)
+            {
+                Hero.MainHero.AddReligiousInfluence(nagash,25,true);
+            }
             
             List<string> allowedLores = new List<string>() { "MinorMagic", "Necromancy", "DarkMagic" };
             
@@ -331,8 +359,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             }
 
             Hero.MainHero.GetExtendedInfo().RemoveAllSpells();
-            
-            Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 99);
             
             var race = FaceGen.GetRaceOrDefault("vampire");
             Hero.MainHero.CharacterObject.Race = race;

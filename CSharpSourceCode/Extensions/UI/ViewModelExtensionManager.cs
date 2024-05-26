@@ -72,6 +72,6 @@ namespace TOR_Core.Extensions.UI
         {
             if (!HasViewModelExtension(vm)) return null;
             return _extensionInstances.FirstOrDefault(x => x.Key == vm).Value;
-        }       
+        }
     }
 }

@@ -75,7 +75,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         {
             foreach (var hero in Hero.AllAliveHeroes)
             {
-                if (hero.Culture.StringId == "khuzait" && !hero.IsNecromancer() && (hero.IsLord || hero.IsWanderer) && hero != Hero.MainHero)
+                if (hero.Culture.StringId == TORConstants.SYLVANIA_CULTURE && !hero.IsNecromancer() && (hero.IsLord || hero.IsWanderer) && hero != Hero.MainHero)
                 {
                     hero.AddAttribute("Necromancer");
                 }

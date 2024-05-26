@@ -100,7 +100,6 @@ namespace TOR_Core.AbilitySystem.Scripts
             var pos = GameEntity.GetGlobalFrame().Elevate(-_minimalDistance).origin;
             if (Mission.Current.Scene.RayCastForClosestEntityOrTerrain(pos2, pos, out num))
             {
-                TORCommon.Say(num + "");
                 return num;
             }
 

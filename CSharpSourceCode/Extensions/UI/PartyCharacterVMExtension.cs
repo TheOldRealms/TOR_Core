@@ -57,7 +57,6 @@ namespace TOR_Core.Extensions.UI
                 }
             }
             
-            
             RefreshValues();
             
         }
@@ -104,10 +103,9 @@ namespace TOR_Core.Extensions.UI
             var troop = ( (PartyCharacterVM)_vm ).Troop.Character;
             var isPrisoner = ( (PartyCharacterVM)_vm ).IsPrisonerOfPlayer;
             SpecialbuttonEventManagerHandler.Instance.OnButtonClicked(troop,isPrisoner );
-            
-            ((PartyCharacterVM)_vm).RefreshValues();
-
         }
+        
+
         
         [DataSourceProperty]
         public string SpriteTORButton

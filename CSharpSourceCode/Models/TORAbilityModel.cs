@@ -12,7 +12,9 @@ using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -106,7 +108,6 @@ namespace TOR_Core.Models
                     CareerHelper.ApplyBasicCareerPassives(player,ref explainedNumber,PassiveEffectType.DebuffDuration, true);
                 }
                 
-
                 perkmultiplier += explainedNumber.ResultNumber;
             }
             
@@ -196,6 +197,16 @@ namespace TOR_Core.Models
                     explainedNumber.AddFactor(-0.3f);
                 }
                 
+                if(character.HeroObject == Hero.MainHero && victimLeader != null && victimLeader.HeroObject == Hero.MainHero && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
+                {
+                    //friendly fire
+
+                    if (Hero.MainHero.HasCareerChoice("ImperialEnchantmentPassive2"))
+                    {
+                        var choice = TORCareerChoices.GetChoice("ImperialEnchantmentPassive2");
+                        explainedNumber.AddFactor(choice.GetPassiveValue());
+                    }
+                }
             }
             return explainedNumber.ResultNumber;
         }
@@ -279,6 +290,24 @@ namespace TOR_Core.Models
                                 } 
                             }
                         }
+
+                        if (Hero.MainHero.PartyBelongedTo!=null&&CareerChoices.Contains("ArcaneKnowledgePassive4"))
+                        {
+                            var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
+
+                            heroes.Remove(Hero.MainHero);
+                            foreach (var hero in heroes)
+                            {
+                                if(hero.Culture.StringId != TORConstants.EMPIRE_CULTURE) continue;
+                                
+                                if (hero.IsSpellCaster())
+                                {
+                                    var choice = TORCareerChoices.GetChoice("ArcaneKnowledgePassive4");
+                                    explainedNumber.Add(choice.GetPassiveValue());
+                                }
+                                
+                            }
+                        }
                     }
                     else if (baseCharacter.HeroObject.PartyBelongedTo!=null && baseCharacter.HeroObject.PartyBelongedTo.IsMainParty)
                     {
@@ -296,9 +325,9 @@ namespace TOR_Core.Models
                                 var choice = TORCareerChoices.GetChoice("LieOfLadyPassive2");
                                 explainedNumber.Add(choice.GetPassiveValue());
                             }
-                            if (choices.Contains("LieOfLadyPassive2"))
+                            if (choices.Contains("CollegeOrdersPassive2"))
                             {
-                                var choice = TORCareerChoices.GetChoice("LieOfLadyPassive2");
+                                var choice = TORCareerChoices.GetChoice("CollegeOrdersPassive2");
                                 explainedNumber.Add(choice.GetPassiveValue());
                             }
                             
@@ -309,6 +338,19 @@ namespace TOR_Core.Models
                             }
                         }
                     }
+                }
+
+                if (Hero.MainHero.HasCareer(TORCareers.ImperialMagister))
+                {
+                    var stoneBehavior =
+                        CareerButtons.Instance.GetCareerButton(TORCareers.ImperialMagister) as
+                            ImperialMagisterCareerButtonBehavior;
+
+                    var powerstones = stoneBehavior.GetAllPowerstones();
+                    
+                    var reserved = powerstones.Sum(pair => (pair.Upkeep));
+                    
+                    explainedNumber.Add(-reserved);
                 }
                 return explainedNumber.ResultNumber;
         }
@@ -326,9 +368,7 @@ namespace TOR_Core.Models
                 
                 return true;
             }
-            
             return !loreObject.DisabledForCultures.Contains(hero.Culture.StringId);
         }
-
     }
 }

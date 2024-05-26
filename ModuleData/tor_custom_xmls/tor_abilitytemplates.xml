@@ -3432,7 +3432,7 @@
       CrosshairType="Missile"
       AbilityTargetType="WorldPosition"
       SpellTier="3"
-      TooltipDescription="{=fireball_description_str}There is nothing quite as welcoming as a fireball to the face. Does 80 damage in a 3 meter radius and imbues the burning statuseffect for 5 seconds.">
+      TooltipDescription="{=fireball_description_str}Launch a devastating blast of agony.">
 		<LightColorRGB x="177" y="0" z="255" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -3441,6 +3441,46 @@
 		</LightColorRGB>
 		<TriggeredEffect>apply_blastofagony</TriggeredEffect>
 		
+	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="ArcaneConduit"
+       Name="{=red_fury_label_str}Arcane Conduit"
+       SpriteName="redfury_icon"
+       CoolDown="120"
+       WindsOfMagicCost="0"
+       BaseMisCastChance="0"
+       Duration="6"
+       Radius="1"
+       AbilityType="CareerAbility"
+       AbilityEffectType="CareerAbilityEffect"
+       BaseMovementSpeed="0"
+       TickInterval="1"
+       TriggerType="TickOnce"
+       HasLight="false"
+       LightIntensity="0"
+       LightRadius="0"
+       LightFlickeringMagnitude="0"
+       LightFlickeringInterval="0"
+       ShadowCastEnabled="false"
+       ParticleEffectPrefab=""
+       ParticleEffectSizeModifier="0"
+       SoundEffectToPlay=""
+       ShouldSoundLoopOverDuration="false"
+       CastType="Instant"
+       CastTime="0.5"
+       AnimationActionName=""
+       Offset="0"
+       AbilityTargetType="Self"
+       CrosshairType="Self"
+       TargetCapturingRadius="4">
+		<LightColorRGB x="255" y="255" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+	<TriggeredEffect>apply_arcaneconduit</TriggeredEffect>
 	</AbilityTemplate>
 	
 	

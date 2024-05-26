@@ -50,9 +50,9 @@ namespace TOR_Core.AbilitySystem.SpellBook
             StatItems.Clear();
             StatItems.Add(new StatItemVM("Hero name: ", _currentHero.Name.ToString()));
             StatItems.Add(new StatItemVM("Spell casting level: ", info.SpellCastingLevel.ToString()));
-            StatItems.Add(new StatItemVM("Maximum Winds of Magic: ", info.MaxWindsOfMagic.ToString() + CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText()));
-            StatItems.Add(new StatItemVM("Current Winds of Magic: ", info.GetCustomResourceValue("WindsOfMagic").ToString() + CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText()));
-            StatItems.Add(new StatItemVM("Winds of Magic recharge rate: ", info.WindsOfMagicRechargeRate.ToString() + CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText() + "\\ hour"));
+            StatItems.Add(new StatItemVM("Maximum Winds of Magic: ", ((int)info.MaxWindsOfMagic).ToString() + CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText()));
+            StatItems.Add(new StatItemVM("Current Winds of Magic: ", ((int)info.GetCustomResourceValue("WindsOfMagic")).ToString() + CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText()));
+            StatItems.Add(new StatItemVM("Winds of Magic recharge rate: ", info.WindsOfMagicRechargeRate.ToString("0.00") + CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText() + "/ hour"));
             string lorestext = "";
             for(int i = 0; i < info.KnownLores.Count; i++)
             {
@@ -78,7 +78,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
                 {
                     LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
                 }
-                else if (_isTrainerMode && Hero.MainHero.HasCareer(TORCareers.GrailDamsel)&& Hero.MainHero.HasKnownLore(lore.ID) && CharacterObject.OneToOneConversationCharacter != null && _trainerCulture == "vlandia")
+                else if (_isTrainerMode && Hero.MainHero.HasCareer(TORCareers.GrailDamsel)&& Hero.MainHero.HasKnownLore(lore.ID) && CharacterObject.OneToOneConversationCharacter != null && _trainerCulture == TORConstants.BRETONNIA_CULTURE)
                 {
                     LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
                 }
