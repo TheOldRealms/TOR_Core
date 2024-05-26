@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Ink.Parsed;
+using NLog;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.LinQuick;
@@ -10,11 +12,13 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
 {
     public class StatusEffectMissionLogic : MissionLogic
     {
+        private int _tries;
         private Queue<Agent> _unprocessedAgents = new Queue<Agent>();
 
         public override void OnAgentCreated(Agent agent)
@@ -54,9 +58,17 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
                 if (!CheckPermanentEffectsForAddingPermanentEffects(queueAgent))
                 {
+                    _tries++;
+                    if (_tries > 10)
+                    {
+                        _tries = 0;
+                        TORCommon.Log("Agent could not be processed.", LogLevel.Warn);
+                        break;
+                    }
                     _unprocessedAgents.Enqueue(queueAgent);
                     break;
                 }
+                _tries = 0;
             }
         }
 
