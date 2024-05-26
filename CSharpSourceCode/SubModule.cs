@@ -211,6 +211,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TOREquipmentSelectionModel());
                 gameStarterObject.AddModel(new TOREncounterModel());
                 gameStarterObject.AddModel(new TORSettlementDistanceModel());
+                gameStarterObject.AddModel(new TORVolunteerModel());
 
                 CampaignOptions.IsLifeDeathCycleDisabled = true;
             }

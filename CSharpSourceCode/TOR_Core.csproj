@@ -694,6 +694,7 @@
     <Compile Include="Models\TORTournamentModel.cs" />
     <Compile Include="Models\TORTroopSupplierModel.cs" />
     <Compile Include="Models\TORVoiceOverModel.cs" />
+    <Compile Include="Models\TORVolunteerModel.cs" />
     <Compile Include="Quests\EngineerQuest.cs" />
     <Compile Include="Quests\HuntCultistsQuestCampaignBehavior.cs" />
     <Compile Include="Quests\PlaguedVillageQuestCampaignBehavior.cs" />

@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Party.PartyComponents;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
-using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
-using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.RaidingParties
@@ -25,12 +20,12 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
         [SaveableField(3)] private Settlement _home;
         public override Settlement HomeSettlement => _home;
 
-        [CachedData] private TextObject _cachedName;
+        [SaveableField(4)] private string _name;
 
         private RaidingPartyComponent(Settlement home, string name, Clan ownerClan)
         {
             _home = home;
-            _cachedName = new TextObject(name);
+            _name = name;
             _owner = ownerClan.Leader;
         }
 
@@ -58,17 +53,7 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
                 mobileParty => ((RaidingPartyComponent)mobileParty.PartyComponent).InitializeRaidingParty(mobileParty, partySize, template, owner));
         }
 
-        public override TextObject Name
-        {
-            get
-            {
-                if (_cachedName == null)
-                {
-                    _cachedName = new TextObject(HomeSettlement.Culture.Name + " Raiders");
-                }
-                return _cachedName;
-            }
-        }
+        public override TextObject Name => new TextObject(_name);
 
         public void HourlyTickAI(PartyThinkParams thinkParams)
         {
