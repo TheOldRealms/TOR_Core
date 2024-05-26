@@ -71,6 +71,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 }
                 return false;
             }
+            
             if (agent.WieldedWeapon.IsEmpty) return false;
             
             if (agent.BelongsToMainParty()&& Hero.MainHero.HasCareer(TORCareers.ImperialMagister))
@@ -83,10 +84,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             {
                 return true;
             }
-
-
+            
             return false;
-
         }
     }
 }
