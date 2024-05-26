@@ -22,7 +22,6 @@ namespace TOR_Core.AbilitySystem.SpellBook
         private bool _canLearn = false;
         private string _learnText;
         private int _goldCost;
-        private bool _isSelected;
 
         public SpellItemVM(AbilityTemplate template, Hero currentHero, bool isTrainerMode = false) : base(template,currentHero)
         {
@@ -52,7 +51,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
 
         protected override void ExecuteSelectAbility()
         {
-            if (_isTrainerMode)
+            if (!_isTrainerMode)
             {
                 base.ExecuteSelectAbility();
             }
