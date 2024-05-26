@@ -1,16 +1,25 @@
-﻿using System;
+﻿using Helpers;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.MapEvents;
+using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Core;
+using TaleWorlds.LinQuick;
 using TaleWorlds.SaveSystem;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.Assimilation
 {
     public class AssimilationCampaignBehavior : CampaignBehaviorBase
     {
-        private Dictionary<Settlement, CultureObject> _settlementCulturePairs = new Dictionary<Settlement, CultureObject>();
-        private Dictionary<Settlement, CultureObject> _originalSettlementCulturePairs = new Dictionary<Settlement, CultureObject>();
+        private Dictionary<Settlement, CultureObject> _settlementCulturePairs = [];
+        private Dictionary<Settlement, CultureObject> _originalSettlementCulturePairs = [];
+        private bool _preventRecursiveCall = false;
 
         public static CultureObject GetOriginalCultureForSettlement(Settlement settlement)
         {
@@ -27,11 +36,43 @@ namespace TOR_Core.CampaignMechanics.Assimilation
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
             CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, OnNewGameStart);
             CampaignEvents.OnBeforeSaveEvent.AddNonSerializedListener(this, BeforeSave);
+            CampaignEvents.OnTroopRecruitedEvent.AddNonSerializedListener(this, OnTroopRecruited);
+            CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, DailyTickSettlement);
+            CampaignEvents.DistributeLootToPartyEvent.AddNonSerializedListener(this, OnDistributeLootToParty);
         }
 
-        private void OnNewGameStart(CampaignGameStarter arg1, int arg2)
+        private void OnDistributeLootToParty(MapEvent mapEvent, PartyBase winnerParty, Dictionary<PartyBase, ItemRoster> LootedItems)
         {
-            if(arg2 == 0)
+            foreach (var rosterElement in winnerParty.MemberRoster.GetTroopRoster().ToList())
+            {
+                SwapTroopsIfNeeded(winnerParty.LeaderHero, winnerParty.MemberRoster, rosterElement.Character, rosterElement.Number);
+            }
+        }
+
+        private void DailyTickSettlement(Settlement settlement)
+        {
+            if (settlement?.Town?.GarrisonParty?.MemberRoster == null || settlement?.Owner == null) return;
+
+            if (settlement.IsUnderSiege || settlement.InRebelliousState) return;
+
+            if (settlement.OwnerClan.Equals(Clan.PlayerClan)) return;
+
+            foreach (var rosterElement in settlement.Town.GarrisonParty.MemberRoster.GetTroopRoster().ToList())
+            {
+                SwapTroopsIfNeeded(settlement.Owner, settlement.Town.GarrisonParty?.MemberRoster, rosterElement.Character, rosterElement.Number);
+            }
+        }
+
+        private void OnTroopRecruited(Hero recruiter, Settlement settlement, Hero recruitmentSource, CharacterObject troop, int count)
+        {
+            if (_preventRecursiveCall) return;
+
+            SwapTroopsIfNeeded(recruiter, recruiter?.PartyBelongedTo?.MemberRoster, troop, count);
+        }
+
+        private void OnNewGameStart(CampaignGameStarter starter, int index)
+        {
+            if(index == 0)
             {
                 foreach (var settlement in Settlement.All)
                 {
@@ -46,9 +87,7 @@ namespace TOR_Core.CampaignMechanics.Assimilation
             foreach(var settlement in Settlement.All)
             {
                 if (_settlementCulturePairs.ContainsKey(settlement))
-                {
-                    _settlementCulturePairs[settlement] = settlement.Culture;
-                }
+                return;
                 else
                 {
                     _settlementCulturePairs.Add(settlement, settlement.Culture);
@@ -72,9 +111,77 @@ namespace TOR_Core.CampaignMechanics.Assimilation
             }
         }
 
+        private void SwapTroopsIfNeeded(Hero owner, TroopRoster roster, CharacterObject troop, int count)
+        {
+            if (troop.Culture == owner?.Culture) return;
+
+            if (owner?.Clan == null || owner == Hero.MainHero || owner?.PartyBelongedTo?.Party == null || roster == null || troop.IsHero || roster.GetTroopCount(troop) < count)
+            {
+                return;
+            }
+
+            if (owner.Clan.DefaultPartyTemplate == null) return;
+
+            List<CharacterObject> templateCharacters = [];
+            foreach (PartyTemplateStack stack in owner.Clan.DefaultPartyTemplate.Stacks)
+            {
+                templateCharacters = [.. templateCharacters, .. CharacterHelper.GetTroopTree(stack.Character)];
+            }
+
+            FormationClass troopClass = FormationClassExtensions.FallbackClass(troop.DefaultFormationClass);
+            List<CharacterObject> ofSameFormation = templateCharacters.Where(c => FormationClassExtensions.FallbackClass(c.DefaultFormationClass) == troopClass).ToList();
+
+            // first check for a template character of the same formation and same elite status
+            CharacterObject replacement = DetermineReplacement(ofSameFormation, troop.Tier, IsEliteTroop(troop));
+
+            // next check for template character of any formation and same elite status
+            replacement ??= DetermineReplacement(templateCharacters, troop.Tier, IsEliteTroop(troop));
+
+            // next check for a template character of the same formation and the opposite elite status
+            replacement ??= DetermineReplacement(ofSameFormation, troop.Tier, !IsEliteTroop(troop));
+
+            // finally check for template character of any formation and the opposite elite status
+            replacement ??= DetermineReplacement(templateCharacters, troop.Tier, !IsEliteTroop(troop));
+
+            if(replacement != null)
+            {
+                roster.RemoveTroop(troop, count);
+                roster.AddToCounts(replacement, count);
+                roster.RemoveZeroCounts();
+
+                if (replacement.Tier != troop.Tier || IsEliteTroop(replacement) != IsEliteTroop(troop))
+                {
+                    // adjust recruitment gold
+                    int troopCost = Campaign.Current.Models.PartyWageModel.GetTroopRecruitmentCost(troop, owner);
+                    int replacementCost = Campaign.Current.Models.PartyWageModel.GetTroopRecruitmentCost(replacement, owner);
+                    GiveGoldAction.ApplyBetweenCharacters(null, owner, (troopCost - replacementCost) * count);
+                }
+
+                _preventRecursiveCall = true;
+                CampaignEventDispatcher.Instance.OnTroopRecruited(owner, null, null, replacement, count);
+                _preventRecursiveCall = false;
+            }
+        }
+
+        private CharacterObject DetermineReplacement(List<CharacterObject> templateCharacters, int troopTier, bool useElite)
+        {
+            CharacterObject replacement = null;
+            replacement = templateCharacters.Where(t => t.Tier == troopTier && IsEliteTroop(t) == useElite).TakeRandom(1).FirstOrDefault();
+            replacement ??= templateCharacters.Where(t => t.Tier == troopTier).TakeRandom(1).FirstOrDefault();
+            replacement ??= templateCharacters.TakeRandom(1).FirstOrDefault();
+
+            return replacement;
+        }
+
+        private bool IsEliteTroop(CharacterObject unit)
+        {
+            var tree = CharacterHelper.GetTroopTree(unit.Culture.EliteBasicTroop);
+            return tree.Contains(unit);
+        }
+
         private void SettlementOwnerChanged(Settlement settlement, bool openToClaim, Hero newOwner, Hero oldOwner, Hero capturerHero, ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail detail)
         {
-            if(isSpecialSettlement(settlement))
+            if(IsSpecialSettlement(settlement))
                 return;
             
             if(newOwner.MapFaction != null && oldOwner.MapFaction != null)
@@ -101,7 +208,7 @@ namespace TOR_Core.CampaignMechanics.Assimilation
             }
         }
 
-        private bool isSpecialSettlement(Settlement settlement)
+        private bool IsSpecialSettlement(Settlement settlement)
         {
             return settlement.StringId == "castle_BK1";
         }

@@ -9,13 +9,7 @@ using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
-using TaleWorlds.CampaignSystem.GameState;
 using TaleWorlds.CampaignSystem.MapEvents;
-using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.Settlements;
-using TaleWorlds.Core;
-using TaleWorlds.MountAndBlade;
-using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.CustomResources;
@@ -50,7 +44,6 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this, OnPartyDestroyed);
             CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
             CampaignEvents.OnQuarterDailyPartyTick.AddNonSerializedListener(this, QuarterDailyTick);
-            
             CampaignEvents.PlayerUpgradedTroopsEvent.AddNonSerializedListener(this,TroopUpgraded);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, BattleEnd);
             CampaignEvents.OnTroopRecruitedEvent.AddNonSerializedListener(this, TroopRecruted);
@@ -405,6 +398,8 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             if (_settlementInfos.TryGetValue(settlement.StringId, out var list)) return list;
             else return [];
+        }
+
         public void AddAttributeToCharacterOfParty(string partyId, CharacterObject characterObject, string attribute)
         {
             _partyInfos[partyId].AddTroopAttribute(characterObject, attribute);

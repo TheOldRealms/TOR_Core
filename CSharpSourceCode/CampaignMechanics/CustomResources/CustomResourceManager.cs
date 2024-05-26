@@ -187,7 +187,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 if (Hero.MainHero.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
                 {
                     var settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 150f,
-                        x => x.IsTown && x.IsBretonnianMayorSettlement());
+                        x => x.IsTown && x.IsBretonnianMajorSettlement());
 
                     if (settlement != null)
                     {
