@@ -46,22 +46,24 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                         comp.OnTick(dt);
                     }
                 }
-                if (!_unprocessedCharacters.AnyQ()) continue;
-
+            }
+            
+            while (_unprocessedCharacters.AnyQ())
+            {
                 var queueAgent = _unprocessedCharacters.Dequeue();
 
                 if (!CheckPermanentEffectsForAddingPermanentEffects(queueAgent))
                 {
                     _unprocessedCharacters.Enqueue(queueAgent);
+                    break;
                 }
-                
             }
         }
 
 
         private bool CheckPermanentEffectsForAddingPermanentEffects(Agent agent)
         {
-            if (agent.Character == null)
+            if (agent?.Character == null)
             {
                 if (agent.IsMount)
                 {
@@ -76,7 +78,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 CareerHelper.PowerstoneEffectAssignment(agent);
                 return true;
             }
-            else if(!agent.BelongsToMainParty())
+            
+            if(!agent.BelongsToMainParty())
             {
                 return true;
             }
