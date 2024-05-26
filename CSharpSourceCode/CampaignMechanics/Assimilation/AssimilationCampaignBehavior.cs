@@ -12,6 +12,7 @@ using TaleWorlds.Core;
 using TaleWorlds.LinQuick;
 using TaleWorlds.SaveSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Assimilation
 {
@@ -114,8 +115,17 @@ namespace TOR_Core.CampaignMechanics.Assimilation
         private void SwapTroopsIfNeeded(Hero owner, TroopRoster roster, CharacterObject troop, int count)
         {
             if (troop.Culture == owner?.Culture) return;
+            
+            if(owner==null) return;
 
-            if (owner?.Clan == null || owner == Hero.MainHero || owner?.PartyBelongedTo?.Party == null || roster == null || troop.IsHero || roster.GetTroopCount(troop) < count)
+            if ((troop.Culture.StringId == TORConstants.SYLVANIA_CULTURE || troop.Culture.StringId == TORConstants.MOUSILLON_CULTURE) && 
+                (owner.Culture.StringId == TORConstants.SYLVANIA_CULTURE || owner.Culture.StringId == TORConstants.MOUSILLON_CULTURE))
+            {
+                return;
+            }
+            
+
+            if (owner.Clan == null || owner == Hero.MainHero || owner.PartyBelongedTo?.Party == null || roster == null || troop.IsHero || roster.GetTroopCount(troop) < count)
             {
                 return;
             }

@@ -34,6 +34,7 @@ namespace TOR_Core.Utilities
         public const string HERRIMAULT_CULTURE = "sea_raiders";
         public const string BRETONNIA_CULTURE = "vlandia";
         public const string SYLVANIA_CULTURE = "khuzait";
+        public const string MOUSILLON_CULTURE = "mousillon";
         public const string WOODELF_CULTURE = "sea_raiders";
     }
 }
