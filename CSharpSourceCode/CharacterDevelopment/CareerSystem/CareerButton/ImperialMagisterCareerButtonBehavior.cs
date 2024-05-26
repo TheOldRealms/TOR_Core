@@ -445,9 +445,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             ExtendedInfoManager.Instance.ValidatePartyInfos(MobileParty.MainParty);
 
-            if (PartyViewExtension.ViewModelInstance != null)
+            if (PartyVMExtension.ViewModelInstance != null)
             {
-                PartyViewExtension.ViewModelInstance.RefreshValues();
+                PartyVMExtension.ViewModelInstance.RefreshValues();
             }
         }
 
