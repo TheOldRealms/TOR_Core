@@ -18,7 +18,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 {
     public class StatusEffectMissionLogic : MissionLogic
     {
-        private int _tries;
         private Queue<Agent> _unprocessedAgents = new Queue<Agent>();
 
         public override void OnAgentCreated(Agent agent)
@@ -52,52 +51,33 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 }
             }
             
-            while (_unprocessedAgents.AnyQ())
+            while (_unprocessedAgents.Count>0)
             {
                 var queueAgent = _unprocessedAgents.Dequeue();
-
-                if (!CheckPermanentEffectsForAddingPermanentEffects(queueAgent))
-                {
-                    _tries++;
-                    if (_tries > 10)
-                    {
-                        _tries = 0;
-                        TORCommon.Log("Agent could not be processed.", LogLevel.Warn);
-                        break;
-                    }
-                    _unprocessedAgents.Enqueue(queueAgent);
-                    break;
-                }
-                _tries = 0;
+                CheckPermanentEffectsForAddingPermanentEffects(queueAgent);
             }
         }
 
 
-        private bool CheckPermanentEffectsForAddingPermanentEffects(Agent agent)
+        private void CheckPermanentEffectsForAddingPermanentEffects(Agent agent)
         {
             if (agent?.Character == null)
             {
-                if (agent.IsMount)
-                {
-                    return true;
-                }
-                return false;
+                return;
             }
             
-            if (agent.WieldedWeapon.IsEmpty) return false;
-            
+            if (agent.WieldedWeapon.IsEmpty) return;
+
             if (agent.BelongsToMainParty()&& Hero.MainHero.HasCareer(TORCareers.ImperialMagister))
             {
                 CareerHelper.PowerstoneEffectAssignment(agent);
-                return true;
+                return;
             }
             
             if(!agent.BelongsToMainParty())
             {
-                return true;
+                return;
             }
-            
-            return false;
         }
     }
 }
