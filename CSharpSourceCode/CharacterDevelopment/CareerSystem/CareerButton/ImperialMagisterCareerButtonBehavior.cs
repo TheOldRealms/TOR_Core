@@ -4,7 +4,9 @@ using System.Linq;
 using Ink.Parsed;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
@@ -15,6 +17,7 @@ using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Extensions.UI;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 {
@@ -441,7 +444,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
 
             ExtendedInfoManager.Instance.ValidatePartyInfos(MobileParty.MainParty);
-            SpecialbuttonEventManagerHandler.Instance.RefreshPartyVM();
+
+            if (PartyViewExtension.ViewModelInstance != null)
+            {
+                PartyViewExtension.ViewModelInstance.RefreshValues();
+            }
         }
 
 

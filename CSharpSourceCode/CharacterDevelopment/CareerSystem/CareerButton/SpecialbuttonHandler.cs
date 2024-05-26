@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
@@ -73,21 +74,5 @@ namespace TOR_Core.CampaignMechanics
             var value =  _shouldButtonBeActive(characterObject, out displayText, isPrsioner);
             return value;
         }
-
-        public void SetCurrentPartyUiExtensionInstance(PartyVM vm)
-        {
-            _partyVm = vm;
-        }
-
-
-        public void RefreshPartyVM()
-        {
-            if (_partyVm != null)
-            {
-                _partyVm.RefreshValues();
-            }
-    
-        }
-        
     }
 }
