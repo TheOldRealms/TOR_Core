@@ -15,7 +15,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 {
     public class StatusEffectMissionLogic : MissionLogic
     {
-        private Queue<Agent> _unprocessedCharacters = new Queue<Agent>();
+        private Queue<Agent> _unprocessedAgents = new Queue<Agent>();
 
         public override void OnAgentCreated(Agent agent)
         {
@@ -25,7 +25,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 agent.AddComponent(effectComponent);
             }
             
-            _unprocessedCharacters.Enqueue(agent);
+            _unprocessedAgents.Enqueue(agent);
         }
 
         public override void OnAgentMount(Agent agent)
@@ -48,13 +48,13 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 }
             }
             
-            while (_unprocessedCharacters.AnyQ())
+            while (_unprocessedAgents.AnyQ())
             {
-                var queueAgent = _unprocessedCharacters.Dequeue();
+                var queueAgent = _unprocessedAgents.Dequeue();
 
                 if (!CheckPermanentEffectsForAddingPermanentEffects(queueAgent))
                 {
-                    _unprocessedCharacters.Enqueue(queueAgent);
+                    _unprocessedAgents.Enqueue(queueAgent);
                     break;
                 }
             }
