@@ -11,7 +11,6 @@ namespace TOR_Core.BattleMechanics.Banners
     public static class CustomBannerManager
     {
         private static readonly Dictionary<string, FactionBannerOverride> _overrides = [];
-        private static readonly Dictionary<string, string> _imageResources = [];
         private static readonly Random _random = new();
 
         public static Banner GetRandomBannerFor(string cultureId, string faction = "")
