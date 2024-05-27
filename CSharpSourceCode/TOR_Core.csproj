@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -467,6 +467,7 @@
     <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\RaceFixCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\BountyMaster\BountyMasterCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\CampaignEventHelpers.cs" />
     <Compile Include="CampaignMechanics\Careers\CareerDialogOptionsCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Careers\TORCareerPerkCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
@@ -480,8 +481,6 @@
     <Compile Include="CampaignMechanics\CustomResources\CustomResource.cs" />
     <Compile Include="CampaignMechanics\CustomResources\CustomResourceManager.cs" />
     <Compile Include="CampaignMechanics\CustomResources\PartyVMExtension.cs" />
-    <Compile Include="CampaignMechanics\Diplomacy\TORDeclareWarDecision.cs" />
-    <Compile Include="CampaignMechanics\Diplomacy\TORKingdomDecisionProposalBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEvent.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEventsCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Invasions\InvasionCampaignBehavior.cs" />
@@ -588,9 +587,11 @@
     <Compile Include="Extensions\UI\BaseViewModelExtension.cs" />
     <Compile Include="Extensions\UI\HeroEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\PartyCharacterVMExtension.cs" />
+    <Compile Include="Extensions\UI\PartyNameplateItemVMExtension.cs" />
     <Compile Include="Extensions\UI\UnitEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionAttribute.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionManager.cs" />
+    <Compile Include="CampaignMechanics\ServeAsAMerc\ServeAsAHirelingCampaignBehavior.cs" />
     <Compile Include="Extensions\ViewModelExtensions.cs" />
     <Compile Include="GameManagers\TORKeyInputManager.cs" />
     <Compile Include="GameManagers\TORGameKeyContext.cs" />
@@ -651,8 +652,6 @@
     <Compile Include="Missions\QuestFightMissionController.cs" />
     <Compile Include="Models\ChivalryHelper.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleMoraleModel.cs" />
-    <Compile Include="Models\Diplomacy\Aggression\DecompiledNativeAggression.cs" />
-    <Compile Include="Models\Diplomacy\Aggression\TORAggressionCalculator.cs" />
     <Compile Include="Models\Diplomacy\Aggression\ReligiousAggressionCalculator.cs" />
     <Compile Include="Models\TORAgentApplyDamageModel.cs" />
     <Compile Include="Models\TORAgentStatCalculateModel.cs" />

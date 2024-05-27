@@ -1,10 +1,6 @@
 using SandBox.CampaignBehaviors;
 using SandBox.Issues;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Issues;
@@ -19,7 +15,6 @@ namespace TOR_Core.Utilities
             starter.RemoveBehaviors<InitialChildGenerationCampaignBehavior>();
             starter.RemoveBehaviors<PartyUpgraderCampaignBehavior>();
             starter.RemoveBehaviors<RetirementCampaignBehavior>();
-            starter.RemoveBehaviors<KingdomDecisionProposalBehavior>();
             starter.RemoveBehaviors<DynamicBodyCampaignBehavior>();
             starter.RemoveBehaviors<FactionDiscontinuationCampaignBehavior>();
 

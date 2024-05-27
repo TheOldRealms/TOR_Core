@@ -57,7 +57,7 @@ namespace TOR_Core.Models
 
         public override float GetScoreOfDeclaringWar(IFaction factionDeclaresWar, IFaction factionDeclaredWar, IFaction evaluatingClan, out TextObject warReason)
         {
-            var torScoreOfDeclaringWar = TORAggressionCalculator.TorAggressionScore(factionDeclaresWar, factionDeclaredWar);
+            var torScoreOfDeclaringWar = ReligiousAggressionCalculator.DetermineEffectOfReligion(factionDeclaresWar, factionDeclaredWar);
 
             var nativeScoreOfDeclaringWar = base.GetScoreOfDeclaringWar(factionDeclaresWar, factionDeclaredWar, evaluatingClan, out warReason);
 
@@ -81,7 +81,7 @@ namespace TOR_Core.Models
             }
 
             var nativeScoreOfDeclaringPeace = base.GetScoreOfDeclaringPeace(factionDeclaresPeace, factionDeclaredPeace, evaluatingClan, out peaceReason);
-            var torScore = TORAggressionCalculator.TorAggressionScore(factionDeclaresPeace, factionDeclaredPeace);
+            var torScore = ReligiousAggressionCalculator.DetermineEffectOfReligion(factionDeclaresPeace, factionDeclaredPeace);
 
             /// Apply same multipliers as declaration of war to try to them in agreement as much as possible
             nativeScoreOfDeclaringPeace *= TORConfig.DeclareWarScoreMultiplierNative;
@@ -97,8 +97,7 @@ namespace TOR_Core.Models
         {
             var score = base.GetScoreOfMercenaryToJoinKingdom(mercenaryClan, kingdom);
 
-            if (kingdom == null) return score;
-            if (mercenaryClan == null) return score;
+            if (kingdom == null || mercenaryClan == null) return score;
 
             if (kingdom.Culture.StringId == TORConstants.BRETONNIA_CULTURE && mercenaryClan.Culture.StringId != TORConstants.BRETONNIA_CULTURE)
             {
@@ -106,6 +105,11 @@ namespace TOR_Core.Models
             }
 
             if (mercenaryClan.StringId == "tor_dog_clan_hero_curse" && kingdom.Culture.StringId == TORConstants.SYLVANIA_CULTURE || kingdom.Culture.StringId == "mousillon" || kingdom.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
+            {
+                score = -10000;
+            }
+
+            if(mercenaryClan.Culture.StringId == TORConstants.DRUCHII_CULTURE)
             {
                 score = -10000;
             }
