@@ -458,7 +458,7 @@
 		particle_id="ulrics_gift"
 		particle_intensity="Low"
 		do_not_attach_to_agent_skeleton="false"
-    	base_effect_value="0.25"
+    	base_effect_value="0.3"
 		type="AttackSpeedManipulation"
 		damage_type="Frost">
   	</StatusEffectTemplate>
@@ -467,7 +467,7 @@
 		particle_id=""
 		particle_intensity="Low"
 		do_not_attach_to_agent_skeleton="false"
-    	base_effect_value="0.25"
+    	base_effect_value="0.3"
 		type="MovementManipulation"
 		damage_type="Frost">
   	</StatusEffectTemplate>
@@ -523,7 +523,7 @@
 		id="ice_storm_dot"
 		particle_id=""
 		particle_intensity="Low"
-    	base_effect_value="2"
+    	base_effect_value="4"
 		type="DamageOverTime"
 		damage_type="Frost">
   	</StatusEffectTemplate>
