@@ -74,7 +74,7 @@ namespace TOR_Core.HarmonyPatches
             if (array.Length > 1)
 			{
 				bannerCode = array[0];
-				ExtendedInfoManager.Instance.AddBannerImageResource(array[0], array[1]);
+				ExtendedInfoManager.AddBannerImageResource(array[0], array[1]);
 			}
         }
 

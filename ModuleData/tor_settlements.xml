@@ -46,7 +46,7 @@
       <HerdStone id="herdstone_02" background_crop_position="0.0" background_mesh="beastman_heardstone" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="darkelf_camp_01" name="{=!}Druchii Slaver Camp" owner="Faction.beastmen_clan_1" posX="792.494" posY="1126.466" culture="Culture.chaos_culture" text="{=!}Druchii Slaver Camp">
+  <Settlement id="darkelf_camp_01" name="{=!}Druchii Slaver Camp" owner="Faction.druchii_clan_1" posX="792.494" posY="1126.466" culture="Culture.druchii" text="{=!}Druchii Slaver Camp">
     <Components>
       <SlaverCamp id="darkelf_camp_01" background_crop_position="0.0" background_mesh="beastman_heardstone" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>

@@ -140,9 +140,9 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         public override void SpawnNewParty()
         {
             PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("druchii_slaver_party");
-            Clan beastmenClan = Clan.FindFirst(x => x.StringId == "beastmen_clan_1");
+            Clan clan = Clan.FindFirst(x => x.StringId == "druchii_clan_1");
             var find = TORCommon.FindSettlementsAroundPosition(Settlement.Position2D, 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
-            var raidingParty = RaidingPartyComponent.CreateRaidingParty("beastmen_clan_1_party_" + RaidingPartyCount + 1, Settlement, new TextObject("{=tor_dark_elf_slavers}Druchii Slavers").ToString(), template, beastmenClan, MBRandom.RandomInt(75, 99));
+            var raidingParty = RaidingPartyComponent.CreateRaidingParty("druchii_clan_1_party_" + RaidingPartyCount + 1, Settlement, new TextObject("{=tor_dark_elf_slavers}Druchii Slavers").ToString(), template, clan, MBRandom.RandomInt(75, 99));
             SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, find);
             ((RaidingPartyComponent)raidingParty.PartyComponent).Target = find;
         }

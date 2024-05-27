@@ -469,13 +469,40 @@
              banner_key="11.112.140.8000.8000.764.764.0.1.0.505.140.64.671.671.764.764.0.0.0"/>
     <!-- Wasteland faction -->
     <Faction id="wasteland_clan_1"
-             name="{=!}Wasteland Clan 1"
+             name="{=!}van de Kuypers"
              tier="6"
              owner="Hero.tor_emp_lord_wasteland_factionleader"
              culture="Culture.empire"
              super_faction="Kingdom.wasteland"
              is_noble="true"
-             text="{=!}"
+             text="{=!}Though he does not ride at the head of an army, nor sit on a royal throne, Jaan van de Kuypers - reputedly the world’s richest man, and certainly Marienburg’s most influential - is more powerful than many Old Worlder kings. He manipulates the Directorate, the Wasteland’s oligarchic council, through a carefully cultivated and bullied bloc of allies and puppets - not limited to the Staadtholder, several other Directors of the Ten, the Rector of Baron Henryk's College, and the High Priests of at least two religious cults. Nevertheless, absolute as van de Kuypers’ stranglehold on Marienburger politics may seem, various rival factions should not be underestimated."
+             banner_key="11.128.55.8000.8000.764.764.0.1.0.505.140.64.671.671.764.764.0.0.0:kingdom_wasteland"/>
+    <Faction id="wasteland_clan_2"
+             name="{=!}Cult of Manaan"
+             tier="6"
+             owner="Hero.tor_emp_lord_wasteland_second_1"
+             culture="Culture.empire"
+             super_faction="Kingdom.wasteland"
+             is_noble="true"
+             text="{=!} The Cult of Manaan, god of the sea, is centred in Marienburg and is the Wasteland’s richest and most powerful religion. Matriarch Camille Dauphina, the Cult’s nominal head in the northern Old World, is a middle-aged woman of pragmatism and wry wit. She has connections with most of the merchant families in Marienburg and uses the navigators, pilots, and priests of the Order of the Albatross to keep tabs on mercantile affairs internationally. This, and her lavish commissioning of new works for the high temple, have led some in the Manaanite clergy to feel she is turning the Cult into a merchant guild - something the rival Cult of Haendryk is all too eager to amplify."
+             banner_key="11.128.55.8000.8000.764.764.0.1.0.505.140.64.671.671.764.764.0.0.0:kingdom_wasteland"/>
+    <Faction id="wasteland_clan_3"
+             name="{=!}den Euwe"
+             tier="6"
+             owner="Hero.tor_emp_lord_wasteland_third_1"
+             culture="Culture.empire"
+             super_faction="Kingdom.wasteland"
+             is_noble="true"
+             text="{=!}Though small, House den Euwe is exceedingly wealthy from trade in Nipponese and Cathayan exotics and precious gems and metals. Until recently part of the clique dominated by Jaan van de Kuypers, den Euwe patriarch Karl has come to feel that Jaan's wealth and influence threaten the careful balance of control in Marienburg. Cautiously and gradually, Director den Euwe has been building ties to the Foogers, the van den Nijmenks, the de Roelefs, the van Onderzoekers, and the Cult of Shallya - a potential faction of not-insignificant power."
+             banner_key="11.128.55.8000.8000.764.764.0.1.0.505.140.64.671.671.764.764.0.0.0:kingdom_wasteland"/>
+    <Faction id="wasteland_clan_4"
+             name="{=!}van Haagen"
+             tier="6"
+             owner="Hero.tor_emp_lord_wasteland_fourth_1"
+             culture="Culture.empire"
+             super_faction="Kingdom.wasteland"
+             is_noble="true"
+             text="{=!}Heir to House van Haagen, Crispijn is widely known as a carouser, a risk-taker, a show-off, and a wastrel. This is only half the truth, for he shares his father’s knack for politics and force of personality, if not his prudence or discipline. Crispijn is also a bold and instinctive, if unproven, commander. Eager to prove himself beyond his father’s long shadow, the ‘Strutting Cock of Goudberg’ has recently taken to assuming personal command of troops within House van Haagen’s extensive private retinues."
              banner_key="11.128.55.8000.8000.764.764.0.1.0.505.140.64.671.671.764.764.0.0.0:kingdom_wasteland"/>
 	<!-- Couronne faction -->
     <Faction id="couronne_clan_1"
@@ -692,6 +719,22 @@
              color2="FF8B7C73"
              alternative_color="FF8B7C73"
              alternative_color2="FF8B7C73"
+             text="{=!}Description text missing." />
+    <!-- Druchii faction -->
+    <Faction id="druchii_clan_1"
+             name="{=!}Druchii Slavers"
+             tier="4"
+             is_minor_faction="true"
+             is_outlaw="true"
+             owner="Hero.tor_de_lord_factionleader"
+             culture="Culture.druchii"
+             default_party_template="PartyTemplate.druchii_slaver_party"
+             banner_key="11.8.140.8000.8000.764.764.0.1.0.505.140.64.671.671.764.764.0.0.0:faction_druchii_01"
+             label_color="FF581645"
+             color="FF581645"
+             color2="FF146981"
+             alternative_color="FF581645"
+             alternative_color2="FF146981"
              text="{=!}Description text missing." />
     <!-- Empire outlaw factions -->
     <Faction id="empire_deserter_clan_1"

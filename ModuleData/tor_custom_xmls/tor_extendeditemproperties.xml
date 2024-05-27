@@ -3426,6 +3426,9 @@
   <ExtendedItemObjectProperties ItemStringId="tor_we_weapon_shield_lord_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_weapon_shield_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_staff_cw_001_combined">
     <ItemTraits>
       <ItemTrait ItemTraitName="Lightning Resistance and Amplification" IconName="winds_icon_45">

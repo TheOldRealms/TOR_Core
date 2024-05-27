@@ -64,7 +64,7 @@ namespace TOR_Core.CampaignMechanics
         private List<TORTroopUpgradeArgs> GetPossibleUpgradeTargets(PartyBase party, TroopRosterElement rosterElement)
         {
             PartyWageModel partyWageModel = Campaign.Current.Models.PartyWageModel;
-            List<TORTroopUpgradeArgs> list = new List<TORTroopUpgradeArgs>();
+            List<TORTroopUpgradeArgs> list = [];
             CharacterObject character = rosterElement.Character;
             int num = rosterElement.Number - rosterElement.WoundedNumber;
             if (num > 0)
@@ -174,29 +174,14 @@ namespace TOR_Core.CampaignMechanics
             }
         }
 
-        private readonly struct TORTroopUpgradeArgs
+        private readonly struct TORTroopUpgradeArgs(CharacterObject target, CharacterObject upgradeTarget, int possibleUpgradeCount, int upgradeGoldCost, int upgradeXpCost, float upgradeChance)
         {
-            public TORTroopUpgradeArgs(CharacterObject target, CharacterObject upgradeTarget, int possibleUpgradeCount, int upgradeGoldCost, int upgradeXpCost, float upgradeChance)
-            {
-                Target = target;
-                UpgradeTarget = upgradeTarget;
-                PossibleUpgradeCount = possibleUpgradeCount;
-                UpgradeGoldCost = upgradeGoldCost;
-                UpgradeXpCost = upgradeXpCost;
-                UpgradeChance = upgradeChance;
-            }
-
-            public readonly CharacterObject Target;
-
-            public readonly CharacterObject UpgradeTarget;
-
-            public readonly int PossibleUpgradeCount;
-
-            public readonly int UpgradeGoldCost;
-
-            public readonly int UpgradeXpCost;
-
-            public readonly float UpgradeChance;
+            public readonly CharacterObject Target = target;
+            public readonly CharacterObject UpgradeTarget = upgradeTarget;
+            public readonly int PossibleUpgradeCount = possibleUpgradeCount;
+            public readonly int UpgradeGoldCost = upgradeGoldCost;
+            public readonly int UpgradeXpCost = upgradeXpCost;
+            public readonly float UpgradeChance = upgradeChance;
         }
 
         public override void SyncData(IDataStore dataStore) { }

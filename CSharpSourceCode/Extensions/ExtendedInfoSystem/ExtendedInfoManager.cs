@@ -24,7 +24,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         private static Dictionary<string, CharacterExtendedInfo> _characterInfos = [];
         private Dictionary<string, HeroExtendedInfo> _heroInfos = [];
         private Dictionary<string, MobilePartyExtendedInfo> _partyInfos = [];
-        private Dictionary<string, string> _bannerResources = [];
+        private static Dictionary<string, string> _bannerResources = [];
         private static ExtendedInfoManager _instance;
         private static readonly Dictionary<string,List<string>> _settlementInfos = [];
 
@@ -371,7 +371,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             }
         }
 
-        public string GetBannerImageResource(Banner banner)
+        public static string GetBannerImageResource(Banner banner)
         {
             var bannerCode = banner.Serialize();
             if (_bannerResources.TryGetValue(bannerCode, out var resource))
@@ -381,7 +381,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             else return null;
         }
 
-        public void AddBannerImageResource(string bannerCode, string imageResource)
+        public static void AddBannerImageResource(string bannerCode, string imageResource)
         {
             _bannerResources.AddOrReplace(bannerCode, imageResource);
         }

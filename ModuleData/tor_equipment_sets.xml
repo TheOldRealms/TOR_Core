@@ -2264,7 +2264,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_de_conscript_template" culture="Culture.druchii">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.heavy_heater_shield" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_shield_001" />
       <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
@@ -2273,7 +2273,7 @@
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.heavy_heater_shield" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_shield_001" />
       <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
@@ -2284,7 +2284,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_de_bleaksword_template" culture="Culture.druchii">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.heavy_heater_shield" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_shield_001" />
       <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
@@ -2293,7 +2293,7 @@
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.heavy_heater_shield" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_shield_001" />
       <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
@@ -2304,7 +2304,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_de_dreadspear_template" culture="Culture.druchii">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.heavy_heater_shield" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_shield_001" />
       <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
@@ -2313,7 +2313,7 @@
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.heavy_heater_shield" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_shield_001" />
       <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
@@ -2324,7 +2324,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_de_darkshard_template" culture="Culture.druchii">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.heavy_heater_shield" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_shield_001" />
       <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
@@ -2333,7 +2333,7 @@
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.heavy_heater_shield" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_shield_001" />
       <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
@@ -2344,7 +2344,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_de_darkrider_template" culture="Culture.druchii">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.heavy_heater_shield" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_shield_001" />
       <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
@@ -2355,7 +2355,7 @@
       <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.heavy_heater_shield" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_shield_001" />
       <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
@@ -12600,6 +12600,74 @@
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
       <Equipment slot="Horse" id="Item.noble_horse" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_royal_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_generic_empire_lord_wasteland_pirate1" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.khuzait_sword_3_t3" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_gun_flintlock_pistol_005" />
+      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_tracker_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_free_company_001" />
+      <Equipment slot="Cape" id="Item.wrapped_scarf" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_greatsword_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.khuzait_sword_3_t3" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_gun_flintlock_pistol_005" />
+      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_tracker_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_free_company_001" />
+      <Equipment slot="Cape" id="Item.wrapped_scarf" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_greatsword_002" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_generic_empire_lord_wasteland_pirate2" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.khuzait_noble_sword_2_t5" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_gun_handgun_003" />
+      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_greatsword_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_pistolier_001" />
+      <Equipment slot="Cape" id="Item.battania_shoulder_strap_cloak" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_greatsword_002" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_master_engineer_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.khuzait_noble_sword_2_t5" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_gun_handgun_003" />
+      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_greatsword_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_pistolier_001" />
+      <Equipment slot="Cape" id="Item.battania_shoulder_strap_cloak" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_greatsword_002" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_master_engineer_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_generic_empire_lord_wasteland_norsemerc" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.northern_round_shield" />
+      <Equipment slot="Item1" id="Item.battania_axe_2_t4" />
+      <Equipment slot="Head" id="Item.tor_chaos_head_helm_marauder_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_swadian_plate_001" />
+      <Equipment slot="Cape" id="Item.fur_cloak_a" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_bracers_marauder_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_greatsword_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.northern_round_shield" />
+      <Equipment slot="Item1" id="Item.battania_axe_2_t4" />
+      <Equipment slot="Head" id="Item.tor_chaos_head_helm_marauder_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_swadian_plate_001" />
+      <Equipment slot="Cape" id="Item.fur_cloak_a" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_bracers_marauder_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_greatsword_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_empire_kobs_lord_1_template" culture="Culture.empire">

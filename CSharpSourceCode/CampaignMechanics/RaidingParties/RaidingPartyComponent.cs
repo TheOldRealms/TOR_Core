@@ -53,7 +53,7 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
                 mobileParty => ((RaidingPartyComponent)mobileParty.PartyComponent).InitializeRaidingParty(mobileParty, partySize, template, owner));
         }
 
-        public override TextObject Name => new TextObject(_name);
+        public override TextObject Name => new(_name);
 
         public void HourlyTickAI(PartyThinkParams thinkParams)
         {
@@ -61,15 +61,16 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
             {
                 FindNewTarget();
             }
-            AIBehaviorTuple item = new AIBehaviorTuple(Target, AiBehavior.RaidSettlement, false);
-            float score;
-            if (thinkParams.TryGetBehaviorScore(item, out score))
+            AIBehaviorTuple item = new(Target, AiBehavior.RaidSettlement, false);
+            if (thinkParams.TryGetBehaviorScore(item, out float score))
             {
                 thinkParams.SetBehaviorScore(item, score + 0.8f);
                 return;
             }
-            ValueTuple<AIBehaviorTuple, float> valueTuple = new ValueTuple<AIBehaviorTuple, float>(item, 0.8f);
+            ValueTuple<AIBehaviorTuple, float> valueTuple = new(item, 0.8f);
             thinkParams.AddBehaviorScore(valueTuple);
+
+            if ((bool)!Clan?.IsAtWarWith(Target?.MapFaction)) FactionManager.DeclareWar(Clan, Target.MapFaction, true);
         }
 
         private bool TargetIsValid() => Target != null && !Target.IsRaided && !Target.IsUnderRaid && Target != HomeSettlement && Target.IsVillage;
