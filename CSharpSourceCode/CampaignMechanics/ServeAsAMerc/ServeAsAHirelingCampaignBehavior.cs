@@ -146,11 +146,29 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword", "I am hereby offering my sword.", null, EnlistPlayer);
             campaignGameStarter.AddDialogLine("payedsword", "payedsword", "end", "As you wish.", null, null, 200, null);
         }
+
+        private void SetupButtonTexts(CampaignGameStarter campaignGameStarter)
+        {
+            var text = new TextObject("{PAUSE_ONOFF_TEXT}");
+            campaignGameStarter.AddGameMenuOption("hireling_menu","pause_time_option",text.Value, null, new GameMenuOption.OnConsequenceDelegate(PauseModeToggle));
+            
+            TextObject pauseText = GameTexts.FindText("Hireling","PauseTime");
+            
+            
+            pauseText.SetTextVariable("PAUSE_ONOFF", "off");
+           // pauseText.SetTextVariable("PAUSE_ONOFF_TEXT", pauseText);
+
+           GameTexts.SetVariable("PAUSE_ONOFF_TEXT", pauseText);
+           // text1.SetTextVariable("PAUSE_ONOFF_TEXT", text2);
+
+
+        } 
         private void ServeAsAMercDialog(CampaignGameStarter campaignGameStarter)
         {
             InitializeDialogs(campaignGameStarter);
             TextObject infotext = new TextObject("{ENLISTING_TEXT}", null);
-            TextObject pauseToggleText = GameTexts.FindText("Hireling","PauseTime");
+            
+        
             
             campaignGameStarter.AddWaitGameMenu("hireling_menu", infotext.Value, new OnInitDelegate(this.party_wait_talk_to_other_members_on_init), new OnConditionDelegate(this.wait_on_condition),
                     null, new OnTickDelegate(this.wait_on_tick), GameMenu.MenuAndOptionType.WaitMenuHideProgressAndHoursOption, GameOverlays.MenuOverlayType.None, 0f, GameMenu.MenuFlags.None, null);
@@ -187,11 +205,9 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                 EncounterManager.StartSettlementEncounter(MobileParty.MainParty.Party.MobileParty, _hirelingEnlistingLord.PartyBelongedTo.CurrentSettlement);
                 EnterSettlementAction.ApplyForParty(MobileParty.MainParty.Party.MobileParty, _hirelingEnlistingLord.CurrentSettlement);
             }, true, -1, false, null);
-            var pauseOnOffText = new TextObject("{PAUSE_ONOFF_TEXT}",null);
-            campaignGameStarter.AddGameMenuOption("hireling_menu","pause_time_option",pauseOnOffText.Value, null, new GameMenuOption.OnConsequenceDelegate(PauseModeToggle));
             
-            TextObject initialPauseValue = GameTexts.FindText("Hireling","PauseTime");
-            initialPauseValue.SetTextVariable("PAUSE_ONOFF_TEXT", initialPauseValue);
+            
+            SetupButtonTexts(campaignGameStarter);
             
             
             TextObject hirelingBattleTextMenu = new TextObject("This is a test of Hireling BattleMenu", null);
@@ -267,10 +283,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             text2.SetTextVariable("PAUSE_ONOFF", onOffText);
             
            // GameTexts.SetVariable("PAUSE_ONOFF",onOffText);
-            text2.Value = text2.Value;
-
-            text1.SetTextVariable("PAUSE_ONOFF_TEXT", text2);
-            
+            GameTexts.SetVariable("PAUSE_ONOFF_TEXT", text2);
+            args.Text = text2;
             args.MenuContext.Refresh();
         }
 
