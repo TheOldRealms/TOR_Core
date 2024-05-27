@@ -3730,7 +3730,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="2"
       BelongsToLoreID="UlricanPrayers"
-      TooltipDescription="{=armor_of_righteousness_description_str}Allies in a 3 meter radius gain 35% physical resistance for 8 seconds.">
+      TooltipDescription="{=armor_of_righteousness_description_str}The wolf-priest lets out a mighty howl and dedicates the kill to Ulric. Gain +30% movement and attack speed for 25 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -3747,7 +3747,7 @@
       WindsOfMagicCost="0"
       BaseMisCastChance="0.05"
       Duration="0"
-      Radius="3"
+      Radius="10"
       AbilityType="Prayer"
       AbilityEffectType="Augment"
       BaseMovementSpeed="0"
@@ -3773,7 +3773,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="UlricanPrayers"
-      TooltipDescription="{=armor_of_righteousness_description_str}Allies in a 3 meter radius gain 35% physical resistance for 8 seconds.">
+      TooltipDescription="{=armor_of_righteousness_description_str}The priest's allies are driven into a zealous frenzy. Friendly troops in a 10 meter radius gain +35% physical damage as well as Unbreakable and Unstoppable for 20 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -3816,7 +3816,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="UlricanPrayers"
-      TooltipDescription="{=armor_of_righteousness_description_str}Allies in a 3 meter radius gain 35% physical resistance for 8 seconds.">
+      TooltipDescription="{=armor_of_righteousness_description_str}The wolf-priest summons an icy hailstorm within an area. Enemies suffer a -50% movement and attack speed penalty as well as damage over time.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -3827,13 +3827,13 @@
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="SnowKingDecree"
-      Name="{=armor_of_righteousness_label_str}The Snow Kings Decree"
+      Name="{=armor_of_righteousness_label_str}The Snow King's Decree"
       SpriteName="wind_blast_icon"
       CoolDown="70"
       WindsOfMagicCost="0"
       BaseMisCastChance="0.05"
       Duration="5"
-      Radius="6"
+      Radius="8"
       AbilityType="Prayer"
       AbilityEffectType="Hex"
       BaseMovementSpeed="0"
@@ -3859,7 +3859,7 @@
       CrosshairType="SingleTarget"
       SpellTier="4"
       BelongsToLoreID="UlricanPrayers"
-      TooltipDescription="{=armor_of_righteousness_description_str}Allies in a 3 meter radius gain 35% physical resistance for 8 seconds.">
+      TooltipDescription="{=armor_of_righteousness_description_str}The priest roars with a grand prayer and calls freezing blast of blue flames to cleanse a targeted area of cowards and weaklings. Affected enemies take damage, suffer a -50% movement and attack speed penalty as well as damage over time.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>

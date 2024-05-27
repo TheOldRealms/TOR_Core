@@ -885,7 +885,7 @@
             Radius="5" 
             HasShockWave="false" 
             TargetType="Self" 
-            ImbuedStatusEffectDuration="2.1" 
+            ImbuedStatusEffectDuration="25" 
             DamageVariance="0.0" 
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>ulrics_gift_mvs</ImbuedStatusEffect>
@@ -898,11 +898,11 @@
             SoundEffectLength="0" 
             DamageType="Invalid" 
             DamageAmount="0" 
-            Radius="5" 
+            Radius="10" 
             HasShockWave="false" 
             TargetType="Friendly" 
             DamageVariance="0.0" 
-		ImbuedStatusEffectDuration="15" 
+		ImbuedStatusEffectDuration="20" 
             ScriptNameToTrigger="none">
 			<ImbuedStatusEffect>heart_of_the_wolf_dmg</ImbuedStatusEffect>
 			<ImbuedStatusEffect>heart_of_the_wolf_unb</ImbuedStatusEffect>
@@ -915,11 +915,11 @@
             SoundEffectLength="0" 
             DamageType="Frost" 
             DamageAmount="10" 
-            Radius="10" 
+            Radius="12" 
             HasShockWave="false" 
             TargetType="Enemy" 
             DamageVariance="0.0" 
-		ImbuedStatusEffectDuration="15" 
+		ImbuedStatusEffectDuration="10" 
             ScriptNameToTrigger="none">
 			<ImbuedStatusEffect>ice_storm_mvs</ImbuedStatusEffect>
 			<ImbuedStatusEffect>ice_storm_ats</ImbuedStatusEffect>
@@ -931,9 +931,9 @@
             SoundEffectId="none" 
             SoundEffectLength="0" 
             DamageType="Frost" 
-            DamageAmount="10" 
-            Radius="10" 
-            HasShockWave="false" 
+            DamageAmount="30" 
+            Radius="8" 
+            HasShockWave="true" 
             TargetType="Enemy" 
             DamageVariance="0.0" 
 		ImbuedStatusEffectDuration="15" 
