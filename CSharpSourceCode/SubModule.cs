@@ -198,6 +198,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORPersuasionModel());
                 gameStarterObject.AddModel(new TORVoiceOverModel());
                 gameStarterObject.AddModel(new TORFaithModel());
+                gameStarterObject.AddModel(new TORCustomResourceModel());
                 gameStarterObject.AddModel(new TORClanPoliticsModel());
                 gameStarterObject.AddModel(new TORMapVisibilityModel());
                 gameStarterObject.AddModel(new TORTournamentModel());

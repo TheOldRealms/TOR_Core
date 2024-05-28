@@ -503,6 +503,7 @@
     <Compile Include="CampaignMechanics\Religion\ReligionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Religion\ReligionEncyclopediaPage.cs" />
     <Compile Include="CampaignMechanics\Religion\ReligionObject.cs" />
+    <Compile Include="CampaignMechanics\ServeAsAMerc\ServeAsAHirelingScripts.cs" />
     <Compile Include="CampaignMechanics\SkillBooks\TORSkillBookCampaignBehavior.cs" />
     <Compile Include="BattleMechanics\TORBattleAgentLogic.cs" />
     <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
@@ -668,6 +669,7 @@
     <Compile Include="Models\TORCombatXpModel.cs" />
     <Compile Include="Models\TORCompanionHiringPriceCalculationModel.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleAgentStatCalculateModel.cs" />
+    <Compile Include="Models\TORCustomResourceModel.cs" />
     <Compile Include="Models\TORDamageParticleModel.cs" />
     <Compile Include="Models\TORDiplomacyModel.cs" />
     <Compile Include="Models\TOREncounterModel.cs" />

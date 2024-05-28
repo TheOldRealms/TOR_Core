@@ -140,7 +140,7 @@ namespace TOR_Core.Models
             {
                 list.Add(new TooltipProperty("Next Rank: ", (chivalryLevel + 1).ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
                 var result = GetResourceMinimumForChivalryRank((ChivalryLevel)chivalryLevel + 1) - value;
-                list.Add(new TooltipProperty("Required Chivalry: ", result.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+                list.Add(new TooltipProperty("Required Chivalry: ", result.ToString("0"), 0, false, TooltipProperty.TooltipPropertyFlags.None));
             }
 
 

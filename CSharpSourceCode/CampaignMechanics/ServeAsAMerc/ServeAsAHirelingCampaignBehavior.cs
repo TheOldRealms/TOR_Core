@@ -21,7 +21,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 {
     public class ServeAsAHirelingCampaignBehavior : CampaignBehaviorBase
     {
-        private float durationInDays;
+        private int _manuallyFoughtBattles;
+        private float _durationInDays;
         private bool _hirelingEnlisted;
         private Hero _hirelingEnlistingLord;
         private bool _hirelingEnlistingLordIsAttacking;
@@ -37,6 +38,18 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         private bool _hirelingWaitMenuShown;
 
         private float _entryServiceTimeStamp;
+
+
+        public float DurationInDays
+        {
+            get => _durationInDays;
+        }
+
+        public int ManuallyFoughtBattles
+        {
+            get => _manuallyFoughtBattles;
+        }
+
 
         public bool IsEnlisted()
         {
@@ -55,7 +68,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             CampaignEvents.GameMenuOptionSelectedEvent.AddNonSerializedListener(this, ContinueTimeAfterLeftSettlementWhileEnlisted);
         }
 
-       
 
         private void ContinueTimeAfterLeftSettlementWhileEnlisted(GameMenuOption obj)
         {
@@ -156,10 +168,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             
             
             pauseText.SetTextVariable("PAUSE_ONOFF", "off");
-           // pauseText.SetTextVariable("PAUSE_ONOFF_TEXT", pauseText);
 
            GameTexts.SetVariable("PAUSE_ONOFF_TEXT", pauseText);
-           // text1.SetTextVariable("PAUSE_ONOFF_TEXT", text2);
 
 
         } 
@@ -371,7 +381,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                 TextObject text2 = GameTexts.FindText("Hireling","MainText");
                 text2.SetTextVariable("ENLISTING_LORD", _hirelingEnlistingLord.Name);
                 
-                var days = $"{durationInDays:0.0}";
+                var days = $"{_durationInDays:0.0}";
                 text2.SetTextVariable("ENLISTING_DURATION", days);
                 var armyInfo = "";
                 if(_hirelingEnlistingLord.PartyBelongedTo.Army!=null)
@@ -395,6 +405,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             dataStore.SyncData<bool>("_enlisted", ref _hirelingEnlisted);
             dataStore.SyncData<Hero>("_enlistingLord", ref _hirelingEnlistingLord);
             dataStore.SyncData<float>("_entryServiceTimeStamp", ref _entryServiceTimeStamp);
+            dataStore.SyncData<int>("_manuallyFoughtBattles", ref _manuallyFoughtBattles);
+            dataStore.SyncData<float>("_durationInDays", ref _durationInDays);
         }
 
         private void party_wait_talk_to_other_members_on_init(MenuCallbackArgs args)
@@ -411,6 +423,11 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             if (mapEvent.PlayerSide == mapEvent.WinningSide && IsEnlisted())
             {
 
+                if (!_hirelingLordIsFightingWithoutPlayer)
+                {
+                    _manuallyFoughtBattles++;
+                }
+                
                 PlayerEncounter.Current.RosterToReceiveLootItems.Clear();
                 PlayerEncounter.Current.RosterToReceiveLootMembers.Clear();
                 PlayerEncounter.Current.RosterToReceiveLootPrisoners.Clear();
@@ -475,11 +492,15 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         // If the player is concerned by the end of a map event, we should start displaying the menu.
         private void mapEventEnded(MapEvent mapEvent)
         {
+            if(_hirelingEnlistingLord == null|| !IsEnlisted()) return; 
+        
+            
             if (_hirelingEnlistingLord != null && !mapEvent.IsPlayerMapEvent && getEnlistingLordisInMapEvent(mapEvent))
             {
+                
                 GameMenu.SwitchToMenu("hireling_menu");
                 _hirelingLordIsFightingWithoutPlayer = false;
-            };
+            }
             if (mapEvent.IsPlayerMapEvent)
             {
                 GameMenu.SwitchToMenu("hireling_menu");
@@ -506,7 +527,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             {
                 
                 var menu = Campaign.Current.GameMenuManager.GetGameMenu("hireling_menu");
-                durationInDays = Campaign.Current.CampaignStartTime.ElapsedDaysUntilNow - _entryServiceTimeStamp;
+                _durationInDays = Campaign.Current.CampaignStartTime.ElapsedDaysUntilNow - _entryServiceTimeStamp;
                 menu.RunOnTick(Campaign.Current.CurrentMenuContext,dt);
 
 
