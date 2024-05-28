@@ -1,13 +1,14 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 using TOR_Core.Extensions;
+using TOR_Core.Models;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.ServeAsAMerc;
 
 public static class ServeAsAHirelingScripts
 {
-    public static void AddHirelingBenefits(Hero hero, ref ExplainedNumber number)
+    public static void AddHirelingCustomResourceBenefits(Hero hero, ref ExplainedNumber number)
     {
         var hirelingCampaignBehavior = Campaign.Current.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>();
 
@@ -40,11 +41,50 @@ public static class ServeAsAHirelingScripts
             {
                 number.Add(5, new TextObject("Gained Respect"));
                 benefits.AddFactor((0.1f * battles));
-                //benefits.AddFactor(-0.5f+duration/10);
                 return;
             }
         }
         
         number.AddFactor(hirelingCampaignBehavior.DurationInDays/10);
+    }
+
+
+    public static void AddHirelingWage(Hero hero, ref ExplainedNumber number)
+    {
+        var hirelingCampaignBehavior = Campaign.Current.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>();
+        if (hirelingCampaignBehavior == null) return;
+
+
+        
+        
+        var duration = hirelingCampaignBehavior.DurationInDays;
+        var battles = hirelingCampaignBehavior.ManuallyFoughtBattles;
+        var wage = new ExplainedNumber(25 * hero.Level);
+
+        var cultureID = hero.Culture.StringId;
+
+        if (cultureID == TORConstants.Cultures.EMPIRE || cultureID == TORConstants.Cultures.SYLVANIA && !hero.IsNecromancer())
+        {
+            wage.AddFactor((0.1f * battles));
+            wage.AddFactor(-0.5f+duration/20);
+
+            if (cultureID == TORConstants.Cultures.SYLVANIA)
+            {
+                wage.AddFactor(0.2f);   //vampires pay better ;)
+            }
+        }
+
+        if (cultureID == TORConstants.Cultures.BRETONNIA)
+        {
+            wage.AddFactor((0.1f * battles));       //payment in bretonnia is bad, they don't pay very well
+            var malus = 3 - ((int)hero.GetChivalryLevel());     //from level 3 on you increase your wage
+            wage.AddFactor((-0.1f * malus));
+        }
+        
+        var multiplier = hero.PartyBelongedTo.GetMemberHeroes().Count-1;
+        
+        wage.AddFactor(multiplier);
+        
+        number.Add(wage.ResultNumber ,new TextObject("Hireling Wage"));
     }
 }

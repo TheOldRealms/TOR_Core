@@ -111,9 +111,6 @@ namespace TOR_Core.Models
 
 
                 }
-
-                
-                
             }
             return value;
         }

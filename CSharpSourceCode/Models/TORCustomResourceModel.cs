@@ -37,7 +37,7 @@ public class TORCustomResourceModel : GameModel
 
                     if (hero.IsEnlisted())
                     {
-                        ServeAsAHirelingScripts.AddHirelingBenefits(hero,ref number);
+                        ServeAsAHirelingScripts.AddHirelingCustomResourceBenefits(hero,ref number);
                     }
                 }
                 
