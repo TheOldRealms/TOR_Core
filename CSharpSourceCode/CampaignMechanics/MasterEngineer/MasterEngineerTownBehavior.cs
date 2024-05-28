@@ -51,7 +51,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
         private void DailyTickSettlement(Settlement settlement)
         {
-            if (settlement.Culture.StringId != TORConstants.BRETONNIA_CULTURE || !settlement.IsTown) return;
+            if (settlement.Culture.StringId != TORConstants.Cultures.BRETONNIA || !settlement.IsTown) return;
             if (settlement.Town.Workshops.Any(x => x.WorkshopType.StringId == "wood_WorkshopType"))
             {
                 var trebuchetItem = MBObjectManager.Instance.GetObject<ItemObject>("tor_bretonnia_artillery_fieldtrebuchet_001");
@@ -98,7 +98,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             //skill check
             obj.AddDialogLine("opengunshopcheck", "opengunshopcheck", "skillcheck", GameTexts.FindText(questDialogId,"engineerSkillCheck").ToString(), null, checkplayerengineerskillrequirements, 200, null);
             obj.AddDialogLine("playerskillcheckfailed", "skillcheck", "close window", GameTexts.FindText(questDialogId,"engineerSkillCheckFailed").ToString(), () => !_playerIsSkilledEnough, null, 200);
-            obj.AddDialogLine("playerskillchecksuccess", "skillcheck", "playerpassedskillcheck2",GameTexts.FindText(questDialogId,"engineerSkillCheckPassed").ToString(), () => _playerIsSkilledEnough&& Hero.MainHero.Culture.StringId== TORConstants.EMPIRE_CULTURE && !Hero.MainHero.IsVampire(), null, 200);
+            obj.AddDialogLine("playerskillchecksuccess", "skillcheck", "playerpassedskillcheck2",GameTexts.FindText(questDialogId,"engineerSkillCheckPassed").ToString(), () => _playerIsSkilledEnough&& Hero.MainHero.Culture.StringId== TORConstants.Cultures.EMPIRE && !Hero.MainHero.IsVampire(), null, 200);
 
             //quest start
             obj.AddDialogLine("playerpassskillcheck2", "playerpassedskillcheck2", "playerstartquestcheck",GameTexts.FindText(questDialogId,"cultistBriefing0").ToString(), null, givequestoffer, 200);

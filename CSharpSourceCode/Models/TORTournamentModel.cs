@@ -17,7 +17,7 @@ namespace TOR_Core.Models
         public override TournamentGame CreateTournament(Town town)
         {
             var culture = AssimilationCampaignBehavior.GetOriginalCultureForSettlement(town.Settlement);
-            if (culture != null && culture.StringId == TORConstants.BRETONNIA_CULTURE || culture.StringId == "mousillon")
+            if (culture != null && culture.StringId == TORConstants.Cultures.BRETONNIA || culture.StringId == "mousillon")
             {
                 return new JoustTournamentGame(town);
             }

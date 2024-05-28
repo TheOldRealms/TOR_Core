@@ -32,7 +32,7 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                 !mobileParty.IsDisbanding &&
                 mobileParty.LeaderHero != null &&
                 mobileParty.LeaderHero.CanPlaceArtillery() &&
-                mobileParty.LeaderHero.Culture.StringId == TORConstants.EMPIRE_CULTURE &&
+                mobileParty.LeaderHero.Culture.StringId == TORConstants.Cultures.EMPIRE &&
                 !mobileParty.Party.IsStarving &&
                 mobileParty.MapFaction.IsKingdomFaction &&
                 mobileParty.Party.NumberOfAllMembers < mobileParty.LimitedPartySize &&

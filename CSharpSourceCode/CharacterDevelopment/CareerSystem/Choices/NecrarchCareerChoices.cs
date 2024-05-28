@@ -297,7 +297,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                
             }
             
-            if (playerHero.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
+            if (playerHero.Culture.StringId == TORConstants.Cultures.BRETONNIA)
             {
                 CultureObject mousillonCulture= MBObjectManager.Instance.GetObject<CultureObject>("mousillon");
                 Hero.MainHero.Culture = mousillonCulture;
@@ -305,7 +305,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             if (playerHero.Culture.StringId == "empire")
             {
-                CultureObject sylvaniaCulture= MBObjectManager.Instance.GetObject<CultureObject>(TORConstants.SYLVANIA_CULTURE);
+                CultureObject sylvaniaCulture= MBObjectManager.Instance.GetObject<CultureObject>(TORConstants.Cultures.SYLVANIA);
                 Hero.MainHero.Culture = sylvaniaCulture;
             }
             

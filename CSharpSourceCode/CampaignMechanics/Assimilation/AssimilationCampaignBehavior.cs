@@ -118,8 +118,8 @@ namespace TOR_Core.CampaignMechanics.Assimilation
             
             if(owner==null) return;
 
-            if ((troop.Culture.StringId == TORConstants.SYLVANIA_CULTURE || troop.Culture.StringId == TORConstants.MOUSILLON_CULTURE) && 
-                (owner.Culture.StringId == TORConstants.SYLVANIA_CULTURE || owner.Culture.StringId == TORConstants.MOUSILLON_CULTURE))
+            if ((troop.Culture.StringId == TORConstants.Cultures.SYLVANIA || troop.Culture.StringId == TORConstants.Cultures.MOUSILLON) && 
+                (owner.Culture.StringId == TORConstants.Cultures.SYLVANIA || owner.Culture.StringId == TORConstants.Cultures.MOUSILLON))
             {
                 return;
             }

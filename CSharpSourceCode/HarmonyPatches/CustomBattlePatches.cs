@@ -52,10 +52,10 @@ namespace TOR_Core.HarmonyPatches
             var list = new List<BasicCultureObject>();
             try
             {
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>(TORConstants.EMPIRE_CULTURE));
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>(TORConstants.SYLVANIA_CULTURE));
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>(TORConstants.BRETONNIA_CULTURE));
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>(TORConstants.WOODELF_CULTURE));
+                list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>(TORConstants.Cultures.EMPIRE));
+                list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>(TORConstants.Cultures.SYLVANIA));
+                list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>(TORConstants.Cultures.BRETONNIA));
+                list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>(TORConstants.Cultures.WOODELF));
             }
             catch (Exception e)
             {

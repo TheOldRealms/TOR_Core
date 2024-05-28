@@ -229,7 +229,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             if (agent.IsMainAgent) return false;
             
             
-            return agent.Character.Culture.Name.ToString() == TORConstants.BRETONNIA_CULTURE;
+            return agent.Character.Culture.Name.ToString() == TORConstants.Cultures.BRETONNIA;
         }
         
         protected override void UnlockCareerBenefitsTier2()

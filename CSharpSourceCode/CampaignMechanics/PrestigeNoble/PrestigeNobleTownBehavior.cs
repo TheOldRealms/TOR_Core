@@ -344,7 +344,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
 
         private bool IsPartOfEmpire()
         {
-            return Hero.MainHero.Culture.StringId == TORConstants.EMPIRE_CULTURE;
+            return Hero.MainHero.Culture.StringId == TORConstants.Cultures.EMPIRE;
         }
 
         private bool HasRenown2()
