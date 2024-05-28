@@ -23,46 +23,41 @@ namespace TOR_Core.Models
         {
             if (character.IsUndead()) return 0;
             var value = 0;
-            switch (character.Tier)
-            {
-                case 0:
-                    value =  1;
-                    break;
-                case 1:
-                    value =  2;
-                    break;
-                case 2:
-                    value =  3;
-                    break;
-                case 3:
-                    value =  5;
-                    break;
-                case 4:
-                    value =  8;
-                    break;
-                case 5:
-                    value =  12;
-                    break;
-                case 6:
-                    value =  17;
-                    break;
-                case 7:
-                    value =  23;
-                    break;
-                case 8:
-                    value =  30;
-                    break;
-                default:
-                    value = 40;
-                    break;
-            }
+            value = GetWageForTier(character.Tier);
 
-            if (character.Culture.StringId == TORConstants.BRETONNIA_CULTURE && character.IsKnightUnit())
+            if (character.Culture.StringId == TORConstants.Cultures.BRETONNIA && character.IsKnightUnit())
             {
                 value *= 2;
             }
 
             return value;
+        }
+
+        private static int GetWageForTier(int tier)
+        {
+            switch (tier)
+            {
+                case 0:
+                    return  1;
+                case 1:
+                    return 2;
+                case 2:
+                    return 3;
+                case 3:
+                    return  5;
+                case 4:
+                    return 8;
+                case 5:
+                    return 12;
+                case 6:
+                    return 17;
+                case 7:
+                    return 23;
+                case 8:
+                    return 30;
+                default:
+                    return 40;
+            }
         }
 
         public override ExplainedNumber GetTotalWage(MobileParty mobileParty, bool includeDescriptions)
@@ -84,7 +79,7 @@ namespace TOR_Core.Models
                         }
                     }
 
-                    if (Hero.MainHero.Culture.StringId == TORConstants.BRETONNIA_CULTURE && elementCopyAtIndex.Character.IsKnightUnit())
+                    if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.BRETONNIA && elementCopyAtIndex.Character.IsKnightUnit())
                     {
                         var level = mobileParty.LeaderHero.GetChivalryLevel();
                         var factor = 0f;

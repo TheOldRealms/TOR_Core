@@ -110,9 +110,9 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         private void CreateTrainer(Settlement settlement)
         {
             CharacterObject template = null;
-            if (settlement.Culture.StringId == TORConstants.BRETONNIA_CULTURE&& settlement.StringId == "town_BA1") template = MBObjectManager.Instance.GetObject<CharacterObject>(_prophetessTrainerId);
-            if (settlement.Culture.StringId == TORConstants.SYLVANIA_CULTURE||settlement.Culture.StringId == "mousillon") template = MBObjectManager.Instance.GetObject<CharacterObject>(_vampireTrainerId);
-            if(settlement.Culture.StringId == "empire") template = MBObjectManager.Instance.GetObject<CharacterObject>(_empireTrainerId);
+            if (settlement.Culture.StringId == TORConstants.Cultures.BRETONNIA&& settlement.StringId == "town_BA1") template = MBObjectManager.Instance.GetObject<CharacterObject>(_prophetessTrainerId);
+            if (settlement.Culture.StringId == TORConstants.Cultures.SYLVANIA || settlement.Culture.StringId == TORConstants.Cultures.MOUSILLON) template = MBObjectManager.Instance.GetObject<CharacterObject>(_vampireTrainerId);
+            if(settlement.Culture.StringId == TORConstants.Cultures.EMPIRE) template = MBObjectManager.Instance.GetObject<CharacterObject>(_empireTrainerId);
 
 
             if (template != null)
@@ -125,7 +125,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 hero.CharacterObject.HiddenInEncylopedia = true;
                 hero.Culture = settlement.Culture;
                 
-                if (hero.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
+                if (hero.Culture.StringId == TORConstants.Cultures.BRETONNIA)
                 {
                    hero.UpdatePlayerGender(true);
                    hero.SetName(template.Name, template.Name);
@@ -275,7 +275,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         
         private bool damselSecondLoreCondition()
         {
-            var damselCompanion = Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Where(x => x != Hero.MainHero&& x.Culture.StringId == TORConstants.BRETONNIA_CULTURE && x.IsSpellCaster()).FirstOrDefault();
+            var damselCompanion = Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Where(x => x != Hero.MainHero&& x.Culture.StringId == TORConstants.Cultures.BRETONNIA && x.IsSpellCaster()).FirstOrDefault();
             if (damselCompanion == null) return false;
             
             if (Hero.MainHero.HasCareer(TORCareers.GrailDamsel) && !damselCompanion.HasKnownLore("LoreOfBeasts"))
@@ -297,7 +297,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         
         private bool damselCondition()
         {
-            if (Hero.MainHero.HasCareer(TORCareers.GrailDamsel)||(Hero.MainHero.PartyBelongedTo!=null&& Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.Culture.StringId == TORConstants.BRETONNIA_CULTURE && x.IsSpellCaster()))) return true;
+            if (Hero.MainHero.HasCareer(TORCareers.GrailDamsel)||(Hero.MainHero.PartyBelongedTo!=null&& Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.Culture.StringId == TORConstants.Cultures.BRETONNIA && x.IsSpellCaster()))) return true;
             return false;
         }
 
@@ -326,7 +326,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                             text = new TextObject ("{=tor_spelltrainer_magictest_empire_str}I have come seeking knowledge, I wish to learn the arcane arts. Can you help me?");
                             break;
                         }
-                    case TORConstants.SYLVANIA_CULTURE:
+                    case TORConstants.Cultures.SYLVANIA:
                     case "mousillon":
                         {
                             text = new TextObject("{=tor_spelltrainer_magictest_vc_str}I need the power to escape death, to rule over this world as something more. Can you teach me the ways of your power?");
@@ -348,13 +348,13 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             var culture = Hero.OneToOneConversationHero.Culture.StringId;
             switch (culture)
             {
-                case "empire":
+                case TORConstants.Cultures.EMPIRE:
                     {
                         text = new TextObject("{=tor_spelltrainer_magictest_begin_empire_str}Hmm. To understand the Winds of magic you must have the aethyric senses. Let me perform an experiment on you to determine your potential...");
                         break;
                     }
-                case TORConstants.SYLVANIA_CULTURE:
-                case "mousillon":
+                case TORConstants.Cultures.SYLVANIA:
+                case TORConstants.Cultures.MOUSILLON:
                     {
                         text = new TextObject("{=tor_spelltrainer_magictest_begin_vc_str}I can sense the you might have some grasp on the Winds of magic. Let me subject you to an examination to see your potential...");
                         break;
@@ -435,7 +435,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                             text = new TextObject("{=tor_spelltrainer_magictest_empire_player_specialize_lore_str}I am ready to join the colleges and become a true wizard of the Empire.");
                             break;
                         }
-                    case TORConstants.SYLVANIA_CULTURE:
+                    case TORConstants.Cultures.SYLVANIA:
                         {
                             text = new TextObject("{=tor_spelltrainer_magictest_vc_player_specialize_lore_str}My Lord, I beseech you to teach me your dark magic. I have learned all that I can on my own and would be a most loyal apprentice to you.");
                             if (Hero.MainHero.IsVampire())
@@ -464,7 +464,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                         text = "{=tor_spelltrainer_magictest_empire_specialize_lore_str}You have proven yourself and have a strong aptitude for the wind of magic, which college will you be joining? You can only dedicate yourself to one, choose wisely.";
                         break;
                     }
-                case TORConstants.SYLVANIA_CULTURE:
+                case TORConstants.Cultures.SYLVANIA:
                     {
                         text = "{=tor_spelltrainer_magictest_vc_specialize_lore_str}You have potential Dark One, serve me and I will teach you all that I know in time. Come let me consult my grimoire.";
                         if (Hero.MainHero.IsVampire()) text = "{=tor_spelltrainer_magictest_vc_vampire_specialize_lore_str}Yes sire! Right away my good and merciful lord.";

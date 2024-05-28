@@ -187,7 +187,7 @@ namespace TOR_Core.CampaignMechanics
 
                 var memberList = mobileParty.MemberRoster.GetTroopRoster();
 
-                var bretonnes = memberList.FindAll(x => !x.Character.IsEliteTroop()&& x.Character.Culture.StringId == TORConstants.BRETONNIA_CULTURE);
+                var bretonnes = memberList.FindAll(x => !x.Character.IsEliteTroop()&& x.Character.Culture.StringId == TORConstants.Cultures.BRETONNIA);
                 
                 for (var index = 0; index < bretonnes.Count; index++)
                 {

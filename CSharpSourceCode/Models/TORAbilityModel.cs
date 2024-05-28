@@ -298,7 +298,7 @@ namespace TOR_Core.Models
                             heroes.Remove(Hero.MainHero);
                             foreach (var hero in heroes)
                             {
-                                if(hero.Culture.StringId != TORConstants.EMPIRE_CULTURE) continue;
+                                if(hero.Culture.StringId != TORConstants.Cultures.EMPIRE) continue;
                                 
                                 if (hero.IsSpellCaster())
                                 {

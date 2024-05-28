@@ -180,7 +180,7 @@ namespace TOR_Core.Extensions
                     
                 }
 
-                if (hero.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
+                if (hero.Culture.StringId == TORConstants.Cultures.BRETONNIA)
                 {
                     if (hero.PartyBelongedTo != null)
                     {
@@ -592,7 +592,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsBretonnianKnight(this Hero hero)       //Potentially a cleaner way to check that
         {
-            return !hero.IsSpellCaster() && hero.Culture.StringId == TORConstants.BRETONNIA_CULTURE;
+            return !hero.IsSpellCaster() && hero.Culture.StringId == TORConstants.Cultures.BRETONNIA;
         }
 
         public static bool HasAnyCareer(this Hero hero) => Game.Current.GameType is Campaign && hero.GetCareer() != null;

@@ -127,9 +127,9 @@ namespace TOR_Core.Extensions
                 }
             }
             
-            return characterObject.Culture.StringId == TORConstants.EMPIRE_CULTURE||
-                   characterObject.Culture.StringId == TORConstants.BRETONNIA_CULTURE ||
-                   characterObject.Culture.StringId == TORConstants.SYLVANIA_CULTURE &&
+            return characterObject.Culture.StringId == TORConstants.Cultures.EMPIRE||
+                   characterObject.Culture.StringId == TORConstants.Cultures.BRETONNIA ||
+                   characterObject.Culture.StringId == TORConstants.Cultures.SYLVANIA &&
                    !(characterObject.IsVampire() || characterObject.IsUndead())||
                    characterObject.Culture.StringId == "mousillon" &&
                    !(characterObject.IsVampire() || characterObject.IsUndead());

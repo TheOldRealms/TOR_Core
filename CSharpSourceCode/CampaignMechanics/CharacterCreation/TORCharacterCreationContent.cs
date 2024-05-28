@@ -304,16 +304,16 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             switch (culture.StringId)
             {
-                case TORConstants.EMPIRE_CULTURE:
+                case TORConstants.Cultures.EMPIRE:
                     position2D = new Vec2(1450.97f, 991.37f);
                     break;
-                case TORConstants.SYLVANIA_CULTURE:
+                case TORConstants.Cultures.SYLVANIA:
                     position2D = new Vec2(1617.54f, 969.70f);
                     break;
-                case TORConstants.BRETONNIA_CULTURE:
+                case TORConstants.Cultures.BRETONNIA:
                     position2D = new Vec2(998.96f, 830.02f);
                     break;
-                case "mousillon":
+                case TORConstants.Cultures.MOUSILLON:
                     position2D = new Vec2(932.531f, 1049.944f);
                     break;
                 default:

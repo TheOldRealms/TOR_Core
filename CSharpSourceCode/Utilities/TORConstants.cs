@@ -30,12 +30,15 @@ namespace TOR_Core.Utilities
         public const int BRETONNIA_VOICE_INDEX_START = 29;
         public const int BRETONNIA_VOICES_COUNT = 3;
 
-        public const string EMPIRE_CULTURE = "empire";
-        public const string HERRIMAULT_CULTURE = "sea_raiders";
-        public const string BRETONNIA_CULTURE = "vlandia";
-        public const string SYLVANIA_CULTURE = "khuzait";
-        public const string MOUSILLON_CULTURE = "mousillon";
-        public const string WOODELF_CULTURE = "battania";
-        public const string DRUCHII_CULTURE = "druchii";
+        public readonly struct Cultures
+        {
+            public const string EMPIRE = "empire";
+            public const string HERRIMAULT = "sea_raiders";
+            public const string BRETONNIA = "vlandia";
+            public const string SYLVANIA = "khuzait";
+            public const string MOUSILLON = "mousillon";
+            public const string WOODELF = "battania";
+            public const string DRUCHII =  "druchii";
+        }
     }
 }

@@ -114,7 +114,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             if (characterObject.IsHero) return false;
 
 
-            if (characterObject.Culture.StringId != TORConstants.BRETONNIA_CULTURE) return false;
+            if (characterObject.Culture.StringId != TORConstants.Cultures.BRETONNIA) return false;
 
             if (!characterObject.IsKnightUnit()) return false;
 

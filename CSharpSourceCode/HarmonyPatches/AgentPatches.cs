@@ -81,7 +81,7 @@ namespace TOR_Core.HarmonyPatches
             {
                 cultureId = agent.GetHero().Culture.StringId;
             }
-            return cultureId == TORConstants.BRETONNIA_CULTURE || cultureId == TORConstants.EMPIRE_CULTURE || agent.IsVampire();
+            return cultureId == TORConstants.Cultures.BRETONNIA || cultureId == TORConstants.Cultures.EMPIRE || agent.IsVampire();
         }
 
         private static int GetRandomVoiceIndexForAgent(Agent agent)
@@ -96,9 +96,9 @@ namespace TOR_Core.HarmonyPatches
 
             switch (cultureId)
             {
-                case TORConstants.BRETONNIA_CULTURE:
+                case TORConstants.Cultures.BRETONNIA:
                     return MBRandom.RandomInt(TORConstants.BRETONNIA_VOICE_INDEX_START, TORConstants.BRETONNIA_VOICE_INDEX_START + (TORConstants.BRETONNIA_VOICES_COUNT));
-                case TORConstants.EMPIRE_CULTURE:
+                case TORConstants.Cultures.EMPIRE:
                     return MBRandom.RandomInt(TORConstants.EMPIRE_VOICE_INDEX_START, TORConstants.EMPIRE_VOICE_INDEX_START + (TORConstants.EMPIRE_VOICES_COUNT));
                 default:
                     return 1;

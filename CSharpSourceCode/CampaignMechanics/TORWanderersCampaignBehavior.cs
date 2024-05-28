@@ -36,7 +36,7 @@ namespace TOR_Core.CampaignMechanics
             //Seems only to happen when a hero joins the player not anywhere else
             if (hero.IsWanderer)
             {
-                if (hero.Culture.StringId == TORConstants.SYLVANIA_CULTURE || hero.Culture.StringId == "mousillon")
+                if (hero.Culture.StringId == TORConstants.Cultures.SYLVANIA || hero.Culture.StringId == "mousillon")
                 {
                     hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 60, false);
                 }

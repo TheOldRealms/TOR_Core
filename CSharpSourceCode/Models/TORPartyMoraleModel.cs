@@ -30,7 +30,7 @@ namespace TOR_Core.Models
                 result.Add(TORPerks.SpellCraft.StoryTeller.SecondaryBonus, TORPerks.SpellCraft.StoryTeller.Name);
             }
 
-            if (mobileParty.LeaderHero == Hero.MainHero&& Hero.MainHero.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
+            if (mobileParty.LeaderHero == Hero.MainHero&& Hero.MainHero.Culture.StringId == TORConstants.Cultures.BRETONNIA)
             {
                 var chivalryLevel = mobileParty.LeaderHero.GetChivalryLevel();
                 var value = 0f;

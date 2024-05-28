@@ -56,7 +56,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             _events.Add(new CustomEvent("Minstrel", CustomEventFrequency.Common, 1000,
                 () => StandardMovingCheck() &&
                 !CampaignTime.Now.IsNightTime &&
-                TORCommon.FindNearestSettlement(MobileParty.MainParty, 100f, x => x.IsTown)?.Culture.StringId == TORConstants.BRETONNIA_CULTURE, () => InkStoryManager.OpenStory("Minstrel")));
+                TORCommon.FindNearestSettlement(MobileParty.MainParty, 100f, x => x.IsTown)?.Culture.StringId == TORConstants.Cultures.BRETONNIA, () => InkStoryManager.OpenStory("Minstrel")));
         }
 
         private bool StandardMovingCheck()
