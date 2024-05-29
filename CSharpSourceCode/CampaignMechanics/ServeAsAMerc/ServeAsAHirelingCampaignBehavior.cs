@@ -22,6 +22,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
     public class ServeAsAHirelingCampaignBehavior : CampaignBehaviorBase
     {
         private int _manuallyFoughtBattles;
+        private const float _minimumServeDays = 20;
         private float _durationInDays;
         private bool _hirelingEnlisted;
         private Hero _hirelingEnlistingLord;
@@ -66,6 +67,19 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             CampaignEvents.MapEventEnded.AddNonSerializedListener(this, mapEventEnded);
             CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, BattleMenuOpened);
             CampaignEvents.GameMenuOptionSelectedEvent.AddNonSerializedListener(this, ContinueTimeAfterLeftSettlementWhileEnlisted);
+            CampaignEvents.DailyTickEvent.AddNonSerializedListener(this,DailyRenownGain);
+        }
+
+        private void DailyRenownGain()
+        {
+            var gain = 3;
+            
+            var clanTier = Hero.MainHero.Clan.Tier;
+
+            gain += clanTier;
+            
+            
+            Hero.MainHero.Clan.AddRenown(gain);
         }
 
 
@@ -117,31 +131,40 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         }
 
 
-        private void DesertEnlistingParty(string menuToReturn)
+        private void LeaveEnlistingParty(string menuToReturn)
         {
+            var desertion = _durationInDays < _minimumServeDays;
+            var damage = new TextObject("");
+            if (desertion)
+            {
+                damage = new TextObject("This will harm your relations with the entire faction.");
+            }
             TextObject titleText = new TextObject("{=FLT0000044}Abandon Party", null);
-            TextObject text = new TextObject("{=FLT0000046}Are you sure you want to abandon the party>  This will harm your relations with the entire faction.", null);
+            TextObject text = new TextObject("{=FLT0000046}Are you sure you want to abandon the party? "+ damage, null);
             TextObject affrimativeText = new TextObject("{=FLT0000047}Yes", null);
             TextObject negativeText = new TextObject("{=FLT0000048}No", null);
             InformationManager.ShowInquiry(new InquiryData(titleText.ToString(), text.ToString(), true, true, affrimativeText.ToString(), negativeText.ToString(), delegate ()
             {
-                ChangeCrimeRatingAction.Apply(_hirelingEnlistingLord.MapFaction, 55f, true);
-                foreach (Clan clan in _hirelingEnlistingLord.Clan.Kingdom.Clans)
+                if (desertion)
                 {
-                    bool flag2 = !clan.IsUnderMercenaryService;
-                    if (flag2)
+                    ChangeCrimeRatingAction.Apply(_hirelingEnlistingLord.MapFaction, 55f, true);
+                    foreach (Clan clan in _hirelingEnlistingLord.Clan.Kingdom.Clans)
                     {
-                        ChangeRelationAction.ApplyPlayerRelation(clan.Leader, -20, true, true);
-                        foreach (Hero lord in clan.Heroes)
+                        bool flag2 = !clan.IsUnderMercenaryService;
+                        if (flag2)
                         {
-                            bool isLord = lord.IsLord;
-                            if (isLord)
+                            ChangeRelationAction.ApplyPlayerRelation(clan.Leader, -10, true, true);
+                            foreach (Hero lord in clan.Heroes)
                             {
-                                //  Test.ChangeLordRelation(lord, -100000);
+                                bool isLord = lord.IsLord;
+                                if (isLord)
+                                {
+                                }
                             }
                         }
                     }
                 }
+                
                 LeaveLordPartyAction();
                 GameMenu.ExitToLast();
             }, delegate ()
@@ -195,7 +218,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                 return true;
             }, delegate (MenuCallbackArgs args)
             {
-                DesertEnlistingParty("hireling_menu");
+                LeaveEnlistingParty("hireling_menu");
             }, true, -1, false, null);
 
             campaignGameStarter.AddGameMenuOption("hireling_menu", "enter_town", textObjectHirelingEnterSettlement.ToString(), delegate (MenuCallbackArgs args)
@@ -272,7 +295,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                hireling_battle_menu_desert_on_condition,
                delegate (MenuCallbackArgs args)
                {
-                   DesertEnlistingParty("hireling_battle_menu");
+                   LeaveEnlistingParty("hireling_battle_menu");
 
                }
                , false, 4, false);
@@ -298,7 +321,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             args.MenuContext.Refresh();
         }
 
-        public void LeaveLordPartyAction(bool keepGear = true)
+        public void LeaveLordPartyAction()
         {
             _hirelingEnlisted = false;
             _hirelingEnlistingLord = null;
@@ -306,6 +329,9 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             PlayerEncounter.Finish(true);
             UndoDiplomacy();
             ShowPlayerParty();
+
+            _durationInDays = 0;
+            _manuallyFoughtBattles = 0;
 
         }
         
@@ -460,12 +486,9 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         private void EnlistingLordPartyEntersSettlement(MobileParty mobileParty, Settlement settlement, Hero arg3)
         {
             if (!_hirelingEnlisted) return;
-            if (_hirelingEnlistingLord != null && _hirelingEnlistingLord.PartyBelongedTo == mobileParty)
+            if ( _hirelingEnlistingLord != null && _hirelingEnlistingLord.PartyBelongedTo == mobileParty)
             {
-
-
-                bool isTown = settlement.IsTown;
-                if (isTown && _pauseModeToggle)
+                if (_pauseModeToggle)
                 {
 
                     while (Campaign.Current.CurrentMenuContext != null)

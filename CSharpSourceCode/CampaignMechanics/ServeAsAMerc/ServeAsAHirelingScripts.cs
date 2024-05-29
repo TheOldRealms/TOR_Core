@@ -25,8 +25,8 @@ public static class ServeAsAHirelingScripts
             if (cultureId == TORConstants.Cultures.BRETONNIA)
             {
                 benefits.Add(10f); 
-                benefits.AddFactor((0.1f * battles));
-                benefits.AddFactor(-0.5f+duration/20);
+                benefits.AddFactor((0.05f * battles));
+                benefits.AddFactor(-0.5f+duration/40);
                 number.Add(benefits.ResultNumber, new TextObject("Knightly Service"));
                 return;
             }
@@ -40,7 +40,7 @@ public static class ServeAsAHirelingScripts
             if (cultureId == TORConstants.Cultures.EMPIRE)
             {
                 number.Add(5, new TextObject("Gained Respect"));
-                benefits.AddFactor((0.1f * battles));
+                benefits.AddFactor((0.05f * battles));
                 return;
             }
         }
@@ -53,17 +53,14 @@ public static class ServeAsAHirelingScripts
     {
         var hirelingCampaignBehavior = Campaign.Current.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>();
         if (hirelingCampaignBehavior == null) return;
-
-
-        
-        
+        if(hero.PartyBelongedTo==null) return; // can be null and causes crash
         var duration = hirelingCampaignBehavior.DurationInDays;
         var battles = hirelingCampaignBehavior.ManuallyFoughtBattles;
         var wage = new ExplainedNumber(25 * hero.Level);
 
         var cultureID = hero.Culture.StringId;
 
-        if (cultureID == TORConstants.Cultures.EMPIRE || cultureID == TORConstants.Cultures.SYLVANIA && !hero.IsNecromancer())
+        if (cultureID == TORConstants.Cultures.EMPIRE || cultureID == TORConstants.Cultures.SYLVANIA)
         {
             wage.AddFactor((0.1f * battles));
             wage.AddFactor(-0.5f+duration/20);
@@ -76,7 +73,7 @@ public static class ServeAsAHirelingScripts
 
         if (cultureID == TORConstants.Cultures.BRETONNIA)
         {
-            wage.AddFactor((0.1f * battles));       //payment in bretonnia is bad, they don't pay very well
+            wage.AddFactor((0.1f * battles));       //payment in bretonnia is bad
             var malus = 3 - ((int)hero.GetChivalryLevel());     //from level 3 on you increase your wage
             wage.AddFactor((-0.1f * malus));
         }
