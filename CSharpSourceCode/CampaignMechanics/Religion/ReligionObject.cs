@@ -25,16 +25,16 @@ namespace TOR_Core.CampaignMechanics.Religion
         public TextObject BlessingEffectDescription{ get; private set; }
         public TextObject BlessingEffectName{ get; private set; }
         public CultureObject Culture { get; private set; }
-        public List<ReligionObject> HostileReligions { get; private set; } = new List<ReligionObject>();
-        public List<CharacterObject> ReligiousTroops { get; private set; } = new List<CharacterObject>();
-        public List<ItemObject> ReligiousArtifacts { get; private set; } = new List<ItemObject>();
-        public List<string> InitialClans { get; private set; } = new List<string>();
+        public List<ReligionObject> HostileReligions { get; private set; } = [];
+        public List<CharacterObject> ReligiousTroops { get; private set; } = [];
+        public List<ItemObject> ReligiousArtifacts { get; private set; } = [];
+        public List<string> InitialClans { get; private set; } = [];
         public ReligionAffinity Affinity { get; private set; }
 
-        public static MBReadOnlyList<ReligionObject> All => _all ?? new MBReadOnlyList<ReligionObject> { };
+        public static MBReadOnlyList<ReligionObject> All => _all ?? [];
         public static void FillAll() => _all = MBObjectManager.Instance.GetObjectTypeList<ReligionObject>();
 
-        public MBReadOnlyList<Hero> CurrentFollowers => new MBReadOnlyList<Hero>(Hero.AllAliveHeroes.Where(x => x.GetDominantReligion() == this).ToList());
+        public MBReadOnlyList<Hero> CurrentFollowers => new(Hero.AllAliveHeroes.Where(x => x.GetDominantReligion() == this).ToList());
 
         public string EncyclopediaLink => (Campaign.Current.EncyclopediaManager.GetIdentifier(typeof(ReligionObject)) + "-" + StringId) ?? "";
 

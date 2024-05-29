@@ -68,7 +68,7 @@ namespace TOR_Core.Models
             //TORCommon.Say($"Declaring war between {factionDeclaresWar.Name} and {factionDeclaredWar.Name}\n\t\t" +
             //    $"Native Score: {nativeScoreOfDeclaringWar},\tTOR Score: {torScoreOfDeclaringWar}");
 
-            return nativeScoreOfDeclaringWar + torScoreOfDeclaringWar;
+            return nativeScoreOfDeclaringWar * torScoreOfDeclaringWar;
         }
 
         public override float GetScoreOfDeclaringPeace(IFaction factionDeclaresPeace, IFaction factionDeclaredPeace, IFaction evaluatingClan, out TextObject peaceReason)
@@ -81,16 +81,16 @@ namespace TOR_Core.Models
             }
 
             var nativeScoreOfDeclaringPeace = base.GetScoreOfDeclaringPeace(factionDeclaresPeace, factionDeclaredPeace, evaluatingClan, out peaceReason);
-            var torScore = ReligiousAggressionCalculator.DetermineEffectOfReligion(factionDeclaresPeace, factionDeclaredPeace);
+            var torScore = -ReligiousAggressionCalculator.DetermineEffectOfReligion(factionDeclaresPeace, factionDeclaredPeace);
 
             /// Apply same multipliers as declaration of war to try to them in agreement as much as possible
-            nativeScoreOfDeclaringPeace *= TORConfig.DeclareWarScoreMultiplierNative;
-            torScore *= TORConfig.DeclareWarScoreMultiplierTor / TORConfig.DeclarePeaceMultiplier;
+            nativeScoreOfDeclaringPeace *= TORConfig.DeclarePeaceMultiplier;
+            torScore *= TORConfig.DeclareWarScoreMultiplierTor;
 
             //TORCommon.Say($"Declaring peace between {factionDeclaresPeace.Name} and {factionDeclaredPeace.Name}\n\t\t" +
             //    $"Native Score: {nativeScoreOfDeclaringPeace},\tTOR Score: {torScore}");
 
-            return nativeScoreOfDeclaringPeace - torScore;
+            return nativeScoreOfDeclaringPeace * torScore;
         }
 
         public override float GetScoreOfMercenaryToJoinKingdom(Clan mercenaryClan, Kingdom kingdom)
