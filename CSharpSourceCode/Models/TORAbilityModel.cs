@@ -97,7 +97,7 @@ namespace TOR_Core.Models
             if (character.IsHero&& character.HeroObject == Hero.MainHero)
             {
                 var player = character.HeroObject;
-                var explainedNumber = new ExplainedNumber();
+                var explainedNumber = new ExplainedNumber(1);
                 
                 if (originAbilityTemplate.AbilityEffectType == AbilityEffectType.Augment || originAbilityTemplate.AbilityEffectType == AbilityEffectType.Heal)
                 {
@@ -108,7 +108,7 @@ namespace TOR_Core.Models
                     CareerHelper.ApplyBasicCareerPassives(player,ref explainedNumber,PassiveEffectType.DebuffDuration, true);
                 }
                 
-                perkmultiplier += explainedNumber.ResultNumber;
+                perkmultiplier += (explainedNumber.ResultNumber -1) ;
             }
             
             
