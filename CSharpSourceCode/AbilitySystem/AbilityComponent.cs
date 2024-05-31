@@ -272,6 +272,13 @@ namespace TOR_Core.AbilitySystem
                     if (Game.Current.GameType is Campaign)
                     {
                         CareerHelper.ApplyBasicCareerPassives(Agent.GetHero(), ref cooldown, PassiveEffectType.PrayerCoolDownReduction, true);
+
+
+                        if (Hero.MainHero.HasCareerChoice("CrusherOfTheWeakPassive4"))
+                        {
+                            ability.SetCoolDown(0);
+                            return;
+                        }
                     }
                 }
                 

@@ -218,7 +218,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _crusherOfTheWeakPassive2.Initialize(CareerID, "Extra melee damage (10%).", "CrusherOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
             _crusherOfTheWeakPassive3.Initialize(CareerID, "Extra melee damage if the target is below tier 4 (10%).", "CrusherOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,
                 (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee && victim!=null&&!victim.IsHero && victim.Character.Level < 16));
-            _crusherOfTheWeakPassive4.Initialize(CareerID, "{=night_rider_passive4_str}Attacks deal bonus damage against shields.", "CrusherOfTheWeak", false, ChoiceType.Passive, null);
+            _crusherOfTheWeakPassive4.Initialize(CareerID, "All prayer cooldowns are charged on battle begin.", "CrusherOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1,PassiveEffectType.Special,true));
             
             _wildPackPassive1.Initialize(CareerID, "Increases melee physical resistance by 10%.", "WildPack", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical,10),AttackTypeMask.Melee));
             _wildPackPassive2.Initialize(CareerID, "Increases Party size by 10.", "WildPack", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.PartySize));
@@ -227,7 +227,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             _teachingsOfTheWinterFatherPassive1.Initialize(CareerID, "Wounded troops in your party heal faster.", "TeachingsOfTheWinterfather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration));
             _teachingsOfTheWinterFatherPassive2.Initialize(CareerID,"Praying at a shrine of ulric refills player health completely","TeachingsOfTheWinterfather",false,ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect()); 
-            _teachingsOfTheWinterFatherPassive3.Initialize(CareerID, "All Knight troops receive 20 bonus points in One and Two Handed skills.", "TeachingsOfTheWinterfather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Special)); //
+            _teachingsOfTheWinterFatherPassive3.Initialize(CareerID, "{=night_rider_passive4_str}Attacks deal bonus damage against shields.", "TeachingsOfTheWinterfather", false, ChoiceType.Passive, null);
             _teachingsOfTheWinterFatherPassive4.Initialize(CareerID, "Increases range damage resistance of melee troops by 20%.", "TeachingsOfTheWinterfather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Ranged, 
                 (attacker, victim, mask) => !victim.BelongsToMainParty()&& !(victim.IsMainAgent || victim.IsHero)&& mask == AttackTypeMask.Melee ));
             
