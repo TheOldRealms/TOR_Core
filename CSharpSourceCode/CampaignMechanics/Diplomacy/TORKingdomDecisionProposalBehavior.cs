@@ -9,6 +9,7 @@ using TaleWorlds.CampaignSystem.Election;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.Diplomacy
 {
@@ -23,6 +24,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         public override void RegisterEvents()
         {
+            CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, NewGameCreated);
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, SessionLaunched);
             CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, DailyTickClan);
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, HourlyTick);
@@ -137,7 +139,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             foreach (KingdomDecision kingdomDecision in cancelDecisionList)
             {
                 kingdom.RemoveDecision(kingdomDecision);
-                bool isPlayerInvolved = kingdomDecision.DetermineChooser().Leader.IsHumanPlayerCharacter || kingdomDecision.DetermineSupporters().Any<Supporter>((Func<Supporter, bool>)(x => x.IsPlayer));
+                bool isPlayerInvolved = kingdomDecision.DetermineChooser().Leader.IsHumanPlayerCharacter || kingdomDecision.DetermineSupporters().Any(x => x.IsPlayer);
                 CampaignEventDispatcher.Instance.OnKingdomDecisionCancelled(kingdomDecision, isPlayerInvolved);
             }
             foreach (KingdomDecision decision in doDecisionList)
@@ -150,6 +152,20 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
           MakePeaceAction.MakePeaceDetail detail)
         {
             HandleDiplomaticChangeBetweenFactions(side1Faction, side2Faction);
+
+            if (side1Faction is Kingdom toMakePeaceWith
+                && side2Faction is Kingdom defender)
+            {
+                MakeAmendsDueToAlliance(defender, toMakePeaceWith);
+            }
+        }
+
+        private void MakeAmendsDueToAlliance(Kingdom defender, Kingdom toMakePeaceWith)
+        {
+            var allies = KingdomExtensions.AllActiveKingdoms.Where(k => defender != k && FactionManager.IsAlliedWithFaction(defender, k));
+
+            foreach (var ally in allies)
+                MakePeaceAction.ApplyByKingdomDecision(ally, toMakePeaceWith);
         }
 
         private void OnWarDeclared(
@@ -158,6 +174,20 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
           DeclareWarAction.DeclareWarDetail detail)
         {
             HandleDiplomaticChangeBetweenFactions(side1Faction, side2Faction);
+
+            if (detail != DeclareWarAction.DeclareWarDetail.CausedByPlayerHostility
+                && side1Faction is Kingdom attacker
+                && side2Faction is Kingdom defender)
+            {
+                SupportAlliedKingdomAtWar(defender, attacker);
+            }
+        }
+        private void SupportAlliedKingdomAtWar(Kingdom kingdom, Kingdom kingdomToDeclareWarOn)
+        {
+            var allies = KingdomExtensions.AllActiveKingdoms.Where(k => kingdom != k && FactionManager.IsAlliedWithFaction(kingdom, k));
+
+            foreach (var ally in allies)
+                DeclareWarAction.ApplyByKingdomDecision(ally, kingdomToDeclareWarOn);
         }
 
         private void HandleDiplomaticChangeBetweenFactions(IFaction side1Faction, IFaction side2Faction)
@@ -210,7 +240,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         
 
-        private float GetKingdomSupportForWar(Clan clan, Kingdom kingdom, IFaction otherFaction) => new KingdomElection((KingdomDecision)new TORDeclareWarDecision(clan, otherFaction)).GetLikelihoodForSponsor(clan);
+        private float GetKingdomSupportForWar(Clan clan, Kingdom kingdom, IFaction otherFaction) => new KingdomElection(new TORDeclareWarDecision(clan, otherFaction)).GetLikelihoodForSponsor(clan);
 
         private bool ConsiderPeace(
           Clan clan,
@@ -219,11 +249,11 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
           IFaction otherFaction,
           out MakePeaceKingdomDecision decision)
         {
-            decision = (MakePeaceKingdomDecision)null;
+            decision = null;
             int ofProposingPeace = Campaign.Current.Models.DiplomacyModel.GetInfluenceCostOfProposingPeace(clan);
-            if ((double)clan.Influence < (double)ofProposingPeace)
+            if ((double)clan.Influence < ofProposingPeace)
                 return false;
-            int num1 = new PeaceBarterable(clan.Leader, (IFaction)kingdom, otherFaction, CampaignTime.Years(1f)).GetValueForFaction(otherFaction);
+            int num1 = new PeaceBarterable(clan.Leader, kingdom, otherFaction, CampaignTime.Years(1f)).GetValueForFaction(otherFaction);
             int num2 = -num1;
             int num3;
             if (clan.MapFaction == Hero.MainHero.MapFaction && otherFaction is Kingdom)
@@ -232,7 +262,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 {
                     if (clan1.Leader != clan1.MapFaction.Leader)
                     {
-                        int valueForFaction = new PeaceBarterable(clan1.Leader, (IFaction)kingdom, otherFaction, CampaignTime.Years(1f)).GetValueForFaction((IFaction)clan1);
+                        int valueForFaction = new PeaceBarterable(clan1.Leader, kingdom, otherFaction, CampaignTime.Years(1f)).GetValueForFaction(clan1);
                         if (valueForFaction < num1)
                             num1 = valueForFaction;
                     }
@@ -246,7 +276,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             float num4 = 0.5f;
             if (otherFaction == Hero.MainHero.MapFaction)
             {
-                PeaceBarterable peaceBarterable = new PeaceBarterable(clan.MapFaction.Leader, (IFaction)kingdom, otherFaction, CampaignTime.Years(1f));
+                PeaceBarterable peaceBarterable = new PeaceBarterable(clan.MapFaction.Leader, kingdom, otherFaction, CampaignTime.Years(1f));
                 int num5 = peaceBarterable.GetValueForFaction(clan.MapFaction);
                 int num6 = 0;
                 int num7 = 1;
@@ -256,7 +286,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                     {
                         if (clan2.Leader != clan2.MapFaction.Leader)
                         {
-                            int valueForFaction = peaceBarterable.GetValueForFaction((IFaction)clan2);
+                            int valueForFaction = peaceBarterable.GetValueForFaction(clan2);
                             if (valueForFaction < num5)
                                 num5 = valueForFaction;
                             num6 += valueForFaction;
@@ -264,7 +294,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                         }
                     }
                 }
-                int num8 = (int)(0.6499999761581421 * (double)((float)num6 / (float)num7) + 0.3499999940395355 * (double)num5);
+                int num8 = (int)(0.6499999761581421 * (double)(num6 / (float)num7) + 0.3499999940395355 * num5);
                 if (num8 > num3)
                 {
                     num3 = num8;
@@ -276,7 +306,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 num3 = 0;
             int dailyTributeForValue1 = Campaign.Current.Models.DiplomacyModel.GetDailyTributeForValue(num3);
             decision = new MakePeaceKingdomDecision(clan, otherFaction, dailyTributeForValue1);
-            if ((double)decision.CalculateSupport(clan) <= 5.0 || (double)MBRandom.RandomFloat >= 2.0 * ((double)this.GetKingdomSupportForDecision((KingdomDecision)decision) - (double)num4))
+            if ((double)decision.CalculateSupport(clan) <= 5.0 || (double)MBRandom.RandomFloat >= 2.0 * ((double)GetKingdomSupportForDecision(decision) - (double)num4))
                 return false;
             if (otherFaction == Hero.MainHero.MapFaction)
             {
@@ -296,37 +326,37 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
           IFaction otherFaction)
         {
             int num1 = Campaign.Current.Models.DiplomacyModel.GetInfluenceCostOfProposingPeace(clan) / 2;
-            int num2 = -new PeaceBarterable(clan.Leader, (IFaction)kingdom, otherFaction, CampaignTime.Years(1f)).GetValueForFaction(otherFaction);
+            int num2 = -new PeaceBarterable(clan.Leader, kingdom, otherFaction, CampaignTime.Years(1f)).GetValueForFaction(otherFaction);
             if (otherFaction is Clan && num2 < 0)
                 num2 = 0;
             if (num2 > -5000 && num2 < 5000)
                 num2 = 0;
             int dailyTributeForValue = Campaign.Current.Models.DiplomacyModel.GetDailyTributeForValue(num2);
-            return new KingdomElection((KingdomDecision)new MakePeaceKingdomDecision(clan, otherFaction, dailyTributeForValue)).GetLikelihoodForSponsor(clan);
+            return new KingdomElection(new MakePeaceKingdomDecision(clan, otherFaction, dailyTributeForValue)).GetLikelihoodForSponsor(clan);
         }
 
         private KingdomDecision GetRandomPolicyDecision(Clan clan)
         {
-            KingdomDecision randomPolicyDecision = (KingdomDecision)null;
+            KingdomDecision randomPolicyDecision = null;
             Kingdom kingdom = clan.Kingdom;
-            if (kingdom.UnresolvedDecisions.FirstOrDefault<KingdomDecision>((Func<KingdomDecision, bool>)(x => x is KingdomPolicyDecision)) != null)
-                return (KingdomDecision)null;
+            if (kingdom.UnresolvedDecisions.FirstOrDefault(x => x is KingdomPolicyDecision) != null)
+                return null;
             if ((double)clan.Influence < 200.0)
-                return (KingdomDecision)null;
-            PolicyObject randomElement = PolicyObject.All.GetRandomElement<PolicyObject>();
+                return null;
+            PolicyObject randomElement = PolicyObject.All.GetRandomElement();
             bool flag = kingdom.ActivePolicies.Contains(randomElement);
-            if (this.ConsiderPolicy(clan, kingdom, randomElement, flag))
-                randomPolicyDecision = (KingdomDecision)new KingdomPolicyDecision(clan, randomElement, flag);
+            if (ConsiderPolicy(clan, kingdom, randomElement, flag))
+                randomPolicyDecision = new KingdomPolicyDecision(clan, randomElement, flag);
             return randomPolicyDecision;
         }
 
         private bool ConsiderPolicy(Clan clan, Kingdom kingdom, PolicyObject policy, bool invert)
         {
             int proposalAndDisavowal = Campaign.Current.Models.DiplomacyModel.GetInfluenceCostOfPolicyProposalAndDisavowal(clan);
-            if ((double)clan.Influence < (double)proposalAndDisavowal)
+            if ((double)clan.Influence < proposalAndDisavowal)
                 return false;
             KingdomPolicyDecision decision = new KingdomPolicyDecision(clan, policy, invert);
-            return (double)decision.CalculateSupport(clan) > 50.0 && (double)MBRandom.RandomFloat < (double)this.GetKingdomSupportForDecision((KingdomDecision)decision) - 0.55;
+            return (double)decision.CalculateSupport(clan) > 50.0 && (double)MBRandom.RandomFloat < (double)GetKingdomSupportForDecision(decision) - 0.55;
         }
 
         private float GetKingdomSupportForPolicy(
@@ -336,25 +366,25 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
           bool invert)
         {
             Campaign.Current.Models.DiplomacyModel.GetInfluenceCostOfPolicyProposalAndDisavowal(clan);
-            return new KingdomElection((KingdomDecision)new KingdomPolicyDecision(clan, policy, invert)).GetLikelihoodForSponsor(clan);
+            return new KingdomElection(new KingdomPolicyDecision(clan, policy, invert)).GetLikelihoodForSponsor(clan);
         }
 
         private KingdomDecision GetRandomAnnexationDecision(Clan clan)
         {
-            KingdomDecision annexationDecision = (KingdomDecision)null;
+            KingdomDecision annexationDecision = null;
             Kingdom kingdom = clan.Kingdom;
-            if (kingdom.UnresolvedDecisions.FirstOrDefault<KingdomDecision>((Func<KingdomDecision, bool>)(x => x is KingdomPolicyDecision)) != null)
-                return (KingdomDecision)null;
+            if (kingdom.UnresolvedDecisions.FirstOrDefault(x => x is KingdomPolicyDecision) != null)
+                return null;
             if ((double)clan.Influence < 300.0)
-                return (KingdomDecision)null;
-            Clan randomElement1 = kingdom.Clans.GetRandomElement<Clan>();
+                return null;
+            Clan randomElement1 = kingdom.Clans.GetRandomElement();
             if (randomElement1 != null && randomElement1 != clan && randomElement1.GetRelationWithClan(clan) < -25)
             {
                 if (randomElement1.Fiefs.Count == 0)
-                    return (KingdomDecision)null;
-                Town randomElement2 = randomElement1.Fiefs.GetRandomElement<Town>();
-                if (this.ConsiderAnnex(clan, randomElement2))
-                    annexationDecision = (KingdomDecision)new SettlementClaimantPreliminaryDecision(clan, randomElement2.Settlement);
+                    return null;
+                Town randomElement2 = randomElement1.Fiefs.GetRandomElement();
+                if (ConsiderAnnex(clan, randomElement2))
+                    annexationDecision = new SettlementClaimantPreliminaryDecision(clan, randomElement2.Settlement);
             }
             return annexationDecision;
         }
@@ -362,16 +392,21 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
         private bool ConsiderAnnex(Clan clan, Town targetSettlement)
         {
             int costOfAnnexation = Campaign.Current.Models.DiplomacyModel.GetInfluenceCostOfAnnexation(clan);
-            if ((double)clan.Influence < (double)costOfAnnexation)
+            if ((double)clan.Influence < costOfAnnexation)
                 return false;
             SettlementClaimantPreliminaryDecision decision = new SettlementClaimantPreliminaryDecision(clan, targetSettlement.Settlement);
-            return (double)decision.CalculateSupport(clan) > 50.0 && (double)MBRandom.RandomFloat < (double)this.GetKingdomSupportForDecision((KingdomDecision)decision) - 0.6;
+            return (double)decision.CalculateSupport(clan) > 50.0 && (double)MBRandom.RandomFloat < (double)GetKingdomSupportForDecision(decision) - 0.6;
         }
 
         private float GetKingdomSupportForDecision(KingdomDecision decision) => new KingdomElection(decision).GetLikelihoodForOutcome(0);
 
         private void SessionLaunched(CampaignGameStarter starter)
         {
+        }
+
+        private void NewGameCreated(CampaignGameStarter starter)
+        {
+
         }
 
         public override void SyncData(IDataStore dataStore) => dataStore.SyncData("_kingdomDecisionsList", ref _kingdomDecisionsList);
