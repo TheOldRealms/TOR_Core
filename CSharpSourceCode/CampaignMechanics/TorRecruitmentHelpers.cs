@@ -4,7 +4,7 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics
 {
-    public class TorRecruitmentHelpers
+    public class TORRecruitmentHelpers
     {
         public static CharacterObject GetMousillonEquivalent(CharacterObject bretonnianTroop)
         {

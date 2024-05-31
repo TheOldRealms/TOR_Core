@@ -17,6 +17,7 @@ namespace TOR_Core.Utilities
             starter.RemoveBehaviors<RetirementCampaignBehavior>();
             starter.RemoveBehaviors<DynamicBodyCampaignBehavior>();
             starter.RemoveBehaviors<FactionDiscontinuationCampaignBehavior>();
+            starter.RemoveBehaviors<KingdomDecisionProposalBehavior>();
 
             var issues = starter.CampaignBehaviors.Where(x => x.GetType().FullName.Contains("Issue")).ToList();
             foreach(var issue in issues)

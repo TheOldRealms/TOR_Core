@@ -21,9 +21,13 @@ namespace TOR_Core.Utilities
         public static int NumberOfInitialHideoutsAtEachBanditFaction => _config.NumberOfInitialHideoutsAtEachBanditFaction;
         public static int NumberOfMaximumHideoutsAtEachBanditFaction => _config.NumberOfMaximumHideoutsAtEachBanditFaction;
         public static int MaximumNumberOfCareerPerkPoints => _config.MaximumNumberOfCareerPerkPoints;
-        public static float DeclareWarScoreMultiplierTor => _config.DeclareWarScoreMultiplierTor;
-        public static float DeclareWarScoreMultiplierNative => _config.DeclareWarScoreMultiplierNative;
-        public static float DeclarePeaceMultiplier => _config.DeclarePeaceMultiplier;
+        public static float DeclareWarScoreDistanceMultiplier => _config.DeclareWarScoreDistanceMultiplier;
+        public static float DeclareWarScoreFactionStrengthMultiplier => _config.DeclareWarScoreFactionStrengthMultiplier;
+        public static float DeclareWarScoreReligiousEffectMultiplier => _config.DeclareWarScoreReligiousEffectMultiplier;
+        public static float NumMinKingdomWars => _config.NumMinKingdomWars;
+        public static float NumMaxKingdomWars => _config.NumMaxKingdomWars;
+        public static float MinPeaceDays => _config.MinPeaceDays;
+        public static float MinWarDays => _config.MinWarDays;
 
         public static void ReadConfig()
         {
@@ -70,11 +74,19 @@ namespace TOR_Core.Utilities
             [XmlAttribute]
             public int MaximumNumberOfCareerPerkPoints;
             [XmlAttribute]
-            public float DeclareWarScoreMultiplierTor;
+            public float DeclareWarScoreDistanceMultiplier;
             [XmlAttribute]
-            public float DeclareWarScoreMultiplierNative;
+            public float DeclareWarScoreFactionStrengthMultiplier;
             [XmlAttribute]
-            public float DeclarePeaceMultiplier;
+            public float DeclareWarScoreReligiousEffectMultiplier;
+            [XmlAttribute]
+            public float NumMinKingdomWars;
+            [XmlAttribute]
+            public float NumMaxKingdomWars;
+            [XmlAttribute]
+            public int MinPeaceDays;
+            [XmlAttribute]
+            public int MinWarDays;
         }
     }
 }

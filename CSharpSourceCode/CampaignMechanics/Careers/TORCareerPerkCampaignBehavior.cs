@@ -198,7 +198,7 @@ namespace TOR_Core.CampaignMechanics
 
                         if (randomFloat >= chance) continue;
                         
-                        var mousillonEquivalent = TorRecruitmentHelpers.GetMousillonEquivalent(member.Character);
+                        var mousillonEquivalent = TORRecruitmentHelpers.GetMousillonEquivalent(member.Character);
 
                         if (mousillonEquivalent == null) continue;
                             

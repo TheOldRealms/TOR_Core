@@ -1,22 +1,15 @@
 ﻿using Helpers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
-using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Localization;
-using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
 using static TaleWorlds.CampaignSystem.GameMenus.GameMenu;
-using static TaleWorlds.CampaignSystem.Overlay.GameOverlays;
 
 namespace TOR_Core.CampaignMechanics.CustomEncounterDialogs
 {
@@ -72,7 +65,8 @@ namespace TOR_Core.CampaignMechanics.CustomEncounterDialogs
                     args.IsEnabled = false;
                     args.Tooltip = new TextObject("You are at war with this faction.");
                 }
-                return true;
+                if (EncounteredPartyMatch("druchii_clan_1", false)) return true;
+                else return false;
             }, (args) =>
             {
                 SellPrisonersAction.ApplyForSelectedPrisoners(PartyBase.MainParty, PlayerEncounter.EncounteredParty, MobilePartyHelper.GetPlayerPrisonersPlayerCanSell());
@@ -94,12 +88,16 @@ namespace TOR_Core.CampaignMechanics.CustomEncounterDialogs
             return value;
         }
 
-        private bool EncounteredPartyMatch(string clanId)
+        private bool EncounteredPartyMatch(string clanId, bool checkForConversationCharacter = true)
         {
             var party = PlayerEncounter.EncounteredMobileParty;
             if (party != null && party.ActualClan != null)
             {
-                return party.ActualClan.StringId == clanId && party.MemberRoster.Contains(CharacterObject.OneToOneConversationCharacter);
+                if(party.ActualClan.StringId == clanId)
+                {
+                    if (checkForConversationCharacter) return party.MemberRoster.Contains(CharacterObject.OneToOneConversationCharacter);
+                    else return true;
+                }
             }
             return false;
         }

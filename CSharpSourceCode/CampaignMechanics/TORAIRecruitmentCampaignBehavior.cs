@@ -46,7 +46,7 @@ namespace TOR_Core.Models
 
             if (recruiter.IsLord && troop.Culture.StringId == TORConstants.Cultures.MOUSILLON && recruiter.Culture.StringId == TORConstants.Cultures.BRETONNIA)
             {
-                var mousillonEquivalent = TorRecruitmentHelpers.GetMousillonEquivalent(troop);
+                var mousillonEquivalent = TORRecruitmentHelpers.GetMousillonEquivalent(troop);
                 if (mousillonEquivalent != null)
                 {
                     recruiter.PartyBelongedTo.Party.AddMember(mousillonEquivalent, amount);
@@ -56,7 +56,7 @@ namespace TOR_Core.Models
 
             if (recruiter.IsLord && troop.Culture.StringId == TORConstants.Cultures.BRETONNIA && recruiter.Culture.StringId == TORConstants.Cultures.MOUSILLON)
             {
-                var bretonniaEquivalent = TorRecruitmentHelpers.GetBretonnianEquivalent(troop);
+                var bretonniaEquivalent = TORRecruitmentHelpers.GetBretonnianEquivalent(troop);
                 if (bretonniaEquivalent != null)
                 {
                     recruiter.PartyBelongedTo.Party.AddMember(bretonniaEquivalent, amount);

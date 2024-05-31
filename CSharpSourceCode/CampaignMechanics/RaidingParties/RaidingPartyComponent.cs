@@ -1,5 +1,6 @@
 ﻿using System;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Party.PartyComponents;
 using TaleWorlds.CampaignSystem.Settlements;
@@ -61,23 +62,45 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
             {
                 FindNewTarget();
             }
-            AIBehaviorTuple item = new(Target, AiBehavior.RaidSettlement, false);
-            if (thinkParams.TryGetBehaviorScore(item, out float score))
+            if(Target != null)
             {
-                thinkParams.SetBehaviorScore(item, score + 0.8f);
-                return;
-            }
-            ValueTuple<AIBehaviorTuple, float> valueTuple = new(item, 0.8f);
-            thinkParams.AddBehaviorScore(valueTuple);
+                AIBehaviorTuple item = new(Target, AiBehavior.RaidSettlement, false);
+                if (thinkParams.TryGetBehaviorScore(item, out float score))
+                {
+                    thinkParams.SetBehaviorScore(item, score + 0.8f);
+                    return;
+                }
+                else
+                {
+                    ValueTuple<AIBehaviorTuple, float> valueTuple = new(item, 0.8f);
+                    thinkParams.AddBehaviorScore(valueTuple);
+                }
+                
 
-            if ((bool)!Clan?.IsAtWarWith(Target?.MapFaction)) FactionManager.DeclareWar(Clan, Target.MapFaction, true);
+                if ((bool)!Clan?.IsAtWarWith(Target?.MapFaction)) DeclareWarAction.ApplyByDefault(Clan, Target.MapFaction);
+            }
+            else
+            {
+                AIBehaviorTuple item = new(HomeSettlement, AiBehavior.PatrolAroundPoint, false);
+                if (thinkParams.TryGetBehaviorScore(item, out float score))
+                {
+                    thinkParams.SetBehaviorScore(item, score + 0.8f);
+                    return;
+                }
+                else
+                {
+                    ValueTuple<AIBehaviorTuple, float> valueTuple = new(item, 0.8f);
+                    thinkParams.AddBehaviorScore(valueTuple);
+                }
+            }
         }
 
-        private bool TargetIsValid() => Target != null && !Target.IsRaided && !Target.IsUnderRaid && Target != HomeSettlement && Target.IsVillage;
+        private bool TargetIsValid() => Target != null && !Target.IsRaided && Target != HomeSettlement && Target.IsVillage && 
+            (!Target.IsUnderRaid || Target.LastAttackerParty == MobileParty);
 
         private void FindNewTarget()
         {
-            Target = TORCommon.FindSettlementsAroundPosition(Party.Position2D, 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
+            Target = TORCommon.FindSettlementsAroundPosition(Party.Position2D, 100, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
         }
     }
 }

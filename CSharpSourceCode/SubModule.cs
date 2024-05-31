@@ -151,6 +151,7 @@ namespace TOR_Core
                 starter.AddBehavior(new PlaguedVillageQuestCampaignBehavior());
                 starter.AddBehavior(new CareerDialogOptionsCampaignBehavior());
                 starter.AddBehavior(new TORFactionDiscontinuationCampaignBehavior());
+                starter.AddBehavior(new TORKingdomDecisionsCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
