@@ -218,7 +218,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _crusherOfTheWeakPassive2.Initialize(CareerID, "Extra melee damage (10%).", "CrusherOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
             _crusherOfTheWeakPassive3.Initialize(CareerID, "Extra melee damage if the target is below tier 4 (10%).", "CrusherOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,
                 (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee && victim!=null&&!victim.IsHero && victim.Character.Level < 16));
-            _crusherOfTheWeakPassive4.Initialize(CareerID, "All prayer cooldowns are charged on battle begin.", "CrusherOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1,PassiveEffectType.Special,true));
+            _crusherOfTheWeakPassive4.Initialize(CareerID, "Prayers are recharged on battle start' in Crusher of the Weak.", "CrusherOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1,PassiveEffectType.Special,true));
             
             _wildPackPassive1.Initialize(CareerID, "Increases melee physical resistance by 10%.", "WildPack", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical,10),AttackTypeMask.Melee));
             _wildPackPassive2.Initialize(CareerID, "Increases Party size by 10.", "WildPack", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.PartySize));
@@ -244,12 +244,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             _furyOfWarPassive1.Initialize(CareerID, "Every  equipped melee weapon increases melee damage by 5%.", "FuryOfWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5,PassiveEffectType.Special,true));
             _furyOfWarPassive2.Initialize(CareerID, "Weapon swing speed increased by 10%.", "FuryOfWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10f, PassiveEffectType.SwingSpeed,true)); 
-            _furyOfWarPassive3.Initialize(CareerID,"Battles with even out odds provide double prestige gain","FuryOfWar",false,ChoiceType.Passive);
+            _furyOfWarPassive3.Initialize(CareerID,"Battles with even or unfavorable odds refresh your Ulric blessing.","FuryOfWar",false,ChoiceType.Passive);
             _furyOfWarPassive4.Initialize(CareerID,"Hits below 15 damage do not stagger the player.","FuryOfWar",false,ChoiceType.Passive); 
             
             _flameOfUlricPassive1.Initialize(CareerID, "Increases range of prayers by 50%.", "FlameOfUlric", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50f, PassiveEffectType.SpellRadius,true));
             _flameOfUlricPassive2.Initialize(CareerID, "Extra 20% armor penetration of melee attacks.", "FlameOfUlric", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
-            _flameOfUlricPassive3.Initialize(CareerID,"For a fair battle, gain or refresh your Ulric blessing.","FlameOfUlric",false,ChoiceType.Passive);
+            _flameOfUlricPassive3.Initialize(CareerID,"Battles with even or unfavorable odds provide double Prestige.","FlameOfUlric",false,ChoiceType.Passive);
             _flameOfUlricPassive4.Initialize(CareerID,"For every kill through abilities gain 0.25 health points","FlameOfUlric",false,ChoiceType.Passive); 
             
         }
