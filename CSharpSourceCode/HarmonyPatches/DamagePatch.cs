@@ -63,20 +63,22 @@ namespace TOR_Core.HarmonyPatches
                 if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(attacker, victim))
                 {
                     var property = PropertyMask.All;
-                    if (attacker.BelongsToMainParty()&&!attacker.IsHero)
+
+               
+                    if (attacker.BelongsToMainParty())
                     {
                         property = PropertyMask.Attack;
-                        var careerBonuses = CareerHelper.AddCareerPassivesForTroopDamageValues(attacker, victim, attackTypeMask, property);
+                        var careerBonuses = CareerHelper.AddCareerPassivesForDamageValues(attacker, victim, attackTypeMask, property);
                         for (var index = 0; index < careerBonuses.Length; index++)
                         {
                             additionalDamagePercentages[index] += careerBonuses[index];
                         } 
                     }
                     
-                    if(victim.BelongsToMainParty()&&!victim.IsHero)
+                    if(victim.BelongsToMainParty())
                     {
                         property = PropertyMask.Defense;
-                        var careerBonuses = CareerHelper.AddCareerPassivesForTroopDamageValues(attacker, victim, attackTypeMask, property);
+                        var careerBonuses = CareerHelper.AddCareerPassivesForDamageValues(attacker, victim, attackTypeMask, property);
                         for (var index = 0; index < careerBonuses.Length; index++)
                         {
                             resistancePercentages[index] += careerBonuses[index];

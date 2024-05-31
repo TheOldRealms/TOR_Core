@@ -180,7 +180,7 @@ namespace TOR_Core.Quests
                 OfferDialogFlow = DialogFlow.CreateDialogFlow("issue_classic_quest_start", 100).NpcLine(new TextObject("{=tor_quest_hunt_cultist_offer_dialog_str}Excellent. Do not underestimate the ruinous powers, unwavering vigilance is required on your quest!", null), null, null).Condition(() => Hero.OneToOneConversationHero == QuestGiver).Consequence(OnQuestAccepted).CloseDialog();
                 DiscussDialogFlow = DialogFlow.CreateDialogFlow("quest_discuss", 100).NpcLine(new TextObject("{=tor_quest_hunt_cultist_discuss_dialog_str}It was good doing business with you.", null), null, null).Condition(() => Hero.OneToOneConversationHero == QuestGiver).CloseDialog();
                 Campaign.Current.ConversationManager.AddDialogFlow(DialogFlow.CreateDialogFlow("start", 199).NpcLine("{=khorne_cultist_mission}This vessel is mine. Don't interfere with my plans!")
-                    .Condition(() => Mission.Current != null && Mission.Current.SceneName == "TOR_cultist_lair_001")
+                    .Condition(() => Mission.Current != null && Mission.Current.SceneName == "TOR_cultist_lair_001" && Mission.Current.Mode != MissionMode.Battle)
                     .PlayerLine("{=tor_quest_hunt_cultist_quest_prepare_to_die_str}Prepare to die!")
                     .Consequence(TurnHostile).CloseDialog());
             }

@@ -119,7 +119,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(TriggeredEffectTemplate),
                         MutationTargetOriginalId = "ulric_smash",
                         PropertyName = "DamageAmount",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.TwoHanded,DefaultSkills.OneHanded,DefaultSkills.Polearm }, 0.01f,true),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.TwoHanded,DefaultSkills.OneHanded,DefaultSkills.Polearm }, 0.06f,true),
                         MutationType = OperationType.Add
                     },
                 });
@@ -144,7 +144,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(TriggeredEffectTemplate),
                         MutationTargetOriginalId = "ulric_smash",
                         PropertyName = "DamageAmount",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership }, 0.01f),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership }, 0.06f),
                         MutationType = OperationType.Add
                     },
                 });
@@ -157,6 +157,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetOriginalId = "ulric_smash",
                         PropertyName = "Radius",
                         PropertyValue = (choice, originalValue, agent) => 1,
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "ulric_smash",
+                        PropertyName = "DamageAmount",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.06f),
                         MutationType = OperationType.Add
                     },
                 });
@@ -173,8 +181,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     },
                     new CareerChoiceObject.MutationObject()
                     {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "white_wolf_dot",
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "ulric_smash",
                         PropertyName = "ImbuedStatusEffects",
                         PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] {"frost_bite_mov_90" }).ToList(),
                         MutationType = OperationType.Replace
@@ -209,10 +217,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _crusherOfTheWeakPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "CrusherOfTheWeak", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
             _crusherOfTheWeakPassive2.Initialize(CareerID, "Extra melee damage (10%).", "CrusherOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
             _crusherOfTheWeakPassive3.Initialize(CareerID, "Extra melee damage if the target is below tier 4 (10%).", "CrusherOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,
-                (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee && victim!=null&&victim.IsHero && victim.Character.Level < 16));
+                (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee && victim!=null&&!victim.IsHero && victim.Character.Level < 16));
             _crusherOfTheWeakPassive4.Initialize(CareerID, "{=night_rider_passive4_str}Attacks deal bonus damage against shields.", "CrusherOfTheWeak", false, ChoiceType.Passive, null);
             
-            _wildPackPassive1.Initialize(CareerID, "Increases melee physical resistance by 10%.", "WildPack", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical,10),AttackTypeMask.Melee));
+            _wildPackPassive1.Initialize(CareerID, "Increases melee physical resistance by 10%.", "WildPack", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical,10),AttackTypeMask.Melee));
             _wildPackPassive2.Initialize(CareerID, "Increases Party size by 10.", "WildPack", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.PartySize));
             _wildPackPassive3.Initialize(CareerID, "Increases health regeneration after battles by 2.", "WildPack", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.HealthRegeneration));
             _wildPackPassive4.Initialize(CareerID, "Party movement speed is increased by 1.", "WildPack", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1f, PassiveEffectType.PartyMovementSpeed));
@@ -230,7 +238,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             _runesOfTheWhiteWolfPassive1.Initialize(CareerID,"Wearing a wolf head increases wardsave by 10%","RunesOfTheWhiteWolf",false,ChoiceType.Passive, null , new CareerChoiceObject.PassiveEffect(10,PassiveEffectType.Special,true)); //TODO
             _runesOfTheWhiteWolfPassive2.Initialize(CareerID, "Increases Hitpoints by 50.", "RunesOfTheWhiteWolf", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
-            _runesOfTheWhiteWolfPassive3.Initialize(CareerID, "Increase prayer durations by 20%.", "RunesOfTheWhiteWolf", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.25f, PassiveEffectType.BuffDuration,true));
+            _runesOfTheWhiteWolfPassive3.Initialize(CareerID, "Increase prayer durations by 20%.", "RunesOfTheWhiteWolf", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20f, PassiveEffectType.BuffDuration,true));
             _runesOfTheWhiteWolfPassive4.Initialize(CareerID, "Ulrican troops gain 20% Ward save.", "RunesOfTheWhiteWolf", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 20), AttackTypeMask.All, 
                 (attacker, victim, mask) => victim.IsPlayerTroop && victim.Character.UnitBelongsToCult("ulric") ));
             

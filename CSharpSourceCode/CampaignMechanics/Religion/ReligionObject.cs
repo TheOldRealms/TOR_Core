@@ -21,24 +21,37 @@ namespace TOR_Core.CampaignMechanics.Religion
         public TextObject Name { get; set; }
         public TextObject DeityName { get; set; }
         public TextObject LoreText { get; private set; }
-        
         public TextObject BlessingEffectDescription{ get; private set; }
         public TextObject BlessingEffectName{ get; private set; }
         public CultureObject Culture { get; private set; }
-        public List<ReligionObject> HostileReligions { get; private set; } = new List<ReligionObject>();
-        public List<CharacterObject> ReligiousTroops { get; private set; } = new List<CharacterObject>();
-        public List<ItemObject> ReligiousArtifacts { get; private set; } = new List<ItemObject>();
-        public List<string> InitialClans { get; private set; } = new List<string>();
+        public List<ReligionObject> HostileReligions { get; private set; } = [];
+        public List<CharacterObject> ReligiousTroops { get; private set; } = [];
+        public List<ItemObject> ReligiousArtifacts { get; private set; } = [];
+        public List<string> InitialClans { get; private set; } = [];
         public ReligionAffinity Affinity { get; private set; }
 
-        public static MBReadOnlyList<ReligionObject> All => _all ?? new MBReadOnlyList<ReligionObject> { };
+        public static MBReadOnlyList<ReligionObject> All => _all ?? [];
         public static void FillAll() => _all = MBObjectManager.Instance.GetObjectTypeList<ReligionObject>();
 
-        public MBReadOnlyList<Hero> CurrentFollowers => new MBReadOnlyList<Hero>(Hero.AllAliveHeroes.Where(x => x.GetDominantReligion() == this).ToList());
+        public MBReadOnlyList<Hero> CurrentFollowers => new(Hero.AllAliveHeroes.Where(x => x.GetDominantReligion() == this).ToList());
 
         public string EncyclopediaLink => (Campaign.Current.EncyclopediaManager.GetIdentifier(typeof(ReligionObject)) + "-" + StringId) ?? "";
 
         public TextObject EncyclopediaLinkWithName => HyperlinkTexts.GetSettlementHyperlinkText(EncyclopediaLink, Name);
+
+        /// <summary>
+        /// Gets similarity score between this and another religion
+        /// </summary>
+        /// <param name="other">The other <see cref="ReligionObject"/> to calculare similarity with</param>
+        /// <returns>Similarity score between -1 (hostile) and 1 (same culture, same religion)</returns>
+        public float GetSimilarityScore(ReligionObject other)
+        {
+            if (HostileReligions.Contains(other) && Culture != other.Culture) return -1f;
+            else if (HostileReligions.Contains(other) && Culture == other.Culture) return -0.75f;
+            else if (!HostileReligions.Contains(other) && Culture != other.Culture) return 0.25f;
+            else if (!HostileReligions.Contains(other) && Culture == other.Culture) return 1f;
+            else return 0f;
+        }
 
         public override void Deserialize(MBObjectManager objectManager, XmlNode node)
         {

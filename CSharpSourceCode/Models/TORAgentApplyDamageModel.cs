@@ -166,14 +166,6 @@ namespace TOR_Core.Models
                 AssignUnitProperties(agent, propertyMask, attackTypeMask, out damageProportions, out damageAmplifications, out damageResistances, out additionalDamagePercentages);
             }
             var result =  new AgentPropertyContainer(damageProportions, damageAmplifications, damageResistances, additionalDamagePercentages);
-            
-            if (Game.Current.GameType is Campaign)
-            {
-                if(MissionGameModels.Current.AgentStatCalculateModel is TORAgentStatCalculateModel model)
-                {
-                    result = model.AddPerkEffectsToAgentPropertyContainer(agent, propertyMask, attackTypeMask, result);
-                }
-            }
 
             return result;
         }

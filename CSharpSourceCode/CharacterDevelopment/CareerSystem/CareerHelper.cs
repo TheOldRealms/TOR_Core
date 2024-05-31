@@ -206,38 +206,36 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             }
         }
 
-        public static float[] AddCareerPassivesForTroopDamageValues(Agent attacker, Agent victim, AttackTypeMask attackTypeMask, PropertyMask mask)
+        public static float[] AddCareerPassivesForDamageValues(Agent attacker, Agent victim, AttackTypeMask attackTypeMask, PropertyMask mask)
         {
             var damageValues = new float[(int)DamageType.All + 1];
 
             switch (mask)
             {
                 case PropertyMask.Attack:
-                    ApplyCareerPassivesForDamageValues(attacker, victim, ref damageValues, attackTypeMask, PassiveEffectType.TroopDamage);
+                    if (attacker.IsHero && attacker.IsMainAgent)
+                    {
+                        ApplyCareerPassivesForDamageValues(attacker, victim, ref damageValues, attackTypeMask, PassiveEffectType.Damage);
+                    }
+                    else
+                    {
+                        ApplyCareerPassivesForDamageValues(attacker, victim, ref damageValues, attackTypeMask, PassiveEffectType.TroopDamage);
+                    }
                     return damageValues;
                 case PropertyMask.Defense:
-                    ApplyCareerPassivesForDamageValues(attacker, victim, ref damageValues, attackTypeMask, PassiveEffectType.TroopResistance);
+                    if (victim.IsHero && victim.IsMainAgent)
+                    {
+                        ApplyCareerPassivesForDamageValues(attacker, victim, ref damageValues, attackTypeMask, PassiveEffectType.Resistance);
+                    }
+                    else
+                    {
+                        ApplyCareerPassivesForDamageValues(attacker, victim, ref damageValues, attackTypeMask, PassiveEffectType.TroopResistance);
+                    }
+                    
                     return damageValues;
                 default:
                     return null;
             }
-        }
-        public static AgentPropertyContainer AddBasicCareerPassivesToPropertyContainerForMainAgent(Agent agent, AgentPropertyContainer propertyContainer, AttackTypeMask attackType, PropertyMask mask)
-        {
-            if (!agent.GetHero().HasAnyCareer()) return propertyContainer;
-
-            var damageValues = propertyContainer.AdditionalDamagePercentages;
-            var resistanceValues = propertyContainer.ResistancePercentages;
-            if (mask == PropertyMask.Attack)
-            {
-                ApplyCareerPassivesForDamageValues(agent, null, ref damageValues, attackType,PassiveEffectType.Damage);
-            }
-
-            if (mask == PropertyMask.Defense)
-            {
-                ApplyCareerPassivesForDamageValues(agent, null, ref resistanceValues, attackType,PassiveEffectType.Resistance);
-            }
-            return new AgentPropertyContainer(propertyContainer.DamageProportions, propertyContainer.DamagePercentages, resistanceValues, damageValues);
         }
 
         private static void ApplyCareerPassivesForDamageValues(Agent agent,Agent victim, ref float[] values, AttackTypeMask attackMask, PassiveEffectType type)

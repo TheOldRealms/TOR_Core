@@ -511,6 +511,10 @@
   <string id="str_customresource_trade_label" text="{=!}You will {?PAY_OR_GET}get{?}pay{\?} {TRADE_AMOUNT}" />
 
   <!--custom settlements e.g. chaos portal, shrines, herdstones -->
+  <string id="customsettlement_intro.darkelf_camp_01" text="{=!}You arrive at a druchii slaver camp. Ships are anchored in the bay and the cages are full of stock." />
+  <string id="customsettlement_disabled.darkelf_camp_01" text="{=!}The slavers have left these shores. Come back at a later time." />
+  <string id="customsettlement_battle.darkelf_camp_01" text="{=!}Attempt to drive the slavers away." />
+
   <string id="customsettlement_intro.chaos_portal_01" text="{=!}You arrive at an active chaos portal. The vile thing pulses with arcane magic, chaos forces are invading in minor numbers from their realm." />
   <string id="customsettlement_disabled.chaos_portal_01" text="{=!}The portal lies dormant. Come back at a later time." />
   <string id="customsettlement_battle.chaos_portal_01" text="{=!}Attempt to defeat the chaos forces present and close the portal." />

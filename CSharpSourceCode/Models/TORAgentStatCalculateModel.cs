@@ -490,7 +490,6 @@ namespace TOR_Core.Models
             if (!Hero.MainHero.HasAnyCareer()) return result;
             if (agent == Agent.Main)
             {
-                result = CareerHelper.AddBasicCareerPassivesToPropertyContainerForMainAgent(agent, result, attackMask, mask);
                 
                 var choices = Agent.Main.GetHero().GetAllCareerChoices();
                 

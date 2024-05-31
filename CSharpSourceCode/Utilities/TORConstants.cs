@@ -39,6 +39,7 @@ namespace TOR_Core.Utilities
             public const string MOUSILLON = "mousillon";
             public const string WOODELF = "battania";
             public const string DRUCHII =  "druchii";
+            public const string CHAOS = "chaos_culture";
         }
     }
 }

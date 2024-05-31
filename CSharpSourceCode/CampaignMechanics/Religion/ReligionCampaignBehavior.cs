@@ -119,10 +119,10 @@ namespace TOR_Core.CampaignMechanics.Religion
                     }
                 }
             }
-            SetIntialReliationForAllNPCCharacters();
+            SetInitialReligionForAllNPCCharacters();
         }
 
-        private void SetIntialReliationForAllNPCCharacters()
+        private void SetInitialReligionForAllNPCCharacters()
         {
             foreach(var hero in Hero.AllAliveHeroes)
             {

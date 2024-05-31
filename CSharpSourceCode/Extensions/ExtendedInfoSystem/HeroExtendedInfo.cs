@@ -18,18 +18,18 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions.ExtendedInfoSystem
 {
-    public class HeroExtendedInfo
+    public class HeroExtendedInfo(CharacterObject character)
     {
-        [SaveableField(0)] public List<string> AcquiredAbilities = new List<string>();
-        [SaveableField(1)] public List<string> AcquiredAttributes = new List<string>();
-        [SaveableField(2)] public Dictionary<string, float> CustomResources = new Dictionary<string, float>();
-        [SaveableField(3)] public Dictionary<string, int> ReligionDevotionLevels = new Dictionary<string, int>();
+        [SaveableField(0)] public List<string> AcquiredAbilities = [];
+        [SaveableField(1)] public List<string> AcquiredAttributes = [];
+        [SaveableField(2)] public Dictionary<string, float> CustomResources = [];
+        [SaveableField(3)] public Dictionary<string, int> ReligionDevotionLevels = [];
         [SaveableField(4)] public SpellCastingLevel SpellCastingLevel = SpellCastingLevel.None;
-        [SaveableField(5)] private CharacterObject _baseCharacter;
-        [SaveableField(6)] private List<string> _knownLores = new List<string>();
-        [SaveableField(7)] private List<string> _selectedAbilities = new List<string>();
+        [SaveableField(5)] private CharacterObject _baseCharacter = character;
+        [SaveableField(6)] private List<string> _knownLores = [];
+        [SaveableField(7)] private List<string> _selectedAbilities = [];
         [SaveableField(8)] public string CareerID = string.Empty;
-        [SaveableField(9)] public List<string> CareerChoices = new List<string>();
+        [SaveableField(9)] public List<string> CareerChoices = [];
 
         public CharacterObject BaseCharacter => _baseCharacter;
 
@@ -97,7 +97,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             get
             {
-                if (!(Game.Current.GameType is Campaign)) return 50;
+                if (Game.Current.GameType is not Campaign) return 50;
                 TORAbilityModel  model = Campaign.Current.Models.GetAbilityModel();
                 return model.GetMaximumWindsOfMagic(this.BaseCharacter);
             }
@@ -107,10 +107,10 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             get
             {
-                if (!(Game.Current.GameType is Campaign)) return 0.2f;
+                if (Game.Current.GameType is not Campaign) return 0.2f;
                 else
                 {
-                    if (!(Game.Current.GameType is Campaign)) return 50;
+                    if (Game.Current.GameType is not Campaign) return 50;
                     TORAbilityModel  model = Campaign.Current.Models.GetAbilityModel();
                     return model.GetWindsRechargeRate(this.BaseCharacter);
                 }
@@ -121,7 +121,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             get
             {
-                List<LoreObject> list = new List<LoreObject>();
+                List<LoreObject> list = [];
                 EnsureKnownLores();
                 foreach (var item in _knownLores)
                 {
@@ -208,11 +208,6 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             return _selectedAbilities.Contains(abilityId);
         }
 
-        public HeroExtendedInfo(CharacterObject character)
-        {
-            _baseCharacter = character;
-        }
-
         public void AddKnownLore(string loreId)
         {
             if (LoreObject.GetLore(loreId) != null && !_knownLores.Contains(loreId)) _knownLores.Add(loreId);
@@ -272,7 +267,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
         private void EnsureKnownLores()
         {
-            List<AbilityTemplate> list = new List<AbilityTemplate>();
+            List<AbilityTemplate> list = [];
             foreach(var abilityId in AllAbilites)
             {
                 var ability = AbilityFactory.GetTemplate(abilityId);

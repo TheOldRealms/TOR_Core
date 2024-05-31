@@ -2,6 +2,7 @@
 using TaleWorlds.CampaignSystem.ComponentInterfaces;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Localization;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Diplomacy
 {
@@ -24,6 +25,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             out TextObject reason)
         {
             reason = TextObject.Empty;
+            if (kingdom1.Culture.StringId == TORConstants.Cultures.CHAOS || kingdom2.Culture.StringId == TORConstants.Cultures.CHAOS) return false;
             return true;
         }
 

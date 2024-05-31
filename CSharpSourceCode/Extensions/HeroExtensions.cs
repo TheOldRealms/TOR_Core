@@ -79,10 +79,7 @@ namespace TOR_Core.Extensions
         public static void AddCustomResource(this Hero hero, string id, float amount)
         {
             var info = hero.GetExtendedInfo();
-            if (info != null)
-            {
-                info.AddCustomResource(id, amount);
-            }
+            info?.AddCustomResource(id, amount);
         }
 
         public static float GetCustomResourceValue(this Hero hero, string id)
@@ -156,10 +153,7 @@ namespace TOR_Core.Extensions
         {
             float result = 0;
             var info = hero.GetExtendedInfo();
-            if(info != null)
-            {
-                info.AddCustomResource("WindsOfMagic", amount);
-            }
+            info?.AddCustomResource("WindsOfMagic", amount);
             
             return result;
         }
@@ -270,10 +264,7 @@ namespace TOR_Core.Extensions
 
         public static void AddKnownLore(this Hero hero, string loreID)
         {
-            if (hero.GetExtendedInfo() != null)
-            {
-                hero.GetExtendedInfo().AddKnownLore(loreID);
-            }
+            hero.GetExtendedInfo()?.AddKnownLore(loreID);
         }
 
         public static bool HasKnownLore(this Hero hero, string loreID)
@@ -416,7 +407,7 @@ namespace TOR_Core.Extensions
         public static List<string> GetAllCareerChoices(this Hero hero)
         {
             if (!hero.HasAnyCareer())
-                return new List<string>();
+                return [];
 
             return hero.GetExtendedInfo().CareerChoices;
         }
@@ -497,7 +488,7 @@ namespace TOR_Core.Extensions
 
         public static bool HasAnyReligion(this Hero hero) => hero.GetDominantReligion() != null;
 
-        public static ReligionObject GetDominantReligion(this Hero hero) => hero.GetExtendedInfo() != null ? hero.GetExtendedInfo().DominantReligion : null;
+        public static ReligionObject GetDominantReligion(this Hero hero) => hero.GetExtendedInfo()?.DominantReligion;
 
         public static DevotionLevel GetDevotionLevelForReligion(this Hero hero, ReligionObject religion)
         {
@@ -519,7 +510,7 @@ namespace TOR_Core.Extensions
             if(info != null)
             {
                 var copy = info.ReligionDevotionLevels.ToDictionary(x => x.Key, x => x.Value);
-                Dictionary<string, DevotionLevel> originalDevotionLevels = new Dictionary<string, DevotionLevel>();
+                Dictionary<string, DevotionLevel> originalDevotionLevels = [];
                 foreach(var ro in ReligionObject.All)
                 {
                     if (copy.ContainsKey(ro.StringId))
@@ -570,7 +561,7 @@ namespace TOR_Core.Extensions
                     }
                 }
 
-                Dictionary<string, DevotionLevel> newDevotionLevels = new Dictionary<string, DevotionLevel>();
+                Dictionary<string, DevotionLevel> newDevotionLevels = [];
                 foreach (var ro in ReligionObject.All)
                 {
                     if (info.ReligionDevotionLevels.ContainsKey(ro.StringId))
